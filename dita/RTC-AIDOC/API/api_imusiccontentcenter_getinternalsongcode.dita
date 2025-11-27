@@ -28,28 +28,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>songCode</pt>
-                    <pd>音乐资源的歌曲编码，用于标识资源。你可以通过调用 <xref keyref="getMusicCollectionByMusicChartId"/> 或 <xref keyref="searchMusic"/> 获取，并从这些方法触发的 <xref keyref="onMusicCollectionResult"/> 回调中获取该编码。</pd>
+                    <pd>音乐资源的歌曲编码，用于标识资源。你可以通过调用 <codeph>getMusicCollectionWithMusicChartId</codeph> 或 <xref keyref="searchMusic"/> 获取，并从这些方法触发的 <xref keyref="onMusicCollectionResult"/> 回调中获取该编码。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>jsonOption</pt>
-                    <pd>
-                        <simpletable>
-                            <sthead>
-                                <stentry>Key</stentry>
-                                <stentry>Value 说明</stentry>
-                                <stentry>示例</stentry>
-                            </sthead>
-                            <strow>
-                                <stentry>sceneType</stentry>
-                                <stentry>场景类型：&lt;br&gt; - 1：秀场直播场景，在线 K 歌房和背景音乐播放。&lt;br&gt; - 2：秀场直播场景，背景音乐播放。&lt;br&gt; - 3：（默认）声动语聊场景，在线 K 歌房。&lt;br&gt; - 4：声动语聊场景，背景音乐播放。&lt;br&gt; - 5：VR 场景，在线 K 歌房和背景音乐播放。&lt;br&gt;注意：声网会根据你传入的 <codeph>sceneType</codeph> 收费，不同场景的计费标准不同。若需切换场景，需重新调用该方法并传入新的 <codeph>sceneType</codeph>。</stentry>
-                                <stentry>{"sceneType":1}</stentry>
-                            </strow>
-                            <strow>
-                                <stentry>highPart</stentry>
-                                <stentry>副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取该索引并传入此处。索引从 0 开始。</stentry>
-                                <stentry>{"format": {"highpart": 0}}</stentry>
-                            </strow>
-                        </simpletable>
+                    <pd>扩展 JSON 字段，默认为 <xref keyref="NULL"/>。目前支持以下字段：
+                        <ul>
+                            <li>sceneType：场景类型。1：直播场景，在线 K 歌房和背景音乐播放；2：直播场景，背景音乐播放；3：（默认）声动语聊场景，在线 K 歌房；4：声动语聊场景，背景音乐播放；5：VR 场景，在线 K 歌房和背景音乐播放。示例代码 <codeph>{"sceneType":1} |</codeph>。</li>
+                            <li>highPart：副歌片段的索引，从 <xref keyref="onMusicCollectionResult"/> 回调中获取，索引从 0 开始。示例代码 <codeph>{"format": {"highpart": 0}}</codeph>。</li>
+                        </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
@@ -62,7 +49,8 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>jsonOption</pt>
-                    <pd>扩展 JSON 字段，默认为 <xref keyref="NULL"/>。当前支持以下字段：
+                    <pd>
+                        <note>声网会根据你在 <codeph>sceneType</codeph> 中指定的频道场景计费。不同的频道场景对应不同的计费标准，详见计费文档。若需切换频道场景，必须重新调用该方法并传入新的 <codeph>sceneType</codeph> 值。</note><ph>扩展 JSON 字段，默认为 <xref keyref="NULL"/>。当前支持以下字段：</ph>
                         <ul>
                             <li><codeph>sceneType</codeph>：频道场景。
                                 <ul>
@@ -70,13 +58,14 @@
                                     <li>2：直播场景：背景音乐播放。</li>
                                     <li>3：（默认）语聊场景：在线 K 歌房。</li>
                                     <li>4：语聊场景：背景音乐播放。</li>
-                                    <li>5：VR 场景：在线 K 歌房和背景音乐播放。</li>
+                                    <li>5：VR 场景：在线 K 歌房和背景音乐播放。示例：<codeph>{"sceneType":1}</codeph></li>
                                 </ul>
                             </li>
-                        </ul><ph>  &gt; 注意：声网会根据你在 <codeph>sceneType</codeph> 中指定的频道场景计费。不同的频道场景对应不同的计费标准，详见计费文档。若需切换频道场景，必须重新调用该方法并传入新的 <codeph>sceneType</codeph> 值。</ph><ph>  示例：<codeph>{"sceneType":1}</codeph></ph>
+                        </ul>
                         <ul>
-                            <li><codeph>highPart</codeph>：副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取该索引并传入。索引从 0 开始。</li>
-                        </ul><ph>  示例：<codeph>{"format": {"highpart": 0}}</codeph></ph></pd>
+                            <li><codeph>highPart</codeph>：副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取该索引并传入。索引从 0 开始。示例：<codeph>{"format": {"highpart": 0}}</codeph></li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>songCode</pt>
@@ -85,14 +74,12 @@
                 <plentry props="android">
                     <pt>jsonOption</pt>
                     <pd>
-                        <note><codeph>sceneType</codeph> 会影响计费方式。不同频道场景的计费标准不同，详见计费文档。若需切换频道场景，必须使用新的 <codeph>sceneType</codeph> 值重新调用该方法。</note><ph>扩展 JSON 字段，默认为 <xref keyref="NULL"/>。目前支持以下字段：</ph><ph>| Key | Value | Example |</ph><ph>| --- | ----- | ------- |</ph><ph>| sceneType | 频道场景：</ph>
+                        <note><codeph>sceneType</codeph> 会影响计费方式。不同频道场景的计费标准不同，详见计费文档。若需切换频道场景，必须使用新的 <codeph>sceneType</codeph> 值重新调用该方法。</note><ph>扩展 JSON 字段，默认为 <xref keyref="NULL"/>。目前支持以下字段：</ph>
                         <ul>
-                            <li>1：直播场景：在线 K 歌房和背景音乐播放。</li>
-                            <li>2：直播场景：背景音乐播放。</li>
-                            <li>3：（默认）声动语聊场景：在线 K 歌房。</li>
-                            <li>4：声动语聊场景：背景音乐播放。</li>
-                            <li>5：VR 场景：在线 K 歌房和背景音乐播放。 | {"sceneType":1} |</li>
-                        </ul><ph>| highPart | 副歌片段的索引，从 <xref keyref="onMusicCollectionResult"/> 回调中获取，索引从 0 开始。 | {"format": {"highpart": 0}} |</ph></pd>
+                            <li>sceneType：场景类型。1：直播场景，在线 K 歌房和背景音乐播放；2：直播场景，背景音乐播放；3：（默认）声动语聊场景，在线 K 歌房；4：声动语聊场景，背景音乐播放；5：VR 场景，在线 K 歌房和背景音乐播放。示例：<codeph>{"sceneType":1} |</codeph>。</li>
+                            <li>highPart：副歌片段的索引，从 <xref keyref="onMusicCollectionResult"/> 回调中获取，索引从 0 开始。示例：<codeph>{"format": {"highpart": 0}}</codeph>。</li>
+                        </ul>
+                    </pd>
                 </plentry>
             </parml>
         </section>
@@ -113,7 +100,7 @@
             <p props="android">
                 <ul>
                     <li>方法调用成功，返回创建的音乐资源内部标识符。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。详见 <codeph>Error Codes</codeph>。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
         </section>

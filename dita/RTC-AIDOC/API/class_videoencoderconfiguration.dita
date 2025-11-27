@@ -132,84 +132,83 @@
                     <pd>视频编码的高级选项。详见 <xref keyref="AdvanceOptions"/>。</pd>
                 </plentry>
                 <plentry props="android">
-                    <pt>VD_120x120</pt>
-                    <pd>视频分辨率为 120 × 120。详见 <xref keyref="VideoDimensions"/>。</pd>
+                    <pt>dimensions</pt>
+                    <pd>
+                        <note>是否支持 720p 或更高分辨率取决于设备性能。如果设备无法支持 720p，帧率可能低于设定值。默认值为 960 × 540。</note><ph>视频分辨率。你可以自定义设置，或从以下列表中选择：</ph>
+                        <ul>
+                            <li><codeph>VD_120x120</codeph>：120 × 120</li>
+                            <li><codeph>VD_160x120</codeph>：160 × 120</li>
+                            <li><codeph>VD_180x180</codeph>：180 × 180</li>
+                            <li><codeph>VD_240x180</codeph>：240 × 180</li>
+                            <li><codeph>VD_320x180</codeph>：320 × 180</li>
+                            <li><codeph>VD_240x240</codeph>：240 × 240</li>
+                            <li><codeph>VD_320x240</codeph>：320 × 240</li>
+                            <li><codeph>VD_424x240</codeph>：424 × 240</li>
+                            <li><codeph>VD_360x360</codeph>：360 × 360</li>
+                            <li><codeph>VD_480x360</codeph>：480 × 360</li>
+                            <li><codeph>VD_640x360</codeph>：640 × 360</li>
+                            <li><codeph>VD_480x480</codeph>：480 × 480</li>
+                            <li><codeph>VD_640x480</codeph>：640 × 480</li>
+                            <li><codeph>VD_840x480</codeph>：840 × 480</li>
+                            <li><codeph>VD_960x540</codeph>：960 × 540</li>
+                            <li><codeph>VD_960x720</codeph>：960 × 720</li>
+                            <li><codeph>VD_1280x720</codeph>：1280 × 720</li>
+                            <li><codeph>VD_1920x1080</codeph>：1920 × 1080</li>
+                            <li><codeph>VD_2540x1440</codeph>：2540 × 1440</li>
+                            <li><codeph>VD_3840x2160</codeph>：3840 × 2160。</li>
+                        </ul><ph>详见 <xref keyref="VideoDimensions"/>。</ph></pd>
                 </plentry>
                 <plentry props="android">
-                    <pt>VD_160x120</pt>
-                    <pd>视频分辨率为 160 × 120。详见 <xref keyref="VideoDimensions"/>。</pd>
+                    <pt>frameRate</pt>
+                    <pd>编码视频帧的帧率（fps）。默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</pd>
                 </plentry>
                 <plentry props="android">
-                    <pt>VD_180x180</pt>
-                    <pd>视频分辨率为 180 × 180。详见 <xref keyref="VideoDimensions"/>。</pd>
+                    <pt>minFrameRate</pt>
+                    <pd>（预留参数）最小视频编码帧率（fps）。默认值为 <codeph>DEFAULT_MIN_FRAMERATE(-1)</codeph>，即 SDK 使用最低编码帧率。</pd>
                 </plentry>
                 <plentry props="android">
-                    <pt>VD_240x180</pt>
-                    <pd>视频分辨率为 240 × 180。详见 <xref keyref="VideoDimensions"/>。</pd>
+                    <pt>bitrate</pt>
+                    <pd>视频编码码率（Kbps）。无需手动设置该参数，保持默认值 <xref keyref="STANDARD_BITRATE"/> 即可。SDK 会根据设置的视频分辨率和帧率自动匹配最合适的码率。
+                        <ul>
+                            <li><codeph>STANDARD_BITRATE (0)</codeph>：推荐使用的标准码率模式。</li>
+                            <li><codeph>COMPATIBLE_BITRATE (-1)</codeph>：自适应码率模式。一般不建议使用该值。</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="android">
-                    <pt>VD_320x180</pt>
-                    <pd>视频分辨率为 320 × 180。详见 <xref keyref="VideoDimensions"/>。</pd>
+                    <pt>minBitrate</pt>
+                    <pd>视频的最小编码码率（Kbps）。SDK 会自动调整编码码率以适应网络状况。设置高于默认值可能会强制编码器输出高质量图像，但可能导致更高丢包率并影响传输流畅性。
+                        <note>该参数仅适用于互动直播场景。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
-                    <pt>VD_240x240</pt>
-                    <pd>视频分辨率为 240 × 240。详见 <xref keyref="VideoDimensions"/>。</pd>
+                    <pt>orientationMode</pt>
+                    <pd>编码视频的方向模式。详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
                 </plentry>
                 <plentry props="android">
-                    <pt>VD_320x240</pt>
-                    <pd>视频分辨率为 320 × 240。详见 <xref keyref="VideoDimensions"/>。</pd>
+                    <pt>degradationPrefer</pt>
+                    <pd>带宽受限时的视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/>。
+                        <note>当该参数设置为 <codeph>MAINTAIN_FRAMERATE (1)</codeph> 或 <codeph>MAINTAIN_BALANCED (2)</codeph> 时，<codeph>orientationMode</codeph> 需同时设为 <codeph>ORIENTATION_MODE_ADAPTIVE (0)</codeph>，否则该设置无效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
-                    <pt>VD_424x240</pt>
-                    <pd>视频分辨率为 424 × 240。详见 <xref keyref="VideoDimensions"/>。</pd>
+                    <pt>mirrorMode</pt>
+                    <pd>
+                        <note>默认情况下，视频无镜像效果。</note><ph>设置本地视频流发布时的镜像模式，仅影响远端用户看到的视频：</ph>
+                        <ul>
+                            <li><codeph>VIDEO_MIRROR_MODE_AUTO (0)</codeph>：SDK 决定是否启用镜像模式，默认关闭。</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_ENABLED (1)</codeph>：开启远端镜像。</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_DISABLED (2)</codeph>：关闭远端镜像。</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="android">
-                    <pt>VD_360x360</pt>
-                    <pd>视频分辨率为 360 × 360。详见 <xref keyref="VideoDimensions"/>。</pd>
+                    <pt>advanceOptions</pt>
+                    <pd>视频编码的高级选项。详见 <xref keyref="AdvanceOptions"/>。</pd>
                 </plentry>
                 <plentry props="android">
-                    <pt>VD_480x360</pt>
-                    <pd>视频分辨率为 480 × 360。详见 <xref keyref="VideoDimensions"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VD_640x360</pt>
-                    <pd>视频分辨率为 640 × 360。详见 <xref keyref="VideoDimensions"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VD_480x480</pt>
-                    <pd>视频分辨率为 480 × 480。详见 <xref keyref="VideoDimensions"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VD_640x480</pt>
-                    <pd>视频分辨率为 640 × 480。详见 <xref keyref="VideoDimensions"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VD_840x480</pt>
-                    <pd>视频分辨率为 840 × 480。详见 <xref keyref="VideoDimensions"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VD_960x540</pt>
-                    <pd>视频分辨率为 960 × 540。详见 <xref keyref="VideoDimensions"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VD_960x720</pt>
-                    <pd>视频分辨率为 960 × 720。详见 <xref keyref="VideoDimensions"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VD_1280x720</pt>
-                    <pd>视频分辨率为 1280 × 720。详见 <xref keyref="VideoDimensions"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VD_1920x1080</pt>
-                    <pd>视频分辨率为 1920 × 1080，不支持。详见 <xref keyref="VideoDimensions"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VD_2540x1440</pt>
-                    <pd>视频分辨率为 2540 × 1440，不支持。详见 <xref keyref="VideoDimensions"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>VD_3840x2160</pt>
-                    <pd>视频分辨率为 3840 × 2160，不支持。详见 <xref keyref="VideoDimensions"/>。</pd>
+                    <pt>codecType</pt>
+                    <pd>本地视频流的编解码器类型。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>dimensions</pt>

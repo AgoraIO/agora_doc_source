@@ -33,7 +33,7 @@
                     <dd>该方法已废弃，请改用 <codeph>preload(long songCode)</codeph>。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">你可以调用该方法预加载想要播放的音乐资源。成功调用该方法后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调报告预加载事件。在调用该方法之前，你需要先调用 <xref keyref="getMusicCollectionByMusicChartId"/> 或 <xref keyref="searchMusic"/> 获取目标音乐资源，并从 <xref keyref="onMusicCollectionResult"/> 回调中获取歌曲编号 <codeph>songCode</codeph>。</p>
+            <p props="cpp">你可以调用该方法预加载想要播放的音乐资源。成功调用该方法后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调报告预加载事件。在调用该方法之前，你需要先调用 <codeph>getMusicCollectionWithMusicChartId</codeph> 或 <xref keyref="searchMusic"/> 获取目标音乐资源，并从 <xref keyref="onMusicCollectionResult"/> 回调中获取歌曲编号 <codeph>songCode</codeph>。</p>
             <p props="ios">你可以调用此方法预加载你想播放的音乐资源。</p>
             <p props="android">调用成功后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调报告预加载事件。在调用该方法前，你需要先调用 <codeph>getMusicCollectionByMusicChartId</codeph> 或 <codeph>searchMusic</codeph> 获取音乐资源，并从 <xref keyref="onMusicCollectionResult"/> 回调中获取资源标识符（<codeph>songCode</codeph>）。</p>
             <note props="cpp">在销毁 <xref keyref="IRtcEngine"/> 对象前，请确保已收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后再调用 <xref keyref="release_IMusicContentCenter"/> 方法。</note>
@@ -111,7 +111,7 @@
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。详见 <codeph>Error Codes</codeph> 获取详细信息和排查方法。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
         </section>
