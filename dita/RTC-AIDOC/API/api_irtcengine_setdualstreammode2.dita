@@ -22,31 +22,31 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">SDK 默认在发送端开启低质量视频流自适应模式（<codeph>AUTO_SIMULCAST_STREAM</codeph>），即发送端不会主动发送低质量视频流。角色为主播的接收端可以通过调用 <xref keyref="setRemoteVideoStreamType"/> 发起低质量视频流请求，发送端在收到请求后会自动开始发送低质量视频流。
+            <p props="cpp">SDK 默认在发送端开启视频小流自适应模式（<codeph>AUTO_SIMULCAST_STREAM</codeph>），即发送端不会主动发送视频小流。角色为主播的接收端可以通过调用 <xref keyref="setRemoteVideoStreamType"/> 发起视频小流请求，发送端在收到请求后会自动开始发送视频小流。
                 <ul>
-                    <li>如果你希望修改此行为，可以调用此方法并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>（从不发送低质量视频流）或 <codeph>ENABLE_SIMULCAST_STREAM</codeph>（始终发送低质量视频流）。</li>
+                    <li>如果你希望修改此行为，可以调用此方法并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>（从不发送视频小流）或 <codeph>ENABLE_SIMULCAST_STREAM</codeph>（始终发送视频小流）。</li>
                     <li>如果你希望恢复默认行为，可以再次调用此方法并将 <codeph>mode</codeph> 设置为 <codeph>AUTO_SIMULCAST_STREAM</codeph>。</li>
-                </ul><ph>与 <codeph>setDualStreamMode</codeph> 方法（参数为 <codeph>SIMULCAST_STREAM_MODE mode</codeph>）的区别在于：该方法还支持配置低质量视频流，SDK 会根据 <codeph>streamConfig</codeph> 中的配置发送视频流。</ph></p>
+                </ul><ph>与 <codeph>setDualStreamMode</codeph> 方法（参数为 <codeph>SIMULCAST_STREAM_MODE mode</codeph>）的区别在于：该方法还支持配置视频小流，SDK 会根据 <codeph>streamConfig</codeph> 中的配置发送视频流。</ph></p>
             <p props="android">SDK 默认在发送端开启视频小流自适应模式（<codeph>AUTO_SIMULCAST_STREAM</codeph>），即发送端不会主动发送视频小流。角色为主播的接收端可以通过调用 <codeph>setRemoteVideoStreamType</codeph> 发起视频小流请求，发送端在收到请求后会自动开始发送视频小流。
                 <ul>
                     <li>如果你希望修改该行为，可以调用该方法，并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>（从不发送视频小流）或 <codeph>ENABLE_SIMULCAST_STREAM</codeph>（始终发送视频小流）。</li>
                     <li>如果你希望恢复默认行为，可以再次调用该方法，并将 <codeph>mode</codeph> 设置为 <codeph>AUTO_SIMULCAST_STREAM</codeph>。</li>
                 </ul>
             </p>
-            <p props="ios">SDK 默认在发送端开启低质量视频流的自适应模式（<codeph>AgoraAutoSimulcastStream</codeph>），即发送端不会主动发送低质量视频流。角色为主播的接收端可以通过调用 <xref keyref="setRemoteVideoStreamType"/> 发起低质量视频流请求，发送端在收到请求后自动开始发送低质量视频流。
+            <p props="ios">SDK 默认在发送端开启视频小流的自适应模式（<codeph>AgoraAutoSimulcastStream</codeph>），即发送端不会主动发送视频小流。角色为主播的接收端可以通过调用 <xref keyref="setRemoteVideoStreamType"/> 发起视频小流请求，发送端在收到请求后自动开始发送视频小流。
 
-如果你希望修改此行为，可以调用本方法并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph>（从不发送低质量视频流）或 <codeph>AgoraEnableSimulcastStream</codeph>（始终发送低质量视频流）。
-
-如果你希望在修改后恢复默认行为，可以再次调用本方法并将 <codeph>mode</codeph> 设置为 <codeph>AgoraAutoSimulcastStream</codeph>。
-
-与 <xref keyref="setDualStreamMode"/> 方法的区别在于，本方法还可以配置低质量视频流，SDK 会根据 <codeph>streamConfig</codeph> 中的配置发送视频流。</p>
-            <p props="mac">SDK 默认在发送端开启低质量视频流的自适应模式（<codeph>AgoraAutoSimulcastStream</codeph>），即发送端不会主动发送低质量视频流。角色为主播的接收端可以通过调用 <xref keyref="setRemoteVideoStreamType"/> 发起低质量视频流请求，发送端在收到请求后自动开始发送低质量视频流。
-
-如果你希望修改此行为，可以调用本方法并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph>（从不发送低质量视频流）或 <codeph>AgoraEnableSimulcastStream</codeph>（始终发送低质量视频流）。
+如果你希望修改此行为，可以调用本方法并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph>（从不发送视频小流）或 <codeph>AgoraEnableSimulcastStream</codeph>（始终发送视频小流）。
 
 如果你希望在修改后恢复默认行为，可以再次调用本方法并将 <codeph>mode</codeph> 设置为 <codeph>AgoraAutoSimulcastStream</codeph>。
 
-与 <xref keyref="setDualStreamMode"/> 方法的区别在于，本方法还可以配置低质量视频流，SDK 会根据 <codeph>streamConfig</codeph> 中的配置发送视频流。</p>
+与 <xref keyref="setDualStreamMode"/> 方法的区别在于，本方法还可以配置视频小流，SDK 会根据 <codeph>streamConfig</codeph> 中的配置发送视频流。</p>
+            <p props="mac">SDK 默认在发送端开启视频小流的自适应模式（<codeph>AgoraAutoSimulcastStream</codeph>），即发送端不会主动发送视频小流。角色为主播的接收端可以通过调用 <xref keyref="setRemoteVideoStreamType"/> 发起视频小流请求，发送端在收到请求后自动开始发送视频小流。
+
+如果你希望修改此行为，可以调用本方法并将 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph>（从不发送视频小流）或 <codeph>AgoraEnableSimulcastStream</codeph>（始终发送视频小流）。
+
+如果你希望在修改后恢复默认行为，可以再次调用本方法并将 <codeph>mode</codeph> 设置为 <codeph>AgoraAutoSimulcastStream</codeph>。
+
+与 <xref keyref="setDualStreamMode"/> 方法的区别在于，本方法还可以配置视频小流，SDK 会根据 <codeph>streamConfig</codeph> 中的配置发送视频流。</p>
             <note props="cpp">此方法与 <codeph>enableDualStreamMode</codeph> 的区别如下：
                 <ul>
                     <li>当调用此方法并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph> 时，效果等同于调用 <codeph>enableDualStreamMode</codeph> 并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。</li>
@@ -85,7 +85,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。
+                    <pd>视频小流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。
                         <note>当 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph> 时，设置 <codeph>streamConfig</codeph> 不生效。</note>
                     </pd>
                 </plentry>
@@ -105,7 +105,7 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置，详见 <xref keyref="SimulcastStreamConfig"/>。
+                    <pd>视频小流的配置，详见 <xref keyref="SimulcastStreamConfig"/>。
                         <note>当 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph> 时，设置 <codeph>streamConfig</codeph> 不生效。</note>
                     </pd>
                 </plentry>
@@ -115,7 +115,7 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置，详见 <xref keyref="SimulcastStreamConfig"/>。
+                    <pd>视频小流的配置，详见 <xref keyref="SimulcastStreamConfig"/>。
                         <note>当 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph> 时，设置 <codeph>streamConfig</codeph> 不生效。</note>
                     </pd>
                 </plentry>

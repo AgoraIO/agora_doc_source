@@ -26,7 +26,7 @@
             <note props="cpp">请注意，视频帧重复检测仅适用于分辨率大于 200 × 200、帧率大于等于 10 fps 且码率小于 20 Kbps 的视频帧。
 通常情况下，如果视频采集出现异常，可以通过该回调中的 <codeph>reason</codeph> 参数排查问题。但在部分设备上，采集异常（如卡顿）时，Android 系统不会抛出任何错误回调，导致 SDK 无法上报本地视频状态变化的原因。此时，你可以通过以下方式判断是否未采集到视频帧：该回调上报的 <xref keyref="State"/> 为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> 或 <codeph>LOCAL_VIDEO_STREAM_STATE_ENCODING</codeph>，且 <xref keyref="onLocalVideoStats"/> 回调中的 <codeph>captureFrameRate</codeph> 为 0。</note>
             <note props="android">请注意，视频帧重复检测仅适用于分辨率大于 200 × 200、帧率大于等于 10 fps 且码率小于 20 Kbps 的视频帧。
-通常情况下，如果视频采集出现错误，可以通过该回调中的 <codeph>reason</codeph> 参数排查问题。但在某些设备上，当采集出现问题（如卡顿）时，Android 系统不会抛出任何错误回调，因此 SDK 无法上报本地视频状态变化的原因。此时，你可以通过以下方式判断是否未采集到视频帧：该回调上报的 <xref keyref="State"/> 为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> 或 <codeph>LOCAL_VIDEO_STREAM_STATE_ENCODING</codeph>，且 <xref keyref="onLocalVideoStats"/> 回调中的 <codeph>captureFrameRate</codeph> 为 0。</note>
+通常情况下，如果视频采集出现错误，可以通过该回调中的 <codeph>reason</codeph> 参数排查问题。但在某些设备上，当采集出现问题（如卡顿）时，Android 系统不会抛出任何错误回调，因此 SDK 无法上报本地视频状态变化的原因。此时，你可以通过以下方式判断是否未采集到视频帧：该回调上报 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> 或 <codeph>LOCAL_VIDEO_STREAM_STATE_ENCODING</codeph>，且 <xref keyref="onLocalVideoStats"/> 回调中的 <codeph>captureFrameRate</codeph> 为 0。</note>
             <note props="ios">请注意，视频帧重复检测仅适用于分辨率大于 200 × 200、帧率大于等于 10 fps 且码率小于 20 Kbps 的视频帧。通常情况下，如果视频采集出现错误，可以通过该回调中的 <codeph>reason</codeph> 参数排查问题。但在某些设备上，当采集出现问题（如卡顿）时，Android 系统不会抛出任何错误回调，SDK 也无法上报本地视频状态变化的原因。此时，你可以通过以下方式判断是否未采集到视频帧：该回调上报的 <codeph>state</codeph> 为 <codeph>AgoraVideoLocalStateCapturing</codeph> 或 <codeph>AgoraVideoLocalStateEncoding</codeph>，且 <xref keyref="onLocalVideoStats"/> 回调中的 <codeph>captureFrameRate</codeph> 为 0。</note>
             <note props="mac">请注意，视频帧重复检测仅适用于分辨率大于 200 × 200、帧率大于等于 10 fps 且码率小于 20 Kbps 的视频帧。通常情况下，如果视频采集出现错误，可以通过该回调中的 <codeph>reason</codeph> 参数排查问题。但在某些设备上，当采集出现问题（如卡顿）时，Android 系统不会抛出任何错误回调，SDK 也无法上报本地视频状态变化的原因。此时，你可以通过以下方式判断是否未采集到视频帧：该回调上报的 <codeph>state</codeph> 为 <codeph>AgoraVideoLocalStateCapturing</codeph> 或 <codeph>AgoraVideoLocalStateEncoding</codeph>，且 <xref keyref="onLocalVideoStats"/> 回调中的 <codeph>captureFrameRate</codeph> 为 0。</note>
         </section>
@@ -41,7 +41,7 @@
                     <li>当摄像头输出采集的视频帧时，若 SDK 检测到连续 15 帧重复的视频帧，会触发该回调，<xref keyref="State"/> 为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>，<codeph>reason</codeph> 为 <codeph>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE</codeph>。</li>
                 </ul>
             </p>
-            <p props="android">该回调在以下情况下被触发，<xref keyref="State"/> 为 <codeph>LOCAL_VIDEO_STREAM_STATE_FAILED</codeph>，<codeph>reason</codeph> 为 <codeph>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE</codeph>：
+            <p props="android">该回调在以下情况下被触发，状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_FAILED</codeph>，<codeph>reason</codeph> 为 <codeph>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE</codeph>：
                 <ul>
                     <li>Android 9 及以上版本中，应用在后台运行一段时间后，系统会自动收回摄像头权限。</li>
                     <li>Android 6 及以上版本中，摄像头被第三方应用占用一段时间后释放，SDK 会触发该回调并上报 <xref keyref="onLocalVideoStateChanged"/> 回调，<xref keyref="State"/> 为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>，<codeph>reason</codeph> 为 <codeph>LOCAL_VIDEO_STREAM_REASON_OK</codeph>。</li>

@@ -25,8 +25,8 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>APPLICATION_SCENARIO_MEETING</pt>
-                    <pd>（1）：会议场景。适用于会议场景，SDK 会自动启用以下策略：在需要低质量视频流具备高码率的场景中，SDK 会启用多种抗网络拥塞技术，提升低质量流性能，确保订阅端流畅接收；SDK 实时监控高质量视频流的订阅人数，并动态调整配置：若无人订阅，自动降低码率和帧率以节省上行带宽；若有人订阅，则恢复为最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 设置的 <xref keyref="VideoEncoderConfiguration"/> 配置，若未设置，则使用以下默认值：Windows 和 macOS 分辨率为 1280 × 720，Android 和 iOS 为 960 × 540；帧率为 15 fps；码率为 Windows 和 macOS 为 1600 Kbps，Android 和 iOS 为 1000 Kbps。SDK 还会监控低质量视频流的订阅人数，并根据订阅情况动态启用或禁用：若无人订阅，自动禁用以节省上行带宽；若有人订阅，则启用并恢复为最近一次调用 <codeph>setDualStreamMode(SIMULCAST_STREAM_MODE mode, const SimulcastStreamConfig&amp; streamConfig)</codeph> 设置的 <xref keyref="SimulcastStreamConfig"/> 配置，若未设置，则使用以下默认值：分辨率为 480 × 272，帧率为 15 fps，码率为 500 Kbps。
-                        <note>如果用户调用了 <codeph>setDualStreamMode(SIMULCAST_STREAM_MODE mode, const SimulcastStreamConfig&amp; streamConfig)</codeph> 并设置为不发送低质量视频流（<codeph>DISABLE_SIMULCAST_STREAM</codeph>），则会议场景下低质量流的动态调整将不生效。</note>
+                    <pd>（1）：会议场景。适用于会议场景，SDK 会自动启用以下策略：在需要视频小流具备高码率的场景中，SDK 会启用多种抗网络拥塞技术，提升低质量流性能，确保订阅端流畅接收；SDK 实时监控视频大流的订阅人数，并动态调整配置：若无人订阅，自动降低码率和帧率以节省上行带宽；若有人订阅，则恢复为最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 设置的 <xref keyref="VideoEncoderConfiguration"/> 配置，若未设置，则使用以下默认值：Windows 和 macOS 分辨率为 1280 × 720，Android 和 iOS 为 960 × 540；帧率为 15 fps；码率为 Windows 和 macOS 为 1600 Kbps，Android 和 iOS 为 1000 Kbps。SDK 还会监控视频小流的订阅人数，并根据订阅情况动态启用或禁用：若无人订阅，自动禁用以节省上行带宽；若有人订阅，则启用并恢复为最近一次调用 <codeph>setDualStreamMode(SIMULCAST_STREAM_MODE mode, const SimulcastStreamConfig&amp; streamConfig)</codeph> 设置的 <xref keyref="SimulcastStreamConfig"/> 配置，若未设置，则使用以下默认值：分辨率为 480 × 272，帧率为 15 fps，码率为 500 Kbps。
+                        <note>如果用户调用了 <codeph>setDualStreamMode(SIMULCAST_STREAM_MODE mode, const SimulcastStreamConfig&amp; streamConfig)</codeph> 并设置为不发送视频小流（<codeph>DISABLE_SIMULCAST_STREAM</codeph>），则会议场景下低质量流的动态调整将不生效。</note>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
@@ -46,19 +46,19 @@
                 <plentry props="android">
                     <pt>APPLICATION_SCENARIO_MEETING</pt>
                     <pd>
-                        <note>如果用户调用了 <codeph>setDualStreamMode(Constants.SimulcastStreamMode mode, SimulcastStreamConfig streamConfig)</codeph> 并设置为永不发送低质量视频流（<codeph>DISABLE_SIMULCAST_STREAM</codeph>），则会议场景下低质量视频流的动态调整将不生效。</note><ph>（1）：适用于会议场景。SDK 会自动启用以下策略：</ph>
+                        <note>如果用户调用了 <codeph>setDualStreamMode(Constants.SimulcastStreamMode mode, SimulcastStreamConfig streamConfig)</codeph> 并设置为永不发送视频小流（<codeph>DISABLE_SIMULCAST_STREAM</codeph>），则会议场景下视频小流的动态调整将不生效。</note><ph>（1）：适用于会议场景。SDK 会自动启用以下策略：</ph>
                         <ul>
-                            <li>在需要低质量视频流具备高码率的会议场景中，SDK 会启用多种网络拥塞应对技术，提升低质量视频流性能，确保订阅端流畅接收；</li>
-                            <li>实时监控高质量视频流的订阅人数，并动态调整配置：
+                            <li>在需要视频小流具备高码率的会议场景中，SDK 会启用多种网络拥塞应对技术，提升视频小流性能，确保订阅端流畅接收；</li>
+                            <li>实时监控视频大流的订阅人数，并动态调整配置：
                                 <ul>
-                                    <li>若无人订阅高质量视频流，SDK 会自动降低其码率和帧率以节省上行带宽；</li>
-                                    <li>若有人订阅高质量视频流，SDK 会将其重置为最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 设置的 <xref keyref="VideoEncoderConfiguration"/> 配置，若未设置，则使用以下默认值：分辨率为 960 × 540，帧率为 15 fps，码率为 1000 Kbps；</li>
+                                    <li>若无人订阅视频大流，SDK 会自动降低其码率和帧率以节省上行带宽；</li>
+                                    <li>若有人订阅视频大流，SDK 会将其重置为最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 设置的 <xref keyref="VideoEncoderConfiguration"/> 配置，若未设置，则使用以下默认值：分辨率为 960 × 540，帧率为 15 fps，码率为 1000 Kbps；</li>
                                 </ul>
                             </li>
-                            <li>实时监控低质量视频流的订阅人数，并动态启用或禁用该流：
+                            <li>实时监控视频小流的订阅人数，并动态启用或禁用该流：
                                 <ul>
-                                    <li>若无人订阅低质量视频流，SDK 会自动禁用该流以节省上行带宽；</li>
-                                    <li>若有人订阅低质量视频流，SDK 会启用该流并重置为最近一次调用 <codeph>setDualStreamMode(Constants.SimulcastStreamMode mode, SimulcastStreamConfig streamConfig)</codeph> 设置的 <xref keyref="SimulcastStreamConfig"/> 配置，若未设置，则使用以下默认值：分辨率为 480 × 272，帧率为 15 fps，码率为 500 Kbps。</li>
+                                    <li>若无人订阅视频小流，SDK 会自动禁用该流以节省上行带宽；</li>
+                                    <li>若有人订阅视频小流，SDK 会启用该流并重置为最近一次调用 <codeph>setDualStreamMode(Constants.SimulcastStreamMode mode, SimulcastStreamConfig streamConfig)</codeph> 设置的 <xref keyref="SimulcastStreamConfig"/> 配置，若未设置，则使用以下默认值：分辨率为 480 × 272，帧率为 15 fps，码率为 500 Kbps。</li>
                                 </ul>
                             </li>
                         </ul>
@@ -80,8 +80,8 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraApplicationMeetingScenario</pt>
-                    <pd>（1）：会议场景。SDK 会自动启用多项策略：在需要低质量视频流具备高码率的场景中，SDK 启用多种抗网络拥塞技术，提升低质量流性能，确保订阅端流畅接收；实时监控高质量视频流的订阅人数并动态调整配置：若无人订阅，高质量流的码率和帧率将自动降低以节省上行带宽；若有人订阅，则恢复为最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 设置的 <xref keyref="VideoEncoderConfiguration"/> 配置，若未设置，则默认参数为：iOS：分辨率 960 × 540，帧率 15 fps，码率 1000 Kbps；macOS：分辨率 1280 × 720，帧率 15 fps，码率 1600 Kbps。SDK 也会实时监控低质量视频流的订阅人数并动态启用或禁用该流：若无人订阅，自动禁用以节省带宽；若有人订阅，则启用并恢复为最近一次调用 <xref keyref="setDualStreamMode2"/> 设置的 <xref keyref="SimulcastStreamConfig"/> 配置，若未设置，则默认参数为：分辨率 480 × 272，帧率 15 fps，码率 500 Kbps。
-                        <note>如果调用了 <xref keyref="setDualStreamMode2"/> 并设置为从不发送低质量视频流（<codeph>AgoraDisableSimulcastStream</codeph>），则会议场景下低质量流的动态调整不生效。</note>
+                    <pd>（1）：会议场景。SDK 会自动启用多项策略：在需要视频小流具备高码率的场景中，SDK 启用多种抗网络拥塞技术，提升低质量流性能，确保订阅端流畅接收；实时监控视频大流的订阅人数并动态调整配置：若无人订阅，高质量流的码率和帧率将自动降低以节省上行带宽；若有人订阅，则恢复为最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 设置的 <xref keyref="VideoEncoderConfiguration"/> 配置，若未设置，则默认参数为：iOS：分辨率 960 × 540，帧率 15 fps，码率 1000 Kbps；macOS：分辨率 1280 × 720，帧率 15 fps，码率 1600 Kbps。SDK 也会实时监控视频小流的订阅人数并动态启用或禁用该流：若无人订阅，自动禁用以节省带宽；若有人订阅，则启用并恢复为最近一次调用 <xref keyref="setDualStreamMode2"/> 设置的 <xref keyref="SimulcastStreamConfig"/> 配置，若未设置，则默认参数为：分辨率 480 × 272，帧率 15 fps，码率 500 Kbps。
+                        <note>如果调用了 <xref keyref="setDualStreamMode2"/> 并设置为从不发送视频小流（<codeph>AgoraDisableSimulcastStream</codeph>），则会议场景下低质量流的动态调整不生效。</note>
                     </pd>
                 </plentry>
                 <plentry props="ios">
@@ -100,8 +100,8 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraApplicationMeetingScenario</pt>
-                    <pd>（1）：会议场景。SDK 会自动启用多项策略：在需要低质量视频流具备高码率的场景中，SDK 启用多种抗网络拥塞技术，提升低质量流性能，确保订阅端流畅接收；实时监控高质量视频流的订阅人数并动态调整配置：若无人订阅，高质量流的码率和帧率将自动降低以节省上行带宽；若有人订阅，则恢复为最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 设置的 <xref keyref="VideoEncoderConfiguration"/> 配置，若未设置，则默认参数为：iOS：分辨率 960 × 540，帧率 15 fps，码率 1000 Kbps；macOS：分辨率 1280 × 720，帧率 15 fps，码率 1600 Kbps。SDK 也会实时监控低质量视频流的订阅人数并动态启用或禁用该流：若无人订阅，自动禁用以节省带宽；若有人订阅，则启用并恢复为最近一次调用 <xref keyref="setDualStreamMode2"/> 设置的 <xref keyref="SimulcastStreamConfig"/> 配置，若未设置，则默认参数为：分辨率 480 × 272，帧率 15 fps，码率 500 Kbps。
-                        <note>如果调用了 <xref keyref="setDualStreamMode2"/> 并设置为从不发送低质量视频流（<codeph>AgoraDisableSimulcastStream</codeph>），则会议场景下低质量流的动态调整不生效。</note>
+                    <pd>（1）：会议场景。SDK 会自动启用多项策略：在需要视频小流具备高码率的场景中，SDK 启用多种抗网络拥塞技术，提升低质量流性能，确保订阅端流畅接收；实时监控视频大流的订阅人数并动态调整配置：若无人订阅，高质量流的码率和帧率将自动降低以节省上行带宽；若有人订阅，则恢复为最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 设置的 <xref keyref="VideoEncoderConfiguration"/> 配置，若未设置，则默认参数为：iOS：分辨率 960 × 540，帧率 15 fps，码率 1000 Kbps；macOS：分辨率 1280 × 720，帧率 15 fps，码率 1600 Kbps。SDK 也会实时监控视频小流的订阅人数并动态启用或禁用该流：若无人订阅，自动禁用以节省带宽；若有人订阅，则启用并恢复为最近一次调用 <xref keyref="setDualStreamMode2"/> 设置的 <xref keyref="SimulcastStreamConfig"/> 配置，若未设置，则默认参数为：分辨率 480 × 272，帧率 15 fps，码率 500 Kbps。
+                        <note>如果调用了 <xref keyref="setDualStreamMode2"/> 并设置为从不发送视频小流（<codeph>AgoraDisableSimulcastStream</codeph>），则会议场景下低质量流的动态调整不生效。</note>
                     </pd>
                 </plentry>
                 <plentry props="mac">

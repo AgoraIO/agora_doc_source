@@ -27,7 +27,7 @@
                 </dlentry>
                 <dlentry props="android">
                     <dt>废弃</dt>
-                    <dd>自 v4.6.0 版本废弃，请改用 <codeph>addVideoWatermark</codeph> 方法。</dd>
+                    <dd>自 v4.6.0 版本废弃，请改用 <xref keyref="addVideoWatermark3"/> 方法。</dd>
                 </dlentry>
                 <dlentry props="ios">
                     <dt>废弃</dt>
@@ -44,28 +44,48 @@
                     <li>如果编码视频的方向模式（<xref keyref="ORIENTATION_MODE"/>）为固定横屏模式或自适应横屏模式，水印图像将采用横屏方向。</li>
                     <li>如果编码视频的方向模式为固定竖屏模式或自适应竖屏模式，水印图像将采用竖屏方向。</li>
                     <li>设置水印位置时，区域必须小于 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频尺寸，否则水印图像将被裁剪。</li>
-                </ul><ph>你可以通过设置 <codeph>visibleInPreview</codeph> 参数控制预览时水印是否可见。但其最终是否生效还取决于调用 <xref keyref="setupLocalVideo"/> 时设置的视频帧位置（<codeph>position</codeph>）。具体如下：</ph><ph>| 视频帧位置                         | <codeph>visibleInPreview</codeph> 值 | 水印是否可见 |</ph><ph>| ---------------------------------- | ---------------------- | -------------- |</ph><ph>| （默认）<codeph>POSITION_POST_CAPTURER</codeph> | <xref keyref="true"/>                 | 是             |</ph><ph>|                                   | <xref keyref="false"/>                | 否             |</ph><ph>| <codeph>POSITION_PRE_ENCODER</codeph>            | <xref keyref="true"/>                 | 是             |</ph><ph>|                                   | <xref keyref="false"/>                | 是             |</ph></p>
+                </ul><ph>你可以通过设置 <codeph>visibleInPreview</codeph> 参数控制预览时水印是否可见。但其最终是否生效还取决于调用 <xref keyref="setupLocalVideo"/> 时设置的视频帧位置（<codeph>position</codeph>）：</ph>
+                <ul>
+                    <li>观察位置 <codeph>VIDEO_MODULE_POSITION_POST_CAPTURER</codeph>（默认）：<codeph>visiblePreview</codeph> 为 <xref keyref="true"/>，则水印可见；<codeph>visiblePreview</codeph> 为 <xref keyref="false"/>，则水印不可见。</li>
+                    <li>观察位置 <codeph>VIDEO_MODULE_POSITION_PRE_ENCODER</codeph>：<codeph>visiblePreview</codeph> 为 <xref keyref="true"/>，则水印可见；<codeph>visiblePreview</codeph> 为 <xref keyref="false"/>，则水印仍可见。</li>
+                </ul>
+            </p>
             <p props="android">该方法在直播中向本地视频添加 PNG 格式的水印图像。添加水印后，频道中的所有观众（包括 CDN 观众）以及采集设备都可以看到并采集到该水印图像。声网 SDK 每个直播视频流仅支持添加一张水印图像，新添加的水印会替换之前的图像。
 水印图像的位置依赖于 <xref keyref="setVideoEncoderConfiguration"/> 方法中的设置：
                 <ul>
                     <li>如果编码视频的方向模式（<xref keyref="ORIENTATION_MODE"/>）为固定横屏模式或自适应横屏模式，则水印使用横屏方向。</li>
                     <li>如果编码视频的方向模式为固定竖屏模式或自适应竖屏模式，则水印使用竖屏方向。</li>
                     <li>设置水印位置时，区域必须小于 <xref keyref="setVideoEncoderConfiguration"/> 方法中设置的尺寸，否则水印图像会被裁剪。</li>
-                </ul><ph>你可以通过设置 <codeph>visibleInPreview</codeph> 参数控制预览时水印的可见性。但其最终是否生效还取决于调用 <xref keyref="setupLocalVideo"/> 时设置的 <codeph>position</codeph> 参数（视频帧在视频链路中的位置）。详见下表：</ph><ph>| 观察位置 | visibleInPreview 值 | 水印可见性 |</ph><ph>| -------------------------------------------- | -------------------- | ------------ |</ph><ph>| （默认）<codeph>VIDEO_MODULE_POSITION_POST_CAPTURER</codeph> | <xref keyref="true"/> | 是 |</ph><ph>| | <xref keyref="false"/> | 否 |</ph><ph>| <codeph>VIDEO_MODULE_POSITION_PRE_ENCODER</codeph> | <xref keyref="true"/> | 是 |</ph><ph>| | <xref keyref="false"/> | 是 |</ph></p>
+                </ul><ph>你可以通过设置 <codeph>visibleInPreview</codeph> 参数控制预览时水印的可见性。但其最终是否生效还取决于调用 <xref keyref="setupLocalVideo"/> 时设置的 <codeph>position</codeph> 参数（视频帧在视频链路中的位置）：</ph>
+                <ul>
+                    <li>观察位置 <codeph>VIDEO_MODULE_POSITION_POST_CAPTURER</codeph>（默认）：<codeph>visiblePreview</codeph> 为 <xref keyref="true"/>，则水印可见；<codeph>visiblePreview</codeph> 为 <xref keyref="false"/>，则水印不可见。</li>
+                    <li>观察位置 <codeph>VIDEO_MODULE_POSITION_PRE_ENCODER</codeph>：<codeph>visiblePreview</codeph> 为 <xref keyref="true"/>，则水印可见；<codeph>visiblePreview</codeph> 为 <xref keyref="false"/>，则水印仍可见。</li>
+                </ul>
+            </p>
             <p props="ios">该方法在直播中向本地视频添加 PNG 格式的水印图像。添加水印图像后，频道中的所有观众（包括 CDN 观众）以及采集设备都可以看到并采集该图像。声网 SDK 仅支持在一个直播视频流中添加一张水印图像，新添加的水印图像会替换之前的图像。
 水印图像的坐标依赖于 <xref keyref="setVideoEncoderConfiguration"/> 方法中的设置：
                 <ul>
                     <li>如果编码视频的方向模式（<xref keyref="ORIENTATION_MODE"/>）为固定横屏或自适应横屏模式，水印图像将使用横屏方向。</li>
                     <li>如果编码视频的方向模式为固定竖屏或自适应竖屏模式，水印图像将使用竖屏方向。</li>
                     <li>设置水印位置时，区域必须小于 <xref keyref="setVideoEncoderConfiguration"/> 方法中设置的尺寸，否则水印图像将被裁剪。</li>
-                </ul><ph>你可以通过调用该方法时设置 <codeph>visibleInPreview</codeph> 参数来控制水印在预览中的可见性。但其最终是否生效还取决于调用 <xref keyref="setupLocalVideo"/> 时设置的 <codeph>position</codeph> 参数。具体如下表所示：</ph><ph>| 观察位置 | <codeph>visibleInPreview</codeph> 值 | 水印可见性 |</ph><ph>| ------------------------------ | ---------------------- | ------------ |</ph><ph>| （默认）<codeph>AgoraVideoModulePositionPostCapture</codeph> | <xref keyref="true"/> | 是 |</ph><ph>| | <xref keyref="false"/> | 否 |</ph><ph>| <codeph>AgoraVideoModulePositionPreEncoder</codeph> | <xref keyref="true"/> | 是 |</ph><ph>| | <xref keyref="false"/> | 是 |</ph></p>
+                </ul><ph>你可以通过调用该方法时设置 <codeph>visibleInPreview</codeph> 参数来控制水印在预览中的可见性。但其最终是否生效还取决于调用 <xref keyref="setupLocalVideo"/> 时设置的 <codeph>position</codeph> 参数。：</ph>
+                <ul>
+                    <li>观察位置 <codeph>AgoraVideoModulePositionPostCapture</codeph>（默认）：<codeph>visiblePreview</codeph> 为 <xref keyref="true"/>，则水印可见；<codeph>visiblePreview</codeph> 为 <xref keyref="false"/>，则水印不可见。</li>
+                    <li>观察位置 <codeph>AgoraVideoModulePositionPreEncoder</codeph>：<codeph>visiblePreview</codeph> 为 <xref keyref="true"/>，则水印可见；<codeph>visiblePreview</codeph> 为 <xref keyref="false"/>，则水印仍可见。</li>
+                </ul>
+            </p>
             <p props="mac">该方法在直播中向本地视频添加 PNG 格式的水印图像。添加水印图像后，频道中的所有观众（包括 CDN 观众）以及采集设备都可以看到并采集该图像。声网 SDK 仅支持在一个直播视频流中添加一张水印图像，新添加的水印图像会替换之前的图像。
 水印图像的坐标依赖于 <xref keyref="setVideoEncoderConfiguration"/> 方法中的设置：
                 <ul>
                     <li>如果编码视频的方向模式（<xref keyref="ORIENTATION_MODE"/>）为固定横屏或自适应横屏模式，水印图像将使用横屏方向。</li>
                     <li>如果编码视频的方向模式为固定竖屏或自适应竖屏模式，水印图像将使用竖屏方向。</li>
                     <li>设置水印位置时，区域必须小于 <xref keyref="setVideoEncoderConfiguration"/> 方法中设置的尺寸，否则水印图像将被裁剪。</li>
-                </ul><ph>你可以通过调用该方法时设置 <codeph>visibleInPreview</codeph> 参数来控制水印在预览中的可见性。但其最终是否生效还取决于调用 <xref keyref="setupLocalVideo"/> 时设置的 <codeph>position</codeph> 参数。具体如下表所示：</ph><ph>| 观察位置 | <codeph>visibleInPreview</codeph> 值 | 水印可见性 |</ph><ph>| ------------------------------ | ---------------------- | ------------ |</ph><ph>| （默认）<codeph>AgoraVideoModulePositionPostCapture</codeph> | <xref keyref="true"/> | 是 |</ph><ph>| | <xref keyref="false"/> | 否 |</ph><ph>| <codeph>AgoraVideoModulePositionPreEncoder</codeph> | <xref keyref="true"/> | 是 |</ph><ph>| | <xref keyref="false"/> | 是 |</ph></p>
+                </ul><ph>你可以通过调用该方法时设置 <codeph>visibleInPreview</codeph> 参数来控制水印在预览中的可见性。但其最终是否生效还取决于调用 <xref keyref="setupLocalVideo"/> 时设置的 <codeph>position</codeph> 参数。：</ph>
+                <ul>
+                    <li>观察位置 <codeph>AgoraVideoModulePositionPostCapture</codeph>（默认）：<codeph>visiblePreview</codeph> 为 <xref keyref="true"/>，则水印可见；<codeph>visiblePreview</codeph> 为 <xref keyref="false"/>，则水印不可见。</li>
+                    <li>观察位置 <codeph>AgoraVideoModulePositionPreEncoder</codeph>：<codeph>visiblePreview</codeph> 为 <xref keyref="true"/>，则水印可见；<codeph>visiblePreview</codeph> 为 <xref keyref="false"/>，则水印仍可见。</li>
+                </ul>
+            </p>
             <note props="cpp">
                 <ul>
                     <li>请确保在调用该方法前已调用 <xref keyref="enableVideo"/>。</li>

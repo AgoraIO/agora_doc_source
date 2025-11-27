@@ -45,7 +45,7 @@
 默认情况下，调用该方法后只能选择回退到 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。如果你对视频体验有更高要求，可以[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可以回退到所有视频质量层级，并自定义每个层级的分辨率。
 适用场景：
                 <ul>
-                    <li>在常规场景中，可以调用该方法并将回退层级设置为 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。当网络较差时，SDK 会将远端视频流回退为低质量视频流或仅音频。</li>
+                    <li>在常规场景中，可以调用该方法并将回退层级设置为 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。当网络较差时，SDK 会将远端视频流回退为视频小流或仅音频。</li>
                     <li>如果对远端视频流的回退分辨率有更高要求，可以[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可以自定义每个层级的分辨率。SDK 会以你指定的最低质量层级的分辨率为下限，并根据网络状况在该范围内动态调整分辨率。详细实现方式可参考 Viewer-side URL Streaming。</li>
                 </ul>
             </p>
@@ -53,7 +53,7 @@
 默认情况下，调用该方法后只能选择回退到 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。如果你对视频体验有更高要求，可以[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可以回退到所有视频质量层级，并自定义每个层级的分辨率。
 适用场景：
                 <ul>
-                    <li>在常规场景中，可以调用该方法并将回退层级设置为 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。当网络较差时，SDK 会将远端视频流回退为低质量视频流或仅音频。</li>
+                    <li>在常规场景中，可以调用该方法并将回退层级设置为 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。当网络较差时，SDK 会将远端视频流回退为视频小流或仅音频。</li>
                     <li>如果对远端视频流的回退分辨率有更高要求，可以[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可以自定义每个层级的分辨率。SDK 会以你指定的最低质量层级的分辨率为下限，并根据网络状况在该范围内动态调整分辨率。详细实现方式可参考 Viewer-side URL Streaming。</li>
                 </ul>
             </p>
@@ -74,7 +74,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>abr_fallback_layer</pt>
-                    <pd>
+                    <pd>视频流的回退质量层，详见 <xref keyref="RteAbrFallbackLayer"/>。当自定义 <codeph>kRteAbrFallbackLayer1</codeph> 到 <codeph>kRteAbrFallbackLayer6</codeph> 的分辨率时，可参考下表：
                         <note>自定义分辨率时，务必将视频质量层按分辨率从高到低排序；当分辨率相同时，按帧率从高到低排序。</note>
                         <simpletable>
                             <sthead>
@@ -115,7 +115,7 @@
                 <plentry props="android">
                     <pt>fallbackLayer</pt>
                     <pd>视频流的回退质量层，详见 <xref keyref="RteAbrFallbackLayer"/>。
-                        <note>
+                        <note>自定义分辨率时，请确保视频质量层按从高到低的分辨率排序；若分辨率相同，则按帧率从高到低排序。
                             <simpletable>
                                 <sthead>
                                     <stentry>视频质量层</stentry>
@@ -151,7 +151,7 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>layer</pt>
-                    <pd>
+                    <pd>回退的视频质量层级。可选值详见 <xref keyref="RteAbrFallbackLayer"/>。当自定义 <codeph>AgoraRteAbrFallbackLayer1</codeph> 到 <codeph>AgoraRteAbrFallbackLayer6</codeph> 的分辨率时，可参考下表或根据实际需求定义：
                         <note>自定义分辨率时，必须按从高到低的分辨率顺序排列视频质量层级。如果两个层级的分辨率相同，则按帧率从高到低排序。</note>
                         <simpletable>
                             <sthead>
@@ -182,7 +182,7 @@
                                 <stentry><codeph>AgoraRteAbrSubscriptionLayer6</codeph></stentry>
                                 <stentry>480p (SD)</stentry>
                             </strow>
-                        </simpletable>
+                        </simpletable>自定义分辨率时，必须按从高到低的分辨率顺序排列视频质量层级。如果两个层级的分辨率相同，则按帧率从高到低排序。详见 `AgoraRteAbrFallbackLayer`。
                     </pd>
                 </plentry>
                 <plentry props="ios">
@@ -191,7 +191,7 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>layer</pt>
-                    <pd>
+                    <pd>回退的视频质量层级。可选值详见 <xref keyref="RteAbrFallbackLayer"/>。当自定义 <codeph>AgoraRteAbrFallbackLayer1</codeph> 到 <codeph>AgoraRteAbrFallbackLayer6</codeph> 的分辨率时，可参考下表或根据实际需求定义：
                         <note>自定义分辨率时，必须按从高到低的分辨率顺序排列视频质量层级。如果两个层级的分辨率相同，则按帧率从高到低排序。</note>
                         <simpletable>
                             <sthead>
@@ -222,7 +222,7 @@
                                 <stentry><codeph>AgoraRteAbrSubscriptionLayer6</codeph></stentry>
                                 <stentry>480p (SD)</stentry>
                             </strow>
-                        </simpletable>
+                        </simpletable>自定义分辨率时，必须按从高到低的分辨率顺序排列视频质量层级。如果两个层级的分辨率相同，则按帧率从高到低排序。详见 `AgoraRteAbrFallbackLayer`。
                     </pd>
                 </plentry>
                 <plentry props="mac">

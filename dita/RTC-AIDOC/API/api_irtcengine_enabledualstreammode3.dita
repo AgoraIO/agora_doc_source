@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enabledualstreammode3">
     <title><ph keyref="enableDualStreamMode3"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置发送端的双流模式和低质量视频流。</ph><ph id="shortdesc" props="android">设置发送端的双流模式和视频小流。</ph><ph id="shortdesc" props="ios">设置发送端的不同质量层级的视频流模式及低质量视频流配置。</ph><ph id="shortdesc" props="mac">设置发送端的不同质量层级的视频流模式及低质量视频流配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置发送端的双流模式和视频小流。</ph><ph id="shortdesc" props="android">设置发送端的双流模式和视频小流。</ph><ph id="shortdesc" props="ios">设置发送端的不同质量层级的视频流模式及视频小流配置。</ph><ph id="shortdesc" props="mac">设置发送端的不同质量层级的视频流模式及视频小流配置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -40,25 +40,25 @@
                     <dd>自 v4.2.0 版本废弃，请改用 <codeph>setDualStreamMode</codeph>。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">你可以调用此方法在发送端启用或关闭双流模式。双流模式指同时发送高质量视频流和低质量视频流：
+            <p props="cpp">你可以调用此方法在发送端启用或关闭双流模式。双流模式指同时发送视频大流和视频小流：
                 <ul>
-                    <li>高质量视频流：高码率、高分辨率。</li>
-                    <li>低质量视频流：低码率、低分辨率。</li>
+                    <li>视频大流：高码率、高分辨率。</li>
+                    <li>视频小流：低码率、低分辨率。</li>
                 </ul><ph>启用双流模式后，你可以调用 <xref keyref="setRemoteVideoStreamType"/> 方法，在接收端选择接收高质量或低质量的视频流。</ph></p>
             <p props="android">你可以调用此方法在发送端启用或关闭双流模式。双流由一路视频大流和一路视频小流组成：
                 <ul>
                     <li>视频大流：高码率、高分辨率。</li>
                     <li>视频小流：低码率、低分辨率。</li>
                 </ul><ph>启用双流模式后，你可以调用 <codeph>setRemoteVideoStreamType</codeph> 方法，在接收端选择接收视频大流或视频小流。</ph></p>
-            <p props="ios">你可以调用该方法在发送端启用或关闭不同质量层级的视频流（dual-stream）模式。不同质量层级的视频流包括一对高质量视频流和低质量视频流：
+            <p props="ios">你可以调用该方法在发送端启用或关闭不同质量层级的视频流（dual-stream）模式。不同质量层级的视频流包括一对视频大流和视频小流：
                 <ul>
-                    <li>高质量视频流：高码率，高分辨率。</li>
-                    <li>低质量视频流：低码率，低分辨率。</li>
+                    <li>视频大流：高码率，高分辨率。</li>
+                    <li>视频小流：低码率，低分辨率。</li>
                 </ul><ph>启用该模式后，你可以调用 <codeph>setRemoteVideoStream</codeph> 方法，在接收端选择接收高质量或低质量的视频流。</ph></p>
-            <p props="mac">你可以调用该方法在发送端启用或关闭不同质量层级的视频流（dual-stream）模式。不同质量层级的视频流包括一对高质量视频流和低质量视频流：
+            <p props="mac">你可以调用该方法在发送端启用或关闭不同质量层级的视频流（dual-stream）模式。不同质量层级的视频流包括一对视频大流和视频小流：
                 <ul>
-                    <li>高质量视频流：高码率，高分辨率。</li>
-                    <li>低质量视频流：低码率，低分辨率。</li>
+                    <li>视频大流：高码率，高分辨率。</li>
+                    <li>视频小流：低码率，低分辨率。</li>
                 </ul><ph>启用该模式后，你可以调用 <codeph>setRemoteVideoStream</codeph> 方法，在接收端选择接收高质量或低质量的视频流。</ph></p>
             <note props="cpp">
                 <ul>
@@ -103,7 +103,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。
+                    <pd>视频小流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。
                         <note>当 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph> 时，设置 <codeph>streamConfig</codeph> 不生效。</note>
                     </pd>
                 </plentry>
@@ -133,7 +133,7 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。注意：当 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph> 时，<codeph>streamConfig</codeph> 的设置不生效。</pd>
+                    <pd>视频小流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。注意：当 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph> 时，<codeph>streamConfig</codeph> 的设置不生效。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>enabled</pt>
@@ -146,7 +146,7 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>streamConfig</pt>
-                    <pd>低质量视频流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。注意：当 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph> 时，<codeph>streamConfig</codeph> 的设置不生效。</pd>
+                    <pd>视频小流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。注意：当 <codeph>mode</codeph> 设置为 <codeph>AgoraDisableSimulcastStream</codeph> 时，<codeph>streamConfig</codeph> 的设置不生效。</pd>
                 </plentry>
             </parml>
         </section>

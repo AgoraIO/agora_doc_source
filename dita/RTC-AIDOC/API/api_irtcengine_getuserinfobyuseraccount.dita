@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getuserinfobyuseraccount">
     <title><ph keyref="getUserInfoByUserAccount"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">通过传入用户账号获取远端用户信息。</ph><ph id="shortdesc" props="android">通过传入用户账号获取用户信息。</ph><ph id="shortdesc" props="ios">通过传入用户账号获取用户信息。</ph><ph id="shortdesc" props="mac">通过传入用户账号获取用户信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">通过传入用户 User Account 获取远端用户信息。</ph><ph id="shortdesc" props="android">通过传入用户 User Account 获取用户信息。</ph><ph id="shortdesc" props="ios">通过传入用户 User Account 获取用户信息。</ph><ph id="shortdesc" props="mac">通过传入用户 User Account 获取用户信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,10 +20,10 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户账号，并将其缓存在映射表中，同时在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用该方法并传入用户账号，从 <xref keyref="UserInfo"/> 对象中获取该远端用户的用户 ID。</p>
-            <p props="android">当远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户账号，并将其缓存在映射表中，同时在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用 <xref keyref="getUserInfoByUserAccount"/> 方法并传入用户账号，从 <xref keyref="UserInfo"/> 对象中获取指定用户的信息。</p>
-            <p props="ios">远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户账号，并将其缓存在映射表对象中，然后在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。你可以在收到该回调后调用 <xref keyref="getUserInfoByUserAccount"/> 方法，并传入用户账号，从 <xref keyref="UserInfo"/> 对象中获取远端用户的用户 ID，详见 <xref keyref="UserInfo"/>。</p>
-            <p props="mac">远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户账号，并将其缓存在映射表对象中，然后在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。你可以在收到该回调后调用 <xref keyref="getUserInfoByUserAccount"/> 方法，并传入用户账号，从 <xref keyref="UserInfo"/> 对象中获取远端用户的用户 ID，详见 <xref keyref="UserInfo"/>。</p>
+            <p props="cpp">远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户 User Account，并将其缓存在映射表中，同时在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用该方法并传入用户 User Account，从 <xref keyref="UserInfo"/> 对象中获取该远端用户的用户 ID。</p>
+            <p props="android">当远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户 User Account，并将其缓存在映射表中，同时在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用 <xref keyref="getUserInfoByUserAccount"/> 方法并传入用户 User Account，从 <xref keyref="UserInfo"/> 对象中获取指定用户的信息。</p>
+            <p props="ios">远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户 User Account，并将其缓存在映射表对象中，然后在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。你可以在收到该回调后调用 <xref keyref="getUserInfoByUserAccount"/> 方法，并传入用户 User Account，从 <xref keyref="UserInfo"/> 对象中获取远端用户的用户 ID，详见 <xref keyref="UserInfo"/>。</p>
+            <p props="mac">远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户 User Account，并将其缓存在映射表对象中，然后在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。你可以在收到该回调后调用 <xref keyref="getUserInfoByUserAccount"/> 方法，并传入用户 User Account，从 <xref keyref="UserInfo"/> 对象中获取远端用户的用户 ID，详见 <xref keyref="UserInfo"/>。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="cpp ios mac">
             <title>调用时机</title>
@@ -36,7 +36,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>userAccount</pt>
-                    <pd>用户账号。</pd>
+                    <pd>用户 User Account。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>userInfo</pt>
@@ -44,7 +44,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>userAccount</pt>
-                    <pd>用户账号。</pd>
+                    <pd>用户 User Account。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>userInfo</pt>
@@ -52,7 +52,7 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>userAccount</pt>
-                    <pd>用户账号。</pd>
+                    <pd>用户 User Account。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>error</pt>
@@ -60,7 +60,7 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>userAccount</pt>
-                    <pd>用户账号。</pd>
+                    <pd>用户 User Account。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>error</pt>
