@@ -38,34 +38,29 @@
                     <dd>自 v4.0.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">你可以调用此方法启用视频降噪功能，并设置降噪效果的相关选项。
-
-适用场景：在光线较暗的环境中，或使用低端视频采集设备时，视频图像可能会出现明显噪点，影响视频质量。在实时互动场景中，视频噪点还会占用码流资源，降低编码效率。
-
-调用时机：请在调用 <xref keyref="enableVideo"/> 方法之后调用此方法。</p>
-            <p props="android">适用场景：在光线较暗的环境中或使用低端视频采集设备时，视频图像可能会出现明显噪点，影响视频质量。在实时互动场景中，视频噪点还会占用码流资源，降低编码效率。</p>
+            <p props="android">你可以调用该方法设置视频降噪效果的相关选项。</p>
             <p props="ios">你可以调用该方法开启视频降噪功能，并设置视频降噪效果的选项。</p>
             <p props="mac">你可以调用该方法开启视频降噪功能，并设置视频降噪效果的选项。</p>
             <note props="cpp">
                 <ul>
-                    <li>该方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，则无法正常启用该功能。</li>
-                    <li>视频降噪对设备性能有一定要求。如果启用视频降噪后设备出现过热，声网建议你将降噪选项设置为较低的性能消耗等级，或完全关闭视频降噪功能。</li>
-                    <li>如果该方法实现的视频降噪效果无法满足你的需求，声网建议你调用 <xref keyref="setBeautyEffectOptions"/> 方法启用美颜和磨皮功能，以获得更好的降噪效果。推荐用于强降噪效果的 <xref keyref="BeautyOptions"/> 设置如下：
+                    <li>该方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，将无法正常启用该功能。</li>
+                    <li>视频降噪对设备性能有一定要求。如果你在启用视频降噪后设备出现过热情况，声网建议你将视频降噪选项设置为较低的性能消耗等级，或完全关闭视频降噪功能。</li>
+                    <li>如果该方法实现的视频降噪效果无法满足你的需求，声网建议你调用 <xref keyref="setBeautyEffectOptions"/> 方法启用美颜和磨皮功能，以获得更好的视频降噪效果。推荐用于强降噪效果的 <xref keyref="BeautyOptions"/> 设置如下：
                         <ul>
-                            <li><codeph>lighteningContrastLevel</codeph>：<codeph>LIGHTENING_CONTRAST_NORMAL</codeph></li>
-                            <li><codeph>lighteningLevel</codeph>：0.0</li>
-                            <li><codeph>smoothnessLevel</codeph>：0.5</li>
-                            <li><codeph>rednessLevel</codeph>：0.0</li>
-                            <li><codeph>sharpnessLevel</codeph>：0.1</li>
+                            <li><codeph>lighteningContrastLevel</codeph>：LIGHTENING_CONTRAST_NORMAL。</li>
+                            <li><codeph>lighteningLevel</codeph>：0.0。</li>
+                            <li><codeph>smoothnessLevel</codeph>：0.5。</li>
+                            <li><codeph>rednessLevel</codeph>：0.0。</li>
+                            <li><codeph>sharpnessLevel</codeph>：0.1。</li>
                         </ul>
                     </li>
                 </ul>
             </note>
             <note props="android">
                 <ul>
-                    <li>该方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，则无法正常启用该功能。</li>
-                    <li>视频降噪对设备性能有一定要求。如果设备在启用视频降噪后出现过热情况，声网建议你将视频降噪选项调整为较低性能消耗的等级，或完全关闭视频降噪功能。</li>
-                    <li>如果该方法实现的视频降噪效果无法满足你的需求，声网建议你调用 <codeph>setBeautyEffectOptions</codeph> 方法启用美颜和磨皮功能，以获得更好的视频降噪效果。推荐用于强降噪效果的 <xref keyref="BeautyOptions"/> 设置如下：
+                    <li>此方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，将无法正常启用该功能。</li>
+                    <li>视频降噪对设备性能有一定要求。如果启用后设备出现过热，声网建议你将降噪选项调整为较低性能消耗的等级，或关闭视频降噪功能。</li>
+                    <li>如果该方法实现的降噪效果无法满足你的需求，声网建议你调用 <codeph>setBeautyEffectOptions</codeph> 方法启用美颜和磨皮功能，以获得更好的降噪效果。推荐用于强降噪效果的 <xref keyref="BeautyOptions"/> 设置如下：
                         <ul>
                             <li><codeph>lighteningContrastLevel</codeph>: <codeph>LIGHTENING_CONTRAST_NORMAL</codeph></li>
                             <li><codeph>lighteningLevel</codeph>: 0.0</li>
@@ -109,8 +104,8 @@
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
-            <p props="cpp">请在调用 <xref keyref="enableVideo"/> 方法之后调用此方法。</p>
-            <p props="android">请在调用 <xref keyref="enableVideo"/> 方法之后调用此方法。</p>
+            <p props="cpp">调用 <xref keyref="enableVideo"/> 方法后调用该方法。</p>
+            <p props="android">调用 <xref keyref="enableVideo"/> 方法后调用此方法。</p>
             <p props="ios">请在调用 <xref keyref="enableVideo"/> 方法之后调用此方法。</p>
             <p props="mac">请在调用 <xref keyref="enableVideo"/> 方法之后调用此方法。</p>
         </section>
@@ -128,11 +123,18 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>options</pt>
-                    <pd>视频降噪选项。详见 <xref keyref="VideoDenoiserOptions"/>。</pd>
+                    <pd>视频降噪选项，详见 <xref keyref="VideoDenoiserOptions"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>type</pt>
-                    <pd>应用滤镜效果的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                    <pd>媒体源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
+                        <note>在该方法中，该参数仅支持以下两种设置：
+                            <ul>
+                                <li>如果使用摄像头采集本地视频，使用默认值 <codeph>PRIMARY_CAMERA_SOURCE</codeph>。</li>
+                                <li>如果使用自定义视频源，设置该参数为 <codeph>CUSTOM_VIDEO_SOURCE</codeph>。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>enabled</pt>
@@ -145,7 +147,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>options</pt>
-                    <pd>视频降噪选项，详见 <xref keyref="VideoDenoiserOptions"/>。</pd>
+                    <pd>视频降噪选项。详见 <xref keyref="VideoDenoiserOptions"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>enable</pt>

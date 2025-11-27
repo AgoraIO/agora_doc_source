@@ -59,7 +59,13 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>vad</pt>
-                    <pd>本地用户的语音活动状态。
+                    <pd>
+                        <note>
+                            <ul>
+                                <li><codeph>vad</codeph> 参数不会报告远端用户的语音活动状态。在远端用户的回调中，该值始终为 1。</li>
+                                <li>若要使用该参数，调用 <xref keyref="enableAudioVolumeIndication"/> 时必须将 <codeph>reportVad</codeph> 设置为 <xref keyref="true"/>。</li>
+                            </ul>
+                        </note><ph>本地用户的语音活动状态。</ph>
                         <ul>
                             <li>0：本地用户未说话。</li>
                             <li>1：本地用户正在说话。</li>
@@ -68,7 +74,9 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>voicePitch</pt>
-                    <pd>本地用户的语音音高，取值范围为 0.0 到 4000.0。</pd>
+                    <pd>本地用户的语音音高，取值范围为 0.0 到 4000.0。
+                        <note><codeph>voicePitch</codeph> 参数不会报告远端用户的语音音高。在远端用户的回调中，该值始终为 0.0。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>uid</pt>
@@ -85,7 +93,13 @@
                 </plentry>
                 <plentry props="android">
                     <pt>vad</pt>
-                    <pd>本地用户的语音活动状态：
+                    <pd>
+                        <note>
+                            <ul>
+                                <li><codeph>vad</codeph> 参数不会上报远端用户的语音活动状态。在远端用户的回调中，该值始终为 1。</li>
+                                <li>使用该参数时，必须在调用 <xref keyref="enableAudioVolumeIndication"/> 时将 <codeph>reportVad</codeph> 设置为 <xref keyref="true"/>。</li>
+                            </ul>
+                        </note><ph>本地用户的语音活动状态：</ph>
                         <ul>
                             <li>0：未说话；</li>
                             <li>1：正在说话。</li>
@@ -94,7 +108,9 @@
                 </plentry>
                 <plentry props="android">
                     <pt>voicePitch</pt>
-                    <pd>本地用户的语音音高，取值范围为 0.0 到 4000.0。</pd>
+                    <pd>本地用户的语音音高，取值范围为 0.0 到 4000.0。
+                        <note><codeph>voicePitch</codeph> 参数不会上报远端用户的语音音高。在远端用户回调中，该值始终为 0.0。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>uid</pt>
@@ -111,7 +127,13 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>vad</pt>
-                    <pd>本地用户的语音活动状态。 
+                    <pd>
+                        <note>
+                            <ul>
+                                <li><codeph>vad</codeph> 参数不会报告远端用户的语音活动状态。在远端用户的回调中，该值始终为 1。</li>
+                                <li>若要使用该参数，调用 <codeph>enableAudioVolumeIndication</codeph> 时需将 <codeph>reportVad</codeph> 设置为 <xref keyref="true"/>。</li>
+                            </ul>
+                        </note><ph>本地用户的语音活动状态。 </ph>
                         <ul>
                             <li>0：本地用户未说话。 </li>
                             <li>1：本地用户正在说话。</li>
@@ -120,7 +142,9 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>voicePitch</pt>
-                    <pd>本地用户的音高，取值范围为 0.0 到 4000.0。</pd>
+                    <pd>本地用户的音高，取值范围为 0.0 到 4000.0。
+                        <note><codeph>voicePitch</codeph> 参数不会报告远端用户的音高。在远端用户的回调中，该值始终为 0.0。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>uid</pt>
@@ -137,7 +161,13 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>vad</pt>
-                    <pd>本地用户的语音活动状态。 
+                    <pd>
+                        <note>
+                            <ul>
+                                <li><codeph>vad</codeph> 参数不会报告远端用户的语音活动状态。在远端用户的回调中，该值始终为 1。</li>
+                                <li>若要使用该参数，调用 <codeph>enableAudioVolumeIndication</codeph> 时需将 <codeph>reportVad</codeph> 设置为 <xref keyref="true"/>。</li>
+                            </ul>
+                        </note><ph>本地用户的语音活动状态。 </ph>
                         <ul>
                             <li>0：本地用户未说话。 </li>
                             <li>1：本地用户正在说话。</li>
@@ -146,7 +176,9 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>voicePitch</pt>
-                    <pd>本地用户的音高，取值范围为 0.0 到 4000.0。</pd>
+                    <pd>本地用户的音高，取值范围为 0.0 到 4000.0。
+                        <note><codeph>voicePitch</codeph> 参数不会报告远端用户的音高。在远端用户的回调中，该值始终为 0.0。</note>
+                    </pd>
                 </plentry>
             </parml>
         </section>

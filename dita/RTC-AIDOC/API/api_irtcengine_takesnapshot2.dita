@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_takesnapshot2">
     <title><ph keyref="takeSnapshot2"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">在指定观察点截取视频截图。</ph><ph id="shortdesc" props="android">在指定的观察点截取视频截图。</ph><ph id="shortdesc" props="ios">截取指定用户视频的截图并保存为 JPG 文件。</ph><ph id="shortdesc" props="mac">截取指定用户视频的截图并保存为 JPG 文件。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">截取指定观察点的视频截图。</ph><ph id="shortdesc" props="android">在指定的观察点截取视频截图。</ph><ph id="shortdesc" props="ios">截取指定用户视频的截图并保存为 JPG 文件。</ph><ph id="shortdesc" props="mac">截取指定用户视频的截图并保存为 JPG 文件。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,25 +20,24 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="android">该方法为异步调用，方法返回时 SDK 尚未完成截图操作。用于本地视频截图时，会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</p>
             <p props="ios">该方法截取指定用户的视频流，生成 JPG 图像，并将其保存到指定路径。该方法为异步方法，调用返回时 SDK 尚未完成截图操作。当用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</p>
             <p props="mac">该方法截取指定用户的视频流，生成 JPG 图像，并将其保存到指定路径。该方法为异步方法，调用返回时 SDK 尚未完成截图操作。当用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</p>
             <note props="cpp">
                 <ul>
-                    <li>该方法为异步调用，调用返回时 SDK 尚未完成截图操作。</li>
-                    <li>用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</li>
+                    <li>该方法为异步方法，调用返回时 SDK 尚未完成截图操作。</li>
+                    <li>用于本地视频截图时，会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</li>
                 </ul>
             </note>
             <note props="android">
                 <ul>
-                    <li>该方法为异步调用，方法返回时 SDK 尚未完成截图操作。</li>
+                    <li>该方法为异步调用，调用返回时 SDK 尚未完成截图操作。</li>
                     <li>当用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</li>
                 </ul>
             </note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
-            <p props="cpp">请在加入频道后调用该方法。</p>
+            <p props="cpp">在加入频道后调用该方法。</p>
             <p props="android">请在加入频道后调用该方法。</p>
             <p props="ios">在加入频道后调用该方法。</p>
             <p props="mac">在加入频道后调用该方法。</p>
@@ -46,18 +45,18 @@
         <section id="related" deliveryTarget="details" props="android cpp">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
-            <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
+            <p props="android">调用该方法成功后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>uid</pt>
-                    <pd>用户 ID。如果要截取本地用户的视频，请将 <codeph>uid</codeph> 设置为 0。</pd>
+                    <pd>用户 ID。若要截取本地用户的视频，请将 <codeph>uid</codeph> 设置为 0。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>config</pt>
-                    <pd>截图的配置信息。详见 <xref keyref="SnapshotConfig"/>。</pd>
+                    <pd>截图配置，详见 <xref keyref="SnapshotConfig"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>uid</pt>
@@ -65,7 +64,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>config</pt>
-                    <pd>截图的配置，详见 <xref keyref="SnapshotConfig"/>。</pd>
+                    <pd>截图的配置信息，详见 <xref keyref="SnapshotConfig"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>uid</pt>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_updatepreloadchanneltoken">
     <title><ph keyref="updatePreloadChannelToken"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">更新用于预加载频道的通配 Token。</ph><ph id="shortdesc" props="android">更新用于预加载频道的通配 Token。</ph><ph id="shortdesc" props="ios">更新用于预加载频道的通配 Token。</ph><ph id="shortdesc" props="mac">更新用于预加载频道的通配 Token。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">更新预加载频道使用的通配 Token。</ph><ph id="shortdesc" props="android">更新用于预加载频道的通配 Token。</ph><ph id="shortdesc" props="ios">更新用于预加载频道的通配 Token。</ph><ph id="shortdesc" props="mac">更新用于预加载频道的通配 Token。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,10 +20,8 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">你需要自行维护通配 Token 的生命周期。当该 Token 过期时，需要生成新的通配 Token，并调用该方法传入新的 Token。
-适用场景：在涉及多个频道的场景中，例如在不同频道之间切换时，使用通配 Token 可以避免用户每次加入新频道时都申请新的 Token，从而节省用户切换频道的时间，并减轻你的 Token 服务器的压力。</p>
-            <p props="android">你需要自行维护通配 Token 的生命周期。当 Token 过期时，需要生成新的通配 Token，并调用 <xref keyref="updatePreloadChannelToken"/> 传入新 Token。
-适用场景：在涉及多个频道的场景中，例如在不同频道之间切换时，使用通配 Token 可以避免用户每次加入新频道时都申请新 Token，从而节省用户切换频道的时间，并减轻你的 Token 服务器的压力。</p>
+            <p props="cpp">你需要自行维护通配 Token 的生命周期。当该 Token 过期时，需要生成新的通配 Token，并调用该方法传入新 Token。</p>
+            <p props="android">你需要自行维护通配 Token 的生命周期。当该 Token 过期时，需要生成新的通配 Token，并调用该方法传入新的 Token。</p>
             <p props="ios">你需要自行维护通配 Token 的生命周期。当该 Token 过期时，你需要生成一个新的通配 Token，并调用该方法传入新的 Token。
 
 适用场景：在涉及多个频道的场景中，例如在不同频道之间切换时，使用通配 Token 可以避免你每次加入新频道时都申请新的 Token，从而节省切换频道的时间，并减轻你的 Token 服务器的压力。</p>
@@ -40,7 +38,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>token</pt>
-                    <pd>新的通配 Token。</pd>
+                    <pd>新的 Token。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>token</pt>
@@ -59,8 +57,8 @@
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
                         <ul>
-                            <li>-2：参数无效，例如 Token 无效。你需要传入有效的参数并重新加入频道。</li>
-                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
+                            <li>-2：参数无效，例如传入的 Token 无效。请传入有效参数并重新加入频道。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请先初始化 <xref keyref="IRtcEngine"/> 对象后再调用该方法。</li>
                         </ul>
                     </li>
                 </ul>
@@ -71,7 +69,7 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效，例如 Token 无效。你需要传入有效参数并重新加入频道。</li>
-                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用此方法。</li>
                         </ul>
                     </li>
                 </ul>

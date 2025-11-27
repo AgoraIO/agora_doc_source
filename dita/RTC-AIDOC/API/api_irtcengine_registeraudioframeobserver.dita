@@ -20,14 +20,18 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">调用此方法可注册音频帧观察者对象。当你需要 SDK 触发 <codeph>onMixedAudioFrame</codeph>、<codeph>onRecordAudioFrame</codeph>、<codeph>onPlaybackAudioFrame</codeph>、<codeph>onPlaybackAudioFrameBeforeMixing</codeph> 或 <codeph>onEarMonitoringAudioFrame</codeph> 回调时，需要通过此方法注册回调。</p>
-            <p props="android">调用该方法后，SDK 会触发 <xref keyref="onMixedAudioFrame"/>、<xref keyref="onRecordAudioFrame"/>、<xref keyref="onPlaybackAudioFrame"/>、<xref keyref="onPlaybackAudioFrameBeforeMixing"/> 或 <xref keyref="onEarMonitoringAudioFrame"/> 回调。</p>
+            <p props="android">调用该方法注册音频帧观测器对象后，SDK 会触发 <xref keyref="onMixedAudioFrame"/>、<xref keyref="onRecordAudioFrame"/>、<xref keyref="onPlaybackAudioFrame"/>、<xref keyref="onPlaybackAudioFrameBeforeMixing"/> 或 <xref keyref="onEarMonitoringAudioFrame"/> 回调。</p>
             <p props="mac">调用此方法可注册音频帧观察者对象。当你需要 SDK 触发 <codeph>onMixedAudioFrame</codeph>、<codeph>onRecordAudioFrame</codeph>、<codeph>onPlaybackAudioFrame</codeph>、<codeph>onPlaybackAudioFrameBeforeMixing</codeph> 或 <codeph>onEarMonitoringAudioFrame</codeph> 回调时，需要通过此方法注册回调。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>调用时机</title>
             <p props="ios">该方法需要在加入频道前调用。</p>
-            <p props="android">请在加入频道前调用此方法。</p>
+            <p props="android">在加入频道前调用此方法。</p>
             <p props="mac">该方法需要在加入频道前调用。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android">
+            <title>相关回调</title>
+            <p props="android">相关回调：<xref keyref="onMixedAudioFrame"/>、<xref keyref="onRecordAudioFrame"/>、<xref keyref="onPlaybackAudioFrame"/>、<xref keyref="onPlaybackAudioFrameBeforeMixing"/>、<xref keyref="onEarMonitoringAudioFrame"/>。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>参数</title>
@@ -38,7 +42,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>observer</pt>
-                    <pd>音频帧观测器实例。详见 <xref keyref="IAudioFrameObserver"/>。</pd>
+                    <pd>音频帧观测器实例。详见 <xref keyref="IAudioFrameObserver"/>。设置为 <xref keyref="NULL"/> 可释放该实例。建议在收到 <xref keyref="onLeaveChannel"/> 回调后调用此方法释放音频帧观测器对象。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>delegate</pt>

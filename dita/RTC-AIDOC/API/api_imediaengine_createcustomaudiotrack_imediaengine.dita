@@ -31,7 +31,9 @@
             <parml>
                 <plentry props="cpp">
                     <pt>trackType</pt>
-                    <pd>自定义音频轨道的类型，详见 <xref keyref="AUDIO_TRACK_TYPE"/>。</pd>
+                    <pd>自定义音频轨道的类型，详见 <xref keyref="AUDIO_TRACK_TYPE"/>。
+                        <note>如果该参数设置为 <codeph>AUDIO_TRACK_DIRECT</codeph>，则在调用 <codeph>joinChannel</codeph> 加入频道时，必须将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>，否则加入频道会失败并返回错误码 -2。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>config</pt>

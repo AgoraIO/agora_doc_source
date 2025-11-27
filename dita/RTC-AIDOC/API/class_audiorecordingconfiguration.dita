@@ -43,7 +43,9 @@
             <parml>
                 <plentry props="cpp">
                     <pt>filePath</pt>
-                    <pd>录音文件的绝对路径（包含文件扩展名），例如：<xref keyref="recordingPath-example"/>。</pd>
+                    <pd>录音文件的绝对路径（包含文件扩展名），例如：<xref keyref="recordingPath-example"/>。
+                        <note>请确保日志文件目录存在且可写。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>encode</pt>
@@ -56,7 +58,8 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>sampleRate</pt>
-                    <pd>录音采样率（Hz）：
+                    <pd>
+                        <note>如果将该参数设置为 44100 或 48000，声网建议录制 WAV 文件，或将 <codeph>quality</codeph> 设置为 <codeph>AUDIO_RECORDING_QUALITY_MEDIUM</codeph> 或 <codeph>AUDIO_RECORDING_QUALITY_HIGH</codeph> 的 AAC 文件，以获得更好的录音质量。</note><ph>录音采样率（Hz）：</ph>
                         <ul>
                             <li>16000</li>
                             <li>32000（默认）</li>
@@ -71,11 +74,18 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>quality</pt>
-                    <pd>录音质量，详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。</pd>
+                    <pd>录音质量，详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。
+                        <note>该参数仅适用于 AAC 文件。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>recordingChannel</pt>
-                    <pd>录音的音频声道数，支持以下取值：
+                    <pd>
+                        <note>实际录制的音频声道与采集的音频声道有关：
+                            <ul>
+                                <li>如果采集的是单声道，且 <codeph>recordingChannel</codeph> 为 2，则录制的音频是从单声道复制的双声道数据，不是立体声。</li>
+                                <li>如果采集的是双声道，且 <codeph>recordingChannel</codeph> 为 1，则录制的音频是由双声道混合而成的单声道数据。</li>
+                            </ul><ph>集成方案也会影响最终录制的音频声道。如果需要录制立体声，请[联系技术支持](https://ticket.shengwang.cn/)。</ph></note><ph>录音的音频声道数，支持以下取值：</ph>
                         <ul>
                             <li>1：单声道（默认）。</li>
                             <li>2：立体声。</li>
@@ -84,11 +94,15 @@
                 </plentry>
                 <plentry props="android">
                     <pt>filePath</pt>
-                    <pd>录音文件的绝对路径（包括文件扩展名）。例如：<xref keyref="recordingPath-example"/>。</pd>
+                    <pd>录音文件的绝对路径（包括文件扩展名）。例如：<xref keyref="recordingPath-example"/>。
+                        <note>确保日志文件目录存在且可写。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>sampleRate</pt>
-                    <pd>录音采样率（Hz）。支持以下数值：16000、（默认）32000、44100、48000。</pd>
+                    <pd>录音采样率（Hz）。支持以下数值：16000、（默认）32000、44100、48000。
+                        <note>如果将该参数设置为 44100 或 48000，声网建议录制 WAV 文件，或将 <codeph>quality</codeph> 设置为 <codeph>AUDIO_RECORDING_QUALITY_MEDIUM</codeph> 或 <codeph>AUDIO_RECORDING_QUALITY_HIGH</codeph> 的 AAC 文件，以获得更好的录音质量。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>codec</pt>
@@ -111,7 +125,8 @@
                 </plentry>
                 <plentry props="android">
                     <pt>quality</pt>
-                    <pd>录音音质等级：
+                    <pd>
+                        <note>该参数仅适用于 AAC 文件。</note><ph>录音音质等级：</ph>
                         <ul>
                             <li><codeph>AUDIO_RECORDING_QUALITY_LOW (0)</codeph>：低音质。例如采样率为 32000 Hz、录制 10 分钟的 AAC 文件大小约为 1.2 MB。</li>
                             <li><codeph>AUDIO_RECORDING_QUALITY_MEDIUM (1)</codeph>：（默认）中等音质，文件大小约为 2 MB。</li>
@@ -122,7 +137,12 @@
                 </plentry>
                 <plentry props="android">
                     <pt>recordingChannel</pt>
-                    <pd>录音的音频声道数，支持以下取值：
+                    <pd>
+                        <note>实际录制的音频声道与采集的音频声道有关。
+                            <ul>
+                                <li>如果采集的是单声道，<codeph>recordingChannel</codeph> 为 <codeph>2</codeph>，则录制数据为从单声道复制的双声道数据，而非真正的立体声。</li>
+                                <li>如果采集的是双声道，<codeph>recordingChannel</codeph> 为 <codeph>1</codeph>，则录制数据为将双声道混合后的单声道。</li>
+                            </ul><ph>集成方案也会影响最终录制的音频声道。如需立体声录制，请[联系技术支持](https://ticket.shengwang.cn/)。</ph></note><ph>录音的音频声道数，支持以下取值：</ph>
                         <ul>
                             <li>1：（默认）单声道。</li>
                             <li>2：双声道。</li>
@@ -131,11 +151,15 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>filePath</pt>
-                    <pd>录音文件的绝对路径（包括文件扩展名）。例如：<xref keyref="recordingPath-example"/>。</pd>
+                    <pd>录音文件的绝对路径（包括文件扩展名）。例如：<xref keyref="recordingPath-example"/>。
+                        <note>请确保日志文件目录存在且可写。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>sampleRate</pt>
-                    <pd>录音采样率（Hz）。支持以下取值：16000、32000（默认）、44100、48000。</pd>
+                    <pd>录音采样率（Hz）。支持以下取值：16000、32000（默认）、44100、48000。
+                        <note>如果将该参数设置为 44100 或 48000，声网建议录制 WAV 文件，或录制 <codeph>quality</codeph> 设置为 <codeph>AgoraAudioRecordingQualityMedium</codeph> 或 <codeph>AgoraAudioRecordingQualityHigh</codeph> 的 AAC 文件，以获得更好的录音质量。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>fileRecordOption</pt>
@@ -143,11 +167,18 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>quality</pt>
-                    <pd>录音质量。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。</pd>
+                    <pd>录音质量。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。
+                        <note>该参数仅适用于 AAC 文件。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>recordingChannel</pt>
-                    <pd>录音的音频声道数。支持以下取值：
+                    <pd>
+                        <note>实际录制的音频声道与采集的音频声道有关：
+                            <ul>
+                                <li>如果采集的是单声道，且 <codeph>recordingChannel</codeph> 为 2，则录制的音频是从单声道复制的双声道数据，而非真正的立体声；</li>
+                                <li>如果采集的是双声道，且 <codeph>recordingChannel</codeph> 为 1，则录制的音频是由双声道混合而成的单声道数据。</li>
+                            </ul><ph>集成方案也会影响最终录制的音频声道。如果需要录制立体声，请[联系技术支持](https://ticket.shengwang.cn/)。</ph></note><ph>录音的音频声道数。支持以下取值：</ph>
                         <ul>
                             <li>1：（默认）单声道。</li>
                             <li>2：立体声。</li>
@@ -156,11 +187,15 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>filePath</pt>
-                    <pd>录音文件的绝对路径（包括文件扩展名）。例如：<xref keyref="recordingPath-example"/>。</pd>
+                    <pd>录音文件的绝对路径（包括文件扩展名）。例如：<xref keyref="recordingPath-example"/>。
+                        <note>请确保日志文件目录存在且可写。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>sampleRate</pt>
-                    <pd>录音采样率（Hz）。支持以下取值：16000、32000（默认）、44100、48000。</pd>
+                    <pd>录音采样率（Hz）。支持以下取值：16000、32000（默认）、44100、48000。
+                        <note>如果将该参数设置为 44100 或 48000，声网建议录制 WAV 文件，或录制 <codeph>quality</codeph> 设置为 <codeph>AgoraAudioRecordingQualityMedium</codeph> 或 <codeph>AgoraAudioRecordingQualityHigh</codeph> 的 AAC 文件，以获得更好的录音质量。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>fileRecordOption</pt>
@@ -168,11 +203,18 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>quality</pt>
-                    <pd>录音质量。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。</pd>
+                    <pd>录音质量。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。
+                        <note>该参数仅适用于 AAC 文件。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>recordingChannel</pt>
-                    <pd>录音的音频声道数。支持以下取值：
+                    <pd>
+                        <note>实际录制的音频声道与采集的音频声道有关：
+                            <ul>
+                                <li>如果采集的是单声道，且 <codeph>recordingChannel</codeph> 为 2，则录制的音频是从单声道复制的双声道数据，而非真正的立体声；</li>
+                                <li>如果采集的是双声道，且 <codeph>recordingChannel</codeph> 为 1，则录制的音频是由双声道混合而成的单声道数据。</li>
+                            </ul><ph>集成方案也会影响最终录制的音频声道。如果需要录制立体声，请[联系技术支持](https://ticket.shengwang.cn/)。</ph></note><ph>录音的音频声道数。支持以下取值：</ph>
                         <ul>
                             <li>1：（默认）单声道。</li>
                             <li>2：立体声。</li>

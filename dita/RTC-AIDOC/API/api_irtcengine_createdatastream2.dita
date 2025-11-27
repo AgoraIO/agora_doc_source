@@ -23,11 +23,11 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该方法不保证数据传输的可靠性。如果数据包在发送后五秒内未被接收，SDK 会直接丢弃该数据包。与 <codeph>createDataStream</codeph> 方法相比，该方法适用于对实时性要求高但可容忍部分数据丢失的场景。</p>
-            <p props="android">与 <codeph>createDataStream</codeph> 方法相比，该方法不保证数据传输的可靠性。如果数据包在发送后五秒内未被接收，SDK 会直接丢弃该数据。</p>
+            <p props="android">该方法不保证数据传输的可靠性。如果数据包在发送后五秒内未被接收，SDK 会直接丢弃该数据。</p>
             <p props="ios">与 <xref keyref="createDataStream1"/> 方法相比，该方法不保证数据传输的可靠性。如果数据包在发送后五秒内未被接收，SDK 会直接丢弃该数据包。你可以在加入频道前或加入频道后调用该方法。</p>
             <p props="mac">与 <xref keyref="createDataStream1"/> 方法相比，该方法不保证数据传输的可靠性。如果数据包在发送后五秒内未被接收，SDK 会直接丢弃该数据包。你可以在加入频道前或加入频道后调用该方法。</p>
             <note props="cpp">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期内最多可以创建五个数据流。离开频道时数据流会被销毁，如需使用需重新创建。如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
-            <note props="android">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期中最多可以创建五个数据流。离开频道时数据流会被销毁，如需继续使用需重新创建。如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
+            <note props="android">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期内最多可以创建五个数据流。离开频道时数据流会被销毁，如需继续使用需重新创建。如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用声网实时消息。</note>
             <note props="ios">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期内最多可以创建五个数据流。离开频道时数据流会被销毁，如需使用需重新创建。如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
             <note props="mac">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期内最多可以创建五个数据流。离开频道时数据流会被销毁，如需使用需重新创建。如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</note>
         </section>
@@ -51,7 +51,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>config</pt>
-                    <pd>数据流的配置。详见 <xref keyref="DataStreamConfig"/>。</pd>
+                    <pd>数据流的配置，详见 <xref keyref="DataStreamConfig"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>streamId</pt>

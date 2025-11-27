@@ -38,32 +38,31 @@
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">你可以调用此方法配置播放器，例如启用自动播放、订阅不同分辨率和码率的视频流等。</p>
-            <p props="android">你可以调用此方法配置播放器，例如启用自动播放、订阅不同分辨率和码率的视频流。</p>
+            <p props="cpp">你可以调用该方法配置播放器，例如启用自动播放、订阅不同分辨率和码率的视频流等。</p>
             <p props="ios">你可以调用此方法配置播放器，例如启用自动播放、订阅不同分辨率和码率的视频流。</p>
             <p props="mac">你可以调用此方法配置播放器，例如启用自动播放、订阅不同分辨率和码率的视频流。</p>
-            <note props="android">该方法必须在 <xref keyref="Player_Player"/> 初始化之后调用。</note>
             <note props="ios">必须在调用 <xref keyref="Player_Player"/> 之后调用此方法。</note>
             <note props="mac">必须在调用 <xref keyref="Player_Player"/> 之后调用此方法。</note>
         </section>
-        <section id="timing" deliveryTarget="details" props="cpp">
+        <section id="timing" deliveryTarget="details" props="android cpp">
             <title>调用时机</title>
             <p props="cpp">该方法必须在调用 <xref keyref="Player_Player"/> 之后执行。</p>
+            <p props="android">此方法必须在调用 <xref keyref="Player_Player"/> 之后调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>config</pt>
-                    <pd>播放器配置对象。详见 <xref keyref="PlayerConfig"/>。</pd>
+                    <pd>播放器配置对象，详见 <xref keyref="PlayerConfig"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>err</pt>
-                    <pd>输出参数，状态或错误信息。详见 <xref keyref="Error"/>。</pd>
+                    <pd>输出参数，状态或错误信息，详见 <xref keyref="Error"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>config</pt>
-                    <pd>播放器配置对象。详见 <xref keyref="PlayerConfig"/>。</pd>
+                    <pd>播放器配置对象，详见 <xref keyref="PlayerConfig"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>config</pt>
@@ -83,15 +82,14 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="cpp ios mac">
             <title>返回值</title>
-            <p props="cpp">
+            <p props="cpp">配置是否成功：
                 <ul>
                     <li><xref keyref="true"/>：配置成功。</li>
                     <li><xref keyref="false"/>：配置失败。</li>
                 </ul>
             </p>
-            <p props="android">调用失败时，SDK 会抛出异常，并返回相应的错误信息。你需要捕获异常并进行处理。</p>
             <p props="ios">
                 <ul>
                     <li><xref keyref="true"/>：配置成功。</li>

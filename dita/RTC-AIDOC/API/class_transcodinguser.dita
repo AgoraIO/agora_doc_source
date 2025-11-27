@@ -72,7 +72,13 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>zOrder</pt>
-                    <pd>主播视频的图层索引。取值范围为 [0, 100]。
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果取值小于 0 或大于 100，会返回 <codeph>ERR_INVALID_ARGUMENT</codeph> 错误。</li>
+                                <li>支持将 <codeph>zOrder</codeph> 设置为 0。</li>
+                            </ul>
+                        </note><ph>主播视频的图层索引。取值范围为 [0, 100]。</ph>
                         <ul>
                             <li>0：（默认）主播视频处于底层。</li>
                             <li>100：主播视频处于顶层。</li>
@@ -90,7 +96,8 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>audioChannel</pt>
-                    <pd>主播音频在输出音频中使用的音频声道。默认值为 0，取值范围为 [0, 5]。
+                    <pd>
+                        <note>如果该值不为 0，需要使用特殊播放器。</note><ph>主播音频在输出音频中使用的音频声道。默认值为 0，取值范围为 [0, 5]。</ph>
                         <ul>
                             <li>0：（推荐）默认设置，最多支持双声道，取决于主播的上行音频。</li>
                             <li>1：主播音频使用 FL 声道。如果主播上行使用多个声道，声网服务器会先将其混合为单声道。</li>
@@ -124,7 +131,13 @@
                 </plentry>
                 <plentry props="android">
                     <pt>zOrder</pt>
-                    <pd>主播视频的图层顺序索引，取值范围为 [0, 100]。
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果该值小于 0 或大于 100，会返回 <codeph>ERR_INVALID_ARGUMENT</codeph> 错误。</li>
+                                <li>支持将 <codeph>zOrder</codeph> 设置为 0。</li>
+                            </ul>
+                        </note><ph>主播视频的图层顺序索引，取值范围为 [0, 100]。</ph>
                         <ul>
                             <li>0：（默认值）视频位于最底层。</li>
                             <li>100：视频位于最顶层。</li>
@@ -142,7 +155,8 @@
                 </plentry>
                 <plentry props="android">
                     <pt>audioChannel</pt>
-                    <pd>主播音频在输出音频中的声道，默认值为 0，取值范围为 [0, 5]。
+                    <pd>
+                        <note>若该值不为 0，则需要专用播放器进行播放。</note><ph>主播音频在输出音频中的声道，默认值为 0，取值范围为 [0, 5]。</ph>
                         <ul>
                             <li>0：（推荐）默认设置，最多支持双声道，具体取决于主播的上行能力。</li>
                             <li>1：使用 FL（前左）声道。若主播上行多路音频，声网服务器会先将其混为单声道。</li>
@@ -164,7 +178,13 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>zOrder</pt>
-                    <pd>主播视频的图层索引，取值范围为 [0, 100]。
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果取值小于 0 或大于 100，会返回 <codeph>AgoraErrorCodeInvalidArgument</codeph> 错误。</li>
+                                <li>支持将 <codeph>zOrder</codeph> 设置为 0。</li>
+                            </ul>
+                        </note><ph>主播视频的图层索引，取值范围为 [0, 100]。</ph>
                         <ul>
                             <li>0：（默认）主播视频处于底层。</li>
                             <li>100：主播视频处于顶层。</li>
@@ -182,7 +202,8 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>audioChannel</pt>
-                    <pd>主播音频在输出音频中使用的音频通道。默认值为 0，取值范围为 [0, 5]。
+                    <pd>
+                        <note>如果该值不为 <codeph>0</codeph>，需要使用特殊播放器。</note><ph>主播音频在输出音频中使用的音频通道。默认值为 0，取值范围为 [0, 5]。</ph>
                         <ul>
                             <li>0：（推荐）默认设置，最多支持双通道，取决于主播的上行音频。</li>
                             <li>1：使用 FL 音频通道，若主播上行使用多通道，声网服务器会先混合为单声道。</li>
@@ -204,7 +225,13 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>zOrder</pt>
-                    <pd>主播视频的图层索引，取值范围为 [0, 100]。
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果取值小于 0 或大于 100，会返回 <codeph>AgoraErrorCodeInvalidArgument</codeph> 错误。</li>
+                                <li>支持将 <codeph>zOrder</codeph> 设置为 0。</li>
+                            </ul>
+                        </note><ph>主播视频的图层索引，取值范围为 [0, 100]。</ph>
                         <ul>
                             <li>0：（默认）主播视频处于底层。</li>
                             <li>100：主播视频处于顶层。</li>
@@ -222,7 +249,8 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>audioChannel</pt>
-                    <pd>主播音频在输出音频中使用的音频通道。默认值为 0，取值范围为 [0, 5]。
+                    <pd>
+                        <note>如果该值不为 <codeph>0</codeph>，需要使用特殊播放器。</note><ph>主播音频在输出音频中使用的音频通道。默认值为 0，取值范围为 [0, 5]。</ph>
                         <ul>
                             <li>0：（推荐）默认设置，最多支持双通道，取决于主播的上行音频。</li>
                             <li>1：使用 FL 音频通道，若主播上行使用多通道，声网服务器会先混合为单声道。</li>

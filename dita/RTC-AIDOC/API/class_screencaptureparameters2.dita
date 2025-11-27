@@ -45,7 +45,8 @@
             <parml>
                 <plentry props="cpp">
                     <pt>captureAudio</pt>
-                    <pd>是否在屏幕共享时采集系统音频：
+                    <pd>
+                        <note>由于系统限制，系统音频采集仅适用于 Android API 级别 29 及以上（即 Android 10 及以上）。为提高屏幕共享时系统音频采集的成功率，请确保调用了 <xref keyref="setAudioScenario"/> 方法并将音频场景设置为 <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph>。</note><ph>是否在屏幕共享时采集系统音频：</ph>
                         <ul>
                             <li><xref keyref="true"/>：采集系统音频。</li>
                             <li><xref keyref="false"/>：（默认）不采集系统音频。</li>
@@ -54,11 +55,14 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>audioParams</pt>
-                    <pd>共享屏幕流的音频配置。详见 <xref keyref="ScreenAudioParameters"/>。</pd>
+                    <pd>共享屏幕流的音频配置。详见 <xref keyref="ScreenAudioParameters"/>。
+                        <note>仅当 <codeph>captureAudio</codeph> 为 <xref keyref="true"/> 时该参数才生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>captureVideo</pt>
-                    <pd>是否在屏幕共享时采集屏幕画面：
+                    <pd>
+                        <note>由于系统限制，屏幕采集仅适用于 Android API 级别 21 及以上，即 Android 5 及以上。</note><ph>是否在屏幕共享时采集屏幕画面：</ph>
                         <ul>
                             <li><xref keyref="true"/>：（默认）采集屏幕。</li>
                             <li><xref keyref="false"/>：不采集屏幕。</li>
@@ -67,11 +71,24 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>videoParams</pt>
-                    <pd>共享屏幕流的视频配置。详见 <xref keyref="ScreenVideoParameters"/>。</pd>
+                    <pd>共享屏幕流的视频配置。详见 <xref keyref="ScreenVideoParameters"/>。
+                        <note>仅当 <codeph>captureVideo</codeph> 为 <xref keyref="true"/> 时该参数才生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>dimensions</pt>
-                    <pd>屏幕共享视频流的编码分辨率。若屏幕尺寸与该参数不同，SDK 会采用以下编码策略。例如将 <codeph>dimensions</codeph> 设置为 1920 × 1080：
+                    <pd>
+                        <note>在文档共享场景（<codeph>AgoraScreenScenarioDocument</codeph>）中设置编码分辨率时，建议：
+                            <ul>
+                                <li>若需最佳画质，建议编码分辨率与采集分辨率一致。</li>
+                                <li>若需在画质、带宽和系统性能之间取得平衡：
+                                    <ul>
+                                        <li>当采集分辨率大于 1920 × 1080 时，编码分辨率建议不低于 1920 × 1080。</li>
+                                        <li>当采集分辨率小于 1920 × 1080 时，编码分辨率建议不低于 1280 × 720。</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </note><ph>屏幕共享视频流的编码分辨率。若屏幕尺寸与该参数不同，SDK 会采用以下编码策略。例如将 <codeph>dimensions</codeph> 设置为 1920 × 1080：</ph>
                         <ul>
                             <li>如果屏幕尺寸小于 <codeph>dimensions</codeph>，如 1000 × 1000 像素，SDK 会使用屏幕尺寸（即 1000 × 1000 像素）进行编码。</li>
                             <li>如果屏幕尺寸大于 <codeph>dimensions</codeph>，如 2000 × 1500 像素，SDK 会在保持屏幕宽高比（4:3）的前提下，使用不超过 <codeph>dimensions</codeph> 的最大值进行编码，即 1440 × 1080。</li>
@@ -80,7 +97,9 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>frameRate</pt>
-                    <pd>共享区域的帧率（fps）。默认值为 5。</pd>
+                    <pd>共享区域的帧率（fps）。默认值为 5。
+                        <note>不建议设置超过 15 的帧率。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>bitrate</pt>
@@ -88,7 +107,8 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>captureMouseCursor</pt>
-                    <pd>是否在屏幕共享中采集鼠标：
+                    <pd>
+                        <note>由于 macOS 系统限制，在屏幕共享时设置为 <xref keyref="false"/> 无效（共享窗口时不受影响）。</note><ph>是否在屏幕共享中采集鼠标：</ph>
                         <ul>
                             <li><xref keyref="true"/>：（默认）采集鼠标。</li>
                             <li><xref keyref="false"/>：不采集鼠标。</li>
@@ -97,7 +117,8 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>windowFocus</pt>
-                    <pd>调用 <codeph>startScreenCaptureByWindowId</codeph> 方法共享窗口时，是否将该窗口置顶：
+                    <pd>
+                        <note>由于 macOS 系统限制，设置该参数置顶窗口时，如果当前应用有多个窗口，仅主窗口会被置顶。</note><ph>调用 <codeph>startScreenCaptureByWindowId</codeph> 方法共享窗口时，是否将该窗口置顶：</ph>
                         <ul>
                             <li><xref keyref="true"/>：将窗口置顶。</li>
                             <li><xref keyref="false"/>：（默认）不置顶。</li>
@@ -110,7 +131,8 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>highLighted</pt>
-                    <pd>是否在共享的窗口或屏幕周围添加边框：
+                    <pd>
+                        <note>当共享的是窗口或屏幕的一部分时，若设置为 <xref keyref="true"/>，SDK 会在整个窗口或屏幕周围添加边框。</note><ph>是否在共享的窗口或屏幕周围添加边框：</ph>
                         <ul>
                             <li><xref keyref="true"/>：添加边框。</li>
                             <li><xref keyref="false"/>：（默认）不添加边框。</li>
@@ -123,11 +145,19 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>highLightWidth</pt>
-                    <pd>边框宽度（像素）。默认值为 5，取值范围为 (0, 50]。</pd>
+                    <pd>边框宽度（像素）。默认值为 5，取值范围为 (0, 50]。
+                        <note>仅当 <codeph>highLighted</codeph> 设置为 <xref keyref="true"/> 时该参数才生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>captureAudio</pt>
-                    <pd>设置是否在屏幕共享过程中采集系统音频：
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>由于系统限制，系统音频的采集仅适用于 Android API 等级 29 及以上（即 Android 10 及以上版本）。</li>
+                                <li>为提高屏幕共享系统音频采集的成功率，请确保已调用 <xref keyref="setAudioScenario"/> 方法并将音频场景设置为 <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph>。</li>
+                            </ul>
+                        </note><ph>设置是否在屏幕共享过程中采集系统音频：</ph>
                         <ul>
                             <li><xref keyref="true"/>：采集系统音频。</li>
                             <li><xref keyref="false"/>：（默认）不采集系统音频。</li>
@@ -140,7 +170,8 @@
                 </plentry>
                 <plentry props="android">
                     <pt>captureVideo</pt>
-                    <pd>设置在屏幕共享过程中是否采集屏幕内容：
+                    <pd>
+                        <note>由于系统限制，屏幕采集仅适用于 Android API 等级 21 及以上，即 Android 5 及以上版本。</note><ph>设置在屏幕共享过程中是否采集屏幕内容：</ph>
                         <ul>
                             <li><xref keyref="true"/>：（默认）采集屏幕。</li>
                             <li><xref keyref="false"/>：不采集屏幕。</li>

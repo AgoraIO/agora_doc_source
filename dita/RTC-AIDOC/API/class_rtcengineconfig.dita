@@ -121,7 +121,8 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>useExternalEglContext</pt>
-                    <pd>是否使用当前线程中的 EGL 上下文作为 SDK 的根 EGL 上下文，该上下文会被所有与 EGL 相关的模块共享，例如摄像头采集、视频渲染等。
+                    <pd>
+                        <note>该属性仅适用于 Android 平台。</note><ph>是否使用当前线程中的 EGL 上下文作为 SDK 的根 EGL 上下文，该上下文会被所有与 EGL 相关的模块共享，例如摄像头采集、视频渲染等。</ph>
                         <ul>
                             <li><xref keyref="true"/>：使用当前线程中的 EGL 上下文。</li>
                             <li><xref keyref="false"/>：（默认）不使用当前线程中的 EGL 上下文。</li>
@@ -179,7 +180,8 @@
                 </plentry>
                 <plentry props="android">
                     <pt>mAudioScenario</pt>
-                    <pd>音频场景类型，不同场景下设备使用的音量类型不同：
+                    <pd>
+                        <note>在使用此枚举前，需调用 <xref keyref="getAudioDeviceInfo"/> 检查音频设备是否支持超低延迟采集与播放。若需体验超低延迟，需确保音频设备支持超低延迟（<codeph>isLowLatencyAudioSupported</codeph> = <xref keyref="true"/>）。</note><ph>音频场景类型，不同场景下设备使用的音量类型不同：</ph>
                         <ul>
                             <li><codeph>AUDIO_SCENARIO_DEFAULT</codeph> (0)：（默认）自动场景，SDK 会根据用户角色和音频路由选择合适的音质。</li>
                             <li><codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph> (3)：高音质场景，适用于播放音乐。</li>
@@ -227,7 +229,8 @@
                 </plentry>
                 <plentry props="android">
                     <pt>mNativeLibPath</pt>
-                    <pd><codeph>.so</codeph> 文件的存储目录。该目录必须是 App 的有效私有目录，可通过 <codeph>Context.getDir</codeph> 获取。
+                    <pd>
+                        <note>适用于手动集成 SDK。通过 Maven Central 或 JitPack 集成时不适用。请确保该目录存在，否则 <xref keyref="IRtcEngine"/> 初始化会失败。</note><ph><codeph>.so</codeph> 文件的存储目录。该目录必须是 App 的有效私有目录，可通过 <codeph>Context.getDir</codeph> 获取。</ph>
                         <ul>
                             <li>设置该参数后，SDK 会从指定目录加载 <codeph>.so</codeph> 文件，实现动态加载以减小包体积。</li>
                             <li>若不设置或设为 <xref keyref="NULL"/>，SDK 会从默认编译路径加载 <codeph>.so</codeph> 文件，包体积会增大。</li>

@@ -21,14 +21,14 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你可以调用该方法获取混音音频文件的本地播放音量，有助于排查与音量相关的问题。</p>
-            <p props="android">你可以调用此方法获取混音音频文件的本地播放音量，用于排查与音量相关的问题。</p>
+            <p props="android">你可以调用该方法获取混音音频文件的本地播放音量，有助于排查与音量相关的问题。</p>
             <p props="ios">你可以调用此方法获取混音音频文件的本地播放音量，有助于排查与音量相关的问题。</p>
             <p props="mac">你可以调用此方法获取混音音频文件的本地播放音量，有助于排查与音量相关的问题。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">请在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用此方法。</p>
-            <p props="android">请在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用此方法。</p>
+            <p props="android">在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用此方法。</p>
             <p props="ios">请在调用 <xref keyref="startAudioMixing2"/> 方法并收到 <codeph>audioMixingStateChanged</codeph> 回调（状态为 <codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用此方法。</p>
             <p props="mac">请在调用 <xref keyref="startAudioMixing2"/> 方法并收到 <codeph>audioMixingStateChanged</codeph> 回调（状态为 <codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用此方法。</p>
         </section>
@@ -42,8 +42,8 @@
             </p>
             <p props="android">
                 <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                    <li>方法调用成功，返回混音音量，取值范围为 [0, 100]。</li>
+                    <li>方法调用失败，返回小于 0 的错误码。</li>
                 </ul>
             </p>
             <p props="ios">

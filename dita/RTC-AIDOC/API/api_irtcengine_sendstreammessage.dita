@@ -23,9 +23,9 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用 <codeph>createDataStream</codeph> 后，可以调用该方法向频道内的所有用户发送数据流消息。</p>
-            <p props="android">你可以在调用 <codeph>createDataStream</codeph> 方法并加入频道后，调用该方法向频道内的所有用户发送数据流消息。SDK 对该方法有限制：
+            <p props="android">调用 <codeph>createDataStream</codeph> 后，可以使用该方法向频道内的所有用户发送数据流消息。SDK 对该方法有限制：
                 <ul>
-                    <li>每个客户端实例在频道中最多可同时拥有 5 个数据通道，所有数据通道共享的总包传输码率上限为 30 KB/s。</li>
+                    <li>每个频道内的客户端实例最多可同时拥有 5 个数据通道，所有数据通道共享的总包比特率上限为 30 KB/s。</li>
                     <li>每个数据通道每秒最多可发送 60 个数据包，每个数据包最大为 1 KB。</li>
                 </ul>
             </p>
@@ -48,9 +48,9 @@
                     <li>该方法仅适用于主播角色。</li>
                 </ul>
             </note>
-            <note props="android">如果你需要更全面的低延时、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。
+            <note props="android">如果你需要更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。
                 <ul>
-                    <li>该方法需在调用 <codeph>createDataStream</codeph> 并加入频道后调用。</li>
+                    <li>必须在调用 <codeph>createDataStream</codeph> 并加入频道后调用该方法。</li>
                     <li>该方法仅适用于主播角色。</li>
                 </ul>
             </note>
@@ -70,7 +70,7 @@
         <section id="related" deliveryTarget="details" props="android cpp">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onStreamMessage"/> 回调，远端用户可通过该回调接收数据流消息。调用失败时，SDK 会触发远端的 <xref keyref="onStreamMessageError"/> 回调。</p>
-            <p props="android">成功调用该方法后，远端会触发 <xref keyref="onStreamMessage"/> 回调接收数据流消息。调用失败时，远端会触发 <xref keyref="onStreamMessageError"/> 回调。</p>
+            <p props="android">调用成功后会触发远端客户端的 <xref keyref="onStreamMessage"/> 回调，远端用户可通过该回调获取数据流消息。调用失败则会触发远端客户端的 <xref keyref="onStreamMessageError"/> 回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -89,7 +89,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>streamId</pt>
-                    <pd>数据流 ID。你可以通过调用 <codeph>createDataStream</codeph> 获取该 ID。</pd>
+                    <pd>数据流 ID，通过调用 <codeph>createDataStream</codeph> 获取。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>message</pt>

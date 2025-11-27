@@ -98,7 +98,9 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>delay</pt>
-                    <pd>视频延迟（毫秒）。</pd>
+                    <pd>视频延迟（毫秒）。
+                        <note>@deprecated 在音视频同步场景中，可通过 <xref keyref="RemoteAudioStats"/> 中的 <codeph>networkTransportDelay</codeph> 和 <codeph>jitterBufferDelay</codeph> 获取视频延迟数据。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>e2eDelay</pt>
@@ -150,7 +152,9 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>avSyncTimeMs</pt>
-                    <pd>音频领先视频的时间（毫秒）。</pd>
+                    <pd>音频领先视频的时间（毫秒）。
+                        <note>如果该值为负数，表示音频落后于视频。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>totalActiveTime</pt>
@@ -162,7 +166,9 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>mosValue</pt>
-                    <pd>统计周期内远端视频流的质量评分。该评分由声网实时视频 MOS（Mean Opinion Score）算法计算得出，取值范围为 [0, 500]。将该值除以 100 可得 MOS 分数，范围为 0 到 5，分数越高表示视频质量越好。</pd>
+                    <pd>统计周期内远端视频流的质量评分。该评分由声网实时视频 MOS（Mean Opinion Score）算法计算得出，取值范围为 [0, 500]。将该值除以 100 可得 MOS 分数，范围为 0 到 5，分数越高表示视频质量越好。
+                        <note>对于纹理视频数据，该参数始终返回 0。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>rxVideoBytes</pt>
@@ -227,7 +233,9 @@
                 </plentry>
                 <plentry props="android">
                     <pt>avSyncTimeMs</pt>
-                    <pd>音频领先于视频的时间（毫秒）。</pd>
+                    <pd>音频领先于视频的时间（毫秒）。
+                        <note>如果该值为负数，表示音频延迟于视频。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>totalActiveTime</pt>
@@ -239,7 +247,9 @@
                 </plentry>
                 <plentry props="android">
                     <pt>mosValue</pt>
-                    <pd>报告区间内远端视频流的质量。该值由声网实时视频 MOS（Mean Opinion Score）评分方法计算，取值范围为 [0, 500]，除以 100 可得 MOS 分值（0 到 5），分值越高表示质量越好。</pd>
+                    <pd>报告区间内远端视频流的质量。该值由声网实时视频 MOS（Mean Opinion Score）评分方法计算，取值范围为 [0, 500]，除以 100 可得 MOS 分值（0 到 5），分值越高表示质量越好。
+                        <note>对于纹理视频数据，该参数始终返回 0。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>rxVideoBytes</pt>
@@ -251,7 +261,9 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>delay</pt>
-                    <pd>视频延迟（毫秒）。</pd>
+                    <pd>视频延迟（毫秒）。
+                        <note>在音视频同步的场景中，你可以从 <codeph>networkTransportDelay</codeph> 和 <codeph>jitterBufferDelay</codeph> 获取视频延迟数据。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>e2eDelay</pt>
@@ -307,11 +319,15 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>avSyncTimeMs</pt>
-                    <pd>音频领先视频的时间（毫秒）。</pd>
+                    <pd>音频领先视频的时间（毫秒）。
+                        <note>如果该值为负数，表示音频落后于视频。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>mosValue</pt>
-                    <pd>在统计周期内远端视频流的质量。该值由声网实时视频 MOS（Mean Opinion Score）算法评估，取值范围为 [0, 500]。将该值除以 100 可得 MOS 评分，范围为 0 到 5，分数越高表示视频质量越好。</pd>
+                    <pd>在统计周期内远端视频流的质量。该值由声网实时视频 MOS（Mean Opinion Score）算法评估，取值范围为 [0, 500]。将该值除以 100 可得 MOS 评分，范围为 0 到 5，分数越高表示视频质量越好。
+                        <note>对于纹理视频数据，该参数始终返回 0。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>rxVideoBytes</pt>
@@ -323,7 +339,9 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>delay</pt>
-                    <pd>视频延迟（毫秒）。</pd>
+                    <pd>视频延迟（毫秒）。
+                        <note>在音视频同步的场景中，你可以从 <codeph>networkTransportDelay</codeph> 和 <codeph>jitterBufferDelay</codeph> 获取视频延迟数据。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>e2eDelay</pt>
@@ -379,11 +397,15 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>avSyncTimeMs</pt>
-                    <pd>音频领先视频的时间（毫秒）。</pd>
+                    <pd>音频领先视频的时间（毫秒）。
+                        <note>如果该值为负数，表示音频落后于视频。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>mosValue</pt>
-                    <pd>在统计周期内远端视频流的质量。该值由声网实时视频 MOS（Mean Opinion Score）算法评估，取值范围为 [0, 500]。将该值除以 100 可得 MOS 评分，范围为 0 到 5，分数越高表示视频质量越好。</pd>
+                    <pd>在统计周期内远端视频流的质量。该值由声网实时视频 MOS（Mean Opinion Score）算法评估，取值范围为 [0, 500]。将该值除以 100 可得 MOS 评分，范围为 0 到 5，分数越高表示视频质量越好。
+                        <note>对于纹理视频数据，该参数始终返回 0。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>rxVideoBytes</pt>

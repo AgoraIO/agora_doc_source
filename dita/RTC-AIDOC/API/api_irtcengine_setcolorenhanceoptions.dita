@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcolorenhanceoptions">
     <title><ph keyref="setColorEnhanceOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置视频颜色增强效果。</ph><ph id="shortdesc" props="android">设置视频颜色增强效果。</ph><ph id="shortdesc" props="ios">设置色彩增强效果。</ph><ph id="shortdesc" props="mac">设置色彩增强效果。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置视频颜色增强效果。</ph><ph id="shortdesc" props="android">设置色彩增强功能。</ph><ph id="shortdesc" props="ios">设置色彩增强效果。</ph><ph id="shortdesc" props="mac">设置色彩增强效果。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -39,7 +39,7 @@
                 </dlentry>
             </dl>
             <p props="cpp">摄像头采集的视频图像可能存在色彩失真。颜色增强功能可智能调整视频的饱和度和对比度等特性，从而增强视频的色彩丰富度和还原度，使画面更加生动。</p>
-            <p props="android">摄像头采集的视频图像可能存在色彩失真。该方法依赖图像增强动态库 <xref keyref="clearvision"/>。若该动态库被删除，将无法正常启用该功能。</p>
+            <p props="android">摄像头采集的视频图像可能存在色彩失真。该功能可智能调整视频的饱和度和对比度等参数，从而提升视频的色彩丰富度和还原度，使画面更加生动。</p>
             <p props="ios">摄像头采集的视频图像可能存在色彩失真。色彩增强功能可智能调整视频的饱和度和对比度等特性，从而增强视频的色彩丰富度和色彩还原度，使视频画面更加生动。你可以调用 <xref keyref="setColorEnhanceOptions"/> 方法开启色彩增强功能并设置色彩增强效果的参数。</p>
             <p props="mac">摄像头采集的视频图像可能存在色彩失真。色彩增强功能可智能调整视频的饱和度和对比度等特性，从而增强视频的色彩丰富度和色彩还原度，使视频画面更加生动。你可以调用 <xref keyref="setColorEnhanceOptions"/> 方法开启色彩增强功能并设置色彩增强效果的参数。</p>
             <note props="cpp">
@@ -52,7 +52,8 @@
             <note props="android">
                 <ul>
                     <li>请在调用 <xref keyref="enableVideo"/> 方法之后调用此方法。</li>
-                    <li>颜色增强功能对设备性能有一定要求。开启该功能后，如设备出现严重发热，声网建议你降低颜色增强等级以减少性能消耗，或关闭该功能。</li>
+                    <li>色彩增强功能对设备性能有一定要求。开启该功能后，如果设备出现严重发热问题，声网建议你降低色彩增强等级以减少性能消耗，或关闭该功能。</li>
+                    <li>此方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，将无法正常启用该功能。</li>
                 </ul>
             </note>
             <note props="ios">
@@ -97,16 +98,16 @@
                 </plentry>
                 <plentry props="android">
                     <pt>enabled</pt>
-                    <pd>是否开启颜色增强功能：
+                    <pd>是否启用色彩增强功能：
                         <ul>
-                            <li><xref keyref="true"/>：开启颜色增强功能。</li>
-                            <li><xref keyref="false"/>：（默认）关闭颜色增强功能。</li>
+                            <li><xref keyref="true"/>：启用色彩增强。</li>
+                            <li><xref keyref="false"/>：（默认）关闭色彩增强。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>options</pt>
-                    <pd>颜色增强功能的相关参数。详见 <xref keyref="ColorEnhanceOptions"/>。</pd>
+                    <pd>色彩增强选项。详见 <xref keyref="ColorEnhanceOptions"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>enable</pt>

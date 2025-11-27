@@ -28,15 +28,17 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">你可以多次调用该方法加入多个频道。如果你希望从不同设备加入同一个频道，确保每个设备的用户 ID 不同。</p>
-            <p props="android">你可以多次调用该方法加入多个频道。
-
+            <p props="cpp">你可以多次调用该方法加入多个频道。
 在多摄像头采集场景中，调用该方法后需要调用 <codeph>startPreview</codeph> 方法，并将 <codeph>sourceType</codeph> 设置为 <codeph>VIDEO_SOURCE_CAMERA_SECONDARY</codeph>，以确保第二路摄像头正常采集。</p>
+            <p props="android">你可以多次调用此方法加入多个频道。
+
+在多摄像头采集场景中，调用此方法后需要调用 <codeph>startPreview</codeph> 方法，并将 <codeph>sourceType</codeph> 设置为 <codeph>VIDEO_SOURCE_CAMERA_SECONDARY</codeph>，以确保第二路摄像头正常采集。</p>
             <p props="ios">在调用该方法之前，如果你尚未调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，当你调用该方法加入频道时，SDK 会自动为你创建一个用户账号。先调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，再调用该方法加入频道，可以缩短进入频道所需的时间。
 一旦用户加入频道，默认会订阅频道中其他所有用户的音视频流，从而产生用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 <codeph>mediaOptions</codeph> 参数或调用相应的 <codeph>mute</codeph> 方法。</p>
             <p props="mac">在调用该方法之前，如果你尚未调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，当你调用该方法加入频道时，SDK 会自动为你创建一个用户账号。先调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，再调用该方法加入频道，可以缩短进入频道所需的时间。
 一旦用户加入频道，默认会订阅频道中其他所有用户的音视频流，从而产生用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 <codeph>mediaOptions</codeph> 参数或调用相应的 <codeph>mute</codeph> 方法。</p>
-            <note props="cpp">如果你已经在一个频道中，不能使用相同的用户 ID 重新加入该频道。在加入频道前，请确保用于生成 Token 的 App ID 与调用 <xref keyref="initialize"/> 方法时传入的 App ID 相同，否则可能会导致加入频道失败。</note>
+            <note props="cpp">如果你已经在一个频道中，不能使用相同的用户 ID 重新加入该频道。
+在加入频道前，请确保用于生成 Token 的 App ID 与调用 <xref keyref="initialize"/> 方法时传入的 App ID 相同，否则可能会导致使用该 Token 加入频道失败。</note>
             <note props="android">如果你已经在一个频道中，不能使用相同的用户 ID 重新加入该频道。
 在加入频道前，确保用于生成 Token 的 App ID 与调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法时传入的 App ID 相同，否则可能会导致加入频道失败。</note>
             <note props="ios">
@@ -59,40 +61,61 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">请在调用 <xref keyref="initialize"/> 方法后调用该方法。</p>
-            <p props="android">在调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法之后调用该方法。</p>
+            <p props="android">在调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法之后调用。</p>
             <p props="ios">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
             <p props="mac">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
         </section>
-        <section id="related" deliveryTarget="details" props="cpp">
+        <section id="related" deliveryTarget="details" props="android cpp">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发以下回调：
                 <ul>
                     <li>本地客户端：<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
-                    <li>远端客户端：如果是通信场景中有用户加入频道，或直播场景中有主播加入频道，会触发 <xref keyref="onUserJoined"/> 回调。</li>
-                </ul><ph>当由于网络状况不佳导致本地客户端与声网服务器的连接中断时，SDK 会尝试重连服务器。当本地客户端成功重新加入频道后，SDK 会触发本地客户端的 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
+                    <li>远端客户端：如果是 <codeph>COMMUNICATION</codeph> 频道场景中有用户加入频道，或 <codeph>LIVE_BROADCASTING</codeph> 频道场景中有主播加入频道，则触发 <xref keyref="onUserJoined"/> 回调。</li>
+                </ul><ph>当由于网络状况不佳导致本地客户端与声网服务器的连接中断时，SDK 会尝试重连服务器。当本地客户端成功重加入频道时，SDK 会触发本地客户端的 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
+            <p props="android">成功调用该方法会触发以下回调：
+                <ul>
+                    <li>本地客户端：<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
+                    <li>远端客户端：如果是 <codeph>COMMUNICATION</codeph> 频道场景中有用户加入频道，或 <codeph>LIVE_BROADCASTING</codeph> 频道场景中有主播加入频道，则触发 <xref keyref="onUserJoined"/> 回调。</li>
+                </ul><ph>当由于网络状况不佳导致本地客户端与声网服务器的连接中断时，SDK 会尝试重连服务器。当本地客户端成功重新加入频道时，SDK 会触发本地客户端的 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>token</pt>
-                    <pd>你在服务器上生成的用于鉴权的 Token。</pd>
+                    <pd>用于鉴权的 Token，由你的服务器生成。
+                        <note>
+                            <ul>
+                                <li>（推荐）如果你的项目启用了安全模式（使用 App ID 和 Token 鉴权），该参数为必填。</li>
+                                <li>如果你只启用了测试模式（使用 App ID 鉴权），该参数为可选。成功加入频道后，你将在 24 小时后自动退出频道。</li>
+                                <li>如果你需要同时加入不同频道或在频道间切换，声网建议使用通配符 Token，这样你每次加入频道时无需重新申请 Token。详见 <codeph>Secure authentication with tokens</codeph>。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>options</pt>
-                    <pd>频道媒体选项。详见 <xref keyref="ChannelMediaOptions"/>。</pd>
+                    <pd>频道媒体选项，详见 <xref keyref="ChannelMediaOptions"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>eventHandler</pt>
-                    <pd>回调类。你可以通过该参数传入的 <codeph>eventHandler</codeph> 对象获取多个频道的回调事件。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
+                    <pd>回调类，详见 <xref keyref="IRtcEngineEventHandler"/>。你可以通过该参数传入的 <codeph>eventHandler</codeph> 对象获取多个频道的回调事件。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>token</pt>
-                    <pd>你在服务器上生成的用于鉴权的 Token。</pd>
+                    <pd>用于鉴权的 Token。
+                        <note>
+                            <ul>
+                                <li>（推荐）如果你的项目启用了安全模式（使用 App ID 和 Token 进行鉴权），该参数为必填。</li>
+                                <li>如果你只启用了测试模式（使用 App ID 进行鉴权），该参数为可选。成功加入频道后，你将在 24 小时后自动退出频道。</li>
+                                <li>如果你需要同时加入不同频道或在频道之间切换，声网建议使用通配符 Token，这样你每次加入频道时无需重新申请 Token。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>connection</pt>
@@ -104,11 +127,19 @@
                 </plentry>
                 <plentry props="android">
                     <pt>eventHandler</pt>
-                    <pd>回调类。你可以通过该参数传入的 <codeph>eventHandler</codeph> 对象获取多个频道的回调事件。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
+                    <pd>回调类。详见 <xref keyref="IRtcEngineEventHandler"/>。你可以通过该参数传入的 <codeph>eventHandler</codeph> 对象获取多个频道的回调事件。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>token</pt>
-                    <pd>在你的服务器上生成的用于鉴权的 Token。</pd>
+                    <pd>在你的服务器上生成的用于鉴权的 Token。
+                        <note>
+                            <ul>
+                                <li>（推荐）如果你的项目启用了安全模式（使用 APP ID 和 Token 进行鉴权），该参数为必填。</li>
+                                <li>如果你只启用了测试模式（使用 APP ID 进行鉴权），该参数为可选。成功加入频道后，你将在 24 小时后自动退出频道。</li>
+                                <li>如果你需要同时加入多个频道或在频道间切换，声网建议使用通配符 Token，这样你无需每次加入频道时都申请新的 Token。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>connection</pt>
@@ -128,7 +159,15 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>token</pt>
-                    <pd>在你的服务器上生成的用于鉴权的 Token。</pd>
+                    <pd>在你的服务器上生成的用于鉴权的 Token。
+                        <note>
+                            <ul>
+                                <li>（推荐）如果你的项目启用了安全模式（使用 APP ID 和 Token 进行鉴权），该参数为必填。</li>
+                                <li>如果你只启用了测试模式（使用 APP ID 进行鉴权），该参数为可选。成功加入频道后，你将在 24 小时后自动退出频道。</li>
+                                <li>如果你需要同时加入多个频道或在频道间切换，声网建议使用通配符 Token，这样你无需每次加入频道时都申请新的 Token。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>connection</pt>
@@ -156,7 +195,7 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。你需要传入有效参数并重新加入频道。</li>
-                            <li>-3：初始化 <xref keyref="IRtcEngine"/> 对象失败。你需要重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。你需要重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
                             <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
                             <li>-8：<xref keyref="IRtcEngine"/> 对象的内部状态错误。典型原因是在调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要先调用 <xref keyref="stopEchoTest"/> 再调用该方法。</li>
                             <li>-17：加入频道请求被拒绝。典型原因是用户已在频道中。声网建议你通过 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。只有在收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）状态时才调用该方法加入频道。</li>
@@ -172,10 +211,10 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中的成员值无效。你需要传入有效参数并重新加入频道。</li>
-                            <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。你需要重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
-                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
-                            <li>-8：<xref keyref="IRtcEngine"/> 对象的内部状态错误。典型原因是在调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要先调用 <xref keyref="stopEchoTest"/> 再调用该方法。</li>
-                            <li>-17：加入频道请求被拒绝。典型原因是用户已在频道中。声网建议你通过 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。只有在收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）状态时才调用该方法加入频道。</li>
+                            <li>-3：初始化 <xref keyref="IRtcEngine"/> 对象失败。你需要重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用此方法。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/> 对象的内部状态错误。典型原因是在调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用此方法加入频道。你需要先调用 <xref keyref="stopEchoTest"/> 再调用此方法。</li>
+                            <li>-17：加入频道请求被拒绝。典型原因是用户已在频道中。声网建议你通过 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。只有在收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）状态时才调用此方法加入频道。</li>
                             <li>-102：频道名无效。你需要在 <codeph>channelId</codeph> 中传入有效的频道名以重新加入频道。</li>
                             <li>-121：用户 ID 无效。你需要在 <codeph>uid</codeph> 中传入有效的用户 ID 以重新加入频道。</li>
                         </ul>

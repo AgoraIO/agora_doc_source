@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_joinchannelwithuseraccountex">
     <title><ph keyref="joinChannelWithUserAccountEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="ios">使用用户账号和 Token 加入频道，并设置媒体选项。</ph><ph id="shortdesc" props="android">使用用户账号和 Token 加入频道并设置媒体选项。</ph><ph id="shortdesc" props="mac">使用用户账号和 Token 加入频道，并设置媒体选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">使用用户账号和 Token 加入频道，并设置媒体选项。</ph><ph id="shortdesc" props="android">使用用户账号和 Token 加入频道，并设置媒体选项。</ph><ph id="shortdesc" props="mac">使用用户账号和 Token 加入频道，并设置媒体选项。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,7 +31,7 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">调用该方法前，如果你没有调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，SDK 会在你调用该方法加入频道时自动为你创建一个用户账号。建议先调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，再调用该方法加入频道，以缩短进入频道的时间。
 用户加入频道后，默认会订阅频道中所有其他用户的音视频流，从而产生用量和计费。如果你希望取消订阅其他用户的媒体流，可以设置 <codeph>mediaOptions</codeph> 参数或调用相应的 <codeph>mute</codeph> 方法。</p>
-            <p props="android">如果你尚未调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，SDK 会在你调用 <xref keyref="joinChannelWithUserAccountEx"/> 加入频道时自动为你创建一个用户账号。先调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，再调用 <xref keyref="joinChannelWithUserAccountEx"/> 加入频道可以缩短进入频道所需的时间。
+            <p props="android">在调用此方法之前，如果你尚未调用 <xref keyref="registerLocalUserAccount"/> 注册用户账号，SDK 会在你调用此方法加入频道时自动创建用户账号。提前调用 <xref keyref="registerLocalUserAccount"/> 可以缩短加入频道所需的时间。
 
 一旦用户加入频道，默认会订阅频道中所有其他用户的音视频流，从而产生使用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 <codeph>options</codeph> 参数或调用相应的 <xref keyref="mute"/> 方法。</p>
             <p props="mac">调用该方法前，如果你没有调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，SDK 会在你调用该方法加入频道时自动为你创建一个用户账号。建议先调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户账号，再调用该方法加入频道，以缩短进入频道的时间。
@@ -48,9 +48,8 @@
                 <ul>
                     <li>该方法仅支持用户同时加入一个频道。</li>
                     <li>不同 App ID 的用户无法互通。</li>
-                    <li>在加入频道前，请确保用于生成 Token 的 App ID 与调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法时传入的 App ID 相同，否则可能会导致使用该 Token 加入频道失败。</li>
-                    <li>为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用 UID 加入频道，则其他用户也应使用 UID；用户账号同理。</li>
-                    <li>如果用户使用声网 Web SDK 加入频道，请确保用户 ID 设置为相同的参数类型。</li>
+                    <li>加入频道前，请确保用于生成 Token 的 App ID 与调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法时传入的 App ID 相同，否则可能导致加入频道失败。</li>
+                    <li>为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用 <codeph>uid</codeph> 加入频道，则其他用户也应使用 <codeph>uid</codeph>；如果使用用户账号加入频道，则其他用户也应使用用户账号。若使用声网 Web SDK 加入频道，请确保用户 ID 的参数类型一致。</li>
                 </ul>
             </note>
             <note props="mac">
@@ -65,15 +64,28 @@
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>调用时机</title>
             <p props="ios">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
-            <p props="android">请在调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 方法后调用该方法。</p>
+            <p props="android">在调用 <xref keyref="create_ILocalSpatialAudioEngine"/> 之后调用此方法。</p>
             <p props="mac">请在调用 <xref keyref="initialize"/> 之后调用该方法。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android">
+            <title>相关回调</title>
+            <p props="android">本地客户端：<xref keyref="onLocalUserRegistered"/>、<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。
+远端客户端：如果用户在 <codeph>COMMUNICATION</codeph> 频道场景中加入频道，或主播在 <codeph>LIVE_BROADCASTING</codeph> 频道场景中加入频道，则触发 <xref keyref="onUserJoined"/> 和 <xref keyref="onUserInfoUpdated"/> 回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="ios">
                     <pt>token</pt>
-                    <pd>在你的服务器上生成的用于鉴权的 Token。</pd>
+                    <pd>在你的服务器上生成的用于鉴权的 Token。
+                        <note>
+                            <ul>
+                                <li>（推荐）如果你的项目启用了安全模式（使用 App ID 和 Token 进行鉴权），该参数为必填。</li>
+                                <li>如果你只启用了测试模式（使用 App ID 进行鉴权），该参数为可选。成功加入频道后，你将在 24 小时后自动退出频道。</li>
+                                <li>如果你需要同时加入多个频道或在频道间切换，声网建议使用通配符 Token，这样你每次加入频道时无需重新申请 Token。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>channelId</pt>
@@ -112,11 +124,19 @@
                 </plentry>
                 <plentry props="android">
                     <pt>token</pt>
-                    <pd>在你的服务器上生成的用于鉴权的 Token。</pd>
+                    <pd>在你的服务器上生成的用于鉴权的 Token。
+                        <note>
+                            <ul>
+                                <li>（推荐）如果你的项目启用了安全模式（使用 App ID 和 Token 进行鉴权），该参数为必填。</li>
+                                <li>如果你只启用了测试模式（使用 App ID 进行鉴权），该参数为可选。成功加入频道后，你将在 24 小时后自动退出频道。</li>
+                                <li>如果你需要同时加入多个频道或在频道间切换，声网建议使用通配符 Token，这样你无需每次加入频道时都申请新的 Token。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>channelId</pt>
-                    <pd>频道名。该参数表示用户进行实时音视频互动的频道。在相同 App ID 的前提下，填写相同频道名的用户会进入同一个频道进行音视频互动。字符串长度必须小于 64 字节。支持的字符（共 89 个）：
+                    <pd>频道名。在相同 App ID 的前提下，填写相同频道名的用户会进入同一个频道进行音视频互动。字符串长度必须小于 64 字节。支持的字符（共 89 个）：
                         <ul>
                             <li>所有小写英文字母：a 到 z。</li>
                             <li>所有大写英文字母：A 到 Z。</li>
@@ -127,7 +147,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>userAccount</pt>
-                    <pd>用户账号。用于标识频道中的用户以进行实时音视频互动。你需要自行设置和管理用户账号，并确保同一频道中的每个用户账号唯一。该参数的最大长度为 255 字节，不能为空。支持的字符如下（共 89 个）：
+                    <pd>用户账号。你需要自行设置和管理用户账号，并确保同一频道中的每个用户账号唯一。该参数的最大长度为 255 字节，不能为空。支持的字符如下（共 89 个）：
                         <ul>
                             <li>26 个小写英文字母：a 到 z。</li>
                             <li>26 个大写英文字母：A 到 Z。</li>
@@ -143,11 +163,19 @@
                 </plentry>
                 <plentry props="android">
                     <pt>eventHandler</pt>
-                    <pd><xref keyref="IRtcEngineEx"/> 的回调类。你可以通过该参数传入的 <codeph>eventHandler</codeph> 对象获取多个频道的回调事件。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
+                    <pd><xref keyref="IRtcEngineEx"/> 的回调类。详见 <xref keyref="IRtcEngineEventHandler"/>。你可以通过该参数传入的 <codeph>eventHandler</codeph> 对象获取多个频道的回调事件。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>token</pt>
-                    <pd>在你的服务器上生成的用于鉴权的 Token。</pd>
+                    <pd>在你的服务器上生成的用于鉴权的 Token。
+                        <note>
+                            <ul>
+                                <li>（推荐）如果你的项目启用了安全模式（使用 App ID 和 Token 进行鉴权），该参数为必填。</li>
+                                <li>如果你只启用了测试模式（使用 App ID 进行鉴权），该参数为可选。成功加入频道后，你将在 24 小时后自动退出频道。</li>
+                                <li>如果你需要同时加入多个频道或在频道间切换，声网建议使用通配符 Token，这样你每次加入频道时无需重新申请 Token。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>channelId</pt>
@@ -209,13 +237,13 @@
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
-                            <li>-2：参数无效。例如，Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中某个成员的值无效。你需要传入有效参数并重新加入频道。</li>
-                            <li>-3：初始化 <xref keyref="IRtcEngine"/> 对象失败。你需要重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
-                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
-                            <li>-8：<xref keyref="IRtcEngine"/> 对象的内部状态错误。典型原因是在调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要先调用 <xref keyref="stopEchoTest"/> 再调用该方法。</li>
-                            <li>-17：加入频道请求被拒绝。典型原因是用户已在频道中。声网建议你使用 <xref keyref="onConnectionStateChanged"/> 回调查看用户是否在频道中。除非收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）状态，否则不要调用该方法加入频道。</li>
-                            <li>-102：频道名无效。你需要在 <codeph>channelId</codeph> 中传入有效的频道名重新加入频道。</li>
-                            <li>-121：用户 ID 无效。你需要在 <codeph>uid</codeph> 中传入有效的用户 ID 重新加入频道。</li>
+                            <li>-2：参数无效。例如 Token 无效，<codeph>uid</codeph> 参数未设置为整数，或 <xref keyref="ChannelMediaOptions"/> 中某成员的值无效。请传入有效参数后重新加入频道。</li>
+                            <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。请重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请先初始化后再调用此方法。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/> 对象内部状态错误。典型原因是在调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用此方法。请先调用 <xref keyref="stopEchoTest"/> 再调用此方法。</li>
+                            <li>-17：加入频道请求被拒绝。典型原因是用户已在频道中。建议通过 <xref keyref="onConnectionStateChanged"/> 回调确认用户是否已在频道中，除非收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>（1）状态，否则不要调用此方法。</li>
+                            <li>-102：频道名无效。请在 <codeph>channelId</codeph> 中传入有效的频道名后重新加入频道。</li>
+                            <li>-121：用户 ID 无效。请在 <codeph>uid</codeph> 中传入有效的用户 ID 后重新加入频道。</li>
                         </ul>
                     </li>
                 </ul>

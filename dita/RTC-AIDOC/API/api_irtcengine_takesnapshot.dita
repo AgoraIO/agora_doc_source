@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_takesnapshot">
     <title><ph keyref="takeSnapshot"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">截取视频流快照。</ph><ph id="shortdesc" props="android">截取视频流快照并保存为 JPG 图像。</ph><ph id="shortdesc" props="ios">截取视频流快照。</ph><ph id="shortdesc" props="mac">截取视频流快照。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">截取视频流快照。</ph><ph id="shortdesc" props="android">截取指定用户的视频流快照并保存为 JPG 图像。</ph><ph id="shortdesc" props="ios">截取视频流快照。</ph><ph id="shortdesc" props="mac">截取视频流快照。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,22 +20,11 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">该方法用于从指定用户的视频流中截取一帧图像，生成 JPG 图片，并保存到指定路径。该方法为异步调用，调用返回时 SDK 尚未完成截图操作。用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。如果用户的视频已进行预处理，例如添加水印或美颜，截图结果中会包含这些预处理效果。</p>
             <p props="ios">该方法从指定用户的视频流中截取一帧图像，生成 JPG 图片，并保存到指定路径。调用该方法时，如果用户的视频已进行预处理，例如添加水印或美颜，截图结果中会包含这些预处理效果。</p>
             <p props="mac">该方法从指定用户的视频流中截取一帧图像，生成 JPG 图片，并保存到指定路径。调用该方法时，如果用户的视频已进行预处理，例如添加水印或美颜，截图结果中会包含这些预处理效果。</p>
-            <note props="cpp">
-                <ul>
-                    <li>该方法为异步调用，调用返回时 SDK 尚未完成截图操作。</li>
-                    <li>用于本地视频截图时，会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</li>
-                    <li>如果用户的视频已进行预处理（如添加水印或美颜），截图结果中会包含这些效果。</li>
-                </ul>
-            </note>
-            <note props="android">
-                <ul>
-                    <li>该方法为异步调用，方法返回时 SDK 尚未完成快照操作。</li>
-                    <li>用于本地视频快照时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行快照。</li>
-                    <li>如果用户的视频已进行预处理，例如添加水印或美颜，生成的快照将包含预处理效果。</li>
-                </ul>
-            </note>
+            <note props="cpp">请确保指定路径存在且可写。</note>
+            <note props="android">该方法为异步方法，调用返回时 SDK 尚未完成快照操作。当用于本地视频快照时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行快照。如果用户的视频已进行预处理，例如添加水印或美颜，生成的快照将包含预处理效果。</note>
             <note props="ios">该方法为异步调用，调用返回时 SDK 尚未完成截图操作。当用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</note>
             <note props="mac">该方法为异步调用，调用返回时 SDK 尚未完成截图操作。当用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</note>
         </section>
@@ -49,7 +38,7 @@
         <section id="related" deliveryTarget="details" props="android cpp ios mac">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
-            <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告快照是否成功以及快照的详细信息。</p>
+            <p props="android">调用该方法成功后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告快照是否成功以及快照的详细信息。</p>
             <p props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调报告截图是否成功以及截图的详细信息。</p>
             <p props="mac">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调报告截图是否成功以及截图的详细信息。</p>
         </section>
@@ -58,7 +47,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>uid</pt>
-                    <pd>用户 ID。如果要截取本地用户的视频，请将 <codeph>uid</codeph> 设置为 0。</pd>
+                    <pd>用户 ID。若要截取本地用户的视频，请将 <codeph>uid</codeph> 设置为 0。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>filePath</pt>
@@ -77,9 +66,10 @@
                 </plentry>
                 <plentry props="android">
                     <pt>filePath</pt>
-                    <pd>快照的本地路径（包含文件扩展名）。例如：
+                    <pd>
+                        <note>请确保指定的路径存在且可写。</note><ph>快照的本地路径（包含文件扩展名）。例如：</ph>
                         <ul>
-                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph>。</li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph></li>
                         </ul>
                     </pd>
                 </plentry>

@@ -20,7 +20,7 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">你可以调用此方法，并通过指定 <codeph>sourceType</codeph> 来开始从一个或多个摄像头采集视频。</p>
+            <p props="cpp">你可以调用该方法并指定 <codeph>sourceType</codeph>，从一个或多个摄像头开始采集视频。</p>
             <p props="android">你可以调用该方法，并通过指定 <codeph>sourceType</codeph> 开始从一个或多个摄像头采集视频。</p>
             <p props="ios">你可以调用此方法并指定 <codeph>sourceType</codeph> 来开始从一个或多个摄像头进行视频采集。</p>
             <p props="mac">你可以调用此方法并指定 <codeph>sourceType</codeph> 来开始从一个或多个摄像头进行视频采集。</p>
@@ -34,15 +34,27 @@
             <parml>
                 <plentry props="cpp">
                     <pt>sourceType</pt>
-                    <pd>视频源类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                    <pd>视频源类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。
+                        <note>
+                            <ul>
+                                <li>在 iOS 设备上，如果设备有多个摄像头或支持外接摄像头，最多可同时采集 2 路视频。</li>
+                                <li>在 Android 设备上，如果设备有多个摄像头或支持外接摄像头，最多可同时采集 4 路视频。</li>
+                                <li>在桌面平台上，最多可同时采集 4 路视频。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>config</pt>
-                    <pd>视频采集配置。详见 <xref keyref="CameraCapturerConfiguration"/>。</pd>
+                    <pd>视频采集配置，详见 <xref keyref="CameraCapturerConfiguration"/>。
+                        <note>在 iOS 平台上，该参数无实际作用。请使用 <xref keyref="enableMultiCamera"/> 方法中的 <xref keyref="Config"/> 参数设置视频采集配置。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>sourceType</pt>
-                    <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                    <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。
+                        <note>在 Android 设备上，如果设备有多个摄像头或支持外接摄像头，你最多可以从 4 个摄像头采集视频。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>config</pt>

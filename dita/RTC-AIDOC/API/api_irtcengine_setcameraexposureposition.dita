@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcameraexposureposition">
     <title><ph keyref="setCameraExposurePosition"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置摄像头的曝光位置。</ph><ph id="shortdesc" props="ios">设置摄像头曝光位置。</ph><ph id="shortdesc" props="android">设置摄像头曝光位置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置相机曝光位置。</ph><ph id="shortdesc" props="ios">设置摄像头曝光位置。</ph><ph id="shortdesc" props="android">设置摄像头曝光位置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -29,11 +29,18 @@
                     <dd>自 v2.3.2 版本新增。</dd>
                 </dlentry>
             </dl>
-            <note props="cpp">该方法仅适用于 Android 和 iOS 平台。
-你必须在调用 <xref keyref="enableVideo"/> 方法之后再调用本方法。设置结果在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后生效。
-调用本方法成功后，SDK 会触发 <xref keyref="onCameraExposureAreaChanged"/> 回调。</note>
+            <note props="cpp"><codeph>- setCameraExposurePosition</codeph> 仅适用于 Android 和 iOS 平台。
+                <ul>
+                    <li>你必须在调用 <xref keyref="enableVideo"/> 方法之后再调用该方法。</li>
+                    <li>设置将在相机成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）时生效。</li>
+                </ul>
+            </note>
             <note props="ios">你必须在调用 <xref keyref="enableVideo"/> 方法之后再调用该方法。设置结果会在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>AgoraVideoLocalStateCapturing</codeph>（1）后生效。成功调用该方法后，SDK 会触发 <xref keyref="onCameraExposureAreaChanged"/> 回调。</note>
             <note props="android">你必须在调用 <xref keyref="enableVideo"/> 方法之后再调用此方法。设置结果会在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调并返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>（1）后生效。成功调用该方法后，SDK 会触发 <xref keyref="onCameraExposureAreaChanged"/> 回调。</note>
+        </section>
+        <section id="related" deliveryTarget="details" props="cpp">
+            <title>相关回调</title>
+            <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onCameraExposureAreaChanged"/> 回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios">
             <title>参数</title>

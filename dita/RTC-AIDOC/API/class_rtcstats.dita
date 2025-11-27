@@ -198,27 +198,49 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>cpuAppUsage</pt>
-                    <pd>应用的 CPU 使用率（%）。</pd>
+                    <pd>应用的 CPU 使用率（%）。
+                        <note>
+                            <ul>
+                                <li>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</li>
+                                <li>自 Android 8.1 起，受系统限制无法获取该值。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>cpuTotalUsage</pt>
-                    <pd>系统的 CPU 使用率（%）。在 Windows 多核环境下，该值为平均 CPU 使用率，计算方式为：(100 - 任务管理器中的系统空闲进度)/100。</pd>
+                    <pd>系统的 CPU 使用率（%）。在 Windows 多核环境下，该值为平均 CPU 使用率，计算方式为：(100 - 任务管理器中的系统空闲进度)/100。
+                        <note>
+                            <ul>
+                                <li>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</li>
+                                <li>自 Android 8.1 起，受系统限制无法获取该值。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>gatewayRtt</pt>
-                    <pd>客户端到本地路由器的往返时延（毫秒）。</pd>
+                    <pd>客户端到本地路由器的往返时延（毫秒）。
+                        <note>该属性在 iOS 14 及以上版本默认禁用，iOS 14 以下版本默认启用。如需在 iOS 14 及以上版本启用，请[联系技术支持](https://ticket.shengwang.cn/)。在 Android 上，需在 <codeph>AndroidManifest.xml</codeph> 文件中 <codeph>&lt;/application&gt;</codeph> 后添加 <codeph>android.permission.ACCESS_WIFI_STATE</codeph> 权限。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>memoryAppUsageRatio</pt>
-                    <pd>应用占用的内存比例（%）。</pd>
+                    <pd>应用占用的内存比例（%）。
+                        <note>该值仅供参考，受系统限制可能无法获取。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>memoryTotalUsageRatio</pt>
-                    <pd>系统占用的内存比例（%）。</pd>
+                    <pd>系统占用的内存比例（%）。
+                        <note>该值仅供参考，受系统限制可能无法获取。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>memoryAppUsageInKbytes</pt>
-                    <pd>应用占用的内存大小（KB）。</pd>
+                    <pd>应用占用的内存大小（KB）。
+                        <note>该值仅供参考，受系统限制可能无法获取。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>connectTimeMs</pt>
@@ -335,15 +357,31 @@
                 </plentry>
                 <plentry props="android">
                     <pt>cpuTotalUsage</pt>
-                    <pd>系统 CPU 使用率（%）。</pd>
+                    <pd>系统 CPU 使用率（%）。
+                        <note>
+                            <ul>
+                                <li>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</li>
+                                <li>从 Android 8.1 开始，受系统限制无法获取该值。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>gatewayRtt</pt>
-                    <pd>客户端到本地路由器的往返时延（毫秒）。</pd>
+                    <pd>客户端到本地路由器的往返时延（毫秒）。
+                        <note>在 Android 上，如需获取该值，请确保在项目的 <codeph>AndroidManifest.xml</codeph> 文件中，在 <codeph>&lt;/application&gt;</codeph> 后添加权限 <codeph>android.permission.ACCESS_WIFI_STATE</codeph>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>cpuAppUsage</pt>
-                    <pd>应用的 CPU 使用率（%）。</pd>
+                    <pd>应用的 CPU 使用率（%）。
+                        <note>
+                            <ul>
+                                <li>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</li>
+                                <li>从 Android 8.1 开始，受系统限制无法获取该值。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>users</pt>
@@ -363,15 +401,21 @@
                 </plentry>
                 <plentry props="android">
                     <pt>memoryAppUsageRatio</pt>
-                    <pd>应用占用的内存比例（%）。</pd>
+                    <pd>应用占用的内存比例（%）。
+                        <note>该值仅供参考，因系统限制可能无法获取。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>memoryTotalUsageRatio</pt>
-                    <pd>系统占用的内存比例（%）。</pd>
+                    <pd>系统占用的内存比例（%）。
+                        <note>该值仅供参考，因系统限制可能无法获取。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>memoryAppUsageInKbytes</pt>
-                    <pd>应用占用的内存大小（KB）。</pd>
+                    <pd>应用占用的内存大小（KB）。
+                        <note>该值仅供参考，因系统限制可能无法获取。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>lanAccelerateState</pt>
@@ -436,27 +480,39 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>cpuAppUsage</pt>
-                    <pd>应用程序的 CPU 使用率（%）。</pd>
+                    <pd>应用程序的 CPU 使用率（%）。
+                        <note>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>cpuTotalUsage</pt>
-                    <pd>系统的 CPU 使用率（%）。</pd>
+                    <pd>系统的 CPU 使用率（%）。
+                        <note>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>gatewayRtt</pt>
-                    <pd>客户端到本地路由器的往返时延，单位为毫秒。</pd>
+                    <pd>客户端到本地路由器的往返时延，单位为毫秒。
+                        <note>该属性在运行 iOS 14 或更高版本的设备上默认禁用，在运行早期版本的设备上默认启用。要在 iOS 14 或更高版本的设备上启用该属性，请[联系技术支持](https://ticket.shengwang.cn/)。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>memoryAppUsageRatio</pt>
-                    <pd>应用程序占用的内存比例（%）。</pd>
+                    <pd>应用程序占用的内存比例（%）。
+                        <note>该值仅供参考。由于系统限制，可能无法获取该值。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>memoryTotalUsageRatio</pt>
-                    <pd>系统占用的内存比例（%）。</pd>
+                    <pd>系统占用的内存比例（%）。
+                        <note>该值仅供参考。由于系统限制，可能无法获取该值。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>memoryAppUsageInKbytes</pt>
-                    <pd>应用程序占用的内存大小，单位为 KB。</pd>
+                    <pd>应用程序占用的内存大小，单位为 KB。
+                        <note>该值仅供参考。由于系统限制，可能无法获取该值。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>connectTimeMs</pt>
@@ -557,27 +613,39 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>cpuAppUsage</pt>
-                    <pd>应用程序的 CPU 使用率（%）。</pd>
+                    <pd>应用程序的 CPU 使用率（%）。
+                        <note>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>cpuTotalUsage</pt>
-                    <pd>系统的 CPU 使用率（%）。</pd>
+                    <pd>系统的 CPU 使用率（%）。
+                        <note>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>gatewayRtt</pt>
-                    <pd>客户端到本地路由器的往返时延，单位为毫秒。</pd>
+                    <pd>客户端到本地路由器的往返时延，单位为毫秒。
+                        <note>该属性在运行 iOS 14 或更高版本的设备上默认禁用，在运行早期版本的设备上默认启用。要在 iOS 14 或更高版本的设备上启用该属性，请[联系技术支持](https://ticket.shengwang.cn/)。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>memoryAppUsageRatio</pt>
-                    <pd>应用程序占用的内存比例（%）。</pd>
+                    <pd>应用程序占用的内存比例（%）。
+                        <note>该值仅供参考。由于系统限制，可能无法获取该值。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>memoryTotalUsageRatio</pt>
-                    <pd>系统占用的内存比例（%）。</pd>
+                    <pd>系统占用的内存比例（%）。
+                        <note>该值仅供参考。由于系统限制，可能无法获取该值。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>memoryAppUsageInKbytes</pt>
-                    <pd>应用程序占用的内存大小，单位为 KB。</pd>
+                    <pd>应用程序占用的内存大小，单位为 KB。
+                        <note>该值仅供参考。由于系统限制，可能无法获取该值。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>connectTimeMs</pt>

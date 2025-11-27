@@ -34,7 +34,7 @@
                 </dlentry>
             </dl>
             <p props="ios">摄像头采集的视频图像可能存在色彩失真。色彩增强功能可智能调整视频的饱和度和对比度等特性，从而增强视频的色彩丰富度和色彩还原度，使视频画面更加生动。该方法与 <xref keyref="setColorEnhanceOptions"/> 方法类似，但该方法允许你指定应用色彩增强选项的媒体源。</p>
-            <p props="android">该方法用于设置色彩增强选项并指定应用该选项的媒体源。色彩增强功能可智能调整视频的饱和度和对比度等特性，从而增强视频的色彩丰富度和色彩还原度，使视频画面更加生动。</p>
+            <p props="android">摄像头采集的视频图像可能存在色彩失真。色彩增强功能可智能调整视频的饱和度和对比度等参数，从而提升视频的色彩丰富度和还原度，使画面更加生动。该方法与 <codeph>setColorEnhanceOptions</codeph> 功能相同，但允许你指定应用色彩增强的媒体源类型。</p>
             <p props="mac">摄像头采集的视频图像可能存在色彩失真。色彩增强功能可智能调整视频的饱和度和对比度等特性，从而增强视频的色彩丰富度和色彩还原度，使视频画面更加生动。该方法与 <xref keyref="setColorEnhanceOptions"/> 方法类似，但该方法允许你指定应用色彩增强选项的媒体源。</p>
             <note props="ios">
                 <ul>
@@ -45,9 +45,9 @@
             </note>
             <note props="android">
                 <ul>
-                    <li>请在调用 <xref keyref="enableVideo"/> 方法后调用此方法。</li>
-                    <li>色彩增强功能对设备性能有一定要求。开启色彩增强后，如果设备出现严重发热问题，声网建议你降低色彩增强等级以减少性能消耗，或关闭色彩增强功能。</li>
-                    <li>此方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，则无法正常启用该功能。</li>
+                    <li>请在调用 <xref keyref="enableVideo"/> 后调用此方法。</li>
+                    <li>色彩增强功能对设备性能有一定要求。开启该功能后，如设备出现严重发热，声网建议你降低色彩增强等级以减少性能消耗，或关闭该功能。</li>
+                    <li>此方法依赖图像增强动态库 <xref keyref="clearvision"/>。若该动态库被删除，则无法正常启用该功能。</li>
                 </ul>
             </note>
             <note props="mac">
@@ -85,7 +85,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>enabled</pt>
-                    <pd>是否启用色彩增强功能：
+                    <pd>是否启用色彩增强：
                         <ul>
                             <li><xref keyref="true"/>：启用色彩增强。</li>
                             <li><xref keyref="false"/>：（默认）关闭色彩增强。</li>
@@ -98,7 +98,14 @@
                 </plentry>
                 <plentry props="android">
                     <pt>sourceType</pt>
-                    <pd>应用滤镜效果的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                    <pd>应用滤镜效果的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
+                        <note>该参数仅支持以下两种设置：
+                            <ul>
+                                <li>默认值为 <codeph>PRIMARY_CAMERA_SOURCE</codeph>。</li>
+                                <li>如果使用自定义视频源，请将该参数设置为 <codeph>CUSTOM_VIDEO_SOURCE</codeph>。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>enable</pt>

@@ -29,19 +29,13 @@
                     <li>如果调用 <codeph>leaveChannel</codeph>，你将离开通过 <codeph>joinChannel</codeph> 或 <xref keyref="joinChannelEx"/> 加入的所有频道。</li>
                 </ul>
             </p>
-            <p props="android">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。调用 <xref keyref="joinChannelEx"/> 加入频道后，必须调用此方法或 <codeph>leaveChannelEx</codeph> 结束通话，否则无法开始下一次通话。
-该方法调用成功后会触发以下回调：
-                <ul>
-                    <li>本地用户：触发 <xref keyref="onLeaveChannel"/> 回调，即本地用户离开频道回调。</li>
-                    <li>远端用户：本地主播离开频道后，触发 <xref keyref="onUserOffline"/> 回调，即远端用户收到本地用户离开频道的回调。</li>
-                </ul>
-            </p>
+            <p props="android">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。调用 <xref keyref="joinChannelEx"/> 加入频道后，必须调用此方法或 <codeph>leaveChannelEx</codeph> 结束通话，否则无法开始下一次通话。</p>
             <p props="ios">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。调用 <codeph>joinChannelExByToken</codeph> 加入频道后，必须调用此方法或 <xref keyref="leaveChannelEx2"/> 结束通话，否则无法开始下一次通话。</p>
             <p props="mac">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。调用 <codeph>joinChannelExByToken</codeph> 加入频道后，必须调用此方法或 <xref keyref="leaveChannelEx2"/> 结束通话，否则无法开始下一次通话。</p>
             <note props="android">
                 <ul>
                     <li>如果在调用该方法后立即调用 <xref keyref="Destroy_Rte"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。</li>
-                    <li>此方法为异步调用。方法返回时，并不代表用户已完全离开频道。</li>
+                    <li>该方法为异步调用，方法返回时并不代表用户已离开频道。</li>
                     <li>如果调用 <codeph>leaveChannel</codeph> 或 <codeph>leaveChannel</codeph>，你将离开通过 <codeph>joinChannel</codeph>、<codeph>joinChannel</codeph> 或 <xref keyref="joinChannelEx"/> 加入的所有频道。</li>
                 </ul>
             </note>
@@ -61,16 +55,22 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">该方法需要在调用 <xref keyref="joinChannelEx"/> 之后调用。</p>
-            <p props="android">该方法需要在调用 <xref keyref="joinChannelEx"/> 之后调用。</p>
+            <p props="android">在调用 <xref keyref="joinChannelEx"/> 之后调用该方法。</p>
             <p props="ios">在调用 <codeph>joinChannelExByToken</codeph> 之后调用该方法。</p>
             <p props="mac">在调用 <codeph>joinChannelExByToken</codeph> 之后调用该方法。</p>
         </section>
-        <section id="related" deliveryTarget="details" props="cpp">
+        <section id="related" deliveryTarget="details" props="android cpp">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发以下回调：
                 <ul>
                     <li>本地客户端：触发 <xref keyref="onLeaveChannel"/> 回调。</li>
                     <li>远端客户端：远端用户离开频道后触发 <xref keyref="onUserOffline"/> 回调。</li>
+                </ul>
+            </p>
+            <p props="android">调用成功后会触发以下回调：
+                <ul>
+                    <li>本地客户端实例：触发 <xref keyref="onLeaveChannel"/> 回调。</li>
+                    <li>远端客户端实例：远端主播离开频道后触发 <xref keyref="onUserOffline"/> 回调。</li>
                 </ul>
             </p>
         </section>
@@ -83,7 +83,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>connection</pt>

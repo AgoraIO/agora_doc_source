@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_preloadchannelwithuseraccount">
     <title><ph keyref="preloadChannelWithUserAccount"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">预加载指定用户账号的频道。</ph><ph id="shortdesc" props="android">预加载指定频道和用户账号。</ph><ph id="shortdesc" props="ios">预加载指定的频道以缩短观众加入频道的时间。</ph><ph id="shortdesc" props="mac">预加载指定的频道以缩短观众加入频道的时间。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">预加载指定的频道。</ph><ph id="shortdesc" props="android">预加载指定频道，缩短观众加入频道的时间。</ph><ph id="shortdesc" props="ios">预加载指定的频道以缩短观众加入频道的时间。</ph><ph id="shortdesc" props="mac">预加载指定的频道以缩短观众加入频道的时间。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,26 +24,24 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">当观众需要频繁切换不同频道时，调用该方法可以缩短加入频道的时间，从而减少观众听到和看到主播的延迟时间。如果你加入了一个已预加载的频道，离开后想重新加入该频道，除非用于预加载频道的 Token 过期，否则无需再次调用该方法。
-
-调用时机：为提升预加载频道的用户体验，声网建议在确认频道名和用户信息后尽早调用该方法。</p>
-            <p props="android">当观众需要频繁切换不同频道时，调用该方法可以缩短加入频道的时间，从而减少观众听到和看到主播的延迟时间。为提升预加载频道的用户体验，声网建议在确认频道名和用户信息后尽早调用该方法。如果你加入了一个已预加载的频道，离开后想重新加入同一个频道，除非用于预加载频道的 Token 过期，否则无需再次调用该方法。</p>
+            <p props="cpp">当观众用户需要频繁切换不同频道时，调用该方法可以缩短加入频道的时间，从而减少观众听到和看到主播的延迟时间。如果你加入了一个已预加载的频道，离开后想重新加入该频道，除非用于预加载频道的 Token 过期，否则无需再次调用该方法。</p>
+            <p props="android">当观众需要频繁切换不同频道时，调用该方法可以缩短加入频道的时间，从而减少观众听到和看到主播的延迟。如果你加入了一个已预加载的频道，离开后想重新加入同一个频道，除非用于预加载频道的 Token 过期，否则无需再次调用该方法。</p>
             <p props="ios">当你需要频繁切换不同频道时，调用该方法可以缩短加入频道的时间，从而减少你听到和看到主播的延迟。如果你加入了一个已预加载的频道，离开后想重新加入同一个频道，除非用于预加载频道的 Token 过期，否则无需再次调用该方法。声网建议你在确认频道名和用户信息后尽早调用该方法，以提升预加载频道的用户体验。</p>
             <p props="mac">当你需要频繁切换不同频道时，调用该方法可以缩短加入频道的时间，从而减少你听到和看到主播的延迟。如果你加入了一个已预加载的频道，离开后想重新加入同一个频道，除非用于预加载频道的 Token 过期，否则无需再次调用该方法。声网建议你在确认频道名和用户信息后尽早调用该方法，以提升预加载频道的用户体验。</p>
             <note props="cpp">
                 <ul>
-                    <li>调用该方法时，确保将用户角色设置为观众，且未将音频场景设置为 <codeph>AUDIO_SCENARIO_CHORUS</codeph>，否则该方法不生效。</li>
-                    <li>确保用于预加载的用户账号、频道名和 Token 与加入频道时传入的值一致，否则该方法不生效。</li>
-                    <li>一个 <xref keyref="IRtcEngine"/> 实例最多支持预加载 20 个频道，超出限制时，仅最近的 20 个预加载频道生效。</li>
-                    <li>预加载频道失败不会影响加入频道的能力，也不会增加加入频道所需的时间。</li>
+                    <li>调用该方法时，请确保将用户角色设置为观众，且未将音频场景设置为 <codeph>AUDIO_SCENARIO_CHORUS</codeph>，否则该方法不生效。</li>
+                    <li>你还需要确保用于预加载的用户账号、频道名和 Token 与加入频道时传入的值一致，否则该方法不生效。</li>
+                    <li>一个 <xref keyref="IRtcEngine"/> 实例最多支持预加载 20 个频道。超过该限制时，仅最新的 20 个预加载频道生效。</li>
+                    <li>预加载频道失败不会影响加入频道的功能，也不会增加加入频道所需的时间。</li>
                 </ul>
             </note>
             <note props="android">
                 <ul>
                     <li>调用该方法时，请确保将用户角色设置为观众，且未将音频场景设置为 <codeph>AUDIO_SCENARIO_CHORUS</codeph>，否则该方法不生效。</li>
-                    <li>你还需要确保用于预加载的用户账号、频道名和 Token 与加入频道时传入的值一致，否则该方法不生效。</li>
-                    <li>一个 <xref keyref="IRtcEngine"/> 实例最多支持预加载 20 个频道，超出限制时，仅最近的 20 个预加载频道生效。</li>
-                    <li>预加载频道失败并不意味着无法加入频道，也不会增加加入频道所需的时间。</li>
+                    <li>你需要确保用于预加载的用户账号、频道名和 Token 与加入频道时传入的值一致，否则该方法不生效。</li>
+                    <li>一个 <xref keyref="IRtcEngine"/> 实例最多支持预加载 20 个频道。超过该限制时，仅最近的 20 个预加载频道生效。</li>
+                    <li>预加载频道失败不会影响加入频道的能力，也不会增加加入频道所需的时间。</li>
                 </ul>
             </note>
             <note props="ios">
@@ -63,8 +61,10 @@
                 </ul>
             </note>
         </section>
-        <section id="timing" deliveryTarget="details" props="ios mac">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
+            <p props="cpp">为提升预加载频道的用户体验，声网建议在确认频道名和用户信息后尽早调用该方法。</p>
+            <p props="android">为提升预加载频道的用户体验，声网建议在确认频道名和用户信息后尽早调用该方法。</p>
             <p props="ios">该方法需要在加入频道前调用。</p>
             <p props="mac">该方法需要在加入频道前调用。</p>
         </section>
@@ -73,13 +73,13 @@
             <parml>
                 <plentry props="cpp">
                     <pt>token</pt>
-                    <pd>在你的服务器上生成的用于鉴权的 Token。当用于预加载频道的 Token 过期时，你可以根据预加载的频道数量更新 Token：
+                    <pd>你在服务器上生成的用于鉴权的 Token。Token 过期后，你可以根据预加载的频道数量更新 Token：
                         <ul>
                             <li>预加载一个频道时，调用该方法传入新的 Token。</li>
                             <li>预加载多个频道时：
                                 <ul>
-                                    <li>如果为所有预加载频道使用通配符 Token，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。注意：生成通配符 Token 时，确保用户 ID 不为 0。</li>
-                                    <li>如果为不同频道使用不同的 Token，调用该方法传入用户 ID、频道名和新的 Token。</li>
+                                    <li>如果你为所有预加载频道使用通配符 Token，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。注意：生成通配符 Token 时，确保用户 ID 不为 0。</li>
+                                    <li>如果你为不同频道使用不同的 Token，调用该方法传入用户 ID、频道名和新的 Token。</li>
                                 </ul>
                             </li>
                         </ul>
@@ -87,34 +87,44 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>channelId</pt>
-                    <pd>要预加载的频道名。该参数表示用户进行实时音视频互动的频道。在相同 App ID 下，使用相同频道名的用户会进入同一个频道。字符串长度必须小于 64 字节。支持的字符（共 89 个）：
+                    <pd>你想要预加载的频道名。在相同 App ID 下，填写相同频道名的用户会进入同一个频道。频道名长度必须小于 64 字节，支持的字符（共 89 个）：
                         <ul>
                             <li>所有小写英文字母：a 到 z。</li>
                             <li>所有大写英文字母：A 到 Z。</li>
                             <li>所有数字字符：0 到 9。</li>
-                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>userAccount</pt>
-                    <pd>用户账号。用于标识频道中的用户以进行实时音视频互动。你需要自行设置和管理用户账号，并确保同一频道中的每个用户账号唯一。该参数的最大长度为 255 字节，不能为空。支持的字符如下（共 89 个）：
+                    <pd>用户账号。你需要自行设置和管理用户账号，并确保同一频道中的每个用户账号唯一。该参数最大长度为 255 字节，不能为空。支持的字符如下（共 89 个）：
                         <ul>
                             <li>26 个小写英文字母：a 到 z。</li>
                             <li>26 个大写英文字母：A 到 Z。</li>
                             <li>所有数字字符：0 到 9。</li>
                             <li>空格</li>
-                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>token</pt>
-                    <pd>在你的服务器上生成的用于鉴权的 Token。当用于预加载频道的 Token 过期时，你可以根据预加载的频道数量更新 Token。</pd>
+                    <pd>你在服务器上生成的用于鉴权的 Token。当用于预加载频道的 Token 过期时，你可以根据预加载的频道数量更新 Token：
+                        <ul>
+                            <li>预加载一个频道时，调用该方法传入新的 Token。</li>
+                            <li>预加载多个频道时：
+                                <ul>
+                                    <li>如果你为所有预加载频道使用通配符 Token，调用 <xref keyref="updatePreloadChannelToken"/> 更新 Token。注意：生成通配符 Token 时，确保用户 ID 不为 0。</li>
+                                    <li>如果你为不同频道使用不同的 Token，调用该方法传入用户账号、频道名和新的 Token。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>channelName</pt>
-                    <pd>要预加载的频道名。该参数表示用户进行实时音视频互动的频道。在相同 App ID 的前提下，填写相同频道名的用户会进入同一个频道进行音视频互动。字符串长度必须小于 64 字节。支持的字符（共 89 个）：
+                    <pd>你想要预加载的频道名。字符串长度必须小于 64 字节。支持的字符（共 89 个）：
                         <ul>
                             <li>所有小写英文字母：a 到 z。</li>
                             <li>所有大写英文字母：A 到 Z。</li>
@@ -125,7 +135,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>userAccount</pt>
-                    <pd>用户账号。用于标识频道中的用户以进行实时音视频互动。你需要自行设置和管理用户账号，并确保同一频道中的每个用户账号唯一。该参数的最大长度为 255 字节，不能为空。支持的字符如下（共 89 个）：
+                    <pd>用户账号，用于标识频道中的用户。你需要自行设置和管理用户账号，并确保同一频道中的每个用户账号唯一。该参数最大长度为 255 字节，不能为空。支持的字符如下（共 89 个）：
                         <ul>
                             <li>26 个小写英文字母：a 到 z。</li>
                             <li>26 个大写英文字母：A 到 Z。</li>
@@ -230,9 +240,9 @@
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
-                            <li>-2：参数无效，例如用户账号为空。你需要传入有效参数并重新加入频道。</li>
-                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
-                            <li>-102：频道名无效。你需要传入有效的频道名并重新加入频道。</li>
+                            <li>-2：参数无效，例如用户账号为空。请传入有效参数后重新加入频道。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请先初始化 <xref keyref="IRtcEngine"/> 对象后再调用该方法。</li>
+                            <li>-102：频道名无效。请传入有效的频道名后重新加入频道。</li>
                         </ul>
                     </li>
                 </ul>

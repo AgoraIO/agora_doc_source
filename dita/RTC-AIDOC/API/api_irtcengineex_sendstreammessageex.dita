@@ -24,9 +24,9 @@
                     <li>每个数据通道每秒最多可发送 60 个数据包，每个数据包最大为 1 KB。</li>
                 </ul>
             </p>
-            <p props="android">你可以在调用 <codeph>createDataStreamEx</codeph> 创建数据通道后，调用该方法向频道内的所有用户发送数据流消息。SDK 对该方法有限制：
+            <p props="android">调用 <codeph>createDataStreamEx</codeph> 后，可以使用该方法向频道内的所有用户发送数据流消息。SDK 对该方法有限制：
                 <ul>
-                    <li>每个频道内的客户端实例最多可同时拥有 5 个数据通道，所有数据通道共享的总包传输码率上限为 30 KB/s。</li>
+                    <li>每个频道内的客户端实例最多可同时拥有 5 个数据通道，所有数据通道共享的总包比特率上限为 30 KB/s。</li>
                     <li>每个数据通道每秒最多可发送 60 个数据包，每个数据包最大为 1 KB。</li>
                 </ul>
             </p>
@@ -39,7 +39,7 @@
             </note>
             <note props="android">
                 <ul>
-                    <li>如果你需要更全面的低延时、高并发、可扩展的实时消息和状态同步解决方案，建议使用 <codeph>Signaling</codeph>。</li>
+                    <li>如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用声网的实时消息。</li>
                     <li>请在调用 <xref keyref="joinChannelEx"/> 后再调用该方法。</li>
                     <li>请确保在调用该方法前已通过 <codeph>createDataStreamEx</codeph> 创建数据通道。</li>
                 </ul>
@@ -48,7 +48,7 @@
         <section id="related" deliveryTarget="details" props="android cpp">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发远端客户端的 <xref keyref="onStreamMessage"/> 回调，远端用户可通过该回调获取数据流消息。调用失败时，SDK 会触发远端客户端的 <xref keyref="onStreamMessageError"/> 回调。</p>
-            <p props="android">成功调用该方法后，远端客户端会触发 <xref keyref="onStreamMessage"/> 回调获取数据流消息。调用失败时，远端客户端会触发 <xref keyref="onStreamMessageError"/> 回调。</p>
+            <p props="android">调用成功后会触发远端客户端的 <xref keyref="onStreamMessage"/> 回调，远端用户可通过该回调获取数据流消息。调用失败则会触发远端客户端的 <xref keyref="onStreamMessageError"/> 回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>参数</title>

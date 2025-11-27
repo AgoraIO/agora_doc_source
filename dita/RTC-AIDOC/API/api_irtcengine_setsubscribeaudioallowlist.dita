@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setsubscribeaudioallowlist">
     <title><ph keyref="setSubscribeAudioAllowlist"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置音频流订阅的白名单。</ph><ph id="shortdesc" props="android">设置音频流订阅白名单。</ph><ph id="shortdesc" props="ios">设置音频流订阅的白名单。</ph><ph id="shortdesc" props="mac">设置音频流订阅的白名单。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置音频流订阅的白名单。</ph><ph id="shortdesc" props="android">设置音频流订阅的白名单。</ph><ph id="shortdesc" props="ios">设置音频流订阅的白名单。</ph><ph id="shortdesc" props="mac">设置音频流订阅的白名单。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -33,7 +33,7 @@
             <note props="android">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>白名单不受 <xref keyref="ChannelMediaOptions"/> 中 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>白名单不受 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
                     <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
                     <li>如果某个用户同时被添加到白名单和黑名单中，则仅黑名单生效。</li>
                 </ul>
@@ -68,12 +68,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>uidList</pt>
-                    <pd>希望订阅音频流的用户 ID 列表。
-                        <ul>
-                            <li>如果希望订阅某个用户的音频流，请将该用户的 ID 添加到该列表中。</li>
-                            <li>如果希望将某个用户从白名单中移除，需要调用 <xref keyref="setSubscribeAudioAllowlist"/> 方法更新用户 ID 列表，即仅在新的列表中保留希望继续订阅的用户 ID。</li>
-                        </ul>
-                    </pd>
+                    <pd>你希望订阅的用户 ID 列表。调用该方法时，仅订阅该列表中用户的音频流。如果你希望将某个用户从白名单中移除，需要重新调用 <xref keyref="setSubscribeAudioAllowlist"/> 方法，并在新的列表中仅包含你希望订阅的用户 ID。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>allowlist</pt>

@@ -237,11 +237,15 @@
                 </plentry>
                 <plentry props="android">
                     <pt>sentBitrate</pt>
-                    <pd>本地视频流在发送过程中的实际码率（Kbps）。</pd>
+                    <pd>本地视频流在发送过程中的实际码率（Kbps）。
+                        <note>该值不包括由于丢包引起的重传码率。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>sentFrameRate</pt>
-                    <pd>本地视频流在发送过程中的实际帧率（fps）。</pd>
+                    <pd>本地视频流在发送过程中的实际帧率（fps）。
+                        <note>该值不包括由于丢包引起的重传帧率。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>captureFrameRate</pt>
@@ -277,7 +281,9 @@
                 </plentry>
                 <plentry props="android">
                     <pt>targetBitrate</pt>
-                    <pd>当前编码器的目标码率（Kbps）。</pd>
+                    <pd>当前编码器的目标码率（Kbps）。
+                        <note>该值由 SDK 根据当前网络状况估算得出。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>targetFrameRate</pt>
@@ -295,7 +301,9 @@
                 </plentry>
                 <plentry props="android">
                     <pt>encodedBitrate</pt>
-                    <pd>对本地视频流编码时的码率（Kbps）。</pd>
+                    <pd>对本地视频流编码时的码率（Kbps）。
+                        <note>该值不包括由于丢包引起的重传码率。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>encodedFrameWidth</pt>
@@ -311,7 +319,8 @@
                 </plentry>
                 <plentry props="android">
                     <pt>codecType</pt>
-                    <pd>本地视频使用的编码器类型。可选值如下，详见 <xref keyref="VIDEO_CODEC_TYPE"/>：
+                    <pd>
+                        <note>在某些场景下（如采集分辨率较低或设备性能有限），SDK 会自动切换为 H.264 编码格式。</note><ph>本地视频使用的编码器类型。可选值如下，详见 <xref keyref="VIDEO_CODEC_TYPE"/>：</ph>
                         <ul>
                             <li><codeph>VIDEO_CODEC_VP8</codeph> (1)：VP8。</li>
                             <li><codeph>VIDEO_CODEC_H264</codeph> (2)：H.264。</li>
@@ -325,7 +334,8 @@
                 </plentry>
                 <plentry props="android">
                     <pt>captureBrightnessLevel</pt>
-                    <pd>本地摄像头采集的视频画面的亮度等级：
+                    <pd>
+                        <note>等待几秒后，可从下一次回调中的 <codeph>captureBrightnessLevel</codeph> 获取亮度等级。</note><ph>本地摄像头采集的视频画面的亮度等级：</ph>
                         <ul>
                             <li><codeph>CAPTURE_BRIGHTNESS_LEVEL_INVALID</codeph> (-1)：SDK 未检测到画面亮度。</li>
                             <li><codeph>CAPTURE_BRIGHTNESS_LEVEL_NORMAL</codeph> (0)：画面亮度正常。</li>

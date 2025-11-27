@@ -59,7 +59,9 @@
             <parml>
                 <plentry props="cpp">
                     <pt>url</pt>
-                    <pd>要播放的媒体文件的 URL。</pd>
+                    <pd>要播放的媒体文件的 URL。
+                        <note>如果打开的是普通媒体资源，请传入 <codeph>url</codeph>。如果打开的是自定义媒体资源，请传入 <codeph>provider</codeph>。声网建议不要在一次调用中同时传入这两个参数，否则调用可能失败。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>uri</pt>
@@ -71,7 +73,8 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>autoPlay</pt>
-                    <pd>打开媒体文件后是否自动播放：
+                    <pd>
+                        <note>如果禁用了自动播放，需要在打开媒体文件后调用 <xref keyref="play"/> 方法播放。</note><ph>打开媒体文件后是否自动播放：</ph>
                         <ul>
                             <li><xref keyref="true"/>：（默认）自动播放。</li>
                             <li><xref keyref="false"/>：不自动播放。</li>
@@ -80,7 +83,8 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>enableCache</pt>
-                    <pd>播放媒体文件时是否启用缓存：
+                    <pd>
+                        <note>声网仅支持缓存非 HLS 协议传输的点播音视频流。若需启用缓存，请传入 <codeph>uri</codeph>，否则缓存基于媒体文件的 <codeph>url</codeph>。启用该功能后，媒体播放器会将播放中的部分媒体文件缓存在本地设备上，即使无网络连接也可播放缓存的媒体文件。缓存的媒体文件统计信息会在播放后每秒更新一次，详见 <xref keyref="CacheStatistics"/>。</note><ph>播放媒体文件时是否启用缓存：</ph>
                         <ul>
                             <li><xref keyref="true"/>：启用缓存。</li>
                             <li><xref keyref="false"/>：（默认）不启用缓存。</li>
@@ -89,7 +93,8 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>enableMultiAudioTrack</pt>
-                    <pd>播放该媒体文件时是否允许选择不同的音轨：
+                    <pd>
+                        <note>如果需要为本地播放和发布到频道设置不同的音轨，需将该参数设置为 <xref keyref="true"/>，然后调用 <xref keyref="selectMultiAudioTrack"/> 方法选择音轨。</note><ph>播放该媒体文件时是否允许选择不同的音轨：</ph>
                         <ul>
                             <li><xref keyref="true"/>：允许选择不同音轨。</li>
                             <li><xref keyref="false"/>：（默认）不允许选择不同音轨。</li>
@@ -98,7 +103,8 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>isAgoraSource</pt>
-                    <pd>要打开的媒体资源是否为通过极速直播服务分发的直播流或点播视频：
+                    <pd>
+                        <note>如果需要打开通过极速直播服务分发的直播流或点播视频，请将媒体资源的 URL 传入 <codeph>url</codeph>，并将 <codeph>isAgoraSource</codeph> 设置为 <xref keyref="true"/>；否则无需设置该参数。</note><ph>要打开的媒体资源是否为通过极速直播服务分发的直播流或点播视频：</ph>
                         <ul>
                             <li><xref keyref="true"/>：媒体资源为通过极速直播服务分发的直播或点播视频。</li>
                             <li><xref keyref="false"/>：（默认）媒体资源不是通过极速直播服务分发的直播或点播视频。</li>
@@ -107,7 +113,8 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>isLiveSource</pt>
-                    <pd>要打开的媒体资源是否为直播流：
+                    <pd>
+                        <note>如果要打开的媒体资源是直播流，声网建议将该参数设置为 <xref keyref="true"/>，以加快直播流加载速度。若打开的媒体资源不是直播流但设置了 <codeph>isLiveSource</codeph> 为 <xref keyref="true"/>，则不会加快加载速度。</note><ph>要打开的媒体资源是否为直播流：</ph>
                         <ul>
                             <li><xref keyref="true"/>：媒体资源为直播流。</li>
                             <li><xref keyref="false"/>：（默认）媒体资源不是直播流。</li>
@@ -116,11 +123,15 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>provider</pt>
-                    <pd>自定义媒体资源文件的回调。详见 <xref keyref="IMediaPlayerCustomDataProvider"/>。</pd>
+                    <pd>自定义媒体资源文件的回调。详见 <xref keyref="IMediaPlayerCustomDataProvider"/>。
+                        <note>如果打开的是自定义媒体资源，请传入 <codeph>provider</codeph>。如果打开的是普通媒体资源，请传入 <codeph>url</codeph>。声网建议不要在一次调用中同时传入 <codeph>url</codeph> 和 <codeph>provider</codeph>，否则调用可能失败。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>url</pt>
-                    <pd>要播放的媒体文件的 URL。</pd>
+                    <pd>要播放的媒体文件的 URL。
+                        <note>如果打开的是普通媒体资源，请传入 <codeph>url</codeph> 的值；如果打开的是自定义媒体资源，请传入 <codeph>provider</codeph> 的值。声网建议不要在一次调用中同时传入这两个参数的值，否则调用可能失败。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>uri</pt>
@@ -132,7 +143,8 @@
                 </plentry>
                 <plentry props="android">
                     <pt>autoPlay</pt>
-                    <pd>是否在媒体文件打开后自动播放：
+                    <pd>
+                        <note>如果关闭自动播放，在打开媒体文件后需手动调用 <xref keyref="Play_Player"/> 方法播放。</note><ph>是否在媒体文件打开后自动播放：</ph>
                         <ul>
                             <li><xref keyref="true"/>：（默认）自动播放。</li>
                             <li><xref keyref="false"/>：不自动播放。</li>
@@ -141,7 +153,8 @@
                 </plentry>
                 <plentry props="android">
                     <pt>enableCache</pt>
-                    <pd>播放过程中是否缓存媒体文件：
+                    <pd>
+                        <note>声网仅支持缓存非 HLS 协议传输的点播音视频流。如果需要启用缓存功能，请为 <codeph>uri</codeph> 赋值；否则，默认基于 <codeph>url</codeph> 进行缓存。启用该功能后，Media Player 会将正在播放的部分音视频文件缓存于本地设备，可在无网络的情况下播放。缓存统计信息会在播放后每秒更新一次，详见 <xref keyref="CacheStatistics"/>。</note><ph>播放过程中是否缓存媒体文件：</ph>
                         <ul>
                             <li><xref keyref="true"/>：开启缓存。</li>
                             <li><xref keyref="false"/>：（默认）关闭缓存。</li>
@@ -150,7 +163,8 @@
                 </plentry>
                 <plentry props="android">
                     <pt>enableMultiAudioTrack</pt>
-                    <pd>是否允许在播放媒体资源时选择不同的音轨：
+                    <pd>
+                        <note>如果需要为本地播放和发布到频道分别设置音轨，需设置此参数为 <xref keyref="true"/>，然后调用 <xref keyref="selectMultiAudioTrack"/> 方法选择音轨。</note><ph>是否允许在播放媒体资源时选择不同的音轨：</ph>
                         <ul>
                             <li><xref keyref="true"/>：允许选择不同音轨。</li>
                             <li><xref keyref="false"/>：（默认）不允许选择不同音轨。</li>
@@ -159,7 +173,8 @@
                 </plentry>
                 <plentry props="android">
                     <pt>isAgoraSource</pt>
-                    <pd>是否为通过 Media Broadcast 服务分发的直播或点播视频资源：
+                    <pd>
+                        <note>如果需要播放通过极速直播服务分发的直播或点播视频，请将媒体资源的 URL 传入 <codeph>url</codeph>，并将 <codeph>isAgoraSource</codeph> 设置为 <xref keyref="true"/>；否则无需设置该参数。</note><ph>是否为通过 Media Broadcast 服务分发的直播或点播视频资源：</ph>
                         <ul>
                             <li><xref keyref="true"/>：是。</li>
                             <li><xref keyref="false"/>：（默认）否。</li>
@@ -168,7 +183,8 @@
                 </plentry>
                 <plentry props="android">
                     <pt>isLiveSource</pt>
-                    <pd>是否为直播流媒体资源：
+                    <pd>
+                        <note>如果打开的是直播流，声网建议将该参数设为 <xref keyref="true"/>，以便更快加载直播流。若打开的媒体资源并非直播流，但设置了 <codeph>isLiveSource=true</codeph>，也不会提升加载速度。</note><ph>是否为直播流媒体资源：</ph>
                         <ul>
                             <li><xref keyref="true"/>：是直播流。</li>
                             <li><xref keyref="false"/>：（默认）不是直播流。</li>
@@ -177,11 +193,15 @@
                 </plentry>
                 <plentry props="android">
                     <pt>provider</pt>
-                    <pd>自定义媒体资源文件的数据提供回调，详见 <xref keyref="IMediaPlayerCustomDataProvider"/>。</pd>
+                    <pd>自定义媒体资源文件的数据提供回调，详见 <xref keyref="IMediaPlayerCustomDataProvider"/>。
+                        <note>如果打开的是自定义媒体资源，请传入 <codeph>provider</codeph> 的值；如果打开的是普通媒体资源，请传入 <codeph>url</codeph> 的值。声网建议不要在一次调用中同时传入 <codeph>url</codeph> 和 <codeph>provider</codeph> 的值，否则调用可能失败。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>url</pt>
-                    <pd>要播放的媒体文件的 URL。</pd>
+                    <pd>要播放的媒体文件的 URL。
+                        <note>如果打开的是普通媒体资源，请传入 <codeph>url</codeph>。如果打开的是自定义媒体资源，请传入 <codeph>playerOnReadCallback</codeph> 和 <codeph>playerOnSeekCallback</codeph>。声网建议不要在一次调用中同时传入这些参数，否则该调用可能失败。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>uri</pt>
@@ -193,7 +213,8 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>autoPlay</pt>
-                    <pd>打开媒体文件后是否自动播放：
+                    <pd>
+                        <note>如果禁用了自动播放，需要在打开媒体文件后调用 <xref keyref="play"/> 方法播放。</note><ph>打开媒体文件后是否自动播放：</ph>
                         <ul>
                             <li><xref keyref="true"/>：（默认）自动播放。</li>
                             <li><xref keyref="false"/>：不自动播放。</li>
@@ -202,7 +223,8 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>enableCache</pt>
-                    <pd>播放媒体文件时是否启用缓存：
+                    <pd>
+                        <note>声网仅支持对非 HLS 协议传输的点播音视频流进行缓存。如果需要启用缓存，请传入 <codeph>uri</codeph>，否则缓存基于媒体文件的 <codeph>url</codeph>。启用该功能后，媒体播放器会将播放中的部分媒体文件缓存在本地设备上，即使在无网络连接的情况下也可播放缓存的媒体文件。缓存的媒体文件统计信息会在播放后每秒更新一次。详见 <xref keyref="CacheStatistics"/>。</note><ph>播放媒体文件时是否启用缓存：</ph>
                         <ul>
                             <li><xref keyref="true"/>：启用缓存。</li>
                             <li><xref keyref="false"/>：（默认）不启用缓存。</li>
@@ -211,7 +233,8 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>enableMultiAudioTrack</pt>
-                    <pd>播放该媒体文件时是否允许选择不同的音轨：
+                    <pd>
+                        <note>如果需要为本地播放和发布到频道设置不同的音轨，需将该参数设置为 <xref keyref="true"/>，然后调用 <xref keyref="selectMultiAudioTrack"/> 方法选择音轨。</note><ph>播放该媒体文件时是否允许选择不同的音轨：</ph>
                         <ul>
                             <li><xref keyref="true"/>：允许选择不同音轨。</li>
                             <li><xref keyref="false"/>：（默认）不允许选择不同音轨。</li>
@@ -220,7 +243,8 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>isAgoraSource</pt>
-                    <pd>要打开的媒体资源是否为通过媒体广播服务分发的直播或点播视频：
+                    <pd>
+                        <note>如果需要打开通过 Broadcast Streaming 服务分发的直播或点播视频，请将媒体资源的 URL 传入 <codeph>url</codeph>，并将 <codeph>isAgoraSource</codeph> 设置为 <xref keyref="true"/>；否则无需设置该参数。</note><ph>要打开的媒体资源是否为通过媒体广播服务分发的直播或点播视频：</ph>
                         <ul>
                             <li><xref keyref="true"/>：是。</li>
                             <li><xref keyref="false"/>：（默认）否。</li>
@@ -229,7 +253,8 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>isLiveSource</pt>
-                    <pd>要打开的媒体资源是否为直播流：
+                    <pd>
+                        <note>如果要打开的媒体资源是直播流，声网建议将该参数设置为 <xref keyref="true"/>，以加快直播流的加载速度。如果打开的媒体资源不是直播流，但将 <codeph>isLiveSource</codeph> 设置为 <xref keyref="true"/>，则不会加快加载速度。</note><ph>要打开的媒体资源是否为直播流：</ph>
                         <ul>
                             <li><xref keyref="true"/>：是直播流。</li>
                             <li><xref keyref="false"/>：（默认）不是直播流。</li>
@@ -238,15 +263,21 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>playerOnReadCallback</pt>
-                    <pd>当 SDK 读取媒体资源数据时触发。详见 <codeph>AgoraRtcMediaPlayerCustomSourceOnReadCallback</codeph>。</pd>
+                    <pd>当 SDK 读取媒体资源数据时触发。详见 <codeph>AgoraRtcMediaPlayerCustomSourceOnReadCallback</codeph>。
+                        <note>如果打开的是普通媒体资源，请传入 <codeph>url</codeph>。如果打开的是自定义媒体资源，请传入 <codeph>playerOnReadCallback</codeph> 和 <codeph>playerOnSeekCallback</codeph>。声网建议不要在一次调用中同时传入这些参数，否则该调用可能失败。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>playerOnSeekCallback</pt>
-                    <pd>当 SDK 定位媒体资源数据时触发。详见 <codeph>AgoraRtcMediaPlayerCustomSourceOnSeekCallback</codeph>。</pd>
+                    <pd>当 SDK 定位媒体资源数据时触发。详见 <codeph>AgoraRtcMediaPlayerCustomSourceOnSeekCallback</codeph>。
+                        <note>如果打开的是普通媒体资源，请传入 <codeph>url</codeph>。如果打开的是自定义媒体资源，请传入 <codeph>playerOnReadCallback</codeph> 和 <codeph>playerOnSeekCallback</codeph>。声网建议不要在一次调用中同时传入这些参数，否则该调用可能失败。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>url</pt>
-                    <pd>要播放的媒体文件的 URL。</pd>
+                    <pd>要播放的媒体文件的 URL。
+                        <note>如果打开的是普通媒体资源，请传入 <codeph>url</codeph>。如果打开的是自定义媒体资源，请传入 <codeph>playerOnReadCallback</codeph> 和 <codeph>playerOnSeekCallback</codeph>。声网建议不要在一次调用中同时传入这些参数，否则该调用可能失败。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>uri</pt>
@@ -258,7 +289,8 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>autoPlay</pt>
-                    <pd>打开媒体文件后是否自动播放：
+                    <pd>
+                        <note>如果禁用了自动播放，需要在打开媒体文件后调用 <xref keyref="play"/> 方法播放。</note><ph>打开媒体文件后是否自动播放：</ph>
                         <ul>
                             <li><xref keyref="true"/>：（默认）自动播放。</li>
                             <li><xref keyref="false"/>：不自动播放。</li>
@@ -267,7 +299,8 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>enableCache</pt>
-                    <pd>播放媒体文件时是否启用缓存：
+                    <pd>
+                        <note>声网仅支持对非 HLS 协议传输的点播音视频流进行缓存。如果需要启用缓存，请传入 <codeph>uri</codeph>，否则缓存基于媒体文件的 <codeph>url</codeph>。启用该功能后，媒体播放器会将播放中的部分媒体文件缓存在本地设备上，即使在无网络连接的情况下也可播放缓存的媒体文件。缓存的媒体文件统计信息会在播放后每秒更新一次。详见 <xref keyref="CacheStatistics"/>。</note><ph>播放媒体文件时是否启用缓存：</ph>
                         <ul>
                             <li><xref keyref="true"/>：启用缓存。</li>
                             <li><xref keyref="false"/>：（默认）不启用缓存。</li>
@@ -276,7 +309,8 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>enableMultiAudioTrack</pt>
-                    <pd>播放该媒体文件时是否允许选择不同的音轨：
+                    <pd>
+                        <note>如果需要为本地播放和发布到频道设置不同的音轨，需将该参数设置为 <xref keyref="true"/>，然后调用 <xref keyref="selectMultiAudioTrack"/> 方法选择音轨。</note><ph>播放该媒体文件时是否允许选择不同的音轨：</ph>
                         <ul>
                             <li><xref keyref="true"/>：允许选择不同音轨。</li>
                             <li><xref keyref="false"/>：（默认）不允许选择不同音轨。</li>
@@ -285,7 +319,8 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>isAgoraSource</pt>
-                    <pd>要打开的媒体资源是否为通过媒体广播服务分发的直播或点播视频：
+                    <pd>
+                        <note>如果需要打开通过 Broadcast Streaming 服务分发的直播或点播视频，请将媒体资源的 URL 传入 <codeph>url</codeph>，并将 <codeph>isAgoraSource</codeph> 设置为 <xref keyref="true"/>；否则无需设置该参数。</note><ph>要打开的媒体资源是否为通过媒体广播服务分发的直播或点播视频：</ph>
                         <ul>
                             <li><xref keyref="true"/>：是。</li>
                             <li><xref keyref="false"/>：（默认）否。</li>
@@ -294,7 +329,8 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>isLiveSource</pt>
-                    <pd>要打开的媒体资源是否为直播流：
+                    <pd>
+                        <note>如果要打开的媒体资源是直播流，声网建议将该参数设置为 <xref keyref="true"/>，以加快直播流的加载速度。如果打开的媒体资源不是直播流，但将 <codeph>isLiveSource</codeph> 设置为 <xref keyref="true"/>，则不会加快加载速度。</note><ph>要打开的媒体资源是否为直播流：</ph>
                         <ul>
                             <li><xref keyref="true"/>：是直播流。</li>
                             <li><xref keyref="false"/>：（默认）不是直播流。</li>
@@ -303,11 +339,15 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>playerOnReadCallback</pt>
-                    <pd>当 SDK 读取媒体资源数据时触发。详见 <codeph>AgoraRtcMediaPlayerCustomSourceOnReadCallback</codeph>。</pd>
+                    <pd>当 SDK 读取媒体资源数据时触发。详见 <codeph>AgoraRtcMediaPlayerCustomSourceOnReadCallback</codeph>。
+                        <note>如果打开的是普通媒体资源，请传入 <codeph>url</codeph>。如果打开的是自定义媒体资源，请传入 <codeph>playerOnReadCallback</codeph> 和 <codeph>playerOnSeekCallback</codeph>。声网建议不要在一次调用中同时传入这些参数，否则该调用可能失败。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>playerOnSeekCallback</pt>
-                    <pd>当 SDK 定位媒体资源数据时触发。详见 <codeph>AgoraRtcMediaPlayerCustomSourceOnSeekCallback</codeph>。</pd>
+                    <pd>当 SDK 定位媒体资源数据时触发。详见 <codeph>AgoraRtcMediaPlayerCustomSourceOnSeekCallback</codeph>。
+                        <note>如果打开的是普通媒体资源，请传入 <codeph>url</codeph>。如果打开的是自定义媒体资源，请传入 <codeph>playerOnReadCallback</codeph> 和 <codeph>playerOnSeekCallback</codeph>。声网建议不要在一次调用中同时传入这些参数，否则该调用可能失败。</note>
+                    </pd>
                 </plentry>
             </parml>
         </section>

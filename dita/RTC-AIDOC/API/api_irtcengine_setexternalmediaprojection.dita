@@ -18,26 +18,14 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用该方法后，设置的外部 <codeph>MediaProjection</codeph> 将替代 SDK 申请的 <codeph>MediaProjection</codeph> 用于屏幕视频流采集。当屏幕共享停止或 <xref keyref="IRtcEngine"/> 被销毁时，SDK 会自动释放该 <codeph>MediaProjection</codeph>。
-适用场景：如果你可以自行申请 <codeph>MediaProjection</codeph>，则可直接使用你申请的 <codeph>MediaProjection</codeph>，无需通过 SDK 申请。
-                <ul>
-                    <li>在定制系统设备上，可避免系统弹窗（如请求用户授权采集屏幕），直接开始采集屏幕视频流。</li>
-                    <li>在涉及一个或多个子进程的屏幕共享流程中，可避免在子进程中创建对象时可能出现的错误，从而避免屏幕采集失败。</li>
-                </ul>
-            </p>
-            <p props="android">成功调用该方法后，设置的外部 <codeph>MediaProjection</codeph> 将替代 SDK 申请的 <codeph>MediaProjection</codeph> 用于屏幕视频流采集。当屏幕共享停止或销毁 <xref keyref="IRtcEngine"/> 时，SDK 会自动释放该 <codeph>MediaProjection</codeph>。
-适用场景：
-                <ul>
-                    <li>在定制系统设备上，可以避免系统弹窗（例如请求用户授权采集屏幕），直接开始采集屏幕视频流。</li>
-                    <li>在涉及一个或多个子进程的屏幕共享流程中，可以避免在这些子进程中创建对象时可能出现的错误，从而避免屏幕采集失败。</li>
-                </ul>
-            </p>
-            <note props="cpp">调用该方法前，必须先申请 <codeph>MediaProjection</codeph> 权限。该方法仅适用于 Android 平台。</note>
-            <note props="android">调用该方法前，必须先申请 <codeph>MediaProjection</codeph> 权限。</note>
+            <p props="cpp">调用该方法后，你设置的外部 <codeph>MediaProjection</codeph> 将替代 SDK 申请的 <codeph>MediaProjection</codeph> 用于采集屏幕视频流。当屏幕共享停止或 <xref keyref="IRtcEngine"/> 被销毁时，SDK 会自动释放该 <codeph>MediaProjection</codeph>。</p>
+            <p props="android">调用该方法成功后，设置的外部 <codeph>MediaProjection</codeph> 将替代 SDK 申请的 <codeph>MediaProjection</codeph> 用于采集屏幕视频流。当屏幕共享停止或 <xref keyref="IRtcEngine"/> 被销毁时，SDK 会自动释放该 <codeph>MediaProjection</codeph>。</p>
+            <note props="cpp">调用该方法前，你必须先申请 <codeph>MediaProjection</codeph> 权限。该方法仅适用于 Android 平台。</note>
+            <note props="android">在调用该方法前，必须先申请 <codeph>MediaProjection</codeph> 权限。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>调用时机</title>
-            <p props="cpp">请在调用 <codeph>startScreenCapture</codeph> 之后调用该方法。</p>
+            <p props="cpp">在调用 <codeph>startScreenCapture</codeph> 之后调用该方法。</p>
             <p props="android">在调用 <xref keyref="startScreenCapture"/> 之后调用该方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp">
@@ -49,7 +37,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>mediaProjection</pt>
-                    <pd>用于采集屏幕视频流的对象。详见 <codeph>MediaProjection</codeph>。</pd>
+                    <pd>用于采集屏幕视频流的对象。</pd>
                 </plentry>
             </parml>
         </section>

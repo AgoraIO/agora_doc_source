@@ -89,7 +89,9 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_AUTO_FALLBACK</pt>
-                    <pd>（24）：（仅适用于 Windows 平台）屏幕共享过程中发生异常错误（可能由于窗口遮挡失败），导致性能下降，但屏幕共享过程本身未受影响。</pd>
+                    <pd>（24）：（仅适用于 Windows 平台）屏幕共享过程中发生异常错误（可能由于窗口遮挡失败），导致性能下降，但屏幕共享过程本身未受影响。
+                        <note>在屏幕共享过程中，如果由于设备驱动问题导致遮挡特定窗口失败，SDK 会上报此事件并自动回退为共享整个屏幕。如果你的使用场景需要遮挡特定窗口以保护隐私，建议监听此事件并在触发时实现额外的隐私保护机制。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_HIDDEN</pt>

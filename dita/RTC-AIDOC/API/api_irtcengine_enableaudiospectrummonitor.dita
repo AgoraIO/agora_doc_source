@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enableaudiospectrummonitor">
     <title><ph keyref="enableAudioSpectrumMonitor"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">开启音频频谱监测。</ph><ph id="shortdesc" props="android">开启音频频谱监测。</ph><ph id="shortdesc" props="ios">开启音频频谱监测。</ph><ph id="shortdesc" props="mac">开启音频频谱监测。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">开启音频频谱监测。</ph><ph id="shortdesc" props="android">开启音频频谱监测功能。</ph><ph id="shortdesc" props="ios">开启音频频谱监测。</ph><ph id="shortdesc" props="mac">开启音频频谱监测。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,9 +24,12 @@
             <p props="ios">如果你希望获取本地或远端用户的音频频谱数据，可以注册音频频谱观察器并调用该方法。</p>
             <p props="mac">如果你希望获取本地或远端用户的音频频谱数据，可以注册音频频谱观察器并调用该方法。</p>
             <note props="cpp"><xref keyref="enableAudioSpectrumMonitor"/> 方法可以在加入频道前或加入频道后调用。</note>
-            <note props="android">你可以在加入频道前或加入频道后调用此方法。</note>
             <note props="ios">你可以在加入频道前或加入频道后调用该方法。</note>
             <note props="mac">你可以在加入频道前或加入频道后调用该方法。</note>
+        </section>
+        <section id="related" deliveryTarget="details" props="android">
+            <title>相关回调</title>
+            <p props="android"><xref keyref="onLocalAudioSpectrum"/> 和 <xref keyref="onRemoteAudioSpectrum"/> 回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -37,7 +40,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>intervalInMS</pt>
-                    <pd>SDK 触发 <xref keyref="onLocalAudioSpectrum"/> 和 <xref keyref="onRemoteAudioSpectrum"/> 回调的时间间隔，单位为毫秒。（默认值为 100）</pd>
+                    <pd>SDK 触发 <xref keyref="onLocalAudioSpectrum"/> 和 <xref keyref="onRemoteAudioSpectrum"/> 回调的时间间隔，单位为毫秒。该参数不能小于 10，否则调用该方法会失败。（默认值为 100）</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>intervalInMS</pt>

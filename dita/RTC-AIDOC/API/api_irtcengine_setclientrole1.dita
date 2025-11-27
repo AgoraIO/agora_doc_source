@@ -20,27 +20,22 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">你可以调用该方法设置用户角色，决定其在频道中的权限，例如是否可以发布音视频流。默认情况下，SDK 会将用户角色设置为观众。
-调用时机：你可以在加入频道前或加入频道后调用此方法。
+            <p props="cpp">
                 <ul>
-                    <li>如果你在加入频道前调用该方法将用户角色设置为主播，并通过 <xref keyref="setupLocalVideo"/> 设置本地视频属性，则用户加入频道后会自动开启本地视频预览。</li>
-                    <li>如果你在加入频道后调用该方法设置用户角色，SDK 会自动调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 方法来更改音视频流的发布状态。</li>
+                    <li>默认情况下，SDK 会将用户角色设置为观众。你可以调用该方法将用户角色设置为主播。用户角色（<codeph>role</codeph>）决定了用户在 SDK 层的权限，包括是否可以在频道中发布音视频流。</li>
                 </ul>
-            </p>
-            <p props="android">你可以调用该方法将用户角色设置为主播或观众。用户角色决定了用户在 SDK 层级的权限，包括是否可以在频道中发布音视频流。
-调用时机：你可以在加入频道前或加入频道后调用该方法。
                 <ul>
                     <li>如果你在加入频道前调用该方法将用户角色设置为主播，并通过 <xref keyref="setupLocalVideo"/> 设置本地视频属性，则用户加入频道时会自动开启本地视频预览。</li>
-                    <li>如果你在加入频道后调用该方法设置用户角色，SDK 会自动调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 来更改音视频流的发布状态。</li>
-                </ul><ph>相关回调：</ph>
+                </ul>
                 <ul>
-                    <li>如果你在加入频道后调用该方法切换用户角色，SDK 会触发以下回调：
-                        <ul>
-                            <li>本地客户端触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
-                            <li>远端客户端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
-                        </ul>
-                    </li>
-                    <li>如果调用失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/> 回调，报告失败原因及当前用户角色。</li>
+                    <li>如果你在加入频道后调用该方法设置用户角色，SDK 会自动调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 方法来更新音视频流的发布状态。</li>
+                </ul>
+            </p>
+            <p props="android">你可以调用该方法将用户角色设置为主播或观众。用户角色决定了用户在 SDK 层的权限，包括是否可以在频道中发布音视频流。
+你可以在加入频道前或加入频道后调用该方法：
+                <ul>
+                    <li>如果你在加入频道前调用该方法将用户角色设置为主播，并通过 <xref keyref="setupLocalVideo"/> 设置本地视频属性，则用户加入频道时会自动开启本地视频预览。</li>
+                    <li>如果你在加入频道后调用该方法设置用户角色，SDK 会自动调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 更改音视频流的发布状态。</li>
                 </ul>
             </p>
             <p props="ios">你可以调用该方法设置用户角色。默认情况下，SDK 会将用户角色设置为观众。用户角色决定了你在 SDK 层级的权限，包括是否可以在频道中发布音视频流。
@@ -71,31 +66,42 @@
                     </li>
                     <li>远端客户端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
                 </ul><ph>如果你在加入频道后调用该方法设置用户角色失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/> 回调，报告失败原因和当前角色。</ph></p>
-            <note props="cpp">在加入频道前调用该方法并将用户角色设置为 <codeph>BROADCASTER</codeph> 时，本地客户端不会触发 <xref keyref="onClientRoleChanged"/> 回调；但如果设置为 <codeph>AUDIENCE</codeph>，则会触发该回调。</note>
+            <note props="cpp">在加入频道前调用该方法并将用户角色设置为 <codeph>BROADCASTER</codeph> 时，本地客户端不会触发 <xref keyref="onClientRoleChanged"/> 回调；但如果将 <codeph>role</codeph> 设置为 <codeph>AUDIENCE</codeph>，则会触发该回调。</note>
+            <note props="android">在加入频道前调用该方法并将用户角色设置为 <codeph>CLIENT_ROLE_BROADCASTER</codeph> 时，本地客户端不会触发 <xref keyref="onClientRoleChanged"/> 回调。加入频道前调用该方法并将 <codeph>role</codeph> 设置为 <codeph>CLIENT_ROLE_AUDIENCE</codeph> 时也会触发该回调。</note>
         </section>
-        <section id="timing" deliveryTarget="details" props="ios mac">
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
+            <p props="cpp">你可以在加入频道前或加入频道后调用该方法。</p>
+            <p props="android">你可以在加入频道前或加入频道后调用此方法。</p>
             <p props="ios">你可以在加入频道前或加入频道后调用此方法。</p>
             <p props="mac">你可以在加入频道前或加入频道后调用此方法。</p>
         </section>
-        <section id="related" deliveryTarget="details" props="cpp">
+        <section id="related" deliveryTarget="details" props="android cpp">
             <title>相关回调</title>
-            <p props="cpp">如果你在加入频道后调用此方法切换用户角色，SDK 会触发以下回调：
+            <p props="cpp">如果你在加入频道后调用该方法切换用户角色，SDK 会触发以下回调：
                 <ul>
-                    <li>本地客户端触发 <xref keyref="onClientRoleChanged"/> 回调。例如：用户角色发生改变回调。注意：在加入频道前调用此方法并将 <codeph>role</codeph> 设置为 <codeph>AUDIENCE</codeph> 也会触发该回调。</li>
-                    <li>远端客户端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。例如：远端用户成功加入频道回调，远端用户离开频道回调。</li>
-                </ul><ph>如果你在加入频道后调用此方法设置用户角色但失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/> 回调报告失败原因和当前用户角色。例如：设置用户角色失败回调。</ph></p>
+                    <li>本地客户端触发 <xref keyref="onClientRoleChanged"/> 回调。注意：在加入频道前调用该方法并将 <codeph>role</codeph> 设置为 <codeph>AUDIENCE</codeph> 也会触发该回调。</li>
+                    <li>远端客户端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
+                </ul><ph>如果你在加入频道后调用该方法设置用户角色失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/> 回调，报告失败原因和当前用户角色。</ph></p>
+            <p props="android">如果你在加入频道后调用此方法切换用户角色，SDK 会触发以下回调：
+                <ul>
+                    <li>本地客户端触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
+                    <li>远端客户端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
+                </ul><ph>如果你在加入频道后调用此方法设置用户角色但失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/> 回调，报告失败原因和当前用户角色。</ph></p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>role</pt>
-                    <pd>用户角色，详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                    <pd>用户角色，详见 <xref keyref="CLIENT_ROLE_TYPE"/>。
+                        <note>如果你将用户角色设置为观众，则无法在频道中发布音视频流。若希望在直播过程中发布媒体流，请确保将用户角色设置为主播。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>role</pt>
-                    <pd>用户角色：
+                    <pd>
+                        <note>如果你将用户角色设置为观众，则无法在频道中发布音视频流。</note><ph>用户角色，详见 <codeph>CLIENT_ROLE_BROADCASTER</codeph> 和 <codeph>CLIENT_ROLE_AUDIENCE</codeph>：</ph>
                         <ul>
                             <li><codeph>CLIENT_ROLE_BROADCASTER</codeph> (1)：主播。</li>
                             <li><codeph>CLIENT_ROLE_AUDIENCE</codeph> (2)：观众。</li>
@@ -104,11 +110,15 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>role</pt>
-                    <pd>用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                    <pd>用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。
+                        <note>如果你将用户角色设置为观众，则无法在频道中发布音视频流。如果你希望在直播中发布媒体流，请确保将用户角色设置为主播。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>role</pt>
-                    <pd>用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                    <pd>用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。
+                        <note>如果你将用户角色设置为观众，则无法在频道中发布音视频流。如果你希望在直播中发布媒体流，请确保将用户角色设置为主播。</note>
+                    </pd>
                 </plentry>
             </parml>
         </section>
@@ -131,7 +141,7 @@
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
-                            <li>-1：发生通用错误（无明确原因）。</li>
+                            <li>-1：发生通用错误（无具体原因）。</li>
                             <li>-2：参数无效。</li>
                             <li>-7：SDK 未初始化。</li>
                         </ul>

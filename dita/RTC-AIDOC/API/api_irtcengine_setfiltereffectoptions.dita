@@ -38,6 +38,7 @@
                     <dd>自 v4.4.1 版本新增。</dd>
                 </dlentry>
             </dl>
+            <p props="android">该方法允许你设置滤镜特效参数，并指定滤镜特效应用的媒体源。</p>
             <p props="ios">该方法与 <xref keyref="setBeautyEffectOptions2"/> 方法都用于设置滤镜特效参数。不同之处在于，该方法允许你指定滤镜特效应用的媒体源。</p>
             <p props="mac">该方法与 <xref keyref="setBeautyEffectOptions2"/> 方法都用于设置滤镜特效参数。不同之处在于，该方法允许你指定滤镜特效应用的媒体源。</p>
             <note props="cpp">该方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，则无法正常启用此功能。
@@ -109,7 +110,14 @@
                 </plentry>
                 <plentry props="android">
                     <pt>sourceType</pt>
-                    <pd>滤镜特效应用的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                    <pd>滤镜特效应用的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
+                        <note>该参数仅支持以下两种设置：
+                            <ul>
+                                <li>如果使用摄像头采集本地视频，使用默认值 <codeph>PRIMARY_CAMERA_SOURCE</codeph>。</li>
+                                <li>如果使用自定义视频源，设置为 <codeph>CUSTOM_VIDEO_SOURCE</codeph>。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>enable</pt>

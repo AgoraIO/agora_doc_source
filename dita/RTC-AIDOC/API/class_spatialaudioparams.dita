@@ -121,7 +121,8 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>enable_doppler</pt>
-                    <pd>是否开启多普勒效应：当声源与接收者之间存在相对位移时，接收者听到的音调会发生变化。
+                    <pd>
+                        <note>该参数适用于声源高速移动的场景（例如赛车游戏）。不推荐在常见的音视频互动场景中使用（例如语音聊天、连麦或在线 KTV）。启用该参数后，建议以固定周期（如 30 毫秒）调用 <xref keyref="updatePlayerPositionInfo_ILocalSpatialAudioEngine"/>、<xref keyref="updateSelfPosition_ILocalSpatialAudioEngine"/> 和 <xref keyref="updateRemotePosition"/> 方法，持续更新声源与接收者之间的相对距离。以下因素可能导致多普勒效应不可预测或声音抖动：更新周期过长、更新周期不规律，或因网络丢包或延迟导致距离信息丢失。</note><ph>是否开启多普勒效应：当声源与接收者之间存在相对位移时，接收者听到的音调会发生变化。</ph>
                         <ul>
                             <li><xref keyref="true"/>：开启多普勒效应。</li>
                             <li><xref keyref="false"/>：（默认）关闭多普勒效应。</li>
@@ -174,7 +175,8 @@
                 </plentry>
                 <plentry props="android">
                     <pt>enable_air_absorb</pt>
-                    <pd>是否开启空气吸收。开启后模拟声波在空气中传播时的衰减效果，高频声音衰减更快，低频声音衰减较慢。
+                    <pd>
+                        <note>需确保 <codeph>speaker_attenuation</codeph> 不为 0，否则该设置不生效。</note><ph>是否开启空气吸收。开启后模拟声波在空气中传播时的衰减效果，高频声音衰减更快，低频声音衰减较慢。</ph>
                         <ul>
                             <li><xref keyref="true"/>：（默认）开启空气吸收。</li>
                             <li><xref keyref="false"/>：关闭空气吸收。</li>
@@ -183,7 +185,8 @@
                 </plentry>
                 <plentry props="android">
                     <pt>speaker_attenuation</pt>
-                    <pd>远端用户或媒体播放器的声音衰减系数，取值范围为 [0, 1]。
+                    <pd>
+                        <note>弱衰减和强衰减模式需开启 <codeph>enable_air_absorb</codeph>。</note><ph>远端用户或媒体播放器的声音衰减系数，取值范围为 [0, 1]。</ph>
                         <ul>
                             <li>0：广播模式，音量和音质不随距离衰减，本地用户听到的声音不因距离变化。</li>
                             <li>(0, 0.5)：弱衰减模式，音量和音质随传播仅弱衰减，可以传播得更远。</li>
@@ -194,7 +197,14 @@
                 </plentry>
                 <plentry props="android">
                     <pt>enable_doppler</pt>
-                    <pd>是否开启多普勒效应。当声源与接收器之间存在相对位移时，接收器所听到的音调会发生变化。
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>此参数适用于声源高速移动的场景（例如赛车游戏）。不建议在一般音视频互动场景中使用（如语音聊天、连麦或在线 KTV）。</li>
+                                <li>启用此参数后，声网建议你以固定周期（如 30 毫秒）调用 <xref keyref="updatePlayerPositionInfo"/>、<xref keyref="updateSelfPosition"/>、<xref keyref="updateRemotePosition"/> 方法持续更新声源与接收器之间的相对距离。</li>
+                                <li>若更新周期过长、不规律，或者因网络丢包或延迟导致距离信息丢失，可能造成多普勒效应表现异常或声音抖动。</li>
+                            </ul>
+                        </note><ph>是否开启多普勒效应。当声源与接收器之间存在相对位移时，接收器所听到的音调会发生变化。</ph>
                         <ul>
                             <li><xref keyref="true"/>：开启多普勒效应。</li>
                             <li><xref keyref="false"/>：（默认）关闭多普勒效应。</li>
@@ -247,7 +257,8 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>enable_air_absorb</pt>
-                    <pd>是否开启空气吸收效果，即模拟声音在空气中传播时的衰减效果。在一定传播距离下，高频声音衰减较快，低频声音衰减较慢：
+                    <pd>
+                        <note>请确保 <codeph>speaker_attenuation</codeph> 的值不为 0，否则该设置不生效。</note><ph>是否开启空气吸收效果，即模拟声音在空气中传播时的衰减效果。在一定传播距离下，高频声音衰减较快，低频声音衰减较慢：</ph>
                         <ul>
                             <li><xref keyref="true"/>：（默认）开启空气吸收。</li>
                             <li><xref keyref="false"/>：关闭空气吸收。</li>
@@ -256,7 +267,8 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>speaker_attenuation</pt>
-                    <pd>远端用户或媒体播放器的声音衰减系数，取值范围为 [0, 1]。具体取值如下：
+                    <pd>
+                        <note>需同时开启 <codeph>enable_air_absorb</codeph>。</note><ph>远端用户或媒体播放器的声音衰减系数，取值范围为 [0, 1]。具体取值如下：</ph>
                         <ul>
                             <li>0：广播模式，音量和音色不随距离衰减。</li>
                             <li>(0, 0.5)：弱衰减模式，音量和音色在传播过程中仅有轻微衰减，声音传播距离比真实环境更远。</li>
@@ -267,7 +279,14 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>enable_doppler</pt>
-                    <pd>是否开启多普勒效应：当声源与接收者之间存在相对位移时，接收者听到的音调会发生变化。
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>该参数适用于声源高速移动的场景（例如赛车游戏）。不推荐在常规音视频互动场景中使用（例如语音聊天、连麦或在线 KTV）。</li>
+                                <li>启用该参数后，建议设置固定周期（如 30 毫秒），并持续调用 <codeph>updatePlayerPositionInfo</codeph>、<codeph>updateSelfPosition</codeph> 和 <codeph>updateRemotePosition</codeph> 方法更新声源与接收者之间的相对距离。</li>
+                                <li>以下因素可能导致多普勒效应不可预测或声音抖动：更新周期过长、更新周期不规律，或因网络丢包或延迟导致距离信息丢失。</li>
+                            </ul>
+                        </note><ph>是否开启多普勒效应：当声源与接收者之间存在相对位移时，接收者听到的音调会发生变化。</ph>
                         <ul>
                             <li><xref keyref="true"/>：开启多普勒效应。</li>
                             <li><xref keyref="false"/>：（默认）关闭多普勒效应。</li>
@@ -320,7 +339,8 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>enable_air_absorb</pt>
-                    <pd>是否开启空气吸收效果，即模拟声音在空气中传播时的衰减效果。在一定传播距离下，高频声音衰减较快，低频声音衰减较慢：
+                    <pd>
+                        <note>请确保 <codeph>speaker_attenuation</codeph> 的值不为 0，否则该设置不生效。</note><ph>是否开启空气吸收效果，即模拟声音在空气中传播时的衰减效果。在一定传播距离下，高频声音衰减较快，低频声音衰减较慢：</ph>
                         <ul>
                             <li><xref keyref="true"/>：（默认）开启空气吸收。</li>
                             <li><xref keyref="false"/>：关闭空气吸收。</li>
@@ -329,7 +349,8 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>speaker_attenuation</pt>
-                    <pd>远端用户或媒体播放器的声音衰减系数，取值范围为 [0, 1]。具体取值如下：
+                    <pd>
+                        <note>需同时开启 <codeph>enable_air_absorb</codeph>。</note><ph>远端用户或媒体播放器的声音衰减系数，取值范围为 [0, 1]。具体取值如下：</ph>
                         <ul>
                             <li>0：广播模式，音量和音色不随距离衰减。</li>
                             <li>(0, 0.5)：弱衰减模式，音量和音色在传播过程中仅有轻微衰减，声音传播距离比真实环境更远。</li>
@@ -340,7 +361,14 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>enable_doppler</pt>
-                    <pd>是否开启多普勒效应：当声源与接收者之间存在相对位移时，接收者听到的音调会发生变化。
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>该参数适用于声源高速移动的场景（例如赛车游戏）。不推荐在常规音视频互动场景中使用（例如语音聊天、连麦或在线 KTV）。</li>
+                                <li>启用该参数后，建议设置固定周期（如 30 毫秒），并持续调用 <codeph>updatePlayerPositionInfo</codeph>、<codeph>updateSelfPosition</codeph> 和 <codeph>updateRemotePosition</codeph> 方法更新声源与接收者之间的相对距离。</li>
+                                <li>以下因素可能导致多普勒效应不可预测或声音抖动：更新周期过长、更新周期不规律，或因网络丢包或延迟导致距离信息丢失。</li>
+                            </ul>
+                        </note><ph>是否开启多普勒效应：当声源与接收者之间存在相对位移时，接收者听到的音调会发生变化。</ph>
                         <ul>
                             <li><xref keyref="true"/>：开启多普勒效应。</li>
                             <li><xref keyref="false"/>：（默认）关闭多普勒效应。</li>

@@ -39,7 +39,8 @@
             <parml>
                 <plentry props="cpp">
                     <pt>dimensions</pt>
-                    <pd>屏幕共享视频流的编码分辨率。默认值为 1920 × 1080，即 2,073,600 像素。声网会根据该参数的值计算费用。如果屏幕尺寸与该参数值不同，SDK 会采用以下编码策略。假设 <codeph>dimensions</codeph> 设置为 1920 × 1080：
+                    <pd>
+                        <note>在文档共享场景中设置编码分辨率时，请参考建议设置方式。</note><ph>屏幕共享视频流的编码分辨率。默认值为 1920 × 1080，即 2,073,600 像素。声网会根据该参数的值计算费用。如果屏幕尺寸与该参数值不同，SDK 会采用以下编码策略。假设 <codeph>dimensions</codeph> 设置为 1920 × 1080：</ph>
                         <ul>
                             <li>如果屏幕尺寸小于 <codeph>dimensions</codeph>，例如 1000 × 1000 像素，SDK 使用屏幕尺寸（即 1000 × 1000 像素）进行编码。</li>
                             <li>如果屏幕尺寸大于 <codeph>dimensions</codeph>，例如 2000 × 1500 像素，SDK 会在保持屏幕宽高比（4:3）的前提下，使用不超过 <codeph>dimensions</codeph> 的最大值进行编码，即 1440 × 1080。</li>
@@ -55,7 +56,8 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>captureMouseCursor</pt>
-                    <pd>是否在屏幕共享中捕获鼠标：
+                    <pd>
+                        <note>由于 macOS 系统限制，在屏幕共享时设置为 <xref keyref="false"/> 无效（共享窗口时不受影响）。</note><ph>是否在屏幕共享中捕获鼠标：</ph>
                         <ul>
                             <li><xref keyref="true"/>：（默认）捕获鼠标。</li>
                             <li><xref keyref="false"/>：不捕获鼠标。</li>
@@ -64,7 +66,8 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>windowFocus</pt>
-                    <pd>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口置于前台：
+                    <pd>
+                        <note>由于 macOS 系统限制，当设置该参数将窗口置于前台时，如果当前应用有多个窗口，只有主窗口会被置于前台。</note><ph>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口置于前台：</ph>
                         <ul>
                             <li><xref keyref="true"/>：将窗口置于前台。</li>
                             <li><xref keyref="false"/>：（默认）不将窗口置于前台。</li>
@@ -77,11 +80,15 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>excludeWindowCount</pt>
-                    <pd>要排除的窗口数量。</pd>
+                    <pd>要排除的窗口数量。
+                        <note>在 Windows 平台上，该参数的最大值为 24；若超过此值，窗口排除将失败。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>highLightWidth</pt>
-                    <pd>（仅适用于 macOS 和 Windows）边框的宽度（像素）。默认值为 5，取值范围为 (0, 50]。</pd>
+                    <pd>（仅适用于 macOS 和 Windows）边框的宽度（像素）。默认值为 5，取值范围为 (0, 50]。
+                        <note>仅当 <codeph>highLighted</codeph> 设置为 <xref keyref="true"/> 时该参数才生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>highLightColor</pt>
@@ -94,7 +101,8 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>enableHighLight</pt>
-                    <pd>（仅适用于 macOS 和 Windows）是否在共享的窗口或屏幕周围显示边框：
+                    <pd>
+                        <note>当共享窗口或屏幕的部分区域时，若设置该参数为 <xref keyref="true"/>，SDK 会在整个窗口或屏幕周围显示边框。</note><ph>（仅适用于 macOS 和 Windows）是否在共享的窗口或屏幕周围显示边框：</ph>
                         <ul>
                             <li><xref keyref="true"/>：显示边框。</li>
                             <li><xref keyref="false"/>：（默认）不显示边框。</li>
@@ -103,7 +111,18 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>dimensions</pt>
-                    <pd>屏幕共享视频流的编码分辨率。若屏幕尺寸与该参数不同，SDK 会采用以下编码策略。例如将 <codeph>dimensions</codeph> 设置为 1920 × 1080：
+                    <pd>
+                        <note>在文档共享场景（<codeph>AgoraScreenScenarioDocument</codeph>）中设置编码分辨率时，建议：
+                            <ul>
+                                <li>若需最佳画质，建议编码分辨率与采集分辨率一致。</li>
+                                <li>若需在画质、带宽和系统性能之间取得平衡：
+                                    <ul>
+                                        <li>当采集分辨率大于 1920 × 1080 时，编码分辨率建议不低于 1920 × 1080。</li>
+                                        <li>当采集分辨率小于 1920 × 1080 时，编码分辨率建议不低于 1280 × 720。</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </note><ph>屏幕共享视频流的编码分辨率。若屏幕尺寸与该参数不同，SDK 会采用以下编码策略。例如将 <codeph>dimensions</codeph> 设置为 1920 × 1080：</ph>
                         <ul>
                             <li>如果屏幕尺寸小于 <codeph>dimensions</codeph>，如 1000 × 1000 像素，SDK 会使用屏幕尺寸（即 1000 × 1000 像素）进行编码。</li>
                             <li>如果屏幕尺寸大于 <codeph>dimensions</codeph>，如 2000 × 1500 像素，SDK 会在保持屏幕宽高比（4:3）的前提下，使用不超过 <codeph>dimensions</codeph> 的最大值进行编码，即 1440 × 1080。</li>
@@ -112,7 +131,9 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>frameRate</pt>
-                    <pd>共享区域的帧率（fps）。默认值为 5。</pd>
+                    <pd>共享区域的帧率（fps）。默认值为 5。
+                        <note>不建议设置超过 15 的帧率。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>bitrate</pt>
@@ -120,7 +141,8 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>captureMouseCursor</pt>
-                    <pd>是否在屏幕共享中采集鼠标：
+                    <pd>
+                        <note>由于 macOS 系统限制，在屏幕共享时设置为 <xref keyref="false"/> 无效（共享窗口时不受影响）。</note><ph>是否在屏幕共享中采集鼠标：</ph>
                         <ul>
                             <li><xref keyref="true"/>：（默认）采集鼠标。</li>
                             <li><xref keyref="false"/>：不采集鼠标。</li>
@@ -129,7 +151,8 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>windowFocus</pt>
-                    <pd>调用 <codeph>startScreenCaptureByWindowId</codeph> 方法共享窗口时，是否将该窗口置顶：
+                    <pd>
+                        <note>由于 macOS 系统限制，设置该参数置顶窗口时，如果当前应用有多个窗口，仅主窗口会被置顶。</note><ph>调用 <codeph>startScreenCaptureByWindowId</codeph> 方法共享窗口时，是否将该窗口置顶：</ph>
                         <ul>
                             <li><xref keyref="true"/>：将窗口置顶。</li>
                             <li><xref keyref="false"/>：（默认）不置顶。</li>
@@ -142,7 +165,8 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>highLighted</pt>
-                    <pd>是否在共享的窗口或屏幕周围添加边框：
+                    <pd>
+                        <note>当共享的是窗口或屏幕的一部分时，若设置为 <xref keyref="true"/>，SDK 会在整个窗口或屏幕周围添加边框。</note><ph>是否在共享的窗口或屏幕周围添加边框：</ph>
                         <ul>
                             <li><xref keyref="true"/>：添加边框。</li>
                             <li><xref keyref="false"/>：（默认）不添加边框。</li>
@@ -155,7 +179,9 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>highLightWidth</pt>
-                    <pd>边框宽度（像素）。默认值为 5，取值范围为 (0, 50]。</pd>
+                    <pd>边框宽度（像素）。默认值为 5，取值范围为 (0, 50]。
+                        <note>仅当 <codeph>highLighted</codeph> 设置为 <xref keyref="true"/> 时该参数才生效。</note>
+                    </pd>
                 </plentry>
             </parml>
         </section>

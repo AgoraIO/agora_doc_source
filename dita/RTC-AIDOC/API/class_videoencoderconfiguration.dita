@@ -107,7 +107,9 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>minBitrate</pt>
-                    <pd>视频的最小编码码率（Kbps）。SDK 会自动调整编码码率以适应网络状况。使用高于默认值的设置会强制视频编码器输出高质量图像，但可能导致更多丢包并影响视频传输的流畅性。</pd>
+                    <pd>视频的最小编码码率（Kbps）。SDK 会自动调整编码码率以适应网络状况。使用高于默认值的设置会强制视频编码器输出高质量图像，但可能导致更多丢包并影响视频传输的流畅性。
+                        <note>该参数仅适用于互动直播场景。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>orientationMode</pt>
@@ -115,11 +117,15 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>degradationPreference</pt>
-                    <pd>在带宽受限的情况下的视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/>。</pd>
+                    <pd>在带宽受限的情况下的视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/>。
+                        <note>当该参数设置为 <codeph>MAINTAIN_FRAMERATE</codeph>（1）或 <codeph>MAINTAIN_BALANCED</codeph>（2）时，<codeph>orientationMode</codeph> 也必须设置为 <codeph>ORIENTATION_MODE_ADAPTIVE</codeph>（0），否则该设置不生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>mirrorMode</pt>
-                    <pd>设置本地视频流发布时的镜像模式，仅影响远端用户看到的视频。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
+                    <pd>设置本地视频流发布时的镜像模式，仅影响远端用户看到的视频。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>默认情况下，视频不镜像。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>advanceOptions</pt>
@@ -207,7 +213,13 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>dimensions</pt>
-                    <pd>你可以自行设置分辨率，或从以下列表中选择：
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>是否支持 720p 或更高分辨率取决于设备性能。如果设备不支持 720p，帧率将低于设置值。</li>
+                                <li>默认值为 960 × 540。</li>
+                            </ul>
+                        </note><ph>你可以自行设置分辨率，或从以下列表中选择：</ph>
                         <ul>
                             <li><codeph>AgoraVideoDimension120x120</codeph>：120 × 120。</li>
                             <li><codeph>AgoraVideoDimension160x120</codeph>：160 × 120。</li>
@@ -251,7 +263,9 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>minBitrate</pt>
-                    <pd>视频的最小编码码率（Kbps）。SDK 会自动调整编码码率以适应网络状况。设置高于默认值会强制编码器输出高质量图像，但可能导致更多丢包，影响视频流畅性。</pd>
+                    <pd>视频的最小编码码率（Kbps）。SDK 会自动调整编码码率以适应网络状况。设置高于默认值会强制编码器输出高质量图像，但可能导致更多丢包，影响视频流畅性。
+                        <note>该参数仅适用于互动直播场景。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>orientationMode</pt>
@@ -259,11 +273,15 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>mirrorMode</pt>
-                    <pd>设置本地视频流发布时的镜像模式，仅影响远端用户看到的视频。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
+                    <pd>设置本地视频流发布时的镜像模式，仅影响远端用户看到的视频。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>默认情况下，视频不镜像。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>degradationPreference</pt>
-                    <pd>在带宽受限的情况下的视频降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/>。</pd>
+                    <pd>在带宽受限的情况下的视频降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/>。
+                        <note>当该参数设置为 <codeph>AgoraDegradationMaintainFramerate</codeph>（1）或 <codeph>AgoraDegradationBalanced</codeph>（2）时，<codeph>orientationMode</codeph> 需同时设置为 <codeph>AgoraVideoOutputOrientationModeAdaptative</codeph>（0），否则设置不生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>advancedVideoOptions</pt>
@@ -271,7 +289,13 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>dimensions</pt>
-                    <pd>你可以自行设置分辨率，或从以下列表中选择：
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>是否支持 720p 或更高分辨率取决于设备性能。如果设备不支持 720p，帧率将低于设置值。</li>
+                                <li>默认值为 960 × 540。</li>
+                            </ul>
+                        </note><ph>你可以自行设置分辨率，或从以下列表中选择：</ph>
                         <ul>
                             <li><codeph>AgoraVideoDimension120x120</codeph>：120 × 120。</li>
                             <li><codeph>AgoraVideoDimension160x120</codeph>：160 × 120。</li>
@@ -315,7 +339,9 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>minBitrate</pt>
-                    <pd>视频的最小编码码率（Kbps）。SDK 会自动调整编码码率以适应网络状况。设置高于默认值会强制编码器输出高质量图像，但可能导致更多丢包，影响视频流畅性。</pd>
+                    <pd>视频的最小编码码率（Kbps）。SDK 会自动调整编码码率以适应网络状况。设置高于默认值会强制编码器输出高质量图像，但可能导致更多丢包，影响视频流畅性。
+                        <note>该参数仅适用于互动直播场景。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>orientationMode</pt>
@@ -323,11 +349,15 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>mirrorMode</pt>
-                    <pd>设置本地视频流发布时的镜像模式，仅影响远端用户看到的视频。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
+                    <pd>设置本地视频流发布时的镜像模式，仅影响远端用户看到的视频。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>默认情况下，视频不镜像。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>degradationPreference</pt>
-                    <pd>在带宽受限的情况下的视频降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/>。</pd>
+                    <pd>在带宽受限的情况下的视频降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/>。
+                        <note>当该参数设置为 <codeph>AgoraDegradationMaintainFramerate</codeph>（1）或 <codeph>AgoraDegradationBalanced</codeph>（2）时，<codeph>orientationMode</codeph> 需同时设置为 <codeph>AgoraVideoOutputOrientationModeAdaptative</codeph>（0），否则设置不生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>advancedVideoOptions</pt>

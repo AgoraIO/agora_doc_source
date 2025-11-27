@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_ontranscodedstreamlayoutinfo">
     <title><ph keyref="onTranscodedStreamLayoutInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onTranscodedStreamLayoutInfo"/> 回调：本地用户接收到携带视频合流布局信息的混合视频流时触发。</ph><ph id="shortdesc" props="ios"><xref keyref="onTranscodedStreamLayoutInfo"/> 回调。当本地用户接收到携带视频合流布局信息的混合视频流时触发。</ph><ph id="shortdesc" props="android">接收到携带视频合流布局信息的混合视频流时触发的回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onTranscodedStreamLayoutInfo"/> 回调：本地用户接收到携带视频合流布局信息的混合视频流时触发。</ph><ph id="shortdesc" props="ios"><xref keyref="onTranscodedStreamLayoutInfo"/> 回调。当本地用户接收到携带视频合流布局信息的混合视频流时触发。</ph><ph id="shortdesc" props="android">接收到携带布局信息的合图视频流回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,14 +21,14 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">当你首次接收到视频合流服务器发送的混合视频流，或混合流的布局信息发生变化时，SDK 会触发该回调，报告混合视频流中每个子视频流的布局信息。</p>
             <p props="ios">该回调在你首次接收到由视频合流服务器发送的混合视频流，或混合流的布局信息发生变化时被触发。</p>
-            <p props="android">当本地用户首次接收到由视频合流服务器发送的混合视频流，或混合流的布局信息发生变化时，SDK 会触发该回调，报告混合视频流中每个子视频流的布局信息。</p>
+            <p props="android">当本地用户首次接收到由视频合图服务器发送的合图视频流，或该视频流的布局信息发生变化时，SDK 会触发该回调，报告该合图视频流中每个子视频流的布局信息。</p>
             <note props="cpp">该回调仅适用于 Android 和 iOS 平台。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios">
             <title>触发时机</title>
             <p props="cpp">当本地用户首次接收到视频合流服务器发送的混合视频流，或混合流的布局信息发生变化时触发。</p>
             <p props="ios">该回调在你首次接收到由视频合流服务器发送的混合视频流，或混合流的布局信息发生变化时被触发。</p>
-            <p props="android">该回调在本地用户首次接收到混合视频流，或混合流的布局信息发生变化时被触发。</p>
+            <p props="android">该回调在本地用户首次接收到合图视频流，或该视频流的布局信息发生变化时被触发。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios">
             <title>参数</title>
@@ -67,7 +67,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>uid</pt>
-                    <pd>发布该混合视频流的用户 ID。</pd>
+                    <pd>发布该合图视频流的用户 ID。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>info</pt>

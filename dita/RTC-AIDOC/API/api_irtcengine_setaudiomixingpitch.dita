@@ -20,13 +20,14 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">调用该方法可在本地音乐文件与本地人声混音时，单独调整本地音乐文件的音调。</p>
             <p props="android">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用该方法。</p>
             <p props="ios">调用该方法可在本地音乐文件与本地人声混音时，仅调整本地音乐文件的音调。</p>
             <p props="mac">调用该方法可在本地音乐文件与本地人声混音时，仅调整本地音乐文件的音调。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
-            <p props="cpp">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用此方法。</p>
+            <p props="cpp">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用该方法。</p>
             <p props="android">你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用该方法。</p>
             <p props="ios">你需要在调用 <xref keyref="startAudioMixing2"/> 并收到 <codeph>audioMixingStateChanged:reasonCode:</codeph> 回调（状态为 <codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用该方法。</p>
             <p props="mac">你需要在调用 <xref keyref="startAudioMixing2"/> 并收到 <codeph>audioMixingStateChanged:reasonCode:</codeph> 回调（状态为 <codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用该方法。</p>
@@ -36,7 +37,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>pitch</pt>
-                    <pd>按半音阶设置本地音乐文件的音调。默认值为 0，表示保持原始音调。取值范围为 -12 到 12，相邻两个值之间的音调差为一个半音。该参数的绝对值越大，音调变化越明显。</pd>
+                    <pd>按半音音阶设置本地音乐文件的音调。默认值为 0，表示保持原始音调。取值范围为 -12 到 12，相邻两个值之间的音调差为一个半音。该参数的绝对值越大，音调变化越明显。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>pitch</pt>

@@ -38,18 +38,13 @@
                     <dd>自 v4.0.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">你可以调用该方法启用暗光增强功能，并设置增强效果的参数。
-
-适用场景：暗光增强功能适用于逆光、多云或黑暗等低光或光线不均的场景，可自适应调整视频采集画面的亮度，恢复或突出图像细节，提升整体视觉效果。
-
-调用时机：请在调用 <xref keyref="enableVideo"/> 后调用该方法。</p>
-            <p props="android">你可以调用该方法设置暗光增强效果的相关选项。该功能适用于低光或光线不均的场景，如逆光、多云或黑暗环境，可自适应调整视频亮度，恢复或增强图像细节，从而提升整体视觉效果。</p>
+            <p props="cpp">你可以调用该方法启用暗光增强功能，并设置增强效果的参数。</p>
             <p props="ios">你可以调用此方法开启暗光增强功能并设置暗光增强效果的选项。</p>
             <p props="mac">你可以调用此方法开启暗光增强功能并设置暗光增强效果的选项。</p>
             <note props="cpp">
                 <ul>
-                    <li>该方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，则无法正常启用该功能。</li>
-                    <li>暗光增强对设备性能有一定要求。如果启用后设备出现过热，声网建议将暗光增强选项设置为较低的性能消耗等级，或完全关闭该功能。</li>
+                    <li>该方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，该功能将无法正常启用。</li>
+                    <li>暗光增强对设备性能有一定要求。如果启用暗光增强后设备出现过热，声网建议将暗光增强选项设置为较低的性能消耗等级，或完全关闭暗光增强功能。</li>
                     <li>如果你希望在使用暗光增强功能时优先保证画质（<codeph>LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY</codeph>），需要先调用 <xref keyref="setVideoDenoiserOptions"/> 实现视频降噪，具体对应关系如下：
                         <ul>
                             <li>当暗光增强设置为自动模式（<codeph>LOW_LIGHT_ENHANCE_AUTO</codeph>）时，视频降噪需设置为优先保证画质（<codeph>VIDEO_DENOISER_LEVEL_HIGH_QUALITY</codeph>）和自动模式（<codeph>VIDEO_DENOISER_AUTO</codeph>）。</li>
@@ -60,8 +55,8 @@
             </note>
             <note props="android">
                 <ul>
-                    <li>此方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，则无法正常启用该功能。</li>
-                    <li>暗光增强对设备性能有一定要求。如果启用该功能后设备出现过热，声网建议将暗光增强选项设置为较低的性能消耗等级，或完全关闭该功能。</li>
+                    <li>该方法依赖图像增强动态库 <xref keyref="clearvision"/>。如果该动态库被删除，将无法正常启用该功能。</li>
+                    <li>暗光增强功能对设备性能有一定要求。如果启用后设备出现过热，声网建议将暗光增强选项设置为较低的性能消耗等级，或关闭该功能。</li>
                     <li>如果你希望在使用暗光增强功能时优先保证画质（<codeph>LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY</codeph>），需要先调用 <codeph>setVideoDenoiserOptions</codeph> 实现视频降噪，具体对应关系如下：
                         <ul>
                             <li>当暗光增强设置为自动模式（<codeph>LOW_LIGHT_ENHANCE_AUTO</codeph>）时，视频降噪需设置为优先保证画质（<codeph>VIDEO_DENOISER_LEVEL_HIGH_QUALITY</codeph>）和自动模式（<codeph>VIDEO_DENOISER_AUTO</codeph>）。</li>
@@ -109,23 +104,24 @@
                     <pt>enabled</pt>
                     <pd>是否启用暗光增强功能：
                         <ul>
-                            <li><xref keyref="true"/>：启用暗光增强。</li>
-                            <li><xref keyref="false"/>：（默认）关闭暗光增强。</li>
+                            <li><xref keyref="true"/>：启用暗光增强功能。</li>
+                            <li><xref keyref="false"/>：（默认）关闭暗光增强功能。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>options</pt>
-                    <pd>暗光增强选项。详见 <xref keyref="LowlightEnhanceOptions"/>。</pd>
+                    <pd>暗光增强选项，详见 <xref keyref="LowlightEnhanceOptions"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>type</pt>
-                    <pd>要应用滤镜效果的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
-该参数仅支持以下两种设置：
-                        <ul>
-                            <li>如果使用摄像头采集本地视频，使用默认值 <codeph>PRIMARY_CAMERA_SOURCE</codeph>。</li>
-                            <li>如果使用自定义视频源，设置为 <codeph>CUSTOM_VIDEO_SOURCE</codeph>。</li>
-                        </ul>
+                    <pd>应用滤镜效果的媒体源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
+                        <note>在该方法中，该参数仅支持以下两种设置：
+                            <ul>
+                                <li>如果使用摄像头采集本地视频，使用默认值 <codeph>PRIMARY_CAMERA_SOURCE</codeph>。</li>
+                                <li>如果使用自定义视频源，设置为 <codeph>CUSTOM_VIDEO_SOURCE</codeph>。</li>
+                            </ul>
+                        </note>
                     </pd>
                 </plentry>
                 <plentry props="android">

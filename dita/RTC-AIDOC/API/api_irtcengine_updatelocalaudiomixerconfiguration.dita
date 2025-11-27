@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_updatelocalaudiomixerconfiguration">
     <title><ph keyref="updateLocalAudioMixerConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">更新本地混音配置。</ph><ph id="shortdesc" props="android">更新本地混音配置。</ph><ph id="shortdesc" props="ios">更新本地混音配置。</ph><ph id="shortdesc" props="mac">更新本地混音配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">更新本地混音配置。</ph><ph id="shortdesc" props="android">更新本地音频合流配置。</ph><ph id="shortdesc" props="ios">更新本地混音配置。</ph><ph id="shortdesc" props="mac">更新本地混音配置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,11 +21,10 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用 <xref keyref="startLocalAudioMixer"/> 后，如需更新本地混音配置，可调用该方法。</p>
-            <p props="android">调用 <xref keyref="startLocalAudioMixer"/> 后，可调用该方法更新本地混音配置。</p>
             <p props="ios">调用 <codeph>startLocalAudioMixer</codeph> 后，如果你想更新本地混音配置，可以调用此方法。</p>
             <p props="mac">调用 <codeph>startLocalAudioMixer</codeph> 后，如果你想更新本地混音配置，可以调用此方法。</p>
             <note props="cpp">为确保音频质量，建议混音的音频流数量不超过 10。</note>
-            <note props="android">为确保音频质量，建议混音的音频流数量不超过 10。</note>
+            <note props="android">为确保音频质量，建议合流的音频流数量不超过 10。</note>
             <note props="ios">为确保音频质量，建议混音的音频流数量不超过 10。</note>
             <note props="mac">为确保音频质量，建议混音的音频流数量不超过 10。</note>
         </section>
@@ -45,7 +44,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>config</pt>
-                    <pd>本地混音的配置。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
+                    <pd>用于设置本地音频合流的配置。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>config</pt>

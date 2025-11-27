@@ -38,6 +38,8 @@
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
             </dl>
+            <p props="cpp">该方法用于指定一个 `Canvas`` 对象用于显示视频。一旦视频流成功播放，视频将显示在该 <xref keyref="Canvas"/> 上。</p>
+            <p props="android">该方法用于设置用于显示视频的 <xref keyref="Canvas"/> 对象。</p>
             <p props="ios">该方法用于设置用于显示视频的视图窗口。在视频流成功开始播放后，视频将渲染在指定的 <codeph>canvas</codeph> 上。</p>
             <p props="mac">该方法用于设置用于显示视频的视图窗口。在视频流成功开始播放后，视频将渲染在指定的 <codeph>canvas</codeph> 上。</p>
             <note props="ios">你必须在调用 <xref keyref="Player_Player"/> 之后调用此方法。</note>
@@ -46,14 +48,14 @@
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>调用时机</title>
             <p props="cpp">该方法必须在调用 <xref keyref="Player_Player"/> 之后执行。</p>
-            <p props="android">该方法必须在调用 <xref keyref="Player_Player"/> 之后使用。</p>
+            <p props="android">该方法必须在调用 <xref keyref="Player_Player"/> 之后调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
                     <pt>canvas</pt>
-                    <pd>用于渲染视频帧的对象，详见 <xref keyref="Canvas"/>。</pd>
+                    <pd><xref keyref="Canvas"/> 对象，用于渲染视频帧，详见 <xref keyref="Canvas"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>err</pt>
@@ -61,7 +63,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>canvas</pt>
-                    <pd>用于渲染视频帧的视图窗口，详见 <xref keyref="Canvas"/>。</pd>
+                    <pd>用于渲染视频帧的对象，详见 <xref keyref="Canvas"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>canvas</pt>
@@ -86,7 +88,7 @@
             <p props="cpp">
                 <ul>
                     <li><xref keyref="true"/>：设置成功。</li>
-                    <li><xref keyref="false"/>：设置失败。你可以通过 <codeph>err</codeph> 参数获取错误码以了解详细信息。</li>
+                    <li><xref keyref="false"/>：设置失败。你可以通过 <codeph>err</codeph> 参数返回的错误码查看详细信息。</li>
                 </ul>
             </p>
             <p props="ios">

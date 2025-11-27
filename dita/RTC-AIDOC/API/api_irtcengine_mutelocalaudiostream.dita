@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_mutelocalaudiostream">
     <title><ph keyref="muteLocalAudioStream"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">控制是否发布本地采集的音频流。</ph><ph id="shortdesc" props="android">控制是否发布本地采集的音频流。</ph><ph id="shortdesc" props="ios">停止或恢复发布本地音频流。</ph><ph id="shortdesc" props="mac">停止或恢复发布本地音频流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">控制是否发布本地采集的音频流。</ph><ph id="shortdesc" props="android">停止或恢复发布本地采集音频流。</ph><ph id="shortdesc" props="ios">停止或恢复发布本地音频流。</ph><ph id="shortdesc" props="mac">停止或恢复发布本地音频流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -32,9 +32,10 @@
             <p props="ios">你可以在加入频道前或后调用该方法。</p>
             <p props="mac">你可以在加入频道前或后调用该方法。</p>
         </section>
-        <section id="related" deliveryTarget="details" props="cpp">
+        <section id="related" deliveryTarget="details" props="android cpp">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，本地会触发 <xref keyref="onAudioPublishStateChanged"/> 回调；远端会触发 <xref keyref="onUserMuteAudio"/> 和 <xref keyref="onRemoteAudioStateChanged"/> 回调。</p>
+            <p props="android">调用该方法成功后，本地会触发回调 <xref keyref="onAudioPublishStateChanged"/>；远端会触发回调 <xref keyref="onUserMuteAudio"/> 和 <xref keyref="onRemoteAudioStateChanged"/>。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

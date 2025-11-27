@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusiccontentcenter_getlyric">
     <title><ph keyref="getLyric"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取音乐资源歌词的下载链接。</ph><ph id="shortdesc" props="ios">获取音乐资源歌词的下载链接。</ph><ph id="shortdesc" props="android">检索音乐资源歌词的下载链接。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取音乐资源歌词的下载链接。</ph><ph id="shortdesc" props="ios">获取音乐资源歌词的下载链接。</ph><ph id="shortdesc" props="android">获取音乐资源歌词的下载链接。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,12 +21,13 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用该方法后，SDK 会触发 <xref keyref="onLyricResult"/> 回调报告歌词下载链接。</p>
             <p props="ios">调用该方法后，SDK 会触发 <xref keyref="onLyricResult"/> 回调，返回歌词的下载链接。</p>
-            <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onLyricResult"/> 回调，返回歌词的下载链接。</p>
+            <p props="android">调用该方法后，SDK 会触发 <xref keyref="onLyricResult"/> 回调。</p>
         </section>
-        <section id="related" deliveryTarget="details" props="cpp ios">
+        <section id="related" deliveryTarget="details" props="android cpp ios">
             <title>相关回调</title>
             <p props="cpp">调用该方法后，SDK 会触发 <xref keyref="onLyricResult"/> 回调报告歌词下载链接。</p>
             <p props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onLyricResult"/> 回调，报告歌词的下载链接。</p>
+            <p props="android">调用该方法后，SDK 会触发 <xref keyref="onLyricResult"/> 回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios">
             <title>参数</title>
@@ -67,10 +68,10 @@
                 </plentry>
                 <plentry props="android">
                     <pt>lyricType</pt>
-                    <pd>歌词类型：
+                    <pd>歌词格式类型：
                         <ul>
-                            <li>0：XML 格式。</li>
-                            <li>1：LRC 格式。</li>
+                            <li>0：xml 格式。</li>
+                            <li>1：lrc 格式。</li>
                         </ul>
                     </pd>
                 </plentry>

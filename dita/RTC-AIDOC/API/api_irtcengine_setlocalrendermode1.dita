@@ -29,19 +29,19 @@
                 </dlentry>
                 <dlentry props="android">
                     <dt>废弃</dt>
-                    <dd>该枚举值已废弃，不推荐使用。</dd>
+                    <dd>该方法已废弃，不推荐使用。</dd>
                 </dlentry>
                 <dlentry props="ios">
                     <dt>废弃</dt>
-                    <dd>自 vX.X.X 版本废弃。</dd>
+                    <dd>该方法已废弃。</dd>
                 </dlentry>
                 <dlentry props="mac">
                     <dt>废弃</dt>
-                    <dd>自 vX.X.X 版本废弃。</dd>
+                    <dd>该方法已废弃。</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">该方法仅影响本地用户看到的视频画面，不影响发布的视频流。</p>
-            <p props="android">你可以多次调用该方法以动态调整本地视频的显示效果。</p>
+            <p props="cpp">你可以在初始化本地视频画面后调用该方法，更新其渲染模式和镜像模式。该方法仅影响本地用户看到的视频画面，不影响发布的视频流。</p>
+            <p props="android">你可以调用该方法设置本地视频的显示模式。在通话过程中可以多次调用以动态调整显示模式。</p>
             <p props="ios">你可以在通话过程中多次调用该方法以更改本地视频的显示模式。</p>
             <p props="mac">你可以在通话过程中多次调用该方法以更改本地视频的显示模式。</p>
             <note props="cpp">
@@ -56,15 +56,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>renderMode</pt>
-                    <pd>本地显示模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+                    <pd>本地画面的显示模式。详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>renderMode</pt>
-                    <pd>本地视频的显示模式：
+                    <pd>本地视频的显示模式，详见 <codeph>renderMode</codeph>。
                         <ul>
-                            <li><codeph>RENDER_MODE_HIDDEN</codeph> (1)：隐藏模式。按比例缩放视频，直到填满视图边界（可能被裁剪）。视频的一条边可能会被截断。</li>
-                            <li><codeph>RENDER_MODE_FIT</codeph> (2)：适应模式。按比例缩放视频，直到某一边与视图边界匹配。由于宽高比不一致而未填满的区域将以黑色填充。</li>
-                            <li><codeph>RENDER_MODE_ADAPTIVE</codeph> (3)：自适应模式。</li>
+                            <li><codeph>RENDER_MODE_HIDDEN</codeph>（1）：隐藏模式。按比例缩放视频，直到填满视图边界，可能会裁剪视频的一部分内容。</li>
+                            <li><codeph>RENDER_MODE_FIT</codeph>（2）：适应模式。按比例缩放视频，直到某一边适配视图边界，未填满的区域以黑色填充。</li>
+                            <li><codeph>RENDER_MODE_ADAPTIVE</codeph>（3）：自适应模式。该枚举值已废弃，不推荐使用。</li>
                         </ul>
                     </pd>
                 </plentry>

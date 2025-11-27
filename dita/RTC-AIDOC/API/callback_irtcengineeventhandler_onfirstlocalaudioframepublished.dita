@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstlocalaudioframepublished">
     <title><ph keyref="onFirstLocalAudioFramePublished"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">本地用户发布首帧音频时触发的回调。</ph><ph id="shortdesc" props="android">本地音频首帧发布回调。</ph><ph id="shortdesc" props="ios">本地音频首帧发布回调。</ph><ph id="shortdesc" props="mac">本地音频首帧发布回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onFirstLocalAudioFramePublished"/> 回调。</ph><ph id="shortdesc" props="android">本地音频首帧发布回调。</ph><ph id="shortdesc" props="ios">本地音频首帧发布回调。</ph><ph id="shortdesc" props="mac">本地音频首帧发布回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,6 +20,14 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">该回调在以下任一情况下由 SDK 触发：
+                <ul>
+                    <li>本地客户端启用音频模块并成功调用 <codeph>joinChannel</codeph>。</li>
+                    <li>本地客户端依次调用 <codeph>muteLocalAudioStream(true)</codeph> 和 <codeph>muteLocalAudioStream(false)</codeph>。</li>
+                    <li>本地客户端依次调用 <xref keyref="disableAudio"/> 和 <xref keyref="enableAudio"/>。</li>
+                    <li>本地客户端调用 <xref keyref="pushAudioFrame"/> 成功将音频帧推送至 SDK。</li>
+                </ul>
+            </p>
             <p props="android">当满足以下任一条件时，SDK 会触发该回调：
                 <ul>
                     <li>本地客户端启用音频模块并成功调用 <codeph>joinChannel</codeph>。</li>
@@ -45,16 +53,8 @@
                 </ul>
             </p>
         </section>
-        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+        <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>触发时机</title>
-            <p props="cpp">当本地客户端在以下任一情况下发布首帧音频时触发：
-                <ul>
-                    <li>启用音频模块并成功调用 <codeph>joinChannel</codeph>。</li>
-                    <li>依次调用 <codeph>muteLocalAudioStream(true)</codeph> 和 <codeph>muteLocalAudioStream(false)</codeph>。</li>
-                    <li>依次调用 <xref keyref="disableAudio"/> 和 <xref keyref="enableAudio"/>。</li>
-                    <li>成功调用 <xref keyref="pushAudioFrame"/> 将音频帧推送至 SDK。</li>
-                </ul>
-            </p>
             <p props="android">该回调在本地音频首帧发布时被触发。</p>
             <p props="ios">该回调在本地音频首帧成功发布时被触发。</p>
             <p props="mac">该回调在本地音频首帧成功发布时被触发。</p>

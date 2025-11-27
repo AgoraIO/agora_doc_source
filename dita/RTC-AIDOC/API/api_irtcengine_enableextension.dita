@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enableextension">
     <title><ph keyref="enableExtension"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用或禁用扩展功能。</ph><ph id="shortdesc" props="android">启用或禁用扩展功能。</ph><ph id="shortdesc" props="ios">启用或禁用扩展功能。</ph><ph id="shortdesc" props="mac">启用或禁用扩展功能。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用或禁用插件。</ph><ph id="shortdesc" props="android">启用或禁用扩展功能。</ph><ph id="shortdesc" props="ios">启用或禁用扩展功能。</ph><ph id="shortdesc" props="mac">启用或禁用扩展功能。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,9 +26,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">通过调用该方法，你可以在不修改处理流程的情况下动态启用或禁用扩展功能。例如，启用或禁用 <codeph>Extension_A</codeph> 意味着数据将被 <codeph>Extension_A</codeph> 处理或绕过。</p>
+            <p props="cpp">通过调用该方法，你可以在不更改处理流程的情况下动态启用或禁用插件。例如，启用或禁用 <codeph>Extension_A</codeph> 表示数据将被 <codeph>Extension_A</codeph> 处理或绕过。</p>
             <p props="android">通过调用该方法，你可以动态启用或禁用扩展功能，而无需更改处理流程。</p>
-            <note props="cpp">出于兼容性考虑，如果你尚未调用 <xref keyref="registerExtension"/>，<xref keyref="enableExtension"/> 会自动注册指定的扩展。建议你显式调用 <xref keyref="registerExtension"/>。</note>
+            <note props="cpp">出于兼容性考虑，如果你尚未调用 <xref keyref="registerExtension"/>，<xref keyref="enableExtension"/> 会自动注册指定的插件。建议你显式调用 <xref keyref="registerExtension"/>。</note>
             <note props="android"><xref keyref="enableExtension"/> 会在未调用 <xref keyref="registerExtension"/> 的情况下自动注册指定扩展，以保证兼容性。建议你显式调用 <xref keyref="registerExtension"/>。</note>
             <note props="ios">
                 <ul>
@@ -53,24 +53,24 @@
             <parml>
                 <plentry props="cpp">
                     <pt>provider</pt>
-                    <pd>扩展组件提供方的名称。</pd>
+                    <pd>插件提供方的名称。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>extension</pt>
-                    <pd>扩展组件的名称。</pd>
+                    <pd>插件的名称。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>enable</pt>
-                    <pd>是否启用扩展组件：
+                    <pd>是否启用插件：
                         <ul>
-                            <li><xref keyref="true"/>：（默认）启用扩展组件。</li>
-                            <li><xref keyref="false"/>：禁用扩展组件。</li>
+                            <li><xref keyref="true"/>：（默认）启用插件。</li>
+                            <li><xref keyref="false"/>：禁用插件。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>type</pt>
-                    <pd>扩展组件的数据源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                    <pd>插件的数据源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>provider</pt>

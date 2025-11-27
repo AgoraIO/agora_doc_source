@@ -20,22 +20,23 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">该方法为异步调用。</p>
-            <note props="android">该方法为异步调用。支持播放以 <codeph>content://</codeph> 开头的 URI 文件。</note>
+            <p props="android">支持播放以 <codeph>content://</codeph> 开头的 URI 文件。</p>
+            <note props="cpp"><xref keyref="open"/> 为异步调用。</note>
+            <note props="android">该方法为异步调用。</note>
             <note props="ios">该方法为异步调用。</note>
             <note props="mac">该方法为异步调用。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">该方法可以在加入频道前或加入频道后调用。</p>
-            <p props="android">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="android">该方法可以在加入频道前或后调用。</p>
             <p props="ios">该方法可以在加入频道前或加入频道后调用。</p>
             <p props="mac">该方法可以在加入频道前或加入频道后调用。</p>
         </section>
         <section id="related" deliveryTarget="details" props="android cpp ios mac">
             <title>相关回调</title>
-            <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调。在收到播放状态为 <codeph>PLAYER_STATE_OPEN_COMPLETED</codeph> 的上报后，你可以调用 <xref keyref="play"/> 方法播放媒体文件。</p>
-            <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调。当收到播放状态为 <codeph>OPEN_COMPLETED</codeph> 的上报后，可以调用 <xref keyref="play"/> 方法播放媒体文件。</p>
+            <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态。在收到播放状态为 <codeph>PLAYER_STATE_OPEN_COMPLETED</codeph> 的通知后，你可以调用 <xref keyref="play"/> 方法播放媒体文件。</p>
+            <p props="android">调用该方法后，SDK 会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调。在收到播放状态为 <codeph>OPEN_COMPLETED</codeph> 的上报后，你可以调用 <xref keyref="play"/> 方法播放媒体文件。</p>
             <p props="ios">成功调用该方法后，SDK 会触发 <codeph>didChangedToState:reason:</codeph> 回调。在收到播放状态为 <codeph>AgoraMediaPlayerStateOpenCompleted</codeph> 的报告后，可以调用 <xref keyref="play"/> 方法播放媒体文件。</p>
             <p props="mac">成功调用该方法后，SDK 会触发 <codeph>didChangedToState:reason:</codeph> 回调。在收到播放状态为 <codeph>AgoraMediaPlayerStateOpenCompleted</codeph> 的报告后，可以调用 <xref keyref="play"/> 方法播放媒体文件。</p>
         </section>
@@ -44,11 +45,11 @@
             <parml>
                 <plentry props="cpp">
                     <pt>url</pt>
-                    <pd>媒体文件的路径，支持本地路径和在线路径。</pd>
+                    <pd>媒体文件路径，支持本地路径和在线路径。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>startPos</pt>
-                    <pd>播放的起始位置（毫秒）。默认值为 0。</pd>
+                    <pd>播放起始位置，单位为毫秒。默认值为 0。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>url</pt>
@@ -56,7 +57,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>startPos</pt>
-                    <pd>播放的起始位置（毫秒）（默认值为 0）。</pd>
+                    <pd>播放的起始位置（毫秒，默认值为 0）。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>url</pt>

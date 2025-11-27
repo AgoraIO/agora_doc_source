@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startlocalaudiomixer">
     <title><ph keyref="startLocalAudioMixer"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">开始本地混音。</ph><ph id="shortdesc" props="android">开始本地混音。</ph><ph id="shortdesc" props="ios">开始本地混音。</ph><ph id="shortdesc" props="mac">开始本地混音。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">开始本地音频混音。</ph><ph id="shortdesc" props="android">开始本地音频合流。</ph><ph id="shortdesc" props="ios">开始本地混音。</ph><ph id="shortdesc" props="mac">开始本地混音。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,26 +20,18 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">该方法支持将多个音频流在本地合并为一个音频流。例如，将本地麦克风采集的音频流、媒体播放器、声卡和远端用户的音频流合并为一个音频流，并将合并后的音频流发布到频道中。
-                <ul>
-                    <li>如果你希望混合本地采集的音频流，可以在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishMixedAudioTrack</codeph> 设置为 <xref keyref="true"/>，然后将混合后的音频流发布到频道中。</li>
-                    <li>如果你希望混合远端音频流，请确保远端音频流已在频道中发布，并且你已订阅需要混音的音频流。</li>
-                </ul><ph>适用场景：</ph>
-                <ul>
-                    <li>利用本地视频合流功能，可以同时采集并发布合流视频流所关联的音频流。</li>
-                    <li>在极速直播场景中，用户可以接收频道内的音频流，在本地混合多个音频流后，将混合后的音频流转发到其他频道。</li>
-                    <li>在在线课堂中，老师可以将与学生互动的音频在本地混合后转发到其他频道。</li>
-                </ul><ph>调用时机：你可以在加入频道前或后调用该方法。</ph></p>
-            <p props="android">该方法支持将多个音频流在本地合并为一个音频流。例如，将本地麦克风采集的音频流、媒体播放器、声卡以及远端用户的音频流合并为一个音频流，并将合并后的音频流发布到频道中。
+            <p props="cpp">该方法支持将多个音频流在本地合并为一个音频流，例如将本地麦克风采集的音频流、媒体播放器的音频流、声卡的音频流以及远端用户的音频流合并为一个音频流，并将该合并后的音频流发布到频道中。
                 <ul>
                     <li>如果你希望混合本地采集的音频流，可以在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishMixedAudioTrack</codeph> 设置为 <xref keyref="true"/>，然后将混合后的音频流发布到频道中。</li>
                     <li>如果你希望混合远端音频流，请确保远端音频流已在频道中发布，并且你已订阅需要混合的音频流。</li>
-                </ul><ph>适用场景：</ph>
+                </ul>
+            </p>
+            <p props="android">该方法支持在本地将多个音频流合并为一个音频流。例如，可以将本地麦克风采集的音频流、媒体播放器、声卡以及远端用户的音频流混合为一个音频流，并将其发布到频道中。
                 <ul>
-                    <li>利用本地视频合流功能，可以同时采集并发布合流视频流所关联的音频流。</li>
-                    <li>在极速直播场景中，用户可以接收频道内的音频流，在本地混合多个音频流后，将混合后的音频流转发到其他频道。</li>
-                    <li>在在线课堂中，老师可以将与学生互动的音频在本地混合后转发到其他频道。</li>
-                </ul><ph>调用时机：你可以在加入频道前或后调用该方法。</ph></p>
+                    <li>如果你希望混合本地采集的音频流，可以在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishMixedAudioTrack</codeph> 设置为 <xref keyref="true"/>，然后将混合后的音频流发布到频道中。</li>
+                    <li>如果你希望混合远端音频流，请确保远端音频流已在频道中发布，并且你已订阅了需要合流的音频流。</li>
+                </ul>
+            </p>
             <p props="ios">该方法支持在本地将多个音频流合并为一个音频流。例如，将本地麦克风采集的音频流、媒体播放器、声卡和远端用户的音频流合并为一个音频流，并将该合并后的音频流发布到频道中。
                 <ul>
                     <li>如果你希望混合本地采集的音频流，可以在 <codeph>publishMixedAudioTrack</codeph> 中设置为 <xref keyref="true"/>，然后将混合后的音频流发布到频道中。</li>
@@ -67,8 +59,8 @@
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
-            <p props="cpp">你可以在加入频道前或后调用该方法。</p>
-            <p props="android">你可以在加入频道前或后调用该方法。</p>
+            <p props="cpp">你可以在加入频道前或加入频道后调用该方法。</p>
+            <p props="android">你可以在加入频道前或加入频道后调用此方法。</p>
             <p props="ios">你可以在加入频道前或后调用此方法。</p>
             <p props="mac">你可以在加入频道前或后调用此方法。</p>
         </section>
@@ -77,11 +69,11 @@
             <parml>
                 <plentry props="cpp">
                     <pt>config</pt>
-                    <pd>本地混音配置参数。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
+                    <pd>本地音频混音的配置参数，详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>config</pt>
-                    <pd>用于配置本地音频混音的参数。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
+                    <pd>用于配置本地音频合流的参数，详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>config</pt>
@@ -110,7 +102,7 @@
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
-                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要先初始化 <xref keyref="IRtcEngine"/> 对象再调用该方法。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请先初始化 <xref keyref="IRtcEngine"/> 对象后再调用该方法。</li>
                         </ul>
                     </li>
                 </ul>

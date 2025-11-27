@@ -49,10 +49,10 @@
                     <pt>scenarioType</pt>
                     <pd>视频应用场景类型，详见 <xref keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/>。
                         <ul>
-                            <li><codeph>APPLICATION_SCENARIO_MEETING</codeph> (1)：适用于会议场景。SDK 会自动启用以下策略：
+                            <li><codeph>APPLICATION_SCENARIO_MEETING</codeph>（1）：适用于会议场景。SDK 会自动启用以下策略：
                                 <ul>
-                                    <li>当低画质视频流需要较高码率时，SDK 会自动启用多种应对网络拥塞的技术，以提升低画质视频流的性能，确保订阅端流畅接收。</li>
-                                    <li>SDK 实时监控高画质视频流的订阅人数，并根据订阅人数动态调整其配置：
+                                    <li>当低画质视频流需要较高码率时，SDK 会启用多种抗网络拥塞技术，提升低画质视频流的性能，确保订阅端流畅接收。</li>
+                                    <li>SDK 实时监控高画质视频流的订阅人数，并动态调整其配置：
                                         <ul>
                                             <li>若无人订阅高画质视频流，SDK 会自动降低其码率和帧率以节省上行带宽。</li>
                                             <li>若有人订阅高画质视频流，SDK 会将其重置为最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 设置的 <xref keyref="VideoEncoderConfiguration"/> 配置；若未设置，则使用以下默认值：
@@ -64,11 +64,11 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li>SDK 实时监控低画质视频流的订阅人数，并根据订阅人数动态启用或禁用该流：
+                                    <li>SDK 实时监控低画质视频流的订阅人数，并根据订阅情况动态启用或禁用该流。
                                         <ul>
-                                            <li>若用户调用了 <codeph>setDualStreamMode</codeph> 并设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>，则低画质流的动态调整不生效。</li>
+                                            <li>若用户调用了 <codeph>setDualStreamMode</codeph> 并设置为永不发送低画质视频流（<codeph>DISABLE_SIMULCAST_STREAM</codeph>），则该策略不生效。</li>
                                             <li>若无人订阅低画质视频流，SDK 会自动禁用该流以节省上行带宽。</li>
-                                            <li>若有人订阅低画质视频流，SDK 会启用该流，并将其重置为最近一次调用 <codeph>setDualStreamMode</codeph> 设置的 <codeph>SimulcastStreamConfig</codeph> 配置；若未设置，则使用以下默认值：
+                                            <li>若有人订阅低画质视频流，SDK 会启用该流，并重置为最近一次调用 <codeph>setDualStreamMode</codeph> 设置的 <xref keyref="SimulcastStreamConfig"/> 配置；若未设置，则使用以下默认值：
                                                 <ul>
                                                     <li>分辨率：480 × 272。</li>
                                                     <li>帧率：15 fps。</li>
@@ -79,18 +79,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><codeph>APPLICATION_SCENARIO_1V1</codeph> (2)：适用于一对一直播场景。为满足低延迟和高画质的需求，SDK 会优化策略，提升视频质量、首帧渲染速度、中低端设备的延迟表现，以及弱网环境下的流畅性。
-                                <ul>
-                                    <li>注意：该枚举值仅适用于主播对主播的场景。</li>
-                                </ul>
-                            </li>
-                            <li><codeph>APPLICATION_SCENARIO_LIVESHOW</codeph> (3)：适用于秀场场景。该场景对快速渲染和高画质要求较高，SDK 会进行如下优化：
-                                <ul>
-                                    <li>自动启用音视频帧加速渲染以最小化首帧延迟（无需调用 <xref keyref="enableInstantMediaRendering"/>）。</li>
-                                    <li>启用 B 帧编码以提升图像质量和带宽效率。</li>
-                                    <li>即使在弱网或低端设备上，也能提供更好的视频质量和流畅的播放体验。</li>
-                                </ul>
-                            </li>
+                            <li><codeph>APPLICATION_SCENARIO_1V1</codeph>（2）：适用于一对一直播场景。SDK 会优化策略，以满足低延迟和高画质的需求，提升视频质量、首帧渲染速度、中低端设备的延迟表现以及弱网环境下的流畅性。注意：该枚举值仅适用于主播对主播的场景。</li>
+                            <li><codeph>APPLICATION_SCENARIO_LIVESHOW</codeph>（3）：适用于秀场场景。SDK 会启用多项性能优化，包括自动启用音视频帧加速渲染（无需调用 <xref keyref="enableInstantMediaRendering"/>）以减少首帧延迟，以及启用 B 帧编码以提升图像质量和带宽效率，即使在弱网或低端设备上也能提供更好的视频质量和播放流畅性。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -260,9 +250,9 @@
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
                         <ul>
-                            <li>-1：通用错误（无具体原因）。</li>
-                            <li>-4：不支持视频应用场景。可能原因包括使用了语音 SDK 而非视频 SDK。</li>
-                            <li>-7：<xref keyref="IRtcEngine"/> 对象未初始化。请在调用该方法前初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-1：发生通用错误（无具体原因）。</li>
+                            <li>-4：不支持视频应用场景，可能是因为使用了语音 SDK 而非视频 SDK。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。请在调用该方法前初始化 <xref keyref="IRtcEngine"/> 对象。</li>
                         </ul>
                     </li>
                 </ul>

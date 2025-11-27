@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_getconnectionstateex">
     <title><ph keyref="getConnectionStateEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取 SDK 当前的连接状态。</ph><ph id="shortdesc" props="android">获取 SDK 当前连接状态。</ph><ph id="shortdesc" props="ios">获取 SDK 当前的连接状态。</ph><ph id="shortdesc" props="mac">获取 SDK 当前的连接状态。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取 SDK 当前的连接状态。</ph><ph id="shortdesc" props="android">获取 SDK 当前的连接状态。</ph><ph id="shortdesc" props="ios">获取 SDK 当前的连接状态。</ph><ph id="shortdesc" props="mac">获取 SDK 当前的连接状态。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,7 +23,7 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">该方法可以在加入频道前或加入频道后调用。</p>
-            <p props="android">该方法可在加入频道前或加入频道后调用。</p>
+            <p props="android">该方法可以在加入频道前或后调用。</p>
             <p props="ios">该方法可以在加入频道前或后调用。</p>
             <p props="mac">该方法可以在加入频道前或后调用。</p>
         </section>
@@ -51,7 +51,12 @@
         <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>
             <p props="cpp">当前的连接状态。详见 <xref keyref="CONNECTION_STATE_TYPE"/>。</p>
-            <p props="android">方法调用成功，返回当前连接状态，详见 <codeph>ConnectionStateType</codeph>。</p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
             <p props="ios">当前的连接状态。详见 <xref keyref="CONNECTION_STATE_TYPE"/>。</p>
             <p props="mac">当前的连接状态。详见 <xref keyref="CONNECTION_STATE_TYPE"/>。</p>
         </section>

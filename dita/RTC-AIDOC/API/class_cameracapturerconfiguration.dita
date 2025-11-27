@@ -55,19 +55,42 @@
             <parml>
                 <plentry props="cpp">
                     <pt>cameraDirection</pt>
-                    <pd>（可选）摄像头方向，详见 <xref keyref="CAMERA_DIRECTION"/>。</pd>
+                    <pd>（可选）摄像头方向，详见 <xref keyref="CAMERA_DIRECTION"/>。
+                        <note>该参数仅适用于 Android 和 iOS 平台。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>cameraFocalLengthType</pt>
-                    <pd>（可选）摄像头焦距类型，详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。</pd>
+                    <pd>（可选）摄像头焦距类型，详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。
+                        <note>该参数仅适用于 Android 和 iOS 平台。
+                            <ul>
+                                <li>设置摄像头焦距类型时，仅支持通过 <codeph>cameraDirection</codeph> 指定摄像头，不支持通过 <codeph>cameraId</codeph> 指定。</li>
+                                <li>对于配备多镜头后置摄像头的 iOS 设备（如双摄：广角和超广角，或三摄：广角、超广角和长焦），可通过以下方式实现超广角视角的视频采集：
+                                    <ul>
+                                        <li>方法一：将该参数设置为 <codeph>CAMERA_FOCAL_LENGTH_ULTRA_WIDE</codeph>（2）（超广角镜头）。</li>
+                                        <li>方法二：将该参数设置为 <codeph>CAMERA_FOCAL_LENGTH_DEFAULT</codeph>（0）（标准镜头），然后调用 <xref keyref="setCameraZoomFactor"/> 将摄像头变焦因子设置为小于 1.0 的值，最小为 0.5。</li>
+                                    </ul>
+                                </li>
+                            </ul><ph>  两种方法的区别在于，方法一的超广角尺寸不可调节，而方法二支持自由调节变焦因子。</ph></note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>deviceId</pt>
-                    <pd>摄像头 ID，最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
+                    <pd>摄像头 ID，最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。
+                        <note>该参数仅适用于 Windows 和 macOS 平台。</note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>cameraId</pt>
-                    <pd>（可选）摄像头 ID。</pd>
+                    <pd>（可选）摄像头 ID。
+                        <note>该参数仅适用于 Android 平台。
+                            <ul>
+                                <li>该参数与 <codeph>cameraDirection</codeph> 互斥，二者只能选其一。</li>
+                                <li>使用 <codeph>cameraDirection</codeph> 指定摄像头更为简便，仅需指定摄像头方向（前置或后置），SDK 会通过 Android 原生 API 获取并确认实际摄像头 ID。</li>
+                                <li>使用 <codeph>cameraId</codeph> 可更精确地指定某个摄像头，适用于多摄像头设备中 <codeph>cameraDirection</codeph> 无法识别或访问所有摄像头的场景，建议直接使用 <codeph>cameraId</codeph> 指定目标摄像头。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>followEncodeDimensionRatio</pt>
@@ -88,11 +111,20 @@
                 </plentry>
                 <plentry props="android">
                     <pt>cameraId</pt>
-                    <pd>（可选）摄像头 ID，默认值为前置摄像头的 ID。你可以通过 Android 原生系统 API 获取 camera ID。</pd>
+                    <pd>（可选）摄像头 ID，默认值为前置摄像头的 ID。你可以通过 Android 原生系统 API 获取 camera ID。
+                        <note>此参数与 <codeph>cameraDirection</codeph> 在摄像头选择上互斥，你可以根据需要选择其中一个。
+                            <ul>
+                                <li>通过 <codeph>cameraDirection</codeph> 指定摄像头更加便捷。你只需指定摄像头朝向（前置或后置），不需要显式指定 camera ID；SDK 会通过 Android 原生 API 获取并确认实际的 camera ID。</li>
+                                <li>通过 <codeph>cameraId</codeph> 指定摄像头可以更精确定位某个摄像头。对于拥有多个摄像头的设备，当 <codeph>cameraDirection</codeph> 无法识别或访问全部摄像头时，建议使用 <codeph>cameraId</codeph> 明确指定所需的摄像头 ID。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>cameraFocalLengthType</pt>
-                    <pd>（可选）摄像头焦距类型。详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。</pd>
+                    <pd>（可选）摄像头焦距类型。详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。
+                        <note>要设置摄像头焦距类型，仅支持通过 <codeph>cameraDirection</codeph> 来指定摄像头，不支持通过 <codeph>cameraId</codeph> 指定。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>captureFormat</pt>
@@ -113,7 +145,13 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>cameraFocalLengthType</pt>
-                    <pd>摄像头焦距类型，仅适用于 iOS。详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。</pd>
+                    <pd>摄像头焦距类型，仅适用于 iOS。详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。
+                        <note>对于配备多镜头后置摄像头的 iOS 设备（如双摄像头：广角和超广角，或三摄像头：广角、超广角和长焦），你可以使用以下任一方式以超广角视角采集视频：
+                            <ul>
+                                <li>方法一：将该参数设置为 <codeph>AgoraFocalLengthUltraWide</codeph>（2）（超广角镜头）。</li>
+                                <li>方法二：将该参数设置为 <codeph>AgoraFocalLengthDefault</codeph>（0）（标准镜头），然后调用 <xref keyref="setCameraZoomFactor"/> 将摄像头的缩放因子设置为小于 1.0 的值，最小值为 0.5。</li>
+                            </ul><ph>两种方法的区别在于，方法一的超广角尺寸不可调节，而方法二支持自由调节摄像头的缩放因子。</ph></note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>deviceId</pt>
@@ -142,7 +180,13 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>cameraFocalLengthType</pt>
-                    <pd>摄像头焦距类型，仅适用于 iOS。详见 <codeph>AgoraFocalLength</codeph>。</pd>
+                    <pd>摄像头焦距类型，仅适用于 iOS。详见 <codeph>AgoraFocalLength</codeph>。
+                        <note>对于配备多镜头后置摄像头的 iOS 设备（如双摄像头：广角和超广角，或三摄像头：广角、超广角和长焦），你可以使用以下任一方式以超广角视角采集视频：
+                            <ul>
+                                <li>方法一：将该参数设置为 <codeph>AgoraFocalLengthUltraWide</codeph>（2）（超广角镜头）。</li>
+                                <li>方法二：将该参数设置为 <codeph>AgoraFocalLengthDefault</codeph>（0）（标准镜头），然后调用 <codeph>setCameraZoomFactor:</codeph> 将摄像头的缩放因子设置为小于 1.0 的值，最小值为 0.5。</li>
+                            </ul><ph>两种方法的区别在于，方法一的超广角尺寸不可调节，而方法二支持自由调节摄像头的缩放因子。</ph></note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>deviceId</pt>

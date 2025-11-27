@@ -39,18 +39,17 @@
                 </dlentry>
             </dl>
             <p props="cpp">成功调用 <xref keyref="OpenWithUrl"/> 和 <xref keyref="Play_Player"/> 后，可以调用该方法停止播放。如果希望暂停播放，请调用 <xref keyref="Pause_Player"/> 方法。如果使用 <xref keyref="OpenWithUrl"/> 打开 URL 流失败，则需要先调用该方法，再重新调用 <xref keyref="OpenWithUrl"/> 以重新打开 URL。</p>
-            <p props="android">如果使用 <xref keyref="OpenWithUrl"/> 打开 URL 流失败，则需要先调用 <xref keyref="Stop_Player"/>，再重新调用 <xref keyref="OpenWithUrl"/> 以重新打开 URL。
-
-成功调用该方法后，SDK 会触发 <xref keyref="onStateChanged"/> 回调，并报告播放器状态为 <codeph>STOPPED</codeph>。</p>
+            <p props="android">如果使用 <xref keyref="OpenWithUrl"/> 打开 URL 流失败，你需要先调用该方法，然后再调用 <xref keyref="OpenWithUrl"/> 重新打开 URL。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>调用时机</title>
             <p props="cpp">此方法必须在调用 <xref keyref="OpenWithUrl"/> 之后调用。</p>
             <p props="android">该方法必须在调用 <xref keyref="OpenWithUrl"/> 之后调用。</p>
         </section>
-        <section id="related" deliveryTarget="details" props="cpp">
+        <section id="related" deliveryTarget="details" props="android cpp">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onStateChanged"/> 回调并报告播放器状态为 <codeph>kRtePlayerStateStopped</codeph>。</p>
+            <p props="android">调用成功后，该方法会触发 <xref keyref="onStateChanged"/> 回调，并上报播放器状态为 <codeph>STOPPED</codeph>。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>参数</title>

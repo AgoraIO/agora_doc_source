@@ -39,7 +39,7 @@
                 </dlentry>
             </dl>
             <p props="cpp">调用 <xref keyref="Play_Player"/> 播放 URL 资源后，可以调用此方法暂停播放。如果需要停止播放，请调用 <xref keyref="Stop_Player"/> 方法。</p>
-            <p props="android">该方法必须在调用 <xref keyref="Play_Player"/> 之后调用。如果需要停止播放，请调用 <xref keyref="Stop_Player"/> 方法。</p>
+            <p props="android">调用 <xref keyref="Play_Player"/> 播放 URL 资源后，如需暂停播放，可以调用该方法。如需停止播放，请调用 <xref keyref="Stop_Player"/>。</p>
             <p props="ios">调用 <xref keyref="Play_Player"/> 播放 URL 资源后，如果你希望暂停播放，可以调用该方法。如果你希望停止播放，请调用 <xref keyref="Pause_Player"/>。你必须在调用 <xref keyref="Play_Player"/> 之后调用该方法。</p>
             <p props="mac">调用 <xref keyref="Play_Player"/> 播放 URL 资源后，如果你希望暂停播放，可以调用该方法。如果你希望停止播放，请调用 <xref keyref="Pause_Player"/>。你必须在调用 <xref keyref="Play_Player"/> 之后调用该方法。</p>
         </section>
@@ -50,9 +50,10 @@
             <p props="ios">你必须在调用 <xref keyref="Play_Player"/> 之后调用该方法。</p>
             <p props="mac">你必须在调用 <xref keyref="Play_Player"/> 之后调用该方法。</p>
         </section>
-        <section id="related" deliveryTarget="details" props="cpp">
+        <section id="related" deliveryTarget="details" props="android cpp">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onStateChanged"/> 回调报告播放器状态为 <codeph>kRtePlayerStatePaused</codeph>。</p>
+            <p props="android">相关回调：成功调用该方法后，会触发 <xref keyref="onStateChanged"/> 回调，报告播放器状态为 <codeph>PAUSED</codeph>。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>参数</title>

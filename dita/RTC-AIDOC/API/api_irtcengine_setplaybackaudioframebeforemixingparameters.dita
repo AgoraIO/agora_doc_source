@@ -23,7 +23,7 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">SDK 会根据采样间隔触发 <xref keyref="onPlaybackAudioFrameBeforeMixing_IAudioFrameObserverBase"/> 回调。请在加入频道前调用该方法。</p>
-            <p props="android">SDK 会根据采样间隔触发 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调。请在加入频道前调用此方法。</p>
+            <p props="android">SDK 会根据采样间隔触发 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调。</p>
             <p props="ios">你可以在加入频道前调用该方法，设置混音前原始音频播放数据的采样率和声道数。SDK 会根据采样间隔触发 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调。</p>
             <p props="mac">你可以在加入频道前调用该方法，设置混音前原始音频播放数据的采样率和声道数。SDK 会根据采样间隔触发 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调。</p>
         </section>
@@ -33,6 +33,10 @@
             <p props="android">请在加入频道前调用此方法。</p>
             <p props="ios">在加入频道前调用该方法。</p>
             <p props="mac">在加入频道前调用该方法。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android">
+            <title>相关回调</title>
+            <p props="android">相关回调：<xref keyref="onPlaybackAudioFrameBeforeMixing"/>。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -52,11 +56,19 @@
                 </plentry>
                 <plentry props="android">
                     <pt>sampleRate</pt>
-                    <pd>回调中返回的采样率，可设置为以下值：8000、16000、32000、44100 或 48000 Hz。</pd>
+                    <pd>回调中返回的采样率。可设置为以下值：
+                        <ul>
+                            <li>8000：8 kHz。</li>
+                            <li>16000：16 kHz。</li>
+                            <li>32000：32 kHz。</li>
+                            <li>44100：44.1 kHz。</li>
+                            <li>48000：48 kHz。</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>channel</pt>
-                    <pd>音频声道数，可设置为以下值：
+                    <pd>音频声道数。可设置为以下值：
                         <ul>
                             <li>1：单声道。</li>
                             <li>2：立体声。</li>
