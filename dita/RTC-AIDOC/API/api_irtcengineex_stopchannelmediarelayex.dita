@@ -29,6 +29,10 @@
             <note props="ios">如果方法调用失败，SDK 会通过 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告 <codeph>AgoraChannelMediaRelayErrorServerNoResponse</codeph>（2）或 <codeph>AgoraChannelMediaRelayErrorServerConnectionLost</codeph>（8）错误码。你可以调用 <xref keyref="leaveChannel2"/> 方法离开频道，媒体流转发会自动停止。</note>
             <note props="mac">如果方法调用失败，SDK 会通过 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告 <codeph>AgoraChannelMediaRelayErrorServerNoResponse</codeph>（2）或 <codeph>AgoraChannelMediaRelayErrorServerConnectionLost</codeph>（8）错误码。你可以调用 <xref keyref="leaveChannel2"/> 方法离开频道，媒体流转发会自动停止。</note>
         </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>该方法适用于多频道场景。</p>
+        </section>
         <section id="related" deliveryTarget="details" props="cpp">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调。如果回调返回 <codeph>RELAY_STATE_IDLE</codeph>（0）和 <codeph>RELAY_OK</codeph>（0），表示主播成功停止转发。</p>

@@ -42,25 +42,20 @@
 默认情况下，仅支持回退到 <codeph>kRteAbrFallbackLow</codeph> 或 <codeph>kRteAbrFallbackAudioOnly</codeph>。如需更灵活的视频体验，可[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能，开启后可回退到所有质量层，并自定义每一层的分辨率。</p>
             <p props="android">在网络状况不佳时，SDK 会将已订阅远端视频流的分辨率降级到指定的视频质量层。每个质量层对应特定的分辨率和码率。网络恢复后，SDK 会将视频流恢复至原始质量层。</p>
             <p props="ios">在网络条件较差时，实时音视频通信的质量可能会下降。调用该方法后，SDK 会在网络变差时将远端视频流的分辨率回退到指定的视频质量层级。每个视频质量层级对应特定的分辨率和码率。SDK 会持续监测网络质量，在网络改善时恢复到原始订阅的视频质量层级。
-默认情况下，调用该方法后只能选择回退到 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。如果你对视频体验有更高要求，可以[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可以回退到所有视频质量层级，并自定义每个层级的分辨率。
-适用场景：
-                <ul>
-                    <li>在常规场景中，可以调用该方法并将回退层级设置为 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。当网络较差时，SDK 会将远端视频流回退为视频小流或仅音频。</li>
-                    <li>如果对远端视频流的回退分辨率有更高要求，可以[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可以自定义每个层级的分辨率。SDK 会以你指定的最低质量层级的分辨率为下限，并根据网络状况在该范围内动态调整分辨率。详细实现方式可参考 Viewer-side URL Streaming。</li>
-                </ul>
-            </p>
+
+默认情况下，调用该方法后只能选择回退到 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。如果你对视频体验有更高要求，可以[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可以回退到所有视频质量层级，并自定义每个层级的分辨率。</p>
             <p props="mac">在网络条件较差时，实时音视频通信的质量可能会下降。调用该方法后，SDK 会在网络变差时将远端视频流的分辨率回退到指定的视频质量层级。每个视频质量层级对应特定的分辨率和码率。SDK 会持续监测网络质量，在网络改善时恢复到原始订阅的视频质量层级。
-默认情况下，调用该方法后只能选择回退到 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。如果你对视频体验有更高要求，可以[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可以回退到所有视频质量层级，并自定义每个层级的分辨率。
-适用场景：
-                <ul>
-                    <li>在常规场景中，可以调用该方法并将回退层级设置为 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。当网络较差时，SDK 会将远端视频流回退为视频小流或仅音频。</li>
-                    <li>如果对远端视频流的回退分辨率有更高要求，可以[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可以自定义每个层级的分辨率。SDK 会以你指定的最低质量层级的分辨率为下限，并根据网络状况在该范围内动态调整分辨率。详细实现方式可参考 Viewer-side URL Streaming。</li>
-                </ul>
-            </p>
+
+默认情况下，调用该方法后只能选择回退到 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。如果你对视频体验有更高要求，可以[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可以回退到所有视频质量层级，并自定义每个层级的分辨率。</p>
             <note props="cpp">如果在调用该方法时未开启 ABR 功能，视频流的回退质量层只能为 <codeph>kRteAbrFallbackLow</codeph> 或 <codeph>kRteAbrFallbackAudioOnly</codeph>。</note>
             <note props="android">如果未开启 ABR 功能，视频流的回退质量层只能设置为 <codeph>LOW</codeph> 或 <codeph>AUDIO_ONLY</codeph>。</note>
             <note props="ios">如果未开启 ABR 功能，远端视频流的回退质量层级只能设置为 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。</note>
             <note props="mac">如果未开启 ABR 功能，远端视频流的回退质量层级只能设置为 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>一般场景下，可调用该方法并将回退质量层设置为 <codeph>kRteAbrFallbackLow</codeph> 或 <codeph>kRteAbrFallbackAudioOnly</codeph>。当网络较差时，SDK 会回退为视频小流或仅接收音频流。
+如果对回退视频流的分辨率有更高要求，可[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可自定义每一层的分辨率。SDK 会以你指定的最低质量层的分辨率为下限，并根据网络状况在该范围内动态调整分辨率。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
