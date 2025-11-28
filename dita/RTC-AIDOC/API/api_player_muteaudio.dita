@@ -38,22 +38,20 @@
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="ios">你必须在调用 <xref keyref="OpenWithUrl"/> 方法之后调用该方法。</p>
-            <p props="mac">你必须在调用 <xref keyref="OpenWithUrl"/> 方法之后调用该方法。</p>
-            <note props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onPlayerInfoUpdated_PlayerObserver"/> 回调，报告最新的播放器和媒体流信息。</note>
-            <note props="mac">成功调用该方法后，SDK 会触发 <xref keyref="onPlayerInfoUpdated_PlayerObserver"/> 回调，报告最新的播放器和媒体流信息。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">该方法必须在调用 <xref keyref="OpenWithUrl"/> 之后调用。</p>
             <p props="android">该方法需要在调用 <xref keyref="OpenWithUrl"/> 方法之后调用。</p>
-            <p props="ios">你必须在调用 <xref keyref="OpenWithUrl"/> 方法之后调用该方法。</p>
-            <p props="mac">你必须在调用 <xref keyref="OpenWithUrl"/> 方法之后调用该方法。</p>
+            <p props="ios">你必须在调用 <xref keyref="OpenWithUrl"/> 之后调用此方法。</p>
+            <p props="mac">你必须在调用 <xref keyref="OpenWithUrl"/> 之后调用此方法。</p>
         </section>
-        <section id="related" deliveryTarget="details" props="android cpp">
+        <section id="related" deliveryTarget="details" props="android cpp ios mac">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <codeph>onPlayerInfoUpdated</codeph> 回调报告最新的播放器和媒体流信息。</p>
             <p props="android">调用该方法成功后，会触发 <xref keyref="onPlayerInfoUpdated"/> 回调，上报最新的播放器和媒体拉流信息。</p>
+            <p props="ios">调用该方法成功后，会触发 <xref keyref="onPlayerInfoUpdated_PlayerObserver"/> 回调以上报最新的播放器和媒体流信息。</p>
+            <p props="mac">调用该方法成功后，会触发 <xref keyref="onPlayerInfoUpdated_PlayerObserver"/> 回调以上报最新的播放器和媒体流信息。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -91,7 +89,7 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>error</pt>
-                    <pd>输出参数，状态或错误信息。详见 <xref keyref="Error"/>。</pd>
+                    <pd>输出参数，状态或错误信息，详见 <xref keyref="Error"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>mute</pt>
@@ -104,7 +102,7 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>error</pt>
-                    <pd>输出参数，状态或错误信息。详见 <xref keyref="Error"/>。</pd>
+                    <pd>输出参数，状态或错误信息，详见 <xref keyref="Error"/>。</pd>
                 </plentry>
             </parml>
         </section>

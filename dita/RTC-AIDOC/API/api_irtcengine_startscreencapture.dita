@@ -38,18 +38,8 @@
                     <li>加入频道后调用该方法，再调用 <xref keyref="updateChannelMediaOptions"/> 并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
                 </ul>
             </p>
-            <p props="ios">在屏幕共享场景中，调用该方法开始采集屏幕视频流。你可以在加入频道前或加入频道后调用该方法，调用时机不同，使用方式如下：
-                <ul>
-                    <li>先调用该方法，再调用 <codeph>joinChannelByToken</codeph> 加入频道，并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，即可开始屏幕共享。</li>
-                    <li>加入频道后调用该方法，再调用 <codeph>updateChannelWithMediaOptions</codeph> 并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，即可开始屏幕共享。</li>
-                </ul>
-            </p>
-            <p props="mac">在屏幕共享场景中，调用该方法开始采集屏幕视频流。你可以在加入频道前或加入频道后调用该方法，调用时机不同，使用方式如下：
-                <ul>
-                    <li>先调用该方法，再调用 <codeph>joinChannelByToken</codeph> 加入频道，并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，即可开始屏幕共享。</li>
-                    <li>加入频道后调用该方法，再调用 <codeph>updateChannelWithMediaOptions</codeph> 并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，即可开始屏幕共享。</li>
-                </ul>
-            </p>
+            <p props="ios">你可以调用该方法开始采集屏幕视频流。</p>
+            <p props="mac">你可以调用该方法开始采集屏幕视频流。</p>
             <note props="cpp">
                 <ul>
                     <li>该方法仅适用于 Android 和 iOS 平台。</li>
@@ -90,10 +80,10 @@
             <note props="ios">
                 <ul>
                     <li>在 iOS 平台，屏幕共享仅支持 iOS 12.0 及以上版本。</li>
-                    <li>如果你使用自定义音频源而非 SDK 采集音频，声网建议你在应用中添加保活逻辑，以避免应用进入后台后屏幕共享中断。</li>
+                    <li>如果你使用自定义音频源而非 SDK 采集音频，声网建议你在应用中添加保活处理逻辑，以避免应用进入后台后屏幕共享中断。</li>
                     <li>此功能对设备性能要求较高，声网建议在 iPhone X 及以上机型上使用。</li>
-                    <li>此方法依赖 iOS 屏幕共享动态库 <codeph>AgoraReplayKitExtension.xcframework</codeph>。如果该动态库被删除，屏幕共享将无法正常启用。</li>
-                    <li>为避免屏幕共享时系统音频采集失败，声网建议你在加入频道前调用 <xref keyref="setAudioScenario"/> 方法将音频应用场景设置为 <codeph>AgoraAudioScenarioGameStreaming</codeph>。</li>
+                    <li>此方法依赖 iOS 屏幕共享动态库 <codeph>AgoraReplayKitExtension.xcframework</codeph>。如果该动态库被删除，将无法正常启用屏幕共享。</li>
+                    <li>为避免屏幕共享时系统音频采集失败，声网建议你在加入频道前通过 <xref keyref="setAudioScenario"/> 方法将音频应用场景设置为 <codeph>AgoraAudioScenarioGameStreaming</codeph>。</li>
                     <li>屏幕共享流的计费基于 <xref keyref="ScreenVideoParameters"/> 中的 <codeph>dimensions</codeph>：
                         <ul>
                             <li>如果未传入该值，声网按 1280 × 720 计费。</li>
@@ -105,10 +95,10 @@
             <note props="mac">
                 <ul>
                     <li>在 iOS 平台，屏幕共享仅支持 iOS 12.0 及以上版本。</li>
-                    <li>如果你使用自定义音频源而非 SDK 采集音频，声网建议你在应用中添加保活逻辑，以避免应用进入后台后屏幕共享中断。</li>
+                    <li>如果你使用自定义音频源而非 SDK 采集音频，声网建议你在应用中添加保活处理逻辑，以避免应用进入后台后屏幕共享中断。</li>
                     <li>此功能对设备性能要求较高，声网建议在 iPhone X 及以上机型上使用。</li>
-                    <li>此方法依赖 iOS 屏幕共享动态库 <codeph>AgoraReplayKitExtension.xcframework</codeph>。如果该动态库被删除，屏幕共享将无法正常启用。</li>
-                    <li>为避免屏幕共享时系统音频采集失败，声网建议你在加入频道前调用 <xref keyref="setAudioScenario"/> 方法将音频应用场景设置为 <codeph>AgoraAudioScenarioGameStreaming</codeph>。</li>
+                    <li>此方法依赖 iOS 屏幕共享动态库 <codeph>AgoraReplayKitExtension.xcframework</codeph>。如果该动态库被删除，将无法正常启用屏幕共享。</li>
+                    <li>为避免屏幕共享时系统音频采集失败，声网建议你在加入频道前通过 <xref keyref="setAudioScenario"/> 方法将音频应用场景设置为 <codeph>AgoraAudioScenarioGameStreaming</codeph>。</li>
                     <li>屏幕共享流的计费基于 <codeph>AgoraScreenVideoParameters</codeph> 中的 <codeph>dimensions</codeph>：
                         <ul>
                             <li>如果未传入该值，声网按 1280 × 720 计费。</li>
@@ -118,9 +108,26 @@
                 </ul>
             </note>
         </section>
-        <section id="timing" deliveryTarget="details" props="android">
+        <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>调用时机</title>
             <p props="android">你可以在加入频道前或加入频道后调用此方法。</p>
+            <p props="ios">你可以在加入频道前或加入频道后调用此方法，具体区别如下：
+                <ul>
+                    <li>先调用此方法，再调用 <codeph>joinChannelByToken</codeph> 加入频道，并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                    <li>加入频道后调用此方法，再调用 <codeph>updateChannelWithMediaOptions</codeph> 并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                </ul>
+            </p>
+            <p props="mac">你可以在加入频道前或加入频道后调用此方法，具体区别如下：
+                <ul>
+                    <li>先调用此方法，再调用 <codeph>joinChannelByToken</codeph> 加入频道，并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                    <li>加入频道后调用此方法，再调用 <codeph>updateChannelWithMediaOptions</codeph> 并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="related" deliveryTarget="details" props="ios mac">
+            <title>相关回调</title>
+            <p props="ios">当屏幕共享扩展进程的状态发生变化时，SDK 会触发 <xref keyref="onLocalVideoStateChanged"/> 回调。当 <codeph>sourceType</codeph> 的类型为 <codeph>AgoraVideoSourceTypeScreen</codeph> 时，<codeph>state</codeph> 参数表示屏幕共享的状态。</p>
+            <p props="mac">当屏幕共享扩展进程的状态发生变化时，SDK 会触发 <xref keyref="onLocalVideoStateChanged"/> 回调。当 <codeph>sourceType</codeph> 的类型为 <codeph>AgoraVideoSourceTypeScreen</codeph> 时，<codeph>state</codeph> 参数表示屏幕共享的状态。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

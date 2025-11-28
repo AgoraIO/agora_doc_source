@@ -20,8 +20,8 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="ios">该方法截取指定用户的视频流，生成 JPG 图像，并将其保存到指定路径。该方法为异步方法，调用返回时 SDK 尚未完成截图操作。当用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</p>
-            <p props="mac">该方法截取指定用户的视频流，生成 JPG 图像，并将其保存到指定路径。该方法为异步方法，调用返回时 SDK 尚未完成截图操作。当用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</p>
+            <p props="ios">该方法截取指定用户的视频流的快照，生成 JPG 图像，并将其保存到指定路径。</p>
+            <p props="mac">该方法截取指定用户的视频流的快照，生成 JPG 图像，并将其保存到指定路径。</p>
             <note props="cpp">
                 <ul>
                     <li>该方法为异步方法，调用返回时 SDK 尚未完成截图操作。</li>
@@ -34,18 +34,32 @@
                     <li>当用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</li>
                 </ul>
             </note>
+            <note props="ios">
+                <ul>
+                    <li>该方法为异步方法，在方法调用返回时 SDK 尚未完成截图操作。</li>
+                    <li>用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</li>
+                </ul>
+            </note>
+            <note props="mac">
+                <ul>
+                    <li>该方法为异步方法，在方法调用返回时 SDK 尚未完成截图操作。</li>
+                    <li>用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</li>
+                </ul>
+            </note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">在加入频道后调用该方法。</p>
             <p props="android">请在加入频道后调用该方法。</p>
-            <p props="ios">在加入频道后调用该方法。</p>
-            <p props="mac">在加入频道后调用该方法。</p>
+            <p props="ios">请在加入频道后调用该方法。</p>
+            <p props="mac">请在加入频道后调用该方法。</p>
         </section>
-        <section id="related" deliveryTarget="details" props="android cpp">
+        <section id="related" deliveryTarget="details" props="android cpp ios mac">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
             <p props="android">调用该方法成功后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
+            <p props="ios">调用该方法成功后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
+            <p props="mac">调用该方法成功后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>

@@ -29,14 +29,12 @@ elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didAudi
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">该回调在本地用户订阅远端音频流的状态发生变化时触发。</p>
-            <p props="ios">该回调在你订阅远端用户音频流的状态发生变化时触发。</p>
-            <p props="mac">该回调在你订阅远端用户音频流的状态发生变化时触发。</p>
+            <p props="ios">该回调在音频订阅状态发生变化时触发。</p>
+            <p props="mac">该回调在音频订阅状态发生变化时触发。</p>
         </section>
-        <section id="timing" deliveryTarget="details" props="android ios mac">
+        <section id="timing" deliveryTarget="details" props="android">
             <title>触发时机</title>
             <p props="android">该回调在本地用户订阅远端音频流的状态发生变化时被触发。</p>
-            <p props="ios">该回调在你订阅远端用户音频流的状态发生变化时触发。</p>
-            <p props="mac">该回调在你订阅远端用户音频流的状态发生变化时触发。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -86,7 +84,7 @@ elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didAudi
                                     </li>
                                     <li>本地用户：
                                         <ul>
-                                            <li>调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时将 <codeph>autoSubscribeAudio</codeph> 设为 <xref keyref="false"/>，表示不自动订阅任何音频流。</li>
+                                            <li>调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeAudio</codeph> 设为 <xref keyref="false"/>，表示不自动订阅任何音频流。</li>
                                             <li>调用 <xref keyref="muteRemoteAudioStream"/> 或 <xref keyref="muteAllRemoteAudioStreams"/> 时将 <codeph>muted</codeph> 设为 <xref keyref="true"/>，表示停止接收远端音频流。</li>
                                         </ul>
                                     </li>
@@ -114,7 +112,7 @@ elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didAudi
                                     </li>
                                     <li>本地用户：
                                         <ul>
-                                            <li>调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时将 <codeph>autoSubscribeAudio</codeph> 设为 <xref keyref="false"/>，表示不自动订阅任何音频流。</li>
+                                            <li>调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeAudio</codeph> 设为 <xref keyref="false"/>，表示不自动订阅任何音频流。</li>
                                             <li>调用 <xref keyref="muteRemoteAudioStream"/> 或 <xref keyref="muteAllRemoteAudioStreams"/> 时将 <codeph>muted</codeph> 设为 <xref keyref="true"/>，表示停止接收远端音频流。</li>
                                         </ul>
                                     </li>
@@ -131,7 +129,7 @@ elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didAudi
                 </plentry>
                 <plentry props="ios">
                     <pt>engine</pt>
-                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>channelId</pt>
@@ -151,11 +149,11 @@ elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didAudi
                 </plentry>
                 <plentry props="ios">
                     <pt>elapseSinceLastState</pt>
-                    <pd>从上一个状态到当前状态经过的时间（毫秒）。</pd>
+                    <pd>从上一个状态到当前状态所经历的时间（毫秒）。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>engine</pt>
-                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>channelId</pt>
@@ -175,7 +173,7 @@ elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didAudi
                 </plentry>
                 <plentry props="mac">
                     <pt>elapseSinceLastState</pt>
-                    <pd>从上一个状态到当前状态经过的时间（毫秒）。</pd>
+                    <pd>从上一个状态到当前状态所经历的时间（毫秒）。</pd>
                 </plentry>
             </parml>
         </section>

@@ -32,7 +32,7 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">你可以多次调用该方法并传入不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph>，以同时播放多个音效文件。为获得最佳用户体验，声网建议你不要同时播放超过三个音效文件。你可以在加入频道前或加入频道后调用该方法。</p>
-            <p props="android">该方法支持播放以 <codeph>content://</codeph> 开头的 URI 文件。关于支持的音频文件格式，详见声网文档。若本地音乐文件不存在、SDK 不支持该文件格式，或无法访问音乐文件的 URL，SDK 会报告 <codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph>。</p>
+            <p props="android">该方法支持播放以 <codeph>content://</codeph> 开头的 URI 文件。关于支持的音频文件格式，详见[声网 RTC SDK 支持哪些格式的音频文件](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。若本地音乐文件不存在、SDK 不支持该文件格式，或无法访问音乐文件的 URL，SDK 会报告 <codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph>。</p>
             <p props="mac">你可以多次调用该方法并传入不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph>，以同时播放多个音效文件。为获得最佳用户体验，声网建议你不要同时播放超过三个音效文件。你可以在加入频道前或加入频道后调用该方法。</p>
             <note props="ios">如果你需要播放在线音效文件，声网建议你先将该文件缓存到本地设备，再调用 <xref keyref="preloadEffect2"/> 将其预加载到内存中，然后调用 <xref keyref="playEffect2"/> 播放音效。否则，可能因加载超时或失败导致播放失败或无声。</note>
             <note props="android">如果需要播放在线音效文件，建议先将其缓存到本地设备，调用 <codeph>preloadEffect</codeph> 将文件预加载到内存中，再调用该方法播放音效。否则可能因加载超时或失败导致播放失败或无声。</note>

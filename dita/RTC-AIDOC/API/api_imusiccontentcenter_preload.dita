@@ -30,7 +30,7 @@
                 </dlentry>
                 <dlentry props="android">
                     <dt>废弃</dt>
-                    <dd>该方法已废弃，请改用 <codeph>preload(long songCode)</codeph>。</dd>
+                    <dd>该方法已废弃，请改用 <xref keyref="preload2"/>。</dd>
                 </dlentry>
             </dl>
             <p props="cpp">你可以调用该方法预加载想要播放的音乐资源。成功调用该方法后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调报告预加载事件。在调用该方法之前，你需要先调用 <codeph>getMusicCollectionWithMusicChartId</codeph> 或 <xref keyref="searchMusic"/> 获取目标音乐资源，并从 <xref keyref="onMusicCollectionResult"/> 回调中获取歌曲编号 <codeph>songCode</codeph>。</p>
@@ -38,7 +38,7 @@
             <p props="android">调用成功后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调报告预加载事件。在调用该方法前，你需要先调用 <codeph>getMusicCollectionByMusicChartId</codeph> 或 <codeph>searchMusic</codeph> 获取音乐资源，并从 <xref keyref="onMusicCollectionResult"/> 回调中获取资源标识符（<codeph>songCode</codeph>）。</p>
             <note props="cpp">在销毁 <xref keyref="IRtcEngine"/> 对象前，请确保已收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后再调用 <xref keyref="release_IMusicContentCenter"/> 方法。</note>
             <note props="ios">在销毁 <xref keyref="IRtcEngine"/> 对象前，请确保等待 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后再调用 <xref keyref="destroy_IMusicContentCenter"/> 方法。</note>
-            <note props="android">销毁 <xref keyref="IRtcEngine"/> 对象前，请确保在收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后调用 <codeph>destroy()</codeph> 方法。</note>
+            <note props="android">销毁 <xref keyref="IRtcEngine"/> 对象前，请确保在收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后调用 <xref keyref="destroy1"/> 方法。</note>
         </section>
         <section id="related" deliveryTarget="details" props="ios">
             <title>相关回调</title>
