@@ -23,6 +23,14 @@
             <note props="cpp">调用该方法前，你必须先申请 [<codeph>MediaProjection</codeph>](https://developer.android.com/reference/android/media/projection/MediaProjection) 权限。该方法仅适用于 Android 平台。</note>
             <note props="android">在调用该方法前，必须先申请 [<codeph>MediaProjection</codeph>](https://developer.android.com/reference/android/media/projection/MediaProjection) 权限。</note>
         </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>如果你已申请到 <codeph>MediaProjection</codeph>，可以直接使用你自己的 <codeph>MediaProjection</codeph>，而无需使用 SDK 申请的对象。适用场景包括：
+                <ul>
+                    <li>在定制系统设备上，避免系统弹窗（如用户授权采集屏幕）并直接开始采集屏幕视频流。</li>
+                    <li>在涉及一个或多个子进程的屏幕共享流程中，避免在子进程中创建对象时可能出现的错误，从而防止屏幕采集失败。</li>
+                </ul><ph>该方法适用于多频道场景。</ph></p>
+        </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>调用时机</title>
             <p props="cpp">在调用 <codeph>startScreenCapture</codeph> 之后调用该方法。</p>
