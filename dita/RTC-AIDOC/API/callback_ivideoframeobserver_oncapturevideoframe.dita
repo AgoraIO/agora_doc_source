@@ -20,7 +20,7 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">该回调用于获取本地设备采集的原始视频数据，并进行预处理。你可以在该回调中直接修改 <xref keyref="VideoFrame"/>，并返回 <xref keyref="true"/> 将修改后的视频数据发送给 SDK。若需将预处理后的视频数据传递给 SDK，需先调用 <xref keyref="getVideoFrameProcessMode"/> 将视频处理模式设置为读写模式（<codeph>PROCESS_MODE_READ_WRITE</codeph>）。</p>
+            <p props="cpp">该回调用于获取本地设备采集的原始视频数据，并进行预处理。你可以在该回调中直接修改 <codeph>videoFrame</codeph>，并返回 <xref keyref="true"/> 将修改后的视频数据发送给 SDK。若需将预处理后的视频数据传递给 SDK，需先调用 <xref keyref="getVideoFrameProcessMode"/> 将视频处理模式设置为读写模式（<codeph>PROCESS_MODE_READ_WRITE</codeph>）。</p>
             <p props="android">你可以通过该回调获取本地设备采集的原始视频数据，并根据需要进行预处理。预处理完成后，可以直接在该回调中修改 <codeph>videoFrame</codeph>，并将返回值设置为 <xref keyref="true"/>，以将修改后的视频数据发送给 SDK。如果需要将预处理后的视频数据发送给 SDK，需先调用 <xref keyref="getVideoFrameProcessMode"/> 将视频处理模式设置为读写模式（<codeph>PROCESS_MODE_READ_WRITE</codeph>）。
 适用场景：
                 <ul>
@@ -33,7 +33,7 @@
             <note props="cpp">
                 <ul>
                     <li>如果获取的视频数据类型为 RGBA，SDK 不支持处理 alpha 通道的数据。</li>
-                    <li>建议确保 <xref keyref="VideoFrame"/> 中修改后的参数与视频帧缓冲区中的实际数据一致，否则可能导致本地预览或远端显示出现旋转、拉伸等异常。</li>
+                    <li>建议确保 <codeph>videoFrame</codeph> 中修改后的参数与视频帧缓冲区中的实际数据一致，否则可能导致本地预览或远端显示出现旋转、拉伸等异常。</li>
                     <li>该回调默认返回的视频格式为 YUV420。如需其他格式，可在 <xref keyref="getVideoFormatPreference"/> 回调中设置期望的数据格式。</li>
                 </ul>
             </note>
