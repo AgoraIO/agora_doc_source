@@ -25,8 +25,29 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>APPLICATION_SCENARIO_MEETING</pt>
-                    <pd>（1）：会议场景。适用于会议场景，SDK 会自动启用以下策略：在需要视频小流具备高码率的场景中，SDK 会启用多种抗网络拥塞技术，提升低质量流性能，确保订阅端流畅接收；SDK 实时监控视频大流的订阅人数，并动态调整配置：若无人订阅，自动降低码率和帧率以节省上行带宽；若有人订阅，则恢复为最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 设置的 <xref keyref="VideoEncoderConfiguration"/> 配置，若未设置，则使用以下默认值：Windows 和 macOS 分辨率为 1280 × 720，Android 和 iOS 为 960 × 540；帧率为 15 fps；码率为 Windows 和 macOS 为 1600 Kbps，Android 和 iOS 为 1000 Kbps。SDK 还会监控视频小流的订阅人数，并根据订阅情况动态启用或禁用：若无人订阅，自动禁用以节省上行带宽；若有人订阅，则启用并恢复为最近一次调用 <codeph>setDualStreamMode(SIMULCAST_STREAM_MODE mode, const SimulcastStreamConfig&amp; streamConfig)</codeph> 设置的 <xref keyref="SimulcastStreamConfig"/> 配置，若未设置，则使用以下默认值：分辨率为 480 × 272，帧率为 15 fps，码率为 500 Kbps。
-                        <note>如果用户调用了 <codeph>setDualStreamMode(SIMULCAST_STREAM_MODE mode, const SimulcastStreamConfig&amp; streamConfig)</codeph> 并设置为不发送视频小流（<codeph>DISABLE_SIMULCAST_STREAM</codeph>），则会议场景下低质量流的动态调整将不生效。</note>
+                    <pd>
+                        <note>如果用户调用了 <codeph>setDualStreamMode(SIMULCAST_STREAM_MODE mode, const SimulcastStreamConfig&amp; streamConfig)</codeph> 并设置为不发送视频小流（<codeph>DISABLE_SIMULCAST_STREAM</codeph>），则会议场景下低质量流的动态调整将不生效。</note><ph>（1）：会议场景。适用于会议场景，SDK 会自动启用以下策略：</ph>
+                        <ul>
+                            <li>在需要视频小流具备高码率的场景中，SDK 会启用多种抗网络拥塞技术，提升低质量流性能，确保订阅端流畅接收；</li>
+                            <li>SDK 实时监控视频大流的订阅人数，并动态调整配置：
+                                <ul>
+                                    <li>若无人订阅，自动降低码率和帧率以节省上行带宽；</li>
+                                    <li>若有人订阅，则恢复为最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 设置的 <xref keyref="VideoEncoderConfiguration"/> 配置，若未设置，则使用以下默认值：
+                                        <ul>
+                                            <li>Windows 和 macOS 分辨率为 1280 × 720，Android 和 iOS 为 960 × 540；</li>
+                                            <li>帧率为 15 fps；</li>
+                                            <li>码率为 Windows 和 macOS 为 1600 Kbps，Android 和 iOS 为 1000 Kbps。</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>SDK 还会监控视频小流的订阅人数，并根据订阅情况动态启用或禁用：
+                                <ul>
+                                    <li>若无人订阅，自动禁用以节省上行带宽；</li>
+                                    <li>若有人订阅，则启用并恢复为最近一次调用 <xref keyref="setDualStreamMode2"/> 设置的 <xref keyref="SimulcastStreamConfig"/> 配置，若未设置，则使用以下默认值：分辨率为 480 × 272，帧率为 15 fps，码率为 500 Kbps。</li>
+                                </ul>
+                            </li>
+                        </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">

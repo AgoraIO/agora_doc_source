@@ -25,7 +25,7 @@
                 <ol>
                     <li>调用 <xref keyref="enableVirtualBackground"/>，并将自定义背景图设置为 <codeph>BACKGROUND_NONE</codeph>，实现摄像头采集视频中人像与背景的分离。</li>
                     <li>调用 <codeph>startScreenCapture</codeph> 开始采集屏幕共享视频流。</li>
-                    <li>调用 <xref keyref="startLocalVideoTranscoder"/>，并将采集人像的视频源设置为参与本地视频合图的视频源之一，即可在混流视频中实现人像画中画效果。</li>
+                    <li>调用 <xref keyref="startLocalVideoTranscoder"/>，并将采集人像的视频源设置为参与本地视频合图的视频源之一，即可在合图视频中实现人像画中画效果。</li>
                 </ol>
             </p>
             <p props="android">调用该方法后，你可以在本地将多个视频流合并为一个视频流，例如摄像头采集的视频流、屏幕共享、媒体播放器、远端视频、视频文件、图片等，然后将混合后的视频流发布到频道中。以下是实现人像画中画效果的典型用例：
@@ -47,7 +47,7 @@
                             <li>Android 和 iOS 平台：最多支持 2 路摄像头采集的视频流（需设备支持双摄或外接摄像头）+ 1 路屏幕共享流。</li>
                         </ul>
                     </li>
-                    <li>配置本地视频混流时，需确保采集人像的视频流的图层编号大于屏幕共享流的图层编号，否则人像会被屏幕共享遮挡，无法在最终混流视频中显示。</li>
+                    <li>配置本地视频混流时，需确保采集人像的视频流的图层编号大于屏幕共享流的图层编号，否则人像会被屏幕共享遮挡，无法在最终合图视频中显示。</li>
                 </ul>
             </note>
             <note props="android">
