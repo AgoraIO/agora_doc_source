@@ -4,9 +4,10 @@
     <title><ph keyref="IMetadataObserver"/></title>
     <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="IMetadataObserver"/> 接口，用于处理与元数据相关的回调。</ph><ph id="shortdesc" props="android">用于实现元数据观察功能。</ph><ph id="shortdesc" props="ios"><xref keyref="IMetadataObserver"/> 协议，用于在关键线程中处理回调。</ph><ph id="shortdesc" props="mac"><xref keyref="IMetadataObserver"/> 协议，用于在关键线程中处理回调。</ph></shortdesc>
     <refbody>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android ios mac">
             <p props="ios">建议避免在关键线程中执行耗时操作。</p>
             <p props="mac">建议避免在关键线程中执行耗时操作。</p>
+            <note props="android">请在关键线程中实现该类中的所有回调方法。建议避免在关键线程中执行任何耗时操作。</note>
         </section>
     </refbody>
 </reference>

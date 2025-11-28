@@ -65,6 +65,18 @@
                     <li><xref keyref="getEarMonitoringAudioParams"/>：设置 <xref keyref="onEarMonitoringAudioFrame"/> 回调的音频数据格式。</li>
                 </ul>
             </p>
+            <note props="cpp">SDK 会通过 <xref keyref="AudioParams"/> 中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔，并根据采样间隔触发 <xref keyref="onRecordAudioFrame_IAudioFrameObserverBase"/>、<xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/>、<xref keyref="onMixedAudioFrame_IAudioFrameObserverBase"/> 和 <xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/> 回调。
+采样间隔（秒）= <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。
+请确保采样间隔 ≥ 0.01 秒。</note>
+            <note props="android">SDK 会通过 <xref keyref="AudioParams"/> 中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔，并按该间隔触发 <xref keyref="onRecordAudioFrame"/>、<xref keyref="onPlaybackAudioFrame"/>、<xref keyref="onMixedAudioFrame"/> 和 <xref keyref="onEarMonitoringAudioFrame"/> 回调。
+采样间隔（秒） = <codeph>samplesPerCall</codeph> /（<codeph>sampleRate</codeph> × <codeph>channel</codeph>）。
+确保采样间隔 ≥ 0.01 秒。</note>
+            <note props="ios">SDK 会通过 <xref keyref="AudioParams"/> 中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔，并根据采样间隔触发 <xref keyref="onRecordAudioFrame"/>、<codeph>onPlaybackAudioFrame:</codeph>、<xref keyref="onMixedAudioFrame"/> 和 <xref keyref="onEarMonitoringAudioFrame"/> 回调。
+采样间隔（秒） = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。
+请确保采样间隔 ≥ 0.01 秒。</note>
+            <note props="mac">SDK 会通过 <xref keyref="AudioParams"/> 中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔，并根据采样间隔触发 <xref keyref="onRecordAudioFrame"/>、<codeph>onPlaybackAudioFrame:</codeph>、<xref keyref="onMixedAudioFrame"/> 和 <xref keyref="onEarMonitoringAudioFrame"/> 回调。
+采样间隔（秒） = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。
+请确保采样间隔 ≥ 0.01 秒。</note>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>属性</title>

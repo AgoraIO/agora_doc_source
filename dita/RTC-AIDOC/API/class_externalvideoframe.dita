@@ -101,6 +101,40 @@
 @end</codeblock>
             </p>
         </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android ios mac">
+            <note props="android">
+                <ol>
+                    <li><codeph>stride</codeph> 的单位为像素（pixel），而非字节（byte）。</li>
+                    <li>帧宽和高可通过以下方式推导：
+                        <ul>
+                            <li>裁剪后宽度：<codeph>croppedWidth = strideInPixels - cropLeft - cropRight</codeph></li>
+                            <li>裁剪后高度：<codeph>croppedHeight = height - cropTop - cropBottom</codeph></li>
+                        </ul>
+                    </li>
+                    <li>关于裁剪：
+                        <ul>
+                            <li>如果缓冲区中存在冗余数据，可通过裁剪去除。例如帧大小为 360 × 640，但缓冲区的 <codeph>stride</codeph> 为 368，多出的 8 像素用于填充，此时可设置：<codeph>stride = 368</codeph>，<codeph>height = 640</codeph>，<codeph>cropRight = 8</codeph>，其余 <codeph>cropXXX</codeph> 默认为 0。</li>
+                        </ul>
+                    </li>
+                </ol>
+            </note>
+            <note props="ios">
+                <ol>
+                    <li><codeph>strideInPixels</codeph>：步幅单位为像素，而非字节。</li>
+                    <li>关于帧的宽度和高度：未定义 <codeph>width</codeph> 字段，但可以通过以下方式推导：</li>
+                </ol><ph>   <codeph>croppedWidth = (strideInPixels - cropLeft - cropRight)</codeph></ph><ph>   <codeph>croppedHeight = (height - cropTop - cropBottom)</codeph></ph>
+                <ol>
+                    <li>关于裁剪：如果缓冲区包含无效数据，可以通过裁剪去除。例如，帧大小为 360 x 640，缓冲区步幅为 368，即右侧多出 8 像素用于填充，此时可以设置：</li>
+                </ol><ph>   <codeph>strideInPixels = 368;</codeph></ph><ph>   <codeph>height = 640;</codeph></ph><ph>   <codeph>cropRight = 8;</codeph></ph><ph>   <codeph>// cropLeft、cropTop、cropBottom 默认为 0。</codeph></ph></note>
+            <note props="mac">
+                <ol>
+                    <li><codeph>strideInPixels</codeph>：步幅单位为像素，而非字节。</li>
+                    <li>关于帧的宽度和高度：未定义 <codeph>width</codeph> 字段，但可以通过以下方式推导：</li>
+                </ol><ph>   <codeph>croppedWidth = (strideInPixels - cropLeft - cropRight)</codeph></ph><ph>   <codeph>croppedHeight = (height - cropTop - cropBottom)</codeph></ph>
+                <ol>
+                    <li>关于裁剪：如果缓冲区包含无效数据，可以通过裁剪去除。例如，帧大小为 360 x 640，缓冲区步幅为 368，即右侧多出 8 像素用于填充，此时可以设置：</li>
+                </ol><ph>   <codeph>strideInPixels = 368;</codeph></ph><ph>   <codeph>height = 640;</codeph></ph><ph>   <codeph>cropRight = 8;</codeph></ph><ph>   <codeph>// cropLeft、cropTop、cropBottom 默认为 0。</codeph></ph></note>
+        </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>属性</title>
             <parml>
