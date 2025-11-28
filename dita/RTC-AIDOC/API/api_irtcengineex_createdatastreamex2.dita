@@ -25,7 +25,7 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp"><codeph>createDataStreamEx</codeph> 与 <codeph>createDataStreamEx(int* streamId, bool reliable, bool ordered, const RtcConnection&amp; connection)</codeph> 相比，不保证数据传输的可靠性。如果数据包在发送后五秒内未被接收，SDK 会直接丢弃该数据。建议在调用 <xref keyref="joinChannelEx"/> 后调用此方法。</p>
-            <p props="android">与 <codeph>createDataStreamEx</codeph> 相比，该方法不保证数据传输的可靠性。如果数据包在发送后五秒内未被接收，SDK 会直接丢弃该数据。</p>
+            <p props="android">与 <xref keyref="createDataStreamEx1"/> 相比，该方法不保证数据传输的可靠性。如果数据包在发送后五秒内未被接收，SDK 会直接丢弃该数据。</p>
             <p props="ios">该方法不保证数据传输的可靠性。如果数据包在发送后五秒内未被接收，SDK 会直接丢弃该数据。调用时机：请在调用 <codeph>joinChannelExByToken</codeph> 方法后调用该方法。</p>
             <p props="mac">该方法不保证数据传输的可靠性。如果数据包在发送后五秒内未被接收，SDK 会直接丢弃该数据。调用时机：请在调用 <codeph>joinChannelExByToken</codeph> 方法后调用该方法。</p>
             <note props="cpp">每个用户在 <xref keyref="IRtcEngine"/> 的生命周期中最多可以创建五个数据流。离开频道时，数据流会被销毁，如需再次使用需重新创建。如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用实时消息。</note>

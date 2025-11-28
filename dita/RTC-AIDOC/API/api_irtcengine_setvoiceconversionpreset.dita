@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setvoiceconversionpreset">
     <title><ph keyref="setVoiceConversionPreset"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置预设的声动语聊特效。</ph><ph id="shortdesc" props="android">设置 SDK 预设的变声效果。</ph><ph id="shortdesc" props="ios">设置预设的语音美声效果。</ph><ph id="shortdesc" props="mac">设置预设的语音美声效果。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置预设的声动语聊特效。</ph><ph id="shortdesc" props="android">设置 SDK 预设的变声效果。</ph><ph id="shortdesc" props="ios">设置预设的变声效果。</ph><ph id="shortdesc" props="mac">设置预设的变声效果。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -40,20 +40,8 @@
                     <li>调用 <codeph>setAudioProfile</codeph>，并将 <codeph>profile</codeph> 参数设置为 <codeph>MUSIC_HIGH_QUALITY</codeph>（4）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5）。</li>
                 </ul>
             </p>
-            <p props="ios">调用该方法为发布音频流的本地用户设置预设的变声效果。设置后，频道内所有用户都能听到该效果。你可以根据不同场景为用户设置不同的变声效果。
-建议在调用该方法前，先调用以下 API 以获得更好的音效：
-                <ul>
-                    <li>调用 <xref keyref="setAudioScenario"/> 将音频场景设置为高音质音频场景，即 <codeph>AgoraAudioScenarioGameStreaming</codeph>（3）。</li>
-                    <li>调用 <xref keyref="setAudioProfile2"/> 将 <codeph>profile</codeph> 参数设置为 <codeph>AgoraAudioProfileMusicHighQuality</codeph>（4）或 <codeph>AgoraAudioProfileMusicHighQualityStereo</codeph>（5）。</li>
-                </ul>
-            </p>
-            <p props="mac">调用该方法为发布音频流的本地用户设置预设的变声效果。设置后，频道内所有用户都能听到该效果。你可以根据不同场景为用户设置不同的变声效果。
-建议在调用该方法前，先调用以下 API 以获得更好的音效：
-                <ul>
-                    <li>调用 <xref keyref="setAudioScenario"/> 将音频场景设置为高音质音频场景，即 <codeph>AgoraAudioScenarioGameStreaming</codeph>（3）。</li>
-                    <li>调用 <xref keyref="setAudioProfile2"/> 将 <codeph>profile</codeph> 参数设置为 <codeph>AgoraAudioProfileMusicHighQuality</codeph>（4）或 <codeph>AgoraAudioProfileMusicHighQualityStereo</codeph>（5）。</li>
-                </ul>
-            </p>
+            <p props="ios">调用该方法为在频道中发布音频流的本地用户设置预设的变声效果。设置后，频道内所有用户都能听到该变声效果。你可以根据不同的场景为用户设置不同的变声效果。</p>
+            <p props="mac">调用该方法为在频道中发布音频流的本地用户设置预设的变声效果。设置后，频道内所有用户都能听到该变声效果。你可以根据不同的场景为用户设置不同的变声效果。</p>
             <note props="cpp">
                 <ul>
                     <li>请勿将 <codeph>setAudioProfile</codeph> 中的 <codeph>profile</codeph> 参数设置为 <codeph>AUDIO_PROFILE_SPEECH_STANDARD</codeph>（1）或 <codeph>AUDIO_PROFILE_IOT</codeph>（6），否则该方法不生效。</li>
@@ -95,8 +83,8 @@
             <note props="ios">
                 <ul>
                     <li>不要将 <xref keyref="setAudioProfile2"/> 中的 <codeph>profile</codeph> 参数设置为 <codeph>AgoraAudioProfileSpeechStandard</codeph>（1），否则该方法不生效。</li>
-                    <li>该方法对人声处理效果最佳，不建议用于处理包含音乐的音频数据。</li>
-                    <li>调用 <xref keyref="setVoiceConversionPreset"/> 后，不建议再调用以下方法，否则会覆盖 <xref keyref="setVoiceConversionPreset"/> 设置的效果：
+                    <li>该方法对人声处理效果最佳，声网不建议使用该方法处理包含音乐的音频数据。</li>
+                    <li>调用 <xref keyref="setVoiceConversionPreset"/> 后，声网不建议你再调用以下方法，否则会覆盖 <xref keyref="setVoiceConversionPreset"/> 设置的效果：
                         <ul>
                             <li><xref keyref="setAudioEffectPreset"/></li>
                             <li><xref keyref="setAudioEffectParameters"/></li>
@@ -108,14 +96,14 @@
                             <li><xref keyref="setLocalVoiceReverb"/></li>
                         </ul>
                     </li>
-                    <li>该方法依赖语音美声动态库 <xref keyref="audiobeauty"/>（iOS）或 <codeph>AgoraAudioBeautyExtension.framework</codeph>（macOS）。如果该动态库被删除，则无法正常启用该功能。</li>
+                    <li>该方法依赖于美声特效动态库 <xref keyref="audiobeauty"/>（iOS）或 <codeph>AgoraAudioBeautyExtension.framework</codeph>（macOS）。如果该动态库被删除，则无法正常启用该功能。</li>
                 </ul>
             </note>
             <note props="mac">
                 <ul>
                     <li>不要将 <xref keyref="setAudioProfile2"/> 中的 <codeph>profile</codeph> 参数设置为 <codeph>AgoraAudioProfileSpeechStandard</codeph>（1），否则该方法不生效。</li>
-                    <li>该方法对人声处理效果最佳，不建议用于处理包含音乐的音频数据。</li>
-                    <li>调用 <xref keyref="setVoiceConversionPreset"/> 后，不建议再调用以下方法，否则会覆盖 <xref keyref="setVoiceConversionPreset"/> 设置的效果：
+                    <li>该方法对人声处理效果最佳，声网不建议使用该方法处理包含音乐的音频数据。</li>
+                    <li>调用 <xref keyref="setVoiceConversionPreset"/> 后，声网不建议你再调用以下方法，否则会覆盖 <xref keyref="setVoiceConversionPreset"/> 设置的效果：
                         <ul>
                             <li><xref keyref="setAudioEffectPreset"/></li>
                             <li><xref keyref="setAudioEffectParameters"/></li>
@@ -127,7 +115,7 @@
                             <li><xref keyref="setLocalVoiceReverb"/></li>
                         </ul>
                     </li>
-                    <li>该方法依赖语音美声动态库 <codeph>AgoraAudioBeautyExtension.xcframework</codeph>（iOS）或 <xref keyref="audiobeauty"/>（macOS）。如果该动态库被删除，则无法正常启用该功能。</li>
+                    <li>该方法依赖于美声特效动态库 <codeph>AgoraAudioBeautyExtension.xcframework</codeph>（iOS）或 <xref keyref="audiobeauty"/>（macOS）。如果该动态库被删除，则无法正常启用该功能。</li>
                 </ul>
             </note>
         </section>
@@ -135,8 +123,18 @@
             <title>调用时机</title>
             <p props="cpp">该方法可在加入频道前或加入频道后调用。</p>
             <p props="android">该方法可在加入频道前或加入频道后调用。</p>
-            <p props="ios">该方法可以在加入频道前或加入频道后调用。</p>
-            <p props="mac">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="ios">该方法可以在加入频道前或加入频道后调用。为获得更好的音效，建议在调用该方法前先调用以下方法：
+                <ul>
+                    <li>调用 <xref keyref="setAudioScenario"/> 将音频场景设置为高音质场景，即 <codeph>AgoraAudioScenarioGameStreaming</codeph>（3）。</li>
+                    <li>调用 <xref keyref="setAudioProfile2"/> 并将 <codeph>profile</codeph> 参数设置为 <codeph>AgoraAudioProfileMusicHighQuality</codeph>（4）或 <codeph>AgoraAudioProfileMusicHighQualityStereo</codeph>（5）。</li>
+                </ul>
+            </p>
+            <p props="mac">该方法可以在加入频道前或加入频道后调用。为获得更好的音效，建议在调用该方法前先调用以下方法：
+                <ul>
+                    <li>调用 <xref keyref="setAudioScenario"/> 将音频场景设置为高音质场景，即 <codeph>AgoraAudioScenarioGameStreaming</codeph>（3）。</li>
+                    <li>调用 <xref keyref="setAudioProfile2"/> 并将 <codeph>profile</codeph> 参数设置为 <codeph>AgoraAudioProfileMusicHighQuality</codeph>（4）或 <codeph>AgoraAudioProfileMusicHighQualityStereo</codeph>（5）。</li>
+                </ul>
+            </p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -159,11 +157,11 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>preset</pt>
-                    <pd>预设语音美声效果选项，详见 <xref keyref="VOICE_CONVERSION_PRESET"/>。</pd>
+                    <pd>预设的变声效果选项，详见 <xref keyref="VOICE_CONVERSION_PRESET"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>preset</pt>
-                    <pd>预设语音美声效果选项，详见 <xref keyref="VOICE_CONVERSION_PRESET"/>。</pd>
+                    <pd>预设的变声效果选项，详见 <xref keyref="VOICE_CONVERSION_PRESET"/>。</pd>
                 </plentry>
             </parml>
         </section>

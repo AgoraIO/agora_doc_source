@@ -25,7 +25,7 @@
             <note props="cpp">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>允许列表不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>允许列表不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
                     <li>一旦设置了订阅的允许列表，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
                     <li>如果某个用户同时被添加到允许列表和阻止列表中，则仅阻止列表生效。</li>
                 </ul>
@@ -33,7 +33,7 @@
             <note props="android">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>白名单不受 <xref keyref="ChannelMediaOptions"/> 中 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <codeph>autoSubscribeVideo</codeph> 设置的影响。</li>
+                    <li>白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeVideo</codeph> 设置的影响。</li>
                     <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入，该设置仍然有效。</li>
                     <li>如果某个用户同时被添加到白名单和黑名单中，则仅黑名单生效。</li>
                 </ul>
@@ -41,7 +41,7 @@
             <note props="ios">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用该方法。</li>
-                    <li>白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
                     <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
                     <li>如果某个用户同时被添加到白名单和黑名单中，则只有黑名单生效。</li>
                 </ul>
@@ -49,7 +49,7 @@
             <note props="mac">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用该方法。</li>
-                    <li>白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
                     <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
                     <li>如果某个用户同时被添加到白名单和黑名单中，则只有黑名单生效。</li>
                 </ul>
@@ -77,11 +77,11 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>allowlist</pt>
-                    <pd>你想要订阅的视频流用户的用户 ID 列表。如果你想指定某个用户的视频流进行订阅，请将该用户的用户 ID 添加到此列表中。如果你想将某个用户从白名单中移除，你需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加你想要订阅的用户的用户 ID。详见 <codeph>NSArray</codeph>。</pd>
+                    <pd>你想要订阅的视频流用户的用户 ID 列表。如果你想指定某个用户的视频流进行订阅，请将该用户的用户 ID 添加到此列表中。如果你想将某个用户从白名单中移除，你需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加你想要订阅的用户的用户 ID。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>allowlist</pt>
-                    <pd>你想要订阅的视频流用户的用户 ID 列表。如果你想指定某个用户的视频流进行订阅，请将该用户的用户 ID 添加到此列表中。如果你想将某个用户从白名单中移除，你需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加你想要订阅的用户的用户 ID。详见 <codeph>NSArray</codeph>。</pd>
+                    <pd>你想要订阅的视频流用户的用户 ID 列表。如果你想指定某个用户的视频流进行订阅，请将该用户的用户 ID 添加到此列表中。如果你想将某个用户从白名单中移除，你需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加你想要订阅的用户的用户 ID。</pd>
                 </plentry>
             </parml>
         </section>

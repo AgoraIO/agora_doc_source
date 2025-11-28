@@ -32,16 +32,8 @@
             <p props="android">启用虚拟节拍器后，SDK 会从头开始播放指定的音效文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <codeph>beatsPerMinute</codeph> 控制每个文件的播放时长。例如，如果你将 <codeph>beatsPerMinute</codeph> 设置为 60，SDK 每秒播放一个节拍。如果文件时长超过节拍时长，SDK 只播放节拍时长内的音频内容。
 默认情况下，虚拟节拍器的声音会在频道中发布。如果你希望远端用户也能听到该声音，可以在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishRhythmPlayerTrack</codeph> 设置为 <xref keyref="true"/>。
 适用场景：在音乐教育、体育教学等场景中，教师通常需要使用节拍器，以便学生按照正确的节奏进行练习。节拍由强拍和弱拍组成。每小节的第一个节拍称为强拍，其余为弱拍。</p>
-            <p props="ios">启用虚拟节拍器后，SDK 会从头开始播放指定的音效文件，并根据 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <codeph>beatsPerMinute</codeph> 控制每个文件的播放时长。例如，如果将 <codeph>beatsPerMinute</codeph> 设置为 60，SDK 每秒播放一个节拍。如果文件时长超过节拍时长，SDK 只播放节拍时长内的音频内容。
-
-默认情况下，虚拟节拍器的声音会在频道中发布。如果你希望远端用户也能听到该声音，可以在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishRhythmPlayerTrack</codeph> 设置为 <xref keyref="true"/>。
-
-适用场景：在音乐教育、体育教学等场景中，教师通常需要使用节拍器帮助学生按照正确的节奏进行练习。节拍由强拍和弱拍组成，每小节的第一个节拍称为强拍，其余为弱拍。</p>
-            <p props="mac">启用虚拟节拍器后，SDK 会从头开始播放指定的音效文件，并根据 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <codeph>beatsPerMinute</codeph> 控制每个文件的播放时长。例如，如果将 <codeph>beatsPerMinute</codeph> 设置为 60，SDK 每秒播放一个节拍。如果文件时长超过节拍时长，SDK 只播放节拍时长内的音频内容。
-
-默认情况下，虚拟节拍器的声音会在频道中发布。如果你希望远端用户也能听到该声音，可以在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishRhythmPlayerTrack</codeph> 设置为 <xref keyref="true"/>。
-
-适用场景：在音乐教育、体育教学等场景中，教师通常需要使用节拍器帮助学生按照正确的节奏进行练习。节拍由强拍和弱拍组成，每小节的第一个节拍称为强拍，其余为弱拍。</p>
+            <p props="ios">启用虚拟节拍器后，SDK 会从头开始播放你指定的音效文件，并根据 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <codeph>beatsPerMinute</codeph> 控制每个文件的播放时长。例如，如果你将 <codeph>beatsPerMinute</codeph> 设置为 60，SDK 每秒播放一个节拍。如果文件时长超过节拍时长，SDK 只播放节拍时长内的音频内容。默认情况下，虚拟节拍器的声音会在频道中发布。如果你希望远端用户也能听到该声音，可以在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishRhythmPlayerTrack</codeph> 设置为 <xref keyref="true"/>。</p>
+            <p props="mac">启用虚拟节拍器后，SDK 会从头开始播放你指定的音效文件，并根据 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <codeph>beatsPerMinute</codeph> 控制每个文件的播放时长。例如，如果你将 <codeph>beatsPerMinute</codeph> 设置为 60，SDK 每秒播放一个节拍。如果文件时长超过节拍时长，SDK 只播放节拍时长内的音频内容。默认情况下，虚拟节拍器的声音会在频道中发布。如果你希望远端用户也能听到该声音，可以在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishRhythmPlayerTrack</codeph> 设置为 <xref keyref="true"/>。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
@@ -50,9 +42,11 @@
             <p props="ios">该方法可以在加入频道前或加入频道后调用。</p>
             <p props="mac">该方法可以在加入频道前或加入频道后调用。</p>
         </section>
-        <section id="related" deliveryTarget="details" props="cpp">
+        <section id="related" deliveryTarget="details" props="cpp ios mac">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onRhythmPlayerStateChanged"/> 回调报告虚拟节拍器的状态。</p>
+            <p props="ios">调用该方法成功后，SDK 会在本地触发 <xref keyref="onRhythmPlayerStateChanged"/> 回调，报告虚拟节拍器的状态。</p>
+            <p props="mac">调用该方法成功后，SDK 会在本地触发 <xref keyref="onRhythmPlayerStateChanged"/> 回调，报告虚拟节拍器的状态。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
@@ -71,11 +65,11 @@
                 </plentry>
                 <plentry props="android">
                     <pt>sound1</pt>
-                    <pd>强拍音效文件的绝对路径或 URL 地址（包含文件扩展名）。例如：<xref keyref="filePath-example"/>。支持的音频文件格式详见 <codeph>What audio file formats does the Agora RTC SDK support</codeph>。</pd>
+                    <pd>强拍音效文件的绝对路径或 URL 地址（包含文件扩展名）。例如：<xref keyref="filePath-example"/>。支持的音频文件格式详见[声网 RTC SDK 支持哪些音频文件格式](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>sound2</pt>
-                    <pd>弱拍音效文件的绝对路径或 URL 地址（包含文件扩展名）。例如：<xref keyref="filePath-example"/>。支持的音频文件格式详见 <codeph>What audio file formats does the Agora RTC SDK support</codeph>。</pd>
+                    <pd>弱拍音效文件的绝对路径或 URL 地址（包含文件扩展名）。例如：<xref keyref="filePath-example"/>。支持的音频文件格式详见[声网 RTC SDK 支持哪些音频文件格式](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>config</pt>
@@ -83,11 +77,11 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>sound1</pt>
-                    <pd>强拍音效文件的绝对路径或 URL 地址（包含文件扩展名）。例如，<xref keyref="filePath-example"/>。</pd>
+                    <pd>强拍音效文件的绝对路径或 URL 地址（包括文件扩展名）。例如，<xref keyref="filePath-example"/>。该方法支持的音频文件格式，详见[声网 RTC SDK 支持哪些格式的音频文件](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>sound2</pt>
-                    <pd>弱拍音效文件的绝对路径或 URL 地址（包含文件扩展名）。例如，<xref keyref="filePath-example"/>。</pd>
+                    <pd>弱拍音效文件的绝对路径或 URL 地址（包括文件扩展名）。例如，<xref keyref="filePath-example"/>。该方法支持的音频文件格式，详见[声网 RTC SDK 支持哪些格式的音频文件](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>config</pt>
@@ -95,11 +89,11 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>sound1</pt>
-                    <pd>强拍音效文件的绝对路径或 URL 地址（包含文件扩展名）。例如，<xref keyref="filePath-example"/>。</pd>
+                    <pd>强拍音效文件的绝对路径或 URL 地址（包括文件扩展名）。例如，<xref keyref="filePath-example"/>。该方法支持的音频文件格式，详见[声网 RTC SDK 支持哪些格式的音频文件](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>sound2</pt>
-                    <pd>弱拍音效文件的绝对路径或 URL 地址（包含文件扩展名）。例如，<xref keyref="filePath-example"/>。</pd>
+                    <pd>弱拍音效文件的绝对路径或 URL 地址（包括文件扩展名）。例如，<xref keyref="filePath-example"/>。该方法支持的音频文件格式，详见[声网 RTC SDK 支持哪些格式的音频文件](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>config</pt>

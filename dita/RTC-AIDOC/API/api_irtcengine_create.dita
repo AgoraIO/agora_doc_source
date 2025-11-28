@@ -63,7 +63,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>appId</pt>
-                    <pd>声网为你的项目签发的 App ID。只有使用相同 App ID 的用户才能加入同一个频道并进行通信。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。若需更换 App ID，请调用 <xref keyref="Destroy_Rte"/> 销毁当前 <xref keyref="IRtcEngine"/> 实例，然后再创建新的实例。</pd>
+                    <pd>声网为你的项目签发的 App ID。只有使用相同 App ID 的用户才能加入同一个频道并进行通信。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/> 实例。若需更换 App ID，请调用 <xref keyref="destroy1"/> 销毁当前 <xref keyref="IRtcEngine"/> 实例，然后再创建新的实例。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>handler</pt>
@@ -81,10 +81,20 @@
         </section>
         <section id="return_values" props="android ios mac">
             <title>返回值</title>
-            <p props="ios">方法调用成功，返回 <xref keyref="IRtcEngine"/> 对象。方法调用失败，返回一个其内部引擎字段为 <xref keyref="NULL"/> 的 <xref keyref="IRtcEngine"/> 对象。你可以通过 <xref keyref="delegate"/> 的 <xref keyref="onError"/> 回调获取错误码。</p>
+            <p props="ios">
+                <ul>
+                    <li>方法调用成功，返回 <xref keyref="IRtcEngine"/> 对象。</li>
+                    <li>方法调用失败，返回一个其内部引擎字段为 <xref keyref="NULL"/> 的 <xref keyref="IRtcEngine"/> 对象。你可以通过 <xref keyref="delegate"/> 的 <xref keyref="onError"/> 回调获取错误码。</li>
+                </ul>
+            </p>
             <p props="android">方法调用成功，返回已初始化的 <xref keyref="IRtcEngine"/> 实例。
 方法调用失败，SDK 会抛出异常，并返回相应的错误信息。你需要捕获异常并进行处理。</p>
-            <p props="mac">方法调用成功，返回 <xref keyref="IRtcEngine"/> 对象。方法调用失败，返回一个其内部引擎字段为 <xref keyref="NULL"/> 的 <xref keyref="IRtcEngine"/> 对象。你可以通过 <xref keyref="delegate"/> 的 <xref keyref="onError"/> 回调获取错误码。</p>
+            <p props="mac">
+                <ul>
+                    <li>方法调用成功，返回 <xref keyref="IRtcEngine"/> 对象。</li>
+                    <li>方法调用失败，返回一个其内部引擎字段为 <xref keyref="NULL"/> 的 <xref keyref="IRtcEngine"/> 对象。你可以通过 <xref keyref="delegate"/> 的 <xref keyref="onError"/> 回调获取错误码。</li>
+                </ul>
+            </p>
         </section>
     </refbody>
 </reference>

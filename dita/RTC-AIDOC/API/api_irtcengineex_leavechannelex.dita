@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_leavechannelex">
     <title><ph keyref="leaveChannelEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">离开频道。</ph><ph id="shortdesc" props="android">离开频道。</ph><ph id="shortdesc" props="ios">离开频道。</ph><ph id="shortdesc" props="mac">离开频道。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">离开频道。</ph><ph id="shortdesc" props="android">离开频道。</ph><ph id="shortdesc" props="ios">离开频道并释放与会话相关的所有资源。</ph><ph id="shortdesc" props="mac">离开频道并释放与会话相关的所有资源。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,24 +30,24 @@
                 </ul>
             </p>
             <p props="android">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。调用 <xref keyref="joinChannelEx"/> 加入频道后，必须调用此方法或 <codeph>leaveChannelEx</codeph> 结束通话，否则无法开始下一次通话。</p>
-            <p props="ios">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。调用 <codeph>joinChannelExByToken</codeph> 加入频道后，必须调用此方法或 <xref keyref="leaveChannelEx2"/> 结束通话，否则无法开始下一次通话。</p>
-            <p props="mac">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。调用 <codeph>joinChannelExByToken</codeph> 加入频道后，必须调用此方法或 <xref keyref="leaveChannelEx2"/> 结束通话，否则无法开始下一次通话。</p>
+            <p props="ios">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。调用 <codeph>joinChannelExByToken</codeph> 加入频道后，必须调用该方法或 <xref keyref="leaveChannelEx2"/> 结束通话，否则无法开始下一次通话。</p>
+            <p props="mac">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。调用 <codeph>joinChannelExByToken</codeph> 加入频道后，必须调用该方法或 <xref keyref="leaveChannelEx2"/> 结束通话，否则无法开始下一次通话。</p>
             <note props="android">
                 <ul>
-                    <li>如果在调用该方法后立即调用 <xref keyref="Destroy_Rte"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。</li>
+                    <li>如果在调用该方法后立即调用 <xref keyref="destroy1"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。</li>
                     <li>该方法为异步调用，方法返回时并不代表用户已离开频道。</li>
-                    <li>如果调用 <codeph>leaveChannel</codeph> 或 <codeph>leaveChannel</codeph>，你将离开通过 <codeph>joinChannel</codeph>、<codeph>joinChannel</codeph> 或 <xref keyref="joinChannelEx"/> 加入的所有频道。</li>
+                    <li>如果调用 <xref keyref="leaveChannel"/> 或 <xref keyref="leaveChannel2"/>，你将离开通过 <xref keyref="joinChannel1"/>、<xref keyref="joinChannel2"/> 或 <xref keyref="joinChannelEx"/> 加入的所有频道。</li>
                 </ul>
             </note>
             <note props="ios">如果在调用该方法后立即调用 <xref keyref="destroy_IMusicContentCenter"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。
                 <ul>
-                    <li>此方法为异步调用。当该方法返回时，并不代表你已完全离开频道。</li>
+                    <li>此方法为异步调用。当该方法返回时，并不代表你已离开频道。</li>
                     <li>如果调用 <xref keyref="leaveChannel"/> 或 <xref keyref="leaveChannel2"/>，你将离开通过 <codeph>joinChannelByToken</codeph>、<codeph>joinChannelByToken</codeph> 或 <codeph>joinChannelExByToken</codeph> 加入的所有频道。</li>
                 </ul>
             </note>
             <note props="mac">如果在调用该方法后立即调用 <xref keyref="release"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。
                 <ul>
-                    <li>此方法为异步调用。当该方法返回时，并不代表你已完全离开频道。</li>
+                    <li>此方法为异步调用。当该方法返回时，并不代表你已离开频道。</li>
                     <li>如果调用 <xref keyref="leaveChannel"/> 或 <xref keyref="leaveChannel2"/>，你将离开通过 <codeph>joinChannelByToken</codeph>、<codeph>joinChannelByToken</codeph> 或 <codeph>joinChannelExByToken</codeph> 加入的所有频道。</li>
                 </ul>
             </note>
@@ -59,7 +59,7 @@
             <p props="ios">在调用 <codeph>joinChannelExByToken</codeph> 之后调用该方法。</p>
             <p props="mac">在调用 <codeph>joinChannelExByToken</codeph> 之后调用该方法。</p>
         </section>
-        <section id="related" deliveryTarget="details" props="android cpp">
+        <section id="related" deliveryTarget="details" props="android cpp ios mac">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发以下回调：
                 <ul>
@@ -71,6 +71,18 @@
                 <ul>
                     <li>本地客户端实例：触发 <xref keyref="onLeaveChannel"/> 回调。</li>
                     <li>远端客户端实例：远端主播离开频道后触发 <xref keyref="onUserOffline"/> 回调。</li>
+                </ul>
+            </p>
+            <p props="ios">调用该方法成功后会触发以下回调：
+                <ul>
+                    <li>本地客户端：触发 <xref keyref="onLeaveChannel"/> 回调。</li>
+                    <li>远端客户端：远端主播离开频道后触发 <xref keyref="onUserOffline"/> 回调。</li>
+                </ul>
+            </p>
+            <p props="mac">调用该方法成功后会触发以下回调：
+                <ul>
+                    <li>本地客户端：触发 <xref keyref="onLeaveChannel"/> 回调。</li>
+                    <li>远端客户端：远端主播离开频道后触发 <xref keyref="onUserOffline"/> 回调。</li>
                 </ul>
             </p>
         </section>
@@ -87,19 +99,19 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>connection</pt>
-                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>leaveChannelBlock</pt>
-                    <pd>该回调表示你离开频道，并在 <xref keyref="RtcStats"/> 中提供通话统计信息。详见 <xref keyref="RtcStats"/>。</pd>
+                    <pd>离开频道回调。在 <xref keyref="RtcStats"/> 中提供通话统计信息。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>connection</pt>
-                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>leaveChannelBlock</pt>
-                    <pd>该回调表示你离开频道，并在 <xref keyref="RtcStats"/> 中提供通话统计信息。详见 <xref keyref="RtcStats"/>。</pd>
+                    <pd>离开频道回调。在 <xref keyref="RtcStats"/> 中提供通话统计信息。</pd>
                 </plentry>
             </parml>
         </section>

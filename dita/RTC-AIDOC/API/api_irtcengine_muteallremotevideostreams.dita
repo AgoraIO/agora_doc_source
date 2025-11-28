@@ -20,14 +20,14 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">该方法对所有通过 <codeph>joinChannel</codeph> 加入或将要加入频道的远端用户生效，等效于 <codeph>autoSubscribeVideo</codeph>。请确保在加入频道后调用该方法。</p>
+            <p props="cpp">该方法对所有通过 <codeph>joinChannel</codeph> 加入或将要加入频道的远端用户生效，等效于 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeVideo</codeph>。请确保在加入频道后调用该方法。</p>
             <p props="android">请在加入频道后调用该方法。调用该方法后，本地用户将停止或恢复订阅所有远端用户的视频流，包括之后加入频道的用户。</p>
             <p props="ios">调用该方法后，你会停止或恢复订阅所有远端用户的视频流，包括后续加入频道的用户。</p>
             <p props="mac">调用该方法后，你会停止或恢复订阅所有远端用户的视频流，包括后续加入频道的用户。</p>
             <note props="cpp">如果在加入频道后调用 <codeph>muteAllRemoteVideoStreams(true)</codeph>，本地用户将停止接收频道中所有用户的视频流，包括在调用该方法后加入频道的用户。</note>
-            <note props="android">如果你调用该方法后又调用了 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的视频流。你可以在调用 <codeph>joinChannel</codeph> 加入频道时将 <codeph>autoSubscribeVideo</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户的视频流订阅。</note>
-            <note props="ios">如果你调用了该方法后又调用了 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的视频流。你可以在调用 <codeph>joinChannelByToken</codeph> 加入频道时将 <codeph>autoSubscribeVideo</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户的视频流的订阅。</note>
-            <note props="mac">如果你调用了该方法后又调用了 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的视频流。你可以在调用 <codeph>joinChannelByToken</codeph> 加入频道时将 <codeph>autoSubscribeVideo</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户的视频流的订阅。</note>
+            <note props="android">如果你调用该方法后又调用了 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的视频流。你可以在调用 <codeph>joinChannel</codeph> 加入频道时将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeVideo</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户的视频流订阅。</note>
+            <note props="ios">如果你调用了该方法后又调用了 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的视频流。你可以在调用 <codeph>joinChannelByToken</codeph> 加入频道时将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeVideo</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户的视频流的订阅。</note>
+            <note props="mac">如果你调用了该方法后又调用了 <xref keyref="enableVideo"/> 或 <xref keyref="disableVideo"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的视频流。你可以在调用 <codeph>joinChannelByToken</codeph> 加入频道时将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeVideo</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户的视频流的订阅。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>调用时机</title>
