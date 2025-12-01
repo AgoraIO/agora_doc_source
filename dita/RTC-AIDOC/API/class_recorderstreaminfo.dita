@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_recorderstreaminfo">
     <title><ph keyref="RecorderStreamInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于描述待录制媒体流的信息。</ph><ph id="shortdesc" props="android">用于指定待录制的音视频流信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于描述待录制媒体流的信息。</ph><ph id="shortdesc" props="android">用于指定待录制的音视频流信息。</ph><ph id="shortdesc" props="ios">待录制音视频流的信息。</ph><ph id="shortdesc" props="mac">待录制音视频流的信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -16,9 +16,19 @@
   public String channelId;
   public int recorderStreamType;
 }</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRecorderStreamInfo: NSObject
+@property (nonatomic, nonatomic) NSUInteger uid;
+@property (nonatomic, copy) NSString *_Nonnull channelId;
+@property (assign, nonatomic) AgoraRecorderStreamType type;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRecorderStreamInfo: NSObject
+@property (nonatomic, nonatomic) NSUInteger uid;
+@property (nonatomic, copy) NSString *_Nonnull channelId;
+@property (assign, nonatomic) AgoraRecorderStreamType type;
+@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>属性</title>
             <parml>
                 <plentry props="cpp">
@@ -49,6 +59,30 @@
                             <li>1：加入频道前的本地预览视频流。</li>
                         </ul>
                     </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>待录制的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>channelId</pt>
+                    <pd>待录制的目标频道名。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>type</pt>
+                    <pd>待录制的视频流类型，详见 <xref keyref="RecorderStreamType"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>待录制的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channelId</pt>
+                    <pd>待录制的目标频道名。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>type</pt>
+                    <pd>待录制的视频流类型，详见 <xref keyref="RecorderStreamType"/>。</pd>
                 </plentry>
             </parml>
         </section>
