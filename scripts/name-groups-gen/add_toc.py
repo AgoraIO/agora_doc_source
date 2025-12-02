@@ -55,7 +55,9 @@ class TocExtractor:
             '../../dita/RTC-NG/RTC_NG_API_Flutter.ditamap',
             '../../dita/RTC-NG/RTC_NG_API_RN.ditamap',
             '../../dita/RTC-NG/RTC_NG_API_Unity.ditamap',
-            '../../dita/RTC-NG/RTC_NG_API_Electron.ditamap'
+            '../../dita/RTC-NG/RTC_NG_API_Electron.ditamap',
+            '../../dita/RTC-NG/RTC_NG_API_Unreal.ditamap',
+            '../../dita/RTC-NG/RTC_NG_API_Blueprint.ditamap'
         ]
         
         # 缓存每个 ditamap 文件中的 key -> toc 映射
@@ -340,7 +342,7 @@ class TocExtractor:
         except Exception as e:
             logger.error(f"保存 JSON 文件到 {output_file} 时出错: {e}")
     
-    def run(self, input_file: str = "name_groups_step1.json", output_file: str = "name_groups_step2.json") -> None:
+    def run(self, input_file: str = "name_groups.json", output_file: str = "name_groups.json") -> None:
         """
         运行完整的 toc 提取流程。
         

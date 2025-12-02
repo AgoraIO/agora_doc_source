@@ -25,10 +25,17 @@ class KeysmapExtractor:
     def __init__(self):
         # Platform mapping: platform name -> keysmap file suffix
         self.platform_mapping = {
-            'windows': 'cpp',
-            'android': 'java',
-            'ios': 'ios',
-            'macos': 'macos'
+            'electron': 'electron',
+            'rn': 'rn',
+            'unity': 'unity',
+            'flutter': 'flutter',
+            'csharp': 'unity',
+            'unreal-cpp': 'unreal',
+            'unreal-blueprint': 'blueprint',
+            # 'windows': 'cpp',
+            # 'android': 'java',
+            # 'ios': 'ios',
+            # 'macos': 'macos'
         }
         
         # Keysmap files directory
