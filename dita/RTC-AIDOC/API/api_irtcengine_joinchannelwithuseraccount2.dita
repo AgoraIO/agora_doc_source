@@ -38,14 +38,18 @@
 
 与 <codeph>joinChannelWithUserAccount</codeph> 方法相比，该方法新增了 <codeph>options</codeph> 参数，用于设置频道内的媒体选项，例如是否发布音视频流。
 
-默认情况下，用户会订阅频道内所有其他用户的音视频流，从而产生使用量和计费。若要停止订阅其他流，请设置 <codeph>options</codeph> 参数或调用管理发布与订阅的相关方法。</p>
-            <p props="android">该方法新增了 <codeph>options</codeph> 参数，用于设置媒体选项，例如是否在频道内发布音视频流。默认情况下，用户会订阅频道内所有其他用户的音视频流，从而产生使用量和计费。如需停止订阅其他流，请设置 <codeph>options</codeph> 参数或调用管理发布与订阅的相关方法。</p>
+默认情况下，用户会订阅频道内所有其他用户的音视频流，从而产生使用量和计费。若要停止订阅其他流，请设置 <codeph>options</codeph> 参数或调用 <codeph>muteRemoteAudio/VideoStream</codeph> 或 <codeph>muteAllRemoteAudio/VideoStreams</codeph>。</p>
+            <p props="android">该方法新增了 <codeph>options</codeph> 参数，用于设置媒体选项，例如是否在频道内发布音视频流。默认情况下，用户会订阅频道内所有其他用户的音视频流，从而产生使用量和计费。如需停止订阅其他流，请设置 <codeph>options</codeph> 参数或调用 <codeph>muteRemoteAudio/VideoStream</codeph> 或 <codeph>muteAllRemoteAudio/VideoStreams</codeph>。</p>
             <p props="ios">在调用该方法之前，如果你尚未调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户 User Account，当你调用该方法加入频道时，SDK 会自动为你创建一个用户 User Account。先调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户 User Account，再调用该方法加入频道，可以缩短进入频道所需的时间。
 
-与 <xref keyref="joinChannelWithUserAccount1"/> 方法相比，该方法多了一个 <codeph>mediaOptions</codeph> 参数，用于设置媒体选项，例如是否在频道内发布音视频流。默认情况下，你会订阅频道内所有其他用户的音视频流，从而产生使用量和计费。若要停止订阅其他流，请设置 <codeph>mediaOptions</codeph> 参数或调用发布与订阅相关的方法。</p>
+与 <xref keyref="joinChannelWithUserAccount1"/> 方法相比，该方法多了一个 <codeph>mediaOptions</codeph> 参数，用于设置媒体选项，例如是否在频道内发布音视频流。默认情况下，你会订阅频道内所有其他用户的音视频流，从而产生使用量和计费。若要停止订阅其他流，请设置 <codeph>mediaOptions</codeph> 参数或调用 <codeph>muteRemoteAudio/VideoStream</codeph> 或 <codeph>muteAllRemoteAudio/VideoStreams</codeph>。</p>
             <p props="mac">在调用该方法之前，如果你尚未调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户 User Account，当你调用该方法加入频道时，SDK 会自动为你创建一个用户 User Account。先调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户 User Account，再调用该方法加入频道，可以缩短进入频道所需的时间。
 
-与 <xref keyref="joinChannelWithUserAccount1"/> 方法相比，该方法多了一个 <codeph>mediaOptions</codeph> 参数，用于设置媒体选项，例如是否在频道内发布音视频流。默认情况下，你会订阅频道内所有其他用户的音视频流，从而产生使用量和计费。若要停止订阅其他流，请设置 <codeph>mediaOptions</codeph> 参数或调用发布与订阅相关的方法。</p>
+与 <xref keyref="joinChannelWithUserAccount1"/> 方法相比，该方法多了一个 <codeph>mediaOptions</codeph> 参数，用于设置媒体选项，例如是否在频道内发布音视频流。默认情况下，你会订阅频道内所有其他用户的音视频流，从而产生使用量和计费。若要停止订阅其他流，请设置 <codeph>mediaOptions</codeph> 参数或调用 <codeph>muteRemoteAudio/VideoStream</codeph> 或 <codeph>muteAllRemoteAudio/VideoStreams</codeph>。</p>
+            <note props="cpp">该方法仅支持用户同时加入一个频道。
+不同 App ID 的用户无法互通。
+加入频道前，请确保用于生成 Token 的 App ID 与调用 <xref keyref="initialize"/> 方法时传入的 App ID 相同，否则可能导致加入频道失败。
+为确保通信顺畅，请使用相同的参数类型标识用户。例如，如果某用户使用用户 ID 加入频道，则其他用户也应使用用户 ID；使用用户账号加入频道时同理。如果用户使用声网 Web SDK 加入频道，请确保用户 ID 的参数类型一致。</note>
             <note props="android">
                 <ul>
                     <li>此方法仅支持用户同时加入一个频道。</li>
