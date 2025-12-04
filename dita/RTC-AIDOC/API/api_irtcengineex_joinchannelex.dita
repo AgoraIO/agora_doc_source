@@ -34,9 +34,9 @@
 
 在多摄像头采集场景中，调用此方法后需要调用 <codeph>startPreview</codeph> 方法，并将 <codeph>sourceType</codeph> 设置为 <codeph>VIDEO_SOURCE_CAMERA_SECONDARY</codeph>，以确保第二路摄像头正常采集。</p>
             <p props="ios">在调用该方法之前，如果你尚未调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户 User Account，当你调用该方法加入频道时，SDK 会自动为你创建一个用户 User Account。先调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户 User Account，再调用该方法加入频道，可以缩短进入频道所需的时间。
-一旦用户加入频道，默认会订阅频道中其他所有用户的音视频流，从而产生用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 <codeph>mediaOptions</codeph> 参数或调用发布与订阅相关的方法。</p>
+一旦用户加入频道，默认会订阅频道中其他所有用户的音视频流，从而产生用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 <codeph>mediaOptions</codeph> 参数或调用 <codeph>muteRemoteAudio/VideoStream</codeph> 或 <codeph>muteAllRemoteAudio/VideoStreams</codeph>。</p>
             <p props="mac">在调用该方法之前，如果你尚未调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户 User Account，当你调用该方法加入频道时，SDK 会自动为你创建一个用户 User Account。先调用 <codeph>registerLocalUserAccountWithAppID:userAccount:</codeph> 注册用户 User Account，再调用该方法加入频道，可以缩短进入频道所需的时间。
-一旦用户加入频道，默认会订阅频道中其他所有用户的音视频流，从而产生用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 <codeph>mediaOptions</codeph> 参数或调用发布与订阅相关的方法。</p>
+一旦用户加入频道，默认会订阅频道中其他所有用户的音视频流，从而产生用量和计费。如果你希望停止订阅其他用户的媒体流，可以设置 <codeph>mediaOptions</codeph> 参数或调用 <codeph>muteRemoteAudio/VideoStream</codeph> 或 <codeph>muteAllRemoteAudio/VideoStreams</codeph>。</p>
             <note props="cpp">如果你已经在一个频道中，不能使用相同的用户 ID 重新加入该频道。
 在加入频道前，请确保用于生成 Token 的 App ID 与调用 <xref keyref="initialize"/> 方法时传入的 App ID 相同，否则可能会导致使用该 Token 加入频道失败。</note>
             <note props="android">如果你已经在一个频道中，不能使用相同的用户 ID 重新加入该频道。
