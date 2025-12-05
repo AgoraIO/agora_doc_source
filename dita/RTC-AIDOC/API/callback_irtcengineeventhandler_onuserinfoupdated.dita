@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onuserinfoupdated">
     <title><ph keyref="onUserInfoUpdated"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">远端用户的用户 ID 和用户 User Account 信息更新时触发的回调。</ph><ph id="shortdesc" props="android">远端用户的用户 ID 和用户 User Account 信息更新回调。</ph><ph id="shortdesc" props="ios">当 SDK 获取到远端用户的用户 ID 和用户 User Account 时触发。</ph><ph id="shortdesc" props="mac">当 SDK 获取到远端用户的用户 ID 和用户 User Account 时触发。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">远端用户的用户 ID 和用户 User Account 信息更新时触发的回调。</ph><ph id="shortdesc" props="ios">当 SDK 获取到远端用户的用户 ID 和用户 User Account 时触发。</ph><ph id="shortdesc" props="android">远端用户的用户 ID 和用户 User Account 信息更新回调。</ph><ph id="shortdesc" props="mac">当 SDK 获取到远端用户的用户 ID 和用户 User Account 时触发。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onUserInfoUpdated(uid_t uid, const UserInfo&amp; info)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onUserInfoUpdated(int uid, UserInfo userInfo) {}</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didUserInfoUpdatedWithUserId:(NSUInteger)uid userInfo:(AgoraUserInfo* _Nonnull)userInfo NS_SWIFT_NAME(rtcEngine(_:didUserInfoUpdatedWithUserId:userInfo:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onUserInfoUpdated(int uid, UserInfo userInfo) {}</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didUserInfoUpdatedWithUserId:(NSUInteger)uid userInfo:(AgoraUserInfo* _Nonnull)userInfo NS_SWIFT_NAME(rtcEngine(_:didUserInfoUpdatedWithUserId:userInfo:));</codeblock>
             </p>
         </section>
@@ -27,14 +27,14 @@
                 </dlentry>
             </dl>
             <p props="cpp">远端用户加入频道后，SDK 会获取该用户的用户 ID 和用户 User Account，并将其缓存在映射表中，然后在本地客户端触发该回调。</p>
-            <p props="android">当远端用户加入频道后，SDK 会获取该用户的用户 ID 和用户 User Account，并将其缓存在映射表中，然后在本地客户端触发该回调。</p>
             <p props="ios">远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户 User Account，并将其缓存在映射表对象中，然后在本地客户端触发该回调。</p>
+            <p props="android">当远端用户加入频道后，SDK 会获取该用户的用户 ID 和用户 User Account，并将其缓存在映射表中，然后在本地客户端触发该回调。</p>
             <p props="mac">远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户 User Account，并将其缓存在映射表对象中，然后在本地客户端触发该回调。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>触发时机</title>
-            <p props="android">该回调在远端用户加入频道后，SDK 获取到其用户 ID 和用户 User Account 时被触发。</p>
             <p props="ios">该回调在远端用户加入频道后，SDK 获取到其用户 ID 和用户 User Account 时被触发。</p>
+            <p props="android">该回调在远端用户加入频道后，SDK 获取到其用户 ID 和用户 User Account 时被触发。</p>
             <p props="mac">该回调在远端用户加入频道后，SDK 获取到其用户 ID 和用户 User Account 时被触发。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -48,14 +48,6 @@
                     <pt>info</pt>
                     <pd>包含远端用户的用户 ID 和用户 User Account 信息的对象。详见 <xref keyref="UserInfo"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>uid</pt>
-                    <pd>远端用户的用户 ID。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>userInfo</pt>
-                    <pd>包含远端用户的用户 ID 和用户 User Account 信息。详见 <xref keyref="UserInfo"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
@@ -67,6 +59,14 @@
                 <plentry props="ios">
                     <pt>userInfo</pt>
                     <pd>包含远端用户的用户 ID 和用户 User Account 的对象。详见 <xref keyref="UserInfo"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userInfo</pt>
+                    <pd>包含远端用户的用户 ID 和用户 User Account 信息。详见 <xref keyref="UserInfo"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>engine</pt>

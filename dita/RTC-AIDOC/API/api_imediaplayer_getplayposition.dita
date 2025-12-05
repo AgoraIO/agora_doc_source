@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_getplayposition">
     <title><ph keyref="getPlayPosition"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取当前音效文件的本地播放进度。</ph><ph id="shortdesc" props="android">获取当前本地播放进度。</ph><ph id="shortdesc" props="ios">获取当前本地播放进度。</ph><ph id="shortdesc" props="mac">获取当前本地播放进度。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取当前音效文件的本地播放进度。</ph><ph id="shortdesc" props="ios">获取当前本地播放进度。</ph><ph id="shortdesc" props="android">获取当前本地播放进度。</ph><ph id="shortdesc" props="mac">获取当前本地播放进度。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int getPlayPosition(int64_t&amp; pos) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">long getPlayPosition();</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (NSInteger)getPosition NS_SWIFT_NAME(getPosition());</codeblock>
+                <codeblock props="android" outputclass="language-java">long getPlayPosition();</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (NSInteger)getPosition NS_SWIFT_NAME(getPosition());</codeblock>
             </p>
         </section>
@@ -37,16 +37,16 @@
                     <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>方法调用成功时，返回当前播放进度（单位为毫秒）。</li>
-                    <li>方法调用失败时，返回小于 0 的值，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功时，返回当前播放进度（单位为毫秒）。</li>
+                    <li>方法调用失败时，返回小于 0 的值，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
                 </ul>
             </p>
             <p props="mac">

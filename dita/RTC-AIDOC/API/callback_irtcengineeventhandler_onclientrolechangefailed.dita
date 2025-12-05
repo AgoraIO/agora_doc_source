@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onclientrolechangefailed">
     <title><ph keyref="onClientRoleChangeFailed"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">切换用户角色失败时触发的回调。</ph><ph id="shortdesc" props="android">切换用户角色失败时的回调。</ph><ph id="shortdesc" props="ios">当切换用户角色失败时触发的回调。</ph><ph id="shortdesc" props="mac">当切换用户角色失败时触发的回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">切换用户角色失败时触发的回调。</ph><ph id="shortdesc" props="ios">当切换用户角色失败时触发的回调。</ph><ph id="shortdesc" props="android">切换用户角色失败时的回调。</ph><ph id="shortdesc" props="mac">当切换用户角色失败时触发的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onClientRoleChangeFailed(CLIENT_ROLE_CHANGE_FAILED_REASON reason, CLIENT_ROLE_TYPE currentRole)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onClientRoleChangeFailed(int reason, int currentRole)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChangeFailed:(AgoraClientRoleChangeFailedReason)reason currentRole:(AgoraClientRole)currentRole NS_SWIFT_NAME(rtcEngine(_:didClientRoleChangeFailed:currentRole:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onClientRoleChangeFailed(int reason, int currentRole)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChangeFailed:(AgoraClientRoleChangeFailedReason)reason currentRole:(AgoraClientRole)currentRole NS_SWIFT_NAME(rtcEngine(_:didClientRoleChangeFailed:currentRole:));</codeblock>
             </p>
         </section>
@@ -26,8 +26,8 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>触发时机</title>
             <p props="cpp">当本地用户加入频道后调用 <codeph>setClientRole</codeph> 切换用户角色失败时，SDK 会触发该回调。</p>
-            <p props="android">该回调在本地用户加入频道后调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/>（带 <xref keyref="ClientRoleOptions"/> 参数）切换用户角色失败时被触发。</p>
             <p props="ios">该回调在你加入频道后调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 切换用户角色但切换失败时被触发。</p>
+            <p props="android">该回调在本地用户加入频道后调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/>（带 <xref keyref="ClientRoleOptions"/> 参数）切换用户角色失败时被触发。</p>
             <p props="mac">该回调在你加入频道后调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 切换用户角色但切换失败时被触发。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -40,6 +40,14 @@
                 <plentry props="cpp">
                     <pt>currentRole</pt>
                     <pd>当前的用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>reason</pt>
+                    <pd>用户角色切换失败的原因，详见 <xref keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>currentRole</pt>
+                    <pd>当前的用户角色，详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>reason</pt>
@@ -61,14 +69,6 @@
                             <li><codeph>CLIENT_ROLE_AUDIENCE</codeph> (2)：观众，只能接收音视频流。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>reason</pt>
-                    <pd>用户角色切换失败的原因，详见 <xref keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>currentRole</pt>
-                    <pd>当前的用户角色，详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>reason</pt>

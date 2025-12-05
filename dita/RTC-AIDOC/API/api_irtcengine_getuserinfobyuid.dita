@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getuserinfobyuid">
     <title><ph keyref="getUserInfoByUid"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">通过传入用户 ID 获取用户信息。</ph><ph id="shortdesc" props="android">通过传入用户 ID 获取用户信息。</ph><ph id="shortdesc" props="ios">通过传入用户 ID 获取用户信息。</ph><ph id="shortdesc" props="mac">通过传入用户 ID 获取用户信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">通过传入用户 ID 获取用户信息。</ph><ph id="shortdesc" props="ios">通过传入用户 ID 获取用户信息。</ph><ph id="shortdesc" props="android">通过传入用户 ID 获取用户信息。</ph><ph id="shortdesc" props="mac">通过传入用户 ID 获取用户信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,22 +14,22 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, rtc::UserInfo* userInfo) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int getUserInfoByUid(int uid, UserInfo userInfo);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (AgoraUserInfo* _Nullable)getUserInfoByUid:(NSUInteger)uid withError:(AgoraErrorCode* _Nullable)error NS_SWIFT_NAME(getUserInfo(byUid:withError:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getUserInfoByUid(int uid, UserInfo userInfo);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (AgoraUserInfo* _Nullable)getUserInfoByUid:(NSUInteger)uid withError:(AgoraErrorCode* _Nullable)error NS_SWIFT_NAME(getUserInfo(byUid:withError:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">当远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户 User Account，并将其缓存在一个映射表中，并在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用 <xref keyref="getUserInfoByUid"/> 并传入用户 ID，从 <xref keyref="UserInfo"/> 对象中获取对应的用户 User Account。</p>
-            <p props="android">当远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户 User Account，并将其缓存在映射表中，同时在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用 <xref keyref="getUserInfoByUid"/> 方法并传入用户 ID，从 <xref keyref="UserInfo"/> 对象中获取指定用户的用户 User Account。</p>
             <p props="ios">远端用户加入频道后，SDK 会获取该用户的用户 ID 和用户 User Account，并将其缓存在映射表对象中，同时在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用 <xref keyref="getUserInfoByUid"/> 方法并传入 <codeph>uid</codeph>，从 <xref keyref="UserInfo"/> 对象中获取指定用户的用户 User Account。</p>
+            <p props="android">当远端用户加入频道后，SDK 会获取该远端用户的用户 ID 和用户 User Account，并将其缓存在映射表中，同时在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用 <xref keyref="getUserInfoByUid"/> 方法并传入用户 ID，从 <xref keyref="UserInfo"/> 对象中获取指定用户的用户 User Account。</p>
             <p props="mac">远端用户加入频道后，SDK 会获取该用户的用户 ID 和用户 User Account，并将其缓存在映射表对象中，同时在本地客户端触发 <xref keyref="onUserInfoUpdated"/> 回调。收到该回调后，你可以调用 <xref keyref="getUserInfoByUid"/> 方法并传入 <codeph>uid</codeph>，从 <xref keyref="UserInfo"/> 对象中获取指定用户的用户 User Account。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">在收到 <xref keyref="onUserInfoUpdated"/> 回调后调用该方法。</p>
-            <p props="android">该方法在收到 <xref keyref="onUserInfoUpdated"/> 回调后调用。</p>
             <p props="ios">在收到 <xref keyref="onUserInfoUpdated"/> 回调后调用该方法。</p>
+            <p props="android">该方法在收到 <xref keyref="onUserInfoUpdated"/> 回调后调用。</p>
             <p props="mac">在收到 <xref keyref="onUserInfoUpdated"/> 回调后调用该方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -43,14 +43,6 @@
                     <pt>userInfo</pt>
                     <pd>输入和输出参数，表示用户信息。输入值为一个 <xref keyref="UserInfo"/> 对象，输出值为一个包含用户 User Account 和用户 ID 的 <xref keyref="UserInfo"/> 对象。详见 <xref keyref="UserInfo"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>uid</pt>
-                    <pd><codeph>uid</codeph>，表示用户 ID。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>userInfo</pt>
-                    <pd>输入和输出参数，用于标识用户信息的 <xref keyref="UserInfo"/> 对象。详见 <xref keyref="UserInfo"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>uid</pt>
                     <pd>用户 ID。</pd>
@@ -58,6 +50,14 @@
                 <plentry props="ios">
                     <pt>error</pt>
                     <pd>错误码，详见 <xref keyref="ERROR_CODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd><codeph>uid</codeph>，表示用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userInfo</pt>
+                    <pd>输入和输出参数，用于标识用户信息的 <xref keyref="UserInfo"/> 对象。详见 <xref keyref="UserInfo"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>uid</pt>
@@ -77,16 +77,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>方法调用成功，返回 <xref keyref="UserInfo"/> 对象，详见 <xref keyref="UserInfo"/>。</li>
                     <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

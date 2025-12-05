@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayercachemanager_getmaxcachefilecount">
     <title><ph keyref="getMaxCacheFileCount"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取可缓存的媒体文件的最大数量。</ph><ph id="shortdesc" props="android">获取可缓存的媒体文件的最大数量。</ph><ph id="shortdesc" props="ios">获取可缓存的媒体文件的最大数量。</ph><ph id="shortdesc" props="mac">获取可缓存的媒体文件的最大数量。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取可缓存的媒体文件的最大数量。</ph><ph id="shortdesc" props="ios">获取可缓存的媒体文件的最大数量。</ph><ph id="shortdesc" props="android">获取可缓存的媒体文件的最大数量。</ph><ph id="shortdesc" props="mac">获取可缓存的媒体文件的最大数量。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,14 +14,14 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int getMaxCacheFileCount() = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">int getMaxCacheFileCount();</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (NSInteger)maxCacheFileCount NS_SWIFT_NAME(maxCacheFileCount());</codeblock>
+                <codeblock props="android" outputclass="language-java">int getMaxCacheFileCount();</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (NSInteger)maxCacheFileCount NS_SWIFT_NAME(maxCacheFileCount());</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="android">默认情况下，可缓存的媒体文件最大数量为 1000。</p>
             <p props="ios">默认情况下，最多可以缓存 1,000 个媒体文件。</p>
+            <p props="android">默认情况下，可缓存的媒体文件最大数量为 1000。</p>
             <p props="mac">默认情况下，最多可以缓存 1,000 个媒体文件。</p>
         </section>
         <section id="return_values" props="android cpp ios mac">
@@ -32,15 +32,15 @@
                     <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
                 </ul>
             </p>
+            <p props="ios">方法调用成功，返回可缓存的媒体文件的最大数量。
+                <ul>
+                    <li>&lt; 0：方法调用失败，返回错误码，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
+                </ul>
+            </p>
             <p props="android">
                 <ul>
                     <li>0：方法调用成功，返回获取可缓存的媒体文件的最大数量。</li>
                     <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
-                </ul>
-            </p>
-            <p props="ios">方法调用成功，返回可缓存的媒体文件的最大数量。
-                <ul>
-                    <li>&lt; 0：方法调用失败，返回错误码，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
                 </ul>
             </p>
             <p props="mac">方法调用成功，返回可缓存的媒体文件的最大数量。

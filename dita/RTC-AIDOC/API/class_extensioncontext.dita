@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_extensioncontext">
     <title><ph keyref="ExtensionContext"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">扩展的上下文信息。</ph><ph id="shortdesc" props="android">扩展的上下文信息。</ph><ph id="shortdesc" props="ios">扩展的上下文信息。</ph><ph id="shortdesc" props="mac">扩展的上下文信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">扩展的上下文信息。</ph><ph id="shortdesc" props="ios">扩展的上下文信息。</ph><ph id="shortdesc" props="android">扩展的上下文信息。</ph><ph id="shortdesc" props="mac">扩展的上下文信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -12,18 +12,18 @@
     const char *providerName;
     const char *extensionName;
 };</codeblock>
-                <codeblock props="android" outputclass="language-java">public class ExtensionContext {
-  public boolean isValid;
-  public int uid;
-  public String providerName;
-  public String extensionName;
-}</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">@interface AgoraExtensionContext : NSObject
 @property (assign, nonatomic) BOOL isValid;
 @property (assign, nonatomic) NSUInteger uid;
 @property (copy, nonatomic) NSString * _Nullable providerName;
 @property (copy, nonatomic) NSString * _Nullable extensionName;
 @end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class ExtensionContext {
+  public boolean isValid;
+  public int uid;
+  public String providerName;
+  public String extensionName;
+}</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">@interface AgoraExtensionContext : NSObject
 @property (assign, nonatomic) BOOL isValid;
 @property (assign, nonatomic) NSUInteger uid;
@@ -56,7 +56,7 @@
                     <pt>extensionName</pt>
                     <pd>扩展名称。</pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="ios">
                     <pt>isValid</pt>
                     <pd><codeph>uid</codeph> 是否有效：
                         <ul>
@@ -65,19 +65,19 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="ios">
                     <pt>uid</pt>
                     <pd>用户 ID。0 表示本地用户，大于 0 表示远端用户。</pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="ios">
                     <pt>providerName</pt>
                     <pd>扩展提供方的名称。</pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="ios">
                     <pt>extensionName</pt>
                     <pd>扩展的名称。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="android">
                     <pt>isValid</pt>
                     <pd><codeph>uid</codeph> 是否有效：
                         <ul>
@@ -86,15 +86,15 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="android">
                     <pt>uid</pt>
                     <pd>用户 ID。0 表示本地用户，大于 0 表示远端用户。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="android">
                     <pt>providerName</pt>
                     <pd>扩展提供方的名称。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="android">
                     <pt>extensionName</pt>
                     <pd>扩展的名称。</pd>
                 </plentry>

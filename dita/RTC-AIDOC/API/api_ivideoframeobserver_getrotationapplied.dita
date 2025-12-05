@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideoframeobserver_getrotationapplied">
     <title><ph keyref="getRotationApplied"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">是否旋转采集视频的回调。</ph><ph id="shortdesc" props="android"><xref keyref="getRotationApplied"/> 回调在每次 SDK 接收到视频帧时触发，用于设置是否旋转采集的视频。</ph><ph id="shortdesc" props="ios">每次 SDK 接收到视频帧时触发，并提示你是否旋转采集的视频。</ph><ph id="shortdesc" props="mac">每次 SDK 接收到视频帧时触发，并提示你是否旋转采集的视频。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">是否旋转采集视频的回调。</ph><ph id="shortdesc" props="ios">每次 SDK 接收到视频帧时触发，并提示你是否旋转采集的视频。</ph><ph id="shortdesc" props="android"><xref keyref="getRotationApplied"/> 回调在每次 SDK 接收到视频帧时触发，用于设置是否旋转采集的视频。</ph><ph id="shortdesc" props="mac">每次 SDK 接收到视频帧时触发，并提示你是否旋转采集的视频。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,15 +14,15 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual bool getRotationApplied() { return false; }</codeblock>
-                <codeblock props="android" outputclass="language-java">@CalledByNative boolean getRotationApplied();</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (BOOL)getRotationApplied NS_SWIFT_NAME(getRotationApplied());</codeblock>
+                <codeblock props="android" outputclass="language-java">@CalledByNative boolean getRotationApplied();</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (BOOL)getRotationApplied NS_SWIFT_NAME(getRotationApplied());</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">如果你希望根据 <xref keyref="VideoFrame"/> 类中的 <codeph>rotation</codeph> 成员旋转采集的视频，请确保在调用 <xref keyref="registerVideoFrameObserver_IMediaEngine"/> 时注册该回调。在成功注册视频帧观察器后，SDK 每次接收到视频帧时都会触发该回调。你需要通过该回调的返回值设置是否旋转视频帧。</p>
-            <p props="android">如果你希望根据 <codeph>VideoFrame</codeph> 中的 <codeph>rotation</codeph> 成员旋转采集的视频，需要在调用 <xref keyref="registerVideoFrameObserver"/> 时注册该回调。注册成功后，SDK 每次接收到视频帧时会触发该回调。你需要通过该回调的返回值设置是否旋转视频帧。</p>
             <p props="ios">如果采集设备上的视频已根据 <xref keyref="VideoFrame"/> 中的 <codeph>rotation</codeph> 进行了旋转，则你无需调用该方法设置视频旋转。</p>
+            <p props="android">如果你希望根据 <codeph>VideoFrame</codeph> 中的 <codeph>rotation</codeph> 成员旋转采集的视频，需要在调用 <xref keyref="registerVideoFrameObserver"/> 时注册该回调。注册成功后，SDK 每次接收到视频帧时会触发该回调。你需要通过该回调的返回值设置是否旋转视频帧。</p>
             <p props="mac">如果采集设备上的视频已根据 <xref keyref="VideoFrame"/> 中的 <codeph>rotation</codeph> 进行了旋转，则你无需调用该方法设置视频旋转。</p>
             <note props="cpp">
                 <ul>
@@ -32,13 +32,13 @@
                     <li>在 macOS 平台，该回调支持的视频数据格式包括：I420 和 RGBA。</li>
                 </ul>
             </note>
-            <note props="android">在 Android 平台上，该回调支持的视频数据格式包括：I420、RGBA 和 Texture。</note>
             <note props="ios">
                 <ul>
                     <li>在 iOS 上，该回调支持的视频数据格式包括：I420、RGBA 和 <codeph>CVPixelBuffer</codeph>。</li>
                     <li>在 macOS 上，该回调支持的视频数据格式包括：I420 和 RGBA。</li>
                 </ul>
             </note>
+            <note props="android">在 Android 平台上，该回调支持的视频数据格式包括：I420、RGBA 和 Texture。</note>
             <note props="mac">
                 <ul>
                     <li>在 iOS 上，该回调支持的视频数据格式包括：I420、RGBA 和 <codeph>CVPixelBuffer</codeph>。</li>
@@ -59,13 +59,13 @@
                     <li><xref keyref="false"/>：（默认）不旋转采集的视频。</li>
                 </ul>
             </p>
-            <p props="android">
+            <p props="ios">
                 <ul>
                     <li><xref keyref="true"/>：旋转采集的视频。</li>
                     <li><xref keyref="false"/>：（默认）不旋转采集的视频。</li>
                 </ul>
             </p>
-            <p props="ios">
+            <p props="android">
                 <ul>
                     <li><xref keyref="true"/>：旋转采集的视频。</li>
                     <li><xref keyref="false"/>：（默认）不旋转采集的视频。</li>

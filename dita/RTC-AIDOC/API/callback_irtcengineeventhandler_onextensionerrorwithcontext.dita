@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onextensionerrorwithcontext">
     <title><ph keyref="onExtensionErrorWithContext"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">扩展运行异常时触发的回调。</ph><ph id="shortdesc" props="android">扩展运行异常时触发的回调。</ph><ph id="shortdesc" props="ios">当扩展运行异常时触发的回调。</ph><ph id="shortdesc" props="mac">当扩展运行异常时触发的回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">扩展运行异常时触发的回调。</ph><ph id="shortdesc" props="ios">当扩展运行异常时触发的回调。</ph><ph id="shortdesc" props="android">扩展运行异常时触发的回调。</ph><ph id="shortdesc" props="mac">当扩展运行异常时触发的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,10 +14,10 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onExtensionErrorWithContext(const ExtensionContext &amp;context, int error, const char* message)</codeblock>
-                <codeblock props="android" outputclass="language-java">default void onErrorWithContext(ExtensionContext extContext, int error, String message)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)onExtensionErrorWithContext:(AgoraExtensionContext * _Nonnull)context
                    error:(int)error
                  message:(NSString * _Nullable)message NS_SWIFT_NAME(onExtensionErrorWithContext(_:error:message:));</codeblock>
+                <codeblock props="android" outputclass="language-java">default void onErrorWithContext(ExtensionContext extContext, int error, String message)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)onExtensionErrorWithContext:(AgoraExtensionContext * _Nonnull)context
                    error:(int)error
                  message:(NSString * _Nullable)message NS_SWIFT_NAME(onExtensionErrorWithContext(_:error:message:));</codeblock>
@@ -30,8 +30,8 @@
         </section>
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>触发时机</title>
-            <p props="android">该回调在扩展启用失败或运行过程中发生错误时被触发。</p>
             <p props="ios">该回调在扩展启用失败或运行时发生错误时被触发。</p>
+            <p props="android">该回调在扩展启用失败或运行过程中发生错误时被触发。</p>
             <p props="mac">该回调在扩展启用失败或运行时发生错误时被触发。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -49,18 +49,6 @@
                     <pt>message</pt>
                     <pd>错误原因。详见扩展提供方的扩展文档。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>extContext</pt>
-                    <pd>扩展的上下文信息。详见 <xref keyref="ExtensionContext"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>error</pt>
-                    <pd>错误码。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>message</pt>
-                    <pd>错误原因。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>context</pt>
                     <pd>扩展的上下文信息。详见 <xref keyref="ExtensionContext"/>。</pd>
@@ -72,6 +60,18 @@
                 <plentry props="ios">
                     <pt>message</pt>
                     <pd>错误原因。详情请参见扩展提供方提供的扩展文档。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>extContext</pt>
+                    <pd>扩展的上下文信息。详见 <xref keyref="ExtensionContext"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>error</pt>
+                    <pd>错误码。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>message</pt>
+                    <pd>错误原因。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>context</pt>

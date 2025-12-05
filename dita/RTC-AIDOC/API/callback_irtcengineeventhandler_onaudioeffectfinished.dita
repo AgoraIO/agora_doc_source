@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onaudioeffectfinished">
     <title><ph keyref="onAudioEffectFinished"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">本地音效文件播放结束回调。</ph><ph id="shortdesc" props="android">本地音效文件播放完成时的回调。</ph><ph id="shortdesc" props="ios">本地音效文件播放完成时的回调。</ph><ph id="shortdesc" props="mac">本地音效文件播放完成时的回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">本地音效文件播放结束回调。</ph><ph id="shortdesc" props="ios">本地音效文件播放完成时的回调。</ph><ph id="shortdesc" props="android">本地音效文件播放完成时的回调。</ph><ph id="shortdesc" props="mac">本地音效文件播放完成时的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioEffectFinished(int soundId) {}</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onAudioEffectFinished(int soundId) {}</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngineDidAudioEffectFinish:(AgoraRtcEngineKit * _Nonnull)engine soundId:(int)soundId NS_SWIFT_NAME(rtcEngineDidAudioEffectFinish(_:soundId:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onAudioEffectFinished(int soundId) {}</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngineDidAudioEffectFinish:(AgoraRtcEngineKit * _Nonnull)engine soundId:(int)soundId NS_SWIFT_NAME(rtcEngineDidAudioEffectFinish(_:soundId:));</codeblock>
             </p>
         </section>
@@ -26,8 +26,8 @@
         </section>
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>触发时机</title>
-            <p props="android">该回调在本地音效文件播放完成时被触发。</p>
             <p props="ios">该回调在本地音效文件播放完成时被触发。</p>
+            <p props="android">该回调在本地音效文件播放完成时被触发。</p>
             <p props="mac">该回调在本地音效文件播放完成时被触发。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -37,10 +37,6 @@
                     <pt>soundId</pt>
                     <pd>音效 ID，每个音效文件的唯一标识。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>soundId</pt>
-                    <pd>音效文件的唯一 ID。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
@@ -48,6 +44,10 @@
                 <plentry props="ios">
                     <pt>soundId</pt>
                     <pd>音效 ID，每个音效文件的唯一标识。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>soundId</pt>
+                    <pd>音效文件的唯一 ID。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>engine</pt>

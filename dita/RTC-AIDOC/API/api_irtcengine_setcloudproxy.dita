@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcloudproxy">
     <title><ph keyref="setCloudProxy"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置云代理服务。</ph><ph id="shortdesc" props="android">设置云代理服务。</ph><ph id="shortdesc" props="ios">设置云代理服务。</ph><ph id="shortdesc" props="mac">设置云代理服务。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置云代理服务。</ph><ph id="shortdesc" props="ios">设置云代理服务。</ph><ph id="shortdesc" props="android">设置云代理服务。</ph><ph id="shortdesc" props="mac">设置云代理服务。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setCloudProxy(CLOUD_PROXY_TYPE proxyType) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int setCloudProxy(int proxyType);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setCloudProxy:(AgoraCloudProxyType)proxyType  NS_SWIFT_NAME(setCloudProxy(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setCloudProxy(int proxyType);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setCloudProxy:(AgoraCloudProxyType)proxyType  NS_SWIFT_NAME(setCloudProxy(_:));</codeblock>
             </p>
         </section>
@@ -41,14 +41,14 @@
 要禁用已设置的云代理，请调用 <codeph>setCloudProxy(NONE_PROXY)</codeph>。
 
 要更改已设置的云代理类型，请先调用 <codeph>setCloudProxy(NONE_PROXY)</codeph>，然后再调用 <xref keyref="setCloudProxy"/> 设置新的 <codeph>proxyType</codeph>。</p>
-            <p props="android">当用户的网络访问受防火墙限制时，需要先配置防火墙，允许访问声网提供的特定 IP 地址和端口，然后调用该方法启用云代理，并通过 <codeph>proxyType</codeph> 参数设置云代理类型。成功连接云代理后，SDK 会触发 <xref keyref="onConnectionStateChanged"/> 回调，状态为 <codeph>CONNECTION_STATE_CONNECTING</codeph>，原因为 <codeph>CONNECTION_CHANGED_SETTING_PROXY_SERVER</codeph>。
-
-如需关闭已设置的云代理，请调用 <xref keyref="setCloudProxy"/>，并将 <codeph>proxyType</codeph> 设置为 <codeph>TRANSPORT_TYPE_NONE_PROXY</codeph>。
-如需切换云代理类型，请先调用 <xref keyref="setCloudProxy"/> 关闭当前代理（<codeph>proxyType</codeph> 设置为 <codeph>TRANSPORT_TYPE_NONE_PROXY</codeph>），再调用 <xref keyref="setCloudProxy"/> 设置新的 <codeph>proxyType</codeph>。</p>
             <p props="ios">当你的网络访问受防火墙限制时，需要先配置防火墙，允许声网提供的特定 IP 地址和端口，然后调用此方法启用云代理，并通过 <codeph>proxyType</codeph> 参数设置云代理类型。
 
 要关闭已设置的云代理，请调用 <xref keyref="setCloudProxy"/> 并传入 <codeph>AgoraNoneProxy</codeph>。
 要更改已设置的云代理类型，需先调用 <xref keyref="setCloudProxy"/> 并传入 <codeph>AgoraNoneProxy</codeph> 关闭当前代理，再调用 <xref keyref="setCloudProxy"/> 设置新的代理类型。</p>
+            <p props="android">当用户的网络访问受防火墙限制时，需要先配置防火墙，允许访问声网提供的特定 IP 地址和端口，然后调用该方法启用云代理，并通过 <codeph>proxyType</codeph> 参数设置云代理类型。成功连接云代理后，SDK 会触发 <xref keyref="onConnectionStateChanged"/> 回调，状态为 <codeph>CONNECTION_STATE_CONNECTING</codeph>，原因为 <codeph>CONNECTION_CHANGED_SETTING_PROXY_SERVER</codeph>。
+
+如需关闭已设置的云代理，请调用 <xref keyref="setCloudProxy"/>，并将 <codeph>proxyType</codeph> 设置为 <codeph>TRANSPORT_TYPE_NONE_PROXY</codeph>。
+如需切换云代理类型，请先调用 <xref keyref="setCloudProxy"/> 关闭当前代理（<codeph>proxyType</codeph> 设置为 <codeph>TRANSPORT_TYPE_NONE_PROXY</codeph>），再调用 <xref keyref="setCloudProxy"/> 设置新的 <codeph>proxyType</codeph>。</p>
             <p props="mac">当你的网络访问受防火墙限制时，需要先配置防火墙，允许声网提供的特定 IP 地址和端口，然后调用此方法启用云代理，并通过 <codeph>proxyType</codeph> 参数设置云代理类型。
 
 要关闭已设置的云代理，请调用 <xref keyref="setCloudProxy"/> 并传入 <codeph>AgoraNoneProxy</codeph>。
@@ -60,18 +60,18 @@
                     <li>当使用强制 TCP 云代理时，调用 <codeph>startAudioMixing</codeph> 播放 HTTP 协议的在线音乐文件会发生错误。旁路推流和跨频道联播服务使用基于 TCP 协议的云代理。</li>
                 </ul>
             </note>
-            <note props="android">
-                <ul>
-                    <li>建议在加入频道前调用该方法。</li>
-                    <li>当用户处于防火墙之后并使用强制 UDP 云代理时，媒体推流和跨频道联播服务不可用。</li>
-                    <li>使用强制 TCP 云代理时，调用 <codeph>startAudioMixing</codeph> 播放 HTTP 协议的在线音乐文件会报错。媒体推流和跨频道联播服务使用 TCP 协议的云代理。</li>
-                </ul>
-            </note>
             <note props="ios">
                 <ul>
                     <li>该方法需要在加入频道前调用。</li>
                     <li>当你处于防火墙之后并使用强制 UDP 云代理时，旁路推流和跨频道联播服务不可用。</li>
                     <li>当你使用强制 TCP 云代理时，若调用 <xref keyref="startAudioMixing2"/> 方法播放 HTTP 协议的在线音乐文件，会出现错误。旁路推流和跨频道联播服务使用基于 TCP 协议的云代理。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>建议在加入频道前调用该方法。</li>
+                    <li>当用户处于防火墙之后并使用强制 UDP 云代理时，媒体推流和跨频道联播服务不可用。</li>
+                    <li>使用强制 TCP 云代理时，调用 <codeph>startAudioMixing</codeph> 播放 HTTP 协议的在线音乐文件会报错。媒体推流和跨频道联播服务使用 TCP 协议的云代理。</li>
                 </ul>
             </note>
             <note props="mac">
@@ -93,6 +93,10 @@
                     <pt>proxyType</pt>
                     <pd>云代理类型，详见 <xref keyref="CLOUD_PROXY_TYPE"/>。</pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>proxyType</pt>
+                    <pd>云代理的类型，详见 <xref keyref="CLOUD_PROXY_TYPE"/>。该参数为必填项，若未传入值，SDK 会报错。</pd>
+                </plentry>
                 <plentry props="android">
                     <pt>proxyType</pt>
                     <pd>云代理的类型：
@@ -102,10 +106,6 @@
                             <li><codeph>TRANSPORT_TYPE_TCP_PROXY</codeph> (2)：TCP（加密）协议的云代理，即强制 TCP 云代理模式。在此模式下，SDK 始终通过 TCP/TLS 443 传输数据。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>proxyType</pt>
-                    <pd>云代理的类型，详见 <xref keyref="CLOUD_PROXY_TYPE"/>。该参数为必填项，若未传入值，SDK 会报错。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>proxyType</pt>
@@ -126,10 +126,10 @@
                     </li>
                 </ul>
             </p>
-            <p props="android">
+            <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效。</li>
                             <li>-7：SDK 未初始化。</li>
@@ -137,10 +137,10 @@
                     </li>
                 </ul>
             </p>
-            <p props="ios">
+            <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：参数无效。</li>
                             <li>-7：SDK 未初始化。</li>

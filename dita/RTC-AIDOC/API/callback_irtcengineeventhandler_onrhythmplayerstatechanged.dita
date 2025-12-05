@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onrhythmplayerstatechanged">
     <title><ph keyref="onRhythmPlayerStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">虚拟节拍器状态发生变化时的回调。</ph><ph id="shortdesc" props="android">虚拟节拍器状态发生变化回调。</ph><ph id="shortdesc" props="ios">当虚拟节拍器状态发生变化时触发的回调。</ph><ph id="shortdesc" props="mac">当虚拟节拍器状态发生变化时触发的回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">虚拟节拍器状态发生变化时的回调。</ph><ph id="shortdesc" props="ios">当虚拟节拍器状态发生变化时触发的回调。</ph><ph id="shortdesc" props="android">虚拟节拍器状态发生变化回调。</ph><ph id="shortdesc" props="mac">当虚拟节拍器状态发生变化时触发的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,9 +14,9 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onRhythmPlayerStateChanged(RHYTHM_PLAYER_STATE_TYPE state, RHYTHM_PLAYER_REASON reason)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onRhythmPlayerStateChanged(int state, int reason)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didRhythmPlayerStateChanged:(AgoraRhythmPlayerState)state
         reason:(AgoraRhythmPlayerReason)reason NS_SWIFT_NAME(rtcEngine(_:didRhythmPlayerStateChanged:reason:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onRhythmPlayerStateChanged(int state, int reason)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didRhythmPlayerStateChanged:(AgoraRhythmPlayerState)state
         reason:(AgoraRhythmPlayerReason)reason NS_SWIFT_NAME(rtcEngine(_:didRhythmPlayerStateChanged:reason:));</codeblock>
             </p>
@@ -29,16 +29,16 @@
                 </dlentry>
             </dl>
             <p props="cpp">该回调用于报告虚拟节拍器的当前状态，指示本地音频流的状态，帮助你在音频异常时排查问题。</p>
-            <p props="android">该回调用于报告虚拟节拍器的当前状态，指示本地音频流的状态，帮助你在音频异常发生时排查问题。</p>
             <p props="ios">当虚拟节拍器状态发生变化时，SDK 会触发该回调以报告当前虚拟节拍器的状态。该回调指示本地音频流的状态，并帮助你在音频异常发生时排查问题。</p>
+            <p props="android">该回调用于报告虚拟节拍器的当前状态，指示本地音频流的状态，帮助你在音频异常发生时排查问题。</p>
             <p props="mac">当虚拟节拍器状态发生变化时，SDK 会触发该回调以报告当前虚拟节拍器的状态。该回调指示本地音频流的状态，并帮助你在音频异常发生时排查问题。</p>
             <note props="cpp">该回调仅适用于 Android 和 iOS 平台。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>触发时机</title>
             <p props="cpp">当虚拟节拍器状态发生变化时触发。</p>
-            <p props="android">该回调在虚拟节拍器状态发生变化时被触发。</p>
             <p props="ios">该回调在虚拟节拍器状态发生变化时被触发。</p>
+            <p props="android">该回调在虚拟节拍器状态发生变化时被触发。</p>
             <p props="mac">该回调在虚拟节拍器状态发生变化时被触发。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -49,6 +49,18 @@
                     <pd>虚拟节拍器的当前状态，详见 <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>与虚拟节拍器错误相关的错误码和错误信息，详见 <xref keyref="RHYTHM_PLAYER_REASON"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd>当前使用的 <xref keyref="IRtcEngine"/> 实例。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>state</pt>
+                    <pd>当前虚拟节拍器的状态，详见 <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>reason</pt>
                     <pd>与虚拟节拍器错误相关的错误码和错误信息，详见 <xref keyref="RHYTHM_PLAYER_REASON"/>。</pd>
                 </plentry>
@@ -75,18 +87,6 @@
                             <li><codeph>RHYTHM_PLAYER_REASON_FILE_OVER_DURATION_LIMIT</codeph>（803）：节拍音频文件的时长超过限制，最大为 1.2 秒。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>engine</pt>
-                    <pd>当前使用的 <xref keyref="IRtcEngine"/> 实例。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>state</pt>
-                    <pd>当前虚拟节拍器的状态，详见 <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>reason</pt>
-                    <pd>与虚拟节拍器错误相关的错误码和错误信息，详见 <xref keyref="RHYTHM_PLAYER_REASON"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>engine</pt>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_selectaudiotrack">
     <title><ph keyref="selectAudioTrack"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">选择播放过程中使用的音轨。</ph><ph id="shortdesc" props="android">选择播放过程中使用的音轨。</ph><ph id="shortdesc" props="ios">选择用于播放的音轨。</ph><ph id="shortdesc" props="mac">选择用于播放的音轨。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">选择播放过程中使用的音轨。</ph><ph id="shortdesc" props="ios">选择用于播放的音轨。</ph><ph id="shortdesc" props="android">选择播放过程中使用的音轨。</ph><ph id="shortdesc" props="mac">选择用于播放的音轨。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,15 +14,15 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int selectAudioTrack(int index) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int selectAudioTrack(int audioIndex);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)selectAudioTrack:(NSInteger)index NS_SWIFT_NAME(selectAudioTrack(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int selectAudioTrack(int audioIndex);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)selectAudioTrack:(NSInteger)index NS_SWIFT_NAME(selectAudioTrack(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">获取音频文件的音轨索引后，可以调用该方法指定任意音轨进行播放。例如，如果一个多音轨文件的不同音轨存储了不同语言的歌曲，可以调用该方法设置播放语言。</p>
-            <p props="android">获取音频文件的音轨索引后，可以调用该方法指定任意音轨进行播放。例如，如果一个多音轨文件的不同音轨存储了不同语言的歌曲，可以调用该方法设置播放语言。</p>
             <p props="ios">获取音频文件的音轨索引后，可以调用该方法指定任意音轨进行播放。例如，如果多音轨文件的不同音轨存储了不同语言的歌曲，可以调用该方法设置播放语言。</p>
+            <p props="android">获取音频文件的音轨索引后，可以调用该方法指定任意音轨进行播放。例如，如果一个多音轨文件的不同音轨存储了不同语言的歌曲，可以调用该方法设置播放语言。</p>
             <p props="mac">获取音频文件的音轨索引后，可以调用该方法指定任意音轨进行播放。例如，如果多音轨文件的不同音轨存储了不同语言的歌曲，可以调用该方法设置播放语言。</p>
             <note props="cpp">
                 <ul>
@@ -30,16 +30,16 @@
                     <li>你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用该方法。</li>
                 </ul>
             </note>
-            <note props="android">
-                <ul>
-                    <li>支持的音频文件格式详见[声网 RTC SDK 支持哪些格式的音频文件](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。</li>
-                    <li>你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后再调用该方法。</li>
-                </ul>
-            </note>
             <note props="ios">
                 <ul>
                     <li>支持的音频文件格式，详见[声网 RTC SDK 支持哪些格式的音频文件](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。</li>
                     <li>需要在调用 <codeph>startAudioMixing</codeph> 并收到 <codeph>audioMixingStateChanged</codeph> 回调（状态为 <codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用该方法。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>支持的音频文件格式详见[声网 RTC SDK 支持哪些格式的音频文件](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。</li>
+                    <li>你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后再调用该方法。</li>
                 </ul>
             </note>
             <note props="mac">
@@ -56,13 +56,13 @@
                     <pt>index</pt>
                     <pd>指定的音轨索引。该值应大于 0 且小于 <xref keyref="getAudioTrackCount"/> 返回的值。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>audioIndex</pt>
-                    <pd>你想要指定的音轨索引。该值应大于 0 且小于 <xref keyref="getAudioTrackCount"/> 返回的值。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>index</pt>
                     <pd>你想要指定的音轨索引。该值应大于等于 0 且小于 <xref keyref="getAudioTrackCount"/> 返回的值。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioIndex</pt>
+                    <pd>你想要指定的音轨索引。该值应大于 0 且小于 <xref keyref="getAudioTrackCount"/> 返回的值。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>index</pt>
@@ -78,16 +78,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

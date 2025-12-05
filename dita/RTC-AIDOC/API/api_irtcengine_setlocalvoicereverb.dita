@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setlocalvoicereverb">
     <title><ph keyref="setLocalVoiceReverb"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置本地语音的混响效果。</ph><ph id="shortdesc" props="android">设置本地语音的混响效果。</ph><ph id="shortdesc" props="ios">设置本地语音的混响效果。</ph><ph id="shortdesc" props="mac">设置本地语音的混响效果。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置本地语音的混响效果。</ph><ph id="shortdesc" props="ios">设置本地语音的混响效果。</ph><ph id="shortdesc" props="android">设置本地语音的混响效果。</ph><ph id="shortdesc" props="mac">设置本地语音的混响效果。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,15 +14,15 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalVoiceReverb(AUDIO_REVERB_TYPE reverbKey, int value) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int setLocalVoiceReverb(Constants.AUDIO_REVERB_TYPE reverbKey, int value);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setLocalVoiceReverbOfType:(AgoraAudioReverbType)reverbType withValue:(NSInteger)value NS_SWIFT_NAME(setLocalVoiceReverbOf(_:withValue:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setLocalVoiceReverb(Constants.AUDIO_REVERB_TYPE reverbKey, int value);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setLocalVoiceReverbOfType:(AgoraAudioReverbType)reverbType withValue:(NSInteger)value NS_SWIFT_NAME(setLocalVoiceReverbOf(_:withValue:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你也可以使用更易用的方法 <xref keyref="setAudioEffectPreset"/>，直接实现如流行、R&amp;B 和 KTV 等预设混响效果。</p>
-            <p props="android">你可以使用更易用的方法 <xref keyref="setAudioEffectPreset"/> 实现如流行、R&amp;B 和 KTV 等预设混响效果。</p>
             <p props="ios">你可以在加入频道前或加入频道后调用该方法。SDK 提供了更易用的方法 <xref keyref="setAudioEffectPreset"/>，可直接实现如流行、R&amp;B 和 KTV 等预设混响效果。</p>
+            <p props="android">你可以使用更易用的方法 <xref keyref="setAudioEffectPreset"/> 实现如流行、R&amp;B 和 KTV 等预设混响效果。</p>
             <p props="mac">你可以在加入频道前或加入频道后调用该方法。SDK 提供了更易用的方法 <xref keyref="setAudioEffectPreset"/>，可直接实现如流行、R&amp;B 和 KTV 等预设混响效果。</p>
             <note props="android">你可以在加入频道前或加入频道后调用该方法。</note>
         </section>
@@ -41,19 +41,19 @@
                     <pt>value</pt>
                     <pd>混响键对应的取值。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>reverbKey</pt>
-                    <pd>混响键。详见 <xref keyref="AUDIO_REVERB_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>value</pt>
-                    <pd>混响键的取值。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>reverbType</pt>
                     <pd>混响键。详见 <xref keyref="AUDIO_REVERB_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="ios">
+                    <pt>value</pt>
+                    <pd>混响键的取值。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reverbKey</pt>
+                    <pd>混响键。详见 <xref keyref="AUDIO_REVERB_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>value</pt>
                     <pd>混响键的取值。</pd>
                 </plentry>
@@ -75,16 +75,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

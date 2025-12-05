@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onremotevideostatechanged">
     <title><ph keyref="onRemoteVideoStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">远端视频状态发生改变回调。</ph><ph id="shortdesc" props="android">远端视频状态发生改变回调。</ph><ph id="shortdesc" props="ios">远端视频状态发生改变回调。</ph><ph id="shortdesc" props="mac">远端视频状态发生改变回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">远端视频状态发生改变回调。</ph><ph id="shortdesc" props="ios">远端视频状态发生改变回调。</ph><ph id="shortdesc" props="android">远端视频状态发生改变回调。</ph><ph id="shortdesc" props="mac">远端视频状态发生改变回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,22 +14,22 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason, int elapsed)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onRemoteVideoStateChanged(int uid, int state, int reason, int elapsed)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine remoteVideoStateChangedOfUid:(NSUInteger)uid state:(AgoraVideoRemoteState)state reason:(AgoraVideoRemoteReason)reason elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:remoteVideoStateChangedOfUid:state:reason:elapsed:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onRemoteVideoStateChanged(int uid, int state, int reason, int elapsed)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine remoteVideoStateChangedOfUid:(NSUInteger)uid state:(AgoraVideoRemoteState)state reason:(AgoraVideoRemoteReason)reason elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:remoteVideoStateChangedOfUid:state:reason:elapsed:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <note props="cpp">当频道中的用户数（在通信频道场景中）或主播数（在直播频道中）超过 32 时，该回调无法正常工作。</note>
-            <note props="android">当频道中的用户数（在通信频道场景中）或主播数（在直播频道中）超过 32 时，该回调可能无法正常工作。</note>
             <note props="ios">当频道中的用户数（在通信频道场景中）或主播数（在直播频道中）超过 32 时，该回调无法正常工作。</note>
+            <note props="android">当频道中的用户数（在通信频道场景中）或主播数（在直播频道中）超过 32 时，该回调可能无法正常工作。</note>
             <note props="mac">当频道中的用户数（在通信频道场景中）或主播数（在直播频道中）超过 32 时，该回调无法正常工作。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>触发时机</title>
             <p props="cpp">当远端视频流状态发生变化时触发。</p>
-            <p props="android">该回调在远端视频状态发生变化时被触发。</p>
             <p props="ios">该回调在远端视频状态发生变化时被触发。</p>
+            <p props="android">该回调在远端视频状态发生变化时被触发。</p>
             <p props="mac">该回调在远端视频状态发生变化时被触发。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -50,6 +50,26 @@
                 <plentry props="cpp">
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 方法到 SDK 触发该回调的时间间隔（毫秒）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd>引擎对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>发生视频状态变化的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>state</pt>
+                    <pd>远端视频的状态。详见 <xref keyref="REMOTE_VIDEO_STATE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>reason</pt>
+                    <pd>远端视频状态变化的原因。详见 <xref keyref="REMOTE_VIDEO_STATE_REASON"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>elapsed</pt>
+                    <pd>从调用 <xref keyref="joinChannel2"/> 方法到 SDK 触发该回调的时间间隔（毫秒）。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>uid</pt>
@@ -88,26 +108,6 @@
                 <plentry props="android">
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 方法到 SDK 触发该回调的时间（毫秒）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>engine</pt>
-                    <pd>引擎对象。详见 <xref keyref="IRtcEngine"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>uid</pt>
-                    <pd>发生视频状态变化的远端用户 ID。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>state</pt>
-                    <pd>远端视频的状态。详见 <xref keyref="REMOTE_VIDEO_STATE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>reason</pt>
-                    <pd>远端视频状态变化的原因。详见 <xref keyref="REMOTE_VIDEO_STATE_REASON"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>elapsed</pt>
-                    <pd>从调用 <xref keyref="joinChannel2"/> 方法到 SDK 触发该回调的时间间隔（毫秒）。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>engine</pt>

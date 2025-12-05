@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstremotevideoframe">
     <title><ph keyref="onFirstRemoteVideoFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">远端视频首帧显示回调。</ph><ph id="shortdesc" props="android">远端视频首帧显示回调。</ph><ph id="shortdesc" props="ios">远端视频首帧渲染回调。</ph><ph id="shortdesc" props="mac">远端视频首帧渲染回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">远端视频首帧显示回调。</ph><ph id="shortdesc" props="ios">远端视频首帧渲染回调。</ph><ph id="shortdesc" props="android">远端视频首帧显示回调。</ph><ph id="shortdesc" props="mac">远端视频首帧渲染回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,22 +14,22 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstRemoteVideoFrame(uid_t uid, int width, int height, int elapsed)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onFirstRemoteVideoFrame(int uid, int width, int height, int elapsed)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstRemoteVideoFrameOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:firstRemoteVideoFrameOfUid:size:elapsed:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onFirstRemoteVideoFrame(int uid, int width, int height, int elapsed)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstRemoteVideoFrameOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:firstRemoteVideoFrameOfUid:size:elapsed:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <note props="cpp"><xref keyref="onFirstRemoteVideoFrame"/> 回调仅在视频帧由 SDK 渲染时触发。如果你使用自定义视频渲染，则不会触发该回调。你需要使用 SDK 之外的方法独立实现此功能。</note>
-            <note props="android"><xref keyref="onFirstRemoteVideoFrame"/> 回调仅在视频帧由 SDK 渲染时触发；如果你使用自定义视频渲染，则不会触发该回调。你需要使用 SDK 外的方法自行实现该功能。</note>
             <note props="ios">该回调仅在视频帧由 SDK 渲染时触发；如果你使用自定义视频渲染，则不会触发该回调。你需要使用 SDK 之外的方法自行实现。</note>
+            <note props="android"><xref keyref="onFirstRemoteVideoFrame"/> 回调仅在视频帧由 SDK 渲染时触发；如果你使用自定义视频渲染，则不会触发该回调。你需要使用 SDK 外的方法自行实现该功能。</note>
             <note props="mac">该回调仅在视频帧由 SDK 渲染时触发；如果你使用自定义视频渲染，则不会触发该回调。你需要使用 SDK 之外的方法自行实现。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>触发时机</title>
             <p props="cpp">当渲染器接收到远端视频的首帧时触发。</p>
-            <p props="android">该回调在渲染器接收到远端视频的首帧时被触发。</p>
             <p props="ios">该回调在远端用户的视频首帧被 SDK 渲染时触发。</p>
+            <p props="android">该回调在渲染器接收到远端视频的首帧时被触发。</p>
             <p props="mac">该回调在远端用户的视频首帧被 SDK 渲染时触发。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -51,22 +51,6 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 到触发该回调的时间（毫秒）。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>uid</pt>
-                    <pd>发送视频流的远端用户 ID。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>width</pt>
-                    <pd>视频流的宽度（像素）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>height</pt>
-                    <pd>视频流的高度（像素）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>elapsed</pt>
-                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 到 SDK 触发该回调的时间（毫秒）。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>engine</pt>
                     <pd>引擎对象，详见 <xref keyref="IRtcEngine"/>。</pd>
@@ -82,6 +66,22 @@
                 <plentry props="ios">
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannelByToken</codeph> 加入频道到触发该回调的时间（毫秒）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>发送视频流的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>width</pt>
+                    <pd>视频流的宽度（像素）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>视频流的高度（像素）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 到 SDK 触发该回调的时间（毫秒）。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>engine</pt>

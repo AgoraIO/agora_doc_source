@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_audiotracktype">
     <title><ph keyref="AUDIO_TRACK_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">音频轨道类型。</ph><ph id="shortdesc" props="android">音频轨道类型。</ph><ph id="shortdesc" props="ios">音频轨道类型。</ph><ph id="shortdesc" props="mac">音频轨道类型。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">音频轨道类型。</ph><ph id="shortdesc" props="ios">音频轨道类型。</ph><ph id="shortdesc" props="android">音频轨道类型。</ph><ph id="shortdesc" props="mac">音频轨道类型。</ph></shortdesc>
     <refbody>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>枚举值</title>
@@ -21,16 +21,6 @@
                         <note>如果该参数设置为 <codeph>AUDIO_TRACK_DIRECT</codeph>，则在调用 <codeph>joinChannel(const char* token, const char* channelId, uid_t uid, const ChannelMediaOptions&amp; options)</codeph> 加入频道时，必须将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>，否则加入频道会失败并返回错误码 -2。</note>
                     </pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>AUDIO_TRACK_MIXABLE</pt>
-                    <pd>（0）：可混音音频轨道。支持与其他音频流（如通过麦克风采集的音频流）混音，并在混音后本地播放或发布到频道。延迟高于直通音频轨道。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>AUDIO_TRACK_DIRECT</pt>
-                    <pd>（1）：直通音频轨道。替代通过麦克风采集的音频流，且不支持与其他音频流混音。延迟低于可混音音频轨道。
-                        <note>如果该参数设置为 <codeph>AUDIO_TRACK_DIRECT</codeph>，你必须在调用 <codeph>joinChannel</codeph> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>，否则加入频道会失败并返回错误码 -2。</note>
-                    </pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>AgoraAudioTrackTypeMixable</pt>
                     <pd>（0）：可混音音频轨道。该类型音频轨道支持与其他音频流（如麦克风采集的音频流）混音，并在混音后本地播放或发布到频道。其延迟高于直通音频轨道。</pd>
@@ -39,6 +29,16 @@
                     <pt>AgoraAudioTrackTypeDirect</pt>
                     <pd>（1）：直通音频轨道。该类型音频轨道将替代麦克风采集的音频流，不支持与其他音频流混音。其延迟低于可混音音频轨道。
                         <note>如果该参数设置为 <codeph>AgoraAudioTrackTypeDirect</codeph>，则在调用 <xref keyref="joinChannel2"/> 加入频道时，必须在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>，否则加入频道会失败并返回错误码 -2。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>AUDIO_TRACK_MIXABLE</pt>
+                    <pd>（0）：可混音音频轨道。支持与其他音频流（如通过麦克风采集的音频流）混音，并在混音后本地播放或发布到频道。延迟高于直通音频轨道。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>AUDIO_TRACK_DIRECT</pt>
+                    <pd>（1）：直通音频轨道。替代通过麦克风采集的音频流，且不支持与其他音频流混音。延迟低于可混音音频轨道。
+                        <note>如果该参数设置为 <codeph>AUDIO_TRACK_DIRECT</codeph>，你必须在调用 <codeph>joinChannel</codeph> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishMicrophoneTrack</codeph> 设置为 <xref keyref="false"/>，否则加入频道会失败并返回错误码 -2。</note>
                     </pd>
                 </plentry>
                 <plentry props="mac">

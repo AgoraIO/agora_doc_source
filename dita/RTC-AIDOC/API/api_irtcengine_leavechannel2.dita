@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_leavechannel2">
     <title><ph keyref="leaveChannel2"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置频道选项并离开频道。</ph><ph id="shortdesc" props="android">设置频道选项并离开频道。</ph><ph id="shortdesc" props="ios">设置频道选项并离开频道。</ph><ph id="shortdesc" props="mac">设置频道选项并离开频道。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置频道选项并离开频道。</ph><ph id="shortdesc" props="ios">设置频道选项并离开频道。</ph><ph id="shortdesc" props="android">设置频道选项并离开频道。</ph><ph id="shortdesc" props="mac">设置频道选项并离开频道。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,28 +14,28 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int leaveChannel(const LeaveChannelOptions&amp; options) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int leaveChannel(LeaveChannelOptions options);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)leaveChannel:(AgoraLeaveChannelOptions * _Nonnull)options
 leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannelBlock NS_SWIFT_NAME(leaveChannel(_:leaveChannelBlock:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int leaveChannel(LeaveChannelOptions options);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)leaveChannel:(AgoraLeaveChannelOptions * _Nonnull)options
 leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannelBlock NS_SWIFT_NAME(leaveChannel(_:leaveChannelBlock:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。如果你调用了 <xref keyref="joinChannelEx"/> 加入了多个频道，调用该方法会离开你加入的所有频道。</p>
-            <p props="android">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。如果你调用了 <xref keyref="joinChannelEx"/> 加入了多个频道，调用该方法会离开你加入的所有频道。</p>
             <p props="ios">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。加入频道后，必须调用该方法或 <xref keyref="leaveChannel"/> 来结束通话，否则无法开始下一次通话。如果你调用了 <codeph>joinChannelExByToken</codeph> 加入了多个频道，调用该方法会离开你加入的所有频道。</p>
+            <p props="android">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。如果你调用了 <xref keyref="joinChannelEx"/> 加入了多个频道，调用该方法会离开你加入的所有频道。</p>
             <p props="mac">调用该方法后，SDK 会终止音视频互动，离开当前频道，并释放与会话相关的所有资源。加入频道后，必须调用该方法或 <xref keyref="leaveChannel"/> 来结束通话，否则无法开始下一次通话。如果你调用了 <codeph>joinChannelExByToken</codeph> 加入了多个频道，调用该方法会离开你加入的所有频道。</p>
             <note props="cpp">如果在调用该方法后立即调用 <xref keyref="release"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。该方法为异步调用。当该方法返回时，并不意味着用户已经离开频道。</note>
-            <note props="android">如果在调用该方法后立即调用 <xref keyref="destroy1"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。该方法为异步调用。当该方法返回时，并不一定表示用户已离开频道。</note>
             <note props="ios">如果在调用该方法后立即调用 <xref keyref="release"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。该方法为异步调用。当该方法返回时，并不意味着你已经离开频道。</note>
+            <note props="android">如果在调用该方法后立即调用 <xref keyref="destroy1"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。该方法为异步调用。当该方法返回时，并不一定表示用户已离开频道。</note>
             <note props="mac">如果在调用该方法后立即调用 <xref keyref="release"/>，SDK 不会触发 <xref keyref="onLeaveChannel"/> 回调。该方法为异步调用。当该方法返回时，并不意味着你已经离开频道。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">在加入频道后调用该方法。</p>
-            <p props="android">在加入频道后调用该方法。</p>
             <p props="ios">在加入频道后调用该方法。</p>
+            <p props="android">在加入频道后调用该方法。</p>
             <p props="mac">在加入频道后调用该方法。</p>
         </section>
         <section id="related" deliveryTarget="details" props="android cpp ios mac">
@@ -46,16 +46,16 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
                     <li>远端客户端：远端主播离开频道后触发 <xref keyref="onUserOffline"/> 回调。</li>
                 </ul>
             </p>
-            <p props="android">调用该方法成功后会触发以下回调：
-                <ul>
-                    <li>本地客户端实例：触发 <xref keyref="onLeaveChannel"/> 回调。</li>
-                    <li>远端客户端实例：远端主播离开频道后触发 <xref keyref="onUserOffline"/> 回调。</li>
-                </ul>
-            </p>
             <p props="ios">调用该方法成功后会触发以下回调：
                 <ul>
                     <li>本地客户端：会触发 <xref keyref="onLeaveChannel"/> 回调。</li>
                     <li>远端客户端：远端主播离开频道后会触发 <xref keyref="onUserOffline"/> 回调。</li>
+                </ul>
+            </p>
+            <p props="android">调用该方法成功后会触发以下回调：
+                <ul>
+                    <li>本地客户端实例：触发 <xref keyref="onLeaveChannel"/> 回调。</li>
+                    <li>远端客户端实例：远端主播离开频道后触发 <xref keyref="onUserOffline"/> 回调。</li>
                 </ul>
             </p>
             <p props="mac">调用该方法成功后会触发以下回调：
@@ -72,10 +72,6 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
                     <pt>options</pt>
                     <pd>离开频道的选项。详见 <xref keyref="LeaveChannelOptions"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>options</pt>
-                    <pd>离开频道的选项，详见 <xref keyref="LeaveChannelOptions"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>options</pt>
                     <pd>离开频道的选项。详见 <xref keyref="LeaveChannelOptions"/>。</pd>
@@ -83,6 +79,10 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
                 <plentry props="ios">
                     <pt>leaveChannelBlock</pt>
                     <pd>该回调表示你离开频道，并在 <xref keyref="RtcStats"/> 中提供通话统计信息。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>离开频道的选项，详见 <xref keyref="LeaveChannelOptions"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>options</pt>
@@ -102,16 +102,16 @@ leaveChannelBlock:(void (^ _Nullable)(AgoraChannelStats * _Nonnull))leaveChannel
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

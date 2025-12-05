@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setextensionproperty">
     <title><ph keyref="setExtensionProperty"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置插件的属性。</ph><ph id="shortdesc" props="android">设置扩展组件的属性。</ph><ph id="shortdesc" props="ios">设置扩展属性。</ph><ph id="shortdesc" props="mac">设置扩展属性。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置插件的属性。</ph><ph id="shortdesc" props="ios">设置扩展属性。</ph><ph id="shortdesc" props="android">设置扩展组件的属性。</ph><ph id="shortdesc" props="mac">设置扩展属性。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,11 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setExtensionProperty(const char* provider, const char* extension, const ExtensionInfo&amp; extensionInfo, const char* key, const char* value) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int setExtensionProperty(String provider, String extension, String key, String value);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setExtensionPropertyWithVendor:(NSString * _Nonnull)provider
                             extension:(NSString * _Nonnull)extension
                                   key:(NSString * _Nonnull)key
                                 value:(NSString * _Nonnull)value NS_SWIFT_NAME(setExtensionPropertyWithVendor(_:extension:key:value:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setExtensionProperty(String provider, String extension, String key, String value);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setExtensionPropertyWithVendor:(NSString * _Nonnull)provider
                             extension:(NSString * _Nonnull)extension
                                   key:(NSString * _Nonnull)key
@@ -26,17 +26,17 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="android">启用扩展组件后，可以调用该方法设置其属性。</p>
             <p props="ios">启用扩展后，可以调用该方法设置扩展的属性。</p>
+            <p props="android">启用扩展组件后，可以调用该方法设置其属性。</p>
             <p props="mac">启用扩展后，可以调用该方法设置扩展的属性。</p>
-            <note props="android">如果你需要为多个扩展组件设置属性，需要多次调用该方法。</note>
             <note props="ios">如果需要为多个扩展设置属性，需要多次调用该方法。</note>
+            <note props="android">如果你需要为多个扩展组件设置属性，需要多次调用该方法。</note>
             <note props="mac">如果需要为多个扩展设置属性，需要多次调用该方法。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>调用时机</title>
-            <p props="android">在调用 <xref keyref="enableExtension"/> 方法之后调用该方法。</p>
             <p props="ios">在调用 <xref keyref="enableExtension"/> 方法之后调用。</p>
+            <p props="android">在调用 <xref keyref="enableExtension"/> 方法之后调用该方法。</p>
             <p props="mac">在调用 <xref keyref="enableExtension"/> 方法之后调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -62,22 +62,6 @@
                     <pt>value</pt>
                     <pd>插件属性键对应的值，采用 JSON 格式。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>provider</pt>
-                    <pd>扩展组件提供方的名称。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>extension</pt>
-                    <pd>扩展组件的名称。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>key</pt>
-                    <pd>扩展组件属性的键。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>value</pt>
-                    <pd>扩展组件属性键对应的值。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>provider</pt>
                     <pd>扩展提供方的名称。</pd>
@@ -93,6 +77,22 @@
                 <plentry props="ios">
                     <pt>value</pt>
                     <pd>扩展属性键对应的值。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>provider</pt>
+                    <pd>扩展组件提供方的名称。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>extension</pt>
+                    <pd>扩展组件的名称。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>key</pt>
+                    <pd>扩展组件属性的键。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>value</pt>
+                    <pd>扩展组件属性键对应的值。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>provider</pt>
@@ -120,16 +120,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

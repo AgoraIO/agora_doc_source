@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_openwithmediasource">
     <title><ph keyref="openWithMediaSource"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">打开媒体文件并配置播放场景。</ph><ph id="shortdesc" props="android">打开媒体文件并配置播放场景。</ph><ph id="shortdesc" props="ios">打开媒体文件并配置播放场景。</ph><ph id="shortdesc" props="mac">打开媒体文件并配置播放场景。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">打开媒体文件并配置播放场景。</ph><ph id="shortdesc" props="ios">打开媒体文件并配置播放场景。</ph><ph id="shortdesc" props="android">打开媒体文件并配置播放场景。</ph><ph id="shortdesc" props="mac">打开媒体文件并配置播放场景。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,26 +14,26 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int openWithMediaSource(const media::base::MediaSource &amp;source) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">int openWithMediaSource(MediaPlayerSource source);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)openWithMediaSource:(AgoraMediaSource *)source NS_SWIFT_NAME(open(with:));</codeblock>
+                <codeblock props="android" outputclass="language-java">int openWithMediaSource(MediaPlayerSource source);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)openWithMediaSource:(AgoraMediaSource *)source NS_SWIFT_NAME(open(with:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该方法支持打开来自不同来源的媒体文件，包括自定义媒体源，并允许你配置播放场景。</p>
-            <p props="android">该方法支持打开不同类型的媒体文件，包括以 <codeph>content://</codeph> 开头的 URI 文件和 <codeph>assets</codeph> 文件夹中的媒体文件，并设置播放选项。</p>
             <p props="ios">该方法支持打开不同类型的媒体文件，包括以 <codeph>ipod-library://</codeph> 开头的文件，并设置播放选项。</p>
+            <p props="android">该方法支持打开不同类型的媒体文件，包括以 <codeph>content://</codeph> 开头的 URI 文件和 <codeph>assets</codeph> 文件夹中的媒体文件，并设置播放选项。</p>
             <p props="mac">该方法支持打开不同类型的媒体文件，包括以 <codeph>ipod-library://</codeph> 开头的文件，并设置播放选项。</p>
             <note props="cpp"><xref keyref="openWithMediaSource"/> 为异步调用。如果你需要播放媒体文件，请确保在调用 <xref keyref="play"/> 方法前，已收到 <xref keyref="onPlayerSourceStateChanged"/> 回调并报告 <codeph>PLAYER_STATE_OPEN_COMPLETED</codeph>。</note>
-            <note props="android">该方法为异步调用。如果需要播放媒体文件，请确保在调用 <xref keyref="play"/> 方法之前，已收到 <xref keyref="onPlayerSourceStateChanged"/> 回调并报告 <codeph>OPEN_COMPLETED</codeph>。</note>
             <note props="ios"><xref keyref="openWithMediaSource"/> 为异步调用。如果你需要播放媒体文件，请确保在调用 <xref keyref="play"/> 方法播放文件之前，已收到 <xref keyref="onPlayerSourceStateChanged"/> 回调并报告 <codeph>AgoraMediaPlayerStateOpenCompleted</codeph>。</note>
+            <note props="android">该方法为异步调用。如果需要播放媒体文件，请确保在调用 <xref keyref="play"/> 方法之前，已收到 <xref keyref="onPlayerSourceStateChanged"/> 回调并报告 <codeph>OPEN_COMPLETED</codeph>。</note>
             <note props="mac"><xref keyref="openWithMediaSource"/> 为异步调用。如果你需要播放媒体文件，请确保在调用 <xref keyref="play"/> 方法播放文件之前，已收到 <xref keyref="onPlayerSourceStateChanged"/> 回调并报告 <codeph>AgoraMediaPlayerStateOpenCompleted</codeph>。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">你可以在加入频道前或后调用该方法。</p>
-            <p props="android">你可以在加入频道前或加入频道后调用该方法。</p>
             <p props="ios">你可以在加入频道前或加入频道后调用该方法。</p>
+            <p props="android">你可以在加入频道前或加入频道后调用该方法。</p>
             <p props="mac">你可以在加入频道前或加入频道后调用该方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -43,13 +43,13 @@
                     <pt>source</pt>
                     <pd>媒体资源。详见 <xref keyref="MediaSource"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>source</pt>
-                    <pd>媒体资源，详见 <xref keyref="MediaSource"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>source</pt>
                     <pd>媒体资源。详见 <xref keyref="MediaSource"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>source</pt>
+                    <pd>媒体资源，详见 <xref keyref="MediaSource"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>source</pt>
@@ -65,16 +65,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

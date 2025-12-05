@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_setsubscribeaudioallowlistex">
     <title><ph keyref="setSubscribeAudioAllowlistEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置音频流订阅白名单。</ph><ph id="shortdesc" props="android">设置音频流订阅的白名单。</ph><ph id="shortdesc" props="ios">设置音频流订阅的白名单。</ph><ph id="shortdesc" props="mac">设置音频流订阅的白名单。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置音频流订阅白名单。</ph><ph id="shortdesc" props="ios">设置音频流订阅的白名单。</ph><ph id="shortdesc" props="android">设置音频流订阅的白名单。</ph><ph id="shortdesc" props="mac">设置音频流订阅的白名单。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setSubscribeAudioAllowlistEx(uid_t* uidList, int uidNumber, const RtcConnection&amp; connection) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int setSubscribeAudioAllowlistEx(int[] uidList, RtcConnection connection);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setSubscribeAudioAllowlistEx:(NSArray &lt;NSNumber *&gt; *_Nonnull)allowlist connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(setSubscribeAudioAllowlistEx(_:connection:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setSubscribeAudioAllowlistEx(int[] uidList, RtcConnection connection);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setSubscribeAudioAllowlistEx:(NSArray &lt;NSNumber *&gt; *_Nonnull)allowlist connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(setSubscribeAudioAllowlistEx(_:connection:));</codeblock>
             </p>
         </section>
@@ -30,20 +30,20 @@
                     <li>如果某个用户同时被加入白名单和黑名单，则仅黑名单生效。</li>
                 </ul>
             </note>
-            <note props="android">
-                <ul>
-                    <li>你可以在加入频道前或加入频道后调用此方法。</li>
-                    <li>白名单不受 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
-                    <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入，该设置仍然有效。</li>
-                    <li>如果某个用户同时被添加到白名单和黑名单中，则以黑名单为准。</li>
-                </ul>
-            </note>
             <note props="ios">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
                     <li>白名单不受 <codeph>muteRemoteAudioStream</codeph>、<codeph>muteAllRemoteAudioStreams</codeph> 和 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
                     <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
                     <li>如果某个用户同时被添加到白名单和黑名单中，只有黑名单生效。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>你可以在加入频道前或加入频道后调用此方法。</li>
+                    <li>白名单不受 <xref keyref="muteRemoteAudioStream"/>、<xref keyref="muteAllRemoteAudioStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入，该设置仍然有效。</li>
+                    <li>如果某个用户同时被添加到白名单和黑名单中，则以黑名单为准。</li>
                 </ul>
             </note>
             <note props="mac">
@@ -74,14 +74,6 @@
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>uidList</pt>
-                    <pd>你想要订阅的用户 ID 列表。如果你希望将某个用户从白名单中移除，需要调用 <xref keyref="setSubscribeAudioAllowlist"/> 方法更新用户 ID 列表；也就是说，你只需在新的用户 ID 列表中添加你希望订阅的用户的用户 ID。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>connection</pt>
-                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>allowlist</pt>
                     <pd>你想要订阅的用户的用户 ID 列表。如果你想指定某个用户的音频流进行订阅，请将该用户的 ID 添加到此列表中。如果你想将某个用户从白名单中移除，你需要调用 <codeph>setSubscribeAudioAllowlist</codeph> 方法来更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加你想要订阅的用户的 <codeph>uid</codeph>。</pd>
@@ -89,6 +81,14 @@
                 <plentry props="ios">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uidList</pt>
+                    <pd>你想要订阅的用户 ID 列表。如果你希望将某个用户从白名单中移除，需要调用 <xref keyref="setSubscribeAudioAllowlist"/> 方法更新用户 ID 列表；也就是说，你只需在新的用户 ID 列表中添加你希望订阅的用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>allowlist</pt>
@@ -108,16 +108,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

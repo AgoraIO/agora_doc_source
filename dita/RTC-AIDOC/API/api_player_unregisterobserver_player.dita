@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_player_unregisterobserver_player">
     <title><ph keyref="UnregisterObserver_Player"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">取消注册播放器事件观察者对象。</ph><ph id="shortdesc" props="android">取消注册媒体播放器事件观察者对象。</ph><ph id="shortdesc" props="ios">取消注册媒体播放器事件观察者对象。</ph><ph id="shortdesc" props="mac">取消注册媒体播放器事件观察者对象。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">取消注册播放器事件观察者对象。</ph><ph id="shortdesc" props="ios">取消注册媒体播放器事件观察者对象。</ph><ph id="shortdesc" props="android">取消注册媒体播放器事件观察者对象。</ph><ph id="shortdesc" props="mac">取消注册媒体播放器事件观察者对象。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">bool UnregisterObserver(PlayerObserver *observer, Error *err = nullptr)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void unregisterObserver(PlayerObserver observer) throws RteException</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (BOOL)unregisterObserver:(AgoraRtePlayerObserver * _Nullable)observer error:(AgoraRteError * _Nullable)error;</codeblock>
+                <codeblock props="android" outputclass="language-java">public void unregisterObserver(PlayerObserver observer) throws RteException</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (BOOL)unregisterObserver:(AgoraRtePlayerObserver * _Nullable)observer error:(AgoraRteError * _Nullable)error;</codeblock>
             </p>
         </section>
@@ -25,11 +25,11 @@
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
@@ -39,8 +39,8 @@
                 </dlentry>
             </dl>
             <p props="cpp">调用 <xref keyref="RegisterObserver_Player"/> 注册播放器事件观察者后，如需取消注册，可调用该方法。</p>
-            <p props="android">调用 <xref keyref="RegisterObserver_Player"/> 注册媒体播放器事件观察者对象后，如需取消注册，请调用该方法。</p>
             <p props="ios">调用 <xref keyref="RegisterObserver_Player"/> 注册媒体播放器事件观察者对象后，如需取消注册该观察者对象，可以调用此方法。</p>
+            <p props="android">调用 <xref keyref="RegisterObserver_Player"/> 注册媒体播放器事件观察者对象后，如需取消注册，请调用该方法。</p>
             <p props="mac">调用 <xref keyref="RegisterObserver_Player"/> 注册媒体播放器事件观察者对象后，如需取消注册该观察者对象，可以调用此方法。</p>
             <note props="ios">该方法必须在调用 <xref keyref="RegisterObserver_Player"/> 之后调用。</note>
             <note props="mac">该方法必须在调用 <xref keyref="RegisterObserver_Player"/> 之后调用。</note>
@@ -48,8 +48,8 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">该方法必须在调用 <xref keyref="RegisterObserver_Player"/> 之后调用。</p>
-            <p props="android">该方法必须在调用 <xref keyref="RegisterObserver_Player"/> 之后调用。</p>
             <p props="ios">该方法必须在调用 <xref keyref="RegisterObserver_Player"/> 之后调用。</p>
+            <p props="android">该方法必须在调用 <xref keyref="RegisterObserver_Player"/> 之后调用。</p>
             <p props="mac">该方法必须在调用 <xref keyref="RegisterObserver_Player"/> 之后调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -63,10 +63,6 @@
                     <pt>err</pt>
                     <pd>输出参数，状态或错误信息，详见 <xref keyref="Error"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>observer</pt>
-                    <pd>详见 <xref keyref="PlayerObserver"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>observer</pt>
                     <pd>媒体播放器事件观察者对象。详见 <xref keyref="PlayerObserver"/>。</pd>
@@ -74,6 +70,10 @@
                 <plentry props="ios">
                     <pt>error</pt>
                     <pd>状态或错误信息。详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>observer</pt>
+                    <pd>详见 <xref keyref="PlayerObserver"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>observer</pt>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getextensionproperty2">
     <title><ph keyref="getExtensionProperty2"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取扩展属性。</ph><ph id="shortdesc" props="android">获取扩展组件的详细信息。</ph><ph id="shortdesc" props="ios">获取扩展的详细信息。</ph><ph id="shortdesc" props="mac">获取扩展的详细信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取扩展属性。</ph><ph id="shortdesc" props="ios">获取扩展的详细信息。</ph><ph id="shortdesc" props="android">获取扩展组件的详细信息。</ph><ph id="shortdesc" props="mac">获取扩展的详细信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,11 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int getExtensionProperty(const char* provider, const char* extension, const ExtensionInfo&amp; extensionInfo, const char* key, char* value, int buf_len) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract String getExtensionProperty(String provider, String extension, String key, Constants.MediaSourceType sourceType);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (NSString * _Nullable)getExtensionPropertyWithVendor:(NSString * _Nonnull)provider
                                              extension:(NSString * _Nonnull)extension
                                                    key:(NSString * _Nonnull)key
                                             sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(getExtensionProperty(withVendor:extension:key:sourceType:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract String getExtensionProperty(String provider, String extension, String key, Constants.MediaSourceType sourceType);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (NSString * _Nullable)getExtensionPropertyWithVendor:(NSString * _Nonnull)provider
                                              extension:(NSString * _Nonnull)extension
                                                    key:(NSString * _Nonnull)key
@@ -28,8 +28,8 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>调用时机</title>
-            <p props="android">该方法可以在加入频道前或加入频道后调用。</p>
             <p props="ios">该方法可以在加入频道前或后调用。</p>
+            <p props="android">该方法可以在加入频道前或加入频道后调用。</p>
             <p props="mac">该方法可以在加入频道前或后调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -59,22 +59,6 @@
                     <pt>buf_len</pt>
                     <pd>扩展属性值的最大长度（以 JSON 字符串形式表示）。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>provider</pt>
-                    <pd>扩展组件提供方的名称。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>extension</pt>
-                    <pd>扩展组件的名称。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>key</pt>
-                    <pd>扩展组件的键值。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>sourceType</pt>
-                    <pd>扩展组件的来源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>provider</pt>
                     <pd>扩展提供方的名称。</pd>
@@ -90,6 +74,22 @@
                 <plentry props="ios">
                     <pt>sourceType</pt>
                     <pd>扩展的来源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>provider</pt>
+                    <pd>扩展组件提供方的名称。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>extension</pt>
+                    <pd>扩展组件的名称。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>key</pt>
+                    <pd>扩展组件的键值。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>扩展组件的来源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>provider</pt>
@@ -117,16 +117,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>方法调用成功时，返回扩展组件的信息。</li>
-                    <li>方法调用失败，返回空字符串。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>方法调用成功时，返回扩展信息。</li>
                     <li>方法调用失败时，返回空字符串。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功时，返回扩展组件的信息。</li>
+                    <li>方法调用失败，返回空字符串。</li>
                 </ul>
             </p>
             <p props="mac">

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
     <title><ph keyref="LiveTranscoding"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置媒体推流的转码参数。</ph><ph id="shortdesc" props="android">用于配置媒体推流的转码参数。</ph><ph id="shortdesc" props="ios">媒体推流的转码配置。</ph><ph id="shortdesc" props="mac">媒体推流的转码配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置媒体推流的转码参数。</ph><ph id="shortdesc" props="ios">媒体推流的转码配置。</ph><ph id="shortdesc" props="android">用于配置媒体推流的转码参数。</ph><ph id="shortdesc" props="mac">媒体推流的转码配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -31,6 +31,24 @@
   LiveStreamAdvancedFeature* advancedFeatures;
   unsigned int advancedFeatureCount;
 };</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscoding : NSObject
+@property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser*&gt;* _Nullable transcodingUsers;
+@property(assign, nonatomic) CGSize size;
+@property(assign, nonatomic) NSInteger videoBitrate;
+@property(assign, nonatomic) NSInteger videoFramerate;
+@property(assign, nonatomic) BOOL lowLatency;
+@property(assign, nonatomic) NSInteger videoGop;
+@property(assign, nonatomic) AgoraVideoCodecProfileType videoCodecProfile;
+@property(assign, nonatomic) AgoraVideoCodecTypeForStream videoCodecType;
+@property(copy, nonatomic) NSString* _Nullable transcodingExtraInfo;
+@property(copy, nonatomic) NSArray&lt;AgoraImage*&gt;* _Nullable watermarkArray;
+@property(copy, nonatomic) NSArray&lt;AgoraImage*&gt;* _Nullable backgroundImageArray;
+@property(strong, nonatomic) COLOR_CLASS* _Nullable backgroundColor;
+@property(assign, nonatomic) AgoraAudioSampleRateType audioSampleRate;
+@property(assign, nonatomic) NSInteger audioBitrate;
+@property(assign, nonatomic) NSInteger audioChannels;
+@property(assign, nonatomic) AgoraAudioCodecProfileType audioCodecProfile;
+@end</codeblock>
                 <codeblock props="android" outputclass="language-java">public class LiveTranscoding {
   public int width;
   public int height;
@@ -53,24 +71,6 @@
   private Map&lt;Integer, TranscodingUser&gt; transcodingUsers;
   private Map&lt;String, Boolean&gt; advancedFeatures;
 }</codeblock>
-                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscoding : NSObject
-@property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser*&gt;* _Nullable transcodingUsers;
-@property(assign, nonatomic) CGSize size;
-@property(assign, nonatomic) NSInteger videoBitrate;
-@property(assign, nonatomic) NSInteger videoFramerate;
-@property(assign, nonatomic) BOOL lowLatency;
-@property(assign, nonatomic) NSInteger videoGop;
-@property(assign, nonatomic) AgoraVideoCodecProfileType videoCodecProfile;
-@property(assign, nonatomic) AgoraVideoCodecTypeForStream videoCodecType;
-@property(copy, nonatomic) NSString* _Nullable transcodingExtraInfo;
-@property(copy, nonatomic) NSArray&lt;AgoraImage*&gt;* _Nullable watermarkArray;
-@property(copy, nonatomic) NSArray&lt;AgoraImage*&gt;* _Nullable backgroundImageArray;
-@property(strong, nonatomic) COLOR_CLASS* _Nullable backgroundColor;
-@property(assign, nonatomic) AgoraAudioSampleRateType audioSampleRate;
-@property(assign, nonatomic) NSInteger audioBitrate;
-@property(assign, nonatomic) NSInteger audioChannels;
-@property(assign, nonatomic) AgoraAudioCodecProfileType audioCodecProfile;
-@end</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscoding : NSObject
 @property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser*&gt;* _Nullable transcodingUsers;
 @property(assign, nonatomic) CGSize size;
@@ -213,93 +213,6 @@
                     <pt>advancedFeatureCount</pt>
                     <pd>启用的高级功能数量。默认值为 0。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>width</pt>
-                    <pd>视频宽度，单位为像素，默认值为 360。
-                        <ul>
-                            <li>当推送视频流至 CDN 时，<codeph>width</codeph> 的取值范围为 [64,1920]。若该值小于 64，声网服务器会自动调整为 64；若该值大于 1920，则自动调整为 1920。</li>
-                            <li>当推送音频流至 CDN 时，请将 <codeph>width</codeph> 和 <codeph>height</codeph> 设置为 0。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>height</pt>
-                    <pd>视频高度，单位为像素，默认值为 640。
-                        <ul>
-                            <li>当推送视频流至 CDN 时，<codeph>height</codeph> 的取值范围为 [64,1080]。若该值小于 64，声网服务器会自动调整为 64；若该值大于 1080，则自动调整为 1080。</li>
-                            <li>当推送音频流至 CDN 时，请将 <codeph>width</codeph> 和 <codeph>height</codeph> 设置为 0。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>videoBitrate</pt>
-                    <pd>视频编码码率（Kbps）。无需设置该参数，仅保留默认值 <xref keyref="STANDARD_BITRATE"/> 即可。SDK 会根据已设置的视频分辨率和帧率自动匹配最合适的码率。关于视频分辨率与帧率的对应关系，详见 <codeph>Video profile</codeph>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>videoFramerate</pt>
-                    <pd>媒体推流设置的视频输出帧率（fps），默认值为 15。该值的取值范围为 (0,30]。
-                        <note>声网服务器会将大于 30 的值调整为 30。</note>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>lowLatency</pt>
-                    <pd>延迟模式：
-                        <ul>
-                            <li><xref keyref="true"/>：低延迟模式，但无法保证画质。</li>
-                            <li><xref keyref="false"/>：默认值，高延迟但可保证画质。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>videoGop</pt>
-                    <pd>媒体推流中视频帧的 GOP（图像组）设置，单位为帧，默认值为 30。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>audioSampleRate</pt>
-                    <pd>媒体输出流的音频采样率（Hz）。详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>audioBitrate</pt>
-                    <pd>音频输出流的编码码率，单位为 Kbps，默认值为 48，最大值为 128。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>audioChannels</pt>
-                    <pd>媒体推流使用的音频声道数。声网建议选择 1（单声道）或 2（立体声）。若选择 3、4 或 5，则需要特定播放器支持。
-                        <ul>
-                            <li>1：默认值，单声道。</li>
-                            <li>2：立体声。</li>
-                            <li>3：三声道。</li>
-                            <li>4：四声道。</li>
-                            <li>5：五声道。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>audioCodecProfile</pt>
-                    <pd>媒体推流使用的音频编码器配置类型。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>videoCodecProfile</pt>
-                    <pd>媒体推流使用的视频编码器配置类型。可设置为 66、77 或默认值 100。详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>。
-                        <note>如果设置为其他值，声网会自动使用默认值。</note>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>videoCodecType</pt>
-                    <pd>媒体推流使用的视频编码器类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>userCount</pt>
-                    <pd>媒体推流中用户数量，取值范围为 [0,17]。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>userConfigExtraInfo</pt>
-                    <pd>保留字段。用于将用户自定义的信息以 SEI 的形式随 H.264/H.265 视频流发送至 CDN 侧播放端，最大字节长度为 4096。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>metadata</pt>
-                    <pd>发送至 CDN 客户端的元数据内容。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>transcodingUsers</pt>
                     <pd>媒体推流中的用户布局配置。最多支持添加 17 个转码用户。详见 <xref keyref="TranscodingUser"/>。</pd>
@@ -395,6 +308,93 @@
                 <plentry props="ios">
                     <pt>audioCodecProfile</pt>
                     <pd>媒体推流的音频编解码器配置文件类型。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>width</pt>
+                    <pd>视频宽度，单位为像素，默认值为 360。
+                        <ul>
+                            <li>当推送视频流至 CDN 时，<codeph>width</codeph> 的取值范围为 [64,1920]。若该值小于 64，声网服务器会自动调整为 64；若该值大于 1920，则自动调整为 1920。</li>
+                            <li>当推送音频流至 CDN 时，请将 <codeph>width</codeph> 和 <codeph>height</codeph> 设置为 0。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>视频高度，单位为像素，默认值为 640。
+                        <ul>
+                            <li>当推送视频流至 CDN 时，<codeph>height</codeph> 的取值范围为 [64,1080]。若该值小于 64，声网服务器会自动调整为 64；若该值大于 1080，则自动调整为 1080。</li>
+                            <li>当推送音频流至 CDN 时，请将 <codeph>width</codeph> 和 <codeph>height</codeph> 设置为 0。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoBitrate</pt>
+                    <pd>视频编码码率（Kbps）。无需设置该参数，仅保留默认值 <xref keyref="STANDARD_BITRATE"/> 即可。SDK 会根据已设置的视频分辨率和帧率自动匹配最合适的码率。关于视频分辨率与帧率的对应关系，详见 <codeph>Video profile</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoFramerate</pt>
+                    <pd>媒体推流设置的视频输出帧率（fps），默认值为 15。该值的取值范围为 (0,30]。
+                        <note>声网服务器会将大于 30 的值调整为 30。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lowLatency</pt>
+                    <pd>延迟模式：
+                        <ul>
+                            <li><xref keyref="true"/>：低延迟模式，但无法保证画质。</li>
+                            <li><xref keyref="false"/>：默认值，高延迟但可保证画质。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoGop</pt>
+                    <pd>媒体推流中视频帧的 GOP（图像组）设置，单位为帧，默认值为 30。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioSampleRate</pt>
+                    <pd>媒体输出流的音频采样率（Hz）。详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioBitrate</pt>
+                    <pd>音频输出流的编码码率，单位为 Kbps，默认值为 48，最大值为 128。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioChannels</pt>
+                    <pd>媒体推流使用的音频声道数。声网建议选择 1（单声道）或 2（立体声）。若选择 3、4 或 5，则需要特定播放器支持。
+                        <ul>
+                            <li>1：默认值，单声道。</li>
+                            <li>2：立体声。</li>
+                            <li>3：三声道。</li>
+                            <li>4：四声道。</li>
+                            <li>5：五声道。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioCodecProfile</pt>
+                    <pd>媒体推流使用的音频编码器配置类型。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoCodecProfile</pt>
+                    <pd>媒体推流使用的视频编码器配置类型。可设置为 66、77 或默认值 100。详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>。
+                        <note>如果设置为其他值，声网会自动使用默认值。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoCodecType</pt>
+                    <pd>媒体推流使用的视频编码器类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userCount</pt>
+                    <pd>媒体推流中用户数量，取值范围为 [0,17]。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userConfigExtraInfo</pt>
+                    <pd>保留字段。用于将用户自定义的信息以 SEI 的形式随 H.264/H.265 视频流发送至 CDN 侧播放端，最大字节长度为 4096。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>metadata</pt>
+                    <pd>发送至 CDN 客户端的元数据内容。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>transcodingUsers</pt>

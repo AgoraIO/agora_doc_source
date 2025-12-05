@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_setaudiodualmonomode">
     <title><ph keyref="setAudioDualMonoMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置当前音频文件的声道模式。</ph><ph id="shortdesc" props="android">设置当前音频文件的声道模式。</ph><ph id="shortdesc" props="ios">设置当前音频文件的声道模式。</ph><ph id="shortdesc" props="mac">设置当前音频文件的声道模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置当前音频文件的声道模式。</ph><ph id="shortdesc" props="ios">设置当前音频文件的声道模式。</ph><ph id="shortdesc" props="android">设置当前音频文件的声道模式。</ph><ph id="shortdesc" props="mac">设置当前音频文件的声道模式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,15 +14,15 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioDualMonoMode(agora::media::base::AUDIO_DUAL_MONO_MODE mode) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">int setAudioDualMonoMode(int mode);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setAudioDualMonoMode:(AgoraAudioDualMonoMode)mode NS_SWIFT_NAME(setAudioDualMonoMode(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">int setAudioDualMonoMode(int mode);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setAudioDualMonoMode:(AgoraAudioDualMonoMode)mode NS_SWIFT_NAME(setAudioDualMonoMode(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">在立体声音乐文件中，左声道和右声道可以存储不同的音频数据。你可以根据需要将声道模式设置为原始模式、左声道模式、右声道模式或混合声道模式。例如，在 KTV 场景中，音乐文件的左声道存储伴奏，右声道存储人声。如果你只需要听伴奏，可以调用该方法将声道模式设置为左声道模式；如果你需要同时听到伴奏和人声，可以将声道模式设置为混合声道模式。</p>
-            <p props="android">在立体声音频文件中，左右声道可以存储不同的音频数据。你可以根据需要将声道模式设置为原始模式、左声道模式、右声道模式或混合声道模式。例如，在 KTV 场景中，音乐文件的左声道存储伴奏，右声道存储人声。如果你只需要听伴奏，可以将声道模式设置为左声道模式；如果你需要同时听到伴奏和人声，可以将声道模式设置为混合声道模式。</p>
             <p props="ios">你可以使用该方法设置当前音频文件的声道模式，包括原始模式、左声道模式、右声道模式或混合声道模式。例如，在 KTV 场景中，音乐文件的左声道存储伴奏，右声道存储人声。如果你只需要听伴奏，可以调用该方法将声道模式设置为左声道模式；如果你需要同时听到伴奏和人声，可以将声道模式设置为混合声道模式。</p>
+            <p props="android">在立体声音频文件中，左右声道可以存储不同的音频数据。你可以根据需要将声道模式设置为原始模式、左声道模式、右声道模式或混合声道模式。例如，在 KTV 场景中，音乐文件的左声道存储伴奏，右声道存储人声。如果你只需要听伴奏，可以将声道模式设置为左声道模式；如果你需要同时听到伴奏和人声，可以将声道模式设置为混合声道模式。</p>
             <p props="mac">你可以使用该方法设置当前音频文件的声道模式，包括原始模式、左声道模式、右声道模式或混合声道模式。例如，在 KTV 场景中，音乐文件的左声道存储伴奏，右声道存储人声。如果你只需要听伴奏，可以调用该方法将声道模式设置为左声道模式；如果你需要同时听到伴奏和人声，可以将声道模式设置为混合声道模式。</p>
             <note props="cpp">
                 <ul>
@@ -30,16 +30,16 @@
                     <li>此方法仅适用于立体声音频文件。</li>
                 </ul>
             </note>
-            <note props="android">
-                <ul>
-                    <li>请在调用 <codeph>open</codeph> 方法之后调用该方法。</li>
-                    <li>该方法仅适用于立体声音频文件。</li>
-                </ul>
-            </note>
             <note props="ios">
                 <ul>
                     <li>请在调用 <xref keyref="open"/> 方法之后调用此方法。</li>
                     <li>此方法仅适用于立体声音频文件。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>请在调用 <codeph>open</codeph> 方法之后调用该方法。</li>
+                    <li>该方法仅适用于立体声音频文件。</li>
                 </ul>
             </note>
             <note props="mac">
@@ -56,6 +56,10 @@
                     <pt>mode</pt>
                     <pd>声道模式，详见 <xref keyref="AUDIO_DUAL_MONO_MODE"/>。</pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>mode</pt>
+                    <pd>声道模式。详见 <xref keyref="AUDIO_DUAL_MONO_MODE"/>。</pd>
+                </plentry>
                 <plentry props="android">
                     <pt>mode</pt>
                     <pd>声道模式：
@@ -66,10 +70,6 @@
                             <li><codeph>AUDIO_DUAL_MONO_MIX</codeph> (3)：混合声道模式。该模式将左右声道的音频混合，你可以同时听到左右声道的音频。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>mode</pt>
-                    <pd>声道模式。详见 <xref keyref="AUDIO_DUAL_MONO_MODE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>mode</pt>
@@ -85,16 +85,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

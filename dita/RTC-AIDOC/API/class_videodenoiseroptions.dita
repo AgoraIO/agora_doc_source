@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videodenoiseroptions">
     <title><ph keyref="VideoDenoiserOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置视频降噪选项。</ph><ph id="shortdesc" props="android">用于设置视频降噪选项。</ph><ph id="shortdesc" props="ios">视频降噪选项。</ph><ph id="shortdesc" props="mac">视频降噪选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置视频降噪选项。</ph><ph id="shortdesc" props="ios">视频降噪选项。</ph><ph id="shortdesc" props="android">用于设置视频降噪选项。</ph><ph id="shortdesc" props="mac">视频降噪选项。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -10,6 +10,10 @@
   VIDEO_DENOISER_MODE mode;
   VIDEO_DENOISER_LEVEL level;
 };</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoDenoiserOptions : NSObject
+@property(nonatomic, assign) AgoraVideoDenoiserMode mode;
+@property(nonatomic, assign) AgoraVideoDenoiserLevel level;
+@end</codeblock>
                 <codeblock props="android" outputclass="language-java">public class VideoDenoiserOptions {
   public static final int VIDEO_DENOISER_AUTO = 0;
   public static final int VIDEO_DENOISER_MANUAL = 1;
@@ -18,10 +22,6 @@
   public int denoiserMode;
   public int denoiserLevel;
 }</codeblock>
-                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoDenoiserOptions : NSObject
-@property(nonatomic, assign) AgoraVideoDenoiserMode mode;
-@property(nonatomic, assign) AgoraVideoDenoiserLevel level;
-@end</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoDenoiserOptions : NSObject
 @property(nonatomic, assign) AgoraVideoDenoiserMode mode;
 @property(nonatomic, assign) AgoraVideoDenoiserLevel level;
@@ -50,6 +50,14 @@
                 <plentry props="cpp">
                     <pt>level</pt>
                     <pd>视频降噪等级。详见 <xref keyref="VIDEO_DENOISER_LEVEL"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mode</pt>
+                    <pd>视频降噪模式，详见 <xref keyref="VIDEO_DENOISER_MODE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>level</pt>
+                    <pd>视频降噪等级，详见 <xref keyref="VIDEO_DENOISER_LEVEL"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>VIDEO_DENOISER_AUTO</pt>
@@ -84,14 +92,6 @@
                             <li><codeph>VIDEO_DENOISER_LEVEL_FAST</codeph>（1）：提升性能效率的降噪模式。该模式优先考虑降低性能消耗而非降噪质量，性能消耗较低，降噪速度较快。为避免处理后的视频出现拖影效果（移动物体后方的残影），声网推荐在摄像头固定的情况下使用该设置。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>mode</pt>
-                    <pd>视频降噪模式，详见 <xref keyref="VIDEO_DENOISER_MODE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>level</pt>
-                    <pd>视频降噪等级，详见 <xref keyref="VIDEO_DENOISER_LEVEL"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>mode</pt>

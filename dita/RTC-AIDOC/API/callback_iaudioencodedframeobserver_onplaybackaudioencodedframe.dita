@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioencodedframeobserver_onplaybackaudioencodedframe">
     <title><ph keyref="onPlaybackAudioEncodedFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取所有远端用户编码音频数据的回调。</ph><ph id="shortdesc" props="android">获取所有远端用户编码音频数据的回调。</ph><ph id="shortdesc" props="ios">获取所有远端用户的编码音频数据回调。</ph><ph id="shortdesc" props="mac">获取所有远端用户的编码音频数据回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取所有远端用户编码音频数据的回调。</ph><ph id="shortdesc" props="ios">获取所有远端用户的编码音频数据回调。</ph><ph id="shortdesc" props="android">获取所有远端用户编码音频数据的回调。</ph><ph id="shortdesc" props="mac">获取所有远端用户的编码音频数据回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,21 +14,21 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onPlaybackAudioEncodedFrame(const uint8_t* frameBuffer, int length, const EncodedAudioFrameInfo&amp; audioEncodedFrameInfo) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract void onPlaybackAudioEncodedFrame(ByteBuffer buffer, int samplesPerChannel, int channels, int samplesPerSec, int codecType);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)onPlaybackEncodedAudioFrame:(NSData* _Nonnull)frameData info:(AgoraEncodedAudioFrameInfo* _Nonnull)info NS_SWIFT_NAME(onPlaybackEncodedAudioFrame(_:info:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract void onPlaybackAudioEncodedFrame(ByteBuffer buffer, int samplesPerChannel, int channels, int samplesPerSec, int codecType);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)onPlaybackEncodedAudioFrame:(NSData* _Nonnull)frameData info:(AgoraEncodedAudioFrameInfo* _Nonnull)info NS_SWIFT_NAME(onPlaybackEncodedAudioFrame(_:info:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将编码音频位置设置为 <codeph>AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK</codeph> 后，可以通过该回调获取所有远端用户的编码音频数据。</p>
-            <p props="android">调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将编码音频设置为 <codeph>AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK</codeph> 后，可以通过该回调获取所有远端用户的编码音频数据。</p>
             <p props="ios">调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将编码音频设置为 <codeph>AgoraAudioEncodedFrameObserverPositionPlayback</codeph> 后，该回调会返回所有远端用户的编码音频数据。</p>
+            <p props="android">调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将编码音频设置为 <codeph>AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK</codeph> 后，可以通过该回调获取所有远端用户的编码音频数据。</p>
             <p props="mac">调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将编码音频设置为 <codeph>AgoraAudioEncodedFrameObserverPositionPlayback</codeph> 后，该回调会返回所有远端用户的编码音频数据。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>触发时机</title>
-            <p props="android">该回调在获取远端用户编码音频数据时被触发。</p>
             <p props="ios">该回调在获取到所有远端用户的编码音频数据时被触发。</p>
+            <p props="android">该回调在获取远端用户编码音频数据时被触发。</p>
             <p props="mac">该回调在获取到所有远端用户的编码音频数据时被触发。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -45,6 +45,14 @@
                 <plentry props="cpp">
                     <pt>audioEncodedFrameInfo</pt>
                     <pd>编码后的音频帧信息。详见 <xref keyref="EncodedAudioFrameInfo"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>frameData</pt>
+                    <pd>音频缓冲区。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>info</pt>
+                    <pd>编码后的音频信息，详见 <xref keyref="EncodedAudioFrameInfo"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>buffer</pt>
@@ -77,14 +85,6 @@
                             <li><codeph>11</codeph>：HE-AAC v2。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>frameData</pt>
-                    <pd>音频缓冲区。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>info</pt>
-                    <pd>编码后的音频信息，详见 <xref keyref="EncodedAudioFrameInfo"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>frameData</pt>

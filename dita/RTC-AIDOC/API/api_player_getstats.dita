@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_player_getstats">
     <title><ph keyref="GetStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取播放器当前播放的媒体资源的统计信息。</ph><ph id="shortdesc" props="android">获取播放器当前播放媒体资源的统计信息。</ph><ph id="shortdesc" props="ios">获取播放器当前播放媒体资源的统计信息。</ph><ph id="shortdesc" props="mac">获取播放器当前播放媒体资源的统计信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取播放器当前播放的媒体资源的统计信息。</ph><ph id="shortdesc" props="ios">获取播放器当前播放媒体资源的统计信息。</ph><ph id="shortdesc" props="android">获取播放器当前播放媒体资源的统计信息。</ph><ph id="shortdesc" props="mac">获取播放器当前播放媒体资源的统计信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">void GetStats(std::function&lt;void(rte::PlayerStats *stats, rte::Error *err)&gt; cb)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void getStats(PlayerGetStatsCallback callback)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)getStats:(void (^_Nonnull)(AgoraRtePlayerStats* _Nonnull stats, AgoraRteError* _Nullable err))cb;</codeblock>
+                <codeblock props="android" outputclass="language-java">public void getStats(PlayerGetStatsCallback callback)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)getStats:(void (^_Nonnull)(AgoraRtePlayerStats* _Nonnull stats, AgoraRteError* _Nullable err))cb;</codeblock>
             </p>
         </section>
@@ -25,11 +25,11 @@
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
@@ -39,8 +39,8 @@
                 </dlentry>
             </dl>
             <p props="cpp">该方法通过回调异步返回播放器的统计信息，包括解码情况、渲染帧率、音视频码率等。</p>
-            <p props="android">该方法通过回调异步返回播放器的统计信息。</p>
             <p props="ios">该方法用于获取播放器的统计信息，并通过回调函数异步返回结果。统计信息包括解码和渲染帧率、音视频码率等。</p>
+            <p props="android">该方法通过回调异步返回播放器的统计信息。</p>
             <p props="mac">该方法用于获取播放器的统计信息，并通过回调函数异步返回结果。统计信息包括解码和渲染帧率、音视频码率等。</p>
             <note props="ios">你必须在调用 <xref keyref="OpenWithUrl"/> 方法之后再调用此方法。</note>
             <note props="mac">你必须在调用 <xref keyref="OpenWithUrl"/> 方法之后再调用此方法。</note>
@@ -62,10 +62,6 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>callback</pt>
-                    <pd>用于异步接收统计信息和错误信息的回调接口。详见 <xref keyref="PlayerGetStatsCallback"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>cb</pt>
                     <pd>一个异步回调函数，用于通知你播放器媒体资源统计信息的获取结果以及任何错误信息。该函数包含以下参数：
@@ -74,6 +70,10 @@
                             <li><codeph>err</codeph>：错误信息，详见 <xref keyref="Error"/>。</li>
                         </ul>
                     </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>callback</pt>
+                    <pd>用于异步接收统计信息和错误信息的回调接口。详见 <xref keyref="PlayerGetStatsCallback"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>cb</pt>

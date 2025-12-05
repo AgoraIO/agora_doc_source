@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setlocalvideomirrormode">
     <title><ph keyref="setLocalVideoMirrorMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置本地视频镜像模式。</ph><ph id="shortdesc" props="android">设置本地视频镜像模式。</ph><ph id="shortdesc" props="ios">设置本地视频镜像模式。</ph><ph id="shortdesc" props="mac">设置本地视频镜像模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置本地视频镜像模式。</ph><ph id="shortdesc" props="ios">设置本地视频镜像模式。</ph><ph id="shortdesc" props="android">设置本地视频镜像模式。</ph><ph id="shortdesc" props="mac">设置本地视频镜像模式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalVideoMirrorMode(VIDEO_MIRROR_MODE_TYPE mirrorMode) __deprecated = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int setLocalVideoMirrorMode(int mode)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setLocalVideoMirrorMode:(AgoraVideoMirrorMode)mode NS_SWIFT_NAME(setLocalVideoMirrorMode(_:)) __deprecated;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setLocalVideoMirrorMode(int mode)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setLocalVideoMirrorMode:(AgoraVideoMirrorMode)mode NS_SWIFT_NAME(setLocalVideoMirrorMode(_:)) __deprecated;</codeblock>
             </p>
         </section>
@@ -25,11 +25,11 @@
                     <dt>废弃</dt>
                     <dd>该方法已废弃，请改用 <xref keyref="setupLocalVideo"/> 或 <codeph>setLocalRenderMode</codeph>。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>废弃</dt>
                     <dd>该方法已废弃。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>废弃</dt>
                     <dd>该方法已废弃。</dd>
                 </dlentry>
@@ -46,6 +46,10 @@
                     <pt>mirrorMode</pt>
                     <pd>本地视频镜像模式。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>mode</pt>
+                    <pd>本地视频镜像模式。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
+                </plentry>
                 <plentry props="android">
                     <pt>mode</pt>
                     <pd>本地视频镜像模式：
@@ -55,10 +59,6 @@
                             <li><codeph>VIDEO_MIRROR_MODE_DISABLED</codeph> (2)：关闭本地视图的镜像模式。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>mode</pt>
-                    <pd>本地视频镜像模式。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>mode</pt>
@@ -74,16 +74,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

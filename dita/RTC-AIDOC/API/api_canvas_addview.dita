@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_canvas_addview">
     <title><ph keyref="AddView"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">添加一个渲染视图。</ph><ph id="shortdesc" props="android">添加一个渲染视图。</ph><ph id="shortdesc" props="ios">添加一个渲染视图。</ph><ph id="shortdesc" props="mac">添加一个渲染视图。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">添加一个渲染视图。</ph><ph id="shortdesc" props="ios">添加一个渲染视图。</ph><ph id="shortdesc" props="android">添加一个渲染视图。</ph><ph id="shortdesc" props="mac">添加一个渲染视图。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">bool AddView(View *view, ViewConfig *config, rte::Error *err = nullptr)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void addView(View view, ViewConfig viewConfig) throws RteException</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (BOOL)addView:(AgoraRteView * _Nonnull)view config:(AgoraRteViewConfig* _Nullable)config error:(AgoraRteError* _Nullable)error;</codeblock>
+                <codeblock props="android" outputclass="language-java">public void addView(View view, ViewConfig viewConfig) throws RteException</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (BOOL)addView:(AgoraRteView * _Nonnull)view config:(AgoraRteViewConfig* _Nullable)config error:(AgoraRteError* _Nullable)error;</codeblock>
             </p>
         </section>
@@ -25,11 +25,11 @@
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
@@ -39,12 +39,12 @@
                 </dlentry>
             </dl>
             <p props="cpp">当你需要使用播放器播放视频时，可以调用该方法向视频渲染器添加一个视图，以显示视频内容。</p>
-            <p props="android">当你需要使用播放器播放视频时，可以调用该方法将视图添加到视频渲染器中，以显示视频内容。</p>
             <p props="ios">你可以调用该方法将视图添加到视频渲染器中，以显示视频内容。</p>
+            <p props="android">当你需要使用播放器播放视频时，可以调用该方法将视图添加到视频渲染器中，以显示视频内容。</p>
             <p props="mac">你可以调用该方法将视图添加到视频渲染器中，以显示视频内容。</p>
             <note props="cpp">当前仅支持一个视图。</note>
-            <note props="android">当前仅支持一个视图。</note>
             <note props="ios">当前仅支持一个视图。</note>
+            <note props="android">当前仅支持一个视图。</note>
             <note props="mac">当前仅支持一个视图。</note>
         </section>
         <section id="scenario" deliveryTarget="details">
@@ -54,8 +54,8 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">该方法必须在调用 <xref keyref="SetCanvas"/> 之前调用。</p>
-            <p props="android">必须在调用 <xref keyref="SetCanvas"/> 之前调用该方法。</p>
             <p props="ios">你必须在调用 <xref keyref="SetCanvas"/> 之前调用此方法。</p>
+            <p props="android">必须在调用 <xref keyref="SetCanvas"/> 之前调用该方法。</p>
             <p props="mac">你必须在调用 <xref keyref="SetCanvas"/> 之前调用此方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -73,14 +73,6 @@
                     <pt>err</pt>
                     <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>view</pt>
-                    <pd><codeph>SurfaceView</codeph> 对象。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>viewConfig</pt>
-                    <pd>视图的相关设置。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>view</pt>
                     <pd>视图对象的指针。
@@ -97,6 +89,14 @@
                 <plentry props="ios">
                     <pt>error</pt>
                     <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>view</pt>
+                    <pd><codeph>SurfaceView</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>viewConfig</pt>
+                    <pd>视图的相关设置。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>view</pt>

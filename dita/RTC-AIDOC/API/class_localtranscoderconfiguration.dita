@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localtranscoderconfiguration">
     <title><ph keyref="LocalTranscoderConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置本地客户端的视频合图功能。</ph><ph id="shortdesc" props="android">用于配置本地客户端的视频合图。</ph><ph id="shortdesc" props="ios">本地视频合图配置。</ph><ph id="shortdesc" props="mac">本地视频合图配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置本地客户端的视频合图功能。</ph><ph id="shortdesc" props="ios">本地视频合图配置。</ph><ph id="shortdesc" props="android">用于配置本地客户端的视频合图。</ph><ph id="shortdesc" props="mac">本地视频合图配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -12,16 +12,16 @@
   VideoEncoderConfiguration videoOutputConfiguration;
   bool syncWithPrimaryCamera;
 };</codeblock>
-                <codeblock props="android" outputclass="language-java">public class LocalTranscoderConfiguration {
-  public ArrayList&lt;TranscodingVideoStream&gt; transcodingVideoStreams;
-  public boolean syncWithPrimaryCamera;
-  public VideoEncoderConfiguration videoOutputConfiguration;
-}</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLocalTranscoderConfiguration: NSObject
 @property(copy, nonatomic) NSArray&lt;AgoraTranscodingVideoStream *&gt; *_Nullable videoInputStreams;
 @property (strong, nonatomic) AgoraVideoEncoderConfiguration *_Nonnull videoOutputConfiguration;
 @property(assign, nonatomic) BOOL syncWithPrimaryCamera;
 @end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class LocalTranscoderConfiguration {
+  public ArrayList&lt;TranscodingVideoStream&gt; transcodingVideoStreams;
+  public boolean syncWithPrimaryCamera;
+  public VideoEncoderConfiguration videoOutputConfiguration;
+}</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLocalTranscoderConfiguration: NSObject
 @property(copy, nonatomic) NSArray&lt;AgoraTranscodingVideoStream *&gt; *_Nullable videoInputStreams;
 @property (strong, nonatomic) AgoraVideoEncoderConfiguration *_Nonnull videoOutputConfiguration;
@@ -57,23 +57,6 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>transcodingVideoStreams</pt>
-                    <pd>本地视频合图所用的视频流。详见 <xref keyref="TranscodingVideoStream"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>syncWithPrimaryCamera</pt>
-                    <pd>是否使用主摄像头采集的视频帧的时间戳作为合图后视频帧的时间戳。
-                        <ul>
-                            <li><xref keyref="true"/>：（默认）使用采集帧的时间戳作为合图帧的时间戳。</li>
-                            <li><xref keyref="false"/>：不使用采集帧的时间戳，而是使用构建合图帧的时间戳。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>videoOutputConfiguration</pt>
-                    <pd>本地视频合图后输出的视频流的编码参数配置。详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>videoInputStreams</pt>
                     <pd>用于本地合图的视频流。详见 <xref keyref="TranscodingVideoStream"/>。</pd>
@@ -90,6 +73,23 @@
                             <li><xref keyref="false"/>：不使用采集视频帧的时间戳，而使用构建合图视频时的时间戳。</li>
                         </ul>
                     </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>transcodingVideoStreams</pt>
+                    <pd>本地视频合图所用的视频流。详见 <xref keyref="TranscodingVideoStream"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>syncWithPrimaryCamera</pt>
+                    <pd>是否使用主摄像头采集的视频帧的时间戳作为合图后视频帧的时间戳。
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）使用采集帧的时间戳作为合图帧的时间戳。</li>
+                            <li><xref keyref="false"/>：不使用采集帧的时间戳，而是使用构建合图帧的时间戳。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoOutputConfiguration</pt>
+                    <pd>本地视频合图后输出的视频流的编码参数配置。详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>videoInputStreams</pt>

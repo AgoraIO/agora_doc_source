@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_playerconfig_getabrsubscriptionlayer">
     <title><ph keyref="GetAbrSubscriptionLayer"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取当前设置的已订阅视频流的质量层级。</ph><ph id="shortdesc" props="android">获取已订阅视频流的质量层级。</ph><ph id="shortdesc" props="ios">获取订阅端视频流的质量层级。</ph><ph id="shortdesc" props="mac">获取订阅端视频流的质量层级。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取当前设置的已订阅视频流的质量层级。</ph><ph id="shortdesc" props="ios">获取订阅端视频流的质量层级。</ph><ph id="shortdesc" props="android">获取已订阅视频流的质量层级。</ph><ph id="shortdesc" props="mac">获取订阅端视频流的质量层级。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">AbrSubscriptionLayer GetAbrSubscriptionLayer(Error *err = nullptr)</codeblock>
-                <codeblock props="android" outputclass="language-java">public Constants.AbrSubscriptionLayer getAbrSubscriptionLayer() throws RteException</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (AgoraRteAbrSubscriptionLayer)abrSubscriptionLayer:(AgoraRteError * _Nullable)error;</codeblock>
+                <codeblock props="android" outputclass="language-java">public Constants.AbrSubscriptionLayer getAbrSubscriptionLayer() throws RteException</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (AgoraRteAbrSubscriptionLayer)abrSubscriptionLayer:(AgoraRteError * _Nullable)error;</codeblock>
             </p>
         </section>
@@ -25,11 +25,11 @@
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
@@ -42,8 +42,8 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">在调用 <codeph>GetConfigs</codeph> 之后调用该方法。</p>
-            <p props="android">你需要在调用 <codeph>getConfigs</codeph> 方法之后调用此方法。</p>
             <p props="ios">你必须在调用 <xref keyref="GetConfigs_Canvas"/> 之后调用此方法。</p>
+            <p props="android">你需要在调用 <codeph>getConfigs</codeph> 方法之后调用此方法。</p>
             <p props="mac">你必须在调用 <xref keyref="GetConfigs_Canvas"/> 之后调用此方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp ios mac">
@@ -66,8 +66,8 @@
         <section id="return_values" props="android cpp ios mac">
             <title>返回值</title>
             <p props="cpp">方法调用成功，返回当前设置的视频质量层级，详见 <xref keyref="RteAbrSubscriptionLayer"/>。</p>
-            <p props="android">方法调用成功，返回当前设置的视频质量层级。详见 <xref keyref="RteAbrSubscriptionLayer"/>。</p>
             <p props="ios">当前设置的视频质量层级，详见 <xref keyref="RteAbrSubscriptionLayer"/>。</p>
+            <p props="android">方法调用成功，返回当前设置的视频质量层级。详见 <xref keyref="RteAbrSubscriptionLayer"/>。</p>
             <p props="mac">当前设置的视频质量层级，详见 <xref keyref="RteAbrSubscriptionLayer"/>。</p>
         </section>
     </refbody>

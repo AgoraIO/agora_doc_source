@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstremotevideodecoded">
     <title><ph keyref="onFirstRemoteVideoDecoded"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">接收到并解码首帧远端视频时触发的回调。</ph><ph id="shortdesc" props="android">接收到并解码首帧远端视频时的回调。</ph><ph id="shortdesc" props="ios">接收到并解码首帧远端视频时触发的回调。</ph><ph id="shortdesc" props="mac">接收到并解码首帧远端视频时触发的回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">接收到并解码首帧远端视频时触发的回调。</ph><ph id="shortdesc" props="ios">接收到并解码首帧远端视频时触发的回调。</ph><ph id="shortdesc" props="android">接收到并解码首帧远端视频时的回调。</ph><ph id="shortdesc" props="mac">接收到并解码首帧远端视频时触发的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed) __deprecated</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:firstRemoteVideoDecodedOfUid:size:elapsed:)) __deprecated_msg("use rtcEngine:remoteVideoStateChangedOfUid:state:reason: instead.");</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstRemoteVideoDecodedOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:firstRemoteVideoDecodedOfUid:size:elapsed:)) __deprecated_msg("use rtcEngine:remoteVideoStateChangedOfUid:state:reason: instead.");</codeblock>
             </p>
         </section>
@@ -25,13 +25,13 @@
                     <dt>废弃</dt>
                     <dd>该方法已废弃。</dd>
                 </dlentry>
-                <dlentry props="android">
-                    <dt>废弃</dt>
-                    <dd>该方法已废弃，请改用 <xref keyref="onRemoteVideoStateChanged"/> 回调中的 <codeph>REMOTE_VIDEO_STATE_STARTING(1)</codeph> 或 <codeph>REMOTE_VIDEO_STATE_DECODING(2)</codeph>。</dd>
-                </dlentry>
                 <dlentry props="ios">
                     <dt>废弃</dt>
                     <dd>自 v4.5.0 版本废弃，请改用 <codeph>remoteVideoStateChangedOfUid</codeph>。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>废弃</dt>
+                    <dd>该方法已废弃，请改用 <xref keyref="onRemoteVideoStateChanged"/> 回调中的 <codeph>REMOTE_VIDEO_STATE_STARTING(1)</codeph> 或 <codeph>REMOTE_VIDEO_STATE_DECODING(2)</codeph>。</dd>
                 </dlentry>
                 <dlentry props="mac">
                     <dt>废弃</dt>
@@ -54,13 +54,13 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>触发时机</title>
             <p props="cpp">当远端用户加入频道并发送视频流，或在停止发送视频流 15 秒后重新发送时触发。中断的原因包括：远端用户离开频道、掉线或调用 <xref keyref="disableVideo"/> 关闭视频。</p>
-            <p props="android">该回调在接收到并解码首帧远端视频时被触发。</p>
             <p props="ios">该回调在以下场景中被触发：
                 <ul>
                     <li>远端用户加入频道并发送视频流。</li>
                     <li>远端用户停止发送视频流 15 秒后重新发送。中断的原因包括：远端用户离开频道、掉线，或调用 <xref keyref="disableVideo"/> 关闭视频。</li>
                 </ul>
             </p>
+            <p props="android">该回调在接收到并解码首帧远端视频时被触发。</p>
             <p props="mac">该回调在以下场景中被触发：
                 <ul>
                     <li>远端用户加入频道并发送视频流。</li>
@@ -87,22 +87,6 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 加入频道到 SDK 触发该回调的时间（单位为毫秒）。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>uid</pt>
-                    <pd>远端用户 ID。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>width</pt>
-                    <pd>视频流的宽度（单位为像素）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>height</pt>
-                    <pd>视频流的高度（单位为像素）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>elapsed</pt>
-                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 加入频道到触发该回调的时间（单位为毫秒）。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
@@ -118,6 +102,22 @@
                 <plentry props="ios">
                     <pt>elapsed</pt>
                     <pd>从调用 <codeph>joinChannelByToken</codeph> 方法到触发该回调的时间（毫秒）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>width</pt>
+                    <pd>视频流的宽度（单位为像素）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>视频流的高度（单位为像素）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 加入频道到触发该回调的时间（单位为毫秒）。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>engine</pt>

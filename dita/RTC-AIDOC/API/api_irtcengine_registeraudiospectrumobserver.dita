@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registeraudiospectrumobserver">
     <title><ph keyref="registerAudioSpectrumObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">注册音频频谱观察器。</ph><ph id="shortdesc" props="android">注册音频频谱观察器。</ph><ph id="shortdesc" props="ios">注册音频频谱观察者。</ph><ph id="shortdesc" props="mac">注册音频频谱观察者。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">注册音频频谱观察器。</ph><ph id="shortdesc" props="ios">注册音频频谱观察者。</ph><ph id="shortdesc" props="android">注册音频频谱观察器。</ph><ph id="shortdesc" props="mac">注册音频频谱观察者。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,19 +14,19 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int registerAudioSpectrumObserver(agora::media::IAudioSpectrumObserver * observer) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int registerAudioSpectrumObserver(IAudioSpectrumObserver observer);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)registerAudioSpectrumDelegate:(id&lt;AgoraAudioSpectrumDelegate&gt; _Nullable )delegate NS_SWIFT_NAME(registerAudioSpectrumDelegate(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int registerAudioSpectrumObserver(IAudioSpectrumObserver observer);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)registerAudioSpectrumDelegate:(id&lt;AgoraAudioSpectrumDelegate&gt; _Nullable )delegate NS_SWIFT_NAME(registerAudioSpectrumDelegate(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">成功注册音频频谱观察器并调用 <xref keyref="enableAudioSpectrumMonitor"/> 启用音频频谱监测后，SDK 会根据你设置的时间间隔，触发你在 <xref keyref="IAudioSpectrumObserver"/> 中实现的回调。</p>
-            <p props="android">成功注册音频频谱观察器并调用 <xref keyref="enableAudioSpectrumMonitor"/> 启用音频频谱监测后，SDK 会根据你设置的时间间隔，触发你在 <xref keyref="IAudioSpectrumObserver"/> 中实现的回调。</p>
             <p props="ios">成功注册音频频谱观察者并调用 <xref keyref="enableAudioSpectrumMonitor"/> 启用音频频谱监测后，SDK 会根据你设置的时间间隔，触发你在 <xref keyref="IAudioSpectrumObserver"/> 中实现的回调。</p>
+            <p props="android">成功注册音频频谱观察器并调用 <xref keyref="enableAudioSpectrumMonitor"/> 启用音频频谱监测后，SDK 会根据你设置的时间间隔，触发你在 <xref keyref="IAudioSpectrumObserver"/> 中实现的回调。</p>
             <p props="mac">成功注册音频频谱观察者并调用 <xref keyref="enableAudioSpectrumMonitor"/> 启用音频频谱监测后，SDK 会根据你设置的时间间隔，触发你在 <xref keyref="IAudioSpectrumObserver"/> 中实现的回调。</p>
             <note props="cpp">你可以在加入频道前或加入频道后调用此方法。</note>
-            <note props="android">你可以在加入频道前或加入频道后调用此方法。</note>
             <note props="ios">你可以在加入频道前或加入频道后调用此方法。</note>
+            <note props="android">你可以在加入频道前或加入频道后调用此方法。</note>
             <note props="mac">你可以在加入频道前或加入频道后调用此方法。</note>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -36,13 +36,13 @@
                     <pt>observer</pt>
                     <pd>音频频谱观察器。详见 <xref keyref="IAudioSpectrumObserver"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>observer</pt>
-                    <pd>音频频谱观察器。详见 <xref keyref="IAudioSpectrumObserver"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>delegate</pt>
                     <pd>音频频谱观察者。详见 <xref keyref="IAudioSpectrumObserver"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>observer</pt>
+                    <pd>音频频谱观察器。详见 <xref keyref="IAudioSpectrumObserver"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>delegate</pt>
@@ -58,16 +58,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

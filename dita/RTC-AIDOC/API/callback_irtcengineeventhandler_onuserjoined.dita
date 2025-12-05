@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onuserjoined">
     <title><ph keyref="onUserJoined"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">远端用户或主播加入频道时触发的回调。</ph><ph id="shortdesc" props="android">远端用户或主播加入频道回调。</ph><ph id="shortdesc" props="ios">远端用户或主播加入频道回调。</ph><ph id="shortdesc" props="mac">远端用户或主播加入频道回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">远端用户或主播加入频道时触发的回调。</ph><ph id="shortdesc" props="ios">远端用户或主播加入频道回调。</ph><ph id="shortdesc" props="android">远端用户或主播加入频道回调。</ph><ph id="shortdesc" props="mac">远端用户或主播加入频道回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,17 +14,17 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onUserJoined(uid_t uid, int elapsed)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onUserJoined(int uid, int elapsed)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:didJoinedOfUid:elapsed:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onUserJoined(int uid, int elapsed)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:didJoinedOfUid:elapsed:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">在通信频道中，该回调表示有远端用户加入频道。当本地用户加入频道时，SDK 也会触发该回调报告频道中已有的用户。
 在极速直播频道中，该回调表示有主播加入频道。当主播加入频道时，SDK 也会触发该回调报告频道中已有的主播。声网建议将连麦主播数量限制为 32 人，最多支持 17 路视频主播。</p>
-            <p props="android">在通信频道中，该回调表示有远端用户加入频道。当本地用户加入频道时，SDK 也会触发该回调报告频道中已有的用户。在极速直播频道中，该回调表示有主播加入频道。声网建议将连麦主播数量限制为 32 人，最多支持 17 路视频主播。</p>
             <p props="ios">在通信频道中，该回调表示有远端用户加入频道。当你加入频道时，SDK 也会触发该回调报告频道中已有的用户。
 在直播频道中，该回调表示有主播加入频道。声网建议将连麦主播数量限制为 32 人，最多支持 17 路视频主播。</p>
+            <p props="android">在通信频道中，该回调表示有远端用户加入频道。当本地用户加入频道时，SDK 也会触发该回调报告频道中已有的用户。在极速直播频道中，该回调表示有主播加入频道。声网建议将连麦主播数量限制为 32 人，最多支持 17 路视频主播。</p>
             <p props="mac">在通信频道中，该回调表示有远端用户加入频道。当你加入频道时，SDK 也会触发该回调报告频道中已有的用户。
 在直播频道中，该回调表示有主播加入频道。声网建议将连麦主播数量限制为 32 人，最多支持 17 路视频主播。</p>
         </section>
@@ -37,16 +37,16 @@
                     <li>远端用户或主播在网络中断后重新加入频道。</li>
                 </ul>
             </p>
-            <p props="android">该回调在以下任一情况下被触发：
+            <p props="ios">该回调在以下任一情况下被触发：
                 <ul>
-                    <li>远端用户或主播加入频道。</li>
+                    <li>有远端用户或主播加入频道。</li>
                     <li>远端用户加入频道后将用户角色切换为主播。</li>
                     <li>远端用户或主播在网络中断后重新加入频道。</li>
                 </ul>
             </p>
-            <p props="ios">该回调在以下任一情况下被触发：
+            <p props="android">该回调在以下任一情况下被触发：
                 <ul>
-                    <li>有远端用户或主播加入频道。</li>
+                    <li>远端用户或主播加入频道。</li>
                     <li>远端用户加入频道后将用户角色切换为主播。</li>
                     <li>远端用户或主播在网络中断后重新加入频道。</li>
                 </ul>
@@ -70,14 +70,6 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 到该回调被触发的延迟时间（毫秒）。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>uid</pt>
-                    <pd>加入频道的用户 ID。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>elapsed</pt>
-                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 到该回调被触发的延迟（毫秒）。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
@@ -89,6 +81,14 @@
                 <plentry props="ios">
                     <pt>elapsed</pt>
                     <pd>从你调用 <xref keyref="joinChannel1"/> 或 <xref keyref="joinChannel2"/> 到该回调被触发的延迟时间（毫秒）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>加入频道的用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 到该回调被触发的延迟（毫秒）。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>engine</pt>

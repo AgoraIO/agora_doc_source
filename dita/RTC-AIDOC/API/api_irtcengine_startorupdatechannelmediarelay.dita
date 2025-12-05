@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startorupdatechannelmediarelay">
     <title><ph keyref="startOrUpdateChannelMediaRelay"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">开始跨频道媒体流转发，或更新媒体流转发的目标频道。</ph><ph id="shortdesc" props="android">开始或更新跨频道媒体流转发。</ph><ph id="shortdesc" props="ios">开始或更新跨频道媒体流转发。</ph><ph id="shortdesc" props="mac">开始或更新跨频道媒体流转发。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">开始跨频道媒体流转发，或更新媒体流转发的目标频道。</ph><ph id="shortdesc" props="ios">开始或更新跨频道媒体流转发。</ph><ph id="shortdesc" props="android">开始或更新跨频道媒体流转发。</ph><ph id="shortdesc" props="mac">开始或更新跨频道媒体流转发。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int startOrUpdateChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int startOrUpdateChannelMediaRelay(ChannelMediaRelayConfiguration channelMediaRelayConfiguration);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)startOrUpdateChannelMediaRelay:(AgoraChannelMediaRelayConfiguration * _Nonnull)config NS_SWIFT_NAME(startOrUpdateChannelMediaRelay(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startOrUpdateChannelMediaRelay(ChannelMediaRelayConfiguration channelMediaRelayConfiguration);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)startOrUpdateChannelMediaRelay:(AgoraChannelMediaRelayConfiguration * _Nonnull)config NS_SWIFT_NAME(startOrUpdateChannelMediaRelay(_:));</codeblock>
             </p>
         </section>
@@ -25,11 +25,11 @@
                     <dt>自从</dt>
                     <dd>自 v4.2.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>自从</dt>
                     <dd>自 v4.2.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>自从</dt>
                     <dd>自 v4.2.0 版本新增。</dd>
                 </dlentry>
@@ -39,7 +39,6 @@
                 </dlentry>
             </dl>
             <p props="cpp">首次成功调用该方法会将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或停止转发到某个频道，可再次调用该方法更新目标频道。最多支持转发到六个目标频道。</p>
-            <p props="android">首次成功调用该方法会将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或退出当前的某个媒体流转发，可再次调用该方法以更新目标频道。该功能最多支持将媒体流转发到六个目标频道。</p>
             <p props="ios">首次成功调用该方法会开始将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或退出当前的某个媒体流转发，可再次调用该方法更新目标频道。该功能最多支持将媒体流转发到六个目标频道。
 调用该方法成功后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调，报告媒体流转发的状态。
                 <ul>
@@ -47,6 +46,7 @@
                     <li>若该回调返回 <codeph>AgoraChannelMediaRelayStateFailure</codeph>（3），表示媒体流转发过程中发生异常。</li>
                 </ul>
             </p>
+            <p props="android">首次成功调用该方法会将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或退出当前的某个媒体流转发，可再次调用该方法以更新目标频道。该功能最多支持将媒体流转发到六个目标频道。</p>
             <p props="mac">首次成功调用该方法会开始将媒体流从源频道转发到目标频道。若需将媒体流转发到其他频道，或退出当前的某个媒体流转发，可再次调用该方法更新目标频道。该功能最多支持将媒体流转发到六个目标频道。
 调用该方法成功后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调，报告媒体流转发的状态。
                 <ul>
@@ -62,7 +62,6 @@
                     <li>该方法不支持字符串用户 User Account。</li>
                 </ul>
             </note>
-            <note props="android">请在加入频道后调用该方法。该方法仅在你是极速直播频道中的主播时生效。跨频道媒体流转发功能需[联系技术支持](https://ticket.shengwang.cn/)开启。该 API 不支持字符串用户 User Account。</note>
             <note props="ios">
                 <ul>
                     <li>请在加入频道后调用该方法。</li>
@@ -71,6 +70,7 @@
                     <li>该 API 不支持字符串用户 User Account。</li>
                 </ul>
             </note>
+            <note props="android">请在加入频道后调用该方法。该方法仅在你是极速直播频道中的主播时生效。跨频道媒体流转发功能需[联系技术支持](https://ticket.shengwang.cn/)开启。该 API 不支持字符串用户 User Account。</note>
             <note props="mac">
                 <ul>
                     <li>请在加入频道后调用该方法。</li>
@@ -103,12 +103,12 @@
                     <pt>configuration</pt>
                     <pd>媒体流转发的配置，详见 <xref keyref="ChannelMediaRelayConfiguration"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>channelMediaRelayConfiguration</pt>
-                    <pd>媒体流转发的配置。详见 <xref keyref="ChannelMediaRelayConfiguration"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>config</pt>
+                    <pd>媒体流转发的配置。详见 <xref keyref="ChannelMediaRelayConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channelMediaRelayConfiguration</pt>
                     <pd>媒体流转发的配置。详见 <xref keyref="ChannelMediaRelayConfiguration"/>。</pd>
                 </plentry>
                 <plentry props="mac">
@@ -131,10 +131,10 @@
                     </li>
                 </ul>
             </p>
-            <p props="android">
+            <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
                         <ul>
                             <li>-1：发生通用错误（无明确原因）。</li>
                             <li>-2：参数无效。</li>
@@ -143,10 +143,10 @@
                     </li>
                 </ul>
             </p>
-            <p props="ios">
+            <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
                             <li>-1：发生通用错误（无明确原因）。</li>
                             <li>-2：参数无效。</li>

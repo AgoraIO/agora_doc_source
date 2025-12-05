@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstlocalvideoframepublished">
     <title><ph keyref="onFirstLocalVideoFramePublished"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">首帧本地视频发布时触发的回调。</ph><ph id="shortdesc" props="android">本地视频首帧发布回调。</ph><ph id="shortdesc" props="ios">当首帧本地视频发布时触发。</ph><ph id="shortdesc" props="mac">当首帧本地视频发布时触发。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">首帧本地视频发布时触发的回调。</ph><ph id="shortdesc" props="ios">当首帧本地视频发布时触发。</ph><ph id="shortdesc" props="android">本地视频首帧发布回调。</ph><ph id="shortdesc" props="mac">当首帧本地视频发布时触发。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstLocalVideoFramePublished(VIDEO_SOURCE_TYPE source, int elapsed)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onFirstLocalVideoFramePublished(Constants.VideoSourceType source, int elapsed)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstLocalVideoFramePublishedWithElapsed:(NSInteger)elapsed sourceType:(AgoraVideoSourceType)sourceType NS_SWIFT_NAME(rtcEngine(_:firstLocalVideoFramePublishedWithElapsed:sourceType:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onFirstLocalVideoFramePublished(Constants.VideoSourceType source, int elapsed)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstLocalVideoFramePublishedWithElapsed:(NSInteger)elapsed sourceType:(AgoraVideoSourceType)sourceType NS_SWIFT_NAME(rtcEngine(_:firstLocalVideoFramePublishedWithElapsed:sourceType:));</codeblock>
             </p>
         </section>
@@ -40,7 +40,6 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>触发时机</title>
             <p props="cpp">当首帧本地视频发布时触发。</p>
-            <p props="android">该回调在本地视频首帧发布时被触发。</p>
             <p props="ios">该回调在发布首帧本地视频时触发，触发时机包括：
                 <ul>
                     <li>启用视频模块并调用 <codeph>joinChannelByToken</codeph> 成功加入频道；</li>
@@ -49,6 +48,7 @@
                     <li>调用 <codeph>pushExternalVideoFrame</codeph> 成功向 SDK 推送视频帧。</li>
                 </ul>
             </p>
+            <p props="android">该回调在本地视频首帧发布时被触发。</p>
             <p props="mac">该回调在发布首帧本地视频时触发，触发时机包括：
                 <ul>
                     <li>启用视频模块并调用 <codeph>joinChannelByToken</codeph> 成功加入频道；</li>
@@ -69,14 +69,6 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 到该回调触发的时间间隔（毫秒）。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>source</pt>
-                    <pd>视频源类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>elapsed</pt>
-                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 成功加入频道到该回调触发的时间（毫秒）。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>engine</pt>
                     <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
@@ -88,6 +80,14 @@
                 <plentry props="ios">
                     <pt>sourceType</pt>
                     <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>source</pt>
+                    <pd>视频源类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 成功加入频道到该回调触发的时间（毫秒）。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>engine</pt>

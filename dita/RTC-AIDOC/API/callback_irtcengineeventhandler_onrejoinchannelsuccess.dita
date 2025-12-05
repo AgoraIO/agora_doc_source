@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onrejoinchannelsuccess">
     <title><ph keyref="onRejoinChannelSuccess"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onRejoinChannelSuccess"/> 回调。</ph><ph id="shortdesc" props="android">用户重新加入频道回调。</ph><ph id="shortdesc" props="ios"><xref keyref="onRejoinChannelSuccess"/> 回调。当用户重新加入频道时触发。</ph><ph id="shortdesc" props="mac"><xref keyref="onRejoinChannelSuccess"/> 回调。当用户重新加入频道时触发。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onRejoinChannelSuccess"/> 回调。</ph><ph id="shortdesc" props="ios"><xref keyref="onRejoinChannelSuccess"/> 回调。当用户重新加入频道时触发。</ph><ph id="shortdesc" props="android">用户重新加入频道回调。</ph><ph id="shortdesc" props="mac"><xref keyref="onRejoinChannelSuccess"/> 回调。当用户重新加入频道时触发。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onRejoinChannelSuccess(const char* channel, uid_t uid, int elapsed)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onRejoinChannelSuccess(String channel, int uid, int elapsed)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didRejoinChannel:(NSString * _Nonnull)channel withUid:(NSUInteger)uid elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:didRejoinChannel:withUid:elapsed:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onRejoinChannelSuccess(String channel, int uid, int elapsed)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didRejoinChannel:(NSString * _Nonnull)channel withUid:(NSUInteger)uid elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:didRejoinChannel:withUid:elapsed:));</codeblock>
             </p>
         </section>
@@ -26,8 +26,8 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>触发时机</title>
             <p props="cpp">当用户因网络问题与服务器断开连接后，SDK 自动尝试重连并成功后触发该回调。</p>
-            <p props="android">该回调在用户因网络问题与服务器断开连接后，SDK 自动尝试重连并成功重连时被触发。</p>
             <p props="ios">该回调在因网络问题与服务器断开连接后，SDK 自动尝试重连并在重新连接成功时触发。</p>
+            <p props="android">该回调在用户因网络问题与服务器断开连接后，SDK 自动尝试重连并成功重连时被触发。</p>
             <p props="mac">该回调在因网络问题与服务器断开连接后，SDK 自动尝试重连并在重新连接成功时触发。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -45,18 +45,6 @@
                     <pt>elapsed</pt>
                     <pd>从本地用户调用 <codeph>joinChannel</codeph> 到 SDK 触发该回调的时间间隔（单位为毫秒）。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>channel</pt>
-                    <pd>频道名。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>uid</pt>
-                    <pd>重新加入频道的用户 ID。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>elapsed</pt>
-                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 到 SDK 触发该回调的时间间隔，单位为毫秒。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>engine</pt>
                     <pd>声网引擎对象。详见 <xref keyref="IRtcEngine"/>。</pd>
@@ -72,6 +60,18 @@
                 <plentry props="ios">
                     <pt>elapsed</pt>
                     <pd>从调用 <xref keyref="joinChannel2"/> 到 SDK 触发该回调所经过的时间（毫秒）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channel</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>重新加入频道的用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 到 SDK 触发该回调的时间间隔，单位为毫秒。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>engine</pt>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_querycodeccapability">
     <title><ph keyref="queryCodecCapability"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">查询 SDK 支持的视频编解码器能力。</ph><ph id="shortdesc" props="android">查询 SDK 的视频编解码能力。</ph><ph id="shortdesc" props="ios">查询设备支持的视频编解码能力。</ph><ph id="shortdesc" props="mac">查询设备支持的视频编解码能力。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">查询 SDK 支持的视频编解码器能力。</ph><ph id="shortdesc" props="ios">查询设备支持的视频编解码能力。</ph><ph id="shortdesc" props="android">查询 SDK 的视频编解码能力。</ph><ph id="shortdesc" props="mac">查询设备支持的视频编解码能力。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int queryCodecCapability(CodecCapInfo* codecInfo, int&amp; size) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract CodecCapInfo[] queryCodecCapability();</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (NSArray &lt;AgoraVideoCodecCapInfo *&gt; *_Nullable)queryCodecCapability;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract CodecCapInfo[] queryCodecCapability();</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (NSArray &lt;AgoraVideoCodecCapInfo *&gt; *_Nullable)queryCodecCapability;</codeblock>
             </p>
         </section>
@@ -41,13 +41,13 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">方法调用成功，返回 <xref keyref="CodecCapInfo"/> 数组，表示设备的视频编码能力。方法调用超时，请修改调用逻辑，避免在主线程中调用该方法。</p>
             <p props="ios">
                 <ul>
                     <li>方法调用成功时，返回一个 <xref keyref="CodecCapInfo"/> 数组，表示设备的视频编码能力，详见 <xref keyref="CodecCapInfo"/>。</li>
                     <li>方法调用失败时，返回 <xref keyref="NULL"/>。如果调用超时，请调整调用逻辑，避免在主线程中调用该方法。</li>
                 </ul>
             </p>
+            <p props="android">方法调用成功，返回 <xref keyref="CodecCapInfo"/> 数组，表示设备的视频编码能力。方法调用超时，请修改调用逻辑，避免在主线程中调用该方法。</p>
             <p props="mac">
                 <ul>
                     <li>方法调用成功时，返回一个 <xref keyref="CodecCapInfo"/> 数组，表示设备的视频编码能力，详见 <xref keyref="CodecCapInfo"/>。</li>

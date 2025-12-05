@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enableaudio">
     <title><ph keyref="enableAudio"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用音频模块。</ph><ph id="shortdesc" props="android">启用音频模块。</ph><ph id="shortdesc" props="ios">启用音频模块。</ph><ph id="shortdesc" props="mac">启用音频模块。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用音频模块。</ph><ph id="shortdesc" props="ios">启用音频模块。</ph><ph id="shortdesc" props="android">启用音频模块。</ph><ph id="shortdesc" props="mac">启用音频模块。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,15 +14,15 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int enableAudio() = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int enableAudio();</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)enableAudio NS_SWIFT_NAME(enableAudio());</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableAudio();</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)enableAudio NS_SWIFT_NAME(enableAudio());</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">音频模块默认处于启用状态。调用 <xref keyref="disableAudio"/> 方法禁用音频模块后，可以调用该方法重新启用音频模块。</p>
-            <p props="android">调用 <xref keyref="disableAudio"/> 方法禁用音频模块后，可以调用 <xref keyref="enableAudio"/> 方法重新启用。</p>
             <p props="ios">音频模块默认处于启用状态。你在调用 <xref keyref="disableAudio"/> 方法禁用音频模块后，可以调用该方法重新启用音频模块。</p>
+            <p props="android">调用 <xref keyref="disableAudio"/> 方法禁用音频模块后，可以调用 <xref keyref="enableAudio"/> 方法重新启用。</p>
             <p props="mac">音频模块默认处于启用状态。你在调用 <xref keyref="disableAudio"/> 方法禁用音频模块后，可以调用该方法重新启用音频模块。</p>
             <note props="cpp">调用该方法会重置整个引擎，可能导致响应时间变慢。你可以根据实际需求，使用以下方法分别控制音频模块的具体功能：
                 <ul>
@@ -31,19 +31,6 @@
                     <li><xref keyref="muteRemoteAudioStream"/>：是否订阅并播放远端音频流。</li>
                     <li><xref keyref="muteAllRemoteAudioStreams"/>：是否订阅并播放所有远端音频流。</li>
                 </ul><ph>成功调用该方法会重置 <xref keyref="enableLocalAudio"/>、<xref keyref="muteRemoteAudioStream"/> 和 <xref keyref="muteAllRemoteAudioStreams"/> 的设置，请谨慎使用。</ph></note>
-            <note props="android">
-                <ul>
-                    <li>调用此方法会重置整个引擎，可能导致响应时间变慢。你可以根据实际需求，使用以下方法分别控制音频模块的具体功能：
-                        <ul>
-                            <li><xref keyref="enableLocalAudio"/>：是否启用麦克风以创建本地音频流。</li>
-                            <li><xref keyref="muteLocalAudioStream"/>：是否发布本地音频流。</li>
-                            <li><xref keyref="muteRemoteAudioStream"/>：是否订阅并播放远端音频流。</li>
-                            <li><xref keyref="muteAllRemoteAudioStreams"/>：是否订阅并播放所有远端音频流。</li>
-                        </ul>
-                    </li>
-                    <li>成功调用此方法会重置 <xref keyref="enableLocalAudio"/>、<xref keyref="muteRemoteAudioStream"/> 和 <xref keyref="muteAllRemoteAudioStreams"/> 的状态，请谨慎使用。</li>
-                </ul>
-            </note>
             <note props="ios">
                 <ul>
                     <li>调用该方法会重置整个引擎，导致响应时间变慢。你可以根据实际需求，使用以下方法分别控制音频模块的具体功能：
@@ -55,6 +42,19 @@
                         </ul>
                     </li>
                     <li>成功调用该方法会重置 <xref keyref="enableLocalAudio"/>、<xref keyref="muteRemoteAudioStream"/> 和 <xref keyref="muteAllRemoteAudioStreams"/> 的设置，请谨慎使用。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>调用此方法会重置整个引擎，可能导致响应时间变慢。你可以根据实际需求，使用以下方法分别控制音频模块的具体功能：
+                        <ul>
+                            <li><xref keyref="enableLocalAudio"/>：是否启用麦克风以创建本地音频流。</li>
+                            <li><xref keyref="muteLocalAudioStream"/>：是否发布本地音频流。</li>
+                            <li><xref keyref="muteRemoteAudioStream"/>：是否订阅并播放远端音频流。</li>
+                            <li><xref keyref="muteAllRemoteAudioStreams"/>：是否订阅并播放所有远端音频流。</li>
+                        </ul>
+                    </li>
+                    <li>成功调用此方法会重置 <xref keyref="enableLocalAudio"/>、<xref keyref="muteRemoteAudioStream"/> 和 <xref keyref="muteAllRemoteAudioStreams"/> 的状态，请谨慎使用。</li>
                 </ul>
             </note>
             <note props="mac">
@@ -74,8 +74,8 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">该方法可以在加入频道前或加入频道后调用，离开频道后仍然有效。</p>
-            <p props="android">该方法可以在加入频道前或加入频道后调用，离开频道后仍然有效。</p>
             <p props="ios">该方法可以在加入频道前或加入频道后调用，离开频道后仍然有效。</p>
+            <p props="android">该方法可以在加入频道前或加入频道后调用，离开频道后仍然有效。</p>
             <p props="mac">该方法可以在加入频道前或加入频道后调用，离开频道后仍然有效。</p>
         </section>
         <section id="return_values" props="android cpp ios mac">
@@ -86,16 +86,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

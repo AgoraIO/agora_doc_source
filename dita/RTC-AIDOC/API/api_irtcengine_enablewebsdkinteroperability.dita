@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablewebsdkinteroperability">
     <title><ph keyref="enableWebSdkInteroperability"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用与声网 Web SDK 的互通功能（仅适用于极速直播场景）。</ph><ph id="shortdesc" props="android">启用或关闭与声网 Web SDK 的互通功能，仅适用于极速直播场景。</ph><ph id="shortdesc" props="ios">启用或关闭与声网 Web SDK 的互通功能。</ph><ph id="shortdesc" props="mac">启用或关闭与声网 Web SDK 的互通功能。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用与声网 Web SDK 的互通功能（仅适用于极速直播场景）。</ph><ph id="shortdesc" props="ios">启用或关闭与声网 Web SDK 的互通功能。</ph><ph id="shortdesc" props="android">启用或关闭与声网 Web SDK 的互通功能，仅适用于极速直播场景。</ph><ph id="shortdesc" props="mac">启用或关闭与声网 Web SDK 的互通功能。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int enableWebSdkInteroperability(bool enabled) __deprecated = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int enableWebSdkInteroperability(boolean enabled);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)enableWebSdkInteroperability:(BOOL)enabled NS_SWIFT_NAME(enableWebSdkInteroperability(_:)) __deprecated;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableWebSdkInteroperability(boolean enabled);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)enableWebSdkInteroperability:(BOOL)enabled NS_SWIFT_NAME(enableWebSdkInteroperability(_:)) __deprecated;</codeblock>
             </p>
         </section>
@@ -25,11 +25,11 @@
                     <dt>废弃</dt>
                     <dd>该方法已废弃。SDK 自动开启与 Web SDK 的互通，无需调用该方法开启。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>废弃</dt>
                     <dd>该方法已废弃。SDK 自动开启与 Web SDK 的互通，无需调用该方法开启。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>废弃</dt>
                     <dd>该方法已废弃。SDK 自动开启与 Web SDK 的互通，无需调用该方法开启。</dd>
                 </dlentry>
@@ -39,8 +39,8 @@
                 </dlentry>
             </dl>
             <p props="cpp">你可以调用该方法启用或关闭与声网 Web SDK 的互通功能。如果频道中有 Web SDK 用户，必须调用该方法，否则 Native 用户的视频画面在 Web 端会显示为黑屏。该方法仅适用于极速直播场景，在语音通话场景中默认启用互通功能。</p>
-            <p props="android">如果频道中存在 Web SDK 用户，必须调用该方法，否则 Native 用户的视频画面在 Web 端将显示为黑屏。该方法仅适用于极速直播场景，在语音通话场景中默认启用互通功能。</p>
             <p props="ios">你可以调用该方法启用或关闭与声网 Web SDK 的互通功能。如果频道中有 Web SDK 用户，确保调用该方法，否则 Native 用户的视频画面在 Web 端将显示为黑屏。该方法仅适用于极速直播场景，在语音通话场景中默认启用互通功能。</p>
+            <p props="android">如果频道中存在 Web SDK 用户，必须调用该方法，否则 Native 用户的视频画面在 Web 端将显示为黑屏。该方法仅适用于极速直播场景，在语音通话场景中默认启用互通功能。</p>
             <p props="mac">你可以调用该方法启用或关闭与声网 Web SDK 的互通功能。如果频道中有 Web SDK 用户，确保调用该方法，否则 Native 用户的视频画面在 Web 端将显示为黑屏。该方法仅适用于极速直播场景，在语音通话场景中默认启用互通功能。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -55,7 +55,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="ios">
                     <pt>enabled</pt>
                     <pd>是否启用互通功能：
                         <ul>
@@ -64,7 +64,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="android">
                     <pt>enabled</pt>
                     <pd>是否启用互通功能：
                         <ul>
@@ -92,16 +92,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

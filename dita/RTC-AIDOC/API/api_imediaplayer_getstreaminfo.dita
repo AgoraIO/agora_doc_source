@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_getstreaminfo">
     <title><ph keyref="getStreamInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取媒体流的详细信息。</ph><ph id="shortdesc" props="android">获取媒体流的详细信息。</ph><ph id="shortdesc" props="ios">获取媒体流的详细信息。</ph><ph id="shortdesc" props="mac">获取媒体流的详细信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取媒体流的详细信息。</ph><ph id="shortdesc" props="ios">获取媒体流的详细信息。</ph><ph id="shortdesc" props="android">获取媒体流的详细信息。</ph><ph id="shortdesc" props="mac">获取媒体流的详细信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,21 +14,21 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int getStreamInfo(int64_t index, media::base::PlayerStreamInfo* info) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">MediaStreamInfo getStreamInfo(int index);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (AgoraRtcMediaStreamInfo *_Nullable)getStreamByIndex:(int)index NS_SWIFT_NAME(getStreamBy(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">MediaStreamInfo getStreamInfo(int index);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (AgoraRtcMediaStreamInfo *_Nullable)getStreamByIndex:(int)index NS_SWIFT_NAME(getStreamBy(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="android">调用 <xref keyref="getStreamCount"/> 后，调用该方法获取指定索引的媒体流的详细信息。</p>
             <p props="ios">调用该方法可获取指定索引的媒体流的详细信息。</p>
+            <p props="android">调用 <xref keyref="getStreamCount"/> 后，调用该方法获取指定索引的媒体流的详细信息。</p>
             <p props="mac">调用该方法可获取指定索引的媒体流的详细信息。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">在调用 <xref keyref="getStreamCount"/> 方法之后调用该方法。</p>
-            <p props="android">在调用 <xref keyref="getStreamCount"/> 方法之后调用。</p>
             <p props="ios">在调用 <xref keyref="getStreamCount"/> 方法之后调用该方法。</p>
+            <p props="android">在调用 <xref keyref="getStreamCount"/> 方法之后调用。</p>
             <p props="mac">在调用 <xref keyref="getStreamCount"/> 方法之后调用该方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -42,11 +42,11 @@
                     <pt>info</pt>
                     <pd>输出参数，媒体流的详细信息。详见 <xref keyref="PlayerStreamInfo"/>。</pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="ios">
                     <pt>index</pt>
                     <pd>媒体流的索引。该参数必须小于 <xref keyref="getStreamCount"/> 的返回值。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="android">
                     <pt>index</pt>
                     <pd>媒体流的索引。该参数必须小于 <xref keyref="getStreamCount"/> 的返回值。</pd>
                 </plentry>
@@ -64,16 +64,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>方法调用成功，返回 <xref keyref="PlayerStreamInfo"/> 对象。</li>
-                    <li>方法调用失败，返回 <codeph>null</codeph>。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>方法调用成功，返回一个 <xref keyref="PlayerStreamInfo"/> 对象，详见 <xref keyref="PlayerStreamInfo"/>。</li>
                     <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功，返回 <xref keyref="PlayerStreamInfo"/> 对象。</li>
+                    <li>方法调用失败，返回 <codeph>null</codeph>。</li>
                 </ul>
             </p>
             <p props="mac">

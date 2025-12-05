@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_externalvideoframe">
     <title><ph keyref="ExternalVideoFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">表示外部视频帧。</ph><ph id="shortdesc" props="android">用于描述外部视频帧。</ph><ph id="shortdesc" props="ios">外部视频帧。</ph><ph id="shortdesc" props="mac">外部视频帧。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">表示外部视频帧。</ph><ph id="shortdesc" props="ios">外部视频帧。</ph><ph id="shortdesc" props="android">用于描述外部视频帧。</ph><ph id="shortdesc" props="mac">外部视频帧。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -33,6 +33,24 @@
   Hdr10MetadataInfo hdr10MetadataInfo;
   ColorSpace colorSpace;
 };</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoFrame : NSObject
+@property(assign, nonatomic) NSInteger format;
+@property(assign, nonatomic) CMTime time;
+@property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE("use strideInPixels instead");
+@property(assign, nonatomic) int strideInPixels;
+@property(assign, nonatomic) int height;
+@property(assign, nonatomic) CVPixelBufferRef _Nullable textureBuf;
+@property(strong, nonatomic) IMAGE_CLASS * _Nullable image;
+@property(strong, nonatomic) NSData *_Nullable dataBuf;
+@property(strong, nonatomic) NSData *_Nullable alphaBuf;
+@property(assign, nonatomic) AgoraAlphaStitchMode alphaStitchMode;
+@property(assign, nonatomic) int cropLeft;
+@property(assign, nonatomic) int cropTop;
+@property(assign, nonatomic) int cropRight;
+@property(assign, nonatomic) int cropBottom;
+@property(assign, nonatomic) int rotation;
+@property(strong, nonatomic) AgoraColorSpace *_Nullable colorSpace;
+@end</codeblock>
                 <codeblock props="android" outputclass="language-java">public class AgoraVideoFrame {
   public static final int FORMAT_NONE = -1;
   public static final int FORMAT_TEXTURE_2D = 10;
@@ -63,24 +81,6 @@
   public int rotation;
   public AlphaStitchMode alphaStitchMode;
 }</codeblock>
-                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoFrame : NSObject
-@property(assign, nonatomic) NSInteger format;
-@property(assign, nonatomic) CMTime time;
-@property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE("use strideInPixels instead");
-@property(assign, nonatomic) int strideInPixels;
-@property(assign, nonatomic) int height;
-@property(assign, nonatomic) CVPixelBufferRef _Nullable textureBuf;
-@property(strong, nonatomic) IMAGE_CLASS * _Nullable image;
-@property(strong, nonatomic) NSData *_Nullable dataBuf;
-@property(strong, nonatomic) NSData *_Nullable alphaBuf;
-@property(assign, nonatomic) AgoraAlphaStitchMode alphaStitchMode;
-@property(assign, nonatomic) int cropLeft;
-@property(assign, nonatomic) int cropTop;
-@property(assign, nonatomic) int cropRight;
-@property(assign, nonatomic) int cropBottom;
-@property(assign, nonatomic) int rotation;
-@property(strong, nonatomic) AgoraColorSpace *_Nullable colorSpace;
-@end</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoFrame : NSObject
 @property(assign, nonatomic) NSInteger format;
 @property(assign, nonatomic) CMTime time;
@@ -102,6 +102,14 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android ios mac">
+            <note props="ios">
+                <ol>
+                    <li><codeph>strideInPixels</codeph>：步幅单位为像素，而非字节。</li>
+                    <li>关于帧的宽度和高度：未定义 <codeph>width</codeph> 字段，但可以通过以下方式推导：</li>
+                </ol><ph>   <codeph>croppedWidth = (strideInPixels - cropLeft - cropRight)</codeph></ph><ph>   <codeph>croppedHeight = (height - cropTop - cropBottom)</codeph></ph>
+                <ol>
+                    <li>关于裁剪：如果缓冲区包含无效数据，可以通过裁剪去除。例如，帧大小为 360 x 640，缓冲区步幅为 368，即右侧多出 8 像素用于填充，此时可以设置：</li>
+                </ol><ph>   <codeph>strideInPixels = 368;</codeph></ph><ph>   <codeph>height = 640;</codeph></ph><ph>   <codeph>cropRight = 8;</codeph></ph><ph>   <codeph>// cropLeft、cropTop、cropBottom 默认为 0。</codeph></ph></note>
             <note props="android">
                 <ol>
                     <li><codeph>stride</codeph> 的单位为像素（pixel），而非字节（byte）。</li>
@@ -118,14 +126,6 @@
                     </li>
                 </ol>
             </note>
-            <note props="ios">
-                <ol>
-                    <li><codeph>strideInPixels</codeph>：步幅单位为像素，而非字节。</li>
-                    <li>关于帧的宽度和高度：未定义 <codeph>width</codeph> 字段，但可以通过以下方式推导：</li>
-                </ol><ph>   <codeph>croppedWidth = (strideInPixels - cropLeft - cropRight)</codeph></ph><ph>   <codeph>croppedHeight = (height - cropTop - cropBottom)</codeph></ph>
-                <ol>
-                    <li>关于裁剪：如果缓冲区包含无效数据，可以通过裁剪去除。例如，帧大小为 360 x 640，缓冲区步幅为 368，即右侧多出 8 像素用于填充，此时可以设置：</li>
-                </ol><ph>   <codeph>strideInPixels = 368;</codeph></ph><ph>   <codeph>height = 640;</codeph></ph><ph>   <codeph>cropRight = 8;</codeph></ph><ph>   <codeph>// cropLeft、cropTop、cropBottom 默认为 0。</codeph></ph></note>
             <note props="mac">
                 <ol>
                     <li><codeph>strideInPixels</codeph>：步幅单位为像素，而非字节。</li>
@@ -254,6 +254,85 @@
                     <pt>colorSpace</pt>
                     <pd>视频帧的色彩空间属性，默认采用 Full Range 和 BT.709 标准配置。详见 [<codeph>VideoColorSpace</codeph>](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace)。</pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>format</pt>
+                    <pd>输入视频帧的格式。该参数必须指定为以下值之一：1：I420；2：BGRA；3：NV21；4：RGBA；5：IMC2；7：ARGB；8：NV12；12：iOS 纹理（<codeph>CVPixelBufferRef</codeph>）；16：I422。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>time</pt>
+                    <pd>输入视频帧的时间戳（毫秒）。时间戳错误会导致帧丢失或音视频不同步。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>stride</pt>
+                    <pd>帧的行跨度，即相邻两行视频帧之间的像素数。单位为像素，而非字节。处理视频数据时，需根据此参数处理每行像素数据之间的偏移，否则可能导致图像失真。
+                        <note>
+                            <ul>
+                                <li>如果视频为纹理格式，请将此参数设置为纹理的宽度。</li>
+                                <li>如果视频帧格式为 12，请勿使用此字段。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>strideInPixels</pt>
+                    <pd>输入视频帧的行间距，单位为像素而非字节。对于纹理格式，该值为纹理的宽度。
+                        <note>不适用于 iOS 纹理。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>height</pt>
+                    <pd>输入视频帧的高度（像素行数）。
+                        <note>不适用于 iOS 纹理。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>textureBuf</pt>
+                    <pd>iOS 纹理的缓冲区。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>image</pt>
+                    <pd>静态图像（iPhone 上为 <codeph>UIImage</codeph>，macOS 上为 <codeph>NSImage</codeph>）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>dataBuf</pt>
+                    <pd>原始数据缓冲区。
+                        <note>不适用于 iOS 纹理。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>alphaBuf</pt>
+                    <pd>当前帧的 Alpha 通道，与视频帧的尺寸一致。每个像素的取值范围为 [0, 255]，其中 0 表示背景，255 表示前景。默认值为 <xref keyref="NULL"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>alphaStitchMode</pt>
+                    <pd>Alpha 通道拼接模式，表示 <codeph>alphaBuf</codeph> 与视频帧的相对位置。详见 <xref keyref="ALPHA_STITCH_MODE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>cropLeft</pt>
+                    <pd>左侧裁剪的像素数。默认值为 0。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>cropTop</pt>
+                    <pd>顶部裁剪的像素数。默认值为 0。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>cropRight</pt>
+                    <pd>右侧裁剪的像素数。默认值为 0。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>cropBottom</pt>
+                    <pd>底部裁剪的像素数。默认值为 0。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>rotation</pt>
+                    <pd>视频帧的顺时针旋转角度。可设置为 0、90、180 或 270。默认值为 0。
+                        <note>详见文档中关于旋转的计算方式。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>colorSpace</pt>
+                    <pd>视频帧的色彩空间配置。默认采用 Full Range 和 BT.709 标准。详见 [<codeph>VideoColorSpace</codeph>](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace)。</pd>
+                </plentry>
                 <plentry props="android">
                     <pt>format</pt>
                     <pd>视频数据的格式：
@@ -339,85 +418,6 @@
                             <li><codeph>ALPHA_STITCH_RIGHT (4)</codeph>：<codeph>alphaBuffer</codeph> 在视频帧右侧。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>format</pt>
-                    <pd>输入视频帧的格式。该参数必须指定为以下值之一：1：I420；2：BGRA；3：NV21；4：RGBA；5：IMC2；7：ARGB；8：NV12；12：iOS 纹理（<codeph>CVPixelBufferRef</codeph>）；16：I422。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>time</pt>
-                    <pd>输入视频帧的时间戳（毫秒）。时间戳错误会导致帧丢失或音视频不同步。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>stride</pt>
-                    <pd>帧的行跨度，即相邻两行视频帧之间的像素数。单位为像素，而非字节。处理视频数据时，需根据此参数处理每行像素数据之间的偏移，否则可能导致图像失真。
-                        <note>
-                            <ul>
-                                <li>如果视频为纹理格式，请将此参数设置为纹理的宽度。</li>
-                                <li>如果视频帧格式为 12，请勿使用此字段。</li>
-                            </ul>
-                        </note>
-                    </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>strideInPixels</pt>
-                    <pd>输入视频帧的行间距，单位为像素而非字节。对于纹理格式，该值为纹理的宽度。
-                        <note>不适用于 iOS 纹理。</note>
-                    </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>height</pt>
-                    <pd>输入视频帧的高度（像素行数）。
-                        <note>不适用于 iOS 纹理。</note>
-                    </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>textureBuf</pt>
-                    <pd>iOS 纹理的缓冲区。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>image</pt>
-                    <pd>静态图像（iPhone 上为 <codeph>UIImage</codeph>，macOS 上为 <codeph>NSImage</codeph>）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>dataBuf</pt>
-                    <pd>原始数据缓冲区。
-                        <note>不适用于 iOS 纹理。</note>
-                    </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>alphaBuf</pt>
-                    <pd>当前帧的 Alpha 通道，与视频帧的尺寸一致。每个像素的取值范围为 [0, 255]，其中 0 表示背景，255 表示前景。默认值为 <xref keyref="NULL"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>alphaStitchMode</pt>
-                    <pd>Alpha 通道拼接模式，表示 <codeph>alphaBuf</codeph> 与视频帧的相对位置。详见 <xref keyref="ALPHA_STITCH_MODE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>cropLeft</pt>
-                    <pd>左侧裁剪的像素数。默认值为 0。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>cropTop</pt>
-                    <pd>顶部裁剪的像素数。默认值为 0。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>cropRight</pt>
-                    <pd>右侧裁剪的像素数。默认值为 0。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>cropBottom</pt>
-                    <pd>底部裁剪的像素数。默认值为 0。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>rotation</pt>
-                    <pd>视频帧的顺时针旋转角度。可设置为 0、90、180 或 270。默认值为 0。
-                        <note>详见文档中关于旋转的计算方式。</note>
-                    </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>colorSpace</pt>
-                    <pd>视频帧的色彩空间配置。默认采用 Full Range 和 BT.709 标准。详见 [<codeph>VideoColorSpace</codeph>](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace)。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>format</pt>

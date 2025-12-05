@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_encodingpreference">
     <title><ph keyref="ENCODING_PREFERENCE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">视频编码器偏好设置。</ph><ph id="shortdesc" props="android">视频编码器偏好。</ph><ph id="shortdesc" props="ios">视频编码器偏好。</ph><ph id="shortdesc" props="mac">视频编码器偏好。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">视频编码器偏好设置。</ph><ph id="shortdesc" props="ios">视频编码器偏好。</ph><ph id="shortdesc" props="android">视频编码器偏好。</ph><ph id="shortdesc" props="mac">视频编码器偏好。</ph></shortdesc>
     <refbody>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>枚举值</title>
@@ -19,18 +19,6 @@
                     <pt>PREFER_HARDWARE</pt>
                     <pd>（1）：硬件编码偏好。SDK 优先使用硬件编码器进行视频编码。当设备不支持硬件编码时，SDK 会自动使用软件编码，并通过 <xref keyref="onLocalVideoStats"/> 回调中的 <codeph>hwEncoderAccelerating</codeph> 报告当前使用的视频编码器类型。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>PREFER_AUTO</pt>
-                    <pd>（-1）：自适应偏好。SDK 会根据平台和设备类型等因素自动选择最优的视频编码方式。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>PREFER_SOFTWARE</pt>
-                    <pd>（0）：软件编码偏好。SDK 优先使用软件编码器进行视频编码。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>PREFER_HARDWARE</pt>
-                    <pd>（1）：硬件编码偏好。SDK 优先使用硬件编码器进行视频编码。当设备不支持硬件编码时，SDK 会自动使用软件编码，并通过 <xref keyref="onLocalVideoStats"/> 回调中的 <codeph>hwEncoderAccelerating</codeph> 报告当前使用的视频编码器类型。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>AgoraEncodingPreferAuto</pt>
                     <pd>（-1）：自适应偏好。SDK 会根据平台和设备类型等因素自动选择最优的视频编码方式。</pd>
@@ -41,6 +29,18 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraEncodingPreferhardware</pt>
+                    <pd>（1）：硬件编码偏好。SDK 优先使用硬件编码器进行视频编码。当设备不支持硬件编码时，SDK 会自动使用软件编码，并通过 <xref keyref="onLocalVideoStats"/> 回调中的 <codeph>hwEncoderAccelerating</codeph> 报告当前使用的视频编码器类型。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>PREFER_AUTO</pt>
+                    <pd>（-1）：自适应偏好。SDK 会根据平台和设备类型等因素自动选择最优的视频编码方式。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>PREFER_SOFTWARE</pt>
+                    <pd>（0）：软件编码偏好。SDK 优先使用软件编码器进行视频编码。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>PREFER_HARDWARE</pt>
                     <pd>（1）：硬件编码偏好。SDK 优先使用硬件编码器进行视频编码。当设备不支持硬件编码时，SDK 会自动使用软件编码，并通过 <xref keyref="onLocalVideoStats"/> 回调中的 <codeph>hwEncoderAccelerating</codeph> 报告当前使用的视频编码器类型。</pd>
                 </plentry>
                 <plentry props="mac">

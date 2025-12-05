@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_stopchannelmediarelay">
     <title><ph keyref="stopChannelMediaRelay"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">停止跨频道媒体流转发。</ph><ph id="shortdesc" props="android">停止跨频道媒体流转发。</ph><ph id="shortdesc" props="ios">停止跨频道媒体流转发。</ph><ph id="shortdesc" props="mac">停止跨频道媒体流转发。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">停止跨频道媒体流转发。</ph><ph id="shortdesc" props="ios">停止跨频道媒体流转发。</ph><ph id="shortdesc" props="android">停止跨频道媒体流转发。</ph><ph id="shortdesc" props="mac">停止跨频道媒体流转发。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,19 +14,19 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int stopChannelMediaRelay() = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int stopChannelMediaRelay();</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)stopChannelMediaRelay NS_SWIFT_NAME(stopChannelMediaRelay());</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int stopChannelMediaRelay();</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)stopChannelMediaRelay NS_SWIFT_NAME(stopChannelMediaRelay());</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用该方法停止跨频道媒体流转发。一旦转发停止，主播会退出所有目标频道。</p>
-            <p props="android">调用该方法后，主播会退出所有目标频道。</p>
             <p props="ios">调用该方法停止跨频道媒体流转发。调用成功后，主播会退出所有目标频道。SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调。如果该回调返回 <codeph>AgoraChannelMediaRelayStateIdle</codeph>（0）和 <codeph>AgoraChannelMediaRelayErrorNone</codeph>（0），表示主播成功停止转发。</p>
+            <p props="android">调用该方法后，主播会退出所有目标频道。</p>
             <p props="mac">调用该方法停止跨频道媒体流转发。调用成功后，主播会退出所有目标频道。SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调。如果该回调返回 <codeph>AgoraChannelMediaRelayStateIdle</codeph>（0）和 <codeph>AgoraChannelMediaRelayErrorNone</codeph>（0），表示主播成功停止转发。</p>
             <note props="cpp">如果方法调用失败，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调，并返回 <codeph>RELAY_ERROR_SERVER_NO_RESPONSE</codeph>（2）或 <codeph>RELAY_ERROR_SERVER_CONNECTION_LOST</codeph>（8）状态码。你也可以调用 <codeph>leaveChannel</codeph> 方法离开频道，跨频道媒体流转发将自动停止。</note>
-            <note props="android">如果方法调用失败，SDK 会通过 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告 <codeph>RELAY_ERROR_SERVER_NO_RESPONSE</codeph>（2）或 <codeph>RELAY_ERROR_SERVER_CONNECTION_LOST</codeph>（8）错误码。你也可以调用 <codeph>leaveChannel</codeph> 方法离开频道，媒体流转发会自动停止。</note>
             <note props="ios">如果方法调用失败，SDK 会通过 <xref keyref="onChannelMediaRelayStateChanged"/> 回调返回 <codeph>AgoraChannelMediaRelayErrorServerNoResponse</codeph>（2）或 <codeph>AgoraChannelMediaRelayErrorServerConnectionLost</codeph>（8）错误码。你可以调用 <codeph>leaveChannel</codeph> 方法离开频道，跨频道媒体流转发会自动停止。</note>
+            <note props="android">如果方法调用失败，SDK 会通过 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告 <codeph>RELAY_ERROR_SERVER_NO_RESPONSE</codeph>（2）或 <codeph>RELAY_ERROR_SERVER_CONNECTION_LOST</codeph>（8）错误码。你也可以调用 <codeph>leaveChannel</codeph> 方法离开频道，媒体流转发会自动停止。</note>
             <note props="mac">如果方法调用失败，SDK 会通过 <xref keyref="onChannelMediaRelayStateChanged"/> 回调返回 <codeph>AgoraChannelMediaRelayErrorServerNoResponse</codeph>（2）或 <codeph>AgoraChannelMediaRelayErrorServerConnectionLost</codeph>（8）错误码。你可以调用 <codeph>leaveChannel</codeph> 方法离开频道，跨频道媒体流转发会自动停止。</note>
         </section>
         <section id="related" deliveryTarget="details" props="cpp">
@@ -45,20 +45,20 @@
                     </li>
                 </ul>
             </p>
-            <p props="android">
+            <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
                         <ul>
                             <li>-5：调用被拒绝，当前没有正在进行的跨频道媒体流转发。</li>
                         </ul>
                     </li>
                 </ul>
             </p>
-            <p props="ios">
+            <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
                         <ul>
                             <li>-5：调用被拒绝，当前没有正在进行的跨频道媒体流转发。</li>
                         </ul>

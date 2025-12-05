@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lowlightenhanceoptions">
     <title><ph keyref="LowlightEnhanceOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置低光增强选项。</ph><ph id="shortdesc" props="android">用于配置弱光增强功能。</ph><ph id="shortdesc" props="ios">低光增强选项。</ph><ph id="shortdesc" props="mac">低光增强选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置低光增强选项。</ph><ph id="shortdesc" props="ios">低光增强选项。</ph><ph id="shortdesc" props="android">用于配置弱光增强功能。</ph><ph id="shortdesc" props="mac">低光增强选项。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -10,6 +10,10 @@
   LOW_LIGHT_ENHANCE_MODE mode;
   LOW_LIGHT_ENHANCE_LEVEL level;
 };</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLowlightEnhanceOptions : NSObject
+@property(nonatomic, assign) AgoraLowlightEnhanceMode mode;
+@property(nonatomic, assign) AgoraLowlightEnhanceLevel level;
+@end</codeblock>
                 <codeblock props="android" outputclass="language-java">public class LowLightEnhanceOptions {
   public static final int LOW_LIGHT_ENHANCE_AUTO = 0;
   public static final int LOW_LIGHT_ENHANCE_MANUAL = 1;
@@ -18,10 +22,6 @@
   public int lowlightEnhanceMode;
   public int lowlightEnhanceLevel;
 }</codeblock>
-                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLowlightEnhanceOptions : NSObject
-@property(nonatomic, assign) AgoraLowlightEnhanceMode mode;
-@property(nonatomic, assign) AgoraLowlightEnhanceLevel level;
-@end</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLowlightEnhanceOptions : NSObject
 @property(nonatomic, assign) AgoraLowlightEnhanceMode mode;
 @property(nonatomic, assign) AgoraLowlightEnhanceLevel level;
@@ -48,6 +48,14 @@
                 <plentry props="cpp">
                     <pt>level</pt>
                     <pd>低光增强等级。详见 <xref keyref="LOW_LIGHT_ENHANCE_LEVEL"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mode</pt>
+                    <pd>低光增强模式，详见 <xref keyref="LOW_LIGHT_ENHANCE_MODE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>level</pt>
+                    <pd>低光增强等级，详见 <xref keyref="LOW_LIGHT_ENHANCE_LEVEL"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>LOW_LIGHT_ENHANCE_AUTO</pt>
@@ -82,14 +90,6 @@
                             <li><codeph>LOW_LIGHT_ENHANCE_LEVEL_FAST (1)</codeph>：优先保证弱光增强期间的性能。处理亮度和细节，处理速度更快。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>mode</pt>
-                    <pd>低光增强模式，详见 <xref keyref="LOW_LIGHT_ENHANCE_MODE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>level</pt>
-                    <pd>低光增强等级，详见 <xref keyref="LOW_LIGHT_ENHANCE_LEVEL"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>mode</pt>

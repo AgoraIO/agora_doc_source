@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_muteallremoteaudiostreams">
     <title><ph keyref="muteAllRemoteAudioStreams"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">停止或恢复接收所有远端音频流。</ph><ph id="shortdesc" props="android">停止或恢复订阅所有远端用户的音频流。</ph><ph id="shortdesc" props="ios">停止或恢复订阅所有远端用户的音频流。</ph><ph id="shortdesc" props="mac">停止或恢复订阅所有远端用户的音频流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">停止或恢复接收所有远端音频流。</ph><ph id="shortdesc" props="ios">停止或恢复订阅所有远端用户的音频流。</ph><ph id="shortdesc" props="android">停止或恢复订阅所有远端用户的音频流。</ph><ph id="shortdesc" props="mac">停止或恢复订阅所有远端用户的音频流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,25 +14,25 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int muteAllRemoteAudioStreams(bool mute) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int muteAllRemoteAudioStreams(boolean muted);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)muteAllRemoteAudioStreams:(BOOL)mute NS_SWIFT_NAME(muteAllRemoteAudioStreams(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int muteAllRemoteAudioStreams(boolean muted);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)muteAllRemoteAudioStreams:(BOOL)mute NS_SWIFT_NAME(muteAllRemoteAudioStreams(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该方法用于停止或恢复接收所有通过 <codeph>joinChannel</codeph> 加入或将要加入频道的远端用户的音频流。该方法等效于 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeAudio</codeph>。</p>
-            <p props="android">请在加入频道后调用该方法。本地用户将停止或恢复订阅所有远端用户的音频流，包括之后加入频道的用户。</p>
             <p props="ios">调用该方法后，你将停止或恢复订阅所有远端用户的音频流，包括之后加入频道的用户。</p>
+            <p props="android">请在加入频道后调用该方法。本地用户将停止或恢复订阅所有远端用户的音频流，包括之后加入频道的用户。</p>
             <p props="mac">调用该方法后，你将停止或恢复订阅所有远端用户的音频流，包括之后加入频道的用户。</p>
             <note props="cpp">请确保在加入频道后调用该方法。如果在加入频道后调用 <codeph>muteAllRemoteAudioStreams(true)</codeph>，本地用户将停止接收频道中所有用户的音频流，包括在调用该方法后加入频道的用户。</note>
-            <note props="android">如果你调用该方法后又调用了 <xref keyref="enableAudio"/> 或 <xref keyref="disableAudio"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的音频流。你可以在调用 <codeph>joinChannel</codeph> 加入频道时将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeAudio</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户音频流的订阅。</note>
             <note props="ios"><xref keyref="muteAllRemoteAudioStreams"/> 方法调用后，如果你调用了 <xref keyref="enableAudio"/> 或 <xref keyref="disableAudio"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的音频流。你可以在调用 <codeph>joinChannelByToken</codeph> 加入频道时将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeAudio</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户音频流的订阅。</note>
+            <note props="android">如果你调用该方法后又调用了 <xref keyref="enableAudio"/> 或 <xref keyref="disableAudio"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的音频流。你可以在调用 <codeph>joinChannel</codeph> 加入频道时将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeAudio</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户音频流的订阅。</note>
             <note props="mac"><xref keyref="muteAllRemoteAudioStreams"/> 方法调用后，如果你调用了 <xref keyref="enableAudio"/> 或 <xref keyref="disableAudio"/>，以最后一次调用为准。默认情况下，加入频道时 SDK 会自动订阅所有远端用户的音频流。你可以在调用 <codeph>joinChannelByToken</codeph> 加入频道时将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeAudio</codeph> 设置为 <xref keyref="false"/>，以取消加入频道时对所有用户音频流的订阅。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>调用时机</title>
-            <p props="android">请在加入频道后调用该方法。</p>
             <p props="ios">该方法需要在加入频道后调用。</p>
+            <p props="android">请在加入频道后调用该方法。</p>
             <p props="mac">该方法需要在加入频道后调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -47,8 +47,8 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>muted</pt>
+                <plentry props="ios">
+                    <pt>mute</pt>
                     <pd>是否停止订阅所有远端用户的音频流：
                         <ul>
                             <li><xref keyref="true"/>：停止订阅所有远端用户的音频流。</li>
@@ -56,8 +56,8 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
-                    <pt>mute</pt>
+                <plentry props="android">
+                    <pt>muted</pt>
                     <pd>是否停止订阅所有远端用户的音频流：
                         <ul>
                             <li><xref keyref="true"/>：停止订阅所有远端用户的音频流。</li>
@@ -84,16 +84,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

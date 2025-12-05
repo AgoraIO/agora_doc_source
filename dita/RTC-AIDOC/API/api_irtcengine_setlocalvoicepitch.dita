@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setlocalvoicepitch">
     <title><ph keyref="setLocalVoicePitch"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置本地语音的音调。</ph><ph id="shortdesc" props="android">设置本地语音的音调。</ph><ph id="shortdesc" props="ios">改变本地语音的音调。</ph><ph id="shortdesc" props="mac">改变本地语音的音调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置本地语音的音调。</ph><ph id="shortdesc" props="ios">改变本地语音的音调。</ph><ph id="shortdesc" props="android">设置本地语音的音调。</ph><ph id="shortdesc" props="mac">改变本地语音的音调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalVoicePitch(double pitch) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int setLocalVoicePitch(double pitch);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setLocalVoicePitch:(double)pitch NS_SWIFT_NAME(setLocalVoicePitch(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setLocalVoicePitch(double pitch);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setLocalVoicePitch:(double)pitch NS_SWIFT_NAME(setLocalVoicePitch(_:));</codeblock>
             </p>
         </section>
@@ -23,8 +23,8 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">你可以在加入频道前或加入频道后调用该方法。</p>
-            <p props="android">你可以在加入频道前或加入频道后调用该方法。</p>
             <p props="ios">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="android">你可以在加入频道前或加入频道后调用该方法。</p>
             <p props="mac">该方法可以在加入频道前或加入频道后调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -34,13 +34,13 @@
                     <pt>pitch</pt>
                     <pd>本地语音的音调。取值范围为 [0.5, 2.0]，值越小，音调越低。（默认值为 1.0，表示不改变音调。）</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>pitch</pt>
-                    <pd>本地语音的音调。取值范围为 [0.5, 2.0]。值越小，音调越低。（默认值为 1.0，表示不改变音调。）</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>pitch</pt>
                     <pd>本地语音的音调。取值范围为 [0.5, 2.0]，值越小，音调越低。默认值为 1.0（默认），表示不改变音调。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>pitch</pt>
+                    <pd>本地语音的音调。取值范围为 [0.5, 2.0]。值越小，音调越低。（默认值为 1.0，表示不改变音调。）</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>pitch</pt>
@@ -56,16 +56,16 @@
                     <li>&lt; 0: 方法调用失败。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

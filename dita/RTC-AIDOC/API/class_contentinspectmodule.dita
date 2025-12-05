@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectmodule">
     <title><ph keyref="ContentInspectModule"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于设置本地截图上传的频率。</ph><ph id="shortdesc" props="android">用于配置本地截图上传的频率。</ph><ph id="shortdesc" props="ios">用于配置视频截图和上传频率的结构体。</ph><ph id="shortdesc" props="mac">用于配置视频截图和上传频率的结构体。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于设置本地截图上传的频率。</ph><ph id="shortdesc" props="ios">用于配置视频截图和上传频率的结构体。</ph><ph id="shortdesc" props="android">用于配置本地截图上传的频率。</ph><ph id="shortdesc" props="mac">用于配置视频截图和上传频率的结构体。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -11,16 +11,16 @@
   unsigned int interval;
   base::VIDEO_MODULE_POSITION position;
 };</codeblock>
-                <codeblock props="android" outputclass="language-java">public static class ContentInspectModule {
-    public int type;
-    public int interval;
-    public Constants.VideoModulePosition position;
-  }</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">@interface AgoraContentInspectModule: NSObject
 @property (assign, nonatomic) AgoraContentInspectType type;
 @property (assign, nonatomic) NSInteger interval;
 @property (assign, nonatomic) AgoraVideoModulePosition position;
 @end</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class ContentInspectModule {
+    public int type;
+    public int interval;
+    public Constants.VideoModulePosition position;
+  }</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">@interface AgoraContentInspectModule: NSObject
 @property (assign, nonatomic) AgoraContentInspectType type;
 @property (assign, nonatomic) NSInteger interval;
@@ -46,6 +46,18 @@
                     <pt>position</pt>
                     <pd>视频观察器的位置。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>type</pt>
+                    <pd>功能模块的类型，详见 <xref keyref="CONTENT_INSPECT_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>interval</pt>
+                    <pd>视频截图和上传的频率（单位为秒）。该值必须大于 0。默认值为 0，表示 SDK 不进行截图。建议设置为 10 秒，可根据业务需求进行调整。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>position</pt>
+                    <pd>视频观察者的位置，详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
+                </plentry>
                 <plentry props="android">
                     <pt>type</pt>
                     <pd>功能模块的类型：
@@ -63,18 +75,6 @@
                 <plentry props="android">
                     <pt>position</pt>
                     <pd>视频观察器的位置，详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>type</pt>
-                    <pd>功能模块的类型，详见 <xref keyref="CONTENT_INSPECT_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>interval</pt>
-                    <pd>视频截图和上传的频率（单位为秒）。该值必须大于 0。默认值为 0，表示 SDK 不进行截图。建议设置为 10 秒，可根据业务需求进行调整。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>position</pt>
-                    <pd>视频观察者的位置，详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>type</pt>

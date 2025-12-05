@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_geteffectduration">
     <title><ph keyref="getEffectDuration"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取音效文件的时长。</ph><ph id="shortdesc" props="android">获取音效文件的时长。</ph><ph id="shortdesc" props="ios">获取音效文件的时长。</ph><ph id="shortdesc" props="mac">获取音效文件的时长。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取音效文件的时长。</ph><ph id="shortdesc" props="ios">获取音效文件的时长。</ph><ph id="shortdesc" props="android">获取音效文件的时长。</ph><ph id="shortdesc" props="mac">获取音效文件的时长。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,15 +14,15 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int getEffectDuration(const char* filePath) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int getEffectDuration(String filePath);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)getEffectDuration:(NSString* _Nonnull)filePath NS_SWIFT_NAME(getEffectDuration(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getEffectDuration(String filePath);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)getEffectDuration:(NSString* _Nonnull)filePath NS_SWIFT_NAME(getEffectDuration(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <note props="cpp">请在加入频道后调用此方法。</note>
-            <note props="android">请在加入频道后调用该方法。</note>
             <note props="ios">请在加入频道后调用该方法。</note>
+            <note props="android">请在加入频道后调用该方法。</note>
             <note props="mac">请在加入频道后调用该方法。</note>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -38,13 +38,6 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>filePath</pt>
-                    <pd>音效文件的路径：
-                        <ul>
-                            <li>Android：路径需精确到文件名和后缀名。支持 URL 地址、绝对路径，或以 <codeph>/assets/</codeph> 开头的文件路径。使用绝对路径访问本地文件可能会遇到权限问题，建议使用 URI 地址，例如：</li>
-                        </ul><ph><codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>。</ph></pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>filePath</pt>
                     <pd>文件路径：
@@ -52,6 +45,13 @@
                             <li>iOS 或 macOS：音效文件的绝对路径或 URL 地址（包括文件名后缀）。例如：<xref keyref="filePath-example"/>。</li>
                         </ul>
                     </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>filePath</pt>
+                    <pd>音效文件的路径：
+                        <ul>
+                            <li>Android：路径需精确到文件名和后缀名。支持 URL 地址、绝对路径，或以 <codeph>/assets/</codeph> 开头的文件路径。使用绝对路径访问本地文件可能会遇到权限问题，建议使用 URI 地址，例如：</li>
+                        </ul><ph><codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>。</ph></pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>filePath</pt>
@@ -71,16 +71,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>方法调用成功，返回指定音效文件的总时长（毫秒）。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功，返回指定音效文件的总时长（毫秒）。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功，返回指定音效文件的总时长（毫秒）。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

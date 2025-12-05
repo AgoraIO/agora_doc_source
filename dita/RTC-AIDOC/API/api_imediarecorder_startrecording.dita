@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediarecorder_startrecording">
     <title><ph keyref="startRecording"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">开始录制音视频流。</ph><ph id="shortdesc" props="android">开始录制音频和视频流。</ph><ph id="shortdesc" props="ios">开始录制音视频流。</ph><ph id="shortdesc" props="mac">开始录制音视频流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">开始录制音视频流。</ph><ph id="shortdesc" props="ios">开始录制音视频流。</ph><ph id="shortdesc" props="android">开始录制音频和视频流。</ph><ph id="shortdesc" props="mac">开始录制音视频流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int startRecording(const media::MediaRecorderConfiguration&amp; config) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public int startRecording(MediaRecorderConfiguration config)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)startRecording:(AgoraMediaRecorderConfiguration* _Nonnull)config NS_SWIFT_NAME(startRecording(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public int startRecording(MediaRecorderConfiguration config)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)startRecording:(AgoraMediaRecorderConfiguration* _Nonnull)config NS_SWIFT_NAME(startRecording(_:));</codeblock>
             </p>
         </section>
@@ -49,17 +49,6 @@
                     <li>如果录制过程中视频分辨率发生变化，SDK 会停止录制。</li>
                     <li>如果音频采样率或声道数发生变化，SDK 会继续录制，并生成一个 MP4 文件。</li>
                 </ul><ph>仅当检测到可录制的音视频流时，录制文件才会成功生成。如果没有可录制的流，或录制过程中流中断超过 5 秒，SDK 会停止录制，并触发 <xref keyref="onRecorderStateChanged"/>（<codeph>RECORDER_STATE_ERROR</codeph>，<codeph>RECORDER_REASON_NO_STREAM</codeph>）回调。</ph></p>
-            <p props="android">该方法用于开始录制音频和视频流。声网 SDK 支持同时录制本地和远端用户的音视频流。
-在调用该方法前，请确保：
-                <ul>
-                    <li>已使用 <xref keyref="createMediaRecorder"/> 创建媒体录制器对象。</li>
-                    <li>已使用 <xref keyref="setMediaRecorderObserver"/> 注册媒体录制器观察者以监听录制相关的回调。</li>
-                    <li>已加入频道。</li>
-                </ul><ph>该方法支持录制以下数据：</ph>
-                <ul>
-                    <li>由麦克风采集的音频，格式为 AAC。</li>
-                    <li>由摄像头采集的视频，格式为 H.264 或 H.265。</li>
-                </ul><ph>录制开始后，如果视频分辨率发生变化，SDK 会停止录制；如果音频采样率或声道数发生变化，SDK 会继续录制并生成一个 MP4 文件。</ph><ph>仅当检测到可录制的音视频流时，才会生成录制文件。如果没有可录制的流，或录制过程中音视频流中断超过 5 秒，SDK 会停止录制并触发 <xref keyref="onRecorderStateChanged"/>（<codeph>RECORDER_STATE_ERROR</codeph>, <codeph>RECORDER_REASON_NO_STREAM</codeph>）回调。</ph></p>
             <p props="ios">该方法用于开始录制音频和视频流。声网 SDK 支持同时录制本地和远端用户的音视频流。
 在开始录制前，请确保：
                 <ul>
@@ -71,6 +60,17 @@
                     <li>通过麦克风采集的音频，编码格式为 AAC。</li>
                     <li>通过摄像头采集的视频，编码格式为 H.264 或 H.265。</li>
                 </ul><ph>录制开始后，如果录制过程中视频分辨率发生变化，SDK 会停止录制。如果音频采样率或声道数发生变化，SDK 会继续录制并生成一个 MP4 文件。</ph><ph>仅当检测到可录制的音视频流时，才会生成录制文件。如果在录制过程中未检测到可录制的音视频流，或音视频流中断超过 5 秒，SDK 会停止录制并触发 <xref keyref="onRecorderStateChanged"/> 回调（<codeph>AgoraMediaRecorderStateError</codeph>，<codeph>AgoraMediaRecorderReasonCodeNoStream</codeph>）。</ph></p>
+            <p props="android">该方法用于开始录制音频和视频流。声网 SDK 支持同时录制本地和远端用户的音视频流。
+在调用该方法前，请确保：
+                <ul>
+                    <li>已使用 <xref keyref="createMediaRecorder"/> 创建媒体录制器对象。</li>
+                    <li>已使用 <xref keyref="setMediaRecorderObserver"/> 注册媒体录制器观察者以监听录制相关的回调。</li>
+                    <li>已加入频道。</li>
+                </ul><ph>该方法支持录制以下数据：</ph>
+                <ul>
+                    <li>由麦克风采集的音频，格式为 AAC。</li>
+                    <li>由摄像头采集的视频，格式为 H.264 或 H.265。</li>
+                </ul><ph>录制开始后，如果视频分辨率发生变化，SDK 会停止录制；如果音频采样率或声道数发生变化，SDK 会继续录制并生成一个 MP4 文件。</ph><ph>仅当检测到可录制的音视频流时，才会生成录制文件。如果没有可录制的流，或录制过程中音视频流中断超过 5 秒，SDK 会停止录制并触发 <xref keyref="onRecorderStateChanged"/>（<codeph>RECORDER_STATE_ERROR</codeph>, <codeph>RECORDER_REASON_NO_STREAM</codeph>）回调。</ph></p>
             <p props="mac">该方法用于开始录制音频和视频流。声网 SDK 支持同时录制本地和远端用户的音视频流。
 在开始录制前，请确保：
                 <ul>
@@ -88,16 +88,16 @@
                     <li>如果你希望录制远端音视频流，请确保在开始录制前已订阅远端用户的流。</li>
                 </ul>
             </note>
-            <note props="android">
-                <ul>
-                    <li>如果需要录制本地音视频流，请确保本地用户角色在开始录制前已设置为主播。</li>
-                    <li>如果需要录制远端用户的音视频流，请确保在开始录制前已订阅远端用户的音视频流。</li>
-                </ul>
-            </note>
             <note props="ios">
                 <ul>
                     <li>如果需要录制本地音视频流，请确保本地用户角色在开始录制前已设置为主播。</li>
                     <li>如果需要录制远端用户的音视频流，请确保在开始录制前已订阅目标用户的音视频流。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>如果需要录制本地音视频流，请确保本地用户角色在开始录制前已设置为主播。</li>
+                    <li>如果需要录制远端用户的音视频流，请确保在开始录制前已订阅远端用户的音视频流。</li>
                 </ul>
             </note>
             <note props="mac">
@@ -114,13 +114,13 @@
                     <pt>config</pt>
                     <pd>音视频流录制配置。详见 <xref keyref="MediaRecorderConfiguration"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>config</pt>
-                    <pd>音视频流录制的配置。详见 <xref keyref="MediaRecorderConfiguration"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>config</pt>
                     <pd>用于配置音视频流录制的参数，详见 <xref keyref="MediaRecorderConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>音视频流录制的配置。详见 <xref keyref="MediaRecorderConfiguration"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>config</pt>
@@ -148,24 +148,6 @@
                     </li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
-                        <ul>
-                            <li>-2：参数无效。请确保：
-                                <ul>
-                                    <li>指定的录制文件保存路径正确且可写。</li>
-                                    <li>指定的录制文件格式正确。</li>
-                                    <li>最大录制时长设置正确。</li>
-                                </ul>
-                            </li>
-                            <li>-4：当前 <xref keyref="IRtcEngine"/> 状态不支持该操作。可能是录制已在进行中，或因错误而停止。</li>
-                            <li>-7：在 <xref keyref="IRtcEngine"/> 初始化前调用该方法。请确保在调用该方法前已创建 <xref keyref="IMediaRecorder"/> 对象。</li>
-                        </ul>
-                    </li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
@@ -180,6 +162,24 @@
                             </li>
                             <li>-4：当前 <xref keyref="IRtcEngine"/> 的状态不支持该操作。可能是由于已有录制任务正在进行，或录制错误导致录制已停止。</li>
                             <li>-7：调用该方法时 <xref keyref="IRtcEngine"/> 尚未初始化。请确保在调用该方法前已创建 <xref keyref="IMediaRecorder"/> 对象。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2：参数无效。请确保：
+                                <ul>
+                                    <li>指定的录制文件保存路径正确且可写。</li>
+                                    <li>指定的录制文件格式正确。</li>
+                                    <li>最大录制时长设置正确。</li>
+                                </ul>
+                            </li>
+                            <li>-4：当前 <xref keyref="IRtcEngine"/> 状态不支持该操作。可能是录制已在进行中，或因错误而停止。</li>
+                            <li>-7：在 <xref keyref="IRtcEngine"/> 初始化前调用该方法。请确保在调用该方法前已创建 <xref keyref="IMediaRecorder"/> 对象。</li>
                         </ul>
                     </li>
                 </ul>
