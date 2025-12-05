@@ -1,0 +1,482 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_remotevideostats">
+    <title><ph keyref="RemoteVideoStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">远端视频流的统计信息。</ph><ph id="shortdesc" props="rn">远端视频流的统计信息。</ph><ph id="shortdesc" props="flutter">远端视频流的统计信息。</ph><ph id="shortdesc" props="unity">远端视频流的统计信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class RemoteVideoStats {
+
+  uid?: number;
+
+  delay?: number;
+
+  e2eDelay?: number;
+
+  width?: number;
+
+  height?: number;
+
+  receivedBitrate?: number;
+
+  decoderOutputFrameRate?: number;
+
+  rendererOutputFrameRate?: number;
+
+  frameLossRate?: number;
+
+  packetLossRate?: number;
+
+  rxStreamType?: VideoStreamType;
+
+  totalFrozenTime?: number;
+
+  frozenRate?: number;
+
+  avSyncTimeMs?: number;
+
+  totalActiveTime?: number;
+
+  publishDuration?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class RemoteVideoStats {
+
+  uid?: number;
+
+  delay?: number;
+
+  e2eDelay?: number;
+
+  width?: number;
+
+  height?: number;
+
+  receivedBitrate?: number;
+
+  decoderOutputFrameRate?: number;
+
+  rendererOutputFrameRate?: number;
+
+  frameLossRate?: number;
+
+  packetLossRate?: number;
+
+  rxStreamType?: VideoStreamType;
+
+  totalFrozenTime?: number;
+
+  frozenRate?: number;
+
+  avSyncTimeMs?: number;
+
+  totalActiveTime?: number;
+
+  publishDuration?: number;
+
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class RemoteVideoStats {
+  const RemoteVideoStats(
+      {this.uid,
+      this.delay,
+      this.e2eDelay,
+      this.width,
+      this.height,
+      this.receivedBitrate,
+      this.decoderOutputFrameRate,
+      this.rendererOutputFrameRate,
+      this.frameLossRate,
+      this.packetLossRate,
+      this.rxStreamType,
+      this.totalFrozenTime,
+      this.frozenRate,
+      this.avSyncTimeMs,
+      this.totalActiveTime,
+      this.publishDuration,
+      this.mosValue,
+      this.rxVideoBytes});
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+
+  @JsonKey(name: 'delay')
+  final int? delay;
+
+  @JsonKey(name: 'e2eDelay')
+  final int? e2eDelay;
+
+  @JsonKey(name: 'width')
+  final int? width;
+
+  @JsonKey(name: 'height')
+  final int? height;
+
+  @JsonKey(name: 'receivedBitrate')
+  final int? receivedBitrate;
+
+  @JsonKey(name: 'decoderOutputFrameRate')
+  final int? decoderOutputFrameRate;
+
+  @JsonKey(name: 'rendererOutputFrameRate')
+  final int? rendererOutputFrameRate;
+
+  @JsonKey(name: 'frameLossRate')
+  final int? frameLossRate;
+
+  @JsonKey(name: 'packetLossRate')
+  final int? packetLossRate;
+
+  @JsonKey(name: 'rxStreamType')
+  final VideoStreamType? rxStreamType;
+
+  @JsonKey(name: 'totalFrozenTime')
+  final int? totalFrozenTime;
+
+  @JsonKey(name: 'frozenRate')
+  final int? frozenRate;
+
+  @JsonKey(name: 'avSyncTimeMs')
+  final int? avSyncTimeMs;
+
+  @JsonKey(name: 'totalActiveTime')
+  final int? totalActiveTime;
+
+  @JsonKey(name: 'publishDuration')
+  final int? publishDuration;
+
+  @JsonKey(name: 'mosValue')
+  final int? mosValue;
+
+  @JsonKey(name: 'rxVideoBytes')
+  final int? rxVideoBytes;
+
+  factory RemoteVideoStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$RemoteVideoStatsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$RemoteVideoStatsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class RemoteVideoStats
+    {
+        public uint uid;
+        public int delay;
+        public int e2eDelay;
+        public int width;
+        public int height;
+        public int receivedBitrate;
+        public int decoderOutputFrameRate;
+        public int rendererOutputFrameRate;
+        public int frameLossRate;
+        public int packetLossRate;
+        public VIDEO_STREAM_TYPE rxStreamType;
+        public int totalFrozenTime;
+        public int frozenRate;
+        public int avSyncTimeMs;
+        public int totalActiveTime;
+        public int publishDuration;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>用户 ID，指定是哪个用户的视频流。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>delay</pt>
+                    <pd>延时（毫秒）。
+                        <note>弃用：在有音画同步机制的音视频场景中，你可以参考 <xref keyref="RemoteAudioStats"/> 里的 <codeph>networkTransportDelay</codeph> 和 <codeph>jitterBufferDelay</codeph> 成员的值，了解视频的延迟数据。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>e2eDelay</pt>
+                    <pd>端到端视频延时（毫秒）。即，自远端用户视频采集起，至本地用户接收并渲染视频的总时长。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>视频流宽（像素）。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>视频流高（像素）。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>receivedBitrate</pt>
+                    <pd>（上次统计后）接收到的码率(Kbps)。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>decoderOutputFrameRate</pt>
+                    <pd>远端视频解码器的输出帧率，单位为 fps。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>远端视频渲染器的输出帧率，单位为 fps。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>frameLossRate</pt>
+                    <pd>远端视频丢包率(%)。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>packetLossRate</pt>
+                    <pd>远端视频在使用抗丢包技术之后的丢包率(%)。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rxStreamType</pt>
+                    <pd>视频流类型，大流或小流。详见 <codeph>VideoStreamType</codeph>。
+                        <ul>
+                            <li>VideoStreamHigh(0)：视频大流，即高分辨率高码率的视频流。</li>
+                            <li>VideoStreamLow(1)：视频小流，即低分辨率低码率的视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>totalFrozenTime</pt>
+                    <pd>远端用户在加入频道后发生视频卡顿的累计时长（ms）。通话过程中，视频帧率设置不低于 5 fps 时，连续渲染的两帧视频之间间隔超过 500 ms，则记为一次视频卡顿。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>frozenRate</pt>
+                    <pd>远端用户在加入频道后发生视频卡顿的累计时长占视频总有效时长的百分比 (%)。视频有效时长是指远端用户加入频道后视频未被停止发送或禁用的时长。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>totalActiveTime</pt>
+                    <pd>视频有效时长（毫秒）。
+视频总有效时长是远端用户或主播加入频道后，既没有停止发送视频流，也没有禁用视频模块的通话时长。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publishDuration</pt>
+                    <pd>远端视频流的累计发布时长（毫秒）。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>avSyncTimeMs</pt>
+                    <pd>音频超前视频的时间 (ms)。
+                        <note>如果为负值，则代表音频落后于视频。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>用户 ID，指定是哪个用户的视频流。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>delay</pt>
+                    <pd>延时（毫秒）。
+                        <note>弃用：在有音画同步机制的音视频场景中，你可以参考 <xref keyref="RemoteAudioStats"/> 里的 <codeph>networkTransportDelay</codeph> 和 <codeph>jitterBufferDelay</codeph> 成员的值，了解视频的延迟数据。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>e2eDelay</pt>
+                    <pd>端到端视频延时（毫秒）。即，自远端用户视频采集起，至本地用户接收并渲染视频的总时长。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>width</pt>
+                    <pd>视频流宽（像素）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>视频流高（像素）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>receivedBitrate</pt>
+                    <pd>（上次统计后）接收到的码率(Kbps)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>decoderOutputFrameRate</pt>
+                    <pd>远端视频解码器的输出帧率，单位为 fps。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>远端视频渲染器的输出帧率，单位为 fps。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>frameLossRate</pt>
+                    <pd>远端视频丢包率(%)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>packetLossRate</pt>
+                    <pd>远端视频在使用抗丢包技术之后的丢包率(%)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rxStreamType</pt>
+                    <pd>视频流类型，大流或小流。详见 <codeph>VideoStreamType</codeph>。
+                        <ul>
+                            <li>VideoStreamHigh(0)：视频大流，即高分辨率高码率的视频流。</li>
+                            <li>VideoStreamLow(1)：视频小流，即低分辨率低码率的视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>totalFrozenTime</pt>
+                    <pd>远端用户在加入频道后发生视频卡顿的累计时长（ms）。通话过程中，视频帧率设置不低于 5 fps 时，连续渲染的两帧视频之间间隔超过 500 ms，则记为一次视频卡顿。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>frozenRate</pt>
+                    <pd>远端用户在加入频道后发生视频卡顿的累计时长占视频总有效时长的百分比 (%)。视频有效时长是指远端用户加入频道后视频未被停止发送或禁用的时长。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>totalActiveTime</pt>
+                    <pd>视频有效时长（毫秒）。
+视频总有效时长是远端用户或主播加入频道后，既没有停止发送视频流，也没有禁用视频模块的通话时长。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publishDuration</pt>
+                    <pd>远端视频流的累计发布时长（毫秒）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>avSyncTimeMs</pt>
+                    <pd>音频超前视频的时间 (ms)。
+                        <note>如果为负值，则代表音频落后于视频。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>用户 ID，指定是哪个用户的视频流。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>delay</pt>
+                    <pd>延时（毫秒）。
+                        <note>弃用：在有音画同步机制的音视频场景中，你可以参考 <xref keyref="RemoteAudioStats"/> 里的 <codeph>networkTransportDelay</codeph> 和 <codeph>jitterBufferDelay</codeph> 成员的值，了解视频的延迟数据。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>e2eDelay</pt>
+                    <pd>端到端视频延时（毫秒）。即，自远端用户视频采集起，至本地用户接收并渲染视频的总时长。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>视频流宽（像素）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>视频流高（像素）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>receivedBitrate</pt>
+                    <pd>（上次统计后）接收到的码率(Kbps)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>decoderOutputFrameRate</pt>
+                    <pd>远端视频解码器的输出帧率，单位为 fps。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>远端视频渲染器的输出帧率，单位为 fps。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>frameLossRate</pt>
+                    <pd>远端视频丢包率(%)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>packetLossRate</pt>
+                    <pd>远端视频在使用抗丢包技术之后的丢包率(%)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rxStreamType</pt>
+                    <pd>视频流类型，大流或小流。详见 <codeph>VideoStreamType</codeph>。
+                        <ul>
+                            <li>videoStreamHigh(0)：视频大流，即高分辨率高码率的视频流。</li>
+                            <li>videoStreamLow(1)：视频小流，即低分辨率低码率的视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>totalFrozenTime</pt>
+                    <pd>远端用户在加入频道后发生视频卡顿的累计时长（ms）。通话过程中，视频帧率设置不低于 5 fps 时，连续渲染的两帧视频之间间隔超过 500 ms，则记为一次视频卡顿。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>frozenRate</pt>
+                    <pd>远端用户在加入频道后发生视频卡顿的累计时长占视频总有效时长的百分比 (%)。视频有效时长是指远端用户加入频道后视频未被停止发送或禁用的时长。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>totalActiveTime</pt>
+                    <pd>视频有效时长（毫秒）。
+视频总有效时长是远端用户或主播加入频道后，既没有停止发送视频流，也没有禁用视频模块的通话时长。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publishDuration</pt>
+                    <pd>远端视频流的累计发布时长（毫秒）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>avSyncTimeMs</pt>
+                    <pd>音频超前视频的时间 (ms)。
+                        <note>如果为负值，则代表音频落后于视频。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>用户 ID，指定是哪个用户的视频流。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>delay</pt>
+                    <pd>延时（毫秒）。
+                        <note>弃用：在有音画同步机制的音视频场景中，你可以参考 <xref keyref="RemoteAudioStats"/> 里的 <codeph>networkTransportDelay</codeph> 和 <codeph>jitterBufferDelay</codeph> 成员的值，了解视频的延迟数据。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>e2eDelay</pt>
+                    <pd>端到端视频延时（毫秒）。即，自远端用户视频采集起，至本地用户接收并渲染视频的总时长。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>视频流宽（像素）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>视频流高（像素）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>receivedBitrate</pt>
+                    <pd>（上次统计后）接收到的码率(Kbps)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>decoderOutputFrameRate</pt>
+                    <pd>远端视频解码器的输出帧率，单位为 fps。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>远端视频渲染器的输出帧率，单位为 fps。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>frameLossRate</pt>
+                    <pd>远端视频丢包率(%)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>packetLossRate</pt>
+                    <pd>远端视频在使用抗丢包技术之后的丢包率(%)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rxStreamType</pt>
+                    <pd>视频流类型，大流或小流。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。
+                        <ul>
+                            <li>VIDEO_STREAM_HIGH(0)：视频大流，即高分辨率高码率的视频流。</li>
+                            <li>VIDEO_STREAM_LOW(1)：视频小流，即低分辨率低码率的视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>totalFrozenTime</pt>
+                    <pd>远端用户在加入频道后发生视频卡顿的累计时长（ms）。通话过程中，视频帧率设置不低于 5 fps 时，连续渲染的两帧视频之间间隔超过 500 ms，则记为一次视频卡顿。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>frozenRate</pt>
+                    <pd>远端用户在加入频道后发生视频卡顿的累计时长占视频总有效时长的百分比 (%)。视频有效时长是指远端用户加入频道后视频未被停止发送或禁用的时长。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>totalActiveTime</pt>
+                    <pd>视频有效时长（毫秒）。
+视频总有效时长是远端用户或主播加入频道后，既没有停止发送视频流，也没有禁用视频模块的通话时长。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publishDuration</pt>
+                    <pd>远端视频流的累计发布时长（毫秒）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>avSyncTimeMs</pt>
+                    <pd>音频超前视频的时间 (ms)。
+                        <note>如果为负值，则代表音频落后于视频。</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

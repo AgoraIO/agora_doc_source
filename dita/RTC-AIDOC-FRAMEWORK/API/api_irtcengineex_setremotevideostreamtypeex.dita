@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_setremotevideostreamtypeex">
+    <title><ph keyref="setRemoteVideoStreamTypeEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置订阅的视频流类型。</ph><ph id="shortdesc" props="rn">设置订阅的视频流类型。</ph><ph id="shortdesc" props="flutter">设置订阅的视频流类型。</ph><ph id="shortdesc" props="unity">设置订阅的视频流类型。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteVideoStreamTypeEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setRemoteVideoStreamTypeEx(
+    uid: number,
+    streamType: VideoStreamType,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setRemoteVideoStreamTypeEx(
+    uid: number,
+    streamType: VideoStreamType,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteVideoStreamTypeEx(
+      {required int uid,
+      required VideoStreamType streamType,
+      required RtcConnection connection});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteVideoStreamTypeEx(uint uid, VIDEO_STREAM_TYPE streamType, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">如果发送端已调用 <xref keyref="setDualStreamModeEx"/> 并将 <codeph>mode</codeph> 设置为 <codeph>DisableSimulcastStream</codeph>（始终不发送小流），则调用该方法不生效，你需要在发送端重新调用 <xref keyref="setDualStreamModeEx"/> 修改设置。</note>
+            <note props="rn">如果发送端已调用 <xref keyref="setDualStreamModeEx"/> 并将 <codeph>mode</codeph> 设置为 <codeph>DisableSimulcastStream</codeph>（始终不发送小流），则调用该方法不生效，你需要在发送端重新调用 <xref keyref="setDualStreamModeEx"/> 修改设置。</note>
+            <note props="flutter">如果发送端已调用 <xref keyref="setDualStreamModeEx"/> 并将 <codeph>mode</codeph> 设置为 <codeph>disableSimulcastStream</codeph>（始终不发送小流），则调用该方法不生效，你需要在发送端重新调用 <xref keyref="setDualStreamModeEx"/> 修改设置。</note>
+            <note props="unity">如果发送端已调用 <xref keyref="setDualStreamModeEx"/> 并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>（始终不发送小流），则调用该方法不生效，你需要在发送端重新调用 <xref keyref="setDualStreamModeEx"/> 修改设置。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>streamType</pt>
+                    <pd>视频流类型: <codeph>VideoStreamType</codeph>。
+视频流类型：
+                        <ul>
+                            <li>0：视频大流。</li>
+                            <li>1：视频小流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>streamType</pt>
+                    <pd>视频流类型: <codeph>VideoStreamType</codeph>。
+视频流类型：
+                        <ul>
+                            <li>0：视频大流。</li>
+                            <li>1：视频小流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamType</pt>
+                    <pd>视频流类型: <codeph>VideoStreamType</codeph>。
+视频流类型：
+                        <ul>
+                            <li>0：视频大流。</li>
+                            <li>1：视频小流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>streamType</pt>
+                    <pd>视频流类型: <xref keyref="VIDEO_STREAM_TYPE"/>。
+视频流类型：
+                        <ul>
+                            <li>0：视频大流。</li>
+                            <li>1：视频小流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

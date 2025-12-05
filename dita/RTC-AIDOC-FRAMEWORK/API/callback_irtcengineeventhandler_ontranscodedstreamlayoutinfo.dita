@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_ontranscodedstreamlayoutinfo">
+    <title><ph keyref="onTranscodedStreamLayoutInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">已接收携带布局信息的合图视频流回调。</ph><ph id="shortdesc" props="flutter">已接收携带布局信息的合图视频流回调。</ph><ph id="shortdesc" props="unity">已接收携带布局信息的合图视频流回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onTranscodedStreamLayoutInfo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">onTranscodedStreamLayoutInfo?(
+    connection: RtcConnection,
+    uid: number,
+    width: number,
+    height: number,
+    layoutCount: number,
+    layoutlist: VideoLayout[]
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(
+    RtcConnection connection,
+    int uid,
+    int width,
+    int height,
+    int layoutCount,
+    List&lt;VideoLayout&gt; layoutlist)? onTranscodedStreamLayoutInfo;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnTranscodedStreamLayoutInfo(RtcConnection connection, uint uid, int width, int height, int layoutCount, VideoLayout[] layoutlist)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.0</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.0</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.0</dd>
+                </dlentry>
+            </dl>
+            <p props="rn">当本地第一次接收到合图服务器发送的合图视频流，或者合图流的布局信息有变化时，SDK 会触发该回调，报告合图视频流中每一路子视频流的布局信息。</p>
+            <p props="flutter">当本地第一次接收到合图服务器发送的合图视频流，或者合图流的布局信息有变化时，SDK 会触发该回调，报告合图视频流中每一路子视频流的布局信息。</p>
+            <p props="unity">当本地第一次接收到合图服务器发送的合图视频流，或者合图流的布局信息有变化时，SDK 会触发该回调，报告合图视频流中每一路子视频流的布局信息。</p>
+            <note props="flutter">该回调仅适用于 Android 和 iOS。</note>
+            <note props="unity">该回调仅适用于 Android 和 iOS。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>发布合图视频流的用户 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>width</pt>
+                    <pd>合图视频流的宽度 (px)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>合图视频流的高度 (px)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>layoutCount</pt>
+                    <pd>合图视频流中布局信息的数量。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>layoutlist</pt>
+                    <pd>某一路合图视频流的详细布局信息。详见 `VideoLayout``VideoLayoutInfo`。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>engine</pt>
+                    <pd><codeph>RtcEngine</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>发布合图视频流的用户 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>合图视频流的宽度 (px)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>合图视频流的高度 (px)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>layoutCount</pt>
+                    <pd>合图视频流中布局信息的数量。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>layoutlist</pt>
+                    <pd>某一路合图视频流的详细布局信息。详见 `VideoLayout``VideoLayoutInfo`。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>发布合图视频流的用户 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>合图视频流的宽度 (px)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>合图视频流的高度 (px)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>layoutCount</pt>
+                    <pd>合图视频流中布局信息的数量。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>layoutlist</pt>
+                    <pd>某一路合图视频流的详细布局信息。详见 `VideoLayout``VideoLayoutInfo`。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

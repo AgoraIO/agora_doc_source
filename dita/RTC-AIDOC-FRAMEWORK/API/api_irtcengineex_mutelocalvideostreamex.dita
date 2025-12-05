@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_mutelocalvideostreamex">
+    <title><ph keyref="muteLocalVideoStreamEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">取消或恢复发布本地视频流。</ph><ph id="shortdesc" props="rn">取消或恢复发布本地视频流。</ph><ph id="shortdesc" props="flutter">取消或恢复发布本地视频流。</ph><ph id="shortdesc" props="unity">取消或恢复发布本地视频流。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="muteLocalVideoStreamEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract muteLocalVideoStreamEx(
+    mute: boolean,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract muteLocalVideoStreamEx(
+    mute: boolean,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteLocalVideoStreamEx(
+      {required bool mute, required RtcConnection connection});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int MuteLocalVideoStreamEx(bool mute, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">成功调用该方法后，远端会触发 <xref keyref="onUserMuteVideo"/> 回调。</p>
+            <p props="rn">成功调用该方法后，远端会触发 <xref keyref="onUserMuteVideo"/> 回调。</p>
+            <p props="flutter">成功调用该方法后，远端会触发 <xref keyref="onUserMuteVideo"/> 回调。</p>
+            <p props="unity">成功调用该方法后，远端会触发 <xref keyref="onUserMuteVideo"/> 回调。</p>
+            <note props="electron">
+                <ul>
+                    <li>该方法不影响视频采集状态，没有禁用摄像头。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>该方法不影响视频采集状态，没有禁用摄像头。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法不影响视频采集状态，没有禁用摄像头。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法不影响视频采集状态，没有禁用摄像头。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>mute</pt>
+                    <pd>是否取消发送本地视频流。
+                        <ul>
+                            <li><xref keyref="true"/>: 取消发送本地视频流。</li>
+                            <li><xref keyref="false"/>: （默认）发送本地视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mute</pt>
+                    <pd>是否取消发送本地视频流。
+                        <ul>
+                            <li><xref keyref="true"/>: 取消发送本地视频流。</li>
+                            <li><xref keyref="false"/>: （默认）发送本地视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mute</pt>
+                    <pd>是否取消发送本地视频流。
+                        <ul>
+                            <li><xref keyref="true"/>: 取消发送本地视频流。</li>
+                            <li><xref keyref="false"/>: （默认）发送本地视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mute</pt>
+                    <pd>是否取消发送本地视频流。
+                        <ul>
+                            <li><xref keyref="true"/>: 取消发送本地视频流。</li>
+                            <li><xref keyref="false"/>: （默认）发送本地视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

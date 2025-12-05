@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_stoplocalaudiomixer">
+    <title><ph keyref="stopLocalAudioMixer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">停止本地音频合流。</ph><ph id="shortdesc" props="rn">停止本地音频合流。</ph><ph id="shortdesc" props="flutter">停止本地音频合流。</ph><ph id="shortdesc" props="unity">停止本地音频合流。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="stopLocalAudioMixer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract stopLocalAudioMixer(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract stopLocalAudioMixer(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopLocalAudioMixer();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StopLocalAudioMixer();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">调用 <xref keyref="startLocalAudioMixer"/> 后，如果你希望停止本地音频合流，请调用该方法。</p>
+            <p props="rn">调用 <xref keyref="startLocalAudioMixer"/> 后，如果你希望停止本地音频合流，请调用该方法。</p>
+            <p props="flutter">调用 <xref keyref="startLocalAudioMixer"/> 后，如果你希望停止本地音频合流，请调用该方法。</p>
+            <p props="unity">调用 <xref keyref="startLocalAudioMixer"/> 后，如果你希望停止本地音频合流，请调用该方法。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在 <xref keyref="startLocalAudioMixer"/> 之后调用。</p>
+            <p props="rn">该方法需要在 <xref keyref="startLocalAudioMixer"/> 之后调用。</p>
+            <p props="flutter">该方法需要在 <xref keyref="startLocalAudioMixer"/> 之后调用。</p>
+            <p props="unity">该方法需要在 <xref keyref="startLocalAudioMixer"/> 之后调用。</p>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-7：<xref keyref="IRtcEngine"/>对象尚未初始化。你需要在调用该方法前成功初始化<xref keyref="IRtcEngine"/>对象。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-7：<xref keyref="IRtcEngine"/>对象尚未初始化。你需要在调用该方法前成功初始化<xref keyref="IRtcEngine"/>对象。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-7：<xref keyref="IRtcEngine"/>对象尚未初始化。你需要在调用该方法前成功初始化<xref keyref="IRtcEngine"/>对象。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

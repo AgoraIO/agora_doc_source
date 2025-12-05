@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_updatescreencaptureparameters">
+    <title><ph keyref="updateScreenCaptureParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">更新屏幕采集的参数配置。</ph><ph id="shortdesc" props="rn">更新屏幕采集的参数配置。</ph><ph id="shortdesc" props="flutter">更新屏幕采集的参数配置。</ph><ph id="shortdesc" props="unity">更新屏幕采集的参数配置。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updateScreenCaptureParameters"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract updateScreenCaptureParameters(
+    captureParams: ScreenCaptureParameters
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract updateScreenCaptureParameters(
+    captureParams: ScreenCaptureParameters
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCaptureParameters(
+      ScreenCaptureParameters captureParams);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateScreenCaptureParameters(ScreenCaptureParameters captureParams);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">
+                <ul>
+                    <li>请在开启屏幕共享或窗口共享后调用该方法。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>请在开启屏幕共享或窗口共享后调用该方法。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法仅适用于 Windows 和 macOS 平台。</li>
+                    <li>请在开启屏幕共享或窗口共享后调用该方法。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法仅适用于 Windows 和 macOS 平台。</li>
+                    <li>请在开启屏幕共享或窗口共享后调用该方法。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享的编码参数配置。详见 `ScreenCaptureParameters``ScreenCaptureParameters2`。
+                        <note>屏幕共享流的视频属性只需通过该参数设置，与 <xref keyref="setVideoEncoderConfiguration"/> 无关。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享的编码参数配置。详见 `ScreenCaptureParameters``ScreenCaptureParameters2`。
+                        <note>屏幕共享流的视频属性只需通过该参数设置，与 <xref keyref="setVideoEncoderConfiguration"/> 无关。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享的编码参数配置。详见 `ScreenCaptureParameters``ScreenCaptureParameters2`。
+                        <note>屏幕共享流的视频属性只需通过该参数设置，与 <xref keyref="setVideoEncoderConfiguration"/> 无关。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享的编码参数配置。详见 `ScreenCaptureParameters``ScreenCaptureParameters2`。
+                        <note>屏幕共享流的视频属性只需通过该参数设置，与 <xref keyref="setVideoEncoderConfiguration"/> 无关。</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

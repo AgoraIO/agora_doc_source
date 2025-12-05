@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_pushaudioframe">
+    <title><ph keyref="pushAudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">推送外部音频帧。</ph><ph id="shortdesc" props="rn">推送外部音频帧。</ph><ph id="shortdesc" props="flutter">推送外部音频帧。</ph><ph id="shortdesc" props="unity">推送外部音频帧。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="pushAudioFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract pushAudioFrame(frame: AudioFrame, trackId?: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract pushAudioFrame(frame: AudioFrame, trackId?: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; pushAudioFrame({required AudioFrame frame, int trackId = 0});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int PushAudioFrame(AudioFrame frame, uint trackId = 0);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">调用该方法通过音频轨道推送外部音频帧。</p>
+            <p props="rn">调用该方法通过音频轨道推送外部音频帧。</p>
+            <p props="flutter">调用该方法通过音频轨道推送外部音频帧。</p>
+            <p props="unity">调用该方法通过音频轨道推送外部音频帧。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">调用该方法推送外部音频数据前，请先进行以下操作：1. 调用<xref keyref="createCustomAudioTrack"/>创建音频轨道并获得音频轨道 ID。
+                <ol>
+                    <li>调用<xref keyref="joinChannel2"/>加入频道时，将<xref keyref="ChannelMediaOptions"/>中的<codeph>publishCustomAudioTrackId</codeph>设置为你想要发布的音频轨道 ID，并将<codeph>publishCustomAudioTrack</codeph>设置为<xref keyref="true"/>。</li>
+                </ol>
+            </p>
+            <p props="rn">调用该方法推送外部音频数据前，请先进行以下操作：1. 调用<xref keyref="createCustomAudioTrack"/>创建音频轨道并获得音频轨道 ID。
+                <ol>
+                    <li>调用<xref keyref="joinChannel2"/>加入频道时，将<xref keyref="ChannelMediaOptions"/>中的<codeph>publishCustomAudioTrackId</codeph>设置为你想要发布的音频轨道 ID，并将<codeph>publishCustomAudioTrack</codeph>设置为<xref keyref="true"/>。</li>
+                </ol>
+            </p>
+            <p props="flutter">调用该方法推送外部音频数据前，请先进行以下操作：1. 调用<xref keyref="createCustomAudioTrack"/>创建音频轨道并获得音频轨道 ID。
+                <ol>
+                    <li>调用<xref keyref="joinChannel2"/>加入频道时，将<xref keyref="ChannelMediaOptions"/>中的<codeph>publishCustomAudioTrackId</codeph>设置为你想要发布的音频轨道 ID，并将<codeph>publishCustomAudioTrack</codeph>设置为<xref keyref="true"/>。</li>
+                </ol>
+            </p>
+            <p props="unity">调用该方法推送外部音频数据前，请先进行以下操作：1. 调用<xref keyref="createCustomAudioTrack"/>创建音频轨道并获得音频轨道 ID。
+                <ol>
+                    <li>调用<xref keyref="joinChannel2"/>加入频道时，将<xref keyref="ChannelMediaOptions"/>中的<codeph>publishCustomAudioTrackId</codeph>设置为你想要发布的音频轨道 ID，并将<codeph>publishCustomAudioTrack</codeph>设置为<xref keyref="true"/>。</li>
+                </ol>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>frame</pt>
+                    <pd>外部音频帧。详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。如果你要发布自定义的外部音频源，则将该参数设置为你想要发布的自定义音频轨道 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>frame</pt>
+                    <pd>外部音频帧。详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。如果你要发布自定义的外部音频源，则将该参数设置为你想要发布的自定义音频轨道 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>frame</pt>
+                    <pd>外部音频帧。详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。如果你要发布自定义的外部音频源，则将该参数设置为你想要发布的自定义音频轨道 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>frame</pt>
+                    <pd>外部音频帧。详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。如果你要发布自定义的外部音频源，则将该参数设置为你想要发布的自定义音频轨道 ID。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

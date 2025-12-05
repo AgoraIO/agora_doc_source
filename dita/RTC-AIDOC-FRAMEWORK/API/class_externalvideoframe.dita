@@ -1,0 +1,685 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_externalvideoframe">
+    <title><ph keyref="ExternalVideoFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">外部视频帧。</ph><ph id="shortdesc" props="rn">外部视频帧。</ph><ph id="shortdesc" props="flutter">外部视频帧。</ph><ph id="shortdesc" props="unity">外部视频帧。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class ExternalVideoFrame {
+  type?: VideoBufferType;
+  format?: VideoPixelFormat;
+  buffer?: Uint8Array;
+  stride?: number;
+  height?: number;
+  cropLeft?: number;
+  cropTop?: number;
+  cropRight?: number;
+  cropBottom?: number;
+  rotation?: number;
+  timestamp?: number;
+  eglType?: EglContextType;
+  textureId?: number;
+  matrix?: number[];
+  metadataBuffer?: Uint8Array;
+  metadataSize?: number;
+  alphaBuffer?: Uint8Array;
+  fillAlphaBuffer?: boolean;
+  alphaStitchMode?: AlphaStitchMode;
+  d3d11Texture2d?: any;
+  textureSliceIndex?: number;
+  colorSpace?: ColorSpace;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class ExternalVideoFrame {
+  type?: VideoBufferType;
+  format?: VideoPixelFormat;
+  buffer?: Uint8Array;
+  stride?: number;
+  height?: number;
+  cropLeft?: number;
+  cropTop?: number;
+  cropRight?: number;
+  cropBottom?: number;
+  rotation?: number;
+  timestamp?: number;
+  eglType?: EglContextType;
+  textureId?: number;
+  matrix?: number[];
+  metadataBuffer?: Uint8Array;
+  metadataSize?: number;
+  alphaBuffer?: Uint8Array;
+  fillAlphaBuffer?: boolean;
+  alphaStitchMode?: AlphaStitchMode;
+  colorSpace?: ColorSpace;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class ExternalVideoFrame {
+  const ExternalVideoFrame(
+      {this.type,
+      this.format,
+      this.buffer,
+      this.stride,
+      this.height,
+      this.cropLeft,
+      this.cropTop,
+      this.cropRight,
+      this.cropBottom,
+      this.rotation,
+      this.timestamp,
+      this.eglType,
+      this.textureId,
+      this.matrix,
+      this.metadataBuffer,
+      this.metadataSize,
+      this.alphaBuffer,
+      this.fillAlphaBuffer,
+      this.alphaStitchMode,
+      this.d3d11Texture2d,
+      this.textureSliceIndex,
+      this.colorSpace});
+
+  @JsonKey(name: 'type')
+  final VideoBufferType? type;
+
+  @JsonKey(name: 'format')
+  final VideoPixelFormat? format;
+
+  @JsonKey(name: 'buffer', ignore: true)
+  final Uint8List? buffer;
+
+  @JsonKey(name: 'stride')
+  final int? stride;
+
+  @JsonKey(name: 'height')
+  final int? height;
+
+  @JsonKey(name: 'cropLeft')
+  final int? cropLeft;
+
+  @JsonKey(name: 'cropTop')
+  final int? cropTop;
+
+  @JsonKey(name: 'cropRight')
+  final int? cropRight;
+
+  @JsonKey(name: 'cropBottom')
+  final int? cropBottom;
+
+  @JsonKey(name: 'rotation')
+  final int? rotation;
+
+  @JsonKey(name: 'timestamp')
+  final int? timestamp;
+
+  @JsonKey(name: 'eglType')
+  final EglContextType? eglType;
+
+  @JsonKey(name: 'textureId')
+  final int? textureId;
+
+  @JsonKey(name: 'matrix')
+  final List&lt;double&gt;? matrix;
+
+  @JsonKey(name: 'metadataBuffer', ignore: true)
+  final Uint8List? metadataBuffer;
+
+  @JsonKey(name: 'metadataSize')
+  final int? metadataSize;
+
+  @JsonKey(name: 'alphaBuffer', ignore: true)
+  final Uint8List? alphaBuffer;
+
+  @JsonKey(name: 'fillAlphaBuffer')
+  final bool? fillAlphaBuffer;
+
+  @JsonKey(name: 'alphaStitchMode')
+  final AlphaStitchMode? alphaStitchMode;
+
+  @JsonKey(name: 'd3d11Texture2d', readValue: readIntPtr)
+  final int? d3d11Texture2d;
+
+  @JsonKey(name: 'textureSliceIndex')
+  final int? textureSliceIndex;
+
+  @JsonKey(name: 'colorSpace')
+  final ColorSpace? colorSpace;
+
+  factory ExternalVideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ExternalVideoFrameFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ExternalVideoFrameToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class ExternalVideoFrame
+    {
+        public VIDEO_BUFFER_TYPE type;
+        public VIDEO_PIXEL_FORMAT format;
+        public byte[] buffer;
+        public int stride;
+        public int height;
+        public int cropLeft;
+        public int cropTop;
+        public int cropRight;
+        public int cropBottom;
+        public int rotation;
+        public long timestamp;
+        public byte[] eglContext;
+        public EGL_CONTEXT_TYPE eglType;
+        public int textureId;
+        public byte[] metadataBuffer;
+        public int metadataSize;
+        public byte[] alphaBuffer;
+        public bool fillAlphaBuffer;
+        public ALPHA_STITCH_MODE alphaStitchMode;
+        public IntPtr d3d11Texture2d;
+        public int textureSliceIndex;
+        public ColorSpace colorSpace;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>视频类型。详见 <codeph>VideoBufferType</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>format</pt>
+                    <pd>像素格式。详见 <codeph>VideoPixelFormat</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>buffer</pt>
+                    <pd>视频缓冲区。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>stride</pt>
+                    <pd>传入视频帧的行间距，单位为像素而不是字节。对于 Texture，该值指的是 Texture 的宽度。
+弃用：
+用 <codeph>strideInPixels</codeph> 代替。
+                        <note>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。
+弃用：用 <codeph>strideInPixels</codeph> 代替。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>传入视频帧的高度。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>eglContext</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。
+                        <ul>
+                            <li>当使用 Khronos 定义的 OpenGL 接口 (javax.microedition.khronos.egl.*) 时，需要将 eglContext 设置给这个字段。</li>
+                            <li>当使用 Android 定义的 OpenGL 接口 (android.opengl.*) 时，需要将 eglContext 设置给这个字段。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>eglType</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指该视频帧的 Texture ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>textureId</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>matrix</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>metadataBuffer</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>metadataSize</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>d3d11Texture2d</pt>
+                    <pd>该参数仅适用于 Windows Texture 格式的视频数据。表示一个指向 <codeph>ID3D11Texture2D</codeph> 类型对象的指针，该类型对象被视频帧所使用。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>alphaBuffer</pt>
+                    <pd>采用人像分割算法输出的 Alpha 通道数据。该数据跟视频帧的尺寸一致，每个像素点的取值范围为 [0,255]，其中 0 代表背景；255 代表前景（人像）。
+你可以通过设置该参数，实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。
+                        <note>在自定义视频渲染场景下，需确保传入的视频帧和 <codeph>alphaBuffer</codeph> 均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>fillAlphaBuffer</pt>
+                    <pd>
+                        <note>对于 BGRA 或 RGBA 格式的视频数据，你可以任选一种方式设置 Alpha 通道数据：
+                            <ul>
+                                <li>通过将该参数设置为<xref keyref="true"/>自动填写。</li>
+                            </ul>
+                            <ul>
+                                <li>通过<codeph>alphaBuffer</codeph>参数设置。</li>
+                            </ul>
+                        </note><ph>该参数仅适用于 BGRA 或 RGBA 格式的视频数据。设置是否提取视频帧中的 Alpha 通道数据并自动填入到 <codeph>alphaBuffer</codeph> 中：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：提取并填充 Alpha 通道数据。</li>
+                            <li><xref keyref="false"/>：（默认）不提取填充 Alpha 通道数据。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>alphaStitchMode</pt>
+                    <pd>当视频帧中包含 Alpha 通道数据时，设置 <codeph>alphaBuffer</codeph> 和视频帧的相对位置。详见 <codeph>AlphaStitchMode</codeph>。
+                        <ul>
+                            <li>NoAlphaStitch(0)：（默认）仅视频帧，即<codeph>alphaBuffer</codeph>不和视频帧拼接。</li>
+                        </ul>
+                        <ul>
+                            <li>AlphaStitchUp(1)：<codeph>alphaBuffer</codeph>位于视频帧的上方。</li>
+                            <li>AlphaStitchBelow(2)：<codeph>alphaBuffer</codeph>位于视频帧的下方。</li>
+                            <li>AlphaStitchLeft(3)：<codeph>alphaBuffer</codeph>位于视频帧的左侧。</li>
+                            <li>AlphaStitchRight(4)：<codeph>alphaBuffer</codeph>位于视频帧的右侧。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>textureSliceIndex</pt>
+                    <pd>该参数仅适用于 Windows Texture 格式的视频数据。表示在 <codeph>ID3D11Texture2D</codeph> 数组中，被视频帧使用的某一个 <codeph>ID3D11Texture2D</codeph> 纹理对象的索引。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>cropLeft</pt>
+                    <pd>该参数仅适用于原始视频数据。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>cropTop</pt>
+                    <pd>该参数仅适用于原始视频数据。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>cropRight</pt>
+                    <pd>该参数仅适用于原始视频数据。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>cropBottom</pt>
+                    <pd>该参数仅适用于原始视频数据。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rotation</pt>
+                    <pd>原始数据相关字段。指定是否对传入的视频组做顺时针旋转操作，可选值为 0， 90， 180， 270。默认为 0。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>timestamp</pt>
+                    <pd>传入的视频帧的时间戳，以毫秒为单位。不正确的时间戳会导致丢帧或者音视频不同步。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>colorSpace</pt>
+                    <pd>视频帧的色彩空间属性，默认情况下会应用 Full Range 和 BT.709 标准配置。你可以根据自定义采集、自定义渲染的业务需求进行自定义设置，详见 [VideoColorSpace](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>视频类型。详见 <codeph>VideoBufferType</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>format</pt>
+                    <pd>像素格式。详见 <codeph>VideoPixelFormat</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>buffer</pt>
+                    <pd>视频缓冲区。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>stride</pt>
+                    <pd>传入视频帧的行间距，单位为像素而不是字节。对于 Texture，该值指的是 Texture 的宽度。
+弃用：
+用 <codeph>strideInPixels</codeph> 代替。
+                        <note>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。
+弃用：用 <codeph>strideInPixels</codeph> 代替。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>传入视频帧的高度。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>eglContext</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。
+                        <ul>
+                            <li>当使用 Khronos 定义的 OpenGL 接口 (javax.microedition.khronos.egl.*) 时，需要将 eglContext 设置给这个字段。</li>
+                            <li>当使用 Android 定义的 OpenGL 接口 (android.opengl.*) 时，需要将 eglContext 设置给这个字段。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>eglType</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指该视频帧的 Texture ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>textureId</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>matrix</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>metadataBuffer</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>metadataSize</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>alphaBuffer</pt>
+                    <pd>采用人像分割算法输出的 Alpha 通道数据。该数据跟视频帧的尺寸一致，每个像素点的取值范围为 [0,255]，其中 0 代表背景；255 代表前景（人像）。
+你可以通过设置该参数，实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。
+                        <note>在自定义视频渲染场景下，需确保传入的视频帧和 <codeph>alphaBuffer</codeph> 均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>fillAlphaBuffer</pt>
+                    <pd>
+                        <note>对于 BGRA 或 RGBA 格式的视频数据，你可以任选一种方式设置 Alpha 通道数据：
+                            <ul>
+                                <li>通过将该参数设置为<xref keyref="true"/>自动填写。</li>
+                            </ul>
+                            <ul>
+                                <li>通过<codeph>alphaBuffer</codeph>参数设置。</li>
+                            </ul>
+                        </note><ph>该参数仅适用于 BGRA 或 RGBA 格式的视频数据。设置是否提取视频帧中的 Alpha 通道数据并自动填入到 <codeph>alphaBuffer</codeph> 中：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：提取并填充 Alpha 通道数据。</li>
+                            <li><xref keyref="false"/>：（默认）不提取填充 Alpha 通道数据。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>alphaStitchMode</pt>
+                    <pd>当视频帧中包含 Alpha 通道数据时，设置 <codeph>alphaBuffer</codeph> 和视频帧的相对位置。详见 <codeph>AlphaStitchMode</codeph>。
+                        <ul>
+                            <li>NoAlphaStitch(0)：（默认）仅视频帧，即<codeph>alphaBuffer</codeph>不和视频帧拼接。</li>
+                        </ul>
+                        <ul>
+                            <li>AlphaStitchUp(1)：<codeph>alphaBuffer</codeph>位于视频帧的上方。</li>
+                            <li>AlphaStitchBelow(2)：<codeph>alphaBuffer</codeph>位于视频帧的下方。</li>
+                            <li>AlphaStitchLeft(3)：<codeph>alphaBuffer</codeph>位于视频帧的左侧。</li>
+                            <li>AlphaStitchRight(4)：<codeph>alphaBuffer</codeph>位于视频帧的右侧。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cropLeft</pt>
+                    <pd>该参数仅适用于原始视频数据。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cropTop</pt>
+                    <pd>该参数仅适用于原始视频数据。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cropRight</pt>
+                    <pd>该参数仅适用于原始视频数据。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cropBottom</pt>
+                    <pd>该参数仅适用于原始视频数据。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rotation</pt>
+                    <pd>原始数据相关字段。指定是否对传入的视频组做顺时针旋转操作，可选值为 0， 90， 180， 270。默认为 0。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>timestamp</pt>
+                    <pd>传入的视频帧的时间戳，以毫秒为单位。不正确的时间戳会导致丢帧或者音视频不同步。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>colorSpace</pt>
+                    <pd>视频帧的色彩空间属性，默认情况下会应用 Full Range 和 BT.709 标准配置。你可以根据自定义采集、自定义渲染的业务需求进行自定义设置，详见 [VideoColorSpace](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>视频类型。详见 <codeph>VideoBufferType</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>format</pt>
+                    <pd>像素格式。详见 <codeph>VideoPixelFormat</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>buffer</pt>
+                    <pd>视频缓冲区。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>stride</pt>
+                    <pd>传入视频帧的行间距，单位为像素而不是字节。对于 Texture，该值指的是 Texture 的宽度。
+弃用：
+用 <codeph>strideInPixels</codeph> 代替。
+                        <note>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。
+弃用：用 <codeph>strideInPixels</codeph> 代替。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>传入视频帧的高度。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>eglContext</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。
+                        <ul>
+                            <li>当使用 Khronos 定义的 OpenGL 接口 (javax.microedition.khronos.egl.*) 时，需要将 eglContext 设置给这个字段。</li>
+                            <li>当使用 Android 定义的 OpenGL 接口 (android.opengl.*) 时，需要将 eglContext 设置给这个字段。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>eglType</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指该视频帧的 Texture ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>textureId</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>matrix</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>metadataBuffer</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>metadataSize</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>d3d11Texture2d</pt>
+                    <pd>该参数仅适用于 Windows Texture 格式的视频数据。表示一个指向 <codeph>ID3D11Texture2D</codeph> 类型对象的指针，该类型对象被视频帧所使用。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>alphaBuffer</pt>
+                    <pd>采用人像分割算法输出的 Alpha 通道数据。该数据跟视频帧的尺寸一致，每个像素点的取值范围为 [0,255]，其中 0 代表背景；255 代表前景（人像）。
+你可以通过设置该参数，实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。
+                        <note>在自定义视频渲染场景下，需确保传入的视频帧和 <codeph>alphaBuffer</codeph> 均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>fillAlphaBuffer</pt>
+                    <pd>
+                        <note>对于 BGRA 或 RGBA 格式的视频数据，你可以任选一种方式设置 Alpha 通道数据：
+                            <ul>
+                                <li>通过将该参数设置为<xref keyref="true"/>自动填写。</li>
+                            </ul>
+                            <ul>
+                                <li>通过<codeph>alphaBuffer</codeph>参数设置。</li>
+                            </ul>
+                        </note><ph>该参数仅适用于 BGRA 或 RGBA 格式的视频数据。设置是否提取视频帧中的 Alpha 通道数据并自动填入到 <codeph>alphaBuffer</codeph> 中：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：提取并填充 Alpha 通道数据。</li>
+                            <li><xref keyref="false"/>：（默认）不提取填充 Alpha 通道数据。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>alphaStitchMode</pt>
+                    <pd>当视频帧中包含 Alpha 通道数据时，设置 <codeph>alphaBuffer</codeph> 和视频帧的相对位置。详见 <codeph>AlphaStitchMode</codeph>。
+                        <ul>
+                            <li>noAlphaStitch(0)：（默认）仅视频帧，即<codeph>alphaBuffer</codeph>不和视频帧拼接。</li>
+                        </ul>
+                        <ul>
+                            <li>alphaStitchUp(1)：<codeph>alphaBuffer</codeph>位于视频帧的上方。</li>
+                            <li>alphaStitchBelow(2)：<codeph>alphaBuffer</codeph>位于视频帧的下方。</li>
+                            <li>alphaStitchLeft(3)：<codeph>alphaBuffer</codeph>位于视频帧的左侧。</li>
+                            <li>alphaStitchRight(4)：<codeph>alphaBuffer</codeph>位于视频帧的右侧。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>textureSliceIndex</pt>
+                    <pd>该参数仅适用于 Windows Texture 格式的视频数据。表示在 <codeph>ID3D11Texture2D</codeph> 数组中，被视频帧使用的某一个 <codeph>ID3D11Texture2D</codeph> 纹理对象的索引。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cropLeft</pt>
+                    <pd>该参数仅适用于原始视频数据。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cropTop</pt>
+                    <pd>该参数仅适用于原始视频数据。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cropRight</pt>
+                    <pd>该参数仅适用于原始视频数据。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cropBottom</pt>
+                    <pd>该参数仅适用于原始视频数据。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rotation</pt>
+                    <pd>原始数据相关字段。指定是否对传入的视频组做顺时针旋转操作，可选值为 0， 90， 180， 270。默认为 0。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>timestamp</pt>
+                    <pd>传入的视频帧的时间戳，以毫秒为单位。不正确的时间戳会导致丢帧或者音视频不同步。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>colorSpace</pt>
+                    <pd>视频帧的色彩空间属性，默认情况下会应用 Full Range 和 BT.709 标准配置。你可以根据自定义采集、自定义渲染的业务需求进行自定义设置，详见 [VideoColorSpace](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>视频类型。详见 <xref keyref="VIDEO_BUFFER_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>format</pt>
+                    <pd>像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>buffer</pt>
+                    <pd>视频缓冲区。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>stride</pt>
+                    <pd>传入视频帧的行间距，单位为像素而不是字节。对于 Texture，该值指的是 Texture 的宽度。
+弃用：
+用 <codeph>strideInPixels</codeph> 代替。
+                        <note>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。
+弃用：用 <codeph>strideInPixels</codeph> 代替。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>传入视频帧的高度。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>eglContext</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。
+                        <ul>
+                            <li>当使用 Khronos 定义的 OpenGL 接口 (javax.microedition.khronos.egl.*) 时，需要将 eglContext 设置给这个字段。</li>
+                            <li>当使用 Android 定义的 OpenGL 接口 (android.opengl.*) 时，需要将 eglContext 设置给这个字段。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>eglType</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指该视频帧的 Texture ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>textureId</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>metadataBuffer</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>metadataSize</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>d3d11Texture2d</pt>
+                    <pd>该参数仅适用于 Windows Texture 格式的视频数据。表示一个指向 <codeph>ID3D11Texture2D</codeph> 类型对象的指针，该类型对象被视频帧所使用。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>alphaBuffer</pt>
+                    <pd>采用人像分割算法输出的 Alpha 通道数据。该数据跟视频帧的尺寸一致，每个像素点的取值范围为 [0,255]，其中 0 代表背景；255 代表前景（人像）。
+你可以通过设置该参数，实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。
+                        <note>在自定义视频渲染场景下，需确保传入的视频帧和 <codeph>alphaBuffer</codeph> 均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>fillAlphaBuffer</pt>
+                    <pd>
+                        <note>对于 BGRA 或 RGBA 格式的视频数据，你可以任选一种方式设置 Alpha 通道数据：
+                            <ul>
+                                <li>通过将该参数设置为<xref keyref="true"/>自动填写。</li>
+                            </ul>
+                            <ul>
+                                <li>通过<codeph>alphaBuffer</codeph>参数设置。</li>
+                            </ul>
+                        </note><ph>该参数仅适用于 BGRA 或 RGBA 格式的视频数据。设置是否提取视频帧中的 Alpha 通道数据并自动填入到 <codeph>alphaBuffer</codeph> 中：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：提取并填充 Alpha 通道数据。</li>
+                            <li><xref keyref="false"/>：（默认）不提取填充 Alpha 通道数据。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>alphaStitchMode</pt>
+                    <pd>当视频帧中包含 Alpha 通道数据时，设置 <codeph>alphaBuffer</codeph> 和视频帧的相对位置。详见 <xref keyref="ALPHA_STITCH_MODE"/>。
+                        <ul>
+                            <li>NO_ALPHA_STITCH(0)：（默认）仅视频帧，即<codeph>alphaBuffer</codeph>不和视频帧拼接。</li>
+                        </ul>
+                        <ul>
+                            <li>ALPHA_STITCH_UP(1)：<codeph>alphaBuffer</codeph>位于视频帧的上方。</li>
+                            <li>ALPHA_STITCH_BELOW(2)：<codeph>alphaBuffer</codeph>位于视频帧的下方。</li>
+                            <li>ALPHA_STITCH_LEFT(3)：<codeph>alphaBuffer</codeph>位于视频帧的左侧。</li>
+                            <li>ALPHA_STITCH_RIGHT(4)：<codeph>alphaBuffer</codeph>位于视频帧的右侧。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>textureSliceIndex</pt>
+                    <pd>该参数仅适用于 Windows Texture 格式的视频数据。表示在 <codeph>ID3D11Texture2D</codeph> 数组中，被视频帧使用的某一个 <codeph>ID3D11Texture2D</codeph> 纹理对象的索引。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cropLeft</pt>
+                    <pd>该参数仅适用于原始视频数据。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cropTop</pt>
+                    <pd>该参数仅适用于原始视频数据。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cropRight</pt>
+                    <pd>该参数仅适用于原始视频数据。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cropBottom</pt>
+                    <pd>该参数仅适用于原始视频数据。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rotation</pt>
+                    <pd>原始数据相关字段。指定是否对传入的视频组做顺时针旋转操作，可选值为 0， 90， 180， 270。默认为 0。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>timestamp</pt>
+                    <pd>传入的视频帧的时间戳，以毫秒为单位。不正确的时间戳会导致丢帧或者音视频不同步。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>colorSpace</pt>
+                    <pd>视频帧的色彩空间属性，默认情况下会应用 Full Range 和 BT.709 标准配置。你可以根据自定义采集、自定义渲染的业务需求进行自定义设置，详见 [VideoColorSpace](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace)。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

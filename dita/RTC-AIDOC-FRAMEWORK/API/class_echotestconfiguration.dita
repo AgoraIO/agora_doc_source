@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_echotestconfiguration">
+    <title><ph keyref="EchoTestConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">音视频通话回路测试的配置。</ph><ph id="shortdesc" props="rn">音视频通话回路测试的配置。</ph><ph id="shortdesc" props="flutter">音视频通话回路测试的配置。</ph><ph id="shortdesc" props="unity">音视频通话回路测试的配置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class EchoTestConfiguration {
+
+  view?: any;
+
+  enableAudio?: boolean;
+
+  enableVideo?: boolean;
+
+  token?: string;
+
+  channelId?: string;
+
+  intervalInSeconds?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class EchoTestConfiguration {
+
+  view?: any;
+
+  enableAudio?: boolean;
+
+  enableVideo?: boolean;
+
+  token?: string;
+
+  channelId?: string;
+
+  intervalInSeconds?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class EchoTestConfiguration {
+  const EchoTestConfiguration(
+      {this.view,
+      this.enableAudio,
+      this.enableVideo,
+      this.token,
+      this.channelId,
+      this.intervalInSeconds});
+
+  @JsonKey(name: 'view')
+  final int? view;
+
+  @JsonKey(name: 'enableAudio')
+  final bool? enableAudio;
+
+  @JsonKey(name: 'enableVideo')
+  final bool? enableVideo;
+
+  @JsonKey(name: 'token')
+  final String? token;
+
+  @JsonKey(name: 'channelId')
+  final String? channelId;
+
+  @JsonKey(name: 'intervalInSeconds')
+  final int? intervalInSeconds;
+
+  factory EchoTestConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$EchoTestConfigurationFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$EchoTestConfigurationToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class EchoTestConfiguration
+    {
+        public view_t view;
+        public bool enableAudio;
+        public bool enableVideo;
+        public string token;
+        public string channelId;
+        public int intervalInSeconds;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>view</pt>
+                    <pd>用于渲染本地用户视频的视图。该参数仅适用于测试视频设备的场景，请确保 <xref keyref="enableVideo"/> 为 true。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enableAudio</pt>
+                    <pd>是否开启音频设备：
+                        <ul>
+                            <li><xref keyref="true"/>: (默认) 开启音频设备。如需测试音频设备，请设为true。</li>
+                            <li><xref keyref="false"/>: 关闭音频设备。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enableVideo</pt>
+                    <pd>是否开启视频设备。暂不支持视频设备检测，请将该参数设为 <xref keyref="false"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>token</pt>
+                    <pd>用于保证音视频通话回路测试安全性的 Token。如果你在控制台未启用 App 证书，则不需要向该参数传值；如果你在控制台已启用 App 证书，则必须向该参数传入 Token，且在你生成 Token 时使用的 <codeph>uid</codeph> 必须为 0xFFFFFFFF，使用的频道名必须为标识每个音视频通话回路测试的频道名。服务端生成 Token 的方式请参考[使用 Token 鉴权](https://doc.shengwang.cn/doc/rtc/electron/basic-features/token-authentication)。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channelId</pt>
+                    <pd>标识每个音视频通话回路测试的频道名。为保证回路测试功能正常，同一个项目（App ID） 的各终端用户在不同设备上做音视频通话回路测试时，传入的标识每个回路测试的频道名不能相同。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>intervalInSeconds</pt>
+                    <pd>设置返回音视频回路测试结果的时间间隔或延迟，取值范围为 [2,10]，单位为秒，默认为 2 秒。
+                        <ul>
+                            <li>对于音频回路测试，测试结果会根据你设置的时间间隔返回。</li>
+                            <li>对于视频回路测试，视频画面会在短时间内显示，之后延迟会逐渐增加，直至达到你设置的延迟。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>view</pt>
+                    <pd>用于渲染本地用户视频的视图。该参数仅适用于测试视频设备的场景，请确保 <xref keyref="enableVideo"/> 为 true。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enableAudio</pt>
+                    <pd>是否开启音频设备：
+                        <ul>
+                            <li><xref keyref="true"/>: (默认) 开启音频设备。如需测试音频设备，请设为true。</li>
+                            <li><xref keyref="false"/>: 关闭音频设备。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enableVideo</pt>
+                    <pd>是否开启视频设备。暂不支持视频设备检测，请将该参数设为 <xref keyref="false"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>token</pt>
+                    <pd>用于保证音视频通话回路测试安全性的 Token。如果你在控制台未启用 App 证书，则不需要向该参数传值；如果你在控制台已启用 App 证书，则必须向该参数传入 Token，且在你生成 Token 时使用的 <codeph>uid</codeph> 必须为 0xFFFFFFFF，使用的频道名必须为标识每个音视频通话回路测试的频道名。服务端生成 Token 的方式请参考[使用 Token 鉴权](https://doc.shengwang.cn/doc/rtc/rn/basic-features/token-authentication)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channelId</pt>
+                    <pd>标识每个音视频通话回路测试的频道名。为保证回路测试功能正常，同一个项目（App ID） 的各终端用户在不同设备上做音视频通话回路测试时，传入的标识每个回路测试的频道名不能相同。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>intervalInSeconds</pt>
+                    <pd>设置返回音视频回路测试结果的时间间隔或延迟，取值范围为 [2,10]，单位为秒，默认为 2 秒。
+                        <ul>
+                            <li>对于音频回路测试，测试结果会根据你设置的时间间隔返回。</li>
+                            <li>对于视频回路测试，视频画面会在短时间内显示，之后延迟会逐渐增加，直至达到你设置的延迟。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>view</pt>
+                    <pd>用于渲染本地用户视频的视图。该参数仅适用于测试视频设备的场景，请确保 <xref keyref="enableVideo"/> 为 true。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enableAudio</pt>
+                    <pd>是否开启音频设备：
+                        <ul>
+                            <li><xref keyref="true"/>: (默认) 开启音频设备。如需测试音频设备，请设为true。</li>
+                            <li><xref keyref="false"/>: 关闭音频设备。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enableVideo</pt>
+                    <pd>是否开启视频设备。暂不支持视频设备检测，请将该参数设为 <xref keyref="false"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>token</pt>
+                    <pd>用于保证音视频通话回路测试安全性的 Token。如果你在控制台未启用 App 证书，则不需要向该参数传值；如果你在控制台已启用 App 证书，则必须向该参数传入 Token，且在你生成 Token 时使用的 <codeph>uid</codeph> 必须为 0xFFFFFFFF，使用的频道名必须为标识每个音视频通话回路测试的频道名。服务端生成 Token 的方式请参考[使用 Token 鉴权](https://doc.shengwang.cn/doc/rtc/flutter/basic-features/token-authentication)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channelId</pt>
+                    <pd>标识每个音视频通话回路测试的频道名。为保证回路测试功能正常，同一个项目（App ID） 的各终端用户在不同设备上做音视频通话回路测试时，传入的标识每个回路测试的频道名不能相同。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>intervalInSeconds</pt>
+                    <pd>设置返回音视频回路测试结果的时间间隔或延迟，取值范围为 [2,10]，单位为秒，默认为 2 秒。
+                        <ul>
+                            <li>对于音频回路测试，测试结果会根据你设置的时间间隔返回。</li>
+                            <li>对于视频回路测试，视频画面会在短时间内显示，之后延迟会逐渐增加，直至达到你设置的延迟。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>view</pt>
+                    <pd>用于渲染本地用户视频的视图。该参数仅适用于测试视频设备的场景，请确保 <codeph>enableVideo</codeph> 为 true。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enableAudio</pt>
+                    <pd>是否开启音频设备：
+                        <ul>
+                            <li><xref keyref="true"/>: (默认) 开启音频设备。如需测试音频设备，请设为true。</li>
+                            <li><xref keyref="false"/>: 关闭音频设备。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enableVideo</pt>
+                    <pd>是否开启视频设备。暂不支持视频设备检测，请将该参数设为 <xref keyref="false"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>token</pt>
+                    <pd>用于保证音视频通话回路测试安全性的 Token。如果你在控制台未启用 App 证书，则不需要向该参数传值；如果你在控制台已启用 App 证书，则必须向该参数传入 Token，且在你生成 Token 时使用的 <codeph>uid</codeph> 必须为 0xFFFFFFFF，使用的频道名必须为标识每个音视频通话回路测试的频道名。服务端生成 Token 的方式请参考[使用 Token 鉴权](https://doc.shengwang.cn/doc/rtc/unity/basic-features/token-authentication)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelId</pt>
+                    <pd>标识每个音视频通话回路测试的频道名。为保证回路测试功能正常，同一个项目（App ID） 的各终端用户在不同设备上做音视频通话回路测试时，传入的标识每个回路测试的频道名不能相同。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>intervalInSeconds</pt>
+                    <pd>设置返回音视频回路测试结果的时间间隔或延迟，取值范围为 [2,10]，单位为秒，默认为 2 秒。
+                        <ul>
+                            <li>对于音频回路测试，测试结果会根据你设置的时间间隔返回。</li>
+                            <li>对于视频回路测试，视频画面会在短时间内显示，之后延迟会逐渐增加，直至达到你设置的延迟。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

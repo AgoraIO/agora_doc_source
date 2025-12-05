@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onmetadata">
+    <title><ph keyref="onMetaData"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">报告已获取媒体附属信息。</ph><ph id="shortdesc" props="rn">报告已获取媒体附属信息。</ph><ph id="shortdesc" props="flutter">报告已获取媒体附属信息。</ph><ph id="shortdesc" props="unity">报告已获取媒体附属信息。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onMetaData"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onMetaData?(data: Uint8Array, length: number): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onMetaData?(data: Uint8Array, length: number): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(Uint8List data, int length)? onMetaData;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnMetaData(byte[] data, int length) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">解析媒体附属信息后时，SDK 会触发该回调，报告媒体附属信息的数据类型和具体数据。</p>
+            <p props="rn">解析媒体附属信息后时，SDK 会触发该回调，报告媒体附属信息的数据类型和具体数据。</p>
+            <p props="flutter">解析媒体附属信息后时，SDK 会触发该回调，报告媒体附属信息的数据类型和具体数据。</p>
+            <p props="unity">解析媒体附属信息后时，SDK 会触发该回调，报告媒体附属信息的数据类型和具体数据。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>playerKit</pt>
+                    <pd>详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>data</pt>
+                    <pd>具体数据，用户自定义格式的数据。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>length</pt>
+                    <pd>数据长度，单位为 byte。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>playerKit</pt>
+                    <pd>详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>data</pt>
+                    <pd>具体数据，用户自定义格式的数据。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>length</pt>
+                    <pd>数据长度，单位为 byte。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>playerKit</pt>
+                    <pd>详见 <codeph>MediaPlayer</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>data</pt>
+                    <pd>具体数据，用户自定义格式的数据。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>length</pt>
+                    <pd>数据长度，单位为 byte。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>playerKit</pt>
+                    <pd>详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>data</pt>
+                    <pd>具体数据，用户自定义格式的数据。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>length</pt>
+                    <pd>数据长度，单位为 byte。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

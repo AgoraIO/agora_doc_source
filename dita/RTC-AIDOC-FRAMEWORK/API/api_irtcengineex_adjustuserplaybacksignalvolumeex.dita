@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_adjustuserplaybacksignalvolumeex">
+    <title><ph keyref="adjustUserPlaybackSignalVolumeEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">调节本地播放的指定远端用户信号音量。</ph><ph id="shortdesc" props="rn">调节本地播放的指定远端用户信号音量。</ph><ph id="shortdesc" props="flutter">调节本地播放的指定远端用户信号音量。</ph><ph id="shortdesc" props="unity">调节本地播放的指定远端用户信号音量。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="adjustUserPlaybackSignalVolumeEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract adjustUserPlaybackSignalVolumeEx(
+    uid: number,
+    volume: number,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract adjustUserPlaybackSignalVolumeEx(
+    uid: number,
+    volume: number,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; adjustUserPlaybackSignalVolumeEx(
+      {required int uid,
+      required int volume,
+      required RtcConnection connection});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int AdjustUserPlaybackSignalVolumeEx(uint uid, int volume, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在 <xref keyref="joinChannelEx"/> 之后调用。</p>
+            <p props="rn">该方法需要在 <xref keyref="joinChannelEx"/> 之后调用。</p>
+            <p props="flutter">该方法需要在 <xref keyref="joinChannelEx"/> 之后调用。</p>
+            <p props="unity">该方法需要在 <xref keyref="joinChannelEx"/> 之后调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>volume</pt>
+                    <pd>音量，取值范围为 [0,400]。
+                        <ul>
+                            <li>0: 静音。</li>
+                            <li>100: （默认）原始音量。</li>
+                            <li>400: 原始音量的 4 倍，自带溢出保护。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>volume</pt>
+                    <pd>音量，取值范围为 [0,400]。
+                        <ul>
+                            <li>0: 静音。</li>
+                            <li>100: （默认）原始音量。</li>
+                            <li>400: 原始音量的 4 倍，自带溢出保护。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>volume</pt>
+                    <pd>音量，取值范围为 [0,400]。
+                        <ul>
+                            <li>0: 静音。</li>
+                            <li>100: （默认）原始音量。</li>
+                            <li>400: 原始音量的 4 倍，自带溢出保护。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>volume</pt>
+                    <pd>音量，取值范围为 [0,400]。
+                        <ul>
+                            <li>0: 静音。</li>
+                            <li>100: （默认）原始音量。</li>
+                            <li>400: 原始音量的 4 倍，自带溢出保护。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

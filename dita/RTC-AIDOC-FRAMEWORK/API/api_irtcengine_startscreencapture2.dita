@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startscreencapture2">
+    <title><ph keyref="startScreenCapture2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">开始屏幕采集并指定视频源。</ph><ph id="shortdesc" props="flutter">开始屏幕采集并指定视频源。</ph><ph id="shortdesc" props="unity">开始屏幕采集并指定视频源。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startScreenCapture2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureBySourceType(
+    sourceType: VideoSourceType,
+    config: ScreenCaptureConfiguration
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCaptureBySourceType(
+      {required VideoSourceType sourceType,
+      required ScreenCaptureConfiguration config});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCapture(VIDEO_SOURCE_TYPE sourceType, ScreenCaptureConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.0</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.0</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.0</dd>
+                </dlentry>
+            </dl>
+            <note props="electron">该方法仅适用于 macOS 和 Windows 平台。</note>
+            <note props="flutter">该方法仅适用于 macOS 和 Windows 平台。</note>
+            <note props="unity">该方法仅适用于 macOS 和 Windows 平台。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter unity">
+            <title>调用时机</title>
+            <p props="electron">该方法在加入频道前后均可调用，区别如下：
+                <ul>
+                    <li>如果在加入频道前调用该方法，然后调用<xref keyref="joinChannel2"/>加入频道，并设置<codeph>publishScreenCaptureVideo</codeph>为<xref keyref="true"/>，即可开始屏幕共享。</li>
+                    <li>如果在加入频道后调用该方法，然后调用<xref keyref="updateChannelMediaOptions"/>更新频道媒体选项，并设置<codeph>publishScreenCaptureVideo</codeph>为<xref keyref="true"/>，即可开始屏幕共享。</li>
+                </ul>
+            </p>
+            <p props="flutter">该方法在加入频道前后均可调用，区别如下：
+                <ul>
+                    <li>如果在加入频道前调用该方法，然后调用<xref keyref="joinChannel2"/>加入频道，并设置<codeph>publishScreenCaptureVideo</codeph>为<xref keyref="true"/>，即可开始屏幕共享。</li>
+                    <li>如果在加入频道后调用该方法，然后调用<xref keyref="updateChannelMediaOptions"/>更新频道媒体选项，并设置<codeph>publishScreenCaptureVideo</codeph>为<xref keyref="true"/>，即可开始屏幕共享。</li>
+                </ul>
+            </p>
+            <p props="unity">该方法在加入频道前后均可调用，区别如下：
+                <ul>
+                    <li>如果在加入频道前调用该方法，然后调用<xref keyref="joinChannel2"/>加入频道，并设置<codeph>publishScreenCaptureVideo</codeph>为<xref keyref="true"/>，即可开始屏幕共享。</li>
+                    <li>如果在加入频道后调用该方法，然后调用<xref keyref="updateChannelMediaOptions"/>更新频道媒体选项，并设置<codeph>publishScreenCaptureVideo</codeph>为<xref keyref="true"/>，即可开始屏幕共享。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <codeph>VideoSourceType</codeph>。
+                        <note>在 macOS 平台上，仅支持将该参数设置为 VideoSourceScreen (2)。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>屏幕采集配置。详见 <xref keyref="ScreenCaptureConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <codeph>VideoSourceType</codeph>。
+                        <note>在 macOS 平台上，仅支持将该参数设置为 videoSourceScreen (2)。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>屏幕采集配置。详见 <xref keyref="ScreenCaptureConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。
+                        <note>在 macOS 平台上，仅支持将该参数设置为 VIDEO_SOURCE_SCREEN (2)。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>屏幕采集配置。详见 <xref keyref="ScreenCaptureConfiguration"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

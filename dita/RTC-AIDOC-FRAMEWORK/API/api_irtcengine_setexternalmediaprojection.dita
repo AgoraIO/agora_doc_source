@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setexternalmediaprojection">
+    <title><ph keyref="setExternalMediaProjection"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">设置 SDK 外部的 <codeph>MediaProjection</codeph> 采集屏幕视频流。</ph><ph id="shortdesc" props="flutter">设置 SDK 外部的 <codeph>MediaProjection</codeph> 采集屏幕视频流。</ph><ph id="shortdesc" props="unity">设置 SDK 外部的 <codeph>MediaProjection</codeph> 采集屏幕视频流。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalMediaProjection"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract setExternalMediaProjection(mediaProjection: any): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setExternalMediaProjection(int mediaProjection);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalMediaProjection(IntPtr mediaProjection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+            </dl>
+            <p props="rn">成功调用该方法后，你设置的外部 <codeph>MediaProjection</codeph> 会替换掉 SDK 申请的 <codeph>MediaProjection</codeph> 采集屏幕视频流。
+当停止屏幕共享或销毁 <xref keyref="IRtcEngine"/> 时，SDK 会自动释放 MediaProjection。</p>
+            <p props="flutter">成功调用该方法后，你设置的外部 <codeph>MediaProjection</codeph> 会替换掉 SDK 申请的 <codeph>MediaProjection</codeph> 采集屏幕视频流。
+当停止屏幕共享或销毁 <codeph>RtcEngine</codeph> 时，SDK 会自动释放 MediaProjection。</p>
+            <p props="unity">成功调用该方法后，你设置的外部 <codeph>MediaProjection</codeph> 会替换掉 SDK 申请的 <codeph>MediaProjection</codeph> 采集屏幕视频流。
+当停止屏幕共享或销毁 <xref keyref="IRtcEngine"/> 时，SDK 会自动释放 MediaProjection。</p>
+            <note props="rn">该方法仅适用于 Android。
+在调用该方法前，必须先申请 <codeph>MediaProjection</codeph> 权限。</note>
+            <note props="flutter">该方法仅适用于 Android。
+在调用该方法前，必须先申请 <codeph>MediaProjection</codeph> 权限。</note>
+            <note props="unity">该方法仅适用于 Android。
+在调用该方法前，必须先申请 <codeph>MediaProjection</codeph> 权限。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>调用时机</title>
+            <p props="rn">该方法需要在 <xref keyref="startScreenCapture"/> 之前调用。</p>
+            <p props="flutter">该方法需要在 <xref keyref="startScreenCapture"/> 之前调用。</p>
+            <p props="unity">该方法需要在 <xref keyref="startScreenCapture"/> 之前调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>mediaProjection</pt>
+                    <pd>一个 [MediaProjection](https://developer.android.com/reference/android/media/projection/MediaProjection) 对象，用于采集屏幕视频流。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mediaProjection</pt>
+                    <pd>一个 [MediaProjection](https://developer.android.com/reference/android/media/projection/MediaProjection) 对象，用于采集屏幕视频流。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mediaProjection</pt>
+                    <pd>一个 [MediaProjection](https://developer.android.com/reference/android/media/projection/MediaProjection) 对象，用于采集屏幕视频流。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>返回值</title>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onrequesttoken">
+    <title><ph keyref="onRequestToken"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Token 已过期回调。</ph><ph id="shortdesc" props="rn">Token 已过期回调。</ph><ph id="shortdesc" props="flutter">Token 已过期回调。</ph><ph id="shortdesc" props="unity">Token 已过期回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRequestToken"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onRequestToken?(connection: RtcConnection): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onRequestToken?(connection: RtcConnection): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection)? onRequestToken;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRequestToken(RtcConnection connection) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">在音视频互动过程中，如果 Token 失效，SDK 会触发该回调报告 Token 已过期。
+当收到该回调时，你需要重新在服务端生成新的 Token，然后通过下列任意一种方式来更新 Token：
+                <ul>
+                    <li>单频道场景：
+                        <ul>
+                            <li>调用<xref keyref="renewToken"/>来传入新的 Token。</li>
+                            <li>调用<xref keyref="leaveChannel"/>离开当前频道，然后在调用<xref keyref="joinChannel2"/>时传入新的 Token 重新加入频道。</li>
+                        </ul>
+                    </li>
+                    <li>多频道场景：调用<xref keyref="updateChannelMediaOptionsEx"/>传入新的 Token。</li>
+                </ul>
+            </p>
+            <p props="rn">在音视频互动过程中，如果 Token 失效，SDK 会触发该回调报告 Token 已过期。
+当收到该回调时，你需要重新在服务端生成新的 Token，然后通过下列任意一种方式来更新 Token：
+                <ul>
+                    <li>单频道场景：
+                        <ul>
+                            <li>调用<xref keyref="renewToken"/>来传入新的 Token。</li>
+                            <li>调用<xref keyref="leaveChannel"/>离开当前频道，然后在调用<xref keyref="joinChannel2"/>时传入新的 Token 重新加入频道。</li>
+                        </ul>
+                    </li>
+                    <li>多频道场景：调用<xref keyref="updateChannelMediaOptionsEx"/>传入新的 Token。</li>
+                </ul>
+            </p>
+            <p props="flutter">在音视频互动过程中，如果 Token 失效，SDK 会触发该回调报告 Token 已过期。
+当收到该回调时，你需要重新在服务端生成新的 Token，然后通过下列任意一种方式来更新 Token：
+                <ul>
+                    <li>单频道场景：
+                        <ul>
+                            <li>调用<xref keyref="renewToken"/>来传入新的 Token。</li>
+                            <li>调用<xref keyref="leaveChannel"/>离开当前频道，然后在调用<xref keyref="joinChannel2"/>时传入新的 Token 重新加入频道。</li>
+                        </ul>
+                    </li>
+                    <li>多频道场景：调用<xref keyref="updateChannelMediaOptionsEx"/>传入新的 Token。</li>
+                </ul>
+            </p>
+            <p props="unity">在音视频互动过程中，如果 Token 失效，SDK 会触发该回调报告 Token 已过期。
+当收到该回调时，你需要重新在服务端生成新的 Token，然后通过下列任意一种方式来更新 Token：
+                <ul>
+                    <li>单频道场景：
+                        <ul>
+                            <li>调用<xref keyref="renewToken"/>来传入新的 Token。</li>
+                            <li>调用<xref keyref="leaveChannel2"/>离开当前频道，然后在调用<xref keyref="joinChannel2"/>时传入新的 Token 重新加入频道。</li>
+                        </ul>
+                    </li>
+                    <li>多频道场景：调用<xref keyref="updateChannelMediaOptionsEx"/>传入新的 Token。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>engine</pt>
+                    <pd><codeph>RtcEngine</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

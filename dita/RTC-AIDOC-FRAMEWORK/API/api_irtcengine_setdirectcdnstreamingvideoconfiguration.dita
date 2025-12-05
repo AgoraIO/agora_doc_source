@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setdirectcdnstreamingvideoconfiguration">
+    <title><ph keyref="setDirectCdnStreamingVideoConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置主播端直接向 CDN 推流时的视频编码属性。</ph><ph id="shortdesc" props="rn">设置主播端直接向 CDN 推流时的视频编码属性。</ph><ph id="shortdesc" props="flutter">设置主播端直接向 CDN 推流时的视频编码属性。</ph><ph id="shortdesc" props="unity">设置主播端直接向 CDN 推流时的视频编码属性。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDirectCdnStreamingVideoConfiguration"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setDirectCdnStreamingVideoConfiguration(
+    config: VideoEncoderConfiguration
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setDirectCdnStreamingVideoConfiguration(
+    config: VideoEncoderConfiguration
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDirectCdnStreamingVideoConfiguration(
+      VideoEncoderConfiguration config);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetDirectCdnStreamingVideoConfiguration(VideoEncoderConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">该方法仅对摄像头采集、屏幕共享或自采集的视频有效。即对在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中设置 <codeph>publishCameraTrack</codeph> 或 <codeph>publishCustomVideoTrack</codeph> 为 <xref keyref="true"/> 时所采集的视频有效。
+如果你设置的视频分辨率超出你的摄像头设备支持的范围，SDK 会根据你的设置进行自适应，取最接近、且长宽比与你设置的分辨率一致的值进行采集、编码、推流。你可以通过 <xref keyref="onDirectCdnStreamingStats"/> 回调了解推送的视频流的实际分辨率。</p>
+            <p props="rn">该方法仅对摄像头采集、屏幕共享或自采集的视频有效。即对在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中设置 <codeph>publishCameraTrack</codeph> 或 <codeph>publishCustomVideoTrack</codeph> 为 <xref keyref="true"/> 时所采集的视频有效。
+如果你设置的视频分辨率超出你的摄像头设备支持的范围，SDK 会根据你的设置进行自适应，取最接近、且长宽比与你设置的分辨率一致的值进行采集、编码、推流。你可以通过 <xref keyref="onDirectCdnStreamingStats"/> 回调了解推送的视频流的实际分辨率。</p>
+            <p props="flutter">该方法仅对摄像头采集、屏幕共享或自采集的视频有效。即对在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中设置 <codeph>publishCameraTrack</codeph> 或 <codeph>publishCustomVideoTrack</codeph> 为 <xref keyref="true"/> 时所采集的视频有效。
+如果你设置的视频分辨率超出你的摄像头设备支持的范围，SDK 会根据你的设置进行自适应，取最接近、且长宽比与你设置的分辨率一致的值进行采集、编码、推流。你可以通过 <xref keyref="onDirectCdnStreamingStats"/> 回调了解推送的视频流的实际分辨率。</p>
+            <p props="unity">该方法仅对摄像头采集、屏幕共享或自采集的视频有效。即对在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中设置 <codeph>publishCameraTrack</codeph> 或 <codeph>publishCustomVideoTrack</codeph> 为 <xref keyref="true"/> 时所采集的视频有效。
+如果你设置的视频分辨率超出你的摄像头设备支持的范围，SDK 会根据你的设置进行自适应，取最接近、且长宽比与你设置的分辨率一致的值进行采集、编码、推流。你可以通过 <xref keyref="onDirectCdnStreamingStats"/> 回调了解推送的视频流的实际分辨率。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>视频编码参数配置。详见 <xref keyref="VideoEncoderConfiguration"/>。
+                        <note>在直接向 CDN 推流时，SDK 目前仅支持将 <codeph>OrientationMode</codeph> 设为横屏模式（<codeph>OrientationFixedLandscape</codeph>）或竖屏模式（<codeph>OrientationFixedPortrait</codeph>）。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>config</pt>
+                    <pd>视频编码参数配置。详见 <xref keyref="VideoEncoderConfiguration"/>。
+                        <note>在直接向 CDN 推流时，SDK 目前仅支持将 <codeph>OrientationMode</codeph> 设为横屏模式（<codeph>OrientationFixedLandscape</codeph>）或竖屏模式（<codeph>OrientationFixedPortrait</codeph>）。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>视频编码参数配置。详见 <xref keyref="VideoEncoderConfiguration"/>。
+                        <note>在直接向 CDN 推流时，SDK 目前仅支持将 <codeph>OrientationMode</codeph> 设为横屏模式（<codeph>orientationModeFixedLandscape</codeph>）或竖屏模式（<codeph>orientationModeFixedPortrait</codeph>）。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>视频编码参数配置。详见 <xref keyref="VideoEncoderConfiguration"/>。
+                        <note>在直接向 CDN 推流时，SDK 目前仅支持将 <xref keyref="ORIENTATION_MODE"/> 设为横屏模式（<codeph>ORIENTATION_MODE_FIXED_LANDSCAPE</codeph>）或竖屏模式（<codeph>ORIENTATION_MODE_FIXED_PORTRAIT</codeph>）。</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

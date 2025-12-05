@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onremotevideotransportstats">
+    <title><ph keyref="onRemoteVideoTransportStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">通话中远端视频流传输的统计信息回调。</ph><ph id="shortdesc" props="rn">通话中远端视频流传输的统计信息回调。</ph><ph id="shortdesc" props="flutter">通话中远端视频流传输的统计信息回调。</ph><ph id="shortdesc" props="unity">通话中远端视频流传输的统计信息回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteVideoTransportStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onRemoteVideoTransportStats?(
+    connection: RtcConnection,
+    remoteUid: number,
+    delay: number,
+    lost: number,
+    rxKBitRate: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onRemoteVideoTransportStats?(
+    connection: RtcConnection,
+    remoteUid: number,
+    delay: number,
+    lost: number,
+    rxKBitRate: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int delay,
+      int lost, int rxKBitRate)? onRemoteVideoTransportStats;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteVideoTransportStats(RtcConnection connection, uint remoteUid, UInt16 delay, UInt16 lost, UInt16 rxKBitRate) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该回调已被废弃，请改用 。</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该回调已被废弃，请改用 。</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该回调已被废弃，请改用 。</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该回调已被废弃，请改用 。</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">该回调描述远端用户通话中端到端的网络统计信息，通过视频包计算，用客观的数据，如丢包、 网络延迟等，展示当前网络状态。
+通话中，当用户收到远端用户/主播发送的视频数据包后，会每 2 秒触发一次该回调。</p>
+            <p props="rn">该回调描述远端用户通话中端到端的网络统计信息，通过视频包计算，用客观的数据，如丢包、 网络延迟等，展示当前网络状态。
+通话中，当用户收到远端用户/主播发送的视频数据包后，会每 2 秒触发一次该回调。</p>
+            <p props="flutter">该回调描述远端用户通话中端到端的网络统计信息，通过视频包计算，用客观的数据，如丢包、 网络延迟等，展示当前网络状态。
+通话中，当用户收到远端用户/主播发送的视频数据包后，会每 2 秒触发一次该回调。</p>
+            <p props="unity">该回调描述远端用户通话中端到端的网络统计信息，通过视频包计算，用客观的数据，如丢包、 网络延迟等，展示当前网络状态。
+通话中，当用户收到远端用户/主播发送的视频数据包后，会每 2 秒触发一次该回调。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteUid</pt>
+                    <pd>用户 ID，指定是哪个用户/主播的视频包。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>delay</pt>
+                    <pd>视频包从发送端到接收端的延时（毫秒）。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>lost</pt>
+                    <pd>视频包从发送端到接收端的丢包率 (%)。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rxKBitRate</pt>
+                    <pd>远端视频包的接收码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteUid</pt>
+                    <pd>用户 ID，指定是哪个用户/主播的视频包。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>delay</pt>
+                    <pd>视频包从发送端到接收端的延时（毫秒）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lost</pt>
+                    <pd>视频包从发送端到接收端的丢包率 (%)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rxKBitRate</pt>
+                    <pd>远端视频包的接收码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>engine</pt>
+                    <pd><codeph>RtcEngine</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteUid</pt>
+                    <pd>用户 ID，指定是哪个用户/主播的视频包。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>delay</pt>
+                    <pd>视频包从发送端到接收端的延时（毫秒）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lost</pt>
+                    <pd>视频包从发送端到接收端的丢包率 (%)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rxKBitRate</pt>
+                    <pd>远端视频包的接收码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteUid</pt>
+                    <pd>用户 ID，指定是哪个用户/主播的视频包。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>delay</pt>
+                    <pd>视频包从发送端到接收端的延时（毫秒）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lost</pt>
+                    <pd>视频包从发送端到接收端的丢包率 (%)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rxKBitRate</pt>
+                    <pd>远端视频包的接收码率（Kbps）。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

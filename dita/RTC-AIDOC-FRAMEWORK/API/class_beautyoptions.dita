@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_beautyoptions">
+    <title><ph keyref="BeautyOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">美颜选项。</ph><ph id="shortdesc" props="rn">美颜选项。</ph><ph id="shortdesc" props="flutter">美颜选项。</ph><ph id="shortdesc" props="unity">美颜选项。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class BeautyOptions {
+  
+  lighteningContrastLevel?: LighteningContrastLevel;
+  
+  lighteningLevel?: number;
+  
+  smoothnessLevel?: number;
+  
+  rednessLevel?: number;
+  
+  sharpnessLevel?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class BeautyOptions {
+  
+  lighteningContrastLevel?: LighteningContrastLevel;
+  
+  lighteningLevel?: number;
+  
+  smoothnessLevel?: number;
+  
+  rednessLevel?: number;
+  
+  sharpnessLevel?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class BeautyOptions {
+    const BeautyOptions(
+        {this.lighteningContrastLevel,
+        this.lighteningLevel,
+        this.smoothnessLevel,
+        this.rednessLevel,
+        this.sharpnessLevel});
+  
+    @JsonKey(name: 'lighteningContrastLevel')
+    final LighteningContrastLevel? lighteningContrastLevel;
+    @JsonKey(name: 'lighteningLevel')
+    final double? lighteningLevel;
+    @JsonKey(name: 'smoothnessLevel')
+    final double? smoothnessLevel;
+    @JsonKey(name: 'rednessLevel')
+    final double? rednessLevel;
+    @JsonKey(name: 'sharpnessLevel')
+    final double? sharpnessLevel;
+    factory BeautyOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+        _$BeautyOptionsFromJson(json);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$BeautyOptionsToJson(this);
+  }</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class BeautyOptions
+    {
+        public BeautyOptions()
+        {
+            lighteningContrastLevel = LIGHTENING_CONTRAST_LEVEL.LIGHTENING_CONTRAST_NORMAL;
+            this.lighteningLevel = 0;
+            this.smoothnessLevel = 0;
+            this.rednessLevel = 0;
+            this.sharpnessLevel = 0;
+        }
+
+        public BeautyOptions(
+            LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel, float lighteningLevel, float smoothnessLevel,
+            float rednessLevel, float sharpnessLevel)
+        {
+            this.lighteningContrastLevel = lighteningContrastLevel;
+            this.lighteningLevel = lighteningLevel;
+            this.smoothnessLevel = smoothnessLevel;
+            this.rednessLevel = rednessLevel;
+            this.sharpnessLevel = sharpnessLevel;
+        }
+
+        public LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel { set; get; }
+
+        public float lighteningLevel { set; get; }
+
+        public float smoothnessLevel { set; get; }
+
+        public float rednessLevel { set; get; }
+
+        public float sharpnessLevel { set; get; }
+    }
+
+        public LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel { set; get; }
+        public float lighteningLevel { set; get; }
+        public float smoothnessLevel { set; get; }
+        public float rednessLevel { set; get; }
+        public float sharpnessLevel { set; get; }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>lighteningContrastLevel</pt>
+                    <pd>对比度，常与 <codeph>lighteningLevel</codeph> 搭配使用。取值越大，明暗对比程度越大。详见 <codeph>LighteningContrastLevel</codeph>。
+                        <ul>
+                            <li>LighteningContrastLow(0)：低对比度。</li>
+                            <li>LighteningContrastNormal(1)：正常对比度。</li>
+                            <li>LighteningContrastHigh(2)：高对比度。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>lighteningLevel</pt>
+                    <pd>美白程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始亮度，默认值为 0.70.60.0。取值越大，美白程度越大。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>smoothnessLevel</pt>
+                    <pd>磨皮程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始磨皮程度，默认值为 0.50.50.0。取值越大，磨皮程度越大。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rednessLevel</pt>
+                    <pd>红润度，取值范围为 [0.0,1.0]，其中 0.0 表示原始红润度，默认值为 0.10.10.0。取值越大，红润程度越大。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sharpnessLevel</pt>
+                    <pd>锐化程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始锐度，默认值为 0.10.30.0。取值越大，锐化程度越大。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lighteningContrastLevel</pt>
+                    <pd>对比度，常与 <codeph>lighteningLevel</codeph> 搭配使用。取值越大，明暗对比程度越大。详见 <codeph>LighteningContrastLevel</codeph>。
+                        <ul>
+                            <li>LighteningContrastLow(0)：低对比度。</li>
+                            <li>LighteningContrastNormal(1)：正常对比度。</li>
+                            <li>LighteningContrastHigh(2)：高对比度。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lighteningLevel</pt>
+                    <pd>美白程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始亮度，默认值为 0.70.60.0。取值越大，美白程度越大。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>smoothnessLevel</pt>
+                    <pd>磨皮程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始磨皮程度，默认值为 0.50.50.0。取值越大，磨皮程度越大。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rednessLevel</pt>
+                    <pd>红润度，取值范围为 [0.0,1.0]，其中 0.0 表示原始红润度，默认值为 0.10.10.0。取值越大，红润程度越大。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sharpnessLevel</pt>
+                    <pd>锐化程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始锐度，默认值为 0.10.30.0。取值越大，锐化程度越大。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lighteningContrastLevel</pt>
+                    <pd>对比度，常与 <codeph>lighteningLevel</codeph> 搭配使用。取值越大，明暗对比程度越大。详见 <codeph>LighteningContrastLevel</codeph>。
+                        <ul>
+                            <li>lighteningContrastLow(0)：低对比度。</li>
+                            <li>lighteningContrastNormal(1)：正常对比度。</li>
+                            <li>lighteningContrastHigh(2)：高对比度。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lighteningLevel</pt>
+                    <pd>美白程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始亮度，默认值为 0.70.60.0。取值越大，美白程度越大。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>smoothnessLevel</pt>
+                    <pd>磨皮程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始磨皮程度，默认值为 0.50.50.0。取值越大，磨皮程度越大。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rednessLevel</pt>
+                    <pd>红润度，取值范围为 [0.0,1.0]，其中 0.0 表示原始红润度，默认值为 0.10.10.0。取值越大，红润程度越大。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sharpnessLevel</pt>
+                    <pd>锐化程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始锐度，默认值为 0.10.30.0。取值越大，锐化程度越大。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lighteningContrastLevel</pt>
+                    <pd>对比度，常与 <codeph>lighteningLevel</codeph> 搭配使用。取值越大，明暗对比程度越大。详见 <xref keyref="LIGHTENING_CONTRAST_LEVEL"/>。
+                        <ul>
+                            <li>LIGHTENING_CONTRAST_LOW(0)：低对比度。</li>
+                            <li>LIGHTENING_CONTRAST_NORMAL(1)：正常对比度。</li>
+                            <li>LIGHTENING_CONTRAST_HIGH(2)：高对比度。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lighteningLevel</pt>
+                    <pd>美白程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始亮度，默认值为 0.70.60.0。取值越大，美白程度越大。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>smoothnessLevel</pt>
+                    <pd>磨皮程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始磨皮程度，默认值为 0.50.50.0。取值越大，磨皮程度越大。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rednessLevel</pt>
+                    <pd>红润度，取值范围为 [0.0,1.0]，其中 0.0 表示原始红润度，默认值为 0.10.10.0。取值越大，红润程度越大。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sharpnessLevel</pt>
+                    <pd>锐化程度，取值范围为 [0.0,1.0]，其中 0.0 表示原始锐度，默认值为 0.10.30.0。取值越大，锐化程度越大。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

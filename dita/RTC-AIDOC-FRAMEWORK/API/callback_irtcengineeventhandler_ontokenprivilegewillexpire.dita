@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_ontokenprivilegewillexpire">
+    <title><ph keyref="onTokenPrivilegeWillExpire"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Token 即将在 30s 内过期回调。</ph><ph id="shortdesc" props="rn">Token 即将在 30s 内过期回调。</ph><ph id="shortdesc" props="flutter">Token 即将在 30s 内过期回调。</ph><ph id="shortdesc" props="unity">Token 即将在 30s 内过期回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onTokenPrivilegeWillExpire"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onTokenPrivilegeWillExpire?(connection: RtcConnection, token: string): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onTokenPrivilegeWillExpire?(connection: RtcConnection, token: string): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, String token)?
+      onTokenPrivilegeWillExpire;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnTokenPrivilegeWillExpire(RtcConnection connection, string token) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>触发时机</title>
+            <p props="electron">在音视频互动过程中，SDK 会在 Token 过期前 30 秒触发该回调，提醒 App 更新 Token。</p>
+            <p props="rn">在音视频互动过程中，SDK 会在 Token 过期前 30 秒触发该回调，提醒 App 更新 Token。</p>
+            <p props="flutter">在音视频互动过程中，SDK 会在 Token 过期前 30 秒触发该回调，提醒 App 更新 Token。</p>
+            <p props="unity">在音视频互动过程中，SDK 会在 Token 过期前 30 秒触发该回调，提醒 App 更新 Token。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>token</pt>
+                    <pd>即将过期的 Token。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>token</pt>
+                    <pd>即将过期的 Token。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>engine</pt>
+                    <pd><codeph>RtcEngine</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>token</pt>
+                    <pd>即将过期的 Token。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>token</pt>
+                    <pd>即将过期的 Token。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

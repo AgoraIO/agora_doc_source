@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_stopchannelmediarelay">
+    <title><ph keyref="stopChannelMediaRelay"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">停止跨频道媒体流转发。一旦停止，主播会退出所有目标频道。</ph><ph id="shortdesc" props="rn">停止跨频道媒体流转发。一旦停止，主播会退出所有目标频道。</ph><ph id="shortdesc" props="flutter">停止跨频道媒体流转发。一旦停止，主播会退出所有目标频道。</ph><ph id="shortdesc" props="unity">停止跨频道媒体流转发。一旦停止，主播会退出所有目标频道。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="stopChannelMediaRelay"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract stopChannelMediaRelay(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract stopChannelMediaRelay(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopChannelMediaRelay();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StopChannelMediaRelay();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调。如果报告 <codeph>RelayStateIdle</codeph> (0) 和 <codeph>RelayOk</codeph> (0)，则表示已停止转发媒体流。</p>
+            <p props="rn">成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调。如果报告 <codeph>RelayStateIdle</codeph> (0) 和 <codeph>RelayOk</codeph> (0)，则表示已停止转发媒体流。</p>
+            <p props="flutter">成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调。如果报告 <codeph>relayStateIdle</codeph> (0) 和 <codeph>relayOk</codeph> (0)，则表示已停止转发媒体流。</p>
+            <p props="unity">成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调。如果报告 <codeph>RELAY_STATE_IDLE</codeph> (0) 和 <codeph>RELAY_OK</codeph> (0)，则表示已停止转发媒体流。</p>
+            <note props="electron">如果该方法调用不成功，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调，并报告状态码 <codeph>RelayErrorServerNoResponse</codeph> (2) 或 <codeph>RelayErrorServerConnectionLost</codeph> (8)。你可以调用 <xref keyref="leaveChannel"/> 方法离开频道，跨频道媒体流转发会自动停止。</note>
+            <note props="rn">如果该方法调用不成功，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调，并报告状态码 <codeph>RelayErrorServerNoResponse</codeph> (2) 或 <codeph>RelayErrorServerConnectionLost</codeph> (8)。你可以调用 <xref keyref="leaveChannel"/> 方法离开频道，跨频道媒体流转发会自动停止。</note>
+            <note props="flutter">如果该方法调用不成功，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调，并报告状态码 <codeph>relayErrorServerNoResponse</codeph> (2) 或 <codeph>relayErrorServerConnectionLost</codeph> (8)。你可以调用 <xref keyref="leaveChannel"/> 方法离开频道，跨频道媒体流转发会自动停止。</note>
+            <note props="unity">如果该方法调用不成功，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调，并报告状态码 <codeph>RELAY_ERROR_SERVER_NO_RESPONSE</codeph> (2) 或 <codeph>RELAY_ERROR_SERVER_CONNECTION_LOST</codeph> (8)。你可以调用 <xref keyref="leaveChannel2"/> 方法离开频道，跨频道媒体流转发会自动停止。</note>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-5: 方法调用被拒绝。当前没有正在进行的跨频道媒体流转发。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-5: 方法调用被拒绝。当前没有正在进行的跨频道媒体流转发。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
+                <ul>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-5: 方法调用被拒绝。当前没有正在进行的跨频道媒体流转发。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-5: 方法调用被拒绝。当前没有正在进行的跨频道媒体流转发。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

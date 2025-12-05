@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_clientroleoptions">
+    <title><ph keyref="ClientRoleOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">用户角色属性设置。</ph><ph id="shortdesc" props="rn">用户角色属性设置。</ph><ph id="shortdesc" props="flutter">用户角色属性设置。</ph><ph id="shortdesc" props="unity">用户角色属性设置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class ClientRoleOptions {
+  
+  audienceLatencyLevel?: AudienceLatencyLevelType;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class ClientRoleOptions {
+  
+  audienceLatencyLevel?: AudienceLatencyLevelType;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class ClientRoleOptions {
+  const ClientRoleOptions({this.audienceLatencyLevel});
+
+  @JsonKey(name: 'audienceLatencyLevel')
+  final AudienceLatencyLevelType? audienceLatencyLevel;
+  factory ClientRoleOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ClientRoleOptionsFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ClientRoleOptionsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class ClientRoleOptions
+    {
+        public ClientRoleOptions()
+        {
+            audienceLatencyLevel = AUDIENCE_LATENCY_LEVEL_TYPE.AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY;
+        }
+
+        public AUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>audienceLatencyLevel</pt>
+                    <pd>观众端延时级别。详见 <codeph>AudienceLatencyLevelType</codeph>。
+                        <ul>
+                            <li>AudienceLatencyLevelLowLatency(1): 低延时。</li>
+                            <li>AudienceLatencyLevelUltraLowLatency(2): （默认）超低延时。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audienceLatencyLevel</pt>
+                    <pd>观众端延时级别。详见 <codeph>AudienceLatencyLevelType</codeph>。
+                        <ul>
+                            <li>AudienceLatencyLevelLowLatency(1): 低延时。</li>
+                            <li>AudienceLatencyLevelUltraLowLatency(2): （默认）超低延时。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audienceLatencyLevel</pt>
+                    <pd>观众端延时级别。详见 <codeph>AudienceLatencyLevelType</codeph>。
+                        <ul>
+                            <li>audienceLatencyLevelLowLatency(1): 低延时。</li>
+                            <li>audienceLatencyLevelUltraLowLatency(2): （默认）超低延时。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audienceLatencyLevel</pt>
+                    <pd>观众端延时级别。详见 <xref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>。
+                        <ul>
+                            <li>AUDIENCE_LATENCY_LEVEL_LOW_LATENCY(1): 低延时。</li>
+                            <li>AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY(2): （默认）超低延时。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

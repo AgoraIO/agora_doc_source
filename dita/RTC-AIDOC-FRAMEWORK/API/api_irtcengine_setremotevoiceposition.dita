@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setremotevoiceposition">
+    <title><ph keyref="setRemoteVoicePosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置远端用户声音的 2D 位置，即水平面位置。</ph><ph id="shortdesc" props="rn">设置远端用户声音的 2D 位置，即水平面位置。</ph><ph id="shortdesc" props="flutter">设置远端用户声音的 2D 位置，即水平面位置。</ph><ph id="shortdesc" props="unity">设置远端用户声音的 2D 位置，即水平面位置。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteVoicePosition"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setRemoteVoicePosition(
+    uid: number,
+    pan: number,
+    gain: number
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setRemoteVoicePosition(
+    uid: number,
+    pan: number,
+    gain: number
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteVoicePosition(
+    {required int uid, required double pan, required double gain});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteVoicePosition(uint uid, double pan, double gain);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">设置远端用户声音的 2D 位置和音量，方便本地用户听声辨位。
+通过调用该接口设置远端用户声音出现的位置，左右声道的声音差异会产生声音的方位感，从而判断出远端用户的实时位置。在多人在线游戏场景，如吃鸡游戏中，该方法能有效增加游戏角色的方位感，模拟真实场景。</p>
+            <p props="rn">设置远端用户声音的 2D 位置和音量，方便本地用户听声辨位。
+通过调用该接口设置远端用户声音出现的位置，左右声道的声音差异会产生声音的方位感，从而判断出远端用户的实时位置。在多人在线游戏场景，如吃鸡游戏中，该方法能有效增加游戏角色的方位感，模拟真实场景。</p>
+            <p props="flutter">设置远端用户声音的 2D 位置和音量，方便本地用户听声辨位。
+通过调用该接口设置远端用户声音出现的位置，左右声道的声音差异会产生声音的方位感，从而判断出远端用户的实时位置。在多人在线游戏场景，如吃鸡游戏中，该方法能有效增加游戏角色的方位感，模拟真实场景。</p>
+            <p props="unity">设置远端用户声音的 2D 位置和音量，方便本地用户听声辨位。
+通过调用该接口设置远端用户声音出现的位置，左右声道的声音差异会产生声音的方位感，从而判断出远端用户的实时位置。在多人在线游戏场景，如吃鸡游戏中，该方法能有效增加游戏角色的方位感，模拟真实场景。</p>
+            <note props="electron">
+                <ul>
+                    <li>使用该方法需要在加入频道前调用<xref keyref="enableSoundPositionIndication"/>开启远端用户的语音立体声。</li>
+                    <li>为获得最佳听觉体验，建议使用该方法时使用有线耳机。</li>
+                    <li>该方法需要在加入频道后调用。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>使用该方法需要在加入频道前调用<xref keyref="enableSoundPositionIndication"/>开启远端用户的语音立体声。</li>
+                    <li>为获得最佳听觉体验，建议使用该方法时使用有线耳机。</li>
+                    <li>该方法需要在加入频道后调用。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>使用该方法需要在加入频道前调用<xref keyref="enableSoundPositionIndication"/>开启远端用户的语音立体声。</li>
+                    <li>为获得最佳听觉体验，建议使用该方法时使用有线耳机。</li>
+                    <li>该方法需要在加入频道后调用。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>使用该方法需要在加入频道前调用<xref keyref="enableSoundPositionIndication"/>开启远端用户的语音立体声。</li>
+                    <li>为获得最佳听觉体验，建议使用该方法时使用有线耳机。</li>
+                    <li>该方法需要在加入频道后调用。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>远端用户的 ID</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>pan</pt>
+                    <pd>设置远端用户声音的 2D 位置，取值范围为 [-1.0,1.0]:
+                        <ul>
+                            <li>（默认）0.0: 声音出现在正前方。</li>
+                            <li>-1.0: 声音出现在左边。</li>
+                            <li>1.0: 声音出现在右边。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>gain</pt>
+                    <pd>设置远端用户声音的音量，取值范围为 [0.0,100.0]，默认值为 100.0，表示该用户的原始音量。取值越小，则音量越低。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>远端用户的 ID</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>pan</pt>
+                    <pd>设置远端用户声音的 2D 位置，取值范围为 [-1.0,1.0]:
+                        <ul>
+                            <li>（默认）0.0: 声音出现在正前方。</li>
+                            <li>-1.0: 声音出现在左边。</li>
+                            <li>1.0: 声音出现在右边。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>gain</pt>
+                    <pd>设置远端用户声音的音量，取值范围为 [0.0,100.0]，默认值为 100.0，表示该用户的原始音量。取值越小，则音量越低。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>远端用户的 ID</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pan</pt>
+                    <pd>设置远端用户声音的 2D 位置，取值范围为 [-1.0,1.0]:
+                        <ul>
+                            <li>（默认）0.0: 声音出现在正前方。</li>
+                            <li>-1.0: 声音出现在左边。</li>
+                            <li>1.0: 声音出现在右边。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>gain</pt>
+                    <pd>设置远端用户声音的音量，取值范围为 [0.0,100.0]，默认值为 100.0，表示该用户的原始音量。取值越小，则音量越低。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>远端用户的 ID</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>pan</pt>
+                    <pd>设置远端用户声音的 2D 位置，取值范围为 [-1.0,1.0]:
+                        <ul>
+                            <li>（默认）0.0: 声音出现在正前方。</li>
+                            <li>-1.0: 声音出现在左边。</li>
+                            <li>1.0: 声音出现在右边。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>gain</pt>
+                    <pd>设置远端用户声音的音量，取值范围为 [0.0,100.0]，默认值为 100.0，表示该用户的原始音量。取值越小，则音量越低。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

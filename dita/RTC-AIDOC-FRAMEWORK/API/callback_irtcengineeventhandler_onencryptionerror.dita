@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onencryptionerror">
+    <title><ph keyref="onEncryptionError"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">内置加密出错回调。</ph><ph id="shortdesc" props="rn">内置加密出错回调。</ph><ph id="shortdesc" props="flutter">内置加密出错回调。</ph><ph id="shortdesc" props="unity">内置加密出错回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onEncryptionError"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onEncryptionError?(
+    connection: RtcConnection,
+    errorType: EncryptionErrorType
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onEncryptionError?(
+    connection: RtcConnection,
+    errorType: EncryptionErrorType
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, EncryptionErrorType errorType)?
+      onEncryptionError;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnEncryptionError(RtcConnection connection, ENCRYPTION_ERROR_TYPE errorType) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">调用 <xref keyref="enableEncryption"/> 开启加密后， 如果发流端、收流端出现加解密出错，SDK 会触发该回调。</p>
+            <p props="rn">调用 <xref keyref="enableEncryption"/> 开启加密后， 如果发流端、收流端出现加解密出错，SDK 会触发该回调。</p>
+            <p props="flutter">调用 <xref keyref="enableEncryption"/> 开启加密后， 如果发流端、收流端出现加解密出错，SDK 会触发该回调。</p>
+            <p props="unity">调用 <xref keyref="enableEncryption"/> 开启加密后， 如果发流端、收流端出现加解密出错，SDK 会触发该回调。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>errorType</pt>
+                    <pd>错误类型，详见 <codeph>EncryptionErrorType</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>errorType</pt>
+                    <pd>错误类型，详见 <codeph>EncryptionErrorType</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>engine</pt>
+                    <pd><codeph>RtcEngine</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>errorType</pt>
+                    <pd>错误类型，详见 <codeph>EncryptionErrorType</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>errorType</pt>
+                    <pd>错误类型，详见 <xref keyref="ENCRYPTION_ERROR_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

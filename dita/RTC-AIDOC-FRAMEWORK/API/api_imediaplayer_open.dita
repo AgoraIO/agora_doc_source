@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_open">
+    <title><ph keyref="open"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">打开媒体资源。</ph><ph id="shortdesc" props="rn">打开媒体资源。</ph><ph id="shortdesc" props="flutter">打开媒体资源。</ph><ph id="shortdesc" props="unity">打开媒体资源。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="open"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract open(url: string, startPos: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract open(url: string, startPos: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; open({required String url, required int startPos});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int Open(string url, Int64 startPos);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">该方法为异步调用。</note>
+            <note props="rn">该方法为异步调用。</note>
+            <note props="flutter">该方法为异步调用。</note>
+            <note props="unity">该方法为异步调用。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">加入频道前后均可调用。</p>
+            <p props="rn">加入频道前后均可调用。</p>
+            <p props="flutter">加入频道前后均可调用。</p>
+            <p props="unity">加入频道前后均可调用。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>相关回调</title>
+            <p props="electron">调用该方法后会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调。在收到报告播放状态为 <codeph>PlayerStateOpenCompleted</codeph> 后，你可以调用 <xref keyref="play"/> 方法播放媒体文件。</p>
+            <p props="rn">调用该方法后会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调。在收到报告播放状态为 <codeph>PlayerStateOpenCompleted</codeph> 后，你可以调用 <xref keyref="play"/> 方法播放媒体文件。</p>
+            <p props="flutter">调用该方法后会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调。在收到报告播放状态为 <codeph>playerStateOpenCompleted</codeph> 后，你可以调用 <xref keyref="play"/> 方法播放媒体文件。</p>
+            <p props="unity">调用该方法后会触发 <xref keyref="onPlayerSourceStateChanged"/> 回调。在收到报告播放状态为 <codeph>PLAYER_STATE_OPEN_COMPLETED</codeph> 后，你可以调用 <xref keyref="play"/> 方法播放媒体文件。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>url</pt>
+                    <pd>设置媒体文件的路径，支持本地和在线文件。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>startPos</pt>
+                    <pd>设置起始播放位置（毫秒），默认值为 0。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>url</pt>
+                    <pd>设置媒体文件的路径，支持本地和在线文件。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>startPos</pt>
+                    <pd>设置起始播放位置（毫秒），默认值为 0。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>url</pt>
+                    <pd>设置媒体文件的路径，支持本地和在线文件。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>startPos</pt>
+                    <pd>设置起始播放位置（毫秒），默认值为 0。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>url</pt>
+                    <pd>设置媒体文件的路径，支持本地和在线文件。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>startPos</pt>
+                    <pd>设置起始播放位置（毫秒），默认值为 0。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

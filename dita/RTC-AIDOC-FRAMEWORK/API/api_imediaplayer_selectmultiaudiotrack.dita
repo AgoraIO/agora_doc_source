@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_selectmultiaudiotrack">
+    <title><ph keyref="selectMultiAudioTrack"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">选择本地播放和发送至远端的音轨。</ph><ph id="shortdesc" props="rn">选择本地播放和发送至远端的音轨。</ph><ph id="shortdesc" props="flutter">选择本地播放和发送至远端的音轨。</ph><ph id="shortdesc" props="unity">选择本地播放和发送至远端的音轨。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="selectMultiAudioTrack"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract selectMultiAudioTrack(
+    playoutTrackIndex: number,
+    publishTrackIndex: number
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract selectMultiAudioTrack(
+    playoutTrackIndex: number,
+    publishTrackIndex: number
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; selectMultiAudioTrack(
+    {required int playoutTrackIndex, required int publishTrackIndex});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SelectMultiAudioTrack(int playoutTrackIndex, int publishTrackIndex);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.0</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.0</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.0</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.0</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">你可以调用该方法分别设置本地播放和发送到远端的音轨。
+在调用该方法前，你需要通过 <xref keyref="openWithMediaSource"/> 来打开媒体文件，并通过 <xref keyref="MediaSource"/> 将 <codeph>enableMultiAudioTrack</codeph> 设为 <xref keyref="true"/>。</p>
+            <p props="rn">你可以调用该方法分别设置本地播放和发送到远端的音轨。
+在调用该方法前，你需要通过 <xref keyref="openWithMediaSource"/> 来打开媒体文件，并通过 <xref keyref="MediaSource"/> 将 <codeph>enableMultiAudioTrack</codeph> 设为 <xref keyref="true"/>。</p>
+            <p props="flutter">你可以调用该方法分别设置本地播放和发送到远端的音轨。
+在调用该方法前，你需要通过 <xref keyref="openWithMediaSource"/> 来打开媒体文件，并通过 <xref keyref="MediaSource"/> 将 <codeph>enableMultiAudioTrack</codeph> 设为 <xref keyref="true"/>。</p>
+            <p props="unity">你可以调用该方法分别设置本地播放和发送到远端的音轨。
+在调用该方法前，你需要通过 <xref keyref="openWithMediaSource"/> 来打开媒体文件，并通过 <xref keyref="MediaSource"/> 将 <codeph>enableMultiAudioTrack</codeph> 设为 <xref keyref="true"/>。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>playoutTrackIndex</pt>
+                    <pd>用于本地播放的音轨索引。你可以通过 <xref keyref="getStreamInfo"/> 来获取索引值。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publishTrackIndex</pt>
+                    <pd>用于发送至远端的音轨索引。你可以通过 <xref keyref="getStreamInfo"/> 来获取索引值。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>playoutTrackIndex</pt>
+                    <pd>用于本地播放的音轨索引。你可以通过 <xref keyref="getStreamInfo"/> 来获取索引值。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publishTrackIndex</pt>
+                    <pd>用于发送至远端的音轨索引。你可以通过 <xref keyref="getStreamInfo"/> 来获取索引值。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>playoutTrackIndex</pt>
+                    <pd>用于本地播放的音轨索引。你可以通过 <xref keyref="getStreamInfo"/> 来获取索引值。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publishTrackIndex</pt>
+                    <pd>用于发送至远端的音轨索引。你可以通过 <xref keyref="getStreamInfo"/> 来获取索引值。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>playoutTrackIndex</pt>
+                    <pd>用于本地播放的音轨索引。你可以通过 <xref keyref="getStreamInfo"/> 来获取索引值。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publishTrackIndex</pt>
+                    <pd>用于发送至远端的音轨索引。你可以通过 <xref keyref="getStreamInfo"/> 来获取索引值。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。
+                <ul>
+                    <li>&lt; 0: 方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

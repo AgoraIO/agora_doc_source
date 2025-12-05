@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getscreencapturesources">
+    <title><ph keyref="getScreenCaptureSources"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">获取可共享的屏幕和窗口对象列表。</ph><ph id="shortdesc" props="flutter">获取可共享的屏幕和窗口对象列表。</ph><ph id="shortdesc" props="unity">获取可共享的屏幕和窗口对象列表。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getScreenCaptureSources"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getScreenCaptureSources(
+    thumbSize: Size,
+    iconSize: Size,
+    includeScreen: boolean
+  ): ScreenCaptureSourceInfo[];</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;ScreenCaptureSourceInfo&gt;&gt; getScreenCaptureSources(
+    {required Size thumbSize,
+    required Size iconSize,
+    required bool includeScreen});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract ScreenCaptureSourceInfo[] GetScreenCaptureSources(SIZE thumbSize, SIZE iconSize, bool includeScreen);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">屏幕共享或窗口共享前，你可以调用该方法获取可共享的屏幕和窗口的对象列表，方便用户通过列表中的缩略图选择共享某个显示器的屏幕或某个窗口。列表中包含窗口 ID 和屏幕 ID 等重要信息，你可以获取到 ID 后再调用 <xref keyref="startScreenCaptureByWindowId"/> 或 <xref keyref="startScreenCaptureByDisplayId"/> 开启共享。</p>
+            <p props="flutter">屏幕共享或窗口共享前，你可以调用该方法获取可共享的屏幕和窗口的对象列表，方便用户通过列表中的缩略图选择共享某个显示器的屏幕或某个窗口。列表中包含窗口 ID 和屏幕 ID 等重要信息，你可以获取到 ID 后再调用 <xref keyref="startScreenCaptureByWindowId"/> 或 <xref keyref="startScreenCaptureByDisplayId"/> 开启共享。</p>
+            <p props="unity">屏幕共享或窗口共享前，你可以调用该方法获取可共享的屏幕和窗口的对象列表，方便用户通过列表中的缩略图选择共享某个显示器的屏幕或某个窗口。列表中包含窗口 ID 和屏幕 ID 等重要信息，你可以获取到 ID 后再调用 <xref keyref="startScreenCaptureByWindowId"/> 或 <xref keyref="startScreenCaptureByDisplayId"/> 开启共享。</p>
+            <note props="flutter">该方法仅适用于 macOS 和 Windows。</note>
+            <note props="unity">该方法仅适用于 macOS 和 Windows。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>thumbSize</pt>
+                    <pd>屏幕或窗口的缩略图的目标尺寸（宽高单位为像素）。详见 <codeph>SIZE-link</codeph>。SDK 会在保证原图不变形的前提下，缩放原图，使图片最长边和目标尺寸的最长边的长度一致。例如，原图宽高为 400 × 300，<codeph>thumbSize</codeph> 为 100 x 100，缩略图实际尺寸为 100 × 75。如果目标尺寸大于原图尺寸，缩略图即为原图，SDK 不进行缩放操作。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>iconSize</pt>
+                    <pd>程序所对应的图标的目标尺寸（宽高单位为像素）。详见 <codeph>SIZE-link</codeph>。SDK 会在保证原图不变形的前提下，缩放原图，使图片最长边和目标尺寸的最长边的长度一致。例如，原图宽高为 400 × 300，<codeph>iconSize</codeph> 为 100 × 100，图标实际尺寸为 100 × 75。如果目标尺寸大于原图尺寸，图标即为原图，SDK 不进行缩放操作。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>includeScreen</pt>
+                    <pd>除了窗口信息外，SDK 是否返回屏幕信息：
+                        <ul>
+                            <li><xref keyref="true"/>：SDK 返回屏幕和窗口信息。</li>
+                            <li><xref keyref="false"/>：SDK 仅返回窗口信息。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>thumbSize</pt>
+                    <pd>屏幕或窗口的缩略图的目标尺寸（宽高单位为像素）。详见 [SIZE](https://docs.microsoft.com/en-us/windows/win32/api/windef/ns-windef-size)。SDK 会在保证原图不变形的前提下，缩放原图，使图片最长边和目标尺寸的最长边的长度一致。例如，原图宽高为 400 × 300，<codeph>thumbSize</codeph> 为 100 x 100，缩略图实际尺寸为 100 × 75。如果目标尺寸大于原图尺寸，缩略图即为原图，SDK 不进行缩放操作。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>iconSize</pt>
+                    <pd>程序所对应的图标的目标尺寸（宽高单位为像素）。详见 [SIZE](https://docs.microsoft.com/en-us/windows/win32/api/windef/ns-windef-size)。SDK 会在保证原图不变形的前提下，缩放原图，使图片最长边和目标尺寸的最长边的长度一致。例如，原图宽高为 400 × 300，<codeph>iconSize</codeph> 为 100 × 100，图标实际尺寸为 100 × 75。如果目标尺寸大于原图尺寸，图标即为原图，SDK 不进行缩放操作。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>includeScreen</pt>
+                    <pd>除了窗口信息外，SDK 是否返回屏幕信息：
+                        <ul>
+                            <li><xref keyref="true"/>：SDK 返回屏幕和窗口信息。</li>
+                            <li><xref keyref="false"/>：SDK 仅返回窗口信息。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>thumbSize</pt>
+                    <pd>屏幕或窗口的缩略图的目标尺寸（宽高单位为像素）。详见 [SIZE](https://docs.microsoft.com/en-us/windows/win32/api/windef/ns-windef-size)。SDK 会在保证原图不变形的前提下，缩放原图，使图片最长边和目标尺寸的最长边的长度一致。例如，原图宽高为 400 × 300，<codeph>thumbSize</codeph> 为 100 x 100，缩略图实际尺寸为 100 × 75。如果目标尺寸大于原图尺寸，缩略图即为原图，SDK 不进行缩放操作。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>iconSize</pt>
+                    <pd>程序所对应的图标的目标尺寸（宽高单位为像素）。详见 [SIZE](https://docs.microsoft.com/en-us/windows/win32/api/windef/ns-windef-size)。SDK 会在保证原图不变形的前提下，缩放原图，使图片最长边和目标尺寸的最长边的长度一致。例如，原图宽高为 400 × 300，<codeph>iconSize</codeph> 为 100 × 100，图标实际尺寸为 100 × 75。如果目标尺寸大于原图尺寸，图标即为原图，SDK 不进行缩放操作。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>includeScreen</pt>
+                    <pd>除了窗口信息外，SDK 是否返回屏幕信息：
+                        <ul>
+                            <li><xref keyref="true"/>：SDK 返回屏幕和窗口信息。</li>
+                            <li><xref keyref="false"/>：SDK 仅返回窗口信息。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>返回值</title>
+            <p props="electron"><xref keyref="ScreenCaptureSourceInfo"/> 数组。</p>
+            <p props="flutter"><xref keyref="ScreenCaptureSourceInfo"/> 数组。</p>
+            <p props="unity"><xref keyref="ScreenCaptureSourceInfo"/> 数组。</p>
+        </section>
+    </refbody>
+</reference>

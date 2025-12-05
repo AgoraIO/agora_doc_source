@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_ivideoframeobserver_onrendervideoframe">
+    <title><ph keyref="onRenderVideoFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">获取远端发送的视频数据。</ph><ph id="shortdesc" props="rn">获取远端发送的视频数据。</ph><ph id="shortdesc" props="flutter">获取远端发送的视频数据。</ph><ph id="shortdesc" props="unity">获取远端发送的视频数据。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRenderVideoFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onRenderVideoFrame?(
+    channelId: string,
+    remoteUid: number,
+    videoFrame: VideoFrame
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onRenderVideoFrame?(
+    channelId: string,
+    remoteUid: number,
+    videoFrame: VideoFrame
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, int remoteUid, VideoFrame videoFrame)?
+      onRenderVideoFrame;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnRenderVideoFrame(string channelId, uint remoteUid, VideoFrame videoFrame)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取远端发送的渲染前的视频数据，然后根据场景需要，对视频数据进行处理。</p>
+            <p props="rn">成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取远端发送的渲染前的视频数据，然后根据场景需要，对视频数据进行处理。</p>
+            <p props="flutter">成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取远端发送的渲染前的视频数据，然后根据场景需要，对视频数据进行处理。</p>
+            <p props="unity">成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取远端发送的渲染前的视频数据，然后根据场景需要，对视频数据进行处理。</p>
+            <note props="electron">
+                <ul>
+                    <li>如果你获取到的视频数据类型为 RGBA，SDK 不支持对 Alpha 通道的值进行处理。</li>
+                    <li>建议你通过 C++ API 实现该回调。</li>
+                    <li>由于框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>如果你获取到的视频数据类型为 RGBA，SDK 不支持对 Alpha 通道的值进行处理。</li>
+                    <li>建议你通过 C++ API 实现该回调。</li>
+                    <li>由于框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>如果你获取到的视频数据类型为 RGBA，SDK 不支持对 Alpha 通道的值进行处理。</li>
+                    <li>由于框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
+                </ul>
+            </note>
+            <note props="unity">Unity 仅支持将 YUV 格式的视频数据发回 SDK。请确保调用 <xref keyref="registerVideoFrameObserver"/> 方法注册原始视频帧观测器时，将 <codeph>mode</codeph> 设置为 <codeph>INTPTR</codeph>。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>remoteUid</pt>
+                    <pd>发送该帧视频的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoFrame</pt>
+                    <pd>视频帧数据。详见 <xref keyref="VideoFrame"/>。
+                        <note>通过该回调获取的视频帧数据格式默认值如下：
+                            <ul>
+                                <li>macOS：I420</li>
+                            </ul>
+                            <ul>
+                                <li>Windows：YUV420</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channelId</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteUid</pt>
+                    <pd>发送该帧视频的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoFrame</pt>
+                    <pd>视频帧数据。详见 <xref keyref="VideoFrame"/>。
+                        <note>通过该回调获取的视频帧数据格式默认值如下：
+                            <ul>
+                                <li>Android：I420</li>
+                            </ul>
+                            <ul>
+                                <li>iOS：I420</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channelId</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteUid</pt>
+                    <pd>发送该帧视频的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoFrame</pt>
+                    <pd>视频帧数据。详见 <xref keyref="VideoFrame"/>。
+                        <note>通过该回调获取的视频帧数据格式默认值如下：
+                            <ul>
+                                <li>Android：I420</li>
+                            </ul>
+                            <ul>
+                                <li>iOS：I420</li>
+                                <li>macOS：I420</li>
+                                <li>Windows：YUV420</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channelId</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteUid</pt>
+                    <pd>发送该帧视频的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoFrame</pt>
+                    <pd>视频帧数据。详见 <xref keyref="VideoFrame"/>。
+                        <note>通过该回调获取的视频帧数据格式默认值如下：</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelId</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

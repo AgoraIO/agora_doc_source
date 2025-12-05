@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setenablespeakerphone">
+    <title><ph keyref="setEnableSpeakerphone"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">开启或关闭扬声器播放。</ph><ph id="shortdesc" props="flutter">开启或关闭扬声器播放。</ph><ph id="shortdesc" props="unity">开启或关闭扬声器播放。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setEnableSpeakerphone"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract setEnableSpeakerphone(speakerOn: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEnableSpeakerphone(bool speakerOn);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetEnableSpeakerphone(bool speakerOn);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">不同场景下 SDK 默认的音频路由见[音频路由](https://doc.shengwang.cn/doc/rtc/android/advanced-features/audio-route)。</p>
+            <p props="flutter">不同场景下 SDK 默认的音频路由见[音频路由](https://doc.shengwang.cn/doc/rtc/android/advanced-features/audio-route)。</p>
+            <p props="unity">不同场景下 SDK 默认的音频路由见[音频路由](https://doc.shengwang.cn/doc/rtc/android/advanced-features/audio-route)。</p>
+            <note props="flutter">该方法仅适用于 Android 和 iOS 平台。</note>
+            <note props="unity">该方法仅适用于 Android 和 iOS 平台。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>调用时机</title>
+            <p props="rn">该方法需要在加入频道后调用。</p>
+            <p props="flutter">该方法需要在加入频道后调用。</p>
+            <p props="unity">该方法需要在加入频道后调用。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="flutter rn unity">
+            <title>相关回调</title>
+            <p props="rn">成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRoutingChanged"/> 回调，报告当前的音频路由。</p>
+            <p props="flutter">成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRoutingChanged"/> 回调，报告当前的音频路由。</p>
+            <p props="unity">成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRoutingChanged"/> 回调，报告当前的音频路由。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>speakerOn</pt>
+                    <pd>设置是否开启扬声器播放：
+                        <ul>
+                            <li><xref keyref="true"/>: 开启。音频路由为扬声器。</li>
+                            <li><xref keyref="false"/>: 关闭。音频路由为听筒。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>speakerOn</pt>
+                    <pd>设置是否开启扬声器播放：
+                        <ul>
+                            <li><xref keyref="true"/>: 开启。音频路由为扬声器。</li>
+                            <li><xref keyref="false"/>: 关闭。音频路由为听筒。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>speakerOn</pt>
+                    <pd>设置是否开启扬声器播放：
+                        <ul>
+                            <li><xref keyref="true"/>: 开启。音频路由为扬声器。</li>
+                            <li><xref keyref="false"/>: 关闭。音频路由为听筒。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>返回值</title>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

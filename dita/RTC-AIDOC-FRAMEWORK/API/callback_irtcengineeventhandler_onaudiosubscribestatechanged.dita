@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudiosubscribestatechanged">
+    <title><ph keyref="onAudioSubscribeStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">音频订阅状态发生改变回调。</ph><ph id="shortdesc" props="rn">音频订阅状态发生改变回调。</ph><ph id="shortdesc" props="flutter">音频订阅状态发生改变回调。</ph><ph id="shortdesc" props="unity">音频订阅状态发生改变回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioSubscribeStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onAudioSubscribeStateChanged?(
+    channel: string,
+    uid: number,
+    oldState: StreamSubscribeState,
+    newState: StreamSubscribeState,
+    elapseSinceLastState: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onAudioSubscribeStateChanged?(
+    channel: string,
+    uid: number,
+    oldState: StreamSubscribeState,
+    newState: StreamSubscribeState,
+    elapseSinceLastState: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(
+      String channel,
+      int uid,
+      StreamSubscribeState oldState,
+      StreamSubscribeState newState,
+      int elapseSinceLastState)? onAudioSubscribeStateChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioSubscribeStateChanged(string channel, uint uid, STREAM_SUBSCRIBE_STATE oldState,
+            STREAM_SUBSCRIBE_STATE newState, int elapseSinceLastState)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channel</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>远端用户的 ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>oldState</pt>
+                    <pd>之前的订阅状态，详见 <codeph>StreamSubscribeState</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>newState</pt>
+                    <pd>当前的订阅状态，详见 <codeph>StreamSubscribeState</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>elapseSinceLastState</pt>
+                    <pd>两次状态变化时间间隔（毫秒）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channel</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>远端用户的 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>oldState</pt>
+                    <pd>之前的订阅状态，详见 <codeph>StreamSubscribeState</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>newState</pt>
+                    <pd>当前的订阅状态，详见 <codeph>StreamSubscribeState</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>elapseSinceLastState</pt>
+                    <pd>两次状态变化时间间隔（毫秒）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>engine</pt>
+                    <pd><codeph>RtcEngine</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channel</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>远端用户的 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>oldState</pt>
+                    <pd>之前的订阅状态，详见 <codeph>StreamSubscribeState</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>newState</pt>
+                    <pd>当前的订阅状态，详见 <codeph>StreamSubscribeState</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>elapseSinceLastState</pt>
+                    <pd>两次状态变化时间间隔（毫秒）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channel</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>远端用户的 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>oldState</pt>
+                    <pd>之前的订阅状态，详见 <xref keyref="STREAM_SUBSCRIBE_STATE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>newState</pt>
+                    <pd>当前的订阅状态，详见 <xref keyref="STREAM_SUBSCRIBE_STATE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>elapseSinceLastState</pt>
+                    <pd>两次状态变化时间间隔（毫秒）。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

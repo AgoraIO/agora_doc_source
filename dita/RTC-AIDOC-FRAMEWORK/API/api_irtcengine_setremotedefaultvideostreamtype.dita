@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setremotedefaultvideostreamtype">
+    <title><ph keyref="setRemoteDefaultVideoStreamType"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置默认订阅的视频流类型。</ph><ph id="shortdesc" props="rn">设置默认订阅的视频流类型。</ph><ph id="shortdesc" props="flutter">设置默认订阅的视频流类型。</ph><ph id="shortdesc" props="unity">设置默认订阅的视频流类型。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteDefaultVideoStreamType"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setRemoteDefaultVideoStreamType(streamType: VideoStreamType): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setRemoteDefaultVideoStreamType(streamType: VideoStreamType): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteDefaultVideoStreamType(VideoStreamType streamType);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteDefaultVideoStreamType(VIDEO_STREAM_TYPE streamType);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">如果你既调用了该方法，也调用了 <xref keyref="setRemoteVideoStreamType"/>，则 SDK 以 <xref keyref="setRemoteVideoStreamType"/> 中的设置为准。</note>
+            <note props="rn">如果你既调用了该方法，也调用了 <xref keyref="setRemoteVideoStreamType"/>，则 SDK 以 <xref keyref="setRemoteVideoStreamType"/> 中的设置为准。</note>
+            <note props="flutter">如果你既调用了该方法，也调用了 <xref keyref="setRemoteVideoStreamType"/>，则 SDK 以 <xref keyref="setRemoteVideoStreamType"/> 中的设置为准。</note>
+            <note props="unity">如果你既调用了该方法，也调用了 <xref keyref="setRemoteVideoStreamType"/>，则 SDK 以 <xref keyref="setRemoteVideoStreamType"/> 中的设置为准。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法只能在加入频道前调用。SDK 不支持你在加入频道后修改默认订阅的视频流类型。</p>
+            <p props="rn">该方法只能在加入频道前调用。SDK 不支持你在加入频道后修改默认订阅的视频流类型。</p>
+            <p props="flutter">该方法只能在加入频道前调用。SDK 不支持你在加入频道后修改默认订阅的视频流类型。</p>
+            <p props="unity">该方法只能在加入频道前调用。SDK 不支持你在加入频道后修改默认订阅的视频流类型。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>streamType</pt>
+                    <pd>默认订阅的视频流类型: <codeph>VideoStreamType</codeph>。
+默认订阅的视频流类型：
+                        <ul>
+                            <li>VideoStreamHigh(0)：视频大流，即高分辨率、高码率视频流。</li>
+                            <li>VideoStreamLow(1)：视频小流，即低分辨率、低码率视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>streamType</pt>
+                    <pd>默认订阅的视频流类型: <codeph>VideoStreamType</codeph>。
+默认订阅的视频流类型：
+                        <ul>
+                            <li>VideoStreamHigh(0)：视频大流，即高分辨率、高码率视频流。</li>
+                            <li>VideoStreamLow(1)：视频小流，即低分辨率、低码率视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamType</pt>
+                    <pd>默认订阅的视频流类型: <codeph>VideoStreamType</codeph>。
+默认订阅的视频流类型：
+                        <ul>
+                            <li>videoStreamHigh(0)：视频大流，即高分辨率、高码率视频流。</li>
+                            <li>videoStreamLow(1)：视频小流，即低分辨率、低码率视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>streamType</pt>
+                    <pd>默认订阅的视频流类型: <xref keyref="VIDEO_STREAM_TYPE"/>。
+默认订阅的视频流类型：
+                        <ul>
+                            <li>VIDEO_STREAM_HIGH(0)：视频大流，即高分辨率、高码率视频流。</li>
+                            <li>VIDEO_STREAM_LOW(1)：视频小流，即低分辨率、低码率视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

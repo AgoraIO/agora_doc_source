@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setcloudproxy">
+    <title><ph keyref="setCloudProxy"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置云代理服务。</ph><ph id="shortdesc" props="rn">设置云代理服务。</ph><ph id="shortdesc" props="flutter">设置云代理服务。</ph><ph id="shortdesc" props="unity">设置云代理服务。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setCloudProxy"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setCloudProxy(proxyType: CloudProxyType): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setCloudProxy(proxyType: CloudProxyType): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCloudProxy(CloudProxyType proxyType);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetCloudProxy(CLOUD_PROXY_TYPE proxyType);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">当用户的网络访问受到防火墙限制时，你需要将声网提供的 IP 和端口号添加到防火墙白名单，然后调用该方法开启云代理，并通过 <codeph>proxyType</codeph> 参数设置云代理类型。
+成功连接云代理后，SDK 会触发 <xref keyref="onConnectionStateChanged"/> (ConnectionStateConnecting, ConnectionChangedSettingProxyServer) 回调。
+如果你想关闭已设置的 Force UDP 或 Force TCP 云代理，请调用 `setCloudProxy``(NoneProxy)`。
+如果你想更改已设置的云代理类型，请先调用 `setCloudProxy``(NoneProxy)<codeph>，再调用 </codeph>setCloudProxy<codeph> 并传入你期望的 </codeph>proxyType` 值。</p>
+            <p props="rn">当用户的网络访问受到防火墙限制时，你需要将声网提供的 IP 和端口号添加到防火墙白名单，然后调用该方法开启云代理，并通过 <codeph>proxyType</codeph> 参数设置云代理类型。
+成功连接云代理后，SDK 会触发 <xref keyref="onConnectionStateChanged"/> (ConnectionStateConnecting, ConnectionChangedSettingProxyServer) 回调。
+如果你想关闭已设置的 Force UDP 或 Force TCP 云代理，请调用 `setCloudProxy``(NoneProxy)`。
+如果你想更改已设置的云代理类型，请先调用 `setCloudProxy``(NoneProxy)<codeph>，再调用 </codeph>setCloudProxy<codeph> 并传入你期望的 </codeph>proxyType` 值。</p>
+            <p props="flutter">当用户的网络访问受到防火墙限制时，你需要将声网提供的 IP 和端口号添加到防火墙白名单，然后调用该方法开启云代理，并通过 <codeph>proxyType</codeph> 参数设置云代理类型。
+成功连接云代理后，SDK 会触发 <xref keyref="onConnectionStateChanged"/> (connectionStateConnecting, connectionChangedSettingProxyServer) 回调。
+如果你想关闭已设置的 Force UDP 或 Force TCP 云代理，请调用 `setCloudProxy``(noneProxy)`。
+如果你想更改已设置的云代理类型，请先调用 `setCloudProxy``(noneProxy)<codeph>，再调用 </codeph>setCloudProxy<codeph> 并传入你期望的 </codeph>proxyType` 值。</p>
+            <p props="unity">当用户的网络访问受到防火墙限制时，你需要将声网提供的 IP 和端口号添加到防火墙白名单，然后调用该方法开启云代理，并通过 <codeph>proxyType</codeph> 参数设置云代理类型。
+成功连接云代理后，SDK 会触发 <xref keyref="onConnectionStateChanged"/> (CONNECTION_STATE_CONNECTING, CONNECTION_CHANGED_SETTING_PROXY_SERVER) 回调。
+如果你想关闭已设置的 Force UDP 或 Force TCP 云代理，请调用 `SetCloudProxy``(NONE_PROXY)`。
+如果你想更改已设置的云代理类型，请先调用 `SetCloudProxy``(NONE_PROXY)<codeph>，再调用 </codeph>SetCloudProxy<codeph> 并传入你期望的 </codeph>proxyType` 值。</p>
+            <note props="electron">
+                <ul>
+                    <li>建议你在频道外调用该方法。</li>
+                    <li>如果用户处于内网防火墙环境下，使用 Force UDP 云代理时，旁路推流和跨频道媒体流转发功能不可用。</li>
+                    <li>使用 Force UDP 云代理时，调用<xref keyref="startAudioMixing2"/>方法时无法播放 HTTP 协议的在线音频文件。旁路推流和跨频道媒体流转发功能会使用 TCP 协议的云代理。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>建议你在频道外调用该方法。</li>
+                    <li>如果用户处于内网防火墙环境下，使用 Force UDP 云代理时，旁路推流和跨频道媒体流转发功能不可用。</li>
+                    <li>使用 Force UDP 云代理时，调用<xref keyref="startAudioMixing2"/>方法时无法播放 HTTP 协议的在线音频文件。旁路推流和跨频道媒体流转发功能会使用 TCP 协议的云代理。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>建议你在频道外调用该方法。</li>
+                    <li>如果用户处于内网防火墙环境下，使用 Force UDP 云代理时，旁路推流和跨频道媒体流转发功能不可用。</li>
+                    <li>使用 Force UDP 云代理时，调用<xref keyref="startAudioMixing2"/>方法时无法播放 HTTP 协议的在线音频文件。旁路推流和跨频道媒体流转发功能会使用 TCP 协议的云代理。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>建议你在频道外调用该方法。</li>
+                    <li>如果用户处于内网防火墙环境下，使用 Force UDP 云代理时，旁路推流和跨频道媒体流转发功能不可用。</li>
+                    <li>使用 Force UDP 云代理时，调用<xref keyref="startAudioMixing2"/>方法时无法播放 HTTP 协议的在线音频文件。旁路推流和跨频道媒体流转发功能会使用 TCP 协议的云代理。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>proxyType</pt>
+                    <pd>云代理类型，详见 <codeph>CloudProxyType</codeph>。
+云代理类型。
+                        <ul>
+                            <li>NoneProxy（0）：自动模式。SDK 默认开启该模式。在该模式下，SDK 优先连接 SD-RTN™，如果连接失败，自动切换到 TLS 443。</li>
+                            <li>UdpProxy（1）：UDP 协议的云代理，即 Force UDP 云代理模式。在该模式下，SDK 始终通过 UDP 协议传输数据。</li>
+                            <li>TcpProxy（2）：TCP（加密）协议的云代理，即 Force TCP 云代理模式。在该模式下，SDK 始终通过 TLS 443 传输数据。</li>
+                        </ul><ph>该参数为必填参数，如果你不赋值，SDK 会报错。</ph></pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>proxyType</pt>
+                    <pd>云代理类型，详见 <codeph>CloudProxyType</codeph>。
+云代理类型。
+                        <ul>
+                            <li>NoneProxy（0）：自动模式。SDK 默认开启该模式。在该模式下，SDK 优先连接 SD-RTN™，如果连接失败，自动切换到 TLS 443。</li>
+                            <li>UdpProxy（1）：UDP 协议的云代理，即 Force UDP 云代理模式。在该模式下，SDK 始终通过 UDP 协议传输数据。</li>
+                            <li>TcpProxy（2）：TCP（加密）协议的云代理，即 Force TCP 云代理模式。在该模式下，SDK 始终通过 TLS 443 传输数据。</li>
+                        </ul><ph>该参数为必填参数，如果你不赋值，SDK 会报错。</ph></pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>proxyType</pt>
+                    <pd>云代理类型，详见 <codeph>CloudProxyType</codeph>。
+云代理类型。
+                        <ul>
+                            <li>noneProxy（0）：自动模式。SDK 默认开启该模式。在该模式下，SDK 优先连接 SD-RTN™，如果连接失败，自动切换到 TLS 443。</li>
+                            <li>udpProxy（1）：UDP 协议的云代理，即 Force UDP 云代理模式。在该模式下，SDK 始终通过 UDP 协议传输数据。</li>
+                            <li>tcpProxy（2）：TCP（加密）协议的云代理，即 Force TCP 云代理模式。在该模式下，SDK 始终通过 TLS 443 传输数据。</li>
+                        </ul><ph>该参数为必填参数，如果你不赋值，SDK 会报错。</ph></pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>proxyType</pt>
+                    <pd>云代理类型，详见 <xref keyref="CLOUD_PROXY_TYPE"/>。
+云代理类型。
+                        <ul>
+                            <li>NONE_PROXY（0）：自动模式。SDK 默认开启该模式。在该模式下，SDK 优先连接 SD-RTN™，如果连接失败，自动切换到 TLS 443。</li>
+                            <li>UDP_PROXY（1）：UDP 协议的云代理，即 Force UDP 云代理模式。在该模式下，SDK 始终通过 UDP 协议传输数据。</li>
+                            <li>TCP_PROXY（2）：TCP（加密）协议的云代理，即 Force TCP 云代理模式。在该模式下，SDK 始终通过 TLS 443 传输数据。</li>
+                        </ul><ph>该参数为必填参数，如果你不赋值，SDK 会报错。</ph></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2: 传入的参数无效。</li>
+                            <li>-7: SDK 尚未初始化。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2: 传入的参数无效。</li>
+                            <li>-7: SDK 尚未初始化。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2: 传入的参数无效。</li>
+                            <li>-7: SDK 尚未初始化。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_joinchannel1">
+    <title><ph keyref="joinChannel1"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">加入频道。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="joinChannel1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannel(string token, string channelId, string info = "", uint uid = 0);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">加入频道后，默认情况下用户订阅频道内所有其他用户的音频流和视频流，因此会产生用量并影响计费。如果想取消订阅，可以通过相应的 <codeph>mute</codeph> 方法实现。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>token</pt>
+                    <pd>在服务端生成的用于鉴权的动态密钥。详见[使用 Token 鉴权](https://doc.shengwang.cn/doc/rtc/unity/basic-features/token-authentication)。
+                        <note>
+                            <ul>
+                                <li>（推荐）如果你的项目开启了安全模式，即选择 APP ID + Token 为鉴权机制，则该参数为必填。</li>
+                                <li>如果你的项目仅开启调试模式，即选择 APP ID 为鉴权机制，则无需填入 Token 即可加入频道。成功加入频道 24 小时后会自动退出该频道。</li>
+                                <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见[使用通配 Token](https://doc.shengwang.cn/doc/rtc/unity/best-practice/wildcard-token)。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelId</pt>
+                    <pd>频道名。该参数标识用户进行实时音视频互动的频道。App ID 一致的前提下，填入相同频道名的用户会进入同一个频道进行音视频互动。该参数为长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:
+                        <ul>
+                            <li>26 个小写英文字母 a~z</li>
+                            <li>26 个大写英文字母 A~Z</li>
+                            <li>10 个数字 0~9</li>
+                            <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>info</pt>
+                    <pd>(非必选项) 预留参数。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位有符号整数。取值范围为：-231 到 231-1。该参数为 32 位无符号整数。建议设置范围：1 到 232-1。如果不指定（即设为 0），SDK 会自动分配一个，并在 <xref keyref="onJoinChannelSuccess"/> 回调中返回， 应用层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>joinSuccessBlock</pt>
+                    <pd>成功加入频道回调。<codeph>joinSuccessBlock</codeph> 优先级高于 <xref keyref="onJoinChannelSuccess"/>，两个同时存在时，<xref keyref="onJoinChannelSuccess"/> 会被忽略。需要有 <xref keyref="onJoinChannelSuccess"/> 回调时，请将 <codeph>joinSuccessBlock</codeph> 设置为 <codeph>nil</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

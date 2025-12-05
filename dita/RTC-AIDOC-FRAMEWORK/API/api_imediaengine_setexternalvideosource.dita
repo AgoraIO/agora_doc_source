@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_setexternalvideosource">
+    <title><ph keyref="setExternalVideoSource"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置外部视频源。</ph><ph id="shortdesc" props="rn">设置外部视频源。</ph><ph id="shortdesc" props="flutter">设置外部视频源。</ph><ph id="shortdesc" props="unity">设置外部视频源。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalVideoSource"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setExternalVideoSource(
+    enabled: boolean,
+    useTexture: boolean,
+    sourceType?: ExternalVideoSourceType,
+    encodedVideoOption?: SenderOptions
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setExternalVideoSource(
+    enabled: boolean,
+    useTexture: boolean,
+    sourceType?: ExternalVideoSourceType,
+    encodedVideoOption?: SenderOptions
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setExternalVideoSource(
+    {required bool enabled,
+    required bool useTexture,
+    ExternalVideoSourceType sourceType = ExternalVideoSourceType.videoFrame,
+    SenderOptions encodedVideoOption = const SenderOptions()});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalVideoSource(bool enabled, bool useTexture, EXTERNAL_VIDEO_SOURCE_TYPE sourceType, SenderOptions encodedVideoOption);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">调用该方法启用外部视频源后，你可以调用 <xref keyref="pushVideoFrame"/> 向 SDK 推送外部视频数据。</p>
+            <p props="rn">调用该方法启用外部视频源后，你可以调用 <xref keyref="pushVideoFrame"/> 向 SDK 推送外部视频数据。</p>
+            <p props="flutter">调用该方法启用外部视频源后，你可以调用 <xref keyref="pushVideoFrame"/> 向 SDK 推送外部视频数据。</p>
+            <p props="unity">调用该方法启用外部视频源后，你可以调用 <xref keyref="pushVideoFrame"/> 向 SDK 推送外部视频数据。</p>
+            <note props="electron">不支持在频道内动态切换视频源。如果已调用该方法启用外部视频源并加入频道，若想切换为内部视频源，必须先退出频道，然后调用该方法关闭外部视频源，再重新加入频道。</note>
+            <note props="rn">不支持在频道内动态切换视频源。如果已调用该方法启用外部视频源并加入频道，若想切换为内部视频源，必须先退出频道，然后调用该方法关闭外部视频源，再重新加入频道。</note>
+            <note props="flutter">不支持在频道内动态切换视频源。如果已调用该方法启用外部视频源并加入频道，若想切换为内部视频源，必须先退出频道，然后调用该方法关闭外部视频源，再重新加入频道。</note>
+            <note props="unity">不支持在频道内动态切换视频源。如果已调用该方法启用外部视频源并加入频道，若想切换为内部视频源，必须先退出频道，然后调用该方法关闭外部视频源，再重新加入频道。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在加入频道前调用。</p>
+            <p props="rn">该方法需要在加入频道前调用。</p>
+            <p props="flutter">该方法需要在加入频道前调用。</p>
+            <p props="unity">该方法需要在加入频道前调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>是否启用外部视频源：
+                        <ul>
+                            <li><xref keyref="true"/>: 启用外部视频源。SDK 准备接收外部视频帧。</li>
+                            <li><xref keyref="false"/>:（默认）不启用外部视频源。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>useTexture</pt>
+                    <pd>是否使用 Texture 格式的外部视频帧：
+                        <ul>
+                            <li><xref keyref="true"/>: 使用 Texture 格式的外部视频帧。</li>
+                            <li><xref keyref="false"/>: 不使用 Texture 格式的外部视频帧。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sourceType</pt>
+                    <pd>外部视频帧是否编码，详见 <codeph>ExternalVideoSourceType</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>encodedVideoOption</pt>
+                    <pd>视频编码选项。如果 <codeph>sourceType</codeph> 为 <codeph>EncodedVideoFrame</codeph>，则需要设置该参数。你可以[联系技术支持](https://ticket.shengwang.cn/)了解如何设置该参数。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>是否启用外部视频源：
+                        <ul>
+                            <li><xref keyref="true"/>: 启用外部视频源。SDK 准备接收外部视频帧。</li>
+                            <li><xref keyref="false"/>:（默认）不启用外部视频源。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>useTexture</pt>
+                    <pd>是否使用 Texture 格式的外部视频帧：
+                        <ul>
+                            <li><xref keyref="true"/>: 使用 Texture 格式的外部视频帧。</li>
+                            <li><xref keyref="false"/>: 不使用 Texture 格式的外部视频帧。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceType</pt>
+                    <pd>外部视频帧是否编码，详见 <codeph>ExternalVideoSourceType</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encodedVideoOption</pt>
+                    <pd>视频编码选项。如果 <codeph>sourceType</codeph> 为 <codeph>EncodedVideoFrame</codeph>，则需要设置该参数。你可以[联系技术支持](https://ticket.shengwang.cn/)了解如何设置该参数。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>是否启用外部视频源：
+                        <ul>
+                            <li><xref keyref="true"/>: 启用外部视频源。SDK 准备接收外部视频帧。</li>
+                            <li><xref keyref="false"/>:（默认）不启用外部视频源。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>useTexture</pt>
+                    <pd>是否使用 Texture 格式的外部视频帧：
+                        <ul>
+                            <li><xref keyref="true"/>: 使用 Texture 格式的外部视频帧。</li>
+                            <li><xref keyref="false"/>: 不使用 Texture 格式的外部视频帧。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceType</pt>
+                    <pd>外部视频帧是否编码，详见 <codeph>ExternalVideoSourceType</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encodedVideoOption</pt>
+                    <pd>视频编码选项。如果 <codeph>sourceType</codeph> 为 <codeph>encodedVideoFrame</codeph>，则需要设置该参数。你可以[联系技术支持](https://ticket.shengwang.cn/)了解如何设置该参数。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>是否启用外部视频源：
+                        <ul>
+                            <li><xref keyref="true"/>: 启用外部视频源。SDK 准备接收外部视频帧。</li>
+                            <li><xref keyref="false"/>:（默认）不启用外部视频源。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>useTexture</pt>
+                    <pd>是否使用 Texture 格式的外部视频帧：
+                        <ul>
+                            <li><xref keyref="true"/>: 使用 Texture 格式的外部视频帧。</li>
+                            <li><xref keyref="false"/>: 不使用 Texture 格式的外部视频帧。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sourceType</pt>
+                    <pd>外部视频帧是否编码，详见 <xref keyref="EXTERNAL_VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encodedVideoOption</pt>
+                    <pd>视频编码选项。如果 <codeph>sourceType</codeph> 为 <codeph>ENCODED_VIDEO_FRAME</codeph>，则需要设置该参数。你可以[联系技术支持](https://ticket.shengwang.cn/)了解如何设置该参数。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

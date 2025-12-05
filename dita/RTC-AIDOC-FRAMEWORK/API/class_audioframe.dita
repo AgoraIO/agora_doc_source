@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audioframe">
+    <title><ph keyref="AudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">原始音频数据。</ph><ph id="shortdesc" props="rn">原始音频数据。</ph><ph id="shortdesc" props="flutter">原始音频数据。</ph><ph id="shortdesc" props="unity">原始音频数据。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class AudioFrame {
+  type?: AudioFrameType;
+  samplesPerChannel?: number;
+  bytesPerSample?: BytesPerSample;
+  channels?: number;
+  samplesPerSec?: number;
+  buffer?: Uint8Array;
+  renderTimeMs?: number;
+  avsync_type?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class AudioFrame {
+  type?: AudioFrameType;
+  samplesPerChannel?: number;
+  bytesPerSample?: BytesPerSample;
+  channels?: number;
+  samplesPerSec?: number;
+  buffer?: Uint8Array;
+  renderTimeMs?: number;
+  avsync_type?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class AudioFrame {
+  const AudioFrame(
+      {this.type,
+      this.samplesPerChannel,
+      this.bytesPerSample,
+      this.channels,
+      this.samplesPerSec,
+      this.buffer,
+      this.renderTimeMs,
+      this.avsyncType});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class AudioFrame
+    {
+        public AudioFrame()
+        {
+            type = AUDIO_FRAME_TYPE.FRAME_TYPE_PCM16;
+            samplesPerChannel = 0;
+            bytesPerSample = BYTES_PER_SAMPLE.TWO_BYTES_PER_SAMPLE;
+            channels = 0;
+            samplesPerSec = 0;
+            RawBuffer = new byte[0];
+            renderTimeMs = 0;
+            avsync_type = 0;
+        }
+
+        public AudioFrame(AUDIO_FRAME_TYPE type, int samplesPerChannel, BYTES_PER_SAMPLE bytesPerSample, int channels, int samplesPerSec,
+            byte[] buffer, long renderTimeMs, int avsync_type)
+        {
+            this.type = type;
+            this.samplesPerChannel = samplesPerChannel;
+            this.bytesPerSample = bytesPerSample;
+            this.channels = channels;
+            this.samplesPerSec = samplesPerSec;
+            this.RawBuffer = buffer;
+            this.renderTimeMs = renderTimeMs;
+            this.avsync_type = avsync_type;
+        }
+
+        public AUDIO_FRAME_TYPE type { set; get; }
+        public int samplesPerChannel { set; get; }
+        public BYTES_PER_SAMPLE bytesPerSample { set; get; }
+        public int channels { set; get; }
+        public int samplesPerSec { set; get; }
+        public byte[] RawBuffer { set; get; }
+        public long renderTimeMs { set; get; }
+        public int avsync_type { set; get; }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>音频帧类型，详见 <codeph>AudioFrameType</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>samplesPerChannel</pt>
+                    <pd>每个声道的采样点数。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>bytesPerSample</pt>
+                    <pd>每个采样点的字节数。对于 PCM 来说，一般使用 16 bit，即两个字节。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channelschannelNums</pt>
+                    <pd>声道数量(如果是立体声，数据是交叉的)。
+                        <ul>
+                            <li>1: 单声道</li>
+                            <li>2: 双声道</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>samplesPerSec</pt>
+                    <pd>每声道每秒的采样点数。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>buffer</pt>
+                    <pd>声音数据缓存区（如果是立体声，数据是交叉存储的）。
+缓存区数据大小 <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>renderTimeMs</pt>
+                    <pd>外部音频帧的渲染时间戳。
+你可以使用该时间戳还原音频帧顺序；在有视频的场景中（包含使用外部视频源的场景），该参数可以用于实现音视频同步。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>avsyncType avSyncType avsync_type</pt>
+                    <pd>保留参数。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>音频帧类型，详见 <codeph>AudioFrameType</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>samplesPerChannel</pt>
+                    <pd>每个声道的采样点数。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>bytesPerSample</pt>
+                    <pd>每个采样点的字节数。对于 PCM 来说，一般使用 16 bit，即两个字节。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channelschannelNums</pt>
+                    <pd>声道数量(如果是立体声，数据是交叉的)。
+                        <ul>
+                            <li>1: 单声道</li>
+                            <li>2: 双声道</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>samplesPerSec</pt>
+                    <pd>每声道每秒的采样点数。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>buffer</pt>
+                    <pd>声音数据缓存区（如果是立体声，数据是交叉存储的）。
+缓存区数据大小 <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>renderTimeMs</pt>
+                    <pd>外部音频帧的渲染时间戳。
+你可以使用该时间戳还原音频帧顺序；在有视频的场景中（包含使用外部视频源的场景），该参数可以用于实现音视频同步。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>avsyncType avSyncType avsync_type</pt>
+                    <pd>保留参数。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>音频帧类型，详见 <codeph>AudioFrameType</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>samplesPerChannel</pt>
+                    <pd>每个声道的采样点数。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>bytesPerSample</pt>
+                    <pd>每个采样点的字节数。对于 PCM 来说，一般使用 16 bit，即两个字节。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channelschannelNums</pt>
+                    <pd>声道数量(如果是立体声，数据是交叉的)。
+                        <ul>
+                            <li>1: 单声道</li>
+                            <li>2: 双声道</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>samplesPerSec</pt>
+                    <pd>每声道每秒的采样点数。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>buffer</pt>
+                    <pd>声音数据缓存区（如果是立体声，数据是交叉存储的）。
+缓存区数据大小 <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>renderTimeMs</pt>
+                    <pd>外部音频帧的渲染时间戳。
+你可以使用该时间戳还原音频帧顺序；在有视频的场景中（包含使用外部视频源的场景），该参数可以用于实现音视频同步。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>avsyncType avSyncType avsync_type</pt>
+                    <pd>保留参数。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>音频帧类型，详见 <xref keyref="AUDIO_FRAME_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>samplesPerChannel</pt>
+                    <pd>每个声道的采样点数。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>bytesPerSample</pt>
+                    <pd>每个采样点的字节数。对于 PCM 来说，一般使用 16 bit，即两个字节。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelschannelNums</pt>
+                    <pd>声道数量(如果是立体声，数据是交叉的)。
+                        <ul>
+                            <li>1: 单声道</li>
+                            <li>2: 双声道</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>samplesPerSec</pt>
+                    <pd>每声道每秒的采样点数。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RawBuffer</pt>
+                    <pd>声音数据缓存区（如果是立体声，数据是交叉存储的）。
+缓存区数据大小 <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>renderTimeMs</pt>
+                    <pd>外部音频帧的渲染时间戳。
+你可以使用该时间戳还原音频帧顺序；在有视频的场景中（包含使用外部视频源的场景），该参数可以用于实现音视频同步。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>avsyncType avSyncType avsync_type</pt>
+                    <pd>保留参数。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

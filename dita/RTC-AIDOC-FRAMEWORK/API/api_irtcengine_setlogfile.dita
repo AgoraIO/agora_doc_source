@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlogfile">
+    <title><ph keyref="setLogFile"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置日志文件</ph><ph id="shortdesc" props="rn">设置日志文件</ph><ph id="shortdesc" props="flutter">设置日志文件</ph><ph id="shortdesc" props="unity">设置日志文件</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLogFile"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setLogFile(filePath: string): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setLogFile(filePath: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLogFile(String filePath);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLogFile(string filePath);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该方法已废弃，请在调用  时通过 contextconfig 参数设置日志文件路径。</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该方法已废弃，请在调用  时通过 contextconfig 参数设置日志文件路径。</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该方法已废弃，请在调用  时通过 contextconfig 参数设置日志文件路径。</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该方法已废弃，请在调用  时通过 contextconfig 参数设置日志文件路径。</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">设置 SDK 的输出 log 文件。SDK 运行时产生的所有 log 将写入该文件。</p>
+            <p props="rn">设置 SDK 的输出 log 文件。SDK 运行时产生的所有 log 将写入该文件。</p>
+            <p props="flutter">设置 SDK 的输出 log 文件。SDK 运行时产生的所有 log 将写入该文件。</p>
+            <p props="unity">设置 SDK 的输出 log 文件。SDK 运行时产生的所有 log 将写入该文件。</p>
+            <note props="electron">App 必须保证指定的目录存在而且可写。</note>
+            <note props="rn">App 必须保证指定的目录存在而且可写。</note>
+            <note props="flutter">App 必须保证指定的目录存在而且可写。</note>
+            <note props="unity">App 必须保证指定的目录存在而且可写。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在 <xref keyref="initialize"/> 后立即调用，否则输出日志可能不完整。</p>
+            <p props="rn">该方法需要在 <xref keyref="initialize"/> 后立即调用，否则输出日志可能不完整。</p>
+            <p props="flutter">该方法需要在 <xref keyref="initialize"/> 后立即调用，否则输出日志可能不完整。</p>
+            <p props="unity">该方法需要在 <xref keyref="initialize"/> 后立即调用，否则输出日志可能不完整。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>filePath</pt>
+                    <pd>日志文件的完整路径。该日志文件为 UTF-8 编码。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>filePath</pt>
+                    <pd>日志文件的完整路径。该日志文件为 UTF-8 编码。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>filePath</pt>
+                    <pd>日志文件的完整路径。该日志文件为 UTF-8 编码。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>日志文件的完整路径。该日志文件为 UTF-8 编码。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

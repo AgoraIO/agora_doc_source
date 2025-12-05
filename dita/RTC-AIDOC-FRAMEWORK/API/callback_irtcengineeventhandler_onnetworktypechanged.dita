@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onnetworktypechanged">
+    <title><ph keyref="onNetworkTypeChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">本地网络类型发生改变回调。</ph><ph id="shortdesc" props="rn">本地网络类型发生改变回调。</ph><ph id="shortdesc" props="flutter">本地网络类型发生改变回调。</ph><ph id="shortdesc" props="unity">本地网络类型发生改变回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onNetworkTypeChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onNetworkTypeChanged?(connection: RtcConnection, type: NetworkType): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onNetworkTypeChanged?(connection: RtcConnection, type: NetworkType): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, NetworkType type)?
+      onNetworkTypeChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnNetworkTypeChanged(RtcConnection connection, NETWORK_TYPE type) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">本地网络连接类型发生改变时，SDK 会触发该回调，并在回调中明确当前的网络连接类型。你可以通过该回调获取正在使用的网络类型；当连接中断时，该回调能辨别引起中断的原因是网络切换还是网络条件不好。</p>
+            <p props="rn">本地网络连接类型发生改变时，SDK 会触发该回调，并在回调中明确当前的网络连接类型。你可以通过该回调获取正在使用的网络类型；当连接中断时，该回调能辨别引起中断的原因是网络切换还是网络条件不好。</p>
+            <p props="flutter">本地网络连接类型发生改变时，SDK 会触发该回调，并在回调中明确当前的网络连接类型。你可以通过该回调获取正在使用的网络类型；当连接中断时，该回调能辨别引起中断的原因是网络切换还是网络条件不好。</p>
+            <p props="unity">本地网络连接类型发生改变时，SDK 会触发该回调，并在回调中明确当前的网络连接类型。你可以通过该回调获取正在使用的网络类型；当连接中断时，该回调能辨别引起中断的原因是网络切换还是网络条件不好。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>本地网络连接类型。详见 <codeph>NetworkType</codeph>。
+网络连接类型：
+                        <ul>
+                            <li>NetworkTypeUnknown(-1)：网络连接类型未知。</li>
+                            <li>NetworkTypeDisconnected(0)：网络连接已断开。</li>
+                            <li>NetworkTypeLan(1)：网络类型为 LAN。</li>
+                            <li>NetworkTypeWifi(2)：网络类型为 Wi-Fi（包含热点）。</li>
+                            <li>NetworkTypeMobile2g(3)：网络类型为 2G 移动网络。</li>
+                            <li>NetworkTypeMobile3g(4)：网络类型为 3G 移动网络。</li>
+                            <li>NetworkTypeMobile4g(5)：网络类型为 4G 移动网络。</li>
+                            <li>NetworkTypeMobile5g(6)：网络类型为 5G 移动网络。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>本地网络连接类型。详见 <codeph>NetworkType</codeph>。
+网络连接类型：
+                        <ul>
+                            <li>NetworkTypeUnknown(-1)：网络连接类型未知。</li>
+                            <li>NetworkTypeDisconnected(0)：网络连接已断开。</li>
+                            <li>NetworkTypeLan(1)：网络类型为 LAN。</li>
+                            <li>NetworkTypeWifi(2)：网络类型为 Wi-Fi（包含热点）。</li>
+                            <li>NetworkTypeMobile2g(3)：网络类型为 2G 移动网络。</li>
+                            <li>NetworkTypeMobile3g(4)：网络类型为 3G 移动网络。</li>
+                            <li>NetworkTypeMobile4g(5)：网络类型为 4G 移动网络。</li>
+                            <li>NetworkTypeMobile5g(6)：网络类型为 5G 移动网络。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>engine</pt>
+                    <pd><codeph>RtcEngine</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>本地网络连接类型。详见 <codeph>NetworkType</codeph>。
+网络连接类型：
+                        <ul>
+                            <li>networkTypeUnknown(-1)：网络连接类型未知。</li>
+                            <li>networkTypeDisconnected(0)：网络连接已断开。</li>
+                            <li>networkTypeLan(1)：网络类型为 LAN。</li>
+                            <li>networkTypeWifi(2)：网络类型为 Wi-Fi（包含热点）。</li>
+                            <li>networkTypeMobile2g(3)：网络类型为 2G 移动网络。</li>
+                            <li>networkTypeMobile3g(4)：网络类型为 3G 移动网络。</li>
+                            <li>networkTypeMobile4g(5)：网络类型为 4G 移动网络。</li>
+                            <li>networkTypeMobile5g(6)：网络类型为 5G 移动网络。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>本地网络连接类型。详见 <xref keyref="NETWORK_TYPE"/>。
+网络连接类型：
+                        <ul>
+                            <li>NETWORK_TYPE_UNKNOWN(-1)：网络连接类型未知。</li>
+                            <li>NETWORK_TYPE_DISCONNECTED(0)：网络连接已断开。</li>
+                            <li>NETWORK_TYPE_LAN(1)：网络类型为 LAN。</li>
+                            <li>NETWORK_TYPE_WIFI(2)：网络类型为 Wi-Fi（包含热点）。</li>
+                            <li>NETWORK_TYPE_MOBILE_2G(3)：网络类型为 2G 移动网络。</li>
+                            <li>NETWORK_TYPE_MOBILE_3G(4)：网络类型为 3G 移动网络。</li>
+                            <li>NETWORK_TYPE_MOBILE_4G(5)：网络类型为 4G 移动网络。</li>
+                            <li>NETWORK_TYPE_MOBILE_5G(6)：网络类型为 5G 移动网络。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_joinchannelwithuseraccountex">
+    <title><ph keyref="joinChannelWithUserAccountEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">使用 User Account 和 Token 加入频道，并设置频道媒体选项。</ph><ph id="shortdesc" props="rn">使用 User Account 和 Token 加入频道，并设置频道媒体选项。</ph><ph id="shortdesc" props="flutter">使用 User Account 和 Token 加入频道，并设置频道媒体选项。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="joinChannelWithUserAccountEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract joinChannelWithUserAccountEx(
+    token: string,
+    channelId: string,
+    userAccount: string,
+    options: ChannelMediaOptions
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract joinChannelWithUserAccountEx(
+    token: string,
+    channelId: string,
+    userAccount: string,
+    options: ChannelMediaOptions
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannelWithUserAccountEx(
+    {required String token,
+    required String channelId,
+    required String userAccount,
+    required ChannelMediaOptions options});</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">调用该方法前，如果你未调用 <xref keyref="registerLocalUserAccount"/> 注册一个 User Account，调用该方法加入频道时，SDK 会自动为你创建一个 User Account。先调用 <xref keyref="registerLocalUserAccount"/> 方法注册 Account，再调用此方法加入频道，可以缩短进入频道的时间。
+用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过设置 `options``mediaOptions<codeph> 参数或调用相应的 </codeph>mute` 方法实现。</p>
+            <p props="rn">调用该方法前，如果你未调用 <xref keyref="registerLocalUserAccount"/> 注册一个 User Account，调用该方法加入频道时，SDK 会自动为你创建一个 User Account。先调用 <xref keyref="registerLocalUserAccount"/> 方法注册 Account，再调用此方法加入频道，可以缩短进入频道的时间。
+用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过设置 `options``mediaOptions<codeph> 参数或调用相应的 </codeph>mute` 方法实现。</p>
+            <p props="flutter">调用该方法前，如果你未调用 <xref keyref="registerLocalUserAccount"/> 注册一个 User Account，调用该方法加入频道时，SDK 会自动为你创建一个 User Account。先调用 <xref keyref="registerLocalUserAccount"/> 方法注册 Account，再调用此方法加入频道，可以缩短进入频道的时间。
+用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过设置 `options``mediaOptions<codeph> 参数或调用相应的 </codeph>mute` 方法实现。</p>
+            <note props="electron">为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</note>
+            <note props="rn">为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</note>
+            <note props="flutter">为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>token</pt>
+                    <pd>在服务端生成的用于鉴权的动态密钥。详见[使用 Token 鉴权](https://doc.shengwang.cn/doc/rtc/electron/basic-features/token-authentication)。
+                        <note>
+                            <ul>
+                                <li>（推荐）如果你的项目开启了安全模式，即选择 APP ID + Token 为鉴权机制，则该参数为必填。</li>
+                                <li>如果你的项目仅开启调试模式，即选择 APP ID 为鉴权机制，则无需填入 Token 即可加入频道。成功加入频道 24 小时后会自动退出该频道。</li>
+                                <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见[使用通配 Token](https://doc.shengwang.cn/doc/rtc/electron/best-practice/wildcard-token)。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>userAccount</pt>
+                    <pd>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。 该参数为必填，最大不超过 255 字节，不可填 null。以下为支持的字符集范围（共 89 个字符）：
+                        <ul>
+                            <li>26 个小写英文字母 a-z</li>
+                            <li>26 个大写英文字母 A-Z</li>
+                            <li>10 个数字 0-9</li>
+                            <li>空格</li>
+                            <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>joinSuccessBlock</pt>
+                    <pd>成功加入频道回调。<codeph>joinSuccessBlock</codeph> 优先级高于 <xref keyref="onJoinChannelSuccess"/>，两个同时存在时，<xref keyref="onJoinChannelSuccess"/> 会被忽略。需要有 <xref keyref="onJoinChannelSuccess"/> 回调时，请将 <codeph>joinSuccessBlock</codeph> 设置为 <codeph>nil</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>token</pt>
+                    <pd>在服务端生成的用于鉴权的动态密钥。详见[使用 Token 鉴权](https://doc.shengwang.cn/doc/rtc/rn/basic-features/token-authentication)。
+                        <note>
+                            <ul>
+                                <li>（推荐）如果你的项目开启了安全模式，即选择 APP ID + Token 为鉴权机制，则该参数为必填。</li>
+                                <li>如果你的项目仅开启调试模式，即选择 APP ID 为鉴权机制，则无需填入 Token 即可加入频道。成功加入频道 24 小时后会自动退出该频道。</li>
+                                <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见[使用通配 Token](https://doc.shengwang.cn/doc/rtc/rn/best-practice/wildcard-token)。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>userAccount</pt>
+                    <pd>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。 该参数为必填，最大不超过 255 字节，不可填 null。以下为支持的字符集范围（共 89 个字符）：
+                        <ul>
+                            <li>26 个小写英文字母 a-z</li>
+                            <li>26 个大写英文字母 A-Z</li>
+                            <li>10 个数字 0-9</li>
+                            <li>空格</li>
+                            <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>joinSuccessBlock</pt>
+                    <pd>成功加入频道回调。<codeph>joinSuccessBlock</codeph> 优先级高于 <xref keyref="onJoinChannelSuccess"/>，两个同时存在时，<xref keyref="onJoinChannelSuccess"/> 会被忽略。需要有 <xref keyref="onJoinChannelSuccess"/> 回调时，请将 <codeph>joinSuccessBlock</codeph> 设置为 <codeph>nil</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>token</pt>
+                    <pd>在服务端生成的用于鉴权的动态密钥。详见[使用 Token 鉴权](https://doc.shengwang.cn/doc/rtc/flutter/basic-features/token-authentication)。
+                        <note>
+                            <ul>
+                                <li>（推荐）如果你的项目开启了安全模式，即选择 APP ID + Token 为鉴权机制，则该参数为必填。</li>
+                                <li>如果你的项目仅开启调试模式，即选择 APP ID 为鉴权机制，则无需填入 Token 即可加入频道。成功加入频道 24 小时后会自动退出该频道。</li>
+                                <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见[使用通配 Token](https://doc.shengwang.cn/doc/rtc/flutter/best-practice/wildcard-token)。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>userAccount</pt>
+                    <pd>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。 该参数为必填，最大不超过 255 字节，不可填 
+                        <ul>
+                            <li>26 个小写英文字母 a-z</li>
+                            <li>26 个大写英文字母 A-Z</li>
+                            <li>10 个数字 0-9</li>
+                            <li>空格</li>
+                            <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
+                        </ul><codeph><ph keyref="NULL"/></codeph>。以下为支持的字符集范围（共 89 个字符）：</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>joinSuccessBlock</pt>
+                    <pd>成功加入频道回调。<codeph>joinSuccessBlock</codeph> 优先级高于 <xref keyref="onJoinChannelSuccess"/>，两个同时存在时，<xref keyref="onJoinChannelSuccess"/> 会被忽略。需要有 <xref keyref="onJoinChannelSuccess"/> 回调时，请将 <codeph>joinSuccessBlock</codeph> 设置为 <codeph>nil</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

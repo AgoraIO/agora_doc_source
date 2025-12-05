@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setcamerastabilizationmode">
+    <title><ph keyref="setCameraStabilizationMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">设置摄像头防抖模式。</ph><ph id="shortdesc" props="flutter">设置摄像头防抖模式。</ph><ph id="shortdesc" props="unity">设置摄像头防抖模式。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setCameraStabilizationMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract setCameraStabilizationMode(mode: CameraStabilizationMode): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraStabilizationMode(CameraStabilizationMode mode);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetCameraStabilizationMode(CAMERA_STABILIZATION_MODE mode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.1</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.1</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.1</dd>
+                </dlentry>
+            </dl>
+            <p props="rn">摄像头防抖模式默认关闭，你需要调用该方法开启并设置合适的防抖模式。</p>
+            <p props="flutter">摄像头防抖模式默认关闭，你需要调用该方法开启并设置合适的防抖模式。</p>
+            <p props="unity">摄像头防抖模式默认关闭，你需要调用该方法开启并设置合适的防抖模式。</p>
+            <note props="rn">该方法仅适用于 iOS。</note>
+            <note props="flutter">该方法仅适用于 iOS。</note>
+            <note props="unity">该方法仅适用于 iOS。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>调用时机</title>
+            <p props="rn">该方法必须在摄像头成功开启后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>LocalVideoStreamStateCapturing</codeph> (1) 后。</p>
+            <p props="flutter">该方法必须在摄像头成功开启后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>localVideoStreamStateCapturing</codeph> (1) 后。</p>
+            <p props="unity">该方法必须在摄像头成功开启后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1) 后。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>mode</pt>
+                    <pd>摄像头的防抖模式。详见 <codeph>CameraStabilizationMode</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mode</pt>
+                    <pd>摄像头的防抖模式。详见 <codeph>CameraStabilizationMode</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mode</pt>
+                    <pd>摄像头的防抖模式。详见 <xref keyref="CAMERA_STABILIZATION_MODE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>返回值</title>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

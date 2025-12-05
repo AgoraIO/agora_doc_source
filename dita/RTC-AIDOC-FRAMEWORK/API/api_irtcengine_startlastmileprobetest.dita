@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startlastmileprobetest">
+    <title><ph keyref="startLastmileProbeTest"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">开始通话前网络质量探测。</ph><ph id="shortdesc" props="rn">开始通话前网络质量探测。</ph><ph id="shortdesc" props="flutter">开始通话前网络质量探测。</ph><ph id="shortdesc" props="unity">开始通话前网络质量探测。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startLastmileProbeTest"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startLastmileProbeTest(config: LastmileProbeConfig): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startLastmileProbeTest(config: LastmileProbeConfig): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startLastmileProbeTest(LastmileProbeConfig config);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartLastmileProbeTest(LastmileProbeConfig config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">开始通话前网络质量探测，向用户反馈上下行网络的带宽、丢包、网络抖动和往返时延数据。</p>
+            <p props="rn">开始通话前网络质量探测，向用户反馈上下行网络的带宽、丢包、网络抖动和往返时延数据。</p>
+            <p props="flutter">开始通话前网络质量探测，向用户反馈上下行网络的带宽、丢包、网络抖动和往返时延数据。</p>
+            <p props="unity">开始通话前网络质量探测，向用户反馈上下行网络的带宽、丢包、网络抖动和往返时延数据。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在加入频道前调用，且在收到 <xref keyref="onLastmileQuality"/> 和 <xref keyref="onLastmileProbeResult"/> 回调之前请不要调用其他方法，否则可能会由于 API 操作过于频繁导致此方法无法执行。</p>
+            <p props="rn">该方法需要在加入频道前调用，且在收到 <xref keyref="onLastmileQuality"/> 和 <xref keyref="onLastmileProbeResult"/> 回调之前请不要调用其他方法，否则可能会由于 API 操作过于频繁导致此方法无法执行。</p>
+            <p props="flutter">该方法需要在加入频道前调用，且在收到 <xref keyref="onLastmileQuality"/> 和 <xref keyref="onLastmileProbeResult"/> 回调之前请不要调用其他方法，否则可能会由于 API 操作过于频繁导致此方法无法执行。</p>
+            <p props="unity">该方法需要在加入频道前调用，且在收到 <xref keyref="onLastmileQuality"/> 和 <xref keyref="onLastmileProbeResult"/> 回调之前请不要调用其他方法，否则可能会由于 API 操作过于频繁导致此方法无法执行。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>相关回调</title>
+            <p props="electron">成功调用该方法后，SDK 会依次触发如下 2 个回调：
+                <ul>
+                    <li><xref keyref="onLastmileQuality"/>，视网络情况约 2 秒内返回。该回调通过打分反馈上下行网络质量，更贴近用户的主观感受。</li>
+                    <li><xref keyref="onLastmileProbeResult"/>，视网络情况约 30 秒内返回。该回调通过具体数据反馈上下行网络质量，更加客观。</li>
+                </ul>
+            </p>
+            <p props="rn">成功调用该方法后，SDK 会依次触发如下 2 个回调：
+                <ul>
+                    <li><xref keyref="onLastmileQuality"/>，视网络情况约 2 秒内返回。该回调通过打分反馈上下行网络质量，更贴近用户的主观感受。</li>
+                    <li><xref keyref="onLastmileProbeResult"/>，视网络情况约 30 秒内返回。该回调通过具体数据反馈上下行网络质量，更加客观。</li>
+                </ul>
+            </p>
+            <p props="flutter">成功调用该方法后，SDK 会依次触发如下 2 个回调：
+                <ul>
+                    <li><xref keyref="onLastmileQuality"/>，视网络情况约 2 秒内返回。该回调通过打分反馈上下行网络质量，更贴近用户的主观感受。</li>
+                    <li><xref keyref="onLastmileProbeResult"/>，视网络情况约 30 秒内返回。该回调通过具体数据反馈上下行网络质量，更加客观。</li>
+                </ul>
+            </p>
+            <p props="unity">成功调用该方法后，SDK 会依次触发如下 2 个回调：
+                <ul>
+                    <li><xref keyref="onLastmileQuality"/>，视网络情况约 2 秒内返回。该回调通过打分反馈上下行网络质量，更贴近用户的主观感受。</li>
+                    <li><xref keyref="onLastmileProbeResult"/>，视网络情况约 30 秒内返回。该回调通过具体数据反馈上下行网络质量，更加客观。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>Last mile 网络探测配置，详见 <xref keyref="LastmileProbeConfig"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>config</pt>
+                    <pd>Last mile 网络探测配置，详见 <xref keyref="LastmileProbeConfig"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>Last mile 网络探测配置，详见 <xref keyref="LastmileProbeConfig"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>Last mile 网络探测配置，详见 <xref keyref="LastmileProbeConfig"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

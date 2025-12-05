@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_destroymusicplayer">
+    <title><ph keyref="destroyMusicPlayer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">销毁音乐播放器对象。</ph><ph id="shortdesc" props="rn">销毁音乐播放器对象。</ph><ph id="shortdesc" props="flutter">销毁音乐播放器对象。</ph><ph id="shortdesc" props="unity">销毁音乐播放器对象。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="destroyMusicPlayer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract destroyMusicPlayer(musicPlayer: IMusicPlayer): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract destroyMusicPlayer(musicPlayer: IMusicPlayer): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; destroyMusicPlayer(MusicPlayer musicPlayer);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int DestroyMusicPlayer(IMusicPlayer music_player);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.4.0</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.4.0</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.4.0</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.4.0</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">当你不再需要使用音乐播放器时，你可以调用该方法来销毁音乐播放器对象。销毁之后如果需要重新使用音乐播放器，需要调用 <xref keyref="createMusicPlayer"/> 重新创建一个音乐播放器对象。</p>
+            <p props="rn">当你不再需要使用音乐播放器时，你可以调用该方法来销毁音乐播放器对象。销毁之后如果需要重新使用音乐播放器，需要调用 <xref keyref="createMusicPlayer"/> 重新创建一个音乐播放器对象。</p>
+            <p props="flutter">当你不再需要使用音乐播放器时，你可以调用该方法来销毁音乐播放器对象。销毁之后如果需要重新使用音乐播放器，需要调用 <xref keyref="createMusicPlayer"/> 重新创建一个音乐播放器对象。</p>
+            <p props="unity">当你不再需要使用音乐播放器时，你可以调用该方法来销毁音乐播放器对象。销毁之后如果需要重新使用音乐播放器，需要调用 <xref keyref="createMusicPlayer"/> 重新创建一个音乐播放器对象。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法在加入频道前后均可调用，但请确保在 <xref keyref="IRtcEngine"/> 的 <xref keyref="release_IMusicContentCenter"/> 方法前调用。</p>
+            <p props="rn">该方法在加入频道前后均可调用，但请确保在 <xref keyref="IRtcEngine"/> 的 <xref keyref="release_IMusicContentCenter"/> 方法前调用。</p>
+            <p props="flutter">该方法在加入频道前后均可调用，但请确保在 <codeph>RtcEngine</codeph> 的 <xref keyref="release_IMusicContentCenter"/> 方法前调用。</p>
+            <p props="unity">该方法在加入频道前后均可调用，但请确保在 <xref keyref="IRtcEngine"/> 的 <xref keyref="dispose_IMediaPlayer"/> 方法前调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>musicPlayer</pt>
+                    <pd><xref keyref="IMusicPlayer"/> 对象。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>musicPlayer</pt>
+                    <pd><xref keyref="IMusicPlayer"/> 对象。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>musicPlayer</pt>
+                    <pd><codeph>MusicPlayer</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>music_player</pt>
+                    <pd><xref keyref="IMusicPlayer"/> 对象。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_switchcamera">
+    <title><ph keyref="switchCamera"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">切换前置/后置摄像头。</ph><ph id="shortdesc" props="flutter">切换前置/后置摄像头。</ph><ph id="shortdesc" props="unity">切换前置/后置摄像头。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="switchCamera"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract switchCamera(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; switchCamera();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SwitchCamera();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">你可以调用该方法在 App 运行期间基于可用摄像头的实际情况来动态切换摄像头，而无需重启视频流或重新配置视频源。</p>
+            <p props="flutter">你可以调用该方法在 App 运行期间基于可用摄像头的实际情况来动态切换摄像头，而无需重启视频流或重新配置视频源。</p>
+            <p props="unity">你可以调用该方法在 App 运行期间基于可用摄像头的实际情况来动态切换摄像头，而无需重启视频流或重新配置视频源。</p>
+            <note props="rn">该方法仅会对第一路摄像头采集的视频流进行摄像头切换操作，即调用 <xref keyref="startCameraCapture"/> 时设置为 `VideoSourceCameraPrimary``VideoSourceCamera` (0) 的视频源。</note>
+            <note props="flutter">该方法仅适用于 Android 和 iOS。
+该方法仅会对第一路摄像头采集的视频流进行摄像头切换操作，即调用 <xref keyref="startCameraCapture"/> 时设置为 `videoSourceCameraPrimary``videoSourceCamera` (0) 的视频源。</note>
+            <note props="unity">该方法仅适用于 Android 和 iOS。
+该方法仅会对第一路摄像头采集的视频流进行摄像头切换操作，即调用 <xref keyref="startCameraCapture"/> 时设置为 `VIDEO_SOURCE_CAMERA_PRIMARY``VIDEO_SOURCE_CAMERA` (0) 的视频源。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>调用时机</title>
+            <p props="rn">该方法必须在摄像头成功开启后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>LocalVideoStreamStateCapturing</codeph> (1) 后。</p>
+            <p props="flutter">该方法必须在摄像头成功开启后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>localVideoStreamStateCapturing</codeph> (1) 后。</p>
+            <p props="unity">该方法必须在摄像头成功开启后调用，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1) 后。</p>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>返回值</title>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

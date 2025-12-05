@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_musiccacheinfo">
+    <title><ph keyref="MusicCacheInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">缓存的音乐资源的相关信息。</ph><ph id="shortdesc" props="rn">缓存的音乐资源的相关信息。</ph><ph id="shortdesc" props="flutter">缓存的音乐资源的相关信息。</ph><ph id="shortdesc" props="unity">缓存的音乐资源的相关信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class MusicCacheInfo {
+  songCode?: number;
+  status?: MusicCacheStatusType;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class MusicCacheInfo {
+  songCode?: number;
+  status?: MusicCacheStatusType;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class MusicCacheInfo {
+  const MusicCacheInfo({this.songCode, this.status});
+
+  @JsonKey(name: 'songCode')
+  final int? songCode;
+
+  @JsonKey(name: 'status')
+  final MusicCacheStatusType? status;
+
+  factory MusicCacheInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$MusicCacheInfoFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$MusicCacheInfoToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class MusicCacheInfo
+    {
+        public Int64 songCode;
+        public MUSIC_CACHE_STATUS_TYPE status;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.0</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.0</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.0</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.0</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识音乐资源。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>status</pt>
+                    <pd>音乐资源的缓存状态，详见 <codeph>MusicCacheStatusType</codeph>。
+音乐资源的缓存状态：
+                        <ul>
+                            <li>MusicCacheStatusTypeCached(0)：音乐资源已缓存。</li>
+                            <li>MusicCacheStatusTypeCaching(1)：音乐资源正在缓存。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识音乐资源。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>status</pt>
+                    <pd>音乐资源的缓存状态，详见 <codeph>MusicCacheStatusType</codeph>。
+音乐资源的缓存状态：
+                        <ul>
+                            <li>MusicCacheStatusTypeCached(0)：音乐资源已缓存。</li>
+                            <li>MusicCacheStatusTypeCaching(1)：音乐资源正在缓存。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识音乐资源。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>status</pt>
+                    <pd>音乐资源的缓存状态，详见 <codeph>MusicCacheStatusType</codeph>。
+音乐资源的缓存状态：
+                        <ul>
+                            <li>musicCacheStatusTypeCached(0)：音乐资源已缓存。</li>
+                            <li>musicCacheStatusTypeCaching(1)：音乐资源正在缓存。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识音乐资源。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>status</pt>
+                    <pd>音乐资源的缓存状态，详见 <xref keyref="MUSIC_CACHE_STATUS_TYPE"/>。
+音乐资源的缓存状态：
+                        <ul>
+                            <li>MUSIC_CACHE_STATUS_TYPE_CACHED(0)：音乐资源已缓存。</li>
+                            <li>MUSIC_CACHE_STATUS_TYPE_CACHING(1)：音乐资源正在缓存。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
