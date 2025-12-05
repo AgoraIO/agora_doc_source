@@ -13,7 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="ios" outputclass="language-objectivec">- (BOOL)setAudioFrameDelegate:(id&lt;AgoraRtcMediaPlayerAudioFrameDelegate&gt; _Nullable)delegate NS_SWIFT_NAME(setAudioFrameDelegate(_:));</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (BOOL)setAudioFrameDelegate:(id&lt;AgoraAudioFrameDelegate&gt; _Nullable)delegate NS_SWIFT_NAME(setAudioFrameDelegate(_:));</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int registerAudioFrameObserver(IAudioFrameObserver observer);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (BOOL)setAudioFrameDelegate:(id&lt;AgoraAudioFrameDelegate&gt; _Nullable)delegate NS_SWIFT_NAME(setAudioFrameDelegate(_:));</codeblock>
             </p>
@@ -38,7 +38,7 @@
             <parml>
                 <plentry props="ios">
                     <pt>delegate</pt>
-                    <pd>观察者对象，传入 <xref keyref="NULL"/> 表示取消注册。详见 <xref keyref="IAudioPcmFrameSink"/>。</pd>
+                    <pd>观察者实例。将该参数设为 <xref keyref="NULL"/> 可释放该实例。声网建议在收到 <xref keyref="onLeaveChannel"/> 回调后调用此方法释放音频观察者对象。详见 <xref keyref="IAudioFrameObserver"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>observer</pt>

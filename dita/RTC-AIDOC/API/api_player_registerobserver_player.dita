@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_player_registerobserver_player">
     <title><ph keyref="RegisterObserver_Player"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">注册一个 <xref keyref="PlayerObserver"/> 播放器观察者对象。</ph><ph id="shortdesc" props="android">注册一个观察者，用于管理 <xref keyref="Rte"/> 的内部资源。</ph><ph id="shortdesc" props="ios">注册一个播放器观察者对象。</ph><ph id="shortdesc" props="mac">注册一个播放器观察者对象。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">注册一个 <xref keyref="PlayerObserver"/> 播放器观察者对象。</ph><ph id="shortdesc" props="android">注册播放器的观察者对象。</ph><ph id="shortdesc" props="ios">注册一个播放器观察者对象。</ph><ph id="shortdesc" props="mac">注册一个播放器观察者对象。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -39,13 +39,14 @@
                 </dlentry>
             </dl>
             <p props="cpp">在调用该方法前，你需要实现一个继承自 <xref keyref="PlayerObserver"/> 的接口类。</p>
+            <p props="android">在调用此方法之前，你需要实现一个继承自 <xref keyref="PlayerObserver"/> 的接口类。</p>
             <p props="ios">在调用此方法之前，你需要实现一个继承自 <xref keyref="PlayerObserver"/> 的接口类。你必须在调用 <xref keyref="Player_Player"/> 之后再调用此方法。</p>
             <p props="mac">在调用此方法之前，你需要实现一个继承自 <xref keyref="PlayerObserver"/> 的接口类。你必须在调用 <xref keyref="Player_Player"/> 之后再调用此方法。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>调用时机</title>
             <p props="cpp">该方法必须在调用 <xref keyref="Player_Player"/> 之后执行。</p>
-            <p props="android">你必须在调用 <xref keyref="InitMediaEngine"/> 之前调用此方法。</p>
+            <p props="android">该方法必须在调用 <xref keyref="Player_Player"/> 之后执行。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
