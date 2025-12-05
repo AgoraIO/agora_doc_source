@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_setspatialaudioparams">
     <title><ph keyref="setSpatialAudioParams"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用或关闭媒体播放器的空间音效。</ph><ph id="shortdesc" props="android">启用或关闭媒体播放器的空间音效。</ph><ph id="shortdesc" props="ios">启用或关闭媒体播放器的空间音效。</ph><ph id="shortdesc" props="mac">启用或关闭媒体播放器的空间音效。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用或关闭媒体播放器的空间音效。</ph><ph id="shortdesc" props="ios">启用或关闭媒体播放器的空间音效。</ph><ph id="shortdesc" props="android">启用或关闭媒体播放器的空间音效。</ph><ph id="shortdesc" props="mac">启用或关闭媒体播放器的空间音效。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,15 +14,15 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setSpatialAudioParams(const SpatialAudioParams&amp; params) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">int setSpatialAudioParams(SpatialAudioParams params);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setSpatialAudioParams:(AgoraSpatialAudioParams* _Nonnull)params NS_SWIFT_NAME(setSpatialAudioParams(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">int setSpatialAudioParams(SpatialAudioParams params);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setSpatialAudioParams:(AgoraSpatialAudioParams* _Nonnull)params NS_SWIFT_NAME(setSpatialAudioParams(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用该方法成功设置媒体播放器的空间音效参数后，SDK 会为媒体播放器启用空间音效，本地用户可以听到具有空间感的媒体资源。若需关闭空间音效，请将 <codeph>params</codeph> 设置为 <xref keyref="NULL"/>。</p>
-            <p props="android">若需关闭空间音效，请将 <codeph>params</codeph> 参数设置为 <codeph>null</codeph>。</p>
             <p props="ios">成功设置媒体播放器的空间音效参数后，SDK 会为媒体播放器启用空间音效。若需关闭媒体播放器的空间音效，请将 <codeph>params</codeph> 参数设为 <xref keyref="NULL"/>。</p>
+            <p props="android">若需关闭空间音效，请将 <codeph>params</codeph> 参数设置为 <codeph>null</codeph>。</p>
             <p props="mac">成功设置媒体播放器的空间音效参数后，SDK 会为媒体播放器启用空间音效。若需关闭媒体播放器的空间音效，请将 <codeph>params</codeph> 参数设为 <xref keyref="NULL"/>。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -32,13 +32,13 @@
                     <pt>params</pt>
                     <pd>媒体播放器的空间音效参数。详见 <xref keyref="SpatialAudioParams"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>params</pt>
-                    <pd>媒体播放器的空间音效参数，详见 <xref keyref="SpatialAudioParams"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>params</pt>
                     <pd>媒体播放器的空间音效参数。详见 <xref keyref="SpatialAudioParams"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>params</pt>
+                    <pd>媒体播放器的空间音效参数，详见 <xref keyref="SpatialAudioParams"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>params</pt>
@@ -54,16 +54,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

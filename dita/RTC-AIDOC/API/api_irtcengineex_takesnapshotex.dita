@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_takesnapshotex">
     <title><ph keyref="takeSnapshotEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">使用连接 ID 对指定用户的视频流进行截图。</ph><ph id="shortdesc" props="android">使用连接 ID 对视频流进行截图。</ph><ph id="shortdesc" props="ios">使用连接 ID 对视频流进行截图。</ph><ph id="shortdesc" props="mac">使用连接 ID 对视频流进行截图。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">使用连接 ID 对指定用户的视频流进行截图。</ph><ph id="shortdesc" props="ios">使用连接 ID 对视频流进行截图。</ph><ph id="shortdesc" props="android">使用连接 ID 对视频流进行截图。</ph><ph id="shortdesc" props="mac">使用连接 ID 对视频流进行截图。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int takeSnapshotEx(const RtcConnection&amp; connection, uid_t uid, const char* filePath) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int takeSnapshotEx(RtcConnection connection, int uid, String filePath);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (NSInteger)takeSnapshotEx:(AgoraRtcConnection * _Nonnull)connection uid:(NSInteger)uid filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(takeSnapshotEx(_:uid:filePath:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int takeSnapshotEx(RtcConnection connection, int uid, String filePath);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (NSInteger)takeSnapshotEx:(AgoraRtcConnection * _Nonnull)connection uid:(NSInteger)uid filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(takeSnapshotEx(_:uid:filePath:));</codeblock>
             </p>
         </section>
@@ -23,8 +23,8 @@
             <p props="cpp">该方法为异步调用，调用该方法时 SDK 尚未完成截图操作。用于本地视频截图时，会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。如果用户的视频已被预处理（如添加水印或美颜），截图结果中会包含这些预处理效果。</p>
             <p props="ios">该方法对指定用户的视频流进行截图，生成 JPG 图像并保存到指定路径。该方法为异步调用，方法返回时 SDK 尚未完成截图操作。当用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。如果用户的视频已进行预处理，例如添加水印或美颜，截图结果中会包含这些预处理效果。</p>
             <p props="mac">该方法对指定用户的视频流进行截图，生成 JPG 图像并保存到指定路径。该方法为异步调用，方法返回时 SDK 尚未完成截图操作。当用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。如果用户的视频已进行预处理，例如添加水印或美颜，截图结果中会包含这些预处理效果。</p>
-            <note props="android"><codeph>takeSnapshotEx</codeph> 为异步调用，调用该方法时 SDK 尚未完成截图操作。用于本地视频截图时，会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。如果用户的视频已进行预处理（如添加水印或美颜），截图结果中会包含这些预处理效果。</note>
             <note props="ios">该方法为异步调用，方法返回时 SDK 尚未完成截图操作。当用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。如果用户的视频已进行预处理，例如添加水印或美颜，截图结果中会包含这些预处理效果。</note>
+            <note props="android"><codeph>takeSnapshotEx</codeph> 为异步调用，调用该方法时 SDK 尚未完成截图操作。用于本地视频截图时，会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。如果用户的视频已进行预处理（如添加水印或美颜），截图结果中会包含这些预处理效果。</note>
             <note props="mac">该方法为异步调用，方法返回时 SDK 尚未完成截图操作。当用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。如果用户的视频已进行预处理，例如添加水印或美颜，截图结果中会包含这些预处理效果。</note>
         </section>
         <section id="scenario" deliveryTarget="details">
@@ -34,15 +34,15 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">请在调用 <xref keyref="joinChannelEx"/> 后调用该方法。</p>
-            <p props="android">请在调用 <xref keyref="joinChannelEx"/> 后调用该方法。</p>
             <p props="ios">请在调用 <xref keyref="joinChannelEx"/> 之后调用该方法。</p>
+            <p props="android">请在调用 <xref keyref="joinChannelEx"/> 后调用该方法。</p>
             <p props="mac">请在调用 <xref keyref="joinChannelEx"/> 之后调用该方法。</p>
         </section>
         <section id="related" deliveryTarget="details" props="android cpp ios mac">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
-            <p props="android">调用该方法成功后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
             <p props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
+            <p props="android">调用该方法成功后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
             <p props="mac">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -68,6 +68,22 @@
                         </ul>
                     </pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>用户 ID。如果要对本地用户的视频进行截图，请将 <codeph>uid</codeph> 设置为 0。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>filePath</pt>
+                    <pd>截图的本地路径（包含文件扩展名）。例如：
+                        <ul>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                            <li>macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
+                        </ul><ph>请确保指定路径存在且可写。</ph></pd>
+                </plentry>
                 <plentry props="android">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
@@ -84,22 +100,6 @@
                             <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph></li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>uid</pt>
-                    <pd>用户 ID。如果要对本地用户的视频进行截图，请将 <codeph>uid</codeph> 设置为 0。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>filePath</pt>
-                    <pd>截图的本地路径（包含文件扩展名）。例如：
-                        <ul>
-                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
-                            <li>macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
-                        </ul><ph>请确保指定路径存在且可写。</ph></pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>connection</pt>
@@ -127,16 +127,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

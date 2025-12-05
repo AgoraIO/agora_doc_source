@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setremotevoiceposition">
     <title><ph keyref="setRemoteVoicePosition"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置远端用户语音在水平面上的位置和音量。</ph><ph id="shortdesc" props="android">设置远端用户语音的二维位置和音量。</ph><ph id="shortdesc" props="ios">设置远端用户语音的二维位置和音量。</ph><ph id="shortdesc" props="mac">设置远端用户语音的二维位置和音量。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置远端用户语音在水平面上的位置和音量。</ph><ph id="shortdesc" props="ios">设置远端用户语音的二维位置和音量。</ph><ph id="shortdesc" props="android">设置远端用户语音的二维位置和音量。</ph><ph id="shortdesc" props="mac">设置远端用户语音的二维位置和音量。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,15 +14,15 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteVoicePosition(uid_t uid, double pan, double gain) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int setRemoteVoicePosition(int uid, double pan, double gain);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setRemoteVoicePosition:(NSUInteger)uid pan:(double)pan gain:(double)gain NS_SWIFT_NAME(setRemoteVoicePosition(_:pan:gain:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setRemoteVoicePosition(int uid, double pan, double gain);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setRemoteVoicePosition:(NSUInteger)uid pan:(double)pan gain:(double)gain NS_SWIFT_NAME(setRemoteVoicePosition(_:pan:gain:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该方法设置远端用户的二维位置和音量，帮助你更清晰地听到并识别远端用户的位置。通过左右声道的声音差异，你可以实时感知远端用户的方位，从而营造空间感。该方法适用于大型多人在线游戏，例如大逃杀类游戏。</p>
-            <p props="android">该方法通过左右声道的声音差异设置远端用户的语音位置和音量，使本地用户可以更容易地识别远端用户的位置，从而营造空间感。该方法适用于大型多人在线游戏，例如大逃杀类游戏。</p>
             <p props="ios">该方法设置远端用户的二维位置和音量，使你可以更容易地听到并识别远端用户的位置。通过左右声道的声音差异，你可以实时追踪远端用户的位置，从而营造空间感。该方法适用于大型多人在线游戏，例如大逃杀类游戏。</p>
+            <p props="android">该方法通过左右声道的声音差异设置远端用户的语音位置和音量，使本地用户可以更容易地识别远端用户的位置，从而营造空间感。该方法适用于大型多人在线游戏，例如大逃杀类游戏。</p>
             <p props="mac">该方法设置远端用户的二维位置和音量，使你可以更容易地听到并识别远端用户的位置。通过左右声道的声音差异，你可以实时追踪远端用户的位置，从而营造空间感。该方法适用于大型多人在线游戏，例如大逃杀类游戏。</p>
             <note props="cpp">
                 <ul>
@@ -31,17 +31,17 @@
                     <li>请在加入频道后调用该方法。</li>
                 </ul>
             </note>
-            <note props="android">
-                <ul>
-                    <li>要使该方法生效，请在加入频道前调用 <xref keyref="enableSoundPositionIndication"/> 方法为远端用户开启立体声声像。</li>
-                    <li>为获得最佳语音定位效果，建议使用有线耳机。</li>
-                    <li>请在加入频道后调用该方法。</li>
-                </ul>
-            </note>
             <note props="ios">
                 <ul>
                     <li>要使该方法生效，请在加入频道前调用 <xref keyref="enableSoundPositionIndication"/> 方法为远端用户开启立体声声道。</li>
                     <li>为获得最佳语音定位效果，声网建议你使用有线耳机。</li>
+                    <li>请在加入频道后调用该方法。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>要使该方法生效，请在加入频道前调用 <xref keyref="enableSoundPositionIndication"/> 方法为远端用户开启立体声声像。</li>
+                    <li>为获得最佳语音定位效果，建议使用有线耳机。</li>
                     <li>请在加入频道后调用该方法。</li>
                 </ul>
             </note>
@@ -74,24 +74,6 @@
                     <pt>gain</pt>
                     <pd>远端用户的音量，取值范围为 0.0 到 100.0。默认值为 100.0，表示远端用户的原始音量。数值越小，音量越低。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>uid</pt>
-                    <pd>远端用户 ID。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>pan</pt>
-                    <pd>远端用户的语音位置，取值范围为 -1.0 到 1.0：
-                        <ul>
-                            <li>0.0：（默认）远端语音来自正前方。</li>
-                            <li>-1.0：远端语音来自左侧。</li>
-                            <li>1.0：远端语音来自右侧。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>gain</pt>
-                    <pd>远端用户的音量，取值范围为 0.0 到 100.0。默认值为 100.0（远端用户的原始音量）。数值越小，音量越低。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>uid</pt>
                     <pd>远端用户的用户 ID。</pd>
@@ -109,6 +91,24 @@
                 <plentry props="ios">
                     <pt>gain</pt>
                     <pd>远端用户的音量。取值范围为 0.0 到 100.0。默认值为 100.0（远端用户的原始音量）。数值越小，音量越低。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>pan</pt>
+                    <pd>远端用户的语音位置，取值范围为 -1.0 到 1.0：
+                        <ul>
+                            <li>0.0：（默认）远端语音来自正前方。</li>
+                            <li>-1.0：远端语音来自左侧。</li>
+                            <li>1.0：远端语音来自右侧。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>gain</pt>
+                    <pd>远端用户的音量，取值范围为 0.0 到 100.0。默认值为 100.0（远端用户的原始音量）。数值越小，音量越低。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>uid</pt>
@@ -138,16 +138,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

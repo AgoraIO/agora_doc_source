@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getfaceshapeareaoptions">
     <title><ph keyref="getFaceShapeAreaOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取美型区域选项。</ph><ph id="shortdesc" props="android">获取美颜区域的当前设置。</ph><ph id="shortdesc" props="ios">获取美型区域的选项。</ph><ph id="shortdesc" props="mac">获取美型区域的选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取美型区域选项。</ph><ph id="shortdesc" props="ios">获取美型区域的选项。</ph><ph id="shortdesc" props="android">获取美颜区域的当前设置。</ph><ph id="shortdesc" props="mac">获取美型区域的选项。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int getFaceShapeAreaOptions(agora::rtc::FaceShapeAreaOptions::FACE_SHAPE_AREA shapeArea, FaceShapeAreaOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract FaceShapeAreaOptions getFaceShapeAreaOptions(int shapeArea, Constants.MediaSourceType sourceType);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (AgoraFaceShapeAreaOptions * _Nullable)getFaceShapeAreaOptions:(AgoraFaceShapeArea) area sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(getFaceShapeAreaOptions(_:sourceType:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract FaceShapeAreaOptions getFaceShapeAreaOptions(int shapeArea, Constants.MediaSourceType sourceType);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (AgoraFaceShapeAreaOptions * _Nullable)getFaceShapeAreaOptions:(AgoraFaceShapeArea) area sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(getFaceShapeAreaOptions(_:sourceType:));</codeblock>
             </p>
         </section>
@@ -27,8 +27,8 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">在调用 <xref keyref="enableVideo"/> 方法之后调用该方法。</p>
-            <p props="android">在调用 <xref keyref="enableVideo"/> 之后调用此方法。</p>
             <p props="ios">在调用 <xref keyref="enableVideo"/> 之后调用此方法。</p>
+            <p props="android">在调用 <xref keyref="enableVideo"/> 之后调用此方法。</p>
             <p props="mac">在调用 <xref keyref="enableVideo"/> 之后调用此方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -51,6 +51,19 @@
                                 <li>如果使用自定义视频源，将该参数设置为 <codeph>CUSTOM_VIDEO_SOURCE</codeph>。</li>
                             </ul>
                         </note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>area</pt>
+                    <pd>美型增强区域。详见 <xref keyref="FACE_SHAPE_AREA"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sourceType</pt>
+                    <pd>应用滤镜特效的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
+                        <ul>
+                            <li>如果使用摄像头采集本地视频，使用默认值 <codeph>AgoraMediaSourceTypePrimaryCamera</codeph>。</li>
+                            <li>如果使用自定义视频源，将该参数设置为 <codeph>AgoraMediaSourceTypeCustomVideo</codeph>。</li>
+                        </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
@@ -100,19 +113,6 @@
                         </note>
                     </pd>
                 </plentry>
-                <plentry props="ios">
-                    <pt>area</pt>
-                    <pd>美型增强区域。详见 <xref keyref="FACE_SHAPE_AREA"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>sourceType</pt>
-                    <pd>应用滤镜特效的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
-                        <ul>
-                            <li>如果使用摄像头采集本地视频，使用默认值 <codeph>AgoraMediaSourceTypePrimaryCamera</codeph>。</li>
-                            <li>如果使用自定义视频源，将该参数设置为 <codeph>AgoraMediaSourceTypeCustomVideo</codeph>。</li>
-                        </ul>
-                    </pd>
-                </plentry>
                 <plentry props="mac">
                     <pt>area</pt>
                     <pd>美型增强区域。详见 <xref keyref="FACE_SHAPE_AREA"/>。</pd>
@@ -136,14 +136,14 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
+            <p props="ios">方法调用成功，返回 <xref keyref="FaceShapeAreaOptions"/> 对象。
+方法调用失败，返回 <xref keyref="NULL"/>。</p>
             <p props="android">
                 <ul>
                     <li>方法调用成功，返回 <xref keyref="FaceShapeAreaOptions"/> 实例。</li>
                     <li>方法调用失败，返回 <codeph>null</codeph>。</li>
                 </ul>
             </p>
-            <p props="ios">方法调用成功，返回 <xref keyref="FaceShapeAreaOptions"/> 对象。
-方法调用失败，返回 <xref keyref="NULL"/>。</p>
             <p props="mac">方法调用成功，返回 <xref keyref="FaceShapeAreaOptions"/> 对象。
 方法调用失败，返回 <xref keyref="NULL"/>。</p>
         </section>

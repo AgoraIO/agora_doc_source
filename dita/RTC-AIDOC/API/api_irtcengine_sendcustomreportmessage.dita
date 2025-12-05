@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_sendcustomreportmessage">
     <title><ph keyref="sendCustomReportMessage"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">上报自定义消息。</ph><ph id="shortdesc" props="android">上报自定义消息。</ph><ph id="shortdesc" props="ios">上报自定义消息。</ph><ph id="shortdesc" props="mac">上报自定义消息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">上报自定义消息。</ph><ph id="shortdesc" props="ios">上报自定义消息。</ph><ph id="shortdesc" props="android">上报自定义消息。</ph><ph id="shortdesc" props="mac">上报自定义消息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,12 +14,12 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int sendCustomReportMessage(const char* id, const char* category, const char* event, const char* label, int value) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int sendCustomReportMessage(String id, String category, String event, String label, int value);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)sendCustomReportMessage:(NSString * _Nullable)messageId
                       category:(NSString * _Nullable)category
                          event:(NSString * _Nullable)event
                          label:(NSString * _Nullable)label
                          value:(NSInteger)value NS_SWIFT_NAME(sendCustomReportMessage(_:category:event:label:value:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int sendCustomReportMessage(String id, String category, String event, String label, int value);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)sendCustomReportMessage:(NSString * _Nullable)messageId
                       category:(NSString * _Nullable)category
                          event:(NSString * _Nullable)event
@@ -29,8 +29,8 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该功能处于测试阶段，支持上报和分析自定义消息，当前提供免费试用。在测试版本中，最多支持在 6 秒内上报 10 条消息，每条消息不超过 256 字节，每个字符串不超过 100 字节。如需试用该功能，请联系销售并与我们讨论自定义消息的格式。</p>
-            <p props="android">该功能目前处于测试阶段，提供免费试用。在测试版本中，最多支持在 6 秒内上报 10 条消息，每条消息不超过 256 字节，每个字符串不超过 100 字节。如需试用该功能，请[联系技术支持](https://ticket.shengwang.cn/)，并与我们讨论自定义消息的格式。</p>
             <p props="ios">声网支持你上报和分析自定义消息。该功能目前处于测试阶段，提供免费试用。在测试版本中，最多支持在 6 秒内上报 10 条消息，每条消息不超过 256 字节，每个字符串不超过 100 字节。如需试用该功能，请[联系技术支持](https://ticket.shengwang.cn/)，并与我们讨论自定义消息的格式。</p>
+            <p props="android">该功能目前处于测试阶段，提供免费试用。在测试版本中，最多支持在 6 秒内上报 10 条消息，每条消息不超过 256 字节，每个字符串不超过 100 字节。如需试用该功能，请[联系技术支持](https://ticket.shengwang.cn/)，并与我们讨论自定义消息的格式。</p>
             <p props="mac">声网支持你上报和分析自定义消息。该功能目前处于测试阶段，提供免费试用。在测试版本中，最多支持在 6 秒内上报 10 条消息，每条消息不超过 256 字节，每个字符串不超过 100 字节。如需试用该功能，请[联系技术支持](https://ticket.shengwang.cn/)，并与我们讨论自定义消息的格式。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -56,26 +56,6 @@
                     <pt>value</pt>
                     <pd>消息的数值。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>id</pt>
-                    <pd>自定义消息的 ID。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>category</pt>
-                    <pd>自定义消息的类别。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>event</pt>
-                    <pd>自定义消息的事件名称。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>label</pt>
-                    <pd>自定义消息的标签。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>value</pt>
-                    <pd>自定义消息的数值。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>messageId</pt>
                     <pd>消息 ID。</pd>
@@ -95,6 +75,26 @@
                 <plentry props="ios">
                     <pt>value</pt>
                     <pd>消息的数值。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>id</pt>
+                    <pd>自定义消息的 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>category</pt>
+                    <pd>自定义消息的类别。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>event</pt>
+                    <pd>自定义消息的事件名称。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>label</pt>
+                    <pd>自定义消息的标签。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>value</pt>
+                    <pd>自定义消息的数值。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>messageId</pt>
@@ -126,16 +126,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

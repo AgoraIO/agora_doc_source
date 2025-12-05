@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_muteremoteaudiostreamex">
     <title><ph keyref="muteRemoteAudioStreamEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">停止或恢复接收指定用户的音频流。</ph><ph id="shortdesc" props="android">停止或恢复接收指定用户的音频流。</ph><ph id="shortdesc" props="ios">停止或恢复接收指定用户的音频流。</ph><ph id="shortdesc" props="mac">停止或恢复接收指定用户的音频流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">停止或恢复接收指定用户的音频流。</ph><ph id="shortdesc" props="ios">停止或恢复接收指定用户的音频流。</ph><ph id="shortdesc" props="android">停止或恢复接收指定用户的音频流。</ph><ph id="shortdesc" props="mac">停止或恢复接收指定用户的音频流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,10 +14,10 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int muteRemoteAudioStreamEx(uid_t uid, bool mute, const RtcConnection&amp; connection) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int muteRemoteAudioStreamEx(int uid, boolean muted, RtcConnection connection);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)muteRemoteAudioStreamEx:(NSUInteger)uid
                           mute:(BOOL)mute
                     connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(muteRemoteAudioStreamEx(_:mute:connection:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int muteRemoteAudioStreamEx(int uid, boolean muted, RtcConnection connection);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)muteRemoteAudioStreamEx:(NSUInteger)uid
                           mute:(BOOL)mute
                     connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(muteRemoteAudioStreamEx(_:mute:connection:));</codeblock>
@@ -25,8 +25,8 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">你可以在加入频道前或加入频道后调用该方法。如果用户离开频道，该方法的设置将失效。</p>
-            <p props="android">你可以在加入频道前或加入频道后调用该方法。如果用户离开频道，方法的设置将失效。</p>
             <p props="ios">你可以在加入频道前或加入频道后调用该方法。如果用户离开频道，该方法中的设置将失效。</p>
+            <p props="android">你可以在加入频道前或加入频道后调用该方法。如果用户离开频道，方法的设置将失效。</p>
             <p props="mac">你可以在加入频道前或加入频道后调用该方法。如果用户离开频道，该方法中的设置将失效。</p>
         </section>
         <section id="scenario" deliveryTarget="details">
@@ -53,23 +53,6 @@
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>uid</pt>
-                    <pd>指定用户的 ID。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>muted</pt>
-                    <pd>是否停止接收指定用户的音频流：
-                        <ul>
-                            <li><xref keyref="true"/>：停止接收指定用户的音频流。</li>
-                            <li><xref keyref="false"/>：（默认）恢复接收指定用户的音频流。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>uid</pt>
                     <pd>指定用户的 ID。</pd>
@@ -84,6 +67,23 @@
                     </pd>
                 </plentry>
                 <plentry props="ios">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>指定用户的 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>muted</pt>
+                    <pd>是否停止接收指定用户的音频流：
+                        <ul>
+                            <li><xref keyref="true"/>：停止接收指定用户的音频流。</li>
+                            <li><xref keyref="false"/>：（默认）恢复接收指定用户的音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
@@ -114,16 +114,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

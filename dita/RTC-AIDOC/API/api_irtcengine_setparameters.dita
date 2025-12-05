@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setparameters">
     <title><ph keyref="setParameters"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">通过配置 JSON 选项为 SDK 提供技术预览功能或特殊定制。</ph><ph id="shortdesc" props="android">通过配置 JSON 选项，为 SDK 提供技术预览功能或特殊定制。</ph><ph id="shortdesc" props="ios">通过配置 JSON 选项为 SDK 提供技术预览功能或特殊定制。</ph><ph id="shortdesc" props="mac">通过配置 JSON 选项为 SDK 提供技术预览功能或特殊定制。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">通过配置 JSON 选项为 SDK 提供技术预览功能或特殊定制。</ph><ph id="shortdesc" props="ios">通过配置 JSON 选项为 SDK 提供技术预览功能或特殊定制。</ph><ph id="shortdesc" props="android">通过配置 JSON 选项，为 SDK 提供技术预览功能或特殊定制。</ph><ph id="shortdesc" props="mac">通过配置 JSON 选项为 SDK 提供技术预览功能或特殊定制。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setParameters(const char* parameters) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int setParameters(String parameters);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setParameters:(NSString * _Nonnull)options NS_SWIFT_NAME(setParameters(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setParameters(String parameters);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setParameters:(NSString * _Nonnull)options NS_SWIFT_NAME(setParameters(_:));</codeblock>
             </p>
         </section>
@@ -29,13 +29,13 @@
                     <pt>parameters</pt>
                     <pd>指向 JSON 字符串格式的参数集合。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>parameters</pt>
-                    <pd>用于设置参数的 JSON 字符串。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>options</pt>
                     <pd>以 JSON 字符串形式设置的参数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>parameters</pt>
+                    <pd>用于设置参数的 JSON 字符串。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>options</pt>
@@ -51,16 +51,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

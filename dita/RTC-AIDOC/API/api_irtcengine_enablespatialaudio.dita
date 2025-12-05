@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablespatialaudio">
     <title><ph keyref="enableSpatialAudio"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用或关闭空间音效。</ph><ph id="shortdesc" props="android">启用或关闭空间音效。</ph><ph id="shortdesc" props="ios">启用或关闭空间音效。</ph><ph id="shortdesc" props="mac">启用或关闭空间音效。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用或关闭空间音效。</ph><ph id="shortdesc" props="ios">启用或关闭空间音效。</ph><ph id="shortdesc" props="android">启用或关闭空间音效。</ph><ph id="shortdesc" props="mac">启用或关闭空间音效。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,15 +14,15 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int enableSpatialAudio(bool enabled) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int enableSpatialAudio(boolean enabled);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)enableSpatialAudio:(BOOL)enabled NS_SWIFT_NAME(enableSpatialAudio(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableSpatialAudio(boolean enabled);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)enableSpatialAudio:(BOOL)enabled NS_SWIFT_NAME(enableSpatialAudio(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">启用空间音效后，你可以调用 <xref keyref="setRemoteUserSpatialAudioParams"/> 设置远端用户的空间音效参数。</p>
-            <p props="android">你可以调用 <xref keyref="setRemoteUserSpatialAudioParams"/> 设置远端用户的空间音效参数。</p>
             <p props="ios">你可以在加入频道前或加入频道后调用该方法。启用空间音效后，可以调用 <xref keyref="setRemoteUserSpatialAudioParams"/> 设置远端用户的空间音效参数。</p>
+            <p props="android">你可以调用 <xref keyref="setRemoteUserSpatialAudioParams"/> 设置远端用户的空间音效参数。</p>
             <p props="mac">你可以在加入频道前或加入频道后调用该方法。启用空间音效后，可以调用 <xref keyref="setRemoteUserSpatialAudioParams"/> 设置远端用户的空间音效参数。</p>
             <note props="cpp">
                 <ul>
@@ -30,15 +30,15 @@
                     <li>此方法依赖空间音效动态库 <xref keyref="spatialaudio"/>。如果该动态库被删除，该功能将无法正常启用。</li>
                 </ul>
             </note>
+            <note props="ios">
+                <ul>
+                    <li>该方法依赖空间音效动态库 <xref keyref="spatialaudio"/>（iOS）或 <codeph>AgoraSpatialAudioExtension.framework</codeph>（macOS）。如果该动态库被删除，该功能将无法正常启用。</li>
+                </ul>
+            </note>
             <note props="android">
                 <ul>
                     <li>你可以在加入频道前或加入频道后调用此方法。</li>
                     <li>此方法依赖空间音效动态库 <xref keyref="spatialaudio"/>。如果该动态库被删除，则无法正常启用该功能。</li>
-                </ul>
-            </note>
-            <note props="ios">
-                <ul>
-                    <li>该方法依赖空间音效动态库 <xref keyref="spatialaudio"/>（iOS）或 <codeph>AgoraSpatialAudioExtension.framework</codeph>（macOS）。如果该动态库被删除，该功能将无法正常启用。</li>
                 </ul>
             </note>
             <note props="mac">
@@ -59,7 +59,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="ios">
                     <pt>enabled</pt>
                     <pd>是否启用空间音效：
                         <ul>
@@ -68,7 +68,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="android">
                     <pt>enabled</pt>
                     <pd>是否启用空间音效：
                         <ul>
@@ -96,16 +96,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

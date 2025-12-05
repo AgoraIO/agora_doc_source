@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onclientrolechanged">
     <title><ph keyref="onClientRoleChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用户角色或观众延迟等级发生变化时触发的回调。</ph><ph id="shortdesc" props="android">用户角色或观众延迟级别发生变化回调。</ph><ph id="shortdesc" props="ios">用户角色或观众延迟等级发生变化时触发的回调。</ph><ph id="shortdesc" props="mac">用户角色或观众延迟等级发生变化时触发的回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用户角色或观众延迟等级发生变化时触发的回调。</ph><ph id="shortdesc" props="ios">用户角色或观众延迟等级发生变化时触发的回调。</ph><ph id="shortdesc" props="android">用户角色或观众延迟级别发生变化回调。</ph><ph id="shortdesc" props="mac">用户角色或观众延迟等级发生变化时触发的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,15 +14,15 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole, const ClientRoleOptions&amp; newRoleOptions)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onClientRoleChanged(int oldRole, int newRole, ClientRoleOptions newRoleOptions)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole newRoleOptions:(AgoraClientRoleOptions * _Nullable)newRoleOptions NS_SWIFT_NAME(rtcEngine(_:didClientRoleChanged:newRole:newRoleOptions:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onClientRoleChanged(int oldRole, int newRole, ClientRoleOptions newRoleOptions)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole newRoleOptions:(AgoraClientRoleOptions * _Nullable)newRoleOptions NS_SWIFT_NAME(rtcEngine(_:didClientRoleChanged:newRole:newRoleOptions:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <note props="cpp">当你在加入频道前调用 <codeph>setClientRole</codeph> 并将用户角色设置为 <codeph>BROADCASTER</codeph> 时，该回调不会被触发。</note>
-            <note props="android">当你在加入频道前调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设置为主播时，该回调不会被触发。</note>
             <note props="ios">加入频道前调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设置为 <codeph>BROADCASTER</codeph> 时不会触发该回调。</note>
+            <note props="android">当你在加入频道前调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设置为主播时，该回调不会被触发。</note>
             <note props="mac">加入频道前调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设置为 <codeph>BROADCASTER</codeph> 时不会触发该回调。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
@@ -33,16 +33,16 @@
                     <li>在加入频道前调用 <codeph>setClientRole</codeph> 并将用户角色设置为 <codeph>AUDIENCE</codeph>。</li>
                 </ul>
             </p>
-            <p props="android">该回调在以下任一情况下被触发：
-                <ul>
-                    <li>加入频道后调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 设置用户角色或观众延迟级别；</li>
-                    <li>加入频道前调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设置为观众。</li>
-                </ul>
-            </p>
             <p props="ios">该回调会在以下任一情况下触发：
                 <ul>
                     <li>在加入频道后调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 设置用户角色或观众延迟等级。</li>
                     <li>在加入频道前调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设置为 <codeph>AUDIENCE</codeph>。</li>
+                </ul>
+            </p>
+            <p props="android">该回调在以下任一情况下被触发：
+                <ul>
+                    <li>加入频道后调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 设置用户角色或观众延迟级别；</li>
+                    <li>加入频道前调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设置为观众。</li>
                 </ul>
             </p>
             <p props="mac">该回调会在以下任一情况下触发：
@@ -69,6 +69,22 @@
                         <note>自 v4.1.0 起引入。</note>
                     </pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd>引擎实例。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>oldRole</pt>
+                    <pd>用户切换前的角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>newRole</pt>
+                    <pd>用户切换后的角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>newRoleOptions</pt>
+                    <pd>用户切换后的角色属性。详见 <xref keyref="ClientRoleOptions"/>。</pd>
+                </plentry>
                 <plentry props="android">
                     <pt>oldRole</pt>
                     <pd>用户切换前的角色：
@@ -90,22 +106,6 @@
                 <plentry props="android">
                     <pt>newRoleOptions</pt>
                     <pd>用户切换后的角色属性，详见 <xref keyref="ClientRoleOptions"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>engine</pt>
-                    <pd>引擎实例。详见 <xref keyref="IRtcEngine"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>oldRole</pt>
-                    <pd>用户切换前的角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>newRole</pt>
-                    <pd>用户切换后的角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>newRoleOptions</pt>
-                    <pd>用户切换后的角色属性。详见 <xref keyref="ClientRoleOptions"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>engine</pt>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_takesnapshot2">
     <title><ph keyref="takeSnapshot2"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">截取指定观察点的视频截图。</ph><ph id="shortdesc" props="android">在指定的观察点截取视频截图。</ph><ph id="shortdesc" props="ios">截取指定用户视频的截图并保存为 JPG 文件。</ph><ph id="shortdesc" props="mac">截取指定用户视频的截图并保存为 JPG 文件。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">截取指定观察点的视频截图。</ph><ph id="shortdesc" props="ios">截取指定用户视频的截图并保存为 JPG 文件。</ph><ph id="shortdesc" props="android">在指定的观察点截取视频截图。</ph><ph id="shortdesc" props="mac">截取指定用户视频的截图并保存为 JPG 文件。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int takeSnapshot(uid_t uid, const media::SnapshotConfig&amp; config) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int takeSnapshot(int uid, SnapshotConfig config);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (NSInteger)takeSnapshotWithConfig:(NSInteger)uid config:(AgoraSnapshotConfig* _Nonnull)config NS_SWIFT_NAME(takeSnapshotWithConfig(_:config:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int takeSnapshot(int uid, SnapshotConfig config);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (NSInteger)takeSnapshotWithConfig:(NSInteger)uid config:(AgoraSnapshotConfig* _Nonnull)config NS_SWIFT_NAME(takeSnapshotWithConfig(_:config:));</codeblock>
             </p>
         </section>
@@ -28,16 +28,16 @@
                     <li>用于本地视频截图时，会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</li>
                 </ul>
             </note>
-            <note props="android">
-                <ul>
-                    <li>该方法为异步调用，调用返回时 SDK 尚未完成截图操作。</li>
-                    <li>当用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</li>
-                </ul>
-            </note>
             <note props="ios">
                 <ul>
                     <li>该方法为异步方法，在方法调用返回时 SDK 尚未完成截图操作。</li>
                     <li>用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>该方法为异步调用，调用返回时 SDK 尚未完成截图操作。</li>
+                    <li>当用于本地视频截图时，该方法会对 <xref keyref="ChannelMediaOptions"/> 中指定的视频流进行截图。</li>
                 </ul>
             </note>
             <note props="mac">
@@ -50,15 +50,15 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">在加入频道后调用该方法。</p>
-            <p props="android">请在加入频道后调用该方法。</p>
             <p props="ios">请在加入频道后调用该方法。</p>
+            <p props="android">请在加入频道后调用该方法。</p>
             <p props="mac">请在加入频道后调用该方法。</p>
         </section>
         <section id="related" deliveryTarget="details" props="android cpp ios mac">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
-            <p props="android">调用该方法成功后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
             <p props="ios">调用该方法成功后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
+            <p props="android">调用该方法成功后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
             <p props="mac">调用该方法成功后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功以及截图的详细信息。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -72,14 +72,6 @@
                     <pt>config</pt>
                     <pd>截图配置，详见 <xref keyref="SnapshotConfig"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>uid</pt>
-                    <pd>用户 ID。如果要截取本地用户的视频，请将 <codeph>uid</codeph> 设置为 0。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>config</pt>
-                    <pd>截图的配置信息，详见 <xref keyref="SnapshotConfig"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>uid</pt>
                     <pd>用户 ID。如果你想截取本地用户的视频，请将 <codeph>uid</codeph> 设置为 0。</pd>
@@ -87,6 +79,14 @@
                 <plentry props="ios">
                     <pt>config</pt>
                     <pd>截图的配置，详见 <xref keyref="SnapshotConfig"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>用户 ID。如果要截取本地用户的视频，请将 <codeph>uid</codeph> 设置为 0。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>截图的配置信息，详见 <xref keyref="SnapshotConfig"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>uid</pt>
@@ -106,16 +106,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

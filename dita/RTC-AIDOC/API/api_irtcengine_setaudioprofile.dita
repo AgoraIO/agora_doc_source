@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setaudioprofile">
     <title><ph keyref="setAudioProfile"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置音频配置和音频场景。</ph><ph id="shortdesc" props="android">设置音频配置和音频场景。</ph><ph id="shortdesc" props="ios">设置音频配置和音频场景。</ph><ph id="shortdesc" props="mac">设置音频配置和音频场景。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置音频配置和音频场景。</ph><ph id="shortdesc" props="ios">设置音频配置和音频场景。</ph><ph id="shortdesc" props="android">设置音频配置和音频场景。</ph><ph id="shortdesc" props="mac">设置音频配置和音频场景。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioProfile(AUDIO_PROFILE_TYPE profile, AUDIO_SCENARIO_TYPE scenario) __deprecated = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int setAudioProfile(int profile, int scenario);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setAudioProfile:(AgoraAudioProfile)profile scenario:(AgoraAudioScenario)scenario NS_SWIFT_NAME(setAudioProfile(_:scenario:)) __deprecated_msg("use setAudioProfile: instead.");</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setAudioProfile(int profile, int scenario);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setAudioProfile:(AgoraAudioProfile)profile scenario:(AgoraAudioScenario)scenario NS_SWIFT_NAME(setAudioProfile(_:scenario:)) __deprecated_msg("use setAudioProfile: instead.");</codeblock>
             </p>
         </section>
@@ -25,13 +25,13 @@
                     <dt>废弃</dt>
                     <dd>该方法已废弃。你可以改用 <xref keyref="setAudioProfile2"/> 方法。若需设置音频场景，请调用 <xref keyref="initialize"/> 方法，并在 <xref keyref="RtcEngineConfig"/> 结构体中的 <codeph>audioScenario</codeph> 成员中传入值。</dd>
                 </dlentry>
-                <dlentry props="android">
-                    <dt>废弃</dt>
-                    <dd>该方法已废弃。请使用 <codeph>setAudioProfile(int profile)</codeph> 设置音频配置，使用 <codeph>setAudioScenario(int scenario)</codeph> 设置音频场景。</dd>
-                </dlentry>
                 <dlentry props="ios">
                     <dt>废弃</dt>
                     <dd>该方法已废弃，请改用 <xref keyref="setAudioProfile2"/>。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>废弃</dt>
+                    <dd>该方法已废弃。请使用 <codeph>setAudioProfile(int profile)</codeph> 设置音频配置，使用 <codeph>setAudioScenario(int scenario)</codeph> 设置音频场景。</dd>
                 </dlentry>
                 <dlentry props="mac">
                     <dt>废弃</dt>
@@ -50,8 +50,8 @@
         </section>
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>调用时机</title>
-            <p props="android">你可以在加入频道前或后调用该方法。</p>
             <p props="ios">你可以在加入频道前或加入频道后调用该方法。</p>
+            <p props="android">你可以在加入频道前或后调用该方法。</p>
             <p props="mac">你可以在加入频道前或加入频道后调用该方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -64,6 +64,14 @@
                 <plentry props="cpp">
                     <pt>scenario</pt>
                     <pd>音频场景，在不同的音频场景下设备使用不同的音量类型。详见 <xref keyref="AUDIO_SCENARIO_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>profile</pt>
+                    <pd>音频配置，包括采样率、码率、编码模式和声道数。详见 <xref keyref="AUDIO_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>scenario</pt>
+                    <pd>音频场景。在不同的音频场景下，设备使用不同的音量类型。详见 <xref keyref="AUDIO_SCENARIO_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>profile</pt>
@@ -96,14 +104,6 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
-                    <pt>profile</pt>
-                    <pd>音频配置，包括采样率、码率、编码模式和声道数。详见 <xref keyref="AUDIO_PROFILE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>scenario</pt>
-                    <pd>音频场景。在不同的音频场景下，设备使用不同的音量类型。详见 <xref keyref="AUDIO_SCENARIO_TYPE"/>。</pd>
-                </plentry>
                 <plentry props="mac">
                     <pt>profile</pt>
                     <pd>音频配置，包括采样率、码率、编码模式和声道数。详见 <xref keyref="AUDIO_PROFILE_TYPE"/>。</pd>
@@ -122,16 +122,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

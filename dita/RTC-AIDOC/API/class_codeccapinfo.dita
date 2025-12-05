@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_codeccapinfo">
     <title><ph keyref="CodecCapInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于描述 SDK 的编解码能力。</ph><ph id="shortdesc" props="android">表示 SDK 的编解码能力。</ph><ph id="shortdesc" props="ios">SDK 的编解码能力信息。</ph><ph id="shortdesc" props="mac">SDK 的编解码能力信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于描述 SDK 的编解码能力。</ph><ph id="shortdesc" props="ios">SDK 的编解码能力信息。</ph><ph id="shortdesc" props="android">表示 SDK 的编解码能力。</ph><ph id="shortdesc" props="mac">SDK 的编解码能力信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -11,16 +11,16 @@
   int codecCapMask;
   CodecCapLevels codecLevels;
 };</codeblock>
-                <codeblock props="android" outputclass="language-java">public class CodecCapInfo {
-  public int codecType;
-  public int codecCapMask;
-  public CodecCapLevels codecLevels;
-}</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoCodecCapInfo : NSObject
 @property(assign, nonatomic) AgoraVideoCodecType codecType;
 @property(assign, nonatomic) NSUInteger codecCapMask;
 @property(strong, nonatomic) AgoraVideoCodecCapLevels *_Nonnull codecCapLevels;
 @end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class CodecCapInfo {
+  public int codecType;
+  public int codecCapMask;
+  public CodecCapLevels codecLevels;
+}</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoCodecCapInfo : NSObject
 @property(assign, nonatomic) AgoraVideoCodecType codecType;
 @property(assign, nonatomic) NSUInteger codecCapMask;
@@ -41,6 +41,18 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>codecLevels</pt>
+                    <pd>编解码能力，详见 <xref keyref="CodecCapLevels"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>codecType</pt>
+                    <pd>视频编解码器类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>codecCapMask</pt>
+                    <pd>SDK 中编解码器类型的位掩码。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>codecCapLevels</pt>
                     <pd>编解码能力，详见 <xref keyref="CodecCapLevels"/>。</pd>
                 </plentry>
                 <plentry props="android">
@@ -68,18 +80,6 @@
                 <plentry props="android">
                     <pt>codecLevels</pt>
                     <pd>编解码能力。详见 <xref keyref="CodecCapLevels"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>codecType</pt>
-                    <pd>视频编解码器类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>codecCapMask</pt>
-                    <pd>SDK 中编解码器类型的位掩码。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>codecCapLevels</pt>
-                    <pd>编解码能力，详见 <xref keyref="CodecCapLevels"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>codecType</pt>

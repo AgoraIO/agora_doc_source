@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_srcinfo">
     <title><ph keyref="SrcInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于获取当前播放媒体资源的视频码率信息。</ph><ph id="shortdesc" props="android">用于获取正在播放媒体资源的视频码率信息。</ph><ph id="shortdesc" props="ios">提供媒体资源播放时的视频码率信息。</ph><ph id="shortdesc" props="mac">提供媒体资源播放时的视频码率信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于获取当前播放媒体资源的视频码率信息。</ph><ph id="shortdesc" props="ios">提供媒体资源播放时的视频码率信息。</ph><ph id="shortdesc" props="android">用于获取正在播放媒体资源的视频码率信息。</ph><ph id="shortdesc" props="mac">提供媒体资源播放时的视频码率信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -10,14 +10,14 @@
   int bitrateInKbps;
   const char* name;
 };</codeblock>
-                <codeblock props="android" outputclass="language-java">public class SrcInfo {
-  private int bitrateInKbps;
-  private String name;
-}</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaPlayerSrcInfo : NSObject
 @property(assign, nonatomic) int bitrateInKbps;
 @property(copy, nonatomic) NSString *_Nullable name;
 @end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class SrcInfo {
+  private int bitrateInKbps;
+  private String name;
+}</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaPlayerSrcInfo : NSObject
 @property(assign, nonatomic) int bitrateInKbps;
 @property(copy, nonatomic) NSString *_Nullable name;
@@ -35,19 +35,19 @@
                     <pt>name</pt>
                     <pd>媒体资源名称。</pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="ios">
                     <pt>bitrateInKbps</pt>
                     <pd>正在播放的媒体资源的视频码率，单位为 Kbps。</pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="ios">
                     <pt>name</pt>
                     <pd>媒体资源的名称。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="android">
                     <pt>bitrateInKbps</pt>
                     <pd>正在播放的媒体资源的视频码率，单位为 Kbps。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="android">
                     <pt>name</pt>
                     <pd>媒体资源的名称。</pd>
                 </plentry>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onlocalaudiostatechanged">
     <title><ph keyref="onLocalAudioStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">本地音频流状态发生变化回调。</ph><ph id="shortdesc" props="android">本地音频流状态发生变化回调。</ph><ph id="shortdesc" props="ios">本地音频流状态发生变化时的回调。</ph><ph id="shortdesc" props="mac">本地音频流状态发生变化时的回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">本地音频流状态发生变化回调。</ph><ph id="shortdesc" props="ios">本地音频流状态发生变化时的回调。</ph><ph id="shortdesc" props="android">本地音频流状态发生变化回调。</ph><ph id="shortdesc" props="mac">本地音频流状态发生变化时的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,25 +14,25 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onLocalAudioStateChanged(LOCAL_AUDIO_STREAM_STATE state, LOCAL_AUDIO_STREAM_REASON reason)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onLocalAudioStateChanged(int state, int reason)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localAudioStateChanged:(AgoraAudioLocalState)state reason:(AgoraAudioLocalReason)reason NS_SWIFT_NAME(rtcEngine(_:localAudioStateChanged:reason:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onLocalAudioStateChanged(int state, int reason)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localAudioStateChanged:(AgoraAudioLocalState)state reason:(AgoraAudioLocalReason)reason NS_SWIFT_NAME(rtcEngine(_:localAudioStateChanged:reason:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">当本地音频流的状态（包括音频采集和编码状态）发生变化时，SDK 会触发该回调报告当前状态，帮助你排查音频异常问题。</p>
-            <p props="android">当本地音频流的状态发生变化时，SDK 会触发该回调以报告当前状态，便于你在音频异常时排查问题。</p>
             <p props="ios">当本地音频流状态（包括音频采集和编码状态）发生变化时，SDK 会触发该回调以报告当前状态，便于你在出现音频异常时排查问题。</p>
+            <p props="android">当本地音频流的状态发生变化时，SDK 会触发该回调以报告当前状态，便于你在音频异常时排查问题。</p>
             <p props="mac">当本地音频流状态（包括音频采集和编码状态）发生变化时，SDK 会触发该回调以报告当前状态，便于你在出现音频异常时排查问题。</p>
             <note props="cpp">当状态为 <codeph>LOCAL_AUDIO_STREAM_STATE_FAILED</codeph>（3）时，可以在 <codeph>reason</codeph> 参数中查看错误信息。</note>
-            <note props="android">当状态为 <codeph>LOCAL_AUDIO_STREAM_STATE_FAILED</codeph>（3）时，可以在 <codeph>error</codeph> 参数中查看错误信息。</note>
             <note props="ios">当状态为 <codeph>AgoraAudioLocalStateFailed</codeph>（3）时，可以在 <codeph>error</codeph> 参数中查看错误信息。</note>
+            <note props="android">当状态为 <codeph>LOCAL_AUDIO_STREAM_STATE_FAILED</codeph>（3）时，可以在 <codeph>error</codeph> 参数中查看错误信息。</note>
             <note props="mac">当状态为 <codeph>AgoraAudioLocalStateFailed</codeph>（3）时，可以在 <codeph>error</codeph> 参数中查看错误信息。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>触发时机</title>
-            <p props="android">该回调在本地音频流状态发生变化时被触发。</p>
             <p props="ios">该回调在本地音频流状态发生变化时被触发。</p>
+            <p props="android">该回调在本地音频流状态发生变化时被触发。</p>
             <p props="mac">该回调在本地音频流状态发生变化时被触发。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -45,6 +45,18 @@
                 <plentry props="cpp">
                     <pt>reason</pt>
                     <pd>本地音频流状态变化的原因，详见 <xref keyref="LOCAL_AUDIO_STREAM_REASON"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 实例。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>state</pt>
+                    <pd>本地音频的状态。详见 <xref keyref="LOCAL_AUDIO_STREAM_STATE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>reason</pt>
+                    <pd>本地音频状态变化的原因。详见 <xref keyref="LOCAL_AUDIO_STREAM_REASON"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>state</pt>
@@ -70,18 +82,6 @@
                             <li><codeph>LOCAL_AUDIO_STREAM_REASON_INTERRUPTED</codeph>（8）：本地音频采集被系统电话、智能助手或闹钟中断。如果需要继续采集本地音频，提示用户结束电话、智能助手或闹钟。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>engine</pt>
-                    <pd><xref keyref="IRtcEngine"/> 实例。详见 <xref keyref="IRtcEngine"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>state</pt>
-                    <pd>本地音频的状态。详见 <xref keyref="LOCAL_AUDIO_STREAM_STATE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>reason</pt>
-                    <pd>本地音频状态变化的原因。详见 <xref keyref="LOCAL_AUDIO_STREAM_REASON"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>engine</pt>

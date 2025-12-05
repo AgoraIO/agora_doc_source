@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_orientationmode">
     <title><ph keyref="ORIENTATION_MODE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">视频输出方向模式。</ph><ph id="shortdesc" props="android">视频输出方向模式。</ph><ph id="shortdesc" props="ios">视频输出方向模式。</ph><ph id="shortdesc" props="mac">视频输出方向模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">视频输出方向模式。</ph><ph id="shortdesc" props="ios">视频输出方向模式。</ph><ph id="shortdesc" props="android">视频输出方向模式。</ph><ph id="shortdesc" props="mac">视频输出方向模式。</ph></shortdesc>
     <refbody>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>枚举值</title>
@@ -24,23 +24,6 @@
                     <pt>ORIENTATION_MODE_FIXED_PORTRAIT</pt>
                     <pd>（2）：输出视频始终为竖屏模式。若采集视频为横屏，视频编码器会对其进行裁剪以适配输出。适用于接收端无法处理旋转信息的场景，例如 CDN 直播。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>ORIENTATION_MODE_ADAPTIVE</pt>
-                    <pd>（0）：（默认）输出视频方向始终与采集视频方向保持一致，接收端会接收来自视频编码器的旋转信息。适用于接收端支持调整视频方向的场景。
-                        <ul>
-                            <li>如果采集的视频为横屏，输出视频为横屏。</li>
-                            <li>如果采集的视频为竖屏，输出视频为竖屏。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>ORIENTATION_MODE_FIXED_LANDSCAPE</pt>
-                    <pd>（1）：输出视频始终为横屏模式。如果采集的视频为竖屏，视频编码器会对其进行裁剪以适配输出。适用于接收端无法处理旋转信息的场景，例如 CDN 直播推流。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>ORIENTATION_MODE_FIXED_PORTRAIT</pt>
-                    <pd>（2）：输出视频始终为竖屏模式。如果采集的视频为横屏，视频编码器会对其进行裁剪以适配输出。适用于接收端无法处理旋转信息的场景，例如 CDN 直播推流。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>AgoraVideoOutputOrientationModeAdaptative</pt>
                     <pd>（0）：输出视频始终跟随采集视频的方向。接收端根据视频编码器传递的旋转信息进行处理，适用于接收端可调整视频方向的场景。
@@ -57,6 +40,23 @@
                 <plentry props="ios">
                     <pt>AgoraVideoOutputOrientationModeFixedPortrait</pt>
                     <pd>（2）：SDK 始终以竖屏模式输出视频。若采集视频为横屏，视频编码器会对其进行裁剪以适配输出。适用于接收端无法处理旋转信息的场景，例如 CDN 直播。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>ORIENTATION_MODE_ADAPTIVE</pt>
+                    <pd>（0）：（默认）输出视频方向始终与采集视频方向保持一致，接收端会接收来自视频编码器的旋转信息。适用于接收端支持调整视频方向的场景。
+                        <ul>
+                            <li>如果采集的视频为横屏，输出视频为横屏。</li>
+                            <li>如果采集的视频为竖屏，输出视频为竖屏。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>ORIENTATION_MODE_FIXED_LANDSCAPE</pt>
+                    <pd>（1）：输出视频始终为横屏模式。如果采集的视频为竖屏，视频编码器会对其进行裁剪以适配输出。适用于接收端无法处理旋转信息的场景，例如 CDN 直播推流。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>ORIENTATION_MODE_FIXED_PORTRAIT</pt>
+                    <pd>（2）：输出视频始终为竖屏模式。如果采集的视频为横屏，视频编码器会对其进行裁剪以适配输出。适用于接收端无法处理旋转信息的场景，例如 CDN 直播推流。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraVideoOutputOrientationModeAdaptative</pt>

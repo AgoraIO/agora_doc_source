@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_configrhythmplayer">
     <title><ph keyref="configRhythmPlayer"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">配置虚拟节拍器。</ph><ph id="shortdesc" props="android">配置虚拟节拍器。</ph><ph id="shortdesc" props="ios">配置虚拟节拍器。</ph><ph id="shortdesc" props="mac">配置虚拟节拍器。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">配置虚拟节拍器。</ph><ph id="shortdesc" props="ios">配置虚拟节拍器。</ph><ph id="shortdesc" props="android">配置虚拟节拍器。</ph><ph id="shortdesc" props="mac">配置虚拟节拍器。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int configRhythmPlayer(const AgoraRhythmPlayerConfig&amp; config) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int configRhythmPlayer(AgoraRhythmPlayerConfig config);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)configRhythmPlayer:(AgoraRhythmPlayerConfig * _Nullable)config NS_SWIFT_NAME(configRhythmPlayer(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int configRhythmPlayer(AgoraRhythmPlayerConfig config);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)configRhythmPlayer:(AgoraRhythmPlayerConfig * _Nullable)config NS_SWIFT_NAME(configRhythmPlayer(_:));</codeblock>
             </p>
         </section>
@@ -27,15 +27,15 @@
                 </dlentry>
             </dl>
             <p props="cpp">调用 <xref keyref="startRhythmPlayer"/> 后，你可以调用该方法重新配置虚拟节拍器。启用虚拟节拍器后，SDK 会从头开始播放指定的音效文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <codeph>beatsPerMinute</codeph> 控制每个文件的播放时长。例如，如果将 <codeph>beatsPerMinute</codeph> 设置为 60，SDK 每秒播放一个节拍。如果文件时长超过节拍时长，SDK 只播放节拍时长内的音频。默认情况下，虚拟节拍器的声音会在频道中发布。如果希望远端用户也能听到该声音，可以在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishRhythmPlayerTrack</codeph> 设置为 <xref keyref="true"/>。</p>
-            <p props="android">调用 <xref keyref="startRhythmPlayer"/> 后，可以使用该方法重新配置虚拟节拍器。启用虚拟节拍器后，SDK 会从头开始播放指定的音效文件，并根据在 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <codeph>beatsPerMinute</codeph> 控制每个文件的播放时长。例如，如果将 <codeph>beatsPerMinute</codeph> 设置为 60，SDK 每秒播放一个节拍。如果文件时长超过节拍时长，SDK 只播放节拍时长内的音频。默认情况下，虚拟节拍器的声音会在频道中发布。如果希望远端用户也能听到该声音，可以在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishRhythmPlayerTrack</codeph> 设置为 <xref keyref="true"/>。</p>
             <p props="ios">调用 <codeph>startRhythmPlayer</codeph> 方法后，你可以调用该方法重新配置虚拟节拍器。启用虚拟节拍器后，SDK 会从头开始播放指定的音效文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <codeph>beatsPerMinute</codeph> 控制每个文件的播放时长。例如，如果将 <codeph>beatsPerMinute</codeph> 设置为 60，SDK 每秒播放一个节拍。如果文件时长超过节拍时长，SDK 只播放节拍时长内的音频。默认情况下，虚拟节拍器的声音会在频道中发布。如果你希望远端用户也能听到该声音，可以在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishRhythmPlayerTrack</codeph> 设置为 <xref keyref="true"/>。</p>
+            <p props="android">调用 <xref keyref="startRhythmPlayer"/> 后，可以使用该方法重新配置虚拟节拍器。启用虚拟节拍器后，SDK 会从头开始播放指定的音效文件，并根据在 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <codeph>beatsPerMinute</codeph> 控制每个文件的播放时长。例如，如果将 <codeph>beatsPerMinute</codeph> 设置为 60，SDK 每秒播放一个节拍。如果文件时长超过节拍时长，SDK 只播放节拍时长内的音频。默认情况下，虚拟节拍器的声音会在频道中发布。如果希望远端用户也能听到该声音，可以在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishRhythmPlayerTrack</codeph> 设置为 <xref keyref="true"/>。</p>
             <p props="mac">调用 <codeph>startRhythmPlayer</codeph> 方法后，你可以调用该方法重新配置虚拟节拍器。启用虚拟节拍器后，SDK 会从头开始播放指定的音效文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <codeph>beatsPerMinute</codeph> 控制每个文件的播放时长。例如，如果将 <codeph>beatsPerMinute</codeph> 设置为 60，SDK 每秒播放一个节拍。如果文件时长超过节拍时长，SDK 只播放节拍时长内的音频。默认情况下，虚拟节拍器的声音会在频道中发布。如果你希望远端用户也能听到该声音，可以在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishRhythmPlayerTrack</codeph> 设置为 <xref keyref="true"/>。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">该方法可以在加入频道前或后调用。</p>
-            <p props="android">该方法可以在加入频道前或后调用。</p>
             <p props="ios">该方法可以在加入频道前或后调用。</p>
+            <p props="android">该方法可以在加入频道前或后调用。</p>
             <p props="mac">该方法可以在加入频道前或后调用。</p>
         </section>
         <section id="related" deliveryTarget="details" props="cpp">
@@ -49,13 +49,13 @@
                     <pt>config</pt>
                     <pd>节拍器配置。详见 <xref keyref="AgoraRhythmPlayerConfig"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>config</pt>
-                    <pd>节拍器的配置。详见 <xref keyref="AgoraRhythmPlayerConfig"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>config</pt>
                     <pd>节拍器配置。详见 <xref keyref="AgoraRhythmPlayerConfig"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>节拍器的配置。详见 <xref keyref="AgoraRhythmPlayerConfig"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>config</pt>
@@ -71,16 +71,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

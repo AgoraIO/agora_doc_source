@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imediarecorderobserver_onrecorderstatechanged">
     <title><ph keyref="onRecorderStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">录制状态发生变化时的回调。</ph><ph id="shortdesc" props="android">录制状态发生变化时的回调。</ph><ph id="shortdesc" props="ios">录制状态发生变化时的回调。</ph><ph id="shortdesc" props="mac">录制状态发生变化时的回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">录制状态发生变化时的回调。</ph><ph id="shortdesc" props="ios">录制状态发生变化时的回调。</ph><ph id="shortdesc" props="android">录制状态发生变化时的回调。</ph><ph id="shortdesc" props="mac">录制状态发生变化时的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onRecorderStateChanged(const char* channelId, rtc::uid_t uid, RecorderState state, RecorderReasonCode reason) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">@CalledByNative void onRecorderStateChanged(String channelId, int uid, int state, int reason);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)mediaRecorder:(AgoraMediaRecorder* _Nonnull)recorder stateDidChanged:(NSString * _Nonnull)channelId uid:(NSUInteger)uid state:(AgoraMediaRecorderState)state reason:(AgoraMediaRecorderReasonCode)reason;</codeblock>
+                <codeblock props="android" outputclass="language-java">@CalledByNative void onRecorderStateChanged(String channelId, int uid, int state, int reason);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)mediaRecorder:(AgoraMediaRecorder* _Nonnull)recorder stateDidChanged:(NSString * _Nonnull)channelId uid:(NSUInteger)uid state:(AgoraMediaRecorderState)state reason:(AgoraMediaRecorderReasonCode)reason;</codeblock>
             </p>
         </section>
@@ -61,6 +61,26 @@
                     <pt>reason</pt>
                     <pd>录制状态变化的原因。详见 <xref keyref="RecorderReasonCode"/>。</pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>recorder</pt>
+                    <pd>录制器实例。详见 <xref keyref="IMediaRecorder"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>channelId</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>state</pt>
+                    <pd>当前的录制状态，详见 <xref keyref="RecorderState"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>reason</pt>
+                    <pd>录制状态变化的原因，详见 <xref keyref="RecorderReasonCode"/>。</pd>
+                </plentry>
                 <plentry props="android">
                     <pt>channelId</pt>
                     <pd>频道名。</pd>
@@ -90,26 +110,6 @@
                             <li><codeph>RECORDER_REASON_CONFIG_CHANGED</codeph>（4）：录制配置发生变化。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>recorder</pt>
-                    <pd>录制器实例。详见 <xref keyref="IMediaRecorder"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>channelId</pt>
-                    <pd>频道名。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>uid</pt>
-                    <pd>用户 ID。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>state</pt>
-                    <pd>当前的录制状态，详见 <xref keyref="RecorderState"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>reason</pt>
-                    <pd>录制状态变化的原因，详见 <xref keyref="RecorderReasonCode"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>recorder</pt>

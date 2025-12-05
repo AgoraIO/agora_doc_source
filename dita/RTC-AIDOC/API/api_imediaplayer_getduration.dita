@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_getduration">
     <title><ph keyref="getDuration"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取媒体资源的时长。</ph><ph id="shortdesc" props="android">获取媒体资源的时长。</ph><ph id="shortdesc" props="ios">获取媒体资源的时长。</ph><ph id="shortdesc" props="mac">获取媒体资源的时长。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取媒体资源的时长。</ph><ph id="shortdesc" props="ios">获取媒体资源的时长。</ph><ph id="shortdesc" props="android">获取媒体资源的时长。</ph><ph id="shortdesc" props="mac">获取媒体资源的时长。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int getDuration(int64_t&amp; duration) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">long getDuration();</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (NSInteger)getDuration NS_SWIFT_NAME(getDuration());</codeblock>
+                <codeblock props="android" outputclass="language-java">long getDuration();</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (NSInteger)getDuration NS_SWIFT_NAME(getDuration());</codeblock>
             </p>
         </section>
@@ -37,16 +37,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>方法调用成功时，返回媒体文件的总时长（毫秒）。</li>
-                    <li>方法调用失败时，返回小于 0 的值。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功时，返回媒体文件的总时长（毫秒）。</li>
+                    <li>方法调用失败时，返回小于 0 的值。</li>
                 </ul>
             </p>
             <p props="mac">

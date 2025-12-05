@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registeraudioencodedframeobserver">
     <title><ph keyref="registerAudioEncodedFrameObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">注册编码音频数据的观察器。</ph><ph id="shortdesc" props="android">注册编码音频数据的观察器。</ph><ph id="shortdesc" props="ios">注册编码音频数据的观察者。</ph><ph id="shortdesc" props="mac">注册编码音频数据的观察者。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">注册编码音频数据的观察器。</ph><ph id="shortdesc" props="ios">注册编码音频数据的观察者。</ph><ph id="shortdesc" props="android">注册编码音频数据的观察器。</ph><ph id="shortdesc" props="mac">注册编码音频数据的观察者。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,15 +14,15 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int registerAudioEncodedFrameObserver(const AudioEncodedFrameObserverConfig&amp; config,  IAudioEncodedFrameObserver *observer) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int registerAudioEncodedFrameObserver(AudioEncodedFrameObserverConfig config, IAudioEncodedFrameObserver observer);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setAudioEncodedFrameDelegate:(id&lt;AgoraAudioEncodedFrameDelegate&gt; _Nullable)delegate config:(AgoraAudioEncodedFrameDelegateConfig * _Nonnull)config NS_SWIFT_NAME(setAudioEncodedFrameDelegate(_:config:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int registerAudioEncodedFrameObserver(AudioEncodedFrameObserverConfig config, IAudioEncodedFrameObserver observer);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setAudioEncodedFrameDelegate:(id&lt;AgoraAudioEncodedFrameDelegate&gt; _Nullable)delegate config:(AgoraAudioEncodedFrameDelegateConfig * _Nonnull)config NS_SWIFT_NAME(setAudioEncodedFrameDelegate(_:config:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <note props="cpp">你需要在加入频道后调用该方法。你可以调用该方法或 <codeph>startAudioRecording</codeph> 来设置音频文件的录制类型和质量，但声网不建议同时使用这两个方法。只有后调用的方法会生效。</note>
-            <note props="android">调用该方法需在加入频道后进行。你可以调用此方法或 <codeph>startAudioRecording</codeph> 来设置音频文件的录制类型和质量，但不建议同时使用这两个方法。只有后调用的方法会生效。</note>
             <note props="ios">该方法需在加入频道后调用。你可以调用该方法或 <xref keyref="startAudioRecording3"/> 来设置音频文件的录制类型和质量，但声网不建议同时使用这两个方法。只有后调用的方法会生效。</note>
+            <note props="android">调用该方法需在加入频道后进行。你可以调用此方法或 <codeph>startAudioRecording</codeph> 来设置音频文件的录制类型和质量，但不建议同时使用这两个方法。只有后调用的方法会生效。</note>
             <note props="mac">该方法需在加入频道后调用。你可以调用该方法或 <xref keyref="startAudioRecording3"/> 来设置音频文件的录制类型和质量，但声网不建议同时使用这两个方法。只有后调用的方法会生效。</note>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -36,14 +36,6 @@
                     <pt>observer</pt>
                     <pd>编码音频数据的观察器。详见 <xref keyref="IAudioEncodedFrameObserver"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>config</pt>
-                    <pd>编码音频的观察器配置。详见 <xref keyref="AudioEncodedFrameObserverConfig"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>observer</pt>
-                    <pd>编码音频数据的观察器。详见 <xref keyref="IAudioEncodedFrameObserver"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>delegate</pt>
                     <pd>编码音频数据的观察者。详见 <xref keyref="IAudioEncodedFrameObserver"/>。</pd>
@@ -51,6 +43,14 @@
                 <plentry props="ios">
                     <pt>config</pt>
                     <pd>编码音频数据的观察者配置。详见 <xref keyref="AudioEncodedFrameObserverConfig"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>编码音频的观察器配置。详见 <xref keyref="AudioEncodedFrameObserverConfig"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>observer</pt>
+                    <pd>编码音频数据的观察器。详见 <xref keyref="IAudioEncodedFrameObserver"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>delegate</pt>
@@ -70,16 +70,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

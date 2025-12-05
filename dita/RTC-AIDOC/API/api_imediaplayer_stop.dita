@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_stop">
     <title><ph keyref="stop"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">停止播放媒体轨道。</ph><ph id="shortdesc" props="android">停止播放媒体轨道。</ph><ph id="shortdesc" props="ios">停止播放媒体轨道。</ph><ph id="shortdesc" props="mac">停止播放媒体轨道。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">停止播放媒体轨道。</ph><ph id="shortdesc" props="ios">停止播放媒体轨道。</ph><ph id="shortdesc" props="android">停止播放媒体轨道。</ph><ph id="shortdesc" props="mac">停止播放媒体轨道。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,22 +14,22 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int stop() = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">int stop();</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)stop NS_SWIFT_NAME(stop());</codeblock>
+                <codeblock props="android" outputclass="language-java">int stop();</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)stop NS_SWIFT_NAME(stop());</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">调用该方法停止播放后，如需再次播放，需要调用 <xref keyref="open"/> 或 <xref keyref="openWithMediaSource"/> 重新打开媒体资源。</p>
-            <p props="android">调用该方法后，如需再次播放，需要调用 <codeph>open</codeph> 或 <xref keyref="openWithMediaSource"/> 重新打开媒体资源。</p>
             <p props="ios">调用该方法停止播放后，如果你需要再次播放，需要调用 <xref keyref="open"/> 或 <xref keyref="openWithMediaSource"/> 方法重新打开媒体资源。</p>
+            <p props="android">调用该方法后，如需再次播放，需要调用 <codeph>open</codeph> 或 <xref keyref="openWithMediaSource"/> 重新打开媒体资源。</p>
             <p props="mac">调用该方法停止播放后，如果你需要再次播放，需要调用 <xref keyref="open"/> 或 <xref keyref="openWithMediaSource"/> 方法重新打开媒体资源。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">在播放后调用该方法。</p>
-            <p props="android">请在播放后调用此方法。</p>
             <p props="ios">请在播放后调用该方法。</p>
+            <p props="android">请在播放后调用此方法。</p>
             <p props="mac">请在播放后调用该方法。</p>
         </section>
         <section id="return_values" props="android cpp ios mac">
@@ -40,16 +40,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

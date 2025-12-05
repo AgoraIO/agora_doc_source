@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setaudioscenario">
     <title><ph keyref="setAudioScenario"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置音频场景。</ph><ph id="shortdesc" props="android">设置音频场景。</ph><ph id="shortdesc" props="ios">设置音频场景。</ph><ph id="shortdesc" props="mac">设置音频场景。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置音频场景。</ph><ph id="shortdesc" props="ios">设置音频场景。</ph><ph id="shortdesc" props="android">设置音频场景。</ph><ph id="shortdesc" props="mac">设置音频场景。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioScenario(AUDIO_SCENARIO_TYPE scenario) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int setAudioScenario(int scenario);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setAudioScenario:(AgoraAudioScenario)scenario NS_SWIFT_NAME(setAudioScenario(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setAudioScenario(int scenario);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setAudioScenario:(AgoraAudioScenario)scenario NS_SWIFT_NAME(setAudioScenario(_:));</codeblock>
             </p>
         </section>
@@ -33,8 +33,8 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">你可以在加入频道前或加入频道后调用该方法。</p>
-            <p props="android">你可以在加入频道前或后调用该方法。</p>
             <p props="ios">你可以在加入频道前或后调用该方法。</p>
+            <p props="android">你可以在加入频道前或后调用该方法。</p>
             <p props="mac">你可以在加入频道前或后调用该方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -43,6 +43,10 @@
                 <plentry props="cpp">
                     <pt>scenario</pt>
                     <pd>音频场景。不同音频场景下，设备使用不同的音量类型。详见 <xref keyref="AUDIO_SCENARIO_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>scenario</pt>
+                    <pd>音频场景。在不同的音频场景下，设备使用不同的音量类型。详见 <xref keyref="AUDIO_SCENARIO_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>scenario</pt>
@@ -56,10 +60,6 @@
                             <li><codeph>AUDIO_SCENARIO_AI_CLIENT</codeph>（10）：AI 对话场景，仅适用于用户与由 <codeph>Conversational AI Engine</codeph> 创建的对话式智能体交互的场景。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>scenario</pt>
-                    <pd>音频场景。在不同的音频场景下，设备使用不同的音量类型。详见 <xref keyref="AUDIO_SCENARIO_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>scenario</pt>
@@ -75,16 +75,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

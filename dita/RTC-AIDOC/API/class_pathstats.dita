@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_pathstats">
     <title><ph keyref="PathStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于获取特定网络路径的统计数据。</ph><ph id="shortdesc" props="android">用于统计特定网络路径的相关信息。</ph><ph id="shortdesc" props="ios">特定网络路径的统计信息。</ph><ph id="shortdesc" props="mac">特定网络路径的统计信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于获取特定网络路径的统计数据。</ph><ph id="shortdesc" props="ios">特定网络路径的统计信息。</ph><ph id="shortdesc" props="android">用于统计特定网络路径的相关信息。</ph><ph id="shortdesc" props="mac">特定网络路径的统计信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -11,16 +11,16 @@
   int txKBitRate;
   int rxKBitRate;
 };</codeblock>
-                <codeblock props="android" outputclass="language-java">public static class PathStats {
-  public int pathType;
-  public int txKBitRate;
-  public int rxKBitRate;
-}</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraPathStats : NSObject
 @property (assign, nonatomic) AgoraMultipathType pathType;
 @property (assign, nonatomic) NSUInteger txKBitRate;
 @property (assign, nonatomic) NSUInteger rxKBitRate;
 @end</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class PathStats {
+  public int pathType;
+  public int txKBitRate;
+  public int rxKBitRate;
+}</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraPathStats : NSObject
 @property (assign, nonatomic) AgoraMultipathType pathType;
 @property (assign, nonatomic) NSUInteger txKBitRate;
@@ -34,11 +34,11 @@
                     <dt>自从</dt>
                     <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>自从</dt>
                     <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>自从</dt>
                     <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
@@ -63,6 +63,18 @@
                     <pt>rxKBitRate</pt>
                     <pd>该路径的接收码率，单位为 Kbps。</pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>pathType</pt>
+                    <pd>网络路径的类型，详见 <xref keyref="MultipathType"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>txKBitRate</pt>
+                    <pd>该路径的传输码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>rxKBitRate</pt>
+                    <pd>该路径的接收码率，单位为 Kbps。</pd>
+                </plentry>
                 <plentry props="android">
                     <pt>pathType</pt>
                     <pd>网络路径的类型：
@@ -78,18 +90,6 @@
                     <pd>该路径的传输码率，单位为 Kbps。</pd>
                 </plentry>
                 <plentry props="android">
-                    <pt>rxKBitRate</pt>
-                    <pd>该路径的接收码率，单位为 Kbps。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>pathType</pt>
-                    <pd>网络路径的类型，详见 <xref keyref="MultipathType"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>txKBitRate</pt>
-                    <pd>该路径的传输码率，单位为 Kbps。</pd>
-                </plentry>
-                <plentry props="ios">
                     <pt>rxKBitRate</pt>
                     <pd>该路径的接收码率，单位为 Kbps。</pd>
                 </plentry>

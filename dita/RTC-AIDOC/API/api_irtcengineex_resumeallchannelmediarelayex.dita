@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_resumeallchannelmediarelayex">
     <title><ph keyref="resumeAllChannelMediaRelayEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">恢复向所有目标频道的跨频道媒体流转发。</ph><ph id="shortdesc" props="android">恢复向所有目标频道的跨频道媒体流转发。</ph><ph id="shortdesc" props="ios">恢复向所有目标频道的跨频道媒体流转发。</ph><ph id="shortdesc" props="mac">恢复向所有目标频道的跨频道媒体流转发。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">恢复向所有目标频道的跨频道媒体流转发。</ph><ph id="shortdesc" props="ios">恢复向所有目标频道的跨频道媒体流转发。</ph><ph id="shortdesc" props="android">恢复向所有目标频道的跨频道媒体流转发。</ph><ph id="shortdesc" props="mac">恢复向所有目标频道的跨频道媒体流转发。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,18 +14,18 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int resumeAllChannelMediaRelayEx(const RtcConnection&amp; connection) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int resumeAllChannelMediaRelayEx(RtcConnection connection);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)resumeAllChannelMediaRelayEx:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(resumeAllChannelMediaRelayEx(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int resumeAllChannelMediaRelayEx(RtcConnection connection);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)resumeAllChannelMediaRelayEx:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(resumeAllChannelMediaRelayEx(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="android">调用 <xref keyref="pauseAllChannelMediaRelayEx"/> 后，可以调用此方法恢复媒体流的转发。</p>
             <p props="ios">调用 <xref keyref="pauseAllChannelMediaRelayEx"/> 方法后，可以调用该方法恢复向所有目标频道转发媒体流。</p>
+            <p props="android">调用 <xref keyref="pauseAllChannelMediaRelayEx"/> 后，可以调用此方法恢复媒体流的转发。</p>
             <p props="mac">调用 <xref keyref="pauseAllChannelMediaRelayEx"/> 方法后，可以调用该方法恢复向所有目标频道转发媒体流。</p>
             <note props="cpp">请在调用 <xref keyref="pauseAllChannelMediaRelayEx"/> 方法后调用该方法。</note>
-            <note props="android">请在调用 <xref keyref="pauseAllChannelMediaRelayEx"/> 方法后再调用此方法。</note>
             <note props="ios">请在调用 <xref keyref="pauseAllChannelMediaRelayEx"/> 方法后再调用此方法。</note>
+            <note props="android">请在调用 <xref keyref="pauseAllChannelMediaRelayEx"/> 方法后再调用此方法。</note>
             <note props="mac">请在调用 <xref keyref="pauseAllChannelMediaRelayEx"/> 方法后再调用此方法。</note>
         </section>
         <section id="scenario" deliveryTarget="details">
@@ -39,11 +39,11 @@
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="ios">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="android">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
@@ -65,22 +65,22 @@
                     </li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
-                        <ul>
-                            <li>-5：调用被拒绝，当前没有处于暂停状态的跨频道媒体流转发。</li>
-                        </ul>
-                    </li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
                         <ul>
                             <li>-5：调用被拒绝，当前没有已暂停的跨频道媒体流转发。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-5：调用被拒绝，当前没有处于暂停状态的跨频道媒体流转发。</li>
                         </ul>
                     </li>
                 </ul>

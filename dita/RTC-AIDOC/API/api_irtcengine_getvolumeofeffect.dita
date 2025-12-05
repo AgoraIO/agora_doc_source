@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getvolumeofeffect">
     <title><ph keyref="getVolumeOfEffect"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取指定音效文件的音量。</ph><ph id="shortdesc" props="android">获取指定音效文件的音量。</ph><ph id="shortdesc" props="ios">获取指定音效文件的音量。</ph><ph id="shortdesc" props="mac">获取指定音效文件的音量。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取指定音效文件的音量。</ph><ph id="shortdesc" props="ios">获取指定音效文件的音量。</ph><ph id="shortdesc" props="android">获取指定音效文件的音量。</ph><ph id="shortdesc" props="mac">获取指定音效文件的音量。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int getVolumeOfEffect(int soundId) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int getVolumeOfEffect(int soundId);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)getVolumeOfEffect:(int)soundId NS_SWIFT_NAME(getVolumeOfEffect(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getVolumeOfEffect(int soundId);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)getVolumeOfEffect:(int)soundId NS_SWIFT_NAME(getVolumeOfEffect(_:));</codeblock>
             </p>
         </section>
@@ -27,11 +27,11 @@
                     <pt>soundId</pt>
                     <pd>音效文件的 ID。</pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="ios">
                     <pt>soundId</pt>
                     <pd>音效文件的 ID。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="android">
                     <pt>soundId</pt>
                     <pd>音效文件的 ID。</pd>
                 </plentry>
@@ -49,16 +49,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>方法调用成功，返回指定音效的音量，取值范围为 0 到 100，100 表示原始音量。</li>
-                    <li>方法调用失败，返回值小于 0。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功，返回指定音效的音量，取值范围为 0 到 100，100 表示原始音量。</li>
+                    <li>方法调用失败，返回值小于 0。</li>
                 </ul>
             </p>
             <p props="mac">

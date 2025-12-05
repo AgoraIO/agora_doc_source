@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startechotest3">
     <title><ph keyref="startEchoTest3"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">启动音视频通话回路测试。</ph><ph id="shortdesc" props="android">开始音视频设备回路测试。</ph><ph id="shortdesc" props="ios">启动音视频设备回路测试。</ph><ph id="shortdesc" props="mac">启动音视频设备回路测试。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启动音视频通话回路测试。</ph><ph id="shortdesc" props="ios">启动音视频设备回路测试。</ph><ph id="shortdesc" props="android">开始音视频设备回路测试。</ph><ph id="shortdesc" props="mac">启动音视频设备回路测试。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int startEchoTest(const EchoTestConfiguration&amp; config) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int startEchoTest(EchoTestConfiguration config);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)startEchoTestWithConfig:(AgoraEchoTestConfiguration* _Nonnull)config NS_SWIFT_NAME(startEchoTest(withConfig:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startEchoTest(EchoTestConfiguration config);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)startEchoTestWithConfig:(AgoraEchoTestConfiguration* _Nonnull)config NS_SWIFT_NAME(startEchoTest(withConfig:));</codeblock>
             </p>
         </section>
@@ -26,8 +26,8 @@
                     <li>如果视频播放正常，说明视频设备和上下行网络正常。</li>
                 </ul>
             </p>
-            <p props="android">你可以调用该方法执行一次音视频通话回路测试，用于检测音视频设备以及用户上下行网络是否正常工作。开始测试后，用户需要发出声音或面对摄像头，音频或视频将在约两秒后输出。</p>
             <p props="ios">你可以调用该方法执行音视频通话回路测试，以测试你本地的发送和接收流是否正常。该测试会验证音视频设备以及上下行网络是否正常工作。开始测试后，你需要发出声音或面对摄像头，音频或视频将在约两秒后输出。如果音频播放正常，说明音频设备和上下行网络正常；如果视频播放正常，说明视频设备和上下行网络正常。</p>
+            <p props="android">你可以调用该方法执行一次音视频通话回路测试，用于检测音视频设备以及用户上下行网络是否正常工作。开始测试后，用户需要发出声音或面对摄像头，音频或视频将在约两秒后输出。</p>
             <p props="mac">你可以调用该方法执行音视频通话回路测试，以测试你本地的发送和接收流是否正常。该测试会验证音视频设备以及上下行网络是否正常工作。开始测试后，你需要发出声音或面对摄像头，音频或视频将在约两秒后输出。如果音频播放正常，说明音频设备和上下行网络正常；如果视频播放正常，说明视频设备和上下行网络正常。</p>
             <note props="cpp">
                 <ul>
@@ -36,17 +36,17 @@
                     <li>在直播场景中，该方法仅适用于主播角色。</li>
                 </ul>
             </note>
-            <note props="android">
-                <ul>
-                    <li>在频道中调用该方法时，请确保未发布任何音视频流。</li>
-                    <li>调用该方法后需调用 <xref keyref="stopEchoTest"/> 结束测试，否则用户无法进行下一次音视频通话回路测试，也无法加入频道。</li>
-                    <li>在直播场景中，该方法仅适用于主播。</li>
-                </ul>
-            </note>
             <note props="ios">
                 <ul>
                     <li>在频道中调用该方法时，请确保没有发布任何音视频流。</li>
                     <li>调用该方法后，需调用 <xref keyref="stopEchoTest"/> 结束测试；否则，你无法进行下一次音视频通话回路测试，也无法加入频道。</li>
+                    <li>在直播场景中，该方法仅适用于主播。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>在频道中调用该方法时，请确保未发布任何音视频流。</li>
+                    <li>调用该方法后需调用 <xref keyref="stopEchoTest"/> 结束测试，否则用户无法进行下一次音视频通话回路测试，也无法加入频道。</li>
                     <li>在直播场景中，该方法仅适用于主播。</li>
                 </ul>
             </note>
@@ -61,8 +61,8 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">你可以在加入频道前或加入频道后调用该方法。</p>
-            <p props="android">你可以在加入频道前或加入频道后调用此方法。</p>
             <p props="ios">你可以在加入频道前或加入频道后调用该方法。</p>
+            <p props="android">你可以在加入频道前或加入频道后调用此方法。</p>
             <p props="mac">你可以在加入频道前或加入频道后调用该方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -72,13 +72,13 @@
                     <pt>config</pt>
                     <pd>音视频通话回路测试的配置。详见 <xref keyref="EchoTestConfiguration"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>config</pt>
-                    <pd>音视频通话回路测试的配置。详见 <xref keyref="EchoTestConfiguration"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>config</pt>
                     <pd>音视频通话回路测试的配置，详见 <xref keyref="EchoTestConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>音视频通话回路测试的配置。详见 <xref keyref="EchoTestConfiguration"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>config</pt>
@@ -94,16 +94,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

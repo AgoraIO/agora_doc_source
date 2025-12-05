@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_rteabrsubscriptionlayer">
     <title><ph keyref="RteAbrSubscriptionLayer"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">订阅端视频流的质量层级。</ph><ph id="shortdesc" props="android">订阅端视频流的质量层级。</ph><ph id="shortdesc" props="ios">订阅端视频流的质量层级。</ph><ph id="shortdesc" props="mac">订阅端视频流的质量层级。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">订阅端视频流的质量层级。</ph><ph id="shortdesc" props="ios">订阅端视频流的质量层级。</ph><ph id="shortdesc" props="android">订阅端视频流的质量层级。</ph><ph id="shortdesc" props="mac">订阅端视频流的质量层级。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
             <dl outputclass="since">
@@ -10,11 +10,11 @@
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
@@ -24,8 +24,8 @@
                 </dlentry>
             </dl>
             <note props="cpp">如需自定义 <codeph>kRteAbrSubscriptionLayer1</codeph> 到 <codeph>kRteAbrSubscriptionLayer6</codeph> 层的分辨率并进行订阅，请[联系技术支持](https://ticket.shengwang.cn/)以启用 ABR 功能。</note>
-            <note props="android">如果你需要自定义订阅 <codeph>LAYER1</codeph> 到 <codeph>LAYER6</codeph> 的视频分辨率，请[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。</note>
             <note props="ios">如果你需要自定义 <codeph>AgoraRteAbrSubscriptionLayer1</codeph> 到 <codeph>AgoraRteAbrSubscriptionLayer6</codeph> 的视频分辨率并进行订阅，请[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。</note>
+            <note props="android">如果你需要自定义订阅 <codeph>LAYER1</codeph> 到 <codeph>LAYER6</codeph> 的视频分辨率，请[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。</note>
             <note props="mac">如果你需要自定义 <codeph>AgoraRteAbrSubscriptionLayer1</codeph> 到 <codeph>AgoraRteAbrSubscriptionLayer6</codeph> 的视频分辨率并进行订阅，请[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。</note>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -63,38 +63,6 @@
                     <pt>kRteAbrSubscriptionLayer6</pt>
                     <pd>（7）：质量层级 6。该层的分辨率低于 <codeph>kRteAbrSubscriptionLayer5</codeph>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>HIGH</pt>
-                    <pd>（0）：最高质量的视频流，提供最高分辨率。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>LOW</pt>
-                    <pd>（1）：（默认）最低质量的视频流，提供最低分辨率。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>LAYER1</pt>
-                    <pd>（2）：视频质量层级 1，分辨率仅次于 <codeph>HIGH</codeph>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>LAYER2</pt>
-                    <pd>（3）：视频质量层级 2，分辨率低于 <codeph>LAYER1</codeph>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>LAYER3</pt>
-                    <pd>（4）：视频质量层级 3，分辨率低于 <codeph>LAYER2</codeph>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>LAYER4</pt>
-                    <pd>（5）：视频质量层级 4，分辨率低于 <codeph>LAYER3</codeph>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>LAYER5</pt>
-                    <pd>（6）：视频质量层级 5，分辨率低于 <codeph>LAYER4</codeph>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>LAYER6</pt>
-                    <pd>（7）：视频质量层级 6，分辨率低于 <codeph>LAYER5</codeph>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>AgoraRteAbrSubscriptionHigh</pt>
                     <pd>（0）：高质量层级，分辨率最高。</pd>
@@ -126,6 +94,38 @@
                 <plentry props="ios">
                     <pt>AgoraRteAbrSubscriptionLayer6</pt>
                     <pd>（7）：质量层级 6，分辨率低于（6）<codeph>AgoraRteAbrSubscriptionLayer5</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>HIGH</pt>
+                    <pd>（0）：最高质量的视频流，提供最高分辨率。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LOW</pt>
+                    <pd>（1）：（默认）最低质量的视频流，提供最低分辨率。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LAYER1</pt>
+                    <pd>（2）：视频质量层级 1，分辨率仅次于 <codeph>HIGH</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LAYER2</pt>
+                    <pd>（3）：视频质量层级 2，分辨率低于 <codeph>LAYER1</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LAYER3</pt>
+                    <pd>（4）：视频质量层级 3，分辨率低于 <codeph>LAYER2</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LAYER4</pt>
+                    <pd>（5）：视频质量层级 4，分辨率低于 <codeph>LAYER3</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LAYER5</pt>
+                    <pd>（6）：视频质量层级 5，分辨率低于 <codeph>LAYER4</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LAYER6</pt>
+                    <pd>（7）：视频质量层级 6，分辨率低于 <codeph>LAYER5</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraRteAbrSubscriptionHigh</pt>

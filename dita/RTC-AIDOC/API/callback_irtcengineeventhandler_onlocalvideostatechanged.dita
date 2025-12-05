@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onlocalvideostatechanged">
     <title><ph keyref="onLocalVideoStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">本地视频状态发生变化回调。</ph><ph id="shortdesc" props="android">本地视频流状态发生变化回调。</ph><ph id="shortdesc" props="ios">当本地视频流状态发生变化时触发的回调。</ph><ph id="shortdesc" props="mac">当本地视频流状态发生变化时触发的回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">本地视频状态发生变化回调。</ph><ph id="shortdesc" props="ios">当本地视频流状态发生变化时触发的回调。</ph><ph id="shortdesc" props="android">本地视频流状态发生变化回调。</ph><ph id="shortdesc" props="mac">当本地视频流状态发生变化时触发的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,20 +14,20 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onLocalVideoStateChanged(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_REASON reason)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onLocalVideoStateChanged(Constants.VideoSourceType source, int state, int reason)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localVideoStateChangedOfState:(AgoraVideoLocalState)state reason:(AgoraLocalVideoStreamReason)reason sourceType:(AgoraVideoSourceType)sourceType NS_SWIFT_NAME(rtcEngine(_:localVideoStateChangedOf:reason:sourceType:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onLocalVideoStateChanged(Constants.VideoSourceType source, int state, int reason)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localVideoStateChangedOfState:(AgoraVideoLocalState)state reason:(AgoraLocalVideoStreamReason)reason sourceType:(AgoraVideoSourceType)sourceType NS_SWIFT_NAME(rtcEngine(_:localVideoStateChangedOf:reason:sourceType:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="android">你可以通过该回调及时了解本地视频流的状态变化，并根据变化原因采取相应措施，以更好地管理和排查视频流相关问题。</p>
             <p props="ios">当本地视频状态发生变化时，SDK 会触发该回调，报告当前本地视频状态及其变化原因。你可以通过该回调及时了解本地视频流的状态变化，并根据变化原因采取相应措施，以更好地管理和排查视频流相关问题。</p>
+            <p props="android">你可以通过该回调及时了解本地视频流的状态变化，并根据变化原因采取相应措施，以更好地管理和排查视频流相关问题。</p>
             <p props="mac">当本地视频状态发生变化时，SDK 会触发该回调，报告当前本地视频状态及其变化原因。你可以通过该回调及时了解本地视频流的状态变化，并根据变化原因采取相应措施，以更好地管理和排查视频流相关问题。</p>
             <note props="cpp">请注意，视频帧重复检测仅适用于分辨率大于 200 × 200、帧率大于等于 10 fps 且码率小于 20 Kbps 的视频帧。
 通常情况下，如果视频采集出现异常，可以通过该回调中的 <codeph>reason</codeph> 参数排查问题。但在部分设备上，采集异常（如卡顿）时，Android 系统不会抛出任何错误回调，导致 SDK 无法上报本地视频状态变化的原因。此时，你可以通过以下方式判断是否未采集到视频帧：该回调上报的 <codeph>state</codeph> 为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> 或 <codeph>LOCAL_VIDEO_STREAM_STATE_ENCODING</codeph>，且 <xref keyref="onLocalVideoStats"/> 回调中的 <codeph>captureFrameRate</codeph> 为 0。</note>
+            <note props="ios">请注意，视频帧重复检测仅适用于分辨率大于 200 × 200、帧率大于等于 10 fps 且码率小于 20 Kbps 的视频帧。通常情况下，如果视频采集出现错误，可以通过该回调中的 <codeph>reason</codeph> 参数排查问题。但在某些设备上，当采集出现问题（如卡顿）时，Android 系统不会抛出任何错误回调，SDK 也无法上报本地视频状态变化的原因。此时，你可以通过以下方式判断是否未采集到视频帧：该回调上报的 <codeph>state</codeph> 为 <codeph>AgoraVideoLocalStateCapturing</codeph> 或 <codeph>AgoraVideoLocalStateEncoding</codeph>，且 <xref keyref="onLocalVideoStats"/> 回调中的 <codeph>captureFrameRate</codeph> 为 0。</note>
             <note props="android">请注意，视频帧重复检测仅适用于分辨率大于 200 × 200、帧率大于等于 10 fps 且码率小于 20 Kbps 的视频帧。
 通常情况下，如果视频采集出现错误，可以通过该回调中的 <codeph>reason</codeph> 参数排查问题。但在某些设备上，当采集出现问题（如卡顿）时，Android 系统不会抛出任何错误回调，因此 SDK 无法上报本地视频状态变化的原因。此时，你可以通过以下方式判断是否未采集到视频帧：该回调上报 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> 或 <codeph>LOCAL_VIDEO_STREAM_STATE_ENCODING</codeph>，且 <xref keyref="onLocalVideoStats"/> 回调中的 <codeph>captureFrameRate</codeph> 为 0。</note>
-            <note props="ios">请注意，视频帧重复检测仅适用于分辨率大于 200 × 200、帧率大于等于 10 fps 且码率小于 20 Kbps 的视频帧。通常情况下，如果视频采集出现错误，可以通过该回调中的 <codeph>reason</codeph> 参数排查问题。但在某些设备上，当采集出现问题（如卡顿）时，Android 系统不会抛出任何错误回调，SDK 也无法上报本地视频状态变化的原因。此时，你可以通过以下方式判断是否未采集到视频帧：该回调上报的 <codeph>state</codeph> 为 <codeph>AgoraVideoLocalStateCapturing</codeph> 或 <codeph>AgoraVideoLocalStateEncoding</codeph>，且 <xref keyref="onLocalVideoStats"/> 回调中的 <codeph>captureFrameRate</codeph> 为 0。</note>
             <note props="mac">请注意，视频帧重复检测仅适用于分辨率大于 200 × 200、帧率大于等于 10 fps 且码率小于 20 Kbps 的视频帧。通常情况下，如果视频采集出现错误，可以通过该回调中的 <codeph>reason</codeph> 参数排查问题。但在某些设备上，当采集出现问题（如卡顿）时，Android 系统不会抛出任何错误回调，SDK 也无法上报本地视频状态变化的原因。此时，你可以通过以下方式判断是否未采集到视频帧：该回调上报的 <codeph>state</codeph> 为 <codeph>AgoraVideoLocalStateCapturing</codeph> 或 <codeph>AgoraVideoLocalStateEncoding</codeph>，且 <xref keyref="onLocalVideoStats"/> 回调中的 <codeph>captureFrameRate</codeph> 为 0。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
@@ -41,6 +41,11 @@
                     <li>当摄像头输出采集的视频帧时，若 SDK 检测到连续 15 帧重复的视频帧，会触发该回调，<codeph>state</codeph> 为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>，<codeph>reason</codeph> 为 <codeph>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE</codeph>。</li>
                 </ul>
             </p>
+            <p props="ios">该回调在以下情况下被触发，<codeph>state</codeph> 为 <codeph>AgoraVideoLocalStateFailed</codeph>，<codeph>reason</codeph> 为 <codeph>AgoraLocalVideoStreamReasonCaptureFailure</codeph>：
+                <ul>
+                    <li>应用切换到后台，系统回收了摄像头资源。</li>
+                    <li>摄像头正常启动，但连续四秒未输出视频帧。</li>
+                </ul><ph>当摄像头输出采集的视频帧时，若 SDK 检测到连续 15 帧重复帧，也会触发该回调，<codeph>state</codeph> 为 <codeph>AgoraVideoLocalStateCapturing</codeph>，<codeph>reason</codeph> 为 <codeph>AgoraLocalVideoStreamReasonCaptureFailure</codeph>。</ph></p>
             <p props="android">该回调在以下情况下被触发，状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_FAILED</codeph>，<codeph>reason</codeph> 为 <codeph>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE</codeph>：
                 <ul>
                     <li>Android 9 及以上版本中，应用在后台运行一段时间后，系统会自动收回摄像头权限。</li>
@@ -49,11 +54,6 @@
                     <li>当摄像头输出采集的视频帧时，若 SDK 检测到连续 15 帧重复帧，会触发该回调，<xref keyref="State"/> 为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>，<codeph>reason</codeph> 为 <codeph>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE</codeph>。</li>
                 </ul>
             </p>
-            <p props="ios">该回调在以下情况下被触发，<codeph>state</codeph> 为 <codeph>AgoraVideoLocalStateFailed</codeph>，<codeph>reason</codeph> 为 <codeph>AgoraLocalVideoStreamReasonCaptureFailure</codeph>：
-                <ul>
-                    <li>应用切换到后台，系统回收了摄像头资源。</li>
-                    <li>摄像头正常启动，但连续四秒未输出视频帧。</li>
-                </ul><ph>当摄像头输出采集的视频帧时，若 SDK 检测到连续 15 帧重复帧，也会触发该回调，<codeph>state</codeph> 为 <codeph>AgoraVideoLocalStateCapturing</codeph>，<codeph>reason</codeph> 为 <codeph>AgoraLocalVideoStreamReasonCaptureFailure</codeph>。</ph></p>
             <p props="mac">该回调在以下情况下被触发，<codeph>state</codeph> 为 <codeph>AgoraVideoLocalStateFailed</codeph>，<codeph>reason</codeph> 为 <codeph>AgoraLocalVideoStreamReasonCaptureFailure</codeph>：
                 <ul>
                     <li>应用切换到后台，系统回收了摄像头资源。</li>
@@ -72,6 +72,22 @@
                     <pd>本地视频的状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>本地视频状态变化的原因，详见 <xref keyref="LOCAL_VIDEO_STREAM_REASON"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd>当前使用的 <xref keyref="IRtcEngine"/> 实例。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>state</pt>
+                    <pd>本地视频的状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>reason</pt>
                     <pd>本地视频状态变化的原因，详见 <xref keyref="LOCAL_VIDEO_STREAM_REASON"/>。</pd>
                 </plentry>
@@ -110,22 +126,6 @@
                             <li><codeph>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_FAILURE</codeph> (21)：当前采集的窗口无数据。</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>engine</pt>
-                    <pd>当前使用的 <xref keyref="IRtcEngine"/> 实例。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>sourceType</pt>
-                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>state</pt>
-                    <pd>本地视频的状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>reason</pt>
-                    <pd>本地视频状态变化的原因，详见 <xref keyref="LOCAL_VIDEO_STREAM_REASON"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>engine</pt>

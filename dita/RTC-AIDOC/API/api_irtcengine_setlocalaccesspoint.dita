@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setlocalaccesspoint">
     <title><ph keyref="setLocalAccessPoint"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">配置连接到声网私有媒体服务器接入模块。</ph><ph id="shortdesc" props="android">配置连接到声网私有媒体服务器接入模块。</ph><ph id="shortdesc" props="ios">配置连接到声网私有媒体服务器接入模块。</ph><ph id="shortdesc" props="mac">配置连接到声网私有媒体服务器接入模块。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">配置连接到声网私有媒体服务器接入模块。</ph><ph id="shortdesc" props="ios">配置连接到声网私有媒体服务器接入模块。</ph><ph id="shortdesc" props="android">配置连接到声网私有媒体服务器接入模块。</ph><ph id="shortdesc" props="mac">配置连接到声网私有媒体服务器接入模块。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,26 +14,26 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalAccessPoint(const LocalAccessPointConfiguration&amp; config) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int setLocalAccessPoint(LocalAccessPointConfiguration config);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setLocalAccessPoint:(AgoraLocalAccessPointConfiguration* _Nonnull)config NS_SWIFT_NAME(setLocalAccessPoint(withConfig:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setLocalAccessPoint(LocalAccessPointConfiguration config);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setLocalAccessPoint:(AgoraLocalAccessPointConfiguration* _Nonnull)config NS_SWIFT_NAME(setLocalAccessPoint(withConfig:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">成功部署声网私有媒体服务器并在内网客户端集成 4.x RTC SDK 后，你可以调用该方法指定本地接入点，并将接入模块分配给 SDK。</p>
-            <p props="android">成功部署声网混合云解决方案并将 4.x RTC SDK 集成到内网客户端后，可以调用该方法指定本地接入点，并将接入模块分配给 SDK。</p>
             <p props="ios">成功部署声网私有媒体服务器并在内网客户端集成 4.x RTC SDK 后，你可以调用该方法指定本地接入点，并将接入模块分配给 SDK。</p>
+            <p props="android">成功部署声网混合云解决方案并将 4.x RTC SDK 集成到内网客户端后，可以调用该方法指定本地接入点，并将接入模块分配给 SDK。</p>
             <p props="mac">成功部署声网私有媒体服务器并在内网客户端集成 4.x RTC SDK 后，你可以调用该方法指定本地接入点，并将接入模块分配给 SDK。</p>
             <note props="cpp">该方法仅在部署声网混合云解决方案后生效。你可以联系销售了解详情并部署声网混合云。</note>
-            <note props="android">该方法仅在部署声网混合云解决方案后生效。你可以联系销售了解并部署声网混合云。</note>
             <note props="ios">该方法仅在部署声网混合云方案后生效。你可以联系销售了解更多信息并部署声网混合云。</note>
+            <note props="android">该方法仅在部署声网混合云解决方案后生效。你可以联系销售了解并部署声网混合云。</note>
             <note props="mac">该方法仅在部署声网混合云方案后生效。你可以联系销售了解更多信息并部署声网混合云。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">该方法必须在加入频道前调用。</p>
-            <p props="android">必须在加入频道前调用该方法。</p>
             <p props="ios">你必须在加入频道前调用该方法。</p>
+            <p props="android">必须在加入频道前调用该方法。</p>
             <p props="mac">你必须在加入频道前调用该方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -43,13 +43,13 @@
                     <pt>config</pt>
                     <pd>本地接入点配置。详见 <xref keyref="LocalAccessPointConfiguration"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>config</pt>
-                    <pd>本地接入点配置。详见 <xref keyref="LocalAccessPointConfiguration"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>config</pt>
                     <pd>本地接入点配置，详见 <xref keyref="LocalAccessPointConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>本地接入点配置。详见 <xref keyref="LocalAccessPointConfiguration"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>config</pt>
@@ -65,16 +65,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。详见错误码获取详细信息和排查建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startmediarenderingtracing">
     <title><ph keyref="startMediaRenderingTracing"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用视频帧渲染过程的追踪功能。</ph><ph id="shortdesc" props="android">启用视频帧渲染过程的追踪。</ph><ph id="shortdesc" props="ios">启用视频帧渲染过程的追踪功能。</ph><ph id="shortdesc" props="mac">启用视频帧渲染过程的追踪功能。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用视频帧渲染过程的追踪功能。</ph><ph id="shortdesc" props="ios">启用视频帧渲染过程的追踪功能。</ph><ph id="shortdesc" props="android">启用视频帧渲染过程的追踪。</ph><ph id="shortdesc" props="mac">启用视频帧渲染过程的追踪功能。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int startMediaRenderingTracing() = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int startMediaRenderingTracing();</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)startMediaRenderingTracing NS_SWIFT_NAME(startMediaRenderingTracing());</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startMediaRenderingTracing();</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)startMediaRenderingTracing NS_SWIFT_NAME(startMediaRenderingTracing());</codeblock>
             </p>
         </section>
@@ -25,11 +25,11 @@
                     <dt>自从</dt>
                     <dd>自 v4.1.1 版本新增。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>自从</dt>
                     <dd>自 v4.1.1 版本新增。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>自从</dt>
                     <dd>自 v4.1.1 版本新增。</dd>
                 </dlentry>
@@ -39,8 +39,8 @@
                 </dlentry>
             </dl>
             <p props="cpp">从成功调用该方法开始，SDK 会追踪频道中视频帧的渲染状态，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告相关信息。</p>
-            <p props="android">从成功调用该方法开始，SDK 会追踪频道中视频帧的渲染状态，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调上报相关事件信息。</p>
             <p props="ios">从成功调用该方法开始，SDK 会追踪频道中视频帧的渲染状态，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告相关事件信息。</p>
+            <p props="android">从成功调用该方法开始，SDK 会追踪频道中视频帧的渲染状态，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调上报相关事件信息。</p>
             <p props="mac">从成功调用该方法开始，SDK 会追踪频道中视频帧的渲染状态，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告相关事件信息。</p>
             <note props="cpp">
                 <ul>
@@ -48,16 +48,16 @@
                     <li>本地用户离开当前频道后，SDK 会自动从你再次加入频道时开始追踪视频渲染事件。</li>
                 </ul>
             </note>
-            <note props="android">
-                <ul>
-                    <li>如果你未调用该方法，SDK 会从调用 <codeph>joinChannel</codeph> 加入频道开始追踪视频帧的渲染事件。</li>
-                    <li>本地用户离开当前频道后，SDK 会自动从再次加入频道开始追踪视频渲染事件。</li>
-                </ul>
-            </note>
             <note props="ios">
                 <ul>
                     <li>如果你未调用该方法，SDK 会从调用 <xref keyref="joinChannel2"/> 加入频道开始追踪视频帧的渲染事件。你可以根据实际应用场景在合适的时机调用该方法，以设置追踪视频渲染事件的起始位置。</li>
                     <li>本地用户离开当前频道后，SDK 会自动从你加入频道的时刻开始追踪视频渲染事件。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>如果你未调用该方法，SDK 会从调用 <codeph>joinChannel</codeph> 加入频道开始追踪视频帧的渲染事件。</li>
+                    <li>本地用户离开当前频道后，SDK 会自动从再次加入频道开始追踪视频渲染事件。</li>
                 </ul>
             </note>
             <note props="mac">
@@ -87,22 +87,22 @@
                     </li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
-                        <ul>
-                            <li>-7：在 <xref keyref="IRtcEngine"/> 初始化之前调用该方法。</li>
-                        </ul>
-                    </li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
                         <ul>
                             <li>-7：在初始化 <xref keyref="IRtcEngine"/> 之前调用该方法。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-7：在 <xref keyref="IRtcEngine"/> 初始化之前调用该方法。</li>
                         </ul>
                     </li>
                 </ul>

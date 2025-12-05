@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_rteplayerstate">
     <title><ph keyref="RtePlayerState"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">播放器状态。</ph><ph id="shortdesc" props="android">媒体播放器的状态。</ph><ph id="shortdesc" props="ios">媒体播放器的状态。</ph><ph id="shortdesc" props="mac">媒体播放器的状态。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">播放器状态。</ph><ph id="shortdesc" props="ios">媒体播放器的状态。</ph><ph id="shortdesc" props="android">媒体播放器的状态。</ph><ph id="shortdesc" props="mac">媒体播放器的状态。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
             <dl outputclass="since">
@@ -10,11 +10,11 @@
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
@@ -59,38 +59,6 @@
                     <pt>kRtePlayerStateFailed</pt>
                     <pd>（7）：失败状态。发生内部错误时进入该状态。收到该状态后，请先调用 <xref keyref="Stop_Player"/>，再调用 <xref keyref="OpenWithUrl"/> 重新打开资源。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>IDLE</pt>
-                    <pd>（0）：空闲状态。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>OPENING</pt>
-                    <pd>（1）：正在打开 URL 资源。调用 <xref keyref="OpenWithUrl"/> 后会返回该状态码。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>OPEN_COMPLETED</pt>
-                    <pd>（2）：已成功打开 URL 资源。<xref keyref="OpenWithUrl"/> 成功打开资源后会返回该状态码。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>PLAYING</pt>
-                    <pd>（3）：正在播放。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>PAUSED</pt>
-                    <pd>（4）：播放已暂停。成功调用 <xref keyref="Pause_Player"/> 后会返回该状态码。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>PLAYBACK_COMPLETED</pt>
-                    <pd>（5）：播放已完成。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>STOPPED</pt>
-                    <pd>（6）：播放已停止。成功调用 <xref keyref="Stop_Player"/> 后会返回该状态码。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>FAILED</pt>
-                    <pd>（7）：播放失败。发生内部错误时会返回该状态码。收到该状态后需先调用 <xref keyref="Stop_Player"/>，再调用 <xref keyref="OpenWithUrl"/> 重新打开资源。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>AgoraRtePlayerStateIdle</pt>
                     <pd>（0）：空闲状态。</pd>
@@ -122,6 +90,38 @@
                 <plentry props="ios">
                     <pt>AgoraRtePlayerStateFailed</pt>
                     <pd>（7）：播放失败。发生内部错误时触发该状态。收到该状态后需先调用 <xref keyref="Pause_Player"/>，再调用 <xref keyref="OpenWithUrl"/> 重新打开资源。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>IDLE</pt>
+                    <pd>（0）：空闲状态。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>OPENING</pt>
+                    <pd>（1）：正在打开 URL 资源。调用 <xref keyref="OpenWithUrl"/> 后会返回该状态码。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>OPEN_COMPLETED</pt>
+                    <pd>（2）：已成功打开 URL 资源。<xref keyref="OpenWithUrl"/> 成功打开资源后会返回该状态码。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>PLAYING</pt>
+                    <pd>（3）：正在播放。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>PAUSED</pt>
+                    <pd>（4）：播放已暂停。成功调用 <xref keyref="Pause_Player"/> 后会返回该状态码。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>PLAYBACK_COMPLETED</pt>
+                    <pd>（5）：播放已完成。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STOPPED</pt>
+                    <pd>（6）：播放已停止。成功调用 <xref keyref="Stop_Player"/> 后会返回该状态码。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>FAILED</pt>
+                    <pd>（7）：播放失败。发生内部错误时会返回该状态码。收到该状态后需先调用 <xref keyref="Stop_Player"/>，再调用 <xref keyref="OpenWithUrl"/> 重新打开资源。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraRtePlayerStateIdle</pt>

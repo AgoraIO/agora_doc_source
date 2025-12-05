@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectconfig">
     <title><ph keyref="ContentInspectConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">配置视频截图和上传功能。</ph><ph id="shortdesc" props="android">用于配置截图和上传功能。</ph><ph id="shortdesc" props="ios">截图和上传配置。</ph><ph id="shortdesc" props="mac">截图和上传配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">配置视频截图和上传功能。</ph><ph id="shortdesc" props="ios">截图和上传配置。</ph><ph id="shortdesc" props="android">用于配置截图和上传功能。</ph><ph id="shortdesc" props="mac">截图和上传配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -12,6 +12,11 @@
   ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
   int moduleCount;
 };</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
+@property (nonatomic, copy) NSString* _Nullable extraInfo;
+@property (nonatomic, copy) NSString* _Nullable serverConfig;
+@property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*&gt;* _Nullable modules;
+@end</codeblock>
                 <codeblock props="android" outputclass="language-java">public class ContentInspectConfig {
   public final static int CONTENT_INSPECT_TYPE_INVALID = 0;
   @Deprecated public final static int CONTENT_INSPECT_TYPE_MODERATION = 1;
@@ -23,11 +28,6 @@
   public ContentInspectModule[] modules;
   public int moduleCount;
 }</codeblock>
-                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
-@property (nonatomic, copy) NSString* _Nullable extraInfo;
-@property (nonatomic, copy) NSString* _Nullable serverConfig;
-@property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*&gt;* _Nullable modules;
-@end</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
 @property (nonatomic, copy) NSString* _Nullable extraInfo;
 @property (nonatomic, copy) NSString* _Nullable serverConfig;
@@ -43,8 +43,8 @@
                 </dlentry>
             </dl>
             <p props="cpp">SDK 会将视频截图和附加信息上传至声网服务器。上传完成后，声网服务器会将回调通知和附加信息发送至你的服务器。</p>
-            <p props="android">用于设置截图和上传的相关参数。</p>
             <p props="ios">用于配置本地截图上传功能。上传完成后，声网服务器会将附加信息和回调通知发送至你的服务器。</p>
+            <p props="android">用于设置截图和上传的相关参数。</p>
             <p props="mac">用于配置本地截图上传功能。上传完成后，声网服务器会将附加信息和回调通知发送至你的服务器。</p>
             <note props="cpp">一个功能模块最多只能配置一个实例。目前仅支持本地截图上传功能。</note>
         </section>
@@ -68,6 +68,20 @@
                 <plentry props="cpp">
                     <pt>moduleCount</pt>
                     <pd>功能模块的数量，即配置的 <xref keyref="ContentInspectModule"/> 实例数量，必须与 <codeph>modules</codeph> 中配置的实例数量一致。最大数量为 32。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>extraInfo</pt>
+                    <pd>视频内容的附加信息（最大长度为 1024 字节）。SDK 会将截图和视频内容的附加信息上传至声网服务器。上传完成后，声网服务器会将附加信息和回调通知发送至你的服务器。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>serverConfig</pt>
+                    <pd>通过声网 Extensions Marketplace 上传视频截图的扩展相关的服务器配置。仅当 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <codeph>AgoraContentInspectTypeImageModeration</codeph> 时该参数才生效。如需使用该功能，请[联系技术支持](https://ticket.shengwang.cn/)。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>modules</pt>
+                    <pd>功能模块。最多可配置 32 个 <xref keyref="ContentInspectModule"/> 实例，<codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> 的取值范围为 [1, 32] 的整数。详见 <xref keyref="ContentInspectModule"/>。
+                        <note>每个功能模块最多只能配置一个实例。目前仅支持本地截图上传功能。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
@@ -106,20 +120,6 @@
                 <plentry props="android">
                     <pt>moduleCount</pt>
                     <pd>功能模块的数量，即配置的 <xref keyref="ContentInspectModule"/> 实例数量。必须与 <codeph>modules</codeph> 中配置的实例数量一致，最大值为 32。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>extraInfo</pt>
-                    <pd>视频内容的附加信息（最大长度为 1024 字节）。SDK 会将截图和视频内容的附加信息上传至声网服务器。上传完成后，声网服务器会将附加信息和回调通知发送至你的服务器。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>serverConfig</pt>
-                    <pd>通过声网 Extensions Marketplace 上传视频截图的扩展相关的服务器配置。仅当 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <codeph>AgoraContentInspectTypeImageModeration</codeph> 时该参数才生效。如需使用该功能，请[联系技术支持](https://ticket.shengwang.cn/)。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>modules</pt>
-                    <pd>功能模块。最多可配置 32 个 <xref keyref="ContentInspectModule"/> 实例，<codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> 的取值范围为 [1, 32] 的整数。详见 <xref keyref="ContentInspectModule"/>。
-                        <note>每个功能模块最多只能配置一个实例。目前仅支持本地截图上传功能。</note>
-                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>extraInfo</pt>

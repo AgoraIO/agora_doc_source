@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_playerobserver_onaudiovolumeindication_playerobserver">
     <title><ph keyref="onAudioVolumeIndication_PlayerObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onAudioVolumeIndication_PlayerObserver"/> 回调。播放器音量变化时触发。</ph><ph id="shortdesc" props="android">播放器音量变化回调。</ph><ph id="shortdesc" props="ios">播放器音量提示回调。</ph><ph id="shortdesc" props="mac">播放器音量提示回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onAudioVolumeIndication_PlayerObserver"/> 回调。播放器音量变化时触发。</ph><ph id="shortdesc" props="ios">播放器音量提示回调。</ph><ph id="shortdesc" props="android">播放器音量变化回调。</ph><ph id="shortdesc" props="mac">播放器音量提示回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioVolumeIndication(int32_t volume) {}</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onAudioVolumeIndication(int volume)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)onAudioVolumeIndication:(int32_t)volume;</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onAudioVolumeIndication(int volume)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)onAudioVolumeIndication:(int32_t)volume;</codeblock>
             </p>
         </section>
@@ -25,11 +25,11 @@
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
@@ -42,8 +42,8 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>触发时机</title>
             <p props="cpp">当播放器的音量发生变化时，SDK 会触发该回调。</p>
-            <p props="android">该回调在播放器音量发生变化时被触发。</p>
             <p props="ios">当播放器音量发生变化时，SDK 会触发该回调。</p>
+            <p props="android">该回调在播放器音量发生变化时被触发。</p>
             <p props="mac">当播放器音量发生变化时，SDK 会触发该回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -53,13 +53,13 @@
                     <pt>volume</pt>
                     <pd>播放器当前的音量，取值范围为 [0, 225]。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>volume</pt>
-                    <pd>播放器当前的音量，取值范围为 [0, 225]。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>volume</pt>
                     <pd>播放器当前的音量，取值范围为 [0,225]。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>volume</pt>
+                    <pd>播放器当前的音量，取值范围为 [0, 225]。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>volume</pt>

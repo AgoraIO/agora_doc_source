@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_geterrordescription">
     <title><ph keyref="getErrorDescription"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="getErrorDescription"/>：获取警告或错误描述。</ph><ph id="shortdesc" props="android">获取警告或错误码对应的描述信息。</ph><ph id="shortdesc" props="ios">获取警告或错误描述信息。</ph><ph id="shortdesc" props="mac">获取警告或错误描述信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="getErrorDescription"/>：获取警告或错误描述。</ph><ph id="shortdesc" props="ios">获取警告或错误描述信息。</ph><ph id="shortdesc" props="android">获取警告或错误码对应的描述信息。</ph><ph id="shortdesc" props="mac">获取警告或错误描述信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual const char* getErrorDescription(int code) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public static String getErrorDescription(int error)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">+ (NSString* _Nonnull)getErrorDescription:(NSInteger)error NS_SWIFT_NAME(getErrorDescription(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public static String getErrorDescription(int error)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">+ (NSString* _Nonnull)getErrorDescription:(NSInteger)error NS_SWIFT_NAME(getErrorDescription(_:));</codeblock>
             </p>
         </section>
@@ -30,11 +30,11 @@
                     <pt>code</pt>
                     <pd>SDK 报告的错误码。</pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="ios">
                     <pt>error</pt>
                     <pd>SDK 报告的错误码。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="android">
                     <pt>error</pt>
                     <pd>SDK 报告的错误码。</pd>
                 </plentry>
@@ -52,9 +52,9 @@
                     <li>方法调用失败时，返回空字符串。</li>
                 </ul>
             </p>
+            <p props="ios">方法调用成功时，返回错误码对应的描述信息。</p>
             <p props="android">方法调用成功时，返回错误码对应的描述信息。
 方法调用失败，返回空字符串。</p>
-            <p props="ios">方法调用成功时，返回错误码对应的描述信息。</p>
             <p props="mac">方法调用成功时，返回错误码对应的描述信息。</p>
         </section>
     </refbody>

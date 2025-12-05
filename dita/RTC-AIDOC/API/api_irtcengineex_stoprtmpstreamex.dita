@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_stoprtmpstreamex">
     <title><ph keyref="stopRtmpStreamEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">停止向指定 CDN 地址推送媒体流。</ph><ph id="shortdesc" props="android">停止向指定 CDN 地址推送媒体流。</ph><ph id="shortdesc" props="ios">停止向指定 CDN 地址推送媒体流。</ph><ph id="shortdesc" props="mac">停止向指定 CDN 地址推送媒体流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">停止向指定 CDN 地址推送媒体流。</ph><ph id="shortdesc" props="ios">停止向指定 CDN 地址推送媒体流。</ph><ph id="shortdesc" props="android">停止向指定 CDN 地址推送媒体流。</ph><ph id="shortdesc" props="mac">停止向指定 CDN 地址推送媒体流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,9 +14,9 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int stopRtmpStreamEx(const char* url, const RtcConnection&amp; connection) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int stopRtmpStreamEx(String url, RtcConnection connection);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)stopRtmpStreamEx:(NSString* _Nonnull)url
              connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(stopRtmpStreamEx(_:connection:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int stopRtmpStreamEx(String url, RtcConnection connection);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)stopRtmpStreamEx:(NSString* _Nonnull)url
              connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(stopRtmpStreamEx(_:connection:));</codeblock>
             </p>
@@ -24,10 +24,10 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">声网推荐你使用更加完善的服务端推流功能，详见[实现服务端旁路推流](https://doc.shengwang.cn/doc/media-push/restful/landing-page)。
 你可以调用该方法停止向指定的 CDN 地址推送媒体流。该方法每次只能停止一个地址的推流，如需停止多个地址的推流，请多次调用该方法。</p>
-            <p props="android">声网推荐你使用更加完善的服务端推流功能，详见[实现服务端旁路推流](https://doc.shengwang.cn/doc/media-push/restful/landing-page)。
-你可以调用该方法停止向指定 CDN 地址的直播推流。该方法每次只能停止向一个 CDN 地址推流，如果需要停止多个地址的推流，请多次调用该方法。</p>
             <p props="ios">声网推荐你使用更加完善的服务端推流功能，详见[实现服务端旁路推流](https://doc.shengwang.cn/doc/media-push/restful/landing-page)。
 你可以调用该方法停止向指定的 CDN 地址进行直播推流。该方法每次只能停止向一个 CDN 地址推送媒体流，如果需要停止多个地址的推流，请多次调用该方法。</p>
+            <p props="android">声网推荐你使用更加完善的服务端推流功能，详见[实现服务端旁路推流](https://doc.shengwang.cn/doc/media-push/restful/landing-page)。
+你可以调用该方法停止向指定 CDN 地址的直播推流。该方法每次只能停止向一个 CDN 地址推流，如果需要停止多个地址的推流，请多次调用该方法。</p>
             <p props="mac">声网推荐你使用更加完善的服务端推流功能，详见[实现服务端旁路推流](https://doc.shengwang.cn/doc/media-push/restful/landing-page)。
 你可以调用该方法停止向指定的 CDN 地址进行直播推流。该方法每次只能停止向一个 CDN 地址推送媒体流，如果需要停止多个地址的推流，请多次调用该方法。</p>
         </section>
@@ -38,8 +38,8 @@
         <section id="related" deliveryTarget="details" props="android cpp ios mac">
             <title>相关回调</title>
             <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
-            <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
             <p props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
+            <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
             <p props="mac">成功调用该方法后，SDK 会触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调报告推流状态。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -53,19 +53,19 @@
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>url</pt>
-                    <pd>旁路推流地址。格式为 RTMP 或 RTMPS，长度不能超过 1024 字节。不支持中文等特殊字符。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>url</pt>
                     <pd>旁路推流地址。格式为 RTMP 或 RTMPS。字符长度不能超过 1024 字节。不支持中文等特殊字符。</pd>
                 </plentry>
                 <plentry props="ios">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>url</pt>
+                    <pd>旁路推流地址。格式为 RTMP 或 RTMPS，长度不能超过 1024 字节。不支持中文等特殊字符。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
@@ -87,16 +87,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

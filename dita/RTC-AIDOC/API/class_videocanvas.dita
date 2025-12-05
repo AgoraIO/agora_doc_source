@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videocanvas">
     <title><ph keyref="VideoCanvas"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置视频画布的属性。</ph><ph id="shortdesc" props="android">用于设置视频画布的显示、渲染和布局属性。</ph><ph id="shortdesc" props="ios">用于设置视频画布的各项属性。</ph><ph id="shortdesc" props="mac">用于设置视频画布的各项属性。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置视频画布的属性。</ph><ph id="shortdesc" props="ios">用于设置视频画布的各项属性。</ph><ph id="shortdesc" props="android">用于设置视频画布的显示、渲染和布局属性。</ph><ph id="shortdesc" props="mac">用于设置视频画布的各项属性。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -20,6 +20,20 @@
   bool enableAlphaMask;
   media::base::VIDEO_MODULE_POSITION position;
 };</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
+@property(assign, nonatomic) NSUInteger uid;
+@property(assign, nonatomic) NSUInteger subviewUid;
+@property(strong, nonatomic) VIEW_CLASS *_Nullable view;
+@property(assign, nonatomic) AgoraVideoRenderMode renderMode;
+@property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
+@property(assign, nonatomic) AgoraVideoViewSetupMode setupMode;
+@property(nonatomic, assign) AgoraVideoSourceType sourceType;
+@property(nonatomic, assign) int mediaPlayerId;
+@property(assign, nonatomic) CGRect cropArea;
+@property(assign, nonatomic) UInt32 backgroundColor;
+@property(assign, nonatomic) BOOL enableAlphaMask;
+@property(assign, nonatomic) AgoraVideoModulePosition position;
+@end</codeblock>
                 <codeblock props="android" outputclass="language-java">public class VideoCanvas {
   public int uid;
   public int subviewUid;
@@ -41,20 +55,6 @@
   public int backgroundColor;
   public Constants.VideoModulePosition position = Constants.VideoModulePosition.VIDEO_MODULE_POSITION_POST_CAPTURER;
 }</codeblock>
-                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
-@property(assign, nonatomic) NSUInteger uid;
-@property(assign, nonatomic) NSUInteger subviewUid;
-@property(strong, nonatomic) VIEW_CLASS *_Nullable view;
-@property(assign, nonatomic) AgoraVideoRenderMode renderMode;
-@property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
-@property(assign, nonatomic) AgoraVideoViewSetupMode setupMode;
-@property(nonatomic, assign) AgoraVideoSourceType sourceType;
-@property(nonatomic, assign) int mediaPlayerId;
-@property(assign, nonatomic) CGRect cropArea;
-@property(assign, nonatomic) UInt32 backgroundColor;
-@property(assign, nonatomic) BOOL enableAlphaMask;
-@property(assign, nonatomic) AgoraVideoModulePosition position;
-@end</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger subviewUid;
@@ -140,6 +140,75 @@
                 <plentry props="cpp">
                     <pt>position</pt>
                     <pd>视频帧在视频链路中的观测位置。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>发布视频源的用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>subviewUid</pt>
+                    <pd>视频显示窗口的用户 ID。
+                        <note>在一个 <xref keyref="VideoCanvas"/> 中，只能设置 <codeph>view</codeph> 或 <codeph>surfaceTexture</codeph> 其中之一。如果两者都设置，仅 <codeph>view</codeph> 的设置生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>view</pt>
+                    <pd>视频显示窗口。
+                        <note>在一个 <xref keyref="VideoCanvas"/> 中，只能设置 <codeph>view</codeph> 或 <codeph>surfaceTexture</codeph> 其中之一。如果两者都设置，仅 <codeph>view</codeph> 的设置生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>renderMode</pt>
+                    <pd>视频的渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mirrorMode</pt>
+                    <pd>视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>
+                            <ul>
+                                <li>本地视频视图的镜像模式：使用前置摄像头时，SDK 默认开启镜像模式；使用后置摄像头时，SDK 默认关闭镜像模式。</li>
+                                <li>远端用户默认关闭镜像模式。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>setupMode</pt>
+                    <pd>视图的设置模式，详见 <xref keyref="VIDEO_VIEW_SETUP_MODE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mediaPlayerId</pt>
+                    <pd>媒体播放器的 ID。可通过调用 <xref keyref="getMediaPlayerId"/> 获取设备 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>cropArea</pt>
+                    <pd>（可选）视频帧的显示区域。<codeph>width</codeph> 和 <codeph>height</codeph> 表示该区域的视频像素宽度和高度。默认值为 <xref keyref="NULL"/>（即宽或高为 0），表示显示视频帧的实际分辨率。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>backgroundColor</pt>
+                    <pd>视频画布的背景颜色，使用 RGBA 格式。默认值为 0x00000000，表示黑色。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>enableAlphaMask</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>接收端仅在发送端启用 Alpha 通道传输时才能渲染 Alpha 通道信息。</li>
+                                <li>启用 Alpha 通道传输，请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            </ul>
+                        </note><ph>是否启用 Alpha 蒙版渲染：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：启用 Alpha 蒙版渲染。</li>
+                            <li><xref keyref="false"/>：（默认）不启用 Alpha 蒙版渲染。</li>
+                        </ul><ph>Alpha 蒙版渲染可创建具有透明效果的图像，并从视频中提取人像。结合其他方法使用时，可实现画中画、人像水印等效果。</ph></pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>position</pt>
+                    <pd>视频帧在视频链路中的观测位置，详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>uid</pt>
@@ -256,75 +325,6 @@
                 <plentry props="android">
                     <pt>position</pt>
                     <pd>视频帧在视频链路中的观察位置。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>uid</pt>
-                    <pd>发布视频源的用户 ID。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>subviewUid</pt>
-                    <pd>视频显示窗口的用户 ID。
-                        <note>在一个 <xref keyref="VideoCanvas"/> 中，只能设置 <codeph>view</codeph> 或 <codeph>surfaceTexture</codeph> 其中之一。如果两者都设置，仅 <codeph>view</codeph> 的设置生效。</note>
-                    </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>view</pt>
-                    <pd>视频显示窗口。
-                        <note>在一个 <xref keyref="VideoCanvas"/> 中，只能设置 <codeph>view</codeph> 或 <codeph>surfaceTexture</codeph> 其中之一。如果两者都设置，仅 <codeph>view</codeph> 的设置生效。</note>
-                    </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>renderMode</pt>
-                    <pd>视频的渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>mirrorMode</pt>
-                    <pd>视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
-                        <note>
-                            <ul>
-                                <li>本地视频视图的镜像模式：使用前置摄像头时，SDK 默认开启镜像模式；使用后置摄像头时，SDK 默认关闭镜像模式。</li>
-                                <li>远端用户默认关闭镜像模式。</li>
-                            </ul>
-                        </note>
-                    </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>setupMode</pt>
-                    <pd>视图的设置模式，详见 <xref keyref="VIDEO_VIEW_SETUP_MODE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>sourceType</pt>
-                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>mediaPlayerId</pt>
-                    <pd>媒体播放器的 ID。可通过调用 <xref keyref="getMediaPlayerId"/> 获取设备 ID。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>cropArea</pt>
-                    <pd>（可选）视频帧的显示区域。<codeph>width</codeph> 和 <codeph>height</codeph> 表示该区域的视频像素宽度和高度。默认值为 <xref keyref="NULL"/>（即宽或高为 0），表示显示视频帧的实际分辨率。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>backgroundColor</pt>
-                    <pd>视频画布的背景颜色，使用 RGBA 格式。默认值为 0x00000000，表示黑色。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>enableAlphaMask</pt>
-                    <pd>
-                        <note>
-                            <ul>
-                                <li>接收端仅在发送端启用 Alpha 通道传输时才能渲染 Alpha 通道信息。</li>
-                                <li>启用 Alpha 通道传输，请[联系技术支持](https://ticket.shengwang.cn/)。</li>
-                            </ul>
-                        </note><ph>是否启用 Alpha 蒙版渲染：</ph>
-                        <ul>
-                            <li><xref keyref="true"/>：启用 Alpha 蒙版渲染。</li>
-                            <li><xref keyref="false"/>：（默认）不启用 Alpha 蒙版渲染。</li>
-                        </ul><ph>Alpha 蒙版渲染可创建具有透明效果的图像，并从视频中提取人像。结合其他方法使用时，可实现画中画、人像水印等效果。</ph></pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>position</pt>
-                    <pd>视频帧在视频链路中的观测位置，详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>uid</pt>

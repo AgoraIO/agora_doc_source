@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_remotevoicepositioninfo">
     <title><ph keyref="RemoteVoicePositionInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于设置远端用户或媒体播放器的空间位置信息。</ph><ph id="shortdesc" props="android"><xref keyref="RemoteVoicePositionInfo"/> 表示远端用户或媒体播放器的空间位置。</ph><ph id="shortdesc" props="ios">远端用户或媒体播放器的空间位置。</ph><ph id="shortdesc" props="mac">远端用户或媒体播放器的空间位置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于设置远端用户或媒体播放器的空间位置信息。</ph><ph id="shortdesc" props="ios">远端用户或媒体播放器的空间位置。</ph><ph id="shortdesc" props="android"><xref keyref="RemoteVoicePositionInfo"/> 表示远端用户或媒体播放器的空间位置。</ph><ph id="shortdesc" props="mac">远端用户或媒体播放器的空间位置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -10,14 +10,14 @@
   float position[3];
   float forward[3];
 };</codeblock>
-                <codeblock props="android" outputclass="language-java">public class RemoteVoicePositionInfo {
-  public float[] position;
-  public float[] forward;
-}</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRemoteVoicePositionInfo : NSObject
 @property(assign, nonatomic) simd_float3 position;
 @property(assign, nonatomic) simd_float3 forward;
 @end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class RemoteVoicePositionInfo {
+  public float[] position;
+  public float[] forward;
+}</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRemoteVoicePositionInfo : NSObject
 @property(assign, nonatomic) simd_float3 position;
 @property(assign, nonatomic) simd_float3 forward;
@@ -35,14 +35,6 @@
                     <pt>forward</pt>
                     <pd>坐标系中 x 轴的单位向量。该参数是一个长度为 3 的数组，三个值依次表示前、右、上的坐标。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>position</pt>
-                    <pd>在世界坐标系中的坐标。该参数是一个长度为 3 的数组，三个值依次表示前、右、上三个方向的坐标。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>forward</pt>
-                    <pd>坐标系中 x 轴的单位向量。该参数是一个长度为 3 的数组，三个值依次表示前、右、上三个方向的坐标。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>position</pt>
                     <pd>世界坐标系中的坐标。该参数是一个长度为 3 的数组，三个值依次表示前方、右方和上方的坐标。</pd>
@@ -50,6 +42,14 @@
                 <plentry props="ios">
                     <pt>forward</pt>
                     <pd>坐标系中 x 轴的单位向量。该参数是一个长度为 3 的数组，三个值依次表示前方、右方和上方的坐标。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>position</pt>
+                    <pd>在世界坐标系中的坐标。该参数是一个长度为 3 的数组，三个值依次表示前、右、上三个方向的坐标。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>forward</pt>
+                    <pd>坐标系中 x 轴的单位向量。该参数是一个长度为 3 的数组，三个值依次表示前、右、上三个方向的坐标。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>position</pt>

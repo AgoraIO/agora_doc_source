@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startpreview">
     <title><ph keyref="startPreview"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用本地视频预览。</ph><ph id="shortdesc" props="android">启用本地视频预览。</ph><ph id="shortdesc" props="ios">启用本地视频预览。</ph><ph id="shortdesc" props="mac">启用本地视频预览。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用本地视频预览。</ph><ph id="shortdesc" props="ios">启用本地视频预览。</ph><ph id="shortdesc" props="android">启用本地视频预览。</ph><ph id="shortdesc" props="mac">启用本地视频预览。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int startPreview() = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int startPreview();</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)startPreview NS_SWIFT_NAME(startPreview());</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startPreview();</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)startPreview NS_SWIFT_NAME(startPreview());</codeblock>
             </p>
         </section>
@@ -28,16 +28,16 @@
                     <li>离开频道后，本地预览仍保持开启状态。你需要调用 <codeph>stopPreview</codeph> 来关闭本地预览。</li>
                 </ul>
             </note>
-            <note props="android">
-                <ul>
-                    <li>本地预览默认启用镜像模式。</li>
-                    <li>离开频道后，本地预览仍保持开启状态。你需要调用 <codeph>stopPreview</codeph> 来关闭本地预览。</li>
-                </ul>
-            </note>
             <note props="ios">
                 <ul>
                     <li>本地预览默认启用镜像模式。</li>
                     <li>离开频道后，本地预览仍然保持开启状态。你需要调用 <xref keyref="stopPreview"/> 来关闭本地预览。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>本地预览默认启用镜像模式。</li>
+                    <li>离开频道后，本地预览仍保持开启状态。你需要调用 <codeph>stopPreview</codeph> 来关闭本地预览。</li>
                 </ul>
             </note>
             <note props="mac">
@@ -50,8 +50,8 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">此方法必须在调用 <xref keyref="enableVideo"/> 和 <xref keyref="setupLocalVideo"/> 之后调用。</p>
-            <p props="android">必须在调用 <xref keyref="enableVideo"/> 和 <xref keyref="setupLocalVideo"/> 之后调用此方法。</p>
             <p props="ios">必须在调用 <xref keyref="enableVideo"/> 和 <codeph>setupLocalVideo</codeph> 之后调用该方法。</p>
+            <p props="android">必须在调用 <xref keyref="enableVideo"/> 和 <xref keyref="setupLocalVideo"/> 之后调用此方法。</p>
             <p props="mac">必须在调用 <xref keyref="enableVideo"/> 和 <codeph>setupLocalVideo</codeph> 之后调用该方法。</p>
         </section>
         <section id="return_values" props="android cpp ios mac">
@@ -62,16 +62,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

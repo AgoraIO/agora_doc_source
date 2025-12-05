@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setaudiomixingplaybackspeed">
     <title><ph keyref="setAudioMixingPlaybackSpeed"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置当前音频文件的播放速度。</ph><ph id="shortdesc" props="android">设置当前音频文件的播放速度。</ph><ph id="shortdesc" props="ios">设置当前音频文件的播放速度。</ph><ph id="shortdesc" props="mac">设置当前音频文件的播放速度。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置当前音频文件的播放速度。</ph><ph id="shortdesc" props="ios">设置当前音频文件的播放速度。</ph><ph id="shortdesc" props="android">设置当前音频文件的播放速度。</ph><ph id="shortdesc" props="mac">设置当前音频文件的播放速度。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,15 +14,15 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioMixingPlaybackSpeed(int speed) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int setAudioMixingPlaybackSpeed(int speed);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setAudioMixingPlaybackSpeed:(NSInteger)speed NS_SWIFT_NAME(setAudioMixingPlaybackSpeed(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setAudioMixingPlaybackSpeed(int speed);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setAudioMixingPlaybackSpeed:(NSInteger)speed NS_SWIFT_NAME(setAudioMixingPlaybackSpeed(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">请确保在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/> 回调报告状态为 <codeph>AUDIO_MIXING_STATE_PLAYING</codeph> 后再调用此方法。</p>
-            <p props="android">请确保在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/> 回调，报告状态为 <codeph>AUDIO_MIXING_STATE_PLAYING</codeph> 后再调用此方法。</p>
             <p props="ios">请在调用 <xref keyref="startAudioMixing2"/> 并收到 <codeph>audioMixingStateChanged:reasonCode:</codeph> 回调报告状态为 <codeph>AgoraAudioMixingStateTypePlaying</codeph> 后调用此方法。</p>
+            <p props="android">请确保在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/> 回调，报告状态为 <codeph>AUDIO_MIXING_STATE_PLAYING</codeph> 后再调用此方法。</p>
             <p props="mac">请在调用 <xref keyref="startAudioMixing2"/> 并收到 <codeph>audioMixingStateChanged:reasonCode:</codeph> 回调报告状态为 <codeph>AgoraAudioMixingStateTypePlaying</codeph> 后调用此方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -38,9 +38,9 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="ios">
                     <pt>speed</pt>
-                    <pd>播放速度。建议设置为 50 到 400 之间的值，定义如下：
+                    <pd>播放速度。声网建议设置为 50 到 400 之间的值，定义如下：
                         <ul>
                             <li>50：原始速度的一半。</li>
                             <li>100：原始速度。</li>
@@ -48,9 +48,9 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="android">
                     <pt>speed</pt>
-                    <pd>播放速度。声网建议设置为 50 到 400 之间的值，定义如下：
+                    <pd>播放速度。建议设置为 50 到 400 之间的值，定义如下：
                         <ul>
                             <li>50：原始速度的一半。</li>
                             <li>100：原始速度。</li>
@@ -78,16 +78,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

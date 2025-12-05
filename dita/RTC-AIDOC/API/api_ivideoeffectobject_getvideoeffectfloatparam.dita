@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideoeffectobject_getvideoeffectfloatparam">
     <title><ph keyref="getVideoEffectFloatParam"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取视频特效中指定 <codeph>float</codeph> 类型参数的值。</ph><ph id="shortdesc" props="android">获取视频特效中指定参数的 <codeph>float</codeph> 类型值。</ph><ph id="shortdesc" props="ios">获取视频特效中的 <codeph>float</codeph> 类型参数。</ph><ph id="shortdesc" props="mac">获取视频特效中的 <codeph>float</codeph> 类型参数。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取视频特效中指定 <codeph>float</codeph> 类型参数的值。</ph><ph id="shortdesc" props="ios">获取视频特效中的 <codeph>float</codeph> 类型参数。</ph><ph id="shortdesc" props="android">获取视频特效中指定参数的 <codeph>float</codeph> 类型值。</ph><ph id="shortdesc" props="mac">获取视频特效中的 <codeph>float</codeph> 类型参数。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,10 +14,10 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual float getVideoEffectFloatParam(const char* option, const char* key) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">float getVideoEffectFloatParam(String option, String key);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (float)getVideoEffectFloatParamWithOption:(NSString *)option
                                     key:(NSString *)key
 NS_SWIFT_NAME(getVideoEffectFloatParam(option:key:));</codeblock>
+                <codeblock props="android" outputclass="language-java">float getVideoEffectFloatParam(String option, String key);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (float)getVideoEffectFloatParamWithOption:(NSString *)option
                                     key:(NSString *)key
 NS_SWIFT_NAME(getVideoEffectFloatParam(option:key:));</codeblock>
@@ -29,11 +29,11 @@ NS_SWIFT_NAME(getVideoEffectFloatParam(option:key:));</codeblock>
                     <dt>自从</dt>
                     <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>自从</dt>
                     <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>自从</dt>
                     <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
@@ -56,19 +56,19 @@ NS_SWIFT_NAME(getVideoEffectFloatParam(option:key:));</codeblock>
                     <pt>key</pt>
                     <pd>参数的键名。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>option</pt>
-                    <pd>参数类别的标识符。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>key</pt>
-                    <pd>参数的键名。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>option</pt>
                     <pd>参数选项的类别。</pd>
                 </plentry>
                 <plentry props="ios">
+                    <pt>key</pt>
+                    <pd>参数的键名。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>option</pt>
+                    <pd>参数类别的标识符。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>key</pt>
                     <pd>参数的键名。</pd>
                 </plentry>
@@ -90,16 +90,16 @@ NS_SWIFT_NAME(getVideoEffectFloatParam(option:key:));</codeblock>
                     <li>如果参数不存在或发生错误，返回 0.0f。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>方法调用成功，返回当前的 <codeph>float</codeph> 值。</li>
-                    <li>方法调用失败，返回 0.0f。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>如果参数存在，返回对应的 <codeph>float</codeph> 值。</li>
                     <li>如果参数不存在或发生错误，返回 0.0f。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功，返回当前的 <codeph>float</codeph> 值。</li>
+                    <li>方法调用失败，返回 0.0f。</li>
                 </ul>
             </p>
             <p props="mac">

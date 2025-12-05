@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localvideostats">
     <title><ph keyref="LocalVideoStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于统计本地视频流的相关统计信息。</ph><ph id="shortdesc" props="android">本地视频流的统计信息。</ph><ph id="shortdesc" props="ios">本地视频流的统计信息。</ph><ph id="shortdesc" props="mac">本地视频流的统计信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于统计本地视频流的相关统计信息。</ph><ph id="shortdesc" props="ios">本地视频流的统计信息。</ph><ph id="shortdesc" props="android">本地视频流的统计信息。</ph><ph id="shortdesc" props="mac">本地视频流的统计信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -33,32 +33,6 @@
   VideoDimensions simulcastDimensions[SimulcastConfig::STREAM_LAYER_COUNT_MAX];
   int encodedFrameDepth;
 };</codeblock>
-                <codeblock props="android" outputclass="language-java">public static class LocalVideoStats {
-    public int uid;
-    public int sentBitrate;
-    public int sentFrameRate;
-    public int captureFrameRate;
-    public int captureFrameWidth;
-    public int captureFrameHeight;
-    public int regulatedCaptureFrameRate;
-    public int regulatedCaptureFrameWidth;
-    public int regulatedCaptureFrameHeight;
-    public int encoderOutputFrameRate;
-    public int rendererOutputFrameRate;
-    public int targetBitrate;
-    public int targetFrameRate;
-    public int qualityAdaptIndication;
-    public int encodedBitrate;
-    public int encodedFrameWidth;
-    public int encodedFrameHeight;
-    public int encodedFrameCount;
-    public int codecType;
-    public int txPacketLossRate;
-    public int captureBrightnessLevel;
-    public boolean dualStreamEnabled;
-    public int hwEncoderAccelerating;
-    public int encodedFrameDepth;
-  }</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger sentBitrate;
@@ -85,6 +59,32 @@
 @property(assign, nonatomic) AgoraCaptureBrightnessLevelType captureBrightnessLevel NS_SWIFT_NAME(captureBrightnessLevel);
 @property(assign, nonatomic) BOOL dualStreamEnabled;
 @end</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class LocalVideoStats {
+    public int uid;
+    public int sentBitrate;
+    public int sentFrameRate;
+    public int captureFrameRate;
+    public int captureFrameWidth;
+    public int captureFrameHeight;
+    public int regulatedCaptureFrameRate;
+    public int regulatedCaptureFrameWidth;
+    public int regulatedCaptureFrameHeight;
+    public int encoderOutputFrameRate;
+    public int rendererOutputFrameRate;
+    public int targetBitrate;
+    public int targetFrameRate;
+    public int qualityAdaptIndication;
+    public int encodedBitrate;
+    public int encodedFrameWidth;
+    public int encodedFrameHeight;
+    public int encodedFrameCount;
+    public int codecType;
+    public int txPacketLossRate;
+    public int captureBrightnessLevel;
+    public boolean dualStreamEnabled;
+    public int hwEncoderAccelerating;
+    public int encodedFrameDepth;
+  }</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger sentBitrate;
@@ -222,6 +222,103 @@
                     <pt>simulcastDimensions</pt>
                     <pd>不同质量层级的视频流的编码帧尺寸。详见 <xref keyref="VideoDimensions"/>。</pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>本地用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sentBitrate</pt>
+                    <pd>发送本地视频流的实际码率（Kbps）。该值不包括因丢包重传而产生的视频码率。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sentFrameRate</pt>
+                    <pd>发送本地视频流的实际帧率（fps）。该值不包括因丢包重传而产生的视频帧率。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>captureFrameRate</pt>
+                    <pd>采集本地视频流的帧率（fps）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>captureFrameWidth</pt>
+                    <pd>采集本地视频流的宽度（px）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>captureFrameHeight</pt>
+                    <pd>采集本地视频流的高度（px）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>regulatedCaptureFrameRate</pt>
+                    <pd>SDK 内置视频采集调节器调节后的本地视频采集帧率（fps）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>regulatedCaptureFrameWidth</pt>
+                    <pd>SDK 内置视频采集调节器调节后的本地视频采集宽度（px）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>regulatedCaptureFrameHeight</pt>
+                    <pd>SDK 内置视频采集调节器调节后的本地视频采集高度（px）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>encoderOutputFrameRate</pt>
+                    <pd>本地视频编码器的输出帧率（fps）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>本地视频渲染器的输出帧率（fps）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>targetFrameRate</pt>
+                    <pd>当前编码器的目标帧率（fps）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>qualityAdaptIndication</pt>
+                    <pd>本地视频流在统计周期内的质量自适应情况（基于目标帧率和目标码率）。详见 <xref keyref="QUALITY_ADAPT_INDICATION"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>targetBitrate</pt>
+                    <pd>当前编码器的目标码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>encodedBitrate</pt>
+                    <pd>本地视频流编码时的码率（Kbps）。该值不包括因丢包重传而产生的视频码率。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>encodedFrameWidth</pt>
+                    <pd>编码后视频的宽度（px）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>encodedFrameHeight</pt>
+                    <pd>编码后视频的高度（px）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>encodedFrameCount</pt>
+                    <pd>发送的视频帧总数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>codecType</pt>
+                    <pd>本地视频的编码格式。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>hwEncoderAccelerating</pt>
+                    <pd>本地视频编码加速类型。详见 <xref keyref="hwEncoderAccelerating"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>txPacketLossRate</pt>
+                    <pd>从本地客户端到声网服务器的视频丢包率（%），该值为应用抗丢包策略前的统计值。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>captureBrightnessLevel</pt>
+                    <pd>本地摄像头采集的视频图像的亮度等级。详见 <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>dualStreamEnabled</pt>
+                    <pd>是否启用了双流模式：
+                        <ul>
+                            <li><xref keyref="true"/>：启用双流模式。</li>
+                            <li><xref keyref="false"/>：未启用双流模式。</li>
+                        </ul>
+                    </pd>
+                </plentry>
                 <plentry props="android">
                     <pt>uid</pt>
                     <pd>本地用户的用户 ID。</pd>
@@ -350,103 +447,6 @@
                         <ul>
                             <li>0：使用软件编码，无加速。</li>
                             <li>1：使用硬件编码进行加速。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>uid</pt>
-                    <pd>本地用户的用户 ID。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>sentBitrate</pt>
-                    <pd>发送本地视频流的实际码率（Kbps）。该值不包括因丢包重传而产生的视频码率。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>sentFrameRate</pt>
-                    <pd>发送本地视频流的实际帧率（fps）。该值不包括因丢包重传而产生的视频帧率。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>captureFrameRate</pt>
-                    <pd>采集本地视频流的帧率（fps）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>captureFrameWidth</pt>
-                    <pd>采集本地视频流的宽度（px）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>captureFrameHeight</pt>
-                    <pd>采集本地视频流的高度（px）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>regulatedCaptureFrameRate</pt>
-                    <pd>SDK 内置视频采集调节器调节后的本地视频采集帧率（fps）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>regulatedCaptureFrameWidth</pt>
-                    <pd>SDK 内置视频采集调节器调节后的本地视频采集宽度（px）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>regulatedCaptureFrameHeight</pt>
-                    <pd>SDK 内置视频采集调节器调节后的本地视频采集高度（px）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>encoderOutputFrameRate</pt>
-                    <pd>本地视频编码器的输出帧率（fps）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>rendererOutputFrameRate</pt>
-                    <pd>本地视频渲染器的输出帧率（fps）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>targetFrameRate</pt>
-                    <pd>当前编码器的目标帧率（fps）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>qualityAdaptIndication</pt>
-                    <pd>本地视频流在统计周期内的质量自适应情况（基于目标帧率和目标码率）。详见 <xref keyref="QUALITY_ADAPT_INDICATION"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>targetBitrate</pt>
-                    <pd>当前编码器的目标码率（Kbps）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>encodedBitrate</pt>
-                    <pd>本地视频流编码时的码率（Kbps）。该值不包括因丢包重传而产生的视频码率。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>encodedFrameWidth</pt>
-                    <pd>编码后视频的宽度（px）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>encodedFrameHeight</pt>
-                    <pd>编码后视频的高度（px）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>encodedFrameCount</pt>
-                    <pd>发送的视频帧总数。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>codecType</pt>
-                    <pd>本地视频的编码格式。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>hwEncoderAccelerating</pt>
-                    <pd>本地视频编码加速类型。详见 <xref keyref="hwEncoderAccelerating"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>txPacketLossRate</pt>
-                    <pd>从本地客户端到声网服务器的视频丢包率（%），该值为应用抗丢包策略前的统计值。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>captureBrightnessLevel</pt>
-                    <pd>本地摄像头采集的视频图像的亮度等级。详见 <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>dualStreamEnabled</pt>
-                    <pd>是否启用了双流模式：
-                        <ul>
-                            <li><xref keyref="true"/>：启用双流模式。</li>
-                            <li><xref keyref="false"/>：未启用双流模式。</li>
                         </ul>
                     </pd>
                 </plentry>

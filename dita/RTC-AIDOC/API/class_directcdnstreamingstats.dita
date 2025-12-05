@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_directcdnstreamingstats">
     <title><ph keyref="DirectCdnStreamingStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于获取当前 CDN 推流的统计信息。</ph><ph id="shortdesc" props="android">当前 CDN 推流的统计信息。</ph><ph id="shortdesc" props="ios">当前 CDN 推流的统计信息。</ph><ph id="shortdesc" props="mac">当前 CDN 推流的统计信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于获取当前 CDN 推流的统计信息。</ph><ph id="shortdesc" props="ios">当前 CDN 推流的统计信息。</ph><ph id="shortdesc" props="android">当前 CDN 推流的统计信息。</ph><ph id="shortdesc" props="mac">当前 CDN 推流的统计信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -13,13 +13,6 @@
     int videoBitrate;
     int audioBitrate;
 };</codeblock>
-                <codeblock props="android" outputclass="language-java">public class DirectCdnStreamingStats {
-  public int videoWidth;
-  public int videoHeight;
-  public int fps;
-  public int videoBitrate;
-  public int audioBitrate;
-}</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraDirectCdnStreamingStats : NSObject
 @property(assign, nonatomic) NSUInteger videoWidth;
 @property(assign, nonatomic) NSUInteger videoHeight;
@@ -27,6 +20,13 @@
 @property(assign, nonatomic) NSUInteger videoBitrate;
 @property(assign, nonatomic) NSUInteger audioBitrate;
 @end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class DirectCdnStreamingStats {
+  public int videoWidth;
+  public int videoHeight;
+  public int fps;
+  public int videoBitrate;
+  public int audioBitrate;
+}</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraDirectCdnStreamingStats : NSObject
 @property(assign, nonatomic) NSUInteger videoWidth;
 @property(assign, nonatomic) NSUInteger videoHeight;
@@ -42,11 +42,11 @@
                     <dt>废弃</dt>
                     <dd>自 v4.6.0 版本废弃。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>废弃</dt>
                     <dd>自 v4.6.0 版本废弃。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>废弃</dt>
                     <dd>自 v4.6.0 版本废弃。</dd>
                 </dlentry>
@@ -79,26 +79,6 @@
                     <pt>audioBitrate</pt>
                     <pd>当前音频帧的码率，单位为 bps。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>videoWidth</pt>
-                    <pd>视频帧的宽度（单位：px）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>videoHeight</pt>
-                    <pd>视频帧的高度（单位：px）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>fps</pt>
-                    <pd>当前视频帧的帧率（单位：fps）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>videoBitrate</pt>
-                    <pd>当前视频帧的码率（单位：bps）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>audioBitrate</pt>
-                    <pd>当前音频帧的码率（单位：bps）。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>videoWidth</pt>
                     <pd>视频帧的宽度（像素）。</pd>
@@ -118,6 +98,26 @@
                 <plentry props="ios">
                     <pt>audioBitrate</pt>
                     <pd>当前音频帧的码率（bps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoWidth</pt>
+                    <pd>视频帧的宽度（单位：px）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoHeight</pt>
+                    <pd>视频帧的高度（单位：px）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>fps</pt>
+                    <pd>当前视频帧的帧率（单位：fps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoBitrate</pt>
+                    <pd>当前视频帧的码率（单位：bps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioBitrate</pt>
+                    <pd>当前音频帧的码率（单位：bps）。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>videoWidth</pt>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setplaybackaudioframeparameters">
     <title><ph keyref="setPlaybackAudioFrameParameters"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置原始音频播放数据的格式。</ph><ph id="shortdesc" props="android">设置原始音频播放数据的格式。</ph><ph id="shortdesc" props="ios">设置原始音频播放数据的格式。</ph><ph id="shortdesc" props="mac">设置原始音频播放数据的格式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置原始音频播放数据的格式。</ph><ph id="shortdesc" props="ios">设置原始音频播放数据的格式。</ph><ph id="shortdesc" props="android">设置原始音频播放数据的格式。</ph><ph id="shortdesc" props="mac">设置原始音频播放数据的格式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,11 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setPlaybackAudioFrameParameters(int sampleRate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int setPlaybackAudioFrameParameters(int sampleRate, int channel, int mode, int samplesPerCall);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setPlaybackAudioFrameParametersWithSampleRate:(NSInteger)sampleRate
                                              channel:(NSInteger)channel
                                                 mode:(AgoraAudioRawFrameOperationMode)mode
                                       samplesPerCall:(NSInteger)samplesPerCall NS_SWIFT_NAME(setPlaybackAudioFrameParametersWithSampleRate(_:channel:mode:samplesPerCall:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setPlaybackAudioFrameParameters(int sampleRate, int channel, int mode, int samplesPerCall);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setPlaybackAudioFrameParametersWithSampleRate:(NSInteger)sampleRate
                                              channel:(NSInteger)channel
                                                 mode:(AgoraAudioRawFrameOperationMode)mode
@@ -27,15 +27,15 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">SDK 会根据该方法中设置的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔：采样间隔（秒） = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。请确保采样间隔 ≥ 0.01 秒。SDK 会根据采样间隔触发 <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> 回调。</p>
-            <p props="android">SDK 会根据 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔。采样间隔（单位：秒） = <codeph>samplesPerCall</codeph> /（<codeph>sampleRate</codeph> × <codeph>channel</codeph>）。请确保采样间隔不小于 0.01 秒。SDK 会根据采样间隔触发 <xref keyref="onPlaybackAudioFrame"/> 回调。</p>
             <p props="ios">SDK 会根据你设置的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔。采样间隔（秒）= <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。请确保采样间隔 ≥ 0.01 秒。SDK 会根据采样间隔触发 <codeph>onPlaybackAudioFrame:</codeph> 回调。</p>
+            <p props="android">SDK 会根据 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔。采样间隔（单位：秒） = <codeph>samplesPerCall</codeph> /（<codeph>sampleRate</codeph> × <codeph>channel</codeph>）。请确保采样间隔不小于 0.01 秒。SDK 会根据采样间隔触发 <xref keyref="onPlaybackAudioFrame"/> 回调。</p>
             <p props="mac">SDK 会根据你设置的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔。采样间隔（秒）= <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。请确保采样间隔 ≥ 0.01 秒。SDK 会根据采样间隔触发 <codeph>onPlaybackAudioFrame:</codeph> 回调。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">请在加入频道前调用该方法。</p>
-            <p props="android">请在加入频道前调用该方法。</p>
             <p props="ios">请在加入频道前调用该方法。</p>
+            <p props="android">请在加入频道前调用该方法。</p>
             <p props="mac">请在加入频道前调用该方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -62,6 +62,27 @@
                     <pt>samplesPerCall</pt>
                     <pd>每次调用返回的数据采样数，例如媒体推流时为 1024。</pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>sampleRate</pt>
+                    <pd>回调中返回的采样率，可设置为 8000、16000、32000、44100 或 48000 Hz。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>channel</pt>
+                    <pd>音频声道数，可设置为 1 或 2。
+                        <ul>
+                            <li>1：单声道。</li>
+                            <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mode</pt>
+                    <pd>音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>samplesPerCall</pt>
+                    <pd>每次回调返回的数据采样数，例如媒体推流时为 1024。</pd>
+                </plentry>
                 <plentry props="android">
                     <pt>sampleRate</pt>
                     <pd>回调中返回的采样率。可设置为 8000、16000、32000、44100 或 48000 Hz。</pd>
@@ -87,27 +108,6 @@
                 <plentry props="android">
                     <pt>samplesPerCall</pt>
                     <pd>每次调用的数据采样数，例如媒体推流时为 1024。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>sampleRate</pt>
-                    <pd>回调中返回的采样率，可设置为 8000、16000、32000、44100 或 48000 Hz。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>channel</pt>
-                    <pd>音频声道数，可设置为 1 或 2。
-                        <ul>
-                            <li>1：单声道。</li>
-                            <li>2：立体声。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>mode</pt>
-                    <pd>音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>samplesPerCall</pt>
-                    <pd>每次回调返回的数据采样数，例如媒体推流时为 1024。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>sampleRate</pt>
@@ -140,16 +140,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

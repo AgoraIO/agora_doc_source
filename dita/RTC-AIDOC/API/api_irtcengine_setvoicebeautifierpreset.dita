@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setvoicebeautifierpreset">
     <title><ph keyref="setVoiceBeautifierPreset"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置预设的美声特效。</ph><ph id="shortdesc" props="android">设置预设的美声效果。</ph><ph id="shortdesc" props="ios">设置预设的美声特效。</ph><ph id="shortdesc" props="mac">设置预设的美声特效。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置预设的美声特效。</ph><ph id="shortdesc" props="ios">设置预设的美声特效。</ph><ph id="shortdesc" props="android">设置预设的美声效果。</ph><ph id="shortdesc" props="mac">设置预设的美声特效。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setVoiceBeautifierPreset(VOICE_BEAUTIFIER_PRESET preset) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int setVoiceBeautifierPreset(int preset);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setVoiceBeautifierPreset:(AgoraVoiceBeautifierPreset)preset NS_SWIFT_NAME(setVoiceBeautifierPreset(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setVoiceBeautifierPreset(int preset);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)setVoiceBeautifierPreset:(AgoraVoiceBeautifierPreset)preset NS_SWIFT_NAME(setVoiceBeautifierPreset(_:));</codeblock>
             </p>
         </section>
@@ -27,6 +27,7 @@
                 </dlentry>
             </dl>
             <p props="cpp">调用该方法为发送音频流的本地用户设置预设的美声特效。你可以根据不同场景选择不同的美声特效。设置后，频道内所有用户都能听到该特效。</p>
+            <p props="ios">调用该方法为发送音频流的本地用户设置预设的美声特效。设置后，频道内所有用户都能听到该特效。你可以根据不同场景设置不同的美声特效。</p>
             <p props="android">你可以根据不同场景设置不同的美声效果。
 为获得更好的人声效果，建议在调用该方法前调用以下 API：
                 <ul>
@@ -34,7 +35,6 @@
                     <li>调用 <codeph>setAudioProfile</codeph>，将 <codeph>profile</codeph> 设置为 <codeph>MUSIC_HIGH_QUALITY</codeph>（4）或 <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph>（5）。</li>
                 </ul>
             </p>
-            <p props="ios">调用该方法为发送音频流的本地用户设置预设的美声特效。设置后，频道内所有用户都能听到该特效。你可以根据不同场景设置不同的美声特效。</p>
             <p props="mac">调用该方法为发送音频流的本地用户设置预设的美声特效。设置后，频道内所有用户都能听到该特效。你可以根据不同场景设置不同的美声特效。</p>
             <note props="cpp">
                 <ul>
@@ -54,24 +54,6 @@
                     <li>该方法依赖于美声特效动态库 <xref keyref="audiobeauty"/>。如果该动态库被删除，则无法正常启用该功能。</li>
                 </ul>
             </note>
-            <note props="android">
-                <ul>
-                    <li>不要将 <codeph>setAudioProfile</codeph> 中的 <codeph>profile</codeph> 设置为 <codeph>SPEECH_STANDARD</codeph>（1），否则该方法不生效。</li>
-                    <li>该方法在人声处理方面效果最佳，不建议用于处理包含音乐的音频数据。</li>
-                    <li>调用 <xref keyref="setVoiceBeautifierPreset"/> 后，不建议再调用以下方法，否则会覆盖通过该方法设置的效果：
-                        <ul>
-                            <li><xref keyref="setAudioEffectPreset"/></li>
-                            <li><xref keyref="setAudioEffectParameters"/></li>
-                            <li><xref keyref="setLocalVoicePitch"/></li>
-                            <li><xref keyref="setLocalVoiceEqualization"/></li>
-                            <li><xref keyref="setLocalVoiceReverb"/></li>
-                            <li><xref keyref="setVoiceBeautifierParameters"/></li>
-                            <li><xref keyref="setVoiceConversionPreset"/></li>
-                        </ul>
-                    </li>
-                    <li>该方法依赖于美声动态库 <xref keyref="audiobeauty"/>。如果该动态库被删除，则无法正常启用该功能。</li>
-                </ul>
-            </note>
             <note props="ios">
                 <ul>
                     <li>不要将 <xref keyref="setAudioProfile2"/> 中的 <codeph>profile</codeph> 参数设置为 <codeph>AgoraAudioProfileSpeechStandard</codeph>（1），否则该方法不生效。</li>
@@ -88,6 +70,24 @@
                         </ul>
                     </li>
                     <li>此方法依赖于美声特效动态库 <xref keyref="audiobeauty"/>（iOS）或 <codeph>AgoraAudioBeautyExtension.framework</codeph>（macOS）。如果该动态库被删除，则无法正常启用该功能。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>不要将 <codeph>setAudioProfile</codeph> 中的 <codeph>profile</codeph> 设置为 <codeph>SPEECH_STANDARD</codeph>（1），否则该方法不生效。</li>
+                    <li>该方法在人声处理方面效果最佳，不建议用于处理包含音乐的音频数据。</li>
+                    <li>调用 <xref keyref="setVoiceBeautifierPreset"/> 后，不建议再调用以下方法，否则会覆盖通过该方法设置的效果：
+                        <ul>
+                            <li><xref keyref="setAudioEffectPreset"/></li>
+                            <li><xref keyref="setAudioEffectParameters"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>该方法依赖于美声动态库 <xref keyref="audiobeauty"/>。如果该动态库被删除，则无法正常启用该功能。</li>
                 </ul>
             </note>
             <note props="mac">
@@ -112,14 +112,18 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">该方法可以在加入频道前或加入频道后调用。</p>
-            <p props="android">该方法可在加入频道前或加入频道后调用。</p>
             <p props="ios">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="android">该方法可在加入频道前或加入频道后调用。</p>
             <p props="mac">该方法可以在加入频道前或加入频道后调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="cpp">
+                    <pt>preset</pt>
+                    <pd>预设的美声特效选项，详见 <xref keyref="VOICE_BEAUTIFIER_PRESET"/>。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>preset</pt>
                     <pd>预设的美声特效选项，详见 <xref keyref="VOICE_BEAUTIFIER_PRESET"/>。</pd>
                 </plentry>
@@ -154,10 +158,6 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
-                    <pt>preset</pt>
-                    <pd>预设的美声特效选项，详见 <xref keyref="VOICE_BEAUTIFIER_PRESET"/>。</pd>
-                </plentry>
                 <plentry props="mac">
                     <pt>preset</pt>
                     <pd>预设的美声特效选项，详见 <xref keyref="VOICE_BEAUTIFIER_PRESET"/>。</pd>
@@ -172,16 +172,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_updatertmptranscoding">
     <title><ph keyref="updateRtmpTranscoding"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">更新旁路推流的转码配置。</ph><ph id="shortdesc" props="android">更新旁路推流的转码配置。</ph><ph id="shortdesc" props="ios">更新旁路推流的转码配置。</ph><ph id="shortdesc" props="mac">更新旁路推流的转码配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">更新旁路推流的转码配置。</ph><ph id="shortdesc" props="ios">更新旁路推流的转码配置。</ph><ph id="shortdesc" props="android">更新旁路推流的转码配置。</ph><ph id="shortdesc" props="mac">更新旁路推流的转码配置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,17 +14,17 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int updateRtmpTranscoding(const LiveTranscoding&amp; transcoding) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int updateRtmpTranscoding(LiveTranscoding transcoding);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)updateRtmpTranscoding:(AgoraLiveTranscoding* _Nullable)transcoding NS_SWIFT_NAME(updateRtmpTranscoding(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int updateRtmpTranscoding(LiveTranscoding transcoding);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)updateRtmpTranscoding:(AgoraLiveTranscoding* _Nullable)transcoding NS_SWIFT_NAME(updateRtmpTranscoding(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">声网推荐你使用更加完善的服务端推流功能，详见[实现服务端旁路推流](https://doc.shengwang.cn/doc/media-push/restful/landing-page)。
 开始使用转码功能将媒体流推送到 CDN 后，你可以根据实际场景动态更新转码配置。更新配置后，SDK 会触发 <xref keyref="onTranscodingUpdated"/> 回调。</p>
-            <p props="android">声网推荐你使用更加完善的服务端推流功能，详见[实现服务端旁路推流](https://doc.shengwang.cn/doc/media-push/restful/landing-page)。</p>
             <p props="ios">声网推荐你使用更加完善的服务端推流功能，详见[实现服务端旁路推流](https://doc.shengwang.cn/doc/media-push/restful/landing-page)。
 你可以在开启带转码的旁路推流后，根据场景动态更新转码配置。</p>
+            <p props="android">声网推荐你使用更加完善的服务端推流功能，详见[实现服务端旁路推流](https://doc.shengwang.cn/doc/media-push/restful/landing-page)。</p>
             <p props="mac">声网推荐你使用更加完善的服务端推流功能，详见[实现服务端旁路推流](https://doc.shengwang.cn/doc/media-push/restful/landing-page)。
 你可以在开启带转码的旁路推流后，根据场景动态更新转码配置。</p>
         </section>
@@ -35,11 +35,11 @@
                     <pt>transcoding</pt>
                     <pd>旁路推流的转码配置。详见 <xref keyref="LiveTranscoding"/>。</pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="ios">
                     <pt>transcoding</pt>
                     <pd>旁路推流的转码配置。详见 <xref keyref="LiveTranscoding"/>。</pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="android">
                     <pt>transcoding</pt>
                     <pd>旁路推流的转码配置。详见 <xref keyref="LiveTranscoding"/>。</pd>
                 </plentry>
@@ -57,16 +57,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

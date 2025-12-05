@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_playerconfig_setabrfallbacklayer">
     <title><ph keyref="SetAbrFallbackLayer"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置已订阅视频流的回退选项。</ph><ph id="shortdesc" props="android">设置已订阅远端视频流的回退选项。</ph><ph id="shortdesc" props="ios">设置已订阅远端视频流的分层推流回退选项。</ph><ph id="shortdesc" props="mac">设置已订阅远端视频流的分层推流回退选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置已订阅视频流的回退选项。</ph><ph id="shortdesc" props="ios">设置已订阅远端视频流的分层推流回退选项。</ph><ph id="shortdesc" props="android">设置已订阅远端视频流的回退选项。</ph><ph id="shortdesc" props="mac">设置已订阅远端视频流的分层推流回退选项。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">void SetAbrFallbackLayer(AbrFallbackLayer abr_fallback_layer, Error *err = nullptr)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void setAbrFallbackLayer(Constants.AbrFallbackLayer fallbackLayer) throws RteException</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)setAbrFallbackLayer:(AgoraRteAbrFallbackLayer)layer error:(AgoraRteError * _Nullable)error;</codeblock>
+                <codeblock props="android" outputclass="language-java">public void setAbrFallbackLayer(Constants.AbrFallbackLayer fallbackLayer) throws RteException</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)setAbrFallbackLayer:(AgoraRteAbrFallbackLayer)layer error:(AgoraRteError * _Nullable)error;</codeblock>
             </p>
         </section>
@@ -25,11 +25,11 @@
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>自从</dt>
                     <dd>自 v4.4.0 版本新增。</dd>
                 </dlentry>
@@ -40,16 +40,16 @@
             </dl>
             <p props="cpp">在网络状况较差时，SDK 会将视频流的分辨率降级为指定的回退质量层，以保证播放的连续性。不同的质量层对应不同的分辨率和码率。SDK 会持续监测网络状况，在网络恢复后自动将视频流恢复为订阅的质量层。
 默认情况下，仅支持回退到 <codeph>kRteAbrFallbackLow</codeph> 或 <codeph>kRteAbrFallbackAudioOnly</codeph>。如需更灵活的视频体验，可[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能，开启后可回退到所有质量层，并自定义每一层的分辨率。</p>
-            <p props="android">在网络状况不佳时，SDK 会将已订阅远端视频流的分辨率降级到指定的视频质量层。每个质量层对应特定的分辨率和码率。网络恢复后，SDK 会将视频流恢复至原始质量层。</p>
             <p props="ios">在网络条件较差时，实时音视频通信的质量可能会下降。调用该方法后，SDK 会在网络变差时将远端视频流的分辨率回退到指定的视频质量层级。每个视频质量层级对应特定的分辨率和码率。SDK 会持续监测网络质量，在网络改善时恢复到原始订阅的视频质量层级。
 
 默认情况下，调用该方法后只能选择回退到 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。如果你对视频体验有更高要求，可以[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可以回退到所有视频质量层级，并自定义每个层级的分辨率。</p>
+            <p props="android">在网络状况不佳时，SDK 会将已订阅远端视频流的分辨率降级到指定的视频质量层。每个质量层对应特定的分辨率和码率。网络恢复后，SDK 会将视频流恢复至原始质量层。</p>
             <p props="mac">在网络条件较差时，实时音视频通信的质量可能会下降。调用该方法后，SDK 会在网络变差时将远端视频流的分辨率回退到指定的视频质量层级。每个视频质量层级对应特定的分辨率和码率。SDK 会持续监测网络质量，在网络改善时恢复到原始订阅的视频质量层级。
 
 默认情况下，调用该方法后只能选择回退到 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。如果你对视频体验有更高要求，可以[联系技术支持](https://ticket.shengwang.cn/)开启 ABR 功能。开启后，可以回退到所有视频质量层级，并自定义每个层级的分辨率。</p>
             <note props="cpp">如果在调用该方法时未开启 ABR 功能，视频流的回退质量层只能为 <codeph>kRteAbrFallbackLow</codeph> 或 <codeph>kRteAbrFallbackAudioOnly</codeph>。</note>
-            <note props="android">如果未开启 ABR 功能，视频流的回退质量层只能设置为 <codeph>LOW</codeph> 或 <codeph>AUDIO_ONLY</codeph>。</note>
             <note props="ios">如果未开启 ABR 功能，远端视频流的回退质量层级只能设置为 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。</note>
+            <note props="android">如果未开启 ABR 功能，视频流的回退质量层只能设置为 <codeph>LOW</codeph> 或 <codeph>AUDIO_ONLY</codeph>。</note>
             <note props="mac">如果未开启 ABR 功能，远端视频流的回退质量层级只能设置为 <codeph>AgoraRteAbrFallbackLow</codeph> 或 <codeph>AgoraRteAbrFallbackAudioOnly</codeph>。</note>
         </section>
         <section id="scenario" deliveryTarget="details">
@@ -60,8 +60,8 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">该方法必须在调用 <codeph>SetConfigs</codeph> 之前调用。</p>
-            <p props="android">必须在调用 <codeph>setConfigs</codeph> 之前调用该方法。</p>
             <p props="ios">必须在调用 <xref keyref="SetConfigs_Canvas"/> 之前调用该方法。</p>
+            <p props="android">必须在调用 <codeph>setConfigs</codeph> 之前调用该方法。</p>
             <p props="mac">必须在调用 <xref keyref="SetConfigs_Canvas"/> 之前调用该方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -107,43 +107,6 @@
                     <pt>err</pt>
                     <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>fallbackLayer</pt>
-                    <pd>视频流的回退质量层，详见 <xref keyref="RteAbrFallbackLayer"/>。
-                        <note>自定义分辨率时，请确保视频质量层按从高到低的分辨率排序；若分辨率相同，则按帧率从高到低排序。
-                            <simpletable>
-                                <sthead>
-                                    <stentry>视频质量层</stentry>
-                                    <stentry>分辨率</stentry>
-                                </sthead>
-                                <strow>
-                                    <stentry><codeph>LAYER1</codeph></stentry>
-                                    <stentry>2160p (4K)</stentry>
-                                </strow>
-                                <strow>
-                                    <stentry><codeph>LAYER2</codeph></stentry>
-                                    <stentry>1440p (2K)</stentry>
-                                </strow>
-                                <strow>
-                                    <stentry><codeph>LAYER3</codeph></stentry>
-                                    <stentry>1080p (HD)</stentry>
-                                </strow>
-                                <strow>
-                                    <stentry><codeph>LAYER4</codeph></stentry>
-                                    <stentry>720p (HD)</stentry>
-                                </strow>
-                                <strow>
-                                    <stentry><codeph>LAYER5</codeph></stentry>
-                                    <stentry>540p (SD)</stentry>
-                                </strow>
-                                <strow>
-                                    <stentry><codeph>LAYER6</codeph></stentry>
-                                    <stentry>480p (SD)</stentry>
-                                </strow>
-                            </simpletable>
-                        </note>
-                    </pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>layer</pt>
                     <pd>回退的视频质量层级。可选值详见 <xref keyref="RteAbrFallbackLayer"/>。当自定义 <codeph>AgoraRteAbrFallbackLayer1</codeph> 到 <codeph>AgoraRteAbrFallbackLayer6</codeph> 的分辨率时，可参考下表或根据实际需求定义：
@@ -183,6 +146,43 @@
                 <plentry props="ios">
                     <pt>error</pt>
                     <pd>状态或错误信息。详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>fallbackLayer</pt>
+                    <pd>视频流的回退质量层，详见 <xref keyref="RteAbrFallbackLayer"/>。
+                        <note>自定义分辨率时，请确保视频质量层按从高到低的分辨率排序；若分辨率相同，则按帧率从高到低排序。
+                            <simpletable>
+                                <sthead>
+                                    <stentry>视频质量层</stentry>
+                                    <stentry>分辨率</stentry>
+                                </sthead>
+                                <strow>
+                                    <stentry><codeph>LAYER1</codeph></stentry>
+                                    <stentry>2160p (4K)</stentry>
+                                </strow>
+                                <strow>
+                                    <stentry><codeph>LAYER2</codeph></stentry>
+                                    <stentry>1440p (2K)</stentry>
+                                </strow>
+                                <strow>
+                                    <stentry><codeph>LAYER3</codeph></stentry>
+                                    <stentry>1080p (HD)</stentry>
+                                </strow>
+                                <strow>
+                                    <stentry><codeph>LAYER4</codeph></stentry>
+                                    <stentry>720p (HD)</stentry>
+                                </strow>
+                                <strow>
+                                    <stentry><codeph>LAYER5</codeph></stentry>
+                                    <stentry>540p (SD)</stentry>
+                                </strow>
+                                <strow>
+                                    <stentry><codeph>LAYER6</codeph></stentry>
+                                    <stentry>480p (SD)</stentry>
+                                </strow>
+                            </simpletable>
+                        </note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>layer</pt>

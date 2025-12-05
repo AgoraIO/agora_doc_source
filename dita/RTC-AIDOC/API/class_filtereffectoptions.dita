@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_filtereffectoptions">
     <title><ph keyref="FilterEffectOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置滤镜特效参数。</ph><ph id="shortdesc" props="android">用于配置滤镜特效。</ph><ph id="shortdesc" props="ios">用于设置滤镜特效参数。</ph><ph id="shortdesc" props="mac">用于设置滤镜特效参数。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置滤镜特效参数。</ph><ph id="shortdesc" props="ios">用于设置滤镜特效参数。</ph><ph id="shortdesc" props="android">用于配置滤镜特效。</ph><ph id="shortdesc" props="mac">用于设置滤镜特效参数。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -10,14 +10,14 @@
   const char * path;
   float strength;
 };</codeblock>
-                <codeblock props="android" outputclass="language-java">public class FilterEffectOptions {
-  public String path = null;
-  public float strength;
-}</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraFilterEffectOptions: NSObject
 @property(nonatomic, copy) NSString* _Nullable path NS_SWIFT_NAME(path);
 @property(nonatomic, assign) float strength;
 @end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class FilterEffectOptions {
+  public String path = null;
+  public float strength;
+}</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraFilterEffectOptions: NSObject
 @property(nonatomic, copy) NSString* _Nullable path NS_SWIFT_NAME(path);
 @property(nonatomic, assign) float strength;
@@ -50,6 +50,16 @@
                     <pt>strength</pt>
                     <pd>滤镜特效的强度，取值范围为 [0.0, 1.0]。0.0 表示无滤镜效果，默认值为 0.5。数值越大，滤镜效果越强。</pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>path</pt>
+                    <pd>本地立方体贴图纹理文件的绝对路径，可用于自定义滤镜特效。指定的 <codeph>.cube</codeph> 文件必须严格遵循 Cube LUT 格式规范，否则滤镜选项无效。
+                        <note>立方体贴图文件第一行的标识符 <codeph>LUT_3D_SIZE</codeph> 表示三维查找表的大小。滤镜特效的 LUT 大小只能设置为 32。SDK 提供了内置的 <codeph>built_in_whiten_filter.cube</codeph> 文件，你可以传入该文件的绝对路径以获得美白滤镜效果。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>strength</pt>
+                    <pd>滤镜特效的强度，取值范围为 [0.0, 1.0]。0.0 表示无滤镜效果，默认值为 0.5，数值越大，滤镜效果越强。</pd>
+                </plentry>
                 <plentry props="android">
                     <pt>path</pt>
                     <pd>本地立方体贴图纹理文件的绝对路径，可用于自定义滤镜特效。指定的 .cube 文件需严格遵循 Cube LUT 格式规范，否则滤镜参数不生效。
@@ -64,16 +74,6 @@
                 <plentry props="android">
                     <pt>strength</pt>
                     <pd>滤镜特效的强度，取值范围为 [0.0, 1.0]。0.0 表示无滤镜效果，默认值为 0.5。值越大，滤镜效果越强。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>path</pt>
-                    <pd>本地立方体贴图纹理文件的绝对路径，可用于自定义滤镜特效。指定的 <codeph>.cube</codeph> 文件必须严格遵循 Cube LUT 格式规范，否则滤镜选项无效。
-                        <note>立方体贴图文件第一行的标识符 <codeph>LUT_3D_SIZE</codeph> 表示三维查找表的大小。滤镜特效的 LUT 大小只能设置为 32。SDK 提供了内置的 <codeph>built_in_whiten_filter.cube</codeph> 文件，你可以传入该文件的绝对路径以获得美白滤镜效果。</note>
-                    </pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>strength</pt>
-                    <pd>滤镜特效的强度，取值范围为 [0.0, 1.0]。0.0 表示无滤镜效果，默认值为 0.5，数值越大，滤镜效果越强。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>path</pt>

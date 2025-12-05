@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_adjustpublishsignalvolume">
     <title><ph keyref="adjustPublishSignalVolume"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">调节用于发布的媒体文件音量。</ph><ph id="shortdesc" props="android">调节用于发布的媒体文件音量。</ph><ph id="shortdesc" props="ios">调节用于发布的媒体文件音量。</ph><ph id="shortdesc" props="mac">调节用于发布的媒体文件音量。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">调节用于发布的媒体文件音量。</ph><ph id="shortdesc" props="ios">调节用于发布的媒体文件音量。</ph><ph id="shortdesc" props="android">调节用于发布的媒体文件音量。</ph><ph id="shortdesc" props="mac">调节用于发布的媒体文件音量。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,21 +14,21 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int adjustPublishSignalVolume(int volume) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">int adjustPublishSignalVolume(int volume);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)adjustPublishSignalVolume:(int)volume NS_SWIFT_NAME(adjustPublishSignalVolume(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">int adjustPublishSignalVolume(int volume);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)adjustPublishSignalVolume:(int)volume NS_SWIFT_NAME(adjustPublishSignalVolume(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="android">你可以调用该方法调节远端用户听到的媒体文件音量。</p>
             <p props="ios">你可以调用该方法调节远端用户听到的媒体文件音量。该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="android">你可以调用该方法调节远端用户听到的媒体文件音量。</p>
             <p props="mac">你可以调用该方法调节远端用户听到的媒体文件音量。该方法可以在加入频道前或加入频道后调用。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>调用时机</title>
             <p props="cpp">该方法可以在加入频道前或后调用。</p>
-            <p props="android">该方法可以在加入频道前或加入频道后调用。</p>
             <p props="ios">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="android">该方法可以在加入频道前或加入频道后调用。</p>
             <p props="mac">该方法可以在加入频道前或加入频道后调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -44,7 +44,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="ios">
                     <pt>volume</pt>
                     <pd>音量，取值范围为 0 到 400：
                         <ul>
@@ -54,7 +54,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="android">
                     <pt>volume</pt>
                     <pd>音量，取值范围为 0 到 400：
                         <ul>
@@ -84,16 +84,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onaudioquality">
     <title><ph keyref="onAudioQuality"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">报告每个远端用户发送的音频流的统计信息。</ph><ph id="shortdesc" props="android">报告每个远端用户发送的音频流的统计信息回调。</ph><ph id="shortdesc" props="ios">当前通话的音频质量，每两秒报告一次。</ph><ph id="shortdesc" props="mac">当前通话的音频质量，每两秒报告一次。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">报告每个远端用户发送的音频流的统计信息。</ph><ph id="shortdesc" props="ios">当前通话的音频质量，每两秒报告一次。</ph><ph id="shortdesc" props="android">报告每个远端用户发送的音频流的统计信息回调。</ph><ph id="shortdesc" props="mac">当前通话的音频质量，每两秒报告一次。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioQuality(uid_t uid, int quality, unsigned short delay, unsigned short lost) __deprecated</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onAudioQuality(int uid, int quality, short delay, short lost)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)audioQualityBlock:(void(^ _Nullable)(NSUInteger uid, AgoraNetworkQuality quality, NSUInteger delay, NSUInteger lost))audioQualityBlock NS_SWIFT_NAME(audioQualityBlock(_:)) __deprecated_msg("use delegate instead.");</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onAudioQuality(int uid, int quality, short delay, short lost)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)audioQualityBlock:(void(^ _Nullable)(NSUInteger uid, AgoraNetworkQuality quality, NSUInteger delay, NSUInteger lost))audioQualityBlock NS_SWIFT_NAME(audioQualityBlock(_:)) __deprecated_msg("use delegate instead.");</codeblock>
             </p>
         </section>
@@ -25,13 +25,13 @@
                     <dt>废弃</dt>
                     <dd>该回调已废弃，请改用 <xref keyref="onRemoteAudioStats"/>。</dd>
                 </dlentry>
-                <dlentry props="android">
-                    <dt>废弃</dt>
-                    <dd>该方法已废弃，请改用 <xref keyref="onRemoteAudioStats"/>。</dd>
-                </dlentry>
                 <dlentry props="ios">
                     <dt>废弃</dt>
                     <dd>该方法已废弃，请改用 <codeph>remoteAudioStats</codeph>。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>废弃</dt>
+                    <dd>该方法已废弃，请改用 <xref keyref="onRemoteAudioStats"/>。</dd>
                 </dlentry>
                 <dlentry props="mac">
                     <dt>废弃</dt>
@@ -60,6 +60,17 @@
                     <pt>lost</pt>
                     <pd>从远端用户到接收端的音频数据包丢包率（%）。</pd>
                 </plentry>
+                <plentry props="ios">
+                    <pt>audioQualityBlock</pt>
+                    <pd>回调 block，包含以下内容：
+                        <ul>
+                            <li><codeph>uid</codeph>：说话者的用户 ID。</li>
+                            <li><codeph>quality</codeph>：网络质量，详见 <xref keyref="QUALITY_TYPE"/>。</li>
+                            <li><codeph>delay</codeph>：时延，单位为毫秒。</li>
+                            <li><codeph>lost</codeph>：丢包率，单位为 %。</li>
+                        </ul>
+                    </pd>
+                </plentry>
                 <plentry props="android">
                     <pt>uid</pt>
                     <pd>发送音频流的远端用户 ID。</pd>
@@ -86,17 +97,6 @@
                 <plentry props="android">
                     <pt>lost</pt>
                     <pd>从远端用户发送到接收端的音频数据包的丢包率（%）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>audioQualityBlock</pt>
-                    <pd>回调 block，包含以下内容：
-                        <ul>
-                            <li><codeph>uid</codeph>：说话者的用户 ID。</li>
-                            <li><codeph>quality</codeph>：网络质量，详见 <xref keyref="QUALITY_TYPE"/>。</li>
-                            <li><codeph>delay</codeph>：时延，单位为毫秒。</li>
-                            <li><codeph>lost</codeph>：丢包率，单位为 %。</li>
-                        </ul>
-                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>audioQualityBlock</pt>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayercachemanager_enableautoremovecache">
     <title><ph keyref="enableAutoRemoveCache"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置是否自动删除缓存的媒体文件。</ph><ph id="shortdesc" props="android">设置是否自动删除缓存的媒体文件。</ph><ph id="shortdesc" props="ios">设置是否自动删除缓存的媒体文件。</ph><ph id="shortdesc" props="mac">设置是否自动删除缓存的媒体文件。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置是否自动删除缓存的媒体文件。</ph><ph id="shortdesc" props="ios">设置是否自动删除缓存的媒体文件。</ph><ph id="shortdesc" props="android">设置是否自动删除缓存的媒体文件。</ph><ph id="shortdesc" props="mac">设置是否自动删除缓存的媒体文件。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,15 +14,15 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int enableAutoRemoveCache(bool enable) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">int enableAutoRemoveCache(boolean enable);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)enableAutoRemoveCache:(BOOL)enable NS_SWIFT_NAME(enableAutoRemoveCache(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">int enableAutoRemoveCache(boolean enable);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)enableAutoRemoveCache:(BOOL)enable NS_SWIFT_NAME(enableAutoRemoveCache(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">启用该功能后，如果缓存的媒体文件数量或大小超过设置的限制，SDK 会自动删除最近最少使用的缓存文件。</p>
-            <p props="android">当缓存的媒体文件数量或大小超过设置的限制时，启用该功能后，SDK 会自动删除最近最少使用的缓存文件。</p>
             <p props="ios">当缓存的媒体文件超过设置的数量或大小限制时，如果启用该功能，SDK 会自动删除最近最少使用的缓存文件。</p>
+            <p props="android">当缓存的媒体文件数量或大小超过设置的限制时，启用该功能后，SDK 会自动删除最近最少使用的缓存文件。</p>
             <p props="mac">当缓存的媒体文件超过设置的数量或大小限制时，如果启用该功能，SDK 会自动删除最近最少使用的缓存文件。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -37,7 +37,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android">
+                <plentry props="ios">
                     <pt>enable</pt>
                     <pd>是否启用 SDK 自动删除缓存的媒体文件：
                         <ul>
@@ -46,7 +46,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="ios">
+                <plentry props="android">
                     <pt>enable</pt>
                     <pd>是否启用 SDK 自动删除缓存的媒体文件：
                         <ul>
@@ -74,13 +74,13 @@
                     <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
                 </ul>
             </p>
-            <p props="android">
+            <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
                 </ul>
             </p>
-            <p props="ios">
+            <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>

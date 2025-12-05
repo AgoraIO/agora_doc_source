@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onvideostopped">
     <title><ph keyref="onVideoStopped"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">视频停止播放时触发的回调。</ph><ph id="shortdesc" props="android">视频停止播放时触发的回调。</ph><ph id="shortdesc" props="ios">视频停止播放时的回调。</ph><ph id="shortdesc" props="mac">视频停止播放时的回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">视频停止播放时触发的回调。</ph><ph id="shortdesc" props="ios">视频停止播放时的回调。</ph><ph id="shortdesc" props="android">视频停止播放时触发的回调。</ph><ph id="shortdesc" props="mac">视频停止播放时的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onVideoStopped() __deprecated {}</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onVideoStopped() {}</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngineVideoDidStop:(AgoraRtcEngineKit * _Nonnull)engine NS_SWIFT_NAME(rtcEngineVideoDidStop(_:)) __deprecated_msg("Use rtcEngine:localVideoStateChangedOfState:reason:sourceType: instead");</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onVideoStopped() {}</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngineVideoDidStop:(AgoraRtcEngineKit * _Nonnull)engine NS_SWIFT_NAME(rtcEngineVideoDidStop(_:)) __deprecated_msg("Use rtcEngine:localVideoStateChangedOfState:reason:sourceType: instead");</codeblock>
             </p>
         </section>
@@ -25,11 +25,11 @@
                     <dt>废弃</dt>
                     <dd>该方法已废弃，请改用 <xref keyref="onLocalVideoStateChanged"/> 回调中的 <codeph>LOCAL_VIDEO_STREAM_STATE_STOPPED</codeph>。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>废弃</dt>
                     <dd>该方法已废弃，请改用 <xref keyref="onLocalVideoStateChanged"/>。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>废弃</dt>
                     <dd>该方法已废弃，请改用 <xref keyref="onLocalVideoStateChanged"/>。</dd>
                 </dlentry>
@@ -38,15 +38,15 @@
                     <dd>该方法已废弃，请改用 <xref keyref="onLocalVideoStateChanged"/>。</dd>
                 </dlentry>
             </dl>
-            <p props="android">你可以在该回调中更改视图的配置，例如在视图中显示其他图片。</p>
             <p props="ios">该回调在视频停止播放时触发。你可以通过该回调更改视图的配置，例如在视图中显示其他图片。</p>
+            <p props="android">你可以在该回调中更改视图的配置，例如在视图中显示其他图片。</p>
             <p props="mac">该回调在视频停止播放时触发。你可以通过该回调更改视图的配置，例如在视图中显示其他图片。</p>
             <note props="cpp">你可以在视频停止播放后使用该回调更改视图配置，例如在视图中显示其他图片。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>触发时机</title>
-            <p props="android">该回调在视频停止播放时被触发。</p>
             <p props="ios">该回调在视频停止播放时触发。</p>
+            <p props="android">该回调在视频停止播放时被触发。</p>
             <p props="mac">该回调在视频停止播放时触发。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="ios mac">

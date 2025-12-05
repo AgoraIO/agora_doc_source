@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encodedvideoframeinfo">
     <title><ph keyref="EncodedVideoFrameInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">描述外部编码视频帧的信息。</ph><ph id="shortdesc" props="android">包含外部编码视频帧的相关信息。</ph><ph id="shortdesc" props="ios">描述外部编码视频帧的信息。</ph><ph id="shortdesc" props="mac">描述外部编码视频帧的信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">描述外部编码视频帧的信息。</ph><ph id="shortdesc" props="ios">描述外部编码视频帧的信息。</ph><ph id="shortdesc" props="android">包含外部编码视频帧的相关信息。</ph><ph id="shortdesc" props="mac">描述外部编码视频帧的信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -19,18 +19,6 @@
   VIDEO_STREAM_TYPE streamType;
   int64_t presentationMs;
 };</codeblock>
-                <codeblock props="android" outputclass="language-java">public class EncodedVideoFrameInfo {
-  public int codecType;
-  public int width;
-  public int height;
-  public int framesPerSecond;
-  public int frameType;
-  public int rotation;
-  public int trackId;
-  public long captureTimeMs;
-  public long decodeTimeMs;
-  public int streamType;
-}</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncodedVideoFrameInfo: NSObject
 @property (assign, nonatomic) AgoraVideoCodecType codecType;
 @property (assign, nonatomic) NSInteger width;
@@ -43,6 +31,18 @@
 @property (assign, nonatomic) NSInteger decodeTimeMs;
 @property (assign, nonatomic) AgoraVideoStreamType streamType;
 @end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class EncodedVideoFrameInfo {
+  public int codecType;
+  public int width;
+  public int height;
+  public int framesPerSecond;
+  public int frameType;
+  public int rotation;
+  public int trackId;
+  public long captureTimeMs;
+  public long decodeTimeMs;
+  public int streamType;
+}</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncodedVideoFrameInfo: NSObject
 @property (assign, nonatomic) AgoraVideoCodecType codecType;
 @property (assign, nonatomic) NSInteger width;
@@ -99,6 +99,46 @@
                 <plentry props="cpp">
                     <pt>streamType</pt>
                     <pd>视频流的类型。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>codecType</pt>
+                    <pd>本地视频流的编解码器类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>width</pt>
+                    <pd>视频帧的宽度（像素）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>height</pt>
+                    <pd>视频帧的高度（像素）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>framesPerSecond</pt>
+                    <pd>视频帧的每秒帧数。当该参数不为 0 时，可用于计算外部编码视频帧的 Unix 时间戳。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>frameType</pt>
+                    <pd>视频帧的类型，详见 <xref keyref="VIDEO_FRAME_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>rotation</pt>
+                    <pd>视频帧的旋转信息。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>trackId</pt>
+                    <pd>预留参数，用于未来支持多个视频轨道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>captureTimeMs</pt>
+                    <pd>外部编码视频帧的采集时间戳（毫秒）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>decodeTimeMs</pt>
+                    <pd>输出参数，表示用于解码视频帧的时间戳（毫秒）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>streamType</pt>
+                    <pd>视频流的类型，详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>codecType</pt>
@@ -161,46 +201,6 @@
                 <plentry props="android">
                     <pt>streamType</pt>
                     <pd>视频流的类型。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>codecType</pt>
-                    <pd>本地视频流的编解码器类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>width</pt>
-                    <pd>视频帧的宽度（像素）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>height</pt>
-                    <pd>视频帧的高度（像素）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>framesPerSecond</pt>
-                    <pd>视频帧的每秒帧数。当该参数不为 0 时，可用于计算外部编码视频帧的 Unix 时间戳。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>frameType</pt>
-                    <pd>视频帧的类型，详见 <xref keyref="VIDEO_FRAME_TYPE"/>。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>rotation</pt>
-                    <pd>视频帧的旋转信息。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>trackId</pt>
-                    <pd>预留参数，用于未来支持多个视频轨道。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>captureTimeMs</pt>
-                    <pd>外部编码视频帧的采集时间戳（毫秒）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>decodeTimeMs</pt>
-                    <pd>输出参数，表示用于解码视频帧的时间戳（毫秒）。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>streamType</pt>
-                    <pd>视频流的类型，详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>codecType</pt>

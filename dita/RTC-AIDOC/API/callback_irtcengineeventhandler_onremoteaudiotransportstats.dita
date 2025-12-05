@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onremoteaudiotransportstats">
     <title><ph keyref="onRemoteAudioTransportStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">报告每个远端音频流的传输层统计信息回调。</ph><ph id="shortdesc" props="android">上报每个远端音频流的传输层统计信息。</ph><ph id="shortdesc" props="ios">报告每个远端音频流的传输层统计信息。</ph><ph id="shortdesc" props="mac">报告每个远端音频流的传输层统计信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">报告每个远端音频流的传输层统计信息回调。</ph><ph id="shortdesc" props="ios">报告每个远端音频流的传输层统计信息。</ph><ph id="shortdesc" props="android">上报每个远端音频流的传输层统计信息。</ph><ph id="shortdesc" props="mac">报告每个远端音频流的传输层统计信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteAudioTransportStats(uid_t uid, unsigned short delay, unsigned short lost, unsigned short rxKBitRate) __deprecated</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onRemoteAudioTransportStats(int uid, int delay, int lost, int rxKBitRate)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine audioTransportStatsOfUid:(NSUInteger)uid delay:(NSUInteger)delay lost:(NSUInteger)lost rxKBitRate:(NSUInteger)rxKBitRate NS_SWIFT_NAME(rtcEngine(_:audioTransportStatsOfUid:delay:lost:rxKBitRate:)) __deprecated_msg("use rtcEngine:remoteAudioStats: instead");</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onRemoteAudioTransportStats(int uid, int delay, int lost, int rxKBitRate)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine audioTransportStatsOfUid:(NSUInteger)uid delay:(NSUInteger)delay lost:(NSUInteger)lost rxKBitRate:(NSUInteger)rxKBitRate NS_SWIFT_NAME(rtcEngine(_:audioTransportStatsOfUid:delay:lost:rxKBitRate:)) __deprecated_msg("use rtcEngine:remoteAudioStats: instead");</codeblock>
             </p>
         </section>
@@ -25,13 +25,13 @@
                     <dt>废弃</dt>
                     <dd>该方法已废弃，请改用 <xref keyref="onRemoteAudioStats"/>。</dd>
                 </dlentry>
-                <dlentry props="android">
-                    <dt>废弃</dt>
-                    <dd>该回调已废弃，请使用 <xref keyref="onRemoteAudioStats"/> 代替。</dd>
-                </dlentry>
                 <dlentry props="ios">
                     <dt>废弃</dt>
                     <dd>该方法已废弃，请改用 <xref keyref="onRemoteAudioStats"/>。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>废弃</dt>
+                    <dd>该回调已废弃，请使用 <xref keyref="onRemoteAudioStats"/> 代替。</dd>
                 </dlentry>
                 <dlentry props="mac">
                     <dt>废弃</dt>
@@ -44,8 +44,8 @@
         <section id="timing" deliveryTarget="details" props="android cpp ios mac">
             <title>触发时机</title>
             <p props="cpp">在通话过程中，每当本地用户接收到远端用户发送的音频数据包时，每 2 秒触发一次。</p>
-            <p props="android">该回调在通话过程中，当本地用户接收到远端用户发送的音频包时每 2 秒被触发。</p>
             <p props="ios">该回调在通话过程中，当你接收到远端用户发送的音频包时，每 2 秒触发一次。</p>
+            <p props="android">该回调在通话过程中，当本地用户接收到远端用户发送的音频包时每 2 秒被触发。</p>
             <p props="mac">该回调在通话过程中，当你接收到远端用户发送的音频包时，每 2 秒触发一次。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -67,22 +67,6 @@
                     <pt>rxKBitRate</pt>
                     <pd>接收到的音频码率（Kbps）。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>uid</pt>
-                    <pd>远端用户 ID，即发送音频流的用户。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>delay</pt>
-                    <pd>从远端用户到接收端的网络时延，单位为毫秒。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>lost</pt>
-                    <pd>从远端用户到接收端的音频包丢包率，单位为百分比（%）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>rxKBitRate</pt>
-                    <pd>接收到的音频码率，单位为 Kbps。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>engine</pt>
                     <pd>引擎对象，详见 <xref keyref="IRtcEngine"/>。</pd>
@@ -102,6 +86,22 @@
                 <plentry props="ios">
                     <pt>rxKBitRate</pt>
                     <pd>接收到的音频码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID，即发送音频流的用户。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>delay</pt>
+                    <pd>从远端用户到接收端的网络时延，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lost</pt>
+                    <pd>从远端用户到接收端的音频包丢包率，单位为百分比（%）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxKBitRate</pt>
+                    <pd>接收到的音频码率，单位为 Kbps。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>engine</pt>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_preloadeffectex">
     <title><ph keyref="preloadEffectEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">预加载指定音效文件到频道。</ph><ph id="shortdesc" props="android">预加载指定音效文件到频道中。</ph><ph id="shortdesc" props="ios">预加载指定的音效文件到频道中。</ph><ph id="shortdesc" props="mac">预加载指定的音效文件到频道中。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">预加载指定音效文件到频道。</ph><ph id="shortdesc" props="ios">预加载指定的音效文件到频道中。</ph><ph id="shortdesc" props="android">预加载指定音效文件到频道中。</ph><ph id="shortdesc" props="mac">预加载指定的音效文件到频道中。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,11 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int preloadEffectEx(const RtcConnection&amp; connection, int soundId, const char* filePath, int startPos = 0) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int preloadEffectEx(RtcConnection connection, int soundId, String filePath, int startPos);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)preloadEffectEx:(AgoraRtcConnection* _Nonnull)connection
              soundId:(int)soundId
             filePath:(NSString* _Nonnull)filePath
             startPos:(int)startPos NS_SWIFT_NAME(preloadEffectEx(_:soundId:filePath:startPos:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int preloadEffectEx(RtcConnection connection, int soundId, String filePath, int startPos);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)preloadEffectEx:(AgoraRtcConnection* _Nonnull)connection
              soundId:(int)soundId
             filePath:(NSString* _Nonnull)filePath
@@ -31,11 +31,11 @@
                     <dt>自从</dt>
                     <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="android">
+                <dlentry props="ios">
                     <dt>自从</dt>
                     <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
-                <dlentry props="ios">
+                <dlentry props="android">
                     <dt>自从</dt>
                     <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
@@ -45,8 +45,8 @@
                 </dlentry>
             </dl>
             <p props="cpp">每次调用该方法只能将一个音效文件预加载到内存中。如果你需要预加载多个音效文件，请多次调用该方法。预加载完成后，你可以调用 <xref keyref="playEffect3"/> 播放指定音效，或调用 <xref keyref="playAllEffects"/> 播放所有已预加载的音效。</p>
-            <p props="android">每次调用该方法只能将一个音效文件预加载到内存中。如果需要预加载多个音效文件，请多次调用该方法。你可以调用 <codeph>playEffect</codeph> 播放预加载的音效，或调用 <xref keyref="playAllEffects"/> 播放所有预加载的音效。</p>
             <p props="ios">每次调用该方法时，只能将一个音效文件预加载到内存中。如果需要预加载多个音效文件，请多次调用该方法。预加载完成后，可以调用 <codeph>playEffect</codeph> 播放预加载的音效，或调用 <codeph>playAllEffects</codeph> 播放所有预加载的音效。</p>
+            <p props="android">每次调用该方法只能将一个音效文件预加载到内存中。如果需要预加载多个音效文件，请多次调用该方法。你可以调用 <codeph>playEffect</codeph> 播放预加载的音效，或调用 <xref keyref="playAllEffects"/> 播放所有预加载的音效。</p>
             <p props="mac">每次调用该方法时，只能将一个音效文件预加载到内存中。如果需要预加载多个音效文件，请多次调用该方法。预加载完成后，可以调用 <codeph>playEffect</codeph> 播放预加载的音效，或调用 <codeph>playAllEffects</codeph> 播放所有预加载的音效。</p>
             <note props="cpp">
                 <ul>
@@ -54,13 +54,13 @@
                     <li>声网建议你在加入频道前调用该方法。</li>
                 </ul>
             </note>
-            <note props="android">
+            <note props="ios">
                 <ul>
                     <li>为确保使用体验流畅，音效文件的大小不应超过限制。</li>
                     <li>声网建议你在加入频道前调用该方法。</li>
                 </ul>
             </note>
-            <note props="ios">
+            <note props="android">
                 <ul>
                     <li>为确保使用体验流畅，音效文件的大小不应超过限制。</li>
                     <li>声网建议你在加入频道前调用该方法。</li>
@@ -96,22 +96,6 @@
                     <pt>startPos</pt>
                     <pd>音效文件的播放起始位置（单位为毫秒）。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>soundId</pt>
-                    <pd>音效 ID。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>filePath</pt>
-                    <pd>本地文件的绝对路径或在线文件的 URL。支持的音频格式包括：mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>startPos</pt>
-                    <pd>音效文件的播放起始位置（毫秒）。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>connection</pt>
                     <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
@@ -127,6 +111,22 @@
                 <plentry props="ios">
                     <pt>startPos</pt>
                     <pd>音效文件的播放起始位置（单位为毫秒）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>soundId</pt>
+                    <pd>音效 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>filePath</pt>
+                    <pd>本地文件的绝对路径或在线文件的 URL。支持的音频格式包括：mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>startPos</pt>
+                    <pd>音效文件的播放起始位置（毫秒）。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>connection</pt>
@@ -154,16 +154,16 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="android">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
             <p props="ios">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="mac">

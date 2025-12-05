@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onstreammessageerror">
     <title><ph keyref="onStreamMessageError"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">本地用户未收到远端用户发送的数据流消息时触发的回调。</ph><ph id="shortdesc" props="android"><xref keyref="onStreamMessageError"/> 回调：本地用户未收到远端用户发送的数据流时触发。</ph><ph id="shortdesc" props="ios">当本地用户未收到远端用户发送的数据流时触发的回调。</ph><ph id="shortdesc" props="mac">当本地用户未收到远端用户发送的数据流时触发的回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">本地用户未收到远端用户发送的数据流消息时触发的回调。</ph><ph id="shortdesc" props="ios">当本地用户未收到远端用户发送的数据流时触发的回调。</ph><ph id="shortdesc" props="android"><xref keyref="onStreamMessageError"/> 回调：本地用户未收到远端用户发送的数据流时触发。</ph><ph id="shortdesc" props="mac">当本地用户未收到远端用户发送的数据流时触发的回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,25 +14,25 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onStreamMessageError(uid_t uid, int streamId, int code, int missed, int cached)</codeblock>
-                <codeblock props="android" outputclass="language-java">public void onStreamMessageError(int uid, int streamId, int error, int missed, int cached)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOccurStreamMessageErrorFromUid:(NSUInteger)uid streamId:(NSInteger)streamId error:(NSInteger)error missed:(NSInteger)missed cached:(NSInteger)cached NS_SWIFT_NAME(rtcEngine(_:didOccurStreamMessageErrorFromUid:streamId:error:missed:cached:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onStreamMessageError(int uid, int streamId, int error, int missed, int cached)</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOccurStreamMessageErrorFromUid:(NSUInteger)uid streamId:(NSInteger)streamId error:(NSInteger)error missed:(NSInteger)missed cached:(NSInteger)cached NS_SWIFT_NAME(rtcEngine(_:didOccurStreamMessageErrorFromUid:streamId:error:missed:cached:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">该回调在本地用户未能接收到远端用户通过调用 <xref keyref="sendStreamMessage"/> 发送的流消息时触发。</p>
-            <p props="android">该回调在本地用户未能接收到远端用户通过调用 <xref keyref="sendStreamMessage"/> 发送的流消息时触发。</p>
             <p props="ios">当本地用户未能接收到远端用户通过调用 <xref keyref="sendStreamMessage"/> 方法发送的数据流消息时，SDK 会触发该回调。</p>
+            <p props="android">该回调在本地用户未能接收到远端用户通过调用 <xref keyref="sendStreamMessage"/> 发送的流消息时触发。</p>
             <p props="mac">当本地用户未能接收到远端用户通过调用 <xref keyref="sendStreamMessage"/> 方法发送的数据流消息时，SDK 会触发该回调。</p>
             <note props="cpp">如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用实时消息。</note>
-            <note props="android">如果你需要一个更全面的低延迟、高并发和可扩展的实时消息和状态同步解决方案，建议使用实时消息。</note>
             <note props="ios">如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用实时消息。</note>
+            <note props="android">如果你需要一个更全面的低延迟、高并发和可扩展的实时消息和状态同步解决方案，建议使用实时消息。</note>
             <note props="mac">如果你需要一个更全面的低延迟、高并发、可扩展的实时消息和状态同步解决方案，建议使用实时消息。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>触发时机</title>
-            <p props="android">该回调在本地用户未能接收到远端用户通过 <xref keyref="sendStreamMessage"/> 发送的流消息时被触发。</p>
             <p props="ios">该回调在本地用户未收到远端用户发送的数据流时被触发。</p>
+            <p props="android">该回调在本地用户未能接收到远端用户通过 <xref keyref="sendStreamMessage"/> 发送的流消息时被触发。</p>
             <p props="mac">该回调在本地用户未收到远端用户发送的数据流时被触发。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -58,26 +58,6 @@
                     <pt>cached</pt>
                     <pd>数据流中断期间接收到的缓存消息数量。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>uid</pt>
-                    <pd>发送消息的远端用户 ID。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>streamId</pt>
-                    <pd>接收消息对应的数据流 ID。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>error</pt>
-                    <pd>错误码。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>missed</pt>
-                    <pd>丢失的消息数量。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>cached</pt>
-                    <pd>数据流中断时缓存的传入消息数量。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>engine</pt>
                     <pd>引擎对象，详见 <xref keyref="IRtcEngine"/>。</pd>
@@ -99,6 +79,26 @@
                     <pd>丢失的消息数量。</pd>
                 </plentry>
                 <plentry props="ios">
+                    <pt>cached</pt>
+                    <pd>数据流中断时缓存的传入消息数量。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>发送消息的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>streamId</pt>
+                    <pd>接收消息对应的数据流 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>error</pt>
+                    <pd>错误码。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>missed</pt>
+                    <pd>丢失的消息数量。</pd>
+                </plentry>
+                <plentry props="android">
                     <pt>cached</pt>
                     <pd>数据流中断时缓存的传入消息数量。</pd>
                 </plentry>

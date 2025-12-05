@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_irtcengineeventhandler">
     <title><ph keyref="IRtcEngineEventHandler"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于接收 SDK 回调事件通知。</ph><ph id="shortdesc" props="android">封装 SDK 向应用层发送事件回调的方法。</ph><ph id="shortdesc" props="ios">启用应用程序的回调事件通知。</ph><ph id="shortdesc" props="mac">启用应用程序的回调事件通知。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于接收 SDK 回调事件通知。</ph><ph id="shortdesc" props="ios">启用应用程序的回调事件通知。</ph><ph id="shortdesc" props="android">封装 SDK 向应用层发送事件回调的方法。</ph><ph id="shortdesc" props="mac">启用应用程序的回调事件通知。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
             <dl outputclass="since">
@@ -16,8 +16,8 @@
                 </dlentry>
             </dl>
             <p props="cpp">SDK 通过该类向 App 发送回调事件通知。你可以继承该类中的方法来获取所需的事件通知。该类中的所有方法均提供默认（空）实现，你可以按需选择性地继承部分方法。在回调方法中，应避免执行耗时操作或调用阻塞 API，否则可能影响 SDK 的正常运行。</p>
-            <p props="android"><xref keyref="IRtcEngineEventHandler"/> 是 SDK 用于向应用层发送事件回调的接口类。你可以继承该类以接收所需的事件通知。该接口中的所有方法均为默认空实现，你可以根据需要选择性地重写部分方法。为确保 SDK 正常运行，建议在回调方法中避免执行耗时操作或调用阻塞 API，例如 <codeph>SendMessage</codeph>。</p>
             <p props="ios">SDK 通过 <xref keyref="IRtcEngineEventHandler"/> 协议中的代理回调向应用报告运行时事件。从 v1.1 版本起，SDK 中部分 block 回调被代理回调替代。旧的 block 回调虽已废弃，但当前版本仍支持使用。声网建议你将 block 回调替换为代理回调。如果同时定义了 block 和代理回调，SDK 将优先调用 block 回调。</p>
+            <p props="android"><xref keyref="IRtcEngineEventHandler"/> 是 SDK 用于向应用层发送事件回调的接口类。你可以继承该类以接收所需的事件通知。该接口中的所有方法均为默认空实现，你可以根据需要选择性地重写部分方法。为确保 SDK 正常运行，建议在回调方法中避免执行耗时操作或调用阻塞 API，例如 <codeph>SendMessage</codeph>。</p>
             <p props="mac">SDK 通过 <xref keyref="IRtcEngineEventHandler"/> 协议中的代理回调向应用报告运行时事件。从 v1.1 版本起，SDK 中部分 block 回调被代理回调替代。旧的 block 回调虽已废弃，但当前版本仍支持使用。声网建议你将 block 回调替换为代理回调。如果同时定义了 block 和代理回调，SDK 将优先调用 block 回调。</p>
         </section>
     </refbody>

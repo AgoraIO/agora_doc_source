@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audioframe">
     <title><ph keyref="AudioFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于描述原始音频帧数据。</ph><ph id="shortdesc" props="android">原始音频数据。</ph><ph id="shortdesc" props="ios">原始音频数据。</ph><ph id="shortdesc" props="mac">原始音频数据。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于描述原始音频帧数据。</ph><ph id="shortdesc" props="ios">原始音频数据。</ph><ph id="shortdesc" props="android">原始音频数据。</ph><ph id="shortdesc" props="mac">原始音频数据。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -19,14 +19,6 @@ int64_t presentationMs;
 int audioTrackNumber;
 uint32_t rtpTimestamp;
 };</codeblock>
-                <codeblock props="android" outputclass="language-java">public class AudioFrame {
-  public ByteBuffer buffer;
-  public int sampleRataHz;
-  public int bytesPerSample;
-  public int channelNums;
-  public int samplesPerChannel;
-  public long timestamp;
-}</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioFrame : NSObject
 @property(assign, nonatomic) NSInteger samplesPerChannel;
 @property(assign, nonatomic) NSInteger bytesPerSample;
@@ -38,6 +30,14 @@ uint32_t rtpTimestamp;
 @property(assign, nonatomic) NSInteger avSyncType;
 @property(assign, nonatomic) uint32_t rtpTimestamp;
 @end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class AudioFrame {
+  public ByteBuffer buffer;
+  public int sampleRataHz;
+  public int bytesPerSample;
+  public int channelNums;
+  public int samplesPerChannel;
+  public long timestamp;
+}</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioFrame : NSObject
 @property(assign, nonatomic) NSInteger samplesPerChannel;
 @property(assign, nonatomic) NSInteger bytesPerSample;
@@ -103,35 +103,6 @@ uint32_t rtpTimestamp;
                     <pt>rtpTimestamp</pt>
                     <pd>音频帧中第一个采样点的 RTP 时间戳。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>buffer</pt>
-                    <pd>音频帧的数据缓冲区。当音频帧使用立体声通道时，数据缓冲区为交叉存储。缓冲区大小计算方式为：<codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>sampleRataHz</pt>
-                    <pd>音频帧中每个声道的采样率（单位为 Hz）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>bytesPerSample</pt>
-                    <pd>每个采样的字节数。对于 PCM 数据，通常为 16 位（2 字节）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>channelNums</pt>
-                    <pd>音频通道数（立体声时为交叉存储）。
-                        <ul>
-                            <li>1：单声道。</li>
-                            <li>2：立体声。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>samplesPerChannel</pt>
-                    <pd>音频帧中每个声道的采样数。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>timestamp</pt>
-                    <pd>音频帧的时间戳（单位：毫秒）。</pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>samplesPerChannel</pt>
                     <pd>音频帧中每个声道的采样点数。</pd>
@@ -168,6 +139,35 @@ uint32_t rtpTimestamp;
                 <plentry props="ios">
                     <pt>rtpTimestamp</pt>
                     <pd>音频帧中第一个采样点的 RTP 时间戳。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>buffer</pt>
+                    <pd>音频帧的数据缓冲区。当音频帧使用立体声通道时，数据缓冲区为交叉存储。缓冲区大小计算方式为：<codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sampleRataHz</pt>
+                    <pd>音频帧中每个声道的采样率（单位为 Hz）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>bytesPerSample</pt>
+                    <pd>每个采样的字节数。对于 PCM 数据，通常为 16 位（2 字节）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channelNums</pt>
+                    <pd>音频通道数（立体声时为交叉存储）。
+                        <ul>
+                            <li>1：单声道。</li>
+                            <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>samplesPerChannel</pt>
+                    <pd>音频帧中每个声道的采样数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>timestamp</pt>
+                    <pd>音频帧的时间戳（单位：毫秒）。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>samplesPerChannel</pt>

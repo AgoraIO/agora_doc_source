@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcstats">
     <title><ph keyref="RtcStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于统计通话会话相关数据。</ph><ph id="shortdesc" props="android">通话会话的统计信息。</ph><ph id="shortdesc" props="ios">通话会话的统计信息。</ph><ph id="shortdesc" props="mac">通话会话的统计信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于统计通话会话相关数据。</ph><ph id="shortdesc" props="ios">通话会话的统计信息。</ph><ph id="shortdesc" props="android">通话会话的统计信息。</ph><ph id="shortdesc" props="mac">通话会话的统计信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -42,33 +42,6 @@
   int rxPacketLossRate;
   int lanAccelerateState;
 };</codeblock>
-                <codeblock props="android" outputclass="language-java">public static class RtcStats {
-    public int totalDuration;
-    public int txBytes;
-    public int rxBytes;
-    public int txKBitRate;
-    public int txAudioBytes;
-    public int rxAudioBytes;
-    public int txVideoBytes;
-    public int rxVideoBytes;
-    public int rxKBitRate;
-    public int txAudioKBitRate;
-    public int rxAudioKBitRate;
-    public int txVideoKBitRate;
-    public int rxVideoKBitRate;
-    public int lastmileDelay;
-    public double cpuTotalUsage;
-    public int gatewayRtt;
-    public double cpuAppUsage;
-    public int users;
-    public int connectTimeMs;
-    public int txPacketLossRate;
-    public int rxPacketLossRate;
-    public double memoryAppUsageRatio;
-    public double memoryTotalUsageRatio;
-    public int memoryAppUsageInKbytes;
-    public int lanAccelerateState;
-  }</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelStats : NSObject
 @property(assign, nonatomic) NSUInteger duration;
 @property(assign, nonatomic) NSUInteger txBytes;
@@ -100,6 +73,33 @@
 @property(assign, nonatomic) NSInteger rxPacketLossRate;
 @property(assign, nonatomic) NSInteger lanAccelerateState;
 @end</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class RtcStats {
+    public int totalDuration;
+    public int txBytes;
+    public int rxBytes;
+    public int txKBitRate;
+    public int txAudioBytes;
+    public int rxAudioBytes;
+    public int txVideoBytes;
+    public int rxVideoBytes;
+    public int rxKBitRate;
+    public int txAudioKBitRate;
+    public int rxAudioKBitRate;
+    public int txVideoKBitRate;
+    public int rxVideoKBitRate;
+    public int lastmileDelay;
+    public double cpuTotalUsage;
+    public int gatewayRtt;
+    public double cpuAppUsage;
+    public int users;
+    public int connectTimeMs;
+    public int txPacketLossRate;
+    public int rxPacketLossRate;
+    public double memoryAppUsageRatio;
+    public double memoryTotalUsageRatio;
+    public int memoryAppUsageInKbytes;
+    public int lanAccelerateState;
+  }</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelStats : NSObject
 @property(assign, nonatomic) NSUInteger duration;
 @property(assign, nonatomic) NSUInteger txBytes;
@@ -290,124 +290,6 @@
                     <pt>rxPacketLossRate</pt>
                     <pd>使用抗丢包方法前，声网服务器到客户端的丢包率（%）。</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>totalDuration</pt>
-                    <pd>本地用户的通话时长（秒），以累计值表示。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>txBytes</pt>
-                    <pd>已发送的字节数。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>rxBytes</pt>
-                    <pd>已接收的字节数。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>txKBitRate</pt>
-                    <pd>发送本地视频流的实际码率（Kbps）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>txAudioBytes</pt>
-                    <pd>发送的音频字节总数，以累计值表示。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>rxAudioBytes</pt>
-                    <pd>接收的音频字节总数，以累计值表示。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>txVideoBytes</pt>
-                    <pd>发送的视频字节总数，以累计值表示。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>rxVideoBytes</pt>
-                    <pd>接收的视频字节总数，以累计值表示。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>rxKBitRate</pt>
-                    <pd>接收码率（Kbps）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>txAudioKBitRate</pt>
-                    <pd>音频发送码率（Kbps）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>rxAudioKBitRate</pt>
-                    <pd>音频接收码率（Kbps）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>txVideoKBitRate</pt>
-                    <pd>视频发送码率（Kbps）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>rxVideoKBitRate</pt>
-                    <pd>视频接收码率（Kbps）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>lastmileDelay</pt>
-                    <pd>客户端到服务器的延迟（毫秒）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>cpuTotalUsage</pt>
-                    <pd>系统 CPU 使用率（%）。
-                        <note>
-                            <ul>
-                                <li>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</li>
-                                <li>从 Android 8.1 开始，受系统限制无法获取该值。</li>
-                            </ul>
-                        </note>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>gatewayRtt</pt>
-                    <pd>客户端到本地路由器的往返时延（毫秒）。
-                        <note>在 Android 上，如需获取该值，请确保在项目的 <codeph>AndroidManifest.xml</codeph> 文件中，在 <codeph>&lt;/application&gt;</codeph> 后添加权限 <codeph>android.permission.ACCESS_WIFI_STATE</codeph>。</note>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>cpuAppUsage</pt>
-                    <pd>应用的 CPU 使用率（%）。
-                        <note>
-                            <ul>
-                                <li>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</li>
-                                <li>从 Android 8.1 开始，受系统限制无法获取该值。</li>
-                            </ul>
-                        </note>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>users</pt>
-                    <pd>频道中的用户人数。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>connectTimeMs</pt>
-                    <pd>SDK 开始连接到连接建立之间的时长（毫秒）。若值为 0，表示无效。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>txPacketLossRate</pt>
-                    <pd>客户端发送到声网服务器的丢包率（%），为应用抗丢包机制前的值。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>rxPacketLossRate</pt>
-                    <pd>声网服务器发送到客户端前，未使用抗丢包机制时的丢包率（%）。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>memoryAppUsageRatio</pt>
-                    <pd>应用占用的内存比例（%）。
-                        <note>该值仅供参考，因系统限制可能无法获取。</note>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>memoryTotalUsageRatio</pt>
-                    <pd>系统占用的内存比例（%）。
-                        <note>该值仅供参考，因系统限制可能无法获取。</note>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>memoryAppUsageInKbytes</pt>
-                    <pd>应用占用的内存大小（KB）。
-                        <note>该值仅供参考，因系统限制可能无法获取。</note>
-                    </pd>
-                </plentry>
                 <plentry props="ios">
                     <pt>duration</pt>
                     <pd>本地用户通话时长，单位为秒，表示为累计值。</pd>
@@ -531,6 +413,124 @@
                 <plentry props="ios">
                     <pt>rxPacketLossRate</pt>
                     <pd>使用抗丢包方法前，声网服务器到客户端的丢包率（%）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>totalDuration</pt>
+                    <pd>本地用户的通话时长（秒），以累计值表示。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txBytes</pt>
+                    <pd>已发送的字节数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxBytes</pt>
+                    <pd>已接收的字节数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txKBitRate</pt>
+                    <pd>发送本地视频流的实际码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txAudioBytes</pt>
+                    <pd>发送的音频字节总数，以累计值表示。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxAudioBytes</pt>
+                    <pd>接收的音频字节总数，以累计值表示。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txVideoBytes</pt>
+                    <pd>发送的视频字节总数，以累计值表示。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxVideoBytes</pt>
+                    <pd>接收的视频字节总数，以累计值表示。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxKBitRate</pt>
+                    <pd>接收码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txAudioKBitRate</pt>
+                    <pd>音频发送码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxAudioKBitRate</pt>
+                    <pd>音频接收码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txVideoKBitRate</pt>
+                    <pd>视频发送码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxVideoKBitRate</pt>
+                    <pd>视频接收码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lastmileDelay</pt>
+                    <pd>客户端到服务器的延迟（毫秒）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cpuTotalUsage</pt>
+                    <pd>系统 CPU 使用率（%）。
+                        <note>
+                            <ul>
+                                <li>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</li>
+                                <li>从 Android 8.1 开始，受系统限制无法获取该值。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>gatewayRtt</pt>
+                    <pd>客户端到本地路由器的往返时延（毫秒）。
+                        <note>在 Android 上，如需获取该值，请确保在项目的 <codeph>AndroidManifest.xml</codeph> 文件中，在 <codeph>&lt;/application&gt;</codeph> 后添加权限 <codeph>android.permission.ACCESS_WIFI_STATE</codeph>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cpuAppUsage</pt>
+                    <pd>应用的 CPU 使用率（%）。
+                        <note>
+                            <ul>
+                                <li>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</li>
+                                <li>从 Android 8.1 开始，受系统限制无法获取该值。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>users</pt>
+                    <pd>频道中的用户人数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connectTimeMs</pt>
+                    <pd>SDK 开始连接到连接建立之间的时长（毫秒）。若值为 0，表示无效。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txPacketLossRate</pt>
+                    <pd>客户端发送到声网服务器的丢包率（%），为应用抗丢包机制前的值。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxPacketLossRate</pt>
+                    <pd>声网服务器发送到客户端前，未使用抗丢包机制时的丢包率（%）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>memoryAppUsageRatio</pt>
+                    <pd>应用占用的内存比例（%）。
+                        <note>该值仅供参考，因系统限制可能无法获取。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>memoryTotalUsageRatio</pt>
+                    <pd>系统占用的内存比例（%）。
+                        <note>该值仅供参考，因系统限制可能无法获取。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>memoryAppUsageInKbytes</pt>
+                    <pd>应用占用的内存大小（KB）。
+                        <note>该值仅供参考，因系统限制可能无法获取。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>duration</pt>
