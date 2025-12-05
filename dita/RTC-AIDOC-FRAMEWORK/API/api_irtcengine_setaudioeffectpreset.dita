@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setaudioeffectpreset">
+    <title><ph keyref="setAudioEffectPreset"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置 SDK 预设的人声音效。</ph><ph id="shortdesc" props="rn">设置 SDK 预设的人声音效。</ph><ph id="shortdesc" props="flutter">设置 SDK 预设的人声音效。</ph><ph id="shortdesc" props="unity">设置 SDK 预设的人声音效。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAudioEffectPreset"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setAudioEffectPreset(preset: AudioEffectPreset): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setAudioEffectPreset(preset: AudioEffectPreset): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioEffectPreset(AudioEffectPreset preset);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioEffectPreset(AUDIO_EFFECT_PRESET preset);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">调用该方法可以为本地发流用户设置 SDK 预设的人声音效，且不会改变原声的性别特征。设置音效后，频道内所有用户都能听到该效果。
+根据不同的场景，你可以为用户设置不同的音效，各音效的适用场景可参考[设置人声效果](https://doc.shengwang.cn/doc/rtc/electron/advanced-features/voice-changer)。</p>
+            <p props="rn">调用该方法可以为本地发流用户设置 SDK 预设的人声音效，且不会改变原声的性别特征。设置音效后，频道内所有用户都能听到该效果。
+根据不同的场景，你可以为用户设置不同的音效，各音效的适用场景可参考[设置人声效果](https://doc.shengwang.cn/doc/rtc/rn/advanced-features/voice-changer)。</p>
+            <p props="flutter">调用该方法可以为本地发流用户设置 SDK 预设的人声音效，且不会改变原声的性别特征。设置音效后，频道内所有用户都能听到该效果。
+根据不同的场景，你可以为用户设置不同的音效，各音效的适用场景可参考[设置人声效果](https://doc.shengwang.cn/doc/rtc/android/advanced-features/voice-changer)。</p>
+            <p props="unity">调用该方法可以为本地发流用户设置 SDK 预设的人声音效，且不会改变原声的性别特征。设置音效后，频道内所有用户都能听到该效果。
+根据不同的场景，你可以为用户设置不同的音效，各音效的适用场景可参考<codeph>voice-changer-link</codeph>。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">加入频道前后均可调用。</p>
+            <p props="rn">加入频道前后均可调用。</p>
+            <p props="flutter">加入频道前后均可调用。</p>
+            <p props="unity">加入频道前后均可调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>preset</pt>
+                    <pd>预设的音效选项，详见 <codeph>AudioEffectPreset</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>preset</pt>
+                    <pd>预设的音效选项，详见 <codeph>AudioEffectPreset</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>preset</pt>
+                    <pd>预设的音效选项，详见 <codeph>AudioEffectPreset</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>preset</pt>
+                    <pd>预设的音效选项，详见 <xref keyref="AUDIO_EFFECT_PRESET"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

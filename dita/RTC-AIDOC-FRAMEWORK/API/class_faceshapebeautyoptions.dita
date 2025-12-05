@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_faceshapebeautyoptions">
+    <title><ph keyref="FaceShapeBeautyOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">美型风格选项。</ph><ph id="shortdesc" props="rn">美型风格选项。</ph><ph id="shortdesc" props="flutter">美型风格选项。</ph><ph id="shortdesc" props="unity">美型风格选项。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class FaceShapeBeautyOptions {
+  shapeStyle?: FaceShapeBeautyStyle;
+  styleIntensity?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class FaceShapeBeautyOptions {
+  shapeStyle?: FaceShapeBeautyStyle;
+  styleIntensity?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class FaceShapeBeautyOptions {
+
+  const FaceShapeBeautyOptions({this.shapeStyle, this.styleIntensity});
+
+  @JsonKey(name: 'shapeStyle')
+  final FaceShapeBeautyStyle? shapeStyle;
+
+  @JsonKey(name: 'styleIntensity')
+  final int? styleIntensity;
+
+  factory FaceShapeBeautyOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$FaceShapeBeautyOptionsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$FaceShapeBeautyOptionsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class FaceShapeBeautyOptions
+    {
+        public FACE_SHAPE_BEAUTY_STYLE shapeStyle;
+
+        public int styleIntensity;
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>shapeStyle</pt>
+                    <pd>美型风格，详见 <codeph>FaceShapeBeautyStyle</codeph>。
+美型风格：
+                        <ul>
+                            <li>FaceShapeBeautyStyleFemale(0)：（默认）女性风格。</li>
+                            <li>FaceShapeBeautyStyleMale(1)：男性风格。</li>
+                            <li>FACE_SHAPE_BEAUTY_STYLE_NATURAL(2)：自然风格的美型效果，仅对面部特征进行最小程度的调整。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>styleIntensity</pt>
+                    <pd>美型风格强度，取值范围为 [0,100]，其中默认值为 0.0，表示无美型效果。取值越大，修饰部位的改变越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>shapeStyle</pt>
+                    <pd>美型风格，详见 <codeph>FaceShapeBeautyStyle</codeph>。
+美型风格：
+                        <ul>
+                            <li>FaceShapeBeautyStyleFemale(0)：（默认）女性风格。</li>
+                            <li>FaceShapeBeautyStyleMale(1)：男性风格。</li>
+                            <li>FACE_SHAPE_BEAUTY_STYLE_NATURAL(2)：自然风格的美型效果，仅对面部特征进行最小程度的调整。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>styleIntensity</pt>
+                    <pd>美型风格强度，取值范围为 [0,100]，其中默认值为 0.0，表示无美型效果。取值越大，修饰部位的改变越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>shapeStyle</pt>
+                    <pd>美型风格，详见 <codeph>FaceShapeBeautyStyle</codeph>。
+美型风格：
+                        <ul>
+                            <li>faceShapeBeautyStyleFemale(0)：（默认）女性风格。</li>
+                            <li>faceShapeBeautyStyleMale(1)：男性风格。</li>
+                            <li>FACE_SHAPE_BEAUTY_STYLE_NATURAL(2)：自然风格的美型效果，仅对面部特征进行最小程度的调整。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>styleIntensity</pt>
+                    <pd>美型风格强度，取值范围为 [0,100]，其中默认值为 0.0，表示无美型效果。取值越大，修饰部位的改变越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>shapeStyle</pt>
+                    <pd>美型风格，详见 <xref keyref="FACE_SHAPE_BEAUTY_STYLE"/>。
+美型风格：
+                        <ul>
+                            <li>FACE_SHAPE_BEAUTY_STYLE_FEMALE(0)：（默认）女性风格。</li>
+                            <li>FACE_SHAPE_BEAUTY_STYLE_MALE(1)：男性风格。</li>
+                            <li>FACE_SHAPE_BEAUTY_STYLE_NATURAL(2)：自然风格的美型效果，仅对面部特征进行最小程度的调整。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>styleIntensity</pt>
+                    <pd>美型风格强度，取值范围为 [0,100]，其中默认值为 0.0，表示无美型效果。取值越大，修饰部位的改变越明显。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

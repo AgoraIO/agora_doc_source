@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setdualstreammode">
+    <title><ph keyref="setDualStreamMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">在发送端设置双流模式并设置视频小流。</ph><ph id="shortdesc" props="rn">在发送端设置双流模式并设置视频小流。</ph><ph id="shortdesc" props="flutter">在发送端设置双流模式并设置视频小流。</ph><ph id="shortdesc" props="unity">在发送端设置双流模式。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDualStreamMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setDualStreamMode(
+    mode: SimulcastStreamMode,
+    streamConfig?: SimulcastStreamConfig
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setDualStreamMode(
+    mode: SimulcastStreamMode,
+    streamConfig?: SimulcastStreamConfig
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDualStreamMode(
+      {required SimulcastStreamMode mode, SimulcastStreamConfig? streamConfig});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetDualStreamMode(SIMULCAST_STREAM_MODE mode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.0.1</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.0.1</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.0.1</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.0.1</dd>
+                </dlentry>
+            </dl>
+            <p props="unity">SDK 默认在发送端开启小流自适应模式 (<codeph>AUTO_SIMULCAST_STREAM</codeph>)，即发送端不主动发送小流，主播身份的接收端可以调用 <xref keyref="setRemoteVideoStreamType"/> 发起小流申请，发送端收到申请后开始自动发送小流。- 如果你想修改此行为，可以调用该方法并修改<codeph>mode</codeph>为<codeph>DISABLE_SIMULCAST_STREAM</codeph>（始终不发送小流）或<codeph>ENABLE_SIMULCAST_STREAM</codeph>（始终发送小流）。
+                <ul>
+                    <li>如果你在进行修改后又想恢复该默认行为，可重新调用该方法，并将<codeph>mode</codeph>设置为<codeph>AUTO_SIMULCAST_STREAM</codeph>。</li>
+                </ul>
+            </p>
+            <note props="electron">该方法和 <xref keyref="enableDualStreamMode"/> 的区别与联系如下：
+                <ul>
+                    <li>调用该方法并设置<codeph>mode</codeph>为<codeph>DisableSimulcastStream</codeph>时，跟调用<xref keyref="enableDualStreamMode"/>并设置<codeph>enabled</codeph>为<xref keyref="false"/>的效果相同。</li>
+                    <li>调用该方法并设置<codeph>mode</codeph>为<codeph>EnableSimulcastStream</codeph>时，跟调用<xref keyref="enableDualStreamMode"/>并设置<codeph>enabled</codeph>为<xref keyref="true"/>的效果相同。</li>
+                    <li>两种方法均可在加入频道前后调用，若同时使用，则以后调用的方法中的设置为准。</li>
+                </ul>
+            </note>
+            <note props="rn">该方法和 <xref keyref="enableDualStreamMode"/> 的区别与联系如下：
+                <ul>
+                    <li>调用该方法并设置<codeph>mode</codeph>为<codeph>DisableSimulcastStream</codeph>时，跟调用<xref keyref="enableDualStreamMode"/>并设置<codeph>enabled</codeph>为<xref keyref="false"/>的效果相同。</li>
+                    <li>调用该方法并设置<codeph>mode</codeph>为<codeph>EnableSimulcastStream</codeph>时，跟调用<xref keyref="enableDualStreamMode"/>并设置<codeph>enabled</codeph>为<xref keyref="true"/>的效果相同。</li>
+                    <li>两种方法均可在加入频道前后调用，若同时使用，则以后调用的方法中的设置为准。</li>
+                </ul>
+            </note>
+            <note props="flutter">该方法和 <xref keyref="enableDualStreamMode"/> 的区别与联系如下：
+                <ul>
+                    <li>调用该方法并设置<codeph>mode</codeph>为<codeph>disableSimulcastStream</codeph>时，跟调用<xref keyref="enableDualStreamMode"/>并设置<codeph>enabled</codeph>为<xref keyref="false"/>的效果相同。</li>
+                    <li>调用该方法并设置<codeph>mode</codeph>为<codeph>enableSimulcastStream</codeph>时，跟调用<xref keyref="enableDualStreamMode"/>并设置<codeph>enabled</codeph>为<xref keyref="true"/>的效果相同。</li>
+                    <li>两种方法均可在加入频道前后调用，若同时使用，则以后调用的方法中的设置为准。</li>
+                </ul>
+            </note>
+            <note props="unity">该方法和 <xref keyref="enableDualStreamMode"/> 的区别与联系如下：
+                <ul>
+                    <li>调用该方法并设置<codeph>mode</codeph>为<codeph>DISABLE_SIMULCAST_STREAM</codeph>时，跟`EnableDualStreamMode [1/2]``(false)`的效果相同。</li>
+                    <li>调用该方法并设置<codeph>mode</codeph>为<codeph>ENABLE_SIMULCAST_STREAM</codeph>时，跟`EnableDualStreamMode [1/2]``(true)`的效果相同。</li>
+                    <li>两种方法均可在加入频道前后调用，若同时使用，则以后调用的方法中的设置为准。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>mode</pt>
+                    <pd>发送视频流的模式。详见 <codeph>SimulcastStreamMode</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>streamConfig</pt>
+                    <pd>视频小流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。
+                        <note>当设置 <codeph>mode</codeph> 为 <codeph>DisableSimulcastStream</codeph> 时，再设置 <codeph>streamConfig</codeph> 不会生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mode</pt>
+                    <pd>发送视频流的模式。详见 <codeph>SimulcastStreamMode</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>streamConfig</pt>
+                    <pd>视频小流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。
+                        <note>当设置 <codeph>mode</codeph> 为 <codeph>DisableSimulcastStream</codeph> 时，再设置 <codeph>streamConfig</codeph> 不会生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mode</pt>
+                    <pd>发送视频流的模式。详见 <codeph>SimulcastStreamMode</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamConfig</pt>
+                    <pd>视频小流的配置。详见 <xref keyref="SimulcastStreamConfig"/>。
+                        <note>当设置 <codeph>mode</codeph> 为 <codeph>disableSimulcastStream</codeph> 时，再设置 <codeph>streamConfig</codeph> 不会生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mode</pt>
+                    <pd>发送视频流的模式。详见 <xref keyref="SIMULCAST_STREAM_MODE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

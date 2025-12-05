@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setuplocalvideo">
+    <title><ph keyref="setupLocalVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">初始化本地视图。</ph><ph id="shortdesc" props="flutter">初始化本地视图。</ph><ph id="shortdesc" props="unity">初始化本地视图。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setupLocalVideo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setupLocalVideo(canvas: VideoCanvas): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setupLocalVideo(VideoCanvas canvas);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetupLocalVideo(VideoCanvas canvas);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">该方法初始化本地视图并设置本地用户视频显示属性，只影响本地用户看到的视频画面，不影响本地视频的发布。调用该方法绑定本地视频流的显示视窗 (<codeph>view</codeph>)，并设置本地用户视图的渲染模式和镜像模式。
+退出频道后绑定仍然有效。如果需要停止渲染或解除绑定，可以调用该方法将参数 <codeph>view</codeph> 设为 null，以停止渲染并清理渲染缓存。</p>
+            <p props="flutter">该方法初始化本地视图并设置本地用户视频显示属性，只影响本地用户看到的视频画面，不影响本地视频的发布。调用该方法绑定本地视频流的显示视窗 (<codeph>view</codeph>)，并设置本地用户视图的渲染模式和镜像模式。
+退出频道后绑定仍然有效。如果需要停止渲染或解除绑定，可以调用该方法将参数 <codeph>view</codeph> 设为 NULL，以停止渲染并清理渲染缓存。</p>
+            <p props="unity">该方法初始化本地视图并设置本地用户视频显示属性，只影响本地用户看到的视频画面，不影响本地视频的发布。调用该方法绑定本地视频流的显示视窗 (<codeph>view</codeph>)，并设置本地用户视图的渲染模式和镜像模式。
+退出频道后绑定仍然有效。如果需要停止渲染或解除绑定，可以调用该方法将参数 <codeph>view</codeph> 设为 NULL，以停止渲染并清理渲染缓存。</p>
+            <note props="flutter">
+                <ul>
+                    <li>如果你希望在通话中仅更新本地用户视图的渲染或镜像模式，请使用<xref keyref="setLocalRenderMode2"/>方法。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>如果你想要在原生窗口上渲染图像，请调用此方法；如果你仅需在 Unity 项目内渲染图像，可直接通过<xref keyref="VideoSurface"/>类来实现。</li>
+                    <li>如果你希望在通话中仅更新本地用户视图的渲染或镜像模式，请使用<xref keyref="setLocalRenderMode2"/>方法。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter unity">
+            <title>调用时机</title>
+            <p props="electron">该方法在加入频道前后均可调用。</p>
+            <p props="flutter">该方法在加入频道前后均可调用。</p>
+            <p props="unity">该方法在加入频道前后均可调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>canvas</pt>
+                    <pd>本地视频显示属性。详见 <xref keyref="VideoCanvas"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>canvas</pt>
+                    <pd>本地视频显示属性。详见 <xref keyref="VideoCanvas"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>canvas</pt>
+                    <pd>本地视频显示属性。详见 <xref keyref="VideoCanvas"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
+                <ul>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onchannelmediarelaystatechanged">
+    <title><ph keyref="onChannelMediaRelayStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">跨频道媒体流转发状态发生改变回调。</ph><ph id="shortdesc" props="rn">跨频道媒体流转发状态发生改变回调。</ph><ph id="shortdesc" props="flutter">跨频道媒体流转发状态发生改变回调。</ph><ph id="shortdesc" props="unity">跨频道媒体流转发状态发生改变回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onChannelMediaRelayStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onChannelMediaRelayStateChanged?(
+    state: ChannelMediaRelayState,
+    code: ChannelMediaRelayError
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onChannelMediaRelayStateChanged?(
+    state: ChannelMediaRelayState,
+    code: ChannelMediaRelayError
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(
+          ChannelMediaRelayState state, ChannelMediaRelayError code)?
+      onChannelMediaRelayStateChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnChannelMediaRelayStateChanged(int state, int code) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">当跨频道媒体流转发状态发生改变时，SDK 会触发该回调，并报告当前的转发状态以及相关的错误信息。</p>
+            <p props="rn">当跨频道媒体流转发状态发生改变时，SDK 会触发该回调，并报告当前的转发状态以及相关的错误信息。</p>
+            <p props="flutter">当跨频道媒体流转发状态发生改变时，SDK 会触发该回调，并报告当前的转发状态以及相关的错误信息。</p>
+            <p props="unity">当跨频道媒体流转发状态发生改变时，SDK 会触发该回调，并报告当前的转发状态以及相关的错误信息。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>state</pt>
+                    <pd>跨频道媒体流转发状态。详见 <codeph>ChannelMediaRelayState</codeph>。
+跨频道媒体流转发状态：
+                        <ul>
+                            <li>RelayStateIdle(0)：SDK 正在初始化。</li>
+                            <li>RelayStateConnecting(1)：SDK 尝试跨频道。</li>
+                            <li>RelayStateRunning(2)：源频道主播成功加入目标频道。</li>
+                            <li>RelayStateFailure(3)：发生异常，详见<codeph>code</codeph>中提示的错误信息。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>code</pt>
+                    <pd>跨频道媒体流转发出错的错误码。详见 <codeph>ChannelMediaRelayError</codeph>。
+跨频道媒体流转发出错的错误码：
+                        <ul>
+                            <li>RelayOk(0)：一切正常。</li>
+                            <li>RelayErrorServerErrorResponse(1)：服务器回应出错。</li>
+                            <li>RelayErrorServerNoResponse(2)：服务器无回应。该错误可能是网络状况不佳导致的。如果在发起跨频道连麦时报告该错误，你可以稍后重试；如果在跨频道连麦过程中报告该错误，你可以调用<xref keyref="leaveChannel"/>方法离开频道。该错误也可能是由于当前的 App ID 未开启跨频道连麦服务导致的。你可以[联系技术支持](https://ticket.shengwang.cn/)申请开通跨频道连麦服务。</li>
+                            <li>RelayErrorNoResourceAvailable(3)：SDK 无法获取服务，可能是因为服务器资源有限导致。</li>
+                            <li>RelayErrorFailedJoinSrc(4)：发起跨频道转发媒体流请求失败。</li>
+                            <li>RelayErrorFailedJoinDest(5)：接受跨频道转发媒体流请求失败。</li>
+                            <li>RelayErrorFailedPacketReceivedFromSrc(6)：服务器接收跨频道转发媒体流失败。</li>
+                            <li>RelayErrorFailedPacketSentToDest(7)：服务器发送跨频道转发媒体流失败。</li>
+                            <li>RelayErrorServerConnectionLost(8)：SDK 因网络质量不佳与服务器断开。你可以调用<xref keyref="leaveChannel"/>方法离开当前频道。</li>
+                            <li>RelayErrorInternalError(9)：服务器内部出错。</li>
+                            <li>RelayErrorSrcTokenExpired(10)：源频道的 Token 已过期。</li>
+                            <li>RelayErrorDestTokenExpired(11)：目标频道的 Token 已过期。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>state</pt>
+                    <pd>跨频道媒体流转发状态。详见 <codeph>ChannelMediaRelayState</codeph>。
+跨频道媒体流转发状态：
+                        <ul>
+                            <li>RelayStateIdle(0)：SDK 正在初始化。</li>
+                            <li>RelayStateConnecting(1)：SDK 尝试跨频道。</li>
+                            <li>RelayStateRunning(2)：源频道主播成功加入目标频道。</li>
+                            <li>RelayStateFailure(3)：发生异常，详见<codeph>code</codeph>中提示的错误信息。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>code</pt>
+                    <pd>跨频道媒体流转发出错的错误码。详见 <codeph>ChannelMediaRelayError</codeph>。
+跨频道媒体流转发出错的错误码：
+                        <ul>
+                            <li>RelayOk(0)：一切正常。</li>
+                            <li>RelayErrorServerErrorResponse(1)：服务器回应出错。</li>
+                            <li>RelayErrorServerNoResponse(2)：服务器无回应。该错误可能是网络状况不佳导致的。如果在发起跨频道连麦时报告该错误，你可以稍后重试；如果在跨频道连麦过程中报告该错误，你可以调用<xref keyref="leaveChannel"/>方法离开频道。该错误也可能是由于当前的 App ID 未开启跨频道连麦服务导致的。你可以[联系技术支持](https://ticket.shengwang.cn/)申请开通跨频道连麦服务。</li>
+                            <li>RelayErrorNoResourceAvailable(3)：SDK 无法获取服务，可能是因为服务器资源有限导致。</li>
+                            <li>RelayErrorFailedJoinSrc(4)：发起跨频道转发媒体流请求失败。</li>
+                            <li>RelayErrorFailedJoinDest(5)：接受跨频道转发媒体流请求失败。</li>
+                            <li>RelayErrorFailedPacketReceivedFromSrc(6)：服务器接收跨频道转发媒体流失败。</li>
+                            <li>RelayErrorFailedPacketSentToDest(7)：服务器发送跨频道转发媒体流失败。</li>
+                            <li>RelayErrorServerConnectionLost(8)：SDK 因网络质量不佳与服务器断开。你可以调用<xref keyref="leaveChannel"/>方法离开当前频道。</li>
+                            <li>RelayErrorInternalError(9)：服务器内部出错。</li>
+                            <li>RelayErrorSrcTokenExpired(10)：源频道的 Token 已过期。</li>
+                            <li>RelayErrorDestTokenExpired(11)：目标频道的 Token 已过期。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>engine</pt>
+                    <pd><codeph>RtcEngine</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>state</pt>
+                    <pd>跨频道媒体流转发状态。详见 <codeph>ChannelMediaRelayState</codeph>。
+跨频道媒体流转发状态：
+                        <ul>
+                            <li>relayStateIdle(0)：SDK 正在初始化。</li>
+                            <li>relayStateConnecting(1)：SDK 尝试跨频道。</li>
+                            <li>relayStateRunning(2)：源频道主播成功加入目标频道。</li>
+                            <li>relayStateFailure(3)：发生异常，详见<codeph>code</codeph>中提示的错误信息。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>code</pt>
+                    <pd>跨频道媒体流转发出错的错误码。详见 <codeph>ChannelMediaRelayError</codeph>。
+跨频道媒体流转发出错的错误码：
+                        <ul>
+                            <li>relayOk(0)：一切正常。</li>
+                            <li>relayErrorServerErrorResponse(1)：服务器回应出错。</li>
+                            <li>relayErrorServerNoResponse(2)：服务器无回应。该错误可能是网络状况不佳导致的。如果在发起跨频道连麦时报告该错误，你可以稍后重试；如果在跨频道连麦过程中报告该错误，你可以调用<xref keyref="leaveChannel"/>方法离开频道。该错误也可能是由于当前的 App ID 未开启跨频道连麦服务导致的。你可以[联系技术支持](https://ticket.shengwang.cn/)申请开通跨频道连麦服务。</li>
+                            <li>relayErrorNoResourceAvailable(3)：SDK 无法获取服务，可能是因为服务器资源有限导致。</li>
+                            <li>relayErrorFailedJoinSrc(4)：发起跨频道转发媒体流请求失败。</li>
+                            <li>relayErrorFailedJoinDest(5)：接受跨频道转发媒体流请求失败。</li>
+                            <li>relayErrorFailedPacketReceivedFromSrc(6)：服务器接收跨频道转发媒体流失败。</li>
+                            <li>relayErrorFailedPacketSentToDest(7)：服务器发送跨频道转发媒体流失败。</li>
+                            <li>relayErrorServerConnectionLost(8)：SDK 因网络质量不佳与服务器断开。你可以调用<xref keyref="leaveChannel"/>方法离开当前频道。</li>
+                            <li>relayErrorInternalError(9)：服务器内部出错。</li>
+                            <li>relayErrorSrcTokenExpired(10)：源频道的 Token 已过期。</li>
+                            <li>relayErrorDestTokenExpired(11)：目标频道的 Token 已过期。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>state</pt>
+                    <pd>跨频道媒体流转发状态。详见 <xref keyref="CHANNEL_MEDIA_RELAY_STATE"/>。
+跨频道媒体流转发状态：
+                        <ul>
+                            <li>RELAY_STATE_IDLE(0)：SDK 正在初始化。</li>
+                            <li>RELAY_STATE_CONNECTING(1)：SDK 尝试跨频道。</li>
+                            <li>RELAY_STATE_RUNNING(2)：源频道主播成功加入目标频道。</li>
+                            <li>RELAY_STATE_FAILURE(3)：发生异常，详见<codeph>code</codeph>中提示的错误信息。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>code</pt>
+                    <pd>跨频道媒体流转发出错的错误码。详见 <xref keyref="CHANNEL_MEDIA_RELAY_ERROR"/>。
+跨频道媒体流转发出错的错误码：
+                        <ul>
+                            <li>RELAY_OK(0)：一切正常。</li>
+                            <li>RELAY_ERROR_SERVER_ERROR_RESPONSE(1)：服务器回应出错。</li>
+                            <li>RELAY_ERROR_SERVER_NO_RESPONSE(2)：服务器无回应。该错误可能是网络状况不佳导致的。如果在发起跨频道连麦时报告该错误，你可以稍后重试；如果在跨频道连麦过程中报告该错误，你可以调用<xref keyref="leaveChannel2"/>方法离开频道。该错误也可能是由于当前的 App ID 未开启跨频道连麦服务导致的。你可以[联系技术支持](https://ticket.shengwang.cn/)申请开通跨频道连麦服务。</li>
+                            <li>RELAY_ERROR_NO_RESOURCE_AVAILABLE(3)：SDK 无法获取服务，可能是因为服务器资源有限导致。</li>
+                            <li>RELAY_ERROR_FAILED_JOIN_SRC(4)：发起跨频道转发媒体流请求失败。</li>
+                            <li>RELAY_ERROR_FAILED_JOIN_DEST(5)：接受跨频道转发媒体流请求失败。</li>
+                            <li>RELAY_ERROR_FAILED_PACKET_RECEIVED_FROM_SRC(6)：服务器接收跨频道转发媒体流失败。</li>
+                            <li>RELAY_ERROR_FAILED_PACKET_SENT_TO_DEST(7)：服务器发送跨频道转发媒体流失败。</li>
+                            <li>RELAY_ERROR_SERVER_CONNECTION_LOST(8)：SDK 因网络质量不佳与服务器断开。你可以调用<xref keyref="leaveChannel2"/>方法离开当前频道。</li>
+                            <li>RELAY_ERROR_INTERNAL_ERROR(9)：服务器内部出错。</li>
+                            <li>RELAY_ERROR_SRC_TOKEN_EXPIRED(10)：源频道的 Token 已过期。</li>
+                            <li>RELAY_ERROR_DEST_TOKEN_EXPIRED(11)：目标频道的 Token 已过期。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

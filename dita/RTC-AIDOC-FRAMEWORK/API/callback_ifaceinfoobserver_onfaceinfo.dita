@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_ifaceinfoobserver_onfaceinfo">
+    <title><ph keyref="onFaceInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">报告已获取语音驱动插件处理后的人脸信息。</ph><ph id="shortdesc" props="rn">报告已获取语音驱动插件处理后的人脸信息。</ph><ph id="shortdesc" props="flutter">报告已获取语音驱动插件处理后的人脸信息。</ph><ph id="shortdesc" props="unity">报告已获取语音驱动插件处理后的人脸信息。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onFaceInfo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onFaceInfo?(outFaceInfo: string): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onFaceInfo?(outFaceInfo: string): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(String outFaceInfo)? onFaceInfo;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnFaceInfo(string outFaceInfo)
+        {
+            return true;
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.1</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.1</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.1</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.1</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>outFaceInfo</pt>
+                    <pd>输出参数，语音驱动插件处理后的人脸信息 JSON 字符串，包含以下字段：
+                        <ul>
+                            <li>faces：Object 序列。包含识别到的人脸信息，每一张人脸对应一个 Object。</li>
+                            <li>blendshapes：Object。面捕系数集，命名符合 ARkit 标准，内部的键值对为每一个 blendshape 系数。blendshape 系数为浮点，取值范围为 [0.0,1.0]。</li>
+                            <li>rotation：Object 序列。头部旋转量，包含以下三个键值对，取值为浮点数，范围为 [-180.0,180.0]：
+                                <ul>
+                                    <li>pitch：头部俯仰角度。低头为正值，抬头为负值。</li>
+                                    <li>yaw：头部水平旋转角度。左转为正值，右转为负值。</li>
+                                    <li>roll：头部垂直旋转角度。右倾为正值，左倾为负值。</li>
+                                </ul>
+                            </li>
+                            <li>timestamp：String。输出结果的时间戳，单位为毫秒。</li>
+                        </ul><ph>以下为 JSON 示例：</ph><ph>{</ph><ph>"faces":[{</ph><ph>"blendshapes":{</ph><ph>"eyeBlinkLeft":0.9, "eyeLookDownLeft":0.0, "eyeLookInLeft":0.0, "eyeLookOutLeft":0.0, "eyeLookUpLeft":0.0,</ph><ph>"eyeSquintLeft":0.0, "eyeWideLeft":0.0, "eyeBlinkRight":0.0, "eyeLookDownRight":0.0, "eyeLookInRight":0.0,</ph><ph>"eyeLookOutRight":0.0, "eyeLookUpRight":0.0, "eyeSquintRight":0.0, "eyeWideRight":0.0, "jawForward":0.0,</ph><ph>"jawLeft":0.0, "jawRight":0.0, "jawOpen":0.0, "mouthClose":0.0, "mouthFunnel":0.0, "mouthPucker":0.0,</ph><ph>"mouthLeft":0.0, "mouthRight":0.0, "mouthSmileLeft":0.0, "mouthSmileRight":0.0, "mouthFrownLeft":0.0,</ph><ph>"mouthFrownRight":0.0, "mouthDimpleLeft":0.0, "mouthDimpleRight":0.0, "mouthStretchLeft":0.0, "mouthStretchRight":0.0,</ph><ph>"mouthRollLower":0.0, "mouthRollUpper":0.0, "mouthShrugLower":0.0, "mouthShrugUpper":0.0, "mouthPressLeft":0.0,</ph><ph>"mouthPressRight":0.0, "mouthLowerDownLeft":0.0, "mouthLowerDownRight":0.0, "mouthUpperUpLeft":0.0, "mouthUpperUpRight":0.0,</ph><ph>"browDownLeft":0.0, "browDownRight":0.0, "browInnerUp":0.0, "browOuterUpLeft":0.0, "browOuterUpRight":0.0,</ph><ph>"cheekPuff":0.0, "cheekSquintLeft":0.0, "cheekSquintRight":0.0, "noseSneerLeft":0.0, "noseSneerRight":0.0,</ph><ph>"tongueOut":0.0</ph><ph>},</ph><ph>"rotation":{"pitch":30.0, "yaw":25.5, "roll":-15.5},</ph><ph>}],</ph><ph>"timestamp":"654879876546"</ph><ph>}</ph></pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>outFaceInfo</pt>
+                    <pd>输出参数，语音驱动插件处理后的人脸信息 JSON 字符串，包含以下字段：
+                        <ul>
+                            <li>faces：Object 序列。包含识别到的人脸信息，每一张人脸对应一个 Object。</li>
+                            <li>blendshapes：Object。面捕系数集，命名符合 ARkit 标准，内部的键值对为每一个 blendshape 系数。blendshape 系数为浮点，取值范围为 [0.0,1.0]。</li>
+                            <li>rotation：Object 序列。头部旋转量，包含以下三个键值对，取值为浮点数，范围为 [-180.0,180.0]：
+                                <ul>
+                                    <li>pitch：头部俯仰角度。低头为正值，抬头为负值。</li>
+                                    <li>yaw：头部水平旋转角度。左转为正值，右转为负值。</li>
+                                    <li>roll：头部垂直旋转角度。右倾为正值，左倾为负值。</li>
+                                </ul>
+                            </li>
+                            <li>timestamp：String。输出结果的时间戳，单位为毫秒。</li>
+                        </ul><ph>以下为 JSON 示例：</ph><ph>{</ph><ph>"faces":[{</ph><ph>"blendshapes":{</ph><ph>"eyeBlinkLeft":0.9, "eyeLookDownLeft":0.0, "eyeLookInLeft":0.0, "eyeLookOutLeft":0.0, "eyeLookUpLeft":0.0,</ph><ph>"eyeSquintLeft":0.0, "eyeWideLeft":0.0, "eyeBlinkRight":0.0, "eyeLookDownRight":0.0, "eyeLookInRight":0.0,</ph><ph>"eyeLookOutRight":0.0, "eyeLookUpRight":0.0, "eyeSquintRight":0.0, "eyeWideRight":0.0, "jawForward":0.0,</ph><ph>"jawLeft":0.0, "jawRight":0.0, "jawOpen":0.0, "mouthClose":0.0, "mouthFunnel":0.0, "mouthPucker":0.0,</ph><ph>"mouthLeft":0.0, "mouthRight":0.0, "mouthSmileLeft":0.0, "mouthSmileRight":0.0, "mouthFrownLeft":0.0,</ph><ph>"mouthFrownRight":0.0, "mouthDimpleLeft":0.0, "mouthDimpleRight":0.0, "mouthStretchLeft":0.0, "mouthStretchRight":0.0,</ph><ph>"mouthRollLower":0.0, "mouthRollUpper":0.0, "mouthShrugLower":0.0, "mouthShrugUpper":0.0, "mouthPressLeft":0.0,</ph><ph>"mouthPressRight":0.0, "mouthLowerDownLeft":0.0, "mouthLowerDownRight":0.0, "mouthUpperUpLeft":0.0, "mouthUpperUpRight":0.0,</ph><ph>"browDownLeft":0.0, "browDownRight":0.0, "browInnerUp":0.0, "browOuterUpLeft":0.0, "browOuterUpRight":0.0,</ph><ph>"cheekPuff":0.0, "cheekSquintLeft":0.0, "cheekSquintRight":0.0, "noseSneerLeft":0.0, "noseSneerRight":0.0,</ph><ph>"tongueOut":0.0</ph><ph>},</ph><ph>"rotation":{"pitch":30.0, "yaw":25.5, "roll":-15.5},</ph><ph>}],</ph><ph>"timestamp":"654879876546"</ph><ph>}</ph></pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>outFaceInfo</pt>
+                    <pd>输出参数，语音驱动插件处理后的人脸信息 JSON 字符串，包含以下字段：
+                        <ul>
+                            <li>faces：Object 序列。包含识别到的人脸信息，每一张人脸对应一个 Object。</li>
+                            <li>blendshapes：Object。面捕系数集，命名符合 ARkit 标准，内部的键值对为每一个 blendshape 系数。blendshape 系数为浮点，取值范围为 [0.0,1.0]。</li>
+                            <li>rotation：Object 序列。头部旋转量，包含以下三个键值对，取值为浮点数，范围为 [-180.0,180.0]：
+                                <ul>
+                                    <li>pitch：头部俯仰角度。低头为正值，抬头为负值。</li>
+                                    <li>yaw：头部水平旋转角度。左转为正值，右转为负值。</li>
+                                    <li>roll：头部垂直旋转角度。右倾为正值，左倾为负值。</li>
+                                </ul>
+                            </li>
+                            <li>timestamp：String。输出结果的时间戳，单位为毫秒。</li>
+                        </ul><ph>以下为 JSON 示例：</ph><ph>{</ph><ph>"faces":[{</ph><ph>"blendshapes":{</ph><ph>"eyeBlinkLeft":0.9, "eyeLookDownLeft":0.0, "eyeLookInLeft":0.0, "eyeLookOutLeft":0.0, "eyeLookUpLeft":0.0,</ph><ph>"eyeSquintLeft":0.0, "eyeWideLeft":0.0, "eyeBlinkRight":0.0, "eyeLookDownRight":0.0, "eyeLookInRight":0.0,</ph><ph>"eyeLookOutRight":0.0, "eyeLookUpRight":0.0, "eyeSquintRight":0.0, "eyeWideRight":0.0, "jawForward":0.0,</ph><ph>"jawLeft":0.0, "jawRight":0.0, "jawOpen":0.0, "mouthClose":0.0, "mouthFunnel":0.0, "mouthPucker":0.0,</ph><ph>"mouthLeft":0.0, "mouthRight":0.0, "mouthSmileLeft":0.0, "mouthSmileRight":0.0, "mouthFrownLeft":0.0,</ph><ph>"mouthFrownRight":0.0, "mouthDimpleLeft":0.0, "mouthDimpleRight":0.0, "mouthStretchLeft":0.0, "mouthStretchRight":0.0,</ph><ph>"mouthRollLower":0.0, "mouthRollUpper":0.0, "mouthShrugLower":0.0, "mouthShrugUpper":0.0, "mouthPressLeft":0.0,</ph><ph>"mouthPressRight":0.0, "mouthLowerDownLeft":0.0, "mouthLowerDownRight":0.0, "mouthUpperUpLeft":0.0, "mouthUpperUpRight":0.0,</ph><ph>"browDownLeft":0.0, "browDownRight":0.0, "browInnerUp":0.0, "browOuterUpLeft":0.0, "browOuterUpRight":0.0,</ph><ph>"cheekPuff":0.0, "cheekSquintLeft":0.0, "cheekSquintRight":0.0, "noseSneerLeft":0.0, "noseSneerRight":0.0,</ph><ph>"tongueOut":0.0</ph><ph>},</ph><ph>"rotation":{"pitch":30.0, "yaw":25.5, "roll":-15.5},</ph><ph>}],</ph><ph>"timestamp":"654879876546"</ph><ph>}</ph></pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>outFaceInfo</pt>
+                    <pd>输出参数，语音驱动插件处理后的人脸信息 JSON 字符串，包含以下字段：
+                        <ul>
+                            <li>faces：Object 序列。包含识别到的人脸信息，每一张人脸对应一个 Object。</li>
+                            <li>blendshapes：Object。面捕系数集，命名符合 ARkit 标准，内部的键值对为每一个 blendshape 系数。blendshape 系数为浮点，取值范围为 [0.0,1.0]。</li>
+                            <li>rotation：Object 序列。头部旋转量，包含以下三个键值对，取值为浮点数，范围为 [-180.0,180.0]：
+                                <ul>
+                                    <li>pitch：头部俯仰角度。低头为正值，抬头为负值。</li>
+                                    <li>yaw：头部水平旋转角度。左转为正值，右转为负值。</li>
+                                    <li>roll：头部垂直旋转角度。右倾为正值，左倾为负值。</li>
+                                </ul>
+                            </li>
+                            <li>timestamp：String。输出结果的时间戳，单位为毫秒。</li>
+                        </ul><ph>以下为 JSON 示例：</ph><ph>{</ph><ph>"faces":[{</ph><ph>"blendshapes":{</ph><ph>"eyeBlinkLeft":0.9, "eyeLookDownLeft":0.0, "eyeLookInLeft":0.0, "eyeLookOutLeft":0.0, "eyeLookUpLeft":0.0,</ph><ph>"eyeSquintLeft":0.0, "eyeWideLeft":0.0, "eyeBlinkRight":0.0, "eyeLookDownRight":0.0, "eyeLookInRight":0.0,</ph><ph>"eyeLookOutRight":0.0, "eyeLookUpRight":0.0, "eyeSquintRight":0.0, "eyeWideRight":0.0, "jawForward":0.0,</ph><ph>"jawLeft":0.0, "jawRight":0.0, "jawOpen":0.0, "mouthClose":0.0, "mouthFunnel":0.0, "mouthPucker":0.0,</ph><ph>"mouthLeft":0.0, "mouthRight":0.0, "mouthSmileLeft":0.0, "mouthSmileRight":0.0, "mouthFrownLeft":0.0,</ph><ph>"mouthFrownRight":0.0, "mouthDimpleLeft":0.0, "mouthDimpleRight":0.0, "mouthStretchLeft":0.0, "mouthStretchRight":0.0,</ph><ph>"mouthRollLower":0.0, "mouthRollUpper":0.0, "mouthShrugLower":0.0, "mouthShrugUpper":0.0, "mouthPressLeft":0.0,</ph><ph>"mouthPressRight":0.0, "mouthLowerDownLeft":0.0, "mouthLowerDownRight":0.0, "mouthUpperUpLeft":0.0, "mouthUpperUpRight":0.0,</ph><ph>"browDownLeft":0.0, "browDownRight":0.0, "browInnerUp":0.0, "browOuterUpLeft":0.0, "browOuterUpRight":0.0,</ph><ph>"cheekPuff":0.0, "cheekSquintLeft":0.0, "cheekSquintRight":0.0, "noseSneerLeft":0.0, "noseSneerRight":0.0,</ph><ph>"tongueOut":0.0</ph><ph>},</ph><ph>"rotation":{"pitch":30.0, "yaw":25.5, "roll":-15.5},</ph><ph>}],</ph><ph>"timestamp":"654879876546"</ph><ph>}</ph></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li><xref keyref="true"/>: 人脸信息 JSON 解析成功。</li>
+                    <li><xref keyref="false"/>: 人脸信息 JSON 解析失败。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li><xref keyref="true"/>: 人脸信息 JSON 解析成功。</li>
+                    <li><xref keyref="false"/>: 人脸信息 JSON 解析失败。</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li><xref keyref="true"/>: 人脸信息 JSON 解析成功。</li>
+                    <li><xref keyref="false"/>: 人脸信息 JSON 解析失败。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li><xref keyref="true"/>: 人脸信息 JSON 解析成功。</li>
+                    <li><xref keyref="false"/>: 人脸信息 JSON 解析失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

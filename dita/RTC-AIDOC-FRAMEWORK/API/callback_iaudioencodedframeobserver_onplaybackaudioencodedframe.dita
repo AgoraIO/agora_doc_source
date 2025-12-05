@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioencodedframeobserver_onplaybackaudioencodedframe">
+    <title><ph keyref="onPlaybackAudioEncodedFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">获取所有远端用户的音频编码数据。</ph><ph id="shortdesc" props="rn">获取所有远端用户的音频编码数据。</ph><ph id="shortdesc" props="flutter">获取所有远端用户的音频编码数据。</ph><ph id="shortdesc" props="unity">获取所有远端用户的音频编码数据。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlaybackAudioEncodedFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onPlaybackAudioEncodedFrame?(
+    frameBuffer: Uint8Array,
+    length: number,
+    audioEncodedFrameInfo: EncodedAudioFrameInfo
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onPlaybackAudioEncodedFrame?(
+    frameBuffer: Uint8Array,
+    length: number,
+    audioEncodedFrameInfo: EncodedAudioFrameInfo
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(Uint8List frameBuffer, int length,
+      EncodedAudioFrameInfo audioEncodedFrameInfo)? onPlaybackAudioEncodedFrame;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlaybackAudioEncodedFrame(IntPtr frameBufferPtr, int length,
+                                                    EncodedAudioFrameInfo audioEncodedFrameInfo)
+        {
+
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将音频编码内容设为 AudioEncodedFrameObserverPositionPlayback 后，你可以通过该回调获取所有远端用户的音频编码数据。</p>
+            <p props="rn">调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将音频编码内容设为 AudioEncodedFrameObserverPositionPlayback 后，你可以通过该回调获取所有远端用户的音频编码数据。</p>
+            <p props="flutter">调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将音频编码内容设为 audioEncodedFrameObserverPositionPlayback 后，你可以通过该回调获取所有远端用户的音频编码数据。</p>
+            <p props="unity">调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将音频编码内容设为 AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK 后，你可以通过该回调获取所有远端用户的音频编码数据。</p>
+        </section>
+    </refbody>
+</reference>

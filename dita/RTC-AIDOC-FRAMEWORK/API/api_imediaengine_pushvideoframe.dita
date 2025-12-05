@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_pushvideoframe">
+    <title><ph keyref="pushVideoFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">将外部原始视频帧通过自定义视频轨道发布到频道中。</ph><ph id="shortdesc" props="rn">将外部原始视频帧通过自定义视频轨道发布到频道中。</ph><ph id="shortdesc" props="flutter">将外部原始视频帧通过自定义视频轨道发布到频道中。</ph><ph id="shortdesc" props="unity">将外部原始视频帧通过自定义视频轨道发布到频道中。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="pushVideoFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract pushVideoFrame(
+    frame: ExternalVideoFrame,
+    videoTrackId?: number
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract pushVideoFrame(
+    frame: ExternalVideoFrame,
+    videoTrackId?: number
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; pushVideoFrame(
+    {required ExternalVideoFrame frame, int videoTrackId = 0});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int PushVideoFrame(ExternalVideoFrame frame, uint videoTrackId = 0);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">当你需要在频道中发布自定义采集视频时，可参考以下步骤：1. 调用<xref keyref="createCustomVideoTrack"/>方法创建视频轨道并获得视频轨道 ID。
+                <ol>
+                    <li>调用<xref keyref="joinChannel2"/>加入频道时，将<xref keyref="ChannelMediaOptions"/>中的<codeph>customVideoTrackId</codeph>设置为你想要发布的视频轨道 ID，并将<codeph>publishCustomVideoTrack</codeph>设置为<xref keyref="true"/>。</li>
+                    <li>调用该方法将<codeph>videoTrackId</codeph>指定为步骤 2 中指定的视频轨道 ID，即可实现在频道内发布对应的自定义视频源。</li>
+                </ol>
+            </p>
+            <p props="rn">当你需要在频道中发布自定义采集视频时，可参考以下步骤：1. 调用<xref keyref="createCustomVideoTrack"/>方法创建视频轨道并获得视频轨道 ID。
+                <ol>
+                    <li>调用<xref keyref="joinChannel2"/>加入频道时，将<xref keyref="ChannelMediaOptions"/>中的<codeph>customVideoTrackId</codeph>设置为你想要发布的视频轨道 ID，并将<codeph>publishCustomVideoTrack</codeph>设置为<xref keyref="true"/>。</li>
+                    <li>调用该方法将<codeph>videoTrackId</codeph>指定为步骤 2 中指定的视频轨道 ID，即可实现在频道内发布对应的自定义视频源。</li>
+                </ol>
+            </p>
+            <p props="flutter">当你需要在频道中发布自定义采集视频时，可参考以下步骤：1. 调用<xref keyref="createCustomVideoTrack"/>方法创建视频轨道并获得视频轨道 ID。
+                <ol>
+                    <li>调用<xref keyref="joinChannel2"/>加入频道时，将<xref keyref="ChannelMediaOptions"/>中的<codeph>customVideoTrackId</codeph>设置为你想要发布的视频轨道 ID，并将<codeph>publishCustomVideoTrack</codeph>设置为<xref keyref="true"/>。</li>
+                    <li>调用该方法将<codeph>videoTrackId</codeph>指定为步骤 2 中指定的视频轨道 ID，即可实现在频道内发布对应的自定义视频源。</li>
+                </ol>
+            </p>
+            <p props="unity">当你需要在频道中发布自定义采集视频时，可参考以下步骤：1. 调用<xref keyref="createCustomVideoTrack"/>方法创建视频轨道并获得视频轨道 ID。
+                <ol>
+                    <li>调用<xref keyref="joinChannel2"/>加入频道时，将<xref keyref="ChannelMediaOptions"/>中的<codeph>customVideoTrackId</codeph>设置为你想要发布的视频轨道 ID，并将<codeph>publishCustomVideoTrack</codeph>设置为<xref keyref="true"/>。</li>
+                    <li>调用该方法将<codeph>videoTrackId</codeph>指定为步骤 2 中指定的视频轨道 ID，即可实现在频道内发布对应的自定义视频源。</li>
+                </ol>
+            </p>
+            <note props="electron">调用该方法后，即使你停止推送外部视频帧到 SDK，自定义采集的视频流仍然会被计入视频时长用量并产生费用，声网建议你根据实际情况采取相应措施避免此类视频计费：- 如果你不再需要采集外部视频数据，可以调用<xref keyref="destroyCustomVideoTrack"/>销毁自定义采集的视频轨道。
+                <ul>
+                    <li>如果你只想将采集到的外部视频数据用于本地预览、而不在频道内发布，可以调用<xref keyref="muteLocalVideoStream"/>取消发送视频流，或调用<xref keyref="updateChannelMediaOptions"/>将<codeph>publishCustomVideoTrack</codeph>设置为<xref keyref="false"/>。</li>
+                </ul>
+            </note>
+            <note props="rn">调用该方法后，即使你停止推送外部视频帧到 SDK，自定义采集的视频流仍然会被计入视频时长用量并产生费用，声网建议你根据实际情况采取相应措施避免此类视频计费：- 如果你不再需要采集外部视频数据，可以调用<xref keyref="destroyCustomVideoTrack"/>销毁自定义采集的视频轨道。
+                <ul>
+                    <li>如果你只想将采集到的外部视频数据用于本地预览、而不在频道内发布，可以调用<xref keyref="muteLocalVideoStream"/>取消发送视频流，或调用<xref keyref="updateChannelMediaOptions"/>将<codeph>publishCustomVideoTrack</codeph>设置为<xref keyref="false"/>。</li>
+                </ul>
+            </note>
+            <note props="flutter">调用该方法后，即使你停止推送外部视频帧到 SDK，自定义采集的视频流仍然会被计入视频时长用量并产生费用，声网建议你根据实际情况采取相应措施避免此类视频计费：- 如果你不再需要采集外部视频数据，可以调用<xref keyref="destroyCustomVideoTrack"/>销毁自定义采集的视频轨道。
+                <ul>
+                    <li>如果你只想将采集到的外部视频数据用于本地预览、而不在频道内发布，可以调用<xref keyref="muteLocalVideoStream"/>取消发送视频流，或调用<xref keyref="updateChannelMediaOptions"/>将<codeph>publishCustomVideoTrack</codeph>设置为<xref keyref="false"/>。</li>
+                </ul>
+            </note>
+            <note props="unity">调用该方法后，即使你停止推送外部视频帧到 SDK，自定义采集的视频流仍然会被计入视频时长用量并产生费用，声网建议你根据实际情况采取相应措施避免此类视频计费：- 如果你不再需要采集外部视频数据，可以调用<xref keyref="destroyCustomVideoTrack"/>销毁自定义采集的视频轨道。
+                <ul>
+                    <li>如果你只想将采集到的外部视频数据用于本地预览、而不在频道内发布，可以调用<xref keyref="muteLocalVideoStream"/>取消发送视频流，或调用<xref keyref="updateChannelMediaOptions"/>将<codeph>publishCustomVideoTrack</codeph>设置为<xref keyref="false"/>。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>frame</pt>
+                    <pd>待推送的视频帧。详见 <xref keyref="ExternalVideoFrame"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoTrackId</pt>
+                    <pd>调用 <xref keyref="createCustomVideoTrack"/> 方法返回的视频轨道 ID。
+                        <note>如果你只需推送一路外部视频流，<codeph>videoTrackId</codeph> 设置为 0 即可。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>frame</pt>
+                    <pd>待推送的视频帧。详见 <xref keyref="ExternalVideoFrame"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoTrackId</pt>
+                    <pd>调用 <xref keyref="createCustomVideoTrack"/> 方法返回的视频轨道 ID。
+                        <note>如果你只需推送一路外部视频流，<codeph>videoTrackId</codeph> 设置为 0 即可。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>frame</pt>
+                    <pd>待推送的视频帧。详见 <xref keyref="ExternalVideoFrame"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoTrackId</pt>
+                    <pd>调用 <xref keyref="createCustomVideoTrack"/> 方法返回的视频轨道 ID。
+                        <note>如果你只需推送一路外部视频流，<codeph>videoTrackId</codeph> 设置为 0 即可。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>frame</pt>
+                    <pd>待推送的视频帧。详见 <xref keyref="ExternalVideoFrame"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoTrackId</pt>
+                    <pd>调用 <xref keyref="createCustomVideoTrack"/> 方法返回的视频轨道 ID。
+                        <note>如果你只需推送一路外部视频流，<codeph>videoTrackId</codeph> 设置为 0 即可。</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

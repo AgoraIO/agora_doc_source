@@ -1,0 +1,673 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videoframe">
+    <title><ph keyref="VideoFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">视频帧的属性设置。</ph><ph id="shortdesc" props="rn">视频帧的属性设置。</ph><ph id="shortdesc" props="flutter">视频帧的属性设置。</ph><ph id="shortdesc" props="unity">视频帧的属性设置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class VideoFrame {
+
+  type?: VideoPixelFormat;
+
+  width?: number;
+
+  height?: number;
+
+  yStride?: number;
+
+  uStride?: number;
+
+  vStride?: number;
+
+  yBuffer?: Uint8Array;
+
+  uBuffer?: Uint8Array;
+
+  vBuffer?: Uint8Array;
+
+  rotation?: number;
+
+  renderTimeMs?: number;
+
+  avsync_type?: number;
+
+  metadata_buffer?: Uint8Array;
+
+  metadata_size?: number;
+
+  textureId?: number;
+
+  matrix?: number[];
+
+  alphaBuffer?: Uint8Array;
+
+  alphaStitchMode?: AlphaStitchMode;
+
+  colorSpace?: ColorSpace;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class VideoFrame {
+
+  type?: VideoPixelFormat;
+
+  width?: number;
+
+  height?: number;
+
+  yStride?: number;
+
+  uStride?: number;
+
+  vStride?: number;
+
+  yBuffer?: Uint8Array;
+
+  uBuffer?: Uint8Array;
+
+  vBuffer?: Uint8Array;
+
+  rotation?: number;
+
+  renderTimeMs?: number;
+
+  avsync_type?: number;
+
+  metadata_buffer?: Uint8Array;
+
+  metadata_size?: number;
+
+  textureId?: number;
+
+  matrix?: number[];
+
+  alphaBuffer?: Uint8Array;
+
+  alphaStitchMode?: AlphaStitchMode;
+
+  colorSpace?: ColorSpace;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class VideoFrame {
+  const VideoFrame(
+      {this.type,
+      this.width,
+      this.height,
+      this.yStride,
+      this.uStride,
+      this.vStride,
+      this.yBuffer,
+      this.uBuffer,
+      this.vBuffer,
+      this.rotation,
+      this.renderTimeMs,
+      this.avsyncType,
+      this.metadataBuffer,
+      this.metadataSize,
+      this.textureId,
+      this.matrix,
+      this.alphaBuffer,
+      this.alphaStitchMode,
+      this.pixelBuffer,
+      this.metaInfo;
+      this.colorSpace});
+
+  @JsonKey(name: 'type')
+  final VideoPixelFormat? type;
+
+  @JsonKey(name: 'width')
+  final int? width;
+
+  @JsonKey(name: 'height')
+  final int? height;
+
+  @JsonKey(name: 'yStride')
+  final int? yStride;
+
+  @JsonKey(name: 'uStride')
+  final int? uStride;
+
+  @JsonKey(name: 'vStride')
+  final int? vStride;
+
+  @JsonKey(name: 'yBuffer', ignore: true)
+  final Uint8List? yBuffer;
+
+  @JsonKey(name: 'uBuffer', ignore: true)
+  final Uint8List? uBuffer;
+
+  @JsonKey(name: 'vBuffer', ignore: true)
+  final Uint8List? vBuffer;
+
+  @JsonKey(name: 'rotation')
+  final int? rotation;
+
+  @JsonKey(name: 'renderTimeMs')
+  final int? renderTimeMs;
+
+  @JsonKey(name: 'avsync_type')
+  final int? avsyncType;
+
+  @JsonKey(name: 'metadata_buffer', ignore: true)
+  final Uint8List? metadataBuffer;
+
+  @JsonKey(name: 'metadata_size')
+  final int? metadataSize;
+
+  @JsonKey(name: 'textureId')
+  final int? textureId;
+
+  @JsonKey(name: 'matrix')
+  final List&lt;double&gt;? matrix;
+
+  @JsonKey(name: 'alphaBuffer', ignore: true)
+  final Uint8List? alphaBuffer;
+
+  @JsonKey(name: 'alphaStitchMode')
+  final AlphaStitchMode? alphaStitchMode;
+
+  @JsonKey(name: 'pixelBuffer', ignore: true)
+  final Uint8List? pixelBuffer;
+
+  @VideoFrameMetaInfoConverter()
+  @JsonKey(name: 'metaInfo')
+  final VideoFrameMetaInfo? metaInfo;
+
+  @JsonKey(name: 'colorSpace')
+  final ColorSpace? colorSpace;
+
+  factory VideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$VideoFrameFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoFrameToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class VideoFrame
+    {
+        public VIDEO_PIXEL_FORMAT type;
+
+        public int width;
+
+        public int height;
+
+        public int yStride;
+
+        public int uStride;
+
+        public int vStride;
+
+        public byte[] yBuffer;
+
+        public IntPtr yBufferPtr;
+
+        public byte[] uBuffer;
+
+        public IntPtr uBufferPtr;
+
+        public byte[] vBuffer;
+
+        public IntPtr vBufferPtr;
+
+        public int rotation;
+
+        public long renderTimeMs;
+
+        public int avsync_type;
+
+        public IntPtr metadata_buffer;
+
+        public int metadata_size;
+
+        public IntPtr sharedContext;
+
+        public int textureId;
+
+        public IntPtr d3d11Texture2d;
+
+        public float[] matrix;
+
+        public byte[] alphaBuffer;
+
+        public ALPHA_STITCH_MODE alphaStitchMode;
+
+        public IVideoFrameMetaInfo metaInfo;
+
+        public ColorSpace colorSpace;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <p props="electron">缓冲区给出的是指向指针的指针，该接口不能修改缓冲区的指针，只能修改缓冲区的内容。</p>
+            <p props="rn">缓冲区给出的是指向指针的指针，该接口不能修改缓冲区的指针，只能修改缓冲区的内容。</p>
+            <p props="flutter">缓冲区给出的是指向指针的指针，该接口不能修改缓冲区的指针，只能修改缓冲区的内容。</p>
+            <p props="unity">缓冲区给出的是指向指针的指针，该接口不能修改缓冲区的指针，只能修改缓冲区的内容。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>像素格式。详见 <codeph>VideoPixelFormat</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>视频像素宽度。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>视频像素高度。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>yStride</pt>
+                    <pd>对 YUV 数据，表示 Y 缓冲区的行跨度；对 RGBA 数据，表示总的数据长度。
+                        <note>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uStride</pt>
+                    <pd>对 YUV 数据，表示 U 缓冲区的行跨度；对 RGBA 数据，值为 0。
+                        <note>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>vStride</pt>
+                    <pd>对 YUV 数据，表示 V 缓冲区的行跨度；对 RGBA 数据，值为 0。
+                        <note>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>yBuffer</pt>
+                    <pd>对 YUV 数据，表示 Y 缓冲区的指针；对 RGBA 数据，表示数据缓冲区。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uBuffer</pt>
+                    <pd>对 YUV 数据，表示 U 缓冲区的指针；对 RGBA 数据，值为空。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>vBuffer</pt>
+                    <pd>对 YUV 数据，表示 V 缓冲区的指针；对 RGBA 数据，值为空。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rotation</pt>
+                    <pd>在渲染视频前设置该帧的顺时针旋转角度，目前支持 0 度、90 度、180 度，和 270 度。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>renderTimeMs</pt>
+                    <pd>视频帧被渲染时的 Unix 时间戳（毫秒）。该时间戳可用于指导渲染视频帧。该参数为必填。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>avsync_type</pt>
+                    <pd>保留参数。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>metadata_buffer</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>metadata_size</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>textureId</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。Texture ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>matrix</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>colorSpace</pt>
+                    <pd>视频帧的色彩空间属性，默认情况下会应用 Full Range 和 BT.709 标准配置。你可以根据自定义采集、自定义渲染的业务需求进行自定义设置，详见 [VideoColorSpace](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace)。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>alphaBuffer</pt>
+                    <pd>采用人像分割算法输出的 Alpha 通道数据。该数据跟视频帧的尺寸一致，每个像素点的取值范围为 [0,255]，其中 0 代表背景；255 代表前景（人像）。
+你可以通过设置该参数，实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。
+                        <note>
+                            <ul>
+                                <li>在自定义视频渲染场景下，需确保传入的视频帧和<codeph>alphaBuffer</codeph>均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</li>
+                                <li>请务必确保`alphaBuffer``alphaBuf`跟视频帧的尺寸 (width × height) 完全一致，否则可能会导致 App 崩溃。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>alphaStitchMode</pt>
+                    <pd>当视频帧中包含 Alpha 通道数据时，设置 <codeph>alphaBuffer</codeph> 和视频帧的相对位置。详见 <codeph>AlphaStitchMode</codeph>。
+                        <ul>
+                            <li>NoAlphaStitch(0)：（默认）仅视频帧，即<codeph>alphaBuffer</codeph>不和视频帧拼接。</li>
+                        </ul>
+                        <ul>
+                            <li>AlphaStitchUp(1)：<codeph>alphaBuffer</codeph>位于视频帧的上方。</li>
+                            <li>AlphaStitchBelow(2)：<codeph>alphaBuffer</codeph>位于视频帧的下方。</li>
+                            <li>AlphaStitchLeft(3)：<codeph>alphaBuffer</codeph>位于视频帧的左侧。</li>
+                            <li>AlphaStitchRight(4)：<codeph>alphaBuffer</codeph>位于视频帧的右侧。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>metaInfo</pt>
+                    <pd>视频帧中的元信息。该参数需要[联系技术支持](https://ticket.shengwang.cn/)使用。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>像素格式。详见 <codeph>VideoPixelFormat</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>width</pt>
+                    <pd>视频像素宽度。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>视频像素高度。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>yStride</pt>
+                    <pd>对 YUV 数据，表示 Y 缓冲区的行跨度；对 RGBA 数据，表示总的数据长度。
+                        <note>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uStride</pt>
+                    <pd>对 YUV 数据，表示 U 缓冲区的行跨度；对 RGBA 数据，值为 0。
+                        <note>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>vStride</pt>
+                    <pd>对 YUV 数据，表示 V 缓冲区的行跨度；对 RGBA 数据，值为 0。
+                        <note>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>yBuffer</pt>
+                    <pd>对 YUV 数据，表示 Y 缓冲区的指针；对 RGBA 数据，表示数据缓冲区。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uBuffer</pt>
+                    <pd>对 YUV 数据，表示 U 缓冲区的指针；对 RGBA 数据，值为空。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>vBuffer</pt>
+                    <pd>对 YUV 数据，表示 V 缓冲区的指针；对 RGBA 数据，值为空。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rotation</pt>
+                    <pd>在渲染视频前设置该帧的顺时针旋转角度，目前支持 0 度、90 度、180 度，和 270 度。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>renderTimeMs</pt>
+                    <pd>视频帧被渲染时的 Unix 时间戳（毫秒）。该时间戳可用于指导渲染视频帧。该参数为必填。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>avsync_type</pt>
+                    <pd>保留参数。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>metadata_buffer</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>metadata_size</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>textureId</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。Texture ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>matrix</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>colorSpace</pt>
+                    <pd>视频帧的色彩空间属性，默认情况下会应用 Full Range 和 BT.709 标准配置。你可以根据自定义采集、自定义渲染的业务需求进行自定义设置，详见 [VideoColorSpace](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>alphaBuffer</pt>
+                    <pd>采用人像分割算法输出的 Alpha 通道数据。该数据跟视频帧的尺寸一致，每个像素点的取值范围为 [0,255]，其中 0 代表背景；255 代表前景（人像）。
+你可以通过设置该参数，实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。
+                        <note>
+                            <ul>
+                                <li>在自定义视频渲染场景下，需确保传入的视频帧和<codeph>alphaBuffer</codeph>均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</li>
+                                <li>请务必确保`alphaBuffer``alphaBuf`跟视频帧的尺寸 (width × height) 完全一致，否则可能会导致 App 崩溃。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>alphaStitchMode</pt>
+                    <pd>当视频帧中包含 Alpha 通道数据时，设置 <codeph>alphaBuffer</codeph> 和视频帧的相对位置。详见 <codeph>AlphaStitchMode</codeph>。
+                        <ul>
+                            <li>NoAlphaStitch(0)：（默认）仅视频帧，即<codeph>alphaBuffer</codeph>不和视频帧拼接。</li>
+                        </ul>
+                        <ul>
+                            <li>AlphaStitchUp(1)：<codeph>alphaBuffer</codeph>位于视频帧的上方。</li>
+                            <li>AlphaStitchBelow(2)：<codeph>alphaBuffer</codeph>位于视频帧的下方。</li>
+                            <li>AlphaStitchLeft(3)：<codeph>alphaBuffer</codeph>位于视频帧的左侧。</li>
+                            <li>AlphaStitchRight(4)：<codeph>alphaBuffer</codeph>位于视频帧的右侧。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>metaInfo</pt>
+                    <pd>视频帧中的元信息。该参数需要[联系技术支持](https://ticket.shengwang.cn/)使用。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>像素格式。详见 <codeph>VideoPixelFormat</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>视频像素宽度。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>视频像素高度。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>yStride</pt>
+                    <pd>对 YUV 数据，表示 Y 缓冲区的行跨度；对 RGBA 数据，表示总的数据长度。
+                        <note>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uStride</pt>
+                    <pd>对 YUV 数据，表示 U 缓冲区的行跨度；对 RGBA 数据，值为 0。
+                        <note>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>vStride</pt>
+                    <pd>对 YUV 数据，表示 V 缓冲区的行跨度；对 RGBA 数据，值为 0。
+                        <note>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>yBuffer</pt>
+                    <pd>对 YUV 数据，表示 Y 缓冲区的指针；对 RGBA 数据，表示数据缓冲区。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uBuffer</pt>
+                    <pd>对 YUV 数据，表示 U 缓冲区的指针；对 RGBA 数据，值为空。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>vBuffer</pt>
+                    <pd>对 YUV 数据，表示 V 缓冲区的指针；对 RGBA 数据，值为空。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rotation</pt>
+                    <pd>在渲染视频前设置该帧的顺时针旋转角度，目前支持 0 度、90 度、180 度，和 270 度。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>renderTimeMs</pt>
+                    <pd>视频帧被渲染时的 Unix 时间戳（毫秒）。该时间戳可用于指导渲染视频帧。该参数为必填。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>avsyncType</pt>
+                    <pd>保留参数。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>metadataBuffer</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>metadataSize</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>textureId</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。Texture ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>matrix</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>colorSpace</pt>
+                    <pd>视频帧的色彩空间属性，默认情况下会应用 Full Range 和 BT.709 标准配置。你可以根据自定义采集、自定义渲染的业务需求进行自定义设置，详见 [VideoColorSpace](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>alphaBuffer</pt>
+                    <pd>采用人像分割算法输出的 Alpha 通道数据。该数据跟视频帧的尺寸一致，每个像素点的取值范围为 [0,255]，其中 0 代表背景；255 代表前景（人像）。
+你可以通过设置该参数，实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。
+                        <note>
+                            <ul>
+                                <li>在自定义视频渲染场景下，需确保传入的视频帧和<codeph>alphaBuffer</codeph>均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</li>
+                                <li>请务必确保`alphaBuffer``alphaBuf`跟视频帧的尺寸 (width × height) 完全一致，否则可能会导致 App 崩溃。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>alphaStitchMode</pt>
+                    <pd>当视频帧中包含 Alpha 通道数据时，设置 <codeph>alphaBuffer</codeph> 和视频帧的相对位置。详见 <codeph>AlphaStitchMode</codeph>。
+                        <ul>
+                            <li>noAlphaStitch(0)：（默认）仅视频帧，即<codeph>alphaBuffer</codeph>不和视频帧拼接。</li>
+                        </ul>
+                        <ul>
+                            <li>alphaStitchUp(1)：<codeph>alphaBuffer</codeph>位于视频帧的上方。</li>
+                            <li>alphaStitchBelow(2)：<codeph>alphaBuffer</codeph>位于视频帧的下方。</li>
+                            <li>alphaStitchLeft(3)：<codeph>alphaBuffer</codeph>位于视频帧的左侧。</li>
+                            <li>alphaStitchRight(4)：<codeph>alphaBuffer</codeph>位于视频帧的右侧。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>metaInfo</pt>
+                    <pd>视频帧中的元信息。该参数需要[联系技术支持](https://ticket.shengwang.cn/)使用。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>视频像素宽度。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>视频像素高度。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>yStride</pt>
+                    <pd>对 YUV 数据，表示 Y 缓冲区的行跨度；对 RGBA 数据，表示总的数据长度。
+                        <note>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uStride</pt>
+                    <pd>对 YUV 数据，表示 U 缓冲区的行跨度；对 RGBA 数据，值为 0。
+                        <note>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>vStride</pt>
+                    <pd>对 YUV 数据，表示 V 缓冲区的行跨度；对 RGBA 数据，值为 0。
+                        <note>在处理视频数据时，需根据该参数处理每行像素数据之间的偏移量，否则可能导致图像失真。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>yBuffer</pt>
+                    <pd>对 YUV 数据，表示 Y 缓冲区的指针；对 RGBA 数据，表示数据缓冲区。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uBuffer</pt>
+                    <pd>对 YUV 数据，表示 U 缓冲区的指针；对 RGBA 数据，值为空。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>vBuffer</pt>
+                    <pd>对 YUV 数据，表示 V 缓冲区的指针；对 RGBA 数据，值为空。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rotation</pt>
+                    <pd>在渲染视频前设置该帧的顺时针旋转角度，目前支持 0 度、90 度、180 度，和 270 度。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>renderTimeMs</pt>
+                    <pd>视频帧被渲染时的 Unix 时间戳（毫秒）。该时间戳可用于指导渲染视频帧。该参数为必填。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>avsync_type</pt>
+                    <pd>保留参数。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>metadata_buffer</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>metadata_size</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sharedContext</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。EGL Context。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>textureId</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。Texture ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>d3d11Texture2d</pt>
+                    <pd>该参数仅适用于 Windows Texture 格式的视频数据。表示一个指向 <codeph>ID3D11Texture2D</codeph> 类型对象的指针，该类型对象被视频帧所使用。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>matrix</pt>
+                    <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>colorSpace</pt>
+                    <pd>视频帧的色彩空间属性，默认情况下会应用 Full Range 和 BT.709 标准配置。你可以根据自定义采集、自定义渲染的业务需求进行自定义设置，详见 [VideoColorSpace](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>alphaBuffer</pt>
+                    <pd>采用人像分割算法输出的 Alpha 通道数据。该数据跟视频帧的尺寸一致，每个像素点的取值范围为 [0,255]，其中 0 代表背景；255 代表前景（人像）。
+你可以通过设置该参数，实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。
+                        <note>
+                            <ul>
+                                <li>在自定义视频渲染场景下，需确保传入的视频帧和<codeph>alphaBuffer</codeph>均为 Full Range 类型；其他类型可能导致 Alpha 数据渲染不正常。</li>
+                                <li>请务必确保`alphaBuffer``alphaBuf`跟视频帧的尺寸 (width × height) 完全一致，否则可能会导致 App 崩溃。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>alphaStitchMode</pt>
+                    <pd>当视频帧中包含 Alpha 通道数据时，设置 <codeph>alphaBuffer</codeph> 和视频帧的相对位置。详见 <xref keyref="ALPHA_STITCH_MODE"/>。
+                        <ul>
+                            <li>NO_ALPHA_STITCH(0)：（默认）仅视频帧，即<codeph>alphaBuffer</codeph>不和视频帧拼接。</li>
+                        </ul>
+                        <ul>
+                            <li>ALPHA_STITCH_UP(1)：<codeph>alphaBuffer</codeph>位于视频帧的上方。</li>
+                            <li>ALPHA_STITCH_BELOW(2)：<codeph>alphaBuffer</codeph>位于视频帧的下方。</li>
+                            <li>ALPHA_STITCH_LEFT(3)：<codeph>alphaBuffer</codeph>位于视频帧的左侧。</li>
+                            <li>ALPHA_STITCH_RIGHT(4)：<codeph>alphaBuffer</codeph>位于视频帧的右侧。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>metaInfo</pt>
+                    <pd>视频帧中的元信息。该参数需要[联系技术支持](https://ticket.shengwang.cn/)使用。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

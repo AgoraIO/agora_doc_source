@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_ivideoframeobserver_oncapturevideoframe">
+    <title><ph keyref="onCaptureVideoFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">获取本地设备采集到的视频数据。</ph><ph id="shortdesc" props="rn">获取本地设备采集到的视频数据。</ph><ph id="shortdesc" props="flutter">获取本地设备采集到的视频数据。</ph><ph id="shortdesc" props="unity">获取本地设备采集到的视频数据。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onCaptureVideoFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onCaptureVideoFrame?(
+    sourceType: VideoSourceType,
+    videoFrame: VideoFrame
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onCaptureVideoFrame?(
+    sourceType: VideoSourceType,
+    videoFrame: VideoFrame
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(VideoSourceType sourceType, VideoFrame videoFrame)?
+      onCaptureVideoFrame;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnCaptureVideoFrame(VIDEO_SOURCE_TYPE sourceType, VideoFrame videoFrame)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">你可以在回调中获取本地设备采集到的原始视频数据。</p>
+            <p props="rn">你可以在回调中获取本地设备采集到的原始视频数据。</p>
+            <p props="flutter">你可以在回调中获取本地设备采集到的原始视频数据。</p>
+            <p props="unity">你可以在回调中获取本地设备采集到的原始视频数据，并可根据需要进行前处理。完成前处理后，你可以在该回调中直接修改 <codeph>videoFrame</codeph>，并将返回值设置为 <xref keyref="true"/>，即可将修改后的视频数据发送给 SDK。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>触发时机</title>
+            <p props="electron">成功注册视频数据观测器后，SDK 捕捉到每个视频帧时。</p>
+            <p props="rn">成功注册视频数据观测器后，SDK 捕捉到每个视频帧时。</p>
+            <p props="flutter">成功注册视频数据观测器后，SDK 捕捉到每个视频帧时。</p>
+            <p props="unity">成功注册视频数据观测器后，SDK 捕捉到每个视频帧时。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>sourceType</pt>
+                    <pd>视频源类型，可能的视频源包括：摄像头、屏幕或媒体播放器。详见 <codeph>VideoSourceType</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoFrame</pt>
+                    <pd>视频帧数据。详见 <xref keyref="VideoFrame"/>。
+                        <note>通过该回调获取的视频帧数据格式默认值如下：
+                            <ul>
+                                <li>macOS：I420</li>
+                            </ul>
+                            <ul>
+                                <li>Windows：YUV420</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceType</pt>
+                    <pd>视频源类型，可能的视频源包括：摄像头、屏幕或媒体播放器。详见 <codeph>VideoSourceType</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoFrame</pt>
+                    <pd>视频帧数据。详见 <xref keyref="VideoFrame"/>。
+                        <note>通过该回调获取的视频帧数据格式默认值如下：
+                            <ul>
+                                <li>Android：I420</li>
+                            </ul>
+                            <ul>
+                                <li>iOS：I420</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceType</pt>
+                    <pd>视频源类型，可能的视频源包括：摄像头、屏幕或媒体播放器。详见 <codeph>VideoSourceType</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoFrame</pt>
+                    <pd>视频帧数据。详见 <xref keyref="VideoFrame"/>。
+                        <note>通过该回调获取的视频帧数据格式默认值如下：
+                            <ul>
+                                <li>Android：I420</li>
+                            </ul>
+                            <ul>
+                                <li>iOS：I420</li>
+                                <li>macOS：I420</li>
+                                <li>Windows：YUV420</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sourceType</pt>
+                    <pd>视频源类型，可能的视频源包括：摄像头、屏幕或媒体播放器。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoFrame</pt>
+                    <pd>视频帧数据。详见 <xref keyref="VideoFrame"/>。
+                        <note>通过该回调获取的视频帧数据格式默认值如下：</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li><xref keyref="true"/>：设置 SDK 接收视频帧。</li>
+                    <li><xref keyref="false"/>：设置 SDK 丢弃视频帧。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li><xref keyref="true"/>：设置 SDK 接收视频帧。</li>
+                    <li><xref keyref="false"/>：设置 SDK 丢弃视频帧。</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li><xref keyref="true"/>：设置 SDK 接收视频帧。</li>
+                    <li><xref keyref="false"/>：设置 SDK 丢弃视频帧。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li><xref keyref="true"/>：设置 SDK 接收视频帧。</li>
+                    <li><xref keyref="false"/>：设置 SDK 丢弃视频帧。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

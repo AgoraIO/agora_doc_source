@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setremotesubscribefallbackoption">
+    <title><ph keyref="setRemoteSubscribeFallbackOption"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置弱网环境下订阅的音视频流回退选项。</ph><ph id="shortdesc" props="rn">设置弱网环境下订阅的音视频流回退选项。</ph><ph id="shortdesc" props="flutter">设置弱网环境下订阅的音视频流回退选项。</ph><ph id="shortdesc" props="unity">设置弱网环境下订阅的音视频流回退选项。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteSubscribeFallbackOption"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setRemoteSubscribeFallbackOption(
+    option: StreamFallbackOptions
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setRemoteSubscribeFallbackOption(
+    option: StreamFallbackOptions
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteSubscribeFallbackOption(StreamFallbackOptions option);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteSubscribeFallbackOption(STREAM_FALLBACK_OPTIONS option);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">网络不理想的环境下，实时通信音视频的质量会下降。你可以调用该方法并将 <codeph>option</codeph> 设置为 <codeph>StreamFallbackOptionVideoStreamLow</codeph> 或 <codeph>StreamFallbackOptionAudioOnly</codeph>，SDK 会在下行弱网且音视频质量严重受影响时，将视频流切换为小流或关闭视频流，从而保证音频质量。同时，SDK 会持续监控网络质量，并在网络质量改善时恢复订阅音视频流。
+当订阅流回退为音频流或由音频流恢复为音视频流时，SDK 会触发 <xref keyref="onRemoteSubscribeFallbackToAudioOnly"/> 回调。</p>
+            <p props="rn">网络不理想的环境下，实时通信音视频的质量会下降。你可以调用该方法并将 <codeph>option</codeph> 设置为 <codeph>StreamFallbackOptionVideoStreamLow</codeph> 或 <codeph>StreamFallbackOptionAudioOnly</codeph>，SDK 会在下行弱网且音视频质量严重受影响时，将视频流切换为小流或关闭视频流，从而保证音频质量。同时，SDK 会持续监控网络质量，并在网络质量改善时恢复订阅音视频流。
+当订阅流回退为音频流或由音频流恢复为音视频流时，SDK 会触发 <xref keyref="onRemoteSubscribeFallbackToAudioOnly"/> 回调。</p>
+            <p props="flutter">网络不理想的环境下，实时通信音视频的质量会下降。你可以调用该方法并将 <codeph>option</codeph> 设置为 <codeph>streamFallbackOptionVideoStreamLow</codeph> 或 <codeph>streamFallbackOptionAudioOnly</codeph>，SDK 会在下行弱网且音视频质量严重受影响时，将视频流切换为小流或关闭视频流，从而保证音频质量。同时，SDK 会持续监控网络质量，并在网络质量改善时恢复订阅音视频流。
+当订阅流回退为音频流或由音频流恢复为音视频流时，SDK 会触发 <xref keyref="onRemoteSubscribeFallbackToAudioOnly"/> 回调。</p>
+            <p props="unity">网络不理想的环境下，实时通信音视频的质量会下降。你可以调用该方法并将 <codeph>option</codeph> 设置为 <codeph>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW</codeph> 或 <codeph>STREAM_FALLBACK_OPTION_AUDIO_ONLY</codeph>，SDK 会在下行弱网且音视频质量严重受影响时，将视频流切换为小流或关闭视频流，从而保证音频质量。同时，SDK 会持续监控网络质量，并在网络质量改善时恢复订阅音视频流。
+当订阅流回退为音频流或由音频流恢复为音视频流时，SDK 会触发 <xref keyref="onRemoteSubscribeFallbackToAudioOnly"/> 回调。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>option</pt>
+                    <pd>订阅流的回退选项。详见 <xref keyref="STREAM_FALLBACK_OPTIONS"/>。
+                        <ul>
+                            <li>StreamFallbackOptionDisabled(0): 网络条件较差时，不对音视频流作回退处理，但不能保证音视频流的质量。</li>
+                            <li>StreamFallbackOptionVideoStreamLow(1):（默认）网络条件较差时，只接收视频小流（低分辨率、低码率视频流）。</li>
+                            <li>StreamFallbackOptionAudioOnly(2): 网络条件较差时，先尝试只接收视频小流；如果因网络环境太差无法显示视频，则再回退到只接收订阅的音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>option</pt>
+                    <pd>订阅流的回退选项。详见 <xref keyref="STREAM_FALLBACK_OPTIONS"/>。
+                        <ul>
+                            <li>StreamFallbackOptionDisabled(0): 网络条件较差时，不对音视频流作回退处理，但不能保证音视频流的质量。</li>
+                            <li>StreamFallbackOptionVideoStreamLow(1):（默认）网络条件较差时，只接收视频小流（低分辨率、低码率视频流）。</li>
+                            <li>StreamFallbackOptionAudioOnly(2): 网络条件较差时，先尝试只接收视频小流；如果因网络环境太差无法显示视频，则再回退到只接收订阅的音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>option</pt>
+                    <pd>订阅流的回退选项。详见 <codeph>StreamFallbackOptions</codeph>。
+                        <ul>
+                            <li>streamFallbackOptionDisabled(0): 网络条件较差时，不对音视频流作回退处理，但不能保证音视频流的质量。</li>
+                            <li>streamFallbackOptionVideoStreamLow(1):（默认）网络条件较差时，只接收视频小流（低分辨率、低码率视频流）。</li>
+                            <li>streamFallbackOptionAudioOnly(2): 网络条件较差时，先尝试只接收视频小流；如果因网络环境太差无法显示视频，则再回退到只接收订阅的音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>option</pt>
+                    <pd>订阅流的回退选项。详见 <xref keyref="STREAM_FALLBACK_OPTIONS"/>。
+                        <ul>
+                            <li>STREAM_FALLBACK_OPTION_DISABLED(0): 网络条件较差时，不对音视频流作回退处理，但不能保证音视频流的质量。</li>
+                            <li>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW(1):（默认）网络条件较差时，只接收视频小流（低分辨率、低码率视频流）。</li>
+                            <li>STREAM_FALLBACK_OPTION_AUDIO_ONLY(2): 网络条件较差时，先尝试只接收视频小流；如果因网络环境太差无法显示视频，则再回退到只接收订阅的音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

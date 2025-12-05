@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_iscameratorchsupported">
+    <title><ph keyref="isCameraTorchSupported"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">检测设备是否支持闪光灯常开。</ph><ph id="shortdesc" props="flutter">检测设备是否支持闪光灯常开。</ph><ph id="shortdesc" props="unity">检测设备是否支持闪光灯常开。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="isCameraTorchSupported"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract isCameraTorchSupported(): boolean;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;bool&gt; isCameraTorchSupported();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract bool IsCameraTorchSupported();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="rn">
+                <ul>
+                    <li>一般情况下，App 默认开启前置摄像头，因此如果你的前置摄像头不支持闪光灯常开，直接使用该方法会返回false。如果需要检查后置摄像头是否支持闪光灯常开，需要先使用<xref keyref="switchCamera"/>切换摄像头，再使用该方法。</li>
+                    <li>在系统版本 15 的 iPad 上，即使<xref keyref="isCameraTorchSupported"/>返回<xref keyref="true"/>，也可能因系统问题导致你无法通过<xref keyref="setCameraTorchOn"/>成功开启闪光灯。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法仅适用于 Android 和 iOS。</li>
+                    <li>一般情况下，App 默认开启前置摄像头，因此如果你的前置摄像头不支持闪光灯常开，直接使用该方法会返回false。如果需要检查后置摄像头是否支持闪光灯常开，需要先使用<xref keyref="switchCamera"/>切换摄像头，再使用该方法。</li>
+                    <li>在系统版本 15 的 iPad 上，即使<xref keyref="isCameraTorchSupported"/>返回<xref keyref="true"/>，也可能因系统问题导致你无法通过<xref keyref="setCameraTorchOn"/>成功开启闪光灯。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法仅适用于 Android 和 iOS。</li>
+                    <li>一般情况下，App 默认开启前置摄像头，因此如果你的前置摄像头不支持闪光灯常开，直接使用该方法会返回false。如果需要检查后置摄像头是否支持闪光灯常开，需要先使用<xref keyref="switchCamera"/>切换摄像头，再使用该方法。</li>
+                    <li>在系统版本 15 的 iPad 上，即使<xref keyref="isCameraTorchSupported"/>返回<xref keyref="true"/>，也可能因系统问题导致你无法通过<xref keyref="setCameraTorchOn"/>成功开启闪光灯。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>返回值</title>
+            <p props="rn">
+                <ul>
+                    <li><xref keyref="true"/>: 设备支持闪光灯常开。</li>
+                    <li><xref keyref="false"/>: 设备不支持闪光灯常开。</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li><xref keyref="true"/>: 设备支持闪光灯常开。</li>
+                    <li><xref keyref="false"/>: 设备不支持闪光灯常开。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li><xref keyref="true"/>: 设备支持闪光灯常开。</li>
+                    <li><xref keyref="false"/>: 设备不支持闪光灯常开。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

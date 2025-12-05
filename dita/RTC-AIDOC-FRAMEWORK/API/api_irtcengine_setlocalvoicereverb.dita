@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalvoicereverb">
+    <title><ph keyref="setLocalVoiceReverb"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置本地音效混响。</ph><ph id="shortdesc" props="rn">设置本地音效混响。</ph><ph id="shortdesc" props="flutter">设置本地音效混响。</ph><ph id="shortdesc" props="unity">设置本地音效混响。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalVoiceReverb"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setLocalVoiceReverb(
+    reverbKey: AudioReverbType,
+    value: number
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setLocalVoiceReverb(
+    reverbKey: AudioReverbType,
+    value: number
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalVoiceReverb(
+  {required AudioReverbType reverbKey, required int value});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalVoiceReverb(AUDIO_REVERB_TYPE reverbKey, int value);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">SDK 提供一个使用更为简便的方法 <xref keyref="setAudioEffectPreset"/>，直接实现流行、R&amp;B、KTV 等预置的混响效果。</p>
+            <p props="rn">SDK 提供一个使用更为简便的方法 <xref keyref="setAudioEffectPreset"/>，直接实现流行、R&amp;B、KTV 等预置的混响效果。</p>
+            <p props="flutter">SDK 提供一个使用更为简便的方法 <xref keyref="setAudioEffectPreset"/>，直接实现流行、R&amp;B、KTV 等预置的混响效果。</p>
+            <p props="unity">SDK 提供一个使用更为简便的方法 <xref keyref="setAudioEffectPreset"/>，直接实现流行、R&amp;B、KTV 等预置的混响效果。</p>
+            <note props="electron">该方法在加入频道前后都能调用。</note>
+            <note props="rn">该方法在加入频道前后都能调用。</note>
+            <note props="flutter">该方法在加入频道前后都能调用。</note>
+            <note props="unity">该方法在加入频道前后都能调用。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>reverbKey</pt>
+                    <pd>混响音效 Key。该方法共有 5 个混响音效 Key，详见 <codeph>AudioReverbType</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>value</pt>
+                    <pd>各混响音效 Key 所对应的值。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>reverbKey</pt>
+                    <pd>混响音效 Key。该方法共有 5 个混响音效 Key，详见 <codeph>AudioReverbType</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>value</pt>
+                    <pd>各混响音效 Key 所对应的值。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>reverbKey</pt>
+                    <pd>混响音效 Key。该方法共有 5 个混响音效 Key，详见 <codeph>AudioReverbType</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>value</pt>
+                    <pd>各混响音效 Key 所对应的值。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>reverbKey</pt>
+                    <pd>混响音效 Key。该方法共有 5 个混响音效 Key，详见 <xref keyref="AUDIO_REVERB_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>value</pt>
+                    <pd>各混响音效 Key 所对应的值。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

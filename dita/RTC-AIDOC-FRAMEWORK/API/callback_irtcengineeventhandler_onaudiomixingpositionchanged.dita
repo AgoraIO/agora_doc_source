@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudiomixingpositionchanged">
+    <title><ph keyref="onAudioMixingPositionChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">音乐文件播放进度回调。</ph><ph id="shortdesc" props="rn">音乐文件播放进度回调。</ph><ph id="shortdesc" props="flutter">音乐文件播放进度回调。</ph><ph id="shortdesc" props="unity">音乐文件播放进度回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioMixingPositionChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onAudioMixingPositionChanged?(position: number): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onAudioMixingPositionChanged?(position: number): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(int position)? onAudioMixingPositionChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioMixingPositionChanged(long position) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.0</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.0</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.0</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.0</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">当你调用 <xref keyref="startAudioMixing2"/> 方法播放音乐文件后，SDK 会每隔一秒触发一次该回调，报告音乐文件当前的播放进度。</p>
+            <p props="rn">当你调用 <xref keyref="startAudioMixing2"/> 方法播放音乐文件后，SDK 会每隔一秒触发一次该回调，报告音乐文件当前的播放进度。</p>
+            <p props="flutter">当你调用 <xref keyref="startAudioMixing2"/> 方法播放音乐文件后，SDK 会每隔一秒触发一次该回调，报告音乐文件当前的播放进度。</p>
+            <p props="unity">当你调用 <xref keyref="startAudioMixing2"/> 方法播放音乐文件后，SDK 会每隔一秒触发一次该回调，报告音乐文件当前的播放进度。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>position</pt>
+                    <pd>音乐文件当前的播放进度，单位为 ms。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>position</pt>
+                    <pd>音乐文件当前的播放进度，单位为 ms。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>engine</pt>
+                    <pd><codeph>RtcEngine</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>position</pt>
+                    <pd>音乐文件当前的播放进度，单位为 ms。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>position</pt>
+                    <pd>音乐文件当前的播放进度，单位为 ms。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

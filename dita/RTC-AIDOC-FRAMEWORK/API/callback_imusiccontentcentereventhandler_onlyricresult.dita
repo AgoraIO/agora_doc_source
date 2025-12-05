@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imusiccontentcentereventhandler_onlyricresult">
+    <title><ph keyref="onLyricResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">歌词下载地址回调。</ph><ph id="shortdesc" props="rn">歌词下载地址回调。</ph><ph id="shortdesc" props="flutter">歌词下载地址回调。</ph><ph id="shortdesc" props="unity">歌词下载地址回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLyricResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onLyricResult?(
+    requestId: string,
+    songCode: number,
+    lyricUrl: string,
+    reason: MusicContentCenterStateReason
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onLyricResult?(
+    requestId: string,
+    songCode: number,
+    lyricUrl: string,
+    reason: MusicContentCenterStateReason
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(String requestId, int songCode, String lyricUrl,
+    MusicContentCenterStateReason reason)? onLyricResult;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract void OnLyricResult(string requestId, long songCode, string lyricUrl, MusicContentCenterStateReason reason);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">当你调用 <xref keyref="getLyric"/> 获取指定歌曲的歌词下载地址后，SDK 会触发该回调。</p>
+            <p props="rn">当你调用 <xref keyref="getLyric"/> 获取指定歌曲的歌词下载地址后，SDK 会触发该回调。</p>
+            <p props="flutter">当你调用 <xref keyref="getLyric"/> 获取指定歌曲的歌词下载地址后，SDK 会触发该回调。</p>
+            <p props="unity">当你调用 <xref keyref="getLyric"/> 获取指定歌曲的歌词下载地址后，SDK 会触发该回调。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>requestId</pt>
+                    <pd>请求 ID。本次请求的唯一标识。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识音乐资源。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>lyricUrl</pt>
+                    <pd>歌词的下载地址。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>reason</pt>
+                    <pd>音乐内容中心的请求状态码，详见 <xref keyref="MusicContentCenterStateReason"/>。
+音乐内容中心的请求状态码：
+                        <ul>
+                            <li>kMusicContentCenterReasonOk(0)：请求成功。</li>
+                            <li>KMusicContentCenterReasonError(1)：一般错误，无明确归因。</li>
+                            <li>kMusicContentCenterReasonGateway(2)：网关异常。可能的原因有：
+                                <ul>
+                                    <li>当前使用的 Token 已过期。请重新生成 Token。</li>
+                                    <li>传入的 Token 无效。请确保你使用的是 RTM Token。</li>
+                                    <li>网络错误。请检查你的网络。</li>
+                                </ul>
+                            </li>
+                            <li>kMusicContentCenterReasonPermissionAndResource(3)：权限错误或音乐资源不存在。请确保你的项目已开通声网音乐内容中心权限，请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            <li>kMusicContentCenterReasonInternalDataParse(4)：内部数据解析错误。请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            <li>kMusicContentCenterReasonMusicLoading(5)：音乐资源加载时出错。请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            <li>kMusicContentCenterReasonMusicDecryption(6)：音乐资源解密时出错。请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            <li>kMusicContentCenterReasonHttpInternalError(7)：HTTP 内部出现错误。请稍后重新请求。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>requestId</pt>
+                    <pd>请求 ID。本次请求的唯一标识。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识音乐资源。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lyricUrl</pt>
+                    <pd>歌词的下载地址。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>reason</pt>
+                    <pd>音乐内容中心的请求状态码，详见 <xref keyref="MusicContentCenterStateReason"/>。
+音乐内容中心的请求状态码：
+                        <ul>
+                            <li>kMusicContentCenterReasonOk(0)：请求成功。</li>
+                            <li>KMusicContentCenterReasonError(1)：一般错误，无明确归因。</li>
+                            <li>kMusicContentCenterReasonGateway(2)：网关异常。可能的原因有：
+                                <ul>
+                                    <li>当前使用的 Token 已过期。请重新生成 Token。</li>
+                                    <li>传入的 Token 无效。请确保你使用的是 RTM Token。</li>
+                                    <li>网络错误。请检查你的网络。</li>
+                                </ul>
+                            </li>
+                            <li>kMusicContentCenterReasonPermissionAndResource(3)：权限错误或音乐资源不存在。请确保你的项目已开通声网音乐内容中心权限，请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            <li>kMusicContentCenterReasonInternalDataParse(4)：内部数据解析错误。请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            <li>kMusicContentCenterReasonMusicLoading(5)：音乐资源加载时出错。请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            <li>kMusicContentCenterReasonMusicDecryption(6)：音乐资源解密时出错。请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            <li>kMusicContentCenterReasonHttpInternalError(7)：HTTP 内部出现错误。请稍后重新请求。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>requestId</pt>
+                    <pd>请求 ID。本次请求的唯一标识。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识音乐资源。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lyricUrl</pt>
+                    <pd>歌词的下载地址。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>reason</pt>
+                    <pd>音乐内容中心的请求状态码，详见 <xref keyref="MusicContentCenterStateReason"/>。
+音乐内容中心的请求状态码：
+                        <ul>
+                            <li>kMusicContentCenterReasonOk(0)：请求成功。</li>
+                            <li>kMusicContentCenterReasonError(1)：一般错误，无明确归因。</li>
+                            <li>kMusicContentCenterReasonGateway(2)：网关异常。可能的原因有：
+                                <ul>
+                                    <li>当前使用的 Token 已过期。请重新生成 Token。</li>
+                                    <li>传入的 Token 无效。请确保你使用的是 RTM Token。</li>
+                                    <li>网络错误。请检查你的网络。</li>
+                                </ul>
+                            </li>
+                            <li>kMusicContentCenterReasonPermissionAndResource(3)：权限错误或音乐资源不存在。请确保你的项目已开通声网音乐内容中心权限，请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            <li>kMusicContentCenterReasonInternalDataParse(4)：内部数据解析错误。请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            <li>kMusicContentCenterReasonMusicLoading(5)：音乐资源加载时出错。请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            <li>kMusicContentCenterReasonMusicDecryption(6)：音乐资源解密时出错。请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            <li>kMusicContentCenterReasonHttpInternalError(7)：HTTP 内部出现错误。请稍后重新请求。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>requestId</pt>
+                    <pd>请求 ID。本次请求的唯一标识。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识音乐资源。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lyricUrl</pt>
+                    <pd>歌词的下载地址。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>reason</pt>
+                    <pd>音乐内容中心的请求状态码，详见 <xref keyref="MusicContentCenterStateReason"/>。
+音乐内容中心的请求状态码：
+                        <ul>
+                            <li>kMusicContentCenterReasonOk(0)：请求成功。</li>
+                            <li>kMusicContentCenterReasonError(1)：一般错误，无明确归因。</li>
+                            <li>kMusicContentCenterReasonGateway(2)：网关异常。可能的原因有：
+                                <ul>
+                                    <li>当前使用的 Token 已过期。请重新生成 Token。</li>
+                                    <li>传入的 Token 无效。请确保你使用的是 RTM Token。</li>
+                                    <li>网络错误。请检查你的网络。</li>
+                                </ul>
+                            </li>
+                            <li>kMusicContentCenterReasonPermissionAndResource(3)：权限错误或音乐资源不存在。请确保你的项目已开通声网音乐内容中心权限，请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            <li>kMusicContentCenterReasonInternalDataParse(4)：内部数据解析错误。请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            <li>kMusicContentCenterReasonMusicLoading(5)：音乐资源加载时出错。请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            <li>kMusicContentCenterReasonMusicDecryption(6)：音乐资源解密时出错。请[联系技术支持](https://ticket.shengwang.cn/)。</li>
+                            <li>kMusicContentCenterReasonHttpInternalError(7)：HTTP 内部出现错误。请稍后重新请求。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

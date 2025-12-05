@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startlocalaudiomixer">
+    <title><ph keyref="startLocalAudioMixer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">开启本地音频合流。</ph><ph id="shortdesc" props="rn">开启本地音频合流。</ph><ph id="shortdesc" props="flutter">开启本地音频合流。</ph><ph id="shortdesc" props="unity">开启本地音频合流。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startLocalAudioMixer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startLocalAudioMixer(config: LocalAudioMixerConfiguration): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startLocalAudioMixer(config: LocalAudioMixerConfiguration): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startLocalAudioMixer(LocalAudioMixerConfiguration config);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartLocalAudioMixer(LocalAudioMixerConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">该方法支持在本地将多路音频流合并为一路音频流。例如：将本地麦克风采集的音频流、媒体播放器中的音频流、声卡采集的音频流、远端音频流等合并为一路音频流，然后将合流后的音频流发布到频道中。- 如果你要对本地采集的音频流进行合流，可以将<xref keyref="ChannelMediaOptions"/>中的 publishMixedAudioTrack 设置为<xref keyref="true"/>，则可将合流后的音频流发布到频道中。
+                <ul>
+                    <li>如果你要对远端音频流进行合流，需确保远端音频流已在频道内发布并且已被订阅。</li>
+                </ul>
+            </p>
+            <p props="rn">该方法支持在本地将多路音频流合并为一路音频流。例如：将本地麦克风采集的音频流、媒体播放器中的音频流、声卡采集的音频流、远端音频流等合并为一路音频流，然后将合流后的音频流发布到频道中。- 如果你要对本地采集的音频流进行合流，可以将<xref keyref="ChannelMediaOptions"/>中的 publishMixedAudioTrack 设置为<xref keyref="true"/>，则可将合流后的音频流发布到频道中。
+                <ul>
+                    <li>如果你要对远端音频流进行合流，需确保远端音频流已在频道内发布并且已被订阅。</li>
+                </ul>
+            </p>
+            <p props="flutter">该方法支持在本地将多路音频流合并为一路音频流。例如：将本地麦克风采集的音频流、媒体播放器中的音频流、声卡采集的音频流、远端音频流等合并为一路音频流，然后将合流后的音频流发布到频道中。- 如果你要对本地采集的音频流进行合流，可以将<xref keyref="ChannelMediaOptions"/>中的 publishMixedAudioTrack 设置为<xref keyref="true"/>，则可将合流后的音频流发布到频道中。
+                <ul>
+                    <li>如果你要对远端音频流进行合流，需确保远端音频流已在频道内发布并且已被订阅。</li>
+                </ul>
+            </p>
+            <p props="unity">该方法支持在本地将多路音频流合并为一路音频流。例如：将本地麦克风采集的音频流、媒体播放器中的音频流、声卡采集的音频流、远端音频流等合并为一路音频流，然后将合流后的音频流发布到频道中。- 如果你要对本地采集的音频流进行合流，可以将<xref keyref="ChannelMediaOptions"/>中的 publishMixedAudioTrack 设置为<xref keyref="true"/>，则可将合流后的音频流发布到频道中。
+                <ul>
+                    <li>如果你要对远端音频流进行合流，需确保远端音频流已在频道内发布并且已被订阅。</li>
+                </ul>
+            </p>
+            <note props="electron">为了保证音频质量，建议参与本地合流的音频流数量不超过 10 个。</note>
+            <note props="rn">为了保证音频质量，建议参与本地合流的音频流数量不超过 10 个。</note>
+            <note props="flutter">为了保证音频质量，建议参与本地合流的音频流数量不超过 10 个。</note>
+            <note props="unity">为了保证音频质量，建议参与本地合流的音频流数量不超过 10 个。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法在加入频道前后均可调用。</p>
+            <p props="rn">该方法在加入频道前后均可调用。</p>
+            <p props="flutter">该方法在加入频道前后均可调用。</p>
+            <p props="unity">该方法在加入频道前后均可调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>本地音频合流的配置。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>config</pt>
+                    <pd>本地音频合流的配置。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>本地音频合流的配置。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>本地音频合流的配置。详见 <xref keyref="LocalAudioMixerConfiguration"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-7：<xref keyref="IRtcEngine"/>对象尚未初始化。你需要在调用该方法前成功初始化<xref keyref="IRtcEngine"/>对象。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-7：<xref keyref="IRtcEngine"/>对象尚未初始化。你需要在调用该方法前成功初始化<xref keyref="IRtcEngine"/>对象。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-7：<xref keyref="IRtcEngine"/>对象尚未初始化。你需要在调用该方法前成功初始化<xref keyref="IRtcEngine"/>对象。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

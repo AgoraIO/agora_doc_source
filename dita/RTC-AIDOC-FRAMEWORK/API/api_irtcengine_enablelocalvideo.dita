@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablelocalvideo">
+    <title><ph keyref="enableLocalVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">开关本地视频采集。</ph><ph id="shortdesc" props="rn">开关本地视频采集。</ph><ph id="shortdesc" props="flutter">开关本地视频采集。</ph><ph id="shortdesc" props="unity">开关本地视频采集。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableLocalVideo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableLocalVideo(enabled: boolean): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableLocalVideo(enabled: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableLocalVideo(bool enabled);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableLocalVideo(bool enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">该方法禁用或重新启用本地视频采集，不影响接收远端视频。
+调用 <xref keyref="enableVideo"/> 后，本地视频采集即默认开启。
+如果你在频道内调用 <xref keyref="enableLocalVideo"/>(<xref keyref="false"/>) 关闭本地视频采集，也会同时停止在频道内发布视频流。如果想要重新开启，则可调用 <xref keyref="enableLocalVideo"/>(<xref keyref="true"/>)，然后调用 <xref keyref="updateChannelMediaOptions"/> 并设置 <codeph>options</codeph> 参数，将本地采集的视频流发布到频道中。
+成功禁用或启用本地视频采集后，远端会触发 <xref keyref="onRemoteVideoStateChanged"/> 回调。</p>
+            <p props="rn">该方法禁用或重新启用本地视频采集，不影响接收远端视频。
+调用 <xref keyref="enableVideo"/> 后，本地视频采集即默认开启。
+如果你在频道内调用 <xref keyref="enableLocalVideo"/>(<xref keyref="false"/>) 关闭本地视频采集，也会同时停止在频道内发布视频流。如果想要重新开启，则可调用 <xref keyref="enableLocalVideo"/>(<xref keyref="true"/>)，然后调用 <xref keyref="updateChannelMediaOptions"/> 并设置 <codeph>options</codeph> 参数，将本地采集的视频流发布到频道中。
+成功禁用或启用本地视频采集后，远端会触发 <xref keyref="onRemoteVideoStateChanged"/> 回调。</p>
+            <p props="flutter">该方法禁用或重新启用本地视频采集，不影响接收远端视频。
+调用 <xref keyref="enableVideo"/> 后，本地视频采集即默认开启。
+如果你在频道内调用 <xref keyref="enableLocalVideo"/>(<xref keyref="false"/>) 关闭本地视频采集，也会同时停止在频道内发布视频流。如果想要重新开启，则可调用 <xref keyref="enableLocalVideo"/>(<xref keyref="true"/>)，然后调用 <xref keyref="updateChannelMediaOptions"/> 并设置 <codeph>options</codeph> 参数，将本地采集的视频流发布到频道中。
+成功禁用或启用本地视频采集后，远端会触发 <xref keyref="onRemoteVideoStateChanged"/> 回调。</p>
+            <p props="unity">该方法禁用或重新启用本地视频采集，不影响接收远端视频。
+调用 <xref keyref="enableVideo"/> 后，本地视频采集即默认开启。
+如果你在频道内调用 <xref keyref="enableLocalVideo"/>(<xref keyref="false"/>) 关闭本地视频采集，也会同时停止在频道内发布视频流。如果想要重新开启，则可调用 <xref keyref="enableLocalVideo"/>(<xref keyref="true"/>)，然后调用 <xref keyref="updateChannelMediaOptions"/> 并设置 <codeph>options</codeph> 参数，将本地采集的视频流发布到频道中。
+成功禁用或启用本地视频采集后，远端会触发 <xref keyref="onRemoteVideoStateChanged"/> 回调。</p>
+            <note props="electron">
+                <ul>
+                    <li>该方法在加入频道前后均可调用，但加入频道前调用的设置，在加入频道后才会生效。</li>
+                    <li>该方法设置内部引擎为启用状态，在离开频道后仍然有效。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>该方法在加入频道前后均可调用，但加入频道前调用的设置，在加入频道后才会生效。</li>
+                    <li>该方法设置内部引擎为启用状态，在离开频道后仍然有效。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法在加入频道前后均可调用，但加入频道前调用的设置，在加入频道后才会生效。</li>
+                    <li>该方法设置内部引擎为启用状态，在离开频道后仍然有效。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法在加入频道前后均可调用，但加入频道前调用的设置，在加入频道后才会生效。</li>
+                    <li>该方法设置内部引擎为启用状态，在离开频道后仍然有效。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>是否开启本地视频采集。
+                        <ul>
+                            <li><xref keyref="true"/>:（默认）开启本地视频采集。</li>
+                            <li><xref keyref="false"/>: 关闭本地视频采集。关闭后，远端用户会接收不到本地用户的视频流；但本地用户依然可以接收远端用户的视频流。设置为<xref keyref="false"/>时，该方法不需要本地有摄像头。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>是否开启本地视频采集。
+                        <ul>
+                            <li><xref keyref="true"/>:（默认）开启本地视频采集。</li>
+                            <li><xref keyref="false"/>: 关闭本地视频采集。关闭后，远端用户会接收不到本地用户的视频流；但本地用户依然可以接收远端用户的视频流。设置为<xref keyref="false"/>时，该方法不需要本地有摄像头。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>是否开启本地视频采集。
+                        <ul>
+                            <li><xref keyref="true"/>:（默认）开启本地视频采集。</li>
+                            <li><xref keyref="false"/>: 关闭本地视频采集。关闭后，远端用户会接收不到本地用户的视频流；但本地用户依然可以接收远端用户的视频流。设置为<xref keyref="false"/>时，该方法不需要本地有摄像头。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>是否开启本地视频采集。
+                        <ul>
+                            <li><xref keyref="true"/>:（默认）开启本地视频采集。</li>
+                            <li><xref keyref="false"/>: 关闭本地视频采集。关闭后，远端用户会接收不到本地用户的视频流；但本地用户依然可以接收远端用户的视频流。设置为<xref keyref="false"/>时，该方法不需要本地有摄像头。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

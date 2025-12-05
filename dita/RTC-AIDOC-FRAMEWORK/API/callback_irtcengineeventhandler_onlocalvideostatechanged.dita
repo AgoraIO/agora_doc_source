@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onlocalvideostatechanged">
+    <title><ph keyref="onLocalVideoStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">本地视频状态发生改变回调。</ph><ph id="shortdesc" props="rn">本地视频状态发生改变回调。</ph><ph id="shortdesc" props="flutter">本地视频状态发生改变回调。</ph><ph id="shortdesc" props="unity">本地视频状态发生改变回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalVideoStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onLocalVideoStateChanged?(
+    source: VideoSourceType,
+    state: LocalVideoStreamState,
+    reason: LocalVideoStreamReason
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onLocalVideoStateChanged?(
+    source: VideoSourceType,
+    state: LocalVideoStreamState,
+    reason: LocalVideoStreamReason
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(VideoSourceType source, LocalVideoStreamState state,
+    LocalVideoStreamReason reason)? onLocalVideoStateChanged;;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoStateChanged(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_REASON reason)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">本地视频的状态发生改变时，SDK 会触发该回调，报告当前的本地视频状态以及状态改变的原因。</p>
+            <p props="rn">本地视频的状态发生改变时，SDK 会触发该回调，报告当前的本地视频状态以及状态改变的原因。</p>
+            <p props="flutter">本地视频的状态发生改变时，SDK 会触发该回调，报告当前的本地视频状态以及状态改变的原因。</p>
+            <p props="unity">本地视频的状态发生改变时，SDK 会触发该回调，报告当前的本地视频状态以及状态改变的原因。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>source</pt>
+                    <pd>视频源的类型。详见 <codeph>VideoSourceType</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>state</pt>
+                    <pd>本地视频状态，详见 <codeph>LocalVideoStreamState</codeph>。
+                        <ul>
+                            <li>LocalVideoStreamStateStopped(0): 本地视频默认初始状态。</li>
+                            <li>LocalVideoStreamStateCapturing(1): 本地视频采集设备启动成功。</li>
+                            <li>LocalVideoStreamStateEncoding(2): 本地视频首帧编码成功。</li>
+                            <li>LocalVideoStreamStateFailed(3): 本地视频启动失败。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>reason</pt>
+                    <pd>本地视频状态改变原因，详见 <codeph>LocalVideoStreamReason</codeph>。
+                        <ul>
+                            <li>LocalVideoStreamReasonOk(0): 本地视频状态正常。</li>
+                            <li>LocalVideoStreamReasonFailure(1): 出错原因不明确。</li>
+                            <li>LocalVideoStreamReasonDeviceBusy(3): 本地视频采集设备正在使用中。请提示用户检查摄像头是否被其他 App 占用，或者尝试重新加入频道。</li>
+                            <li>LocalVideoStreamReasonCaptureFailure(4): 本地视频采集失败。请提示用户检查视频采集设备是否正常工作，检查摄像头是否被其他 App 占用，或者尝试重新加入频道。</li>
+                            <li>LocalVideoStreamReasonCodecNotSupport(5)：本地视频编码失败。</li>
+                            <li>LocalVideoStreamReasonDeviceNotFound(8)：找不到本地视频采集设备。需检查摄像头是否与设备正常连接、摄像头是否正常工作，或者尝试重新加入频道。</li>
+                            <li>LOCAL_VIDEO_STREAM_REASON_DEVICE_INTERRUPT(14)：视频采集中断。可能的原因是：
+                                <ul>
+                                    <li>摄像头被其他 App 占用。请提示用户检查摄像头是否被其他 App 占用。</li>
+                                    <li>设备已锁屏，或当前 App 已被切换到后台。可以使用前台服务通知操作系统，确保 App 在切换到后台时仍可采集视频。详见[为什么部分 Android 版本应用锁屏或切后台后采集音视频无效？](https://doc.shengwang.cn/faq/quality-issues/android-background)。</li>
+                                </ul>
+                            </li>
+                            <li>LOCAL_VIDEO_STREAM_REASON_DEVICE_FATAL_ERROR(15)：视频采集设备出错。请提示用户关闭并重新启动摄像头以恢复功能，如果该操作不能解决问题，请检查摄像头是否出现硬件故障。</li>
+                            <li>LocalVideoStreamReasonScreenCaptureFailure(21)：当前采集的窗口无数据。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>source</pt>
+                    <pd>视频源的类型。详见 <codeph>VideoSourceType</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>state</pt>
+                    <pd>本地视频状态，详见 <codeph>LocalVideoStreamState</codeph>。
+                        <ul>
+                            <li>LocalVideoStreamStateStopped(0): 本地视频默认初始状态。</li>
+                            <li>LocalVideoStreamStateCapturing(1): 本地视频采集设备启动成功。</li>
+                            <li>LocalVideoStreamStateEncoding(2): 本地视频首帧编码成功。</li>
+                            <li>LocalVideoStreamStateFailed(3): 本地视频启动失败。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>reason</pt>
+                    <pd>本地视频状态改变原因，详见 <codeph>LocalVideoStreamReason</codeph>。
+                        <ul>
+                            <li>LocalVideoStreamReasonOk(0): 本地视频状态正常。</li>
+                            <li>LocalVideoStreamReasonFailure(1): 出错原因不明确。</li>
+                            <li>LocalVideoStreamReasonDeviceBusy(3): 本地视频采集设备正在使用中。请提示用户检查摄像头是否被其他 App 占用，或者尝试重新加入频道。</li>
+                            <li>LocalVideoStreamReasonCaptureFailure(4): 本地视频采集失败。请提示用户检查视频采集设备是否正常工作，检查摄像头是否被其他 App 占用，或者尝试重新加入频道。</li>
+                            <li>LocalVideoStreamReasonCodecNotSupport(5)：本地视频编码失败。</li>
+                            <li>LocalVideoStreamReasonDeviceNotFound(8)：找不到本地视频采集设备。需检查摄像头是否与设备正常连接、摄像头是否正常工作，或者尝试重新加入频道。</li>
+                            <li>LocalVideoStreamReasonDeviceInterrupt(14)：视频采集中断。可能的原因是：
+                                <ul>
+                                    <li>摄像头被其他 App 占用。请提示用户检查摄像头是否被其他 App 占用。</li>
+                                    <li>设备已锁屏，或当前 App 已被切换到后台。可以使用前台服务通知操作系统，确保 App 在切换到后台时仍可采集视频。详见[为什么部分 Android 版本应用锁屏或切后台后采集音视频无效？](https://doc.shengwang.cn/faq/quality-issues/android-background)。</li>
+                                </ul>
+                            </li>
+                            <li>LocalVideoStreamReasonDeviceFatalError(15)：视频采集设备出错。请提示用户关闭并重新启动摄像头以恢复功能，如果该操作不能解决问题，请检查摄像头是否出现硬件故障。</li>
+                            <li>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_FAILURE(21)：当前采集的窗口无数据。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>engine</pt>
+                    <pd><codeph>RtcEngine</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>source</pt>
+                    <pd>视频源的类型。详见 <codeph>VideoSourceType</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>state</pt>
+                    <pd>本地视频状态，详见 <codeph>LocalVideoStreamState</codeph>。
+                        <ul>
+                            <li>localVideoStreamStateStopped(0): 本地视频默认初始状态。</li>
+                            <li>localVideoStreamStateCapturing(1): 本地视频采集设备启动成功。</li>
+                            <li>localVideoStreamStateEncoding(2): 本地视频首帧编码成功。</li>
+                            <li>localVideoStreamStateFailed(3): 本地视频启动失败。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>reason</pt>
+                    <pd>本地视频状态改变原因，详见 <codeph>LocalVideoStreamReason</codeph>。
+                        <ul>
+                            <li>localVideoStreamReasonOk(0): 本地视频状态正常。</li>
+                            <li>localVideoStreamReasonFailure(1): 出错原因不明确。</li>
+                            <li>localVideoStreamReasonDeviceBusy(3): 本地视频采集设备正在使用中。请提示用户检查摄像头是否被其他 App 占用，或者尝试重新加入频道。</li>
+                            <li>localVideoStreamReasonCaptureFailure(4): 本地视频采集失败。请提示用户检查视频采集设备是否正常工作，检查摄像头是否被其他 App 占用，或者尝试重新加入频道。</li>
+                            <li>localVideoStreamReasonCodecNotSupport(5)：本地视频编码失败。</li>
+                            <li>localVideoStreamReasonDeviceNotFound(8)：找不到本地视频采集设备。需检查摄像头是否与设备正常连接、摄像头是否正常工作，或者尝试重新加入频道。</li>
+                            <li>localVideoStreamReasonDeviceInterrupt(14)：视频采集中断。可能的原因是：
+                                <ul>
+                                    <li>摄像头被其他 App 占用。请提示用户检查摄像头是否被其他 App 占用。</li>
+                                    <li>设备已锁屏，或当前 App 已被切换到后台。可以使用前台服务通知操作系统，确保 App 在切换到后台时仍可采集视频。详见[为什么部分 Android 版本应用锁屏或切后台后采集音视频无效？](https://doc.shengwang.cn/faq/quality-issues/android-background)。</li>
+                                </ul>
+                            </li>
+                            <li>localVideoStreamReasonDeviceFatalError(15)：视频采集设备出错。请提示用户关闭并重新启动摄像头以恢复功能，如果该操作不能解决问题，请检查摄像头是否出现硬件故障。</li>
+                            <li>localVideoStreamReasonScreenCaptureFailure(21)：当前采集的窗口无数据。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>source</pt>
+                    <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>state</pt>
+                    <pd>本地视频状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>。
+                        <ul>
+                            <li>LOCAL_VIDEO_STREAM_STATE_STOPPED(0): 本地视频默认初始状态。</li>
+                            <li>LOCAL_VIDEO_STREAM_STATE_CAPTURING(1): 本地视频采集设备启动成功。</li>
+                            <li>LOCAL_VIDEO_STREAM_STATE_ENCODING(2): 本地视频首帧编码成功。</li>
+                            <li>LOCAL_VIDEO_STREAM_STATE_FAILED(3): 本地视频启动失败。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>reason</pt>
+                    <pd>本地视频状态改变原因，详见 <xref keyref="LOCAL_VIDEO_STREAM_REASON"/>。
+                        <ul>
+                            <li>LOCAL_VIDEO_STREAM_REASON_OK(0): 本地视频状态正常。</li>
+                            <li>LOCAL_VIDEO_STREAM_REASON_FAILURE(1): 出错原因不明确。</li>
+                            <li>LOCAL_VIDEO_STREAM_REASON_DEVICE_BUSY(3): 本地视频采集设备正在使用中。请提示用户检查摄像头是否被其他 App 占用，或者尝试重新加入频道。</li>
+                            <li>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE(4): 本地视频采集失败。请提示用户检查视频采集设备是否正常工作，检查摄像头是否被其他 App 占用，或者尝试重新加入频道。</li>
+                            <li>LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT(5)：本地视频编码失败。</li>
+                            <li>LOCAL_VIDEO_STREAM_REASON_DEVICE_NOT_FOUND(8)：找不到本地视频采集设备。需检查摄像头是否与设备正常连接、摄像头是否正常工作，或者尝试重新加入频道。</li>
+                            <li>LOCAL_VIDEO_STREAM_REASON_DEVICE_INTERRUPT(14)：视频采集中断。可能的原因是：
+                                <ul>
+                                    <li>摄像头被其他 App 占用。请提示用户检查摄像头是否被其他 App 占用。</li>
+                                    <li>设备已锁屏，或当前 App 已被切换到后台。可以使用前台服务通知操作系统，确保 App 在切换到后台时仍可采集视频。详见[为什么部分 Android 版本应用锁屏或切后台后采集音视频无效？](https://doc.shengwang.cn/faq/quality-issues/android-background)。</li>
+                                </ul>
+                            </li>
+                            <li>LOCAL_VIDEO_STREAM_REASON_DEVICE_FATAL_ERROR(15)：视频采集设备出错。请提示用户关闭并重新启动摄像头以恢复功能，如果该操作不能解决问题，请检查摄像头是否出现硬件故障。</li>
+                            <li>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_FAILURE(21)：当前采集的窗口无数据。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

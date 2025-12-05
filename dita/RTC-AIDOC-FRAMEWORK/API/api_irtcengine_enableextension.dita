@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enableextension">
+    <title><ph keyref="enableExtension"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">启用/禁用插件。</ph><ph id="shortdesc" props="rn">启用/禁用插件。</ph><ph id="shortdesc" props="flutter">启用/禁用插件。</ph><ph id="shortdesc" props="unity">启用/禁用插件。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableExtension"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableExtension(
+    provider: string,
+    extension: string,
+    enable?: boolean,
+    type?: MediaSourceType
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableExtension(
+    provider: string,
+    extension: string,
+    enable?: boolean,
+    type?: MediaSourceType
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableExtension(
+    {required String provider,
+    required String extension,
+    bool enable = true,
+    MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableExtension(string provider, string extension, bool enable = true, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.UNKNOWN_MEDIA_SOURCE);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">建议你在加入频道后调用该方法。</p>
+            <p props="rn">建议你在加入频道后调用该方法。</p>
+            <p props="flutter">建议你在加入频道后调用该方法。</p>
+            <p props="unity">建议你在加入频道后调用该方法。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>相关回调</title>
+            <p props="electron">频道内调用该方法成功时会触发插件启用回调 <xref keyref="onExtensionStartedWithContext"/> 或插件禁用回调 <xref keyref="onExtensionStoppedWithContext"/>。</p>
+            <p props="rn">频道内调用该方法成功时会触发插件启用回调 <xref keyref="onExtensionStartedWithContext"/> 或插件禁用回调 <xref keyref="onExtensionStoppedWithContext"/>。</p>
+            <p props="flutter">频道内调用该方法成功时会触发插件启用回调 <xref keyref="onExtensionStartedWithContext"/> 或插件禁用回调 <xref keyref="onExtensionStoppedWithContext"/>。</p>
+            <p props="unity">频道内调用该方法成功时会触发插件启用回调 <xref keyref="onExtensionStartedWithContext"/> 或插件禁用回调 <xref keyref="onExtensionStoppedWithContext"/>。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>provider</pt>
+                    <pd>提供插件的服务商名称。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>extension</pt>
+                    <pd>插件的名称。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enable</pt>
+                    <pd>是否启用插件：
+                        <ul>
+                            <li><xref keyref="true"/>: 启用插件。</li>
+                            <li><xref keyref="false"/>: 禁用插件。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>插件的媒体源类型。详见 <codeph>MediaSourceType</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>provider</pt>
+                    <pd>提供插件的服务商名称。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>extension</pt>
+                    <pd>插件的名称。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enable</pt>
+                    <pd>是否启用插件：
+                        <ul>
+                            <li><xref keyref="true"/>: 启用插件。</li>
+                            <li><xref keyref="false"/>: 禁用插件。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>插件的媒体源类型。详见 <codeph>MediaSourceType</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>provider</pt>
+                    <pd>提供插件的服务商名称。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>extension</pt>
+                    <pd>插件的名称。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enable</pt>
+                    <pd>是否启用插件：
+                        <ul>
+                            <li><xref keyref="true"/>: 启用插件。</li>
+                            <li><xref keyref="false"/>: 禁用插件。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>插件的媒体源类型。详见 <codeph>MediaSourceType</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>provider</pt>
+                    <pd>提供插件的服务商名称。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>extension</pt>
+                    <pd>插件的名称。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enable</pt>
+                    <pd>是否启用插件：
+                        <ul>
+                            <li><xref keyref="true"/>: 启用插件。</li>
+                            <li><xref keyref="false"/>: 禁用插件。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>插件的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-3: 该插件动态库没有被加载。声网推荐你检查该动态库是否存放在预期的位置，或该动态库名是否正确。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-3: 该插件动态库没有被加载。声网推荐你检查该动态库是否存放在预期的位置，或该动态库名是否正确。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-3: 该插件动态库没有被加载。声网推荐你检查该动态库是否存放在预期的位置，或该动态库名是否正确。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

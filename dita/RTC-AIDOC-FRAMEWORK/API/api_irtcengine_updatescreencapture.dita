@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_updatescreencapture">
+    <title><ph keyref="updateScreenCapture"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">更新屏幕采集的参数配置。</ph><ph id="shortdesc" props="flutter">更新屏幕采集的参数配置。</ph><ph id="shortdesc" props="unity">更新屏幕采集的参数配置。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updateScreenCapture"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract updateScreenCapture(captureParams: ScreenCaptureParameters2): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">如果在开启屏幕共享时未采集系统音频、然后想要更新参数配置、发布系统音频，可参考以下步骤：
+                <ol>
+                    <li>调用该方法并设置<codeph>captureAudio</codeph>为<xref keyref="true"/>。</li>
+                    <li>调用<xref keyref="updateChannelMediaOptions"/>设置<codeph>publishScreenCaptureAudio</codeph>为<xref keyref="true"/>，即可发布屏幕采集的音频。</li>
+                </ol>
+            </p>
+            <p props="flutter">如果在开启屏幕共享时未采集系统音频、然后想要更新参数配置、发布系统音频，可参考以下步骤：
+                <ol>
+                    <li>调用该方法并设置<codeph>captureAudio</codeph>为<xref keyref="true"/>。</li>
+                    <li>调用<xref keyref="updateChannelMediaOptions"/>设置<codeph>publishScreenCaptureAudio</codeph>为<xref keyref="true"/>，即可发布屏幕采集的音频。</li>
+                </ol>
+            </p>
+            <p props="unity">如果在开启屏幕共享时未采集系统音频、然后想要更新参数配置、发布系统音频，可参考以下步骤：
+                <ol>
+                    <li>调用该方法并设置<codeph>captureAudio</codeph>为<xref keyref="true"/>。</li>
+                    <li>调用<xref keyref="updateChannelMediaOptions"/>设置<codeph>publishScreenCaptureAudio</codeph>为<xref keyref="true"/>，即可发布屏幕采集的音频。</li>
+                </ol>
+            </p>
+            <note props="rn">
+                <ul>
+                    <li>该方法仅适用于 Android 和 iOS 平台。</li>
+                    <li>在 iOS 平台上，屏幕共享仅适用于 iOS 12.0 及以上。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法仅适用于 Android 和 iOS 平台。</li>
+                    <li>在 iOS 平台上，屏幕共享仅适用于 iOS 12.0 及以上。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法仅适用于 Android 和 iOS 平台。</li>
+                    <li>在 iOS 平台上，屏幕共享仅适用于 iOS 12.0 及以上。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享的编码参数配置。详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享的编码参数配置。详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享的编码参数配置。详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>返回值</title>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_sendstreammessageex">
+    <title><ph keyref="sendStreamMessageEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">发送数据流。</ph><ph id="shortdesc" props="rn">发送数据流。</ph><ph id="shortdesc" props="flutter">发送数据流。</ph><ph id="shortdesc" props="unity">发送数据流。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="sendStreamMessageEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract sendStreamMessageEx(streamId: number, data: Uint8Array, length: number, connection: RtcConnection): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract sendStreamMessageEx(
+  streamId: number,
+  data: Uint8Array,
+  length: number,
+  connection: RtcConnection
+): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; sendStreamMessageEx(
+      {required int streamId,
+      required Uint8List data,
+      required int length,
+      required RtcConnection connection});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SendStreamMessageEx(int streamId, byte[] data, uint length, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">调用 <xref keyref="createDataStreamEx2"/> 后，你可以调用本方法向频道内所有用户发送数据流消息。</p>
+            <p props="rn">调用 <xref keyref="createDataStreamEx2"/> 后，你可以调用本方法向频道内所有用户发送数据流消息。</p>
+            <p props="flutter">调用 <xref keyref="createDataStreamEx2"/> 后，你可以调用本方法向频道内所有用户发送数据流消息。</p>
+            <p props="unity">调用 <xref keyref="createDataStreamEx2"/> 后，你可以调用本方法向频道内所有用户发送数据流消息。</p>
+            <note props="electron">
+                <ul>
+                    <li>该方法需要在<xref keyref="joinChannelEx"/>后调用。</li>
+                    <li>请确保在调用该方法前，已调用<xref keyref="createDataStreamEx2"/>创建了数据通道。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>该方法需要在<xref keyref="joinChannelEx"/>后调用。</li>
+                    <li>请确保在调用该方法前，已调用<xref keyref="createDataStreamEx2"/>创建了数据通道。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>如你需要更加全面的低延时、高并发、可扩展的实时消息及状态同步解决方案，推荐使用[实时消息](https://doc.shengwang.cn/doc/rtm2/flutter/landing-page)。</li>
+                    <li>该方法需要在<xref keyref="joinChannelEx"/>后调用。</li>
+                    <li>请确保在调用该方法前，已调用<xref keyref="createDataStreamEx2"/>创建了数据通道。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>如你需要更加全面的低延时、高并发、可扩展的实时消息及状态同步解决方案，推荐使用[实时消息](https://doc.shengwang.cn/doc/rtm2/unity/landing-page)。</li>
+                    <li>该方法需要在<xref keyref="joinChannelEx"/>后调用。</li>
+                    <li>请确保在调用该方法前，已调用<xref keyref="createDataStreamEx2"/>创建了数据通道。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>streamId</pt>
+                    <pd>数据流 ID。可以通过 <xref keyref="createDataStreamEx2"/> 获取。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>data</pt>
+                    <pd>待发送的数据。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>length</pt>
+                    <pd>数据长度。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>streamId</pt>
+                    <pd>数据流 ID。可以通过 <xref keyref="createDataStreamEx2"/> 获取。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>data</pt>
+                    <pd>待发送的数据。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>length</pt>
+                    <pd>数据长度。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamId</pt>
+                    <pd>数据流 ID。可以通过 <xref keyref="createDataStreamEx2"/> 获取。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>data</pt>
+                    <pd>待发送的数据。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>length</pt>
+                    <pd>数据长度。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>streamId</pt>
+                    <pd>数据流 ID。可以通过 <xref keyref="createDataStreamEx2"/> 获取。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>data</pt>
+                    <pd>待发送的数据。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>length</pt>
+                    <pd>数据长度。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

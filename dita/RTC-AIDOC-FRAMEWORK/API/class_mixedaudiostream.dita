@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_mixedaudiostream">
+    <title><ph keyref="MixedAudioStream"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">在本地进行合流的音频源。</ph><ph id="shortdesc" props="rn">在本地进行合流的音频源。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class MixedAudioStream {
+  sourceType?: AudioSourceType;
+  remoteUserUid?: number;
+  channelId?: string;
+  trackId?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class MixedAudioStream {
+  sourceType?: AudioSourceType;
+  remoteUserUid?: number;
+  channelId?: string;
+  trackId?: number;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron rn">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron rn">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>sourceType</pt>
+                    <pd>音频源的类型。详见 <codeph>AudioSourceType</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteUserUid</pt>
+                    <pd>远端用户 ID。
+                        <note>当参与本地音频合流的音频源类型为 AudioSourceRemoteUser 时，需要设置该参数。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。将该参数设置为调用 <xref keyref="createCustomAudioTrack"/> 方法返回的自定义音频轨道 ID。
+                        <note>当参与本地本地音频合流的音频源类型为 AudioSourceCustom 时，需要设置该参数。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceType</pt>
+                    <pd>音频源的类型。详见 <codeph>AudioSourceType</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteUserUid</pt>
+                    <pd>远端用户 ID。
+                        <note>当参与本地音频合流的音频源类型为 AudioSourceRemoteUser 时，需要设置该参数。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。将该参数设置为调用 <xref keyref="createCustomAudioTrack"/> 方法返回的自定义音频轨道 ID。
+                        <note>当参与本地本地音频合流的音频源类型为 AudioSourceCustom 时，需要设置该参数。</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

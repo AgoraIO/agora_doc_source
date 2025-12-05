@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_createcustomvideotrack">
+    <title><ph keyref="createCustomVideoTrack"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">创建一个自定义的视频轨道。</ph><ph id="shortdesc" props="rn">创建一个自定义的视频轨道。</ph><ph id="shortdesc" props="flutter">创建一个自定义的视频轨道。</ph><ph id="shortdesc" props="unity">创建一个自定义的视频轨道。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createCustomVideoTrack"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract createCustomVideoTrack(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract createCustomVideoTrack(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; createCustomVideoTrack();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract video_track_id_t CreateCustomVideoTrack();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">当你需要在频道中发布自定义采集视频时，可参考以下步骤：
+                <ol>
+                    <li>调用该方法创建视频轨道并获得视频轨道 ID。</li>
+                    <li>调用<xref keyref="joinChannel2"/>加入频道时，将<xref keyref="ChannelMediaOptions"/>中的<codeph>customVideoTrackId</codeph>设置为你想要发布的视频轨道 ID，并将<codeph>publishCustomVideoTrack</codeph>设置为<xref keyref="true"/>。</li>
+                    <li>调用`pushVideoFrame``pushVideoFrame3<codeph>将</codeph>videoTrackId`指定为步骤 2 中指定的视频轨道 ID，即可实现在频道内发布对应的自定义视频源。</li>
+                </ol>
+            </p>
+            <p props="rn">当你需要在频道中发布自定义采集视频时，可参考以下步骤：
+                <ol>
+                    <li>调用该方法创建视频轨道并获得视频轨道 ID。</li>
+                    <li>调用<xref keyref="joinChannel2"/>加入频道时，将<xref keyref="ChannelMediaOptions"/>中的<codeph>customVideoTrackId</codeph>设置为你想要发布的视频轨道 ID，并将<codeph>publishCustomVideoTrack</codeph>设置为<xref keyref="true"/>。</li>
+                    <li>调用`pushVideoFrame``pushVideoFrame3<codeph>将</codeph>videoTrackId`指定为步骤 2 中指定的视频轨道 ID，即可实现在频道内发布对应的自定义视频源。</li>
+                </ol>
+            </p>
+            <p props="flutter">当你需要在频道中发布自定义采集视频时，可参考以下步骤：
+                <ol>
+                    <li>调用该方法创建视频轨道并获得视频轨道 ID。</li>
+                    <li>调用<xref keyref="joinChannel2"/>加入频道时，将<xref keyref="ChannelMediaOptions"/>中的<codeph>customVideoTrackId</codeph>设置为你想要发布的视频轨道 ID，并将<codeph>publishCustomVideoTrack</codeph>设置为<xref keyref="true"/>。</li>
+                    <li>调用`pushVideoFrame``pushVideoFrame3<codeph>将</codeph>videoTrackId`指定为步骤 2 中指定的视频轨道 ID，即可实现在频道内发布对应的自定义视频源。</li>
+                </ol>
+            </p>
+            <p props="unity">当你需要在频道中发布自定义采集视频时，可参考以下步骤：
+                <ol>
+                    <li>调用该方法创建视频轨道并获得视频轨道 ID。</li>
+                    <li>调用<xref keyref="joinChannel2"/>加入频道时，将<xref keyref="ChannelMediaOptions"/>中的<codeph>customVideoTrackId</codeph>设置为你想要发布的视频轨道 ID，并将<codeph>publishCustomVideoTrack</codeph>设置为<xref keyref="true"/>。</li>
+                    <li>调用`PushVideoFrame``pushVideoFrame3<codeph>将</codeph>videoTrackId`指定为步骤 2 中指定的视频轨道 ID，即可实现在频道内发布对应的自定义视频源。</li>
+                </ol>
+            </p>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>方法调用成功，返回视频轨道 ID 作为该视频轨道的唯一标识。</li>
+                    <li>方法调用失败，返回 0xffffffff。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>方法调用成功，返回视频轨道 ID 作为该视频轨道的唯一标识。</li>
+                    <li>方法调用失败，返回 0xffffffff。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>方法调用成功，返回视频轨道 ID 作为该视频轨道的唯一标识。</li>
+                    <li>方法调用失败，返回 0xffffffff。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>方法调用成功，返回视频轨道 ID 作为该视频轨道的唯一标识。</li>
+                    <li>方法调用失败，返回 0xffffffff。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

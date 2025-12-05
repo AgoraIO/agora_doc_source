@@ -1,0 +1,395 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_music">
+    <title><ph keyref="Music"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">音乐资源的详细信息。</ph><ph id="shortdesc" props="rn">音乐资源的详细信息。</ph><ph id="shortdesc" props="flutter">音乐资源的详细信息。</ph><ph id="shortdesc" props="unity">音乐资源的详细信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class Music {
+  songCode?: number;
+  name?: string;
+  singer?: string;
+  poster?: string;
+  releaseTime?: string;
+  durationS?: number;
+  type?: number;
+  pitchType?: number;
+  lyricCount?: number;
+  lyricList?: number[];
+  climaxSegmentCount?: number;
+  climaxSegmentList?: ClimaxSegment[];
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class Music {
+  songCode?: number;
+  name?: string;
+  singer?: string;
+  poster?: string;
+  releaseTime?: string;
+  durationS?: number;
+  type?: number;
+  pitchType?: number;
+  lyricCount?: number;
+  lyricList?: number[];
+  climaxSegmentCount?: number;
+  climaxSegmentList?: ClimaxSegment[];
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class Music {
+  const Music(
+      {this.songCode,
+      this.name,
+      this.singer,
+      this.poster,
+      this.releaseTime,
+      this.durationS,
+      this.type,
+      this.pitchType,
+      this.lyricCount,
+      this.lyricList,
+      this.climaxSegmentCount,
+      this.climaxSegmentList});
+
+  @JsonKey(name: 'songCode')
+  final int? songCode;
+
+  @JsonKey(name: 'name')
+  final String? name;
+
+  @JsonKey(name: 'singer')
+  final String? singer;
+
+  @JsonKey(name: 'poster')
+  final String? poster;
+
+  @JsonKey(name: 'releaseTime')
+  final String? releaseTime;
+
+  @JsonKey(name: 'durationS')
+  final int? durationS;
+
+  @JsonKey(name: 'type')
+  final int? type;
+
+  @JsonKey(name: 'pitchType')
+  final int? pitchType;
+
+  @JsonKey(name: 'lyricCount')
+  final int? lyricCount;
+
+  @JsonKey(name: 'lyricList')
+  final List&lt;int&gt;? lyricList;
+
+  @JsonKey(name: 'climaxSegmentCount')
+  final int? climaxSegmentCount;
+
+  @JsonKey(name: 'climaxSegmentList')
+  final List&lt;ClimaxSegment&gt;? climaxSegmentList;
+
+  factory Music.fromJson(Map&lt;String, dynamic&gt; json) =&gt; _$MusicFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$MusicToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class Music
+    {
+        public Int64 songCode;
+        public string name;
+        public string singer;
+        public string poster;
+        public string releaseTime;
+        public int durationS;
+        public int type;
+        public int pitchType;
+        public int lyricCount;
+        public int[] lyricList;
+        public int climaxSegmentCount;
+        public ClimaxSegment[] climaxSegmentList;
+    }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识一个音乐资源。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>name</pt>
+                    <pd>音乐资源名称。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>singer</pt>
+                    <pd>歌手名。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>poster</pt>
+                    <pd>音乐资源海报的下载地址。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>releaseTime</pt>
+                    <pd>音乐资源发布的时间。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>音乐资源类型：
+                        <ul>
+                            <li>1：左声道伴奏，右声道原唱的单音轨音源。</li>
+                            <li>2：只有伴唱的单音轨音源。</li>
+                            <li>3：只有原唱的单音轨音源。</li>
+                            <li>4：多音轨音源。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>pitchType</pt>
+                    <pd>歌曲是否支持演唱评分功能：
+                        <ul>
+                            <li>1：歌曲支持演唱评分功能。</li>
+                            <li>2：歌曲不支持演唱评分功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>durationS</pt>
+                    <pd>音乐资源总时长 （秒）。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>lyricList</pt>
+                    <pd>支持的歌词类型：
+                        <ul>
+                            <li>0：xml 格式。</li>
+                            <li>1：lrc 格式。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>climaxSegmentList</pt>
+                    <pd>音乐高潮片段列表，详见 <xref keyref="ClimaxSegment"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>lyricCount</pt>
+                    <pd>歌曲的歌词数量。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>climaxSegmentCount</pt>
+                    <pd>高潮片段的数量。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识一个音乐资源。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>name</pt>
+                    <pd>音乐资源名称。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>singer</pt>
+                    <pd>歌手名。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>poster</pt>
+                    <pd>音乐资源海报的下载地址。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>releaseTime</pt>
+                    <pd>音乐资源发布的时间。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>音乐资源类型：
+                        <ul>
+                            <li>1：左声道伴奏，右声道原唱的单音轨音源。</li>
+                            <li>2：只有伴唱的单音轨音源。</li>
+                            <li>3：只有原唱的单音轨音源。</li>
+                            <li>4：多音轨音源。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>pitchType</pt>
+                    <pd>歌曲是否支持演唱评分功能：
+                        <ul>
+                            <li>1：歌曲支持演唱评分功能。</li>
+                            <li>2：歌曲不支持演唱评分功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>durationS</pt>
+                    <pd>音乐资源总时长 （秒）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lyricList</pt>
+                    <pd>支持的歌词类型：
+                        <ul>
+                            <li>0：xml 格式。</li>
+                            <li>1：lrc 格式。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>climaxSegmentList</pt>
+                    <pd>音乐高潮片段列表，详见 <xref keyref="ClimaxSegment"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lyricCount</pt>
+                    <pd>歌曲的歌词数量。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>climaxSegmentCount</pt>
+                    <pd>高潮片段的数量。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识一个音乐资源。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>name</pt>
+                    <pd>音乐资源名称。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>singer</pt>
+                    <pd>歌手名。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>poster</pt>
+                    <pd>音乐资源海报的下载地址。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>releaseTime</pt>
+                    <pd>音乐资源发布的时间。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>音乐资源类型：
+                        <ul>
+                            <li>1：左声道伴奏，右声道原唱的单音轨音源。</li>
+                            <li>2：只有伴唱的单音轨音源。</li>
+                            <li>3：只有原唱的单音轨音源。</li>
+                            <li>4：多音轨音源。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pitchType</pt>
+                    <pd>歌曲是否支持演唱评分功能：
+                        <ul>
+                            <li>1：歌曲支持演唱评分功能。</li>
+                            <li>2：歌曲不支持演唱评分功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>durationS</pt>
+                    <pd>音乐资源总时长 （秒）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lyricList</pt>
+                    <pd>支持的歌词类型：
+                        <ul>
+                            <li>0：xml 格式。</li>
+                            <li>1：lrc 格式。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>climaxSegmentList</pt>
+                    <pd>音乐高潮片段列表，详见 <xref keyref="ClimaxSegment"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lyricCount</pt>
+                    <pd>歌曲的歌词数量。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>climaxSegmentCount</pt>
+                    <pd>高潮片段的数量。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识一个音乐资源。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>name</pt>
+                    <pd>音乐资源名称。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>singer</pt>
+                    <pd>歌手名。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>poster</pt>
+                    <pd>音乐资源海报的下载地址。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>releaseTime</pt>
+                    <pd>音乐资源发布的时间。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>音乐资源类型：
+                        <ul>
+                            <li>1：左声道伴奏，右声道原唱的单音轨音源。</li>
+                            <li>2：只有伴唱的单音轨音源。</li>
+                            <li>3：只有原唱的单音轨音源。</li>
+                            <li>4：多音轨音源。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>pitchType</pt>
+                    <pd>歌曲是否支持演唱评分功能：
+                        <ul>
+                            <li>1：歌曲支持演唱评分功能。</li>
+                            <li>2：歌曲不支持演唱评分功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>durationS</pt>
+                    <pd>音乐资源总时长 （秒）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lyricList</pt>
+                    <pd>支持的歌词类型：
+                        <ul>
+                            <li>0：xml 格式。</li>
+                            <li>1：lrc 格式。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>climaxSegmentList</pt>
+                    <pd>音乐高潮片段列表，详见 <xref keyref="ClimaxSegment"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lyricCount</pt>
+                    <pd>歌曲的歌词数量。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>climaxSegmentCount</pt>
+                    <pd>高潮片段的数量。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

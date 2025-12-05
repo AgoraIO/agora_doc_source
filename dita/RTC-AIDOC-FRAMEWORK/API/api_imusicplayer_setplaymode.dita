@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusicplayer_setplaymode">
+    <title><ph keyref="setPlayMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置音乐资源的播放模式。</ph><ph id="shortdesc" props="rn">设置音乐资源的播放模式。</ph><ph id="shortdesc" props="flutter">设置音乐资源的播放模式。</ph><ph id="shortdesc" props="unity">设置音乐资源的播放模式。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlayMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setPlayMode(mode: MusicPlayMode): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setPlayMode(mode: MusicPlayMode): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setPlayMode(MusicPlayMode mode);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetPlayMode(MusicPlayMode mode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.4.0</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.4.0</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.4.0</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.4.0</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">你可以调用该方法来设置启用原唱、伴奏或导唱。如不调用该方法进行设置，则默认播放伴奏；如果音乐资源没有伴奏，则播放原唱。</p>
+            <p props="rn">你可以调用该方法来设置启用原唱、伴奏或导唱。如不调用该方法进行设置，则默认播放伴奏；如果音乐资源没有伴奏，则播放原唱。</p>
+            <p props="flutter">你可以调用该方法来设置启用原唱、伴奏或导唱。如不调用该方法进行设置，则默认播放伴奏；如果音乐资源没有伴奏，则播放原唱。</p>
+            <p props="unity">你可以调用该方法来设置启用原唱、伴奏或导唱。如不调用该方法进行设置，则默认播放伴奏；如果音乐资源没有伴奏，则播放原唱。</p>
+            <note props="electron">你可以通过 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源的详细信息，并可通过其中的 `list``result` 参数得知需播放的版权音乐所支持的播放类型。</note>
+            <note props="rn">你可以通过 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源的详细信息，并可通过其中的 `list``result` 参数得知需播放的版权音乐所支持的播放类型。</note>
+            <note props="flutter">你可以通过 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源的详细信息，并可通过其中的 `list``result` 参数得知需播放的版权音乐所支持的播放类型。</note>
+            <note props="unity">你可以通过 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源的详细信息，并可通过其中的 `list``result` 参数得知需播放的版权音乐所支持的播放类型。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在 <xref keyref="createMusicPlayer"/> 之后调用。</p>
+            <p props="rn">该方法需要在 <xref keyref="createMusicPlayer"/> 之后调用。</p>
+            <p props="flutter">该方法需要在 <xref keyref="createMusicPlayer"/> 之后调用。</p>
+            <p props="unity">该方法需要在 <xref keyref="createMusicPlayer"/> 之后调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>mode</pt>
+                    <pd>播放模式，详见 <xref keyref="MusicPlayMode"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mode</pt>
+                    <pd>播放模式，详见 <xref keyref="MusicPlayMode"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mode</pt>
+                    <pd>播放模式，详见 <xref keyref="MusicPlayMode"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mode</pt>
+                    <pd>播放模式，详见 <xref keyref="MusicPlayMode"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2: 参数设置错误，请重新设置参数。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2: 参数设置错误，请重新设置参数。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2: 参数设置错误，请重新设置参数。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

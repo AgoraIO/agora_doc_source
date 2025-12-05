@@ -1,0 +1,305 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getfaceshapeareaoptions">
+    <title><ph keyref="getFaceShapeAreaOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">获取美型部位选项。</ph><ph id="shortdesc" props="rn">获取美型部位选项。</ph><ph id="shortdesc" props="flutter">获取美型部位选项。</ph><ph id="shortdesc" props="unity">获取美型部位选项。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getFaceShapeAreaOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getFaceShapeAreaOptions(
+    shapeArea: FaceShapeArea,
+    type?: MediaSourceType
+  ): FaceShapeAreaOptions;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getFaceShapeAreaOptions(
+    shapeArea: FaceShapeArea,
+    type?: MediaSourceType
+  ): FaceShapeAreaOptions;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;FaceShapeAreaOptions&gt; getFaceShapeAreaOptions(
+      {required FaceShapeArea shapeArea,
+      MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetFaceShapeAreaOptions(FACE_SHAPE_AREA shapeArea, ref FaceShapeAreaOptions options, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.5.0</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">调用该方法可以获取美型部位当前设置的参数信息。</p>
+            <p props="rn">调用该方法可以获取美型部位当前设置的参数信息。</p>
+            <p props="flutter">调用该方法可以获取美型部位当前设置的参数信息。</p>
+            <p props="unity">调用该方法可以获取美型部位当前设置的参数信息。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">请在 <xref keyref="enableVideo"/> 之后调用该方法。</p>
+            <p props="rn">请在 <xref keyref="enableVideo"/> 之后调用该方法。</p>
+            <p props="flutter">请在 <xref keyref="enableVideo"/> 之后调用该方法。</p>
+            <p props="unity">请在 <xref keyref="enableVideo"/> 之后调用该方法。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>shapeArea</pt>
+                    <pd>美型部位。详见 <codeph>FaceShapeArea</codeph>。
+美型部位：
+                        <ul>
+                            <li>FaceShapeAreaNone(-1)：（默认）无效部位，美型效果不生效。</li>
+                            <li>FaceShapeAreaHeadscale(100)：头部，用于实现小头效果。对应修饰力度范围为 [0,100]，值越大头越小，预设值为 100。</li>
+                            <li>FaceShapeAreaForehead(101)：额头，修饰发际线高度。对应修饰力度范围为 [-100,100]，正值为调高，负值为调低，绝对值越大修饰效果越强，预设值为 50。</li>
+                            <li>FaceShapeAreaFacecontour(102)：脸部轮廓，用于实现瘦脸效果。对应修饰力度范围为 [0,100]，值越大瘦脸效果越强，预设值为 10。</li>
+                            <li>FaceShapeAreaFacelength(103)：脸部长度，用于实现长脸效果。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 0。</li>
+                            <li>FaceShapeAreaFacewidth(104)：脸部宽度，用于实现窄脸效果。对应修饰力度范围为 [0,100]，值越大窄脸效果越强，预设值为 10。</li>
+                            <li>FaceShapeAreaCheekbone(105)：颧骨，修饰颧骨宽度。对应修饰力度范围为 [0,100]，值越大颧骨越窄，预设值为 43。</li>
+                            <li>FaceShapeAreaCheek(106)：脸颊，修饰脸颊宽度。对应修饰力度范围为 [0,100]，值越大脸颊越窄，预设值为 50。</li>
+                            <li>FaceShapeAreaChin(108)：下巴，修饰下巴长度。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 -20。</li>
+                            <li>FaceShapeAreaEyescale(200)：眼睛，用于实现大眼效果。对应修饰力度范围为 [0,100]，值越大，眼睛尺寸越大，预设值为 50。</li>
+                            <li>FACE_SHAPE_AREA_EYEDISTANCE(201)：眼距调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</li>
+                            <li>FACE_SHAPE_AREA_EYEPOSITION(202)：眼位调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</li>
+                            <li>FACE_SHAPE_AREA_LOWEREYELID(203)：下眼睑调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_EYEPUPILS(204)：眼珠调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_EYEINNERCORNER(205)：眼角调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_EYEOUTERCORNER(206)：眼角调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FaceShapeAreaNoselength(300)：鼻子长度，用于实现长鼻效果。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 -10。</li>
+                            <li>FaceShapeAreaNosewidth(301)：鼻子宽度，用于实现瘦鼻效果。对应修饰力度范围为 [-100,100]，正值为变胖/变宽，负值为变瘦/变窄，绝对值越大修饰效果越强，预设值为 72。</li>
+                            <li>FACE_SHAPE_AREA_NOSEWING(302)：鼻翼调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSEROOT(303)：鼻根调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSEBRIDGE(304)：鼻梁调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSETIP(305)：鼻尖调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSEGENERAL(306)：鼻子整体调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FaceShapeAreaMouthscale(400)：嘴巴，用于实现大嘴效果。对应修饰力度范围为 [0,100]，值越大，嘴巴尺寸越大，预设值为 50。</li>
+                            <li>FACE_SHAPE_AREA_MOUTHPOSITION(401)：嘴巴位置调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</li>
+                            <li>FACE_SHAPE_AREA_MOUTHSMILE(402)：嘴巴微笑调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_MOUTHLIP(403)：嘴巴唇形调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_EYEBROWPOSITION(500)：眉毛位置调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</li>
+                            <li>FACE_SHAPE_AREA_EYEBROWTHICKNESS(501)：眉毛粗细调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>options</pt>
+                    <pd>美型部位选项，详见 <xref keyref="FaceShapeAreaOptions"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>效果应用的媒体源类型。详见 <codeph>MediaSourceType</codeph>。
+                        <note>在该方法中，该参数仅支持以下两种设置：
+                            <ul>
+                                <li>使用摄像头采集本地视频时，请保持默认值<codeph>PrimaryCameraSource</codeph>。</li>
+                            </ul>
+                            <ul>
+                                <li>如果要使用自定义采集的视频，将该参数设置为<codeph>CustomVideoSource</codeph>。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>shapeArea</pt>
+                    <pd>美型部位。详见 <codeph>FaceShapeArea</codeph>。
+美型部位：
+                        <ul>
+                            <li>FaceShapeAreaNone(-1)：（默认）无效部位，美型效果不生效。</li>
+                            <li>FaceShapeAreaHeadscale(100)：头部，用于实现小头效果。对应修饰力度范围为 [0,100]，值越大头越小，预设值为 100。</li>
+                            <li>FaceShapeAreaForehead(101)：额头，修饰发际线高度。对应修饰力度范围为 [-100,100]，正值为调高，负值为调低，绝对值越大修饰效果越强，预设值为 50。</li>
+                            <li>FaceShapeAreaFacecontour(102)：脸部轮廓，用于实现瘦脸效果。对应修饰力度范围为 [0,100]，值越大瘦脸效果越强，预设值为 10。</li>
+                            <li>FaceShapeAreaFacelength(103)：脸部长度，用于实现长脸效果。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 0。</li>
+                            <li>FaceShapeAreaFacewidth(104)：脸部宽度，用于实现窄脸效果。对应修饰力度范围为 [0,100]，值越大窄脸效果越强，预设值为 10。</li>
+                            <li>FaceShapeAreaCheekbone(105)：颧骨，修饰颧骨宽度。对应修饰力度范围为 [0,100]，值越大颧骨越窄，预设值为 43。</li>
+                            <li>FaceShapeAreaCheek(106)：脸颊，修饰脸颊宽度。对应修饰力度范围为 [0,100]，值越大脸颊越窄，预设值为 50。</li>
+                            <li>FaceShapeAreaChin(108)：下巴，修饰下巴长度。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 -20。</li>
+                            <li>FaceShapeAreaEyescale(200)：眼睛，用于实现大眼效果。对应修饰力度范围为 [0,100]，值越大，眼睛尺寸越大，预设值为 50。</li>
+                            <li>FACE_SHAPE_AREA_EYEDISTANCE(201)：眼距调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</li>
+                            <li>FACE_SHAPE_AREA_EYEPOSITION(202)：眼位调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</li>
+                            <li>FACE_SHAPE_AREA_LOWEREYELID(203)：下眼睑调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_EYEPUPILS(204)：眼珠调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_EYEINNERCORNER(205)：眼角调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_EYEOUTERCORNER(206)：眼角调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FaceShapeAreaNoselength(300)：鼻子长度，用于实现长鼻效果。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 -10。</li>
+                            <li>FaceShapeAreaNosewidth(301)：鼻子宽度，用于实现瘦鼻效果。对应修饰力度范围为 [-100,100]，正值为变胖/变宽，负值为变瘦/变窄，绝对值越大修饰效果越强，预设值为 72。</li>
+                            <li>FACE_SHAPE_AREA_NOSEWING(302)：鼻翼调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSEROOT(303)：鼻根调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSEBRIDGE(304)：鼻梁调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSETIP(305)：鼻尖调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSEGENERAL(306)：鼻子整体调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FaceShapeAreaMouthscale(400)：嘴巴，用于实现大嘴效果。对应修饰力度范围为 [0,100]，值越大，嘴巴尺寸越大，预设值为 50。</li>
+                            <li>FACE_SHAPE_AREA_MOUTHPOSITION(401)：嘴巴位置调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</li>
+                            <li>FACE_SHAPE_AREA_MOUTHSMILE(402)：嘴巴微笑调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_MOUTHLIP(403)：嘴巴唇形调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_EYEBROWPOSITION(500)：眉毛位置调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</li>
+                            <li>FACE_SHAPE_AREA_EYEBROWTHICKNESS(501)：眉毛粗细调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>options</pt>
+                    <pd>美型部位选项，详见 <xref keyref="FaceShapeAreaOptions"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>效果应用的媒体源类型。详见 <codeph>MediaSourceType</codeph>。
+                        <note>在该方法中，该参数仅支持以下两种设置：
+                            <ul>
+                                <li>使用摄像头采集本地视频时，请保持默认值<codeph>PrimaryCameraSource</codeph>。</li>
+                            </ul>
+                            <ul>
+                                <li>如果要使用自定义采集的视频，将该参数设置为<codeph>CustomVideoSource</codeph>。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>shapeArea</pt>
+                    <pd>美型部位。详见 <codeph>FaceShapeArea</codeph>。
+美型部位：
+                        <ul>
+                            <li>faceShapeAreaNone(-1)：（默认）无效部位，美型效果不生效。</li>
+                            <li>faceShapeAreaHeadscale(100)：头部，用于实现小头效果。对应修饰力度范围为 [0,100]，值越大头越小，预设值为 100。</li>
+                            <li>faceShapeAreaForehead(101)：额头，修饰发际线高度。对应修饰力度范围为 [-100,100]，正值为调高，负值为调低，绝对值越大修饰效果越强，预设值为 50。</li>
+                            <li>faceShapeAreaFacecontour(102)：脸部轮廓，用于实现瘦脸效果。对应修饰力度范围为 [0,100]，值越大瘦脸效果越强，预设值为 10。</li>
+                            <li>faceShapeAreaFacelength(103)：脸部长度，用于实现长脸效果。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 0。</li>
+                            <li>faceShapeAreaFacewidth(104)：脸部宽度，用于实现窄脸效果。对应修饰力度范围为 [0,100]，值越大窄脸效果越强，预设值为 10。</li>
+                            <li>faceShapeAreaCheekbone(105)：颧骨，修饰颧骨宽度。对应修饰力度范围为 [0,100]，值越大颧骨越窄，预设值为 43。</li>
+                            <li>faceShapeAreaCheek(106)：脸颊，修饰脸颊宽度。对应修饰力度范围为 [0,100]，值越大脸颊越窄，预设值为 50。</li>
+                            <li>faceShapeAreaChin(108)：下巴，修饰下巴长度。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 -20。</li>
+                            <li>faceShapeAreaEyescale(200)：眼睛，用于实现大眼效果。对应修饰力度范围为 [0,100]，值越大，眼睛尺寸越大，预设值为 50。</li>
+                            <li>FACE_SHAPE_AREA_EYEDISTANCE(201)：眼距调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</li>
+                            <li>FACE_SHAPE_AREA_EYEPOSITION(202)：眼位调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</li>
+                            <li>FACE_SHAPE_AREA_LOWEREYELID(203)：下眼睑调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_EYEPUPILS(204)：眼珠调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_EYEINNERCORNER(205)：眼角调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_EYEOUTERCORNER(206)：眼角调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>faceShapeAreaNoselength(300)：鼻子长度，用于实现长鼻效果。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 -10。</li>
+                            <li>faceShapeAreaNosewidth(301)：鼻子宽度，用于实现瘦鼻效果。对应修饰力度范围为 [-100,100]，正值为变胖/变宽，负值为变瘦/变窄，绝对值越大修饰效果越强，预设值为 72。</li>
+                            <li>FACE_SHAPE_AREA_NOSEWING(302)：鼻翼调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSEROOT(303)：鼻根调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSEBRIDGE(304)：鼻梁调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSETIP(305)：鼻尖调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSEGENERAL(306)：鼻子整体调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>faceShapeAreaMouthscale(400)：嘴巴，用于实现大嘴效果。对应修饰力度范围为 [0,100]，值越大，嘴巴尺寸越大，预设值为 50。</li>
+                            <li>FACE_SHAPE_AREA_MOUTHPOSITION(401)：嘴巴位置调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</li>
+                            <li>FACE_SHAPE_AREA_MOUTHSMILE(402)：嘴巴微笑调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_MOUTHLIP(403)：嘴巴唇形调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_EYEBROWPOSITION(500)：眉毛位置调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</li>
+                            <li>FACE_SHAPE_AREA_EYEBROWTHICKNESS(501)：眉毛粗细调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>options</pt>
+                    <pd>美型部位选项，详见 <xref keyref="FaceShapeAreaOptions"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>效果应用的媒体源类型。详见 <codeph>MediaSourceType</codeph>。
+                        <note>在该方法中，该参数仅支持以下两种设置：
+                            <ul>
+                                <li>使用摄像头采集本地视频时，请保持默认值<codeph>primaryCameraSource</codeph>。</li>
+                            </ul>
+                            <ul>
+                                <li>如果要使用自定义采集的视频，将该参数设置为<codeph>customVideoSource</codeph>。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>shapeArea</pt>
+                    <pd>美型部位。详见 <xref keyref="FACE_SHAPE_AREA"/>。
+美型部位：
+                        <ul>
+                            <li>FACE_SHAPE_AREA_NONE(-1)：（默认）无效部位，美型效果不生效。</li>
+                            <li>FACE_SHAPE_AREA_HEADSCALE(100)：头部，用于实现小头效果。对应修饰力度范围为 [0,100]，值越大头越小，预设值为 100。</li>
+                            <li>FACE_SHAPE_AREA_FOREHEAD(101)：额头，修饰发际线高度。对应修饰力度范围为 [-100,100]，正值为调高，负值为调低，绝对值越大修饰效果越强，预设值为 50。</li>
+                            <li>FACE_SHAPE_AREA_FACECONTOUR(102)：脸部轮廓，用于实现瘦脸效果。对应修饰力度范围为 [0,100]，值越大瘦脸效果越强，预设值为 10。</li>
+                            <li>FACE_SHAPE_AREA_FACELENGTH(103)：脸部长度，用于实现长脸效果。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 0。</li>
+                            <li>FACE_SHAPE_AREA_FACEWIDTH(104)：脸部宽度，用于实现窄脸效果。对应修饰力度范围为 [0,100]，值越大窄脸效果越强，预设值为 10。</li>
+                            <li>FACE_SHAPE_AREA_CHEEKBONE(105)：颧骨，修饰颧骨宽度。对应修饰力度范围为 [0,100]，值越大颧骨越窄，预设值为 43。</li>
+                            <li>FACE_SHAPE_AREA_CHEEK(106)：脸颊，修饰脸颊宽度。对应修饰力度范围为 [0,100]，值越大脸颊越窄，预设值为 50。</li>
+                            <li>FACE_SHAPE_AREA_CHIN(108)：下巴，修饰下巴长度。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 -20。</li>
+                            <li>FACE_SHAPE_AREA_EYESCALE(200)：眼睛，用于实现大眼效果。对应修饰力度范围为 [0,100]，值越大，眼睛尺寸越大，预设值为 50。</li>
+                            <li>FACE_SHAPE_AREA_EYEDISTANCE(201)：眼距调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</li>
+                            <li>FACE_SHAPE_AREA_EYEPOSITION(202)：眼位调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</li>
+                            <li>FACE_SHAPE_AREA_LOWEREYELID(203)：下眼睑调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_EYEPUPILS(204)：眼珠调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_EYEINNERCORNER(205)：眼角调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_EYEOUTERCORNER(206)：眼角调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSELENGTH(300)：鼻子长度，用于实现长鼻效果。对应修饰力度范围为 [-100,100]，正值为拉长，负值为变短，绝对值越大修饰效果越强，预设值为 -10。</li>
+                            <li>FACE_SHAPE_AREA_NOSEWIDTH(301)：鼻子宽度，用于实现瘦鼻效果。对应修饰力度范围为 [-100,100]，正值为变胖/变宽，负值为变瘦/变窄，绝对值越大修饰效果越强，预设值为 72。</li>
+                            <li>FACE_SHAPE_AREA_NOSEWING(302)：鼻翼调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSEROOT(303)：鼻根调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSEBRIDGE(304)：鼻梁调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSETIP(305)：鼻尖调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_NOSEGENERAL(306)：鼻子整体调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_MOUTHSCALE(400)：嘴巴，用于实现大嘴效果。对应修饰力度范围为 [0,100]，值越大，嘴巴尺寸越大，预设值为 50。</li>
+                            <li>FACE_SHAPE_AREA_MOUTHPOSITION(401)：嘴巴位置调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</li>
+                            <li>FACE_SHAPE_AREA_MOUTHSMILE(402)：嘴巴微笑调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_MOUTHLIP(403)：嘴巴唇形调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                            <li>FACE_SHAPE_AREA_EYEBROWPOSITION(500)：眉毛位置调整。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整效果越明显，负值表示相反方向。</li>
+                            <li>FACE_SHAPE_AREA_EYEBROWTHICKNESS(501)：眉毛粗细调整。取值范围为 [0, 100]，默认值为 0。值越大，调整效果越明显。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>options</pt>
+                    <pd>美型部位选项，详见 <xref keyref="FaceShapeAreaOptions"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>效果应用的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
+                        <note>在该方法中，该参数仅支持以下两种设置：
+                            <ul>
+                                <li>使用摄像头采集本地视频时，请保持默认值<codeph>PRIMARY_CAMERA_SOURCE</codeph>。</li>
+                            </ul>
+                            <ul>
+                                <li>如果要使用自定义采集的视频，将该参数设置为<codeph>CUSTOM_VIDEO_SOURCE</codeph>。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>方法调用成功，返回<xref keyref="FaceShapeAreaOptions"/>对象。</li>
+                    <li>方法调用失败，返回null。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>方法调用成功，返回<xref keyref="FaceShapeAreaOptions"/>对象。</li>
+                    <li>方法调用失败，返回null。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，返回 <xref keyref="FaceShapeAreaOptions"/> 对象；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

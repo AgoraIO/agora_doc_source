@@ -1,0 +1,705 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_remoteaudiostats">
+    <title><ph keyref="RemoteAudioStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">远端用户的音频统计数据。</ph><ph id="shortdesc" props="rn">远端用户的音频统计数据。</ph><ph id="shortdesc" props="flutter">远端用户的音频统计数据。</ph><ph id="shortdesc" props="unity">远端用户的音频统计数据。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class RemoteAudioStats {
+
+  uid?: number;
+
+  quality?: number;
+
+  networkTransportDelay?: number;
+
+  jitterBufferDelay?: number;
+
+  audioLossRate?: number;
+
+  numChannels?: number;
+
+  receivedSampleRate?: number;
+
+  receivedBitrate?: number;
+
+  totalFrozenTime?: number;
+
+  frozenRate?: number;
+
+  mosValue?: number;
+
+  totalActiveTime?: number;
+
+  publishDuration?: number;
+
+  qoeQuality?: number;
+
+  qualityChangedReason?: number;
+
+  e2eDelay?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class RemoteAudioStats {
+
+  uid?: number;
+
+  quality?: number;
+
+  networkTransportDelay?: number;
+
+  jitterBufferDelay?: number;
+
+  audioLossRate?: number;
+
+  numChannels?: number;
+
+  receivedSampleRate?: number;
+
+  receivedBitrate?: number;
+
+  totalFrozenTime?: number;
+
+  frozenRate?: number;
+
+  mosValue?: number;
+
+  totalActiveTime?: number;
+
+  publishDuration?: number;
+
+  qoeQuality?: number;
+
+  qualityChangedReason?: number;
+
+  e2eDelay?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class RemoteAudioStats {
+  const RemoteAudioStats(
+      {this.uid,
+      this.quality,
+      this.networkTransportDelay,
+      this.jitterBufferDelay,
+      this.audioLossRate,
+      this.numChannels,
+      this.receivedSampleRate,
+      this.receivedBitrate,
+      this.totalFrozenTime,
+      this.frozenRate,
+      this.mosValue,
+      this.totalActiveTime,
+      this.publishDuration,
+      this.qoeQuality,
+      this.qualityChangedReason,
+      this.e2eDelay});
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+
+  @JsonKey(name: 'quality')
+  final int? quality;
+
+  @JsonKey(name: 'networkTransportDelay')
+  final int? networkTransportDelay;
+
+  @JsonKey(name: 'jitterBufferDelay')
+  final int? jitterBufferDelay;
+
+  @JsonKey(name: 'audioLossRate')
+  final int? audioLossRate;
+
+  @JsonKey(name: 'numChannels')
+  final int? numChannels;
+
+  @JsonKey(name: 'receivedSampleRate')
+  final int? receivedSampleRate;
+
+  @JsonKey(name: 'receivedBitrate')
+  final int? receivedBitrate;
+
+  @JsonKey(name: 'totalFrozenTime')
+  final int? totalFrozenTime;
+
+  @JsonKey(name: 'frozenRate')
+  final int? frozenRate;
+
+  @JsonKey(name: 'mosValue')
+  final int? mosValue;
+
+  @JsonKey(name: 'totalActiveTime')
+  final int? totalActiveTime;
+
+  @JsonKey(name: 'publishDuration')
+  final int? publishDuration;
+
+  @JsonKey(name: 'qoeQuality')
+  final int? qoeQuality;
+
+  @JsonKey(name: 'qualityChangedReason')
+  final int? qualityChangedReason;
+
+  @JsonKey(name: 'e2eDelay')
+  final int? e2eDelay;
+
+  factory RemoteAudioStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$RemoteAudioStatsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$RemoteAudioStatsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class RemoteAudioStats
+    {
+        public RemoteAudioStats()
+        {
+            uid = 0;
+            quality = 0;
+            networkTransportDelay = 0;
+            jitterBufferDelay = 0;
+            audioLossRate = 0;
+            numChannels = 0;
+            receivedSampleRate = 0;
+            receivedBitrate = 0;
+            totalFrozenTime = 0;
+            frozenRate = 0;
+            mosValue = 0;
+            totalActiveTime = 0;
+            publishDuration = 0;
+            qoeQuality = 0;
+            qualityChangedReason = 0;
+            public int e2eDelay;
+        }
+
+        public RemoteAudioStats(uint uid, int quality, int networkTransportDelay, int jitterBufferDelay,
+            int audioLossRate, int numChannels, int receivedSampleRate, int receivedBitrate, int totalFrozenTime,
+            int frozenRate, int mosValue, int totalActiveTime, int publishDuration, int qoeQuality, int qualityChangedReason)
+        {
+            this.uid = uid;
+            this.quality = quality;
+            this.networkTransportDelay = networkTransportDelay;
+            this.jitterBufferDelay = jitterBufferDelay;
+            this.audioLossRate = audioLossRate;
+            this.numChannels = numChannels;
+            this.receivedSampleRate = receivedSampleRate;
+            this.receivedBitrate = receivedBitrate;
+            this.totalFrozenTime = totalFrozenTime;
+            this.frozenRate = frozenRate;
+            this.mosValue = mosValue;
+            this.totalActiveTime = totalActiveTime;
+            this.publishDuration = publishDuration;
+            this.qoeQuality = qoeQuality;
+            this.qualityChangedReason = qualityChangedReason;
+        }
+
+        public uint uid { set; get; }
+        public int quality { set; get; }
+        public int networkTransportDelay { set; get; }
+        public int jitterBufferDelay { set; get; }
+        public int audioLossRate { set; get; }
+        public int numChannels { set; get; }
+        public int receivedSampleRate { set; get; }
+        public int receivedBitrate { set; get; }
+        public int totalFrozenTime { set; get; }
+        public int frozenRate { set; get; }
+        public int mosValue { set; get; }
+        public int totalActiveTime { set; get; }
+        public int publishDuration { set; get; }
+        public int qoeQuality { set; get; }
+        public int qualityChangedReason { set; get; }
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>quality</pt>
+                    <pd>远端用户发送的音频流质量。详见 <codeph>QualityType</codeph>。
+                        <ul>
+                            <li>QualityUnknown(0)：质量未知。</li>
+                            <li>QualityExcellent(1)：质量极好。</li>
+                            <li>QualityGood(2)：用户主观感觉和极好差不多，但码率可能略低于极好。</li>
+                            <li>QualityPoor(3)：用户主观感受有瑕疵但不影响沟通。</li>
+                            <li>QualityBad(4)：勉强能沟通但不顺畅。</li>
+                            <li>QualityVbad(5)：网络质量非常差，基本不能沟通。</li>
+                            <li>QualityDown(6)：网络连接断开，完全无法沟通。</li>
+                            <li>QualityDetecting(8)：网络质量检测进行中。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>networkTransportDelay</pt>
+                    <pd>音频发送端到接收端的网络延迟（毫秒）。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>jitterBufferDelay</pt>
+                    <pd>音频接收端到网络抖动缓冲的网络延迟（毫秒）。
+                        <note>当接收端为观众且 <xref keyref="ClientRoleOptions"/> 的 <codeph>audienceLatencyLevel</codeph> 为 1 时，该参数不生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioLossRate</pt>
+                    <pd>统计周期内的远端音频流的丢帧率 (%)。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>numChannels</pt>
+                    <pd>声道数。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>receivedSampleRate</pt>
+                    <pd>统计周期内接收到的远端音频流的采样率。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>receivedBitrate</pt>
+                    <pd>接收到的远端音频流在统计周期内的平均码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>totalFrozenTime</pt>
+                    <pd>远端用户在加入频道后发生音频卡顿的累计时长（毫秒）。通话过程中，音频丢帧率达到 4% 即记为一次音频卡顿。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>frozenRate</pt>
+                    <pd>音频卡顿的累计时长占音频总有效时长的百分比 (%)。音频有效时长是指远端用户加入频道后音频未被停止发送或禁用的时长。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>totalActiveTime</pt>
+                    <pd>远端用户在音频通话开始到本次回调之间的有效时长（毫秒）。
+有效时长是指去除了远端用户进入静音状态的总时长。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publishDuration</pt>
+                    <pd>远端音频流的累计发布时长（毫秒）。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>qoeQuality</pt>
+                    <pd>接收远端音频时，本地用户的主观体验质量。详见 <codeph>ExperienceQualityType</codeph>。
+                        <ul>
+                            <li>ExperienceQualityGood(0)：主观体验质量较好。</li>
+                            <li>ExperienceQualityBad(1)：主观体验质量较差。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>qualityChangedReason</pt>
+                    <pd>接收远端音频时，本地用户主观体验质量较差的原因。详见 <codeph>ExperiencePoorReason</codeph>。
+                        <ul>
+                            <li>ExperienceReasonNone(0): 无原因，说明主观体验质量较好。</li>
+                            <li>RemoteNetworkQualityPoor(1): 远端用户的网络较差。</li>
+                            <li>LocalNetworkQualityPoor(2): 本地用户的网络较差。</li>
+                            <li>WirelessSignalPoor(4): 本地用户的 Wi-Fi 或者移动数据网络信号弱。</li>
+                            <li>WifiBluetoothCoexist(8): 本地用户同时开启 Wi-Fi 和蓝牙，二者信号互相干扰，导致音频传输质量下降。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>mosValue</pt>
+                    <pd>统计周期内，声网实时音频 MOS（平均主观意见分）评估方法对接收到的远端音频流的质量评分。返回值范围为 [0,500]。返回值除以 100 即可得到 MOS 分数，范围为 [0,5] 分，分数越高，音频质量越好。
+                        <simpletable>
+                            <sthead>
+                                <stentry>MOS 分数</stentry>
+                                <stentry>音质感受</stentry>
+                            </sthead>
+                            <strow>
+                                <stentry>大于 4 分</stentry>
+                                <stentry>音频质量佳，清晰流畅。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>3.5 - 4 分</stentry>
+                                <stentry>音频质量较好，偶有音质损伤，但依然清晰。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>3 - 3.5 分</stentry>
+                                <stentry>音频质量一般，偶有卡顿，不是非常流畅，需要一点注意力才能听清。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>2.5 - 3 分</stentry>
+                                <stentry>音频质量较差，卡顿频繁，需要集中精力才能听清。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>2 - 2.5 分</stentry>
+                                <stentry>音频质量很差，偶有杂音，部分语义丢失，难以交流。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>小于 2 分</stentry>
+                                <stentry>音频质量非常差，杂音频现，大量语义丢失，完全无法交流。</stentry>
+                            </strow>
+                        </simpletable>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>e2eDelay</pt>
+                    <pd>端到端音频延时（毫秒），即自远端用户音频采集起，至本地用户开始播放音频的总时长。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>quality</pt>
+                    <pd>远端用户发送的音频流质量。详见 <codeph>QualityType</codeph>。
+                        <ul>
+                            <li>QualityUnknown(0)：质量未知。</li>
+                            <li>QualityExcellent(1)：质量极好。</li>
+                            <li>QualityGood(2)：用户主观感觉和极好差不多，但码率可能略低于极好。</li>
+                            <li>QualityPoor(3)：用户主观感受有瑕疵但不影响沟通。</li>
+                            <li>QualityBad(4)：勉强能沟通但不顺畅。</li>
+                            <li>QualityVbad(5)：网络质量非常差，基本不能沟通。</li>
+                            <li>QualityDown(6)：网络连接断开，完全无法沟通。</li>
+                            <li>QualityDetecting(8)：网络质量检测进行中。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>networkTransportDelay</pt>
+                    <pd>音频发送端到接收端的网络延迟（毫秒）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>jitterBufferDelay</pt>
+                    <pd>音频接收端到网络抖动缓冲的网络延迟（毫秒）。
+                        <note>当接收端为观众且 <xref keyref="ClientRoleOptions"/> 的 <codeph>audienceLatencyLevel</codeph> 为 1 时，该参数不生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioLossRate</pt>
+                    <pd>统计周期内的远端音频流的丢帧率 (%)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>numChannels</pt>
+                    <pd>声道数。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>receivedSampleRate</pt>
+                    <pd>统计周期内接收到的远端音频流的采样率。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>receivedBitrate</pt>
+                    <pd>接收到的远端音频流在统计周期内的平均码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>totalFrozenTime</pt>
+                    <pd>远端用户在加入频道后发生音频卡顿的累计时长（毫秒）。通话过程中，音频丢帧率达到 4% 即记为一次音频卡顿。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>frozenRate</pt>
+                    <pd>音频卡顿的累计时长占音频总有效时长的百分比 (%)。音频有效时长是指远端用户加入频道后音频未被停止发送或禁用的时长。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>totalActiveTime</pt>
+                    <pd>远端用户在音频通话开始到本次回调之间的有效时长（毫秒）。
+有效时长是指去除了远端用户进入静音状态的总时长。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publishDuration</pt>
+                    <pd>远端音频流的累计发布时长（毫秒）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>qoeQuality</pt>
+                    <pd>接收远端音频时，本地用户的主观体验质量。详见 <codeph>ExperienceQualityType</codeph>。
+                        <ul>
+                            <li>ExperienceQualityGood(0)：主观体验质量较好。</li>
+                            <li>ExperienceQualityBad(1)：主观体验质量较差。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>qualityChangedReason</pt>
+                    <pd>接收远端音频时，本地用户主观体验质量较差的原因。详见 <codeph>ExperiencePoorReason</codeph>。
+                        <ul>
+                            <li>ExperienceReasonNone(0): 无原因，说明主观体验质量较好。</li>
+                            <li>RemoteNetworkQualityPoor(1): 远端用户的网络较差。</li>
+                            <li>LocalNetworkQualityPoor(2): 本地用户的网络较差。</li>
+                            <li>WirelessSignalPoor(4): 本地用户的 Wi-Fi 或者移动数据网络信号弱。</li>
+                            <li>WifiBluetoothCoexist(8): 本地用户同时开启 Wi-Fi 和蓝牙，二者信号互相干扰，导致音频传输质量下降。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mosValue</pt>
+                    <pd>统计周期内，声网实时音频 MOS（平均主观意见分）评估方法对接收到的远端音频流的质量评分。返回值范围为 [0,500]。返回值除以 100 即可得到 MOS 分数，范围为 [0,5] 分，分数越高，音频质量越好。
+                        <simpletable>
+                            <sthead>
+                                <stentry>MOS 分数</stentry>
+                                <stentry>音质感受</stentry>
+                            </sthead>
+                            <strow>
+                                <stentry>大于 4 分</stentry>
+                                <stentry>音频质量佳，清晰流畅。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>3.5 - 4 分</stentry>
+                                <stentry>音频质量较好，偶有音质损伤，但依然清晰。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>3 - 3.5 分</stentry>
+                                <stentry>音频质量一般，偶有卡顿，不是非常流畅，需要一点注意力才能听清。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>2.5 - 3 分</stentry>
+                                <stentry>音频质量较差，卡顿频繁，需要集中精力才能听清。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>2 - 2.5 分</stentry>
+                                <stentry>音频质量很差，偶有杂音，部分语义丢失，难以交流。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>小于 2 分</stentry>
+                                <stentry>音频质量非常差，杂音频现，大量语义丢失，完全无法交流。</stentry>
+                            </strow>
+                        </simpletable>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>e2eDelay</pt>
+                    <pd>端到端音频延时（毫秒），即自远端用户音频采集起，至本地用户开始播放音频的总时长。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>quality</pt>
+                    <pd>远端用户发送的音频流质量。详见 <codeph>QualityType</codeph>。
+                        <ul>
+                            <li>qualityUnknown(0)：质量未知。</li>
+                            <li>qualityExcellent(1)：质量极好。</li>
+                            <li>qualityGood(2)：用户主观感觉和极好差不多，但码率可能略低于极好。</li>
+                            <li>qualityPoor(3)：用户主观感受有瑕疵但不影响沟通。</li>
+                            <li>qualityBad(4)：勉强能沟通但不顺畅。</li>
+                            <li>qualityVbad(5)：网络质量非常差，基本不能沟通。</li>
+                            <li>qualityDown(6)：网络连接断开，完全无法沟通。</li>
+                            <li>qualityDetecting(8)：网络质量检测进行中。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>networkTransportDelay</pt>
+                    <pd>音频发送端到接收端的网络延迟（毫秒）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>jitterBufferDelay</pt>
+                    <pd>音频接收端到网络抖动缓冲的网络延迟（毫秒）。
+                        <note>当接收端为观众且 <xref keyref="ClientRoleOptions"/> 的 <codeph>audienceLatencyLevel</codeph> 为 1 时，该参数不生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioLossRate</pt>
+                    <pd>统计周期内的远端音频流的丢帧率 (%)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>numChannels</pt>
+                    <pd>声道数。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>receivedSampleRate</pt>
+                    <pd>统计周期内接收到的远端音频流的采样率。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>receivedBitrate</pt>
+                    <pd>接收到的远端音频流在统计周期内的平均码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>totalFrozenTime</pt>
+                    <pd>远端用户在加入频道后发生音频卡顿的累计时长（毫秒）。通话过程中，音频丢帧率达到 4% 即记为一次音频卡顿。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>frozenRate</pt>
+                    <pd>音频卡顿的累计时长占音频总有效时长的百分比 (%)。音频有效时长是指远端用户加入频道后音频未被停止发送或禁用的时长。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>totalActiveTime</pt>
+                    <pd>远端用户在音频通话开始到本次回调之间的有效时长（毫秒）。
+有效时长是指去除了远端用户进入静音状态的总时长。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publishDuration</pt>
+                    <pd>远端音频流的累计发布时长（毫秒）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>qoeQuality</pt>
+                    <pd>接收远端音频时，本地用户的主观体验质量。详见 <codeph>ExperienceQualityType</codeph>。
+                        <ul>
+                            <li>experienceQualityGood(0)：主观体验质量较好。</li>
+                            <li>experienceQualityBad(1)：主观体验质量较差。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>qualityChangedReason</pt>
+                    <pd>接收远端音频时，本地用户主观体验质量较差的原因。详见 <codeph>ExperiencePoorReason</codeph>。
+                        <ul>
+                            <li>experienceReasonNone(0): 无原因，说明主观体验质量较好。</li>
+                            <li>remoteNetworkQualityPoor(1): 远端用户的网络较差。</li>
+                            <li>localNetworkQualityPoor(2): 本地用户的网络较差。</li>
+                            <li>wirelessSignalPoor(4): 本地用户的 Wi-Fi 或者移动数据网络信号弱。</li>
+                            <li>wifiBluetoothCoexist(8): 本地用户同时开启 Wi-Fi 和蓝牙，二者信号互相干扰，导致音频传输质量下降。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mosValue</pt>
+                    <pd>统计周期内，声网实时音频 MOS（平均主观意见分）评估方法对接收到的远端音频流的质量评分。返回值范围为 [0,500]。返回值除以 100 即可得到 MOS 分数，范围为 [0,5] 分，分数越高，音频质量越好。
+                        <simpletable>
+                            <sthead>
+                                <stentry>MOS 分数</stentry>
+                                <stentry>音质感受</stentry>
+                            </sthead>
+                            <strow>
+                                <stentry>大于 4 分</stentry>
+                                <stentry>音频质量佳，清晰流畅。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>3.5 - 4 分</stentry>
+                                <stentry>音频质量较好，偶有音质损伤，但依然清晰。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>3 - 3.5 分</stentry>
+                                <stentry>音频质量一般，偶有卡顿，不是非常流畅，需要一点注意力才能听清。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>2.5 - 3 分</stentry>
+                                <stentry>音频质量较差，卡顿频繁，需要集中精力才能听清。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>2 - 2.5 分</stentry>
+                                <stentry>音频质量很差，偶有杂音，部分语义丢失，难以交流。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>小于 2 分</stentry>
+                                <stentry>音频质量非常差，杂音频现，大量语义丢失，完全无法交流。</stentry>
+                            </strow>
+                        </simpletable>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>e2eDelay</pt>
+                    <pd>端到端音频延时（毫秒），即自远端用户音频采集起，至本地用户开始播放音频的总时长。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>quality</pt>
+                    <pd>远端用户发送的音频流质量。详见 <xref keyref="QUALITY_TYPE"/>。
+                        <ul>
+                            <li>QUALITY_UNKNOWN(0)：质量未知。</li>
+                            <li>QUALITY_EXCELLENT(1)：质量极好。</li>
+                            <li>QUALITY_GOOD(2)：用户主观感觉和极好差不多，但码率可能略低于极好。</li>
+                            <li>QUALITY_POOR(3)：用户主观感受有瑕疵但不影响沟通。</li>
+                            <li>QUALITY_BAD(4)：勉强能沟通但不顺畅。</li>
+                            <li>QUALITY_VBAD(5)：网络质量非常差，基本不能沟通。</li>
+                            <li>QUALITY_DOWN(6)：网络连接断开，完全无法沟通。</li>
+                            <li>QUALITY_DETECTING(8)：网络质量检测进行中。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>networkTransportDelay</pt>
+                    <pd>音频发送端到接收端的网络延迟（毫秒）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>jitterBufferDelay</pt>
+                    <pd>音频接收端到网络抖动缓冲的网络延迟（毫秒）。
+                        <note>当接收端为观众且 <xref keyref="ClientRoleOptions"/> 的 <codeph>audienceLatencyLevel</codeph> 为 1 时，该参数不生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioLossRate</pt>
+                    <pd>统计周期内的远端音频流的丢帧率 (%)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>numChannels</pt>
+                    <pd>声道数。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>receivedSampleRate</pt>
+                    <pd>统计周期内接收到的远端音频流的采样率。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>receivedBitrate</pt>
+                    <pd>接收到的远端音频流在统计周期内的平均码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>totalFrozenTime</pt>
+                    <pd>远端用户在加入频道后发生音频卡顿的累计时长（毫秒）。通话过程中，音频丢帧率达到 4% 即记为一次音频卡顿。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>frozenRate</pt>
+                    <pd>音频卡顿的累计时长占音频总有效时长的百分比 (%)。音频有效时长是指远端用户加入频道后音频未被停止发送或禁用的时长。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>totalActiveTime</pt>
+                    <pd>远端用户在音频通话开始到本次回调之间的有效时长（毫秒）。
+有效时长是指去除了远端用户进入静音状态的总时长。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publishDuration</pt>
+                    <pd>远端音频流的累计发布时长（毫秒）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>qoeQuality</pt>
+                    <pd>接收远端音频时，本地用户的主观体验质量。详见 <xref keyref="EXPERIENCE_QUALITY_TYPE"/>。
+                        <ul>
+                            <li>EXPERIENCE_QUALITY_GOOD(0)：主观体验质量较好。</li>
+                            <li>EXPERIENCE_QUALITY_BAD(1)：主观体验质量较差。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>qualityChangedReason</pt>
+                    <pd>接收远端音频时，本地用户主观体验质量较差的原因。详见 <xref keyref="EXPERIENCE_POOR_REASON"/>。
+                        <ul>
+                            <li>EXPERIENCE_REASON_NONE(0): 无原因，说明主观体验质量较好。</li>
+                            <li>REMOTE_NETWORK_QUALITY_POOR(1): 远端用户的网络较差。</li>
+                            <li>LOCAL_NETWORK_QUALITY_POOR(2): 本地用户的网络较差。</li>
+                            <li>WIRELESS_SIGNAL_POOR(4): 本地用户的 Wi-Fi 或者移动数据网络信号弱。</li>
+                            <li>WIFI_BLUETOOTH_COEXIST(8): 本地用户同时开启 Wi-Fi 和蓝牙，二者信号互相干扰，导致音频传输质量下降。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mosValue</pt>
+                    <pd>统计周期内，声网实时音频 MOS（平均主观意见分）评估方法对接收到的远端音频流的质量评分。返回值范围为 [0,500]。返回值除以 100 即可得到 MOS 分数，范围为 [0,5] 分，分数越高，音频质量越好。
+                        <simpletable>
+                            <sthead>
+                                <stentry>MOS 分数</stentry>
+                                <stentry>音质感受</stentry>
+                            </sthead>
+                            <strow>
+                                <stentry>大于 4 分</stentry>
+                                <stentry>音频质量佳，清晰流畅。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>3.5 - 4 分</stentry>
+                                <stentry>音频质量较好，偶有音质损伤，但依然清晰。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>3 - 3.5 分</stentry>
+                                <stentry>音频质量一般，偶有卡顿，不是非常流畅，需要一点注意力才能听清。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>2.5 - 3 分</stentry>
+                                <stentry>音频质量较差，卡顿频繁，需要集中精力才能听清。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>2 - 2.5 分</stentry>
+                                <stentry>音频质量很差，偶有杂音，部分语义丢失，难以交流。</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>小于 2 分</stentry>
+                                <stentry>音频质量非常差，杂音频现，大量语义丢失，完全无法交流。</stentry>
+                            </strow>
+                        </simpletable>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>e2eDelay</pt>
+                    <pd>端到端音频延时（毫秒），即自远端用户音频采集起，至本地用户开始播放音频的总时长。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

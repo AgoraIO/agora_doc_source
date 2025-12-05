@@ -1,0 +1,241 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_directcdnstreamingmediaoptions">
+    <title><ph keyref="DirectCdnStreamingMediaOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">主播端的媒体选项。</ph><ph id="shortdesc" props="rn">主播端的媒体选项。</ph><ph id="shortdesc" props="flutter">主播端的媒体选项。</ph><ph id="shortdesc" props="unity">主播端的媒体选项。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class DirectCdnStreamingMediaOptions {
+  publishCameraTrack?: boolean;
+  publishMicrophoneTrack?: boolean;
+  publishCustomAudioTrack?: boolean;
+  publishCustomVideoTrack?: boolean;
+  publishMediaPlayerAudioTrack?: boolean;
+  publishMediaPlayerId?: number;
+  customVideoTrackId?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class DirectCdnStreamingMediaOptions {
+  publishCameraTrack?: boolean;
+  publishMicrophoneTrack?: boolean;
+  publishCustomAudioTrack?: boolean;
+  publishCustomVideoTrack?: boolean;
+  publishMediaPlayerAudioTrack?: boolean;
+  publishMediaPlayerId?: number;
+  customVideoTrackId?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class DirectCdnStreamingMediaOptions {
+  const DirectCdnStreamingMediaOptions(
+      {this.publishCameraTrack,
+      this.publishMicrophoneTrack,
+      this.publishCustomAudioTrack,
+      this.publishCustomVideoTrack,
+      this.publishMediaPlayerAudioTrack,
+      this.publishMediaPlayerId,
+      this.customVideoTrackId});
+
+  @JsonKey(name: 'publishCameraTrack')
+  final bool? publishCameraTrack;
+
+  @JsonKey(name: 'publishMicrophoneTrack')
+  final bool? publishMicrophoneTrack;
+
+  @JsonKey(name: 'publishCustomAudioTrack')
+  final bool? publishCustomAudioTrack;
+
+  @JsonKey(name: 'publishCustomVideoTrack')
+  final bool? publishCustomVideoTrack;
+
+  @JsonKey(name: 'publishMediaPlayerAudioTrack')
+  final bool? publishMediaPlayerAudioTrack;
+
+  @JsonKey(name: 'publishMediaPlayerId')
+  final int? publishMediaPlayerId;
+
+  @JsonKey(name: 'customVideoTrackId')
+  final int? customVideoTrackId;
+
+  factory DirectCdnStreamingMediaOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$DirectCdnStreamingMediaOptionsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$DirectCdnStreamingMediaOptionsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class DirectCdnStreamingMediaOptions : OptionalJsonParse
+    {
+        public Optional&lt;bool&gt; publishCameraTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishMicrophoneTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishCustomAudioTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishCustomVideoTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishMediaPlayerAudioTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;int&gt; publishMediaPlayerId = new Optional&lt;int&gt;();
+        public Optional&lt;video_track_id_t&gt; customVideoTrackId = new Optional&lt;video_track_id_t&gt;();
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>publishCameraTrack</pt>
+                    <pd>设置是否发布摄像头采集的视频。
+                        <ul>
+                            <li><xref keyref="true"/>: 发布摄像头采集的视频。</li>
+                            <li><xref keyref="false"/>:（默认）不发布摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publishMicrophoneTrack</pt>
+                    <pd>设置是否发布麦克风采集的音频。
+                        <ul>
+                            <li><xref keyref="true"/>: 发布麦克风采集的音频。</li>
+                            <li><xref keyref="false"/>:（默认）不发布麦克风采集的音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publishCustomAudioTrack</pt>
+                    <pd>设置是否发布自定义采集的音频。
+                        <ul>
+                            <li><xref keyref="true"/>: 发布自定义采集的音频。</li>
+                            <li><xref keyref="false"/>:（默认）不发布自定义采集的音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publishCustomVideoTrack</pt>
+                    <pd>设置是否发布自定义采集的视频。
+                        <ul>
+                            <li><xref keyref="true"/>: 发布自定义采集的视频。</li>
+                            <li><xref keyref="false"/>:（默认）不发布自定义采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>customVideoTrackId</pt>
+                    <pd>调用 <xref keyref="createCustomVideoTrack"/> 方法返回的视频轨道 ID。默认值为 0。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publishCameraTrack</pt>
+                    <pd>设置是否发布摄像头采集的视频。
+                        <ul>
+                            <li><xref keyref="true"/>: 发布摄像头采集的视频。</li>
+                            <li><xref keyref="false"/>:（默认）不发布摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publishMicrophoneTrack</pt>
+                    <pd>设置是否发布麦克风采集的音频。
+                        <ul>
+                            <li><xref keyref="true"/>: 发布麦克风采集的音频。</li>
+                            <li><xref keyref="false"/>:（默认）不发布麦克风采集的音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publishCustomAudioTrack</pt>
+                    <pd>设置是否发布自定义采集的音频。
+                        <ul>
+                            <li><xref keyref="true"/>: 发布自定义采集的音频。</li>
+                            <li><xref keyref="false"/>:（默认）不发布自定义采集的音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publishCustomVideoTrack</pt>
+                    <pd>设置是否发布自定义采集的视频。
+                        <ul>
+                            <li><xref keyref="true"/>: 发布自定义采集的视频。</li>
+                            <li><xref keyref="false"/>:（默认）不发布自定义采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>customVideoTrackId</pt>
+                    <pd>调用 <xref keyref="createCustomVideoTrack"/> 方法返回的视频轨道 ID。默认值为 0。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publishCameraTrack</pt>
+                    <pd>设置是否发布摄像头采集的视频。
+                        <ul>
+                            <li><xref keyref="true"/>: 发布摄像头采集的视频。</li>
+                            <li><xref keyref="false"/>:（默认）不发布摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publishMicrophoneTrack</pt>
+                    <pd>设置是否发布麦克风采集的音频。
+                        <ul>
+                            <li><xref keyref="true"/>: 发布麦克风采集的音频。</li>
+                            <li><xref keyref="false"/>:（默认）不发布麦克风采集的音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publishCustomAudioTrack</pt>
+                    <pd>设置是否发布自定义采集的音频。
+                        <ul>
+                            <li><xref keyref="true"/>: 发布自定义采集的音频。</li>
+                            <li><xref keyref="false"/>:（默认）不发布自定义采集的音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publishCustomVideoTrack</pt>
+                    <pd>设置是否发布自定义采集的视频。
+                        <ul>
+                            <li><xref keyref="true"/>: 发布自定义采集的视频。</li>
+                            <li><xref keyref="false"/>:（默认）不发布自定义采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>customVideoTrackId</pt>
+                    <pd>调用 <xref keyref="createCustomVideoTrack"/> 方法返回的视频轨道 ID。默认值为 0。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publishCameraTrack</pt>
+                    <pd>设置是否发布摄像头采集的视频。
+                        <ul>
+                            <li><xref keyref="true"/>: 发布摄像头采集的视频。</li>
+                            <li><xref keyref="false"/>:（默认）不发布摄像头采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publishMicrophoneTrack</pt>
+                    <pd>设置是否发布麦克风采集的音频。
+                        <ul>
+                            <li><xref keyref="true"/>: 发布麦克风采集的音频。</li>
+                            <li><xref keyref="false"/>:（默认）不发布麦克风采集的音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publishCustomAudioTrack</pt>
+                    <pd>设置是否发布自定义采集的音频。
+                        <ul>
+                            <li><xref keyref="true"/>: 发布自定义采集的音频。</li>
+                            <li><xref keyref="false"/>:（默认）不发布自定义采集的音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publishCustomVideoTrack</pt>
+                    <pd>设置是否发布自定义采集的视频。
+                        <ul>
+                            <li><xref keyref="true"/>: 发布自定义采集的视频。</li>
+                            <li><xref keyref="false"/>:（默认）不发布自定义采集的视频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>customVideoTrackId</pt>
+                    <pd>调用 <xref keyref="createCustomVideoTrack"/> 方法返回的视频轨道 ID。默认值为 0。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

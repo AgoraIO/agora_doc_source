@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_querycamerafocallengthcapability">
+    <title><ph keyref="queryCameraFocalLengthCapability"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">查询摄像头支持的焦距能力。</ph><ph id="shortdesc" props="flutter">查询摄像头支持的焦距能力。</ph><ph id="shortdesc" props="unity">查询摄像头支持的焦距能力。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="queryCameraFocalLengthCapability"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract queryCameraFocalLengthCapability(): {
+    focalLengthInfos: FocalLengthInfo[];
+    size: number;
+  };</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;FocalLengthInfo&gt;&gt; queryCameraFocalLengthCapability();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int QueryCameraFocalLengthCapability(ref FocalLengthInfo[] focalLengthInfos, ref int size);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.1</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.1</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.3.1</dd>
+                </dlentry>
+            </dl>
+            <p props="rn">如需开启摄像头广角、超广角拍摄模式，建议你先调用该方法查询设备是否具备相应的焦距能力，再根据查询结果调用 <xref keyref="setCameraCapturerConfiguration"/> 调整摄像头的焦距配置，以达到最佳的摄像头采集效果。</p>
+            <p props="flutter">如需开启摄像头广角、超广角拍摄模式，建议你先调用该方法查询设备是否具备相应的焦距能力，再根据查询结果调用 <xref keyref="setCameraCapturerConfiguration"/> 调整摄像头的焦距配置，以达到最佳的摄像头采集效果。</p>
+            <p props="unity">如需开启摄像头广角、超广角拍摄模式，建议你先调用该方法查询设备是否具备相应的焦距能力，再根据查询结果调用 <xref keyref="setCameraCapturerConfiguration"/> 调整摄像头的焦距配置，以达到最佳的摄像头采集效果。</p>
+            <note props="flutter">该方法仅适用于 Android 和 iOS。</note>
+            <note props="unity">该方法仅适用于 Android 和 iOS。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>focalLengthInfos</pt>
+                    <pd>输出参数。方法执行后，输出包含摄像头焦距信息的 <xref keyref="FocalLengthInfo"/> 对象数组。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>size</pt>
+                    <pd>输出参数。方法执行后，输出查询到的焦距信息数量。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>返回值</title>
+            <p props="rn">返回一个包含以下属性的对象：
+                <ul>
+                    <li><codeph>focalLengthInfos</codeph>：<xref keyref="FocalLengthInfo"/>对象数组，其中包含摄像头的方向和焦距类型。</li>
+                    <li><codeph>size</codeph>：实际查询到的焦距信息数量。</li>
+                </ul>
+            </p>
+            <p props="flutter">返回 <xref keyref="FocalLengthInfo"/> 对象数组，其中包含摄像头的方向和焦距类型。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

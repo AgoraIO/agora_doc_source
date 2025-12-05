@@ -1,0 +1,834 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_livetranscoding">
+    <title><ph keyref="LiveTranscoding"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">旁路推流的转码属性。</ph><ph id="shortdesc" props="rn">旁路推流的转码属性。</ph><ph id="shortdesc" props="flutter">旁路推流的转码属性。</ph><ph id="shortdesc" props="unity">旁路推流的转码属性。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class LiveTranscoding {
+
+  width?: number;
+
+  height?: number;
+
+  videoBitrate?: number;
+
+  videoFramerate?: number;
+
+  lowLatency?: boolean;
+
+  videoGop?: number;
+
+  videoCodecProfile?: VideoCodecProfileType;
+
+  backgroundColor?: number;
+
+  videoCodecType?: VideoCodecTypeForStream;
+
+  userCount?: number;
+
+  transcodingUsers?: TranscodingUser[];
+
+  transcodingExtraInfo?: string;
+
+  metadata?: string;
+
+  watermark?: RtcImage[];
+
+  watermarkCount?: number;
+
+  backgroundImage?: RtcImage[];
+
+  backgroundImageCount?: number;
+
+  audioSampleRate?: AudioSampleRateType;
+
+  audioBitrate?: number;
+
+  audioChannels?: number;
+
+  audioCodecProfile?: AudioCodecProfileType;
+
+  advancedFeatures?: LiveStreamAdvancedFeature[];
+
+  advancedFeatureCount?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class LiveTranscoding {
+
+  width?: number;
+
+  height?: number;
+
+  videoBitrate?: number;
+
+  videoFramerate?: number;
+
+  lowLatency?: boolean;
+
+  videoGop?: number;
+
+  videoCodecProfile?: VideoCodecProfileType;
+
+  backgroundColor?: number;
+
+  videoCodecType?: VideoCodecTypeForStream;
+
+  userCount?: number;
+
+  transcodingUsers?: TranscodingUser[];
+
+  transcodingExtraInfo?: string;
+
+  metadata?: string;
+
+  watermark?: RtcImage[];
+
+  watermarkCount?: number;
+
+  backgroundImage?: RtcImage[];
+
+  backgroundImageCount?: number;
+
+  audioSampleRate?: AudioSampleRateType;
+
+  audioBitrate?: number;
+
+  audioChannels?: number;
+
+  audioCodecProfile?: AudioCodecProfileType;
+
+  advancedFeatures?: LiveStreamAdvancedFeature[];
+
+  advancedFeatureCount?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
+  const LiveTranscoding(
+      {this.width,
+      this.height,
+      this.videoBitrate,
+      this.videoFramerate,
+      this.lowLatency,
+      this.videoGop,
+      this.videoCodecProfile,
+      this.backgroundColor,
+      this.videoCodecType,
+      this.userCount,
+      this.transcodingUsers,
+      this.transcodingExtraInfo,
+      this.metadata,
+      this.watermark,
+      this.watermarkCount,
+      this.backgroundImage,
+      this.backgroundImageCount,
+      this.audioSampleRate,
+      this.audioBitrate,
+      this.audioChannels,
+      this.audioCodecProfile,
+      this.advancedFeatures,
+      this.advancedFeatureCount});
+
+  @JsonKey(name: 'width')
+  final int? width;
+
+  @JsonKey(name: 'height')
+  final int? height;
+
+  @JsonKey(name: 'videoBitrate')
+  final int? videoBitrate;
+
+  @JsonKey(name: 'videoFramerate')
+  final int? videoFramerate;
+
+  @JsonKey(name: 'lowLatency')
+  final bool? lowLatency;
+
+  @JsonKey(name: 'videoGop')
+  final int? videoGop;
+
+  @JsonKey(name: 'videoCodecProfile')
+  final VideoCodecProfileType? videoCodecProfile;
+
+  @JsonKey(name: 'backgroundColor')
+  final int? backgroundColor;
+
+  @JsonKey(name: 'videoCodecType')
+  final VideoCodecTypeForStream? videoCodecType;
+
+  @JsonKey(name: 'userCount')
+  final int? userCount;
+
+  @JsonKey(name: 'transcodingUsers')
+  final List&lt;TranscodingUser&gt;? transcodingUsers;
+
+  @JsonKey(name: 'transcodingExtraInfo')
+  final String? transcodingExtraInfo;
+
+  @JsonKey(name: 'metadata')
+  final String? metadata;
+
+  @JsonKey(name: 'watermark')
+  final List&lt;RtcImage&gt;? watermark;
+
+  @JsonKey(name: 'watermarkCount')
+  final int? watermarkCount;
+
+  @JsonKey(name: 'backgroundImage')
+  final List&lt;RtcImage&gt;? backgroundImage;
+
+  @JsonKey(name: 'backgroundImageCount')
+  final int? backgroundImageCount;
+
+  @JsonKey(name: 'audioSampleRate')
+  final AudioSampleRateType? audioSampleRate;
+
+  @JsonKey(name: 'audioBitrate')
+  final int? audioBitrate;
+
+  @JsonKey(name: 'audioChannels')
+  final int? audioChannels;
+
+  @JsonKey(name: 'audioCodecProfile')
+  final AudioCodecProfileType? audioCodecProfile;
+
+  @JsonKey(name: 'advancedFeatures')
+  final List&lt;LiveStreamAdvancedFeature&gt;? advancedFeatures;
+
+  @JsonKey(name: 'advancedFeatureCount')
+  final int? advancedFeatureCount;
+
+  factory LiveTranscoding.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$LiveTranscodingFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LiveTranscodingToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class LiveTranscoding
+    {
+        public LiveTranscoding()
+        {
+            width = 360;
+            height = 640;
+            videoBitrate = 400;
+            videoFramerate = 15;
+            lowLatency = false;
+            videoGop = 30;
+            videoCodecProfile = VIDEO_CODEC_PROFILE_TYPE.VIDEO_CODEC_PROFILE_HIGH;
+            backgroundColor = 0x000000;
+            videoCodecType = VIDEO_CODEC_TYPE_FOR_STREAM.VIDEO_CODEC_H264_FOR_STREAM;
+            userCount = 0;
+            transcodingUsers = new TranscodingUser[0];
+            transcodingExtraInfo = null;
+            metadata = null;
+            watermark = new RtcImage[0];
+            watermarkCount = 0;
+            backgroundImage = new RtcImage[0];
+            backgroundImageCount = 0;
+            audioSampleRate = AUDIO_SAMPLE_RATE_TYPE.AUDIO_SAMPLE_RATE_48000;
+            audioBitrate = 48;
+            audioChannels = 1;
+            audioCodecProfile = AUDIO_CODEC_PROFILE_TYPE.AUDIO_CODEC_PROFILE_LC_AAC;
+            advancedFeatures = new LiveStreamAdvancedFeature[0];
+            advancedFeatureCount = 0;
+        }
+
+        public LiveTranscoding(int width, int height, int videoBitrate, int videoFramerate, bool lowLatency,
+            int videoGop, VIDEO_CODEC_PROFILE_TYPE videoCodecProfile, uint backgroundColor,
+            VIDEO_CODEC_TYPE_FOR_STREAM videoCodecType, uint userCount, TranscodingUser[] transcodingUsers,
+            string transcodingExtraInfo, string metadata, RtcImage[] watermark, uint watermarkCount,
+            RtcImage[] backgroundImage, uint backgroundImageCount,
+            AUDIO_SAMPLE_RATE_TYPE audioSampleRate, int audioBitrate, int audioChannels,
+            AUDIO_CODEC_PROFILE_TYPE audioCodecProfile, LiveStreamAdvancedFeature[] advancedFeatures, uint advancedFeatureCount)
+        {
+            this.width = width;
+            this.height = height;
+            this.videoBitrate = videoBitrate;
+            this.videoFramerate = videoFramerate;
+            this.lowLatency = lowLatency;
+            this.videoGop = videoGop;
+            this.videoCodecProfile = videoCodecProfile;
+            this.backgroundColor = backgroundColor;
+            this.videoCodecType = videoCodecType;
+            this.userCount = userCount;
+            this.transcodingUsers = transcodingUsers;
+            this.transcodingExtraInfo = transcodingExtraInfo;
+            this.metadata = metadata;
+            this.watermark = watermark;
+            this.watermarkCount = watermarkCount;
+            this.backgroundImage = backgroundImage;
+            this.backgroundImageCount = backgroundImageCount;
+            this.audioSampleRate = audioSampleRate;
+            this.audioBitrate = audioBitrate;
+            this.audioChannels = audioChannels;
+            this.audioCodecProfile = audioCodecProfile;
+            this.advancedFeatures = advancedFeatures;
+            this.advancedFeatureCount = advancedFeatureCount;
+        }
+        public int width { set; get; }
+        public int height { set; get; }
+        public int videoBitrate { set; get; }
+        public int videoFramerate { set; get; }
+        public bool lowLatency { set; get; }
+        public int videoGop { set; get; }
+        public VIDEO_CODEC_PROFILE_TYPE videoCodecProfile { set; get; }
+        public uint backgroundColor { set; get; }
+        public VIDEO_CODEC_TYPE_FOR_STREAM videoCodecType { set; get; }
+        public uint userCount { set; get; }
+        public TranscodingUser[] transcodingUsers { set; get; }
+        public string transcodingExtraInfo { set; get; }
+        public string metadata { set; get; }
+        public RtcImage[] watermark { set; get; }
+        public uint watermarkCount { set; get; }
+        public RtcImage[] backgroundImage { set; get; }
+        public uint backgroundImageCount { set; get; }
+        public AUDIO_SAMPLE_RATE_TYPE audioSampleRate { set; get; }
+        public int audioBitrate { set; get; }
+        public int audioChannels { set; get; }
+        public AUDIO_CODEC_PROFILE_TYPE audioCodecProfile { set; get; }
+        public LiveStreamAdvancedFeature[] advancedFeatures { set; get; }
+        public uint advancedFeatureCount { set; get; }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>推流视频的总宽度，默认值 360，单位为像素。
+                        <ul>
+                            <li>如果推视频流，<codeph>width</codeph>取值范围为 [64,1920]。如果取值低于 64，声网服务器会自动调整为 64； 如果取值高于 1920，声网服务器会自动调整为 1920。</li>
+                        </ul>
+                        <ul>
+                            <li>如果推音频流，请将<codeph>width</codeph>和<codeph>height</codeph>设为 0。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>推流视频的总高度，默认值 640，单位为像素。
+                        <ul>
+                            <li>如果推视频流，<codeph>height</codeph>取值范围为 [64,1080]。如果取值低于 64，声网服务器会自动调整为 64； 如果取值高于 1080，声网服务器会自动调整为 1080。</li>
+                        </ul>
+                        <ul>
+                            <li>如果推音频流，请将<codeph>width</codeph>和<codeph>height</codeph>设为 0。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoBitrate</pt>
+                    <pd>视频编码码率，单位为 Kbps。详见 <codeph>BITRATE</codeph>。该参数无需设置，保留默认值 <codeph>STANDARD_BITRATE</codeph> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见[视频属性](https://doc.shengwang.cn/doc/rtc/electron/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83)。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoFramerate</pt>
+                    <pd>用于旁路直播的输出视频的帧率。取值范围是 (0,30]，单位为 fps。15 fps 为默认值。
+                        <note>声网服务器会将高于 30 fps 的帧率统一调整为 30 fps。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>lowLatency</pt>
+                    <pd>
+                        <note>弃用不建议使用。</note><ph>低延时模式</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: 低延时，不保证画质。</li>
+                        </ul>
+                        <ul>
+                            <li><xref keyref="false"/>:（默认值）高延时，保证画质。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoGop</pt>
+                    <pd>用于旁路直播的输出视频的 GOP (Group of Pictures)。单位为帧。默认值为 30。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoCodecProfile</pt>
+                    <pd>用于旁路直播的输出视频的编码规格。可以设置为 66、77 或 100，详见 <codeph>VideoCodecProfileType</codeph>。
+                        <note>如果你把这个参数设为其他值，声网服务器会将其调整为默认值。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoCodecType</pt>
+                    <pd>用于旁路直播的输出视频的编解码类型。详见 <codeph>VideoCodecTypeForStream</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>transcodingUsers</pt>
+                    <pd>用于管理参与旁路直播的视频转码合图的用户。最多支持 17 人同时参与转码合图。详见 <xref keyref="TranscodingUser"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>transcodingExtraInfo</pt>
+                    <pd>预留参数：用户自定义的发送到旁路推流客户端的信息，用于填充 H264/H265 视频中 SEI 帧内容。长度限制：4096 字节。关于 SEI 的详细信息，详见 [SEI 帧相关问题](https://doc.shengwang.cn/faq/quality-issues/sei)。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>backgroundColor</pt>
+                    <pd>用于旁路直播的输出视频的背景色，格式为 RGB 定义下的十六进制整数，不要带 # 号，如 0xFFB6C1 表示浅粉色。默认0x000000，黑色。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>userCount</pt>
+                    <pd>参与合图的用户数量，默认 0。取值范围为 [0,17]。
+                        <note>弃用已废弃，不建议使用。请改用 <codeph>getUserCount</codeph> 方法。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>metadata</pt>
+                    <pd>发送给 CDN 客户端的 metadata。
+                        <note>弃用已废弃，不建议使用。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>watermark</pt>
+                    <pd>直播视频上的水印。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。
+你可以添加一个水印，或使用数组的方式添加多个水印。该参数与 <codeph>watermarkCount</codeph>搭配使用。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>backgroundImage</pt>
+                    <pd>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。
+你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与 <codeph>backgroundImageCount</codeph> 搭配使用。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioSampleRate</pt>
+                    <pd>用于旁路推流的输出媒体流的音频采样率 (Hz)，详见 <codeph>AudioSampleRateType</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioBitrate</pt>
+                    <pd>用于旁路直播的输出音频的码率。单位为 Kbps，默认值为 48，最大值为 128。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioChannels</pt>
+                    <pd>用于旁路直播的输出音频的声道数，默认值为 1。取值范围为 [1,5] 中的整型，建议取 1 或 2。3、4、5 需要特殊播放器支持：
+                        <ul>
+                            <li>1: （默认）单声道</li>
+                        </ul>
+                        <ul>
+                            <li>2: 双声道</li>
+                            <li>3: 三声道</li>
+                            <li>4: 四声道</li>
+                            <li>5: 五声道</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioCodecProfile</pt>
+                    <pd>用于旁路直播输出音频的编码规格。详见 <codeph>AudioCodecProfileType</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>watermarkCount</pt>
+                    <pd>直播视频上的水印的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <codeph>watermark</codeph> 搭配使用。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>backgroundImageCount</pt>
+                    <pd>直播视频上的背景图的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <codeph>backgroundImage</codeph> 搭配使用。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>advancedFeatures</pt>
+                    <pd>转码推流的高级功能。详见 <xref keyref="LiveStreamAdvancedFeature"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>advancedFeatureCount</pt>
+                    <pd>开启的高级功能数量。默认值为 0。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>width</pt>
+                    <pd>推流视频的总宽度，默认值 360，单位为像素。
+                        <ul>
+                            <li>如果推视频流，<codeph>width</codeph>取值范围为 [64,1920]。如果取值低于 64，声网服务器会自动调整为 64； 如果取值高于 1920，声网服务器会自动调整为 1920。</li>
+                        </ul>
+                        <ul>
+                            <li>如果推音频流，请将<codeph>width</codeph>和<codeph>height</codeph>设为 0。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>推流视频的总高度，默认值 640，单位为像素。
+                        <ul>
+                            <li>如果推视频流，<codeph>height</codeph>取值范围为 [64,1080]。如果取值低于 64，声网服务器会自动调整为 64； 如果取值高于 1080，声网服务器会自动调整为 1080。</li>
+                        </ul>
+                        <ul>
+                            <li>如果推音频流，请将<codeph>width</codeph>和<codeph>height</codeph>设为 0。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoBitrate</pt>
+                    <pd>视频编码码率，单位为 Kbps。详见 <codeph>BITRATE</codeph>。该参数无需设置，保留默认值 <codeph>STANDARD_BITRATE</codeph> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见[视频属性](https://doc.shengwang.cn/doc/rtc/rn/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoFramerate</pt>
+                    <pd>用于旁路直播的输出视频的帧率。取值范围是 (0,30]，单位为 fps。15 fps 为默认值。
+                        <note>声网服务器会将高于 30 fps 的帧率统一调整为 30 fps。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lowLatency</pt>
+                    <pd>
+                        <note>弃用不建议使用。</note><ph>低延时模式</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: 低延时，不保证画质。</li>
+                        </ul>
+                        <ul>
+                            <li><xref keyref="false"/>:（默认值）高延时，保证画质。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoGop</pt>
+                    <pd>用于旁路直播的输出视频的 GOP (Group of Pictures)。单位为帧。默认值为 30。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoCodecProfile</pt>
+                    <pd>用于旁路直播的输出视频的编码规格。可以设置为 66、77 或 100，详见 <codeph>VideoCodecProfileType</codeph>。
+                        <note>如果你把这个参数设为其他值，声网服务器会将其调整为默认值。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoCodecType</pt>
+                    <pd>用于旁路直播的输出视频的编解码类型。详见 <codeph>VideoCodecTypeForStream</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>transcodingUsers</pt>
+                    <pd>用于管理参与旁路直播的视频转码合图的用户。最多支持 17 人同时参与转码合图。详见 <xref keyref="TranscodingUser"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>transcodingExtraInfo</pt>
+                    <pd>预留参数：用户自定义的发送到旁路推流客户端的信息，用于填充 H264/H265 视频中 SEI 帧内容。长度限制：4096 字节。关于 SEI 的详细信息，详见 [SEI 帧相关问题](https://doc.shengwang.cn/faq/quality-issues/sei)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>backgroundColor</pt>
+                    <pd>用于旁路直播的输出视频的背景色，格式为 RGB 定义下的十六进制整数，不要带 # 号，如 0xFFB6C1 表示浅粉色。默认0x000000，黑色。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>userCount</pt>
+                    <pd>参与合图的用户数量，默认 0。取值范围为 [0,17]。
+                        <note>弃用已废弃，不建议使用。请改用 <codeph>getUserCount</codeph> 方法。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>metadata</pt>
+                    <pd>发送给 CDN 客户端的 metadata。
+                        <note>弃用已废弃，不建议使用。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>watermark</pt>
+                    <pd>直播视频上的水印。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。
+你可以添加一个水印，或使用数组的方式添加多个水印。该参数与 <codeph>watermarkCount</codeph>搭配使用。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>backgroundImage</pt>
+                    <pd>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。
+你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与 <codeph>backgroundImageCount</codeph> 搭配使用。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioSampleRate</pt>
+                    <pd>用于旁路推流的输出媒体流的音频采样率 (Hz)，详见 <codeph>AudioSampleRateType</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioBitrate</pt>
+                    <pd>用于旁路直播的输出音频的码率。单位为 Kbps，默认值为 48，最大值为 128。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioChannels</pt>
+                    <pd>用于旁路直播的输出音频的声道数，默认值为 1。取值范围为 [1,5] 中的整型，建议取 1 或 2。3、4、5 需要特殊播放器支持：
+                        <ul>
+                            <li>1: （默认）单声道</li>
+                        </ul>
+                        <ul>
+                            <li>2: 双声道</li>
+                            <li>3: 三声道</li>
+                            <li>4: 四声道</li>
+                            <li>5: 五声道</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioCodecProfile</pt>
+                    <pd>用于旁路直播输出音频的编码规格。详见 <codeph>AudioCodecProfileType</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>watermarkCount</pt>
+                    <pd>直播视频上的水印的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <codeph>watermark</codeph> 搭配使用。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>backgroundImageCount</pt>
+                    <pd>直播视频上的背景图的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <codeph>backgroundImage</codeph> 搭配使用。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>advancedFeatures</pt>
+                    <pd>转码推流的高级功能。详见 <xref keyref="LiveStreamAdvancedFeature"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>advancedFeatureCount</pt>
+                    <pd>开启的高级功能数量。默认值为 0。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>推流视频的总宽度，默认值 360，单位为像素。
+                        <ul>
+                            <li>如果推视频流，<codeph>width</codeph>取值范围为 [64,1920]。如果取值低于 64，声网服务器会自动调整为 64； 如果取值高于 1920，声网服务器会自动调整为 1920。</li>
+                        </ul>
+                        <ul>
+                            <li>如果推音频流，请将<codeph>width</codeph>和<codeph>height</codeph>设为 0。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>推流视频的总高度，默认值 640，单位为像素。
+                        <ul>
+                            <li>如果推视频流，<codeph>height</codeph>取值范围为 [64,1080]。如果取值低于 64，声网服务器会自动调整为 64； 如果取值高于 1080，声网服务器会自动调整为 1080。</li>
+                        </ul>
+                        <ul>
+                            <li>如果推音频流，请将<codeph>width</codeph>和<codeph>height</codeph>设为 0。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoBitrate</pt>
+                    <pd>视频编码码率，单位为 Kbps。详见 <codeph>BITRATE</codeph>。该参数无需设置，保留默认值 <codeph>standardBitrate</codeph> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见[视频属性](https://doc.shengwang.cn/doc/rtc/flutter/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoFramerate</pt>
+                    <pd>用于旁路直播的输出视频的帧率。取值范围是 (0,30]，单位为 fps。15 fps 为默认值。
+                        <note>声网服务器会将高于 30 fps 的帧率统一调整为 30 fps。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lowLatency</pt>
+                    <pd>
+                        <note>弃用不建议使用。</note><ph>低延时模式</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: 低延时，不保证画质。</li>
+                        </ul>
+                        <ul>
+                            <li><xref keyref="false"/>:（默认值）高延时，保证画质。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoGop</pt>
+                    <pd>用于旁路直播的输出视频的 GOP (Group of Pictures)。单位为帧。默认值为 30。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoCodecProfile</pt>
+                    <pd>用于旁路直播的输出视频的编码规格。可以设置为 66、77 或 100，详见 <codeph>VideoCodecProfileType</codeph>。
+                        <note>如果你把这个参数设为其他值，声网服务器会将其调整为默认值。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoCodecType</pt>
+                    <pd>用于旁路直播的输出视频的编解码类型。详见 <codeph>VideoCodecTypeForStream</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>transcodingUsers</pt>
+                    <pd>用于管理参与旁路直播的视频转码合图的用户。最多支持 17 人同时参与转码合图。详见 <xref keyref="TranscodingUser"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>transcodingExtraInfo</pt>
+                    <pd>预留参数：用户自定义的发送到旁路推流客户端的信息，用于填充 H264/H265 视频中 SEI 帧内容。长度限制：4096 字节。关于 SEI 的详细信息，详见 [SEI 帧相关问题](https://doc.shengwang.cn/faq/quality-issues/sei)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>backgroundColor</pt>
+                    <pd>用于旁路直播的输出视频的背景色，格式为 RGB 定义下的十六进制整数，不要带 # 号，如 0xFFB6C1 表示浅粉色。默认0x000000，黑色。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>userCount</pt>
+                    <pd>参与合图的用户数量，默认 0。取值范围为 [0,17]。
+                        <note>弃用已废弃，不建议使用。请改用 <codeph>getUserCount</codeph> 方法。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>metadata</pt>
+                    <pd>发送给 CDN 客户端的 metadata。
+                        <note>弃用已废弃，不建议使用。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>watermark</pt>
+                    <pd>直播视频上的水印。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。
+你可以添加一个水印，或使用数组的方式添加多个水印。该参数与 <codeph>watermarkCount</codeph>搭配使用。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>backgroundImage</pt>
+                    <pd>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。
+你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与 <codeph>backgroundImageCount</codeph> 搭配使用。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioSampleRate</pt>
+                    <pd>用于旁路推流的输出媒体流的音频采样率 (Hz)，详见 <codeph>AudioSampleRateType</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioBitrate</pt>
+                    <pd>用于旁路直播的输出音频的码率。单位为 Kbps，默认值为 48，最大值为 128。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioChannels</pt>
+                    <pd>用于旁路直播的输出音频的声道数，默认值为 1。取值范围为 [1,5] 中的整型，建议取 1 或 2。3、4、5 需要特殊播放器支持：
+                        <ul>
+                            <li>1: （默认）单声道</li>
+                        </ul>
+                        <ul>
+                            <li>2: 双声道</li>
+                            <li>3: 三声道</li>
+                            <li>4: 四声道</li>
+                            <li>5: 五声道</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioCodecProfile</pt>
+                    <pd>用于旁路直播输出音频的编码规格。详见 <codeph>AudioCodecProfileType</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>watermarkCount</pt>
+                    <pd>直播视频上的水印的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <codeph>watermark</codeph> 搭配使用。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>backgroundImageCount</pt>
+                    <pd>直播视频上的背景图的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <codeph>backgroundImage</codeph> 搭配使用。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>advancedFeatures</pt>
+                    <pd>转码推流的高级功能。详见 <xref keyref="LiveStreamAdvancedFeature"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>advancedFeatureCount</pt>
+                    <pd>开启的高级功能数量。默认值为 0。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>推流视频的总宽度，默认值 360，单位为像素。
+                        <ul>
+                            <li>如果推视频流，<codeph>width</codeph>取值范围为 [64,1920]。如果取值低于 64，声网服务器会自动调整为 64； 如果取值高于 1920，声网服务器会自动调整为 1920。</li>
+                        </ul>
+                        <ul>
+                            <li>如果推音频流，请将<codeph>width</codeph>和<codeph>height</codeph>设为 0。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>推流视频的总高度，默认值 640，单位为像素。
+                        <ul>
+                            <li>如果推视频流，<codeph>height</codeph>取值范围为 [64,1080]。如果取值低于 64，声网服务器会自动调整为 64； 如果取值高于 1080，声网服务器会自动调整为 1080。</li>
+                        </ul>
+                        <ul>
+                            <li>如果推音频流，请将<codeph>width</codeph>和<codeph>height</codeph>设为 0。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoBitrate</pt>
+                    <pd>视频编码码率，单位为 Kbps。详见 <xref keyref="BITRATE"/>。该参数无需设置，保留默认值 <xref keyref="STANDARD_BITRATE"/> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见[视频属性](https://doc.shengwang.cn/doc/rtc/unity/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoFramerate</pt>
+                    <pd>用于旁路直播的输出视频的帧率。取值范围是 (0,30]，单位为 fps。15 fps 为默认值。
+                        <note>声网服务器会将高于 30 fps 的帧率统一调整为 30 fps。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lowLatency</pt>
+                    <pd>
+                        <note>弃用不建议使用。</note><ph>低延时模式</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: 低延时，不保证画质。</li>
+                        </ul>
+                        <ul>
+                            <li><xref keyref="false"/>:（默认值）高延时，保证画质。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoGop</pt>
+                    <pd>用于旁路直播的输出视频的 GOP (Group of Pictures)。单位为帧。默认值为 30。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoCodecProfile</pt>
+                    <pd>用于旁路直播的输出视频的编码规格。可以设置为 66、77 或 100，详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>。
+                        <note>如果你把这个参数设为其他值，声网服务器会将其调整为默认值。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoCodecType</pt>
+                    <pd>用于旁路直播的输出视频的编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>transcodingUsers</pt>
+                    <pd>用于管理参与旁路直播的视频转码合图的用户。最多支持 17 人同时参与转码合图。详见 <xref keyref="TranscodingUser"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>transcodingExtraInfo</pt>
+                    <pd>预留参数：用户自定义的发送到旁路推流客户端的信息，用于填充 H264/H265 视频中 SEI 帧内容。长度限制：4096 字节。关于 SEI 的详细信息，详见 [SEI 帧相关问题](https://doc.shengwang.cn/faq/quality-issues/sei)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>backgroundColor</pt>
+                    <pd>用于旁路直播的输出视频的背景色，格式为 RGB 定义下的十六进制整数，不要带 # 号，如 0xFFB6C1 表示浅粉色。默认0x000000，黑色。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>userCount</pt>
+                    <pd>参与合图的用户数量，默认 0。取值范围为 [0,17]。
+                        <note>弃用已废弃，不建议使用。请改用 <codeph>getUserCount</codeph> 方法。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>metadata</pt>
+                    <pd>发送给 CDN 客户端的 metadata。
+                        <note>弃用已废弃，不建议使用。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>watermark</pt>
+                    <pd>直播视频上的水印。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。
+你可以添加一个水印，或使用数组的方式添加多个水印。该参数与 <codeph>watermarkCount</codeph>搭配使用。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>backgroundImage</pt>
+                    <pd>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。
+你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与 <codeph>backgroundImageCount</codeph> 搭配使用。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioSampleRate</pt>
+                    <pd>用于旁路推流的输出媒体流的音频采样率 (Hz)，详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioBitrate</pt>
+                    <pd>用于旁路直播的输出音频的码率。单位为 Kbps，默认值为 48，最大值为 128。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioChannels</pt>
+                    <pd>用于旁路直播的输出音频的声道数，默认值为 1。取值范围为 [1,5] 中的整型，建议取 1 或 2。3、4、5 需要特殊播放器支持：
+                        <ul>
+                            <li>1: （默认）单声道</li>
+                        </ul>
+                        <ul>
+                            <li>2: 双声道</li>
+                            <li>3: 三声道</li>
+                            <li>4: 四声道</li>
+                            <li>5: 五声道</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioCodecProfile</pt>
+                    <pd>用于旁路直播输出音频的编码规格。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>watermarkCount</pt>
+                    <pd>直播视频上的水印的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <codeph>watermark</codeph> 搭配使用。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>backgroundImageCount</pt>
+                    <pd>直播视频上的背景图的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <codeph>backgroundImage</codeph> 搭配使用。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>advancedFeatures</pt>
+                    <pd>转码推流的高级功能。详见 <xref keyref="LiveStreamAdvancedFeature"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>advancedFeatureCount</pt>
+                    <pd>开启的高级功能数量。默认值为 0。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

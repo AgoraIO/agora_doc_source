@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startaudiorecording3">
+    <title><ph keyref="startAudioRecording3"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">开始客户端录音并进行录音配置。</ph><ph id="shortdesc" props="rn">开始客户端录音并进行录音配置。</ph><ph id="shortdesc" props="flutter">开始客户端录音并进行录音配置。</ph><ph id="shortdesc" props="unity">开始客户端录音并进行录音配置。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startAudioRecording3"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startAudioRecording(config: AudioRecordingConfiguration): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startAudioRecording(config: AudioRecordingConfiguration): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioRecording(AudioRecordingConfiguration config);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioRecording(AudioRecordingConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">SDK 支持通话过程中在客户端进行录音。调用该方法后，你可以录制频道内用户的音频，并得到一个录音文件。录音文件仅支持下列格式：
+                <ul>
+                    <li>WAV: 音质保真度较高，文件较大。例如，采样率为 32000 Hz，录音时长为 10 分钟的文件大小约为 73 M。</li>
+                    <li>AAC: 音质保真度较低，文件较小。例如，采样率为 32000 Hz，录音音质为AudioRecordingQualityMedium，录音时长为 10 分钟的文件大小约为 2 M。</li>
+                </ul><ph>用户离开频道后，录音会自动停止。</ph></p>
+            <p props="rn">SDK 支持通话过程中在客户端进行录音。调用该方法后，你可以录制频道内用户的音频，并得到一个录音文件。录音文件仅支持下列格式：
+                <ul>
+                    <li>WAV: 音质保真度较高，文件较大。例如，采样率为 32000 Hz，录音时长为 10 分钟的文件大小约为 73 M。</li>
+                    <li>AAC: 音质保真度较低，文件较小。例如，采样率为 32000 Hz，录音音质为AudioRecordingQualityMedium，录音时长为 10 分钟的文件大小约为 2 M。</li>
+                </ul><ph>用户离开频道后，录音会自动停止。</ph></p>
+            <p props="flutter">SDK 支持通话过程中在客户端进行录音。调用该方法后，你可以录制频道内用户的音频，并得到一个录音文件。录音文件仅支持下列格式：
+                <ul>
+                    <li>WAV: 音质保真度较高，文件较大。例如，采样率为 32000 Hz，录音时长为 10 分钟的文件大小约为 73 M。</li>
+                    <li>AAC: 音质保真度较低，文件较小。例如，采样率为 32000 Hz，录音音质为audioRecordingQualityMedium，录音时长为 10 分钟的文件大小约为 2 M。</li>
+                </ul><ph>用户离开频道后，录音会自动停止。</ph></p>
+            <p props="unity">SDK 支持通话过程中在客户端进行录音。调用该方法后，你可以录制频道内用户的音频，并得到一个录音文件。录音文件仅支持下列格式：
+                <ul>
+                    <li>WAV: 音质保真度较高，文件较大。例如，采样率为 32000 Hz，录音时长为 10 分钟的文件大小约为 73 M。</li>
+                    <li>AAC: 音质保真度较低，文件较小。例如，采样率为 32000 Hz，录音音质为AUDIO_RECORDING_QUALITY_MEDIUM，录音时长为 10 分钟的文件大小约为 2 M。</li>
+                </ul><ph>用户离开频道后，录音会自动停止。</ph></p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在加入频道后调用。</p>
+            <p props="rn">该方法需要在加入频道后调用。</p>
+            <p props="flutter">该方法需要在加入频道后调用。</p>
+            <p props="unity">该方法需要在加入频道后调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>录音配置。详见 <xref keyref="AudioRecordingConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>config</pt>
+                    <pd>录音配置。详见 <xref keyref="AudioRecordingConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>录音配置。详见 <xref keyref="AudioRecordingConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>录音配置。详见 <codeph>AudioFileRecordingConfig</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

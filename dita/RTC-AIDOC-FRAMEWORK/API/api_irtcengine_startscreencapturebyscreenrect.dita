@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startscreencapturebyscreenrect">
+    <title><ph keyref="startScreenCaptureByScreenRect"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">开始采集指定屏幕区域的视频流。</ph><ph id="shortdesc" props="flutter">开始采集指定屏幕区域的视频流。</ph><ph id="shortdesc" props="unity">开始采集指定屏幕区域的视频流。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startScreenCaptureByScreenRect"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureByScreenRect(
+    screenRect: Rectangle,
+    regionRect: Rectangle,
+    captureParams: ScreenCaptureParameters
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCaptureByScreenRect(
+    {required Rectangle screenRect,
+    required Rectangle regionRect,
+    required ScreenCaptureParameters captureParams});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCaptureByScreenRect(Rectangle screenRect, Rectangle regionRect,
+            ScreenCaptureParameters captureParams);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该方法已废弃。请改用 。如果你需要在设备外接其他显示屏的情况下开启屏幕共享，强烈建议你使用 。</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该方法已废弃。请改用 。如果你需要在设备外接其他显示屏的情况下开启屏幕共享，强烈建议你使用 。</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该方法已废弃。请改用 。如果你需要在设备外接其他显示屏的情况下开启屏幕共享，强烈建议你使用 。</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">共享一个屏幕或该屏幕的部分区域。你需要在该方法中指定想要共享的屏幕区域。</p>
+            <p props="flutter">共享一个屏幕或该屏幕的部分区域。你需要在该方法中指定想要共享的屏幕区域。</p>
+            <p props="unity">共享一个屏幕或该屏幕的部分区域。你需要在该方法中指定想要共享的屏幕区域。</p>
+            <note props="electron">该方法仅适用于 Windows 平台。</note>
+            <note props="flutter">该方法仅适用于 Windows 平台。</note>
+            <note props="unity">该方法仅适用于 Windows 平台。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>screenRect</pt>
+                    <pd>指定待共享的屏幕相对于虚拟屏的位置。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>regionRect</pt>
+                    <pd>（可选）指定待共享区域相对于整个屏幕的位置。如不填，则表示共享整个屏幕。详见 <xref keyref="Rectangle"/>。如果设置的共享区域超出了屏幕的边界，则只共享屏幕内的内容；如果将 width 或 height 设为 0 ，则共享整个屏幕。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享的编码参数配置。默认的分辨率为 1920 x 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>screenRect</pt>
+                    <pd>指定待共享的屏幕相对于虚拟屏的位置。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>regionRect</pt>
+                    <pd>（可选）指定待共享区域相对于整个屏幕的位置。如不填，则表示共享整个屏幕。详见 <xref keyref="Rectangle"/>。如果设置的共享区域超出了屏幕的边界，则只共享屏幕内的内容；如果将 width 或 height 设为 0 ，则共享整个屏幕。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享的编码参数配置。默认的分辨率为 1920 x 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>screenRect</pt>
+                    <pd>指定待共享的屏幕相对于虚拟屏的位置。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>regionRect</pt>
+                    <pd>（可选）指定待共享区域相对于整个屏幕的位置。如不填，则表示共享整个屏幕。详见 <xref keyref="Rectangle"/>。如果设置的共享区域超出了屏幕的边界，则只共享屏幕内的内容；如果将 width 或 height 设为 0 ，则共享整个屏幕。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享的编码参数配置。默认的分辨率为 1920 x 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,363 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setaudioeffectparameters">
+    <title><ph keyref="setAudioEffectParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置 SDK 预设人声音效的参数。</ph><ph id="shortdesc" props="rn">设置 SDK 预设人声音效的参数。</ph><ph id="shortdesc" props="flutter">设置 SDK 预设人声音效的参数。</ph><ph id="shortdesc" props="unity">设置 SDK 预设人声音效的参数。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAudioEffectParameters"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setAudioEffectParameters(preset: AudioEffectPreset, param1: number, param2: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setAudioEffectParameters(
+  preset: AudioEffectPreset,
+  param1: number,
+  param2: number
+): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioEffectParameters(
+  {required AudioEffectPreset preset,
+  required int param1,
+  required int param2});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioEffectParameters(AUDIO_EFFECT_PRESET preset, int param1, int param2);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">调用该方法可以对本地发流用户进行如下设置：
+                <ul>
+                    <li>3D 人声音效：设置 3D 人声音效的环绕周期。</li>
+                    <li>电音音效：设置电音音效的基础调式和主音音高。为方便用户自行调节电音音效，建议你将基础调式和主音音高配置选项与应用的 UI 元素绑定。</li>
+                </ul><ph>设置后，频道内所有用户都能听到该效果。</ph></p>
+            <p props="rn">调用该方法可以对本地发流用户进行如下设置：
+                <ul>
+                    <li>3D 人声音效：设置 3D 人声音效的环绕周期。</li>
+                    <li>电音音效：设置电音音效的基础调式和主音音高。为方便用户自行调节电音音效，建议你将基础调式和主音音高配置选项与应用的 UI 元素绑定。</li>
+                </ul><ph>设置后，频道内所有用户都能听到该效果。</ph></p>
+            <p props="flutter">调用该方法可以对本地发流用户进行如下设置：
+                <ul>
+                    <li>3D 人声音效：设置 3D 人声音效的环绕周期。</li>
+                    <li>电音音效：设置电音音效的基础调式和主音音高。为方便用户自行调节电音音效，建议你将基础调式和主音音高配置选项与应用的 UI 元素绑定。</li>
+                </ul><ph>设置后，频道内所有用户都能听到该效果。</ph></p>
+            <p props="unity">调用该方法可以对本地发流用户进行如下设置：
+                <ul>
+                    <li>3D 人声音效：设置 3D 人声音效的环绕周期。</li>
+                    <li>电音音效：设置电音音效的基础调式和主音音高。为方便用户自行调节电音音效，建议你将基础调式和主音音高配置选项与应用的 UI 元素绑定。</li>
+                </ul><ph>设置后，频道内所有用户都能听到该效果。</ph></p>
+            <note props="electron">
+                <ul>
+                    <li>该方法在加入频道前后都能调用。</li>
+                    <li>该方法对人声的处理效果最佳，不建议调用该方法处理含音乐的音频数据。</li>
+                    <li>调用<xref keyref="setAudioEffectParameters"/>后，不建议调用以下方法，否则<xref keyref="setAudioEffectParameters"/>设置的效果会被覆盖：
+                        <ul>
+                            <li><xref keyref="setAudioEffectPreset"/></li>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>该方法依赖于美声动态库<codeph>libagora_audio_beauty_extension.dll</codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>该方法在加入频道前后都能调用。</li>
+                    <li>该方法对人声的处理效果最佳，不建议调用该方法处理含音乐的音频数据。</li>
+                    <li>调用<xref keyref="setAudioEffectParameters"/>后，不建议调用以下方法，否则<xref keyref="setAudioEffectParameters"/>设置的效果会被覆盖：
+                        <ul>
+                            <li><xref keyref="setAudioEffectPreset"/></li>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>该方法依赖于美声动态库<codeph>libagora_audio_beauty_extension.dll</codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法在加入频道前后都能调用。</li>
+                    <li>该方法对人声的处理效果最佳，不建议调用该方法处理含音乐的音频数据。</li>
+                    <li>调用<xref keyref="setAudioEffectParameters"/>后，不建议调用以下方法，否则<xref keyref="setAudioEffectParameters"/>设置的效果会被覆盖：
+                        <ul>
+                            <li><xref keyref="setAudioEffectPreset"/></li>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>该方法依赖于美声动态库<codeph>libagora_audio_beauty_extension.dll</codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法在加入频道前后都能调用。</li>
+                    <li>该方法对人声的处理效果最佳，不建议调用该方法处理含音乐的音频数据。</li>
+                    <li>调用<xref keyref="setAudioEffectParameters"/>后，不建议调用以下方法，否则<xref keyref="setAudioEffectParameters"/>设置的效果会被覆盖：
+                        <ul>
+                            <li><xref keyref="setAudioEffectPreset"/></li>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>该方法依赖于美声动态库<codeph>libagora_audio_beauty_extension.dll</codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>preset</pt>
+                    <pd>SDK 预设的音效，支持以下设置：
+                        <ul>
+                            <li><codeph>RoomAcoustics3dVoice</codeph>，3D 人声音效。
+                                <ul>
+                                    <li>你需要在使用该枚举前将`setAudioProfile2``setAudioProfile<codeph>的</codeph>profile<codeph>参数设置 为</codeph>AudioProfileMusicStandardStereo<codeph>(3) 或</codeph>AudioProfileMusicHighQualityStereo`(5)，否则该枚举设置无效。</li>
+                                    <li>启用 3D 人声后，用户需要使用支持双声道的音频播放设备才能听到预期效果。</li>
+                                </ul>
+                            </li>
+                            <li><codeph>PitchCorrection</codeph>，电音音效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>param1</pt>
+                    <pd>
+                        <ul>
+                            <li>如果<codeph>preset</codeph>设为<codeph>RoomAcoustics3dVoice</codeph>，则<codeph>param1</codeph>表示 3D 人声音效的环绕周期。取值范围为 [1,60]，单位为秒。默认值为 10，表示人声会 10 秒环绕 360 度。</li>
+                            <li>如果<codeph>preset</codeph>设为<codeph>PitchCorrection</codeph>，则<codeph>param1</codeph>表示电音音效的基础调式：
+                                <ul>
+                                    <li><codeph>1</codeph>: （默认）自然大调。</li>
+                                    <li><codeph>2</codeph>: 自然小调。</li>
+                                    <li><codeph>3</codeph>: 和风小调。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>param2</pt>
+                    <pd>
+                        <ul>
+                            <li>如果<codeph>preset</codeph>设为<codeph>RoomAcoustics3dVoice</codeph>，你需要将<codeph>param2</codeph>设置为<codeph>0</codeph>。</li>
+                            <li>如果<codeph>preset</codeph>设为<codeph>PitchCorrection</codeph>，则<codeph>param2</codeph>表示电音音效的主音音高：
+                                <ul>
+                                    <li><codeph>1</codeph>: A</li>
+                                    <li><codeph>2</codeph>: A#</li>
+                                    <li><codeph>3</codeph>: B</li>
+                                    <li><codeph>4</codeph>: (Default) C</li>
+                                    <li><codeph>5</codeph>: C#</li>
+                                    <li><codeph>6</codeph>: D</li>
+                                    <li><codeph>7</codeph>: D#</li>
+                                    <li><codeph>8</codeph>: E</li>
+                                    <li><codeph>9</codeph>: F</li>
+                                    <li><codeph>10</codeph>: F#</li>
+                                    <li><codeph>11</codeph>: G</li>
+                                    <li><codeph>12</codeph>: G#</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>preset</pt>
+                    <pd>SDK 预设的音效，支持以下设置：
+                        <ul>
+                            <li><codeph>RoomAcoustics3dVoice</codeph>，3D 人声音效。
+                                <ul>
+                                    <li>你需要在使用该枚举前将`setAudioProfile2``setAudioProfile<codeph>的</codeph>profile<codeph>参数设置 为</codeph>AudioProfileMusicStandardStereo<codeph>(3) 或</codeph>AudioProfileMusicHighQualityStereo`(5)，否则该枚举设置无效。</li>
+                                    <li>启用 3D 人声后，用户需要使用支持双声道的音频播放设备才能听到预期效果。</li>
+                                </ul>
+                            </li>
+                            <li><codeph>PitchCorrection</codeph>，电音音效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>param1</pt>
+                    <pd>
+                        <ul>
+                            <li>如果<codeph>preset</codeph>设为<codeph>RoomAcoustics3dVoice</codeph>，则<codeph>param1</codeph>表示 3D 人声音效的环绕周期。取值范围为 [1,60]，单位为秒。默认值为 10，表示人声会 10 秒环绕 360 度。</li>
+                            <li>如果<codeph>preset</codeph>设为<codeph>PitchCorrection</codeph>，则<codeph>param1</codeph>表示电音音效的基础调式：
+                                <ul>
+                                    <li><codeph>1</codeph>: （默认）自然大调。</li>
+                                    <li><codeph>2</codeph>: 自然小调。</li>
+                                    <li><codeph>3</codeph>: 和风小调。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>param2</pt>
+                    <pd>
+                        <ul>
+                            <li>如果<codeph>preset</codeph>设为<codeph>RoomAcoustics3dVoice</codeph>，你需要将<codeph>param2</codeph>设置为<codeph>0</codeph>。</li>
+                            <li>如果<codeph>preset</codeph>设为<codeph>PitchCorrection</codeph>，则<codeph>param2</codeph>表示电音音效的主音音高：
+                                <ul>
+                                    <li><codeph>1</codeph>: A</li>
+                                    <li><codeph>2</codeph>: A#</li>
+                                    <li><codeph>3</codeph>: B</li>
+                                    <li><codeph>4</codeph>: (Default) C</li>
+                                    <li><codeph>5</codeph>: C#</li>
+                                    <li><codeph>6</codeph>: D</li>
+                                    <li><codeph>7</codeph>: D#</li>
+                                    <li><codeph>8</codeph>: E</li>
+                                    <li><codeph>9</codeph>: F</li>
+                                    <li><codeph>10</codeph>: F#</li>
+                                    <li><codeph>11</codeph>: G</li>
+                                    <li><codeph>12</codeph>: G#</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>preset</pt>
+                    <pd>SDK 预设的音效，支持以下设置：
+                        <ul>
+                            <li><codeph>roomAcoustics3dVoice</codeph>，3D 人声音效。
+                                <ul>
+                                    <li>你需要在使用该枚举前将`setAudioProfile2``setAudioProfile<codeph>的</codeph>profile<codeph>参数设置 为</codeph>audioProfileMusicStandardStereo<codeph>(3) 或</codeph>audioProfileMusicHighQualityStereo`(5)，否则该枚举设置无效。</li>
+                                    <li>启用 3D 人声后，用户需要使用支持双声道的音频播放设备才能听到预期效果。</li>
+                                </ul>
+                            </li>
+                            <li><codeph>pitchCorrection</codeph>，电音音效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>param1</pt>
+                    <pd>
+                        <ul>
+                            <li>如果<codeph>preset</codeph>设为<codeph>roomAcoustics3dVoice</codeph>，则<codeph>param1</codeph>表示 3D 人声音效的环绕周期。取值范围为 [1,60]，单位为秒。默认值为 10，表示人声会 10 秒环绕 360 度。</li>
+                            <li>如果<codeph>preset</codeph>设为<codeph>pitchCorrection</codeph>，则<codeph>param1</codeph>表示电音音效的基础调式：
+                                <ul>
+                                    <li><codeph>1</codeph>: （默认）自然大调。</li>
+                                    <li><codeph>2</codeph>: 自然小调。</li>
+                                    <li><codeph>3</codeph>: 和风小调。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>param2</pt>
+                    <pd>
+                        <ul>
+                            <li>如果<codeph>preset</codeph>设为<codeph>roomAcoustics3dVoice</codeph>，你需要将<codeph>param2</codeph>设置为<codeph>0</codeph>。</li>
+                            <li>如果<codeph>preset</codeph>设为<codeph>pitchCorrection</codeph>，则<codeph>param2</codeph>表示电音音效的主音音高：
+                                <ul>
+                                    <li><codeph>1</codeph>: A</li>
+                                    <li><codeph>2</codeph>: A#</li>
+                                    <li><codeph>3</codeph>: B</li>
+                                    <li><codeph>4</codeph>: (Default) C</li>
+                                    <li><codeph>5</codeph>: C#</li>
+                                    <li><codeph>6</codeph>: D</li>
+                                    <li><codeph>7</codeph>: D#</li>
+                                    <li><codeph>8</codeph>: E</li>
+                                    <li><codeph>9</codeph>: F</li>
+                                    <li><codeph>10</codeph>: F#</li>
+                                    <li><codeph>11</codeph>: G</li>
+                                    <li><codeph>12</codeph>: G#</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>preset</pt>
+                    <pd>SDK 预设的音效，支持以下设置：
+                        <ul>
+                            <li><codeph>ROOM_ACOUSTICS_3D_VOICE</codeph>，3D 人声音效。
+                                <ul>
+                                    <li>你需要在使用该枚举前将`SetAudioProfile [2/2]``SetAudioProfile [1/2]<codeph>的</codeph>profile<codeph>参数设置 为</codeph>AUDIO_PROFILE_MUSIC_STANDARD_STEREO<codeph>(3) 或</codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO`(5)，否则该枚举设置无效。</li>
+                                    <li>启用 3D 人声后，用户需要使用支持双声道的音频播放设备才能听到预期效果。</li>
+                                </ul>
+                            </li>
+                            <li><codeph>PITCH_CORRECTION</codeph>，电音音效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>param1</pt>
+                    <pd>
+                        <ul>
+                            <li>如果<codeph>preset</codeph>设为<codeph>ROOM_ACOUSTICS_3D_VOICE</codeph>，则<codeph>param1</codeph>表示 3D 人声音效的环绕周期。取值范围为 [1,60]，单位为秒。默认值为 10，表示人声会 10 秒环绕 360 度。</li>
+                            <li>如果<codeph>preset</codeph>设为<codeph>PITCH_CORRECTION</codeph>，则<codeph>param1</codeph>表示电音音效的基础调式：
+                                <ul>
+                                    <li><codeph>1</codeph>: （默认）自然大调。</li>
+                                    <li><codeph>2</codeph>: 自然小调。</li>
+                                    <li><codeph>3</codeph>: 和风小调。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>param2</pt>
+                    <pd>
+                        <ul>
+                            <li>如果<codeph>preset</codeph>设为<codeph>ROOM_ACOUSTICS_3D_VOICE</codeph>，你需要将<codeph>param2</codeph>设置为<codeph>0</codeph>。</li>
+                            <li>如果<codeph>preset</codeph>设为<codeph>PITCH_CORRECTION</codeph>，则<codeph>param2</codeph>表示电音音效的主音音高：
+                                <ul>
+                                    <li><codeph>1</codeph>: A</li>
+                                    <li><codeph>2</codeph>: A#</li>
+                                    <li><codeph>3</codeph>: B</li>
+                                    <li><codeph>4</codeph>: (Default) C</li>
+                                    <li><codeph>5</codeph>: C#</li>
+                                    <li><codeph>6</codeph>: D</li>
+                                    <li><codeph>7</codeph>: D#</li>
+                                    <li><codeph>8</codeph>: E</li>
+                                    <li><codeph>9</codeph>: F</li>
+                                    <li><codeph>10</codeph>: F#</li>
+                                    <li><codeph>11</codeph>: G</li>
+                                    <li><codeph>12</codeph>: G#</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_joinchannelex">
+    <title><ph keyref="joinChannelEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">加入频道。</ph><ph id="shortdesc" props="rn">加入频道。</ph><ph id="shortdesc" props="flutter">加入频道。</ph><ph id="shortdesc" props="unity">加入频道。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="joinChannelEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract joinChannelEx(
+    token: string,
+    connection: RtcConnection,
+    options: ChannelMediaOptions
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract joinChannelEx(
+    token: string,
+    connection: RtcConnection,
+    options: ChannelMediaOptions
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannelEx(
+    {required String token,
+    required RtcConnection connection,
+    required ChannelMediaOptions options});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelEx(string token, RtcConnection connection, ChannelMediaOptions options);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">调用该方法，你可以同时加入多个频道。如果你想在不同的设备上加入相同的频道，请确保你在不同设备上使用的用户 ID 都不同。</p>
+            <p props="rn">调用该方法，你可以同时加入多个频道。如果你想在不同的设备上加入相同的频道，请确保你在不同设备上使用的用户 ID 都不同。</p>
+            <p props="flutter">调用该方法，你可以同时加入多个频道。如果你想在不同的设备上加入相同的频道，请确保你在不同设备上使用的用户 ID 都不同。</p>
+            <p props="unity">调用该方法，你可以同时加入多个频道。如果你想在不同的设备上加入相同的频道，请确保你在不同设备上使用的用户 ID 都不同。</p>
+            <note props="electron">如果你已经在一个频道内，你不能用相同的用户 ID 再次加入该频道。
+加入频道前，请确保用于生成 Token 的 App ID 和调用 <xref keyref="initialize"/> 方法初始化引擎时使用的是同一个 App ID，否则使用 Token 加入频道会失败。</note>
+            <note props="rn">如果你已经在一个频道内，你不能用相同的用户 ID 再次加入该频道。
+加入频道前，请确保用于生成 Token 的 App ID 和调用 <xref keyref="initialize"/> 方法初始化引擎时使用的是同一个 App ID，否则使用 Token 加入频道会失败。</note>
+            <note props="flutter">如果你已经在一个频道内，你不能用相同的用户 ID 再次加入该频道。
+加入频道前，请确保用于生成 Token 的 App ID 和调用 <xref keyref="initialize"/> 方法初始化引擎时使用的是同一个 App ID，否则使用 Token 加入频道会失败。</note>
+            <note props="unity">如果你已经在一个频道内，你不能用相同的用户 ID 再次加入该频道。
+加入频道前，请确保用于生成 Token 的 App ID 和调用 <xref keyref="initialize"/> 方法初始化引擎时使用的是同一个 App ID，否则使用 Token 加入频道会失败。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在 <xref keyref="initialize"/> 之后调用。
+在多摄像头采集场景下，你需要在调用该方法之后调用 <xref keyref="startPreview2"/> 方法设置 <codeph>sourceType</codeph> 为 <codeph>VideoSourceCameraSecondary</codeph>，以确保第二个摄像头采集正常。</p>
+            <p props="rn">该方法需要在 <xref keyref="initialize"/> 之后调用。
+在多摄像头采集场景下，你需要在调用该方法之后调用 <xref keyref="startPreview2"/> 方法设置 <codeph>sourceType</codeph> 为 <codeph>VideoSourceCameraSecondary</codeph>，以确保第二个摄像头采集正常。</p>
+            <p props="flutter">该方法需要在 <xref keyref="initialize"/> 之后调用。
+在多摄像头采集场景下，你需要在调用该方法之后调用 <xref keyref="startPreview2"/> 方法设置 <codeph>sourceType</codeph> 为 <codeph>videoSourceCameraSecondary</codeph>，以确保第二个摄像头采集正常。</p>
+            <p props="unity">该方法需要在 <xref keyref="initialize"/> 之后调用。
+在多摄像头采集场景下，你需要在调用该方法之后调用 <xref keyref="startPreview2"/> 方法设置 <codeph>sourceType</codeph> 为 <codeph>VIDEO_SOURCE_CAMERA_SECONDARY</codeph>，以确保第二个摄像头采集正常。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>相关回调</title>
+            <p props="electron">成功调用该方法加入频道后会触发以下回调：
+                <ul>
+                    <li>本地会触发<xref keyref="onJoinChannelSuccess"/>和<xref keyref="onConnectionStateChanged"/>回调。</li>
+                    <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发<xref keyref="onUserJoined"/>回调。</li>
+                </ul><ph>在网络状况不理想的情况下，客户端可能会与声网服务器失去连接，此时 SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
+            <p props="rn">成功调用该方法加入频道后会触发以下回调：
+                <ul>
+                    <li>本地会触发<xref keyref="onJoinChannelSuccess"/>和<xref keyref="onConnectionStateChanged"/>回调。</li>
+                    <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发<xref keyref="onUserJoined"/>回调。</li>
+                </ul><ph>在网络状况不理想的情况下，客户端可能会与声网服务器失去连接，此时 SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
+            <p props="flutter">成功调用该方法加入频道后会触发以下回调：
+                <ul>
+                    <li>本地会触发<xref keyref="onJoinChannelSuccess"/>和<xref keyref="onConnectionStateChanged"/>回调。</li>
+                    <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发<xref keyref="onUserJoined"/>回调。</li>
+                </ul><ph>在网络状况不理想的情况下，客户端可能会与声网服务器失去连接，此时 SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
+            <p props="unity">成功调用该方法加入频道后会触发以下回调：
+                <ul>
+                    <li>本地会触发<xref keyref="onJoinChannelSuccess"/>和<xref keyref="onConnectionStateChanged"/>回调。</li>
+                    <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发<xref keyref="onUserJoined"/>回调。</li>
+                </ul><ph>在网络状况不理想的情况下，客户端可能会与声网服务器失去连接，此时 SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>token</pt>
+                    <pd>在服务端生成的用于鉴权的动态密钥。详见[使用 Token 鉴权](https://doc.shengwang.cn/doc/rtc/electron/basic-features/token-authentication)。
+                        <note>
+                            <ul>
+                                <li>（推荐）如果你的项目开启了安全模式，即选择 APP ID + Token 为鉴权机制，则该参数为必填。</li>
+                                <li>如果你的项目仅开启调试模式，即选择 APP ID 为鉴权机制，则无需填入 Token 即可加入频道。成功加入频道 24 小时后会自动退出该频道。</li>
+                                <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见[使用通配 Token](https://doc.shengwang.cn/doc/rtc/electron/best-practice/wildcard-token)。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>options</pt>
+                    <pd>频道媒体设置选项。详见 <xref keyref="ChannelMediaOptions"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>joinSuccessBlock</pt>
+                    <pd>成功加入频道回调。<codeph>joinSuccessBlock</codeph> 优先级高于 <xref keyref="onJoinChannelSuccess"/>，两个同时存在时，<xref keyref="onJoinChannelSuccess"/> 会被忽略。需要有 <xref keyref="onJoinChannelSuccess"/> 回调时，请将 <codeph>joinSuccessBlock</codeph> 设置为 <codeph>nil</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>token</pt>
+                    <pd>在服务端生成的用于鉴权的动态密钥。详见[使用 Token 鉴权](https://doc.shengwang.cn/doc/rtc/rn/basic-features/token-authentication)。
+                        <note>
+                            <ul>
+                                <li>（推荐）如果你的项目开启了安全模式，即选择 APP ID + Token 为鉴权机制，则该参数为必填。</li>
+                                <li>如果你的项目仅开启调试模式，即选择 APP ID 为鉴权机制，则无需填入 Token 即可加入频道。成功加入频道 24 小时后会自动退出该频道。</li>
+                                <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见[使用通配 Token](https://doc.shengwang.cn/doc/rtc/rn/best-practice/wildcard-token)。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>options</pt>
+                    <pd>频道媒体设置选项。详见 <xref keyref="ChannelMediaOptions"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>joinSuccessBlock</pt>
+                    <pd>成功加入频道回调。<codeph>joinSuccessBlock</codeph> 优先级高于 <xref keyref="onJoinChannelSuccess"/>，两个同时存在时，<xref keyref="onJoinChannelSuccess"/> 会被忽略。需要有 <xref keyref="onJoinChannelSuccess"/> 回调时，请将 <codeph>joinSuccessBlock</codeph> 设置为 <codeph>nil</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>token</pt>
+                    <pd>在服务端生成的用于鉴权的动态密钥。详见[使用 Token 鉴权](https://doc.shengwang.cn/doc/rtc/flutter/basic-features/token-authentication)。
+                        <note>
+                            <ul>
+                                <li>（推荐）如果你的项目开启了安全模式，即选择 APP ID + Token 为鉴权机制，则该参数为必填。</li>
+                                <li>如果你的项目仅开启调试模式，即选择 APP ID 为鉴权机制，则无需填入 Token 即可加入频道。成功加入频道 24 小时后会自动退出该频道。</li>
+                                <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见[使用通配 Token](https://doc.shengwang.cn/doc/rtc/flutter/best-practice/wildcard-token)。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>options</pt>
+                    <pd>频道媒体设置选项。详见 <xref keyref="ChannelMediaOptions"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>joinSuccessBlock</pt>
+                    <pd>成功加入频道回调。<codeph>joinSuccessBlock</codeph> 优先级高于 <xref keyref="onJoinChannelSuccess"/>，两个同时存在时，<xref keyref="onJoinChannelSuccess"/> 会被忽略。需要有 <xref keyref="onJoinChannelSuccess"/> 回调时，请将 <codeph>joinSuccessBlock</codeph> 设置为 <codeph>nil</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>token</pt>
+                    <pd>在服务端生成的用于鉴权的动态密钥。详见[使用 Token 鉴权](https://doc.shengwang.cn/doc/rtc/unity/basic-features/token-authentication)。
+                        <note>
+                            <ul>
+                                <li>（推荐）如果你的项目开启了安全模式，即选择 APP ID + Token 为鉴权机制，则该参数为必填。</li>
+                                <li>如果你的项目仅开启调试模式，即选择 APP ID 为鉴权机制，则无需填入 Token 即可加入频道。成功加入频道 24 小时后会自动退出该频道。</li>
+                                <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见[使用通配 Token](https://doc.shengwang.cn/doc/rtc/unity/best-practice/wildcard-token)。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>options</pt>
+                    <pd>频道媒体设置选项。详见 <xref keyref="ChannelMediaOptions"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>joinSuccessBlock</pt>
+                    <pd>成功加入频道回调。<codeph>joinSuccessBlock</codeph> 优先级高于 <xref keyref="onJoinChannelSuccess"/>，两个同时存在时，<xref keyref="onJoinChannelSuccess"/> 会被忽略。需要有 <xref keyref="onJoinChannelSuccess"/> 回调时，请将 <codeph>joinSuccessBlock</codeph> 设置为 <codeph>nil</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

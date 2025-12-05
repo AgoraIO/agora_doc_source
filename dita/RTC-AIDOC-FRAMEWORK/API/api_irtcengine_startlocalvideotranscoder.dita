@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startlocalvideotranscoder">
+    <title><ph keyref="startLocalVideoTranscoder"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">开启本地合图。</ph><ph id="shortdesc" props="rn">开启本地合图。</ph><ph id="shortdesc" props="flutter">开启本地合图。</ph><ph id="shortdesc" props="unity">开启本地合图。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startLocalVideoTranscoder"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startLocalVideoTranscoder(
+    config: LocalTranscoderConfiguration
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startLocalVideoTranscoder(
+    config: LocalTranscoderConfiguration
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startLocalVideoTranscoder(LocalTranscoderConfiguration config);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartLocalVideoTranscoder(LocalTranscoderConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">调用该方法后，你可以在本地将多路视频流合并为一路视频流。例如：将摄像头采集的视频流、屏幕共享流、媒体播放器中的视频流、远端视频流、视频文件、图片等合并为一路视频流，然后将已合图的视频流发布到频道中。</p>
+            <p props="rn">调用该方法后，你可以在本地将多路视频流合并为一路视频流。例如：将摄像头采集的视频流、屏幕共享流、媒体播放器中的视频流、远端视频流、视频文件、图片等合并为一路视频流，然后将已合图的视频流发布到频道中。</p>
+            <p props="flutter">调用该方法后，你可以在本地将多路视频流合并为一路视频流。例如：将摄像头采集的视频流、屏幕共享流、媒体播放器中的视频流、远端视频流、视频文件、图片等合并为一路视频流，然后将已合图的视频流发布到频道中。</p>
+            <p props="unity">调用该方法后，你可以在本地将多路视频流合并为一路视频流。例如：将摄像头采集的视频流、屏幕共享流、媒体播放器中的视频流、远端视频流、视频文件、图片等合并为一路视频流，然后将已合图的视频流发布到频道中。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>相关回调</title>
+            <p props="electron">当你调用该方法失败时，SDK 会触发 <xref keyref="onLocalVideoTranscoderError"/> 回调，报告合图失败的原因。</p>
+            <p props="rn">当你调用该方法失败时，SDK 会触发 <xref keyref="onLocalVideoTranscoderError"/> 回调，报告合图失败的原因。</p>
+            <p props="flutter">当你调用该方法失败时，SDK 会触发 <xref keyref="onLocalVideoTranscoderError"/> 回调，报告合图失败的原因。</p>
+            <p props="unity">当你调用该方法失败时，SDK 会触发 <xref keyref="onLocalVideoTranscoderError"/> 回调，报告合图失败的原因。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>本地合图的配置，详见 <xref keyref="LocalTranscoderConfiguration"/>。
+                        <note>
+                            <ul>
+                                <li>参与本地合图的每一路视频流的分辨率最大为 4096 × 2160，如果超出此限制，会导致合图不生效。</li>
+                                <li>合图后的视频流最大分辨率为 4096 × 2160。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>config</pt>
+                    <pd>本地合图的配置，详见 <xref keyref="LocalTranscoderConfiguration"/>。
+                        <note>
+                            <ul>
+                                <li>参与本地合图的每一路视频流的分辨率最大为 4096 × 2160，如果超出此限制，会导致合图不生效。</li>
+                                <li>合图后的视频流最大分辨率为 4096 × 2160。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>本地合图的配置，详见 <xref keyref="LocalTranscoderConfiguration"/>。
+                        <note>
+                            <ul>
+                                <li>参与本地合图的每一路视频流的分辨率最大为 4096 × 2160，如果超出此限制，会导致合图不生效。</li>
+                                <li>合图后的视频流最大分辨率为 4096 × 2160。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>本地合图的配置，详见 <xref keyref="LocalTranscoderConfiguration"/>。
+                        <note>
+                            <ul>
+                                <li>参与本地合图的每一路视频流的分辨率最大为 4096 × 2160，如果超出此限制，会导致合图不生效。</li>
+                                <li>合图后的视频流最大分辨率为 4096 × 2160。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

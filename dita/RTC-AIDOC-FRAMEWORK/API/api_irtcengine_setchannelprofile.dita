@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setchannelprofile">
+    <title><ph keyref="setChannelProfile"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置频道场景。</ph><ph id="shortdesc" props="rn">设置频道场景。</ph><ph id="shortdesc" props="flutter">设置频道场景。</ph><ph id="shortdesc" props="unity">设置频道场景。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setChannelProfile"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setChannelProfile(profile: ChannelProfileType): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setChannelProfile(profile: ChannelProfileType): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setChannelProfile(ChannelProfileType profile);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetChannelProfile(CHANNEL_PROFILE_TYPE profile);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">你可以调用该方法设置频道的使用场景。SDK 会针对不同的使用场景采用不同的优化策略，如直播场景优先保证画质。SDK 初始化后默认的频道场景为直播场景。</p>
+            <p props="rn">你可以调用该方法设置频道的使用场景。SDK 会针对不同的使用场景采用不同的优化策略，如直播场景优先保证画质。SDK 初始化后默认的频道场景为直播场景。</p>
+            <p props="flutter">你可以调用该方法设置频道的使用场景。SDK 会针对不同的使用场景采用不同的优化策略，如直播场景优先保证画质。SDK 初始化后默认的频道场景为直播场景。</p>
+            <p props="unity">你可以调用该方法设置频道的使用场景。SDK 会针对不同的使用场景采用不同的优化策略，如直播场景优先保证画质。SDK 初始化后默认的频道场景为直播场景。</p>
+            <note props="electron">为保证实时音视频质量，相同频道内的用户必须使用同一种频道场景。</note>
+            <note props="rn">不同的频道场景下，SDK 的默认音频路由是不同的，详见 <xref keyref="setDefaultAudioRouteToSpeakerphone"/> 中的说明。
+为保证实时音视频质量，相同频道内的用户必须使用同一种频道场景。</note>
+            <note props="flutter">为保证实时音视频质量，相同频道内的用户必须使用同一种频道场景。</note>
+            <note props="unity">为保证实时音视频质量，相同频道内的用户必须使用同一种频道场景。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在加入频道前调用。</p>
+            <p props="rn">该方法需要在加入频道前调用。</p>
+            <p props="flutter">该方法需要在加入频道前调用。</p>
+            <p props="unity">该方法需要在加入频道前调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>profile</pt>
+                    <pd>
+                        <note>废弃：请改用 ChannelProfileLiveBroadcasting。
+废弃：请改用 ChannelProfileLiveBroadcasting。</note><ph>频道使用场景。详见 <codeph>ChannelProfileType</codeph>。</ph><ph>频道使用场景。</ph>
+                        <ul>
+                            <li>ChannelProfileCommunication(0)：通信。声网推荐使用直播场景以获取更好的音视频体验。</li>
+                            <li>ChannelProfileLiveBroadcasting(1)：（默认）直播。</li>
+                            <li>ChannelProfileGame(2)：游戏语音场景。</li>
+                        </ul><ph>废弃：</ph><ph>请改用 ChannelProfileLiveBroadcasting。</ph>
+                        <ul>
+                            <li>ChannelProfileCloudGaming(3)：互动。该场景对延时进行了优化。如果你的场景中有用户需要频繁互动，建议使用该场景。</li>
+                        </ul><ph>废弃：</ph><ph>请改用 ChannelProfileLiveBroadcasting。</ph></pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>profile</pt>
+                    <pd>
+                        <note>废弃：请改用 ChannelProfileLiveBroadcasting。
+废弃：请改用 ChannelProfileLiveBroadcasting。</note><ph>频道使用场景。详见 <codeph>ChannelProfileType</codeph>。</ph><ph>频道使用场景。</ph>
+                        <ul>
+                            <li>ChannelProfileCommunication(0)：通信。声网推荐使用直播场景以获取更好的音视频体验。</li>
+                            <li>ChannelProfileLiveBroadcasting(1)：（默认）直播。</li>
+                            <li>ChannelProfileGame(2)：游戏语音场景。</li>
+                        </ul><ph>废弃：</ph><ph>请改用 ChannelProfileLiveBroadcasting。</ph>
+                        <ul>
+                            <li>ChannelProfileCloudGaming(3)：互动。该场景对延时进行了优化。如果你的场景中有用户需要频繁互动，建议使用该场景。</li>
+                        </ul><ph>废弃：</ph><ph>请改用 ChannelProfileLiveBroadcasting。</ph></pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>profile</pt>
+                    <pd>
+                        <note>废弃：请改用 channelProfileLiveBroadcasting。
+废弃：请改用 channelProfileLiveBroadcasting。</note><ph>频道使用场景。详见 <codeph>ChannelProfileType</codeph>。</ph><ph>频道使用场景。</ph>
+                        <ul>
+                            <li>channelProfileCommunication(0)：通信。声网推荐使用直播场景以获取更好的音视频体验。</li>
+                            <li>channelProfileLiveBroadcasting(1)：（默认）直播。</li>
+                            <li>channelProfileGame(2)：游戏语音场景。</li>
+                        </ul><ph>废弃：</ph><ph>请改用 channelProfileLiveBroadcasting。</ph>
+                        <ul>
+                            <li>channelProfileCloudGaming(3)：互动。该场景对延时进行了优化。如果你的场景中有用户需要频繁互动，建议使用该场景。</li>
+                        </ul><ph>废弃：</ph><ph>请改用 channelProfileLiveBroadcasting。</ph></pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>profile</pt>
+                    <pd>
+                        <note>废弃：请改用 CHANNEL_PROFILE_LIVE_BROADCASTING。
+废弃：请改用 CHANNEL_PROFILE_LIVE_BROADCASTING。</note><ph>频道使用场景。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</ph><ph>频道使用场景。</ph>
+                        <ul>
+                            <li>CHANNEL_PROFILE_COMMUNICATION(0)：通信。声网推荐使用直播场景以获取更好的音视频体验。</li>
+                            <li>CHANNEL_PROFILE_LIVE_BROADCASTING(1)：（默认）直播。</li>
+                            <li>CHANNEL_PROFILE_GAME(2)：游戏语音场景。</li>
+                        </ul><ph>废弃：</ph><ph>请改用 CHANNEL_PROFILE_LIVE_BROADCASTING。</ph>
+                        <ul>
+                            <li>CHANNEL_PROFILE_CLOUD_GAMING(3)：互动。该场景对延时进行了优化。如果你的场景中有用户需要频繁互动，建议使用该场景。</li>
+                        </ul><ph>废弃：</ph><ph>请改用 CHANNEL_PROFILE_LIVE_BROADCASTING。</ph></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2: 参数无效。</li>
+                            <li>-7: SDK 尚未初始化。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2: 参数无效。</li>
+                            <li>-7: SDK 尚未初始化。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
+                <ul>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2: 参数无效。</li>
+                            <li>-7: SDK 尚未初始化。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2: 参数无效。</li>
+                            <li>-7: SDK 尚未初始化。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

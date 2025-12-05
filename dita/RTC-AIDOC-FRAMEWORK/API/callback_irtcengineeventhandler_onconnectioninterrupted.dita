@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onconnectioninterrupted">
+    <title><ph keyref="onConnectionInterrupted"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">网络连接中断回调。</ph><ph id="shortdesc" props="rn">网络连接中断回调。</ph><ph id="shortdesc" props="flutter">网络连接中断回调。</ph><ph id="shortdesc" props="unity">网络连接中断回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onConnectionInterrupted"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onConnectionInterrupted?(connection: RtcConnection): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onConnectionInterrupted?(connection: RtcConnection): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection)? onConnectionInterrupted;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnConnectionInterrupted(RtcConnection connection) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>废弃</dt>
+                    <dd>弃用: 请改用  回调。</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>废弃</dt>
+                    <dd>弃用: 请改用  回调。</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>废弃</dt>
+                    <dd>弃用: 请改用  回调。</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>废弃</dt>
+                    <dd>弃用: 请改用  回调。</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">SDK 在和服务器建立连接后，失去了网络连接超过 4 秒，会触发该回调。在触发事件后，SDK 会主动重连服务器，所以该事件可以用于 UI 提示。该回调与 <xref keyref="onConnectionLost"/> 的区别是：
+                <ul>
+                    <li><xref keyref="onConnectionInterrupted"/>回调一定是发生在成功加入频道后，且 SDK 刚失去和服务器连接超过 4 秒时触发。</li>
+                    <li><xref keyref="onConnectionLost"/>回调是无论是否成功加入频道，只要 10 秒内和服务器无法建立连接都会触发。</li>
+                </ul><ph>如果 SDK 在断开连接后，20 分钟内还是没能重新加入频道，SDK 会停止尝试重连。</ph></p>
+            <p props="rn">SDK 在和服务器建立连接后，失去了网络连接超过 4 秒，会触发该回调。在触发事件后，SDK 会主动重连服务器，所以该事件可以用于 UI 提示。该回调与 <xref keyref="onConnectionLost"/> 的区别是：
+                <ul>
+                    <li><xref keyref="onConnectionInterrupted"/>回调一定是发生在成功加入频道后，且 SDK 刚失去和服务器连接超过 4 秒时触发。</li>
+                    <li><xref keyref="onConnectionLost"/>回调是无论是否成功加入频道，只要 10 秒内和服务器无法建立连接都会触发。</li>
+                </ul><ph>如果 SDK 在断开连接后，20 分钟内还是没能重新加入频道，SDK 会停止尝试重连。</ph></p>
+            <p props="flutter">SDK 在和服务器建立连接后，失去了网络连接超过 4 秒，会触发该回调。在触发事件后，SDK 会主动重连服务器，所以该事件可以用于 UI 提示。该回调与 <xref keyref="onConnectionLost"/> 的区别是：
+                <ul>
+                    <li><xref keyref="onConnectionInterrupted"/>回调一定是发生在成功加入频道后，且 SDK 刚失去和服务器连接超过 4 秒时触发。</li>
+                    <li><xref keyref="onConnectionLost"/>回调是无论是否成功加入频道，只要 10 秒内和服务器无法建立连接都会触发。</li>
+                </ul><ph>如果 SDK 在断开连接后，20 分钟内还是没能重新加入频道，SDK 会停止尝试重连。</ph></p>
+            <p props="unity">SDK 在和服务器建立连接后，失去了网络连接超过 4 秒，会触发该回调。在触发事件后，SDK 会主动重连服务器，所以该事件可以用于 UI 提示。该回调与 <xref keyref="onConnectionLost"/> 的区别是：
+                <ul>
+                    <li><xref keyref="onConnectionInterrupted"/>回调一定是发生在成功加入频道后，且 SDK 刚失去和服务器连接超过 4 秒时触发。</li>
+                    <li><xref keyref="onConnectionLost"/>回调是无论是否成功加入频道，只要 10 秒内和服务器无法建立连接都会触发。</li>
+                </ul><ph>如果 SDK 在断开连接后，20 分钟内还是没能重新加入频道，SDK 会停止尝试重连。</ph></p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>engine</pt>
+                    <pd><codeph>RtcEngine</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

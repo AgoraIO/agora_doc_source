@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_followsystemloopbackdevice">
+    <title><ph keyref="followSystemLoopbackDevice"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置声卡采集设备是否跟随系统默认的播放设备。</ph><ph id="shortdesc" props="flutter">设置声卡采集设备是否跟随系统默认的播放设备。</ph><ph id="shortdesc" props="unity">设置声卡采集设备是否跟随系统默认的播放设备。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="followSystemLoopbackDevice"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract followSystemLoopbackDevice(enable: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; followSystemLoopbackDevice(bool enable);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int FollowSystemLoopbackDevice(bool enable);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.0.1</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.0.1</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.0.1</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">方法仅适用于 Windows 和 macOS。</p>
+            <p props="flutter">方法仅适用于 Windows 和 macOS。</p>
+            <p props="unity">方法仅适用于 Windows 和 macOS。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enable</pt>
+                    <pd>是否跟随系统默认的播放设备：
+                        <ul>
+                            <li><xref keyref="true"/>：跟随。当系统默认播放设备发生改变时，SDK 立即跟随切换声卡采集设备。</li>
+                            <li><xref keyref="false"/>：不跟随。只有当 SDK 使用的声卡采集设备被移除后，SDK 才切换至系统默认的音频播放设备。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enable</pt>
+                    <pd>是否跟随系统默认的播放设备：
+                        <ul>
+                            <li><xref keyref="true"/>：跟随。当系统默认播放设备发生改变时，SDK 立即跟随切换声卡采集设备。</li>
+                            <li><xref keyref="false"/>：不跟随。只有当 SDK 使用的声卡采集设备被移除后，SDK 才切换至系统默认的音频播放设备。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enable</pt>
+                    <pd>是否跟随系统默认的播放设备：
+                        <ul>
+                            <li><xref keyref="true"/>：跟随。当系统默认播放设备发生改变时，SDK 立即跟随切换声卡采集设备。</li>
+                            <li><xref keyref="false"/>：不跟随。只有当 SDK 使用的声卡采集设备被移除后，SDK 才切换至系统默认的音频播放设备。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

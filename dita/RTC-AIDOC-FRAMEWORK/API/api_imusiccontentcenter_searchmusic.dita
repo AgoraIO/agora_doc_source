@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_searchmusic">
+    <title><ph keyref="searchMusic"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">搜索音乐资源。</ph><ph id="shortdesc" props="rn">搜索音乐资源。</ph><ph id="shortdesc" props="flutter">搜索音乐资源。</ph><ph id="shortdesc" props="unity">搜索音乐资源。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="searchMusic"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract searchMusic(
+    requestId: string,
+    keyWord: string,
+    page: number,
+    pageSize: number,
+    jsonOption?: string
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract searchMusic(
+    requestId: string,
+    keyWord: string,
+    page: number,
+    pageSize: number,
+    jsonOption?: string
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; searchMusic(
+      {required String keyWord,
+      required int page,
+      required int pageSize,
+      String? jsonOption});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SearchMusic(ref string requestId, string keyWord, int page, int pageSize, string jsonOption = "");</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.1.0</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">成功调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"/> 回调报告检索到的音乐资源列表。</p>
+            <p props="rn">成功调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"/> 回调报告检索到的音乐资源列表。</p>
+            <p props="flutter">成功调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"/> 回调报告检索到的音乐资源列表。</p>
+            <p props="unity">成功调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"/> 回调报告检索到的音乐资源列表。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>keyword</pt>
+                    <pd>搜索关键词，支持歌曲名、歌手搜索。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>page</pt>
+                    <pd>想要获取的音乐资源列表的目标页编号。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>pageSize</pt>
+                    <pd>每页所展示的音乐资源的最大数量，最大值为 50。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>jsonOption</pt>
+                    <pd>扩展 JSON 字段，默认为 null。你可以通过该字段来筛选出你需要的音乐资源，目前支持筛选可打分的音乐资源及音乐资源的副歌片段：
+| Key 值 | Value 值 | 示例 |
+| --- | --- | --- |
+| pitchType | 是否支持打分：
+                        <ul>
+                            <li>1：支持打分的音乐资源。</li>
+                            <li>2：不支持打分的音乐资源。 | {"pitchType":1} |</li>
+                        </ul><ph>| needHighPart | 是否需要副歌片段资源：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：需要副歌片段资源。</li>
+                            <li><xref keyref="false"/>：不需要副歌片段资源。 | {"needHighPart":true} |</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>requestId</pt>
+                    <pd>请求 ID。本次请求的唯一标识。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>keyword</pt>
+                    <pd>搜索关键词，支持歌曲名、歌手搜索。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>page</pt>
+                    <pd>想要获取的音乐资源列表的目标页编号。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>pageSize</pt>
+                    <pd>每页所展示的音乐资源的最大数量，最大值为 50。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>jsonOption</pt>
+                    <pd>扩展 JSON 字段，默认为 null。你可以通过该字段来筛选出你需要的音乐资源，目前支持筛选可打分的音乐资源及音乐资源的副歌片段：
+| Key 值 | Value 值 | 示例 |
+| --- | --- | --- |
+| pitchType | 是否支持打分：
+                        <ul>
+                            <li>1：支持打分的音乐资源。</li>
+                            <li>2：不支持打分的音乐资源。 | {"pitchType":1} |</li>
+                        </ul><ph>| needHighPart | 是否需要副歌片段资源：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：需要副歌片段资源。</li>
+                            <li><xref keyref="false"/>：不需要副歌片段资源。 | {"needHighPart":true} |</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>requestId</pt>
+                    <pd>请求 ID。本次请求的唯一标识。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>keyword</pt>
+                    <pd>搜索关键词，支持歌曲名、歌手搜索。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>page</pt>
+                    <pd>想要获取的音乐资源列表的目标页编号。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pageSize</pt>
+                    <pd>每页所展示的音乐资源的最大数量，最大值为 50。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>jsonOption</pt>
+                    <pd>扩展 JSON 字段，默认为 
+                        <ul>
+                            <li>1：支持打分的音乐资源。</li>
+                            <li>2：不支持打分的音乐资源。 | {"pitchType":1} |</li>
+                        </ul><ph>| needHighPart | 是否需要副歌片段资源：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：需要副歌片段资源。</li>
+                            <li><xref keyref="false"/>：不需要副歌片段资源。 | {"needHighPart":true} |</li>
+                        </ul><codeph><ph keyref="NULL"/></codeph>。你可以通过该字段来筛选出你需要的音乐资源，目前支持筛选可打分的音乐资源及音乐资源的副歌片段：
+| Key 值 | Value 值 | 示例 |
+| --- | --- | --- |
+| pitchType | 是否支持打分：</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>requestId</pt>
+                    <pd>请求 ID。本次请求的唯一标识。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>keyword</pt>
+                    <pd>搜索关键词，支持歌曲名、歌手搜索。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>page</pt>
+                    <pd>想要获取的音乐资源列表的目标页编号。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>pageSize</pt>
+                    <pd>每页所展示的音乐资源的最大数量，最大值为 50。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>jsonOption</pt>
+                    <pd>扩展 JSON 字段，默认为 
+                        <ul>
+                            <li>1：支持打分的音乐资源。</li>
+                            <li>2：不支持打分的音乐资源。 | {"pitchType":1} |</li>
+                        </ul><ph>| needHighPart | 是否需要副歌片段资源：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：需要副歌片段资源。</li>
+                            <li><xref keyref="false"/>：不需要副歌片段资源。 | {"needHighPart":true} |</li>
+                        </ul><codeph><ph keyref="NULL"/></codeph>。你可以通过该字段来筛选出你需要的音乐资源，目前支持筛选可打分的音乐资源及音乐资源的副歌片段：
+| Key 值 | Value 值 | 示例 |
+| --- | --- | --- |
+| pitchType | 是否支持打分：</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>requestId</pt>
+                    <pd>请求 ID。本次请求的唯一标识。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">一个 <codeph>requestId</codeph>，为本次请求的唯一标识。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

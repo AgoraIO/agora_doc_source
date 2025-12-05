@@ -1,0 +1,243 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onremotevideostatechanged">
+    <title><ph keyref="onRemoteVideoStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">远端视频状态发生改变回调。</ph><ph id="shortdesc" props="rn">远端视频状态发生改变回调。</ph><ph id="shortdesc" props="flutter">远端视频状态发生改变回调。</ph><ph id="shortdesc" props="unity">远端视频状态发生改变回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteVideoStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onRemoteVideoStateChanged?(
+    connection: RtcConnection,
+    remoteUid: number,
+    state: RemoteVideoState,
+    reason: RemoteVideoStateReason,
+    elapsed: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onRemoteVideoStateChanged?(
+    connection: RtcConnection,
+    remoteUid: number,
+    state: RemoteVideoState,
+    reason: RemoteVideoStateReason,
+    elapsed: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(
+      RtcConnection connection,
+      int remoteUid,
+      RemoteVideoState state,
+      RemoteVideoStateReason reason,
+      int elapsed)? onRemoteVideoStateChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteVideoStateChanged(RtcConnection connection, uint remoteUid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason, int elapsed) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">频道内的用户（通信场景）或主播（直播场景）人数超过 32 人时，该回调可能不准确。</note>
+            <note props="rn">频道内的用户（通信场景）或主播（直播场景）人数超过 32 人时，该回调可能不准确。</note>
+            <note props="flutter">频道内的用户（通信场景）或主播（直播场景）人数超过 32 人时，该回调可能不准确。</note>
+            <note props="unity">频道内的用户（通信场景）或主播（直播场景）人数超过 32 人时，该回调可能不准确。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteUid</pt>
+                    <pd>发生视频状态改变的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>state</pt>
+                    <pd>远端视频流状态，详见 <codeph>RemoteVideoState</codeph>。
+远端视频流状态：
+                        <ul>
+                            <li>RemoteVideoStateStopped(0)：远端视频默认初始状态。在<codeph>RemoteVideoStateReasonLocalMuted</codeph>(3)、<codeph>RemoteVideoStateReasonRemoteMuted</codeph>(5) 或<codeph>RemoteVideoStateReasonRemoteOffline</codeph>(7) 的情况下，会报告该状态。</li>
+                            <li>RemoteVideoStateStarting(1)：本地用户已接收远端视频首包。</li>
+                            <li>RemoteVideoStateDecoding(2)： 远端视频流正在解码，正常播放。在<codeph>RemoteVideoStateReasonNetworkRecovery</codeph>(2)、<codeph>RemoteVideoStateReasonLocalUnmuted</codeph>(4)、<codeph>RemoteVideoStateReasonRemoteUnmuted</codeph>(6) 或<codeph>RemoteVideoStateReasonAudioFallbackRecovery</codeph>(9) 的情况下，会报告该状态。</li>
+                            <li>RemoteVideoStateFrozen(3)：远端视频流卡顿。在<codeph>RemoteVideoStateReasonNetworkCongestion</codeph>(1) 或<codeph>RemoteVideoStateReasonAudioFallback</codeph>(8) 的情况下，会报告该状态。</li>
+                            <li>RemoteVideoStateFailed(4)：远端视频流播放失败。在<codeph>RemoteVideoStateReasonInternal</codeph>(0) 的情况下，会报告该状态。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>reason</pt>
+                    <pd>远端视频流状态改变的具体原因，详见 <codeph>RemoteVideoStateReason</codeph>。
+远端视频流状态改变的具体原因：
+                        <ul>
+                            <li>RemoteVideoStateReasonInternal(0)：内部原因。</li>
+                            <li>RemoteVideoStateReasonNetworkCongestion(1)：网络阻塞。</li>
+                            <li>RemoteVideoStateReasonNetworkRecovery(2)：网络恢复正常。</li>
+                            <li>RemoteVideoStateReasonLocalMuted(3)：本地用户停止接收远端视频流或本地用户禁用视频模块。</li>
+                            <li>RemoteVideoStateReasonLocalUnmuted(4)：本地用户恢复接收远端视频流或本地用户启动视频模块。</li>
+                            <li>RemoteVideoStateReasonRemoteMuted(5)：远端用户停止发送视频流或远端用户禁用视频模块。</li>
+                            <li>RemoteVideoStateReasonRemoteUnmuted(6)：远端用户恢复发送视频流或远端用户启用视频模块。</li>
+                            <li>RemoteVideoStateReasonRemoteOffline(7)：远端用户离开频道。</li>
+                            <li>RemoteVideoStateReasonAudioFallback(8)：远端视频流已回退为音频流。</li>
+                            <li>RemoteVideoStateReasonAudioFallbackRecovery(9)：回退的远端音频流恢复为视频流。</li>
+                            <li>RemoteVideoStateReasonCodecNotSupport(13)：本地的视频解码器不支持对收到的远端视频流进行解码。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <xref keyref="joinChannel2"/> 方法到发生本事件经历的时间，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteUid</pt>
+                    <pd>发生视频状态改变的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>state</pt>
+                    <pd>远端视频流状态，详见 <codeph>RemoteVideoState</codeph>。
+远端视频流状态：
+                        <ul>
+                            <li>RemoteVideoStateStopped(0)：远端视频默认初始状态。在<codeph>RemoteVideoStateReasonLocalMuted</codeph>(3)、<codeph>RemoteVideoStateReasonRemoteMuted</codeph>(5) 或<codeph>RemoteVideoStateReasonRemoteOffline</codeph>(7) 的情况下，会报告该状态。</li>
+                            <li>RemoteVideoStateStarting(1)：本地用户已接收远端视频首包。</li>
+                            <li>RemoteVideoStateDecoding(2)： 远端视频流正在解码，正常播放。在<codeph>RemoteVideoStateReasonNetworkRecovery</codeph>(2)、<codeph>RemoteVideoStateReasonLocalUnmuted</codeph>(4)、<codeph>RemoteVideoStateReasonRemoteUnmuted</codeph>(6) 或<codeph>RemoteVideoStateReasonAudioFallbackRecovery</codeph>(9) 的情况下，会报告该状态。</li>
+                            <li>RemoteVideoStateFrozen(3)：远端视频流卡顿。在<codeph>RemoteVideoStateReasonNetworkCongestion</codeph>(1) 或<codeph>RemoteVideoStateReasonAudioFallback</codeph>(8) 的情况下，会报告该状态。</li>
+                            <li>RemoteVideoStateFailed(4)：远端视频流播放失败。在<codeph>RemoteVideoStateReasonInternal</codeph>(0) 的情况下，会报告该状态。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>reason</pt>
+                    <pd>远端视频流状态改变的具体原因，详见 <codeph>RemoteVideoStateReason</codeph>。
+远端视频流状态改变的具体原因：
+                        <ul>
+                            <li>RemoteVideoStateReasonInternal(0)：内部原因。</li>
+                            <li>RemoteVideoStateReasonNetworkCongestion(1)：网络阻塞。</li>
+                            <li>RemoteVideoStateReasonNetworkRecovery(2)：网络恢复正常。</li>
+                            <li>RemoteVideoStateReasonLocalMuted(3)：本地用户停止接收远端视频流或本地用户禁用视频模块。</li>
+                            <li>RemoteVideoStateReasonLocalUnmuted(4)：本地用户恢复接收远端视频流或本地用户启动视频模块。</li>
+                            <li>RemoteVideoStateReasonRemoteMuted(5)：远端用户停止发送视频流或远端用户禁用视频模块。</li>
+                            <li>RemoteVideoStateReasonRemoteUnmuted(6)：远端用户恢复发送视频流或远端用户启用视频模块。</li>
+                            <li>RemoteVideoStateReasonRemoteOffline(7)：远端用户离开频道。</li>
+                            <li>RemoteVideoStateReasonAudioFallback(8)：远端视频流已回退为音频流。</li>
+                            <li>RemoteVideoStateReasonAudioFallbackRecovery(9)：回退的远端音频流恢复为视频流。</li>
+                            <li>RemoteVideoStateReasonCodecNotSupport(13)：本地的视频解码器不支持对收到的远端视频流进行解码。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <xref keyref="joinChannel2"/> 方法到发生本事件经历的时间，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>engine</pt>
+                    <pd><codeph>RtcEngine</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteUid</pt>
+                    <pd>发生视频状态改变的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>state</pt>
+                    <pd>远端视频流状态，详见 <codeph>RemoteVideoState</codeph>。
+远端视频流状态：
+                        <ul>
+                            <li>remoteVideoStateStopped(0)：远端视频默认初始状态。在<codeph>remoteVideoStateReasonLocalMuted</codeph>(3)、<codeph>remoteVideoStateReasonRemoteMuted</codeph>(5) 或<codeph>remoteVideoStateReasonRemoteOffline</codeph>(7) 的情况下，会报告该状态。</li>
+                            <li>remoteVideoStateStarting(1)：本地用户已接收远端视频首包。</li>
+                            <li>remoteVideoStateDecoding(2)： 远端视频流正在解码，正常播放。在<codeph>remoteVideoStateReasonNetworkRecovery</codeph>(2)、<codeph>remoteVideoStateReasonLocalUnmuted</codeph>(4)、<codeph>remoteVideoStateReasonRemoteUnmuted</codeph>(6) 或<codeph>remoteVideoStateReasonAudioFallbackRecovery</codeph>(9) 的情况下，会报告该状态。</li>
+                            <li>remoteVideoStateFrozen(3)：远端视频流卡顿。在<codeph>remoteVideoStateReasonNetworkCongestion</codeph>(1) 或<codeph>remoteVideoStateReasonAudioFallback</codeph>(8) 的情况下，会报告该状态。</li>
+                            <li>remoteVideoStateFailed(4)：远端视频流播放失败。在<codeph>remoteVideoStateReasonInternal</codeph>(0) 的情况下，会报告该状态。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>reason</pt>
+                    <pd>远端视频流状态改变的具体原因，详见 <codeph>RemoteVideoStateReason</codeph>。
+远端视频流状态改变的具体原因：
+                        <ul>
+                            <li>remoteVideoStateReasonInternal(0)：内部原因。</li>
+                            <li>remoteVideoStateReasonNetworkCongestion(1)：网络阻塞。</li>
+                            <li>remoteVideoStateReasonNetworkRecovery(2)：网络恢复正常。</li>
+                            <li>remoteVideoStateReasonLocalMuted(3)：本地用户停止接收远端视频流或本地用户禁用视频模块。</li>
+                            <li>remoteVideoStateReasonLocalUnmuted(4)：本地用户恢复接收远端视频流或本地用户启动视频模块。</li>
+                            <li>remoteVideoStateReasonRemoteMuted(5)：远端用户停止发送视频流或远端用户禁用视频模块。</li>
+                            <li>remoteVideoStateReasonRemoteUnmuted(6)：远端用户恢复发送视频流或远端用户启用视频模块。</li>
+                            <li>remoteVideoStateReasonRemoteOffline(7)：远端用户离开频道。</li>
+                            <li>remoteVideoStateReasonAudioFallback(8)：远端视频流已回退为音频流。</li>
+                            <li>remoteVideoStateReasonAudioFallbackRecovery(9)：回退的远端音频流恢复为视频流。</li>
+                            <li>remoteVideoStateReasonCodecNotSupport(13)：本地的视频解码器不支持对收到的远端视频流进行解码。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <xref keyref="joinChannel2"/> 方法到发生本事件经历的时间，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteUid</pt>
+                    <pd>发生视频状态改变的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>state</pt>
+                    <pd>远端视频流状态，详见 <xref keyref="REMOTE_VIDEO_STATE"/>。
+远端视频流状态：
+                        <ul>
+                            <li>REMOTE_VIDEO_STATE_STOPPED(0)：远端视频默认初始状态。在<codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED</codeph>(3)、<codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED</codeph>(5) 或<codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE</codeph>(7) 的情况下，会报告该状态。</li>
+                            <li>REMOTE_VIDEO_STATE_STARTING(1)：本地用户已接收远端视频首包。</li>
+                            <li>REMOTE_VIDEO_STATE_DECODING(2)： 远端视频流正在解码，正常播放。在<codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY</codeph>(2)、<codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED</codeph>(4)、<codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED</codeph>(6) 或<codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY</codeph>(9) 的情况下，会报告该状态。</li>
+                            <li>REMOTE_VIDEO_STATE_FROZEN(3)：远端视频流卡顿。在<codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION</codeph>(1) 或<codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK</codeph>(8) 的情况下，会报告该状态。</li>
+                            <li>REMOTE_VIDEO_STATE_FAILED(4)：远端视频流播放失败。在<codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL</codeph>(0) 的情况下，会报告该状态。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>reason</pt>
+                    <pd>远端视频流状态改变的具体原因，详见 <xref keyref="REMOTE_VIDEO_STATE_REASON"/>。
+远端视频流状态改变的具体原因：
+                        <ul>
+                            <li>REMOTE_VIDEO_STATE_REASON_INTERNAL(0)：内部原因。</li>
+                            <li>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION(1)：网络阻塞。</li>
+                            <li>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY(2)：网络恢复正常。</li>
+                            <li>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED(3)：本地用户停止接收远端视频流或本地用户禁用视频模块。</li>
+                            <li>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED(4)：本地用户恢复接收远端视频流或本地用户启动视频模块。</li>
+                            <li>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED(5)：远端用户停止发送视频流或远端用户禁用视频模块。</li>
+                            <li>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED(6)：远端用户恢复发送视频流或远端用户启用视频模块。</li>
+                            <li>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE(7)：远端用户离开频道。</li>
+                            <li>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK(8)：远端视频流已回退为音频流。</li>
+                            <li>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY(9)：回退的远端音频流恢复为视频流。</li>
+                            <li>REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT(13)：本地的视频解码器不支持对收到的远端视频流进行解码。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <xref keyref="joinChannel2"/> 方法到发生本事件经历的时间，单位为毫秒。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

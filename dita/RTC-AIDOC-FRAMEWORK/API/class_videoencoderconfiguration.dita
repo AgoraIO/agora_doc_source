@@ -1,0 +1,502 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videoencoderconfiguration">
+    <title><ph keyref="VideoEncoderConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">视频编码器的配置。</ph><ph id="shortdesc" props="rn">视频编码器的配置。</ph><ph id="shortdesc" props="flutter">视频编码器的配置。</ph><ph id="shortdesc" props="unity">视频编码器的配置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class VideoEncoderConfiguration {
+
+  codecType?: VideoCodecType;
+
+  dimensions?: VideoDimensions;
+
+  frameRate?: number;
+
+  bitrate?: number;
+
+  minBitrate?: number;
+
+  orientationMode?: OrientationMode;
+
+  degradationPreference?: DegradationPreference;
+
+  mirrorMode?: VideoMirrorModeType;
+
+  advanceOptions?: AdvanceOptions;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class VideoEncoderConfiguration {
+
+  codecType?: VideoCodecType;
+
+  dimensions?: VideoDimensions;
+
+  frameRate?: number;
+
+  bitrate?: number;
+
+  minBitrate?: number;
+
+  orientationMode?: OrientationMode;
+
+  degradationPreference?: DegradationPreference;
+
+  mirrorMode?: VideoMirrorModeType;
+
+  advanceOptions?: AdvanceOptions;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class VideoEncoderConfiguration {
+  const VideoEncoderConfiguration(
+      {this.codecType,
+      this.dimensions,
+      this.frameRate,
+      this.bitrate,
+      this.minBitrate,
+      this.orientationMode,
+      this.degradationPreference,
+      this.mirrorMode,
+      this.advanceOptions});
+
+  @JsonKey(name: 'codecType')
+  final VideoCodecType? codecType;
+
+  @JsonKey(name: 'dimensions')
+  final VideoDimensions? dimensions;
+
+  @JsonKey(name: 'frameRate')
+  final int? frameRate;
+
+  @JsonKey(name: 'bitrate')
+  final int? bitrate;
+
+  @JsonKey(name: 'minBitrate')
+  final int? minBitrate;
+
+  @JsonKey(name: 'orientationMode')
+  final OrientationMode? orientationMode;
+
+  @JsonKey(name: 'degradationPreference')
+  final DegradationPreference? degradationPreference;
+
+  @JsonKey(name: 'mirrorMode')
+  final VideoMirrorModeType? mirrorMode;
+
+  @JsonKey(name: 'advanceOptions')
+  final AdvanceOptions? advanceOptions;
+
+  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$VideoEncoderConfigurationFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoEncoderConfigurationToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class VideoEncoderConfiguration
+    {
+        public VIDEO_CODEC_TYPE codecType;
+        public VideoDimensions dimensions;
+        public int frameRate;
+        public int bitrate;
+        public int minBitrate;
+        public ORIENTATION_MODE orientationMode;
+        public DEGRADATION_PREFERENCE degradationPreference;
+        public VIDEO_MIRROR_MODE_TYPE mirrorMode;
+        public AdvanceOptions advanceOptions;
+
+        public VideoEncoderConfiguration(VideoDimensions d, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED)
+        {
+            this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
+            this.dimensions = d;
+            this.frameRate = f;
+            this.bitrate = b;
+            this.minBitrate = (int)BITRATE.DEFAULT_MIN_BITRATE;
+            this.orientationMode = m;
+            this.degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+            this.mirrorMode = mirror;
+            this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
+        }
+
+        public VideoEncoderConfiguration(int width, int height, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED)
+        {
+            this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
+            this.dimensions = new VideoDimensions(width, height);
+            this.frameRate = f;
+            this.bitrate = b;
+            this.minBitrate = (int)BITRATE.DEFAULT_MIN_BITRATE;
+            this.orientationMode = m;
+            this.degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+            this.mirrorMode = mirror;
+            this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
+        }
+
+        public VideoEncoderConfiguration(VideoEncoderConfiguration config)
+        {
+            this.codecType = config.codecType;
+            this.dimensions = config.dimensions;
+            this.frameRate = config.frameRate;
+            this.bitrate = config.bitrate;
+            this.minBitrate = config.minBitrate;
+            this.orientationMode = config.orientationMode;
+            this.degradationPreference = config.degradationPreference;
+            this.mirrorMode = config.mirrorMode;
+            this.advanceOptions = config.advanceOptions;
+        }
+
+        public VideoEncoderConfiguration()
+        {
+            this.codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_NONE;
+            this.dimensions = new VideoDimensions((int)FRAME_WIDTH.FRAME_WIDTH_960, (int)FRAME_HEIGHT.FRAME_HEIGHT_540);
+            this.frameRate = (int)FRAME_RATE.FRAME_RATE_FPS_15;
+            this.bitrate = (int)BITRATE.STANDARD_BITRATE;
+            this.minBitrate = (int)BITRATE.DEFAULT_MIN_BITRATE;
+            this.orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
+            this.degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
+            this.mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED;
+            this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
+        }
+
+        public VideoEncoderConfiguration(VIDEO_CODEC_TYPE codecType, VideoDimensions dimensions, int frameRate, int bitrate, int minBitrate, ORIENTATION_MODE orientationMode, DEGRADATION_PREFERENCE degradationPreference, VIDEO_MIRROR_MODE_TYPE mirrorMode, AdvanceOptions advanceOptions)
+        {
+            this.codecType = codecType;
+            this.dimensions = dimensions;
+            this.frameRate = frameRate;
+            this.bitrate = bitrate;
+            this.minBitrate = minBitrate;
+            this.orientationMode = orientationMode;
+            this.degradationPreference = degradationPreference;
+            this.mirrorMode = mirrorMode;
+            this.advanceOptions = advanceOptions;
+        }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>dimensions</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>视频能否达到 720P 及以上分辨率取决于设备的性能，在性能配备较低的设备上有可能无法实现。如果采用 720P 分辨率而设备性能跟不上，则有可能出现帧率过低的情况。</li>
+                            </ul>
+                        </note><ph>视频编码的分辨率 (px)，详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 960 × 540。用户可以自行设置分辨率。</ph><ph>用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：</ph>
+                        <ul>
+                            <li>VD_120x120：视频分辨率为 120 × 120。</li>
+                            <li>VD_160x120：视频分辨率为 160 × 120。</li>
+                            <li>VD_180x180：视频分辨率为 180 × 180。</li>
+                            <li>VD_240x180：视频分辨率为 240 × 180。</li>
+                            <li>VD_320x180：视频分辨率为 320 × 180。</li>
+                            <li>VD_240x240：视频分辨率为 240 × 240。</li>
+                            <li>VD_320x240：视频分辨率为 320 × 240。</li>
+                            <li>VD_424x240：视频分辨率为 424 × 240。</li>
+                            <li>VD_360x360：视频分辨率为 360 × 360。</li>
+                            <li>VD_480x360：视频分辨率为 480 × 360。</li>
+                            <li>VD_640x360：视频分辨率为 640 × 360。</li>
+                            <li>VD_480x480：视频分辨率为 480 × 480。</li>
+                            <li>VD_640x480：视频分辨率为 640 × 480。</li>
+                            <li>VD_840x480：视频分辨率为 840 × 480。</li>
+                            <li>VD_960x540：视频分辨率为 960 × 540。</li>
+                            <li>VD_960x720：视频分辨率为 960 × 720。</li>
+                            <li>VD_1280x720：视频分辨率为 1280 × 720。</li>
+                            <li>VD_1920x1080：视频分辨率为 1920 × 1080。</li>
+                            <li>VD_2540x1440：视频分辨率为 2540 × 1440。</li>
+                            <li>VD_3840x2160：视频分辨率为 3840 × 2160。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>codecType</pt>
+                    <pd>视频编码类型，详见 <codeph>VideoCodecType</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>frameRate</pt>
+                    <pd>视频编码的帧率(fps)，默认值为 15。详见 <codeph>FrameRate</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>bitrate</pt>
+                    <pd>视频编码码率，单位为 Kbps。详见 <codeph>BITRATE</codeph>。该参数无需设置，保留默认值 <codeph>STANDARD_BITRATE</codeph> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见[视频属性](https://doc.shengwang.cn/doc/rtc/electron/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83)。
+                        <ul>
+                            <li>STANDARD_BITRATE(0): (默认) 标准码率模式。</li>
+                            <li>COMPATIBLE_BITRATE(-1): 适配码率模式。一般情况下，声网建议你不要使用该值。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>minBitrate</pt>
+                    <pd>最低编码码率，单位为 Kbps。
+SDK 会根据网络状况自动调整视频编码码率。将参数设为高于默认值可强制视频编码器输出高质量图片，但在网络状况不佳情况下可能导致网络丢包并影响视频播放的流畅度造成卡顿。因此如非对画质有特殊需求，声网建议不要修改该参数的值。
+                        <note>该参数仅适用于直播场景。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>orientationMode</pt>
+                    <pd>视频编码的方向模式，详见 <codeph>OrientationMode</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>degradationPreference</pt>
+                    <pd>带宽受限时，视频编码降级偏好。详见 <codeph>DegradationPreference</codeph>。
+                        <note>当该参数设置为 MaintainFramerate (1) 或者 MaintainBalanced (2) 时，需要同时将 <codeph>orientationMode</codeph> 设置为 OrientationModeAdaptive (0)，否则设置不生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>mirrorMode</pt>
+                    <pd>
+                        <note>默认关闭镜像模式。</note><ph>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <codeph>VideoMirrorModeType</codeph>。</ph><ph>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。</ph>
+                        <ul>
+                            <li>VideoMirrorModeAuto(0)：SDK 决定镜像模式。默认关闭远端用户的镜像模式。</li>
+                            <li>VideoMirrorModeEnabled(1)：开启远端用户的镜像模式。</li>
+                            <li>VideoMirrorModeDisabled(2)：关闭远端用户的镜像模式。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>advanceOptions</pt>
+                    <pd>视频编码的高级选项。详见 <xref keyref="AdvanceOptions"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>dimensions</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>视频能否达到 720P 及以上分辨率取决于设备的性能，在性能配备较低的设备上有可能无法实现。如果采用 720P 分辨率而设备性能跟不上，则有可能出现帧率过低的情况。</li>
+                            </ul>
+                        </note><ph>视频编码的分辨率 (px)，详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 960 × 540。用户可以自行设置分辨率。</ph><ph>用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：</ph>
+                        <ul>
+                            <li>VD_120x120：视频分辨率为 120 × 120。</li>
+                            <li>VD_160x120：视频分辨率为 160 × 120。</li>
+                            <li>VD_180x180：视频分辨率为 180 × 180。</li>
+                            <li>VD_240x180：视频分辨率为 240 × 180。</li>
+                            <li>VD_320x180：视频分辨率为 320 × 180。</li>
+                            <li>VD_240x240：视频分辨率为 240 × 240。</li>
+                            <li>VD_320x240：视频分辨率为 320 × 240。</li>
+                            <li>VD_424x240：视频分辨率为 424 × 240。</li>
+                            <li>VD_360x360：视频分辨率为 360 × 360。</li>
+                            <li>VD_480x360：视频分辨率为 480 × 360。</li>
+                            <li>VD_640x360：视频分辨率为 640 × 360。</li>
+                            <li>VD_480x480：视频分辨率为 480 × 480。</li>
+                            <li>VD_640x480：视频分辨率为 640 × 480。</li>
+                            <li>VD_840x480：视频分辨率为 840 × 480。</li>
+                            <li>VD_960x540：视频分辨率为 960 × 540。</li>
+                            <li>VD_960x720：视频分辨率为 960 × 720。</li>
+                            <li>VD_1280x720：视频分辨率为 1280 × 720。</li>
+                            <li>VD_1920x1080：视频分辨率为 1920 × 1080。</li>
+                            <li>VD_2540x1440：视频分辨率为 2540 × 1440。</li>
+                            <li>VD_3840x2160：视频分辨率为 3840 × 2160。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>codecType</pt>
+                    <pd>视频编码类型，详见 <codeph>VideoCodecType</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>frameRate</pt>
+                    <pd>视频编码的帧率(fps)，默认值为 15。详见 <codeph>FrameRate</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>bitrate</pt>
+                    <pd>视频编码码率，单位为 Kbps。详见 <codeph>BITRATE</codeph>。该参数无需设置，保留默认值 <codeph>STANDARD_BITRATE</codeph> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见[视频属性](https://doc.shengwang.cn/doc/rtc/rn/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83)。
+                        <ul>
+                            <li>STANDARD_BITRATE(0): (默认) 标准码率模式。</li>
+                            <li>COMPATIBLE_BITRATE(-1): 适配码率模式。一般情况下，声网建议你不要使用该值。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>minBitrate</pt>
+                    <pd>最低编码码率，单位为 Kbps。
+SDK 会根据网络状况自动调整视频编码码率。将参数设为高于默认值可强制视频编码器输出高质量图片，但在网络状况不佳情况下可能导致网络丢包并影响视频播放的流畅度造成卡顿。因此如非对画质有特殊需求，声网建议不要修改该参数的值。
+                        <note>该参数仅适用于直播场景。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>orientationMode</pt>
+                    <pd>视频编码的方向模式，详见 <codeph>OrientationMode</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>degradationPreference</pt>
+                    <pd>带宽受限时，视频编码降级偏好。详见 <codeph>DegradationPreference</codeph>。
+                        <note>当该参数设置为 MaintainFramerate (1) 或者 MaintainBalanced (2) 时，需要同时将 <codeph>orientationMode</codeph> 设置为 OrientationModeAdaptive (0)，否则设置不生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mirrorMode</pt>
+                    <pd>
+                        <note>默认关闭镜像模式。</note><ph>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <codeph>VideoMirrorModeType</codeph>。</ph><ph>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。</ph>
+                        <ul>
+                            <li>VideoMirrorModeAuto(0)：SDK 决定镜像模式。默认关闭远端用户的镜像模式。</li>
+                            <li>VideoMirrorModeEnabled(1)：开启远端用户的镜像模式。</li>
+                            <li>VideoMirrorModeDisabled(2)：关闭远端用户的镜像模式。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>advanceOptions</pt>
+                    <pd>视频编码的高级选项。详见 <xref keyref="AdvanceOptions"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>dimensions</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>视频能否达到 720P 及以上分辨率取决于设备的性能，在性能配备较低的设备上有可能无法实现。如果采用 720P 分辨率而设备性能跟不上，则有可能出现帧率过低的情况。</li>
+                            </ul>
+                        </note><ph>视频编码的分辨率 (px)，详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 960 × 540。用户可以自行设置分辨率。</ph><ph>用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：</ph>
+                        <ul>
+                            <li>VD_120x120：视频分辨率为 120 × 120。</li>
+                            <li>VD_160x120：视频分辨率为 160 × 120。</li>
+                            <li>VD_180x180：视频分辨率为 180 × 180。</li>
+                            <li>VD_240x180：视频分辨率为 240 × 180。</li>
+                            <li>VD_320x180：视频分辨率为 320 × 180。</li>
+                            <li>VD_240x240：视频分辨率为 240 × 240。</li>
+                            <li>VD_320x240：视频分辨率为 320 × 240。</li>
+                            <li>VD_424x240：视频分辨率为 424 × 240。</li>
+                            <li>VD_360x360：视频分辨率为 360 × 360。</li>
+                            <li>VD_480x360：视频分辨率为 480 × 360。</li>
+                            <li>VD_640x360：视频分辨率为 640 × 360。</li>
+                            <li>VD_480x480：视频分辨率为 480 × 480。</li>
+                            <li>VD_640x480：视频分辨率为 640 × 480。</li>
+                            <li>VD_840x480：视频分辨率为 840 × 480。</li>
+                            <li>VD_960x540：视频分辨率为 960 × 540。</li>
+                            <li>VD_960x720：视频分辨率为 960 × 720。</li>
+                            <li>VD_1280x720：视频分辨率为 1280 × 720。</li>
+                            <li>VD_1920x1080：视频分辨率为 1920 × 1080。</li>
+                            <li>VD_2540x1440：视频分辨率为 2540 × 1440。</li>
+                            <li>VD_3840x2160：视频分辨率为 3840 × 2160。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>codecType</pt>
+                    <pd>视频编码类型，详见 <codeph>VideoCodecType</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>frameRate</pt>
+                    <pd>视频编码的帧率(fps)，默认值为 15。详见 <codeph>FrameRate</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>bitrate</pt>
+                    <pd>视频编码码率，单位为 Kbps。详见 <codeph>BITRATE</codeph>。该参数无需设置，保留默认值 <codeph>standardBitrate</codeph> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见[视频属性](https://doc.shengwang.cn/doc/rtc/flutter/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83)。
+                        <ul>
+                            <li>standardBitrate(0): (默认) 标准码率模式。</li>
+                            <li>compatibleBitrate(-1): 适配码率模式。一般情况下，声网建议你不要使用该值。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>minBitrate</pt>
+                    <pd>最低编码码率，单位为 Kbps。
+SDK 会根据网络状况自动调整视频编码码率。将参数设为高于默认值可强制视频编码器输出高质量图片，但在网络状况不佳情况下可能导致网络丢包并影响视频播放的流畅度造成卡顿。因此如非对画质有特殊需求，声网建议不要修改该参数的值。
+                        <note>该参数仅适用于直播场景。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>orientationMode</pt>
+                    <pd>视频编码的方向模式，详见 <codeph>OrientationMode</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>degradationPreference</pt>
+                    <pd>带宽受限时，视频编码降级偏好。详见 <codeph>DegradationPreference</codeph>。
+                        <note>当该参数设置为 maintainFramerate (1) 或者 maintainBalanced (2) 时，需要同时将 <codeph>orientationMode</codeph> 设置为 orientationModeAdaptive (0)，否则设置不生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mirrorMode</pt>
+                    <pd>
+                        <note>默认关闭镜像模式。</note><ph>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <codeph>VideoMirrorModeType</codeph>。</ph><ph>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。</ph>
+                        <ul>
+                            <li>videoMirrorModeAuto(0)：SDK 决定镜像模式。默认关闭远端用户的镜像模式。</li>
+                            <li>videoMirrorModeEnabled(1)：开启远端用户的镜像模式。</li>
+                            <li>videoMirrorModeDisabled(2)：关闭远端用户的镜像模式。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>advanceOptions</pt>
+                    <pd>视频编码的高级选项。详见 <xref keyref="AdvanceOptions"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>dimensions</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>视频能否达到 720P 及以上分辨率取决于设备的性能，在性能配备较低的设备上有可能无法实现。如果采用 720P 分辨率而设备性能跟不上，则有可能出现帧率过低的情况。</li>
+                            </ul>
+                        </note><ph>视频编码的分辨率 (px)，详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 960 × 540。用户可以自行设置分辨率。</ph><ph>用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：</ph>
+                        <ul>
+                            <li>VD_120x120：视频分辨率为 120 × 120。</li>
+                            <li>VD_160x120：视频分辨率为 160 × 120。</li>
+                            <li>VD_180x180：视频分辨率为 180 × 180。</li>
+                            <li>VD_240x180：视频分辨率为 240 × 180。</li>
+                            <li>VD_320x180：视频分辨率为 320 × 180。</li>
+                            <li>VD_240x240：视频分辨率为 240 × 240。</li>
+                            <li>VD_320x240：视频分辨率为 320 × 240。</li>
+                            <li>VD_424x240：视频分辨率为 424 × 240。</li>
+                            <li>VD_360x360：视频分辨率为 360 × 360。</li>
+                            <li>VD_480x360：视频分辨率为 480 × 360。</li>
+                            <li>VD_640x360：视频分辨率为 640 × 360。</li>
+                            <li>VD_480x480：视频分辨率为 480 × 480。</li>
+                            <li>VD_640x480：视频分辨率为 640 × 480。</li>
+                            <li>VD_840x480：视频分辨率为 840 × 480。</li>
+                            <li>VD_960x540：视频分辨率为 960 × 540。</li>
+                            <li>VD_960x720：视频分辨率为 960 × 720。</li>
+                            <li>VD_1280x720：视频分辨率为 1280 × 720。</li>
+                            <li>VD_1920x1080：视频分辨率为 1920 × 1080。</li>
+                            <li>VD_2540x1440：视频分辨率为 2540 × 1440。</li>
+                            <li>VD_3840x2160：视频分辨率为 3840 × 2160。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>codecType</pt>
+                    <pd>视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>frameRate</pt>
+                    <pd>视频编码的帧率(fps)，默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>bitrate</pt>
+                    <pd>视频编码码率，单位为 Kbps。详见 <xref keyref="BITRATE"/>。该参数无需设置，保留默认值 <xref keyref="STANDARD_BITRATE"/> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见[视频属性](https://doc.shengwang.cn/doc/rtc/unity/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83)。
+                        <ul>
+                            <li>STANDARD_BITRATE(0): (默认) 标准码率模式。</li>
+                            <li>COMPATIBLE_BITRATE(-1): 适配码率模式。一般情况下，声网建议你不要使用该值。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>minBitrate</pt>
+                    <pd>最低编码码率，单位为 Kbps。
+SDK 会根据网络状况自动调整视频编码码率。将参数设为高于默认值可强制视频编码器输出高质量图片，但在网络状况不佳情况下可能导致网络丢包并影响视频播放的流畅度造成卡顿。因此如非对画质有特殊需求，声网建议不要修改该参数的值。
+                        <note>该参数仅适用于直播场景。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>orientationMode</pt>
+                    <pd>视频编码的方向模式，详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>degradationPreference</pt>
+                    <pd>带宽受限时，视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/>。
+                        <note>当该参数设置为 MAINTAIN_FRAMERATE (1) 或者 MAINTAIN_BALANCED (2) 时，需要同时将 <codeph>orientationMode</codeph> 设置为 ORIENTATION_MODE_ADAPTIVE (0)，否则设置不生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mirrorMode</pt>
+                    <pd>
+                        <note>默认关闭镜像模式。</note><ph>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</ph><ph>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。</ph>
+                        <ul>
+                            <li>VIDEO_MIRROR_MODE_AUTO(0)：SDK 决定镜像模式。默认关闭远端用户的镜像模式。</li>
+                            <li>VIDEO_MIRROR_MODE_ENABLED(1)：开启远端用户的镜像模式。</li>
+                            <li>VIDEO_MIRROR_MODE_DISABLED(2)：关闭远端用户的镜像模式。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>advanceOptions</pt>
+                    <pd>视频编码的高级选项。详见 <xref keyref="AdvanceOptions"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

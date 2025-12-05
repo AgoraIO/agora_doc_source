@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusicontentcenter_preload2">
+    <title><ph keyref="preload2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">预加载音乐资源。</ph><ph id="shortdesc" props="rn">预加载音乐资源。</ph><ph id="shortdesc" props="unity">预加载音乐资源。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="preload2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract preload(songCode: number): string;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract preload(songCode: number): string;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int Preload(ref string requestId, Int64 songCode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.2</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.2</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.2</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识音乐资源。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识音乐资源。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识音乐资源。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>requestId</pt>
+                    <pd>输出参数，请求 ID。本次请求的唯一标识。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>返回值</title>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

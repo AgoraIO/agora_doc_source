@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startaudiorecording2">
+    <title><ph keyref="startAudioRecording2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">开始客户端录音并设置录音采样率。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startAudioRecording2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioRecording(string filePath, int sampleRate, AUDIO_RECORDING_QUALITY_TYPE quality);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">SDK 支持通话过程中在客户端进行录音。调用该方法后，你可以录制频道内所有用户的音频，并得到一个包含所有用户声音的录音文件。录音文件仅支持下列格式：
+                <ul>
+                    <li>.wav: 文件大，音质保真度较高。</li>
+                    <li>.aac: 文件小，音质保真度较低。</li>
+                </ul>
+            </p>
+            <note props="unity">
+                <ul>
+                    <li>请确保你在该方法中指定的路径存在并且可写。</li>
+                    <li>该接口需在<xref keyref="joinChannel2"/>之后调用。如果调用<xref keyref="leaveChannel2"/>时还在录音，录音会自动停止。</li>
+                    <li>为保证录音效果，当<codeph>sampleRate</codeph>设为 44.1 kHz 或 48 kHz 时，建议将<codeph>quality</codeph>设为<codeph>AUDIO_RECORDING_QUALITY_MEDIUM</codeph>或<codeph>AUDIO_RECORDING_QUALITY_HIGH</codeph>。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>录音文件在本地保存的绝对路径，需精确到文件名及格式。例如：<codeph>C:\music\audio.aac</codeph>。
+                        <note>请确保你指定的路径存在并且可写。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sampleRate</pt>
+                    <pd>录音采样率（Hz），可以设为以下值：
+                        <ul>
+                            <li>16000</li>
+                            <li>32000（默认）</li>
+                            <li>44100</li>
+                            <li>48000</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>quality</pt>
+                    <pd>录音音质。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/> 。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>返回值</title>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

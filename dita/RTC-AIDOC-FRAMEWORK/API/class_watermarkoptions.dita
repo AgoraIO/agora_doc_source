@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_watermarkoptions">
+    <title><ph keyref="WatermarkOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">配置水印图像。</ph><ph id="shortdesc" props="rn">配置水印图像。</ph><ph id="shortdesc" props="flutter">配置水印图像。</ph><ph id="shortdesc" props="unity">配置水印图像。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class WatermarkOptions {
+
+  visibleInPreview?: boolean;
+
+  positionInLandscapeMode?: Rectangle;
+
+  positionInPortraitMode?: Rectangle;
+
+  watermarkRatio?: WatermarkRatio;
+
+  mode?: WatermarkFitMode;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class WatermarkOptions {
+
+  visibleInPreview?: boolean;
+
+  positionInLandscapeMode?: Rectangle;
+
+  positionInPortraitMode?: Rectangle;
+
+  watermarkRatio?: WatermarkRatio;
+
+  mode?: WatermarkFitMode;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class WatermarkOptions {
+  const WatermarkOptions(
+      {this.visibleInPreview,
+      this.positionInLandscapeMode,
+      this.positionInPortraitMode,
+      this.watermarkRatio,
+      this.mode});
+
+  @JsonKey(name: 'visibleInPreview')
+  final bool? visibleInPreview;
+
+  @JsonKey(name: 'positionInLandscapeMode')
+  final Rectangle? positionInLandscapeMode;
+
+  @JsonKey(name: 'positionInPortraitMode')
+  final Rectangle? positionInPortraitMode;
+
+  @JsonKey(name: 'watermarkRatio')
+  final WatermarkRatio? watermarkRatio;
+
+  @JsonKey(name: 'mode')
+  final WatermarkFitMode? mode;
+
+  factory WatermarkOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$WatermarkOptionsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$WatermarkOptionsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class WatermarkOptions
+    {
+        public WatermarkOptions()
+        {
+            visibleInPreview = false;
+            positionInLandscapeMode = new Rectangle(0, 0, 0, 0);
+            positionInPortraitMode = new Rectangle(0, 0, 0, 0);
+            watermarkRatio = new WatermarkRatio();
+            mode = WATERMARK_FIT_MODE.FIT_MODE_COVER_POSITION;
+        }
+
+        public WatermarkOptions(bool visibleInPreview, Rectangle positionInLandscapeMode,
+            Rectangle positionInPortraitMode, WatermarkRatio ratio, WATERMARK_FIT_MODE mode)
+        {
+            this.visibleInPreview = visibleInPreview;
+            this.positionInLandscapeMode = positionInLandscapeMode ?? new Rectangle();
+            this.positionInPortraitMode = positionInPortraitMode ?? new Rectangle();
+            this.watermarkRatio = ratio ?? new WatermarkRatio();
+            this.mode = mode;
+        }
+        public bool visibleInPreview { set; get; }
+        public Rectangle positionInLandscapeMode { set; get; }
+        public Rectangle positionInPortraitMode { set; get; }
+        public WatermarkRatio watermarkRatio { set; get; }
+        public WATERMARK_FIT_MODE mode { set; get; }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <p props="electron">用于设置要添加的水印图像的相关配置项。</p>
+            <p props="rn">用于设置要添加的水印图像的相关配置项。</p>
+            <p props="flutter">用于设置要添加的水印图像的相关配置项。</p>
+            <p props="unity">用于设置要添加的水印图像的相关配置项。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>visibleInPreview</pt>
+                    <pd>水印是否在本地预览视图中可见：
+                        <ul>
+                            <li><xref keyref="true"/>: （默认）水印在本地预览视图中可见。</li>
+                            <li><xref keyref="false"/>: 水印在本地预览视图中不可见。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>positionInLandscapeMode</pt>
+                    <pd>水印的适配模式为 FitModeCoverPosition 时，用于设置横屏模式下水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>positionInPortraitMode</pt>
+                    <pd>水印的适配模式为 FitModeCoverPosition 时，用于设置竖屏模式下水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>watermarkRatio</pt>
+                    <pd>水印的适配模式为 FitModeUseImageRatio 时，该参数可设置缩放模式下的水印坐标。详见 <xref keyref="WatermarkRatio"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>mode</pt>
+                    <pd>水印的适配模式。详见 <codeph>WatermarkFitMode</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>visibleInPreview</pt>
+                    <pd>水印是否在本地预览视图中可见：
+                        <ul>
+                            <li><xref keyref="true"/>: （默认）水印在本地预览视图中可见。</li>
+                            <li><xref keyref="false"/>: 水印在本地预览视图中不可见。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>positionInLandscapeMode</pt>
+                    <pd>水印的适配模式为 FitModeCoverPosition 时，用于设置横屏模式下水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>positionInPortraitMode</pt>
+                    <pd>水印的适配模式为 FitModeCoverPosition 时，用于设置竖屏模式下水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>watermarkRatio</pt>
+                    <pd>水印的适配模式为 FitModeUseImageRatio 时，该参数可设置缩放模式下的水印坐标。详见 <xref keyref="WatermarkRatio"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mode</pt>
+                    <pd>水印的适配模式。详见 <codeph>WatermarkFitMode</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>visibleInPreview</pt>
+                    <pd>水印是否在本地预览视图中可见：
+                        <ul>
+                            <li><xref keyref="true"/>: （默认）水印在本地预览视图中可见。</li>
+                            <li><xref keyref="false"/>: 水印在本地预览视图中不可见。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>positionInLandscapeMode</pt>
+                    <pd>水印的适配模式为 fitModeCoverPosition 时，用于设置横屏模式下水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>positionInPortraitMode</pt>
+                    <pd>水印的适配模式为 fitModeCoverPosition 时，用于设置竖屏模式下水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>watermarkRatio</pt>
+                    <pd>水印的适配模式为 fitModeUseImageRatio 时，该参数可设置缩放模式下的水印坐标。详见 <xref keyref="WatermarkRatio"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mode</pt>
+                    <pd>水印的适配模式。详见 <codeph>WatermarkFitMode</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>visibleInPreview</pt>
+                    <pd>水印是否在本地预览视图中可见：
+                        <ul>
+                            <li><xref keyref="true"/>: （默认）水印在本地预览视图中可见。</li>
+                            <li><xref keyref="false"/>: 水印在本地预览视图中不可见。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>positionInLandscapeMode</pt>
+                    <pd>水印的适配模式为 FIT_MODE_COVER_POSITION 时，用于设置横屏模式下水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>positionInPortraitMode</pt>
+                    <pd>水印的适配模式为 FIT_MODE_COVER_POSITION 时，用于设置竖屏模式下水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>watermarkRatio</pt>
+                    <pd>水印的适配模式为 FIT_MODE_USE_IMAGE_RATIO 时，该参数可设置缩放模式下的水印坐标。详见 <xref keyref="WatermarkRatio"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mode</pt>
+                    <pd>水印的适配模式。详见 <xref keyref="WATERMARK_FIT_MODE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

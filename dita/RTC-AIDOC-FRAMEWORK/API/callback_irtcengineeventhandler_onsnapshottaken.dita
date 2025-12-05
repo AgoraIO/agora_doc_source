@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onsnapshottaken">
+    <title><ph keyref="onSnapshotTaken"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">视频截图结果回调。</ph><ph id="shortdesc" props="rn">视频截图结果回调。</ph><ph id="shortdesc" props="flutter">视频截图结果回调。</ph><ph id="shortdesc" props="unity">视频截图结果回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onSnapshotTaken"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onSnapshotTaken?(
+    connection: RtcConnection,
+    uid: number,
+    filePath: string,
+    width: number,
+    height: number,
+    errCode: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onSnapshotTaken?(
+    connection: RtcConnection,
+    uid: number,
+    filePath: string,
+    width: number,
+    height: number,
+    errCode: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int uid, String filePath,
+      int width, int height, int errCode)? onSnapshotTaken;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnSnapshotTaken(RtcConnection connection, uint uid, string filePath, int width, int height, int errCode) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">成功调用 <xref keyref="takeSnapshot"/> 后，SDK 触发该回调报告截图是否成功和获取截图的详情。</p>
+            <p props="rn">成功调用 <xref keyref="takeSnapshot"/> 后，SDK 触发该回调报告截图是否成功和获取截图的详情。</p>
+            <p props="flutter">成功调用 <xref keyref="takeSnapshot"/> 后，SDK 触发该回调报告截图是否成功和获取截图的详情。</p>
+            <p props="unity">成功调用 <xref keyref="takeSnapshot"/> 后，SDK 触发该回调报告截图是否成功和获取截图的详情。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>用户 ID。如果 <codeph>uid</codeph> 为 0，表示本地用户。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>filePath</pt>
+                    <pd>截图的本地保存路径。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>图片宽度（px）。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>图片高度（px）。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>errCode</pt>
+                    <pd>截图成功的提示或失败的原因。
+                        <ul>
+                            <li>0：截图成功。</li>
+                            <li>&lt; 0: 截图失败。
+                                <ul>
+                                    <li>-1：写入文件失败或 JPEG 编码失败。</li>
+                                    <li>-2：<xref keyref="takeSnapshot"/>方法调用后 1 秒内没有收到指定用户的视频帧。可能的原因有：本地采集停止、远端停止发布或者视频数据处理堵塞。</li>
+                                    <li>-3：<xref keyref="takeSnapshot"/>方法调用过于频繁。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>用户 ID。如果 <codeph>uid</codeph> 为 0，表示本地用户。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>filePath</pt>
+                    <pd>截图的本地保存路径。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>width</pt>
+                    <pd>图片宽度（px）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>图片高度（px）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>errCode</pt>
+                    <pd>截图成功的提示或失败的原因。
+                        <ul>
+                            <li>0：截图成功。</li>
+                            <li>&lt; 0: 截图失败。
+                                <ul>
+                                    <li>-1：写入文件失败或 JPEG 编码失败。</li>
+                                    <li>-2：<xref keyref="takeSnapshot"/>方法调用后 1 秒内没有收到指定用户的视频帧。可能的原因有：本地采集停止、远端停止发布或者视频数据处理堵塞。</li>
+                                    <li>-3：<xref keyref="takeSnapshot"/>方法调用过于频繁。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>engine</pt>
+                    <pd><codeph>RtcEngine</codeph> 对象。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>用户 ID。如果 <codeph>uid</codeph> 为 0，表示本地用户。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>filePath</pt>
+                    <pd>截图的本地保存路径。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>图片宽度（px）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>图片高度（px）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>errCode</pt>
+                    <pd>截图成功的提示或失败的原因。
+                        <ul>
+                            <li>0：截图成功。</li>
+                            <li>&lt; 0: 截图失败。
+                                <ul>
+                                    <li>-1：写入文件失败或 JPEG 编码失败。</li>
+                                    <li>-2：<xref keyref="takeSnapshot"/>方法调用后 1 秒内没有收到指定用户的视频帧。可能的原因有：本地采集停止、远端停止发布或者视频数据处理堵塞。</li>
+                                    <li>-3：<xref keyref="takeSnapshot"/>方法调用过于频繁。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>用户 ID。如果 <codeph>uid</codeph> 为 0，表示本地用户。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>截图的本地保存路径。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>图片宽度（px）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>图片高度（px）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>errCode</pt>
+                    <pd>截图成功的提示或失败的原因。
+                        <ul>
+                            <li>0：截图成功。</li>
+                            <li>&lt; 0: 截图失败。
+                                <ul>
+                                    <li>-1：写入文件失败或 JPEG 编码失败。</li>
+                                    <li>-2：<xref keyref="takeSnapshot"/>方法调用后 1 秒内没有收到指定用户的视频帧。可能的原因有：本地采集停止、远端停止发布或者视频数据处理堵塞。</li>
+                                    <li>-3：<xref keyref="takeSnapshot"/>方法调用过于频繁。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

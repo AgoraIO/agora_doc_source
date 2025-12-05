@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_lastmileprobeconfig">
+    <title><ph keyref="LastmileProbeConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Last mile 网络探测配置。</ph><ph id="shortdesc" props="rn">Last mile 网络探测配置。</ph><ph id="shortdesc" props="flutter">Last mile 网络探测配置。</ph><ph id="shortdesc" props="unity">Last mile 网络探测配置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class LastmileProbeConfig {
+  
+  probeUplink?: boolean;
+  
+  probeDownlink?: boolean;
+  
+  expectedUplinkBitrate?: number;
+  
+  expectedDownlinkBitrate?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class LastmileProbeConfig {
+  
+  probeUplink?: boolean;
+  
+  probeDownlink?: boolean;
+  
+  expectedUplinkBitrate?: number;
+  
+  expectedDownlinkBitrate?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class LastmileProbeConfig {
+  const LastmileProbeConfig(
+      {this.probeUplink,
+      this.probeDownlink,
+      this.expectedUplinkBitrate,
+      this.expectedDownlinkBitrate});
+
+  @JsonKey(name: 'probeUplink')
+  final bool? probeUplink;
+  @JsonKey(name: 'probeDownlink')
+  final bool? probeDownlink;
+  @JsonKey(name: 'expectedUplinkBitrate')
+  final int? expectedUplinkBitrate;
+  @JsonKey(name: 'expectedDownlinkBitrate')
+  final int? expectedDownlinkBitrate;
+  factory LastmileProbeConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$LastmileProbeConfigFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LastmileProbeConfigToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class LastmileProbeConfig
+    {
+        public LastmileProbeConfig()
+        {
+        }
+
+        public LastmileProbeConfig(bool probeUplink, bool probeDownlink, uint expectedUplinkBitrate,
+            uint expectedDownlinkBitrate)
+        {
+            this.probeUplink = probeUplink;
+            this.probeDownlink = probeDownlink;
+            this.expectedUplinkBitrate = expectedUplinkBitrate;
+            this.expectedDownlinkBitrate = expectedDownlinkBitrate;
+        }
+        public bool probeUplink { set; get; }
+        public bool probeDownlink { set; get; }
+        public uint expectedUplinkBitrate { set; get; }
+        public uint expectedDownlinkBitrate { set; get; }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>probeUplink</pt>
+                    <pd>是否探测上行网络。有些用户，如直播频道中的普通观众，不需要进行网络探测:
+                        <ul>
+                            <li><xref keyref="true"/>: 探测上行网络。</li>
+                            <li><xref keyref="false"/>: 不探测上行网络。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>probeDownlink</pt>
+                    <pd>是否探测下行网络：
+                        <ul>
+                            <li><xref keyref="true"/>: 探测下行网络。</li>
+                            <li><xref keyref="false"/>: 不探测下行网络。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>expectedUplinkBitrate</pt>
+                    <pd>用户期望的最高发送码率，单位为 bps，范围为 [100000,5000000]。建议参考 <xref keyref="setVideoEncoderConfiguration"/> 中的码率值设置该参数的值。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>expectedDownlinkBitrate</pt>
+                    <pd>用户期望的最高接收码率，单位为 bps，范围为 [100000,5000000]。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>probeUplink</pt>
+                    <pd>是否探测上行网络。有些用户，如直播频道中的普通观众，不需要进行网络探测:
+                        <ul>
+                            <li><xref keyref="true"/>: 探测上行网络。</li>
+                            <li><xref keyref="false"/>: 不探测上行网络。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>probeDownlink</pt>
+                    <pd>是否探测下行网络：
+                        <ul>
+                            <li><xref keyref="true"/>: 探测下行网络。</li>
+                            <li><xref keyref="false"/>: 不探测下行网络。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>expectedUplinkBitrate</pt>
+                    <pd>用户期望的最高发送码率，单位为 bps，范围为 [100000,5000000]。建议参考 <xref keyref="setVideoEncoderConfiguration"/> 中的码率值设置该参数的值。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>expectedDownlinkBitrate</pt>
+                    <pd>用户期望的最高接收码率，单位为 bps，范围为 [100000,5000000]。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>probeUplink</pt>
+                    <pd>是否探测上行网络。有些用户，如直播频道中的普通观众，不需要进行网络探测:
+                        <ul>
+                            <li><xref keyref="true"/>: 探测上行网络。</li>
+                            <li><xref keyref="false"/>: 不探测上行网络。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>probeDownlink</pt>
+                    <pd>是否探测下行网络：
+                        <ul>
+                            <li><xref keyref="true"/>: 探测下行网络。</li>
+                            <li><xref keyref="false"/>: 不探测下行网络。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>expectedUplinkBitrate</pt>
+                    <pd>用户期望的最高发送码率，单位为 bps，范围为 [100000,5000000]。建议参考 <xref keyref="setVideoEncoderConfiguration"/> 中的码率值设置该参数的值。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>expectedDownlinkBitrate</pt>
+                    <pd>用户期望的最高接收码率，单位为 bps，范围为 [100000,5000000]。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>probeUplink</pt>
+                    <pd>是否探测上行网络。有些用户，如直播频道中的普通观众，不需要进行网络探测:
+                        <ul>
+                            <li><xref keyref="true"/>: 探测上行网络。</li>
+                            <li><xref keyref="false"/>: 不探测上行网络。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>probeDownlink</pt>
+                    <pd>是否探测下行网络：
+                        <ul>
+                            <li><xref keyref="true"/>: 探测下行网络。</li>
+                            <li><xref keyref="false"/>: 不探测下行网络。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>expectedUplinkBitrate</pt>
+                    <pd>用户期望的最高发送码率，单位为 bps，范围为 [100000,5000000]。建议参考 <xref keyref="setVideoEncoderConfiguration"/> 中的码率值设置该参数的值。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>expectedDownlinkBitrate</pt>
+                    <pd>用户期望的最高接收码率，单位为 bps，范围为 [100000,5000000]。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

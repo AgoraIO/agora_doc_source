@@ -1,0 +1,426 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screencaptureparameters">
+    <title><ph keyref="ScreenCaptureParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">屏幕共享的参数配置。</ph><ph id="shortdesc" props="flutter">屏幕共享的参数配置。</ph><ph id="shortdesc" props="unity">屏幕共享的参数配置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureParameters {
+  dimensions?: VideoDimensions;
+  frameRate?: number;
+  bitrate?: number;
+  captureMouseCursor?: boolean;
+  windowFocus?: boolean;
+  excludeWindowList?: any[];
+  excludeWindowCount?: number;
+  highLightWidth?: number;
+  highLightColor?: number;
+  enableHighLight?: boolean;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureParameters {
+  const ScreenCaptureParameters(
+      {this.dimensions,
+      this.frameRate,
+      this.bitrate,
+      this.captureMouseCursor,
+      this.windowFocus,
+      this.excludeWindowList,
+      this.excludeWindowCount,
+      this.highLightWidth,
+      this.highLightColor,
+      this.enableHighLight});
+
+  @JsonKey(name: 'dimensions')
+  final VideoDimensions? dimensions;
+
+  @JsonKey(name: 'frameRate')
+  final int? frameRate;
+
+  @JsonKey(name: 'bitrate')
+  final int? bitrate;
+
+  @JsonKey(name: 'captureMouseCursor')
+  final bool? captureMouseCursor;
+
+  @JsonKey(name: 'windowFocus')
+  final bool? windowFocus;
+
+  @JsonKey(name: 'excludeWindowList')
+  final List&lt;int&gt;? excludeWindowList;
+
+  @JsonKey(name: 'excludeWindowCount')
+  final int? excludeWindowCount;
+
+  @JsonKey(name: 'highLightWidth')
+  final int? highLightWidth;
+
+  @JsonKey(name: 'highLightColor')
+  final int? highLightColor;
+
+  @JsonKey(name: 'enableHighLight')
+  final bool? enableHighLight;
+
+  factory ScreenCaptureParameters.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ScreenCaptureParametersFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenCaptureParametersToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureParameters
+    {
+        public ScreenCaptureParameters()
+        {
+            dimensions = new VideoDimensions(1920, 1080);
+            frameRate = 5;
+            bitrate = (int)BITRATE.STANDARD_BITRATE;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
+        }
+
+        public ScreenCaptureParameters(ref VideoDimensions d, int f, int b)
+        {
+            dimensions = new VideoDimensions(d.width, d.height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
+        }
+
+        public ScreenCaptureParameters(int width, int height, int f, int b)
+        {
+            dimensions = new VideoDimensions(width, height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
+        }
+
+        public ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs)
+        {
+            dimensions = new VideoDimensions(width, height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = cur;
+            windowFocus = fcs;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
+        }
+
+        public ScreenCaptureParameters(int width, int height, int f, int b, view_t[] ex, int cnt)
+        {
+            dimensions = new VideoDimensions(width, height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = ex;
+            excludeWindowCount = cnt;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
+        }
+
+        public ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs, view_t[] ex, int cnt)
+        {
+            dimensions = new VideoDimensions(width, height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = cur;
+            windowFocus = fcs;
+            excludeWindowList = ex;
+            excludeWindowCount = cnt;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
+        }
+
+        public VideoDimensions dimensions { set; get; }
+        public int frameRate { set; get; }
+        public int bitrate { set; get; }
+        public bool captureMouseCursor { set; get; }
+        public bool windowFocus { set; get; }
+        public view_t[] excludeWindowList { set; get; }
+        public int excludeWindowCount { set; get; }
+        public int highLightWidth { set; get; }
+        public uint highLightColor { set; get; }
+        public bool enableHighLight { set; get; }
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>dimensions</pt>
+                    <pd>
+                        <note>在共享文档的场景（ScreenScenarioDocument）下设置编码分辨率时，选择以下两种方式其中之一。 
+                            <ul>
+                                <li>如果你需要最优的画质，建议将编码分辨率设置为与采集分辨率相同。</li>
+                            </ul>
+                            <ul>
+                                <li>如果你希望在画质、带宽和系统性能之间达到相对平衡，则：
+                                    <ul>
+                                        <li>当采集分辨率大于 1920 × 1080 时，建议编码分辨率不低于 1920 × 1080。</li>
+                                        <li>当采集分辨率低于 1920 × 1080 时，建议编码分辨率不低于 1280 × 720。</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </note><ph>屏幕共享流的视频编码分辨率。详见 <xref keyref="VideoDimensions"/>。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph><ph>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <codeph>dimensions</codeph> 设为 1920 × 1080：</ph>
+                        <ul>
+                            <li>如果屏幕分辨率小于<codeph>dimensions</codeph>，如 1000 × 1000，SDK 直接按 1000 × 1000 进行编码。</li>
+                            <li>如果屏幕分辨率大于<codeph>dimensions</codeph>，如 2000 × 1500，SDK 按屏幕分辨率的宽高比，即 4:3，取<codeph>dimensions</codeph>以内的最大分辨率进行编码，即 1440 × 1080。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>frameRate</pt>
+                    <pd>共享视频的帧率。屏幕共享流的视频编码帧率。在 Windows 和 macOS 平台上，表示屏幕共享流的视频编码帧率。单位为 fps；默认值为 5，建议不要超过 15。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>bitrate</pt>
+                    <pd>共享视频的码率。屏幕共享流的视频编码码率。在 Windows 和 macOS 平台上，表示屏幕共享流的视频编码码率。单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>captureMouseCursor</pt>
+                    <pd>
+                        <note>受 macOS 系统限制，在共享屏幕时将该参数设置为 <xref keyref="false"/> 无效（共享窗口时无影响）。</note><ph>是否采集鼠标用于屏幕共享：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>:（默认）采集鼠标。</li>
+                            <li><xref keyref="false"/>: 不采集鼠标。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>windowFocus</pt>
+                    <pd>
+                        <note>由于 macOS 系统限制，设置该成员将窗口前置时，如果当前的应用存在多个窗口，只会将主窗口前置。</note><ph>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: 前置窗口。</li>
+                            <li><xref keyref="false"/>:（默认）不前置窗口。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>excludeWindowList</pt>
+                    <pd>待屏蔽窗口的 ID 列表。调用 <xref keyref="startScreenCaptureByDisplayId"/> 开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref keyref="updateScreenCaptureParameters"/> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enableHighLight</pt>
+                    <pd>
+                        <note>当你在共享窗口或屏幕的部分区域时，如果将该参数设置为 <xref keyref="true"/>，SDK 会对整个窗口或屏幕进行描边。</note><ph>(仅适用于 macOS 和 Windows)是否对共享的窗口或屏幕进行描边：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: 描边。</li>
+                            <li><xref keyref="false"/>: （默认）不描边。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>highLightColor</pt>
+                    <pd>(仅适用于 macOS 和 Windows)- 在 Windows 平台上，指描边的 ARGB 颜色。默认值为 0xFF8CBF26。
+                        <ul>
+                            <li>在 macOS 平台上，<codeph>COLOR_CLASS</codeph>指<codeph>NSColor</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>highLightWidth</pt>
+                    <pd>(仅适用于 macOS 和 Windows)描边的宽度 (px)。默认值为 5，取值范围为 (0,50]。
+                        <note>该参数仅在 <codeph>highLighted</codeph> 设置为 <xref keyref="true"/> 时生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>excludeWindowCount</pt>
+                    <pd>待屏蔽窗口的数量。
+                        <note>在 Windows 平台上，该参数最大值不超过 24，如果超过该值，则屏蔽窗口功能失效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>dimensions</pt>
+                    <pd>
+                        <note>在共享文档的场景（screenScenarioDocument）下设置编码分辨率时，选择以下两种方式其中之一。 
+                            <ul>
+                                <li>如果你需要最优的画质，建议将编码分辨率设置为与采集分辨率相同。</li>
+                            </ul>
+                            <ul>
+                                <li>如果你希望在画质、带宽和系统性能之间达到相对平衡，则：
+                                    <ul>
+                                        <li>当采集分辨率大于 1920 × 1080 时，建议编码分辨率不低于 1920 × 1080。</li>
+                                        <li>当采集分辨率低于 1920 × 1080 时，建议编码分辨率不低于 1280 × 720。</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </note><ph>屏幕共享流的视频编码分辨率。详见 <xref keyref="VideoDimensions"/>。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph><ph>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <codeph>dimensions</codeph> 设为 1920 × 1080：</ph>
+                        <ul>
+                            <li>如果屏幕分辨率小于<codeph>dimensions</codeph>，如 1000 × 1000，SDK 直接按 1000 × 1000 进行编码。</li>
+                            <li>如果屏幕分辨率大于<codeph>dimensions</codeph>，如 2000 × 1500，SDK 按屏幕分辨率的宽高比，即 4:3，取<codeph>dimensions</codeph>以内的最大分辨率进行编码，即 1440 × 1080。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>frameRate</pt>
+                    <pd>共享视频的帧率。屏幕共享流的视频编码帧率。在 Windows 和 macOS 平台上，表示屏幕共享流的视频编码帧率。单位为 fps；默认值为 5，建议不要超过 15。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>bitrate</pt>
+                    <pd>共享视频的码率。屏幕共享流的视频编码码率。在 Windows 和 macOS 平台上，表示屏幕共享流的视频编码码率。单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureMouseCursor</pt>
+                    <pd>
+                        <note>受 macOS 系统限制，在共享屏幕时将该参数设置为 <xref keyref="false"/> 无效（共享窗口时无影响）。</note><ph>是否采集鼠标用于屏幕共享：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>:（默认）采集鼠标。</li>
+                            <li><xref keyref="false"/>: 不采集鼠标。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>windowFocus</pt>
+                    <pd>
+                        <note>由于 macOS 系统限制，设置该成员将窗口前置时，如果当前的应用存在多个窗口，只会将主窗口前置。</note><ph>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: 前置窗口。</li>
+                            <li><xref keyref="false"/>:（默认）不前置窗口。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>excludeWindowList</pt>
+                    <pd>待屏蔽窗口的 ID 列表。调用 <xref keyref="startScreenCaptureByDisplayId"/> 开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref keyref="updateScreenCaptureParameters"/> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enableHighLight</pt>
+                    <pd>
+                        <note>当你在共享窗口或屏幕的部分区域时，如果将该参数设置为 <xref keyref="true"/>，SDK 会对整个窗口或屏幕进行描边。</note><ph>(仅适用于 macOS 和 Windows)是否对共享的窗口或屏幕进行描边：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: 描边。</li>
+                            <li><xref keyref="false"/>: （默认）不描边。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>highLightColor</pt>
+                    <pd>(仅适用于 macOS 和 Windows)- 在 Windows 平台上，指描边的 ARGB 颜色。默认值为 0xFF8CBF26。
+                        <ul>
+                            <li>在 macOS 平台上，<codeph>COLOR_CLASS</codeph>指<codeph>NSColor</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>highLightWidth</pt>
+                    <pd>(仅适用于 macOS 和 Windows)描边的宽度 (px)。默认值为 5，取值范围为 (0,50]。
+                        <note>该参数仅在 <codeph>highLighted</codeph> 设置为 <xref keyref="true"/> 时生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>excludeWindowCount</pt>
+                    <pd>待屏蔽窗口的数量。
+                        <note>在 Windows 平台上，该参数最大值不超过 24，如果超过该值，则屏蔽窗口功能失效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>dimensions</pt>
+                    <pd>
+                        <note>在共享文档的场景（SCREEN_SCENARIO_DOCUMENT）下设置编码分辨率时，选择以下两种方式其中之一。 
+                            <ul>
+                                <li>如果你需要最优的画质，建议将编码分辨率设置为与采集分辨率相同。</li>
+                            </ul>
+                            <ul>
+                                <li>如果你希望在画质、带宽和系统性能之间达到相对平衡，则：
+                                    <ul>
+                                        <li>当采集分辨率大于 1920 × 1080 时，建议编码分辨率不低于 1920 × 1080。</li>
+                                        <li>当采集分辨率低于 1920 × 1080 时，建议编码分辨率不低于 1280 × 720。</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </note><ph>屏幕共享流的视频编码分辨率。详见 <xref keyref="VideoDimensions"/>。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph><ph>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <codeph>dimensions</codeph> 设为 1920 × 1080：</ph>
+                        <ul>
+                            <li>如果屏幕分辨率小于<codeph>dimensions</codeph>，如 1000 × 1000，SDK 直接按 1000 × 1000 进行编码。</li>
+                            <li>如果屏幕分辨率大于<codeph>dimensions</codeph>，如 2000 × 1500，SDK 按屏幕分辨率的宽高比，即 4:3，取<codeph>dimensions</codeph>以内的最大分辨率进行编码，即 1440 × 1080。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>frameRate</pt>
+                    <pd>共享视频的帧率。屏幕共享流的视频编码帧率。在 Windows 和 macOS 平台上，表示屏幕共享流的视频编码帧率。单位为 fps；默认值为 5，建议不要超过 15。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>bitrate</pt>
+                    <pd>共享视频的码率。屏幕共享流的视频编码码率。在 Windows 和 macOS 平台上，表示屏幕共享流的视频编码码率。单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureMouseCursor</pt>
+                    <pd>
+                        <note>受 macOS 系统限制，在共享屏幕时将该参数设置为 <xref keyref="false"/> 无效（共享窗口时无影响）。</note><ph>是否采集鼠标用于屏幕共享：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>:（默认）采集鼠标。</li>
+                            <li><xref keyref="false"/>: 不采集鼠标。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>windowFocus</pt>
+                    <pd>
+                        <note>由于 macOS 系统限制，设置该成员将窗口前置时，如果当前的应用存在多个窗口，只会将主窗口前置。</note><ph>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: 前置窗口。</li>
+                            <li><xref keyref="false"/>:（默认）不前置窗口。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>excludeWindowList</pt>
+                    <pd>待屏蔽窗口的 ID 列表。调用 <xref keyref="startScreenCaptureByDisplayId"/> 开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref keyref="updateScreenCaptureParameters"/> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enableHighLight</pt>
+                    <pd>
+                        <note>当你在共享窗口或屏幕的部分区域时，如果将该参数设置为 <xref keyref="true"/>，SDK 会对整个窗口或屏幕进行描边。</note><ph>(仅适用于 macOS 和 Windows)是否对共享的窗口或屏幕进行描边：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: 描边。</li>
+                            <li><xref keyref="false"/>: （默认）不描边。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>highLightColor</pt>
+                    <pd>(仅适用于 macOS 和 Windows)- 在 Windows 平台上，指描边的 ARGB 颜色。默认值为 0xFF8CBF26。
+                        <ul>
+                            <li>在 macOS 平台上，<codeph>COLOR_CLASS</codeph>指<codeph>NSColor</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>highLightWidth</pt>
+                    <pd>(仅适用于 macOS 和 Windows)描边的宽度 (px)。默认值为 5，取值范围为 (0,50]。
+                        <note>该参数仅在 <codeph>highLighted</codeph> 设置为 <xref keyref="true"/> 时生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>excludeWindowCount</pt>
+                    <pd>待屏蔽窗口的数量。
+                        <note>在 Windows 平台上，该参数最大值不超过 24，如果超过该值，则屏蔽窗口功能失效。</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

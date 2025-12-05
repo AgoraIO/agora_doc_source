@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_registervideoframeobserver">
+    <title><ph keyref="registerVideoFrameObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">注册原始视频观测器对象。</ph><ph id="shortdesc" props="rn">注册原始视频观测器对象。</ph><ph id="shortdesc" props="flutter">注册原始视频观测器对象。</ph><ph id="shortdesc" props="unity">注册原始视频观测器对象。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerVideoFrameObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract registerVideoFrameObserver(observer: IVideoFrameObserver): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract registerVideoFrameObserver(observer: IVideoFrameObserver): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">void registerVideoFrameObserver(VideoFrameObserver observer);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int RegisterVideoFrameObserver(IVideoFrameObserver videoFrameObserver, VIDEO_OBSERVER_FRAME_TYPE formatPreference, VIDEO_OBSERVER_POSITION position, OBSERVER_MODE mode = OBSERVER_MODE.INTPTR);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">如果你想要观测原始视频帧 (如 YUV 或 RGBA 格式)，声网推荐你通过该方法注册一个 <codeph>IVideoFrameObserver</codeph> 类。
+调用该方法注册视频观测器时，你可以根据需要注册 <codeph>IVideoFrameObserver</codeph> 类中的回调。在成功注册视频观测器后，SDK 会在捕捉到每个视频帧时，触发你所注册的上述回调。</p>
+            <p props="rn">如果你想要观测原始视频帧 (如 YUV 或 RGBA 格式)，声网推荐你通过该方法注册一个 <codeph>IVideoFrameObserver</codeph> 类。
+调用该方法注册视频观测器时，你可以根据需要注册 <codeph>IVideoFrameObserver</codeph> 类中的回调。在成功注册视频观测器后，SDK 会在捕捉到每个视频帧时，触发你所注册的上述回调。</p>
+            <p props="flutter">如果你想要观测原始视频帧 (如 YUV 或 RGBA 格式)，声网推荐你通过该方法注册一个 <codeph>VideoFrameObserver</codeph> 类。
+调用该方法注册视频观测器时，你可以根据需要注册 <codeph>VideoFrameObserver</codeph> 类中的回调。在成功注册视频观测器后，SDK 会在捕捉到每个视频帧时，触发你所注册的上述回调。</p>
+            <p props="unity">如果你想要观测原始视频帧 (如 YUV 或 RGBA 格式)，声网推荐你通过该方法注册一个 <xref keyref="IVideoFrameObserver"/> 类。
+调用该方法注册视频观测器时，你可以根据需要注册 <xref keyref="IVideoFrameObserver"/> 类中的回调。在成功注册视频观测器后，SDK 会在捕捉到每个视频帧时，触发你所注册的上述回调。</p>
+            <note props="electron">在处理回调时，你需要考虑视频帧中 <codeph>width</codeph> 和 <codeph>height</codeph> 参数的变化，因为观测得到的视频帧可能会随以下情况变化：
+                <ul>
+                    <li>当网络状况差时，分辨率会阶梯式下降。</li>
+                    <li>当用户自行调整分辨率时，回调中报告的分辨率也会变化。</li>
+                </ul>
+            </note>
+            <note props="rn">在处理回调时，你需要考虑视频帧中 <codeph>width</codeph> 和 <codeph>height</codeph> 参数的变化，因为观测得到的视频帧可能会随以下情况变化：
+                <ul>
+                    <li>当网络状况差时，分辨率会阶梯式下降。</li>
+                    <li>当用户自行调整分辨率时，回调中报告的分辨率也会变化。</li>
+                </ul>
+            </note>
+            <note props="flutter">在处理回调时，你需要考虑视频帧中 <codeph>width</codeph> 和 <codeph>height</codeph> 参数的变化，因为观测得到的视频帧可能会随以下情况变化：
+                <ul>
+                    <li>当网络状况差时，分辨率会阶梯式下降。</li>
+                    <li>当用户自行调整分辨率时，回调中报告的分辨率也会变化。</li>
+                </ul>
+            </note>
+            <note props="unity">在处理回调时，你需要考虑视频帧中 <codeph>width</codeph> 和 <codeph>height</codeph> 参数的变化，因为观测得到的视频帧可能会随以下情况变化：
+                <ul>
+                    <li>当网络状况差时，分辨率会阶梯式下降。</li>
+                    <li>当用户自行调整分辨率时，回调中报告的分辨率也会变化。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在加入频道前调用。</p>
+            <p props="rn">该方法需要在加入频道前调用。</p>
+            <p props="flutter">该方法需要在加入频道前调用。</p>
+            <p props="unity">该方法需要在加入频道前调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>observer</pt>
+                    <pd>接口对象实例。详见 <codeph>IVideoFrameObserver</codeph>。如果传入 null，则取消注册。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>observer</pt>
+                    <pd>接口对象实例。详见 <codeph>IVideoFrameObserver</codeph>。如果传入 null，则取消注册。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>observer</pt>
+                    <pd>接口对象实例。详见 <codeph>VideoFrameObserver</codeph>。如果传入 NULL，则取消注册。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoFrameObserver</pt>
+                    <pd>接口对象实例。详见 <xref keyref="IVideoFrameObserver"/>。如果传入 NULL，则取消注册。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mode</pt>
+                    <pd>视频数据回调模式，详见 <xref keyref="OBSERVER_MODE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>formatPreference</pt>
+                    <pd>视频数据类型，详见 <xref keyref="VIDEO_OBSERVER_FRAME_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>position</pt>
+                    <pd>视频观测位置的 bit mask。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
+                <ul>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

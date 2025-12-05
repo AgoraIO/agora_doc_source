@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setcameraexposurefactor">
+    <title><ph keyref="setCameraExposureFactor"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">设置当前摄像头的曝光系数。</ph><ph id="shortdesc" props="flutter">设置当前摄像头的曝光系数。</ph><ph id="shortdesc" props="unity">设置当前摄像头的曝光系数。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setCameraExposureFactor"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract setCameraExposureFactor(factor: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraExposureFactor(double factor);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetCameraExposureFactor(float factor);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.2</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.2</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.2</dd>
+                </dlentry>
+            </dl>
+            <p props="rn">当拍摄环境光线不足或过于明亮时，会影响视频采集的画质。为了获得更好的视频效果，你可以使用该方法调节摄像头的曝光系数。</p>
+            <p props="flutter">当拍摄环境光线不足或过于明亮时，会影响视频采集的画质。为了获得更好的视频效果，你可以使用该方法调节摄像头的曝光系数。</p>
+            <p props="unity">当拍摄环境光线不足或过于明亮时，会影响视频采集的画质。为了获得更好的视频效果，你可以使用该方法调节摄像头的曝光系数。</p>
+            <note props="rn">
+                <ul>
+                    <li>该方法必须在<xref keyref="enableVideo"/>后调用，设置结果在摄像头成功开启后生效，即 SDK 触发<xref keyref="onLocalVideoStateChanged"/>回调返回本地视频状态为<codeph>LocalVideoStreamStateCapturing</codeph>(1) 后。</li>
+                    <li>建议你在调用该方法前，先调用<xref keyref="isCameraExposureSupported"/>查询当前摄像头是否支持调节曝光系数。</li>
+                    <li>当你调用该方法时，设置的是当前正在使用的摄像头的曝光系数，即调用<xref keyref="setCameraCapturerConfiguration"/>时指定的摄像头。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法仅适用于 Android 和 iOS。</li>
+                    <li>该方法必须在<xref keyref="enableVideo"/>后调用，设置结果在摄像头成功开启后生效，即 SDK 触发<xref keyref="onLocalVideoStateChanged"/>回调返回本地视频状态为<codeph>localVideoStreamStateCapturing</codeph>(1) 后。</li>
+                    <li>建议你在调用该方法前，先调用<xref keyref="isCameraExposureSupported"/>查询当前摄像头是否支持调节曝光系数。</li>
+                    <li>当你调用该方法时，设置的是当前正在使用的摄像头的曝光系数，即调用<xref keyref="setCameraCapturerConfiguration"/>时指定的摄像头。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法仅适用于 Android 和 iOS。</li>
+                    <li>该方法必须在<xref keyref="enableVideo"/>后调用，设置结果在摄像头成功开启后生效，即 SDK 触发<xref keyref="onLocalVideoStateChanged"/>回调返回本地视频状态为<codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>(1) 后。</li>
+                    <li>建议你在调用该方法前，先调用<xref keyref="isCameraExposureSupported"/>查询当前摄像头是否支持调节曝光系数。</li>
+                    <li>当你调用该方法时，设置的是当前正在使用的摄像头的曝光系数，即调用<xref keyref="setCameraCapturerConfiguration"/>时指定的摄像头。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>factor</pt>
+                    <pd>摄像头的曝光系数。默认值为 0，表示使用摄像头的默认曝光量。取值越大，曝光量越大。视频图像过曝时，你可以降低曝光系数；视频图像欠曝且暗部细节丢失时，你可以增加曝光系数。如果你指定的曝光系数超出设备支持的范围，SDK 会自动调节为设备实际支持的范围。
+取值范围为 [-20,20]。
+取值范围为 [-8.0,8.0]。
+在 Android 平台上，取值范围为 [-20.0,20.0]；在 iOS 平台上，取值范围为 [-8.0,8.0]。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>factor</pt>
+                    <pd>摄像头的曝光系数。默认值为 0，表示使用摄像头的默认曝光量。取值越大，曝光量越大。视频图像过曝时，你可以降低曝光系数；视频图像欠曝且暗部细节丢失时，你可以增加曝光系数。如果你指定的曝光系数超出设备支持的范围，SDK 会自动调节为设备实际支持的范围。
+取值范围为 [-20,20]。
+取值范围为 [-8.0,8.0]。
+在 Android 平台上，取值范围为 [-20.0,20.0]；在 iOS 平台上，取值范围为 [-8.0,8.0]。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>factor</pt>
+                    <pd>摄像头的曝光系数。默认值为 0，表示使用摄像头的默认曝光量。取值越大，曝光量越大。视频图像过曝时，你可以降低曝光系数；视频图像欠曝且暗部细节丢失时，你可以增加曝光系数。如果你指定的曝光系数超出设备支持的范围，SDK 会自动调节为设备实际支持的范围。
+取值范围为 [-20,20]。
+取值范围为 [-8.0,8.0]。
+在 Android 平台上，取值范围为 [-20.0,20.0]；在 iOS 平台上，取值范围为 [-8.0,8.0]。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>返回值</title>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>
