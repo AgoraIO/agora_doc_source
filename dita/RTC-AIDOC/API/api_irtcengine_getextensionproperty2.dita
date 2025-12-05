@@ -13,7 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="cpp" outputclass="language-cpp">virtual int getExtensionProperty(const char* provider, const char* extension, const char* key, char* value, int buf_len, agora::media::MEDIA_SOURCE_TYPE type = agora::media::UNKNOWN_MEDIA_SOURCE) = 0;</codeblock>
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getExtensionProperty(const char* provider, const char* extension, const ExtensionInfo&amp; extensionInfo, const char* key, char* value, int buf_len) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract String getExtensionProperty(String provider, String extension, String key, Constants.MediaSourceType sourceType);</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (NSString * _Nullable)getExtensionPropertyWithVendor:(NSString * _Nonnull)provider
                                              extension:(NSString * _Nonnull)extension
@@ -37,27 +37,27 @@
             <parml>
                 <plentry props="cpp">
                     <pt>provider</pt>
-                    <pd>输出参数，表示扩展组件提供方的名称。</pd>
+                    <pd>扩展提供方的名称，例如声网（agora.io）。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>extension</pt>
-                    <pd>输出参数，表示扩展组件的名称。</pd>
+                    <pd>扩展的名称，例如 <codeph>agora.beauty</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>extensionInfo</pt>
+                    <pd>扩展信息。详见 <codeph>ExtensionInfo</codeph>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>key</pt>
-                    <pd>输出参数，表示扩展组件的键名。</pd>
+                    <pd>扩展属性的键名。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>value</pt>
-                    <pd>输出参数，表示扩展组件键名对应的键值。</pd>
+                    <pd>输出参数，表示扩展属性键对应的值。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>buf_len</pt>
-                    <pd>扩展属性的 JSON 字符串的最大长度，单位为字节，最大值为 512。</pd>
-                </plentry>
-                <plentry props="cpp">
-                    <pt>type</pt>
-                    <pd>扩展组件的来源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                    <pd>扩展属性值的最大长度（以 JSON 字符串形式表示）。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>provider</pt>

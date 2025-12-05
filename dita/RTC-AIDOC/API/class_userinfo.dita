@@ -2,14 +2,13 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_userinfo">
     <title><ph keyref="UserInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">包含用户的基本信息。</ph><ph id="shortdesc" props="android">用户的基本信息。</ph><ph id="shortdesc" props="ios">表示用户信息的类。</ph><ph id="shortdesc" props="mac">表示用户信息的类。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">包含用户信息。</ph><ph id="shortdesc" props="android">用户的基本信息。</ph><ph id="shortdesc" props="ios">表示用户信息的类。</ph><ph id="shortdesc" props="mac">表示用户信息的类。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">struct UserInfo {
-  util::AString userId;
-  bool hasAudio;
-  bool hasVideo;
+  uid_t uid;
+  char userAccount[MAX_USER_ACCOUNT_LENGTH];
 };</codeblock>
                 <codeblock props="android" outputclass="language-java">public class UserInfo {
   public int uid;

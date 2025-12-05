@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t uid, media::base::RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
-                <codeblock props="android" outputclass="language-java">public abstract int setRemoteRenderMode(int uid, int renderMode, int mirrorMode);</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setRemoteRenderMode(int uid, int renderMode)</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">- (int)setRemoteRenderMode:(NSUInteger)uid
                       mode:(AgoraVideoRenderMode)mode
                     mirror:(AgoraVideoMirrorMode)mirror NS_SWIFT_NAME(setRemoteRenderMode(_:mode:mirror:));</codeblock>
@@ -76,25 +76,14 @@
                 </plentry>
                 <plentry props="android">
                     <pt>uid</pt>
-                    <pd>远端用户的用户 ID。</pd>
+                    <pd>远端用户 ID。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>renderMode</pt>
-                    <pd>远端用户视图的渲染模式：
+                    <pd>设置远端用户视频视图的显示模式：
                         <ul>
-                            <li><codeph>RENDER_MODE_HIDDEN</codeph> (1)：隐藏模式。按比例缩放视频，直到填满视图边界（可能被裁剪）。视频的一部分内容可能会被截断。</li>
-                            <li><codeph>RENDER_MODE_FIT</codeph> (2)：适应模式。按比例缩放视频，直到某一维度适配视图边界。由于宽高比不一致而未填满的区域将以黑色填充。</li>
-                            <li><codeph>RENDER_MODE_ADAPTIVE</codeph> (3)：自适应模式。该枚举值已废弃，不推荐使用。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>mirrorMode</pt>
-                    <pd>远端用户视图的镜像模式：
-                        <ul>
-                            <li><codeph>VIDEO_MIRROR_MODE_AUTO</codeph> (0)：由 SDK 决定是否启用镜像模式。默认情况下，SDK 禁用镜像模式。</li>
-                            <li><codeph>VIDEO_MIRROR_MODE_ENABLED</codeph> (1)：启用镜像模式。</li>
-                            <li><codeph>VIDEO_MIRROR_MODE_DISABLED</codeph> (2)：禁用镜像模式。</li>
+                            <li><codeph>RENDER_MODE_HIDDEN</codeph>(1)：按比例缩放视频，直到填满视图边界（可能被裁剪）。视频的一部分内容可能会被截断。</li>
+                            <li><codeph>RENDER_MODE_FIT</codeph>(2)：按比例缩放视频，直到某一维度适配视图边界。由于宽高比不一致而未填满的区域将以黑色填充。</li>
                         </ul>
                     </pd>
                 </plentry>

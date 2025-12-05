@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_config_getjsonparameter_config">
     <title><ph keyref="GetJsonParameter_Config"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取已配置的 SDK JSON 配置信息。</ph><ph id="shortdesc" props="android">获取已配置的 SDK JSON 设置。</ph><ph id="shortdesc" props="ios">获取当前配置的 RTE 私有参数。</ph><ph id="shortdesc" props="mac">获取当前配置的 RTE 私有参数。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取已配置的 SDK JSON 配置信息。</ph><ph id="shortdesc" props="android">获取当前设置的 JSON 格式的私有参数集。</ph><ph id="shortdesc" props="ios">获取当前配置的 RTE 私有参数。</ph><ph id="shortdesc" props="mac">获取当前配置的 RTE 私有参数。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -39,12 +39,10 @@
                 </dlentry>
             </dl>
             <p props="cpp">调用 <xref keyref="SetJsonParameter_Config"/> 设置 JSON 配置后，可调用本方法获取已配置的信息。</p>
-            <p props="android">调用 <xref keyref="SetJsonParameter_Config"/> 设置 JSON 配置后，可以调用该方法获取已配置的设置。</p>
         </section>
-        <section id="timing" deliveryTarget="details" props="android cpp">
+        <section id="timing" deliveryTarget="details" props="cpp">
             <title>调用时机</title>
             <p props="cpp">必须在调用 <codeph>GetConfigs</codeph> 之后调用此方法。</p>
-            <p props="android">该方法必须在调用 <codeph>getConfigs</codeph> 之后调用。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>参数</title>
@@ -55,7 +53,11 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>error</pt>
-                    <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                    <pd>状态或错误信息。详见 <xref keyref="Error"/>。
+                        <ul>
+                            <li><codeph>AgoraRteOk</codeph>：调用成功。</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>error</pt>
@@ -75,7 +77,7 @@
                     <li>方法调用失败，返回空字符串。</li>
                 </ul>
             </p>
-            <p props="android">方法调用成功时，返回已配置的 JSON 设置。
+            <p props="android">方法调用成功时，返回已设置的 JSON 格式的参数集。
 方法调用失败，返回空字符串。</p>
             <p props="ios">
                 <ul>
