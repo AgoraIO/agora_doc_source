@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_irtcengine">
-    <title><ph keyref="IRtcEngine" /></title>
-    <shortdesc id="short"><ph id="shortdesc">The basic interface of the Agora SDK that implements the core functions of real-time communication.</ph></shortdesc>
+    <title><ph keyref="IRtcEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">The base interface class that implements Agora real-time communication core functions.</ph><ph id="shortdesc" props="ios">Provides all methods available for the app to call.</ph><ph id="shortdesc" props="android">Call the methods of this class to use all features of the Agora SDK.</ph><ph id="shortdesc" props="mac">Provides all methods available for the app to call.</ph></shortdesc>
     <refbody>
-        <section id="detailed_desc">
-            <p><apiname keyref="IRtcEngine" /> provides the main methods that your app can call.</p>
-            <p props="cpp unreal bp flutter electron rn unity cs">Before calling other APIs, you must call <xref keyref="createAgoraRtcEngine" /> to create an <apiname keyref="IRtcEngine" /> object.</p>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android ios mac">
+            <p props="ios"><xref keyref="IRtcEngine"/> is the base class of the Agora Native SDK. You can use the real-time audio and video communication functions provided by Agora by creating an <xref keyref="IRtcEngine"/> object and calling its methods. Agora ensures the quality of experience (QoE) for global internet-based audio and video communication through a virtual global network optimized for real-time web and mobile applications.</p>
+            <p props="android">Agora recommends calling the <xref keyref="IRtcEngine"/> API methods from the same thread to avoid calling them from multiple threads. This class was named <codeph>AgoraAudio</codeph> in earlier versions and was renamed to <xref keyref="IRtcEngine"/> starting from version 1.0.</p>
+            <p props="mac"><xref keyref="IRtcEngine"/> is the base class of the Agora Native SDK. You can use the real-time audio and video communication functions provided by Agora by creating an <xref keyref="IRtcEngine"/> object and calling its methods. Agora ensures the quality of experience (QoE) for global internet-based audio and video communication through a virtual global network optimized for real-time web and mobile applications.</p>
         </section>
     </refbody>
 </reference>
