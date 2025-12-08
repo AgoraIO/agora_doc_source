@@ -111,6 +111,20 @@ class RtcEngineContext {
                     <pd>声网为 App 开发者签发的 App ID。 使用同一个 App ID 的 App 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/>。如需更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 <xref keyref="IRtcEngine"/> 再重新创建。</pd>
                 </plentry>
                 <plentry props="electron">
+                    <pt>channelProfile</pt>
+                    <pd>频道使用场景。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。
+                        <note>废弃：请改用 ChannelProfileLiveBroadcasting。
+废弃：请改用 ChannelProfileLiveBroadcasting。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioScenario</pt>
+                    <pd>音频场景。不同的音频场景下，设备的音量类型是不同的。
+详见 <xref keyref="AUDIO_SCENARIO_TYPE"/> 。
+                        <note>使用该枚举前，你需要调用 <codeph>getAudioDeviceInfo</codeph> 获取音频设备是否支持极低延时采集和播放。只有在支持极低延时（<codeph>isLowLatencyAudioSupported</codeph> = <xref keyref="true"/>）的音频设备上，才能够体验到极低延时。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
                     <pt>areaCode</pt>
                     <pd>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持位操作。</pd>
                 </plentry>
@@ -140,6 +154,20 @@ class RtcEngineContext {
                 <plentry props="rn">
                     <pt>appId</pt>
                     <pd>声网为 App 开发者签发的 App ID。 使用同一个 App ID 的 App 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/>。如需更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 <xref keyref="IRtcEngine"/> 再重新创建。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channelProfile</pt>
+                    <pd>频道使用场景。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。
+                        <note>废弃：请改用 ChannelProfileLiveBroadcasting。
+废弃：请改用 ChannelProfileLiveBroadcasting。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioScenario</pt>
+                    <pd>音频场景。不同的音频场景下，设备的音量类型是不同的。
+详见 <xref keyref="AUDIO_SCENARIO_TYPE"/> 。
+                        <note>使用该枚举前，你需要调用 <xref keyref="getAudioDeviceInfo"/> 获取音频设备是否支持极低延时采集和播放。只有在支持极低延时（<codeph>isLowLatencyAudioSupported</codeph> = <xref keyref="true"/>）的音频设备上，才能够体验到极低延时。</note>
+                    </pd>
                 </plentry>
                 <plentry props="rn">
                     <pt>areaCode</pt>
@@ -171,6 +199,20 @@ class RtcEngineContext {
                 <plentry props="flutter">
                     <pt>appId</pt>
                     <pd>声网为 App 开发者签发的 App ID。 使用同一个 App ID 的 App 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/>。如需更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 <xref keyref="IRtcEngine"/> 再重新创建。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channelProfile</pt>
+                    <pd>频道使用场景。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。
+                        <note>废弃：请改用 channelProfileLiveBroadcasting。
+废弃：请改用 channelProfileLiveBroadcasting。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioScenario</pt>
+                    <pd>音频场景。不同的音频场景下，设备的音量类型是不同的。
+详见 <xref keyref="AUDIO_SCENARIO_TYPE"/> 。
+                        <note>使用该枚举前，你需要调用 <xref keyref="getAudioDeviceInfo"/> 获取音频设备是否支持极低延时采集和播放。只有在支持极低延时（<codeph>isLowLatencyAudioSupported</codeph> = <xref keyref="true"/>）的音频设备上，才能够体验到极低延时。</note>
+                    </pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>areaCode</pt>
@@ -214,6 +256,20 @@ class RtcEngineContext {
                             <li>Windows 平台上，context 是视窗句柄。如设值，则表示支持设备热插拔。</li>
                             <li>Android 平台上，context 是安卓活动上下文。</li>
                         </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelProfile</pt>
+                    <pd>频道使用场景。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。
+                        <note>废弃：请改用 CHANNEL_PROFILE_LIVE_BROADCASTING。
+废弃：请改用 CHANNEL_PROFILE_LIVE_BROADCASTING。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioScenario</pt>
+                    <pd>音频场景。不同的音频场景下，设备的音量类型是不同的。
+详见 <xref keyref="AUDIO_SCENARIO_TYPE"/> 。
+                        <note>使用该枚举前，你需要调用 <xref keyref="getAudioDeviceInfo"/> 获取音频设备是否支持极低延时采集和播放。只有在支持极低延时（<codeph>isLowLatencyAudioSupported</codeph> = <xref keyref="true"/>）的音频设备上，才能够体验到极低延时。</note>
                     </pd>
                 </plentry>
                 <plentry props="unity">

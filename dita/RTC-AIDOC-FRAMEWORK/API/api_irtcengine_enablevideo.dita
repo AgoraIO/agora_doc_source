@@ -24,6 +24,62 @@
             <p props="rn">视频模块默认为关闭状态，需要调用该方法启用。如果后续需要关闭视频模块，需调用 <xref keyref="disableVideo"/> 方法。</p>
             <p props="flutter">视频模块默认为关闭状态，需要调用该方法启用。如果后续需要关闭视频模块，需调用 <xref keyref="disableVideo"/> 方法。</p>
             <p props="unity">视频模块默认为关闭状态，需要调用该方法启用。如果后续需要关闭视频模块，需调用 <xref keyref="disableVideo"/> 方法。</p>
+            <note props="electron">
+                <ul>
+                    <li>该方法设置的是内部引擎为启用状态，在离开频道后仍然有效。</li>
+                    <li>调用该方法会重置整个引擎，响应时间较慢。你可以根据实际需求用以下方法来独立控制视频模块的某一项功能：
+                        <ul>
+                            <li><xref keyref="enableLocalVideo"/>: 是否启动摄像头采集并创建本地视频流。</li>
+                            <li><xref keyref="muteLocalVideoStream"/>: 是否发布本地视频流。</li>
+                            <li><xref keyref="muteRemoteVideoStream"/>: 是否接收并播放远端视频流。</li>
+                            <li><xref keyref="muteAllRemoteVideoStreams"/>: 是否接收并播放所有远端视频流。</li>
+                        </ul>
+                    </li>
+                    <li>在频道内调用该方法时，会重置 <xref keyref="enableLocalVideo"/>、<xref keyref="muteRemoteVideoStream"/> 和 <xref keyref="muteAllRemoteVideoStreams"/> 的设置，需谨慎使用。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>该方法设置的是内部引擎为启用状态，在离开频道后仍然有效。</li>
+                    <li>调用该方法会重置整个引擎，响应时间较慢。你可以根据实际需求用以下方法来独立控制视频模块的某一项功能：
+                        <ul>
+                            <li><xref keyref="enableLocalVideo"/>: 是否启动摄像头采集并创建本地视频流。</li>
+                            <li><xref keyref="muteLocalVideoStream"/>: 是否发布本地视频流。</li>
+                            <li><xref keyref="muteRemoteVideoStream"/>: 是否接收并播放远端视频流。</li>
+                            <li><xref keyref="muteAllRemoteVideoStreams"/>: 是否接收并播放所有远端视频流。</li>
+                        </ul>
+                    </li>
+                    <li>在频道内调用该方法时，会重置 <xref keyref="enableLocalVideo"/>、<xref keyref="muteRemoteVideoStream"/> 和 <xref keyref="muteAllRemoteVideoStreams"/> 的设置，需谨慎使用。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法设置的是内部引擎为启用状态，在离开频道后仍然有效。</li>
+                    <li>调用该方法会重置整个引擎，响应时间较慢。你可以根据实际需求用以下方法来独立控制视频模块的某一项功能：
+                        <ul>
+                            <li><xref keyref="enableLocalVideo"/>: 是否启动摄像头采集并创建本地视频流。</li>
+                            <li><xref keyref="muteLocalVideoStream"/>: 是否发布本地视频流。</li>
+                            <li><xref keyref="muteRemoteVideoStream"/>: 是否接收并播放远端视频流。</li>
+                            <li><xref keyref="muteAllRemoteVideoStreams"/>: 是否接收并播放所有远端视频流。</li>
+                        </ul>
+                    </li>
+                    <li>在频道内调用该方法时，会重置 <xref keyref="enableLocalVideo"/>、<xref keyref="muteRemoteVideoStream"/> 和 <xref keyref="muteAllRemoteVideoStreams"/> 的设置，需谨慎使用。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法设置的是内部引擎为启用状态，在离开频道后仍然有效。</li>
+                    <li>调用该方法会重置整个引擎，响应时间较慢。你可以根据实际需求用以下方法来独立控制视频模块的某一项功能：
+                        <ul>
+                            <li><xref keyref="enableLocalVideo"/>: 是否启动摄像头采集并创建本地视频流。</li>
+                            <li><xref keyref="muteLocalVideoStream"/>: 是否发布本地视频流。</li>
+                            <li><xref keyref="muteRemoteVideoStream"/>: 是否接收并播放远端视频流。</li>
+                            <li><xref keyref="muteAllRemoteVideoStreams"/>: 是否接收并播放所有远端视频流。</li>
+                        </ul>
+                    </li>
+                    <li>在频道内调用该方法时，会重置 <xref keyref="enableLocalVideo"/>、<xref keyref="muteRemoteVideoStream"/> 和 <xref keyref="muteAllRemoteVideoStreams"/> 的设置，需谨慎使用。</li>
+                </ul>
+            </note>
         </section>
         <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
             <title>调用时机</title>

@@ -29,18 +29,6 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
-                <dlentry props="electron">
-                    <dt>废弃</dt>
-                    <dd>弃用： 此方法已废弃，如需设置音频编码属性，请改用 <codeph>setAudioProfile2</codeph>；如需设置音频场景，请改用 <xref keyref="setAudioScenario"/>。</dd>
-                </dlentry>
-                <dlentry props="rn">
-                    <dt>废弃</dt>
-                    <dd>弃用： 此方法已废弃，如需设置音频编码属性，请改用 <codeph>setAudioProfile2</codeph>；如需设置音频场景，请改用 <xref keyref="setAudioScenario"/>。</dd>
-                </dlentry>
-                <dlentry props="flutter">
-                    <dt>废弃</dt>
-                    <dd>弃用： 此方法已废弃，如需设置音频编码属性，请改用 <codeph>setAudioProfile2</codeph>；如需设置音频场景，请改用 <xref keyref="setAudioScenario"/>。</dd>
-                </dlentry>
                 <dlentry props="unity">
                     <dt>废弃</dt>
                     <dd>弃用： 此方法已废弃，如需设置音频编码属性，请改用 <xref keyref="setAudioProfile2"/>；如需设置音频场景，请改用 <xref keyref="setAudioScenario"/>。</dd>
@@ -64,17 +52,45 @@
                     <pt>profile</pt>
                     <pd>音频编码属性，包含采样率、码率、编码模式和声道数。详见 <xref keyref="AUDIO_PROFILE_TYPE"/>。</pd>
                 </plentry>
+                <plentry props="electron">
+                    <pt>scenario</pt>
+                    <pd>音频场景。不同的音频场景下，设备的音量类型是不同的。
+详见 <xref keyref="AUDIO_SCENARIO_TYPE"/> 。
+                        <note>使用该枚举前，你需要调用 <codeph>getAudioDeviceInfo</codeph> 获取音频设备是否支持极低延时采集和播放。只有在支持极低延时（<codeph>isLowLatencyAudioSupported</codeph> = <xref keyref="true"/>）的音频设备上，才能够体验到极低延时。</note>
+                    </pd>
+                </plentry>
                 <plentry props="rn">
                     <pt>profile</pt>
                     <pd>音频编码属性，包含采样率、码率、编码模式和声道数。详见 <xref keyref="AUDIO_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>scenario</pt>
+                    <pd>音频场景。不同的音频场景下，设备的音量类型是不同的。
+详见 <xref keyref="AUDIO_SCENARIO_TYPE"/> 。
+                        <note>使用该枚举前，你需要调用 <xref keyref="getAudioDeviceInfo"/> 获取音频设备是否支持极低延时采集和播放。只有在支持极低延时（<codeph>isLowLatencyAudioSupported</codeph> = <xref keyref="true"/>）的音频设备上，才能够体验到极低延时。</note>
+                    </pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>profile</pt>
                     <pd>音频编码属性，包含采样率、码率、编码模式和声道数。详见 <xref keyref="AUDIO_PROFILE_TYPE"/>。</pd>
                 </plentry>
+                <plentry props="flutter">
+                    <pt>scenario</pt>
+                    <pd>音频场景。不同的音频场景下，设备的音量类型是不同的。
+详见 <xref keyref="AUDIO_SCENARIO_TYPE"/> 。
+                        <note>使用该枚举前，你需要调用 <xref keyref="getAudioDeviceInfo"/> 获取音频设备是否支持极低延时采集和播放。只有在支持极低延时（<codeph>isLowLatencyAudioSupported</codeph> = <xref keyref="true"/>）的音频设备上，才能够体验到极低延时。</note>
+                    </pd>
+                </plentry>
                 <plentry props="unity">
                     <pt>profile</pt>
                     <pd>音频编码属性，包含采样率、码率、编码模式和声道数。详见 <xref keyref="AUDIO_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>scenario</pt>
+                    <pd>音频场景。不同的音频场景下，设备的音量类型是不同的。
+详见 <xref keyref="AUDIO_SCENARIO_TYPE"/> 。
+                        <note>使用该枚举前，你需要调用 <xref keyref="getAudioDeviceInfo"/> 获取音频设备是否支持极低延时采集和播放。只有在支持极低延时（<codeph>isLowLatencyAudioSupported</codeph> = <xref keyref="true"/>）的音频设备上，才能够体验到极低延时。</note>
+                    </pd>
                 </plentry>
             </parml>
         </section>

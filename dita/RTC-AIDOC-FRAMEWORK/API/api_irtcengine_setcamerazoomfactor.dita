@@ -22,14 +22,21 @@
             <p props="rn">部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以调用 <xref keyref="setCameraCapturerConfiguration"/> 将 <codeph>cameraFocalLengthType</codeph> 设置为 <codeph>CameraFocalLengthDefault</codeph> (0)（标准镜头），然后调用该方法将摄像头缩放比例设置为小于 1.0 的数值，从而实现超广角的拍摄效果。</p>
             <p props="flutter">部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以调用 <xref keyref="setCameraCapturerConfiguration"/> 将 <codeph>cameraFocalLengthType</codeph> 设置为 <codeph>cameraFocalLengthDefault</codeph> (0)（标准镜头），然后调用该方法将摄像头缩放比例设置为小于 1.0 的数值，从而实现超广角的拍摄效果。</p>
             <p props="unity">部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以调用 <xref keyref="setCameraCapturerConfiguration"/> 将 <codeph>cameraFocalLengthType</codeph> 设置为 <codeph>CAMERA_FOCAL_LENGTH_DEFAULT</codeph> (0)（标准镜头），然后调用该方法将摄像头缩放比例设置为小于 1.0 的数值，从而实现超广角的拍摄效果。</p>
+            <note props="rn">
+                <ul>
+                    <li>该方法必须在 <xref keyref="enableVideo"/> 后调用，设置结果在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调返回本地视频状态为 <codeph>LocalVideoStreamStateCapturing</codeph> (1) 后。</li>
+                </ul>
+            </note>
             <note props="flutter">
                 <ul>
                     <li>该方法仅适用于 Android 和 iOS。</li>
+                    <li>该方法必须在 <xref keyref="enableVideo"/> 后调用，设置结果在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调返回本地视频状态为 <codeph>localVideoStreamStateCapturing</codeph> (1) 后。</li>
                 </ul>
             </note>
             <note props="unity">
                 <ul>
                     <li>该方法仅适用于 Android 和 iOS。</li>
+                    <li>该方法必须在 <xref keyref="enableVideo"/> 后调用，设置结果在摄像头成功开启后生效，即 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1) 后。</li>
                 </ul>
             </note>
         </section>

@@ -38,6 +38,7 @@
                     <li>建议你通过 C++ API 实现该回调。</li>
                     <li>由于框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
                     <li>此处获取的视频数据已经过前处理，如裁剪、旋转和美颜等。</li>
+                    <li>建议你在修改 <codeph>videoFrame</codeph> 中的参数时，需确保修改后的参数跟视频帧缓冲区中的视频帧实际情况保持一致，否则可能导致本地预览画面和对端的视频画面出现非预期的旋转、失真等问题。</li>
                 </ul>
             </note>
             <note props="rn">
@@ -45,18 +46,21 @@
                     <li>建议你通过 C++ API 实现该回调。</li>
                     <li>由于框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
                     <li>此处获取的视频数据已经过前处理，如裁剪、旋转和美颜等。</li>
+                    <li>建议你在修改 <codeph>videoFrame</codeph> 中的参数时，需确保修改后的参数跟视频帧缓冲区中的视频帧实际情况保持一致，否则可能导致本地预览画面和对端的视频画面出现非预期的旋转、失真等问题。</li>
                 </ul>
             </note>
             <note props="flutter">
                 <ul>
                     <li>由于框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
                     <li>此处获取的视频数据已经过前处理，如裁剪、旋转和美颜等。</li>
+                    <li>建议你在修改 <codeph>videoFrame</codeph> 中的参数时，需确保修改后的参数跟视频帧缓冲区中的视频帧实际情况保持一致，否则可能导致本地预览画面和对端的视频画面出现非预期的旋转、失真等问题。</li>
                 </ul>
             </note>
             <note props="unity">
                 <ul>
                     <li>你需要通过 <xref keyref="registerVideoFrameObserver"/> 的 <codeph>position</codeph> 参数设置观测 <codeph>POSITION_PRE_ENCODER</codeph>(1 &lt;&lt; 2) 后，才能使用该回调获取本地视频编码前的视频数据。</li>
                     <li>此处获取的视频数据已经过前处理，如裁剪、旋转和美颜等。</li>
+                    <li>建议你在修改 <codeph>videoFrame</codeph> 中的参数时，需确保修改后的参数跟视频帧缓冲区中的视频帧实际情况保持一致，否则可能导致本地预览画面和对端的视频画面出现非预期的旋转、失真等问题。</li>
                 </ul>
             </note>
         </section>
@@ -73,8 +77,6 @@
                         <note>通过该回调获取的视频帧数据格式默认值如下：
                             <ul>
                                 <li>macOS：I420</li>
-                            </ul>
-                            <ul>
                                 <li>Windows：YUV420</li>
                             </ul>
                         </note>
@@ -90,8 +92,6 @@
                         <note>通过该回调获取的视频帧数据格式默认值如下：
                             <ul>
                                 <li>Android：I420</li>
-                            </ul>
-                            <ul>
                                 <li>iOS：I420</li>
                             </ul>
                         </note>
@@ -107,8 +107,6 @@
                         <note>通过该回调获取的视频帧数据格式默认值如下：
                             <ul>
                                 <li>Android：I420</li>
-                            </ul>
-                            <ul>
                                 <li>iOS：I420</li>
                                 <li>macOS：I420</li>
                                 <li>Windows：YUV420</li>

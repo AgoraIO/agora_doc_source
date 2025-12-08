@@ -55,20 +55,35 @@
             <p props="electron">
                 <ul>
                     <li>0: 方法调用成功。</li>
-                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2：传入的参数无效。</li>
+                            <li>-8：屏幕共享状态无效。可能因为你已经共享了其他屏幕或窗口。尝试调用 <xref keyref="stopScreenCapture"/> 停止当前共享，再重新开始共享屏幕。</li>
+                        </ul>
+                    </li>
                 </ul>
             </p>
             <p props="rn">
                 <ul>
                     <li>0: 方法调用成功。</li>
-                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2：传入的参数无效。</li>
+                            <li>-8：屏幕共享状态无效。可能因为你已经共享了其他屏幕或窗口。尝试调用 <xref keyref="stopScreenCapture"/> 停止当前共享，再重新开始共享屏幕。</li>
+                        </ul>
+                    </li>
                 </ul>
             </p>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
             <p props="unity">
                 <ul>
                     <li>0: 方法调用成功。</li>
-                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2：传入的参数无效。</li>
+                            <li>-8：屏幕共享状态无效。可能因为你已经共享了其他屏幕或窗口。尝试调用 <xref keyref="stopScreenCapture"/> 停止当前共享，再重新开始共享屏幕。</li>
+                        </ul>
+                    </li>
                 </ul>
             </p>
         </section>

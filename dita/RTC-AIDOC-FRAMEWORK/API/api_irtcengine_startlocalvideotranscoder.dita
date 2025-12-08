@@ -28,6 +28,82 @@
             <p props="rn">调用该方法后，你可以在本地将多路视频流合并为一路视频流。例如：将摄像头采集的视频流、屏幕共享流、媒体播放器中的视频流、远端视频流、视频文件、图片等合并为一路视频流，然后将已合图的视频流发布到频道中。</p>
             <p props="flutter">调用该方法后，你可以在本地将多路视频流合并为一路视频流。例如：将摄像头采集的视频流、屏幕共享流、媒体播放器中的视频流、远端视频流、视频文件、图片等合并为一路视频流，然后将已合图的视频流发布到频道中。</p>
             <p props="unity">调用该方法后，你可以在本地将多路视频流合并为一路视频流。例如：将摄像头采集的视频流、屏幕共享流、媒体播放器中的视频流、远端视频流、视频文件、图片等合并为一路视频流，然后将已合图的视频流发布到频道中。</p>
+            <note props="electron">
+                <ul>
+                    <li>本地合图对 CPU 的消耗较高，声网建议你在性能较高的设备上开启该功能。</li>
+                    <li>如果你需要对本地采集的视频流进行合图，SDK 支持如下采集组合：
+                        <ul>
+                            <li>在 Windows 平台上，最多支持 4 路摄像头采集的视频流 + 4 路屏幕共享流合图。</li>
+                            <li>在 macOS 平台上，最多支持 4 路摄像头采集的视频流 + 1 路屏幕共享流合图。</li>
+                        </ul>
+                    </li>
+                    <li>在进行合图配置时，需确保采集人像的摄像头视频流在合图中的图层编号大于屏幕共享流的图层编号，否则人像会被屏幕共享覆盖、无法显示在最终合图的视频流中。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>本地合图对 CPU 的消耗较高，声网建议你在性能较高的设备上开启该功能。</li>
+                    <li>如果你需要对本地采集的视频流进行合图，SDK 支持如下采集组合：
+                        <ul>
+                            <li>在 Android 和 iOS 平台上，最多支持 2 路摄像头采集的视频流（需要设备本身支持双摄或支持外接摄像头）+ 1 路屏幕共享合图。</li>
+                        </ul>
+                    </li>
+                    <li>在进行合图配置时，需确保采集人像的摄像头视频流在合图中的图层编号大于屏幕共享流的图层编号，否则人像会被屏幕共享覆盖、无法显示在最终合图的视频流中。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>本地合图对 CPU 的消耗较高，声网建议你在性能较高的设备上开启该功能。</li>
+                    <li>如果你需要对本地采集的视频流进行合图，SDK 支持如下采集组合：
+                        <ul>
+                            <li>在 Windows 平台上，最多支持 4 路摄像头采集的视频流 + 4 路屏幕共享流合图。</li>
+                            <li>在 macOS 平台上，最多支持 4 路摄像头采集的视频流 + 1 路屏幕共享流合图。</li>
+                            <li>在 Android 和 iOS 平台上，最多支持 2 路摄像头采集的视频流（需要设备本身支持双摄或支持外接摄像头）+ 1 路屏幕共享合图。</li>
+                        </ul>
+                    </li>
+                    <li>在进行合图配置时，需确保采集人像的摄像头视频流在合图中的图层编号大于屏幕共享流的图层编号，否则人像会被屏幕共享覆盖、无法显示在最终合图的视频流中。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>本地合图对 CPU 的消耗较高，声网建议你在性能较高的设备上开启该功能。</li>
+                    <li>如果你需要对本地采集的视频流进行合图，SDK 支持如下采集组合：
+                        <ul>
+                            <li>在 Windows 平台上，最多支持 4 路摄像头采集的视频流 + 4 路屏幕共享流合图。</li>
+                            <li>在 macOS 平台上，最多支持 4 路摄像头采集的视频流 + 1 路屏幕共享流合图。</li>
+                            <li>在 Android 和 iOS 平台上，最多支持 2 路摄像头采集的视频流（需要设备本身支持双摄或支持外接摄像头）+ 1 路屏幕共享合图。</li>
+                        </ul>
+                    </li>
+                    <li>在进行合图配置时，需确保采集人像的摄像头视频流在合图中的图层编号大于屏幕共享流的图层编号，否则人像会被屏幕共享覆盖、无法显示在最终合图的视频流中。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">
+                <ul>
+                    <li>如果你需要对本地采集的视频流进行合图，需要在 <xref keyref="startCameraCapture"/> 或 <xref keyref="startScreenCapture2"/> 之后调用该方法。</li>
+                    <li>如果你要将合图后的视频流发布到频道中，需要在调用 <xref keyref="joinChannel2"/> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>如果你需要对本地采集的视频流进行合图，需要在 <xref keyref="startCameraCapture"/> 或 <xref keyref="startScreenCapture"/> 之后调用该方法。</li>
+                    <li>如果你要将合图后的视频流发布到频道中，需要在调用 <xref keyref="joinChannel2"/> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>如果你需要对本地采集的视频流进行合图，需要在 <xref keyref="startCameraCapture"/> 或 <xref keyref="startScreenCapture2"/> 之后调用该方法。</li>
+                    <li>如果你要将合图后的视频流发布到频道中，需要在调用 <xref keyref="joinChannel2"/> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>如果你需要对本地采集的视频流进行合图，需要在 <xref keyref="startCameraCapture"/> 或 <xref keyref="startScreenCapture2"/> 之后调用该方法。</li>
+                    <li>如果你要将合图后的视频流发布到频道中，需要在调用 <xref keyref="joinChannel2"/> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishTranscodedVideoTrack</codeph> 设置为 <xref keyref="true"/>。</li>
+                </ul>
+            </p>
         </section>
         <section id="related" deliveryTarget="details" props="electron flutter rn unity">
             <title>相关回调</title>

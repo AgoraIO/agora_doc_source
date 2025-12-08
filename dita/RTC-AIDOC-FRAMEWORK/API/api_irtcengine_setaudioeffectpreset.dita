@@ -24,6 +24,74 @@
             <p props="rn">调用该方法可以为本地发流用户设置 SDK 预设的人声音效，且不会改变原声的性别特征。设置音效后，频道内所有用户都能听到该效果。</p>
             <p props="flutter">调用该方法可以为本地发流用户设置 SDK 预设的人声音效，且不会改变原声的性别特征。设置音效后，频道内所有用户都能听到该效果。</p>
             <p props="unity">调用该方法可以为本地发流用户设置 SDK 预设的人声音效，且不会改变原声的性别特征。设置音效后，频道内所有用户都能听到该效果。</p>
+            <note props="electron">
+                <ul>
+                    <li>请勿将 <xref keyref="setAudioProfile"/> 的 <codeph>profile</codeph> 参数设置为 <codeph>AudioProfileSpeechStandard</codeph>(1) 或 <codeph>AudioProfileIot</codeph>(6)，否则该方法不生效。</li>
+                    <li>如果调用 <xref keyref="setAudioEffectPreset"/> 并设置除 <codeph>RoomAcoustics3dVoice</codeph> 或 <codeph>PitchCorrection</codeph> 外的枚举，请勿再调用 <xref keyref="setAudioEffectParameters"/>，否则 <xref keyref="setAudioEffectPreset"/> 设置的效果会被覆盖。</li>
+                    <li>调用 <xref keyref="setAudioEffectPreset"/> 后，不建议调用以下方法，否则 <xref keyref="setAudioEffectPreset"/> 设置的效果会被覆盖：
+                        <ul>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>该方法依赖于美声动态库 <codeph>libagora_audio_beauty_extension.dll</codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>请勿将 <xref keyref="setAudioProfile"/> 的 <codeph>profile</codeph> 参数设置为 <codeph>AudioProfileSpeechStandard</codeph>(1) 或 <codeph>AudioProfileIot</codeph>(6)，否则该方法不生效。</li>
+                    <li>如果调用 <xref keyref="setAudioEffectPreset"/> 并设置除 <codeph>RoomAcoustics3dVoice</codeph> 或 <codeph>PitchCorrection</codeph> 外的枚举，请勿再调用 <xref keyref="setAudioEffectParameters"/>，否则 <xref keyref="setAudioEffectPreset"/> 设置的效果会被覆盖。</li>
+                    <li>调用 <xref keyref="setAudioEffectPreset"/> 后，不建议调用以下方法，否则 <xref keyref="setAudioEffectPreset"/> 设置的效果会被覆盖：
+                        <ul>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>该方法依赖于美声动态库 <codeph>libagora_audio_beauty_extension.dll</codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>请勿将 <xref keyref="setAudioProfile"/> 的 <codeph>profile</codeph> 参数设置为 <codeph>audioProfileSpeechStandard</codeph>(1) 或 <codeph>audioProfileIot</codeph>(6)，否则该方法不生效。</li>
+                    <li>如果调用 <xref keyref="setAudioEffectPreset"/> 并设置除 <codeph>roomAcoustics3dVoice</codeph> 或 <codeph>pitchCorrection</codeph> 外的枚举，请勿再调用 <xref keyref="setAudioEffectParameters"/>，否则 <xref keyref="setAudioEffectPreset"/> 设置的效果会被覆盖。</li>
+                    <li>调用 <xref keyref="setAudioEffectPreset"/> 后，不建议调用以下方法，否则 <xref keyref="setAudioEffectPreset"/> 设置的效果会被覆盖：
+                        <ul>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>该方法依赖于美声动态库 <codeph>libagora_audio_beauty_extension.dll</codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>请勿将 <xref keyref="setAudioProfile2"/> 的 <codeph>profile</codeph> 参数设置为 <codeph>AUDIO_PROFILE_SPEECH_STANDARD</codeph>(1) 或 <codeph>AUDIO_PROFILE_IOT</codeph>(6)，否则该方法不生效。</li>
+                    <li>如果调用 <xref keyref="setAudioEffectPreset"/> 并设置除 <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph> 或 <codeph>PITCH_CORRECTION</codeph> 外的枚举，请勿再调用 <xref keyref="setAudioEffectParameters"/>，否则 <xref keyref="setAudioEffectPreset"/> 设置的效果会被覆盖。</li>
+                    <li>调用 <xref keyref="setAudioEffectPreset"/> 后，不建议调用以下方法，否则 <xref keyref="setAudioEffectPreset"/> 设置的效果会被覆盖：
+                        <ul>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>该方法依赖于美声动态库 <codeph>libagora_audio_beauty_extension.dll</codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
+                </ul>
+            </note>
         </section>
         <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
             <title>调用时机</title>
