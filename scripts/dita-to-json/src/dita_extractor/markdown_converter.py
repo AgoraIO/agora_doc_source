@@ -2,7 +2,7 @@
 
 import html
 import re
-from typing import TYPE_CHECKING, List, Optional
+from typing import TYPE_CHECKING, Callable, List, Optional
 
 from loguru import logger
 from lxml import etree
@@ -12,19 +12,29 @@ from .config import matches_platform
 if TYPE_CHECKING:
     from .keymap_parser import KeymapParser
 
+# Type alias for conkeyref resolver callback
+ConkeyrefResolver = Callable[[str], Optional[etree._Element]]
+
 
 class MarkdownConverter:
     """将 XML 元素转换为 Markdown 文本"""
     
-    def __init__(self, keymap_parser: "KeymapParser", props_platform: str):
+    def __init__(
+        self,
+        keymap_parser: "KeymapParser",
+        props_platform: str,
+        conkeyref_resolver: Optional[ConkeyrefResolver] = None,
+    ):
         """初始化
         
         Args:
             keymap_parser: keymap 解析器，用于解析 xref 链接
             props_platform: 当前平台的 props 值，用于过滤元素
+            conkeyref_resolver: 可选的 conkeyref 解析回调函数
         """
         self.keymap_parser = keymap_parser
         self.props_platform = props_platform
+        self.conkeyref_resolver = conkeyref_resolver
     
     def convert(
         self,
@@ -195,6 +205,14 @@ class MarkdownConverter:
         for child in element:
             child_tag = etree.QName(child.tag).localname if isinstance(child.tag, str) else str(child.tag)
             
+            # 检查子元素的 props 是否匹配当前平台
+            child_props = child.get("props")
+            if not matches_platform(child_props, self.props_platform):
+                # props 不匹配，跳过该元素但仍处理 tail
+                if child.tail:
+                    result.append(child.tail)
+                continue
+            
             # 跳过 note 元素（如果需要）
             if exclude_note and child_tag == "note":
                 # 但仍然处理 tail
@@ -285,6 +303,16 @@ class MarkdownConverter:
         indent_str = "  " * indent
         
         for li in element.findall("li"):
+            # 处理 conkeyref 引用
+            conkeyref = li.get("conkeyref")
+            if conkeyref and self.conkeyref_resolver:
+                resolved = self.conkeyref_resolver(conkeyref)
+                if resolved is not None:
+                    li = resolved
+                else:
+                    # conkeyref 解析失败，跳过
+                    continue
+            
             # 检查 li 的 props 是否匹配当前平台
             props = li.get("props")
             if not matches_platform(props, self.props_platform):
@@ -295,7 +323,8 @@ class MarkdownConverter:
                 items.append(f"{indent_str}- {content}")
         
         if items:
-            return "\n".join(items) + "\n\n"
+            # 列表前加换行，确保列表项从新行开始
+            return "\n" + "\n".join(items) + "\n\n"
         return ""
     
     def _convert_ol(self, element: etree._Element, exclude_note: bool = False, indent: int = 0) -> str:
@@ -311,6 +340,16 @@ class MarkdownConverter:
         
         idx = 1
         for li in element.findall("li"):
+            # 处理 conkeyref 引用
+            conkeyref = li.get("conkeyref")
+            if conkeyref and self.conkeyref_resolver:
+                resolved = self.conkeyref_resolver(conkeyref)
+                if resolved is not None:
+                    li = resolved
+                else:
+                    # conkeyref 解析失败，跳过
+                    continue
+            
             # 检查 li 的 props 是否匹配当前平台
             props = li.get("props")
             if not matches_platform(props, self.props_platform):
@@ -322,7 +361,8 @@ class MarkdownConverter:
                 idx += 1
         
         if items:
-            return "\n".join(items) + "\n\n"
+            # 列表前加换行，确保列表项从新行开始
+            return "\n" + "\n".join(items) + "\n\n"
         return ""
     
     def _convert_li(self, li: etree._Element, exclude_note: bool, indent: int) -> str:
@@ -335,20 +375,40 @@ class MarkdownConverter:
         """
         parts: List[str] = []
         
-        # 处理 li 的直接文本
+        # 处理 li 的直接文本（保留空格，由 _clean_whitespace 统一处理）
         if li.text:
-            parts.append(li.text.strip())
+            parts.append(li.text)
         
         # 处理子元素
         for child in li:
             child_tag = etree.QName(child.tag).localname if isinstance(child.tag, str) else str(child.tag)
             
+            # 检查子元素的 props 是否匹配当前平台
+            child_props = child.get("props")
+            if not matches_platform(child_props, self.props_platform):
+                # props 不匹配，跳过该元素但仍处理 tail
+                if child.tail:
+                    parts.append(child.tail)
+                continue
+            
             if child_tag == "ul":
+                # 处理 ul 的 conkeyref
+                ul_conkeyref = child.get("conkeyref")
+                if ul_conkeyref and self.conkeyref_resolver:
+                    resolved = self.conkeyref_resolver(ul_conkeyref)
+                    if resolved is not None:
+                        child = resolved
                 # 嵌套无序列表，增加缩进
                 nested = self._convert_ul(child, exclude_note, indent + 1)
                 if nested:
                     parts.append("\n" + nested.rstrip("\n"))
             elif child_tag == "ol":
+                # 处理 ol 的 conkeyref
+                ol_conkeyref = child.get("conkeyref")
+                if ol_conkeyref and self.conkeyref_resolver:
+                    resolved = self.conkeyref_resolver(ol_conkeyref)
+                    if resolved is not None:
+                        child = resolved
                 # 嵌套有序列表，增加缩进
                 nested = self._convert_ol(child, exclude_note, indent + 1)
                 if nested:
@@ -361,12 +421,11 @@ class MarkdownConverter:
                 if converted:
                     parts.append(converted)
             
-            # 处理 tail
+            # 处理 tail（保留空格，由 _clean_whitespace 统一处理）
             if child.tail:
-                tail = child.tail.strip()
-                if tail:
-                    parts.append(tail)
+                parts.append(child.tail)
         
+        # 只清理首尾多余空白，保留中间的空格
         return "".join(parts).strip()
     
     def _convert_p(self, element: etree._Element, exclude_note: bool = False) -> str:

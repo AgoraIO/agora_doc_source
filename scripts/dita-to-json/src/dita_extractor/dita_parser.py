@@ -41,10 +41,16 @@ class DitaParser:
         self.props_platform = platform_config.props_platform
         self.language_platform = platform_config.language_platform
         self.keymap_parser = keymap_parser
-        self.converter = MarkdownConverter(keymap_parser, self.props_platform)
         
         # 缓存已解析的文件
         self._file_cache: dict[str, etree._ElementTree] = {}
+        
+        # 初始化 converter，传入 conkeyref 解析器
+        self.converter = MarkdownConverter(
+            keymap_parser,
+            self.props_platform,
+            conkeyref_resolver=self._resolve_conkeyref,
+        )
     
     def parse_api(self, key: str) -> Optional[ParsedApi]:
         """解析 API/Callback 文件
@@ -233,18 +239,25 @@ class DitaParser:
         
         # 提取 since/deprecated
         for dl in section.findall("dl"):
-            props = dl.get("props")
-            if not self._matches_platform(props):
+            # 检查 dl 的 props
+            dl_props = dl.get("props")
+            if not self._matches_platform(dl_props):
                 continue
             
             outputclass = dl.get("outputclass", "")
             dlentry = dl.find("dlentry")
             if dlentry is not None:
+                # 也要检查 dlentry 的 props（props 可能在 dlentry 上而不是 dl 上）
+                dlentry_props = dlentry.get("props")
+                if not self._matches_platform(dlentry_props):
+                    continue
+                
                 dt = dlentry.find("dt")
                 dd = dlentry.find("dd")
                 if dt is not None and dd is not None:
-                    dt_text = self.converter.convert_text_content(dt)
-                    dd_text = self.converter.convert_text_content(dd)
+                    # 使用 convert 以正确处理 xref 等元素
+                    dt_text = self.converter.convert(dt)
+                    dd_text = self.converter.convert(dd)
                     combined = f"{dt_text} {dd_text}".strip()
                     
                     if "since" in outputclass:
@@ -255,11 +268,21 @@ class DitaParser:
         # 提取描述段落
         desc_parts: List[str] = []
         for p in section.findall("p"):
+            # 先检查原始 p 的 props
             props = p.get("props")
-            if self._matches_platform(props):
-                content = self.converter.convert(p, exclude_note=True)
-                if content:
-                    desc_parts.append(content)
+            if not self._matches_platform(props):
+                continue
+            
+            # 处理 p 级别的 conkeyref
+            p_conkeyref = p.get("conkeyref")
+            if p_conkeyref:
+                resolved_p = self._resolve_conkeyref(p_conkeyref)
+                if resolved_p is not None:
+                    p = resolved_p
+            
+            content = self.converter.convert(p, exclude_note=True)
+            if content:
+                desc_parts.append(content)
         
         if desc_parts:
             result.desc = "\n".join(desc_parts).strip()
@@ -283,18 +306,38 @@ class DitaParser:
         return None
     
     def _extract_section_content(self, root: etree._Element, section_id: str) -> Optional[str]:
-        """提取指定 section 的内容"""
+        """提取指定 section 的内容
+        
+        处理 section 下的各种子元素：p, ul, ol, note 等
+        """
         section = root.find(f".//section[@id='{section_id}']")
         if section is None:
             return None
         
+        # 检查 section 的 props 是否匹配当前平台
+        section_props = section.get("props")
+        if not self._matches_platform(section_props):
+            return None
+        
         parts: List[str] = []
-        for p in section.findall("p"):
-            props = p.get("props")
-            if self._matches_platform(props):
-                content = self.converter.convert(p)
-                if content:
-                    parts.append(content)
+        
+        # 遍历 section 的直接子元素（跳过 title）
+        for child in section:
+            child_tag = etree.QName(child.tag).localname if isinstance(child.tag, str) else str(child.tag)
+            
+            # 跳过 title 元素
+            if child_tag == "title":
+                continue
+            
+            # 检查 props 是否匹配当前平台
+            props = child.get("props")
+            if not self._matches_platform(props):
+                continue
+            
+            # 转换元素内容
+            content = self.converter.convert(child)
+            if content:
+                parts.append(content)
         
         if parts:
             return "\n".join(parts).strip()
@@ -304,6 +347,11 @@ class DitaParser:
         """提取参数列表"""
         section = root.find(".//section[@id='parameters']")
         if section is None:
+            return []
+        
+        # 检查 section 的 props 是否匹配当前平台
+        section_props = section.get("props")
+        if not self._matches_platform(section_props):
             return []
         
         parml = section.find("parml")
@@ -321,6 +369,11 @@ class DitaParser:
     
     def _extract_single_parameter(self, plentry: etree._Element) -> Optional[ParameterInfo]:
         """提取单个参数"""
+        # 先检查原始 plentry 的 props（conkeyref 元素的 props 优先级最高）
+        original_props = plentry.get("props")
+        if not self._matches_platform(original_props):
+            return None
+        
         # 处理 conkeyref
         conkeyref = plentry.get("conkeyref")
         if conkeyref:
@@ -329,11 +382,6 @@ class DitaParser:
                 plentry = resolved
             else:
                 return None
-        
-        # 检查 plentry 级别的 props
-        props = plentry.get("props")
-        if not self._matches_platform(props):
-            return None
         
         # 选择匹配平台的 pt
         pt = self._select_matching_element(plentry.findall("pt"))
@@ -344,6 +392,13 @@ class DitaParser:
         pd = self._select_matching_element(plentry.findall("pd"))
         if pd is None:
             return None
+        
+        # 处理 pd 级别的 conkeyref（如 <pd conkeyref="xxx/yyy"/>）
+        pd_conkeyref = pd.get("conkeyref")
+        if pd_conkeyref:
+            resolved_pd = self._resolve_conkeyref(pd_conkeyref)
+            if resolved_pd is not None:
+                pd = resolved_pd
         
         # 提取参数名（使用 convert 以处理 <ph keyref="..."/> 等元素）
         name = self.converter.convert(pt).strip()
@@ -372,6 +427,11 @@ class DitaParser:
         """提取返回值"""
         section = root.find(".//section[@id='return_values']")
         if section is None:
+            return None
+        
+        # 检查 section 的 props 是否匹配当前平台
+        section_props = section.get("props")
+        if not self._matches_platform(section_props):
             return None
         
         parts: List[str] = []
