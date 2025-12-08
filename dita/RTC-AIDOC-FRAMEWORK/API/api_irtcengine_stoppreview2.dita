@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_stoppreview2">
     <title><ph keyref="stopPreview2"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="unity">停止视频预览。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">停止视频预览。</ph><ph id="shortdesc" props="rn">停止视频预览。</ph><ph id="shortdesc" props="flutter">停止视频预览。</ph><ph id="shortdesc" props="unity">停止视频预览。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,28 +13,73 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract stopPreview(sourceType?: VideoSourceType): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract stopPreview(sourceType?: VideoSourceType): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopPreview(
+    {VideoSourceType sourceType = VideoSourceType.videoSourceCameraPrimary});</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int StopPreview(VIDEO_SOURCE_TYPE sourceType);</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.2</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.2</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.2</dd>
+                </dlentry>
                 <dlentry props="unity">
                     <dt>自从</dt>
                     <dd>自从 v4.2.2</dd>
                 </dlentry>
             </dl>
         </section>
-        <section id="parameters" deliveryTarget="details" props="unity">
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
             <title>参数</title>
             <parml>
+                <plentry props="electron">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
                 <plentry props="unity">
                     <pt>sourceType</pt>
                     <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                 </plentry>
             </parml>
         </section>
-        <section id="return_values" props="unity">
+        <section id="return_values" props="electron flutter rn unity">
             <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
+                <ul>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
             <p props="unity">
                 <ul>
                     <li>0：方法调用成功。</li>

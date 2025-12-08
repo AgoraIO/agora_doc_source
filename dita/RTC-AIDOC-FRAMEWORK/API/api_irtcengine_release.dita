@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_release">
     <title><ph keyref="release"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="electron">销毁 <xref keyref="IRtcEngine"/> 对象。</ph><ph id="shortdesc" props="rn">销毁 <xref keyref="IRtcEngine"/> 对象。</ph><ph id="shortdesc" props="flutter">销毁 <codeph>RtcEngine</codeph> 对象。</ph><ph id="shortdesc" props="unity">销毁 <xref keyref="IRtcEngine"/> 对象。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">销毁 <xref keyref="IRtcEngine"/> 对象。</ph><ph id="shortdesc" props="rn">销毁 <xref keyref="IRtcEngine"/> 对象。</ph><ph id="shortdesc" props="flutter">销毁 <xref keyref="IRtcEngine"/> 对象。</ph><ph id="shortdesc" props="unity">销毁 <xref keyref="IRtcEngine"/> 对象。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,7 +25,7 @@
             <p props="rn">该方法释放 SDK 使用的所有资源。有些 App 只在用户需要时才进行实时音视频通信，不需要时则将资源释放出来用于其他操作，该方法适用于此类情况。
 调用该方法后，你将无法再使用 SDK 的其它方法和回调。如需再次使用实时音视频通信功能， 你必须依次重新调用 <xref keyref="createAgoraRtcEngine"/> 和 <xref keyref="initialize"/> 方法创建一个新的 <xref keyref="IRtcEngine"/> 对象。</p>
             <p props="flutter">该方法释放 SDK 使用的所有资源。有些 App 只在用户需要时才进行实时音视频通信，不需要时则将资源释放出来用于其他操作，该方法适用于此类情况。
-调用该方法后，你将无法再使用 SDK 的其它方法和回调。如需再次使用实时音视频通信功能， 你必须依次重新调用 <xref keyref="createAgoraRtcEngine"/> 和 <xref keyref="initialize"/> 方法创建一个新的 <codeph>RtcEngine</codeph> 对象。</p>
+调用该方法后，你将无法再使用 SDK 的其它方法和回调。如需再次使用实时音视频通信功能， 你必须依次重新调用 <xref keyref="createAgoraRtcEngine"/> 和 <xref keyref="initialize"/> 方法创建一个新的 <xref keyref="IRtcEngine"/> 对象。</p>
             <p props="unity">该方法释放 SDK 使用的所有资源。有些 App 只在用户需要时才进行实时音视频通信，不需要时则将资源释放出来用于其他操作，该方法适用于此类情况。
 调用该方法后，你将无法再使用 SDK 的其它方法和回调。如需再次使用实时音视频通信功能， 你必须依次重新调用 <xref keyref="createAgoraRtcEngine"/> 和 <xref keyref="initialize"/> 方法创建一个新的 <xref keyref="IRtcEngine"/> 对象。</p>
             <note props="electron">
@@ -42,7 +42,7 @@
             </note>
             <note props="flutter">
                 <ul>
-                    <li>该方法为同步调用。需要等待<codeph>RtcEngine</codeph>资源释放后才能执行其他操作（例如：创建一个新的<codeph>RtcEngine</codeph>对象），因此建议在子线程中调用该方法，避免主线程阻塞。</li>
+                    <li>该方法为同步调用。需要等待<xref keyref="IRtcEngine"/>资源释放后才能执行其他操作（例如：创建一个新的<xref keyref="IRtcEngine"/>对象），因此建议在子线程中调用该方法，避免主线程阻塞。</li>
                     <li>不建议在 SDK 的回调中调用<xref keyref="release"/>，否则由于 SDK 要等待回调返回才能回收相关的对象资源，会造成死锁。</li>
                 </ul>
             </note>
