@@ -23,15 +23,15 @@
                     <dd>自从 v4.0.1</dd>
                 </dlentry>
             </dl>
-            <p props="unity">SDK 默认在发送端开启小流自适应模式 (<codeph>AUTO_SIMULCAST_STREAM</codeph>)，即发送端不主动发送小流，主播身份的接收端可以调用 <xref keyref="setRemoteVideoStreamType"/> 发起小流申请，发送端收到申请后开始自动发送小流。- 如果你想修改此行为，可以调用该方法并修改<codeph>mode</codeph>为<codeph>DISABLE_SIMULCAST_STREAM</codeph>（始终不发送小流）或<codeph>ENABLE_SIMULCAST_STREAM</codeph>（始终发送小流）。
+            <p props="unity">SDK 默认在发送端开启小流自适应模式 (<codeph>AUTO_SIMULCAST_STREAM</codeph>)，即发送端不主动发送小流，主播身份的接收端可以调用 <xref keyref="setRemoteVideoStreamType"/> 发起小流申请，发送端收到申请后开始自动发送小流。- 如果你想修改此行为，可以调用该方法并修改 <codeph>mode</codeph> 为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>（始终不发送小流）或 <codeph>ENABLE_SIMULCAST_STREAM</codeph>（始终发送小流）。
                 <ul>
-                    <li>如果你在进行修改后又想恢复该默认行为，可重新调用该方法，并将<codeph>mode</codeph>设置为<codeph>AUTO_SIMULCAST_STREAM</codeph>。</li>
+                    <li>如果你在进行修改后又想恢复该默认行为，可重新调用该方法，并将 <codeph>mode</codeph> 设置为 <codeph>AUTO_SIMULCAST_STREAM</codeph>。</li>
                 </ul>
             </p>
             <note props="unity">该方法和 <xref keyref="enableDualStreamMode"/> 的区别与联系如下：
                 <ul>
-                    <li>调用该方法并设置<codeph>mode</codeph>为<codeph>DISABLE_SIMULCAST_STREAM</codeph>时，跟`EnableDualStreamMode [1/2]``(false)`的效果相同。</li>
-                    <li>调用该方法并设置<codeph>mode</codeph>为<codeph>ENABLE_SIMULCAST_STREAM</codeph>时，跟`EnableDualStreamMode [1/2]``(true)`的效果相同。</li>
+                    <li>调用该方法并设置 <codeph>mode</codeph> 为 <codeph>DISABLE_SIMULCAST_STREAM</codeph> 时，跟 `EnableDualStreamMode [1/2]``(false)` 的效果相同。</li>
+                    <li>调用该方法并设置 <codeph>mode</codeph> 为 <codeph>ENABLE_SIMULCAST_STREAM</codeph> 时，跟 `EnableDualStreamMode [1/2]``(true)` 的效果相同。</li>
                     <li>两种方法均可在加入频道前后调用，若同时使用，则以后调用的方法中的设置为准。</li>
                 </ul>
             </note>

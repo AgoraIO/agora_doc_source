@@ -109,8 +109,8 @@ class MediaRecorderConfiguration {
                     <pd>
                         <note>请确保你指定的路径存在并且可写。</note><ph>录制文件在本地保存的绝对路径，需精确到文件名及格式。例如：</ph>
                         <ul>
-                            <li>Windows:<codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.mp4</codeph></li>
-                            <li>macOS:<codeph>/Library/Logs/example.mp4</codeph></li>
+                            <li>Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.mp4</codeph></li>
+                            <li>macOS: <codeph>/Library/Logs/example.mp4</codeph></li>
                         </ul>
                     </pd>
                 </plentry>
@@ -133,26 +133,22 @@ class MediaRecorderConfiguration {
                 <plentry props="electron">
                     <pt>width</pt>
                     <pd>录制视频的宽度 (px)，宽 × 高的最大值不应超过 3840 × 2160。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 0 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。</pd>
                 </plentry>
                 <plentry props="electron">
                     <pt>height</pt>
                     <pd>录制视频的高度 (px)，宽 × 高的最大值不超过 3840 × 2160。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。</pd>
                 </plentry>
                 <plentry props="electron">
                     <pt>fps</pt>
                     <pd>录制视频的帧率，最高值不超过 30，如： 5、10、15、24、30 等。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。</pd>
                 </plentry>
                 <plentry props="electron">
                     <pt>sample_rate</pt>
                     <pd>录制音频的采样率 (Hz)，可设置为 16000，32000，44100 或 48000。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。
-该参数仅在调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。</pd>
                 </plentry>
                 <plentry props="electron">
                     <pt>channel_num</pt>
@@ -160,21 +156,20 @@ class MediaRecorderConfiguration {
                         <ul>
                             <li>1: 单声道</li>
                             <li>2: 双声道</li>
-                        </ul><ph>该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。</ph><ph>该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</ph></pd>
+                        </ul><ph>该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。</ph></pd>
                 </plentry>
                 <plentry props="electron">
                     <pt>videoSourceType</pt>
                     <pd>录制视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。</pd>
                 </plentry>
                 <plentry props="rn">
                     <pt>storagePath</pt>
                     <pd>
                         <note>请确保你指定的路径存在并且可写。</note><ph>录制文件在本地保存的绝对路径，需精确到文件名及格式。例如：</ph>
                         <ul>
-                            <li>iOS:<codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
-                            <li>Android:<codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.mp4</codeph></li>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.mp4</codeph></li>
                         </ul>
                     </pd>
                 </plentry>
@@ -197,26 +192,22 @@ class MediaRecorderConfiguration {
                 <plentry props="rn">
                     <pt>width</pt>
                     <pd>录制视频的宽度 (px)，宽 × 高的最大值不应超过 3840 × 2160。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 0 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。</pd>
                 </plentry>
                 <plentry props="rn">
                     <pt>height</pt>
                     <pd>录制视频的高度 (px)，宽 × 高的最大值不超过 3840 × 2160。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。</pd>
                 </plentry>
                 <plentry props="rn">
                     <pt>fps</pt>
                     <pd>录制视频的帧率，最高值不超过 30，如： 5、10、15、24、30 等。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。</pd>
                 </plentry>
                 <plentry props="rn">
                     <pt>sample_rate</pt>
                     <pd>录制音频的采样率 (Hz)，可设置为 16000，32000，44100 或 48000。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。
-该参数仅在调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。</pd>
                 </plentry>
                 <plentry props="rn">
                     <pt>channel_num</pt>
@@ -224,23 +215,22 @@ class MediaRecorderConfiguration {
                         <ul>
                             <li>1: 单声道</li>
                             <li>2: 双声道</li>
-                        </ul><ph>该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。</ph><ph>该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</ph></pd>
+                        </ul><ph>该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。</ph></pd>
                 </plentry>
                 <plentry props="rn">
                     <pt>videoSourceType</pt>
                     <pd>录制视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 Preview 时需要传入。</pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>storagePath</pt>
                     <pd>
                         <note>请确保你指定的路径存在并且可写。</note><ph>录制文件在本地保存的绝对路径，需精确到文件名及格式。例如：</ph>
                         <ul>
-                            <li>Windows:<codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.mp4</codeph></li>
-                            <li>iOS:<codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
-                            <li>macOS:<codeph>/Library/Logs/example.mp4</codeph></li>
-                            <li>Android:<codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.mp4</codeph></li>
+                            <li>Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.mp4</codeph></li>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
+                            <li>macOS: <codeph>/Library/Logs/example.mp4</codeph></li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.mp4</codeph></li>
                         </ul>
                     </pd>
                 </plentry>
@@ -263,26 +253,22 @@ class MediaRecorderConfiguration {
                 <plentry props="flutter">
                     <pt>width</pt>
                     <pd>录制视频的宽度 (px)，宽 × 高的最大值不应超过 3840 × 2160。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 preview 时需要传入。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 0 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 preview 时需要传入。</pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>height</pt>
                     <pd>录制视频的高度 (px)，宽 × 高的最大值不超过 3840 × 2160。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 preview 时需要传入。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 preview 时需要传入。</pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>fps</pt>
                     <pd>录制视频的帧率，最高值不超过 30，如： 5、10、15、24、30 等。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 preview 时需要传入。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 preview 时需要传入。</pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>sampleRate</pt>
                     <pd>录制音频的采样率 (Hz)，可设置为 16000，32000，44100 或 48000。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 preview 时需要传入。
-该参数仅在调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 preview 时需要传入。</pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>channelNum</pt>
@@ -290,23 +276,22 @@ class MediaRecorderConfiguration {
                         <ul>
                             <li>1: 单声道</li>
                             <li>2: 双声道</li>
-                        </ul><ph>该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 preview 时需要传入。</ph><ph>该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</ph></pd>
+                        </ul><ph>该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 preview 时需要传入。</ph></pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>videoSourceType</pt>
                     <pd>录制视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 preview 时需要传入。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 preview 时需要传入。</pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>storagePath</pt>
                     <pd>
                         <note>请确保你指定的路径存在并且可写。</note><ph>录制文件在本地保存的绝对路径，需精确到文件名及格式。例如：</ph>
                         <ul>
-                            <li>Windows:<codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.mp4</codeph></li>
-                            <li>iOS:<codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
-                            <li>macOS:<codeph>/Library/Logs/example.mp4</codeph></li>
-                            <li>Android:<codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.mp4</codeph></li>
+                            <li>Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.mp4</codeph></li>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
+                            <li>macOS: <codeph>/Library/Logs/example.mp4</codeph></li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.mp4</codeph></li>
                         </ul>
                     </pd>
                 </plentry>
@@ -329,26 +314,22 @@ class MediaRecorderConfiguration {
                 <plentry props="unity">
                     <pt>width</pt>
                     <pd>录制视频的宽度 (px)，宽 × 高的最大值不应超过 3840 × 2160。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 PREVIEW 时需要传入。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 0 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 PREVIEW 时需要传入。</pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>height</pt>
                     <pd>录制视频的高度 (px)，宽 × 高的最大值不超过 3840 × 2160。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 PREVIEW 时需要传入。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 PREVIEW 时需要传入。</pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>fps</pt>
                     <pd>录制视频的帧率，最高值不超过 30，如： 5、10、15、24、30 等。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 PREVIEW 时需要传入。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 PREVIEW 时需要传入。</pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>sample_rate</pt>
                     <pd>录制音频的采样率 (Hz)，可设置为 16000，32000，44100 或 48000。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 PREVIEW 时需要传入。
-该参数仅在调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 PREVIEW 时需要传入。</pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>channel_num</pt>
@@ -356,13 +337,12 @@ class MediaRecorderConfiguration {
                         <ul>
                             <li>1: 单声道</li>
                             <li>2: 双声道</li>
-                        </ul><ph>该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 PREVIEW 时需要传入。</ph><ph>该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</ph></pd>
+                        </ul><ph>该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 PREVIEW 时需要传入。</ph></pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>videoSourceType</pt>
                     <pd>录制视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 PREVIEW 时需要传入。
-该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 的 <codeph>recorderStreamType</codeph> 为 1 时需要传入。</pd>
+该参数仅在 调用 <xref keyref="createMediaRecorder"/> 且将 <xref keyref="RecorderStreamInfo"/> 中的  <codeph>type</codeph>设置为 PREVIEW 时需要传入。</pd>
                 </plentry>
             </parml>
         </section>

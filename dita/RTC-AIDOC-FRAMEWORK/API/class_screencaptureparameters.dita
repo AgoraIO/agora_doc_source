@@ -176,27 +176,26 @@
                                 <li>如果你需要最优的画质，建议将编码分辨率设置为与采集分辨率相同。</li>
                             </ul>
                             <ul>
-                                <li>如果你希望在画质、带宽和系统性能之间达到相对平衡，则：
-                                    <ul>
-                                        <li>当采集分辨率大于 1920 × 1080 时，建议编码分辨率不低于 1920 × 1080。</li>
-                                        <li>当采集分辨率低于 1920 × 1080 时，建议编码分辨率不低于 1280 × 720。</li>
-                                    </ul>
-                                </li>
+                                <li>如果你希望在画质、带宽和系统性能之间达到相对平衡，则： </li>
+                            </ul>
+                            <ul>
+                                <li>当采集分辨率大于 1920 × 1080 时，建议编码分辨率不低于 1920 × 1080。</li>
+                                <li>当采集分辨率低于 1920 × 1080 时，建议编码分辨率不低于 1280 × 720。</li>
                             </ul>
                         </note><ph>屏幕共享流的视频编码分辨率。详见 <xref keyref="VideoDimensions"/>。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph><ph>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <codeph>dimensions</codeph> 设为 1920 × 1080：</ph>
                         <ul>
-                            <li>如果屏幕分辨率小于<codeph>dimensions</codeph>，如 1000 × 1000，SDK 直接按 1000 × 1000 进行编码。</li>
-                            <li>如果屏幕分辨率大于<codeph>dimensions</codeph>，如 2000 × 1500，SDK 按屏幕分辨率的宽高比，即 4:3，取<codeph>dimensions</codeph>以内的最大分辨率进行编码，即 1440 × 1080。</li>
+                            <li>如果屏幕分辨率小于 <codeph>dimensions</codeph>，如 1000 × 1000，SDK 直接按 1000 × 1000 进行编码。</li>
+                            <li>如果屏幕分辨率大于 <codeph>dimensions</codeph>，如 2000 × 1500，SDK 按屏幕分辨率的宽高比，即 4:3，取 <codeph>dimensions</codeph> 以内的最大分辨率进行编码，即 1440 × 1080。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="electron">
                     <pt>frameRate</pt>
-                    <pd>共享视频的帧率。屏幕共享流的视频编码帧率。在 Windows 和 macOS 平台上，表示屏幕共享流的视频编码帧率。单位为 fps；默认值为 5，建议不要超过 15。</pd>
+                    <pd>在 Windows 和 macOS 平台上，表示屏幕共享流的视频编码帧率。单位为 fps；默认值为 5，建议不要超过 15。</pd>
                 </plentry>
                 <plentry props="electron">
                     <pt>bitrate</pt>
-                    <pd>共享视频的码率。屏幕共享流的视频编码码率。在 Windows 和 macOS 平台上，表示屏幕共享流的视频编码码率。单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</pd>
+                    <pd>在 Windows 和 macOS 平台上，表示屏幕共享流的视频编码码率。单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</pd>
                 </plentry>
                 <plentry props="electron">
                     <pt>captureMouseCursor</pt>
@@ -225,7 +224,7 @@
                 <plentry props="electron">
                     <pt>enableHighLight</pt>
                     <pd>
-                        <note>当你在共享窗口或屏幕的部分区域时，如果将该参数设置为 <xref keyref="true"/>，SDK 会对整个窗口或屏幕进行描边。</note><ph>(仅适用于 macOS 和 Windows)是否对共享的窗口或屏幕进行描边：</ph>
+                        <note>当你在共享窗口或屏幕的部分区域时，如果将该参数设置为 <xref keyref="true"/>，SDK 会对整个窗口或屏幕进行描边。</note><ph>是否对共享的窗口或屏幕进行描边：</ph>
                         <ul>
                             <li><xref keyref="true"/>: 描边。</li>
                             <li><xref keyref="false"/>: （默认）不描边。</li>
@@ -234,15 +233,16 @@
                 </plentry>
                 <plentry props="electron">
                     <pt>highLightColor</pt>
-                    <pd>(仅适用于 macOS 和 Windows)- 在 Windows 平台上，指描边的 ARGB 颜色。默认值为 0xFF8CBF26。
+                    <pd>
                         <ul>
-                            <li>在 macOS 平台上，<codeph>COLOR_CLASS</codeph>指<codeph>NSColor</codeph>。</li>
+                            <li>在 Windows 平台上，指描边的 ARGB 颜色。默认值为 0xFF8CBF26。</li>
+                            <li>在 macOS 平台上，<codeph>COLOR_CLASS</codeph> 指 <codeph>NSColor</codeph>。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="electron">
                     <pt>highLightWidth</pt>
-                    <pd>(仅适用于 macOS 和 Windows)描边的宽度 (px)。默认值为 5，取值范围为 (0,50]。
+                    <pd>描边的宽度 (px)。默认值为 5，取值范围为 (0,50]。
                         <note>该参数仅在 <codeph>highLighted</codeph> 设置为 <xref keyref="true"/> 时生效。</note>
                     </pd>
                 </plentry>
@@ -260,27 +260,26 @@
                                 <li>如果你需要最优的画质，建议将编码分辨率设置为与采集分辨率相同。</li>
                             </ul>
                             <ul>
-                                <li>如果你希望在画质、带宽和系统性能之间达到相对平衡，则：
-                                    <ul>
-                                        <li>当采集分辨率大于 1920 × 1080 时，建议编码分辨率不低于 1920 × 1080。</li>
-                                        <li>当采集分辨率低于 1920 × 1080 时，建议编码分辨率不低于 1280 × 720。</li>
-                                    </ul>
-                                </li>
+                                <li>如果你希望在画质、带宽和系统性能之间达到相对平衡，则： </li>
+                            </ul>
+                            <ul>
+                                <li>当采集分辨率大于 1920 × 1080 时，建议编码分辨率不低于 1920 × 1080。</li>
+                                <li>当采集分辨率低于 1920 × 1080 时，建议编码分辨率不低于 1280 × 720。</li>
                             </ul>
                         </note><ph>屏幕共享流的视频编码分辨率。详见 <xref keyref="VideoDimensions"/>。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph><ph>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <codeph>dimensions</codeph> 设为 1920 × 1080：</ph>
                         <ul>
-                            <li>如果屏幕分辨率小于<codeph>dimensions</codeph>，如 1000 × 1000，SDK 直接按 1000 × 1000 进行编码。</li>
-                            <li>如果屏幕分辨率大于<codeph>dimensions</codeph>，如 2000 × 1500，SDK 按屏幕分辨率的宽高比，即 4:3，取<codeph>dimensions</codeph>以内的最大分辨率进行编码，即 1440 × 1080。</li>
+                            <li>如果屏幕分辨率小于 <codeph>dimensions</codeph>，如 1000 × 1000，SDK 直接按 1000 × 1000 进行编码。</li>
+                            <li>如果屏幕分辨率大于 <codeph>dimensions</codeph>，如 2000 × 1500，SDK 按屏幕分辨率的宽高比，即 4:3，取 <codeph>dimensions</codeph> 以内的最大分辨率进行编码，即 1440 × 1080。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>frameRate</pt>
-                    <pd>共享视频的帧率。屏幕共享流的视频编码帧率。在 Windows 和 macOS 平台上，表示屏幕共享流的视频编码帧率。单位为 fps；默认值为 5，建议不要超过 15。</pd>
+                    <pd>共享视频的帧率。单位为 fps；默认值为 5，建议不要超过 15。</pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>bitrate</pt>
-                    <pd>共享视频的码率。屏幕共享流的视频编码码率。在 Windows 和 macOS 平台上，表示屏幕共享流的视频编码码率。单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</pd>
+                    <pd>共享视频的码率。单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>captureMouseCursor</pt>
@@ -320,7 +319,7 @@
                     <pt>highLightColor</pt>
                     <pd>(仅适用于 macOS 和 Windows)- 在 Windows 平台上，指描边的 ARGB 颜色。默认值为 0xFF8CBF26。
                         <ul>
-                            <li>在 macOS 平台上，<codeph>COLOR_CLASS</codeph>指<codeph>NSColor</codeph>。</li>
+                            <li>在 macOS 平台上，<codeph>COLOR_CLASS</codeph> 指 <codeph>NSColor</codeph>。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -344,27 +343,26 @@
                                 <li>如果你需要最优的画质，建议将编码分辨率设置为与采集分辨率相同。</li>
                             </ul>
                             <ul>
-                                <li>如果你希望在画质、带宽和系统性能之间达到相对平衡，则：
-                                    <ul>
-                                        <li>当采集分辨率大于 1920 × 1080 时，建议编码分辨率不低于 1920 × 1080。</li>
-                                        <li>当采集分辨率低于 1920 × 1080 时，建议编码分辨率不低于 1280 × 720。</li>
-                                    </ul>
-                                </li>
+                                <li>如果你希望在画质、带宽和系统性能之间达到相对平衡，则： </li>
+                            </ul>
+                            <ul>
+                                <li>当采集分辨率大于 1920 × 1080 时，建议编码分辨率不低于 1920 × 1080。</li>
+                                <li>当采集分辨率低于 1920 × 1080 时，建议编码分辨率不低于 1280 × 720。</li>
                             </ul>
                         </note><ph>屏幕共享流的视频编码分辨率。详见 <xref keyref="VideoDimensions"/>。默认值为 1920 × 1080，即 2073600 像素。该像素值为计费标准。</ph><ph>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <codeph>dimensions</codeph> 设为 1920 × 1080：</ph>
                         <ul>
-                            <li>如果屏幕分辨率小于<codeph>dimensions</codeph>，如 1000 × 1000，SDK 直接按 1000 × 1000 进行编码。</li>
-                            <li>如果屏幕分辨率大于<codeph>dimensions</codeph>，如 2000 × 1500，SDK 按屏幕分辨率的宽高比，即 4:3，取<codeph>dimensions</codeph>以内的最大分辨率进行编码，即 1440 × 1080。</li>
+                            <li>如果屏幕分辨率小于 <codeph>dimensions</codeph>，如 1000 × 1000，SDK 直接按 1000 × 1000 进行编码。</li>
+                            <li>如果屏幕分辨率大于 <codeph>dimensions</codeph>，如 2000 × 1500，SDK 按屏幕分辨率的宽高比，即 4:3，取 <codeph>dimensions</codeph> 以内的最大分辨率进行编码，即 1440 × 1080。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>frameRate</pt>
-                    <pd>共享视频的帧率。屏幕共享流的视频编码帧率。在 Windows 和 macOS 平台上，表示屏幕共享流的视频编码帧率。单位为 fps；默认值为 5，建议不要超过 15。</pd>
+                    <pd>在 Windows 和 macOS 平台上，表示屏幕共享流的视频编码帧率。单位为 fps；默认值为 5，建议不要超过 15。</pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>bitrate</pt>
-                    <pd>共享视频的码率。屏幕共享流的视频编码码率。在 Windows 和 macOS 平台上，表示屏幕共享流的视频编码码率。单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</pd>
+                    <pd>共享视频的码率。在 Windows 和 macOS 平台上，表示屏幕共享流的视频编码码率。单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>captureMouseCursor</pt>
@@ -404,7 +402,7 @@
                     <pt>highLightColor</pt>
                     <pd>(仅适用于 macOS 和 Windows)- 在 Windows 平台上，指描边的 ARGB 颜色。默认值为 0xFF8CBF26。
                         <ul>
-                            <li>在 macOS 平台上，<codeph>COLOR_CLASS</codeph>指<codeph>NSColor</codeph>。</li>
+                            <li>在 macOS 平台上，<codeph>COLOR_CLASS</codeph> 指 <codeph>NSColor</codeph>。</li>
                         </ul>
                     </pd>
                 </plentry>

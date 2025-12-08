@@ -23,19 +23,19 @@
             <dl outputclass="deprecated">
                 <dlentry props="electron">
                     <dt>废弃</dt>
-                    <dd>弃用： 请改用  中的 logConfig。</dd>
+                    <dd>弃用： 请改用 <xref keyref="initialize"/> 中的 <codeph>logConfig</codeph>。</dd>
                 </dlentry>
                 <dlentry props="rn">
                     <dt>废弃</dt>
-                    <dd>弃用： 请改用  中的 logConfig。</dd>
+                    <dd>弃用： 请改用 <xref keyref="initialize"/> 中的 <codeph>logConfig</codeph>。</dd>
                 </dlentry>
                 <dlentry props="flutter">
                     <dt>废弃</dt>
-                    <dd>弃用： 请改用  中的 logConfig。</dd>
+                    <dd>弃用： 请改用 <xref keyref="initialize"/> 中的 <codeph>logConfig</codeph>。</dd>
                 </dlentry>
                 <dlentry props="unity">
                     <dt>废弃</dt>
-                    <dd>弃用： 请改用  中的 logConfig。</dd>
+                    <dd>弃用： 请改用 <xref keyref="initialize"/> 中的 <codeph>logConfig</codeph>。</dd>
                 </dlentry>
             </dl>
             <p props="electron">该方法设置 SDK 的输出日志输出等级。不同的输出等级可以单独或组合使用。日志级别顺序依次为 <codeph>LogFilterOff</codeph>、<codeph>LogFilterCritical</codeph>、<codeph>LogFilterError</codeph>、<codeph>LogFilterWarn</codeph>、<codeph>LogFilterInfo</codeph> 和 <codeph>LogFilterDebug</codeph>。
@@ -53,55 +53,19 @@
             <parml>
                 <plentry props="electron">
                     <pt>filter</pt>
-                    <pd>日志过滤等级。详见 <xref keyref="LOG_FILTER_TYPE"/>。
-                        <ul>
-                            <li>LogFilterOff(0)：不输出日志信息。</li>
-                            <li>LogFilterDebug(0x80f)：输出所有 API 日志信息。如果你想获取最完整的日志，可以将日志级别设为该等级。</li>
-                            <li>LogFilterInfo(0x0f)：输出<codeph>LogFilterCritical</codeph>、<codeph>LogFilterError</codeph>、<codeph>LogFilterWarn</codeph>和<codeph>LogFilterInfo</codeph>级别的日志信息。建议你将日志级别设为该等级。</li>
-                            <li>LogFilterWarn(0x0e)：输出<codeph>LogFilterCritical</codeph>、<codeph>LogFilterError</codeph>和<codeph>LogFilterWarn</codeph>级别的日志信息。</li>
-                            <li>LogFilterError(0x0c)：输出<codeph>LogFilterCritical</codeph>和<codeph>LogFilterError</codeph>级别的日志信息。</li>
-                            <li>LogFilterCritical(0x08)：输出<codeph>LogFilterCritical</codeph>级别的日志信息。</li>
-                        </ul>
-                    </pd>
+                    <pd>日志过滤等级。详见 <xref keyref="LOG_FILTER_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="rn">
                     <pt>filter</pt>
-                    <pd>日志过滤等级。详见 <xref keyref="LOG_FILTER_TYPE"/>。
-                        <ul>
-                            <li>LogFilterOff(0)：不输出日志信息。</li>
-                            <li>LogFilterDebug(0x80f)：输出所有 API 日志信息。如果你想获取最完整的日志，可以将日志级别设为该等级。</li>
-                            <li>LogFilterInfo(0x0f)：输出<codeph>LogFilterCritical</codeph>、<codeph>LogFilterError</codeph>、<codeph>LogFilterWarn</codeph>和<codeph>LogFilterInfo</codeph>级别的日志信息。建议你将日志级别设为该等级。</li>
-                            <li>LogFilterWarn(0x0e)：输出<codeph>LogFilterCritical</codeph>、<codeph>LogFilterError</codeph>和<codeph>LogFilterWarn</codeph>级别的日志信息。</li>
-                            <li>LogFilterError(0x0c)：输出<codeph>LogFilterCritical</codeph>和<codeph>LogFilterError</codeph>级别的日志信息。</li>
-                            <li>LogFilterCritical(0x08)：输出<codeph>LogFilterCritical</codeph>级别的日志信息。</li>
-                        </ul>
-                    </pd>
+                    <pd>日志过滤等级。详见 <xref keyref="LOG_FILTER_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>filter</pt>
-                    <pd>日志过滤等级。详见 <xref keyref="LOG_FILTER_TYPE"/>。
-                        <ul>
-                            <li>logFilterOff(0)：不输出日志信息。</li>
-                            <li>logFilterDebug(0x80f)：输出所有 API 日志信息。如果你想获取最完整的日志，可以将日志级别设为该等级。</li>
-                            <li>logFilterInfo(0x0f)：输出<codeph>logFilterCritical</codeph>、<codeph>logFilterError</codeph>、<codeph>logFilterWarn</codeph>和<codeph>logFilterInfo</codeph>级别的日志信息。建议你将日志级别设为该等级。</li>
-                            <li>logFilterWarn(0x0e)：输出<codeph>logFilterCritical</codeph>、<codeph>logFilterError</codeph>和<codeph>logFilterWarn</codeph>级别的日志信息。</li>
-                            <li>logFilterError(0x0c)：输出<codeph>logFilterCritical</codeph>和<codeph>logFilterError</codeph>级别的日志信息。</li>
-                            <li>logFilterCritical(0x08)：输出<codeph>logFilterCritical</codeph>级别的日志信息。</li>
-                        </ul>
-                    </pd>
+                    <pd>日志过滤等级。详见 <xref keyref="LOG_FILTER_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>filter</pt>
-                    <pd>日志过滤等级。详见 <codeph>LOG_FILTER_TYPE</codeph>。
-                        <ul>
-                            <li>LOG_FILTER_OFF(0)：不输出日志信息。</li>
-                            <li>LOG_FILTER_DEBUG(0x80f)：输出所有 API 日志信息。如果你想获取最完整的日志，可以将日志级别设为该等级。</li>
-                            <li>LOG_FILTER_INFO(0x0f)：输出<codeph>LOG_FILTER_CRITICAL</codeph>、<codeph>LOG_FILTER_ERROR</codeph>、<codeph>LOG_FILTER_WARN</codeph>和<codeph>LOG_FILTER_INFO</codeph>级别的日志信息。建议你将日志级别设为该等级。</li>
-                            <li>LOG_FILTER_WARN(0x0e)：输出<codeph>LOG_FILTER_CRITICAL</codeph>、<codeph>LOG_FILTER_ERROR</codeph>和<codeph>LOG_FILTER_WARN</codeph>级别的日志信息。</li>
-                            <li>LOG_FILTER_ERROR(0x0c)：输出<codeph>LOG_FILTER_CRITICAL</codeph>和<codeph>LOG_FILTER_ERROR</codeph>级别的日志信息。</li>
-                            <li>LOG_FILTER_CRITICAL(0x08)：输出<codeph>LOG_FILTER_CRITICAL</codeph>级别的日志信息。</li>
-                        </ul>
-                    </pd>
+                    <pd>日志过滤等级。</pd>
                 </plentry>
             </parml>
         </section>
