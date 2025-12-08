@@ -238,9 +238,9 @@
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
                         <ul>
                             <li>-2：传入的参数无效。例如，使用了不合法的 Token，<codeph>uid</codeph>参数未设置为整型，或<xref keyref="ChannelMediaOptions"/>成员值不合法。你需要填入有效的参数，重新加入频道。</li>
-                            <li>-3：<codeph>RtcEngine</codeph>对象初始化失败。你需要重新初始化<codeph>RtcEngine</codeph>对象。</li>
-                            <li>-7：<codeph>RtcEngine</codeph>对象尚未初始化。你需要在调用该方法前成功初始化<codeph>RtcEngine</codeph>对象。</li>
-                            <li>-8：<codeph>RtcEngine</codeph>对象内部状态错误。可能的原因是：调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要在该方法前调用 <xref keyref="stopEchoTest"/>。</li>
+                            <li>-3：<xref keyref="IRtcEngine"/>对象初始化失败。你需要重新初始化<xref keyref="IRtcEngine"/>对象。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/>对象尚未初始化。你需要在调用该方法前成功初始化<xref keyref="IRtcEngine"/>对象。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/>对象内部状态错误。可能的原因是：调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要在该方法前调用 <xref keyref="stopEchoTest"/>。</li>
                             <li>-17：加入频道被拒绝。可能的原因是用户已经在频道中。建议通过<xref keyref="onConnectionStateChanged"/>回调判断用户是否在频道中。除收到<codeph>connectionStateDisconnected</codeph>(1) 状态外，不要再次调用该方法加入频道。</li>
                             <li>-102：频道名无效。你需要在<codeph>channelId</codeph>中填入有效的频道名，重新加入频道。</li>
                             <li>-121：用户 ID 无效。你需要在<codeph>uid</codeph>中填入有效的用户 ID，重新加入频道。</li>

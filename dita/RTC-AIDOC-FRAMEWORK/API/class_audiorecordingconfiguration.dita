@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiorecordingconfiguration">
     <title><ph keyref="AudioRecordingConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="electron">录音配置。</ph><ph id="shortdesc" props="rn">录音配置。</ph><ph id="shortdesc" props="flutter">录音配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">录音配置。</ph><ph id="shortdesc" props="rn">录音配置。</ph><ph id="shortdesc" props="flutter">录音配置。</ph><ph id="shortdesc" props="unity">录音配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -66,9 +66,49 @@
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioRecordingConfigurationToJson(this);
 }</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class AudioRecordingConfiguration
+    {
+        public AudioRecordingConfiguration()
+        {
+            filePath = "";
+            encode = false;
+            sampleRate = 32000;
+            fileRecordingType = AUDIO_FILE_RECORDING_TYPE.AUDIO_FILE_RECORDING_MIXED;
+            quality = AUDIO_RECORDING_QUALITY_TYPE.AUDIO_RECORDING_QUALITY_LOW;
+            recordingChannel = 1;
+        }
+
+        public AudioRecordingConfiguration(string file_path, int sample_rate, AUDIO_RECORDING_QUALITY_TYPE quality_type, int channel)
+        {
+            this.filePath = file_path;
+            this.encode = false;
+            this.sampleRate = sample_rate;
+            this.fileRecordingType = AUDIO_FILE_RECORDING_TYPE.AUDIO_FILE_RECORDING_MIXED;
+            this.quality = quality_type;
+            recordingChannel = channel;
+        }
+
+        public AudioRecordingConfiguration(string file_path, bool enc, int sample_rate,
+                                        AUDIO_FILE_RECORDING_TYPE type, AUDIO_RECORDING_QUALITY_TYPE quality_type, int channel)
+        {
+            this.filePath = file_path;
+            this.encode = enc;
+            this.sampleRate = sample_rate;
+            this.fileRecordingType = type;
+            this.quality = quality_type;
+            this.recordingChannel = channel;
+        }
+
+        public string filePath { set; get; }
+        public bool encode { set; get; }
+        public int sampleRate { set; get; }
+        public AUDIO_FILE_RECORDING_TYPE fileRecordingType { set; get; }
+        public AUDIO_RECORDING_QUALITY_TYPE quality { set; get; }
+        public int recordingChannel { set; get; }
+    };</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="electron flutter rn">
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
             <title>属性</title>
             <parml>
                 <plentry props="electron">
@@ -100,7 +140,7 @@
                 </plentry>
                 <plentry props="electron">
                     <pt>fileRecordingType</pt>
-                    <pd>录音内容。详见 <codeph>AudioFileRecordingType</codeph>。
+                    <pd>录音内容。详见 <xref keyref="AUDIO_FILE_RECORDING_TYPE"/>。
 录音内容：
                         <ul>
                             <li>AudioFileRecordingMic(1)：仅录制本地用户的音频。</li>
@@ -112,7 +152,7 @@
                 <plentry props="electron">
                     <pt>quality</pt>
                     <pd>
-                        <note>该参数仅适用于 AAC 文件。</note><ph>录音音质。详见 <codeph>AudioRecordingQualityType</codeph>。</ph><ph>录音音质：</ph>
+                        <note>该参数仅适用于 AAC 文件。</note><ph>录音音质。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。</ph><ph>录音音质：</ph>
                         <ul>
                             <li>AudioRecordingQualityLow(0)：低音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 1.2 MB。</li>
                             <li>AudioRecordingQualityMedium(1)：（默认）中音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 2 MB。</li>
@@ -166,7 +206,7 @@
                 </plentry>
                 <plentry props="rn">
                     <pt>fileRecordingType</pt>
-                    <pd>录音内容。详见 <codeph>AudioFileRecordingType</codeph>。
+                    <pd>录音内容。详见 <xref keyref="AUDIO_FILE_RECORDING_TYPE"/>。
 录音内容：
                         <ul>
                             <li>AudioFileRecordingMic(1)：仅录制本地用户的音频。</li>
@@ -178,7 +218,7 @@
                 <plentry props="rn">
                     <pt>quality</pt>
                     <pd>
-                        <note>该参数仅适用于 AAC 文件。</note><ph>录音音质。详见 <codeph>AudioRecordingQualityType</codeph>。</ph><ph>录音音质：</ph>
+                        <note>该参数仅适用于 AAC 文件。</note><ph>录音音质。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。</ph><ph>录音音质：</ph>
                         <ul>
                             <li>AudioRecordingQualityLow(0)：低音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 1.2 MB。</li>
                             <li>AudioRecordingQualityMedium(1)：（默认）中音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 2 MB。</li>
@@ -232,7 +272,7 @@
                 </plentry>
                 <plentry props="flutter">
                     <pt>fileRecordingType</pt>
-                    <pd>录音内容。详见 <codeph>AudioFileRecordingType</codeph>。
+                    <pd>录音内容。详见 <xref keyref="AUDIO_FILE_RECORDING_TYPE"/>。
 录音内容：
                         <ul>
                             <li>audioFileRecordingMic(1)：仅录制本地用户的音频。</li>
@@ -244,7 +284,7 @@
                 <plentry props="flutter">
                     <pt>quality</pt>
                     <pd>
-                        <note>该参数仅适用于 AAC 文件。</note><ph>录音音质。详见 <codeph>audiorecordingqualitytype</codeph>。</ph><ph>录音音质：</ph>
+                        <note>该参数仅适用于 AAC 文件。</note><ph>录音音质。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。</ph><ph>录音音质：</ph>
                         <ul>
                             <li>audioRecordingQualityLow(0)：低音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 1.2 MB。</li>
                             <li>audioRecordingQualityMedium(1)：（默认）中音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 2 MB。</li>
@@ -254,6 +294,72 @@
                     </pd>
                 </plentry>
                 <plentry props="flutter">
+                    <pt>recordingChannel</pt>
+                    <pd>
+                        <note>实际录制的音频声道与你采集的音频声道有关：
+                            <ul>
+                                <li>如果采集的音频为单声道，<codeph>recordingChannel</codeph>设为<codeph>2</codeph>， 则录制的音频为经过单声道数据拷贝后的双声道数据，而不是立体声。</li>
+                            </ul>
+                            <ul>
+                                <li>如果采集的音频为双声道，<codeph>recordingChannel</codeph>设为<codeph>1</codeph>，则录制的音频为经过双声道数据混合后的单声道数据。</li>
+                            </ul><ph>                            此外，集成方案也会影响最终录制的音频声道。因此，如果你希望录制立体声，请[联系技术支持](https://ticket.shengwang.cn/)协助。</ph></note><ph>录制的音频声道。目前支持如下取值：</ph>
+                        <ul>
+                            <li>1:（默认）单声道。</li>
+                            <li>2: 双声道。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>录音文件在本地保存的绝对路径，需精确到文件名及格式。例如：<codeph>C:\music\audio.aac</codeph>。
+                        <note>请确保你指定的路径存在并且可写。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encode</pt>
+                    <pd>设置是否编码音频数据：
+                        <ul>
+                            <li><xref keyref="true"/>: 将音频数据用 AAC 编码。</li>
+                            <li><xref keyref="false"/>:（默认）不编码音频数据，直接保存录制的音频数据。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sampleRate</pt>
+                    <pd>
+                        <note>如果把该参数设为 44100 或 48000，为保证录音效果，建议录制 WAV 文件或 <codeph>quality</codeph> 为 AUDIO_RECORDING_QUALITY_MEDIUM 或 AUDIO_RECORDING_QUALITY_HIGH 的 AAC 文件。</note><ph>录音采样率（Hz）。</ph>
+                        <ul>
+                            <li>16000</li>
+                            <li>32000 （默认）</li>
+                            <li>44100</li>
+                            <li>48000</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>fileRecordingType</pt>
+                    <pd>录音内容。详见 <xref keyref="AUDIO_FILE_RECORDING_TYPE"/>。
+录音内容：
+                        <ul>
+                            <li>AUDIO_FILE_RECORDING_MIC(1)：仅录制本地用户的音频。</li>
+                            <li>AUDIO_FILE_RECORDING_PLAYBACK(2)：仅录制所有远端用户的音频。</li>
+                            <li>AUDIO_FILE_RECORDING_MIXED(3): （默认）录制本地和所有远端用户混音后的音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>quality</pt>
+                    <pd>
+                        <note>该参数仅适用于 AAC 文件。</note><ph>录音音质。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>。</ph><ph>录音音质：</ph>
+                        <ul>
+                            <li>AUDIO_RECORDING_QUALITY_LOW(0)：低音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 1.2 MB。</li>
+                            <li>AUDIO_RECORDING_QUALITY_MEDIUM(1)：（默认）中音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 2 MB。</li>
+                            <li>AUDIO_RECORDING_QUALITY_HIGH(2)：高音质。例如，采样率为 32000 Hz，录音时长为 10 分钟的 AAC 文件大小约为 3.75 MB。</li>
+                            <li>AUDIO_RECORDING_QUALITY_ULTRA_HIGH(3)：超高音质。例如，采样率为 32000 Hz，录制 10 分钟的文件大小约为 7.5 M 左右。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
                     <pt>recordingChannel</pt>
                     <pd>
                         <note>实际录制的音频声道与你采集的音频声道有关：

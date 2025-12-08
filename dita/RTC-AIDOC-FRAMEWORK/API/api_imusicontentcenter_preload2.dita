@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusicontentcenter_preload2">
     <title><ph keyref="preload2"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="electron">预加载音乐资源。</ph><ph id="shortdesc" props="rn">预加载音乐资源。</ph><ph id="shortdesc" props="unity">预加载音乐资源。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">预加载音乐资源。</ph><ph id="shortdesc" props="rn">预加载音乐资源。</ph><ph id="shortdesc" props="flutter">预加载音乐资源。</ph><ph id="shortdesc" props="unity">预加载音乐资源。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="electron" outputclass="language-typescript">abstract preload(songCode: number): string;</codeblock>
                 <codeblock props="rn" outputclass="language-typescript">abstract preload(songCode: number): string;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; preload(int songCode);</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int Preload(ref string requestId, Int64 songCode);</codeblock>
             </p>
         </section>
@@ -28,13 +29,17 @@
                     <dt>自从</dt>
                     <dd>自从 v4.2.2</dd>
                 </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自从 v4.2.2</dd>
+                </dlentry>
                 <dlentry props="unity">
                     <dt>自从</dt>
                     <dd>自从 v4.2.2</dd>
                 </dlentry>
             </dl>
         </section>
-        <section id="parameters" deliveryTarget="details" props="electron rn unity">
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
             <title>参数</title>
             <parml>
                 <plentry props="electron">
@@ -42,6 +47,10 @@
                     <pd>音乐资源的编号，用于标识音乐资源。</pd>
                 </plentry>
                 <plentry props="rn">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识音乐资源。</pd>
+                </plentry>
+                <plentry props="flutter">
                     <pt>songCode</pt>
                     <pd>音乐资源的编号，用于标识音乐资源。</pd>
                 </plentry>
