@@ -125,10 +125,10 @@ class CameraCapturerConfiguration {
                         <note>
                             <ul>
                                 <li>该参数仅适用于 Android。</li>
-                                <li>该参数和<codeph>cameraDirection</codeph>均用于指定摄像头，二者为互斥关系，你可以按需选用其中之一，具体区别如下：
+                                <li>该参数和 <codeph>cameraDirection</codeph> 均用于指定摄像头，二者为互斥关系，你可以按需选用其中之一，具体区别如下：
                                     <ul>
-                                        <li>通过<codeph>cameraDirection</codeph>指定摄像头的方式更为简便。你只需指定摄像头的方向（前置或后置），无需指定具体的摄像头 ID，SDK 会通过系统 API 去检索和确定实际的摄像头 ID。</li>
-                                        <li>通过<codeph>cameraId</codeph>则可以更精确地指定某个特定的摄像头。对于多摄像头的设备，<codeph>cameraDirection</codeph>无法识别或访问全部可用摄像头，这种情况建议使用<codeph>cameraId</codeph>直接指定你想要的摄像头 ID。</li>
+                                        <li>通过 <codeph>cameraDirection</codeph> 指定摄像头的方式更为简便。你只需指定摄像头的方向（前置或后置），无需指定具体的摄像头 ID，SDK 会通过系统 API 去检索和确定实际的摄像头 ID。</li>
+                                        <li>通过 <codeph>cameraId</codeph> 则可以更精确地指定某个特定的摄像头。对于多摄像头的设备，<codeph>cameraDirection</codeph> 无法识别或访问全部可用摄像头，这种情况建议使用 <codeph>cameraId</codeph> 直接指定你想要的摄像头 ID。</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -140,15 +140,13 @@ class CameraCapturerConfiguration {
                     <pd>（可选）摄像头的焦距类型。详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。
                         <note>
                             <ul>
-                                <li>如需设置摄像头的焦距类型，仅支持通过<codeph>cameraDirection</codeph>指定摄像头，不支持通过<codeph>cameraId</codeph>进行指定。</li>
-                                <li>部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以通过以下任意一种方式实现超广角的采集效果：
-                                    <ul>
-                                        <li>方式一：将该参数设置为<codeph>CameraFocalLengthUltraWide</codeph>(2)（超广角镜头）。</li>
-                                        <li>方式二：将该参数设置为<codeph>CameraFocalLengthDefault</codeph>(0)（标准镜头），然后调用<xref keyref="setCameraZoomFactor"/>将相机缩放比例设置为小于 1.0 的数值，最小可以设置为 0.5。区别为方式一的超广角大小不可调节，方式二支持自由调节相机的缩放比例。</li>
-                                    </ul>
-                                </li>
+                                <li>如需设置摄像头的焦距类型，仅支持通过 <codeph>cameraDirection</codeph> 指定摄像头，不支持通过 <codeph>cameraId</codeph> 进行指定。</li>
+                                <li>部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以通过以下任意一种方式实现超广角的采集效果：</li>
                             </ul>
-                        </note>
+                            <ul>
+                                <li>方式一：将该参数设置为 <codeph>CameraFocalLengthUltraWide</codeph> (2)（超广角镜头）。</li>
+                                <li>方式二：将该参数设置为 <codeph>CameraFocalLengthDefault</codeph> (0)（标准镜头），然后调用 <xref keyref="setCameraZoomFactor"/> 将相机缩放比例设置为小于 1.0 的数值，最小可以设置为 0.5。</li>
+                            </ul><ph>            区别为方式一的超广角大小不可调节，方式二支持自由调节相机的缩放比例。</ph></note>
                     </pd>
                 </plentry>
                 <plentry props="rn">
@@ -178,10 +176,10 @@ class CameraCapturerConfiguration {
                         <note>
                             <ul>
                                 <li>该参数仅适用于 Android。</li>
-                                <li>该参数和<codeph>cameraDirection</codeph>均用于指定摄像头，二者为互斥关系，你可以按需选用其中之一，具体区别如下：
+                                <li>该参数和 <codeph>cameraDirection</codeph> 均用于指定摄像头，二者为互斥关系，你可以按需选用其中之一，具体区别如下：
                                     <ul>
-                                        <li>通过<codeph>cameraDirection</codeph>指定摄像头的方式更为简便。你只需指定摄像头的方向（前置或后置），无需指定具体的摄像头 ID，SDK 会通过系统 API 去检索和确定实际的摄像头 ID。</li>
-                                        <li>通过<codeph>cameraId</codeph>则可以更精确地指定某个特定的摄像头。对于多摄像头的设备，<codeph>cameraDirection</codeph>无法识别或访问全部可用摄像头，这种情况建议使用<codeph>cameraId</codeph>直接指定你想要的摄像头 ID。</li>
+                                        <li>通过 <codeph>cameraDirection</codeph> 指定摄像头的方式更为简便。你只需指定摄像头的方向（前置或后置），无需指定具体的摄像头 ID，SDK 会通过系统 API 去检索和确定实际的摄像头 ID。</li>
+                                        <li>通过 <codeph>cameraId</codeph> 则可以更精确地指定某个特定的摄像头。对于多摄像头的设备，<codeph>cameraDirection</codeph> 无法识别或访问全部可用摄像头，这种情况建议使用 <codeph>cameraId</codeph> 直接指定你想要的摄像头 ID。</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -194,15 +192,13 @@ class CameraCapturerConfiguration {
                         <note>
                             <ul>
                                 <li>该参数仅适用于 Android 和 iOS。</li>
-                                <li>如需设置摄像头的焦距类型，仅支持通过<codeph>cameraDirection</codeph>指定摄像头，不支持通过<codeph>cameraId</codeph>进行指定。</li>
-                                <li>部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以通过以下任意一种方式实现超广角的采集效果：
-                                    <ul>
-                                        <li>方式一：将该参数设置为<codeph>cameraFocalLengthUltraWide</codeph>(2)（超广角镜头）。</li>
-                                        <li>方式二：将该参数设置为<codeph>cameraFocalLengthDefault</codeph>(0)（标准镜头），然后调用<xref keyref="setCameraZoomFactor"/>将相机缩放比例设置为小于 1.0 的数值，最小可以设置为 0.5。区别为方式一的超广角大小不可调节，方式二支持自由调节相机的缩放比例。</li>
-                                    </ul>
-                                </li>
+                                <li>如需设置摄像头的焦距类型，仅支持通过 <codeph>cameraDirection</codeph> 指定摄像头，不支持通过 <codeph>cameraId</codeph> 进行指定。</li>
+                                <li>部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以通过以下任意一种方式实现超广角的采集效果：</li>
                             </ul>
-                        </note>
+                            <ul>
+                                <li>方式一：将该参数设置为 <codeph>cameraFocalLengthUltraWide</codeph> (2)（超广角镜头）。</li>
+                                <li>方式二：将该参数设置为 <codeph>cameraFocalLengthDefault</codeph> (0)（标准镜头），然后调用 <xref keyref="setCameraZoomFactor"/> 将相机缩放比例设置为小于 1.0 的数值，最小可以设置为 0.5。</li>
+                            </ul><ph>            区别为方式一的超广角大小不可调节，方式二支持自由调节相机的缩放比例。</ph></note>
                     </pd>
                 </plentry>
                 <plentry props="flutter">
@@ -238,10 +234,10 @@ class CameraCapturerConfiguration {
                         <note>
                             <ul>
                                 <li>该参数仅适用于 Android。</li>
-                                <li>该参数和<codeph>cameraDirection</codeph>均用于指定摄像头，二者为互斥关系，你可以按需选用其中之一，具体区别如下：
+                                <li>该参数和 <codeph>cameraDirection</codeph> 均用于指定摄像头，二者为互斥关系，你可以按需选用其中之一，具体区别如下：
                                     <ul>
-                                        <li>通过<codeph>cameraDirection</codeph>指定摄像头的方式更为简便。你只需指定摄像头的方向（前置或后置），无需指定具体的摄像头 ID，SDK 会通过系统 API 去检索和确定实际的摄像头 ID。</li>
-                                        <li>通过<codeph>cameraId</codeph>则可以更精确地指定某个特定的摄像头。对于多摄像头的设备，<codeph>cameraDirection</codeph>无法识别或访问全部可用摄像头，这种情况建议使用<codeph>cameraId</codeph>直接指定你想要的摄像头 ID。</li>
+                                        <li>通过 <codeph>cameraDirection</codeph> 指定摄像头的方式更为简便。你只需指定摄像头的方向（前置或后置），无需指定具体的摄像头 ID，SDK 会通过系统 API 去检索和确定实际的摄像头 ID。</li>
+                                        <li>通过 <codeph>cameraId</codeph> 则可以更精确地指定某个特定的摄像头。对于多摄像头的设备，<codeph>cameraDirection</codeph> 无法识别或访问全部可用摄像头，这种情况建议使用 <codeph>cameraId</codeph> 直接指定你想要的摄像头 ID。</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -254,15 +250,13 @@ class CameraCapturerConfiguration {
                         <note>
                             <ul>
                                 <li>该参数仅适用于 Android 和 iOS。</li>
-                                <li>如需设置摄像头的焦距类型，仅支持通过<codeph>cameraDirection</codeph>指定摄像头，不支持通过<codeph>cameraId</codeph>进行指定。</li>
-                                <li>部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以通过以下任意一种方式实现超广角的采集效果：
-                                    <ul>
-                                        <li>方式一：将该参数设置为<codeph>CAMERA_FOCAL_LENGTH_ULTRA_WIDE</codeph>(2)（超广角镜头）。</li>
-                                        <li>方式二：将该参数设置为<codeph>CAMERA_FOCAL_LENGTH_DEFAULT</codeph>(0)（标准镜头），然后调用<xref keyref="setCameraZoomFactor"/>将相机缩放比例设置为小于 1.0 的数值，最小可以设置为 0.5。区别为方式一的超广角大小不可调节，方式二支持自由调节相机的缩放比例。</li>
-                                    </ul>
-                                </li>
+                                <li>如需设置摄像头的焦距类型，仅支持通过 <codeph>cameraDirection</codeph> 指定摄像头，不支持通过 <codeph>cameraId</codeph> 进行指定。</li>
+                                <li>部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以通过以下任意一种方式实现超广角的采集效果：</li>
                             </ul>
-                        </note>
+                            <ul>
+                                <li>方式一：将该参数设置为 <codeph>CAMERA_FOCAL_LENGTH_ULTRA_WIDE</codeph> (2)（超广角镜头）。</li>
+                                <li>方式二：将该参数设置为 <codeph>CAMERA_FOCAL_LENGTH_DEFAULT</codeph> (0)（标准镜头），然后调用 <xref keyref="setCameraZoomFactor"/> 将相机缩放比例设置为小于 1.0 的数值，最小可以设置为 0.5。</li>
+                            </ul><ph>            区别为方式一的超广角大小不可调节，方式二支持自由调节相机的缩放比例。</ph></note>
                     </pd>
                 </plentry>
                 <plentry props="unity">
@@ -271,7 +265,7 @@ class CameraCapturerConfiguration {
                 </plentry>
                 <plentry props="unity">
                     <pt>deviceId</pt>
-                    <pd>（可选）摄像头的 ID。最大长度为 <codeph>MAX_DEVICE_ID_LENGTH_TYPE</codeph>。
+                    <pd>（可选）摄像头的 ID。
                         <note>该参数仅适用于 Windows 和 macOS。</note>
                     </pd>
                 </plentry>

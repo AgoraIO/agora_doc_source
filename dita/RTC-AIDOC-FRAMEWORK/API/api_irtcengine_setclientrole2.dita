@@ -27,12 +27,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="electron">SDK 默认设置用户角色为观众，你可以调用该方法设置用户角色为主播。用户角色（<codeph>role</codeph>）确定用户在 SDK 层的权限，包含是否有发流权限等。
-不同的延时级别会影响计费，详见[计费策略](https://doc.shengwang.cn/doc/rtc/android/billing/billing-strategy#%E6%9E%81%E9%80%9F%E7%9B%B4%E6%92%AD%E8%A7%82%E4%BC%97%E8%B4%B9%E7%94%A8)。</p>
-            <p props="rn">SDK 默认设置用户角色为观众，你可以调用该方法设置用户角色为主播。用户角色（<codeph>role</codeph>）确定用户在 SDK 层的权限，包含是否有发流权限等。
-不同的延时级别会影响计费，详见[计费策略](https://doc.shengwang.cn/doc/rtc/android/billing/billing-strategy#%E6%9E%81%E9%80%9F%E7%9B%B4%E6%92%AD%E8%A7%82%E4%BC%97%E8%B4%B9%E7%94%A8)。</p>
-            <p props="flutter">SDK 默认设置用户角色为观众，你可以调用该方法设置用户角色为主播。用户角色（<codeph>role</codeph>）确定用户在 SDK 层的权限，包含是否有发流权限等。
-不同的延时级别会影响计费，详见[计费策略](https://doc.shengwang.cn/doc/rtc/android/billing/billing-strategy#%E6%9E%81%E9%80%9F%E7%9B%B4%E6%92%AD%E8%A7%82%E4%BC%97%E8%B4%B9%E7%94%A8)。</p>
+            <p props="electron">SDK 默认设置用户角色为观众，你可以调用该方法设置用户角色为主播。用户角色（<codeph>role</codeph>）确定用户在 SDK 层的权限，包含是否有发流权限等。</p>
+            <p props="rn">SDK 默认设置用户角色为观众，你可以调用该方法设置用户角色为主播。用户角色（<codeph>role</codeph>）确定用户在 SDK 层的权限，包含是否有发流权限等。</p>
+            <p props="flutter">SDK 默认设置用户角色为观众，你可以调用该方法设置用户角色为主播。用户角色（<codeph>role</codeph>）确定用户在 SDK 层的权限，包含是否有发流权限等。</p>
             <p props="unity">SDK 默认设置用户角色为观众，你可以调用该方法设置用户角色为主播。用户角色（<codeph>role</codeph>）确定用户在 SDK 层的权限，包含是否有发流权限等。
 该方法与 <xref keyref="setClientRole1"/> 的区别在于，该方法还支持设置观众端延时级别（<codeph>audienceLatencyLevel</codeph>）。<codeph>audienceLatencyLevel</codeph> 需与 <codeph>role</codeph> 结合使用，确定用户在其权限范围内可以享受到的服务。例如对于观众，选择接收低延时还是超低延时的视频流。
 不同的延时级别会影响计费，详见[计费策略](https://doc.shengwang.cn/doc/rtc/android/billing/billing-strategy#%E6%9E%81%E9%80%9F%E7%9B%B4%E6%92%AD%E8%A7%82%E4%BC%97%E8%B4%B9%E7%94%A8)。</p>
@@ -63,23 +60,31 @@
             <title>相关回调</title>
             <p props="electron">如果你在加入频道后成功调用该方法切换用户角色，SDK 会触发下列回调：
                 <ul>
-                    <li>本地触发<xref keyref="onClientRoleChanged"/>回调。在加入频道前调用该方法并将 <codeph>role</codeph> 设为 <codeph>AUDIENCE</codeph>（观众）时，也会触发该回调。</li>
-                    <li>远端触发<xref keyref="onUserJoined"/>或<xref keyref="onUserOffline"/>回调。</li>
+                    <li>本地触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
+                </ul><ph>在加入频道前调用该方法并将 <codeph>role</codeph> 设为 <codeph>AUDIENCE</codeph>（观众）时，也会触发该回调。</ph>
+                <ul>
+                    <li>远端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
                 </ul><ph>如果你在加入频道后调用该方法切换用户角色失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/>，报告切换失败的原因和当前的用户角色。</ph></p>
             <p props="rn">如果你在加入频道后成功调用该方法切换用户角色，SDK 会触发下列回调：
                 <ul>
-                    <li>本地触发<xref keyref="onClientRoleChanged"/>回调。在加入频道前调用该方法并将 <codeph>role</codeph> 设为 <codeph>AUDIENCE</codeph>（观众）时，也会触发该回调。</li>
-                    <li>远端触发<xref keyref="onUserJoined"/>或<xref keyref="onUserOffline"/>回调。</li>
+                    <li>本地触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
+                </ul><ph>在加入频道前调用该方法并将 <codeph>role</codeph> 设为 <codeph>AUDIENCE</codeph>（观众）时，也会触发该回调。</ph>
+                <ul>
+                    <li>远端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
                 </ul><ph>如果你在加入频道后调用该方法切换用户角色失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/>，报告切换失败的原因和当前的用户角色。</ph></p>
             <p props="flutter">如果你在加入频道后成功调用该方法切换用户角色，SDK 会触发下列回调：
                 <ul>
-                    <li>本地触发<xref keyref="onClientRoleChanged"/>回调。在加入频道前调用该方法并将 <codeph>role</codeph> 设为 <codeph>AUDIENCE</codeph>（观众）时，也会触发该回调。</li>
-                    <li>远端触发<xref keyref="onUserJoined"/>或<xref keyref="onUserOffline"/>回调。</li>
+                    <li>本地触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
+                </ul><ph>在加入频道前调用该方法并将 <codeph>role</codeph> 设为 <codeph>AUDIENCE</codeph>（观众）时，也会触发该回调。</ph>
+                <ul>
+                    <li>远端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
                 </ul><ph>如果你在加入频道后调用该方法切换用户角色失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/>，报告切换失败的原因和当前的用户角色。</ph></p>
             <p props="unity">如果你在加入频道后成功调用该方法切换用户角色，SDK 会触发下列回调：
                 <ul>
-                    <li>本地触发<xref keyref="onClientRoleChanged"/>回调。在加入频道前调用该方法并将 <codeph>role</codeph> 设为 <codeph>AUDIENCE</codeph>（观众）时，也会触发该回调。</li>
-                    <li>远端触发<xref keyref="onUserJoined"/>或<xref keyref="onUserOffline"/>回调。</li>
+                    <li>本地触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
+                </ul><ph>在加入频道前调用该方法并将 <codeph>role</codeph> 设为 <codeph>AUDIENCE</codeph>（观众）时，也会触发该回调。</ph>
+                <ul>
+                    <li>远端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
                 </ul><ph>如果你在加入频道后调用该方法切换用户角色失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/>，报告切换失败的原因和当前的用户角色。</ph></p>
         </section>
         <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
@@ -87,12 +92,8 @@
             <parml>
                 <plentry props="electron">
                     <pt>role</pt>
-                    <pd>
-                        <note>角色为观众的用户无法在频道内发布音视频流。在直播场景下发流时，请确保你的用户角色已切换为主播。</note><ph>用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
-                        <ul>
-                            <li>ClientRoleBroadcaster(1): 主播。主播可以发流也可以收流。</li>
-                            <li>ClientRoleAudience(2):（默认）观众。观众只能收流不能发流。</li>
-                        </ul>
+                    <pd>用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。
+                        <note>角色为观众的用户无法在频道内发布音视频流。在直播场景下发流时，请确保你的用户角色已切换为主播。</note>
                     </pd>
                 </plentry>
                 <plentry props="electron">
@@ -101,12 +102,8 @@
                 </plentry>
                 <plentry props="rn">
                     <pt>role</pt>
-                    <pd>
-                        <note>角色为观众的用户无法在频道内发布音视频流。在直播场景下发流时，请确保你的用户角色已切换为主播。</note><ph>用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
-                        <ul>
-                            <li>ClientRoleBroadcaster(1): 主播。主播可以发流也可以收流。</li>
-                            <li>ClientRoleAudience(2):（默认）观众。观众只能收流不能发流。</li>
-                        </ul>
+                    <pd>用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。
+                        <note>角色为观众的用户无法在频道内发布音视频流。在直播场景下发流时，请确保你的用户角色已切换为主播。</note>
                     </pd>
                 </plentry>
                 <plentry props="rn">
@@ -115,12 +112,8 @@
                 </plentry>
                 <plentry props="flutter">
                     <pt>role</pt>
-                    <pd>
-                        <note>角色为观众的用户无法在频道内发布音视频流。在直播场景下发流时，请确保你的用户角色已切换为主播。</note><ph>用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
-                        <ul>
-                            <li>clientRoleBroadcaster(1): 主播。主播可以发流也可以收流。</li>
-                            <li>clientRoleAudience(2):（默认）观众。观众只能收流不能发流。</li>
-                        </ul>
+                    <pd>用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。
+                        <note>角色为观众的用户无法在频道内发布音视频流。在直播场景下发流时，请确保你的用户角色已切换为主播。</note>
                     </pd>
                 </plentry>
                 <plentry props="flutter">
@@ -129,12 +122,8 @@
                 </plentry>
                 <plentry props="unity">
                     <pt>role</pt>
-                    <pd>
-                        <note>角色为观众的用户无法在频道内发布音视频流。在直播场景下发流时，请确保你的用户角色已切换为主播。</note><ph>用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
-                        <ul>
-                            <li>CLIENT_ROLE_BROADCASTER(1): 主播。主播可以发流也可以收流。</li>
-                            <li>CLIENT_ROLE_AUDIENCE(2):（默认）观众。观众只能收流不能发流。</li>
-                        </ul>
+                    <pd>用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。
+                        <note>角色为观众的用户无法在频道内发布音视频流。在直播场景下发流时，请确保你的用户角色已切换为主播。</note>
                     </pd>
                 </plentry>
                 <plentry props="unity">

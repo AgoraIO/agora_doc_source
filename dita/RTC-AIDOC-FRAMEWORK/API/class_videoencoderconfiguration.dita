@@ -174,34 +174,12 @@
             <parml>
                 <plentry props="electron">
                     <pt>dimensions</pt>
-                    <pd>
+                    <pd>视频编码的分辨率 (px)，详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 960 × 540。用户可以自行设置分辨率。
                         <note>
                             <ul>
                                 <li>视频能否达到 720P 及以上分辨率取决于设备的性能，在性能配备较低的设备上有可能无法实现。如果采用 720P 分辨率而设备性能跟不上，则有可能出现帧率过低的情况。</li>
                             </ul>
-                        </note><ph>视频编码的分辨率 (px)，详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 960 × 540。用户可以自行设置分辨率。</ph><ph>用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：</ph>
-                        <ul>
-                            <li>VD_120x120：视频分辨率为 120 × 120。</li>
-                            <li>VD_160x120：视频分辨率为 160 × 120。</li>
-                            <li>VD_180x180：视频分辨率为 180 × 180。</li>
-                            <li>VD_240x180：视频分辨率为 240 × 180。</li>
-                            <li>VD_320x180：视频分辨率为 320 × 180。</li>
-                            <li>VD_240x240：视频分辨率为 240 × 240。</li>
-                            <li>VD_320x240：视频分辨率为 320 × 240。</li>
-                            <li>VD_424x240：视频分辨率为 424 × 240。</li>
-                            <li>VD_360x360：视频分辨率为 360 × 360。</li>
-                            <li>VD_480x360：视频分辨率为 480 × 360。</li>
-                            <li>VD_640x360：视频分辨率为 640 × 360。</li>
-                            <li>VD_480x480：视频分辨率为 480 × 480。</li>
-                            <li>VD_640x480：视频分辨率为 640 × 480。</li>
-                            <li>VD_840x480：视频分辨率为 840 × 480。</li>
-                            <li>VD_960x540：视频分辨率为 960 × 540。</li>
-                            <li>VD_960x720：视频分辨率为 960 × 720。</li>
-                            <li>VD_1280x720：视频分辨率为 1280 × 720。</li>
-                            <li>VD_1920x1080：视频分辨率为 1920 × 1080。</li>
-                            <li>VD_2540x1440：视频分辨率为 2540 × 1440。</li>
-                            <li>VD_3840x2160：视频分辨率为 3840 × 2160。</li>
-                        </ul>
+                        </note>
                     </pd>
                 </plentry>
                 <plentry props="electron">
@@ -214,10 +192,10 @@
                 </plentry>
                 <plentry props="electron">
                     <pt>bitrate</pt>
-                    <pd>视频编码码率，单位为 Kbps。详见 <codeph>BITRATE</codeph>。该参数无需设置，保留默认值 <codeph>STANDARD_BITRATE</codeph> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见[视频属性](https://doc.shengwang.cn/doc/rtc/electron/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83)。
+                    <pd>视频编码码率，单位为 Kbps。该参数无需设置，保留默认值 <codeph>STANDARD_BITRATE</codeph> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见[视频属性](https://doc.shengwang.cn/doc/rtc/electron/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83)。
                         <ul>
-                            <li>STANDARD_BITRATE(0): (默认) 标准码率模式。</li>
-                            <li>COMPATIBLE_BITRATE(-1): 适配码率模式。一般情况下，声网建议你不要使用该值。</li>
+                            <li>STANDARD_BITRATE (0): (默认) 标准码率模式。</li>
+                            <li>COMPATIBLE_BITRATE (-1): 适配码率模式。一般情况下，声网建议你不要使用该值。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -240,13 +218,8 @@ SDK 会根据网络状况自动调整视频编码码率。将参数设为高于�
                 </plentry>
                 <plentry props="electron">
                     <pt>mirrorMode</pt>
-                    <pd>
-                        <note>默认关闭镜像模式。</note><ph>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</ph><ph>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。</ph>
-                        <ul>
-                            <li>VideoMirrorModeAuto(0)：SDK 决定镜像模式。默认关闭远端用户的镜像模式。</li>
-                            <li>VideoMirrorModeEnabled(1)：开启远端用户的镜像模式。</li>
-                            <li>VideoMirrorModeDisabled(2)：关闭远端用户的镜像模式。</li>
-                        </ul>
+                    <pd>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>默认关闭镜像模式。</note>
                     </pd>
                 </plentry>
                 <plentry props="electron">
@@ -255,34 +228,12 @@ SDK 会根据网络状况自动调整视频编码码率。将参数设为高于�
                 </plentry>
                 <plentry props="rn">
                     <pt>dimensions</pt>
-                    <pd>
+                    <pd>视频编码的分辨率 (px)，详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 960 × 540。用户可以自行设置分辨率。
                         <note>
                             <ul>
                                 <li>视频能否达到 720P 及以上分辨率取决于设备的性能，在性能配备较低的设备上有可能无法实现。如果采用 720P 分辨率而设备性能跟不上，则有可能出现帧率过低的情况。</li>
                             </ul>
-                        </note><ph>视频编码的分辨率 (px)，详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 960 × 540。用户可以自行设置分辨率。</ph><ph>用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：</ph>
-                        <ul>
-                            <li>VD_120x120：视频分辨率为 120 × 120。</li>
-                            <li>VD_160x120：视频分辨率为 160 × 120。</li>
-                            <li>VD_180x180：视频分辨率为 180 × 180。</li>
-                            <li>VD_240x180：视频分辨率为 240 × 180。</li>
-                            <li>VD_320x180：视频分辨率为 320 × 180。</li>
-                            <li>VD_240x240：视频分辨率为 240 × 240。</li>
-                            <li>VD_320x240：视频分辨率为 320 × 240。</li>
-                            <li>VD_424x240：视频分辨率为 424 × 240。</li>
-                            <li>VD_360x360：视频分辨率为 360 × 360。</li>
-                            <li>VD_480x360：视频分辨率为 480 × 360。</li>
-                            <li>VD_640x360：视频分辨率为 640 × 360。</li>
-                            <li>VD_480x480：视频分辨率为 480 × 480。</li>
-                            <li>VD_640x480：视频分辨率为 640 × 480。</li>
-                            <li>VD_840x480：视频分辨率为 840 × 480。</li>
-                            <li>VD_960x540：视频分辨率为 960 × 540。</li>
-                            <li>VD_960x720：视频分辨率为 960 × 720。</li>
-                            <li>VD_1280x720：视频分辨率为 1280 × 720。</li>
-                            <li>VD_1920x1080：视频分辨率为 1920 × 1080。</li>
-                            <li>VD_2540x1440：视频分辨率为 2540 × 1440。</li>
-                            <li>VD_3840x2160：视频分辨率为 3840 × 2160。</li>
-                        </ul>
+                        </note>
                     </pd>
                 </plentry>
                 <plentry props="rn">
@@ -295,10 +246,10 @@ SDK 会根据网络状况自动调整视频编码码率。将参数设为高于�
                 </plentry>
                 <plentry props="rn">
                     <pt>bitrate</pt>
-                    <pd>视频编码码率，单位为 Kbps。详见 <codeph>BITRATE</codeph>。该参数无需设置，保留默认值 <codeph>STANDARD_BITRATE</codeph> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见[视频属性](https://doc.shengwang.cn/doc/rtc/rn/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83)。
+                    <pd>视频编码码率，单位为 Kbps。该参数无需设置，保留默认值 <codeph>STANDARD_BITRATE</codeph> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见[视频属性](https://doc.shengwang.cn/doc/rtc/rn/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83)。
                         <ul>
-                            <li>STANDARD_BITRATE(0): (默认) 标准码率模式。</li>
-                            <li>COMPATIBLE_BITRATE(-1): 适配码率模式。一般情况下，声网建议你不要使用该值。</li>
+                            <li>STANDARD_BITRATE (0): (默认) 标准码率模式。</li>
+                            <li>COMPATIBLE_BITRATE (-1): 适配码率模式。一般情况下，声网建议你不要使用该值。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -321,13 +272,8 @@ SDK 会根据网络状况自动调整视频编码码率。将参数设为高于�
                 </plentry>
                 <plentry props="rn">
                     <pt>mirrorMode</pt>
-                    <pd>
-                        <note>默认关闭镜像模式。</note><ph>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</ph><ph>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。</ph>
-                        <ul>
-                            <li>VideoMirrorModeAuto(0)：SDK 决定镜像模式。默认关闭远端用户的镜像模式。</li>
-                            <li>VideoMirrorModeEnabled(1)：开启远端用户的镜像模式。</li>
-                            <li>VideoMirrorModeDisabled(2)：关闭远端用户的镜像模式。</li>
-                        </ul>
+                    <pd>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>默认关闭镜像模式。</note>
                     </pd>
                 </plentry>
                 <plentry props="rn">
@@ -336,34 +282,12 @@ SDK 会根据网络状况自动调整视频编码码率。将参数设为高于�
                 </plentry>
                 <plentry props="flutter">
                     <pt>dimensions</pt>
-                    <pd>
+                    <pd>视频编码的分辨率 (px)，详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 960 × 540。用户可以自行设置分辨率。
                         <note>
                             <ul>
                                 <li>视频能否达到 720P 及以上分辨率取决于设备的性能，在性能配备较低的设备上有可能无法实现。如果采用 720P 分辨率而设备性能跟不上，则有可能出现帧率过低的情况。</li>
                             </ul>
-                        </note><ph>视频编码的分辨率 (px)，详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 960 × 540。用户可以自行设置分辨率。</ph><ph>用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：</ph>
-                        <ul>
-                            <li>VD_120x120：视频分辨率为 120 × 120。</li>
-                            <li>VD_160x120：视频分辨率为 160 × 120。</li>
-                            <li>VD_180x180：视频分辨率为 180 × 180。</li>
-                            <li>VD_240x180：视频分辨率为 240 × 180。</li>
-                            <li>VD_320x180：视频分辨率为 320 × 180。</li>
-                            <li>VD_240x240：视频分辨率为 240 × 240。</li>
-                            <li>VD_320x240：视频分辨率为 320 × 240。</li>
-                            <li>VD_424x240：视频分辨率为 424 × 240。</li>
-                            <li>VD_360x360：视频分辨率为 360 × 360。</li>
-                            <li>VD_480x360：视频分辨率为 480 × 360。</li>
-                            <li>VD_640x360：视频分辨率为 640 × 360。</li>
-                            <li>VD_480x480：视频分辨率为 480 × 480。</li>
-                            <li>VD_640x480：视频分辨率为 640 × 480。</li>
-                            <li>VD_840x480：视频分辨率为 840 × 480。</li>
-                            <li>VD_960x540：视频分辨率为 960 × 540。</li>
-                            <li>VD_960x720：视频分辨率为 960 × 720。</li>
-                            <li>VD_1280x720：视频分辨率为 1280 × 720。</li>
-                            <li>VD_1920x1080：视频分辨率为 1920 × 1080。</li>
-                            <li>VD_2540x1440：视频分辨率为 2540 × 1440。</li>
-                            <li>VD_3840x2160：视频分辨率为 3840 × 2160。</li>
-                        </ul>
+                        </note>
                     </pd>
                 </plentry>
                 <plentry props="flutter">
@@ -376,10 +300,10 @@ SDK 会根据网络状况自动调整视频编码码率。将参数设为高于�
                 </plentry>
                 <plentry props="flutter">
                     <pt>bitrate</pt>
-                    <pd>视频编码码率，单位为 Kbps。详见 <codeph>BITRATE</codeph>。该参数无需设置，保留默认值 <codeph>standardBitrate</codeph> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见[视频属性](https://doc.shengwang.cn/doc/rtc/flutter/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83)。
+                    <pd>视频编码码率，单位为 Kbps。该参数无需设置，保留默认值 <codeph>standardBitrate</codeph> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见[视频属性](https://doc.shengwang.cn/doc/rtc/flutter/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83)。
                         <ul>
-                            <li>standardBitrate(0): (默认) 标准码率模式。</li>
-                            <li>compatibleBitrate(-1): 适配码率模式。一般情况下，声网建议你不要使用该值。</li>
+                            <li>standardBitrate (0): (默认) 标准码率模式。</li>
+                            <li>compatibleBitrate (-1): 适配码率模式。一般情况下，声网建议你不要使用该值。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -402,13 +326,8 @@ SDK 会根据网络状况自动调整视频编码码率。将参数设为高于�
                 </plentry>
                 <plentry props="flutter">
                     <pt>mirrorMode</pt>
-                    <pd>
-                        <note>默认关闭镜像模式。</note><ph>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</ph><ph>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。</ph>
-                        <ul>
-                            <li>videoMirrorModeAuto(0)：SDK 决定镜像模式。默认关闭远端用户的镜像模式。</li>
-                            <li>videoMirrorModeEnabled(1)：开启远端用户的镜像模式。</li>
-                            <li>videoMirrorModeDisabled(2)：关闭远端用户的镜像模式。</li>
-                        </ul>
+                    <pd>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>默认关闭镜像模式。</note>
                     </pd>
                 </plentry>
                 <plentry props="flutter">
@@ -417,34 +336,12 @@ SDK 会根据网络状况自动调整视频编码码率。将参数设为高于�
                 </plentry>
                 <plentry props="unity">
                     <pt>dimensions</pt>
-                    <pd>
+                    <pd>视频编码的分辨率 (px)，详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 960 × 540。用户可以自行设置分辨率。
                         <note>
                             <ul>
                                 <li>视频能否达到 720P 及以上分辨率取决于设备的性能，在性能配备较低的设备上有可能无法实现。如果采用 720P 分辨率而设备性能跟不上，则有可能出现帧率过低的情况。</li>
                             </ul>
-                        </note><ph>视频编码的分辨率 (px)，详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 960 × 540。用户可以自行设置分辨率。</ph><ph>用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：</ph>
-                        <ul>
-                            <li>VD_120x120：视频分辨率为 120 × 120。</li>
-                            <li>VD_160x120：视频分辨率为 160 × 120。</li>
-                            <li>VD_180x180：视频分辨率为 180 × 180。</li>
-                            <li>VD_240x180：视频分辨率为 240 × 180。</li>
-                            <li>VD_320x180：视频分辨率为 320 × 180。</li>
-                            <li>VD_240x240：视频分辨率为 240 × 240。</li>
-                            <li>VD_320x240：视频分辨率为 320 × 240。</li>
-                            <li>VD_424x240：视频分辨率为 424 × 240。</li>
-                            <li>VD_360x360：视频分辨率为 360 × 360。</li>
-                            <li>VD_480x360：视频分辨率为 480 × 360。</li>
-                            <li>VD_640x360：视频分辨率为 640 × 360。</li>
-                            <li>VD_480x480：视频分辨率为 480 × 480。</li>
-                            <li>VD_640x480：视频分辨率为 640 × 480。</li>
-                            <li>VD_840x480：视频分辨率为 840 × 480。</li>
-                            <li>VD_960x540：视频分辨率为 960 × 540。</li>
-                            <li>VD_960x720：视频分辨率为 960 × 720。</li>
-                            <li>VD_1280x720：视频分辨率为 1280 × 720。</li>
-                            <li>VD_1920x1080：视频分辨率为 1920 × 1080。</li>
-                            <li>VD_2540x1440：视频分辨率为 2540 × 1440。</li>
-                            <li>VD_3840x2160：视频分辨率为 3840 × 2160。</li>
-                        </ul>
+                        </note>
                     </pd>
                 </plentry>
                 <plentry props="unity">
@@ -457,12 +354,7 @@ SDK 会根据网络状况自动调整视频编码码率。将参数设为高于�
                 </plentry>
                 <plentry props="unity">
                     <pt>bitrate</pt>
-                    <pd>视频编码码率，单位为 Kbps。详见 <xref keyref="BITRATE"/>。该参数无需设置，保留默认值 <xref keyref="STANDARD_BITRATE"/> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见[视频属性](https://doc.shengwang.cn/doc/rtc/unity/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83)。
-                        <ul>
-                            <li>STANDARD_BITRATE(0): (默认) 标准码率模式。</li>
-                            <li>COMPATIBLE_BITRATE(-1): 适配码率模式。一般情况下，声网建议你不要使用该值。</li>
-                        </ul>
-                    </pd>
+                    <pd>视频编码码率，单位为 Kbps。详见 <xref keyref="BITRATE"/>。该参数无需设置，保留默认值 <xref keyref="STANDARD_BITRATE"/> 即可，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。有关视频分辨率和帧率的对应关系，详见[视频属性](https://doc.shengwang.cn/doc/rtc/unity/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83)。</pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>minBitrate</pt>
@@ -483,13 +375,8 @@ SDK 会根据网络状况自动调整视频编码码率。将参数设为高于�
                 </plentry>
                 <plentry props="unity">
                     <pt>mirrorMode</pt>
-                    <pd>
-                        <note>默认关闭镜像模式。</note><ph>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</ph><ph>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。</ph>
-                        <ul>
-                            <li>VIDEO_MIRROR_MODE_AUTO(0)：SDK 决定镜像模式。默认关闭远端用户的镜像模式。</li>
-                            <li>VIDEO_MIRROR_MODE_ENABLED(1)：开启远端用户的镜像模式。</li>
-                            <li>VIDEO_MIRROR_MODE_DISABLED(2)：关闭远端用户的镜像模式。</li>
-                        </ul>
+                    <pd>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>默认关闭镜像模式。</note>
                     </pd>
                 </plentry>
                 <plentry props="unity">

@@ -51,23 +51,23 @@
             <title>相关回调</title>
             <p props="electron">成功调用该方法加入频道后会触发以下回调：
                 <ul>
-                    <li>本地会触发<xref keyref="onJoinChannelSuccess"/>和<xref keyref="onConnectionStateChanged"/>回调。</li>
-                    <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发<xref keyref="onUserJoined"/>回调。</li>
+                    <li>本地会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
+                    <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <xref keyref="onUserJoined"/> 回调。</li>
                 </ul><ph>在网络状况不理想的情况下，客户端可能会与声网服务器失去连接，此时 SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
             <p props="rn">成功调用该方法加入频道后会触发以下回调：
                 <ul>
-                    <li>本地会触发<xref keyref="onJoinChannelSuccess"/>和<xref keyref="onConnectionStateChanged"/>回调。</li>
-                    <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发<xref keyref="onUserJoined"/>回调。</li>
+                    <li>本地会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
+                    <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <xref keyref="onUserJoined"/> 回调。</li>
                 </ul><ph>在网络状况不理想的情况下，客户端可能会与声网服务器失去连接，此时 SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
             <p props="flutter">成功调用该方法加入频道后会触发以下回调：
                 <ul>
-                    <li>本地会触发<xref keyref="onJoinChannelSuccess"/>和<xref keyref="onConnectionStateChanged"/>回调。</li>
-                    <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发<xref keyref="onUserJoined"/>回调。</li>
+                    <li>本地会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
+                    <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <xref keyref="onUserJoined"/> 回调。</li>
                 </ul><ph>在网络状况不理想的情况下，客户端可能会与声网服务器失去连接，此时 SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
             <p props="unity">成功调用该方法加入频道后会触发以下回调：
                 <ul>
-                    <li>本地会触发<xref keyref="onJoinChannelSuccess"/>和<xref keyref="onConnectionStateChanged"/>回调。</li>
-                    <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发<xref keyref="onUserJoined"/>回调。</li>
+                    <li>本地会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
+                    <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <xref keyref="onUserJoined"/> 回调。</li>
                 </ul><ph>在网络状况不理想的情况下，客户端可能会与声网服务器失去连接，此时 SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</ph></p>
         </section>
         <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
@@ -80,7 +80,7 @@
                             <ul>
                                 <li>（推荐）如果你的项目开启了安全模式，即选择 APP ID + Token 为鉴权机制，则该参数为必填。</li>
                                 <li>如果你的项目仅开启调试模式，即选择 APP ID 为鉴权机制，则无需填入 Token 即可加入频道。成功加入频道 24 小时后会自动退出该频道。</li>
-                                <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见[使用通配 Token](https://doc.shengwang.cn/doc/rtc/electron/best-practice/wildcard-token)。</li>
+                                <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见 [使用通配 Token](https://doc.shengwang.cn/doc/rtc/electron/best-practice/wildcard-token)。</li>
                             </ul>
                         </note>
                     </pd>
@@ -98,7 +98,7 @@
                 </plentry>
                 <plentry props="electron">
                     <pt>uid</pt>
-                    <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位有符号整数。取值范围为：-231 到 231-1。该参数为 32 位无符号整数。建议设置范围：1 到 232-1。如果不指定（即设为 0），SDK 会自动分配一个，并在 <xref keyref="onJoinChannelSuccess"/> 回调中返回， 应用层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
+                    <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位无符号整数。建议设置范围：1 到 232-1。如果不指定（即设为 0），SDK 会自动分配一个，并在 <xref keyref="onJoinChannelSuccess"/> 回调中返回， 应用层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
                 </plentry>
                 <plentry props="electron">
                     <pt>options</pt>
@@ -111,7 +111,7 @@
                             <ul>
                                 <li>（推荐）如果你的项目开启了安全模式，即选择 APP ID + Token 为鉴权机制，则该参数为必填。</li>
                                 <li>如果你的项目仅开启调试模式，即选择 APP ID 为鉴权机制，则无需填入 Token 即可加入频道。成功加入频道 24 小时后会自动退出该频道。</li>
-                                <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见[使用通配 Token](https://doc.shengwang.cn/doc/rtc/rn/best-practice/wildcard-token)。</li>
+                                <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见 [使用通配 Token](https://doc.shengwang.cn/doc/rtc/rn/best-practice/wildcard-token)。</li>
                             </ul>
                         </note>
                     </pd>
@@ -129,7 +129,7 @@
                 </plentry>
                 <plentry props="rn">
                     <pt>uid</pt>
-                    <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位有符号整数。取值范围为：-231 到 231-1。该参数为 32 位无符号整数。建议设置范围：1 到 232-1。如果不指定（即设为 0），SDK 会自动分配一个，并在 <xref keyref="onJoinChannelSuccess"/> 回调中返回， 应用层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
+                    <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位无符号整数。建议设置范围：1 到 232-1。如果不指定（即设为 0），SDK 会自动分配一个，并在 <xref keyref="onJoinChannelSuccess"/> 回调中返回， 应用层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
                 </plentry>
                 <plentry props="rn">
                     <pt>options</pt>
@@ -142,7 +142,7 @@
                             <ul>
                                 <li>（推荐）如果你的项目开启了安全模式，即选择 APP ID + Token 为鉴权机制，则该参数为必填。</li>
                                 <li>如果你的项目仅开启调试模式，即选择 APP ID 为鉴权机制，则无需填入 Token 即可加入频道。成功加入频道 24 小时后会自动退出该频道。</li>
-                                <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见[使用通配 Token](https://doc.shengwang.cn/doc/rtc/flutter/best-practice/wildcard-token)。</li>
+                                <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见 [使用通配 Token](https://doc.shengwang.cn/doc/rtc/flutter/best-practice/wildcard-token)。</li>
                             </ul>
                         </note>
                     </pd>
@@ -160,7 +160,7 @@
                 </plentry>
                 <plentry props="flutter">
                     <pt>uid</pt>
-                    <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位有符号整数。取值范围为：-231 到 231-1。该参数为 32 位无符号整数。建议设置范围：1 到 232-1。如果不指定（即设为 0），SDK 会自动分配一个，并在 <xref keyref="onJoinChannelSuccess"/> 回调中返回， 应用层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
+                    <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位无符号整数。建议设置范围：1 到 232-1。如果不指定（即设为 0），SDK 会自动分配一个，并在 <xref keyref="onJoinChannelSuccess"/> 回调中返回， 应用层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>options</pt>
@@ -173,7 +173,7 @@
                             <ul>
                                 <li>（推荐）如果你的项目开启了安全模式，即选择 APP ID + Token 为鉴权机制，则该参数为必填。</li>
                                 <li>如果你的项目仅开启调试模式，即选择 APP ID 为鉴权机制，则无需填入 Token 即可加入频道。成功加入频道 24 小时后会自动退出该频道。</li>
-                                <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见[使用通配 Token](https://doc.shengwang.cn/doc/rtc/unity/best-practice/wildcard-token)。</li>
+                                <li>如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见 [使用通配 Token](https://doc.shengwang.cn/doc/rtc/unity/best-practice/wildcard-token)。</li>
                             </ul>
                         </note>
                     </pd>
@@ -191,7 +191,7 @@
                 </plentry>
                 <plentry props="unity">
                     <pt>uid</pt>
-                    <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位有符号整数。取值范围为：-231 到 231-1。该参数为 32 位无符号整数。建议设置范围：1 到 232-1。如果不指定（即设为 0），SDK 会自动分配一个，并在 <xref keyref="onJoinChannelSuccess"/> 回调中返回， 应用层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
+                    <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位无符号整数。建议设置范围：1 到 232-1。如果不指定（即设为 0），SDK 会自动分配一个，并在 <xref keyref="onJoinChannelSuccess"/> 回调中返回， 应用层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>options</pt>
@@ -206,13 +206,13 @@
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。
                         <ul>
-                            <li>-2：传入的参数无效。例如，使用了不合法的 Token，<codeph>uid</codeph>参数未设置为整型，或<xref keyref="ChannelMediaOptions"/>成员值不合法。你需要填入有效的参数，重新加入频道。</li>
-                            <li>-3：<xref keyref="IRtcEngine"/>对象初始化失败。你需要重新初始化<xref keyref="IRtcEngine"/>对象。</li>
-                            <li>-7：<xref keyref="IRtcEngine"/>对象尚未初始化。你需要在调用该方法前成功初始化<xref keyref="IRtcEngine"/>对象。</li>
-                            <li>-8：<xref keyref="IRtcEngine"/>对象内部状态错误。可能的原因是：调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要在该方法前调用 <xref keyref="stopEchoTest"/>。</li>
-                            <li>-17：加入频道被拒绝。可能的原因是用户已经在频道中。建议通过<xref keyref="onConnectionStateChanged"/>回调判断用户是否在频道中。除收到<codeph>ConnectionStateDisconnected</codeph>(1) 状态外，不要再次调用该方法加入频道。</li>
-                            <li>-102：频道名无效。你需要在<codeph>channelId</codeph>中填入有效的频道名，重新加入频道。</li>
-                            <li>-121：用户 ID 无效。你需要在<codeph>uid</codeph>中填入有效的用户 ID，重新加入频道。</li>
+                            <li>-2：传入的参数无效。例如，使用了不合法的 Token，<codeph>uid</codeph> 参数未设置为整型，或 <xref keyref="ChannelMediaOptions"/> 成员值不合法。你需要填入有效的参数，重新加入频道。</li>
+                            <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。你需要重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要在调用该方法前成功初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/> 对象内部状态错误。可能的原因是：调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要在该方法前调用 <xref keyref="stopEchoTest"/>。</li>
+                            <li>-17：加入频道被拒绝。可能的原因是用户已经在频道中。建议通过 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。除收到 <codeph>ConnectionStateDisconnected</codeph>(1) 状态外，不要再次调用该方法加入频道。</li>
+                            <li>-102：频道名无效。你需要在 <codeph>channelId</codeph> 中填入有效的频道名，重新加入频道。</li>
+                            <li>-121：用户 ID 无效。你需要在 <codeph>uid</codeph> 中填入有效的用户 ID，重新加入频道。</li>
                         </ul>
                     </li>
                 </ul>
@@ -222,13 +222,13 @@
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。
                         <ul>
-                            <li>-2：传入的参数无效。例如，使用了不合法的 Token，<codeph>uid</codeph>参数未设置为整型，或<xref keyref="ChannelMediaOptions"/>成员值不合法。你需要填入有效的参数，重新加入频道。</li>
-                            <li>-3：<xref keyref="IRtcEngine"/>对象初始化失败。你需要重新初始化<xref keyref="IRtcEngine"/>对象。</li>
-                            <li>-7：<xref keyref="IRtcEngine"/>对象尚未初始化。你需要在调用该方法前成功初始化<xref keyref="IRtcEngine"/>对象。</li>
-                            <li>-8：<xref keyref="IRtcEngine"/>对象内部状态错误。可能的原因是：调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要在该方法前调用 <xref keyref="stopEchoTest"/>。</li>
-                            <li>-17：加入频道被拒绝。可能的原因是用户已经在频道中。建议通过<xref keyref="onConnectionStateChanged"/>回调判断用户是否在频道中。除收到<codeph>ConnectionStateDisconnected</codeph>(1) 状态外，不要再次调用该方法加入频道。</li>
-                            <li>-102：频道名无效。你需要在<codeph>channelId</codeph>中填入有效的频道名，重新加入频道。</li>
-                            <li>-121：用户 ID 无效。你需要在<codeph>uid</codeph>中填入有效的用户 ID，重新加入频道。</li>
+                            <li>-2：传入的参数无效。例如，使用了不合法的 Token，<codeph>uid</codeph> 参数未设置为整型，或 <xref keyref="ChannelMediaOptions"/> 成员值不合法。你需要填入有效的参数，重新加入频道。</li>
+                            <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。你需要重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要在调用该方法前成功初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/> 对象内部状态错误。可能的原因是：调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要在该方法前调用 <xref keyref="stopEchoTest"/>。</li>
+                            <li>-17：加入频道被拒绝。可能的原因是用户已经在频道中。建议通过 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。除收到 <codeph>ConnectionStateDisconnected</codeph>(1) 状态外，不要再次调用该方法加入频道。</li>
+                            <li>-102：频道名无效。你需要在 <codeph>channelId</codeph> 中填入有效的频道名，重新加入频道。</li>
+                            <li>-121：用户 ID 无效。你需要在 <codeph>uid</codeph> 中填入有效的用户 ID，重新加入频道。</li>
                         </ul>
                     </li>
                 </ul>
@@ -237,13 +237,13 @@
                 <ul>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
                         <ul>
-                            <li>-2：传入的参数无效。例如，使用了不合法的 Token，<codeph>uid</codeph>参数未设置为整型，或<xref keyref="ChannelMediaOptions"/>成员值不合法。你需要填入有效的参数，重新加入频道。</li>
-                            <li>-3：<xref keyref="IRtcEngine"/>对象初始化失败。你需要重新初始化<xref keyref="IRtcEngine"/>对象。</li>
-                            <li>-7：<xref keyref="IRtcEngine"/>对象尚未初始化。你需要在调用该方法前成功初始化<xref keyref="IRtcEngine"/>对象。</li>
-                            <li>-8：<xref keyref="IRtcEngine"/>对象内部状态错误。可能的原因是：调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要在该方法前调用 <xref keyref="stopEchoTest"/>。</li>
-                            <li>-17：加入频道被拒绝。可能的原因是用户已经在频道中。建议通过<xref keyref="onConnectionStateChanged"/>回调判断用户是否在频道中。除收到<codeph>connectionStateDisconnected</codeph>(1) 状态外，不要再次调用该方法加入频道。</li>
-                            <li>-102：频道名无效。你需要在<codeph>channelId</codeph>中填入有效的频道名，重新加入频道。</li>
-                            <li>-121：用户 ID 无效。你需要在<codeph>uid</codeph>中填入有效的用户 ID，重新加入频道。</li>
+                            <li>-2：传入的参数无效。例如，使用了不合法的 Token，<codeph>uid</codeph> 参数未设置为整型，或 <xref keyref="ChannelMediaOptions"/> 成员值不合法。你需要填入有效的参数，重新加入频道。</li>
+                            <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。你需要重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要在调用该方法前成功初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/> 对象内部状态错误。可能的原因是：调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要在该方法前调用 <xref keyref="stopEchoTest"/>。</li>
+                            <li>-17：加入频道被拒绝。可能的原因是用户已经在频道中。建议通过 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。除收到 <codeph>connectionStateDisconnected</codeph>(1) 状态外，不要再次调用该方法加入频道。</li>
+                            <li>-102：频道名无效。你需要在 <codeph>channelId</codeph> 中填入有效的频道名，重新加入频道。</li>
+                            <li>-121：用户 ID 无效。你需要在 <codeph>uid</codeph> 中填入有效的用户 ID，重新加入频道。</li>
                         </ul>
                     </li>
                 </ul>
@@ -253,13 +253,13 @@
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。
                         <ul>
-                            <li>-2：传入的参数无效。例如，使用了不合法的 Token，<codeph>uid</codeph>参数未设置为整型，或<xref keyref="ChannelMediaOptions"/>成员值不合法。你需要填入有效的参数，重新加入频道。</li>
-                            <li>-3：<xref keyref="IRtcEngine"/>对象初始化失败。你需要重新初始化<xref keyref="IRtcEngine"/>对象。</li>
-                            <li>-7：<xref keyref="IRtcEngine"/>对象尚未初始化。你需要在调用该方法前成功初始化<xref keyref="IRtcEngine"/>对象。</li>
-                            <li>-8：<xref keyref="IRtcEngine"/>对象内部状态错误。可能的原因是：调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要在该方法前调用 <xref keyref="stopEchoTest"/>。</li>
-                            <li>-17：加入频道被拒绝。可能的原因是用户已经在频道中。建议通过<xref keyref="onConnectionStateChanged"/>回调判断用户是否在频道中。除收到<codeph>CONNECTION_STATE_DISCONNECTED</codeph>(1) 状态外，不要再次调用该方法加入频道。</li>
-                            <li>-102：频道名无效。你需要在<codeph>channelId</codeph>中填入有效的频道名，重新加入频道。</li>
-                            <li>-121：用户 ID 无效。你需要在<codeph>uid</codeph>中填入有效的用户 ID，重新加入频道。</li>
+                            <li>-2：传入的参数无效。例如，使用了不合法的 Token，<codeph>uid</codeph> 参数未设置为整型，或 <xref keyref="ChannelMediaOptions"/> 成员值不合法。你需要填入有效的参数，重新加入频道。</li>
+                            <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。你需要重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要在调用该方法前成功初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/> 对象内部状态错误。可能的原因是：调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要在该方法前调用 <xref keyref="stopEchoTest"/>。</li>
+                            <li>-17：加入频道被拒绝。可能的原因是用户已经在频道中。建议通过 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。除收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>(1) 状态外，不要再次调用该方法加入频道。</li>
+                            <li>-102：频道名无效。你需要在 <codeph>channelId</codeph> 中填入有效的频道名，重新加入频道。</li>
+                            <li>-121：用户 ID 无效。你需要在 <codeph>uid</codeph> 中填入有效的用户 ID，重新加入频道。</li>
                         </ul>
                     </li>
                 </ul>
