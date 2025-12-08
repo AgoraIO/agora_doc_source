@@ -31,6 +31,30 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">取决于发送端的默认行为和调用 <xref keyref="setDualStreamMode2"/> 的具体设置，接收端调用该方法分为以下几种情况：
+                <ul>
+                    <li>SDK 默认在发送端开启小流自适应模式 (<codeph>AutoSimulcastStream</codeph>)，即：发送端仅发送大流，仅主播身份的接收端可以调用该方法发起小流申请，发送端收到申请后开始自动发送小流，此时频道内所有用户均可调用该方法切换到小流订阅模式。</li>
+                    <li>当发送端调用 <xref keyref="setDualStreamMode2"/> 并将 <codeph>mode</codeph> 设置为 <codeph>DisableSimulcastStream</codeph>（始终不发送小流），则调用该方法不生效。</li>
+                    <li>当发送端调用 <xref keyref="setDualStreamMode2"/> 并将 <codeph>mode</codeph> 设置为 <codeph>EnableSimulcastStream</codeph>（始终发送小流），则主播或观众身份的接收端均可调用该方法切换到小流订阅模式。</li>
+                </ul><ph>在接收视频小流时，SDK 会根据视频窗口的大小动态调整对应视频流的大小，以节约带宽和计算资源。视频小流默认的宽高比和视频大流的宽高比一致。根据当前大流的宽高比，系统会自动分配小流的分辨率、帧率及码率。</ph></p>
+            <p props="rn">取决于发送端的默认行为和调用 <xref keyref="setDualStreamMode2"/> 的具体设置，接收端调用该方法分为以下几种情况：
+                <ul>
+                    <li>SDK 默认在发送端开启小流自适应模式 (<codeph>AutoSimulcastStream</codeph>)，即：发送端仅发送大流，仅主播身份的接收端可以调用该方法发起小流申请，发送端收到申请后开始自动发送小流，此时频道内所有用户均可调用该方法切换到小流订阅模式。</li>
+                    <li>当发送端调用 <xref keyref="setDualStreamMode2"/> 并将 <codeph>mode</codeph> 设置为 <codeph>DisableSimulcastStream</codeph>（始终不发送小流），则调用该方法不生效。</li>
+                    <li>当发送端调用 <xref keyref="setDualStreamMode2"/> 并将 <codeph>mode</codeph> 设置为 <codeph>EnableSimulcastStream</codeph>（始终发送小流），则主播或观众身份的接收端均可调用该方法切换到小流订阅模式。</li>
+                </ul><ph>在接收视频小流时，SDK 会根据视频窗口的大小动态调整对应视频流的大小，以节约带宽和计算资源。视频小流默认的宽高比和视频大流的宽高比一致。根据当前大流的宽高比，系统会自动分配小流的分辨率、帧率及码率。</ph></p>
+            <p props="flutter">取决于发送端的默认行为和调用 <xref keyref="setDualStreamMode2"/> 的具体设置，接收端调用该方法分为以下几种情况：
+                <ul>
+                    <li>SDK 默认在发送端开启小流自适应模式 (<codeph>autoSimulcastStream</codeph>)，即：发送端仅发送大流，仅主播身份的接收端可以调用该方法发起小流申请，发送端收到申请后开始自动发送小流，此时频道内所有用户均可调用该方法切换到小流订阅模式。</li>
+                    <li>当发送端调用 <xref keyref="setDualStreamMode2"/> 并将 <codeph>mode</codeph> 设置为 <codeph>disableSimulcastStream</codeph>（始终不发送小流），则调用该方法不生效。</li>
+                    <li>当发送端调用 <xref keyref="setDualStreamMode2"/> 并将 <codeph>mode</codeph> 设置为 <codeph>enableSimulcastStream</codeph>（始终发送小流），则主播或观众身份的接收端均可调用该方法切换到小流订阅模式。</li>
+                </ul><ph>在接收视频小流时，SDK 会根据视频窗口的大小动态调整对应视频流的大小，以节约带宽和计算资源。视频小流默认的宽高比和视频大流的宽高比一致。根据当前大流的宽高比，系统会自动分配小流的分辨率、帧率及码率。</ph></p>
+            <p props="unity">取决于发送端的默认行为和调用 <xref keyref="setDualStreamMode2"/> 的具体设置，接收端调用该方法分为以下几种情况：
+                <ul>
+                    <li>SDK 默认在发送端开启小流自适应模式 (<codeph>AUTO_SIMULCAST_STREAM</codeph>)，即：发送端仅发送大流，仅主播身份的接收端可以调用该方法发起小流申请，发送端收到申请后开始自动发送小流，此时频道内所有用户均可调用该方法切换到小流订阅模式。</li>
+                    <li>当发送端调用 <xref keyref="setDualStreamMode2"/> 并将 <codeph>mode</codeph> 设置为 <codeph>DISABLE_SIMULCAST_STREAM</codeph>（始终不发送小流），则调用该方法不生效。</li>
+                    <li>当发送端调用 <xref keyref="setDualStreamMode2"/> 并将 <codeph>mode</codeph> 设置为 <codeph>ENABLE_SIMULCAST_STREAM</codeph>（始终发送小流），则主播或观众身份的接收端均可调用该方法切换到小流订阅模式。</li>
+                </ul><ph>在接收视频小流时，SDK 会根据视频窗口的大小动态调整对应视频流的大小，以节约带宽和计算资源。视频小流默认的宽高比和视频大流的宽高比一致。根据当前大流的宽高比，系统会自动分配小流的分辨率、帧率及码率。</ph></p>
             <note props="electron">如果发送端已调用 <xref keyref="setDualStreamModeEx"/> 并将 <codeph>mode</codeph> 设置为 <codeph>DisableSimulcastStream</codeph>（始终不发送小流），则调用该方法不生效，你需要在发送端重新调用 <xref keyref="setDualStreamModeEx"/> 修改设置。</note>
             <note props="rn">如果发送端已调用 <xref keyref="setDualStreamModeEx"/> 并将 <codeph>mode</codeph> 设置为 <codeph>DisableSimulcastStream</codeph>（始终不发送小流），则调用该方法不生效，你需要在发送端重新调用 <xref keyref="setDualStreamModeEx"/> 修改设置。</note>
             <note props="flutter">如果发送端已调用 <xref keyref="setDualStreamModeEx"/> 并将 <codeph>mode</codeph> 设置为 <codeph>disableSimulcastStream</codeph>（始终不发送小流），则调用该方法不生效，你需要在发送端重新调用 <xref keyref="setDualStreamModeEx"/> 修改设置。</note>

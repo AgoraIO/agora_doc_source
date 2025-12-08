@@ -29,10 +29,30 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="electron">调用 <xref keyref="createDataStreamEx2"/> 后，你可以调用本方法向频道内所有用户发送数据流消息。</p>
-            <p props="rn">调用 <xref keyref="createDataStreamEx2"/> 后，你可以调用本方法向频道内所有用户发送数据流消息。</p>
-            <p props="flutter">调用 <xref keyref="createDataStreamEx2"/> 后，你可以调用本方法向频道内所有用户发送数据流消息。</p>
-            <p props="unity">调用 <xref keyref="createDataStreamEx2"/> 后，你可以调用本方法向频道内所有用户发送数据流消息。</p>
+            <p props="electron">调用 <xref keyref="createDataStreamEx2"/> 后，你可以调用本方法向频道内所有用户发送数据流消息。
+SDK 对该方法的实现进行了如下限制：
+                <ul>
+                    <li>频道内每个客户端最多可以同时拥有 5 个数据通道，所有数据通道共用的总发包码率限制为 30 KB/s。</li>
+                    <li>每个数据通道每秒最多能发送 60 个包，每个包最大为 1 KB。</li>
+                </ul><ph>成功调用该方法后，远端会触发 <xref keyref="onStreamMessage"/> 回调，远端用户可以在该回调中获取接收到的流消息；若调用失败，远端会触发 <xref keyref="onStreamMessageError"/> 回调。</ph></p>
+            <p props="rn">调用 <xref keyref="createDataStreamEx2"/> 后，你可以调用本方法向频道内所有用户发送数据流消息。
+SDK 对该方法的实现进行了如下限制：
+                <ul>
+                    <li>频道内每个客户端最多可以同时拥有 5 个数据通道，所有数据通道共用的总发包码率限制为 30 KB/s。</li>
+                    <li>每个数据通道每秒最多能发送 60 个包，每个包最大为 1 KB。</li>
+                </ul><ph>成功调用该方法后，远端会触发 <xref keyref="onStreamMessage"/> 回调，远端用户可以在该回调中获取接收到的流消息；若调用失败，远端会触发 <xref keyref="onStreamMessageError"/> 回调。</ph></p>
+            <p props="flutter">调用 <xref keyref="createDataStreamEx2"/> 后，你可以调用本方法向频道内所有用户发送数据流消息。
+SDK 对该方法的实现进行了如下限制：
+                <ul>
+                    <li>频道内每个客户端最多可以同时拥有 5 个数据通道，所有数据通道共用的总发包码率限制为 30 KB/s。</li>
+                    <li>每个数据通道每秒最多能发送 60 个包，每个包最大为 1 KB。</li>
+                </ul><ph>成功调用该方法后，远端会触发 <xref keyref="onStreamMessage"/> 回调，远端用户可以在该回调中获取接收到的流消息；若调用失败，远端会触发 <xref keyref="onStreamMessageError"/> 回调。</ph></p>
+            <p props="unity">调用 <xref keyref="createDataStreamEx2"/> 后，你可以调用本方法向频道内所有用户发送数据流消息。
+SDK 对该方法的实现进行了如下限制：
+                <ul>
+                    <li>频道内每个客户端最多可以同时拥有 5 个数据通道，所有数据通道共用的总发包码率限制为 30 KB/s。</li>
+                    <li>每个数据通道每秒最多能发送 60 个包，每个包最大为 1 KB。</li>
+                </ul><ph>成功调用该方法后，远端会触发 <xref keyref="onStreamMessage"/> 回调，远端用户可以在该回调中获取接收到的流消息；若调用失败，远端会触发 <xref keyref="onStreamMessageError"/> 回调。</ph></p>
             <note props="electron">
                 <ul>
                     <li>该方法需要在 <xref keyref="joinChannelEx"/> 后调用。</li>

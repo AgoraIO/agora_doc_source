@@ -21,6 +21,7 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <note props="rn">
                 <ul>
+                    <li>该方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>LocalVideoStreamStateCapturing</codeph> (1) 之后调用。</li>
                     <li>一般情况下，App 默认开启前置摄像头，因此如果你的前置摄像头不支持闪光灯常开，直接使用该方法会返回 <xref keyref="switchCamera"/> 切换摄像头，再使用该方法。<codeph><ph keyref="false"/></codeph>。如果需要检查后置摄像头是否支持闪光灯常开，需要先使用 </li>
                     <li>在系统版本 15 的 iPad 上，即使 <xref keyref="isCameraTorchSupported"/> 返回 <xref keyref="true"/>，也可能因系统问题导致你无法通过 <xref keyref="setCameraTorchOn"/> 成功开启闪光灯。</li>
                 </ul>
@@ -28,6 +29,7 @@
             <note props="flutter">
                 <ul>
                     <li>该方法仅适用于 Android 和 iOS。</li>
+                    <li>该方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>localVideoStreamStateCapturing</codeph> (1) 之后调用。</li>
                     <li>一般情况下，App 默认开启前置摄像头，因此如果你的前置摄像头不支持闪光灯常开，直接使用该方法会返回 <xref keyref="switchCamera"/> 切换摄像头，再使用该方法。<codeph><ph keyref="false"/></codeph>。如果需要检查后置摄像头是否支持闪光灯常开，需要先使用 </li>
                     <li>在系统版本 15 的 iPad 上，即使 <xref keyref="isCameraTorchSupported"/> 返回 <xref keyref="true"/>，也可能因系统问题导致你无法通过 <xref keyref="setCameraTorchOn"/> 成功开启闪光灯。</li>
                 </ul>
@@ -35,6 +37,7 @@
             <note props="unity">
                 <ul>
                     <li>该方法仅适用于 Android 和 iOS。</li>
+                    <li>该方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1) 之后调用。</li>
                     <li>一般情况下，App 默认开启前置摄像头，因此如果你的前置摄像头不支持闪光灯常开，直接使用该方法会返回 <xref keyref="switchCamera"/> 切换摄像头，再使用该方法。<codeph><ph keyref="false"/></codeph>。如果需要检查后置摄像头是否支持闪光灯常开，需要先使用 </li>
                     <li>在系统版本 15 的 iPad 上，即使 <xref keyref="isCameraTorchSupported"/> 返回 <xref keyref="true"/>，也可能因系统问题导致你无法通过 <xref keyref="setCameraTorchOn"/> 成功开启闪光灯。</li>
                 </ul>

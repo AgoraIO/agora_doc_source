@@ -38,6 +38,7 @@
                     <li>如果你获取到的视频数据类型为 RGBA，SDK 不支持对 Alpha 通道的值进行处理。</li>
                     <li>建议你通过 C++ API 实现该回调。</li>
                     <li>由于框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
+                    <li>建议你在修改 <codeph>videoFrame</codeph> 中的参数时，需确保修改后的参数跟视频帧缓冲区中的视频帧实际情况保持一致，否则可能导致本地预览画面和对端的视频画面出现非预期的旋转、失真等问题。</li>
                 </ul>
             </note>
             <note props="rn">
@@ -45,12 +46,14 @@
                     <li>如果你获取到的视频数据类型为 RGBA，SDK 不支持对 Alpha 通道的值进行处理。</li>
                     <li>建议你通过 C++ API 实现该回调。</li>
                     <li>由于框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
+                    <li>建议你在修改 <codeph>videoFrame</codeph> 中的参数时，需确保修改后的参数跟视频帧缓冲区中的视频帧实际情况保持一致，否则可能导致本地预览画面和对端的视频画面出现非预期的旋转、失真等问题。</li>
                 </ul>
             </note>
             <note props="flutter">
                 <ul>
                     <li>如果你获取到的视频数据类型为 RGBA，SDK 不支持对 Alpha 通道的值进行处理。</li>
                     <li>由于框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</li>
+                    <li>建议你在修改 <codeph>videoFrame</codeph> 中的参数时，需确保修改后的参数跟视频帧缓冲区中的视频帧实际情况保持一致，否则可能导致本地预览画面和对端的视频画面出现非预期的旋转、失真等问题。</li>
                 </ul>
             </note>
             <note props="unity">Unity 仅支持将 YUV 格式的视频数据发回 SDK。请确保调用 <xref keyref="registerVideoFrameObserver"/> 方法注册原始视频帧观测器时，将 <codeph>mode</codeph> 设置为 <codeph>INTPTR</codeph>。</note>
@@ -68,8 +71,6 @@
                         <note>通过该回调获取的视频帧数据格式默认值如下：
                             <ul>
                                 <li>macOS：I420</li>
-                            </ul>
-                            <ul>
                                 <li>Windows：YUV420</li>
                             </ul>
                         </note>
@@ -89,8 +90,6 @@
                         <note>通过该回调获取的视频帧数据格式默认值如下：
                             <ul>
                                 <li>Android：I420</li>
-                            </ul>
-                            <ul>
                                 <li>iOS：I420</li>
                             </ul>
                         </note>
@@ -110,8 +109,6 @@
                         <note>通过该回调获取的视频帧数据格式默认值如下：
                             <ul>
                                 <li>Android：I420</li>
-                            </ul>
-                            <ul>
                                 <li>iOS：I420</li>
                                 <li>macOS：I420</li>
                                 <li>Windows：YUV420</li>

@@ -41,9 +41,27 @@
                     <dd>弃用： 该方法已废弃。请改用 <xref keyref="startScreenCaptureByDisplayId"/>。如果你需要在设备外接其他显示屏的情况下开启屏幕共享，强烈建议你使用 <xref keyref="startScreenCaptureByDisplayId"/>。</dd>
                 </dlentry>
             </dl>
-            <p props="electron">共享一个屏幕或该屏幕的部分区域。你需要在该方法中指定想要共享的屏幕区域。</p>
-            <p props="flutter">共享一个屏幕或该屏幕的部分区域。你需要在该方法中指定想要共享的屏幕区域。</p>
-            <p props="unity">共享一个屏幕或该屏幕的部分区域。你需要在该方法中指定想要共享的屏幕区域。</p>
+            <p props="electron">共享一个屏幕或该屏幕的部分区域。你需要在该方法中指定想要共享的屏幕区域。
+该方法在加入频道前后均可调用，区别如下：
+                <ul>
+                    <li>如果在加入频道前调用该方法，然后调用 <xref keyref="joinChannel2"/> 加入频道，并设置 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                    <li>如果在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 更新频道媒体选项，并设置 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                </ul>
+            </p>
+            <p props="flutter">共享一个屏幕或该屏幕的部分区域。你需要在该方法中指定想要共享的屏幕区域。
+该方法在加入频道前后均可调用，区别如下：
+                <ul>
+                    <li>如果在加入频道前调用该方法，然后调用 <xref keyref="joinChannel2"/> 加入频道，并设置 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                    <li>如果在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 更新频道媒体选项，并设置 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                </ul>
+            </p>
+            <p props="unity">共享一个屏幕或该屏幕的部分区域。你需要在该方法中指定想要共享的屏幕区域。
+该方法在加入频道前后均可调用，区别如下：
+                <ul>
+                    <li>如果在加入频道前调用该方法，然后调用 <xref keyref="joinChannel2"/> 加入频道，并设置 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                    <li>如果在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 更新频道媒体选项，并设置 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                </ul>
+            </p>
             <note props="electron">该方法仅适用于 Windows 平台。</note>
             <note props="flutter">该方法仅适用于 Windows 平台。</note>
             <note props="unity">该方法仅适用于 Windows 平台。</note>
@@ -94,14 +112,24 @@
             <p props="electron">
                 <ul>
                     <li>0: 方法调用成功。</li>
-                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2：传入的参数无效。</li>
+                            <li>-8：屏幕共享状态无效。可能因为你已经共享了其他屏幕或窗口。尝试调用 <xref keyref="stopScreenCapture"/> 停止当前共享，再重新开始共享屏幕。</li>
+                        </ul>
+                    </li>
                 </ul>
             </p>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
             <p props="unity">
                 <ul>
                     <li>0: 方法调用成功。</li>
-                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2：传入的参数无效。</li>
+                            <li>-8：屏幕共享状态无效。可能因为你已经共享了其他屏幕或窗口。尝试调用 <xref keyref="stopScreenCapture"/> 停止当前共享，再重新开始共享屏幕。</li>
+                        </ul>
+                    </li>
                 </ul>
             </p>
         </section>

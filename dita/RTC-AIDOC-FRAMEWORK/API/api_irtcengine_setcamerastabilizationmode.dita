@@ -19,26 +19,27 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <dl outputclass="since">
-                <dlentry props="rn">
-                    <dt>自从</dt>
-                    <dd>自从 v4.3.1</dd>
-                </dlentry>
-                <dlentry props="flutter">
-                    <dt>自从</dt>
-                    <dd>自从 v4.3.1</dd>
-                </dlentry>
-                <dlentry props="unity">
-                    <dt>自从</dt>
-                    <dd>自从 v4.3.1</dd>
-                </dlentry>
-            </dl>
             <p props="rn">摄像头防抖模式默认关闭，你需要调用该方法开启并设置合适的防抖模式。</p>
             <p props="flutter">摄像头防抖模式默认关闭，你需要调用该方法开启并设置合适的防抖模式。</p>
             <p props="unity">摄像头防抖模式默认关闭，你需要调用该方法开启并设置合适的防抖模式。</p>
-            <note props="rn">该方法仅适用于 iOS。</note>
-            <note props="flutter">该方法仅适用于 iOS。</note>
-            <note props="unity">该方法仅适用于 iOS。</note>
+            <note props="rn">该方法仅适用于 iOS。
+                <ul>
+                    <li>摄像头防抖只对视频分辨率大于 1280 × 720 以上的场景生效。</li>
+                    <li>开启摄像头防抖后，摄像头防抖等级越高，相机的视角就越小、相机时延就越大。为保障用户体验，建议你将 <codeph>mode</codeph> 参数设置为 <codeph>CameraStabilizationModeLevel1</codeph>。</li>
+                </ul>
+            </note>
+            <note props="flutter">该方法仅适用于 iOS。
+                <ul>
+                    <li>摄像头防抖只对视频分辨率大于 1280 × 720 以上的场景生效。</li>
+                    <li>开启摄像头防抖后，摄像头防抖等级越高，相机的视角就越小、相机时延就越大。为保障用户体验，建议你将 <codeph>mode</codeph> 参数设置为 <codeph>cameraStabilizationModeLevel1</codeph>。</li>
+                </ul>
+            </note>
+            <note props="unity">该方法仅适用于 iOS。
+                <ul>
+                    <li>摄像头防抖只对视频分辨率大于 1280 × 720 以上的场景生效。</li>
+                    <li>开启摄像头防抖后，摄像头防抖等级越高，相机的视角就越小、相机时延就越大。为保障用户体验，建议你将 <codeph>mode</codeph> 参数设置为 <codeph>CAMERA_STABILIZATION_MODE_LEVEL_1</codeph>。</li>
+                </ul>
+            </note>
         </section>
         <section id="timing" deliveryTarget="details" props="flutter rn unity">
             <title>调用时机</title>
