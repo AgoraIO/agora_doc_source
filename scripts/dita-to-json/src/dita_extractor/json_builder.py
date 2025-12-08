@@ -52,15 +52,17 @@ class JsonBuilder:
         Returns:
             api_changes 列表项
         """
-        # 从 name_groups 获取 parent_class
+        # 从 name_groups 获取 parent_class 和 keyword
         parent_class = self._get_parent_class("api", key)
+        keyword = self._get_keyword("api", key, platform)
         
         return {
             "diff": [],
             "parent_class": parent_class,
             "package_name": "",
             "details": {
-                "api_name": key,
+                "key": key,
+                "api_name": keyword,
                 "api_signature": parsed.signature,
                 "change_type": "create",
                 "change_desc": "",
@@ -87,12 +89,16 @@ class JsonBuilder:
         Returns:
             struct_changes 列表项
         """
+        # 从 name_groups 获取 keyword
+        keyword = self._get_keyword("struct", key, platform)
+        
         return {
             "diff": [],
             "parent_class": "",
             "package_name": "",
             "details": {
-                "struct_name": key,
+                "key": key,
+                "struct_name": keyword,
                 "struct_signature": parsed.signature,
                 "change_type": "create",
                 "change_desc": "",
@@ -115,12 +121,16 @@ class JsonBuilder:
         Returns:
             enum_changes 列表项
         """
+        # 从 name_groups 获取 keyword
+        keyword = self._get_keyword("enum", key, platform)
+        
         return {
             "diff": [],
             "parent_class": "",
             "package_name": "",
             "details": {
-                "enum_name": key,
+                "key": key,
+                "enum_name": keyword,
                 "change_type": "create",
                 "change_desc": "",
                 "shortdesc": parsed.shortdesc,
@@ -171,6 +181,31 @@ class JsonBuilder:
         category_data = self.name_groups.get(category, {})
         item_data = category_data.get(key, {})
         return item_data.get("parent_class", "")
+    
+    def _get_keyword(self, category: str, key: str, platform: str) -> str:
+        """从 name_groups 获取指定平台的 keyword
+        
+        Args:
+            category: 分类（api/struct/enum）
+            key: 项目的 key
+            platform: 平台名称（json_platform）
+            
+        Returns:
+            keyword 或 key（找不到时返回 key 本身）
+        """
+        category_data = self.name_groups.get(category, {})
+        item_data = category_data.get(key, {})
+        
+        if not item_data:
+            logger.warning(f"在 name_groups 中找不到 {category}/{key}")
+            return key
+        
+        keyword = item_data.get(platform)
+        if keyword:
+            return keyword
+        
+        logger.warning(f"在 name_groups 中找不到 {category}/{key} 对应平台 {platform} 的 keyword")
+        return key
     
     def _build_detailed_desc(self, detailed_desc: Optional[DetailedDesc]) -> Dict[str, str]:
         """构建 detailed_desc 对象"""
