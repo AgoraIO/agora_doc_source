@@ -73,6 +73,7 @@ class JsonBuilder:
                 "scenarios": parsed.scenarios or "",
                 "related": parsed.related or "",
                 "timing": parsed.timing or "",
+                "exception": parsed.exception or "",
                 "parameters": self._build_parameters(parsed.parameters),
                 "return_value": parsed.return_value or "",
             }

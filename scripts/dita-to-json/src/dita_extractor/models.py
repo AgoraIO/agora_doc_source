@@ -56,6 +56,7 @@ class ParsedApi:
     scenarios: Optional[str] = None
     related: Optional[str] = None
     timing: Optional[str] = None
+    exception: Optional[str] = None
     parameters: List[ParameterInfo] = field(default_factory=list)
     return_value: Optional[str] = None
     is_callback: bool = False
