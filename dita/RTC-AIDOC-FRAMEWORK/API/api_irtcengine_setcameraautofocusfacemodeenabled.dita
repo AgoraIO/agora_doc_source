@@ -25,6 +25,12 @@
             <note props="flutter">该方法仅适用于 Android 和 iOS。</note>
             <note props="unity">该方法仅适用于 Android 和 iOS。</note>
         </section>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>调用时机</title>
+            <p props="rn">该方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>LocalVideoStreamStateCapturing</codeph> (1) 之后调用。</p>
+            <p props="flutter">该方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>localVideoStreamStateCapturing</codeph> (1) 之后调用。</p>
+            <p props="unity">该方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1) 之后调用。</p>
+        </section>
         <section id="parameters" deliveryTarget="details" props="flutter rn unity">
             <title>参数</title>
             <parml>

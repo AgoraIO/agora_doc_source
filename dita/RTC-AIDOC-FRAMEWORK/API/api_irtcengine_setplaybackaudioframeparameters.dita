@@ -35,10 +35,10 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="electron">SDK 会根据该采样间隔触发 <xref keyref="onPlaybackAudioFrame"/> 回调。</p>
-            <p props="rn">SDK 会根据该采样间隔触发 <xref keyref="onPlaybackAudioFrame"/> 回调。</p>
-            <p props="flutter">SDK 会根据该采样间隔触发 <xref keyref="onPlaybackAudioFrame"/> 回调。</p>
-            <p props="unity">SDK 会根据该采样间隔触发 <xref keyref="onPlaybackAudioFrame"/> 回调。</p>
+            <p props="electron">SDK 会通过该方法中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算出采样间隔，计算公式为采样间隔 = <codeph>samplesPerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。请确保采样间隔不小于 0.01 秒。SDK 会根据该采样间隔触发 <xref keyref="onPlaybackAudioFrame"/> 回调。</p>
+            <p props="rn">SDK 会通过该方法中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算出采样间隔，计算公式为采样间隔 = <codeph>samplesPerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。请确保采样间隔不小于 0.01 秒。SDK 会根据该采样间隔触发 <xref keyref="onPlaybackAudioFrame"/> 回调。</p>
+            <p props="flutter">SDK 会通过该方法中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算出采样间隔，计算公式为采样间隔 = <codeph>samplesPerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。请确保采样间隔不小于 0.01 秒。SDK 会根据该采样间隔触发 <xref keyref="onPlaybackAudioFrame"/> 回调。</p>
+            <p props="unity">SDK 会通过该方法中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算出采样间隔，计算公式为采样间隔 = <codeph>samplesPerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。请确保采样间隔不小于 0.01 秒。SDK 会根据该采样间隔触发 <xref keyref="onPlaybackAudioFrame"/> 回调。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
             <title>调用时机</title>

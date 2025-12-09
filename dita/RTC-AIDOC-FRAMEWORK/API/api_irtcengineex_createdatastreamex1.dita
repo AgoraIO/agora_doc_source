@@ -24,6 +24,15 @@
                 </dlentry>
             </dl>
             <p props="unity">你可以调用该方法创建数据流并提高数据传输的可靠性和有序性。</p>
+            <note props="unity">在 <xref keyref="IRtcEngine"/> 生命周期内，每个用户最多只能创建 5 个数据流。离开频道时数据流会被销毁，如需使用需要重新创建数据流。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="unity">
+            <title>调用时机</title>
+            <p props="unity">该方法需要在 <xref keyref="joinChannelEx"/> 后调用。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="unity">
+            <title>相关回调</title>
+            <p props="unity">将 <codeph>reliable</codeph> 设置为 <xref keyref="true"/> 后，如果接收方 5 秒没有收到发送方所发送的数据，会触发 <xref keyref="onStreamMessageError"/> 回调并获得相应报错信息。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="unity">
             <title>参数</title>
@@ -56,6 +65,15 @@
                     <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
             </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>返回值</title>
+            <p props="unity">
+                <ul>
+                    <li>0: 创建数据流成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
         </section>
     </refbody>
 </reference>

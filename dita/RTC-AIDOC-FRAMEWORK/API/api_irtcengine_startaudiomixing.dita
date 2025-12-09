@@ -18,6 +18,27 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="unity">该方法支持播放的音频文件格式见 [RTC SDK 支持播放哪些格式的音频文件](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。如果本地音乐文件不存在、文件格式不支持或无法访问在线音乐文件 URL，则 SDK 会报告 AUDIO_MIXING_REASON_CAN_NOT_OPEN。</p>
+            <note props="unity">
+                <ul>
+                    <li>使用该方法播放时长较短的音效文件可能会导致播放失败。如需播放音效文件，建议使用 <xref keyref="playEffect3"/>。</li>
+                    <li>如需多次调用该方法，请确保调用间隔大于 500 ms。</li>
+                    <li>在 Android 平台上调用该方法时，请注意如下事项：
+                        <ul>
+                            <li>请确保使用 Android 4.2 或以上设备，且 API Level 不低于 16。</li>
+                            <li>如果播放的是在线音乐文件，建议不要使用重定向地址。重定向地址在某些机型上可能无法打开。</li>
+                            <li>如果在模拟器上调用该方法，则请确保音乐文件在 <codeph>/sdcard/</codeph> 目录下，且格式为 MP3。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="unity">
+            <title>调用时机</title>
+            <p props="unity">该方法在加入频道前后均可调用。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="unity">
+            <title>相关回调</title>
+            <p props="unity">调用该方法成功播放音乐文件后，本地会触发 <xref keyref="onAudioMixingStateChanged"/>(<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>) 回调。播放结束后，本地会触发 <xref keyref="onAudioMixingStateChanged"/>(<codeph>AUDIO_MIXING_STATE_STOPPED</codeph>) 回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="unity">
             <title>参数</title>
@@ -47,6 +68,27 @@
                     </pd>
                 </plentry>
             </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>返回值</title>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败：
+                        <ul>
+                            <li>-1：一般性的错误（未明确归类）。</li>
+                            <li>-2：设置了无效的参数。</li>
+                            <li>-3：SDK 尚未准备好：
+                                <ul>
+                                    <li>请检查是否已开启音频模块。</li>
+                                    <li>请检查程序集完整性。</li>
+                                    <li><xref keyref="IRtcEngine"/> 初始化失败。请重新初始化 <xref keyref="IRtcEngine"/>。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
         </section>
     </refbody>
 </reference>

@@ -24,6 +24,34 @@
             <p props="rn">成功调用该方法后，SDK 会以调用该方法的时刻作为起点，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告视频帧渲染的相关信息。</p>
             <p props="flutter">成功调用该方法后，SDK 会以调用该方法的时刻作为起点，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告视频帧渲染的相关信息。</p>
             <p props="unity">成功调用该方法后，SDK 会以调用该方法的时刻作为起点，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告视频帧渲染的相关信息。</p>
+            <note props="electron">
+                <ul>
+                    <li>如果你未调用该方法，SDK 默认以调用 <xref keyref="joinChannel2"/> 加入频道的时刻为起始点开始打点，自动开始跟踪视频的渲染事件。你可以根据实际业务场景，在合适的时机调用该方法，进行自定义打点。</li>
+                    <li>离开当前频道后，SDK 会自动重置该时间点为下一次加入频道的时刻。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>如果你未调用该方法，SDK 默认以调用 <xref keyref="joinChannel2"/> 加入频道的时刻为起始点开始打点，自动开始跟踪视频的渲染事件。你可以根据实际业务场景，在合适的时机调用该方法，进行自定义打点。</li>
+                    <li>离开当前频道后，SDK 会自动重置该时间点为下一次加入频道的时刻。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>如果你未调用该方法，SDK 默认以调用 <xref keyref="joinChannel2"/> 加入频道的时刻为起始点开始打点，自动开始跟踪视频的渲染事件。你可以根据实际业务场景，在合适的时机调用该方法，进行自定义打点。</li>
+                    <li>离开当前频道后，SDK 会自动重置该时间点为下一次加入频道的时刻。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>如果你未调用该方法，SDK 默认以调用 <xref keyref="joinChannel2"/> 加入频道的时刻为起始点开始打点，自动开始跟踪视频的渲染事件。你可以根据实际业务场景，在合适的时机调用该方法，进行自定义打点。</li>
+                    <li>离开当前频道后，SDK 会自动重置该时间点为下一次加入频道的时刻。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>声网推荐你将该方法和 App 中的 UI 设置（按钮、滑动条等）结合使用，用于获取符合终端用户实际体验的首帧出图耗时的场景。例如：在终端用户在点击 加入频道 按钮的时刻调用该方法进行打点，然后通过 <codeph>onVideoRenderingTracingResult</codeph> 回调获取视频帧渲染过程中的各阶段耗时，从而针对各阶段耗时进行专项优化。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
             <title>参数</title>

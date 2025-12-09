@@ -18,6 +18,12 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="unity">你可以调用该方法创建数据流并提高数据传输的可靠性和有序性。</p>
+            <note props="unity">如你需要更加全面的低延时、高并发、可扩展的实时消息及状态同步解决方案，推荐使用[实时消息](https://doc.shengwang.cn/doc/rtm2/unity/landing-page)。
+在 <xref keyref="IRtcEngine"/> 生命周期内，每个用户最多只能创建 5 个数据流。离开频道时数据流会被销毁，如需使用需要重新创建数据流。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="unity">
+            <title>调用时机</title>
+            <p props="unity">该方法在加入频道前后均可调用。</p>
         </section>
         <section id="related" deliveryTarget="details" props="unity">
             <title>相关回调</title>
@@ -50,6 +56,15 @@
                     </pd>
                 </plentry>
             </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>返回值</title>
+            <p props="unity">
+                <ul>
+                    <li>0: 创建数据流成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
         </section>
     </refbody>
 </reference>
