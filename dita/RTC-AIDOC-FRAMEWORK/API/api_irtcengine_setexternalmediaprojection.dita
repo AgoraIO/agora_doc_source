@@ -32,6 +32,15 @@
             <note props="unity">该方法仅适用于 Android。
 在调用该方法前，必须先申请 <codeph>MediaProjection</codeph> 权限。</note>
         </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>如果你具备自行申请 <codeph>MediaProjection</codeph> 的开发能力，可以直接使用该 <codeph>MediaProjection</codeph> 取代 SDK 申请的 <codeph>MediaProjection</codeph> 。以下列出两种使用场景：
+                <ul>
+                    <li>在定制系统的设备上，可避免系统弹窗（即需要用户授予屏幕采集权限），直接开始采集屏幕视频流。</li>
+                    <li>一个屏幕共享进程中存在一个或多个子进程，避免在子进程中自行创建对象的过程出错而导致采集失败。</li>
+                </ul>
+            </p>
+        </section>
         <section id="timing" deliveryTarget="details" props="flutter rn unity">
             <title>调用时机</title>
             <p props="rn">该方法需要在 <xref keyref="startScreenCapture"/> 之前调用。</p>

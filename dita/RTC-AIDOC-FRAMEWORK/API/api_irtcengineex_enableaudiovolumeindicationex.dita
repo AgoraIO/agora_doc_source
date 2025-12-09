@@ -33,13 +33,25 @@
                 <codeblock props="unity" outputclass="language-csharp">public abstract int EnableAudioVolumeIndicationEx(int interval, int smooth, bool reportVad, RtcConnection connection);</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">该方法允许 SDK 定期向 App 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。</p>
+            <p props="rn">该方法允许 SDK 定期向 App 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。</p>
+            <p props="flutter">该方法允许 SDK 定期向 App 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。</p>
+            <p props="unity">该方法允许 SDK 定期向 App 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。</p>
+        </section>
         <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
             <title>调用时机</title>
             <p props="electron">该方法需要在 <xref keyref="joinChannelEx"/> 之后调用。</p>
             <p props="rn">该方法需要在 <xref keyref="joinChannelEx"/> 之后调用。</p>
             <p props="flutter">该方法需要在 <xref keyref="joinChannelEx"/> 之后调用。</p>
             <p props="unity">该方法需要在 <xref keyref="joinChannelEx"/> 之后调用。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>相关回调</title>
+            <p props="electron">成功调用该方法、且频道内存在发流用户时，SDK 会按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调。</p>
+            <p props="rn">成功调用该方法、且频道内存在发流用户时，SDK 会按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调。</p>
+            <p props="flutter">成功调用该方法、且频道内存在发流用户时，SDK 会按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调。</p>
+            <p props="unity">成功调用该方法、且频道内存在发流用户时，SDK 会按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
             <title>参数</title>

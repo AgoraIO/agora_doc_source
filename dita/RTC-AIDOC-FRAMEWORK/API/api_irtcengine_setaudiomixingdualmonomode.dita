@@ -29,6 +29,15 @@
             <note props="flutter">该方法仅适用于双声道的音频文件。</note>
             <note props="unity">该方法仅适用于双声道的音频文件。</note>
         </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>在 KTV 场景中，音频文件的左声道存储了伴奏，右声道存储了原唱的歌声。你可以根据实际需求进行设置：
+                <ul>
+                    <li>如果你只需听伴奏，则用该方法设置音频文件的声道模式为左声道模式。</li>
+                    <li>如果你需要同时听伴奏和原唱，则调用该方法设置声道模式为混合模式。</li>
+                </ul>
+            </p>
+        </section>
         <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
             <title>调用时机</title>
             <p props="electron">该方法需要在 <xref keyref="startAudioMixing2"/> 之后，并收到 `onAudioMixingStateChanged``(AudioMixingStatePlaying)` 回调后调用。</p>

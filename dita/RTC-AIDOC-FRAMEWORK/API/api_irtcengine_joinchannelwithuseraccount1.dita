@@ -19,6 +19,26 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="unity">调用该方法前，如果你未调用 <xref keyref="registerLocalUserAccount"/> 注册一个 User Account，调用该方法加入频道时，SDK 会自动为你创建一个 User Account。先调用 <xref keyref="registerLocalUserAccount"/> 方法注册 Account，再调用此方法加入频道，可以缩短进入频道的时间。
 用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <codeph>mute</codeph> 方法实现。</p>
+            <note props="unity">为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。
+                <ul>
+                    <li>该方法仅支持用户一次加入一个频道。</li>
+                    <li>使用不同 App ID 的 App 不能互通。</li>
+                    <li>加入频道前，请确保用于生成 Token 的 App ID 和调用 <xref keyref="initialize"/> 方法初始化引擎时使用的是同一个 App ID，否则使用 Token 加入频道会失败。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="unity">
+            <title>调用时机</title>
+            <p props="unity">该方法需要在 <xref keyref="initialize"/> 之后再调用。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="unity">
+            <title>相关回调</title>
+            <p props="unity">成功加入频道后，会触发以下回调：
+                <ul>
+                    <li>本地：<xref keyref="onLocalUserRegistered"/>、<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
+                    <li>远端：通信场景下的用户和直播场景下的主播加入频道后，远端会分别触发 <xref keyref="onUserJoined"/> 和 <xref keyref="onUserInfoUpdated"/> 回调。</li>
+                </ul>
+            </p>
         </section>
         <section id="parameters" deliveryTarget="details" props="unity">
             <title>参数</title>
@@ -47,6 +67,25 @@
                         </ul><codeph><ph keyref="NULL"/></codeph>。以下为支持的字符集范围（共 89 个字符）：</pd>
                 </plentry>
             </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>返回值</title>
+            <p props="unity">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2：传入的参数无效。例如，使用了不合法的 Token，<codeph>uid</codeph> 参数未设置为整型，或 <xref keyref="ChannelMediaOptions"/> 成员值不合法。你需要填入有效的参数，重新加入频道。</li>
+                            <li>-3：<xref keyref="IRtcEngine"/> 对象初始化失败。你需要重新初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-7：<xref keyref="IRtcEngine"/> 对象尚未初始化。你需要在调用该方法前成功初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                            <li>-8：<xref keyref="IRtcEngine"/> 对象内部状态错误。可能的原因是：调用 <xref keyref="startEchoTest3"/> 开始通话回路测试后，未调用 <xref keyref="stopEchoTest"/> 停止测试就调用该方法加入频道。你需要在该方法前调用 <xref keyref="stopEchoTest"/>。</li>
+                            <li>-17：加入频道被拒绝。可能的原因是用户已经在频道中。建议通过 <xref keyref="onConnectionStateChanged"/> 回调判断用户是否在频道中。除收到 <codeph>CONNECTION_STATE_DISCONNECTED</codeph>(1) 状态外，不要再次调用该方法加入频道。</li>
+                            <li>-102：频道名无效。你需要在 <codeph>channelId</codeph> 中填入有效的频道名，重新加入频道。</li>
+                            <li>-121：用户 ID 无效。你需要在 <codeph>uid</codeph> 中填入有效的用户 ID，重新加入频道。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
         </section>
     </refbody>
 </reference>

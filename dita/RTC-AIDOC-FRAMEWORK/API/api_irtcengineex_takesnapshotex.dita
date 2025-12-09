@@ -30,13 +30,53 @@
                 <codeblock props="unity" outputclass="language-csharp">public abstract int TakeSnapshotEx(RtcConnection connection, uint uid, string filePath);</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">该方法用于对指定用户的视频流进行截图，生成一张 JPG 格式的图片，并保存至指定的路径。</p>
+            <p props="rn">该方法用于对指定用户的视频流进行截图，生成一张 JPG 格式的图片，并保存至指定的路径。</p>
+            <p props="flutter">该方法用于对指定用户的视频流进行截图，生成一张 JPG 格式的图片，并保存至指定的路径。</p>
+            <p props="unity">该方法用于对指定用户的视频流进行截图，生成一张 JPG 格式的图片，并保存至指定的路径。</p>
+            <note props="electron">
+                <ul>
+                    <li>该方法是异步操作，调用返回时 SDK 并没有真正获取截图。</li>
+                    <li>该方法用于本地视频截图时，是对 <xref keyref="ChannelMediaOptions"/> 中指定发布的视频流进行截图。</li>
+                    <li>如果用户的视频经过前处理，例如，添加了水印或美颜，生成的截图会包含前处理效果。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>调用该方法返回时 SDK 并没有真正获取截图。</li>
+                    <li>该方法用于本地视频截图时，是对 <xref keyref="ChannelMediaOptions"/> 中指定发布的视频流进行截图。</li>
+                    <li>如果用户的视频经过前处理，例如，添加了水印或美颜，生成的截图会包含前处理效果。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法是异步操作，调用返回时 SDK 并没有真正获取截图。</li>
+                    <li>该方法用于本地视频截图时，是对 <xref keyref="ChannelMediaOptions"/> 中指定发布的视频流进行截图。</li>
+                    <li>如果用户的视频经过前处理，例如，添加了水印或美颜，生成的截图会包含前处理效果。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法是异步操作，调用返回时 SDK 并没有真正获取截图。</li>
+                    <li>该方法用于本地视频截图时，是对 <xref keyref="ChannelMediaOptions"/> 中指定发布的视频流进行截图。</li>
+                    <li>如果用户的视频经过前处理，例如，添加了水印或美颜，生成的截图会包含前处理效果。</li>
+                </ul>
+            </note>
+        </section>
         <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
             <title>调用时机</title>
             <p props="electron">该方法需要在 <xref keyref="joinChannelEx"/> 后调用。</p>
             <p props="rn">该方法需要在 <xref keyref="joinChannelEx"/> 后调用。</p>
             <p props="flutter">该方法需要在 <xref keyref="joinChannelEx"/> 后调用。</p>
             <p props="unity">该方法需要在 <xref keyref="joinChannelEx"/> 后调用。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>相关回调</title>
+            <p props="electron">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功和获取截图的详情。</p>
+            <p props="rn">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功和获取截图的详情。</p>
+            <p props="flutter">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功和获取截图的详情。</p>
+            <p props="unity">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功和获取截图的详情。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
             <title>参数</title>

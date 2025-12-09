@@ -46,6 +46,16 @@
                 </ul>
             </note>
         </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>在屏幕共享场景下，你需要调用该方法开始采集屏幕视频流。
+SDK 支持一系列开启屏幕采集的方法，它们之间存在以下区别，请根据实际场景选用：
+                <ul>
+                    <li><codeph>startScreenCaptureByDisplayId</codeph>/<codeph>startScreenCaptureByWindowId</codeph>：仅支持采集单个屏幕或窗口，适合仅共享单个屏幕的场景。</li>
+                    <li><codeph>startScreenCaptureBySourceType</codeph>：支持指定多个视频源，以采集多路屏幕共享流，用于本地合图或者多频道发布场景。</li>
+                </ul>
+            </p>
+        </section>
         <section id="timing" deliveryTarget="details" props="electron flutter unity">
             <title>调用时机</title>
             <p props="electron">该方法在加入频道前后均可调用，区别如下：
