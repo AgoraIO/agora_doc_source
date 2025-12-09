@@ -83,6 +83,7 @@ class DitaParser:
         scenarios = self._extract_section_content(root, "scenario")
         related = self._extract_section_content(root, "related")
         timing = self._extract_section_content(root, "timing")
+        exception = self._extract_section_content(root, "exception")
         restrictions = self._extract_section_content(root, "restriction")
         parameters = self._extract_parameters(root)
         return_value = self._extract_return_value(root)
@@ -105,6 +106,7 @@ class DitaParser:
             scenarios=scenarios,
             related=related,
             timing=timing,
+            exception=exception,
             parameters=parameters,
             return_value=return_value,
             is_callback=is_callback,
