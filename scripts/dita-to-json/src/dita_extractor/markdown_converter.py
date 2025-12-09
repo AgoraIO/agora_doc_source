@@ -149,6 +149,12 @@ class MarkdownConverter:
             # 没有 keyref，返回文本内容
             return f"`{self._convert_children(element)}`"
         elif tag == "ph":
+            # 处理 conkeyref 属性（如 <ph conkeyref="xxx/yyy"/>）
+            conkeyref = element.get("conkeyref")
+            if conkeyref and self.conkeyref_resolver:
+                resolved = self.conkeyref_resolver(conkeyref)
+                if resolved is not None:
+                    element = resolved
             # 处理 keyref 属性（如 <ph keyref="true"/>）
             keyref = element.get("keyref")
             if keyref:
