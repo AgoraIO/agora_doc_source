@@ -235,6 +235,21 @@ class DitaParser:
         if section is None:
             return None
         
+        # 检查 section 的 props 是否匹配当前平台
+        section_props = section.get("props")
+        if not self._matches_platform(section_props):
+            return None
+        
+        # 处理 section 级别的 conkeyref
+        section_conkeyref = section.get("conkeyref")
+        if section_conkeyref:
+            resolved = self._resolve_conkeyref(section_conkeyref)
+            if resolved is not None:
+                section = resolved
+            else:
+                # conkeyref 解析失败，返回 None
+                return None
+        
         result = DetailedDesc()
         
         # 提取 since/deprecated
@@ -291,10 +306,21 @@ class DitaParser:
         notes: List[str] = []
         for note in section.findall("note"):
             props = note.get("props")
-            if self._matches_platform(props):
-                content = self.converter.convert(note)
-                if content:
-                    notes.append(content)
+            if not self._matches_platform(props):
+                continue
+            
+            # 处理 note 级别的 conkeyref
+            note_conkeyref = note.get("conkeyref")
+            if note_conkeyref:
+                resolved_note = self._resolve_conkeyref(note_conkeyref)
+                if resolved_note is not None:
+                    note = resolved_note
+                else:
+                    continue
+            
+            content = self.converter.convert(note)
+            if content:
+                notes.append(content)
         
         if notes:
             result.note = "\n".join(notes).strip()
@@ -318,6 +344,16 @@ class DitaParser:
         section_props = section.get("props")
         if not self._matches_platform(section_props):
             return None
+        
+        # 处理 section 级别的 conkeyref
+        section_conkeyref = section.get("conkeyref")
+        if section_conkeyref:
+            resolved = self._resolve_conkeyref(section_conkeyref)
+            if resolved is not None:
+                section = resolved
+            else:
+                # conkeyref 解析失败，返回 None
+                return None
         
         parts: List[str] = []
         
@@ -353,6 +389,15 @@ class DitaParser:
         section_props = section.get("props")
         if not self._matches_platform(section_props):
             return []
+        
+        # 处理 section 级别的 conkeyref
+        section_conkeyref = section.get("conkeyref")
+        if section_conkeyref:
+            resolved = self._resolve_conkeyref(section_conkeyref)
+            if resolved is not None:
+                section = resolved
+            else:
+                return []
         
         parml = section.find("parml")
         if parml is None:
@@ -433,6 +478,15 @@ class DitaParser:
         section_props = section.get("props")
         if not self._matches_platform(section_props):
             return None
+        
+        # 处理 section 级别的 conkeyref
+        section_conkeyref = section.get("conkeyref")
+        if section_conkeyref:
+            resolved = self._resolve_conkeyref(section_conkeyref)
+            if resolved is not None:
+                section = resolved
+            else:
+                return None
         
         parts: List[str] = []
         
