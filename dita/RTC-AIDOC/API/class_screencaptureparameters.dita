@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencaptureparameters">
     <title><ph keyref="ScreenCaptureParameters"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置屏幕共享的参数。</ph><ph id="shortdesc" props="mac">屏幕共享配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置屏幕共享的参数。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -18,23 +18,9 @@
   unsigned int highLightColor;
   bool enableHighLight;
 };</codeblock>
-                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters: NSObject
-@property (assign, nonatomic) CGSize dimensions;
-@property (assign, nonatomic) NSInteger frameRate;
-@property (assign, nonatomic) NSInteger bitrate;
-@property(assign, nonatomic) BOOL captureMouseCursor;
-@property(assign, nonatomic) BOOL windowFocus;
-@property(copy, nonatomic) NSArray* _Nullable excludeWindowList;
-@property(assign, nonatomic) BOOL highLighted;
-@property(strong, nonatomic) COLOR_CLASS* _Nullable highLightColor;
-@property(assign, nonatomic) NSUInteger highLightWidth;
-@end</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="mac">
-            <p props="mac">用于设置屏幕共享的视频编码参数。</p>
-        </section>
-        <section id="parameters" deliveryTarget="details" props="cpp mac">
+        <section id="parameters" deliveryTarget="details" props="cpp">
             <title>属性</title>
             <parml>
                 <plentry props="cpp">
@@ -107,80 +93,6 @@
                             <li><xref keyref="true"/>：显示边框。</li>
                             <li><xref keyref="false"/>：（默认）不显示边框。</li>
                         </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>dimensions</pt>
-                    <pd>
-                        <note>在文档共享场景（<codeph>AgoraScreenScenarioDocument</codeph>）中设置编码分辨率时，建议：
-                            <ul>
-                                <li>若需最佳画质，建议编码分辨率与采集分辨率一致。</li>
-                                <li>若需在画质、带宽和系统性能之间取得平衡：
-                                    <ul>
-                                        <li>当采集分辨率大于 1920 × 1080 时，编码分辨率建议不低于 1920 × 1080。</li>
-                                        <li>当采集分辨率小于 1920 × 1080 时，编码分辨率建议不低于 1280 × 720。</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </note><ph>屏幕共享视频流的编码分辨率。若屏幕尺寸与该参数不同，SDK 会采用以下编码策略。例如将 <codeph>dimensions</codeph> 设置为 1920 × 1080：</ph>
-                        <ul>
-                            <li>如果屏幕尺寸小于 <codeph>dimensions</codeph>，如 1000 × 1000 像素，SDK 会使用屏幕尺寸（即 1000 × 1000 像素）进行编码。</li>
-                            <li>如果屏幕尺寸大于 <codeph>dimensions</codeph>，如 2000 × 1500 像素，SDK 会在保持屏幕宽高比（4:3）的前提下，使用不超过 <codeph>dimensions</codeph> 的最大值进行编码，即 1440 × 1080。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>frameRate</pt>
-                    <pd>共享区域的帧率（fps）。默认值为 5。
-                        <note>不建议设置超过 15 的帧率。</note>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>bitrate</pt>
-                    <pd>共享区域的码率（Kbps）。默认值为 0，表示 SDK 会根据当前屏幕的分辨率计算码率。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>captureMouseCursor</pt>
-                    <pd>
-                        <note>由于 macOS 系统限制，在屏幕共享时设置为 <xref keyref="false"/> 无效（共享窗口时不受影响）。</note><ph>是否在屏幕共享中采集鼠标：</ph>
-                        <ul>
-                            <li><xref keyref="true"/>：（默认）采集鼠标。</li>
-                            <li><xref keyref="false"/>：不采集鼠标。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>windowFocus</pt>
-                    <pd>
-                        <note>由于 macOS 系统限制，设置该参数置顶窗口时，如果当前应用有多个窗口，仅主窗口会被置顶。</note><ph>调用 <codeph>startScreenCaptureByWindowId</codeph> 方法共享窗口时，是否将该窗口置顶：</ph>
-                        <ul>
-                            <li><xref keyref="true"/>：将窗口置顶。</li>
-                            <li><xref keyref="false"/>：（默认）不置顶。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>excludeWindowList</pt>
-                    <pd>要屏蔽的窗口 ID 列表。调用 <codeph>startScreenCaptureByDisplayId</codeph> 开始屏幕共享时，可使用该参数屏蔽指定窗口。调用 <codeph>updateScreenCaptureParameters</codeph> 更新屏幕共享配置时，也可动态屏蔽指定窗口。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>highLighted</pt>
-                    <pd>
-                        <note>当共享的是窗口或屏幕的一部分时，若设置为 <xref keyref="true"/>，SDK 会在整个窗口或屏幕周围添加边框。</note><ph>是否在共享的窗口或屏幕周围添加边框：</ph>
-                        <ul>
-                            <li><xref keyref="true"/>：添加边框。</li>
-                            <li><xref keyref="false"/>：（默认）不添加边框。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>highLightColor</pt>
-                    <pd>边框颜色。在 macOS 上，<codeph>COLOR_CLASS</codeph> 表示 <codeph>NSColor</codeph>。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>highLightWidth</pt>
-                    <pd>边框宽度（像素）。默认值为 5，取值范围为 (0, 50]。
-                        <note>仅当 <codeph>highLighted</codeph> 设置为 <xref keyref="true"/> 时该参数才生效。</note>
                     </pd>
                 </plentry>
             </parml>
