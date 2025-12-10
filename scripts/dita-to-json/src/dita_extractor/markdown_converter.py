@@ -102,6 +102,12 @@ class MarkdownConverter:
         # 将多个连续换行合并为单个换行
         text = re.sub(r"\n{2,}", "\n", text)
         
+        # 合并连续的代码引用：`foo``bar` -> `foobar`
+        # 只处理同一行内的情况，避免误删多行代码块的边界（```）
+        # 使用负向断言确保不匹配三反引号代码块
+        # (?<!`) 确保前面不是反引号，(?!`) 确保后面不是反引号
+        text = re.sub(r"(?<!`)`[ \t]*`(?!`)", "", text)
+        
         # 移除开头和结尾的空白
         return text.strip()
     
@@ -527,6 +533,10 @@ class MarkdownConverter:
         notes: List[str] = []
         
         for note in element.iter("note"):
+            # 检查 note 及其祖先元素的 props 是否匹配当前平台
+            if not self._check_ancestor_props(note, element):
+                continue
+            
             content = self._convert_children(note).strip()
             if content:
                 notes.append(content)
@@ -549,6 +559,10 @@ class MarkdownConverter:
         for dl in element.iter("dl"):
             outputclass = dl.get("outputclass", "")
             if outputclass in ("deprecated", "since"):
+                # 检查 dl 及其祖先元素的 props 是否匹配当前平台
+                if not self._check_ancestor_props(dl, element):
+                    continue
+                
                 # 提取 dlentry 中的 dt 和 dd
                 for dlentry in dl.findall("dlentry"):
                     dt = dlentry.find("dt")
@@ -567,4 +581,22 @@ class MarkdownConverter:
         if results:
             return "\n".join(results)
         return None
+    
+    def _check_ancestor_props(self, target: etree._Element, root: etree._Element) -> bool:
+        """检查目标元素及其祖先元素的 props 是否都匹配当前平台
+        
+        Args:
+            target: 目标元素
+            root: 根元素（停止检查的边界）
+            
+        Returns:
+            如果所有祖先的 props 都匹配（或没有 props），返回 True
+        """
+        current = target
+        while current is not None and current != root:
+            props = current.get("props")
+            if not matches_platform(props, self.props_platform):
+                return False
+            current = current.getparent()
+        return True
 
