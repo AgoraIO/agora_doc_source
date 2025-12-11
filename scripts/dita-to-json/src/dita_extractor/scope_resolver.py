@@ -145,7 +145,7 @@ class ScopeResolver:
         return None
     
     def _resolve_from_datatype(self, result: ScopeResult) -> None:
-        """从 datatype 文件提取普通类和枚举类 key"""
+        """从 datatype 文件提取普通类和枚举类 key，以及类的成员方法"""
         datatype_path = get_datatype_path(self.base_dir)
         
         if not datatype_path.exists():
@@ -159,18 +159,29 @@ class ScopeResolver:
             logger.error(f"解析 datatype 失败: {datatype_path}, 错误: {e}")
             return
         
-        # 查找 class section
+        # 查找 class section，同时提取类和成员方法
         class_section = root.find(".//section[@id='class']")
         if class_section is not None:
-            self._extract_datatype_keys(class_section, result.class_keys)
+            self._extract_datatype_keys(class_section, result.class_keys, result.api_keys)
         
-        # 查找 enum section
+        # 查找 enum section（枚举没有成员方法）
         enum_section = root.find(".//section[@id='enum']")
         if enum_section is not None:
-            self._extract_datatype_keys(enum_section, result.enum_keys)
+            self._extract_datatype_keys(enum_section, result.enum_keys, None)
     
-    def _extract_datatype_keys(self, section: etree._Element, keys: List[str]) -> None:
-        """从 datatype section 提取 key"""
+    def _extract_datatype_keys(
+        self, 
+        section: etree._Element, 
+        keys: List[str],
+        method_keys: List[str] | None = None
+    ) -> None:
+        """从 datatype section 提取 key
+        
+        Args:
+            section: datatype section 元素
+            keys: 存放类/枚举 key 的列表
+            method_keys: 存放成员方法 key 的列表（可选，仅用于 class section）
+        """
         for ul in section.findall("ul"):
             # 检查 ul 的 props 是否匹配当前平台
             props = ul.get("props")
@@ -179,16 +190,51 @@ class ScopeResolver:
             
             # 提取 ul 中的所有 xref keyref
             for li in ul.findall("li"):
+                # 检查 li 的 props
+                li_props = li.get("props")
+                if not matches_platform(li_props, self.props_platform):
+                    continue
+                
+                # 提取类/枚举 key
                 xref = li.find("xref")
                 if xref is not None:
                     keyref = xref.get("keyref")
                     if keyref:
-                        # 检查 li 和 xref 的 props
-                        li_props = li.get("props")
                         xref_props = xref.get("props")
-                        
-                        if matches_platform(li_props, self.props_platform) and \
-                           matches_platform(xref_props, self.props_platform):
+                        if matches_platform(xref_props, self.props_platform):
                             keys.append(keyref)
                             logger.debug(f"发现数据类型: {keyref}")
+                
+                # 提取成员方法 key（在 li 下的嵌套 ul 中）
+                if method_keys is not None:
+                    nested_ul = li.find("ul")
+                    if nested_ul is not None:
+                        self._extract_member_methods(nested_ul, method_keys)
+    
+    def _extract_member_methods(self, ul: etree._Element, keys: List[str]) -> None:
+        """从嵌套 ul 中提取成员方法 key
+        
+        Args:
+            ul: 嵌套的 ul 元素
+            keys: 存放成员方法 key 的列表
+        """
+        # 检查 ul 的 props
+        ul_props = ul.get("props")
+        if not matches_platform(ul_props, self.props_platform):
+            return
+        
+        for li in ul.findall("li"):
+            # 检查 li 的 props
+            li_props = li.get("props")
+            if not matches_platform(li_props, self.props_platform):
+                continue
+            
+            xref = li.find("xref")
+            if xref is not None:
+                keyref = xref.get("keyref")
+                if keyref:
+                    xref_props = xref.get("props")
+                    if matches_platform(xref_props, self.props_platform):
+                        keys.append(keyref)
+                        logger.debug(f"发现成员方法: {keyref}")
 
