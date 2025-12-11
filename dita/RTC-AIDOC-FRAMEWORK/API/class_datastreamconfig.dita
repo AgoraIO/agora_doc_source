@@ -37,10 +37,70 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
-            <p props="electron">下表展示不同的参数设置下，SDK 的行为：</p>
-            <p props="rn">下表展示不同的参数设置下，SDK 的行为：</p>
-            <p props="flutter">下表展示不同的参数设置下，SDK 的行为：</p>
-            <p props="unity">下表展示不同的参数设置下，SDK 的行为：</p>
+            <p props="electron">下表展示不同的参数设置下，SDK 的行为：
+<codeph>syncWithAudio</codeph>
+<codeph>ordered</codeph>
+SDK 行为
+<xref keyref="false"/>
+<xref keyref="false"/>
+接收端接收到数据包后，SDK 立刻触发 <xref keyref="onStreamMessage"/> 回调。
+<xref keyref="true"/>
+<xref keyref="false"/>
+如果数据包的延迟在音频延迟的范围内，SDK 会在播放音频的同时触发与该音频包同步的 onStreamMessage 回调。如果数据包的延迟超出了音频延迟，SDK 会在接收到该数据包时立刻触发 onStreamMessage 回调；此情况会造成音频包和数据包的不同步。
+<xref keyref="false"/>
+<xref keyref="true"/>
+如果数据包的延迟在 5 秒以内，SDK 会修正数据包的乱序问题。如果数据包的延迟超出 5 秒，SDK 会丢弃该数据包。
+<xref keyref="true"/>
+<xref keyref="true"/>
+如果数据包的延迟在音频延迟的范围内，SDK 会修正数据包的乱序问题。如果数据包的延迟超出音频延迟，SDK 会丢弃该数据包。</p>
+            <p props="rn">下表展示不同的参数设置下，SDK 的行为：
+<codeph>syncWithAudio</codeph>
+<codeph>ordered</codeph>
+SDK 行为
+<xref keyref="false"/>
+<xref keyref="false"/>
+接收端接收到数据包后，SDK 立刻触发 <xref keyref="onStreamMessage"/> 回调。
+<xref keyref="true"/>
+<xref keyref="false"/>
+如果数据包的延迟在音频延迟的范围内，SDK 会在播放音频的同时触发与该音频包同步的 onStreamMessage 回调。如果数据包的延迟超出了音频延迟，SDK 会在接收到该数据包时立刻触发 onStreamMessage 回调；此情况会造成音频包和数据包的不同步。
+<xref keyref="false"/>
+<xref keyref="true"/>
+如果数据包的延迟在 5 秒以内，SDK 会修正数据包的乱序问题。如果数据包的延迟超出 5 秒，SDK 会丢弃该数据包。
+<xref keyref="true"/>
+<xref keyref="true"/>
+如果数据包的延迟在音频延迟的范围内，SDK 会修正数据包的乱序问题。如果数据包的延迟超出音频延迟，SDK 会丢弃该数据包。</p>
+            <p props="flutter">下表展示不同的参数设置下，SDK 的行为：
+<codeph>syncWithAudio</codeph>
+<codeph>ordered</codeph>
+SDK 行为
+<xref keyref="false"/>
+<xref keyref="false"/>
+接收端接收到数据包后，SDK 立刻触发 <xref keyref="onStreamMessage"/> 回调。
+<xref keyref="true"/>
+<xref keyref="false"/>
+如果数据包的延迟在音频延迟的范围内，SDK 会在播放音频的同时触发与该音频包同步的 onStreamMessage 回调。如果数据包的延迟超出了音频延迟，SDK 会在接收到该数据包时立刻触发 onStreamMessage 回调；此情况会造成音频包和数据包的不同步。
+<xref keyref="false"/>
+<xref keyref="true"/>
+如果数据包的延迟在 5 秒以内，SDK 会修正数据包的乱序问题。如果数据包的延迟超出 5 秒，SDK 会丢弃该数据包。
+<xref keyref="true"/>
+<xref keyref="true"/>
+如果数据包的延迟在音频延迟的范围内，SDK 会修正数据包的乱序问题。如果数据包的延迟超出音频延迟，SDK 会丢弃该数据包。</p>
+            <p props="unity">下表展示不同的参数设置下，SDK 的行为：
+<codeph>syncWithAudio</codeph>
+<codeph>ordered</codeph>
+SDK 行为
+<xref keyref="false"/>
+<xref keyref="false"/>
+接收端接收到数据包后，SDK 立刻触发 <xref keyref="onStreamMessage"/> 回调。
+<xref keyref="true"/>
+<xref keyref="false"/>
+如果数据包的延迟在音频延迟的范围内，SDK 会在播放音频的同时触发与该音频包同步的 OnStreamMessage 回调。如果数据包的延迟超出了音频延迟，SDK 会在接收到该数据包时立刻触发 OnStreamMessage 回调；此情况会造成音频包和数据包的不同步。
+<xref keyref="false"/>
+<xref keyref="true"/>
+如果数据包的延迟在 5 秒以内，SDK 会修正数据包的乱序问题。如果数据包的延迟超出 5 秒，SDK 会丢弃该数据包。
+<xref keyref="true"/>
+<xref keyref="true"/>
+如果数据包的延迟在音频延迟的范围内，SDK 会修正数据包的乱序问题。如果数据包的延迟超出音频延迟，SDK 会丢弃该数据包。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
             <title>属性</title>

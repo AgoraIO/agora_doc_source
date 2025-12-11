@@ -19,7 +19,32 @@
                 <codeblock props="unity" outputclass="language-csharp">public abstract int Seek(Int64 newPos);</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">
+                <ul>
+                    <li>如果你在播放已经完成后（收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态为 PlayerStatePlaybackCompleted 或 PlayerStatePlaybackAllLoopsCompleted）再调用 <xref keyref="seek"/>，方法调用成功后，SDK 会从你指定的位置开始自动播放，此时你会收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态为 PlayerStatePlaying。</li>
+                    <li>如果你在播放暂停的情况下调用 <xref keyref="seek"/>，调用成功后 SDK 会定位到你指定位置，如需播放，请调用 <xref keyref="resume"/> 或 <xref keyref="play"/>。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>如果你在播放已经完成后（收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态为 PlayerStatePlaybackCompleted 或 PlayerStatePlaybackAllLoopsCompleted）再调用 <xref keyref="seek"/>，方法调用成功后，SDK 会从你指定的位置开始自动播放，此时你会收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态为 PlayerStatePlaying。</li>
+                    <li>如果你在播放暂停的情况下调用 <xref keyref="seek"/>，调用成功后 SDK 会定位到你指定位置，如需播放，请调用 <xref keyref="resume"/> 或 <xref keyref="play"/>。</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>如果你在播放已经完成后（收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态为 playerStatePlaybackCompleted 或 playerStatePlaybackAllLoopsCompleted）再调用 <xref keyref="seek"/>，方法调用成功后，SDK 会从你指定的位置开始自动播放，此时你会收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态为 playerStatePlaying。</li>
+                    <li>如果你在播放暂停的情况下调用 <xref keyref="seek"/>，调用成功后 SDK 会定位到你指定位置，如需播放，请调用 <xref keyref="resume"/> 或 <xref keyref="play"/>。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>如果你在播放已经完成后（收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态为 PLAYER_STATE_PLAYBACK_COMPLETED 或 PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED）再调用 <xref keyref="seek"/>，方法调用成功后，SDK 会从你指定的位置开始自动播放，此时你会收到 <xref keyref="onPlayerSourceStateChanged"/> 回调报告播放状态为 PLAYER_STATE_PLAYING。</li>
+                    <li>如果你在播放暂停的情况下调用 <xref keyref="seek"/>，调用成功后 SDK 会定位到你指定位置，如需播放，请调用 <xref keyref="resume"/> 或 <xref keyref="play"/>。</li>
+                </ul>
+            </p>
+        </section>
         <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
             <title>调用时机</title>
             <p props="electron">该方法在加入频道前后均可调用。</p>

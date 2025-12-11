@@ -19,7 +19,36 @@
                 <codeblock props="unity" outputclass="language-csharp">public abstract int ConfigRhythmPlayer(AgoraRhythmPlayerConfig config);</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">
+                <ul>
+                    <li>调用 <xref keyref="startRhythmPlayer"/> 后，你可以调用该方法重新配置虚拟节拍器。</li>
+                    <li>开启虚拟节拍器后，SDK 会从头开始播放指定的音频文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <codeph>beatsPerMinute</codeph> 控制每个文件的播放时长。例如，将 <codeph>beatsPerMinute</codeph> 设为 <codeph>60</codeph>，则 SDK 会 1 秒播放 1 个节拍。如果文件时长超过了节拍时长，则 SDK 只播放节拍时长部分的音频。</li>
+                    <li>虚拟节拍器的声音默认不会发布至远端，如果你希望远端用户听到虚拟节拍器的声音，你可以在调用该方法后，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishRhythmPlayerTrack</codeph> 设为 <xref keyref="true"/>。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>调用 <xref keyref="startRhythmPlayer"/> 后，你可以调用该方法重新配置虚拟节拍器。</li>
+                    <li>开启虚拟节拍器后，SDK 会从头开始播放指定的音频文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <codeph>beatsPerMinute</codeph> 控制每个文件的播放时长。例如，将 <codeph>beatsPerMinute</codeph> 设为 <codeph>60</codeph>，则 SDK 会 1 秒播放 1 个节拍。如果文件时长超过了节拍时长，则 SDK 只播放节拍时长部分的音频。</li>
+                    <li>虚拟节拍器的声音默认不会发布至远端，如果你希望远端用户听到虚拟节拍器的声音，你可以在调用该方法后，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishRhythmPlayerTrack</codeph> 设为 <xref keyref="true"/>。</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>调用 <xref keyref="startRhythmPlayer"/> 后，你可以调用该方法重新配置虚拟节拍器。</li>
+                    <li>开启虚拟节拍器后，SDK 会从头开始播放指定的音频文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <codeph>beatsPerMinute</codeph> 控制每个文件的播放时长。例如，将 <codeph>beatsPerMinute</codeph> 设为 <codeph>60</codeph>，则 SDK 会 1 秒播放 1 个节拍。如果文件时长超过了节拍时长，则 SDK 只播放节拍时长部分的音频。</li>
+                    <li>虚拟节拍器的声音默认不会发布至远端，如果你希望远端用户听到虚拟节拍器的声音，你可以在调用该方法后，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishRhythmPlayerTrack</codeph> 设为 <xref keyref="true"/>。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>调用 <xref keyref="startRhythmPlayer"/> 后，你可以调用该方法重新配置虚拟节拍器。</li>
+                    <li>开启虚拟节拍器后，SDK 会从头开始播放指定的音频文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <codeph>beatsPerMinute</codeph> 控制每个文件的播放时长。例如，将 <codeph>beatsPerMinute</codeph> 设为 <codeph>60</codeph>，则 SDK 会 1 秒播放 1 个节拍。如果文件时长超过了节拍时长，则 SDK 只播放节拍时长部分的音频。</li>
+                    <li>虚拟节拍器的声音默认不会发布至远端，如果你希望远端用户听到虚拟节拍器的声音，你可以在调用该方法后，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishRhythmPlayerTrack</codeph> 设为 <xref keyref="true"/>。</li>
+                </ul>
+            </p>
+        </section>
         <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
             <title>调用时机</title>
             <p props="electron">加入频道前后均可调用。</p>
