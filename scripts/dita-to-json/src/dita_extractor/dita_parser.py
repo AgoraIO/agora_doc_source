@@ -282,22 +282,37 @@ class DitaParser:
                     elif "deprecated" in outputclass:
                         result.deprecated = combined
         
-        # 提取描述段落
+        # 提取描述内容（p, ul, ol 元素），按照出现顺序处理
         desc_parts: List[str] = []
-        for p in section.findall("p"):
-            # 先检查原始 p 的 props
-            props = p.get("props")
+        
+        # 遍历 section 的直接子元素，保持原有顺序
+        for child in section:
+            tag = child.tag
+            
+            # 跳过 dl（已在上面处理）和 note（在下面处理）
+            if tag in ("dl", "note", "title"):
+                continue
+            
+            # 检查 props
+            props = child.get("props")
             if not self._matches_platform(props):
                 continue
             
-            # 处理 p 级别的 conkeyref
-            p_conkeyref = p.get("conkeyref")
-            if p_conkeyref:
-                resolved_p = self._resolve_conkeyref(p_conkeyref)
-                if resolved_p is not None:
-                    p = resolved_p
+            # 处理 conkeyref
+            conkeyref = child.get("conkeyref")
+            if conkeyref:
+                resolved = self._resolve_conkeyref(conkeyref)
+                if resolved is not None:
+                    child = resolved
+                else:
+                    continue
             
-            content = self.converter.convert(p, exclude_note=True)
+            # 转换内容
+            if tag == "p":
+                content = self.converter.convert(child, exclude_note=True)
+            else:
+                content = self.converter.convert(child)
+            
             if content:
                 desc_parts.append(content)
         
@@ -371,6 +386,15 @@ class DitaParser:
             props = child.get("props")
             if not self._matches_platform(props):
                 continue
+            
+            # 处理子元素级别的 conkeyref
+            conkeyref = child.get("conkeyref")
+            if conkeyref:
+                resolved = self._resolve_conkeyref(conkeyref)
+                if resolved is not None:
+                    child = resolved
+                else:
+                    continue
             
             # 转换元素内容
             content = self.converter.convert(child)
@@ -492,21 +516,32 @@ class DitaParser:
         
         parts: List[str] = []
         
-        # 处理 p 元素
-        for p in section.findall("p"):
-            props = p.get("props")
-            if self._matches_platform(props):
-                content = self.converter.convert(p)
-                if content:
-                    parts.append(content)
-        
-        # 处理 ul 元素
-        for ul in section.findall("ul"):
-            props = ul.get("props")
-            if self._matches_platform(props):
-                content = self.converter.convert(ul)
-                if content:
-                    parts.append(content)
+        # 遍历 section 的直接子元素，保持原有顺序
+        for child in section:
+            tag = child.tag
+            
+            # 跳过 title 元素
+            if tag == "title":
+                continue
+            
+            # 检查 props 是否匹配当前平台
+            props = child.get("props")
+            if not self._matches_platform(props):
+                continue
+            
+            # 处理 conkeyref
+            conkeyref = child.get("conkeyref")
+            if conkeyref:
+                resolved = self._resolve_conkeyref(conkeyref)
+                if resolved is not None:
+                    child = resolved
+                else:
+                    continue
+            
+            # 转换元素内容
+            content = self.converter.convert(child)
+            if content:
+                parts.append(content)
         
         if parts:
             return "\n".join(parts).strip()

@@ -565,6 +565,11 @@ class MarkdownConverter:
                 
                 # 提取 dlentry 中的 dt 和 dd
                 for dlentry in dl.findall("dlentry"):
+                    # 检查 dlentry 的 props 是否匹配当前平台
+                    dlentry_props = dlentry.get("props")
+                    if not matches_platform(dlentry_props, self.props_platform):
+                        continue
+                    
                     dt = dlentry.find("dt")
                     dd = dlentry.find("dd")
                     

@@ -138,7 +138,7 @@ class JsonBuilder:
                 "platforms": platform,
                 "parent_class": "",
                 "detailed_desc": self._build_detailed_desc(parsed.detailed_desc),
-                "parameters": self._build_parameters(parsed.parameters),
+                "enumerations": self._build_parameters(parsed.parameters),
             }
         }
     
