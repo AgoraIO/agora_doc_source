@@ -22,7 +22,9 @@
         </section>
         <section id="timing" deliveryTarget="details" props="unity">
             <title>调用时机</title>
-            <p props="unity">该方法在加入频道前后均可调用。</p>
+            <p props="unity">该方法在加入频道前后均可调用。
+如果你在加入频道前调用该方法设置用户角色为主播、并且调用 <xref keyref="setEnable"/> 方法开启视频渲染，则用户加入频道时会自动开启本地视频预览。
+如果你在加入频道后调用该方法切换用户角色，调用成功后，SDK 会自动调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 修改发布音视频流的状态。</p>
         </section>
         <section id="related" deliveryTarget="details" props="unity">
             <title>相关回调</title>

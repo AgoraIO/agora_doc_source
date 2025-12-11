@@ -220,6 +220,27 @@ SDK 的窗口共享功能依赖于 WGC（Windows Graphics Capture）或 GDI（Gr
             <title>适用场景</title>
             <p>在屏幕共享场景下，你需要调用该方法开始采集屏幕视频流。有关屏幕共享的实现方法，详见[屏幕共享](https://doc.shengwang.cn/doc/rtc/electron/basic-features/screen-share)。</p>
         </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter unity">
+            <title>调用时机</title>
+            <p props="electron">该方法在加入频道前后均可调用，区别如下：
+                <ul>
+                    <li>如果在加入频道前调用该方法，然后调用 <xref keyref="joinChannel2"/> 加入频道，并设置 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                    <li>如果在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 更新频道媒体选项，并设置 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                </ul>
+            </p>
+            <p props="flutter">该方法在加入频道前后均可调用，区别如下：
+                <ul>
+                    <li>如果在加入频道前调用该方法，然后调用 <xref keyref="joinChannel2"/> 加入频道，并设置 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                    <li>如果在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 更新频道媒体选项，并设置 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                </ul>
+            </p>
+            <p props="unity">该方法在加入频道前后均可调用，区别如下：
+                <ul>
+                    <li>如果在加入频道前调用该方法，然后调用 <xref keyref="joinChannel2"/> 加入频道，并设置 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                    <li>如果在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 更新频道媒体选项，并设置 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                </ul>
+            </p>
+        </section>
         <section id="parameters" deliveryTarget="details" props="electron flutter unity">
             <title>参数</title>
             <parml>
