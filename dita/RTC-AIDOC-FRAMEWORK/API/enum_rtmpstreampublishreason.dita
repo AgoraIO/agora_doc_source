@@ -3,5 +3,267 @@
 <reference id="enum_rtmpstreampublishreason">
     <title><ph keyref="RTMP_STREAM_PUBLISH_REASON"/></title>
     <shortdesc id="short"><ph id="shortdesc" props="electron">推流状态改变的原因。</ph><ph id="shortdesc" props="rn">推流状态改变的原因。</ph><ph id="shortdesc" props="flutter">推流状态改变的原因。</ph><ph id="shortdesc" props="unity">推流状态改变的原因。</ph></shortdesc>
-    <refbody/>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonOk</pt>
+                    <pd>0：推流成功。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonInvalidArgument</pt>
+                    <pd>1：参数无效。请检查输入参数是否正确。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonEncryptedStreamNotAllowed</pt>
+                    <pd>2：推流已加密，不能推流。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonConnectionTimeout</pt>
+                    <pd>3：推流超时未成功。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonInternalServerError</pt>
+                    <pd>4：推流服务器出现错误。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonRtmpServerError</pt>
+                    <pd>5：CDN 服务器出现错误。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonTooOften</pt>
+                    <pd>6：推流请求过于频繁。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonReachLimit</pt>
+                    <pd>7：单个主播的推流地址数目达到上限 10。请删掉一些不用的推流地址再增加推流地址。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonNotAuthorized</pt>
+                    <pd>8：主播操作不属于自己的流。例如更新其他主播的流参数、停止其他主播的流。请检查 App 逻辑。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonStreamNotFound</pt>
+                    <pd>9：服务器未找到这个流。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonFormatNotSupported</pt>
+                    <pd>10：推流地址格式有错误。请检查推流地址格式是否正确。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonNotBroadcaster</pt>
+                    <pd>11：用户角色不是主播，该用户无法使用推流功能。请检查你的应用代码逻辑。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonTranscodingNoMixStream</pt>
+                    <pd>13：非转码推流情况下，调用了 <xref keyref="updateRtmpTranscoding"/> 方法更新转码属性。请检查你的应用代码逻辑。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonNetDown</pt>
+                    <pd>14：主播的网络出错。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonInvalidPrivilege</pt>
+                    <pd>16：你的项目没有使用推流服务的权限。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamUnpublishErrorOk</pt>
+                    <pd>100：推流已正常结束。当你结束推流后，SDK 会返回该值。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonOk</pt>
+                    <pd>0：推流成功。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonInvalidArgument</pt>
+                    <pd>1：参数无效。请检查输入参数是否正确。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonEncryptedStreamNotAllowed</pt>
+                    <pd>2：推流已加密，不能推流。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonConnectionTimeout</pt>
+                    <pd>3：推流超时未成功。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonInternalServerError</pt>
+                    <pd>4：推流服务器出现错误。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonRtmpServerError</pt>
+                    <pd>5：CDN 服务器出现错误。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonTooOften</pt>
+                    <pd>6：推流请求过于频繁。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonReachLimit</pt>
+                    <pd>7：单个主播的推流地址数目达到上限 10。请删掉一些不用的推流地址再增加推流地址。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonNotAuthorized</pt>
+                    <pd>8：主播操作不属于自己的流。例如更新其他主播的流参数、停止其他主播的流。请检查 App 逻辑。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonStreamNotFound</pt>
+                    <pd>9：服务器未找到这个流。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonFormatNotSupported</pt>
+                    <pd>10：推流地址格式有错误。请检查推流地址格式是否正确。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonNotBroadcaster</pt>
+                    <pd>11：用户角色不是主播，该用户无法使用推流功能。请检查你的应用代码逻辑。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonTranscodingNoMixStream</pt>
+                    <pd>13：非转码推流情况下，调用了 <xref keyref="updateRtmpTranscoding"/> 方法更新转码属性。请检查你的应用代码逻辑。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonNetDown</pt>
+                    <pd>14：主播的网络出错。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonInvalidPrivilege</pt>
+                    <pd>16：你的项目没有使用推流服务的权限。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamUnpublishErrorOk</pt>
+                    <pd>100：推流已正常结束。当你结束推流后，SDK 会返回该值。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonOk</pt>
+                    <pd>0：推流成功。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonInvalidArgument</pt>
+                    <pd>1：参数无效。请检查输入参数是否正确。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonEncryptedStreamNotAllowed</pt>
+                    <pd>2：推流已加密，不能推流。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonConnectionTimeout</pt>
+                    <pd>3：推流超时未成功。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonInternalServerError</pt>
+                    <pd>4：推流服务器出现错误。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonRtmpServerError</pt>
+                    <pd>5：CDN 服务器出现错误。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonTooOften</pt>
+                    <pd>6：推流请求过于频繁。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonReachLimit</pt>
+                    <pd>7：单个主播的推流地址数目达到上限 10。请删掉一些不用的推流地址再增加推流地址。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonNotAuthorized</pt>
+                    <pd>8：主播操作不属于自己的流。例如更新其他主播的流参数、停止其他主播的流。请检查 App 逻辑。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonStreamNotFound</pt>
+                    <pd>9：服务器未找到这个流。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonFormatNotSupported</pt>
+                    <pd>10：推流地址格式有错误。请检查推流地址格式是否正确。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonNotBroadcaster</pt>
+                    <pd>11：用户角色不是主播，该用户无法使用推流功能。请检查你的应用代码逻辑。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonTranscodingNoMixStream</pt>
+                    <pd>13：非转码推流情况下，调用了 <xref keyref="updateRtmpTranscoding"/> 方法更新转码属性。请检查你的应用代码逻辑。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonNetDown</pt>
+                    <pd>14：主播的网络出错。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonInvalidPrivilege</pt>
+                    <pd>16：你的项目没有使用推流服务的权限。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamUnpublishReasonOk</pt>
+                    <pd>100：推流已正常结束。当你结束推流后，SDK 会返回该值。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_OK</pt>
+                    <pd>0：推流成功。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_INVALID_ARGUMENT</pt>
+                    <pd>1：参数无效。请检查输入参数是否正确。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_ENCRYPTED_STREAM_NOT_ALLOWED</pt>
+                    <pd>2：推流已加密，不能推流。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_CONNECTION_TIMEOUT</pt>
+                    <pd>3：推流超时未成功。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_INTERNAL_SERVER_ERROR</pt>
+                    <pd>4：推流服务器出现错误。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_RTMP_SERVER_ERROR</pt>
+                    <pd>5：CDN 服务器出现错误。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_TOO_OFTEN</pt>
+                    <pd>6：推流请求过于频繁。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_REACH_LIMIT</pt>
+                    <pd>7：单个主播的推流地址数目达到上限 10。请删掉一些不用的推流地址再增加推流地址。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_NOT_AUTHORIZED</pt>
+                    <pd>8：主播操作不属于自己的流。例如更新其他主播的流参数、停止其他主播的流。请检查 App 逻辑。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_STREAM_NOT_FOUND</pt>
+                    <pd>9：服务器未找到这个流。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_FORMAT_NOT_SUPPORTED</pt>
+                    <pd>10：推流地址格式有错误。请检查推流地址格式是否正确。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_NOT_BROADCASTER</pt>
+                    <pd>11：用户角色不是主播，该用户无法使用推流功能。请检查你的应用代码逻辑。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_TRANSCODING_NO_MIX_STREAM</pt>
+                    <pd>13：非转码推流情况下，调用了 <xref keyref="updateRtmpTranscoding"/> 方法更新转码属性。请检查你的应用代码逻辑。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_NET_DOWN</pt>
+                    <pd>14：主播的网络出错。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_INVALID_PRIVILEGE</pt>
+                    <pd>16：你的项目没有使用推流服务的权限。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_UNPUBLISH_REASON_OK</pt>
+                    <pd>100：推流已正常结束。当你结束推流后，SDK 会返回该值。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
 </reference>
