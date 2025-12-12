@@ -3,5 +3,43 @@
 <reference id="enum_rawaudioframeopmodetype">
     <title><ph keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/></title>
     <shortdesc id="short"><ph id="shortdesc" props="electron">音频数据的使用模式。</ph><ph id="shortdesc" props="rn">音频数据的使用模式。</ph><ph id="shortdesc" props="flutter">音频数据的使用模式。</ph><ph id="shortdesc" props="unity">音频数据的使用模式。</ph></shortdesc>
-    <refbody/>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>RawAudioFrameOpModeReadOnly</pt>
+                    <pd>0: (默认) 只读模式，用户仅获取 SDK 返回的原始数据，不作任何修改。例如: 若用户通过 SDK 采集数据，自己进行旁路推流，则可以选择该模式。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RawAudioFrameOpModeReadWrite</pt>
+                    <pd>2: 读写模式, 用户修改 SDK 返回的原始视频，并返回给 SDK 进行编码传输。例如: 若用户自己有音效处理模块，且想要根据实际需要对数据进行前处理(例如变声)，则可以选择该模式。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RawAudioFrameOpModeReadOnly</pt>
+                    <pd>0: (默认) 只读模式，例如: 若用户通过 SDK 采集数据，自己进行旁路推流，则可以选择该模式。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RawAudioFrameOpModeReadWrite</pt>
+                    <pd>2: 读写模式, 例如: 若用户自己有音效处理模块，且想要根据实际需要对数据进行前处理(例如变声)，则可以选择该模式。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rawAudioFrameOpModeReadOnly</pt>
+                    <pd>0: (默认) 只读模式，例如: 若用户通过 SDK 采集数据，自己进行旁路推流，则可以选择该模式。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rawAudioFrameOpModeReadWrite</pt>
+                    <pd>2: 读写模式, 例如: 若用户自己有音效处理模块，且想要根据实际需要对数据进行前处理(例如变声)，则可以选择该模式。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RAW_AUDIO_FRAME_OP_MODE_READ_ONLY</pt>
+                    <pd>0: (默认) 只读模式，例如: 若用户通过 SDK 采集数据，自己进行旁路推流，则可以选择该模式。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RAW_AUDIO_FRAME_OP_MODE_READ_WRITE</pt>
+                    <pd>2: 读写模式, 例如: 若用户自己有音效处理模块，且想要根据实际需要对数据进行前处理(例如变声)，则可以选择该模式。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
 </reference>

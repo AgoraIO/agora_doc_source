@@ -3,5 +3,91 @@
 <reference id="enum_directcdnstreamingstate">
     <title><ph keyref="DIRECT_CDN_STREAMING_STATE"/></title>
     <shortdesc id="short"><ph id="shortdesc" props="electron">当前 CDN 推流状态。</ph><ph id="shortdesc" props="rn">当前 CDN 推流状态。</ph><ph id="shortdesc" props="flutter">当前 CDN 推流状态。</ph><ph id="shortdesc" props="unity">当前 CDN 推流状态。</ph></shortdesc>
-    <refbody/>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>DirectCdnStreamingStateIdle</pt>
+                    <pd>0：初始状态，即推流尚未开始。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>DirectCdnStreamingStateRunning</pt>
+                    <pd>1：正在推流中。当你调用 <xref keyref="startDirectCdnStreaming"/> 成功推流时，SDK 会返回该值。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>DirectCdnStreamingStateStopped</pt>
+                    <pd>2：推流已正常结束。当你调用 <xref keyref="stopDirectCdnStreaming"/> 主动停止推流时，SDK 会返回该值。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>DirectCdnStreamingStateFailed</pt>
+                    <pd>3：推流失败。你可以通过 <xref keyref="onDirectCdnStreamingStateChanged"/> 回调报告的信息排查问题，然后重新推流。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>DirectCdnStreamingStateRecovering</pt>
+                    <pd>4：尝试重新连接声网服务器和 CDN。最多尝试重连 10 次，如仍未成功恢复连接，则推流状态变为 DirectCdnStreamingStateFailed。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>DirectCdnStreamingStateIdle</pt>
+                    <pd>0：初始状态，即推流尚未开始。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>DirectCdnStreamingStateRunning</pt>
+                    <pd>1：正在推流中。当你调用 <xref keyref="startDirectCdnStreaming"/> 成功推流时，SDK 会返回该值。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>DirectCdnStreamingStateStopped</pt>
+                    <pd>2：推流已正常结束。当你调用 <xref keyref="stopDirectCdnStreaming"/> 主动停止推流时，SDK 会返回该值。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>DirectCdnStreamingStateFailed</pt>
+                    <pd>3：推流失败。你可以通过 <xref keyref="onDirectCdnStreamingStateChanged"/> 回调报告的信息排查问题，然后重新推流。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>DirectCdnStreamingStateRecovering</pt>
+                    <pd>4：尝试重新连接声网服务器和 CDN。最多尝试重连 10 次，如仍未成功恢复连接，则推流状态变为 DirectCdnStreamingStateFailed。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>directCdnStreamingStateIdle</pt>
+                    <pd>0：初始状态，即推流尚未开始。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>directCdnStreamingStateRunning</pt>
+                    <pd>1：正在推流中。当你调用 <xref keyref="startDirectCdnStreaming"/> 成功推流时，SDK 会返回该值。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>directCdnStreamingStateStopped</pt>
+                    <pd>2：推流已正常结束。当你调用 <xref keyref="stopDirectCdnStreaming"/> 主动停止推流时，SDK 会返回该值。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>directCdnStreamingStateFailed</pt>
+                    <pd>3：推流失败。你可以通过 <xref keyref="onDirectCdnStreamingStateChanged"/> 回调报告的信息排查问题，然后重新推流。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>directCdnStreamingStateRecovering</pt>
+                    <pd>4：尝试重新连接声网服务器和 CDN。最多尝试重连 10 次，如仍未成功恢复连接，则推流状态变为 directCdnStreamingStateFailed。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>DIRECT_CDN_STREAMING_STATE_IDLE</pt>
+                    <pd>0：初始状态，即推流尚未开始。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>DIRECT_CDN_STREAMING_STATE_RUNNING</pt>
+                    <pd>1：正在推流中。当你调用 <xref keyref="startDirectCdnStreaming"/> 成功推流时，SDK 会返回该值。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>DIRECT_CDN_STREAMING_STATE_STOPPED</pt>
+                    <pd>2：推流已正常结束。当你调用 <xref keyref="stopDirectCdnStreaming"/> 主动停止推流时，SDK 会返回该值。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>DIRECT_CDN_STREAMING_STATE_FAILED</pt>
+                    <pd>3：推流失败。你可以通过 <xref keyref="onDirectCdnStreamingStateChanged"/> 回调报告的信息排查问题，然后重新推流。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>DIRECT_CDN_STREAMING_STATE_RECOVERING</pt>
+                    <pd>4：尝试重新连接声网服务器和 CDN。最多尝试重连 10 次，如仍未成功恢复连接，则推流状态变为 DIRECT_CDN_STREAMING_STATE_FAILED。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
 </reference>
