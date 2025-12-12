@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalrendermode2">
+    <title><ph keyref="setLocalRenderMode2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">更新本地视频画面的显示模式。</ph><ph id="shortdesc" props="ios">更新本地视频视图的显示模式。</ph><ph id="shortdesc" props="android">更新本地视频画面的显示模式。</ph><ph id="shortdesc" props="mac">更新本地视频视图的显示模式。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalRenderMode2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalRenderMode(media::base::RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setLocalRenderMode:(AgoraVideoRenderMode)mode
+                   mirror:(AgoraVideoMirrorMode)mirror NS_SWIFT_NAME(setLocalRenderMode(_:mirror:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setLocalRenderMode(int renderMode, int mirrorMode);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setLocalRenderMode:(AgoraVideoRenderMode)mode
+                   mirror:(AgoraVideoMirrorMode)mirror NS_SWIFT_NAME(setLocalRenderMode(_:mirror:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">你可以在初始化本地视频画面后调用该方法，更新其渲染模式和镜像模式。该方法仅影响本地用户看到的视频画面，不影响本地视频的发布。</p>
+            <p props="ios">你可以在初始化本地视频视图后调用该方法，更新其渲染模式和镜像模式。该方法仅影响你本地看到的视频视图，不影响本地视频的发布。</p>
+            <p props="android">该方法仅影响本地用户看到的视频画面，不影响本地视频的发布。</p>
+            <p props="mac">你可以在初始化本地视频视图后调用该方法，更新其渲染模式和镜像模式。该方法仅影响你本地看到的视频视图，不影响本地视频的发布。</p>
+            <note props="cpp"><codeph>setLocalRenderMode</codeph> 仅对主摄像头（<codeph>PRIMARY_CAMERA_SOURCE</codeph>）生效。在使用自定义视频采集或其他视频源的场景中，请使用 <xref keyref="setupLocalVideo"/> 代替。</note>
+            <note props="ios">该方法仅对主摄像头（<codeph>AgoraMediaSourceTypePrimaryCamera</codeph>）生效。在使用自定义视频采集或其他视频源的场景中，应使用 <xref keyref="setupLocalVideo"/> 方法替代。</note>
+            <note props="mac">该方法仅对主摄像头（<codeph>AgoraMediaSourceTypePrimaryCamera</codeph>）生效。在使用自定义视频采集或其他视频源的场景中，应使用 <xref keyref="setupLocalVideo"/> 方法替代。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">
+                <ul>
+                    <li>请确保在调用该方法前已调用 <xref keyref="setupLocalVideo"/> 初始化本地视频画面。</li>
+                    <li>通话过程中，可多次调用该方法更新本地视频画面的显示模式。</li>
+                </ul>
+            </p>
+            <p props="ios">调用时序：
+                <ul>
+                    <li>请确保在调用该方法前已调用 <xref keyref="setupLocalVideo"/> 方法初始化本地视频视图。</li>
+                    <li>通话过程中，你可以多次调用该方法更新本地视频视图的显示模式。</li>
+                </ul>
+            </p>
+            <p props="android">确保在调用此方法前已调用 <xref keyref="setupLocalVideo"/> 方法初始化本地视频画面。在通话过程中，你可以根据需要多次调用此方法更新本地视频画面的显示模式。</p>
+            <p props="mac">调用时序：
+                <ul>
+                    <li>请确保在调用该方法前已调用 <xref keyref="setupLocalVideo"/> 方法初始化本地视频视图。</li>
+                    <li>通话过程中，你可以多次调用该方法更新本地视频视图的显示模式。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>renderMode</pt>
+                    <pd>本地视频画面的显示模式。详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mirrorMode</pt>
+                    <pd>本地视频画面的镜像模式。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>如果使用前置摄像头，SDK 默认开启镜像模式；如果使用后置摄像头，SDK 默认关闭镜像模式。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mode</pt>
+                    <pd>本地视频的显示模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mirror</pt>
+                    <pd>本地视频视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。如果使用前置摄像头，SDK 默认启用镜像模式；如果使用后置摄像头，SDK 默认关闭镜像模式。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>renderMode</pt>
+                    <pd>本地视频的显示模式：
+                        <ul>
+                            <li><codeph>RENDER_MODE_HIDDEN</codeph> (1)：隐藏模式。按比例缩放视频，直到填满视图边界（可能被裁剪）。视频的一条边可能会被裁剪。</li>
+                            <li><codeph>RENDER_MODE_FIT</codeph> (2)：适应模式。按比例缩放视频，直到某一边适配视图边界。由于宽高比不一致而未填满的区域将以黑色填充。</li>
+                            <li><codeph>RENDER_MODE_ADAPTIVE</codeph> (3)：自适应模式（已废弃，不推荐使用）。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mirrorMode</pt>
+                    <pd>
+                        <note>如果你使用前置摄像头，SDK 默认启用镜像模式；如果你使用后置摄像头，SDK 默认关闭镜像模式。</note><ph>本地用户的视频镜像模式：</ph>
+                        <ul>
+                            <li><codeph>VIDEO_MIRROR_MODE_AUTO</codeph> (0)：SDK 自动决定是否启用镜像模式。</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_ENABLED</codeph> (1)：启用本地视图的镜像模式。</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_DISABLED</codeph> (2)：关闭本地视图的镜像模式。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mode</pt>
+                    <pd>本地视频的显示模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mirror</pt>
+                    <pd>本地视频视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。如果使用前置摄像头，SDK 默认启用镜像模式；如果使用后置摄像头，SDK 默认关闭镜像模式。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

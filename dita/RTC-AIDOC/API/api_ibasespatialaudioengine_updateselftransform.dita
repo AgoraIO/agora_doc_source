@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ibasespatialaudioengine_updateselftransform">
+    <title><ph keyref="updateSelfTransform"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">更新坐标转换。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updateSelfTransform"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (int)updateSelfTransform:(simd_float4x4)transform NS_SWIFT_NAME(updateSelfTransform(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>当你使用原生 iOS 框架（如 <codeph>SceneKit</codeph> 或 <codeph>RealityKit</codeph>）时，可以调用此方法将位置向量直接传递给上述框架进行渲染。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="ios">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>transform</pt>
+                    <pd>转换参数。是一个 4 × 4 的矩阵。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="ios">
+            <title>返回值</title>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

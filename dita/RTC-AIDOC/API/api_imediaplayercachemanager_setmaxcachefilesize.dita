@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayercachemanager_setmaxcachefilesize">
+    <title><ph keyref="setMaxCacheFileSize"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置缓存媒体文件的聚合存储空间的最大大小。</ph><ph id="shortdesc" props="ios">设置用于缓存媒体文件的聚合存储空间的最大大小。</ph><ph id="shortdesc" props="android">设置缓存媒体文件的聚合存储空间的最大大小。</ph><ph id="shortdesc" props="mac">设置用于缓存媒体文件的聚合存储空间的最大大小。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setMaxCacheFileSize"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setMaxCacheFileSize(int64_t cacheSize) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setMaxCacheFileSize:(NSInteger)cacheSize NS_SWIFT_NAME(setMaxCacheFileSize(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">int setMaxCacheFileSize(long cacheSize);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setMaxCacheFileSize:(NSInteger)cacheSize NS_SWIFT_NAME(setMaxCacheFileSize(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>cacheSize</pt>
+                    <pd>缓存媒体文件的聚合存储空间的最大大小（字节）。默认值为 1 GB。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>cacheSize</pt>
+                    <pd>缓存媒体文件的聚合存储空间的最大大小（字节）（默认值为 1 GB）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cacheSize</pt>
+                    <pd>缓存媒体文件的聚合存储空间的最大大小，单位为字节。（默认值为 1 GB。）</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>cacheSize</pt>
+                    <pd>缓存媒体文件的聚合存储空间的最大大小（字节）（默认值为 1 GB）。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

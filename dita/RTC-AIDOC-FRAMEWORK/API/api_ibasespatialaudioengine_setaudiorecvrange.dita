@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ibasespatialaudioengine_setaudiorecvrange">
+    <title><ph keyref="setAudioRecvRange"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置本地用户的音频接收范围。</ph><ph id="shortdesc" props="rn">设置本地用户的音频接收范围。</ph><ph id="shortdesc" props="flutter">设置本地用户的音频接收范围。</ph><ph id="shortdesc" props="unity">设置本地用户的音频接收范围。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAudioRecvRange"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setAudioRecvRange(range: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setAudioRecvRange(range: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioRecvRange(double range);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioRecvRange(float range);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">设置成功后，用户只能听见设置范围内或属于同一队伍的远端用户。你可以随时调用该方法更新音频的接收范围。</p>
+            <p props="rn">设置成功后，用户只能听见设置范围内或属于同一队伍的远端用户。你可以随时调用该方法更新音频的接收范围。</p>
+            <p props="flutter">设置成功后，用户只能听见设置范围内或属于同一队伍的远端用户。你可以随时调用该方法更新音频的接收范围。</p>
+            <p props="unity">设置成功后，用户只能听见设置范围内或属于同一队伍的远端用户。你可以随时调用该方法更新音频的接收范围。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>range</pt>
+                    <pd>可接收音频的最大范围，单位为游戏引擎中的距离单位。该参数取值需大于 0，默认值为 20。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>range</pt>
+                    <pd>可接收音频的最大范围，单位为游戏引擎中的距离单位。该参数取值需大于 0，默认值为 20。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>range</pt>
+                    <pd>可接收音频的最大范围，单位为游戏引擎中的距离单位。该参数取值需大于 0，默认值为 20。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>range</pt>
+                    <pd>可接收音频的最大范围，单位为游戏引擎中的距离单位。该参数取值需大于 0，默认值为 20。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

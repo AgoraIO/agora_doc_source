@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablefacedetection">
+    <title><ph keyref="enableFaceDetection"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">开启/关闭本地人脸检测。</ph><ph id="shortdesc" props="flutter">开启/关闭本地人脸检测。</ph><ph id="shortdesc" props="unity">开启/关闭本地人脸检测。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableFaceDetection"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract enableFaceDetection(enabled: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableFaceDetection(bool enabled);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableFaceDetection(bool enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>调用时机</title>
+            <p props="rn">该方法需要在相机启动（如通过调用 <xref keyref="startPreview2"/> 或 <xref keyref="enableVideo"/> 实现）后调用。</p>
+            <p props="flutter">该方法需要在相机启动（如通过调用 <xref keyref="startPreview2"/> 或 <xref keyref="enableVideo"/> 实现）后调用。</p>
+            <p props="unity">该方法需要在相机启动（如通过调用 <xref keyref="startPreview2"/> 或 <xref keyref="enableVideo"/> 实现）后调用。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="flutter rn unity">
+            <title>相关回调</title>
+            <p props="rn">成功调用该方法后，SDK 会触发 <xref keyref="onFacePositionChanged"/> 回调向你报告人脸检测的信息：
+                <ul>
+                    <li>摄像头采集的画面大小</li>
+                    <li>人脸在 view 中的位置</li>
+                    <li>人脸距设备屏幕的距离</li>
+                </ul>
+            </p>
+            <p props="flutter">成功调用该方法后，SDK 会触发 <xref keyref="onFacePositionChanged"/> 回调向你报告人脸检测的信息：
+                <ul>
+                    <li>摄像头采集的画面大小</li>
+                    <li>人脸在 view 中的位置</li>
+                    <li>人脸距设备屏幕的距离</li>
+                </ul>
+            </p>
+            <p props="unity">成功调用该方法后，SDK 会触发 <xref keyref="onFacePositionChanged"/> 回调向你报告人脸检测的信息：
+                <ul>
+                    <li>摄像头采集的画面大小</li>
+                    <li>人脸在 view 中的位置</li>
+                    <li>人脸距设备屏幕的距离</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>是否开启人脸检测：
+                        <ul>
+                            <li><xref keyref="true"/>：开启人脸检测。</li>
+                            <li><xref keyref="false"/>：（默认）关闭人脸检测。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>是否开启人脸检测：
+                        <ul>
+                            <li><xref keyref="true"/>：开启人脸检测。</li>
+                            <li><xref keyref="false"/>：（默认）关闭人脸检测。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>是否开启人脸检测：
+                        <ul>
+                            <li><xref keyref="true"/>：开启人脸检测。</li>
+                            <li><xref keyref="false"/>：（默认）关闭人脸检测。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>返回值</title>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

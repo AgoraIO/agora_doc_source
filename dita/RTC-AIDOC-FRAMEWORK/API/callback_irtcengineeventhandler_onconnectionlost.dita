@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onconnectionlost">
+    <title><ph keyref="onConnectionLost"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">网络连接中断，且 SDK 无法在 10 秒内连接服务器回调。</ph><ph id="shortdesc" props="rn">网络连接中断，且 SDK 无法在 10 秒内连接服务器回调。</ph><ph id="shortdesc" props="flutter">网络连接中断，且 SDK 无法在 10 秒内连接服务器回调。</ph><ph id="shortdesc" props="unity">网络连接中断，且 SDK 无法在 10 秒内连接服务器回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onConnectionLost"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onConnectionLost?(connection: RtcConnection): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onConnectionLost?(connection: RtcConnection): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection)? onConnectionLost;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnConnectionLost(RtcConnection connection) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">SDK 在调用 <xref keyref="joinChannel2"/> 后，无论是否加入成功，只要 10 秒和服务器无法连接就会触发该回调。如果 SDK 在断开连接后，20 分钟内还是没能重新加入频道，SDK 会停止尝试重连。</p>
+            <p props="rn">SDK 在调用 <xref keyref="joinChannel2"/> 后，无论是否加入成功，只要 10 秒和服务器无法连接就会触发该回调。如果 SDK 在断开连接后，20 分钟内还是没能重新加入频道，SDK 会停止尝试重连。</p>
+            <p props="flutter">SDK 在调用 <xref keyref="joinChannel2"/> 后，无论是否加入成功，只要 10 秒和服务器无法连接就会触发该回调。如果 SDK 在断开连接后，20 分钟内还是没能重新加入频道，SDK 会停止尝试重连。</p>
+            <p props="unity">SDK 在调用 <xref keyref="joinChannel2"/> 后，无论是否加入成功，只要 10 秒和服务器无法连接就会触发该回调。如果 SDK 在断开连接后，20 分钟内还是没能重新加入频道，SDK 会停止尝试重连。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

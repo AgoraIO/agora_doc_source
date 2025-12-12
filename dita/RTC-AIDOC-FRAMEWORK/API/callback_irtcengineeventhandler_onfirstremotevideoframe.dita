@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onfirstremotevideoframe">
+    <title><ph keyref="onFirstRemoteVideoFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">渲染器已接收首帧远端视频回调。</ph><ph id="shortdesc" props="rn">渲染器已接收首帧远端视频回调。</ph><ph id="shortdesc" props="flutter">渲染器已接收首帧远端视频回调。</ph><ph id="shortdesc" props="unity">渲染器已接收首帧远端视频回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onFirstRemoteVideoFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onFirstRemoteVideoFrame?(
+    connection: RtcConnection,
+    remoteUid: number,
+    width: number,
+    height: number,
+    elapsed: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onFirstRemoteVideoFrame?(
+    connection: RtcConnection,
+    remoteUid: number,
+    width: number,
+    height: number,
+    elapsed: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int width,
+      int height, int elapsed)? onFirstRemoteVideoFrame;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteVideoFrame(RtcConnection connection, uint remoteUid, int width, int height, int elapsed) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">该回调只在 SDK 渲染时才会触发；如果用户采用自定义视频渲染则不会触发，客户需要通过 SDK 以外的方法自行实现。</note>
+            <note props="rn">该回调只在 SDK 渲染时才会触发；如果用户采用自定义视频渲染则不会触发，客户需要通过 SDK 以外的方法自行实现。</note>
+            <note props="flutter">该回调只在 SDK 渲染时才会触发；如果用户采用自定义视频渲染则不会触发，客户需要通过 SDK 以外的方法自行实现。</note>
+            <note props="unity">该回调只在 SDK 渲染时才会触发；如果用户采用自定义视频渲染则不会触发，客户需要通过 SDK 以外的方法自行实现。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>remoteUid</pt>
+                    <pd>用户 ID，指定是哪个用户的视频流。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>视频流宽（px）。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>视频流高（px）。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>elapsed</pt>
+                    <pd>从本地调用 <xref keyref="joinChannel2"/> 到发生此事件过去的时间（毫秒）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteUid</pt>
+                    <pd>用户 ID，指定是哪个用户的视频流。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>width</pt>
+                    <pd>视频流宽（px）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>视频流高（px）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>elapsed</pt>
+                    <pd>从本地调用 <xref keyref="joinChannel2"/> 到发生此事件过去的时间（毫秒）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>用户 ID，指定是哪个用户的视频流。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>视频流宽（px）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>视频流高（px）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>elapsed</pt>
+                    <pd>从本地调用 <xref keyref="joinChannel2"/> 到发生此事件过去的时间（毫秒）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteUid</pt>
+                    <pd>用户 ID，指定是哪个用户的视频流。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>视频流宽（px）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>视频流高（px）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>elapsed</pt>
+                    <pd>从本地调用 <xref keyref="joinChannel1"/> 或 <xref keyref="joinChannel2"/> 到发生此事件过去的时间（毫秒）。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

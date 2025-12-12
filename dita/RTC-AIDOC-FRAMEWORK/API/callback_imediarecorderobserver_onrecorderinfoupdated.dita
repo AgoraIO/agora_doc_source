@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediarecorderobserver_onrecorderinfoupdated">
+    <title><ph keyref="onRecorderInfoUpdated"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">录制信息更新回调。</ph><ph id="shortdesc" props="rn">录制信息更新回调。</ph><ph id="shortdesc" props="flutter">录制信息更新回调。</ph><ph id="shortdesc" props="unity">录制信息更新回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRecorderInfoUpdated"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onRecorderInfoUpdated?(
+    channelId: string,
+    uid: number,
+    info: RecorderInfo
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onRecorderInfoUpdated?(
+    channelId: string,
+    uid: number,
+    info: RecorderInfo
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, int uid, RecorderInfo info)?
+      onRecorderInfoUpdated;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRecorderInfoUpdated(string channelId, uint uid, RecorderInfo info) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">成功注册该回调并开启音视频流录制后，SDK 会根据你在 <xref keyref="MediaRecorderConfiguration"/> 中设置的 <codeph>recorderInfoUpdateInterval</codeph> 的值周期性触发该回调，报告当前录制文件的文件名、时长和大小。</p>
+            <p props="rn">成功注册该回调并开启音视频流录制后，SDK 会根据你在 <xref keyref="MediaRecorderConfiguration"/> 中设置的 <codeph>recorderInfoUpdateInterval</codeph> 的值周期性触发该回调，报告当前录制文件的文件名、时长和大小。</p>
+            <p props="flutter">成功注册该回调并开启音视频流录制后，SDK 会根据你在 <xref keyref="MediaRecorderConfiguration"/> 中设置的 <codeph>recorderInfoUpdateInterval</codeph> 的值周期性触发该回调，报告当前录制文件的文件名、时长和大小。</p>
+            <p props="unity">成功注册该回调并开启音视频流录制后，SDK 会根据你在 <xref keyref="MediaRecorderConfiguration"/> 中设置的 <codeph>recorderInfoUpdateInterval</codeph> 的值周期性触发该回调，报告当前录制文件的文件名、时长和大小。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>channelId</pt>
+                    <pd>频道名称。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>info</pt>
+                    <pd>录制文件信息。详见 <xref keyref="RecorderInfo"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channelId</pt>
+                    <pd>频道名称。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>info</pt>
+                    <pd>录制文件信息。详见 <xref keyref="RecorderInfo"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channelId</pt>
+                    <pd>频道名称。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>info</pt>
+                    <pd>录制文件信息。详见 <xref keyref="RecorderInfo"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelId</pt>
+                    <pd>频道名称。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>info</pt>
+                    <pd>录制文件信息。详见 <xref keyref="RecorderInfo"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setexternalremoteeglcontext">
+    <title><ph keyref="setExternalRemoteEglContext"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">设置远端视频流渲染的 EGL 环境上下文。</ph><ph id="shortdesc" props="flutter">设置远端视频流渲染的 EGL 环境上下文。</ph><ph id="shortdesc" props="unity">设置远端视频流渲染的 EGL 环境上下文。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalRemoteEglContext"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract setExternalRemoteEglContext(eglContext: any): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setExternalRemoteEglContext(int eglContext);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalRemoteEglContext(IntPtr eglContext);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">通过设置该方法，开发者可以替换 SDK 内部默认的远端 EGL 环境上下文，便于实现统一的 EGL 上下文管理。
+引擎销毁时，SDK 会自动释放 EGL 环境上下文。</p>
+            <p props="flutter">通过设置该方法，开发者可以替换 SDK 内部默认的远端 EGL 环境上下文，便于实现统一的 EGL 上下文管理。
+引擎销毁时，SDK 会自动释放 EGL 环境上下文。</p>
+            <p props="unity">通过设置该方法，开发者可以替换 SDK 内部默认的远端 EGL 环境上下文，便于实现统一的 EGL 上下文管理。
+引擎销毁时，SDK 会自动释放 EGL 环境上下文。</p>
+            <note props="rn">该方法仅适用于 Android。</note>
+            <note props="flutter">该方法仅适用于 Android。</note>
+            <note props="unity">该方法仅适用于 Android。</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>该方法适用于使用 Texture 格式的视频数据进行远端视频自渲染的场景。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>调用时机</title>
+            <p props="rn">该方法需要在加入频道前调用。</p>
+            <p props="flutter">该方法需要在加入频道前调用。</p>
+            <p props="unity">该方法需要在加入频道前调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>eglContext</pt>
+                    <pd>用于远端视频流渲染的 EGL 环境上下文对象。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>eglContext</pt>
+                    <pd>用于远端视频流渲染的 EGL 环境上下文对象。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>eglContext</pt>
+                    <pd>用于远端视频流渲染的 EGL 环境上下文对象。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>返回值</title>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

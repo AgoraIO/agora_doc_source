@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_getcaches">
+    <title><ph keyref="getCaches"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">获取已缓存的音乐资源信息。</ph><ph id="shortdesc" props="rn">获取已缓存的音乐资源信息。</ph><ph id="shortdesc" props="flutter">获取已缓存的音乐资源信息。</ph><ph id="shortdesc" props="unity">获取已缓存的音乐资源信息。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCaches"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getCaches(): { cacheInfo: MusicCacheInfo[]; cacheInfoSize: number };</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getCaches(): { cacheInfo: MusicCacheInfo[]; cacheInfoSize: number };</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;MusicCacheInfo&gt;&gt; getCaches(int cacheInfoSize);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetCaches(ref MusicCacheInfo[] cacheInfo, ref Int32 cacheInfoSize);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">调用该方法前，你需要预先分配一定大小的内存空间用来存储缓存音乐资源的信息。如果你需要设置可缓存的音乐资源数量，可通过 <xref keyref="initialize_IMusicContentCenter"/> 的 <codeph>configuration</codeph> 来设置。
+当你不再需要使用已缓存的音乐资源时，你需要及时释放内存以防止内存泄漏。</p>
+            <p props="rn">调用该方法前，你需要预先分配一定大小的内存空间用来存储缓存音乐资源的信息。如果你需要设置可缓存的音乐资源数量，可通过 <xref keyref="initialize_IMusicContentCenter"/> 的 <codeph>configuration</codeph> 来设置。
+当你不再需要使用已缓存的音乐资源时，你需要及时释放内存以防止内存泄漏。</p>
+            <p props="flutter">调用该方法前，你需要预先分配一定大小的内存空间用来存储缓存音乐资源的信息。如果你需要设置可缓存的音乐资源数量，可通过 <xref keyref="initialize_IMusicContentCenter"/> 的 <codeph>configuration</codeph> 来设置。
+当你不再需要使用已缓存的音乐资源时，你需要及时释放内存以防止内存泄漏。</p>
+            <p props="unity">调用该方法前，你需要预先分配一定大小的内存空间用来存储缓存音乐资源的信息。如果你需要设置可缓存的音乐资源数量，可通过 <xref keyref="initialize_IMusicContentCenter"/> 的 <codeph>configuration</codeph> 来设置。
+当你不再需要使用已缓存的音乐资源时，你需要及时释放内存以防止内存泄漏。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="flutter">
+                    <pt>cacheInfoSize</pt>
+                    <pd>指定要获取的缓存音乐资源列表的长度。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cacheInfo</pt>
+                    <pd>输出参数，指向用于存储已缓存音乐资源的内存缓冲区的指针。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cacheInfoSize</pt>
+                    <pd>输入和输出参数。
+                        <ul>
+                            <li>输入值：<codeph>cacheInfo</codeph> 数组的长度，即你所分配的 <xref keyref="MusicCacheInfo"/> 结构体的数量。</li>
+                            <li>输出值：方法执行完毕后输出的 <xref keyref="MusicCacheInfo"/> 结构体的数量。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">方法调用成功时，返回一个包含以下属性的对象：
+                <ul>
+                    <li><codeph>cacheInfo</codeph>：音乐缓存信息数组。</li>
+                    <li><codeph>cacheInfoSize</codeph>：音乐缓存信息数组的长度。</li>
+                </ul>
+            </p>
+            <p props="rn">方法调用成功时，返回一个包含以下属性的对象：
+                <ul>
+                    <li><codeph>cacheInfo</codeph>：音乐缓存信息数组。</li>
+                    <li><codeph>cacheInfoSize</codeph>：音乐缓存信息数组的长度。</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>方法调用成功时，返回 <xref keyref="MusicCacheInfo"/> 对象的列表。</li>
+                    <li>方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

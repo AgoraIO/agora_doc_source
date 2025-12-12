@@ -48,10 +48,17 @@ class ParentClassExtractor:
     def __init__(self):
         # Platform mapping: JSON platform name -> keysmap file suffix
         self.platform_mapping = {
-            'windows': 'cpp',
-            'android': 'java',
-            'ios': 'ios',
-            'macos': 'macos'
+            # 'windows': 'cpp',
+            # 'android': 'java',
+            # 'ios': 'ios',
+            # 'macos': 'macos',
+            'electron': 'electron',
+            'rn': 'rn',
+            'unity': 'unity',
+            'flutter': 'flutter',
+            'csharp': 'unity',
+            'unreal-cpp': 'unreal',
+            'unreal-blueprint': 'blueprint',
         }
         
         # Cache for href mappings from keysmap files: {platform: {key: href}}
@@ -315,7 +322,7 @@ class ParentClassExtractor:
         except Exception as e:
             logger.error(f"Error saving updated JSON to {output_file}: {e}")
     
-    def run(self, input_file: str = "name_groups_merged.json", output_file: str = "name_groups_step1.json") -> None:
+    def run(self, input_file: str = "name_groups.json", output_file: str = "name_groups.json") -> None:
         """
         Run the complete parent class extraction process.
         

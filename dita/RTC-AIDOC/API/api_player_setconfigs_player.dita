@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_player_setconfigs_player">
+    <title><ph keyref="SetConfigs_Player"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">配置播放器。</ph><ph id="shortdesc" props="ios">配置播放器参数。</ph><ph id="shortdesc" props="android">设置播放器配置。</ph><ph id="shortdesc" props="mac">配置播放器参数。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SetConfigs_Player"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">bool SetConfigs(PlayerConfig* config, Error *err = nullptr)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (BOOL)setConfigs:(AgoraRtePlayerConfig * _Nonnull)config error:(AgoraRteError * _Nullable)error;</codeblock>
+                <codeblock props="android" outputclass="language-java">public void setConfigs(PlayerConfig config) throws RteException</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (BOOL)setConfigs:(AgoraRtePlayerConfig * _Nonnull)config error:(AgoraRteError * _Nullable)error;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">你可以调用该方法配置播放器，例如启用自动播放、订阅不同分辨率和码率的视频流等。</p>
+            <p props="ios">你可以调用此方法配置播放器，例如启用自动播放、订阅不同分辨率和码率的视频流。</p>
+            <p props="android">你可以调用此方法配置播放器，例如启用自动播放、订阅不同分辨率和码率的视频流。</p>
+            <p props="mac">你可以调用此方法配置播放器，例如启用自动播放、订阅不同分辨率和码率的视频流。</p>
+            <note props="ios">必须在调用 <xref keyref="Player_Player"/> 之后调用此方法。</note>
+            <note props="mac">必须在调用 <xref keyref="Player_Player"/> 之后调用此方法。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>调用时机</title>
+            <p props="cpp">该方法必须在调用 <xref keyref="Player_Player"/> 之后执行。</p>
+            <p props="android">此方法必须在调用 <xref keyref="Player_Player"/> 之后调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>播放器配置对象，详见 <xref keyref="PlayerConfig"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>输出参数，状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>播放器配置对象。详见 <xref keyref="PlayerConfig"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>状态或错误信息。详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>播放器配置对象，详见 <xref keyref="PlayerConfig"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>config</pt>
+                    <pd>播放器配置对象。详见 <xref keyref="PlayerConfig"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>error</pt>
+                    <pd>状态或错误信息。详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="exception" props="android">
+            <title>异常</title>
+            <p props="android">如果方法调用失败，SDK 会抛出包含相应错误信息的 <xref keyref="RteException"/>。你需要捕获并处理该异常。</p>
+        </section>
+        <section id="return_values" props="cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">配置是否成功：
+                <ul>
+                    <li><xref keyref="true"/>：配置成功。</li>
+                    <li><xref keyref="false"/>：配置失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li><xref keyref="true"/>：配置成功。</li>
+                    <li><xref keyref="false"/>：配置失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li><xref keyref="true"/>：配置成功。</li>
+                    <li><xref keyref="false"/>：配置失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onconnectionstatechanged">
+    <title><ph keyref="onConnectionStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">网络连接状态发生变化时触发的回调。</ph><ph id="shortdesc" props="ios">网络连接状态发生变化时的回调。</ph><ph id="shortdesc" props="android">网络连接状态发生变化回调。</ph><ph id="shortdesc" props="mac">网络连接状态发生变化时的回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onConnectionStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onConnectionStateChanged(CONNECTION_STATE_TYPE state, CONNECTION_CHANGED_REASON_TYPE reason)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine connectionChangedToState:(AgoraConnectionState)state reason:(AgoraConnectionChangedReason)reason NS_SWIFT_NAME(rtcEngine(_:connectionChangedTo:reason:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onConnectionStateChanged(int state, int reason)</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine connectionChangedToState:(AgoraConnectionState)state reason:(AgoraConnectionChangedReason)reason NS_SWIFT_NAME(rtcEngine(_:connectionChangedTo:reason:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v2.3.2 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">该回调在网络连接状态发生变化时触发，报告当前的连接状态以及导致状态变化的原因。</p>
+            <p props="ios">该回调在网络连接状态发生变化时触发，报告当前的连接状态以及导致状态变化的原因。</p>
+            <p props="android">SDK 会在网络连接状态发生变化时触发该回调，并报告当前的连接状态及其变化原因。</p>
+            <p props="mac">该回调在网络连接状态发生变化时触发，报告当前的连接状态以及导致状态变化的原因。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android ios mac">
+            <title>触发时机</title>
+            <p props="ios">该回调在网络连接状态发生变化时被触发。</p>
+            <p props="android">该回调在网络连接状态发生变化时被触发。</p>
+            <p props="mac">该回调在网络连接状态发生变化时被触发。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>当前的连接状态。详见 <xref keyref="CONNECTION_STATE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>连接状态变化的原因。详见 <xref keyref="CONNECTION_CHANGED_REASON_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>state</pt>
+                    <pd>当前的连接状态，详见 <xref keyref="CONNECTION_STATE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>reason</pt>
+                    <pd>连接状态发生变化的原因，详见 <xref keyref="CONNECTION_CHANGED_REASON_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>当前的连接状态：
+                        <ul>
+                            <li><codeph>CONNECTION_STATE_DISCONNECTED</codeph> (1)：SDK 与声网边缘服务器断开连接。</li>
+                            <li><codeph>CONNECTION_STATE_CONNECTING</codeph> (2)：SDK 正在连接声网边缘服务器。</li>
+                            <li><codeph>CONNECTION_STATE_CONNECTED</codeph> (3)：SDK 已连接到声网边缘服务器。</li>
+                            <li><codeph>CONNECTION_STATE_RECONNECTING</codeph> (4)：SDK 尝试重新连接声网边缘服务器。</li>
+                            <li><codeph>CONNECTION_STATE_FAILED</codeph> (5)：SDK 连接声网边缘服务器失败。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>连接状态变化的原因：
+                        <ul>
+                            <li><codeph>CONNECTION_CHANGED_CONNECTING</codeph> (0)：SDK 正在连接声网边缘服务器。</li>
+                            <li><codeph>CONNECTION_CHANGED_JOIN_SUCCESS</codeph> (1)：SDK 成功加入频道。</li>
+                            <li><codeph>CONNECTION_CHANGED_INTERRUPTED</codeph> (2)：SDK 与声网边缘服务器之间的连接中断。</li>
+                            <li><codeph>CONNECTION_CHANGED_BANNED_BY_SERVER</codeph> (3)：连接被声网服务器禁止，例如用户被踢出频道时会返回该错误码。</li>
+                            <li><codeph>CONNECTION_CHANGED_JOIN_FAILED</codeph> (4)：SDK 加入频道失败。若超过 20 分钟未能加入频道，SDK 会停止重连并返回该错误码。你需要提示用户尝试切换网络并重新加入频道。</li>
+                            <li><codeph>CONNECTION_CHANGED_LEAVE_CHANNEL</codeph> (5)：SDK 已离开频道。</li>
+                            <li><codeph>CONNECTION_CHANGED_INVALID_APP_ID</codeph> (6)：无效的 App ID。你需要使用有效的 App ID 重新加入频道，并确保该 App ID 与声网控制台中生成的一致。</li>
+                            <li><codeph>CONNECTION_CHANGED_INVALID_CHANNEL_NAME</codeph> (7)：无效的频道名。请使用有效的频道名重新加入频道。有效的频道名为不超过 64 字节的字符串，支持的字符包括：
+                                <ul>
+                                    <li>所有小写英文字母：a 到 z。</li>
+                                    <li>所有大写英文字母：A 到 Z。</li>
+                                    <li>所有数字字符：0 到 9。</li>
+                                    <li>特殊字符：<codeph>!</codeph>, <codeph>#</codeph>, <codeph>$</codeph>, <codeph>%</codeph>, <codeph>&amp;</codeph>, <codeph>(</codeph>, <codeph>)</codeph>, <codeph>+</codeph>, <codeph>-</codeph>, <codeph>:</codeph>, <codeph>;</codeph>, <codeph>&lt;</codeph>, <codeph>=</codeph>, <codeph>.</codeph>, <codeph>&gt;</codeph>, <codeph>?</codeph>, <codeph>@</codeph>, <codeph>[</codeph>, <codeph>]</codeph>, <codeph>^</codeph>, <codeph>_</codeph>, <codeph>{</codeph>, <codeph>}</codeph>, <codeph>|</codeph>, <codeph>~</codeph>, <codeph>,</codeph>。</li>
+                                </ul>
+                            </li>
+                            <li><codeph>CONNECTION_CHANGED_INVALID_TOKEN</codeph> (8)：无效的 Token。可能原因包括：
+                                <ul>
+                                    <li>项目在声网控制台启用了 App Certificate，但加入频道时未传入 Token。</li>
+                                    <li>调用 <codeph>joinChannel</codeph> 加入频道时指定的 <codeph>uid</codeph> 与生成 Token 时传入的 <codeph>uid</codeph> 不一致。</li>
+                                    <li>使用的 Token 与生成的 Token 不一致。</li>
+                                </ul>
+                            </li>
+                        </ul><ph>  请确保：</ph>
+                        <ul>
+                            <li>项目启用 App Certificate 时，加入频道必须传入 Token。</li>
+                            <li>生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致。</li>
+                            <li>使用的 Token 与生成的 Token 一致。</li>
+                        </ul>
+                        <ul>
+                            <li><codeph>CONNECTION_CHANGED_TOKEN_EXPIRED</codeph> (9)：当前使用的 Token 已过期。你需要在服务器上生成新的 Token，并使用新 Token 重新加入频道。</li>
+                            <li><codeph>CONNECTION_CHANGED_REJECTED_BY_SERVER</codeph> (10)：用户被服务器禁止。</li>
+                            <li><codeph>CONNECTION_CHANGED_SETTING_PROXY_SERVER</codeph> (11)：设置代理服务器后，SDK 尝试重新连接。</li>
+                            <li><codeph>CONNECTION_CHANGED_RENEW_TOKEN</codeph> (12)：由于 Token 被更新，连接状态发生变化。</li>
+                            <li><codeph>CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED</codeph> (13)：客户端 IP 地址发生变化。如果多次收到该错误码，你需要提示用户切换网络并重新加入频道。</li>
+                            <li><codeph>CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT</codeph> (14)：SDK 与声网边缘服务器之间的连接保活超时，SDK 会自动尝试重新连接。</li>
+                            <li><codeph>CONNECTION_CHANGED_REJOIN_SUCCESS</codeph> (15)：SDK 成功重新加入频道。</li>
+                            <li><codeph>CONNECTION_CHANGED_LOST</codeph> (16)：SDK 与服务器之间的连接丢失。</li>
+                            <li><codeph>CONNECTION_CHANGED_ECHO_TEST</codeph> (17)：由于回声测试，连接状态发生变化。</li>
+                            <li><codeph>CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED_BY_USER</codeph> (18)：本地 IP 地址被用户更改。</li>
+                            <li><codeph>CONNECTION_CHANGED_SAME_UID_LOGIN</codeph> (19)：用户在不同设备上以相同的 <codeph>uid</codeph> 加入同一频道。注意：以相同 <codeph>uid</codeph> 加入同一 RTC 频道属于未定义行为，声网不保证在相同情况下始终触发该错误码。</li>
+                            <li><codeph>CONNECTION_CHANGED_TOO_MANY_BROADCASTERS</codeph> (20)：频道中的主播数量已达上限。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>state</pt>
+                    <pd>当前的连接状态，详见 <xref keyref="CONNECTION_STATE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>reason</pt>
+                    <pd>连接状态发生变化的原因，详见 <xref keyref="CONNECTION_CHANGED_REASON_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audioparams">
+    <title><ph keyref="AudioParams"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于设置音频数据格式。</ph><ph id="shortdesc" props="ios">设置音频数据格式。</ph><ph id="shortdesc" props="android">用于设置音频数据格式。</ph><ph id="shortdesc" props="mac">设置音频数据格式。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct AudioParams {
+  int sample_rate;
+  int channels;
+  rtc::RAW_AUDIO_FRAME_OP_MODE_TYPE mode;
+  int samples_per_call;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">@interface AgoraAudioParams : NSObject
+@property (assign, nonatomic) NSInteger sampleRate;
+@property (assign, nonatomic) NSInteger channel;
+@property (assign, nonatomic) AgoraAudioRawFrameOperationMode mode;
+@property (assign, nonatomic) NSInteger samplesPerCall;
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class AudioParams {
+  public int sampleRate = 0;
+  public int channel = 0;
+  public int mode = Constants.RAW_AUDIO_FRAME_OP_MODE_READ_ONLY;
+  public int samplesPerCall = 0;
+}</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">@interface AgoraAudioParams : NSObject
+@property (assign, nonatomic) NSInteger sampleRate;
+@property (assign, nonatomic) NSInteger channel;
+@property (assign, nonatomic) AgoraAudioRawFrameOperationMode mode;
+@property (assign, nonatomic) NSInteger samplesPerCall;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+            <p props="cpp">你可以在以下 API 中传入 <xref keyref="AudioParams"/> 对象，以设置对应回调的音频数据格式：
+                <ul>
+                    <li><xref keyref="getRecordAudioParams_IAudioFrameObserverBase"/>：设置 <xref keyref="onRecordAudioFrame_IAudioFrameObserverBase"/> 回调的音频数据格式。</li>
+                    <li><xref keyref="getPlaybackAudioParams_IAudioFrameObserverBase"/>：设置 <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> 回调的音频数据格式。</li>
+                    <li><xref keyref="getMixedAudioParams_IAudioFrameObserverBase"/>：设置 <xref keyref="onMixedAudioFrame_IAudioFrameObserverBase"/> 回调的音频数据格式。</li>
+                    <li><xref keyref="getEarMonitoringAudioParams_IAudioFrameObserverBase"/>：设置 <xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/> 回调的音频数据格式。</li>
+                </ul>
+            </p>
+            <p props="ios">你可以在以下 API 中传入 <xref keyref="AudioParams"/> 对象，以设置对应回调的音频数据格式：
+                <ul>
+                    <li><xref keyref="getRecordAudioParams"/>：设置 <xref keyref="onRecordAudioFrame"/> 回调的音频数据格式。</li>
+                    <li><xref keyref="getPlaybackAudioParams"/>：设置 <codeph>onPlaybackAudioFrame:</codeph> 回调的音频数据格式。</li>
+                    <li><xref keyref="getMixedAudioParams"/>：设置 <xref keyref="onMixedAudioFrame"/> 回调的音频数据格式。</li>
+                    <li><xref keyref="getEarMonitoringAudioParams"/>：设置 <xref keyref="onEarMonitoringAudioFrame"/> 回调的音频数据格式。</li>
+                </ul>
+            </p>
+            <p props="android">你可以在以下接口中传入 <xref keyref="AudioParams"/> 对象，以设置对应回调的数据格式：
+                <ul>
+                    <li><xref keyref="getRecordAudioParams"/>：设置 <xref keyref="onRecordAudioFrame"/> 回调的数据格式。</li>
+                    <li><xref keyref="getPlaybackAudioParams"/>：设置 <xref keyref="onPlaybackAudioFrame"/> 回调的数据格式。</li>
+                    <li><xref keyref="getMixedAudioParams"/>：设置 <xref keyref="onMixedAudioFrame"/> 回调的数据格式。</li>
+                    <li><xref keyref="getEarMonitoringAudioParams"/>：设置 <xref keyref="onEarMonitoringAudioFrame"/> 回调的数据格式。</li>
+                </ul>
+            </p>
+            <p props="mac">你可以在以下 API 中传入 <xref keyref="AudioParams"/> 对象，以设置对应回调的音频数据格式：
+                <ul>
+                    <li><xref keyref="getRecordAudioParams"/>：设置 <xref keyref="onRecordAudioFrame"/> 回调的音频数据格式。</li>
+                    <li><xref keyref="getPlaybackAudioParams"/>：设置 <codeph>onPlaybackAudioFrame:</codeph> 回调的音频数据格式。</li>
+                    <li><xref keyref="getMixedAudioParams"/>：设置 <xref keyref="onMixedAudioFrame"/> 回调的音频数据格式。</li>
+                    <li><xref keyref="getEarMonitoringAudioParams"/>：设置 <xref keyref="onEarMonitoringAudioFrame"/> 回调的音频数据格式。</li>
+                </ul>
+            </p>
+            <note props="cpp">SDK 会通过 <xref keyref="AudioParams"/> 中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔，并根据采样间隔触发 <xref keyref="onRecordAudioFrame_IAudioFrameObserverBase"/>、<xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/>、<xref keyref="onMixedAudioFrame_IAudioFrameObserverBase"/> 和 <xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/> 回调。
+采样间隔（秒）= <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。
+请确保采样间隔 ≥ 0.01 秒。</note>
+            <note props="ios">SDK 会通过 <xref keyref="AudioParams"/> 中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔，并根据采样间隔触发 <xref keyref="onRecordAudioFrame"/>、<codeph>onPlaybackAudioFrame:</codeph>、<xref keyref="onMixedAudioFrame"/> 和 <xref keyref="onEarMonitoringAudioFrame"/> 回调。
+采样间隔（秒） = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。
+请确保采样间隔 ≥ 0.01 秒。</note>
+            <note props="android">SDK 会通过 <xref keyref="AudioParams"/> 中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔，并按该间隔触发 <xref keyref="onRecordAudioFrame"/>、<xref keyref="onPlaybackAudioFrame"/>、<xref keyref="onMixedAudioFrame"/> 和 <xref keyref="onEarMonitoringAudioFrame"/> 回调。
+采样间隔（秒） = <codeph>samplesPerCall</codeph> /（<codeph>sampleRate</codeph> × <codeph>channel</codeph>）。
+确保采样间隔 ≥ 0.01 秒。</note>
+            <note props="mac">SDK 会通过 <xref keyref="AudioParams"/> 中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔，并根据采样间隔触发 <xref keyref="onRecordAudioFrame"/>、<codeph>onPlaybackAudioFrame:</codeph>、<xref keyref="onMixedAudioFrame"/> 和 <xref keyref="onEarMonitoringAudioFrame"/> 回调。
+采样间隔（秒） = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。
+请确保采样间隔 ≥ 0.01 秒。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>sample_rate</pt>
+                    <pd>音频采样率（Hz），可设置为以下值之一：8000、16000（默认）、32000、44100、48000。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>channels</pt>
+                    <pd>音频声道数，可设置为以下值之一：
+                        <ul>
+                            <li>1：单声道（默认）。</li>
+                            <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mode</pt>
+                    <pd>音频数据的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>samples_per_call</pt>
+                    <pd>每次调用的采样点数量，例如媒体推流时为 1024。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sampleRate</pt>
+                    <pd>音频采样率（Hz），可设置为以下值之一：
+                        <ul>
+                            <li>8000。</li>
+                            <li>（默认）16000。</li>
+                            <li>32000。</li>
+                            <li>44100。</li>
+                            <li>48000。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>channel</pt>
+                    <pd>音频声道数，可设置为以下值之一：
+                        <ul>
+                            <li>1：（默认）单声道。</li>
+                            <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mode</pt>
+                    <pd>音频数据的使用模式。详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>samplesPerCall</pt>
+                    <pd>每次回调的采样点数量，例如媒体推流时为 1024。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sampleRate</pt>
+                    <pd>音频采样率（Hz），可设置为以下值：
+                        <ul>
+                            <li>8000。</li>
+                            <li>（默认）16000。</li>
+                            <li>32000。</li>
+                            <li>44100。</li>
+                            <li>48000。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channel</pt>
+                    <pd>音频声道数，可设置为以下值：
+                        <ul>
+                            <li>1：（默认）单声道。</li>
+                            <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mode</pt>
+                    <pd>音频数据的使用模式，可设置为以下值：
+                        <ul>
+                            <li><codeph>RAW_AUDIO_FRAME_OP_MODE_READ_ONLY</codeph>（0）：只读模式，例如用户通过声网 SDK 获取数据后进行媒体流推送。</li>
+                            <li><codeph>RAW_AUDIO_FRAME_OP_MODE_READ_WRITE</codeph>（2）：读写模式，例如用户拥有自定义音频特效处理模块并进行音频预处理，如变声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>samplesPerCall</pt>
+                    <pd>每个回调中包含的采样数，例如用于媒体推送时设置为 1024。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sampleRate</pt>
+                    <pd>音频采样率（Hz），可设置为以下值之一：
+                        <ul>
+                            <li>8000。</li>
+                            <li>（默认）16000。</li>
+                            <li>32000。</li>
+                            <li>44100。</li>
+                            <li>48000。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channel</pt>
+                    <pd>音频声道数，可设置为以下值之一：
+                        <ul>
+                            <li>1：（默认）单声道。</li>
+                            <li>2：立体声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mode</pt>
+                    <pd>音频数据的使用模式。详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>samplesPerCall</pt>
+                    <pd>每次回调的采样点数量，例如媒体推流时为 1024。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

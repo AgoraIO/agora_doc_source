@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_createcustomaudiotrack">
+    <title><ph keyref="createCustomAudioTrack"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">创建一个自定义音频采集轨道。</ph><ph id="shortdesc" props="rn">创建一个自定义音频采集轨道。</ph><ph id="shortdesc" props="flutter">创建一个自定义音频采集轨道。</ph><ph id="shortdesc" props="unity">创建一个自定义音频采集轨道。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createCustomAudioTrack"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract createCustomAudioTrack(
+    trackType: AudioTrackType,
+    config: AudioTrackConfig
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract createCustomAudioTrack(
+    trackType: AudioTrackType,
+    config: AudioTrackConfig
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; createCustomAudioTrack(
+      {required AudioTrackType trackType, required AudioTrackConfig config});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract uint CreateCustomAudioTrack(AUDIO_TRACK_TYPE trackType, AudioTrackConfig config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">如需在频道中发布自定义采集音频，可参考以下步骤：
+                <ol>
+                    <li>调用该方法创建音频轨道并获得音频轨道 ID。</li>
+                    <li>调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishCustomAudioTrackId</codeph> 设置为你想要发布的音频轨道 ID，并将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>。</li>
+                    <li>调用 <xref keyref="pushAudioFrame"/> 将 <codeph>trackId</codeph> 指定为步骤 2 中指定的音频轨道 ID，即可实现在频道内发布对应的自定义音频源。</li>
+                </ol>
+            </p>
+            <p props="rn">如需在频道中发布自定义采集音频，可参考以下步骤：
+                <ol>
+                    <li>调用该方法创建音频轨道并获得音频轨道 ID。</li>
+                    <li>调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishCustomAudioTrackId</codeph> 设置为你想要发布的音频轨道 ID，并将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>。</li>
+                    <li>调用 <xref keyref="pushAudioFrame"/> 将 <codeph>trackId</codeph> 指定为步骤 2 中指定的音频轨道 ID，即可实现在频道内发布对应的自定义音频源。</li>
+                </ol>
+            </p>
+            <p props="flutter">如需在频道中发布自定义采集音频，可参考以下步骤：
+                <ol>
+                    <li>调用该方法创建音频轨道并获得音频轨道 ID。</li>
+                    <li>调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishCustomAudioTrackId</codeph> 设置为你想要发布的音频轨道 ID，并将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>。</li>
+                    <li>调用 <xref keyref="pushAudioFrame"/> 将 <codeph>trackId</codeph> 指定为步骤 2 中指定的音频轨道 ID，即可实现在频道内发布对应的自定义音频源。</li>
+                </ol>
+            </p>
+            <p props="unity">如需在频道中发布自定义采集音频，可参考以下步骤：
+                <ol>
+                    <li>调用该方法创建音频轨道并获得音频轨道 ID。</li>
+                    <li>调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishCustomAudioTrackId</codeph> 设置为你想要发布的音频轨道 ID，并将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>。</li>
+                    <li>调用 <xref keyref="pushAudioFrame"/> 将 <codeph>trackId</codeph> 指定为步骤 2 中指定的音频轨道 ID，即可实现在频道内发布对应的自定义音频源。</li>
+                </ol>
+            </p>
+            <note props="electron">该方法需要在加入频道前调用。</note>
+            <note props="rn">该方法需要在加入频道前调用。</note>
+            <note props="flutter">该方法需要在加入频道前调用。</note>
+            <note props="unity">该方法需要在加入频道前调用。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>trackType</pt>
+                    <pd>自定义音频轨道类型。详见 <xref keyref="AUDIO_TRACK_TYPE"/>。
+                        <note>如指定 <codeph>AudioTrackDirect</codeph>，则必须在调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishMicrophoneTrack</codeph> 设为 <xref keyref="false"/>，否则加入频道失败并返回错误码 -2。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>自定义音频轨道配置。详见 <xref keyref="AudioTrackConfig"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>trackType</pt>
+                    <pd>自定义音频轨道类型。详见 <xref keyref="AUDIO_TRACK_TYPE"/>。
+                        <note>如指定 <codeph>AudioTrackDirect</codeph>，则必须在调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishMicrophoneTrack</codeph> 设为 <xref keyref="false"/>，否则加入频道失败并返回错误码 -2。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>config</pt>
+                    <pd>自定义音频轨道配置。详见 <xref keyref="AudioTrackConfig"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>trackType</pt>
+                    <pd>自定义音频轨道类型。详见 <xref keyref="AUDIO_TRACK_TYPE"/>。
+                        <note>如指定 <codeph>audioTrackDirect</codeph>，则必须在调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishMicrophoneTrack</codeph> 设为 <xref keyref="false"/>，否则加入频道失败并返回错误码 -2。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>自定义音频轨道配置。详见 <xref keyref="AudioTrackConfig"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>trackType</pt>
+                    <pd>自定义音频轨道类型。详见 <xref keyref="AUDIO_TRACK_TYPE"/>。
+                        <note>如指定 <codeph>AUDIO_TRACK_DIRECT</codeph>，则必须在调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishMicrophoneTrack</codeph> 设为 <xref keyref="false"/>，否则加入频道失败并返回错误码 -2。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>自定义音频轨道配置。详见 <xref keyref="AudioTrackConfig"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>方法调用成功，返回音频轨道 ID 作为该音频轨道的唯一标识。</li>
+                    <li>方法调用失败，返回 0xffffffff。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>方法调用成功，返回音频轨道 ID 作为该音频轨道的唯一标识。</li>
+                    <li>方法调用失败，返回 0xffffffff。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>方法调用成功，返回音频轨道 ID 作为该音频轨道的唯一标识。</li>
+                    <li>方法调用失败，返回 0xffffffff。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>方法调用成功，返回音频轨道 ID 作为该音频轨道的唯一标识。</li>
+                    <li>方法调用失败，返回 0xffffffff。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setdefaultaudioroutetospeakerphone">
+    <title><ph keyref="setDefaultAudioRouteToSpeakerphone"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">设置默认的音频路由。</ph><ph id="shortdesc" props="flutter">设置默认的音频路由。</ph><ph id="shortdesc" props="unity">设置默认的音频路由。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDefaultAudioRouteToSpeakerphone"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract setDefaultAudioRouteToSpeakerphone(
+    defaultToSpeaker: boolean
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">手机设备一般有两个音频路由，一个是位于顶部的听筒，播放声音偏小；一个是位于底部的扬声器，播放声音偏大。设置默认的音频路由，就是在没有外接设备的前提下，设置系统使用听筒还是扬声器播放音频。
+不同场景下，系统默认的音频路由也不同。具体如下：
+                <ul>
+                    <li>语音通话：听筒</li>
+                    <li>语音直播：扬声器</li>
+                    <li>视频通话：扬声器</li>
+                    <li>视频直播：扬声器</li>
+                </ul><ph>调用该 API 可以改变上述默认音频路由。</ph></p>
+            <p props="flutter">手机设备一般有两个音频路由，一个是位于顶部的听筒，播放声音偏小；一个是位于底部的扬声器，播放声音偏大。设置默认的音频路由，就是在没有外接设备的前提下，设置系统使用听筒还是扬声器播放音频。
+不同场景下，系统默认的音频路由也不同。具体如下：
+                <ul>
+                    <li>语音通话：听筒</li>
+                    <li>语音直播：扬声器</li>
+                    <li>视频通话：扬声器</li>
+                    <li>视频直播：扬声器</li>
+                </ul><ph>调用该 API 可以改变上述默认音频路由。</ph></p>
+            <p props="unity">手机设备一般有两个音频路由，一个是位于顶部的听筒，播放声音偏小；一个是位于底部的扬声器，播放声音偏大。设置默认的音频路由，就是在没有外接设备的前提下，设置系统使用听筒还是扬声器播放音频。
+不同场景下，系统默认的音频路由也不同。具体如下：
+                <ul>
+                    <li>语音通话：听筒</li>
+                    <li>语音直播：扬声器</li>
+                    <li>视频通话：扬声器</li>
+                    <li>视频直播：扬声器</li>
+                </ul><ph>调用该 API 可以改变上述默认音频路由。</ph></p>
+            <note props="rn">在调用该方法设置默认音频路由后，系统实际音频路由会随着外接音频设备（有线耳机或蓝牙耳机）的连接发生改变。详见[音频路由](https://doc.shengwang.cn/doc/rtc/android/advanced-features/audio-route)。</note>
+            <note props="flutter">该方法仅适用于 Android 和 iOS 平台。
+在调用该方法设置默认音频路由后，系统实际音频路由会随着外接音频设备（有线耳机或蓝牙耳机）的连接发生改变。详见[音频路由](https://doc.shengwang.cn/doc/rtc/android/advanced-features/audio-route)。</note>
+            <note props="unity">该方法仅适用于 Android 和 iOS 平台。
+在调用该方法设置默认音频路由后，系统实际音频路由会随着外接音频设备（有线耳机或蓝牙耳机）的连接发生改变。详见[音频路由](https://doc.shengwang.cn/doc/rtc/android/advanced-features/audio-route)。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>调用时机</title>
+            <p props="rn">该方法需要在加入频道前调用。如需在加入频道后切换音频路由，请调用 <xref keyref="setEnableSpeakerphone"/>。</p>
+            <p props="flutter">该方法需要在加入频道前调用。如需在加入频道后切换音频路由，请调用 <xref keyref="setEnableSpeakerphone"/>。</p>
+            <p props="unity">该方法需要在加入频道前调用。如需在加入频道后切换音频路由，请调用 <xref keyref="setEnableSpeakerphone"/>。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="flutter rn unity">
+            <title>相关回调</title>
+            <p props="rn">成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRoutingChanged"/> 回调，报告当前的音频路由。</p>
+            <p props="flutter">成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRoutingChanged"/> 回调，报告当前的音频路由。</p>
+            <p props="unity">成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRoutingChanged"/> 回调，报告当前的音频路由。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>defaultToSpeaker</pt>
+                    <pd>是否使用扬声器作为默认的音频路由：
+                        <ul>
+                            <li><xref keyref="true"/>: 设置默认音频路由为扬声器。</li>
+                            <li><xref keyref="false"/>: 设置默认音频路由为听筒。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>defaultToSpeaker</pt>
+                    <pd>是否使用扬声器作为默认的音频路由：
+                        <ul>
+                            <li><xref keyref="true"/>: 设置默认音频路由为扬声器。</li>
+                            <li><xref keyref="false"/>: 设置默认音频路由为听筒。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>defaultToSpeaker</pt>
+                    <pd>是否使用扬声器作为默认的音频路由：
+                        <ul>
+                            <li><xref keyref="true"/>: 设置默认音频路由为扬声器。</li>
+                            <li><xref keyref="false"/>: 设置默认音频路由为听筒。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>返回值</title>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

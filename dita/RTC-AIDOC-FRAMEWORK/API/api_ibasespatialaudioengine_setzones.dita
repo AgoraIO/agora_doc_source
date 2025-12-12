@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ibasespatialaudioengine_setzones">
+    <title><ph keyref="setZones"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置隔声区域。</ph><ph id="shortdesc" props="rn">设置隔声区域。</ph><ph id="shortdesc" props="flutter">设置隔声区域。</ph><ph id="shortdesc" props="unity">设置隔声区域。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setZones"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setZones(zones: SpatialAudioZone, zoneCount: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setZones(zones: SpatialAudioZone, zoneCount: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setZones(
+      {required SpatialAudioZone zones, required int zoneCount});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetZones(SpatialAudioZone[] zones, uint zoneCount);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">在虚拟互动场景下，你可以通过该方法设置隔声区域和声音衰减系数。当音源（可以为用户或媒体播放器）跟听声者分属于隔声区域内部和外部时，会体验到类似真实环境中声音在遇到建筑隔断时的衰减效果。
+                <ul>
+                    <li>当音源跟听声者分属于隔声区域内部和外部时，声音的衰减效果由 <xref keyref="SpatialAudioZone"/> 中的声音衰减系数决定。</li>
+                    <li>如果用户或媒体播放器同在一个隔声区域内，则不受 <xref keyref="SpatialAudioZone"/> 的影响，声音的衰减效果由 <xref keyref="setPlayerAttenuation"/> 或 <xref keyref="setRemoteAudioAttenuation"/> 中的 <codeph>attenuation</codeph> 参数决定。如果不调用 <xref keyref="setPlayerAttenuation"/> 或 <xref keyref="setRemoteAudioAttenuation"/>，则 SDK 默认声音的衰减系数为 0.5，即模拟声音在真实环境下的衰减。</li>
+                    <li>如果音源跟接收者分别属于两个隔声区域，则接收者无法听到音源。</li>
+                </ul>
+            </p>
+            <p props="rn">在虚拟互动场景下，你可以通过该方法设置隔声区域和声音衰减系数。当音源（可以为用户或媒体播放器）跟听声者分属于隔声区域内部和外部时，会体验到类似真实环境中声音在遇到建筑隔断时的衰减效果。
+                <ul>
+                    <li>当音源跟听声者分属于隔声区域内部和外部时，声音的衰减效果由 <xref keyref="SpatialAudioZone"/> 中的声音衰减系数决定。</li>
+                    <li>如果用户或媒体播放器同在一个隔声区域内，则不受 <xref keyref="SpatialAudioZone"/> 的影响，声音的衰减效果由 <xref keyref="setPlayerAttenuation"/> 或 <xref keyref="setRemoteAudioAttenuation"/> 中的 <codeph>attenuation</codeph> 参数决定。如果不调用 <xref keyref="setPlayerAttenuation"/> 或 <xref keyref="setRemoteAudioAttenuation"/>，则 SDK 默认声音的衰减系数为 0.5，即模拟声音在真实环境下的衰减。</li>
+                    <li>如果音源跟接收者分别属于两个隔声区域，则接收者无法听到音源。</li>
+                </ul>
+            </p>
+            <p props="flutter">在虚拟互动场景下，你可以通过该方法设置隔声区域和声音衰减系数。当音源（可以为用户或媒体播放器）跟听声者分属于隔声区域内部和外部时，会体验到类似真实环境中声音在遇到建筑隔断时的衰减效果。
+                <ul>
+                    <li>当音源跟听声者分属于隔声区域内部和外部时，声音的衰减效果由 <xref keyref="SpatialAudioZone"/> 中的声音衰减系数决定。</li>
+                    <li>如果用户或媒体播放器同在一个隔声区域内，则不受 <xref keyref="SpatialAudioZone"/> 的影响，声音的衰减效果由 <xref keyref="setPlayerAttenuation"/> 或 <xref keyref="setRemoteAudioAttenuation"/> 中的 <codeph>attenuation</codeph> 参数决定。如果不调用 <xref keyref="setPlayerAttenuation"/> 或 <xref keyref="setRemoteAudioAttenuation"/>，则 SDK 默认声音的衰减系数为 0.5，即模拟声音在真实环境下的衰减。</li>
+                    <li>如果音源跟接收者分别属于两个隔声区域，则接收者无法听到音源。</li>
+                </ul>
+            </p>
+            <p props="unity">在虚拟互动场景下，你可以通过该方法设置隔声区域和声音衰减系数。当音源（可以为用户或媒体播放器）跟听声者分属于隔声区域内部和外部时，会体验到类似真实环境中声音在遇到建筑隔断时的衰减效果。
+                <ul>
+                    <li>当音源跟听声者分属于隔声区域内部和外部时，声音的衰减效果由 <xref keyref="SpatialAudioZone"/> 中的声音衰减系数决定。</li>
+                    <li>如果用户或媒体播放器同在一个隔声区域内，则不受 <xref keyref="SpatialAudioZone"/> 的影响，声音的衰减效果由 <xref keyref="setPlayerAttenuation"/> 或 <xref keyref="setRemoteAudioAttenuation"/> 中的 <codeph>attenuation</codeph> 参数决定。如果不调用 <xref keyref="setPlayerAttenuation"/> 或 <xref keyref="setRemoteAudioAttenuation"/>，则 SDK 默认声音的衰减系数为 0.5，即模拟声音在真实环境下的衰减。</li>
+                    <li>如果音源跟接收者分别属于两个隔声区域，则接收者无法听到音源。</li>
+                </ul>
+            </p>
+            <note props="electron">如果多次调用该方法，以最后一次设置的隔声区域为准。</note>
+            <note props="rn">如果多次调用该方法，以最后一次设置的隔声区域为准。</note>
+            <note props="flutter">如果多次调用该方法，以最后一次设置的隔声区域为准。</note>
+            <note props="unity">如果多次调用该方法，以最后一次设置的隔声区域为准。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>zones</pt>
+                    <pd>隔声区域的设置。详见 <xref keyref="SpatialAudioZone"/>。当你将该参数设置为 <xref keyref="NULL"/> 时，表示清除所有隔声区域。
+                        <note>在 Windows 平台上，需确保 <codeph>zones</codeph> 数组中的成员个数与 <codeph>zoneCount</codeph> 的值相等，否则会导致崩溃。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>zoneCount</pt>
+                    <pd>隔声区域的数量。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>zones</pt>
+                    <pd>隔声区域的设置。详见 <xref keyref="SpatialAudioZone"/>。当你将该参数设置为 <xref keyref="NULL"/> 时，表示清除所有隔声区域。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>zoneCount</pt>
+                    <pd>隔声区域的数量。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>zones</pt>
+                    <pd>隔声区域的设置。详见 <xref keyref="SpatialAudioZone"/>。当你将该参数设置为 <codeph>NULL</codeph> 时，表示清除所有隔声区域。
+                        <note>在 Windows 平台上，需确保 <codeph>zones</codeph> 数组中的成员个数与 <codeph>zoneCount</codeph> 的值相等，否则会导致崩溃。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>zoneCount</pt>
+                    <pd>隔声区域的数量。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>zones</pt>
+                    <pd>隔声区域的设置。详见 <xref keyref="SpatialAudioZone"/>。当你将该参数设置为 <codeph>NULL</codeph> 时，表示清除所有隔声区域。
+                        <note>在 Windows 平台上，需确保 <codeph>zones</codeph> 数组中的成员个数与 <codeph>zoneCount</codeph> 的值相等，否则会导致崩溃。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>zoneCount</pt>
+                    <pd>隔声区域的数量。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

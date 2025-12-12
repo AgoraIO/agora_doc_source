@@ -1,0 +1,271 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_cameracapturerconfiguration">
+    <title><ph keyref="CameraCapturerConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">摄像头采集配置。</ph><ph id="shortdesc" props="rn">摄像头采集配置。</ph><ph id="shortdesc" props="flutter">摄像头采集配置。</ph><ph id="shortdesc" props="unity">摄像头采集配置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class CameraCapturerConfiguration {
+  
+  deviceId?: string;
+  
+  format?: VideoFormat;
+
+  followEncodeDimensionRatio?: boolean;
+
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class CameraCapturerConfiguration {
+  
+  cameraDirection?: CameraDirection;
+
+  cameraFocalLengthType?: CameraFocalLengthType;
+  
+  deviceId?: string;
+
+  cameraId?: string;
+  
+  format?: VideoFormat;
+
+  followEncodeDimensionRatio?: boolean;
+
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class CameraCapturerConfiguration {
+  const CameraCapturerConfiguration(
+      {this.cameraDirection,
+      this.cameraFocalLengthType,
+      this.deviceId,
+      this.cameraId,
+      this.followEncodeDimensionRatio,
+      this.format});
+
+  @JsonKey(name: 'cameraDirection')
+  final CameraDirection? cameraDirection;
+
+  @JsonKey(name: 'cameraFocalLengthType')
+  final CameraFocalLengthType? cameraFocalLengthType;
+
+  @JsonKey(name: 'deviceId')
+  final String? deviceId;
+
+  @JsonKey(name: 'cameraId')
+  final String? cameraId;
+
+  @JsonKey(name: 'followEncodeDimensionRatio')
+  final bool? followEncodeDimensionRatio;
+
+  @JsonKey(name: 'format')
+  final VideoFormat? format;
+
+  factory CameraCapturerConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$CameraCapturerConfigurationFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$CameraCapturerConfigurationToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class CameraCapturerConfiguration : IOptionalJsonParse
+    {
+        public Optional&lt;CAMERA_DIRECTION&gt; cameraDirection = new Optional&lt;CAMERA_DIRECTION&gt;();
+        public Optional&lt;CAMERA_FOCAL_LENGTH_TYPE&gt; cameraFocalLengthType = new Optional&lt;CAMERA_FOCAL_LENGTH_TYPE&gt;();
+        public Optional&lt;string&gt; deviceId = new Optional&lt;string&gt;();
+        public Optional&lt;string&gt; cameraId = new Optional&lt;string&gt;();
+        public Optional&lt;bool&gt; followEncodeDimensionRatio = new Optional&lt;bool&gt;();
+        public VideoFormat format;
+
+        public CameraCapturerConfiguration()
+        {
+            this.format = new VideoFormat(0, 0, 0);
+        }
+
+        public CameraCapturerConfiguration(Optional&lt;CAMERA_DIRECTION&gt; cameraDirection, Optional&lt;CAMERA_FOCAL_LENGTH_TYPE&gt; cameraFocalLengthType, Optional&lt;string&gt; deviceId, Optional&lt;string&gt; cameraId, Optional&lt;bool&gt; followEncodeDimensionRatio, VideoFormat format)
+        {
+            this.cameraDirection = cameraDirection;
+            this.cameraFocalLengthType = cameraFocalLengthType;
+            this.deviceId = deviceId;
+            this.cameraId = cameraId;
+            this.followEncodeDimensionRatio = followEncodeDimensionRatio;
+            this.format = format;
+        }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>format</pt>
+                    <pd>（可选）视频帧格式。详见 <xref keyref="VideoFormat"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>deviceId</pt>
+                    <pd>（可选）摄像头的 ID。最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>followEncodeDimensionRatio</pt>
+                    <pd>（可选）是否跟随 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频宽高比：
+                        <ul>
+                            <li><xref keyref="true"/>：(默认) 跟随。SDK 会将采集到的视频按照已设置的视频宽高比进行裁剪，会同步改变本地预览画面、<xref keyref="onCaptureVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 中的视频画面。</li>
+                            <li><xref keyref="false"/>：不跟随。SDK不改变采集到的视频帧宽高比。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cameraDirection</pt>
+                    <pd>（可选）摄像头方向。详见 <xref keyref="CAMERA_DIRECTION"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cameraId</pt>
+                    <pd>（可选）摄像头 ID。默认为前置摄像头对应的摄像头 ID。你可以通过 Android 原生系统 API 获取摄像头 ID，详见 [Camera.open()](https://developer.android.google.cn/reference/android/hardware/Camera#open(int)) 和 [CameraManager.getCameraIdList()](https://developer.android.google.cn/reference/android/hardware/camera2/CameraManager?hl=en#getCameraIdList)。
+                        <note>
+                            <ul>
+                                <li>该参数仅适用于 Android。</li>
+                                <li>该参数和 <codeph>cameraDirection</codeph> 均用于指定摄像头，二者为互斥关系，你可以按需选用其中之一，具体区别如下：</li>
+                            </ul>
+                            <ul>
+                                <li>通过 <codeph>cameraDirection</codeph> 指定摄像头的方式更为简便。你只需指定摄像头的方向（前置或后置），无需指定具体的摄像头 ID，SDK 会通过系统 API 去检索和确定实际的摄像头 ID。</li>
+                                <li>通过 <codeph>cameraId</codeph> 则可以更精确地指定某个特定的摄像头。对于多摄像头的设备，<codeph>cameraDirection</codeph> 无法识别或访问全部可用摄像头，这种情况建议使用 <codeph>cameraId</codeph> 直接指定你想要的摄像头 ID。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cameraFocalLengthType</pt>
+                    <pd>（可选）摄像头的焦距类型。详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。
+                        <note>
+                            <ul>
+                                <li>如需设置摄像头的焦距类型，仅支持通过 <codeph>cameraDirection</codeph> 指定摄像头，不支持通过 <codeph>cameraId</codeph> 进行指定。</li>
+                                <li>部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以通过以下任意一种方式实现超广角的采集效果：</li>
+                            </ul>
+                            <ul>
+                                <li>方式一：将该参数设置为 <codeph>CameraFocalLengthUltraWide</codeph> (2)（超广角镜头）。</li>
+                                <li>方式二：将该参数设置为 <codeph>CameraFocalLengthDefault</codeph> (0)（标准镜头），然后调用 <xref keyref="setCameraZoomFactor"/> 将相机缩放比例设置为小于 1.0 的数值，最小可以设置为 0.5。</li>
+                            </ul><ph>            区别为方式一的超广角大小不可调节，方式二支持自由调节相机的缩放比例。</ph></note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>format</pt>
+                    <pd>（可选）视频帧格式。详见 <xref keyref="VideoFormat"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>followEncodeDimensionRatio</pt>
+                    <pd>（可选）是否跟随 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频宽高比：
+                        <ul>
+                            <li><xref keyref="true"/>：(默认) 跟随。SDK 会将采集到的视频按照已设置的视频宽高比进行裁剪，会同步改变本地预览画面、<xref keyref="onCaptureVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 中的视频画面。</li>
+                            <li><xref keyref="false"/>：不跟随。SDK不改变采集到的视频帧宽高比。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cameraDirection</pt>
+                    <pd>（可选）摄像头方向。详见 <xref keyref="CAMERA_DIRECTION"/>。
+                        <note>该参数仅适用于 Android 和 iOS 平台。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cameraId</pt>
+                    <pd>（可选）摄像头 ID。默认为前置摄像头对应的摄像头 ID。你可以通过 Android 原生系统 API 获取摄像头 ID，详见 [Camera.open()](https://developer.android.google.cn/reference/android/hardware/Camera#open(int)) 和 [CameraManager.getCameraIdList()](https://developer.android.google.cn/reference/android/hardware/camera2/CameraManager?hl=en#getCameraIdList)。
+                        <note>
+                            <ul>
+                                <li>该参数仅适用于 Android。</li>
+                                <li>该参数和 <codeph>cameraDirection</codeph> 均用于指定摄像头，二者为互斥关系，你可以按需选用其中之一，具体区别如下：</li>
+                            </ul>
+                            <ul>
+                                <li>通过 <codeph>cameraDirection</codeph> 指定摄像头的方式更为简便。你只需指定摄像头的方向（前置或后置），无需指定具体的摄像头 ID，SDK 会通过系统 API 去检索和确定实际的摄像头 ID。</li>
+                                <li>通过 <codeph>cameraId</codeph> 则可以更精确地指定某个特定的摄像头。对于多摄像头的设备，<codeph>cameraDirection</codeph> 无法识别或访问全部可用摄像头，这种情况建议使用 <codeph>cameraId</codeph> 直接指定你想要的摄像头 ID。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cameraFocalLengthType</pt>
+                    <pd>（可选）摄像头的焦距类型。详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。
+                        <note>
+                            <ul>
+                                <li>该参数仅适用于 Android 和 iOS。</li>
+                                <li>如需设置摄像头的焦距类型，仅支持通过 <codeph>cameraDirection</codeph> 指定摄像头，不支持通过 <codeph>cameraId</codeph> 进行指定。</li>
+                                <li>部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以通过以下任意一种方式实现超广角的采集效果：</li>
+                            </ul>
+                            <ul>
+                                <li>方式一：将该参数设置为 <codeph>cameraFocalLengthUltraWide</codeph> (2)（超广角镜头）。</li>
+                                <li>方式二：将该参数设置为 <codeph>cameraFocalLengthDefault</codeph> (0)（标准镜头），然后调用 <xref keyref="setCameraZoomFactor"/> 将相机缩放比例设置为小于 1.0 的数值，最小可以设置为 0.5。</li>
+                            </ul><ph>            区别为方式一的超广角大小不可调节，方式二支持自由调节相机的缩放比例。</ph></note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>format</pt>
+                    <pd>（可选）视频帧格式。详见 <xref keyref="VideoFormat"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceId</pt>
+                    <pd>（可选）摄像头的 ID。最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。
+                        <note>该参数仅适用于 Windows 和 macOS。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>followEncodeDimensionRatio</pt>
+                    <pd>（可选）是否跟随 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频宽高比：
+                        <ul>
+                            <li><xref keyref="true"/>：(默认) 跟随。SDK 会将采集到的视频按照已设置的视频宽高比进行裁剪，会同步改变本地预览画面、<xref keyref="onCaptureVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 中的视频画面。</li>
+                            <li><xref keyref="false"/>：不跟随。SDK不改变采集到的视频帧宽高比。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cameraDirection</pt>
+                    <pd>（可选）摄像头方向。详见 <xref keyref="CAMERA_DIRECTION"/>。
+                        <note>该参数仅适用于 Android 和 iOS 平台。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cameraId</pt>
+                    <pd>（可选）摄像头 ID。默认为前置摄像头对应的摄像头 ID。你可以通过 Android 原生系统 API 获取摄像头 ID，详见 [Camera.open()](https://developer.android.google.cn/reference/android/hardware/Camera#open(int)) 和 [CameraManager.getCameraIdList()](https://developer.android.google.cn/reference/android/hardware/camera2/CameraManager?hl=en#getCameraIdList)。
+                        <note>
+                            <ul>
+                                <li>该参数仅适用于 Android。</li>
+                                <li>该参数和 <codeph>cameraDirection</codeph> 均用于指定摄像头，二者为互斥关系，你可以按需选用其中之一，具体区别如下：</li>
+                            </ul>
+                            <ul>
+                                <li>通过 <codeph>cameraDirection</codeph> 指定摄像头的方式更为简便。你只需指定摄像头的方向（前置或后置），无需指定具体的摄像头 ID，SDK 会通过系统 API 去检索和确定实际的摄像头 ID。</li>
+                                <li>通过 <codeph>cameraId</codeph> 则可以更精确地指定某个特定的摄像头。对于多摄像头的设备，<codeph>cameraDirection</codeph> 无法识别或访问全部可用摄像头，这种情况建议使用 <codeph>cameraId</codeph> 直接指定你想要的摄像头 ID。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cameraFocalLengthType</pt>
+                    <pd>（可选）摄像头的焦距类型。详见 <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>。
+                        <note>
+                            <ul>
+                                <li>该参数仅适用于 Android 和 iOS。</li>
+                                <li>如需设置摄像头的焦距类型，仅支持通过 <codeph>cameraDirection</codeph> 指定摄像头，不支持通过 <codeph>cameraId</codeph> 进行指定。</li>
+                                <li>部分 iOS 设备的后置摄像头为多个摄像头组成的融合镜头，如双摄（广角和超广角）或三摄（广角、超广角和长焦），对于这种具备超广角能力的融合镜头，你可以通过以下任意一种方式实现超广角的采集效果：</li>
+                            </ul>
+                            <ul>
+                                <li>方式一：将该参数设置为 <codeph>CAMERA_FOCAL_LENGTH_ULTRA_WIDE</codeph> (2)（超广角镜头）。</li>
+                                <li>方式二：将该参数设置为 <codeph>CAMERA_FOCAL_LENGTH_DEFAULT</codeph> (0)（标准镜头），然后调用 <xref keyref="setCameraZoomFactor"/> 将相机缩放比例设置为小于 1.0 的数值，最小可以设置为 0.5。</li>
+                            </ul><ph>            区别为方式一的超广角大小不可调节，方式二支持自由调节相机的缩放比例。</ph></note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>format</pt>
+                    <pd>（可选）视频帧格式。详见 <xref keyref="VideoFormat"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceId</pt>
+                    <pd>（可选）摄像头的 ID。
+                        <note>该参数仅适用于 Windows 和 macOS。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>followEncodeDimensionRatio</pt>
+                    <pd>（可选）是否跟随 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频宽高比：
+                        <ul>
+                            <li><xref keyref="true"/>：(默认) 跟随。SDK 会将采集到的视频按照已设置的视频宽高比进行裁剪，会同步改变本地预览画面、<xref keyref="onCaptureVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 中的视频画面。</li>
+                            <li><xref keyref="false"/>：不跟随。SDK不改变采集到的视频帧宽高比。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

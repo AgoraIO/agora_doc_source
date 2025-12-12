@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enableinearmonitoring2">
+    <title><ph keyref="enableInEarMonitoring2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">开启耳返功能。</ph><ph id="shortdesc" props="rn">开启耳返功能。</ph><ph id="shortdesc" props="flutter">开启耳返功能。</ph><ph id="shortdesc" props="unity">开启耳返功能。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableInEarMonitoring2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableInEarMonitoring(
+    enabled: boolean,
+    includeAudioFilters: EarMonitoringFilterType
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableInEarMonitoring(
+    enabled: boolean,
+    includeAudioFilters: EarMonitoringFilterType
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableInEarMonitoring(
+      {required bool enabled,
+      required EarMonitoringFilterType includeAudioFilters});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableInEarMonitoring(bool enabled, int includeAudioFilters);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">该方法用于打开或关闭耳返功能。</p>
+            <p props="rn">该方法用于打开或关闭耳返功能。</p>
+            <p props="flutter">该方法用于打开或关闭耳返功能。</p>
+            <p props="unity">该方法用于打开或关闭耳返功能。</p>
+            <note props="electron">用户必须使用耳机（有线和蓝牙均可）才能听到耳返效果。</note>
+            <note props="rn">用户必须使用耳机（有线和蓝牙均可）才能听到耳返效果。</note>
+            <note props="flutter">用户必须使用耳机（有线和蓝牙均可）才能听到耳返效果。</note>
+            <note props="unity">用户必须使用耳机（有线和蓝牙均可）才能听到耳返效果。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">加入频道前后均可调用。</p>
+            <p props="rn">加入频道前后均可调用。</p>
+            <p props="flutter">加入频道前后均可调用。</p>
+            <p props="unity">加入频道前后均可调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>开启/关闭耳返功能:
+                        <ul>
+                            <li><xref keyref="true"/>: 开启耳返功能。</li>
+                            <li><xref keyref="false"/>: （默认）关闭耳返功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>includeAudioFilters</pt>
+                    <pd>耳返 Audio filter 类型。详见 <xref keyref="EAR_MONITORING_FILTER_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>开启/关闭耳返功能:
+                        <ul>
+                            <li><xref keyref="true"/>: 开启耳返功能。</li>
+                            <li><xref keyref="false"/>: （默认）关闭耳返功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>includeAudioFilters</pt>
+                    <pd>耳返 Audio filter 类型。详见 <xref keyref="EAR_MONITORING_FILTER_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>开启/关闭耳返功能:
+                        <ul>
+                            <li><xref keyref="true"/>: 开启耳返功能。</li>
+                            <li><xref keyref="false"/>: （默认）关闭耳返功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>includeAudioFilters</pt>
+                    <pd>耳返 Audio filter 类型。详见 <xref keyref="EAR_MONITORING_FILTER_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>开启/关闭耳返功能:
+                        <ul>
+                            <li><xref keyref="true"/>: 开启耳返功能。</li>
+                            <li><xref keyref="false"/>: （默认）关闭耳返功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>includeAudioFilters</pt>
+                    <pd>耳返 Audio filter 类型。详见 <xref keyref="EAR_MONITORING_FILTER_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-8: 请确保当前的音频路由为蓝牙或耳机。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-8: 请确保当前的音频路由为蓝牙或耳机。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-8: 请确保当前的音频路由为蓝牙或耳机。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

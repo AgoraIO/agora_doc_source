@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_setexternalaudiosink_imediaengine">
+    <title><ph keyref="setExternalAudioSink_IMediaEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置外部音频渲染器。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalAudioSink_IMediaEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setExternalAudioSink(bool enabled, int sampleRate, int channels) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">启用外部音频渲染器后，你可以调用 <xref keyref="pullAudioFrame_IMediaEngine"/> 方法拉取远端音频帧，处理后使用自定义音效进行播放，适用于需要使用外部音频数据播放的场景。</p>
+            <note props="cpp">启用外部音频渲染器后，应用将无法从 <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> 回调中获取任何音频数据。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>调用时机</title>
+            <p props="cpp">请在加入频道前调用该方法。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>是否启用外部音频渲染器：
+                        <ul>
+                            <li><xref keyref="true"/>：启用外部音频渲染器。</li>
+                            <li><xref keyref="false"/>：（默认）禁用外部音频渲染器。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sampleRate</pt>
+                    <pd>外部音频渲染器的采样率（Hz），可设置为 16000、32000、44100 或 48000。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>channels</pt>
+                    <pd>外部音频渲染器的声道数：
+                        <ul>
+                            <li>1：单声道。</li>
+                            <li>2：双声道。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

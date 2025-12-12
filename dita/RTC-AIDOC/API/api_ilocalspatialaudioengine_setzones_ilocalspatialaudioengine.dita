@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ilocalspatialaudioengine_setzones_ilocalspatialaudioengine">
+    <title><ph keyref="setZones_ILocalSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置隔音区域。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setZones_ILocalSpatialAudioEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setZones(const SpatialAudioZone *zones, unsigned int zoneCount) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">在虚拟互动场景中，你可以使用该方法设置隔音区域及其声音衰减系数。当声源（用户或媒体播放器）和接收者分别位于隔音区域的内外时，可以模拟现实中声音被建筑物阻隔时的衰减效果：
+                <ul>
+                    <li>当声源和接收者分别位于隔音区域的内外时，声音的衰减效果由 <xref keyref="SpatialAudioZone"/> 中的衰减系数决定。</li>
+                    <li>当用户或媒体播放器处于同一个隔音区域内时，不受 <xref keyref="SpatialAudioZone"/> 的影响，声音衰减效果由 <xref keyref="setPlayerAttenuation_ILocalSpatialAudioEngine"/> 或 <xref keyref="setRemoteAudioAttenuation"/> 中的 <codeph>attenuation</codeph> 参数决定。若未调用上述方法，SDK 默认使用 0.5 的声音衰减系数。</li>
+                    <li>当声源和接收者分别位于两个不同的隔音区域中，接收者将无法听到声源。</li>
+                </ul>
+            </p>
+            <note props="cpp">如果多次调用该方法，以最后一次设置的隔音区域为准。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>zones</pt>
+                    <pd>隔音区域设置。设置为 <xref keyref="NULL"/> 表示清除所有隔音区域。详见 <xref keyref="SpatialAudioZone"/>。
+                        <note>在 Windows 平台上，必须确保 <codeph>zones</codeph> 数组中的成员数量等于 <codeph>zoneCount</codeph> 的值，否则可能导致崩溃。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>zoneCount</pt>
+                    <pd>隔音区域的数量。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_pushexternalaudioframesamplebuffer2">
+    <title><ph keyref="pushExternalAudioFrameSampleBuffer2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">通过自定义音频轨道将外部 <codeph>CMSampleBuffer</codeph> 音频帧推送到频道中。</ph><ph id="shortdesc" props="mac">通过自定义音频轨道将外部 <codeph>CMSampleBuffer</codeph> 音频帧推送到频道中。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="pushExternalAudioFrameSampleBuffer2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (int)pushExternalAudioFrameSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer
+                               sampleRate:(NSInteger)sampleRate
+                                 channels:(NSInteger)channels
+                                  trackId:(NSInteger)trackId NS_SWIFT_NAME(pushExternalAudioFrameSampleBuffer(_:sampleRate:channels:trackId:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)pushExternalAudioFrameSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer
+                               sampleRate:(NSInteger)sampleRate
+                                 channels:(NSInteger)channels
+                                  trackId:(NSInteger)trackId NS_SWIFT_NAME(pushExternalAudioFrameSampleBuffer(_:sampleRate:channels:trackId:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">在调用该方法推送外部音频数据之前，你需要完成以下操作：
+                <ol>
+                    <li>调用 <codeph>createCustomAudioTrack</codeph> 创建自定义音频轨道，并获取音频轨道 ID。</li>
+                    <li>调用 <codeph>joinChannelByToken</codeph> 加入频道。在 <xref keyref="ChannelMediaOptions"/> 中，将 <codeph>publishCustomAudioTrackId</codeph> 设置为你要发布的音频轨道 ID，并将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>。</li>
+                </ol>
+            </p>
+            <p props="mac">在调用该方法推送外部音频数据之前，你需要完成以下操作：
+                <ol>
+                    <li>调用 <codeph>createCustomAudioTrack</codeph> 创建自定义音频轨道，并获取音频轨道 ID。</li>
+                    <li>调用 <codeph>joinChannelByToken</codeph> 加入频道。在 <xref keyref="ChannelMediaOptions"/> 中，将 <codeph>publishCustomAudioTrackId</codeph> 设置为你要发布的音频轨道 ID，并将 <codeph>publishCustomAudioTrack</codeph> 设置为 <xref keyref="true"/>。</li>
+                </ol>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>sampleBuffer</pt>
+                    <pd>采样缓冲区。详见 <codeph>CMSampleBufferRef</codeph>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sampleRate</pt>
+                    <pd>外部音频源的采样率（Hz），可设置为 8000、16000、32000、44100 或 48000。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>channels</pt>
+                    <pd>外部音频源的声道数，可设置为 1（单声道）或 2（立体声）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。你需要将该参数设置为 <codeph>createCustomAudioTrack</codeph> 返回的自定义音频轨道 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sampleBuffer</pt>
+                    <pd>采样缓冲区。详见 <codeph>CMSampleBufferRef</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sampleRate</pt>
+                    <pd>外部音频源的采样率（Hz），可设置为 8000、16000、32000、44100 或 48000。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channels</pt>
+                    <pd>外部音频源的声道数，可设置为 1（单声道）或 2（立体声）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。你需要将该参数设置为 <codeph>createCustomAudioTrack</codeph> 返回的自定义音频轨道 ID。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="ios mac">
+            <title>返回值</title>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

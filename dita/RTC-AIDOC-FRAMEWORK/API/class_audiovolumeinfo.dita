@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audiovolumeinfo">
+    <title><ph keyref="AudioVolumeInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">用户音量信息。</ph><ph id="shortdesc" props="rn">用户音量信息。</ph><ph id="shortdesc" props="flutter">用户音量信息。</ph><ph id="shortdesc" props="unity">用户音量信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class AudioVolumeInfo {
+
+  uid?: number;
+
+  volume?: number;
+
+  vad?: number;
+
+  voicePitch?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class AudioVolumeInfo {
+
+  uid?: number;
+
+  volume?: number;
+
+  vad?: number;
+
+  voicePitch?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class AudioVolumeInfo {
+    const AudioVolumeInfo({this.uid, this.volume, this.vad, this.voicePitch});
+
+    @JsonKey(name: 'uid')
+    final int? uid;
+    @JsonKey(name: 'volume')
+    final int? volume;
+    @JsonKey(name: 'vad')
+    final int? vad;
+    @JsonKey(name: 'voicePitch')
+    final double? voicePitch;
+    factory AudioVolumeInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+        _$AudioVolumeInfoFromJson(json);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioVolumeInfoToJson(this);
+  }</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class AudioVolumeInfo
+    {
+        public AudioVolumeInfo()
+        {
+            uid = 0;
+            volume = 0;
+            vad = 0;
+            voicePitch = 0.0;
+        }
+
+        public AudioVolumeInfo(uint uid, uint volume, uint vad, double voicePitch)
+        {
+            this.uid = uid;
+            this.volume = volume;
+            this.vad = vad;
+            this.voicePitch = voicePitch;
+        }
+
+        public uint uid { set; get; }
+        public uint volume { set; get; }
+        public uint vad { set; get; }
+        public double voicePitch { set; get; }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>用户 ID。
+                        <ul>
+                            <li>在本地用户的回调中，<codeph>uid</codeph> 为 0。</li>
+                            <li>在远端用户的回调中，<codeph>uid</codeph> 为瞬时音量最高的远端用户（最多 3 位）的 ID。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>volume</pt>
+                    <pd>用户的音量，取值范围为 [0,255]。如果用户将自己静音（将 <xref keyref="muteLocalAudioStream"/> 设为 <xref keyref="true"/>），但开启了音频采集，<codeph>volume</codeph> 的值表示本地采集信号的音量。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>vad</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li><codeph>vad</codeph> 无法报告远端用户的人声状态。对于远端用户，<codeph>vad</codeph> 的值始终为 1。</li>
+                                <li>如需使用此参数，请在调用 <xref keyref="enableAudioVolumeIndication"/> 时设置 <codeph>reportVad</codeph> 为 <xref keyref="true"/>。</li>
+                            </ul>
+                        </note><ph>本地用户的人声状态。</ph>
+                        <ul>
+                            <li>0：本地无人声。</li>
+                            <li>1：本地有人声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>voicePitch</pt>
+                    <pd>本地用户的人声音调（Hz）。取值范围为 [0.0,4000.0]。
+                        <note><codeph>voicePitch</codeph> 无法报告远端用户的人声音调。对于远端用户，<codeph>voicePitch</codeph> 的值始终为 0.0。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>用户 ID。
+                        <ul>
+                            <li>在本地用户的回调中，<codeph>uid</codeph> 为 0。</li>
+                            <li>在远端用户的回调中，<codeph>uid</codeph> 为瞬时音量最高的远端用户（最多 3 位）的 ID。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>volume</pt>
+                    <pd>用户的音量，取值范围为 [0,255]。如果用户将自己静音（将 <xref keyref="muteLocalAudioStream"/> 设为 <xref keyref="true"/>），但开启了音频采集，<codeph>volume</codeph> 的值表示本地采集信号的音量。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>vad</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li><codeph>vad</codeph> 无法报告远端用户的人声状态。对于远端用户，<codeph>vad</codeph> 的值始终为 1。</li>
+                                <li>如需使用此参数，请在调用 <xref keyref="enableAudioVolumeIndication"/> 时设置 <codeph>reportVad</codeph> 为 <xref keyref="true"/>。</li>
+                            </ul>
+                        </note><ph>本地用户的人声状态。</ph>
+                        <ul>
+                            <li>0：本地无人声。</li>
+                            <li>1：本地有人声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>voicePitch</pt>
+                    <pd>本地用户的人声音调（Hz）。取值范围为 [0.0,4000.0]。
+                        <note><codeph>voicePitch</codeph> 无法报告远端用户的人声音调。对于远端用户，<codeph>voicePitch</codeph> 的值始终为 0.0。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>用户 ID。
+                        <ul>
+                            <li>在本地用户的回调中，<codeph>uid</codeph> 为 0。</li>
+                            <li>在远端用户的回调中，<codeph>uid</codeph> 为瞬时音量最高的远端用户（最多 3 位）的 ID。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>volume</pt>
+                    <pd>用户的音量，取值范围为 [0,255]。如果用户将自己静音（将 <xref keyref="muteLocalAudioStream"/> 设为 <xref keyref="true"/>），但开启了音频采集，<codeph>volume</codeph> 的值表示本地采集信号的音量。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>vad</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li><codeph>vad</codeph> 无法报告远端用户的人声状态。对于远端用户，<codeph>vad</codeph> 的值始终为 1。</li>
+                                <li>如需使用此参数，请在调用 <xref keyref="enableAudioVolumeIndication"/> 时设置 <codeph>reportVad</codeph> 为 <xref keyref="true"/>。</li>
+                            </ul>
+                        </note><ph>本地用户的人声状态。</ph>
+                        <ul>
+                            <li>0：本地无人声。</li>
+                            <li>1：本地有人声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>voicePitch</pt>
+                    <pd>本地用户的人声音调（Hz）。取值范围为 [0.0,4000.0]。
+                        <note><codeph>voicePitch</codeph> 无法报告远端用户的人声音调。对于远端用户，<codeph>voicePitch</codeph> 的值始终为 0.0。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>用户 ID。
+                        <ul>
+                            <li>在本地用户的回调中，<codeph>uid</codeph> 为 0。</li>
+                            <li>在远端用户的回调中，<codeph>uid</codeph> 为瞬时音量最高的远端用户（最多 3 位）的 ID。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>volume</pt>
+                    <pd>用户的音量，取值范围为 [0,255]。如果用户将自己静音（将 <xref keyref="muteLocalAudioStream"/> 设为 <xref keyref="true"/>），但开启了音频采集，<codeph>volume</codeph> 的值表示本地采集信号的音量。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>vad</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li><codeph>vad</codeph> 无法报告远端用户的人声状态。对于远端用户，<codeph>vad</codeph> 的值始终为 1。</li>
+                                <li>如需使用此参数，请在调用 <xref keyref="enableAudioVolumeIndication"/> 时设置 <codeph>reportVad</codeph> 为 <xref keyref="true"/>。</li>
+                            </ul>
+                        </note><ph>本地用户的人声状态。</ph>
+                        <ul>
+                            <li>0：本地无人声。</li>
+                            <li>1：本地有人声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>voicePitch</pt>
+                    <pd>本地用户的人声音调（Hz）。取值范围为 [0.0,4000.0]。
+                        <note><codeph>voicePitch</codeph> 无法报告远端用户的人声音调。对于远端用户，<codeph>voicePitch</codeph> 的值始终为 0.0。</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

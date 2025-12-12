@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_multipathstats">
+    <title><ph keyref="MultipathStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于汇总多路径传输中各网络路径的统计数据。</ph><ph id="shortdesc" props="ios">聚合多路径传输中各网络路径的统计信息。</ph><ph id="shortdesc" props="android">用于汇总多路径传输中各网络路径的统计信息。</ph><ph id="shortdesc" props="mac">聚合多路径传输中各网络路径的统计信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct MultipathStats {
+  uint32_t lanTxBytes;
+  uint32_t lanRxBytes;
+  uint32_t wifiTxBytes;
+  uint32_t wifiRxBytes;
+  uint32_t mobileTxBytes;
+  uint32_t mobileRxBytes;
+  int activePathNum;
+  const PathStats* pathStats;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMultipathStats : NSObject
+@property (assign, nonatomic) NSUInteger lanRxBytes;
+@property (assign, nonatomic) NSUInteger lanTxBytes;
+@property (assign, nonatomic) NSUInteger wifiRxBytes;
+@property (assign, nonatomic) NSUInteger wifiTxBytes;
+@property (assign, nonatomic) NSUInteger mobileRxBytes;
+@property (assign, nonatomic) NSUInteger mobileTxBytes;
+@property (assign, nonatomic) NSUInteger activePathNum;
+@property (copy, nonatomic) NSArray&lt;AgoraPathStats *&gt; *_Nullable pathStats NS_SWIFT_NAME(pathStats);
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class MultipathStats {
+  public int lanTxBytes;
+  public int lanRxBytes;
+  public int wifiTxBytes;
+  public int wifiRxBytes;
+  public int mobileTxBytes;
+  public int mobileRxBytes;
+  public int activePathNum;
+  public PathStats[] pathStats;
+}</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMultipathStats : NSObject
+@property (assign, nonatomic) NSUInteger lanRxBytes;
+@property (assign, nonatomic) NSUInteger lanTxBytes;
+@property (assign, nonatomic) NSUInteger wifiRxBytes;
+@property (assign, nonatomic) NSUInteger wifiTxBytes;
+@property (assign, nonatomic) NSUInteger mobileRxBytes;
+@property (assign, nonatomic) NSUInteger mobileTxBytes;
+@property (assign, nonatomic) NSUInteger activePathNum;
+@property (copy, nonatomic) NSArray&lt;AgoraPathStats *&gt; *_Nullable pathStats NS_SWIFT_NAME(pathStats);
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>lanTxBytes</pt>
+                    <pd>通过 LAN 路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>lanRxBytes</pt>
+                    <pd>通过 LAN 路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>wifiTxBytes</pt>
+                    <pd>通过 Wi-Fi 路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>wifiRxBytes</pt>
+                    <pd>通过 Wi-Fi 路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mobileTxBytes</pt>
+                    <pd>通过移动网络路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mobileRxBytes</pt>
+                    <pd>通过移动网络路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>activePathNum</pt>
+                    <pd>当前活跃的传输路径数量。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>pathStats</pt>
+                    <pd>每个活跃传输路径的统计信息数组。详见 <xref keyref="PathStats"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>lanRxBytes</pt>
+                    <pd>通过 LAN 路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>lanTxBytes</pt>
+                    <pd>通过 LAN 路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>wifiRxBytes</pt>
+                    <pd>通过 Wi-Fi 路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>wifiTxBytes</pt>
+                    <pd>通过 Wi-Fi 路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mobileRxBytes</pt>
+                    <pd>通过移动网络路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mobileTxBytes</pt>
+                    <pd>通过移动网络路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>activePathNum</pt>
+                    <pd>当前活跃的传输路径数量。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>pathStats</pt>
+                    <pd>每条活跃传输路径的统计信息。详见 <xref keyref="PathStats"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lanTxBytes</pt>
+                    <pd>通过局域网发送的字节总数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lanRxBytes</pt>
+                    <pd>通过局域网接收的字节总数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>wifiTxBytes</pt>
+                    <pd>通过 Wi-Fi 发送的字节总数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>wifiRxBytes</pt>
+                    <pd>通过 Wi-Fi 接收的字节总数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mobileTxBytes</pt>
+                    <pd>通过移动网络发送的字节总数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mobileRxBytes</pt>
+                    <pd>通过移动网络接收的字节总数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>activePathNum</pt>
+                    <pd>当前活跃的传输路径数量。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>pathStats</pt>
+                    <pd>每条活跃传输路径的统计信息数组。详见 <xref keyref="PathStats"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>lanRxBytes</pt>
+                    <pd>通过 LAN 路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>lanTxBytes</pt>
+                    <pd>通过 LAN 路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>wifiRxBytes</pt>
+                    <pd>通过 Wi-Fi 路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>wifiTxBytes</pt>
+                    <pd>通过 Wi-Fi 路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mobileRxBytes</pt>
+                    <pd>通过移动网络路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mobileTxBytes</pt>
+                    <pd>通过移动网络路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>activePathNum</pt>
+                    <pd>当前活跃的传输路径数量。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>pathStats</pt>
+                    <pd>每条活跃传输路径的统计信息。详见 <xref keyref="PathStats"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

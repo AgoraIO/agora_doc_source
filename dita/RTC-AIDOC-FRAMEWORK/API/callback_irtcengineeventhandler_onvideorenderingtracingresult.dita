@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onvideorenderingtracingresult">
+    <title><ph keyref="onVideoRenderingTracingResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">视频帧渲染事件回调。</ph><ph id="shortdesc" props="rn">视频帧渲染事件回调。</ph><ph id="shortdesc" props="flutter">视频帧渲染事件回调。</ph><ph id="shortdesc" props="unity">视频帧渲染事件回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onVideoRenderingTracingResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onVideoRenderingTracingResult?(
+    connection: RtcConnection,
+    uid: number,
+    currentEvent: MediaTraceEvent,
+    tracingInfo: VideoRenderingTracingInfo
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onVideoRenderingTracingResult?(
+    connection: RtcConnection,
+    uid: number,
+    currentEvent: MediaTraceEvent,
+    tracingInfo: VideoRenderingTracingInfo
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(
+      RtcConnection connection,
+      int uid,
+      MediaTraceEvent currentEvent,
+      VideoRenderingTracingInfo tracingInfo)? onVideoRenderingTracingResult;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoRenderingTracingResult(RtcConnection connection, uint uid, MEDIA_TRACE_EVENT currentEvent, VideoRenderingTracingInfo tracingInfo) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">调用 <xref keyref="startMediaRenderingTracing"/> 方法或加入频道后，SDK 会触发该回调，报告视频帧渲染的事件和渲染过程中的指标。开发者可以针对指标进行专项优化，以提高出图效率。</p>
+            <p props="rn">调用 <xref keyref="startMediaRenderingTracing"/> 方法或加入频道后，SDK 会触发该回调，报告视频帧渲染的事件和渲染过程中的指标。开发者可以针对指标进行专项优化，以提高出图效率。</p>
+            <p props="flutter">调用 <xref keyref="startMediaRenderingTracing"/> 方法或加入频道后，SDK 会触发该回调，报告视频帧渲染的事件和渲染过程中的指标。开发者可以针对指标进行专项优化，以提高出图效率。</p>
+            <p props="unity">调用 <xref keyref="startMediaRenderingTracing"/> 方法或加入频道后，SDK 会触发该回调，报告视频帧渲染的事件和渲染过程中的指标。开发者可以针对指标进行专项优化，以提高出图效率。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>currentEvent</pt>
+                    <pd>当前视频帧渲染事件。详见 <xref keyref="MEDIA_TRACE_EVENT"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>tracingInfo</pt>
+                    <pd>视频帧渲染过程中的指标。开发者需要尽可能降低指标值，以提高出图效率。详见 <xref keyref="VideoRenderingTracingInfo"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>currentEvent</pt>
+                    <pd>当前视频帧渲染事件。详见 <xref keyref="MEDIA_TRACE_EVENT"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>tracingInfo</pt>
+                    <pd>视频帧渲染过程中的指标。开发者需要尽可能降低指标值，以提高出图效率。详见 <xref keyref="VideoRenderingTracingInfo"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>currentEvent</pt>
+                    <pd>当前视频帧渲染事件。详见 <xref keyref="MEDIA_TRACE_EVENT"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>tracingInfo</pt>
+                    <pd>视频帧渲染过程中的指标。开发者需要尽可能降低指标值，以提高出图效率。详见 <xref keyref="VideoRenderingTracingInfo"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>currentEvent</pt>
+                    <pd>当前视频帧渲染事件。详见 <xref keyref="MEDIA_TRACE_EVENT"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>tracingInfo</pt>
+                    <pd>视频帧渲染过程中的指标。开发者需要尽可能降低指标值，以提高出图效率。详见 <xref keyref="VideoRenderingTracingInfo"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

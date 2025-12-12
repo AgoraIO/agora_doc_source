@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screenvideoparameters">
+    <title><ph keyref="ScreenVideoParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于设置共享屏幕的视频参数。</ph><ph id="shortdesc" props="ios">共享屏幕流的视频配置。</ph><ph id="shortdesc" props="android">配置共享屏幕的视频参数。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ScreenVideoParameters {
+  VideoDimensions dimensions;
+  int frameRate = 15;
+  int bitrate;
+  VIDEO_CONTENT_HINT contentHint = VIDEO_CONTENT_HINT::CONTENT_HINT_MOTION;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenVideoParameters : NSObject
+@property(assign, nonatomic) CGSize dimensions;
+@property(assign, nonatomic) NSInteger frameRate;
+@property(assign, nonatomic) NSInteger bitrate;
+@property(assign, nonatomic) AgoraVideoContentHint contentHint;
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class VideoCaptureParameters {
+    public int bitrate = 0;
+    public int framerate = 15;
+    public int width = 1280;
+    public int height = 720;
+    public int contentHint = Constants.SCREEN_CAPTURE_CONTENT_HINT_MOTION;
+  }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v3.7.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="android">仅当参数 <codeph>captureVideo</codeph> 为 <xref keyref="true"/> 时可用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>dimensions</pt>
+                    <pd>视频编码分辨率。默认值为 1280 × 720。详见 <xref keyref="VideoDimensions"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>frameRate</pt>
+                    <pd>视频编码帧率（fps）。默认值为 15。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>bitrate</pt>
+                    <pd>视频编码码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>contentHint</pt>
+                    <pd>屏幕共享的内容提示。详见 <xref keyref="VIDEO_CONTENT_HINT"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>dimensions</pt>
+                    <pd>视频编码的分辨率。默认值为 1280 × 720。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>frameRate</pt>
+                    <pd>视频编码的帧率（fps）。默认值为 15。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>bitrate</pt>
+                    <pd>视频编码的码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>contentHint</pt>
+                    <pd>屏幕共享的内容提示，详见 <xref keyref="VIDEO_CONTENT_HINT"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>bitrate</pt>
+                    <pd>视频编码码率（单位：Kbps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>framerate</pt>
+                    <pd>视频编码帧率（单位：fps），默认值为 15。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>width</pt>
+                    <pd>
+                        <note>屏幕共享流的计费基于此参数值。当不传入该参数时，声网按 1280 × 720 收费；传入该参数时，声网按设置值计费。
+该参数不代表输出视频的旋转方向，设置方向详见 <xref keyref="ORIENTATION_MODE"/>。
+是否支持 720p 或更高分辨率取决于设备性能，如设备不支持，则帧率可能低于设置值。
+在文档共享（<codeph>SCREEN_SCENARIO_DOCUMENT</codeph>）场景中设置编码分辨率时，建议如下：
+                            <ul>
+                                <li>追求最佳画质：建议编码分辨率与采集分辨率一致；</li>
+                                <li>平衡画质、带宽和系统性能：
+                                    <ul>
+                                        <li>若采集分辨率大于 1920 × 1080，编码分辨率建议不小于 1920 × 1080；</li>
+                                        <li>若采集分辨率小于 1920 × 1080，编码分辨率建议不小于 1280 × 720。</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </note><ph>视频编码分辨率的宽度（单位：px），默认值为 1280。如果宽高比与屏幕不一致，SDK 会按以下规则调整：以 1280 × 720 的宽高为例：</ph>
+                        <ul>
+                            <li>当屏幕宽高均小于设定值时，使用屏幕原始分辨率。例如，屏幕为 640 × 360，则编码分辨率使用 640 × 360；</li>
+                            <li>当屏幕宽或高高于设定值时，SDK 会在不超过设定值的范围内，保持屏幕宽高比例调整分辨率。例如，屏幕为 2000 × 1500，则编码分辨率使用 960 × 720。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>
+                        <note>屏幕共享流的计费基于此参数值。当不传入该参数时，声网按 1280 × 720 收费；传入该参数时，声网按设置值计费。
+该参数不代表输出视频的旋转方向，设置方向详见 <xref keyref="ORIENTATION_MODE"/>。
+是否支持 720p 或更高分辨率取决于设备性能，如设备不支持，则帧率可能低于设置值。
+在文档共享（<codeph>SCREEN_SCENARIO_DOCUMENT</codeph>）场景中设置编码分辨率时，建议如下：
+                            <ul>
+                                <li>追求最佳画质：建议编码分辨率与采集分辨率一致；</li>
+                                <li>平衡画质、带宽和系统性能：
+                                    <ul>
+                                        <li>若采集分辨率大于 1920 × 1080，编码分辨率建议不小于 1920 × 1080；</li>
+                                        <li>若采集分辨率小于 1920 × 1080，编码分辨率建议不小于 1280 × 720。</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </note><ph>视频编码分辨率的高度（单位：px），默认值为 720。如果宽高比与屏幕不一致，SDK 会按以下规则调整：以 1280 × 720 的宽高为例：</ph>
+                        <ul>
+                            <li>当屏幕宽高均小于设定值时，使用屏幕原始分辨率。例如，屏幕为 640 × 360，则编码分辨率使用 640 × 360；</li>
+                            <li>当屏幕宽或高高于设定值时，SDK 会在不超过设定值的范围内，保持屏幕宽高比例调整分辨率。例如，屏幕为 2000 × 1500，则编码分辨率使用 960 × 720。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>contentHint</pt>
+                    <pd>共享屏幕场景下的内容提示选项：
+                        <ul>
+                            <li><codeph>SCREEN_CAPTURE_CONTENT_HINT_NONE</codeph>（0）：默认值，无内容提示；</li>
+                            <li><codeph>SCREEN_CAPTURE_CONTENT_HINT_MOTION</codeph>（1）：运动内容，适用于偏重流畅度或共享影片、视频和游戏；</li>
+                            <li><codeph>SCREEN_CAPTURE_CONTENT_HINT_DETAILS</codeph>（2）：静态内容，适用于偏重清晰度或共享图片、PPT 或文本内容。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

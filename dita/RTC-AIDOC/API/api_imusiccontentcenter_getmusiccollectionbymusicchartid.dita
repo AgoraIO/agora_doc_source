@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_getmusiccollectionbymusicchartid">
+    <title><ph keyref="getMusicCollectionByMusicChartId"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取指定音乐榜单 ID 的音乐资源列表。</ph><ph id="shortdesc" props="ios">获取指定音乐榜单中的音乐资源列表。</ph><ph id="shortdesc" props="android">根据音乐榜单 ID 获取音乐资源列表。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getMusicCollectionByMusicChartId"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getMusicCollectionByMusicChartId(agora::util::AString&amp; requestId, int32_t musicChartId, int32_t page, int32_t pageSize, const char* jsonOption = nullptr) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (NSString *)getMusicCollectionWithMusicChartId:(NSInteger)musicChartId page:(NSInteger)page pageSize:(NSInteger)pageSize jsonOption:(NSString * _Nullable)jsonOption NS_SWIFT_NAME(getMusicCollection(musicChartId:page:pageSize:jsonOption:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public String getMusicCollectionByMusicChartId(int musicChartId, int page, int pageSize)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"/> 回调，报告该榜单中的音乐资源详情。</p>
+            <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"/> 回调，返回榜单中的音乐资源详细信息。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="ios">
+            <title>相关回调</title>
+            <p props="ios">成功调用该方法后，SDK 会触发 <codeph>onMusicCollectionResult</codeph> 回调报告榜单中的音乐资源详细信息。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>requestId</pt>
+                    <pd>请求 ID，用于标识该请求的唯一标识符。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>musicChartId</pt>
+                    <pd>音乐榜单的 ID。你可以通过 <xref keyref="onMusicChartsResult"/> 回调获取该 ID，或通过 RESTful API 获取完整音乐库列表或增量音乐列表。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>page</pt>
+                    <pd>当前页码，从 1 开始。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>pageSize</pt>
+                    <pd>每页返回的音乐资源数量，最大值为 50。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>jsonOption</pt>
+                    <pd>扩展 JSON 字段，默认为 <xref keyref="NULL"/>。你可以使用该字段筛选所需的音乐资源。目前支持以下筛选项：
+                        <ul>
+                            <li><codeph>pitchType</codeph>：是否支持评分。
+                                <ul>
+                                    <li>1：可评分音乐。</li>
+                                    <li>2：不可评分音乐。</li>
+                                </ul>
+                            </li>
+                            <li><codeph>needHighPart</codeph>：是否需要合唱片段。
+                                <ul>
+                                    <li><xref keyref="true"/>：需要合唱片段。</li>
+                                    <li><xref keyref="false"/>：不需要合唱片段。</li>
+                                </ul>
+                            </li>
+                        </ul><ph>示例：</ph>
+                        <ul>
+                            <li><codeph>{ "pitchType": 1 }</codeph></li>
+                            <li><codeph>{ "needHighPart": true }</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>musicChartId</pt>
+                    <pd>音乐榜单的 ID，可通过 <codeph>onMusicChartsResult</codeph> 回调获取。你也可以使用 RESTful API 获取完整的音乐库或增量音乐列表。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>page</pt>
+                    <pd>当前页码，默认从 1 开始。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>pageSize</pt>
+                    <pd>每页返回的音乐资源数量，最大值为 50。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>jsonOption</pt>
+                    <pd>可选的 JSON 扩展字段，默认为 <xref keyref="NULL"/>。你可以使用该字段筛选所需的音乐资源。目前支持以下筛选条件：
+                        <ul>
+                            <li><codeph>pitchType</codeph>：是否支持评分。
+                                <ul>
+                                    <li><codeph>1</codeph>：支持评分的音乐资源。</li>
+                                    <li><codeph>2</codeph>：不支持评分的音乐资源。</li>
+                                </ul>
+                            </li>
+                            <li><codeph>needHighPart</codeph>：是否需要副歌片段资源。
+                                <ul>
+                                    <li><codeph>true</codeph>：需要副歌片段资源。</li>
+                                    <li><codeph>false</codeph>：不需要副歌片段资源。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>musicChartId</pt>
+                    <pd>音乐榜单的 ID，可通过 <xref keyref="onMusicChartsResult"/> 回调获取。
+                        <note>你也可以使用 RESTful API 获取“音乐库完整歌曲列表”或“增量歌曲列表”。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>page</pt>
+                    <pd>当前页码，默认从 1 开始。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>pageSize</pt>
+                    <pd>当前音乐资源列表中的总页数，最大值为 50。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。请参见错误码文档获取详细信息和解决方案。</li>
+                </ul>
+            </p>
+            <p props="ios">方法调用成功时，返回唯一标识该请求的 <codeph>requestId</codeph>。</p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功时，返回唯一标识此次请求的 <codeph>requestId</codeph>。</li>
+                    <li>方法调用失败，返回空字符串。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getaudiomixingcurrentposition">
+    <title><ph keyref="getAudioMixingCurrentPosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取当前混音的播放进度（毫秒）。</ph><ph id="shortdesc" props="ios">获取当前混音的播放位置（毫秒）。</ph><ph id="shortdesc" props="android">获取当前混音的播放位置（毫秒）。</ph><ph id="shortdesc" props="mac">获取当前混音的播放位置（毫秒）。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getAudioMixingCurrentPosition"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getAudioMixingCurrentPosition() = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)getAudioMixingCurrentPosition NS_SWIFT_NAME(getAudioMixingCurrentPosition());</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getAudioMixingCurrentPosition();</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)getAudioMixingCurrentPosition NS_SWIFT_NAME(getAudioMixingCurrentPosition());</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">获取音频混音的播放位置（毫秒）。</p>
+            <p props="mac">获取音频混音的播放位置（毫秒）。</p>
+            <note props="cpp">
+                <ul>
+                    <li>你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用此方法。</li>
+                    <li>如果需要多次调用 <xref keyref="getAudioMixingCurrentPosition"/>，请确保两次调用之间的时间间隔大于 500 毫秒。</li>
+                </ul>
+            </note>
+            <note props="ios">
+                <ul>
+                    <li>你需要在调用 <xref keyref="startAudioMixing2"/> 并收到 <codeph>audioMixingStateChanged</codeph> 回调（<codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用此方法。</li>
+                    <li>如果你需要多次调用 <xref keyref="getAudioMixingCurrentPosition"/>，请确保两次调用之间的时间间隔大于 500 毫秒。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>你需要在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用此方法。</li>
+                    <li>如果需要多次调用 <xref keyref="getAudioMixingCurrentPosition"/>，请确保两次调用之间的时间间隔大于 500 毫秒。</li>
+                </ul>
+            </note>
+            <note props="mac">
+                <ul>
+                    <li>你需要在调用 <xref keyref="startAudioMixing2"/> 并收到 <codeph>audioMixingStateChanged</codeph> 回调（<codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用此方法。</li>
+                    <li>如果你需要多次调用 <xref keyref="getAudioMixingCurrentPosition"/>，请确保两次调用之间的时间间隔大于 500 毫秒。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>≥ 0：方法调用成功，返回当前混音的播放进度（毫秒）。返回 0 表示当前音乐文件尚未开始播放。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>≥ 0：方法调用成功，返回当前混音的播放位置（毫秒）。返回 0 表示当前音乐文件尚未开始播放。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功，返回当前混音的播放位置（毫秒）。0 表示当前音乐文件尚未开始播放。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>≥ 0：方法调用成功，返回当前混音的播放位置（毫秒）。返回 0 表示当前音乐文件尚未开始播放。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

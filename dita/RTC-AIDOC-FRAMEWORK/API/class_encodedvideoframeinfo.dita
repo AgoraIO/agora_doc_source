@@ -1,0 +1,323 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_encodedvideoframeinfo">
+    <title><ph keyref="EncodedVideoFrameInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">外部编码视频帧的信息。</ph><ph id="shortdesc" props="rn">外部编码视频帧的信息。</ph><ph id="shortdesc" props="flutter">外部编码视频帧的信息。</ph><ph id="shortdesc" props="unity">外部编码视频帧的信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class EncodedVideoFrameInfo {
+
+  codecType?: VideoCodecType;
+
+  width?: number;
+
+  height?: number;
+
+  framesPerSecond?: number;
+
+  frameType?: VideoFrameType;
+
+  rotation?: VideoOrientation;
+
+  trackId?: number;
+
+  captureTimeMs?: number;
+
+  uid?: number;
+
+  streamType?: VideoStreamType;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class EncodedVideoFrameInfo {
+
+  codecType?: VideoCodecType;
+
+  width?: number;
+
+  height?: number;
+
+  framesPerSecond?: number;
+
+  frameType?: VideoFrameType;
+
+  rotation?: VideoOrientation;
+
+  trackId?: number;
+
+  captureTimeMs?: number;
+
+  uid?: number;
+
+  streamType?: VideoStreamType;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class EncodedVideoFrameInfo {
+  const EncodedVideoFrameInfo(
+      {this.codecType,
+      this.width,
+      this.height,
+      this.framesPerSecond,
+      this.frameType,
+      this.rotation,
+      this.trackId,
+      this.captureTimeMs,
+      this.uid,
+      this.streamType});
+
+  @JsonKey(name: 'codecType')
+  final VideoCodecType? codecType;
+
+  @JsonKey(name: 'width')
+  final int? width;
+
+  @JsonKey(name: 'height')
+  final int? height;
+
+  @JsonKey(name: 'framesPerSecond')
+  final int? framesPerSecond;
+
+  @JsonKey(name: 'frameType')
+  final VideoFrameType? frameType;
+
+  @JsonKey(name: 'rotation')
+  final VideoOrientation? rotation;
+
+  @JsonKey(name: 'trackId')
+  final int? trackId;
+
+  @JsonKey(name: 'captureTimeMs')
+  final int? captureTimeMs;
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+
+  @JsonKey(name: 'streamType')
+  final VideoStreamType? streamType;
+
+  factory EncodedVideoFrameInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$EncodedVideoFrameInfoFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$EncodedVideoFrameInfoToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class EncodedVideoFrameInfo
+    {
+        public EncodedVideoFrameInfo()
+        {
+            codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H264;
+            width = 0;
+            height = 0;
+            framesPerSecond = 0;
+            frameType = VIDEO_FRAME_TYPE_NATIVE.VIDEO_FRAME_TYPE_BLANK_FRAME;
+            rotation = VIDEO_ORIENTATION.VIDEO_ORIENTATION_0;
+            trackId = 0;
+            captureTimeMs = 0;
+            uid = 0;
+            streamType = VIDEO_STREAM_TYPE.VIDEO_STREAM_HIGH;
+        }
+
+        public EncodedVideoFrameInfo(ref EncodedVideoFrameInfo rhs)
+        {
+            codecType = rhs.codecType;
+            width = rhs.width;
+            height = rhs.width;
+            framesPerSecond = rhs.framesPerSecond;
+            frameType = rhs.frameType;
+            rotation = rhs.rotation;
+            trackId = rhs.trackId;
+            captureTimeMs = rhs.captureTimeMs;
+            uid = rhs.uid;
+            streamType = rhs.streamType;
+        }
+
+        public VIDEO_CODEC_TYPE codecType { set; get; }
+
+        public int width { set; get; }
+
+        public int height { set; get; }
+
+        public int framesPerSecond { set; get; }
+
+        public VIDEO_FRAME_TYPE_NATIVE frameType { set; get; }
+
+        public VIDEO_ORIENTATION rotation { set; get; }
+
+        public int trackId { set; get; }
+
+        public int64_t captureTimeMs { set; get; }
+
+        public uint uid { set; get; }
+
+        public VIDEO_STREAM_TYPE streamType { set; get; }
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>codecType</pt>
+                    <pd>视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。默认值为 <codeph>VideoCodecH264 (2)</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>视频帧的宽度 (px)。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>视频帧的高度 (px)。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>framesPerSecond</pt>
+                    <pd>每秒的视频帧数。
+当该参数不为 <codeph>0</codeph> 时，你可以用它计算外部编码视频帧的 Unix 时间戳。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>frameType</pt>
+                    <pd>视频帧的类型，详见 <xref keyref="VIDEO_FRAME_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rotation</pt>
+                    <pd>视频帧的旋转信息，详见 <xref keyref="VIDEO_ORIENTATION"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>trackId</pt>
+                    <pd>预留参数。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>captureTimeMs</pt>
+                    <pd>采集外部编码视频帧的 Unix 时间戳 (ms)。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>推送外部编码视频帧的用户 ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>streamType</pt>
+                    <pd>视频流类型。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>codecType</pt>
+                    <pd>视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。默认值为 <codeph>VideoCodecH264 (2)</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>width</pt>
+                    <pd>视频帧的宽度 (px)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>视频帧的高度 (px)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>framesPerSecond</pt>
+                    <pd>每秒的视频帧数。
+当该参数不为 <codeph>0</codeph> 时，你可以用它计算外部编码视频帧的 Unix 时间戳。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>frameType</pt>
+                    <pd>视频帧的类型，详见 <xref keyref="VIDEO_FRAME_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rotation</pt>
+                    <pd>视频帧的旋转信息，详见 <xref keyref="VIDEO_ORIENTATION"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>trackId</pt>
+                    <pd>预留参数。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>captureTimeMs</pt>
+                    <pd>采集外部编码视频帧的 Unix 时间戳 (ms)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>推送外部编码视频帧的用户 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>streamType</pt>
+                    <pd>视频流类型。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>codecType</pt>
+                    <pd>视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。默认值为 <codeph>videoCodecH264 (2)</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>视频帧的宽度 (px)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>视频帧的高度 (px)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>framesPerSecond</pt>
+                    <pd>每秒的视频帧数。
+当该参数不为 <codeph>0</codeph> 时，你可以用它计算外部编码视频帧的 Unix 时间戳。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>frameType</pt>
+                    <pd>视频帧的类型，详见 <xref keyref="VIDEO_FRAME_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rotation</pt>
+                    <pd>视频帧的旋转信息，详见 <xref keyref="VIDEO_ORIENTATION"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>trackId</pt>
+                    <pd>预留参数。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureTimeMs</pt>
+                    <pd>采集外部编码视频帧的 Unix 时间戳 (ms)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>推送外部编码视频帧的用户 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamType</pt>
+                    <pd>视频流类型。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>codecType</pt>
+                    <pd>视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。默认值为 <codeph>VIDEO_CODEC_H264 (2)</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>视频帧的宽度 (px)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>视频帧的高度 (px)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>framesPerSecond</pt>
+                    <pd>每秒的视频帧数。
+当该参数不为 <codeph>0</codeph> 时，你可以用它计算外部编码视频帧的 Unix 时间戳。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>frameType</pt>
+                    <pd>视频帧的类型，详见 <xref keyref="VIDEO_FRAME_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rotation</pt>
+                    <pd>视频帧的旋转信息，详见 <xref keyref="VIDEO_ORIENTATION"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>trackId</pt>
+                    <pd>预留参数。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureTimeMs</pt>
+                    <pd>采集外部编码视频帧的 Unix 时间戳 (ms)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>推送外部编码视频帧的用户 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>streamType</pt>
+                    <pd>视频流类型。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

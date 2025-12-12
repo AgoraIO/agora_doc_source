@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudioframeobserverbase_getmixedaudioparams_iaudioframeobserverbase">
+    <title><ph keyref="getMixedAudioParams_IAudioFrameObserverBase"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onMixedAudioFrame_IAudioFrameObserverBase"/> 回调的音频格式设置回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getMixedAudioParams_IAudioFrameObserverBase"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual AudioParams getMixedAudioParams() = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">调用 <xref keyref="registerAudioFrameObserver_IMediaEngine"/> 方法注册音频帧观察器时，你需要实现该回调。在成功注册音频帧观察器后，SDK 会触发该回调，你可以通过该回调的返回值设置音频格式。</p>
+            <note props="cpp">SDK 会根据你在返回值中设置的 <xref keyref="AudioParams"/> 计算采样间隔，并以此触发 <xref keyref="onMixedAudioFrame_IAudioFrameObserverBase"/> 回调。采样间隔的计算公式为：采样间隔（秒） = <codeph>samplePerCall</codeph> /（<codeph>sampleRate</codeph> × <codeph>channel</codeph>）。请确保采样间隔 ≥ 0.01 秒。</note>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">方法调用成功时，返回一个 <xref keyref="AudioParams"/> 实例，表示混合后的采集和播放音频数据，详见 <xref keyref="AudioParams"/>。</p>
+        </section>
+    </refbody>
+</reference>

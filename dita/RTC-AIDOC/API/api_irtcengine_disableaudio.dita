@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_disableaudio">
+    <title><ph keyref="disableAudio"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">禁用音频模块。</ph><ph id="shortdesc" props="ios">禁用音频模块。</ph><ph id="shortdesc" props="android">禁用音频模块。</ph><ph id="shortdesc" props="mac">禁用音频模块。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="disableAudio"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int disableAudio() = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)disableAudio NS_SWIFT_NAME(disableAudio());</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int disableAudio();</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)disableAudio NS_SWIFT_NAME(disableAudio());</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">音频模块默认启用。你可以调用该方法禁用音频模块。</p>
+            <p props="android">音频模块默认启用。你可以调用该方法来禁用。</p>
+            <p props="mac">音频模块默认启用。你可以调用该方法禁用音频模块。</p>
+            <note props="cpp">该方法会重置内部引擎，并需要一定时间生效。声网建议使用以下 API 分别控制音频模块：
+                <ul>
+                    <li><xref keyref="enableLocalAudio"/>：是否启用麦克风以创建本地音频流。</li>
+                    <li><xref keyref="enableLoopbackRecording"/>：是否启用回环音频采集。</li>
+                    <li><xref keyref="muteLocalAudioStream"/>：是否发布本地音频流。</li>
+                    <li><xref keyref="muteRemoteAudioStream"/>：是否订阅并播放远端音频流。</li>
+                    <li><xref keyref="muteAllRemoteAudioStreams"/>：是否订阅并播放所有远端音频流。</li>
+                </ul>
+            </note>
+            <note props="ios">该方法会重置内部引擎，并需要一些时间生效。声网建议使用以下 API 分别控制音频模块：
+                <ul>
+                    <li><xref keyref="enableLocalAudio"/>：是否启用麦克风以创建本地音频流。</li>
+                    <li>（仅适用于 macOS）<codeph>enableLoopbackRecording:deviceName:</codeph>：是否启用回采音频采集。</li>
+                    <li><xref keyref="muteLocalAudioStream"/>：是否发布本地音频流。</li>
+                    <li><xref keyref="muteRemoteAudioStream"/>：是否订阅并播放远端音频流。</li>
+                    <li><xref keyref="muteAllRemoteAudioStreams"/>：是否订阅并播放所有远端音频流。</li>
+                </ul>
+            </note>
+            <note props="android">该方法会重置内部引擎，并需要一些时间生效。声网建议使用以下 API 分别控制音频模块：
+                <ul>
+                    <li><xref keyref="enableLocalAudio"/>：是否启用麦克风以创建本地音频流。</li>
+                    <li><xref keyref="muteLocalAudioStream"/>：是否发布本地音频流。</li>
+                    <li><xref keyref="muteRemoteAudioStream"/>：是否订阅并播放远端音频流。</li>
+                    <li><xref keyref="muteAllRemoteAudioStreams"/>：是否订阅并播放所有远端音频流。</li>
+                </ul>
+            </note>
+            <note props="mac">该方法会重置内部引擎，并需要一些时间生效。声网建议使用以下 API 分别控制音频模块：
+                <ul>
+                    <li><xref keyref="enableLocalAudio"/>：是否启用麦克风以创建本地音频流。</li>
+                    <li>（仅适用于 macOS）<xref keyref="enableLoopbackRecording"/>：是否启用回采音频采集。</li>
+                    <li><xref keyref="muteLocalAudioStream"/>：是否发布本地音频流。</li>
+                    <li><xref keyref="muteRemoteAudioStream"/>：是否订阅并播放远端音频流。</li>
+                    <li><xref keyref="muteAllRemoteAudioStreams"/>：是否订阅并播放所有远端音频流。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">该方法可以在加入频道前或加入频道后调用。离开频道后仍然有效。</p>
+            <p props="ios">该方法可以在加入频道前或加入频道后调用。离开频道后仍然有效。</p>
+            <p props="android">该方法可以在加入频道前或加入频道后调用。离开频道后仍然有效。</p>
+            <p props="mac">该方法可以在加入频道前或加入频道后调用。离开频道后仍然有效。</p>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

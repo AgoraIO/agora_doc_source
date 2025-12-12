@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startdirectcdnstreaming">
+    <title><ph keyref="startDirectCdnStreaming"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置主播端开始直接向 CDN 推流。</ph><ph id="shortdesc" props="rn">设置主播端开始直接向 CDN 推流。</ph><ph id="shortdesc" props="flutter">设置主播端开始直接向 CDN 推流。</ph><ph id="shortdesc" props="unity">设置主播端开始直接向 CDN 推流。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startDirectCdnStreaming"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startDirectCdnStreaming(
+    eventHandler: IDirectCdnStreamingEventHandler,
+    publishUrl: string,
+    options: DirectCdnStreamingMediaOptions
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startDirectCdnStreaming(
+    eventHandler: IDirectCdnStreamingEventHandler,
+    publishUrl: string,
+    options: DirectCdnStreamingMediaOptions
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startDirectCdnStreaming(
+      {required DirectCdnStreamingEventHandler eventHandler,
+      required String publishUrl,
+      required DirectCdnStreamingMediaOptions options});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartDirectCdnStreaming(string publishUrl, DirectCdnStreamingMediaOptions options);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">SDK 不支持同一时间向同一个 URL 重复推流。
+媒体选项说明
+SDK 不支持 <codeph>publishCameraTrack</codeph> 和 <codeph>publishCustomVideoTrack</codeph> 同时为 <xref keyref="true"/>，也不支持 <codeph>publishMicrophoneTrack</codeph> 和 <codeph>publishCustomAudioTrack</codeph> 同时为 <xref keyref="true"/>。你可以根据场景需求设置媒体选项 (<xref keyref="DirectCdnStreamingMediaOptions"/>)。示例如下：
+如果你想推送主播端自定义采集的音视频流，请将媒体选项进行如下设置：
+                <ul>
+                    <li><codeph>publishCustomAudioTrack</codeph> 设为 <xref keyref="true"/> 并调用 <xref keyref="pushAudioFrame"/></li>
+                    <li><codeph>publishCustomVideoTrack</codeph> 设为 <xref keyref="true"/> 并调用 <xref keyref="pushVideoFrame"/></li>
+                    <li>确保 <codeph>publishCameraTrack</codeph> 为 <xref keyref="false"/> (默认值)</li>
+                    <li>确保 <codeph>publishMicrophoneTrack</codeph> 为 <xref keyref="false"/> (默认值)</li>
+                </ul><ph>自 v4.2.0 起，SDK 支持推送纯音频流。你可以在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishCustomAudioTrack</codeph> 或者 <codeph>publishMicrophoneTrack</codeph> 设为 <xref keyref="true"/>，并调用 <xref keyref="pushAudioFrame"/> 即可推送纯音频流。</ph></p>
+            <p props="rn">SDK 不支持同一时间向同一个 URL 重复推流。
+媒体选项说明
+SDK 不支持 <codeph>publishCameraTrack</codeph> 和 <codeph>publishCustomVideoTrack</codeph> 同时为 <xref keyref="true"/>，也不支持 <codeph>publishMicrophoneTrack</codeph> 和 <codeph>publishCustomAudioTrack</codeph> 同时为 <xref keyref="true"/>。你可以根据场景需求设置媒体选项 (<xref keyref="DirectCdnStreamingMediaOptions"/>)。示例如下：
+如果你想推送主播端自定义采集的音视频流，请将媒体选项进行如下设置：
+                <ul>
+                    <li><codeph>publishCustomAudioTrack</codeph> 设为 <xref keyref="true"/> 并调用 <xref keyref="pushAudioFrame"/></li>
+                    <li><codeph>publishCustomVideoTrack</codeph> 设为 <xref keyref="true"/> 并调用 <xref keyref="pushVideoFrame"/></li>
+                    <li>确保 <codeph>publishCameraTrack</codeph> 为 <xref keyref="false"/> (默认值)</li>
+                    <li>确保 <codeph>publishMicrophoneTrack</codeph> 为 <xref keyref="false"/> (默认值)</li>
+                </ul><ph>自 v4.2.0 起，SDK 支持推送纯音频流。你可以在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishCustomAudioTrack</codeph> 或者 <codeph>publishMicrophoneTrack</codeph> 设为 <xref keyref="true"/>，并调用 <xref keyref="pushAudioFrame"/> 即可推送纯音频流。</ph></p>
+            <p props="flutter">SDK 不支持同一时间向同一个 URL 重复推流。
+媒体选项说明
+SDK 不支持 <codeph>publishCameraTrack</codeph> 和 <codeph>publishCustomVideoTrack</codeph> 同时为 <xref keyref="true"/>，也不支持 <codeph>publishMicrophoneTrack</codeph> 和 <codeph>publishCustomAudioTrack</codeph> 同时为 <xref keyref="true"/>。你可以根据场景需求设置媒体选项 (<xref keyref="DirectCdnStreamingMediaOptions"/>)。示例如下：
+如果你想推送主播端自定义采集的音视频流，请将媒体选项进行如下设置：
+                <ul>
+                    <li><codeph>publishCustomAudioTrack</codeph> 设为 <xref keyref="true"/> 并调用 <xref keyref="pushAudioFrame"/></li>
+                    <li><codeph>publishCustomVideoTrack</codeph> 设为 <xref keyref="true"/> 并调用 <xref keyref="pushVideoFrame"/></li>
+                    <li>确保 <codeph>publishCameraTrack</codeph> 为 <xref keyref="false"/> (默认值)</li>
+                    <li>确保 <codeph>publishMicrophoneTrack</codeph> 为 <xref keyref="false"/> (默认值)</li>
+                </ul><ph>自 v4.2.0 起，SDK 支持推送纯音频流。你可以在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishCustomAudioTrack</codeph> 或者 <codeph>publishMicrophoneTrack</codeph> 设为 <xref keyref="true"/>，并调用 <xref keyref="pushAudioFrame"/> 即可推送纯音频流。</ph></p>
+            <p props="unity">SDK 不支持同一时间向同一个 URL 重复推流。
+媒体选项说明
+SDK 不支持 <codeph>publishCameraTrack</codeph> 和 <codeph>publishCustomVideoTrack</codeph> 同时为 <xref keyref="true"/>，也不支持 <codeph>publishMicrophoneTrack</codeph> 和 <codeph>publishCustomAudioTrack</codeph> 同时为 <xref keyref="true"/>。你可以根据场景需求设置媒体选项 (<xref keyref="DirectCdnStreamingMediaOptions"/>)。示例如下：
+如果你想推送主播端自定义采集的音视频流，请将媒体选项进行如下设置：
+                <ul>
+                    <li><codeph>publishCustomAudioTrack</codeph> 设为 <xref keyref="true"/> 并调用 <xref keyref="pushAudioFrame"/></li>
+                    <li><codeph>publishCustomVideoTrack</codeph> 设为 <xref keyref="true"/> 并调用 <xref keyref="pushVideoFrame"/></li>
+                    <li>确保 <codeph>publishCameraTrack</codeph> 为 <xref keyref="false"/> (默认值)</li>
+                    <li>确保 <codeph>publishMicrophoneTrack</codeph> 为 <xref keyref="false"/> (默认值)</li>
+                </ul><ph>自 v4.2.0 起，SDK 支持推送纯音频流。你可以在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishCustomAudioTrack</codeph> 或者 <codeph>publishMicrophoneTrack</codeph> 设为 <xref keyref="true"/>，并调用 <xref keyref="pushAudioFrame"/> 即可推送纯音频流。</ph></p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>eventHandler</pt>
+                    <pd>详见 <xref keyref="onDirectCdnStreamingStateChanged"/> 及 <xref keyref="onDirectCdnStreamingStats"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publishUrl</pt>
+                    <pd>CDN 推流 URL。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>options</pt>
+                    <pd>主播端的媒体选项。详见 <xref keyref="DirectCdnStreamingMediaOptions"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>eventHandler</pt>
+                    <pd>详见 <xref keyref="onDirectCdnStreamingStateChanged"/> 及 <xref keyref="onDirectCdnStreamingStats"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publishUrl</pt>
+                    <pd>CDN 推流 URL。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>options</pt>
+                    <pd>主播端的媒体选项。详见 <xref keyref="DirectCdnStreamingMediaOptions"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>eventHandler</pt>
+                    <pd>详见 <xref keyref="onDirectCdnStreamingStateChanged"/> 及 <xref keyref="onDirectCdnStreamingStats"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publishUrl</pt>
+                    <pd>CDN 推流 URL。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>options</pt>
+                    <pd>主播端的媒体选项。详见 <xref keyref="DirectCdnStreamingMediaOptions"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publishUrl</pt>
+                    <pd>CDN 推流 URL。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>options</pt>
+                    <pd>主播端的媒体选项。详见 <xref keyref="DirectCdnStreamingMediaOptions"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

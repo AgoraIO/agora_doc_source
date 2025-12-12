@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicecollection_getdevice2_iaudiodevicecollection">
+    <title><ph keyref="getDevice2_IAudioDeviceCollection"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">按索引获取音频设备的名称、类型和 ID。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getDevice2_IAudioDeviceCollection"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getDevice(int index, char deviceName[MAX_DEVICE_ID_LENGTH], char deviceTypeName[MAX_DEVICE_ID_LENGTH], char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">该方法仅适用于 macOS 平台。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>index</pt>
+                    <pd>设备的索引。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>deviceName</pt>
+                    <pd>输出参数，设备名称。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>deviceTypeName</pt>
+                    <pd>输出参数，音频设备的类型，例如内建、USB 和 HDMI。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>deviceId</pt>
+                    <pd>输出参数，设备 ID。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

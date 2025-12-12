@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setrecordingaudioframeparameters">
+    <title><ph keyref="setRecordingAudioFrameParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置采集的原始音频数据格式。</ph><ph id="shortdesc" props="rn">设置采集的原始音频数据格式。</ph><ph id="shortdesc" props="flutter">设置采集的原始音频数据格式。</ph><ph id="shortdesc" props="unity">设置采集的原始音频数据格式。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRecordingAudioFrameParameters"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setRecordingAudioFrameParameters(
+    sampleRate: number,
+    channel: number,
+    mode: RawAudioFrameOpModeType,
+    samplesPerCall: number
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setRecordingAudioFrameParameters(
+    sampleRate: number,
+    channel: number,
+    mode: RawAudioFrameOpModeType,
+    samplesPerCall: number
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRecordingAudioFrameParameters(
+    {required int sampleRate,
+    required int channel,
+    required RawAudioFrameOpModeType mode,
+    required int samplesPerCall});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRecordingAudioFrameParameters(int sampleRate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">SDK 会通过该方法中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算出采样间隔，计算公式为采样间隔 = <codeph>samplesPerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。请确保采样间隔不小于 0.01 秒。SDK 会根据该采样间隔触发 <xref keyref="onRecordAudioFrame"/> 回调。</p>
+            <p props="rn">SDK 会通过该方法中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算出采样间隔，计算公式为采样间隔 = <codeph>samplesPerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。请确保采样间隔不小于 0.01 秒。SDK 会根据该采样间隔触发 <xref keyref="onRecordAudioFrame"/> 回调。</p>
+            <p props="flutter">SDK 会通过该方法中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算出采样间隔，计算公式为采样间隔 = <codeph>samplesPerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。请确保采样间隔不小于 0.01 秒。SDK 会根据该采样间隔触发 <xref keyref="onRecordAudioFrame"/> 回调。</p>
+            <p props="unity">SDK 会通过该方法中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算出采样间隔，计算公式为采样间隔 = <codeph>samplesPerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。请确保采样间隔不小于 0.01 秒。SDK 会根据该采样间隔触发 <xref keyref="onRecordAudioFrame"/> 回调。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在加入频道前调用。</p>
+            <p props="rn">该方法需要在加入频道前调用。</p>
+            <p props="flutter">该方法需要在加入频道前调用。</p>
+            <p props="unity">该方法需要在加入频道前调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>sampleRate</pt>
+                    <pd>音频数据的采样率 (Hz)，可设置为 8000、 16000、 32000、44100 或 48000。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channel</pt>
+                    <pd>音频数据的声道数，可设置为 1 或 2:
+                        <ul>
+                            <li>1: 单声道。</li>
+                            <li>2: 双声道。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>mode</pt>
+                    <pd>音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>samplesPerCall</pt>
+                    <pd>音频数据的采样点数，如旁路推流应用中通常为 1024。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sampleRate</pt>
+                    <pd>音频数据的采样率 (Hz)，可设置为 8000、 16000、 32000、44100 或 48000。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channel</pt>
+                    <pd>音频数据的声道数，可设置为 1 或 2:
+                        <ul>
+                            <li>1: 单声道。</li>
+                            <li>2: 双声道。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mode</pt>
+                    <pd>音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>samplesPerCall</pt>
+                    <pd>音频数据的采样点数，如旁路推流应用中通常为 1024。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sampleRate</pt>
+                    <pd>音频数据的采样率 (Hz)，可设置为 8000、 16000、 32000、44100 或 48000。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channel</pt>
+                    <pd>音频数据的声道数，可设置为 1 或 2:
+                        <ul>
+                            <li>1: 单声道。</li>
+                            <li>2: 双声道。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mode</pt>
+                    <pd>音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>samplesPerCall</pt>
+                    <pd>音频数据的采样点数，如旁路推流应用中通常为 1024。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sampleRate</pt>
+                    <pd>音频数据的采样率 (Hz)，可设置为 8000、 16000、 32000、44100 或 48000。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channel</pt>
+                    <pd>音频数据的声道数，可设置为 1 或 2:
+                        <ul>
+                            <li>1: 单声道。</li>
+                            <li>2: 双声道。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mode</pt>
+                    <pd>音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>samplesPerCall</pt>
+                    <pd>音频数据的采样点数，如旁路推流应用中通常为 1024。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
+                <ul>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setspatialaudioparams">
+    <title><ph keyref="setSpatialAudioParams"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">开启或关闭媒体播放器的空间音频。</ph><ph id="shortdesc" props="rn">开启或关闭媒体播放器的空间音频。</ph><ph id="shortdesc" props="flutter">开启或关闭媒体播放器的空间音频。</ph><ph id="shortdesc" props="unity">开启或关闭媒体播放器的空间音频。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setSpatialAudioParams"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setSpatialAudioParams(params: SpatialAudioParams): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setSpatialAudioParams(params: SpatialAudioParams): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setSpatialAudioParams(SpatialAudioParams params);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetSpatialAudioParams(SpatialAudioParams spatial_audio_params);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">成功设置媒体播放器的空间音频参数后，SDK 会开启媒体播放器的空间音频，即本地用户听媒体资源会有空间感。
+如果需关闭媒体播放器的空间音频，你需要将 <codeph>params</codeph> 参数设为空。</p>
+            <p props="rn">成功设置媒体播放器的空间音频参数后，SDK 会开启媒体播放器的空间音频，即本地用户听媒体资源会有空间感。
+如果需关闭媒体播放器的空间音频，你需要将 <codeph>params</codeph> 参数设为空。</p>
+            <p props="flutter">成功设置媒体播放器的空间音频参数后，SDK 会开启媒体播放器的空间音频，即本地用户听媒体资源会有空间感。
+如果需关闭媒体播放器的空间音频，你需要将 <codeph>params</codeph> 参数设为空。</p>
+            <p props="unity">成功设置媒体播放器的空间音频参数后，SDK 会开启媒体播放器的空间音频，即本地用户听媒体资源会有空间感。
+如果需关闭媒体播放器的空间音频，你需要将 <codeph>params</codeph> 参数设为空。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="flutter">
+                    <pt>params</pt>
+                    <pd>媒体播放器的空间音频参数。详见 <xref keyref="SpatialAudioParams"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>spatial_audio_params</pt>
+                    <pd>媒体播放器的空间音频参数。详见 <xref keyref="SpatialAudioParams"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

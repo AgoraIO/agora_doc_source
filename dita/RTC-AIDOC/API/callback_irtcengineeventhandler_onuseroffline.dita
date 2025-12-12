@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onuseroffline">
+    <title><ph keyref="onUserOffline"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onUserOffline"/> 回调：当远端用户（通信频道场景）或主播（极速直播频道场景）离开频道时触发。</ph><ph id="shortdesc" props="ios">远端用户或主播离开频道时的回调。</ph><ph id="shortdesc" props="android">远端用户或主播离开频道时触发的回调。</ph><ph id="shortdesc" props="mac">远端用户或主播离开频道时的回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserOffline"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraUserOfflineReason)reason NS_SWIFT_NAME(rtcEngine(_:didOfflineOfUid:reason:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onUserOffline(int uid, int reason)</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOfflineOfUid:(NSUInteger)uid reason:(AgoraUserOfflineReason)reason NS_SWIFT_NAME(rtcEngine(_:didOfflineOfUid:reason:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">用户离线通常有以下两种情况：
+                <ul>
+                    <li>离开频道：当用户或主播主动离开频道时，会发送离开消息。</li>
+                    <li>掉线：在一段时间内未收到用户或主播的数据包时，SDK 会认为其掉线。通信频道场景为 20 秒，极速直播频道场景时间更长。网络不佳可能导致误判，建议使用声网 RTM SDK 进行更可靠的离线检测。</li>
+                </ul>
+            </p>
+            <p props="ios">用户离线通常有两个原因：
+                <ul>
+                    <li>离开频道：当用户或主播离开频道时，会发送离开消息。</li>
+                    <li>掉线：在一段时间内（频道场景为 20 秒，极速直播场景更长）未收到用户或主播的数据包时，SDK 会认为其掉线。网络连接不佳可能导致误判。建议使用声网 RTM SDK 进行可靠的离线检测。</li>
+                </ul>
+            </p>
+            <p props="android">用户离线通常有以下两种原因：
+                <ul>
+                    <li>离开频道：当用户或主播离开频道时，会发送一条离开消息。</li>
+                    <li>掉线：在一段时间内（频道场景为 20 秒，极速直播场景更长）未收到用户或主播的数据包时，SDK 会认为其掉线。网络连接不佳可能导致误判，建议使用声网 RTM SDK 进行可靠的离线检测。</li>
+                </ul>
+            </p>
+            <p props="mac">用户离线通常有两个原因：
+                <ul>
+                    <li>离开频道：当用户或主播离开频道时，会发送离开消息。</li>
+                    <li>掉线：在一段时间内（频道场景为 20 秒，极速直播场景更长）未收到用户或主播的数据包时，SDK 会认为其掉线。网络连接不佳可能导致误判。建议使用声网 RTM SDK 进行可靠的离线检测。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>触发时机</title>
+            <p props="cpp">当远端用户（通信频道场景）或主播（极速直播频道场景）离开频道时触发该回调。</p>
+            <p props="ios">该回调在远端用户（在频道场景中）或主播（在极速直播场景中）离开频道时触发。</p>
+            <p props="android">该回调在远端用户（在频道场景中）或主播（在极速直播场景中）离开频道时被触发。</p>
+            <p props="mac">该回调在远端用户（在频道场景中）或主播（在极速直播场景中）离开频道时触发。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>离开频道或掉线的用户 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>用户离线的原因，详见 <xref keyref="USER_OFFLINE_REASON_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>离开频道或掉线的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>reason</pt>
+                    <pd>远端用户（在频道场景中）或主播（在极速直播场景中）离线的原因，详见 <xref keyref="USER_OFFLINE_REASON_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>离开频道或掉线的用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>远端用户（在频道场景中）或主播（在极速直播场景中）离线的原因：
+                        <ul>
+                            <li><codeph>USER_OFFLINE_QUIT</codeph> (0)：用户主动退出通话，发送离开消息。</li>
+                            <li><codeph>USER_OFFLINE_DROPPED</codeph> (1)：SDK 超时未收到任何数据包，用户掉线。网络连接不佳可能导致误判，建议使用声网 RTM SDK 进行可靠的离线检测。</li>
+                            <li><codeph>USER_OFFLINE_BECOME_AUDIENCE</codeph> (2)：用户将角色从主播切换为观众。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>离开频道或掉线的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>reason</pt>
+                    <pd>远端用户（在频道场景中）或主播（在极速直播场景中）离线的原因，详见 <xref keyref="USER_OFFLINE_REASON_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

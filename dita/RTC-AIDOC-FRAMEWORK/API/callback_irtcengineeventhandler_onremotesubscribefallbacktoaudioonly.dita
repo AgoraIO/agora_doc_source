@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onremotesubscribefallbacktoaudioonly">
+    <title><ph keyref="onRemoteSubscribeFallbackToAudioOnly"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">订阅流已回退为音频流或恢复为音视频流回调。</ph><ph id="shortdesc" props="rn">订阅流已回退为音频流或恢复为音视频流回调。</ph><ph id="shortdesc" props="flutter">订阅流已回退为音频流或恢复为音视频流回调。</ph><ph id="shortdesc" props="unity">订阅流已回退为音频流或恢复为音视频流回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteSubscribeFallbackToAudioOnly"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onRemoteSubscribeFallbackToAudioOnly?(
+    uid: number,
+    isFallbackOrRecover: boolean
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onRemoteSubscribeFallbackToAudioOnly?(
+    uid: number,
+    isFallbackOrRecover: boolean
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(int uid, bool isFallbackOrRecover)?
+      onRemoteSubscribeFallbackToAudioOnly;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteSubscribeFallbackToAudioOnly(uint uid, bool isFallbackOrRecover)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">当你调用了 <xref keyref="setRemoteSubscribeFallbackOption"/> 并将 <codeph>option</codeph> 设置为 <codeph>StreamFallbackOptionAudioOnly</codeph> 后，该回调会在下列情况时被触发：
+                <ul>
+                    <li>下行网络环境较差，订阅的音视频流回退为音频流</li>
+                    <li>下行网络环境改善，订阅音频流恢复为音视频流</li>
+                </ul>
+            </p>
+            <p props="rn">当你调用了 <xref keyref="setRemoteSubscribeFallbackOption"/> 并将 <codeph>option</codeph> 设置为 <codeph>StreamFallbackOptionAudioOnly</codeph> 后，该回调会在下列情况时被触发：
+                <ul>
+                    <li>下行网络环境较差，订阅的音视频流回退为音频流</li>
+                    <li>下行网络环境改善，订阅音频流恢复为音视频流</li>
+                </ul>
+            </p>
+            <p props="flutter">当你调用了 <xref keyref="setRemoteSubscribeFallbackOption"/> 并将 <codeph>option</codeph> 设置为 <codeph>streamFallbackOptionAudioOnly</codeph> 后，该回调会在下列情况时被触发：
+                <ul>
+                    <li>下行网络环境较差，订阅的音视频流回退为音频流</li>
+                    <li>下行网络环境改善，订阅音频流恢复为音视频流</li>
+                </ul>
+            </p>
+            <p props="unity">当你调用了 <xref keyref="setRemoteSubscribeFallbackOption"/> 并将 <codeph>option</codeph> 设置为 <codeph>STREAM_FALLBACK_OPTION_AUDIO_ONLY</codeph> 后，该回调会在下列情况时被触发：
+                <ul>
+                    <li>下行网络环境较差，订阅的音视频流回退为音频流</li>
+                    <li>下行网络环境改善，订阅音频流恢复为音视频流</li>
+                </ul>
+            </p>
+            <note props="electron">订阅流因弱网环境而回退为视频小流时，你可以通过 <xref keyref="onRemoteVideoStats"/> 回调来监控远端视频大小流的切换。</note>
+            <note props="rn">订阅流因弱网环境而回退为视频小流时，你可以通过 <xref keyref="onRemoteVideoStats"/> 回调来监控远端视频大小流的切换。</note>
+            <note props="flutter">订阅流因弱网环境而回退为视频小流时，你可以通过 <xref keyref="onRemoteVideoStats"/> 回调来监控远端视频大小流的切换。</note>
+            <note props="unity">订阅流因弱网环境而回退为视频小流时，你可以通过 <xref keyref="onRemoteVideoStats"/> 回调来监控远端视频大小流的切换。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>isFallbackOrRecover</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: 由于网络环境不理想，订阅流已回退为音频流。</li>
+                            <li><xref keyref="false"/>: 由于网络环境改善，订阅流已恢复为音视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>isFallbackOrRecover</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: 由于网络环境不理想，订阅流已回退为音频流。</li>
+                            <li><xref keyref="false"/>: 由于网络环境改善，订阅流已恢复为音视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>isFallbackOrRecover</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: 由于网络环境不理想，订阅流已回退为音频流。</li>
+                            <li><xref keyref="false"/>: 由于网络环境改善，订阅流已恢复为音视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>远端用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>isFallbackOrRecover</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: 由于网络环境不理想，订阅流已回退为音频流。</li>
+                            <li><xref keyref="false"/>: 由于网络环境改善，订阅流已恢复为音视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

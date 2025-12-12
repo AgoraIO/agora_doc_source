@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_mixedaudiostream">
+    <title><ph keyref="MixedAudioStream"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于设置本地混音音频流的来源。</ph><ph id="shortdesc" props="ios">表示本地混音的音频流来源。</ph><ph id="shortdesc" props="android">用于设置本地混音的音频流来源。</ph><ph id="shortdesc" props="mac">表示本地混音的音频流来源。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct MixedAudioStream {
+  AUDIO_SOURCE_TYPE sourceType;
+  uid_t remoteUserUid;
+  const char* channelId;
+  track_id_t trackId;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMixedAudioStream: NSObject
+@property (assign, nonatomic) AgoraAudioSourceType sourceType;
+@property (assign, nonatomic) NSUInteger remoteUserUid;
+@property (copy, nonatomic) NSString * _Nullable channelId;
+@property (assign, nonatomic) NSUInteger trackId;
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class MixedAudioStream {
+  public int remoteUserUid;
+  public String channelId;
+  public Constants.AudioSourceType sourceType;
+  public int trackId;
+}</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMixedAudioStream: NSObject
+@property (assign, nonatomic) AgoraAudioSourceType sourceType;
+@property (assign, nonatomic) NSUInteger remoteUserUid;
+@property (copy, nonatomic) NSString * _Nullable channelId;
+@property (assign, nonatomic) NSUInteger trackId;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>sourceType</pt>
+                    <pd>音频源类型。详见 <xref keyref="AUDIO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>remoteUserUid</pt>
+                    <pd>远端用户 ID。
+                        <note>当本地混音音频流的来源类型为 <codeph>AUDIO_SOURCE_REMOTE_USER</codeph> 时，需设置该参数。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>channelId</pt>
+                    <pd>
+                        <note>当本地混音音频流的来源类型为 <codeph>AUDIO_SOURCE_REMOTE_CHANNEL</codeph> 或 <codeph>AUDIO_SOURCE_REMOTE_USER</codeph> 时，需设置该参数。</note><ph>频道名。该参数表示用户进行实时音视频互动的频道。在相同 App ID 下，填写相同频道名的用户会进入同一个频道进行音视频互动。字符串长度不得超过 64 字节。支持的字符（共 89 个）：</ph>
+                        <ul>
+                            <li>所有小写英文字母：a 到 z。</li>
+                            <li>所有大写英文字母：A 到 Z。</li>
+                            <li>所有数字字符：0 到 9。</li>
+                            <li>特殊字符："!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。设置为 <xref keyref="createCustomAudioTrack_IMediaEngine"/> 返回的自定义音频轨道 ID。
+                        <note>当本地混音音频流的来源类型为 <codeph>AUDIO_SOURCE_CUSTOM</codeph> 时，需设置该参数。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sourceType</pt>
+                    <pd>音频源的类型，详见 <xref keyref="AUDIO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>remoteUserUid</pt>
+                    <pd>远端用户 ID。
+                        <note>当本地混音的音频源类型为 <codeph>AgoraAudioSourceRemoteUser</codeph> 时，需设置该参数。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>channelId</pt>
+                    <pd>
+                        <note>当本地混音的音频源类型为 <codeph>AgoraAudioSourceRemoteChannel</codeph> 或 <codeph>AgoraAudioSourceRemoteUser</codeph> 时，需设置该参数。</note><ph>频道名。字符串长度不得超过 64 字节。支持的字符（共 89 个）：</ph>
+                        <ul>
+                            <li>所有小写英文字母：a 到 z。</li>
+                            <li>所有大写英文字母：A 到 Z。</li>
+                            <li>所有数字字符：0 到 9。</li>
+                            <li>特殊字符："!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。
+                        <note>当本地混音的音频源类型为 <codeph>AgoraAudioSourceCustom</codeph> 时，需设置该参数。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>remoteUserUid</pt>
+                    <pd>远端用户 ID。
+                        <note>仅当本地混音音频流的来源类型为 <codeph>AUDIO_SOURCE_REMOTE_USER</codeph> 时需要设置该参数。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channelId</pt>
+                    <pd>频道名。该字符串长度不得超过 64 字节。支持的字符共 89 个：小写英文字母 a 到 z、大写英文字母 A 到 Z、数字 0 到 9，以及以下符号：!、#、$、% 、&amp;、(、)、+、-、:、;、&lt;、=、.、&gt;、?、@、[、]、^、_、{、}、|、~、,。
+                        <note>仅当本地混音音频流的来源类型为 <codeph>AUDIO_SOURCE_REMOTE_CHANNEL</codeph> 或 <codeph>AUDIO_SOURCE_REMOTE_USER</codeph> 时需要设置该参数。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>音频源类型，详见 <xref keyref="AUDIO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。
+                        <note>仅当本地混音音频流的来源类型为 <codeph>AUDIO_SOURCE_CUSTOM</codeph> 时需要设置该参数。请设置为 <xref keyref="createCustomAudioTrack"/> 返回的自定义音频轨道 ID。</note>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sourceType</pt>
+                    <pd>音频源的类型，详见 <xref keyref="AUDIO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>remoteUserUid</pt>
+                    <pd>远端用户 ID。
+                        <note>当本地混音的音频源类型为 <codeph>AgoraAudioSourceRemoteUser</codeph> 时，需设置该参数。</note>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channelId</pt>
+                    <pd>
+                        <note>当本地混音的音频源类型为 <codeph>AgoraAudioSourceRemoteChannel</codeph> 或 <codeph>AgoraAudioSourceRemoteUser</codeph> 时，需设置该参数。</note><ph>频道名。字符串长度不得超过 64 字节。支持的字符（共 89 个）：</ph>
+                        <ul>
+                            <li>所有小写英文字母：a 到 z。</li>
+                            <li>所有大写英文字母：A 到 Z。</li>
+                            <li>所有数字字符：0 到 9。</li>
+                            <li>特殊字符："!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。
+                        <note>当本地混音的音频源类型为 <codeph>AgoraAudioSourceCustom</codeph> 时，需设置该参数。</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

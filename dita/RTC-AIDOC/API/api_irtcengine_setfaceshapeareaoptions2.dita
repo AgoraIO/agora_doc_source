@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setfaceshapeareaoptions2">
+    <title><ph keyref="setFaceShapeAreaOptions2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">设置美颜增强的面部区域选项。</ph><ph id="shortdesc" props="android">设置美颜增强的面部区域选项。</ph><ph id="shortdesc" props="mac">设置美颜增强的面部区域选项。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setFaceShapeAreaOptions2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setFaceShapeAreaOptions:(AgoraFaceShapeAreaOptions* _Nullable)options NS_SWIFT_NAME(setFaceShapeAreaOptions(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setFaceShapeAreaOptions(FaceShapeAreaOptions options);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setFaceShapeAreaOptions:(AgoraFaceShapeAreaOptions* _Nullable)options NS_SWIFT_NAME(setFaceShapeAreaOptions(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">如果通过 <codeph>setFaceShapeBeautyOptions:</codeph> 方法设置的预设美型特效无法满足预期，可以使用此方法设置美颜区域选项，单独微调面部的每个部分，实现更精细的美颜效果。</p>
+            <p props="android">你可以调用该方法设置面部区域选项，单独微调面部的每个部分，从而实现更精细的美颜效果。</p>
+            <p props="mac">如果通过 <codeph>setFaceShapeBeautyOptions:</codeph> 方法设置的预设美型特效无法满足预期，可以使用此方法设置美颜区域选项，单独微调面部的每个部分，实现更精细的美颜效果。</p>
+            <note props="ios">
+                <ul>
+                    <li>此方法依赖美颜特效动态库 <xref keyref="clearvision"/>（iOS）或 <codeph>AgoraClearVisionExtension.framework</codeph>（macOS）。如果删除该动态库，功能将无法正常启用。</li>
+                    <li>此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>此方法仅适用于 Android 4.4 或更高版本。</li>
+                    <li>此方法依赖美颜特效动态库 <xref keyref="clearvision"/>。如果该动态库被删除，则无法正常启用该功能。</li>
+                    <li>此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。</li>
+                </ul>
+            </note>
+            <note props="mac">
+                <ul>
+                    <li>此方法依赖美颜特效动态库 <codeph>AgoraClearVisionExtension.xcframework</codeph>（iOS）或 <xref keyref="clearvision"/>（macOS）。如果删除该动态库，功能将无法正常启用。</li>
+                    <li>此功能对设备性能要求较高。调用此方法时，SDK 会自动检测当前设备的能力。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android ios mac">
+            <title>调用时机</title>
+            <p props="ios">在调用 <codeph>setFaceShapeBeautyOptions:</codeph> 方法之后调用。</p>
+            <p props="android">请在调用 <codeph>setFaceShapeBeautyOptions</codeph> 方法之后调用此方法。</p>
+            <p props="mac">在调用 <codeph>setFaceShapeBeautyOptions:</codeph> 方法之后调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>options</pt>
+                    <pd>面部增强区域。详见 <xref keyref="FaceShapeAreaOptions"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>面部增强区域选项，详见 <xref keyref="FaceShapeAreaOptions"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>options</pt>
+                    <pd>面部增强区域。详见 <xref keyref="FaceShapeAreaOptions"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android ios mac">
+            <title>返回值</title>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-4：当前设备不支持此功能。可能的原因包括：
+                                <ul>
+                                    <li>当前设备的能力不满足美颜特效的要求。声网建议你更换为高性能设备。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-4：当前设备不支持此功能。可能原因包括：
+                                <ul>
+                                    <li>当前设备的能力不满足美颜特效的要求，建议你更换为高性能设备。</li>
+                                    <li>当前设备版本低于 Android 4.4，不支持此功能，建议你更换设备或升级操作系统。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-4：当前设备不支持此功能。可能的原因包括：
+                                <ul>
+                                    <li>当前设备的能力不满足美颜特效的要求。声网建议你更换为高性能设备。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

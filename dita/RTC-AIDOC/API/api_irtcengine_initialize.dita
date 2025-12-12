@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_initialize">
+    <title><ph keyref="initialize"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">初始化 <xref keyref="IRtcEngine"/>。</ph><ph id="shortdesc" props="ios">创建并初始化 <xref keyref="IRtcEngine"/> 实例。</ph><ph id="shortdesc" props="android">创建并初始化 <xref keyref="IRtcEngine"/> 实例。</ph><ph id="shortdesc" props="mac">创建并初始化 <xref keyref="IRtcEngine"/> 实例。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="initialize"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int initialize(const RtcEngineContext&amp; context) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedEngineWithConfig:(AgoraRtcEngineConfig * _Nonnull)config
+                                       delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate NS_SWIFT_NAME(sharedEngine(with:delegate:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public static synchronized RtcEngine create(RtcEngineConfig config) throws Exception</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedEngineWithConfig:(AgoraRtcEngineConfig * _Nonnull)config
+                                       delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate NS_SWIFT_NAME(sharedEngine(with:delegate:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">你可以通过调用此方法或调用 <xref keyref="create"/> 来创建 <xref keyref="IRtcEngine"/> 实例。与 <xref keyref="create"/> 不同，此方法在创建 <xref keyref="IRtcEngine"/> 实例时支持更多配置，例如指定连接区域和设置日志文件。</p>
+            <p props="android">你可以通过调用此方法或 <xref keyref="create"/> 方法来创建 <xref keyref="IRtcEngine"/> 实例。与后者相比，此方法支持更多配置选项，例如指定连接区域和设置日志文件。</p>
+            <p props="mac">你可以通过调用此方法或调用 <xref keyref="create"/> 来创建 <xref keyref="IRtcEngine"/> 实例。与 <xref keyref="create"/> 不同，此方法在创建 <xref keyref="IRtcEngine"/> 实例时支持更多配置，例如指定连接区域和设置日志文件。</p>
+            <note props="cpp">
+                <ul>
+                    <li><xref keyref="IRtcEngine"/> 提供的所有方法均为异步执行。建议你在同一线程中调用这些方法。</li>
+                    <li>SDK 仅支持为一个 App 创建一个 <xref keyref="IRtcEngine"/> 实例。</li>
+                </ul>
+            </note>
+            <note props="ios"><xref keyref="IRtcEngine"/> 每个 App 仅支持创建一个实例。<xref keyref="IRtcEngine"/> 提供的所有方法均为异步执行。声网建议你在同一线程中调用这些方法。</note>
+            <note props="android">每个 App 仅支持创建一个 <xref keyref="IRtcEngine"/> 实例。<xref keyref="IRtcEngine"/> 类中的所有方法均为异步执行，声网建议在同一线程中调用这些方法。</note>
+            <note props="mac"><xref keyref="IRtcEngine"/> 每个 App 仅支持创建一个实例。<xref keyref="IRtcEngine"/> 提供的所有方法均为异步执行。声网建议你在同一线程中调用这些方法。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">在调用其他 API 之前，必须先调用 <xref keyref="createAgoraRtcEngine"/> 和 <xref keyref="initialize"/> 来创建并初始化 <xref keyref="IRtcEngine"/> 对象。</p>
+            <p props="ios">在调用其他 API 之前，必须先调用此方法创建 <xref keyref="IRtcEngine"/> 对象。</p>
+            <p props="android">在调用其他 API 之前，必须先调用此方法创建 <xref keyref="IRtcEngine"/> 对象。</p>
+            <p props="mac">在调用其他 API 之前，必须先调用此方法创建 <xref keyref="IRtcEngine"/> 对象。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>context</pt>
+                    <pd><xref keyref="IRtcEngine"/> 实例的配置，详见 <xref keyref="RtcEngineConfig"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>用于配置 <xref keyref="IRtcEngine"/> 实例的参数。详见 <xref keyref="RtcEngineConfig"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>delegate</pt>
+                    <pd><xref keyref="IRtcEngine"/> 的事件回调处理器。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>用于配置 <xref keyref="IRtcEngine"/> 实例的参数。详见 <xref keyref="RtcEngineConfig"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>config</pt>
+                    <pd>用于配置 <xref keyref="IRtcEngine"/> 实例的参数。详见 <xref keyref="RtcEngineConfig"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>delegate</pt>
+                    <pd><xref keyref="IRtcEngine"/> 的事件回调处理器。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-1：发生通用错误（无明确原因）。</li>
+                            <li>-2：参数无效。</li>
+                            <li>-7：SDK 未初始化。</li>
+                            <li>-22：资源请求失败。由于你的 App 占用过多系统资源或系统资源不足，SDK 无法分配资源。</li>
+                            <li>-101：App ID 无效。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>方法调用成功时，返回初始化后的 <xref keyref="IRtcEngine"/> 对象。</li>
+                    <li>方法调用失败时，返回一个其内部引擎字段为 <xref keyref="NULL"/> 的 <xref keyref="IRtcEngine"/> 对象。你可以通过 <xref keyref="delegate"/> 的 <xref keyref="onError"/> 回调获取错误码。</li>
+                </ul>
+            </p>
+            <p props="android">方法调用成功，返回初始化后的 <xref keyref="IRtcEngine"/> 对象。
+方法调用失败，SDK 会抛出异常，并返回相应的错误信息。你需要捕获异常并进行处理。</p>
+            <p props="mac">
+                <ul>
+                    <li>方法调用成功时，返回初始化后的 <xref keyref="IRtcEngine"/> 对象。</li>
+                    <li>方法调用失败时，返回一个其内部引擎字段为 <xref keyref="NULL"/> 的 <xref keyref="IRtcEngine"/> 对象。你可以通过 <xref keyref="delegate"/> 的 <xref keyref="onError"/> 回调获取错误码。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

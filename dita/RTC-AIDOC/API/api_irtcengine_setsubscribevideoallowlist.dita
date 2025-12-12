@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setsubscribevideoallowlist">
+    <title><ph keyref="setSubscribeVideoAllowlist"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置视频流订阅的允许列表。</ph><ph id="shortdesc" props="ios">设置视频流订阅的白名单。</ph><ph id="shortdesc" props="android">设置视频流订阅的白名单。</ph><ph id="shortdesc" props="mac">设置视频流订阅的白名单。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setSubscribeVideoAllowlist"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setSubscribeVideoAllowlist(uid_t* uidList, int uidNumber) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setSubscribeVideoAllowlist:(NSArray &lt;NSNumber *&gt; *_Nonnull)allowlist NS_SWIFT_NAME(setSubscribeVideoAllowlist(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setSubscribeVideoAllowlist(int[] uidList);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setSubscribeVideoAllowlist:(NSArray &lt;NSNumber *&gt; *_Nonnull)allowlist NS_SWIFT_NAME(setSubscribeVideoAllowlist(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">你可以调用该方法来指定你想要订阅的用户的视频流。</p>
+            <p props="mac">你可以调用该方法来指定你想要订阅的用户的视频流。</p>
+            <note props="cpp">
+                <ul>
+                    <li>你可以在加入频道前或加入频道后调用此方法。</li>
+                    <li>允许列表不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>一旦设置了订阅的允许列表，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
+                    <li>如果某个用户同时被添加到允许列表和阻止列表中，则仅阻止列表生效。</li>
+                </ul>
+            </note>
+            <note props="ios">
+                <ul>
+                    <li>你可以在加入频道前或加入频道后调用该方法。</li>
+                    <li>白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
+                    <li>如果某个用户同时被添加到白名单和黑名单中，则只有黑名单生效。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>你可以在加入频道前或加入频道后调用此方法。</li>
+                    <li>白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeVideo</codeph> 设置的影响。</li>
+                    <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入，该设置仍然有效。</li>
+                    <li>如果某个用户同时被添加到白名单和黑名单中，则仅黑名单生效。</li>
+                </ul>
+            </note>
+            <note props="mac">
+                <ul>
+                    <li>你可以在加入频道前或加入频道后调用该方法。</li>
+                    <li>白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 和 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeAudio</codeph> 设置的影响。</li>
+                    <li>一旦设置了订阅白名单，即使你离开当前频道并重新加入频道，该设置仍然有效。</li>
+                    <li>如果某个用户同时被添加到白名单和黑名单中，则只有黑名单生效。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uidList</pt>
+                    <pd>希望订阅的视频流用户的用户 ID 列表。如果你想移除某个用户，需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 更新该列表，仅保留你希望订阅的用户 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uidNumber</pt>
+                    <pd>用户 ID 列表中的用户数量。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>allowlist</pt>
+                    <pd>你想要订阅的视频流用户的用户 ID 列表。如果你想指定某个用户的视频流进行订阅，请将该用户的用户 ID 添加到此列表中。如果你想将某个用户从白名单中移除，你需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加你想要订阅的用户的用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uidList</pt>
+                    <pd>希望订阅的视频流所属用户的用户 ID 列表。
+                        <ul>
+                            <li>如果你希望订阅某个用户的视频流，请将该用户的用户 ID 添加到该列表中。</li>
+                            <li>如果你希望将某个用户从白名单中移除，需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新用户 ID 列表，即在新的用户 ID 列表中仅包含你希望订阅的用户的用户 ID。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>allowlist</pt>
+                    <pd>你想要订阅的视频流用户的用户 ID 列表。如果你想指定某个用户的视频流进行订阅，请将该用户的用户 ID 添加到此列表中。如果你想将某个用户从白名单中移除，你需要调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新用户 ID 列表；这意味着你只需在新的用户 ID 列表中添加你想要订阅的用户的用户 ID。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

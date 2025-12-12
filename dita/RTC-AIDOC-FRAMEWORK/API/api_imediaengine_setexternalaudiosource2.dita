@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_setexternalaudiosource2">
+    <title><ph keyref="setExternalAudioSource2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置外部音频采集参数。</ph><ph id="shortdesc" props="rn">设置外部音频采集参数。</ph><ph id="shortdesc" props="flutter">设置外部音频采集参数。</ph><ph id="shortdesc" props="unity">设置外部音频采集参数。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalAudioSource2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setExternalAudioSource(
+    enabled: boolean,
+    sampleRate: number,
+    channels: number,
+    localPlayback?: boolean,
+    publish?: boolean
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setExternalAudioSource(
+    enabled: boolean,
+    sampleRate: number,
+    channels: number,
+    localPlayback?: boolean,
+    publish?: boolean
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setExternalAudioSource(
+    {required bool enabled,
+    required int sampleRate,
+    required int channels,
+    bool localPlayback = false,
+    bool publish = true});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalAudioSource(bool enabled, int sampleRate, int channels, bool localPlayback = false, bool publish = true);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该方法已废弃，请改用 <xref keyref="createCustomAudioTrack"/>。</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该方法已废弃，请改用 <xref keyref="createCustomAudioTrack"/>。</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该方法已废弃，请改用 <xref keyref="createCustomAudioTrack"/>。</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该方法已废弃，请改用 <xref keyref="createCustomAudioTrack"/>。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在加入频道前调用。</p>
+            <p props="rn">该方法需要在加入频道前调用。</p>
+            <p props="flutter">该方法需要在加入频道前调用。</p>
+            <p props="unity">该方法需要在加入频道前调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>是否开启使用外部音频源的功能：
+                        <ul>
+                            <li><xref keyref="true"/>：开启外部音频源。</li>
+                            <li><xref keyref="false"/>：（默认）关闭外部音频源。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sampleRate</pt>
+                    <pd>外部音频源的采样率 (Hz)，可设置为 <codeph>8000</codeph>，<codeph>16000</codeph>，<codeph>32000</codeph>，<codeph>44100</codeph> 或 <codeph>48000</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channels</pt>
+                    <pd>外部音频源的声道数，可设置为 <codeph>1</codeph>（单声道）或 <codeph>2</codeph>（双声道）。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>localPlayback</pt>
+                    <pd>是否在本地播放外部音频源：
+                        <ul>
+                            <li><xref keyref="true"/>：在本地播放。</li>
+                            <li><xref keyref="false"/>：（默认）不在本地播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publish</pt>
+                    <pd>是否将音频发布到远端：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）发布到远端。</li>
+                            <li><xref keyref="false"/>：不发布到远端。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>是否开启使用外部音频源的功能：
+                        <ul>
+                            <li><xref keyref="true"/>：开启外部音频源。</li>
+                            <li><xref keyref="false"/>：（默认）关闭外部音频源。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sampleRate</pt>
+                    <pd>外部音频源的采样率 (Hz)，可设置为 <codeph>8000</codeph>，<codeph>16000</codeph>，<codeph>32000</codeph>，<codeph>44100</codeph> 或 <codeph>48000</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channels</pt>
+                    <pd>外部音频源的声道数，可设置为 <codeph>1</codeph>（单声道）或 <codeph>2</codeph>（双声道）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>localPlayback</pt>
+                    <pd>是否在本地播放外部音频源：
+                        <ul>
+                            <li><xref keyref="true"/>：在本地播放。</li>
+                            <li><xref keyref="false"/>：（默认）不在本地播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publish</pt>
+                    <pd>是否将音频发布到远端：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）发布到远端。</li>
+                            <li><xref keyref="false"/>：不发布到远端。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>是否开启使用外部音频源的功能：
+                        <ul>
+                            <li><xref keyref="true"/>：开启外部音频源。</li>
+                            <li><xref keyref="false"/>：（默认）关闭外部音频源。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sampleRate</pt>
+                    <pd>外部音频源的采样率 (Hz)，可设置为 <codeph>8000</codeph>，<codeph>16000</codeph>，<codeph>32000</codeph>，<codeph>44100</codeph> 或 <codeph>48000</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channels</pt>
+                    <pd>外部音频源的声道数，可设置为 <codeph>1</codeph>（单声道）或 <codeph>2</codeph>（双声道）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>localPlayback</pt>
+                    <pd>是否在本地播放外部音频源：
+                        <ul>
+                            <li><xref keyref="true"/>：在本地播放。</li>
+                            <li><xref keyref="false"/>：（默认）不在本地播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publish</pt>
+                    <pd>是否将音频发布到远端：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）发布到远端。</li>
+                            <li><xref keyref="false"/>：不发布到远端。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>是否开启使用外部音频源的功能：
+                        <ul>
+                            <li><xref keyref="true"/>：开启外部音频源。</li>
+                            <li><xref keyref="false"/>：（默认）关闭外部音频源。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sampleRate</pt>
+                    <pd>外部音频源的采样率 (Hz)，可设置为 <codeph>8000</codeph>，<codeph>16000</codeph>，<codeph>32000</codeph>，<codeph>44100</codeph> 或 <codeph>48000</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channels</pt>
+                    <pd>外部音频源的声道数，可设置为 <codeph>1</codeph>（单声道）或 <codeph>2</codeph>（双声道）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>localPlayback</pt>
+                    <pd>是否在本地播放外部音频源：
+                        <ul>
+                            <li><xref keyref="true"/>：在本地播放。</li>
+                            <li><xref keyref="false"/>：（默认）不在本地播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publish</pt>
+                    <pd>是否将音频发布到远端：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）发布到远端。</li>
+                            <li><xref keyref="false"/>：不发布到远端。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
+                <ul>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

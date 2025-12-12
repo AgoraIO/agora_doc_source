@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_userinfo">
+    <title><ph keyref="UserInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">包含用户信息。</ph><ph id="shortdesc" props="ios">表示用户信息的类。</ph><ph id="shortdesc" props="android">用户的基本信息。</ph><ph id="shortdesc" props="mac">表示用户信息的类。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct UserInfo {
+  uid_t uid;
+  char userAccount[MAX_USER_ACCOUNT_LENGTH];
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraUserInfo: NSObject
+@property(assign, nonatomic) NSUInteger uid;
+@property (copy, nonatomic) NSString * _Nullable userAccount;
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class UserInfo {
+  public int uid;
+  public String userAccount;
+}</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraUserInfo: NSObject
+@property(assign, nonatomic) NSUInteger uid;
+@property (copy, nonatomic) NSString * _Nullable userAccount;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>userAccount</pt>
+                    <pd>用户 User Account。最大长度为 <xref keyref="MAX_USER_ACCOUNT_LENGTH_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>userAccount</pt>
+                    <pd>用户 User Account。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userAccount</pt>
+                    <pd>用户 User Account。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>userAccount</pt>
+                    <pd>用户 User Account。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

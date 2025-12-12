@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_simulcaststreamconfig">
+    <title><ph keyref="SimulcastStreamConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">视频小流的配置。</ph><ph id="shortdesc" props="rn">视频小流的配置。</ph><ph id="shortdesc" props="flutter">视频小流的配置。</ph><ph id="shortdesc" props="unity">视频小流的配置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class SimulcastStreamConfig {
+  dimensions?: VideoDimensions;
+  kBitrate?: number;
+  framerate?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class SimulcastStreamConfig {
+  dimensions?: VideoDimensions;
+  kBitrate?: number;
+  framerate?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class SimulcastStreamConfig {
+  const SimulcastStreamConfig({this.dimensions, this.kBitrate, this.framerate});
+
+  @JsonKey(name: 'dimensions')
+  final VideoDimensions? dimensions;
+  @JsonKey(name: 'kBitrate')
+  final int? kBitrate;
+  @JsonKey(name: 'framerate')
+  final int? framerate;
+  factory SimulcastStreamConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$SimulcastStreamConfigFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$SimulcastStreamConfigToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class SimulcastStreamConfig
+    {
+        public VideoDimensions dimensions;
+        public int kBitrate;
+        public int framerate;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>dimensions</pt>
+                    <pd>视频尺寸。详见 <xref keyref="VideoDimensions"/>。默认值为视频大流的 50%。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>kBitrate</pt>
+                    <pd>视频码率 (Kbps)，默认值为 -1。该参数无需设置，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>framerate</pt>
+                    <pd>视频帧率 (fps)。默认值为 5。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>dimensions</pt>
+                    <pd>视频尺寸。详见 <xref keyref="VideoDimensions"/>。默认值为视频大流的 50%。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>kBitrate</pt>
+                    <pd>视频码率 (Kbps)，默认值为 -1。该参数无需设置，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>framerate</pt>
+                    <pd>视频帧率 (fps)。默认值为 5。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>dimensions</pt>
+                    <pd>视频尺寸。详见 <xref keyref="VideoDimensions"/>。默认值为视频大流的 50%。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>kBitrate</pt>
+                    <pd>视频码率 (Kbps)，默认值为 -1。该参数无需设置，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>framerate</pt>
+                    <pd>视频帧率 (fps)。默认值为 5。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>dimensions</pt>
+                    <pd>视频尺寸。详见 <xref keyref="VideoDimensions"/>。默认值为视频大流的 50%。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>kBitrate</pt>
+                    <pd>视频码率 (Kbps)，默认值为 -1。该参数无需设置，SDK 会根据你设定的视频分辨率和帧率自动匹配最合适的码率。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>framerate</pt>
+                    <pd>视频帧率 (fps)。默认值为 5。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

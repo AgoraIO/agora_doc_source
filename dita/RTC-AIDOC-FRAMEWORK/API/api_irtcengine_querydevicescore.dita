@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_querydevicescore">
+    <title><ph keyref="queryDeviceScore"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">查询设备评分等级。</ph><ph id="shortdesc" props="rn">查询设备评分等级。</ph><ph id="shortdesc" props="flutter">查询设备评分等级。</ph><ph id="shortdesc" props="unity">查询设备评分等级。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="queryDeviceScore"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract queryDeviceScore(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract queryDeviceScore(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; queryDeviceScore();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int QueryDeviceScore();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>在高清或超高清视频场景下，可以先调用该方法查询设备的等级评分。如果返回的评分较低（比如低于 60），则需要适当调低视频分辨率，以避免影响视频体验。不同业务场景要求的最低设备评分等级不同，具体评分推荐请[联系技术支持](https://ticket.shengwang.cn/)。</p>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>&gt; 0: 方法调用成功，值为当前设备的评分等级，取值范围为[0,100]，数值越大表示设备能力越强。大部分设备的评分在 60 到 100 之间。</li>
+                    <li>&lt; 0: 方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>&gt; 0: 方法调用成功，值为当前设备的评分等级，取值范围为[0,100]，数值越大表示设备能力越强。大部分设备的评分在 60 到 100 之间。</li>
+                    <li>&lt; 0: 方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法调用成功时，返回一个取值范围为 [0,100] 的值，表示当前设备的评分等级，数值越大表示设备能力越强，大部分设备的评分在 60 到 100 之间；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。
+                <ul>
+                    <li>&lt; 0: 方法调用失败。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>&gt; 0: 方法调用成功，值为当前设备的评分等级，取值范围为[0,100]，数值越大表示设备能力越强。大部分设备的评分在 60 到 100 之间。</li>
+                    <li>&lt; 0: 方法调用失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudioframeobserver_getobservedaudioframeposition">
+    <title><ph keyref="getObservedAudioFramePosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">设置音频数据观察位置。</ph><ph id="shortdesc" props="android">设置音频数据观察位置。</ph><ph id="shortdesc" props="mac">设置音频数据观察位置。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getObservedAudioFramePosition"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (AgoraAudioFramePosition)getObservedAudioFramePosition NS_SWIFT_NAME(getObservedAudioFramePosition());</codeblock>
+                <codeblock props="android" outputclass="language-java">@CalledByNative public abstract int getObservedAudioFramePosition();</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (AgoraAudioFramePosition)getObservedAudioFramePosition NS_SWIFT_NAME(getObservedAudioFramePosition());</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">成功注册音频数据观察器后，SDK 会在每个特定的音频帧处理节点使用该回调，以判断是否触发以下回调：
+                <ul>
+                    <li><xref keyref="onRecordAudioFrame"/></li>
+                    <li><xref keyref="onPlaybackAudioFrame"/></li>
+                    <li><xref keyref="onPlaybackAudioFrameBeforeMixing"/></li>
+                    <li><xref keyref="onMixedAudioFrame"/></li>
+                    <li><xref keyref="onEarMonitoringAudioFrame"/></li>
+                </ul><ph>你可以根据场景需求，通过修改 <xref keyref="getObservedAudioFramePosition"/> 的返回值设置需要观察的一个或多个位置。</ph><ph>当你需要观察多个位置时，需使用 |（或运算符）。为节省系统资源，建议减少观察位置的数量。</ph></p>
+            <p props="android">成功注册音频数据观察器后，SDK 会在每个特定的音频帧处理节点调用该回调，以判断是否触发以下回调：
+                <ul>
+                    <li><xref keyref="onRecordAudioFrame"/></li>
+                    <li><xref keyref="onPlaybackAudioFrame"/></li>
+                    <li><xref keyref="onPlaybackAudioFrameBeforeMixing"/></li>
+                    <li><xref keyref="onMixedAudioFrame"/></li>
+                    <li><xref keyref="onEarMonitoringAudioFrame"/></li>
+                </ul><ph>你可以根据场景需求，通过修改 <xref keyref="getObservedAudioFramePosition"/> 的返回值设置需要观察的一个或多个位置。</ph><ph>当需要观察多个位置时，需使用 |（或运算符）。为节省系统资源，建议减少观察的帧位置数量。</ph></p>
+            <p props="mac">成功注册音频数据观察器后，SDK 会在每个特定的音频帧处理节点使用该回调，以判断是否触发以下回调：
+                <ul>
+                    <li><xref keyref="onRecordAudioFrame"/></li>
+                    <li><xref keyref="onPlaybackAudioFrame"/></li>
+                    <li><xref keyref="onPlaybackAudioFrameBeforeMixing"/></li>
+                    <li><xref keyref="onMixedAudioFrame"/></li>
+                    <li><xref keyref="onEarMonitoringAudioFrame"/></li>
+                </ul><ph>你可以根据场景需求，通过修改 <xref keyref="getObservedAudioFramePosition"/> 的返回值设置需要观察的一个或多个位置。</ph><ph>当你需要观察多个位置时，需使用 |（或运算符）。为节省系统资源，建议减少观察位置的数量。</ph></p>
+        </section>
+        <section id="return_values" props="android ios mac">
+            <title>返回值</title>
+            <p props="ios">返回一个位掩码，用于设置观察位置，具体取值如下，详见 <codeph>AgoraAudioFramePosition</codeph>：
+                <ul>
+                    <li><codeph>AgoraAudioFramePositionPlayback</codeph>（0x0001）：该位置可观察所有远端用户混音后的播放音频。对应 <codeph>onPlaybackAudioFrame:</codeph> 回调。</li>
+                    <li><codeph>AgoraAudioFramePositionRecord</codeph>（0x0002）：该位置可观察本地用户采集的音频。对应 <xref keyref="onRecordAudioFrame"/> 回调。</li>
+                    <li><codeph>AgoraAudioFramePositionMixed</codeph>（0x0004）：该位置可观察本地用户与所有远端用户混音后的播放音频。对应 <xref keyref="onMixedAudioFrame"/> 回调。</li>
+                    <li><codeph>AgoraAudioFramePositionBeforeMixing</codeph>（0x0008）：该位置可观察单个远端用户混音前的音频。对应 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调。</li>
+                    <li><codeph>AgoraAudioFramePositionEarMonitoring</codeph>（0x0010）：该位置可观察本地用户的耳返音频。对应 <xref keyref="onEarMonitoringAudioFrame"/> 回调。</li>
+                </ul>
+            </p>
+            <p props="android">返回一个位掩码，用于设置观察位置，具体取值如下：
+                <ul>
+                    <li><codeph>POSITION_PLAYBACK</codeph>（0x0001）：可观察所有远端用户混音后的播放音频，对应 <xref keyref="onPlaybackAudioFrame"/> 回调。</li>
+                    <li><codeph>POSITION_RECORD</codeph>（0x0002）：可观察本地用户采集的音频，对应 <xref keyref="onRecordAudioFrame"/> 回调。</li>
+                    <li><codeph>POSITION_MIXED</codeph>（0x0004）：可观察本地用户与所有远端用户混音后的播放音频，对应 <xref keyref="onMixedAudioFrame"/> 回调。</li>
+                    <li><codeph>POSITION_BEFORE_MIXING</codeph>（0x0008）：可观察单个远端用户混音前的音频，对应 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调。</li>
+                    <li><codeph>POSITION_EAR_MONITORING</codeph>（0x0010）：可观察本地用户的耳返音频，对应 <xref keyref="onEarMonitoringAudioFrame"/> 回调。</li>
+                </ul>
+            </p>
+            <p props="mac">返回一个位掩码，用于设置观察位置，具体取值如下，详见 <codeph>AgoraAudioFramePosition</codeph>：
+                <ul>
+                    <li><codeph>AgoraAudioFramePositionPlayback</codeph>（0x0001）：该位置可观察所有远端用户混音后的播放音频。对应 <codeph>onPlaybackAudioFrame:</codeph> 回调。</li>
+                    <li><codeph>AgoraAudioFramePositionRecord</codeph>（0x0002）：该位置可观察本地用户采集的音频。对应 <xref keyref="onRecordAudioFrame"/> 回调。</li>
+                    <li><codeph>AgoraAudioFramePositionMixed</codeph>（0x0004）：该位置可观察本地用户与所有远端用户混音后的播放音频。对应 <xref keyref="onMixedAudioFrame"/> 回调。</li>
+                    <li><codeph>AgoraAudioFramePositionBeforeMixing</codeph>（0x0008）：该位置可观察单个远端用户混音前的音频。对应 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调。</li>
+                    <li><codeph>AgoraAudioFramePositionEarMonitoring</codeph>（0x0010）：该位置可观察本地用户的耳返音频。对应 <xref keyref="onEarMonitoringAudioFrame"/> 回调。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

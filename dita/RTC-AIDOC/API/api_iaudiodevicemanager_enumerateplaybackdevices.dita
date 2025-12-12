@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_enumerateplaybackdevices">
+    <title><ph keyref="enumeratePlaybackDevices"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">枚举系统中的音频播放设备。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enumeratePlaybackDevices"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual IAudioDeviceCollection *enumeratePlaybackDevices() = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">该方法返回一个 <xref keyref="IAudioDeviceCollection"/> 对象，包含系统中的所有音频播放设备。使用该对象后，必须调用 <xref keyref="release_IAudioDeviceManager"/> 方法释放资源。</p>
+            <note props="cpp">该方法仅适用于 Windows 和 macOS 平台。</note>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>方法调用成功，返回一个 <xref keyref="IAudioDeviceCollection"/> 对象，详见 <xref keyref="IAudioDeviceCollection"/>。</li>
+                    <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

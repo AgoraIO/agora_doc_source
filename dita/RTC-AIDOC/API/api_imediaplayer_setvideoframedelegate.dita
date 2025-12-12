@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setvideoframedelegate">
+    <title><ph keyref="setVideoFrameDelegate"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">注册媒体播放器的视频帧观察者对象。</ph><ph id="shortdesc" props="mac">注册媒体播放器的视频帧观察者对象。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setVideoFrameDelegate"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (BOOL)setVideoFrameDelegate:(id&lt;AgoraRtcMediaPlayerVideoFrameDelegate&gt; _Nullable)delegate NS_SWIFT_NAME(setVideoFrameDelegate(_:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (BOOL)setVideoFrameDelegate:(id&lt;AgoraRtcMediaPlayerVideoFrameDelegate&gt; _Nullable)delegate NS_SWIFT_NAME(setVideoFrameDelegate(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">调用该方法注册视频帧观察者后，你可以根据需要在 <xref keyref="AgoraRtcMediaPlayerVideoFrameDelegate"/> 中注册回调。成功注册视频帧观察者后，每当接收到视频帧时，SDK 会触发已注册的回调。</p>
+            <p props="mac">调用该方法注册视频帧观察者后，你可以根据需要在 <xref keyref="AgoraRtcMediaPlayerVideoFrameDelegate"/> 中注册回调。成功注册视频帧观察者后，每当接收到视频帧时，SDK 会触发已注册的回调。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>delegate</pt>
+                    <pd>代理实例。设置为 <xref keyref="NULL"/> 可释放该实例。详见 <xref keyref="AgoraRtcMediaPlayerVideoFrameDelegate"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>delegate</pt>
+                    <pd>代理实例。设置为 <xref keyref="NULL"/> 可释放该实例。详见 <xref keyref="AgoraRtcMediaPlayerVideoFrameDelegate"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="ios mac">
+            <title>返回值</title>
+            <p props="ios">
+                <ul>
+                    <li><xref keyref="true"/>：注册成功。</li>
+                    <li><xref keyref="false"/>：注册失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li><xref keyref="true"/>：注册成功。</li>
+                    <li><xref keyref="false"/>：注册失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onfirstlocalaudioframepublished">
+    <title><ph keyref="onFirstLocalAudioFramePublished"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">已发布本地音频首帧回调。</ph><ph id="shortdesc" props="rn">已发布本地音频首帧回调。</ph><ph id="shortdesc" props="flutter">已发布本地音频首帧回调。</ph><ph id="shortdesc" props="unity">已发布本地音频首帧回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onFirstLocalAudioFramePublished"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onFirstLocalAudioFramePublished?(
+    connection: RtcConnection,
+    elapsed: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onFirstLocalAudioFramePublished?(
+    connection: RtcConnection,
+    elapsed: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int elapsed)?
+      onFirstLocalAudioFramePublished;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstLocalAudioFramePublished(RtcConnection connection, int elapsed) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">SDK 会在以下时机触发该回调：
+                <ul>
+                    <li>开启本地音频的情况下，调用 <xref keyref="joinChannel2"/> 成功加入频道后。</li>
+                    <li>调用 <xref keyref="muteLocalAudioStream"/>(<codeph>true)</codeph>，再调用 <xref keyref="muteLocalAudioStream"/>(<codeph>false)</codeph> 后。</li>
+                    <li>调用 <xref keyref="disableAudio"/>，再调用 <xref keyref="enableAudio"/> 后。</li>
+                </ul>
+            </p>
+            <p props="rn">SDK 会在以下时机触发该回调：
+                <ul>
+                    <li>开启本地音频的情况下，调用 <xref keyref="joinChannel2"/> 成功加入频道后。</li>
+                    <li>调用 <xref keyref="muteLocalAudioStream"/>(<codeph>true)</codeph>，再调用 <xref keyref="muteLocalAudioStream"/>(<codeph>false)</codeph> 后。</li>
+                    <li>调用 <xref keyref="disableAudio"/>，再调用 <xref keyref="enableAudio"/> 后。</li>
+                </ul>
+            </p>
+            <p props="flutter">SDK 会在以下时机触发该回调：
+                <ul>
+                    <li>开启本地音频的情况下，调用 <xref keyref="joinChannel2"/> 成功加入频道后。</li>
+                    <li>调用 <xref keyref="muteLocalAudioStream"/>(<codeph>true)</codeph>，再调用 <xref keyref="muteLocalAudioStream"/>(<codeph>false)</codeph> 后。</li>
+                    <li>调用 <xref keyref="disableAudio"/>，再调用 <xref keyref="enableAudio"/> 后。</li>
+                </ul>
+            </p>
+            <p props="unity">SDK 会在以下时机触发该回调：
+                <ul>
+                    <li>开启本地音频的情况下，调用 <xref keyref="joinChannel2"/> 成功加入频道后。</li>
+                    <li>调用 <xref keyref="muteLocalAudioStream"/>(<codeph>true)</codeph>，再调用 <xref keyref="muteLocalAudioStream"/>(<codeph>false)</codeph> 后。</li>
+                    <li>调用 <xref keyref="disableAudio"/>，再调用 <xref keyref="enableAudio"/> 后。</li>
+                    <li>调用 <xref keyref="pushAudioFrame"/> 成功向 SDK 推送音频帧后。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>elapsed</pt>
+                    <pd>从调用 <xref keyref="joinChannel2"/> 方法到触发该回调的时间间隔（毫秒）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>elapsed</pt>
+                    <pd>从调用 <xref keyref="joinChannel2"/> 方法到触发该回调的时间间隔（毫秒）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>elapsed</pt>
+                    <pd>从调用 <xref keyref="joinChannel2"/> 方法到触发该回调的时间间隔（毫秒）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>elapsed</pt>
+                    <pd>从调用 <xref keyref="joinChannel2"/> 方法到触发该回调的时间间隔（毫秒）。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
