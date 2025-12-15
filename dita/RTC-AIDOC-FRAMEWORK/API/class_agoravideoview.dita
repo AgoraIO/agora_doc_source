@@ -3,5 +3,40 @@
 <reference id="class_agoravideoview">
     <title><ph keyref="AgoraVideoView"/></title>
     <shortdesc id="short"><ph id="shortdesc" props="flutter"><xref keyref="AgoraVideoView"/> 类，用于渲染本地和远端视频。</ph></shortdesc>
-    <refbody/>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="flutter" outputclass="language-dart">class AgoraVideoView extends StatefulWidget {
+  const AgoraVideoView({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  @internal
+  final VideoViewControllerBase controller;
+
+  @override
+  State&lt;AgoraVideoView&gt; createState() =&gt; AgoraVideoViewState();
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter">
+            <title>属性</title>
+            <parml>
+                <plentry props="flutter">
+                    <pt>key</pt>
+                    <pd><codeph>Widget</codeph> 的标识符。详见 Flutter 官方文档关于 key 对象的描述。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>controller</pt>
+                    <pd>控制待渲染的视频类型：
+                        <ul>
+                            <li>如果渲染 <xref keyref="IRtcEngine"/> 的视频，详见 <xref keyref="VideoViewController"/>。</li>
+                            <li>如果渲染媒体播放器中的视频，详见 <xref keyref="MediaPlayerController"/>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
 </reference>
