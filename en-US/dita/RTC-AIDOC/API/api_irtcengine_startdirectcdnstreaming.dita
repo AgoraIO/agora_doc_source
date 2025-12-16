@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startdirectcdnstreaming">
+    <title><ph keyref="startDirectCdnStreaming"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts pushing media streams directly to the CDN.</ph><ph id="shortdesc" props="android">Starts pushing media streams directly to the CDN.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startDirectCdnStreaming"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startDirectCdnStreaming(IDirectCdnStreamingEventHandler* eventHandler, const char* publishUrl, const DirectCdnStreamingMediaOptions&amp; options) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startDirectCdnStreaming(IDirectCdnStreamingEventHandler eventHandler, String publishUrl, DirectCdnStreamingMediaOptions options);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">Agora does not support pushing media streams to the same URL multiple times.
+Agora does not support setting both <codeph>publishCameraTrack</codeph> and <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/>, or both <codeph>publishMicrophoneTrack</codeph> and <codeph>publishCustomAudioTrack</codeph> to <xref keyref="true"/>.
+When selecting media settings (<xref keyref="DirectCdnStreamingMediaOptions"/>), refer to the following example:
+If you want to push audio and video streams collected from a custom source, set the media options as follows:
+                <ul>
+                    <li>Set <codeph>publishCustomAudioTrack</codeph> to <xref keyref="true"/> and call <xref keyref="pushAudioFrame"/>;</li>
+                    <li>Set <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/> and call <xref keyref="pushVideoFrame_IMediaEngine"/>;</li>
+                    <li>Set <codeph>publishCameraTrack</codeph> to <xref keyref="false"/> (default);</li>
+                    <li>Set <codeph>publishMicrophoneTrack</codeph> to <xref keyref="false"/> (default).</li>
+                </ul><ph>Since v4.2.0, the Agora SDK supports audio-only live streaming. You can set <codeph>publishCustomAudioTrack</codeph> or <codeph>publishMicrophoneTrack</codeph> to <xref keyref="true"/> in <xref keyref="DirectCdnStreamingMediaOptions"/> and call <xref keyref="pushAudioFrame"/> to push the audio stream.</ph></p>
+            <p props="android">Agora does not support setting both <codeph>publishCameraTrack</codeph> and <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/>, or both <codeph>publishMicrophoneTrack</codeph> and <codeph>publishCustomAudioTrack</codeph> to <xref keyref="true"/>. When selecting media settings in <xref keyref="DirectCdnStreamingMediaOptions"/>, you can refer to the following example:
+If you want to push audio and video streams captured by the host from a custom source, set the media options as follows:
+                <ul>
+                    <li>Set <codeph>publishCustomAudioTrack</codeph> to <xref keyref="true"/> and call <xref keyref="pushAudioFrame2"/>;</li>
+                    <li>Set <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/> and call <codeph>pushExternalVideoFrameById</codeph>;</li>
+                    <li>Set <codeph>publishCameraTrack</codeph> to <xref keyref="false"/> (default);</li>
+                    <li>Set <codeph>publishMicrophoneTrack</codeph> to <xref keyref="false"/> (default).</li>
+                </ul><ph>Since v4.2.0, the Agora SDK supports audio-only live streaming. You can set <codeph>publishCustomAudioTrack</codeph> or <codeph>publishMicrophoneTrack</codeph> to <xref keyref="true"/> in <xref keyref="DirectCdnStreamingMediaOptions"/> and call <xref keyref="pushAudioFrame2"/> to push audio streams.</ph></p>
+            <note props="cpp">Agora only supports pushing one audio-video stream or one audio stream to the CDN.</note>
+            <note props="android">Agora only supports pushing one audio-video stream or one audio stream to the CDN.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>eventHandler</pt>
+                    <pd>Event callback interface. See <xref keyref="IDirectCdnStreamingEventHandler"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishUrl</pt>
+                    <pd>CDN streaming URL.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>options</pt>
+                    <pd>Media settings for the host. See <xref keyref="DirectCdnStreamingMediaOptions"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>eventHandler</pt>
+                    <pd>Event callback interface. See <xref keyref="IDirectCdnStreamingEventHandler"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishUrl</pt>
+                    <pd>CDN streaming URL.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>Media settings for the host. See <xref keyref="DirectCdnStreamingMediaOptions"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

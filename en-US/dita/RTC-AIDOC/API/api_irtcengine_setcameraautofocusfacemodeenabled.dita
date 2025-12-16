@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setcameraautofocusfacemodeenabled">
+    <title><ph keyref="setCameraAutoFocusFaceModeEnabled"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables the camera auto-face focus function.</ph><ph id="shortdesc" props="android">Enables or disables camera face auto-focus.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setCameraAutoFocusFaceModeEnabled"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setCameraAutoFocusFaceModeEnabled(bool enabled) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setCameraAutoFocusFaceModeEnabled(boolean enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">By default, the SDK disables auto-face focus on Android and enables it on iOS. You can call this method to enable or disable the auto-face focus function.</p>
+            <note props="cpp">This method applies to Android and iOS only.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You must call this method after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</p>
+            <p props="android">You must call this method after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable auto-face focus:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable auto-face focus.</li>
+                            <li><xref keyref="false"/>: Disable auto-face focus.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable face auto-focus:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable camera face auto-focus.</li>
+                            <li><xref keyref="false"/>: Disable camera face auto-focus.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

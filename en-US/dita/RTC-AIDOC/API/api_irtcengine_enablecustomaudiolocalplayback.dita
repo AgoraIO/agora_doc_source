@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablecustomaudiolocalplayback">
+    <title><ph keyref="enableCustomAudioLocalPlayback"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables local playback of external audio sources.</ph><ph id="shortdesc" props="android">Enables or disables local playback of external audio sources.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableCustomAudioLocalPlayback"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableCustomAudioLocalPlayback(track_id_t trackId, bool enabled) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableCustomAudioLocalPlayback(int trackId, boolean enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Call this method to enable local playback of external audio sources. To stop playback, call this method again and set <codeph>enabled</codeph> to <xref keyref="false"/>. You can adjust the local playback volume of the custom audio track using the <xref keyref="adjustCustomAudioPlayoutVolume"/> method.</p>
+            <p props="android">You can call <xref keyref="adjustCustomAudioPlayoutVolume"/> to adjust the local playback volume of the custom audio track.</p>
+            <note props="cpp">Make sure to call <xref keyref="createCustomAudioTrack_IMediaEngine"/> to create a custom audio track before calling this method.</note>
+            <note props="android">Make sure to call <xref keyref="createCustomAudioTrack"/> to create a custom audio track before calling this method.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>trackId</pt>
+                    <pd>The audio track ID, set to the ID returned by <xref keyref="createCustomAudioTrack_IMediaEngine"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to play the external audio source:
+                        <ul>
+                            <li><xref keyref="true"/>: Play the external audio source.</li>
+                            <li><xref keyref="false"/>: (Default) Do not play the external audio source.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>trackId</pt>
+                    <pd>Audio track ID, should be the custom audio track ID returned by <xref keyref="createCustomAudioTrack"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to play the external audio source:
+                        <ul>
+                            <li><xref keyref="true"/>: Play the external audio source.</li>
+                            <li><xref keyref="false"/>: (Default) Do not play the external audio source.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

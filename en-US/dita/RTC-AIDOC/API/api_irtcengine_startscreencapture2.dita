@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startscreencapture2">
+    <title><ph keyref="startScreenCapture2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts screen capture from the specified video source.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startScreenCapture2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCapture(VIDEO_SOURCE_TYPE sourceType, const ScreenCaptureConfiguration&amp; config) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method supports starting screen capture from the specified video source, suitable for multi-channel or local compositing scenarios. The Agora SDK provides multiple screen capture methods. Choose based on your needs:
+                <ul>
+                    <li><xref keyref="startScreenCapture"/> / <xref keyref="startScreenCaptureByDisplayId"/> / <xref keyref="startScreenCaptureByWindowId"/>: Supports capturing a single screen or window only, suitable for sharing a single screen.</li>
+                    <li><xref keyref="startScreenCapture2"/>: Supports capturing multiple screen sharing streams from multiple video sources, suitable for local compositing or multi-channel scenarios.</li>
+                </ul>
+            </p>
+            <note props="cpp">
+                <ul>
+                    <li>If you start screen capture using this method, you need to call <codeph>stopScreenCapture</codeph> to stop it.</li>
+                    <li>On Windows, up to four screen capture video streams are supported.</li>
+                    <li>On macOS, only one screen capture video stream is supported.</li>
+                    <li>This method is available on macOS and Windows only.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>Used for screen sharing scenarios, supports multi-channel usage.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Timing</title>
+            <p props="cpp">You can call this method before or after joining a channel, as follows:
+                <ul>
+                    <li>Call this method first, then call <codeph>joinChannel</codeph> and set <codeph>publishScreenCaptureVideo</codeph> to <xref keyref="true"/> to start screen sharing.</li>
+                    <li>Call this method after joining the channel, then call <xref keyref="updateChannelMediaOptions"/> and set <codeph>publishScreenCaptureVideo</codeph> to <xref keyref="true"/> to start screen sharing.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>sourceType</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.
+                        <note>On macOS, this parameter must be set to <codeph>VIDEO_SOURCE_SCREEN</codeph> (2).</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>Screen capture configuration. See <xref keyref="ScreenCaptureConfiguration"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

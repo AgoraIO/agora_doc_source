@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusicplayer_open2_imusicplayer">
+    <title><ph keyref="open2_IMusicPlayer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Opens a music resource using a URL.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="open2_IMusicPlayer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">int open(String url, long startPos)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">Calling this method triggers the <xref keyref="onPlayerSourceStateChanged"/> callback. After receiving the playback state <codeph>OPEN_COMPLETED</codeph>, you can call the <xref keyref="Play_Player"/> method to play the media file.</p>
+            <note props="android">If the music resource you want to open is protected by digital rights management, you must use this method. For music resources not protected by digital rights management, you can choose to use this method or the <codeph>open</codeph> method.</note>
+        </section>
+        <section id="related" deliveryTarget="details" props="android">
+            <title>Related Callbacks</title>
+            <p props="android">Calling this method triggers the <xref keyref="onPlayerSourceStateChanged"/> callback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>url</pt>
+                    <pd>The path of the music resource. Supports both local and online files.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>startPos</pt>
+                    <pd>The starting playback position in milliseconds. (Default is 0.)</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See <codeph>Error Codes</codeph> for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

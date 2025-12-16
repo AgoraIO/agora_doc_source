@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserverbase_onearmonitoringaudioframe_iaudioframeobserverbase">
+    <title><ph keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Ear monitoring audio frame callback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool onEarMonitoringAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">To ensure the retrieved ear monitoring audio data meets expectations, Agora recommends setting the ear monitoring audio data format using one of the following two methods:
+                <ul>
+                    <li>Method 1: Call <xref keyref="setEarMonitoringAudioFrameParameters"/> to set the audio data format, and then call <xref keyref="registerAudioFrameObserver_IMediaEngine"/> to register the audio frame observer object. The SDK calculates the sampling interval based on the set parameters and triggers this callback at that interval.</li>
+                    <li>Method 2: Call <xref keyref="registerAudioFrameObserver_IMediaEngine"/> to register the audio frame observer object, and set the audio data format in the return value of the <xref keyref="getObservedAudioFramePosition_IAudioFrameObserverBase"/> callback. The SDK calculates the sampling interval based on the return value of the <xref keyref="getEarMonitoringAudioParams_IAudioFrameObserverBase"/> callback and triggers this callback at that interval.</li>
+                </ul>
+            </p>
+            <note props="cpp"><xref keyref="setEarMonitoringAudioFrameParameters"/> takes precedence over <xref keyref="getObservedAudioFramePosition_IAudioFrameObserverBase"/>. If you use Method 1 to set the audio data format, the settings in Method 2 are ignored.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>audioFrame</pt>
+                    <pd>Raw audio data. See <xref keyref="AudioFrame"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>: Callback processed successfully.</li>
+                    <li><xref keyref="false"/>: Callback processing failed.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

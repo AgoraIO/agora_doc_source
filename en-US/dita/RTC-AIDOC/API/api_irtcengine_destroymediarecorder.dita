@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_destroymediarecorder">
+    <title><ph keyref="destroyMediaRecorder"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Destroys the audio and video recorder object.</ph><ph id="shortdesc" props="android">Destroys the audio and video recorder instance.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="destroyMediaRecorder"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int destroyMediaRecorder(agora_refptr&lt;IMediaRecorder&gt; mediaRecorder) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract void destroyMediaRecorder(AgoraMediaRecorder mediaRecorder);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">When you no longer need to record audio and video streams, you can call this method to destroy the corresponding recorder instance. Before calling this method, make sure you have called <xref keyref="stopRecording"/> to stop recording.</p>
+            <p props="android">If recording is in progress, call <xref keyref="stopRecording"/> to stop recording before calling <xref keyref="destroyMediaRecorder"/> to destroy the recorder instance.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mediaRecorder</pt>
+                    <pd>The recorder instance to destroy. See <xref keyref="IMediaRecorder"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mediaRecorder</pt>
+                    <pd>The recorder instance to destroy. See <xref keyref="IMediaRecorder"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_ivideoencodedframeobserver_onencodedvideoframereceived">
+    <title><ph keyref="onEncodedVideoFrameReceived"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reports that the receiver has received the encoded video frame sent by the remote user.</ph><ph id="shortdesc" props="android">Callback when the receiver receives a remote encoded video frame.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onEncodedVideoFrameReceived"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool onEncodedVideoFrameReceived(const char* channelId, rtc::uid_t uid, const uint8_t* imageBuffer, size_t length, const rtc::EncodedVideoFrameInfo&amp; videoEncodedFrameInfo) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">boolean onEncodedVideoFrameReceived(String channelId, int remoteUid, ByteBuffer buffer, EncodedVideoFrameInfo info)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">If you call the <xref keyref="setRemoteVideoSubscriptionOptions"/> method and set <codeph>encodedFrameOnly</codeph> to <xref keyref="true"/>, the SDK triggers this callback locally to report the received encoded video frame information.</p>
+            <p props="android">If you call the <xref keyref="setRemoteVideoSubscriptionOptions"/> method and set <codeph>encodedFrameOnly</codeph> to <xref keyref="true"/>, the SDK triggers this callback locally to report the received encoded video frame information.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>channelId</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>imageBuffer</pt>
+                    <pd>Encoded video image buffer.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>length</pt>
+                    <pd>Data length of the video image.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoEncodedFrameInfo</pt>
+                    <pd>Information of the encoded video frame. See <xref keyref="EncodedVideoFrameInfo"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channelId</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>remoteUid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>buffer</pt>
+                    <pd>Encoded video image buffer.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>info</pt>
+                    <pd>Information of the encoded video frame. See <xref keyref="EncodedVideoFrameInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>: Callback processed successfully.</li>
+                    <li><xref keyref="false"/>: Callback processing failed.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li><xref keyref="true"/>: Callback processed successfully.</li>
+                    <li><xref keyref="false"/>: Callback processing failed.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

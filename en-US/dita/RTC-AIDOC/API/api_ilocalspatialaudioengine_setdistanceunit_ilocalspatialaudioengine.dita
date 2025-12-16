@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ilocalspatialaudioengine_setdistanceunit_ilocalspatialaudioengine">
+    <title><ph keyref="setDistanceUnit_ILocalSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the number of meters corresponding to each unit of distance in the game engine.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDistanceUnit_ILocalSpatialAudioEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setDistanceUnit(float unit) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">In Agora's spatial audio algorithm, distance is measured in meters, while the unit of distance in the game engine is customizable. By default, the SDK converts each unit of distance in the game engine to 1 meter. You can call the <xref keyref="setDistanceUnit_ILocalSpatialAudioEngine"/> method to convert the unit of distance in the game engine to a specified number of meters.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>unit</pt>
+                    <pd>The number of meters corresponding to each unit of distance in the game engine. The value must be greater than 0.00. The default value is 1.00. For example, setting <codeph>unit</codeph> to 2.00 means each unit of distance in the game engine equals 2 meters. The larger the value, the faster the sound fades as the remote user moves away from the local user.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

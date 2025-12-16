@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screencaptureconfiguration">
+    <title><ph keyref="ScreenCaptureConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure parameters for screen capture.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureConfiguration {
+  bool isCaptureWindow;
+  int64_t displayId;
+  Rectangle screenRect;
+  int64_t windowId;
+  ScreenCaptureParameters params;
+  Rectangle regionRect;
+};</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>isCaptureWindow</pt>
+                    <pd>Whether to capture a window on the screen:
+                        <ul>
+                            <li><xref keyref="true"/>: Capture a window.</li>
+                            <li><xref keyref="false"/>: (Default) Capture the entire screen instead of a window.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>displayId</pt>
+                    <pd>Display ID of the screen.
+                        <note>This parameter is effective only when capturing the screen on macOS.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>screenRect</pt>
+                    <pd>Position of the shared screen relative to the virtual screen. See <xref keyref="Rectangle"/>.
+                        <note>This parameter is effective only when capturing the screen on Windows.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>windowId</pt>
+                    <pd>Window ID.
+                        <note>This parameter is effective only when capturing a window.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>params</pt>
+                    <pd>Screen capture configuration. See <xref keyref="ScreenCaptureParameters"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>regionRect</pt>
+                    <pd>Position of the shared region relative to the entire screen. See <xref keyref="Rectangle"/>. If this parameter is not set, the SDK shares the entire screen. If the specified region exceeds the screen boundaries, only the portion within the screen is shared. If the width or height in <xref keyref="Rectangle"/> is set to 0, the entire screen is shared.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onencryptionerror">
+    <title><ph keyref="onEncryptionError"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for reporting built-in encryption errors.</ph><ph id="shortdesc" props="android">Callback for built-in encryption errors.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onEncryptionError"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onEncryptionError(ENCRYPTION_ERROR_TYPE errorType)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onEncryptionError(int errorType)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling <xref keyref="enableEncryption"/> to enable encryption, if an error occurs during encryption or decryption on the sender or receiver side, the SDK triggers this callback.</p>
+            <p props="android">If an error occurs during encryption or decryption after calling <xref keyref="enableEncryption"/> to enable encryption, the SDK triggers this callback on the sender or receiver side.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when an error occurs during encryption or decryption.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>errorType</pt>
+                    <pd>The type of error. See <xref keyref="ENCRYPTION_ERROR_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>errorType</pt>
+                    <pd>Error type:
+                        <ul>
+                            <li><codeph>ENCRYPTION_ERROR_INTERNAL_FAILURE</codeph> (0): Internal reason.</li>
+                            <li><codeph>ENCRYPTION_ERROR_DECRYPTION_FAILURE</codeph> (1): Media stream decryption error. Ensure the receiver and sender use the same encryption mode and key.</li>
+                            <li><codeph>ENCRYPTION_ERROR_ENCRYPTION_FAILURE</codeph> (2): Media stream encryption error.</li>
+                            <li><codeph>ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE</codeph> (3): Data stream decryption error. Ensure the receiver and sender use the same encryption mode and key.</li>
+                            <li><codeph>ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE</codeph> (4): Data stream encryption error.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

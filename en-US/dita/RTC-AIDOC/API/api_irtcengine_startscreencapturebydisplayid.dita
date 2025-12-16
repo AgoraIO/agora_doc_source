@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startscreencapturebydisplayid">
+    <title><ph keyref="startScreenCaptureByDisplayId"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Captures the screen by specifying a display ID.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startScreenCaptureByDisplayId"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByDisplayId(int64_t displayId, const Rectangle&amp; regionRect, const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">This method is only applicable to Windows and macOS platforms.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Timing</title>
+            <p props="cpp">You can call this method either before or after joining a channel. The differences are:
+                <ul>
+                    <li>Call this method before joining the channel, then call <codeph>joinChannel</codeph> and set <codeph>publishScreenTrack</codeph> or <codeph>publishSecondaryScreenTrack</codeph> to <xref keyref="true"/> to start screen sharing.</li>
+                    <li>Call this method after joining the channel, then call <xref keyref="updateChannelMediaOptions"/> and set <codeph>publishScreenTrack</codeph> or <codeph>publishSecondaryScreenTrack</codeph> to <xref keyref="true"/> to start screen sharing.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>displayId</pt>
+                    <pd>The ID of the screen to be shared.
+                        <note>On Windows, to share both the primary and secondary screens simultaneously, set <codeph>displayId</codeph> to <codeph>-1</codeph> when calling this method.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>regionRect</pt>
+                    <pd>(Optional) The region relative to the screen to be shared. Pass <xref keyref="NULL"/> to share the entire screen. See <xref keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>captureParams</pt>
+                    <pd>Screen sharing configuration. The default video resolution is 1920 × 1080 (2,073,600 pixels). Agora calculates costs based on this parameter. The video properties of the screen sharing stream should be set through this parameter and are not related to <xref keyref="setVideoEncoderConfiguration"/>. See <xref keyref="ScreenCaptureParameters"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-8: Invalid screen sharing state. This may occur if you are already sharing another screen or window. Call <codeph>stopScreenCapture</codeph> to stop the current sharing and try again.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

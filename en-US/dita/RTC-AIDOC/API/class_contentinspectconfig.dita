@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_contentinspectconfig">
+    <title><ph keyref="ContentInspectConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Configures video screenshot and upload functionality.</ph><ph id="shortdesc" props="android">Used to configure screenshot and upload functions.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ContentInspectConfig {
+  const char* extraInfo;
+  const char* serverConfig;
+  ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
+  int moduleCount;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class ContentInspectConfig {
+  public final static int CONTENT_INSPECT_TYPE_INVALID = 0;
+  @Deprecated public final static int CONTENT_INSPECT_TYPE_MODERATION = 1;
+  public final static int CONTENT_INSPECT_TYPE_SUPERVISE = 2;
+  public final static int CONTENT_INSPECT_TYPE_IMAGE_MODERATION = 3;
+  public static final int MAX_CONTENT_INSPECT_MODULE_COUNT = 32;
+  public String extraInfo;
+  public String serverConfig;
+  public ContentInspectModule[] modules;
+  public int moduleCount;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v3.4.2.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">The SDK uploads video screenshots and additional information to the Agora server. After the upload is complete, the Agora server sends callback notifications and additional information to your server.</p>
+            <p props="android">Used to set parameters related to screenshot and upload.</p>
+            <note props="cpp">Only one instance can be configured per functional module. Currently, only local screenshot upload is supported.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>extraInfo</pt>
+                    <pd>Additional information about the video content (maximum length is 1024 bytes).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>serverConfig</pt>
+                    <pd>(Optional) Server configuration for uploading video screenshots via the Agora Extensions Marketplace. This parameter only takes effect when <codeph>type</codeph> in <xref keyref="ContentInspectModule"/> is set to <codeph>CONTENT_INSPECT_IMAGE_MODERATION</codeph>. To use this feature, please contact technical support.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>modules</pt>
+                    <pd>Functional modules. You can configure up to 32 <xref keyref="ContentInspectModule"/> instances. See <xref keyref="ContentInspectModule"/>.
+                        <note>Only one instance can be configured per functional module. Currently, only local screenshot upload is supported.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>moduleCount</pt>
+                    <pd>Number of functional modules, i.e., the number of configured <xref keyref="ContentInspectModule"/> instances. Must match the number of instances configured in <codeph>modules</codeph>. Maximum is 32.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
+                    <pd>0: (Default) No actual function. Do not set <codeph>type</codeph> to this value.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>CONTENT_INSPECT_TYPE_MODERATION</pt>
+                    <pd>Deprecated video content moderation type.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>CONTENT_INSPECT_TYPE_SUPERVISE</pt>
+                    <pd>2: Captures and uploads video screenshots via Agora's self-developed extension. The SDK captures and uploads video sent by the local user.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>CONTENT_INSPECT_TYPE_IMAGE_MODERATION</pt>
+                    <pd>3: Captures and uploads video screenshots via an extension plugin from the Agora Extension Marketplace. The SDK uses the plugin to capture and upload video streams in the channel.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MAX_CONTENT_INSPECT_MODULE_COUNT</pt>
+                    <pd>Maximum number of function modules that can be configured is 32.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>extraInfo</pt>
+                    <pd>Additional information about the video content (maximum length: 1024 bytes). The SDK sends the screenshot along with the additional information to the Agora server. After the upload is completed, the Agora server sends the additional information and callback notification to your server.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>serverConfig</pt>
+                    <pd>(Optional) Server configuration used when uploading video screenshots via an extension from the Agora Extension Marketplace. This parameter takes effect only when <codeph>type</codeph> in <xref keyref="ContentInspectModule"/> is set to <codeph>CONTENT_INSPECT_TYPE_IMAGE_MODERATION</codeph>. Contact technical support to use this feature.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>modules</pt>
+                    <pd>Function modules. Up to 32 instances can be configured. Valid range: [1, 32]. See <xref keyref="ContentInspectModule"/>.
+                        <note>Each function module can only be configured with one instance. Currently, only local screenshot upload is supported.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>moduleCount</pt>
+                    <pd>Number of function modules, i.e., the number of <xref keyref="ContentInspectModule"/> instances configured. Must match the number of instances configured in <codeph>modules</codeph>. Maximum value is 32.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_spatialaudiozone">
+    <title><ph keyref="SpatialAudioZone"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure soundproof zones.</ph><ph id="shortdesc" props="android">Used to set the sound insulation zone.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct SpatialAudioZone {
+  int zoneSetId;
+  float position[3];
+  float forward[3];
+  float right[3];
+  float up[3];
+  float forwardLength;
+  float rightLength;
+  float upLength;
+  float audioAttenuation;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class SpatialAudioZone {
+  public int zoneSetId;
+  public float[] position;
+  public float[] forward;
+  public float[] right;
+  public float[] up;
+  public float forwardLength;
+  public float rightLength;
+  public float upLength;
+  public float audioAttenuation;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>zoneSetId</pt>
+                    <pd>ID of the soundproof zone.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>position</pt>
+                    <pd>Spatial center point of the soundproof zone. This parameter is an array of length 3, with the three values representing the front, right, and up coordinates respectively.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>forward</pt>
+                    <pd>Forward unit vector starting from <codeph>position</codeph>. This parameter is an array of length 3, with the three values representing the front, right, and up coordinates respectively.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>right</pt>
+                    <pd>Right unit vector starting from <codeph>position</codeph>. This parameter is an array of length 3, with the three values representing the front, right, and up coordinates respectively.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>up</pt>
+                    <pd>Upward unit vector starting from <codeph>position</codeph>. This parameter is an array of length 3, with the three values representing the front, right, and up coordinates respectively.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>forwardLength</pt>
+                    <pd>Treating the entire soundproof zone as a cube, this parameter represents the length of the forward edge, in units of the game engine.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rightLength</pt>
+                    <pd>Treating the entire soundproof zone as a cube, this parameter represents the length of the right edge, in units of the game engine.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>upLength</pt>
+                    <pd>Treating the entire soundproof zone as a cube, this parameter represents the length of the upward edge, in units of the game engine.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioAttenuation</pt>
+                    <pd>Sound attenuation coefficient when users inside the soundproof zone communicate with users outside. Value range is [0, 1]. Specific values:
+                        <ul>
+                            <li>0: Broadcast mode, volume and timbre do not attenuate with distance; local users hear consistent volume and timbre regardless of distance.</li>
+                            <li>(0, 0.5): Weak attenuation mode, where volume and timbre attenuate slightly during propagation, and sound travels farther than in real environments.</li>
+                            <li>0.5: Simulates volume attenuation in real environments, equivalent to not setting the <codeph>audioAttenuation</codeph> parameter.</li>
+                            <li>(0.5, 1]: Strong attenuation mode (default is 1), where volume and timbre attenuate rapidly during propagation.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>zoneSetId</pt>
+                    <pd>ID of the sound insulation zone.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>position</pt>
+                    <pd>Center point of the sound insulation zone. This parameter is an array of length 3, with the three values representing coordinates in the forward, right, and up directions respectively.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>forward</pt>
+                    <pd>Forward unit vector from <codeph>position</codeph>. This parameter is an array of length 3, with the three values representing coordinates in the forward, right, and up directions respectively.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>right</pt>
+                    <pd>Right unit vector from <codeph>position</codeph>. This parameter is an array of length 3, with the three values representing coordinates in the forward, right, and up directions respectively.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>up</pt>
+                    <pd>Up unit vector from <codeph>position</codeph>. This parameter is an array of length 3, with the three values representing coordinates in the forward, right, and up directions respectively.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>forwardLength</pt>
+                    <pd>Treat the entire sound insulation zone as a cube. This parameter represents the edge length in the forward direction, in the unit length of the game engine.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rightLength</pt>
+                    <pd>Treat the entire sound insulation zone as a cube. This parameter represents the edge length in the right direction, in the unit length of the game engine.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>upLength</pt>
+                    <pd>Treat the entire sound insulation zone as a cube. This parameter represents the edge length in the up direction, in the unit length of the game engine.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioAttenuation</pt>
+                    <pd>Audio attenuation coefficient when users inside the sound insulation zone communicate with users outside. Value range: [0, 1]. Value details:
+                        <ul>
+                            <li>0: Broadcast mode. Volume and tone do not attenuate with distance. Sound is consistent at near and far distances.</li>
+                            <li>(0, 0.5): Weak attenuation mode. Volume and tone slightly attenuate during transmission. Sound travels farther than in real environments.</li>
+                            <li>0.5: (Default) Simulates real-world volume attenuation.</li>
+                            <li>(0.5, 1]: Strong attenuation mode. Volume and tone attenuate quickly during transmission.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,352 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rtcstats">
+    <title><ph keyref="RtcStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to collect statistics related to a call session.</ph><ph id="shortdesc" props="android">Statistics of the call session.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct RtcStats {
+  unsigned int duration;
+  unsigned int txBytes;
+  unsigned int rxBytes;
+  unsigned int txAudioBytes;
+  unsigned int txVideoBytes;
+  unsigned int rxAudioBytes;
+  unsigned int rxVideoBytes;
+  unsigned short txKBitRate;
+  unsigned short rxKBitRate;
+  unsigned short rxAudioKBitRate;
+  unsigned short txAudioKBitRate;
+  unsigned short rxVideoKBitRate;
+  unsigned short txVideoKBitRate;
+  unsigned short lastmileDelay;
+  unsigned int userCount;
+  double cpuAppUsage;
+  double cpuTotalUsage;
+  int gatewayRtt;
+  double memoryAppUsageRatio;
+  double memoryTotalUsageRatio;
+  int memoryAppUsageInKbytes;
+  int connectTimeMs;
+  int firstAudioPacketDuration;
+  int firstVideoPacketDuration;
+  int firstVideoKeyFramePacketDuration;
+  int packetsBeforeFirstKeyFramePacket;
+  int firstAudioPacketDurationAfterUnmute;
+  int firstVideoPacketDurationAfterUnmute;
+  int firstVideoKeyFramePacketDurationAfterUnmute;
+  int firstVideoKeyFrameDecodedDurationAfterUnmute;
+  int firstVideoKeyFrameRenderedDurationAfterUnmute;
+  int txPacketLossRate;
+  int rxPacketLossRate;
+  int lanAccelerateState;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class RtcStats {
+    public int totalDuration;
+    public int txBytes;
+    public int rxBytes;
+    public int txKBitRate;
+    public int txAudioBytes;
+    public int rxAudioBytes;
+    public int txVideoBytes;
+    public int rxVideoBytes;
+    public int rxKBitRate;
+    public int txAudioKBitRate;
+    public int rxAudioKBitRate;
+    public int txVideoKBitRate;
+    public int rxVideoKBitRate;
+    public int lastmileDelay;
+    public double cpuTotalUsage;
+    public int gatewayRtt;
+    public double cpuAppUsage;
+    public int users;
+    public int connectTimeMs;
+    public int txPacketLossRate;
+    public int rxPacketLossRate;
+    public double memoryAppUsageRatio;
+    public double memoryTotalUsageRatio;
+    public int memoryAppUsageInKbytes;
+    public int lanAccelerateState;
+  }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>duration</pt>
+                    <pd>Call duration (seconds) for the local user, as an aggregate value.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txBytes</pt>
+                    <pd>Total number of bytes sent.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxBytes</pt>
+                    <pd>Total number of bytes received.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txAudioBytes</pt>
+                    <pd>Total number of audio bytes sent, as an aggregate value.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txVideoBytes</pt>
+                    <pd>Total number of video bytes sent, as an aggregate value.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxAudioBytes</pt>
+                    <pd>Total number of audio bytes received, as an aggregate value.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxVideoBytes</pt>
+                    <pd>Total number of video bytes received, as an aggregate value.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txKBitRate</pt>
+                    <pd>Actual bitrate (Kbps) of the local video stream sent.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxKBitRate</pt>
+                    <pd>Total bitrate received (Kbps).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxAudioKBitRate</pt>
+                    <pd>Bitrate of received audio (Kbps).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txAudioKBitRate</pt>
+                    <pd>Bitrate of sent audio (Kbps).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxVideoKBitRate</pt>
+                    <pd>Bitrate of received video (Kbps).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txVideoKBitRate</pt>
+                    <pd>Bitrate of sent video (Kbps).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>lastmileDelay</pt>
+                    <pd>Network delay from client to server (ms).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>userCount</pt>
+                    <pd>Number of users in the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cpuAppUsage</pt>
+                    <pd>CPU usage (%) of the application.
+                        <note>
+                            <ul>
+                                <li>In the <xref keyref="onLeaveChannel"/> callback, this value is always 0.</li>
+                                <li>Starting from Android 8.1, this value cannot be retrieved due to system limitations.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cpuTotalUsage</pt>
+                    <pd>CPU usage (%) of the system. On Windows with multiple cores, this is the average CPU usage, calculated as: (100 - system idle progress in Task Manager)/100.
+                        <note>
+                            <ul>
+                                <li>In the <xref keyref="onLeaveChannel"/> callback, this value is always 0.</li>
+                                <li>Starting from Android 8.1, this value cannot be retrieved due to system limitations.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>gatewayRtt</pt>
+                    <pd>Round-trip time from client to local router (ms).
+                        <note>This property is disabled by default on iOS 14 and above, and enabled by default on iOS versions below 14. To enable it on iOS 14 and above, contact technical support. On Android, add <codeph>android.permission.ACCESS_WIFI_STATE</codeph> permission after <codeph>&lt;/application&gt;</codeph> in the <codeph>AndroidManifest.xml</codeph> file.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>memoryAppUsageRatio</pt>
+                    <pd>Memory usage ratio (%) of the application.
+                        <note>This value is for reference only and may not be retrievable due to system limitations.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>memoryTotalUsageRatio</pt>
+                    <pd>Memory usage ratio (%) of the system.
+                        <note>This value is for reference only and may not be retrievable due to system limitations.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>memoryAppUsageInKbytes</pt>
+                    <pd>Memory usage (KB) of the application.
+                        <note>This value is for reference only and may not be retrievable due to system limitations.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connectTimeMs</pt>
+                    <pd>Time taken from SDK start to connection establishment (ms). A value of 0 indicates invalid.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>firstAudioPacketDuration</pt>
+                    <pd>Time from app connecting to the channel to receiving the first audio packet (ms). 0 means this field is not applicable.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>firstVideoPacketDuration</pt>
+                    <pd>Time from app connecting to the channel to receiving the first video packet (ms). 0 means this field is not applicable.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>firstVideoKeyFramePacketDuration</pt>
+                    <pd>Time from app connecting to the channel to receiving the first video key frame (ms). 0 means this field is not applicable.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>packetsBeforeFirstKeyFramePacket</pt>
+                    <pd>Number of video packets received before the first video key frame. 0 means this field is not applicable.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>firstAudioPacketDurationAfterUnmute</pt>
+                    <pd>Time from last unmuting audio to receiving the first audio packet (ms). 0 means this field is not applicable.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>firstVideoPacketDurationAfterUnmute</pt>
+                    <pd>Time from last unmuting video to receiving the first video packet (ms). 0 means this field is not applicable.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>firstVideoKeyFramePacketDurationAfterUnmute</pt>
+                    <pd>Time from last unmuting video to receiving the first video key frame (ms). 0 means this field is not applicable.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>firstVideoKeyFrameDecodedDurationAfterUnmute</pt>
+                    <pd>Time from last unmuting video to decoding the first video key frame (ms). 0 means this field is not applicable.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>firstVideoKeyFrameRenderedDurationAfterUnmute</pt>
+                    <pd>Time from last unmuting video to rendering the first video key frame (ms). 0 means this field is not applicable.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txPacketLossRate</pt>
+                    <pd>Packet loss rate (%) from client to Agora server before applying anti-packet-loss algorithm.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxPacketLossRate</pt>
+                    <pd>Packet loss rate (%) from Agora server to client before applying anti-packet-loss method.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>totalDuration</pt>
+                    <pd>Call duration (in seconds) for the local user, shown as a cumulative value.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txBytes</pt>
+                    <pd>Number of bytes sent.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxBytes</pt>
+                    <pd>Number of bytes received.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txKBitRate</pt>
+                    <pd>Actual bitrate (Kbps) of the sent local video stream.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txAudioBytes</pt>
+                    <pd>Total number of audio bytes sent, shown as a cumulative value.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxAudioBytes</pt>
+                    <pd>Total number of audio bytes received, shown as a cumulative value.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txVideoBytes</pt>
+                    <pd>Total number of video bytes sent, shown as a cumulative value.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxVideoBytes</pt>
+                    <pd>Total number of video bytes received, shown as a cumulative value.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxKBitRate</pt>
+                    <pd>Receiving bitrate (Kbps).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txAudioKBitRate</pt>
+                    <pd>Audio sending bitrate (Kbps).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxAudioKBitRate</pt>
+                    <pd>Audio receiving bitrate (Kbps).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txVideoKBitRate</pt>
+                    <pd>Video sending bitrate (Kbps).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxVideoKBitRate</pt>
+                    <pd>Video receiving bitrate (Kbps).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lastmileDelay</pt>
+                    <pd>Client-to-server latency (ms).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cpuTotalUsage</pt>
+                    <pd>System CPU usage (%).
+                        <note>
+                            <ul>
+                                <li>In the <xref keyref="onLeaveChannel"/> callback, this value is always 0.</li>
+                                <li>Starting from Android 8.1, this value may not be available due to system restrictions.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>gatewayRtt</pt>
+                    <pd>Round-trip time from the client to the local router (ms).
+                        <note>On Android, to obtain this value, make sure to add the <codeph>android.permission.ACCESS_WIFI_STATE</codeph> permission in the <codeph>AndroidManifest.xml</codeph> file after <codeph>&lt;/application&gt;</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cpuAppUsage</pt>
+                    <pd>CPU usage of the app (%).
+                        <note>
+                            <ul>
+                                <li>In the <xref keyref="onLeaveChannel"/> callback, this value is always 0.</li>
+                                <li>Starting from Android 8.1, this value may not be available due to system restrictions.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>users</pt>
+                    <pd>Number of users in the channel.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connectTimeMs</pt>
+                    <pd>Time from SDK start to connection establishment (ms). A value of 0 indicates invalid.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txPacketLossRate</pt>
+                    <pd>Packet loss rate (%) from client to Agora server, before applying anti-packet-loss mechanisms.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxPacketLossRate</pt>
+                    <pd>Packet loss rate (%) from Agora server to client before applying anti-packet-loss mechanisms.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>memoryAppUsageRatio</pt>
+                    <pd>Memory usage ratio (%) of the app.
+                        <note>This value is for reference only and may not be available due to system restrictions.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>memoryTotalUsageRatio</pt>
+                    <pd>Memory usage ratio (%) of the system.
+                        <note>This value is for reference only and may not be available due to system restrictions.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>memoryAppUsageInKbytes</pt>
+                    <pd>Memory usage (KB) of the app.
+                        <note>This value is for reference only and may not be available due to system restrictions.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablevideoimagesource">
+    <title><ph keyref="enableVideoImageSource"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets whether to replace the current video with an image when publishing the video stream.</ph><ph id="shortdesc" props="android">Sets whether to replace the current video with an image when publishing video streams.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableVideoImageSource"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableVideoImageSource(bool enable, const ImageTrackOptions&amp; options) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableVideoImageSource(boolean enabled, ImageTrackOptions options);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You can call this method to replace the current video with a custom image when publishing the video stream. After enabling this feature, you can set the replacement image through the <codeph>options</codeph> parameter. If disabled, remote users will see your original video stream.</p>
+            <p props="android">You can call this method when publishing video streams to replace the current video with a custom image. After enabling this feature, you can use the <codeph>options</codeph> parameter to set the image to be used. When the feature is disabled, remote users will see your published video stream.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after joining a channel.</p>
+            <p props="android">Call this method after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enable</pt>
+                    <pd>Whether to replace the current video with a custom image:
+                        <ul>
+                            <li><xref keyref="true"/>: Replace with custom image.</li>
+                            <li><xref keyref="false"/>: (Default) Do not replace.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>options</pt>
+                    <pd>Image configuration. See <xref keyref="ImageTrackOptions"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to replace the current video with a custom image:
+                        <ul>
+                            <li><xref keyref="true"/>: Replace the current video with a custom image.</li>
+                            <li><xref keyref="false"/>: (Default) Do not replace the current video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>Image configuration. See <xref keyref="ImageTrackOptions"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

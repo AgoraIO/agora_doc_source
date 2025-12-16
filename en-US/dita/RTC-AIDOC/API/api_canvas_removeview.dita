@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_canvas_removeview">
+    <title><ph keyref="RemoveView"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Removes a rendering view.</ph><ph id="shortdesc" props="android">Removes a rendering view.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="RemoveView"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">bool RemoveView(View *view, ViewConfig *config, rte::Error *err = nullptr)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void removeView(View view, ViewConfig viewConfig) throws RteException</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">After calling <xref keyref="AddView"/> to add a view, you can call this method to remove the view if needed.</p>
+            <note props="cpp">Only one view can be removed at a time.</note>
+            <note props="android">Only one view can be removed at a time.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">This method must be called after calling <xref keyref="AddView"/>.</p>
+            <p props="android">This method must be called after calling <xref keyref="AddView"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>view</pt>
+                    <pd>The view object to be removed.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>Settings of the view object, currently pass <xref keyref="NULL"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>Output parameter, status or error information. See <xref keyref="Error"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>view</pt>
+                    <pd>The view object to be removed.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>viewConfig</pt>
+                    <pd>Settings for the <codeph>view</codeph> object.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>: View removed successfully.</li>
+                    <li><xref keyref="false"/>: Failed to remove view.</li>
+                </ul>
+            </p>
+            <p props="android">When the call fails, the SDK throws an exception and returns the corresponding error information. You need to catch and handle the exception.</p>
+        </section>
+    </refbody>
+</reference>

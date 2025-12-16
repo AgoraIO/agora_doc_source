@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserverbase_onrecordaudioframe_iaudioframeobserverbase">
+    <title><ph keyref="onRecordAudioFrame_IAudioFrameObserverBase"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when an audio frame is captured.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRecordAudioFrame_IAudioFrameObserverBase"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool onRecordAudioFrame(const char* channelId, AudioFrame&amp; audioFrame) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">To ensure the format of the captured audio frame meets expectations, you can set the audio data format using one of the following two methods:
+                <ul>
+                    <li>Method 1: Call <xref keyref="setRecordingAudioFrameParameters"/> to set the audio data format, and register the audio frame observer object using <xref keyref="registerAudioFrameObserver_IMediaEngine"/>. The SDK calculates the sampling interval based on the set parameters and triggers this callback accordingly.</li>
+                    <li>Method 2: After registering the audio frame observer object using <xref keyref="registerAudioFrameObserver_IMediaEngine"/>, set the audio data format in the return value of <xref keyref="getObservedAudioFramePosition_IAudioFrameObserverBase"/>. The SDK then calculates the sampling interval based on the return value of <xref keyref="getRecordAudioParams_IAudioFrameObserverBase"/> and triggers this callback accordingly.</li>
+                </ul><ph>Method 1 takes precedence over Method 2. If Method 1 is used to set the audio data format, the settings in Method 2 are ignored.</ph></p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">The SDK triggers this callback based on the sampling interval.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>channelId</pt>
+                    <pd>Channel ID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioFrame</pt>
+                    <pd>Output parameter, raw audio data. See <xref keyref="AudioFrame"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>: Callback processed successfully.</li>
+                    <li><xref keyref="false"/>: Callback processing failed.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

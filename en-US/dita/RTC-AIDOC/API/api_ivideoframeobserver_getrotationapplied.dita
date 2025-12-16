@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ivideoframeobserver_getrotationapplied">
+    <title><ph keyref="getRotationApplied"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback indicating whether to rotate the captured video.</ph><ph id="shortdesc" props="android"><xref keyref="getRotationApplied"/> callback is triggered each time the SDK receives a video frame, used to determine whether to rotate the captured video.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getRotationApplied"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool getRotationApplied() { return false; }</codeblock>
+                <codeblock props="android" outputclass="language-java">@CalledByNative boolean getRotationApplied();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">If you want to rotate the captured video according to the <codeph>rotation</codeph> member in the <xref keyref="VideoFrame"/> class, make sure to register this callback when calling <xref keyref="registerVideoFrameObserver_IMediaEngine"/>. After successfully registering the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to use the return value of this callback to set whether to rotate the video frame.</p>
+            <p props="android">If you want to rotate the captured video based on the <codeph>rotation</codeph> member in <codeph>VideoFrame</codeph>, you need to register this callback when calling <xref keyref="registerVideoFrameObserver"/>. After successful registration, the SDK triggers this callback each time it receives a video frame. You must set whether to rotate the video frame in the return value of this callback.</p>
+            <note props="cpp">
+                <ul>
+                    <li>On Android, this callback supports video data formats: I420, RGBA, and Texture.</li>
+                    <li>On Windows, this callback supports video data formats: I420, RGBA, and TextureBuffer.</li>
+                    <li>On iOS, this callback supports video data formats: I420, RGBA, and CVPixelBuffer.</li>
+                    <li>On macOS, this callback supports video data formats: I420 and RGBA.</li>
+                </ul>
+            </note>
+            <note props="android">On Android, this callback supports the following video data formats: I420, RGBA, and Texture.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Triggered each time the SDK receives a video frame.</p>
+            <p props="android">This callback is triggered each time the SDK receives a video frame.</p>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>: Rotate the captured video.</li>
+                    <li><xref keyref="false"/>: (Default) Do not rotate the captured video.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li><xref keyref="true"/>: Rotate the captured video.</li>
+                    <li><xref keyref="false"/>: (default) Do not rotate the captured video.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

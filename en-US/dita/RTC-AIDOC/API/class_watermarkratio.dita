@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_watermarkratio">
+    <title><ph keyref="WatermarkRatio"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set the position and size ratio of the watermark on the screen.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct WatermarkRatio {
+  float xRatio;
+  float yRatio;
+  float widthRatio;
+};</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
+            <p props="cpp">
+                <ul>
+                    <li><codeph>xRatio</codeph> and <codeph>yRatio</codeph> represent the coordinates of the top-left corner of the watermark and determine its horizontal and vertical distance relative to the top-left corner of the screen.</li>
+                    <li><codeph>widthRatio</codeph> represents the width of the watermark. The SDK calculates the height proportionally based on this value to maintain image integrity.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>xRatio</pt>
+                    <pd>The x-coordinate of the top-left corner of the watermark. Represents the horizontal position relative to the top-left corner of the screen. Range: [0.0, 1.0]. Default is 0.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>yRatio</pt>
+                    <pd>The y-coordinate of the top-left corner of the watermark. Represents the vertical position relative to the top-left corner of the screen. Range: [0.0, 1.0]. Default is 0.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>widthRatio</pt>
+                    <pd>The width of the watermark. The SDK calculates the height proportionally based on this value to maintain image integrity. Range: [0, 1]. Default is 0, which means the watermark is not displayed.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

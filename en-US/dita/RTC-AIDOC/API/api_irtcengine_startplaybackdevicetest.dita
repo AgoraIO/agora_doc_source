@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startplaybackdevicetest">
+    <title><ph keyref="startPlaybackDeviceTest"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Starts local audio playback device test.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startPlaybackDeviceTest"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int startPlaybackDeviceTest(String audioFileName);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">After calling this method, the SDK plays the specified audio file. If you can hear the audio, it indicates that the playback device is working properly. After the call, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback every 100 ms to report the volume information of the playback device with <codeph>uid</codeph> 1. The difference between this method and <xref keyref="startEchoTest3"/> is that <xref keyref="startPlaybackDeviceTest"/> only tests the local audio playback device, while <xref keyref="startEchoTest3"/> tests both audio/video devices and network conditions.</p>
+            <note props="android">Call this method before joining a channel. After the test is complete, call <xref keyref="stopPlaybackDeviceTest"/> before joining the channel to stop the test.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>audioFileName</pt>
+                    <pd>Path to the audio file, a UTF-8 encoded string. Supported formats: wav, mp3, m4a, and aac. Supported sample rates: 8000, 16000, 32000, 44100, and 48000 Hz.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

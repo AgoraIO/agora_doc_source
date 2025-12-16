@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_createcustomvideotrack">
+    <title><ph keyref="createCustomVideoTrack"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Creates a custom video track.</ph><ph id="shortdesc" props="android">Creates a custom video track.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createCustomVideoTrack"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual video_track_id_t createCustomVideoTrack() = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int createCustomVideoTrack();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">To publish a custom video source, follow these steps:
+                <ol>
+                    <li>Call this method to create a video track and get the video track ID.</li>
+                    <li>Call <codeph>joinChannel</codeph> to join a channel. In <xref keyref="ChannelMediaOptions"/>, set <codeph>customVideoTrackId</codeph> to the video track ID you want to publish, and set <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/>.</li>
+                    <li>Call <xref keyref="pushVideoFrame_IMediaEngine"/> and set <codeph>videoTrackId</codeph> to the video track ID set in step 2 to publish the corresponding custom video source in the channel.</li>
+                </ol>
+            </p>
+            <p props="android">Call this method to create a video track and obtain the video track ID. This ID can be used to publish a custom video source. To publish a custom video source, follow these steps:
+                <ol>
+                    <li>Call this method to create a video track and obtain the video track ID.</li>
+                    <li>Call <codeph>joinChannel</codeph> to join a channel. In <xref keyref="ChannelMediaOptions"/>, set <codeph>customVideoTrackId</codeph> to the video track ID to be published and set <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/>.</li>
+                    <li>Call <codeph>pushExternalVideoFrameById</codeph> and set <codeph>videoTrackId</codeph> to the video track ID specified in step 2 to publish the corresponding custom video source in the channel.</li>
+                </ol>
+            </p>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>The video track ID if the method call succeeds, which serves as the unique identifier of the video track.</li>
+                    <li><codeph>0xffffffff</codeph> if the method call fails.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>If the method call succeeds, returns the unique identifier of the video track, i.e., the video track ID.</li>
+                    <li>If the method call fails, returns 0xffffffff.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

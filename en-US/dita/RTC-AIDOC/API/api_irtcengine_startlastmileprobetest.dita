@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startlastmileprobetest">
+    <title><ph keyref="startLastmileProbeTest"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts the last-mile network probe test.</ph><ph id="shortdesc" props="android">Starts the last-mile network probe test.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startLastmileProbeTest"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startLastmileProbeTest(const LastmileProbeConfig&amp; config) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startLastmileProbeTest(LastmileProbeConfig config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Call sequence: Do not call other methods before receiving the <xref keyref="onLastmileQuality"/> and <xref keyref="onLastmileProbeResult"/> callbacks, or these callbacks may be interrupted.
+Related callbacks: After successfully calling this method, the SDK triggers the following two callbacks in sequence:
+                <ul>
+                    <li><xref keyref="onLastmileQuality"/>: Triggered within about two seconds based on network conditions. This callback evaluates network quality and is closer to user experience.</li>
+                    <li><xref keyref="onLastmileProbeResult"/>: Triggered within about 30 seconds based on network conditions. This callback returns real-time statistics of the network condition, providing a more objective view.</li>
+                </ul>
+            </p>
+            <p props="android">This method starts the last-mile network probe test before joining a channel to obtain uplink and downlink network statistics, including bandwidth, packet loss, jitter, and round-trip time (RTT).</p>
+            <note props="android">Call sequence: Do not call other methods before receiving the <xref keyref="onLastmileQuality"/> and <xref keyref="onLastmileProbeResult"/> callbacks, or the callbacks may be interrupted.
+Related callbacks: After successfully calling this method, the SDK triggers the following callbacks:
+                <ul>
+                    <li><xref keyref="onLastmileQuality"/>: Triggered within about two seconds based on network conditions. It evaluates network quality and is more related to user experience.</li>
+                    <li><xref keyref="onLastmileProbeResult"/>: Triggered within about 30 seconds based on network conditions. It returns real-time statistics and is more objective.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>The configuration for the last-mile network probe test. See <xref keyref="LastmileProbeConfig"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>Configuration for the last-mile network probe test. See <xref keyref="LastmileProbeConfig"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablefacedetection">
+    <title><ph keyref="enableFaceDetection"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables face detection for the local user.</ph><ph id="shortdesc" props="android">Enables or disables local user face detection.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableFaceDetection"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableFaceDetection(bool enabled) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableFaceDetection(boolean enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">This method is only applicable to Android and iOS platforms.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after calling <codeph>startPreview</codeph> or <xref keyref="enableVideo"/> to enable the camera.</p>
+            <p props="android">You must call this method after starting the camera using <codeph>startPreview</codeph> or <xref keyref="enableVideo"/>.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After successfully calling this method, the SDK triggers the <xref keyref="onFacePositionChanged"/> callback to report the local user's face information, including:
+                <ul>
+                    <li>Width and height of the local video.</li>
+                    <li>Position of the face in the local view.</li>
+                    <li>Distance between the face and the screen.</li>
+                </ul>
+            </p>
+            <p props="android">After enabling face detection, the SDK triggers the <xref keyref="onFacePositionChanged"/> callback to report the local user's face information, including:
+                <ul>
+                    <li>Width and height of the local video.</li>
+                    <li>Position of the face in the local view.</li>
+                    <li>Distance between the face and the screen.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable face detection for the local user:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable face detection.</li>
+                            <li><xref keyref="false"/>: (Default) Disable face detection.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable local user face detection:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable face detection.</li>
+                            <li><xref keyref="false"/>: (default) Disable face detection.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

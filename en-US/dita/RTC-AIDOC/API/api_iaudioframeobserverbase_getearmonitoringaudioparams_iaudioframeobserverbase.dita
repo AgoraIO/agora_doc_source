@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudioframeobserverbase_getearmonitoringaudioparams_iaudioframeobserverbase">
+    <title><ph keyref="getEarMonitoringAudioParams_IAudioFrameObserverBase"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for setting the audio format of the <xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/> callback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getEarMonitoringAudioParams_IAudioFrameObserverBase"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual AudioParams getEarMonitoringAudioParams() = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">When registering the audio frame observer using <xref keyref="registerAudioFrameObserver_IMediaEngine"/>, you need to implement this callback. After successful registration, the SDK triggers this callback, and you can set the audio format in the return value.</p>
+            <note props="cpp">The SDK triggers the <xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/> callback based on the sampling interval calculation formula set in the return value. The formula is: Sampling interval (seconds) = samplePerCall / (sampleRate × channel). Make sure the sampling interval is ≥ 0.01 seconds.</note>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">When the method call succeeds, returns an <xref keyref="AudioParams"/> object representing the audio format of the ear monitoring data. See <xref keyref="AudioParams"/>.</p>
+        </section>
+    </refbody>
+</reference>

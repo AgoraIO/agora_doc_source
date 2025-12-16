@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudiospectrumobserver_onremoteaudiospectrum">
+    <title><ph keyref="onRemoteAudioSpectrum"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for remote audio spectrum.</ph><ph id="shortdesc" props="android">Callback for remote audio spectrum data.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteAudioSpectrum"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool onRemoteAudioSpectrum(const UserAudioSpectrumInfo* spectrums, unsigned int spectrumNumber) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">boolean onRemoteAudioSpectrum(UserAudioSpectrumInfo[] userAudioSpectrumInfos, int spectrumNumber);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After successfully calling <xref keyref="registerAudioSpectrumObserver"/> to implement the <xref keyref="onRemoteAudioSpectrum"/> callback and calling <xref keyref="enableAudioSpectrumMonitor"/> to enable audio spectrum monitoring, the SDK triggers this callback at the interval you set to report the received remote audio spectrum data.</p>
+            <p props="android">After successfully calling <xref keyref="registerAudioSpectrumObserver"/> and <xref keyref="enableAudioSpectrumMonitor"/> to enable audio spectrum monitoring, the SDK triggers this callback at the interval you set.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">The SDK triggers this callback at the interval you set to report the received remote audio spectrum data.</p>
+            <p props="android">This callback is triggered at the interval you set after successfully calling <xref keyref="registerAudioSpectrumObserver"/> and enabling audio spectrum monitoring.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>spectrums</pt>
+                    <pd>Audio spectrum information of remote users. The array length equals the number of remote users detected by the SDK. If the array is <xref keyref="NULL"/>, it means no remote audio spectrum is detected. See <xref keyref="UserAudioSpectrumInfo"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>spectrumNumber</pt>
+                    <pd>Number of remote users.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userAudioSpectrumInfos</pt>
+                    <pd>Audio spectrum information of remote users. The array length equals the number of remote users detected by the SDK. If this array is <codeph>null</codeph>, it means no remote user audio spectrum is detected. See <xref keyref="UserAudioSpectrumInfo"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>spectrumNumber</pt>
+                    <pd>The number of remote users.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>: Spectrum data received.</li>
+                    <li><xref keyref="false"/>: Spectrum data not received.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li><xref keyref="true"/>: Spectrum data is received.</li>
+                    <li><xref keyref="false"/>: Spectrum data is not received.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

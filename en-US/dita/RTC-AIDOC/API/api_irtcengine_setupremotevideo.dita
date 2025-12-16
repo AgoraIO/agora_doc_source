@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setupremotevideo">
+    <title><ph keyref="setupRemoteVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Initializes the video view of a remote user.</ph><ph id="shortdesc" props="android">Initializes the remote video view.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setupRemoteVideo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setupRemoteVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setupRemoteVideo(VideoCanvas remote);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method initializes the video view of a remote video stream on the local device and only affects what the local user sees. You can use this method to bind the remote video stream to the specified view and set the rendering and mirror modes. You need to specify the remote user ID when calling this method. If the app has not yet obtained the remote user ID, set it after receiving the <xref keyref="onUserJoined"/> callback. To unbind the remote user from the view, set the <codeph>view</codeph> parameter to <xref keyref="NULL"/>. When the remote user leaves the channel, the SDK automatically unbinds the user. In scenarios where video mixing layout customization is needed on mobile, you can call this method and set a separate <codeph>view</codeph> for each sub-video stream in the mixed stream.</p>
+            <p props="android">This method initializes the view for the remote video stream on the local device and only affects what the local user sees. You can call this method to bind the remote video stream to a video view and set the rendering and mirror modes for that view. You must specify the remote user's ID in this method. If the app has not yet obtained the remote user ID, set it after receiving the <xref keyref="onUserJoined"/> callback. To unbind the remote user from the view, set the <codeph>view</codeph> parameter to <codeph>null</codeph>. Once the remote user leaves the channel, the SDK automatically unbinds the user. In scenarios where you customize the video mixing layout on mobile, you can call this method and assign a separate <codeph>view</codeph> for each sub-stream in the mixed stream for rendering.</p>
+            <note props="cpp">
+                <ul>
+                    <li>To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderMode2"/> method.</li>
+                    <li>When using the recording service, the app does not need to bind views because the recording service does not send video streams. If your app cannot identify the recording service, bind the remote user to the view when the SDK triggers the <xref keyref="onFirstRemoteVideoDecoded"/> callback.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderMode2"/> method.</li>
+                    <li>When using the recording service, the app does not need to bind a view because the recording service does not send video streams. If your app cannot identify the recording service, bind the remote user to a view when the SDK triggers the <xref keyref="onFirstRemoteVideoDecoded"/> callback.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>canvas</pt>
+                    <pd>The remote video view and its related settings. See <xref keyref="VideoCanvas"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>remote</pt>
+                    <pd>Remote video view and related settings. See <xref keyref="VideoCanvas"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

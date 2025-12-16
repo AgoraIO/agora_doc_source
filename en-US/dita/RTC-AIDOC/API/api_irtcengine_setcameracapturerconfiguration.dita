@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setcameracapturerconfiguration">
+    <title><ph keyref="setCameraCapturerConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the camera capture configuration.</ph><ph id="shortdesc" props="android">Sets the camera capture configuration.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setCameraCapturerConfiguration"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setCameraCapturerConfiguration(const CameraCapturerConfiguration&amp; config) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setCameraCapturerConfiguration(CameraCapturerConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Call this method before enabling local camera capture, for example, before calling <codeph>startPreview</codeph> or <codeph>joinChannel</codeph>.</p>
+            <p props="android">This method must be called before enabling local video capture, for example, before calling <codeph>startPreview</codeph> or <codeph>joinChannel</codeph>.</p>
+            <note props="cpp">To adjust the camera focal length configuration, it is recommended to call <xref keyref="queryCameraFocalLengthCapability"/> to query the focal length capability of the device and configure it accordingly. Due to limitations on some Android devices, the configuration may not take effect even if the focal length type is set based on the result returned by <xref keyref="queryCameraFocalLengthCapability"/>.</note>
+            <note props="android">To adjust the camera focal length configuration, it is recommended to first call <xref keyref="queryCameraFocalLengthCapability"/> to query the device's focal length capabilities and configure accordingly. Due to limitations on some Android devices, setting the focal length type based on the result of <xref keyref="queryCameraFocalLengthCapability"/> may not take effect.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method before enabling local camera capture, for example, before calling <codeph>startPreview</codeph> or <codeph>joinChannel</codeph>.</p>
+            <p props="android">This method must be called before enabling local video capture, for example, before calling <codeph>startPreview</codeph> or <codeph>joinChannel</codeph>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>Camera capture configuration. See <xref keyref="CameraCapturerConfiguration"/>.
+                        <note>You do not need to set the <codeph>deviceId</codeph> parameter in this method.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>Camera capture configuration. See <xref keyref="CameraCapturerConfiguration"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_channelmediarelayconfiguration_setdestchannelinfo">
+    <title><ph keyref="setDestChannelInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Sets the destination channel information.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDestChannelInfo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public void setDestChannelInfo(String channelName, ChannelMediaInfo destInfo)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">If you want to relay media streams to multiple channels, you can call this method up to four times.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>channelName</pt>
+                    <pd>Name of the destination channel. This value must match the <codeph>channelName</codeph> member in <codeph>destInfo</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>destInfo</pt>
+                    <pd>Information of the destination channel. Includes the following members:
+                        <ul>
+                            <li><codeph>channelName</codeph>: Name of the destination channel.</li>
+                            <li><codeph>uid</codeph>: User ID of the host in the destination channel. Range is 0 to (2&lt;sup&gt;32&lt;/sup&gt; - 1). To avoid user ID conflicts, this value must differ from other user IDs in the destination channel. Default is 0, meaning the SDK randomly generates a user ID.</li>
+                            <li><codeph>token</codeph>: Token required to join the destination channel. This token is generated based on <codeph>channelName</codeph> and <codeph>uid</codeph>.
+                                <ul>
+                                    <li>If App Certificate is not enabled, set this parameter to <codeph>null</codeph>, meaning the SDK uses the App ID.</li>
+                                    <li>If App Certificate is enabled, you must use the token generated based on <codeph>channelName</codeph> and <codeph>uid</codeph>.</li>
+                                </ul>
+                            </li>
+                        </ul><ph>See <xref keyref="ChannelMediaInfo"/>.</ph></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

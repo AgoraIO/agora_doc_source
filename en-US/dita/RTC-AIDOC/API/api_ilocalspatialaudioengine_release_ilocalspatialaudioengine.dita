@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ilocalspatialaudioengine_release_ilocalspatialaudioengine">
+    <title><ph keyref="release_ILocalSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Releases all resources of <xref keyref="ILocalSpatialAudioEngine"/>.</ph><ph id="shortdesc" props="android">Destroys the <xref keyref="ILocalSpatialAudioEngine"/> instance.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="release_ILocalSpatialAudioEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void release() = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public static synchronized void destroy()</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Call this method to release all resources under <xref keyref="ILocalSpatialAudioEngine"/>. After calling this method, you can no longer use any APIs under <xref keyref="ILocalSpatialAudioEngine"/>.</p>
+            <p props="android">After calling this method, you can no longer use any API under <xref keyref="ILocalSpatialAudioEngine"/>. To use spatial audio features again, wait until the <xref keyref="release_ILocalSpatialAudioEngine"/> method completes, then call <xref keyref="initialize_ILocalSpatialAudioEngine"/> to create a new <xref keyref="ILocalSpatialAudioEngine"/> instance.</p>
+            <note props="cpp">Call this method before calling the <xref keyref="release_ILocalSpatialAudioEngine"/> method.</note>
+            <note props="android">Call this method before calling the <xref keyref="release_ILocalSpatialAudioEngine"/> method.</note>
+        </section>
+    </refbody>
+</reference>

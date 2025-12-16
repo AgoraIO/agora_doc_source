@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onclientrolechangefailed">
+    <title><ph keyref="onClientRoleChangeFailed"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when switching user roles fails.</ph><ph id="shortdesc" props="android">Callback triggered when switching user roles fails.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onClientRoleChangeFailed"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onClientRoleChangeFailed(CLIENT_ROLE_CHANGE_FAILED_REASON reason, CLIENT_ROLE_TYPE currentRole)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onClientRoleChangeFailed(int reason, int currentRole)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback reports the reason for the failure to switch user roles and the current role.</p>
+            <p props="android">This callback notifies the reason for the failure to switch user roles and the current user role.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">When the local user fails to switch roles after joining the channel by calling <codeph>setClientRole</codeph>, the SDK triggers this callback.</p>
+            <p props="android">This callback is triggered when the local user joins a channel and calls <xref keyref="setClientRole1"/> or <xref keyref="setClientRole2"/> (with <xref keyref="ClientRoleOptions"/> parameter) to switch roles and the operation fails.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>The reason for the user role switch failure. See <xref keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>currentRole</pt>
+                    <pd>The current user role. See <xref keyref="CLIENT_ROLE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>
+                        <note>This enum value is returned only when the 128-user feature is enabled. The broadcaster limit depends on the actual configuration when the 128-user feature is enabled.</note><ph>The reason for the role switch failure.</ph>
+                        <ul>
+                            <li><codeph>CLIENT_ROLE_CHANGE_FAILED_TOO_MANY_BROADCASTERS</codeph> (1): The number of broadcasters in the channel has reached the limit. This enum value is returned only when the 128-user feature is enabled.</li>
+                            <li><codeph>CLIENT_ROLE_CHANGE_FAILED_NOT_AUTHORIZED</codeph> (2): The request was rejected by the Agora server. It is recommended to prompt the user to retry switching roles.</li>
+                            <li><codeph>CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT</codeph> (3): Request timed out. It is recommended to prompt the user to check the network connection and retry switching roles. Deprecated since v4.4.0.</li>
+                            <li><codeph>CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED</codeph> (4): SDK connection failed. You can troubleshoot using the <codeph>reason</codeph> reported in the <xref keyref="onConnectionStateChanged"/> callback. Deprecated since v4.4.0.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>currentRole</pt>
+                    <pd>Current user role.
+                        <ul>
+                            <li><codeph>CLIENT_ROLE_BROADCASTER</codeph> (1): Broadcaster, can send and receive audio and video streams.</li>
+                            <li><codeph>CLIENT_ROLE_AUDIENCE</codeph> (2): Audience, can only receive audio and video streams.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

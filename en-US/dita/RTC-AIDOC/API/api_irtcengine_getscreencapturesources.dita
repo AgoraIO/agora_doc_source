@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getscreencapturesources">
+    <title><ph keyref="getScreenCaptureSources"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the list of shareable screens and windows.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getScreenCaptureSources"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual IScreenCaptureSourceList* getScreenCaptureSources(const SIZE&amp; thumbSize, const SIZE&amp; iconSize, const bool includeScreen) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You can call this method before sharing a screen or window to get a list of shareable screens and windows. Users can easily select the screen or window to share via the thumbnails in the list. The list also includes information such as window ID and screen ID, which you can use to call <xref keyref="startScreenCaptureByWindowId"/> or <xref keyref="startScreenCaptureByDisplayId"/> to start sharing.</p>
+            <note props="cpp">This method is only applicable to macOS and Windows platforms.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>thumbSize</pt>
+                    <pd>Target size (width and height in pixels) for the screen or window thumbnail. The SDK scales the original image so that the longest side matches the target size without distorting the image. For example, if the original image is 400 × 300 and <codeph>thumbSize</codeph> is 100 × 100, the actual thumbnail size is 100 × 75. If the target size is larger than the original, the thumbnail is the original image and the SDK does not scale it. See [<codeph>SIZE</codeph>](https://learn.microsoft.com/en-us/windows/win32/api/windef/ns-windef-size).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>iconSize</pt>
+                    <pd>Target size (width and height in pixels) for the application icon. The SDK scales the original image so that the longest side matches the target size without distorting the image. For example, if the original image is 400 × 300 and <codeph>iconSize</codeph> is 100 × 100, the actual icon size is 100 × 75. If the target size is larger than the original, the icon is the original image and the SDK does not scale it. See [<codeph>SIZE</codeph>](https://learn.microsoft.com/en-us/windows/win32/api/windef/ns-windef-size).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>includeScreen</pt>
+                    <pd>Whether to return screen information:
+                        <ul>
+                            <li><xref keyref="true"/>: Return both screen and window information.</li>
+                            <li><xref keyref="false"/>: Return only window information.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>If the method call succeeds, returns an <xref keyref="IScreenCaptureSourceList"/> instance. See <xref keyref="IScreenCaptureSourceList"/>.</li>
+                    <li>If the method call fails, returns <xref keyref="NULL"/>.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

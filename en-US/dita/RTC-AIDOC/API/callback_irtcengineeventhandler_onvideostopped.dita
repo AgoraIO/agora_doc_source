@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onvideostopped">
+    <title><ph keyref="onVideoStopped"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the video stops playing.</ph><ph id="shortdesc" props="android">Callback triggered when the video stops playing.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onVideoStopped"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onVideoStopped() __deprecated {}</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onVideoStopped() {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use the <xref keyref="onLocalVideoStateChanged"/> callback with <codeph>LOCAL_VIDEO_STREAM_STATE_STOPPED</codeph> instead.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use <xref keyref="onLocalVideoStateChanged"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="android">You can change the view configuration in this callback, such as displaying another image in the view.</p>
+            <note props="cpp">You can use this callback to change the view configuration after the video stops playing, such as displaying another image in the view.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the video stops playing.</p>
+        </section>
+    </refbody>
+</reference>

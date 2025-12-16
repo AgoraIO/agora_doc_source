@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_startmediarenderingtracingex">
+    <title><ph keyref="startMediaRenderingTracingEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables tracing of the video frame rendering process.</ph><ph id="shortdesc" props="android">Enables tracing of the video frame rendering process.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startMediaRenderingTracingEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startMediaRenderingTracingEx(const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startMediaRenderingTracingEx(RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Added since v4.1.1.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.1.1.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">After calling this method, the SDK starts tracing the rendering status of video frames in the channel from the time of the call and reports related information through the <xref keyref="onVideoRenderingTracingResult"/> callback. You can call this method in conjunction with UI controls in your app (such as buttons or sliders) to optimize user experience. For example, call this method when the user clicks the 'Join Channel' button and use the <xref keyref="onVideoRenderingTracingResult"/> callback to obtain the time taken for video frame rendering, thereby optimizing related metrics.</p>
+            <p props="android">After successfully calling this method, the SDK traces the rendering status of video frames in the channel and reports related event information through the <xref keyref="onVideoRenderingTracingResult"/> callback.</p>
+            <note props="cpp">
+                <ul>
+                    <li>If you do not call this method, the SDK starts tracing video rendering events from the moment <codeph>joinChannel</codeph> is called. You can call this method at an appropriate time based on your actual application scenario to set the starting point for tracing video rendering events.</li>
+                    <li>After the local user leaves the current channel, the SDK automatically starts tracing video rendering events from the time you joined the channel.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>If you do not call this method, the SDK starts tracing video frame rendering events from the time <codeph>joinChannel</codeph> is called.</li>
+                    <li>You can call this method at the appropriate time based on your application scenario to set the starting point for tracing video rendering events.</li>
+                    <li>After the local user leaves the current channel, the SDK automatically resumes tracing from the next time the user joins a channel.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method is applicable in multi-channel scenarios.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android">
+            <title>Related Callbacks</title>
+            <p props="android">This method triggers the <xref keyref="onVideoRenderingTracingResult"/> callback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

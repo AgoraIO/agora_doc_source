@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_watermarkoptions">
+    <title><ph keyref="WatermarkOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the watermark image.</ph><ph id="shortdesc" props="android">Configures parameters related to the watermark image.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct WatermarkOptions {
+  bool visibleInPreview;
+  Rectangle positionInLandscapeMode;
+  Rectangle positionInPortraitMode;
+  WatermarkRatio watermarkRatio;
+  WATERMARK_FIT_MODE mode;
+  int zOrder;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class WatermarkOptions {
+  public boolean visibleInPreview = true;
+  public Rectangle positionInLandscapeMode = new Rectangle();
+  public Rectangle positionInPortraitMode = new Rectangle();
+  public int zOrder = 0;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="android">Used to configure the added watermark image.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>visibleInPreview</pt>
+                    <pd>Whether the watermark is visible in the local preview view:
+                        <ul>
+                            <li><xref keyref="true"/>: (default) The watermark is visible in the local preview view.</li>
+                            <li><xref keyref="false"/>: The watermark is not visible in the local preview view.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>positionInLandscapeMode</pt>
+                    <pd>When the watermark fit mode is <codeph>FIT_MODE_COVER_POSITION</codeph>, sets the position of the watermark image in landscape mode. See <xref keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>positionInPortraitMode</pt>
+                    <pd>When the watermark fit mode is <codeph>FIT_MODE_COVER_POSITION</codeph>, sets the position of the watermark image in portrait mode. See <xref keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>watermarkRatio</pt>
+                    <pd>When the watermark fit mode is <codeph>FIT_MODE_USE_IMAGE_RATIO</codeph>, sets the coordinates of the watermark. See <xref keyref="WatermarkRatio"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mode</pt>
+                    <pd>The watermark fit mode. See <xref keyref="WATERMARK_FIT_MODE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>zOrder</pt>
+                    <pd>The z-order of the watermark image. Default is 0.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>visibleInPreview</pt>
+                    <pd>Whether the watermark is visible in the local preview view:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) The watermark is visible in the local preview view.</li>
+                            <li><xref keyref="false"/>: The watermark is not visible in the local preview view.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>positionInLandscapeMode</pt>
+                    <pd>Area where the watermark image is displayed in landscape mode. See <xref keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>positionInPortraitMode</pt>
+                    <pd>Area where the watermark image is displayed in portrait mode. See <xref keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>zOrder</pt>
+                    <pd>Z-order of the watermark image. Default is 0.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

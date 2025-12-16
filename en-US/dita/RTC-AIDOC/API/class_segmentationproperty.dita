@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_segmentationproperty">
+    <title><ph keyref="SegmentationProperty"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set properties related to background image processing.</ph><ph id="shortdesc" props="android">Used to set properties related to background image processing.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct SegmentationProperty {
+  SEG_MODEL_TYPE modelType;
+  float greenCapacity;
+  SCREEN_COLOR_TYPE screenColorType;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class SegmentationProperty {
+  public static final int SEG_MODEL_AI = 1;
+  public static final int SEG_MODEL_GREEN = 2;
+  public static final int SCREEN_COLOR_AUTO = 0;
+  public static final int SCREEN_COLOR_GREEN = 1;
+  public static final int SCREEN_COLOR_BLUE = 2;
+  public int modelType;
+  public float greenCapacity;
+  public int screenColorType;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>modelType</pt>
+                    <pd>Algorithm type used for background processing. See <xref keyref="SEG_MODEL_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>greenCapacity</pt>
+                    <pd>Precision range for recognizing background color in the image. Range is [0,1], default is 0.5. The greater the value, the wider the range of recognizable solid tones. If set too high, solid colors in the edges or within the portrait may also be detected. Agora recommends adjusting this value dynamically based on actual results.
+                        <note>This parameter takes effect only when <codeph>modelType</codeph> is set to <codeph>SEG_MODEL_GREEN</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>screenColorType</pt>
+                    <pd>Screen color type. See <xref keyref="SCREEN_COLOR_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SEG_MODEL_AI</pt>
+                    <pd>(1): (Default) AI segmentation algorithm.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SEG_MODEL_GREEN</pt>
+                    <pd>(2): Green screen segmentation algorithm.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SCREEN_COLOR_AUTO</pt>
+                    <pd>(0): (Default) Automatically detect screen color.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SCREEN_COLOR_GREEN</pt>
+                    <pd>(1): Green.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SCREEN_COLOR_BLUE</pt>
+                    <pd>(2): Blue.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>modelType</pt>
+                    <pd>Algorithm type used for background processing.
+                        <ul>
+                            <li><codeph>SEG_MODEL_AI</codeph> (1): (Default) Algorithm suitable for all scenarios.</li>
+                            <li><codeph>SEG_MODEL_GREEN</codeph> (2): Algorithm designed specifically for green screen background scenarios.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>greenCapacity</pt>
+                    <pd>Accuracy range for identifying background color in the image. Value range: [0, 1], default is 0.5. The larger the value, the wider the range of solid color shades that can be identified. If the value is too large, solid color areas on the edge or within the subject may also be identified as background.
+                        <note>This parameter is only effective when <codeph>modelType</codeph> is set to <codeph>SEG_MODEL_GREEN</codeph>. Agora recommends adjusting this value dynamically based on actual results.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>screenColorType</pt>
+                    <pd>Screen color type:
+                        <ul>
+                            <li><codeph>SCREEN_COLOR_AUTO</codeph> (0): SDK automatically selects screen color.</li>
+                            <li><codeph>SCREEN_COLOR_GREEN</codeph> (1): Green.</li>
+                            <li><codeph>SCREEN_COLOR_BLUE</codeph> (2): Blue.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

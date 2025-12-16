@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_ispreloaded">
+    <title><ph keyref="isPreloaded"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Checks whether the specified music resource has been preloaded.</ph><ph id="shortdesc" props="android">Checks whether the specified music resource is preloaded.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="isPreloaded"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int isPreloaded(int64_t songCode) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int isPreloaded(long songCode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method is a synchronous call. To preload a new music resource, call <codeph>preload</codeph>.</p>
+            <p props="android">This method is a synchronous call.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>songCode</pt>
+                    <pd>ID of the music resource, used to identify a music item.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>songCode</pt>
+                    <pd>The identifier of the music resource.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success. The music resource has been preloaded.</li>
+                    <li>&lt; 0: Failure. See error codes.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: The method call succeeds, and the music resource is preloaded.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>
