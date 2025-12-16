@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="construct_videoviewcontroller">
-    <title><ph keyref="VideoViewControllerConstructor"/></title>
-    <shortdesc id="short"><ph id="shortdesc">用于渲染本地视频的 <apiname keyref="VideoViewController"/> 类的构造方法。</ph></shortdesc>
+<reference id="api_videoviewcontroller_videoviewcontrollerremoteconstructor">
+    <title><ph keyref="VideoViewControllerremoteConstructor"/></title>
+    <shortdesc id="short"><ph id="shortdesc">用于渲染远端视频的 <apiname keyref="VideoViewController"/> 类的构造方法。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="VideoViewControllerConstructor"/>
+                <indexterm keyref="VideoViewControllerremoteConstructor"/>
             </keywords>
         </metadata>
     </prolog>
@@ -20,12 +20,13 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">  VideoViewController({
+            <codeblock props="flutter" outputclass="language-dart">  VideoViewController.remote({
     required this.rtcEngine,
     required this.canvas,
+    required this.connection,
     this.useFlutterTexture = false,
     this.useAndroidSurfaceView = false,
-  }) : connection = const RtcConnection();</codeblock>
+  }) : assert(connection.channelId != null);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -35,10 +36,14 @@
             <title>参数</title>
             <parml>
                 <plentry conkeyref="VideoViewController/rtcengine">
-                <pt/>
-                <pd/>
+                    <pt/>
+                    <pd/>
                 </plentry>
                 <plentry conkeyref="VideoViewController/canvas">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="VideoViewController/connection">
                     <pt/>
                     <pd/>
                 </plentry>
