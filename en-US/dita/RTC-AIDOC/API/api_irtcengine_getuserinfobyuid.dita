@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getuserinfobyuid">
+    <title><ph keyref="getUserInfoByUid"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets user information by passing in a user ID.</ph><ph id="shortdesc" props="android">Gets user information by passing in a user ID.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getUserInfoByUid"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, rtc::UserInfo* userInfo) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getUserInfoByUid(int uid, UserInfo userInfo);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After a remote user joins the channel, the SDK obtains the user ID and user account, caches them in a mapping table, and triggers the <xref keyref="onUserInfoUpdated"/> callback on the local client. After receiving the callback, you can call <xref keyref="getUserInfoByUid"/> and pass in the user ID to get the corresponding user account from the <xref keyref="UserInfo"/> object.</p>
+            <p props="android">After a remote user joins the channel, the SDK retrieves the user's ID and account and caches them in a mapping table, while triggering the <xref keyref="onUserInfoUpdated"/> callback on the local client. After receiving this callback, you can call the <xref keyref="getUserInfoByUid"/> method and pass in the user ID to obtain the user account of the specified user from the <xref keyref="UserInfo"/> object.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after receiving the <xref keyref="onUserInfoUpdated"/> callback.</p>
+            <p props="android">Call this method after receiving the <xref keyref="onUserInfoUpdated"/> callback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd><codeph>uid</codeph>, representing the user ID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>userInfo</pt>
+                    <pd>Input and output parameter representing user information. The input is a <xref keyref="UserInfo"/> object, and the output is a <xref keyref="UserInfo"/> object containing the user account and user ID. See <xref keyref="UserInfo"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd><codeph>uid</codeph>, representing the user ID.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userInfo</pt>
+                    <pd>Input and output parameter. The <xref keyref="UserInfo"/> object identifying user information. See <xref keyref="UserInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

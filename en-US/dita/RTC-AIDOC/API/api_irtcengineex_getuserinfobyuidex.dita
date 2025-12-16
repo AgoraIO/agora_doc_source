@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_getuserinfobyuidex">
+    <title><ph keyref="getUserInfoByUidEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Retrieves user information by user ID.</ph><ph id="shortdesc" props="android">Gets the user information by user ID.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getUserInfoByUidEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getUserInfoByUidEx(uid_t uid, rtc::UserInfo* userInfo, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getUserInfoByUidEx(int uid, UserInfo userInfo, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method retrieves user information by passing in the user ID. It functions the same as <xref keyref="getUserInfoByUid"/>.</p>
+            <p props="android">After a remote user joins a channel, the SDK retrieves the user's ID and user account and caches them in a mapping table. At the same time, it triggers the <xref keyref="onUserInfoUpdated"/> callback on the local client. After receiving this callback, you can call <xref keyref="getUserInfoByUidEx"/> and pass in the user ID to get the user account from the <xref keyref="UserInfo"/> object.</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>Applicable in multi-channel scenarios.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>User ID of the remote user.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>userInfo</pt>
+                    <pd>Input and output parameter representing the <xref keyref="UserInfo"/> object for identifying the user. The <xref keyref="UserInfo"/> object passed in when calling this method will return a <xref keyref="UserInfo"/> object containing the User Account and user ID upon success. See <xref keyref="UserInfo"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd><xref keyref="RtcConnection"/> object. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userInfo</pt>
+                    <pd>The object that identifies the user information. See <xref keyref="UserInfo"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>The <xref keyref="UserInfo"/> object, if the method call succeeds.</li>
+                    <li><codeph>null</codeph>, if the method call fails.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_player_openwithurl">
+    <title><ph keyref="OpenWithUrl"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Opens a URL resource.</ph><ph id="shortdesc" props="android">Opens a URL resource.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="OpenWithUrl"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">void OpenWithUrl(const char* url, uint64_t start_time, std::function&lt;void(rte::Error* err)&gt; cb)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void openWithUrl(String url, long startTime, AsyncCallback callback)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">This method supports opening live streaming media resources via URL. To speed up URL opening, you can call <xref keyref="PreloadWithUrl"/> before this method to preload the resource. If the resource fails to open, you will receive the <xref keyref="onStateChanged"/> callback with the state <codeph>kRtePlayerStateFailed</codeph>. In this case, you need to call <xref keyref="Stop_Player"/> first, then call <xref keyref="OpenWithUrl"/> again to reopen the URL. If you have disabled autoplay, you can call <xref keyref="Play_Player"/> after the resource is opened to start playback.</p>
+            <p props="android">This method supports opening live streaming resources via URL. To speed up opening, you can preload the resource using <xref keyref="PreloadWithUrl"/> before calling this method.
+If opening the resource fails, you will receive the <xref keyref="onStateChanged"/> callback with the player state as <codeph>FAILED</codeph>. In this case, you need to call <xref keyref="Stop_Player"/> first, then call <xref keyref="OpenWithUrl"/> again to reopen the resource.
+If you have disabled autoplay, you can call <xref keyref="Play_Player"/> after the resource is opened to start playback.</p>
+            <note props="cpp">This method currently supports URLs starting with <codeph>rte://</codeph>, CDN streaming URLs, and local media files.</note>
+            <note props="android">This method currently only supports URLs starting with <codeph>rte://</codeph>, CDN streaming URLs, and local media files.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">This method must be called after <xref keyref="Player_Player"/> is initialized.</p>
+            <p props="android">This method must be called after <xref keyref="Player_Player"/>.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After this method is successfully called, the SDK triggers the <xref keyref="onStateChanged"/> callback to report the player state as <codeph>kRtePlayerStateOpening</codeph>, indicating the URL is being opened. Once opened successfully, the player state is reported as <codeph>kRtePlayerStateOpenCompleted</codeph>.</p>
+            <p props="android">After calling this method, the <xref keyref="onStateChanged"/> callback is triggered with the player state as <codeph>OPENING</codeph>, indicating the URL is being opened. Upon success, the player state changes to <codeph>OPEN_COMPLETED</codeph>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>url</pt>
+                    <pd>The URL to open. It can be a CDN streaming URL, a local media file, or a URL starting with <codeph>rte://</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>start_time</pt>
+                    <pd>The playback start position in milliseconds.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cb</pt>
+                    <pd>Callback that asynchronously notifies the result of opening the URL resource. You can get the operation result or error code from the <codeph>err</codeph> parameter in the callback. See <xref keyref="Error"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>url</pt>
+                    <pd>The URL to open. It can be a CDN streaming URL, a local media file, or a URL prefixed with <codeph>rte://</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>startTime</pt>
+                    <pd>The start position of playback, in milliseconds.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>callback</pt>
+                    <pd>Callback for asynchronously notifying the result of opening the URL resource. You can get error information through the <xref keyref="onResult_AsyncCallback"/> method of this callback.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_canvasconfig_setrendermode_canvasconfig">
+    <title><ph keyref="SetRenderMode_CanvasConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the video rendering mode.</ph><ph id="shortdesc" props="android">Sets the video render mode.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SetRenderMode_CanvasConfig"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">void SetRenderMode(VideoRenderMode mode, Error *err = nullptr)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void setVideoRenderMode(Constants.VideoRenderMode mode) throws RteException</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Added in version v4.4.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method before <codeph>SetConfigs</codeph>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mode</pt>
+                    <pd>Rendering mode. See <xref keyref="RteVideoRenderMode"/>. The default value is <codeph>kRteVideoRenderModeHidden</codeph>, which scales the video proportionally and prioritizes filling the view window.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>An output parameter. Status or error information. See <xref keyref="Error"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mode</pt>
+                    <pd>The video render mode to set. See <xref keyref="RteVideoRenderMode"/>.
+                        <note>The default value is <codeph>VideoRenderMode.HIDDEN</codeph>.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="exception" props="android">
+            <title>Exceptions</title>
+            <p props="android"><xref keyref="RteException"/>: <codeph>RteException.errorCode()</codeph> may return the following error codes:
+                <ul>
+                    <li><codeph>ErrorCode.INVALID_ARGUMENT</codeph>: the <codeph>mode</codeph> parameter is set to an invalid value.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

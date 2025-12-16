@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onstreammessageerror">
+    <title><ph keyref="onStreamMessageError"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the local user fails to receive a data stream message sent by a remote user.</ph><ph id="shortdesc" props="android"><xref keyref="onStreamMessageError"/> callback: triggered when the local user fails to receive a data stream sent by a remote user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onStreamMessageError"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onStreamMessageError(uid_t uid, int streamId, int code, int missed, int cached)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onStreamMessageError(int uid, int streamId, int error, int missed, int cached)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback is triggered when the local user fails to receive a stream message sent by a remote user using <xref keyref="sendStreamMessage"/>.</p>
+            <p props="android">This callback is triggered when the local user fails to receive a stream message sent by a remote user via <xref keyref="sendStreamMessage"/>.</p>
+            <note props="cpp">If you need a more comprehensive solution for low latency, high concurrency, and scalable real-time messaging and state synchronization, consider using Real-time Messaging.</note>
+            <note props="android">If you need a more comprehensive real-time messaging and state synchronization solution with low latency, high concurrency, and scalability, we recommend using Real-time Messaging.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the local user fails to receive a stream message sent by a remote user via <xref keyref="sendStreamMessage"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>The ID of the remote user who sent the message.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>streamId</pt>
+                    <pd>The ID of the data stream corresponding to the received message.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>code</pt>
+                    <pd>Error code.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>missed</pt>
+                    <pd>Number of lost messages.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cached</pt>
+                    <pd>Number of cached messages received during the data stream interruption.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>The remote user ID who sent the message.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>streamId</pt>
+                    <pd>The stream ID corresponding to the received message.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>error</pt>
+                    <pd>Error code.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>missed</pt>
+                    <pd>Number of lost messages.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cached</pt>
+                    <pd>Number of incoming messages cached during stream interruption.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

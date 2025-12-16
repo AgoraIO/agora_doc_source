@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onvideodevicestatechanged">
+    <title><ph keyref="onVideoDeviceStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for video device state changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onVideoDeviceStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onVideoDeviceStateChanged(const char* deviceId, int deviceType, int deviceState)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback reports changes in the system video device state, such as when a device is unplugged or removed. On Windows devices, if an external camera is used for video capture and is unplugged, the video function will be disabled.</p>
+            <note props="cpp">This callback applies to Windows and macOS only.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>deviceId</pt>
+                    <pd>Device ID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>deviceType</pt>
+                    <pd>Media device type. See <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>deviceState</pt>
+                    <pd>Media device state. See <xref keyref="MEDIA_DEVICE_STATE_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

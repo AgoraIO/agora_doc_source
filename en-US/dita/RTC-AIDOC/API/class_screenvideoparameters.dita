@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screenvideoparameters">
+    <title><ph keyref="ScreenVideoParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set video parameters for screen sharing.</ph><ph id="shortdesc" props="android">Configures video parameters for screen sharing.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ScreenVideoParameters {
+  VideoDimensions dimensions;
+  int frameRate = 15;
+  int bitrate;
+  VIDEO_CONTENT_HINT contentHint = VIDEO_CONTENT_HINT::CONTENT_HINT_MOTION;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class VideoCaptureParameters {
+    public int bitrate = 0;
+    public int framerate = 15;
+    public int width = 1280;
+    public int height = 720;
+    public int contentHint = Constants.SCREEN_CAPTURE_CONTENT_HINT_MOTION;
+  }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v3.7.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="android">Only available when the <codeph>captureVideo</codeph> parameter is set to <xref keyref="true"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>dimensions</pt>
+                    <pd>Video encoding resolution. Default is 1280 × 720. See <xref keyref="VideoDimensions"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>frameRate</pt>
+                    <pd>Video encoding frame rate (fps). Default is 15.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>bitrate</pt>
+                    <pd>Video encoding bitrate (Kbps).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>contentHint</pt>
+                    <pd>Content hint for screen sharing. See <xref keyref="VIDEO_CONTENT_HINT"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>bitrate</pt>
+                    <pd>Video encoding bitrate (Kbps).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>framerate</pt>
+                    <pd>Video encoding frame rate (fps). Default is 15.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>width</pt>
+                    <pd>
+                        <note>Billing for screen sharing stream is based on this parameter. If not specified, Agora charges based on 1280 × 720; if specified, charges are based on the set value.
+This parameter does not indicate the rotation of the output video. For rotation settings, see <xref keyref="ORIENTATION_MODE"/>.
+Support for 720p or higher resolution depends on device performance. If unsupported, the frame rate may be lower than the set value.
+When setting encoding resolution in the <codeph>SCREEN_SCENARIO_DOCUMENT</codeph> scenario, the following is recommended:
+                            <ul>
+                                <li>For best image quality: Set encoding resolution equal to capture resolution.</li>
+                                <li>To balance quality, bandwidth, and performance:
+                                    <ul>
+                                        <li>If capture resolution &gt; 1920 × 1080, encoding resolution should be ≥ 1920 × 1080.</li>
+                                        <li>If capture resolution &lt; 1920 × 1080, encoding resolution should be ≥ 1280 × 720.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </note><ph>Width of the video encoding resolution (px). Default is 1280. If the aspect ratio differs from the screen, the SDK adjusts it as follows, using 1280 × 720 as an example:</ph>
+                        <ul>
+                            <li>If both screen width and height are smaller than the set values, the original screen resolution is used. For example, if the screen is 640 × 360, the encoding resolution is 640 × 360.</li>
+                            <li>If either screen width or height exceeds the set values, the SDK adjusts the resolution proportionally within the set limits. For example, if the screen is 2000 × 1500, the encoding resolution is 960 × 720.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>
+                        <note>Billing for screen sharing stream is based on this parameter. If not specified, Agora charges based on 1280 × 720; if specified, charges are based on the set value.
+This parameter does not indicate the rotation of the output video. For rotation settings, see <xref keyref="ORIENTATION_MODE"/>.
+Support for 720p or higher resolution depends on device performance. If unsupported, the frame rate may be lower than the set value.
+When setting encoding resolution in the <codeph>SCREEN_SCENARIO_DOCUMENT</codeph> scenario, the following is recommended:
+                            <ul>
+                                <li>For best image quality: Set encoding resolution equal to capture resolution.</li>
+                                <li>To balance quality, bandwidth, and performance:
+                                    <ul>
+                                        <li>If capture resolution &gt; 1920 × 1080, encoding resolution should be ≥ 1920 × 1080.</li>
+                                        <li>If capture resolution &lt; 1920 × 1080, encoding resolution should be ≥ 1280 × 720.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </note><ph>Height of the video encoding resolution (px). Default is 720. If the aspect ratio differs from the screen, the SDK adjusts it as follows, using 1280 × 720 as an example:</ph>
+                        <ul>
+                            <li>If both screen width and height are smaller than the set values, the original screen resolution is used. For example, if the screen is 640 × 360, the encoding resolution is 640 × 360.</li>
+                            <li>If either screen width or height exceeds the set values, the SDK adjusts the resolution proportionally within the set limits. For example, if the screen is 2000 × 1500, the encoding resolution is 960 × 720.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>contentHint</pt>
+                    <pd>Content hint options for screen sharing:
+                        <ul>
+                            <li><codeph>SCREEN_CAPTURE_CONTENT_HINT_NONE</codeph> (0): Default, no content hint.</li>
+                            <li><codeph>SCREEN_CAPTURE_CONTENT_HINT_MOTION</codeph> (1): Motion content, suitable for smoothness or sharing movies, videos, and games.</li>
+                            <li><codeph>SCREEN_CAPTURE_CONTENT_HINT_DETAILS</codeph> (2): Static content, suitable for clarity or sharing images, PPTs, or text.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

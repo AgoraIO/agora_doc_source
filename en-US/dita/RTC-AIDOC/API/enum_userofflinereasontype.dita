@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_userofflinereasontype">
+    <title><ph keyref="USER_OFFLINE_REASON_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reasons for a user going offline.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>USER_OFFLINE_QUIT</pt>
+                    <pd>(0): The user voluntarily left the call.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>USER_OFFLINE_DROPPED</pt>
+                    <pd>(1): No data packet received within a certain time. SDK timeout, user dropped.
+                        <note>If the user leaves the call but the message is not delivered to the SDK (due to an unreliable channel), the SDK considers the user dropped.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>USER_OFFLINE_BECOME_AUDIENCE</pt>
+                    <pd>(2): The user switched their client role from host to audience.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

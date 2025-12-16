@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_filtereffectoptions">
+    <title><ph keyref="FilterEffectOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure filter effect parameters.</ph><ph id="shortdesc" props="android">Used to configure filter effects.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct FilterEffectOptions {
+  const char * path;
+  float strength;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class FilterEffectOptions {
+  public String path = null;
+  public float strength;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Added since v4.4.1.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>path</pt>
+                    <pd>Absolute path of the local cube LUT texture file for custom filter effects. The specified .cube file must strictly follow the Cube LUT format specification, otherwise the filter option is invalid.
+                        <note>
+                            <ul>
+                                <li>The first line identifier <codeph>LUT_3D_SIZE</codeph> in the cube LUT file indicates the size of the 3D lookup table. The LUT size for filter effects must be 32.</li>
+                                <li>The SDK provides a built-in <codeph>built_in_whiten_filter.cube</codeph> file. You can pass its absolute path to apply the whitening filter effect.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>strength</pt>
+                    <pd>Strength of the filter effect, range [0.0, 1.0]. 0.0 means no effect. Default is 0.5. The higher the value, the stronger the effect.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>path</pt>
+                    <pd>Absolute path to the local cube LUT texture file, used for custom filter effects. The specified .cube file must strictly follow the Cube LUT format specification, otherwise the filter parameters will not take effect.
+                        <note>
+                            <ul>
+                                <li>The first line of the <codeph>.cube</codeph> file should contain the identifier <codeph>LUT_3D_SIZE</codeph>, which indicates the size of the 3D lookup table. The LUT size for filter effects must be set to 32.</li>
+                                <li>The Agora SDK provides a built-in <codeph>built_in_whiten_filter.cube</codeph> file. You can pass the absolute path of this file to use the whitening filter effect.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>strength</pt>
+                    <pd>Strength of the filter effect. Range is [0.0, 1.0]. 0.0 means no filter effect. Default is 0.5. The larger the value, the stronger the effect.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

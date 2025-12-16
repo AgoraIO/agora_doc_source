@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_setplaybackdevice">
+    <title><ph keyref="setPlaybackDevice"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the audio playback device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlaybackDevice"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setPlaybackDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You can call this method to change the currently used audio route, but it does not change the default audio route. For example, if the default audio route is speaker 1, and you call this method before joining a channel to set the audio route to speaker 2 and start the device test, the SDK performs the device test on speaker 2. After the device test is completed and you join the channel, the SDK still uses the default audio route speaker 1.</p>
+            <note props="cpp">This method is only applicable to Windows and macOS platforms.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>deviceId</pt>
+                    <pd>The ID of the audio playback device. You can get the device ID by calling <xref keyref="enumeratePlaybackDevices"/>. Connecting or disconnecting an audio device does not change the value of <codeph>deviceId</codeph>.
+                        <note>Maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

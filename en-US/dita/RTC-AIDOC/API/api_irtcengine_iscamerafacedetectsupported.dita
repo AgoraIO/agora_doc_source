@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_iscamerafacedetectsupported">
+    <title><ph keyref="isCameraFaceDetectSupported"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Checks whether the device camera supports face detection.</ph><ph id="shortdesc" props="android">Checks whether the device camera supports face detection.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="isCameraFaceDetectSupported"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool isCameraFaceDetectSupported() = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract boolean isCameraFaceDetectSupported();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp"><xref keyref="isCameraFaceDetectSupported"/> is only applicable to Android and iOS platforms. You must call this method after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</note>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp"><xref keyref="true"/>: The device camera supports face detection.
+<xref keyref="false"/>: The device camera does not support face detection.</p>
+            <p props="android">
+                <ul>
+                    <li><xref keyref="true"/>: The device camera supports face detection.</li>
+                    <li><xref keyref="false"/>: The device camera does not support face detection.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

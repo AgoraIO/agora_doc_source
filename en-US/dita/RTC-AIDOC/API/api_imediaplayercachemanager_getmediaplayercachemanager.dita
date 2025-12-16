@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayercachemanager_getmediaplayercachemanager">
+    <title><ph keyref="getMediaPlayerCacheManager"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets an <xref keyref="IMediaPlayerCacheManager"/> instance.</ph><ph id="shortdesc" props="android">Gets an <xref keyref="IMediaPlayerCacheManager"/> instance.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getMediaPlayerCacheManager"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">AGORA_API agora::rtc::IMediaPlayerCacheManager* AGORA_CALL getMediaPlayerCacheManager();</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract IMediaPlayerCacheManager getMediaPlayerCacheManager();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Before calling any API in <xref keyref="IMediaPlayerCacheManager"/>, you need to call this method to get the media player cache manager instance.</p>
+            <p props="android">Before calling any API in <xref keyref="IMediaPlayerCacheManager"/>, you need to call <xref keyref="getMediaPlayerCacheManager"/> to get the media player cache manager instance.</p>
+            <note props="cpp"><xref keyref="IMediaPlayerCacheManager"/> uses the singleton pattern, so multiple calls to this method return the same instance.</note>
+            <note props="android"><xref keyref="IMediaPlayerCacheManager"/> adopts the singleton pattern, so calling <xref keyref="getMediaPlayerCacheManager"/> multiple times returns the same instance.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call timing: Make sure to initialize <xref keyref="IRtcEngine"/> before calling this method.</p>
+            <p props="android">Ensure that <xref keyref="IRtcEngine"/> is initialized before calling <xref keyref="getMediaPlayerCacheManager"/>.</p>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>If the method call succeeds, returns an <xref keyref="IMediaPlayerCacheManager"/> instance. See <xref keyref="IMediaPlayerCacheManager"/>.</li>
+                    <li>If the method call fails, returns <xref keyref="NULL"/>.</li>
+                </ul>
+            </p>
+            <p props="android">The <xref keyref="IMediaPlayerCacheManager"/> instance, if the method call succeeds.</p>
+        </section>
+    </refbody>
+</reference>

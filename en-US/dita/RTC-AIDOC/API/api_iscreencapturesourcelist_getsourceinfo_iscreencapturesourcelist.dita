@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iscreencapturesourcelist_getsourceinfo_iscreencapturesourcelist">
+    <title><ph keyref="getSourceInfo_IScreenCaptureSourceList"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets information about the specified shareable window or screen.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getSourceInfo_IScreenCaptureSourceList"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual ScreenCaptureSourceInfo getSourceInfo(unsigned int index) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After obtaining <xref keyref="IScreenCaptureSourceList"/>, pass in the index of the specified window or screen to get its information from <xref keyref="ScreenCaptureSourceInfo"/>.</p>
+            <note props="cpp">This method is available on macOS and Windows only.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>index</pt>
+                    <pd>The index of the shareable window or screen. The value range is [0, <xref keyref="getCount_IScreenCaptureSourceList"/>() ).</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">Returns a <xref keyref="ScreenCaptureSourceInfo"/> object if the method call succeeds. See <xref keyref="ScreenCaptureSourceInfo"/>.</p>
+        </section>
+    </refbody>
+</reference>

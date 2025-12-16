@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_preloadeffect2">
+    <title><ph keyref="preloadEffect2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Preloads the specified audio effect file into memory.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="preloadEffect2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int preloadEffect(int soundId, String filePath);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">Ensure the total size of all preloaded files does not exceed the limit. For supported audio file formats, see [What audio file formats does Agora RTC SDK support](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format).</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">Agora recommends calling this method before joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>soundId</pt>
+                    <pd>Sound effect ID. Each effect file must have a unique ID.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>filePath</pt>
+                    <pd>File path:
+                        <ul>
+                            <li>Android: The path must include the file name and extension. Agora supports URLs, absolute paths, or paths starting with <codeph>/assets/</codeph>. If you use an absolute path to access a local file, permission issues may occur. Therefore, using a URI is recommended. For example:</li>
+                        </ul><ph><codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>.</ph></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

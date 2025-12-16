@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_errorcodetype">
+    <title><ph keyref="ERROR_CODE_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Error codes.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>ERR_OK</pt>
+                    <pd>(0): No error.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_FAILED</pt>
+                    <pd>(1): A general error with unspecified reason. Please retry the method.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_INVALID_ARGUMENT</pt>
+                    <pd>(2): Invalid parameter. For example, the channel name contains illegal characters. Please reset the parameter.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NOT_READY</pt>
+                    <pd>(3): SDK is not ready. Possible reasons include: <xref keyref="IRtcEngine"/> initialization failed; method called before joining a channel; <xref keyref="rate"/> or <xref keyref="complain"/> called before leaving the channel; audio module is disabled; incomplete program.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NOT_SUPPORTED</pt>
+                    <pd>(4): <xref keyref="IRtcEngine"/> does not support the request. Possible reasons include incorrect built-in encryption mode setting or SDK failed to load external encryption library. Please check the encryption mode setting or reload the external encryption library.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_REFUSED</pt>
+                    <pd>(5): Request is refused. Possible reasons include: <xref keyref="IRtcEngine"/> initialization failed; channel name is empty when joining; channel name already used when calling <xref keyref="joinChannelEx"/> to join multiple channels.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_BUFFER_TOO_SMALL</pt>
+                    <pd>(6): Buffer size is too small to store returned data.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NOT_INITIALIZED</pt>
+                    <pd>(7): Method is called before <xref keyref="IRtcEngine"/> is initialized. Please ensure the <xref keyref="IRtcEngine"/> object is initialized before calling the method.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_INVALID_STATE</pt>
+                    <pd>(8): Invalid state.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NO_PERMISSION</pt>
+                    <pd>(9): No access permission. Please check whether the app has obtained audio/video device permissions.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_TIMEDOUT</pt>
+                    <pd>(10): Request timed out. Some API calls require the SDK to return execution results. If no result is returned within 10 seconds, this error is triggered.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_CANCELED</pt>
+                    <pd>(11): Request is canceled. This error is for internal use only and is not returned to the application via any method or callback.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_TOO_OFTEN</pt>
+                    <pd>(12): Method is called too frequently. This error is for internal use only and is not returned to the application via any method or callback.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_BIND_SOCKET</pt>
+                    <pd>(13): SDK failed to bind network socket. This error is for internal use only and is not returned to the application via any method or callback.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NET_DOWN</pt>
+                    <pd>(14): Network is unavailable. This error is for internal use only and is not returned to the application via any method or callback.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_JOIN_CHANNEL_REJECTED</pt>
+                    <pd>(17): Join channel request is rejected. Possible reasons include: user is already in the channel; <xref keyref="startEchoTest3"/> is called without calling <xref keyref="stopEchoTest"/> before joining the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_LEAVE_CHANNEL_REJECTED</pt>
+                    <pd>(18): Leave channel failed. Possible reasons include: user already left the channel before calling <codeph>leaveChannel</codeph>; <codeph>leaveChannel</codeph> is called before joining the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ALREADY_IN_USE</pt>
+                    <pd>(19): Resource is already in use.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ABORTED</pt>
+                    <pd>(20): Request is aborted by the SDK, possibly due to too frequent requests.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_INIT_NET_ENGINE</pt>
+                    <pd>(21): <xref keyref="IRtcEngine"/> initialization failed and crashed, possibly due to specific Windows firewall settings.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_RESOURCE_LIMITED</pt>
+                    <pd>(22): SDK failed to allocate resources, possibly due to excessive use of system resources by the app or insufficient system resources.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_INVALID_CHANNEL_NAME</pt>
+                    <pd>(102): The specified channel name is invalid. Possible reason is incorrect parameter type. Please use a valid channel name to rejoin the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NO_SERVER_RESOURCES</pt>
+                    <pd>(103): Failed to obtain server resources in the specified region. Try using another region when initializing <xref keyref="IRtcEngine"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_TOKEN_EXPIRED</pt>
+                    <pd>(109): The current Token has expired. Please request a new Token from the server and call the <xref keyref="renewToken"/> method.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_INVALID_TOKEN</pt>
+                    <pd>(110): Invalid Token. Common reasons include:
+                        <ul>
+                            <li>App certificate is enabled in the Agora console, but App ID is still used for authentication in code. When App certificate is enabled, the project must use Token for authentication.</li>
+                            <li>The <codeph>uid</codeph> used to generate the Token is inconsistent with the <codeph>uid</codeph> used to join the channel.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_CONNECTION_INTERRUPTED</pt>
+                    <pd>(111): Network connection is interrupted. After the connection is established, if the client instance is disconnected from the server for more than 4 seconds, the SDK triggers this callback.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_CONNECTION_LOST</pt>
+                    <pd>(112): Network connection is lost. After disconnection, if the client instance fails to reconnect to the Agora edge server within 10 seconds, this error is triggered.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NOT_IN_CHANNEL</pt>
+                    <pd>(113): User is not in the channel when calling the <xref keyref="sendStreamMessage"/> method.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_SIZE_TOO_LARGE</pt>
+                    <pd>(114): Data size exceeds 1 KB when calling the <xref keyref="sendStreamMessage"/> method.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_BITRATE_LIMIT</pt>
+                    <pd>(115): Data bitrate exceeds 6 KB/s when calling the <xref keyref="sendStreamMessage"/> method.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_TOO_MANY_DATA_STREAMS</pt>
+                    <pd>(116): More than five data streams are created when calling the <codeph>createDataStream(int* streamId, const DataStreamConfig&amp; config)</codeph> method.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_STREAM_MESSAGE_TIMEOUT</pt>
+                    <pd>(117): Data stream transmission timed out.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_SET_CLIENT_ROLE_NOT_AUTHORIZED</pt>
+                    <pd>(119): Failed to switch role. Please try rejoining the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_DECRYPTION_FAILED</pt>
+                    <pd>(120): Media stream decryption failed. The user may have joined the channel with an incorrect password. Please check the entered password or advise the user to rejoin the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_INVALID_USER_ID</pt>
+                    <pd>(121): Invalid user ID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_DATASTREAM_DECRYPTION_FAILED</pt>
+                    <pd>(122): Data stream decryption failed. The user may have joined the channel with an incorrect password. Please check the entered password or advise the user to rejoin the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_CLIENT_IS_BANNED_BY_SERVER</pt>
+                    <pd>(123): User is banned by the server.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH</pt>
+                    <pd>(130): SDK does not support pushing encrypted streams to CDN.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_LOAD_MEDIA_ENGINE</pt>
+                    <pd>(1001): Failed to load media engine.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ADM_GENERAL_ERROR</pt>
+                    <pd>(1005): A general error occurred (no specific reason). Please check whether the audio device is occupied by another app or try rejoining the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ADM_INIT_PLAYOUT</pt>
+                    <pd>(1008): Error occurred while initializing playback device. Please check whether the playback device is occupied by another app or try rejoining the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ADM_START_PLAYOUT</pt>
+                    <pd>(1009): Error occurred while starting playback device. Please check the playback device.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ADM_STOP_PLAYOUT</pt>
+                    <pd>(1010): Error occurred while stopping playback device.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ADM_INIT_RECORDING</pt>
+                    <pd>(1011): Error occurred while initializing recording device. Please check the recording device or try rejoining the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ADM_START_RECORDING</pt>
+                    <pd>(1012): Error occurred while starting recording device. Please check the recording device.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ADM_STOP_RECORDING</pt>
+                    <pd>(1013): Error occurred while stopping recording device.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_VDM_CAMERA_NOT_AUTHORIZED</pt>
+                    <pd>(1501): Camera access permission is not granted. Please check whether camera permission is granted.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

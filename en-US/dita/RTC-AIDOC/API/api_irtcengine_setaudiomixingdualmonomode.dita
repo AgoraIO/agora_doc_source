@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setaudiomixingdualmonomode">
+    <title><ph keyref="setAudioMixingDualMonoMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the channel mode of the current audio file.</ph><ph id="shortdesc" props="android">Sets the channel mode of the current audio file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAudioMixingDualMonoMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioMixingDualMonoMode(media::AUDIO_MIXING_DUAL_MONO_MODE mode) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setAudioMixingDualMonoMode(Constants.AudioMixingDualMonoMode mode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">In stereo music files, the left and right channels can store different audio data. You can set the channel mode to original, left, right, or mixed mode as needed.</p>
+            <p props="android">You can set the channel mode of the audio file to original, left, right, or mixed mode as needed. For example, in a KTV scenario, the left channel stores accompaniment and the right channel stores the original vocals. You can set it based on your needs:
+                <ul>
+                    <li>To hear only the accompaniment, set the channel mode to left.</li>
+                    <li>To hear both accompaniment and vocals, set the channel mode to mixed.</li>
+                </ul>
+            </p>
+            <note props="cpp">This method only applies to stereo audio files.</note>
+            <note props="android">This method only applies to stereo audio files.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In KTV scenarios, the left channel of a music file stores the accompaniment, and the right channel stores the original vocals. You can set it according to your needs:
+                <ul>
+                    <li>If you only want to hear the accompaniment, call this method and set the channel mode to left channel.</li>
+                    <li>If you want to hear both the accompaniment and the original vocals, call this method and set the channel mode to mixed mode.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after calling <codeph>startAudioMixing</codeph> and receiving the <xref keyref="onAudioMixingStateChanged"/> (<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>) callback.</p>
+            <p props="android">Call this method after calling <codeph>startAudioMixing</codeph> and receiving the <xref keyref="onAudioMixingStateChanged"/> (<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>) callback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mode</pt>
+                    <pd>Channel mode. See <xref keyref="AUDIO_MIXING_DUAL_MONO_MODE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mode</pt>
+                    <pd>Channel mode. See <xref keyref="AUDIO_MIXING_DUAL_MONO_MODE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

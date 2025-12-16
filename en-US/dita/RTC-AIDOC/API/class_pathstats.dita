@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_pathstats">
+    <title><ph keyref="PathStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Retrieves statistics of a specific network path.</ph><ph id="shortdesc" props="android">Used to collect statistics for a specific network path.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct PathStats {
+  MultipathType type;
+  int txKBitRate;
+  int rxKBitRate;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class PathStats {
+  public int pathType;
+  public int txKBitRate;
+  public int rxKBitRate;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>Type of the network path. See <xref keyref="MultipathType"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txKBitRate</pt>
+                    <pd>Transmission bitrate of the path in Kbps.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxKBitRate</pt>
+                    <pd>Receiving bitrate of the path in Kbps.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>pathType</pt>
+                    <pd>The type of network path:
+                        <ul>
+                            <li>LAN: Local Area Network.</li>
+                            <li>WiFi: Wireless LAN.</li>
+                            <li>Mobile: Mobile network.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txKBitRate</pt>
+                    <pd>The transmission bitrate for this path, in Kbps.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxKBitRate</pt>
+                    <pd>The receiving bitrate for this path, in Kbps.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

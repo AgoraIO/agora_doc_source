@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startpreview">
+    <title><ph keyref="startPreview"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables local video preview.</ph><ph id="shortdesc" props="android">Enables local video preview.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startPreview"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startPreview() = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startPreview();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">
+                <ul>
+                    <li>Mirror mode is enabled by default for local preview.</li>
+                    <li>After leaving the channel, local preview remains enabled. You need to call <codeph>stopPreview</codeph> to disable it.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>Mirror mode is enabled by default for local preview.</li>
+                    <li>After leaving the channel, the local preview remains active. You need to call <codeph>stopPreview</codeph> to stop the local preview.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You must call this method after calling <xref keyref="enableVideo"/> and <xref keyref="setupLocalVideo"/>.</p>
+            <p props="android">This method must be called after calling <xref keyref="enableVideo"/> and <xref keyref="setupLocalVideo"/>.</p>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

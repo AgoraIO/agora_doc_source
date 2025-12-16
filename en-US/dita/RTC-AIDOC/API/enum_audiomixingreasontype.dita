@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_audiomixingreasontype">
+    <title><ph keyref="AUDIO_MIXING_REASON_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reasons for audio mixing playback state changes.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>AUDIO_MIXING_REASON_CAN_NOT_OPEN</pt>
+                    <pd>(701): Failed to open the music file. For example, the local file does not exist, the format is unsupported, or the file URL is inaccessible.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_MIXING_REASON_TOO_FREQUENT_CALL</pt>
+                    <pd>(702): <codeph>startAudioMixing</codeph> is called too frequently. It is recommended to wait more than 500 ms between calls.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_MIXING_REASON_INTERRUPTED_EOF</pt>
+                    <pd>(703): Music file playback is interrupted.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_MIXING_REASON_ONE_LOOP_COMPLETED</pt>
+                    <pd>(721): One loop of the music file playback is completed.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_MIXING_REASON_ALL_LOOPS_COMPLETED</pt>
+                    <pd>(723): All loops of the music file playback are completed.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_MIXING_REASON_STOPPED_BY_USER</pt>
+                    <pd>(724): <xref keyref="stopAudioMixing"/> is called successfully to stop the music file playback.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_MIXING_REASON_RESUMED_BY_USER</pt>
+                    <pd>(726): Audio mixing playback is resumed by the user.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_MIXING_REASON_OK</pt>
+                    <pd>(0): The music file is opened successfully.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

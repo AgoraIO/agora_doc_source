@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_pushvideoframe4">
+    <title><ph keyref="pushVideoFrame4"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Pushes external raw video frame to the SDK.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="pushVideoFrame4"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract boolean pushExternalVideoFrame(AgoraVideoFrame frame)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.5.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="android">Call <xref keyref="setExternalVideoSource"/> and set <codeph>enabled</codeph> to <xref keyref="true"/> and <codeph>encodedFrame</codeph> to <xref keyref="false"/> to use <codeph>pushExternalVideoFrame</codeph> to push external raw video frames to the SDK. You can also call <codeph>pushExternalVideoFrame</codeph> to push video frames. The difference is that this method does not support Texture format video data.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>frame</pt>
+                    <pd>The external raw video frame to be pushed. See <xref keyref="ExternalVideoFrame"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li><xref keyref="true"/>: Success.</li>
+                    <li><xref keyref="false"/>: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_pushvideoframe_imediaengine">
+    <title><ph keyref="pushVideoFrame_IMediaEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Pushes external raw video frames to the SDK via a video track.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="pushVideoFrame_IMediaEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int pushVideoFrame(base::ExternalVideoFrame* frame, unsigned int videoTrackId = 0) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">To publish a custom video source, follow these steps:
+                <ol>
+                    <li>Call <xref keyref="createCustomVideoTrack"/> to create a video track and obtain the track ID.</li>
+                    <li>Call <codeph>joinChannel</codeph> to join a channel. In <xref keyref="ChannelMediaOptions"/>, set <codeph>customVideoTrackId</codeph> to the track ID and <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/>.</li>
+                    <li>Call <xref keyref="pushVideoFrame_IMediaEngine"/>, and set <codeph>videoTrackId</codeph> to the track ID from step 2 to publish the custom video source in the channel.</li>
+                </ol>
+            </p>
+            <note props="cpp">If you only need to push one custom video source to the channel, you can directly call <xref keyref="setExternalVideoSource_IMediaEngine"/>, and the SDK will automatically create a video track with <codeph>videoTrackId</codeph> set to 0.
+Warning: After calling <xref keyref="pushVideoFrame_IMediaEngine"/>, even if you stop pushing external video frames to the SDK, the custom video stream will still be counted in video duration and incur charges. Agora recommends taking appropriate actions to avoid such billing:
+                <ul>
+                    <li>If you no longer need to capture external video data, call <xref keyref="destroyCustomVideoTrack"/> to destroy the custom video track.</li>
+                    <li>If you only want to use external video data for local preview without publishing it to the channel, call <xref keyref="muteLocalVideoStream"/> to stop sending the video stream, or call <xref keyref="updateChannelMediaOptions"/> to set <codeph>publishCustomVideoTrack</codeph> to <xref keyref="false"/>.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>Since v4.2.3, the SDK supports the <codeph>ID3D11Texture2D</codeph> video format, which is widely used in gaming scenarios. When you need to push such video frames to the SDK, call <xref keyref="pushVideoFrame_IMediaEngine"/>, set <codeph>format</codeph> in <codeph>frame</codeph> to <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph>, set <codeph>d3d11_texture_2d</codeph> and <codeph>texture_slice_index</codeph>, and set the video frame format to <codeph>ID3D11Texture2D</codeph>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>frame</pt>
+                    <pd>The external raw video frame to be pushed. See <xref keyref="ExternalVideoFrame"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoTrackId</pt>
+                    <pd>Video track ID returned by <xref keyref="createCustomVideoTrack"/>.
+                        <note>If you only need to push one custom video source, set <codeph>videoTrackId</codeph> to 0.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

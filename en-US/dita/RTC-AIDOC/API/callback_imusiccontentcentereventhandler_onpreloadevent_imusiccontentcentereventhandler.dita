@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imusiccontentcentereventhandler_onpreloadevent_imusiccontentcentereventhandler">
+    <title><ph keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for events related to preloading music resources.</ph><ph id="shortdesc" props="android">Callback for music resource preload events.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onPreLoadEvent(const char* requestId, int64_t songCode, int percent, const char* lyricUrl, PreloadState state, MusicContentCenterStateReason reason) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">void onPreLoadEvent(String requestId, long songCode, int percent, String lyricUrl, int state, int reason)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling <codeph>preload</codeph> to preload a music resource, the SDK triggers this callback.</p>
+            <p props="android">After calling the <codeph>preload</codeph> method to preload a music resource, the SDK triggers this callback.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered after calling the <codeph>preload</codeph> method.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>requestId</pt>
+                    <pd>The request ID, used to identify this request uniquely.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>songCode</pt>
+                    <pd>The ID of the music resource, used to identify a music item.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>percent</pt>
+                    <pd>The current loading progress of the music resource, ranging from [0, 100].</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>lyricUrl</pt>
+                    <pd>Download URL for the lyrics.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>The current loading state of the music resource. See <xref keyref="PreloadState"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>Request status code from the music content center. See <xref keyref="MusicContentCenterStateReason"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>requestId</pt>
+                    <pd>Request ID, used to uniquely identify the request.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>songCode</pt>
+                    <pd>ID of the music resource, used to identify a music resource.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>percent</pt>
+                    <pd>Current loading progress of the music resource, ranging from [0, 100].</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lyricUrl</pt>
+                    <pd>Download URL of the lyrics.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>Current loading state of the music resource:
+                        <ul>
+                            <li>0: Load completed.</li>
+                            <li>1: Load failed.</li>
+                            <li>2: Loading.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>Request status code from Music Content Center:
+                        <ul>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_OK</codeph> (0): Request successful.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_ERROR</codeph> (1): General error, no specific attribution.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_GATEWAY</codeph> (2): Gateway error. Possible reasons include:
+                                <ul>
+                                    <li>The current temporary token has expired. Please regenerate the token.</li>
+                                    <li>The provided token is invalid. Please ensure you are using a valid token.</li>
+                                    <li>Network error. Please check your network connection.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_PERMISSION_AND_RESOURCE</codeph> (3): Permission error or music resource not found. Please ensure that Music Content Center access permission is enabled for your project. Contact technical support if needed.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_INTERNAL_DATA_PARSE</codeph> (4): Internal data parsing error. Please contact technical support.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_LOADING</codeph> (5): Error occurred while loading music resource. Please contact technical support.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_DECRYPTION</codeph> (6): Error occurred while decrypting music resource. Please contact technical support.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_HTTP_INTERNAL</codeph> (7): Internal HTTP error. Please try again later.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

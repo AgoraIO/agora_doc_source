@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_earmonitoringfiltertype">
+    <title><ph keyref="EAR_MONITORING_FILTER_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Ear monitoring audio filter types.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>EAR_MONITORING_FILTER_NONE</pt>
+                    <pd>(1&lt;&lt;0): No audio filter added in ear monitoring.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS</pt>
+                    <pd>(1&lt;&lt;1): Add vocal effect audio filters in ear monitoring. If you implement features like voice beautifier or effects, users can hear the processed sound.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>EAR_MONITORING_FILTER_NOISE_SUPPRESSION</pt>
+                    <pd>(1&lt;&lt;2): Add noise suppression audio filter in ear monitoring.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>EAR_MONITORING_FILTER_REUSE_POST_PROCESSING_FILTER</pt>
+                    <pd>(1&lt;&lt;15): Reuse post-processed audio filters from the sending end for ear monitoring. Reduces CPU usage but increases ear monitoring latency. Suitable for scenarios that are not sensitive to latency and require low CPU consumption.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

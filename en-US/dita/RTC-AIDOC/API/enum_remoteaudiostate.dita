@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_remoteaudiostate">
+    <title><ph keyref="REMOTE_AUDIO_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Remote audio state.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>REMOTE_AUDIO_STATE_STOPPED</pt>
+                    <pd>(0): Remote audio is in the initial state. SDK reports this state when <codeph>REMOTE_AUDIO_REASON_LOCAL_MUTED</codeph>, <codeph>REMOTE_AUDIO_REASON_REMOTE_MUTED</codeph>, or <codeph>REMOTE_AUDIO_REASON_REMOTE_OFFLINE</codeph> occurs.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>REMOTE_AUDIO_STATE_STARTING</pt>
+                    <pd>(1): The first remote audio packet has been received.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>REMOTE_AUDIO_STATE_DECODING</pt>
+                    <pd>(2): The remote audio stream is decoded and playing normally. SDK reports this state when <codeph>REMOTE_AUDIO_REASON_NETWORK_RECOVERY</codeph>, <codeph>REMOTE_AUDIO_REASON_LOCAL_UNMUTED</codeph>, or <codeph>REMOTE_AUDIO_REASON_REMOTE_UNMUTED</codeph> occurs.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>REMOTE_AUDIO_STATE_FROZEN</pt>
+                    <pd>(3): Remote audio is frozen. SDK reports this state when <codeph>REMOTE_AUDIO_REASON_NETWORK_CONGESTION</codeph> occurs.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>REMOTE_AUDIO_STATE_FAILED</pt>
+                    <pd>(4): Failed to start remote audio. SDK reports this state when <codeph>REMOTE_AUDIO_REASON_INTERNAL</codeph> occurs.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

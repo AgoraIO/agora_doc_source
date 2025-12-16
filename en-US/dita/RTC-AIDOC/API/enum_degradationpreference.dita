@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_degradationpreference">
+    <title><ph keyref="DEGRADATION_PREFERENCE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Video degradation preference when bandwidth is limited.</ph><ph id="shortdesc" props="android">Video degradation preference settings when bandwidth is limited.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>MAINTAIN_AUTO</pt>
+                    <pd>(-1): Auto mode (default). The SDK automatically selects <codeph>MAINTAIN_FRAMERATE</codeph>, <codeph>MAINTAIN_BALANCED</codeph>, or <codeph>MAINTAIN_RESOLUTION</codeph> based on the video scenario to achieve optimal overall QoE.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>MAINTAIN_QUALITY</pt>
+                    <pd>(0): In bandwidth-limited encoding, prioritizes lowering frame rate to maintain resolution. Suitable for scenarios requiring high image quality.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>MAINTAIN_FRAMERATE</pt>
+                    <pd>(1): In bandwidth-limited encoding, prioritizes lowering resolution to maintain frame rate. Suitable for scenarios requiring smoothness and tolerating quality loss.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>MAINTAIN_BALANCED</pt>
+                    <pd>(2): In bandwidth-limited encoding, lowers both frame rate and resolution. Degradation is less than <codeph>MAINTAIN_QUALITY</codeph> and <codeph>MAINTAIN_FRAMERATE</codeph>, suitable for scenarios requiring both smoothness and quality.
+                        <note>The resolution of the video sent may change. Remote users need to handle this. See <xref keyref="onVideoSizeChanged"/> for details and resolution suggestions.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>MAINTAIN_RESOLUTION</pt>
+                    <pd>(3): In bandwidth-limited encoding, prioritizes lowering frame rate to maintain resolution. Suitable for scenarios requiring high image quality.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>DISABLED</pt>
+                    <pd>(100): Disables VQC adjustment.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MAINTAIN_AUTO</pt>
+                    <pd>(-1): (Default) Auto mode. The SDK automatically selects <codeph>MAINTAIN_FRAMERATE</codeph>, <codeph>MAINTAIN_BALANCED</codeph>, or <codeph>MAINTAIN_RESOLUTION</codeph> based on the video scenario to ensure optimal overall QoE.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MAINTAIN_QUALITY</pt>
+                    <pd>(0): When bandwidth is limited, prioritizes maintaining resolution by reducing frame rate. Suitable for scenarios requiring high video quality.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MAINTAIN_FRAMERATE</pt>
+                    <pd>(1): When bandwidth is limited, prioritizes maintaining frame rate by reducing resolution.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MAINTAIN_BALANCED</pt>
+                    <pd>(2): When bandwidth is limited, reduces both frame rate and resolution. The degradation level is lower than <codeph>MAINTAIN_QUALITY</codeph> and <codeph>MAINTAIN_FRAMERATE</codeph>. Suitable for scenarios requiring both smoothness and video quality.
+                        <note>The resolution of the video sent from the sender may change, and the remote user needs to handle this. See <xref keyref="onVideoSizeChanged"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MAINTAIN_RESOLUTION</pt>
+                    <pd>(3): When bandwidth is limited, prioritizes maintaining resolution by reducing frame rate. Suitable for scenarios requiring high video quality.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>DISABLED</pt>
+                    <pd>(100): Disables Video Quality Control (VQC) adjustment.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

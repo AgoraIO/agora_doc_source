@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_registervideoencodedframeobserver_imediaengine">
+    <title><ph keyref="registerVideoEncodedFrameObserver_IMediaEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Registers an observer object to receive encoded video frames.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerVideoEncodedFrameObserver_IMediaEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int registerVideoEncodedFrameObserver(IVideoEncodedFrameObserver* observer) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">If you only need to monitor encoded video frames (such as H.264 format) without decoding and rendering them, it is recommended to register a custom <xref keyref="IVideoEncodedFrameObserver"/> instance using this method.</p>
+            <note props="cpp">Call this method before joining a channel.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>observer</pt>
+                    <pd>Encoded video frame observer object. See <xref keyref="IVideoEncodedFrameObserver"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

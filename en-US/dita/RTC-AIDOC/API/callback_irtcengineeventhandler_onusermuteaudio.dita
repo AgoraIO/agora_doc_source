@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onusermuteaudio">
+    <title><ph keyref="onUserMuteAudio"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for remote user or host stopping or resuming audio stream.</ph><ph id="shortdesc" props="android">Callback when a remote user or host stops or resumes sending audio streams.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserMuteAudio"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onUserMuteAudio(uid_t uid, bool muted)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onUserMuteAudio(int uid, boolean muted)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback is triggered when the remote user calls <xref keyref="muteLocalAudioStream"/> to stop or resume sending the audio stream.</p>
+            <p props="android">This callback is triggered when a remote user calls <xref keyref="muteLocalAudioStream"/>.</p>
+            <note props="cpp">This callback may not work properly when the number of users in a communication scenario or the number of hosts in a live broadcast scenario exceeds 32.</note>
+            <note props="android">When the number of users (in communication scenario) or hosts (in live streaming scenario) in the channel exceeds 32, this callback may not work properly.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when a remote user calls <xref keyref="muteLocalAudioStream"/> to stop or resume sending audio streams.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>The remote user ID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>muted</pt>
+                    <pd>Whether the remote user's audio stream is muted:
+                        <ul>
+                            <li><xref keyref="true"/>: The audio stream is muted.</li>
+                            <li><xref keyref="false"/>: The audio stream is not muted.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>muted</pt>
+                    <pd>Whether the remote user's audio stream is muted:
+                        <ul>
+                            <li><xref keyref="true"/>: Audio stream is muted.</li>
+                            <li><xref keyref="false"/>: Audio stream is not muted.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

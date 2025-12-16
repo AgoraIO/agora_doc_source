@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_clientroleoptions">
+    <title><ph keyref="ClientRoleOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets user role properties.</ph><ph id="shortdesc" props="android">Used to set properties related to user roles.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ClientRoleOptions {
+  AUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class ClientRoleOptions {
+  public int audienceLatencyLevel;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Added since version v3.4.200.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>audienceLatencyLevel</pt>
+                    <pd>Audience latency level in interactive live streaming. See <xref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audienceLatencyLevel</pt>
+                    <pd>Latency level for audience in interactive live streaming:
+                        <ul>
+                            <li><codeph>AUDIENCE_LATENCY_LEVEL_LOW_LATENCY</codeph> (1): Low latency.</li>
+                            <li><codeph>AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY</codeph> (2): Ultra-low latency (default).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

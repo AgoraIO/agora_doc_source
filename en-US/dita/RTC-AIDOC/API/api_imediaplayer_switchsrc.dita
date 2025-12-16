@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_switchsrc">
+    <title><ph keyref="switchSrc"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Switches the currently playing media resource.</ph><ph id="shortdesc" props="android">Switches the currently playing media resource.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="switchSrc"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int switchSrc(const char* src, bool syncPts = true) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int switchSrc(String src, boolean syncPts);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You can call this method to switch the media resource being played based on the current network condition. For example:
+                <ul>
+                    <li>When the network is poor, switch to a lower bitrate media resource;</li>
+                    <li>When the network is good, switch to a higher bitrate media resource.</li>
+                </ul><ph>After calling this method, if the <xref keyref="onPlayerEvent"/> callback reports the <codeph>PLAYER_EVENT_SWITCH_COMPLETE</codeph> event, the switch is successful. If the switch fails, the SDK automatically retries three times. If it still fails, the <xref keyref="onPlayerEvent"/> callback reports the <codeph>PLAYER_EVENT_SWITCH_ERROR</codeph> event, indicating failure.</ph></p>
+            <p props="android">You can call this method to switch the media resource URL being played based on the current network conditions. For example:
+                <ul>
+                    <li>When the network is poor, switch to a lower bitrate media resource.</li>
+                    <li>When the network is good, switch to a higher bitrate media resource.</li>
+                </ul><ph>After calling this method, if you receive the <xref keyref="onPlayerEvent"/> callback reporting the <codeph>PLAYER_EVENT_SWITCH_COMPLETE</codeph> event, the switch is successful. If the switch fails, the SDK will automatically retry 3 times. If it still fails, you will receive the <xref keyref="onPlayerEvent"/> callback reporting the <codeph>PLAYER_EVENT_SWITCH_ERROR</codeph> event, indicating an error occurred during the switch.</ph></p>
+            <note props="cpp">
+                <ul>
+                    <li>Make sure to call this method after calling the <xref keyref="open"/> method.</li>
+                    <li>To ensure normal playback, pay attention to the following when calling this method:
+                        <ul>
+                            <li>Do not call this method while playback is paused;</li>
+                            <li>Do not call the <xref keyref="seek"/> method during the switching process;</li>
+                            <li>Before switching, ensure that the current playback position does not exceed the total duration of the target media resource.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>Make sure to call this method after calling <codeph>open</codeph>.</li>
+                    <li>To ensure normal playback, note the following when calling this method:
+                        <ul>
+                            <li>Do not call this method when playback is paused.</li>
+                            <li>Do not call the <xref keyref="seek"/> method during switching.</li>
+                            <li>Before switching media resources, ensure the playback position does not exceed the total duration of the media to be switched to.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>src</pt>
+                    <pd>The URL of the media resource.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>syncPts</pt>
+                    <pd>Whether to synchronize the playback position before and after the switch (in milliseconds):
+                        <ul>
+                            <li><xref keyref="true"/>: Synchronize the playback position before and after switching.</li>
+                            <li><xref keyref="false"/>: (Default) Do not synchronize the playback position before and after switching.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>src</pt>
+                    <pd>URL of the media resource.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>syncPts</pt>
+                    <pd>Whether to synchronize the playback position before and after the switch (in milliseconds):
+                        <ul>
+                            <li><xref keyref="true"/>: Synchronize the playback position before and after the switch.</li>
+                            <li><xref keyref="false"/>: (Default) Do not synchronize the playback position before and after the switch.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

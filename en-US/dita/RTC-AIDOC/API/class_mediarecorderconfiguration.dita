@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_mediarecorderconfiguration">
+    <title><ph keyref="MediaRecorderConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure recording parameters for audio and video streams.</ph><ph id="shortdesc" props="android">Used to configure parameters for audio and video stream recording.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct MediaRecorderConfiguration {
+  const char* storagePath;
+  MediaRecorderContainerFormat containerFormat;
+  MediaRecorderStreamType streamType;
+  int maxDurationMs;
+  int recorderInfoUpdateInterval;
+  int width;
+  int height;
+  int fps;
+  int sample_rate;
+  int channel_num;
+  agora::rtc::VIDEO_SOURCE_TYPE videoSourceType;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class MediaRecorderConfiguration {
+  public String storagePath;
+  public int containerFormat = CONTAINER_MP4;
+  public int streamType = STREAM_TYPE_BOTH;
+  public int maxDurationMs = 120000;
+  public int recorderInfoUpdateInterval = 0;
+  public int width;
+  public int height;
+  public int fps;
+  public int sample_rate;
+  public int channel_num;
+  public int videoSourceType;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Added since v3.5.2.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v3.5.2.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>storagePath</pt>
+                    <pd>
+                        <note>Make sure the specified path exists and is writable.</note><ph>The absolute path to save the recorded file locally, including the file name and format. For example:</ph>
+                        <ul>
+                            <li>Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.mp4</codeph></li>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
+                            <li>macOS: <codeph>/Library/Logs/example.mp4</codeph></li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.mp4</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>containerFormat</pt>
+                    <pd>The format of the recorded file. See <xref keyref="MediaRecorderContainerFormat"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>streamType</pt>
+                    <pd>The type of content to record. See <xref keyref="MediaRecorderStreamType"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>maxDurationMs</pt>
+                    <pd>The maximum recording duration in milliseconds. The default value is 120000.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>recorderInfoUpdateInterval</pt>
+                    <pd>The time interval for updating recording information, in milliseconds. Valid range is [1000, 10000]. The SDK triggers the <xref keyref="onRecorderInfoUpdated"/> callback based on this value to report recording information updates.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>width</pt>
+                    <pd>The width of the recorded video (in pixels). The maximum value for width × height must not exceed 3840 × 2160. This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> to <codeph>PREVIEW</codeph> in <xref keyref="RecorderStreamInfo"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>The height of the recorded video (in pixels). The maximum value for width × height must not exceed 3840 × 2160. This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> to <codeph>PREVIEW</codeph> in <xref keyref="RecorderStreamInfo"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>fps</pt>
+                    <pd>The frame rate of the recorded video. The maximum value is 30, e.g., 5, 10, 15, 24, 30. This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> to <codeph>PREVIEW</codeph> in <xref keyref="RecorderStreamInfo"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sample_rate</pt>
+                    <pd>The sampling rate (Hz) of the recorded audio. Supported values include: 16000, 32000, 44100, or 48000. This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> to <codeph>PREVIEW</codeph> in <xref keyref="RecorderStreamInfo"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>channel_num</pt>
+                    <pd>The number of audio channels:
+                        <ul>
+                            <li>1: Mono.</li>
+                            <li>2: Stereo.</li>
+                        </ul><ph>This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> to <codeph>PREVIEW</codeph> in <xref keyref="RecorderStreamInfo"/>.</ph></pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoSourceType</pt>
+                    <pd>The type of video source to record. See <xref keyref="VIDEO_SOURCE_TYPE"/>. This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> to <codeph>PREVIEW</codeph> in <xref keyref="RecorderStreamInfo"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>storagePath</pt>
+                    <pd>(Required) Absolute path to save the recording file locally, including file name and extension. For example: Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.mp4</codeph>.
+                        <note>Make sure the specified path exists and is writable.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>containerFormat</pt>
+                    <pd>The container format of the recording file. Currently only supports:
+                        <ul>
+                            <li><codeph>CONTAINER_MP4</codeph>: MP4 format.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>streamType</pt>
+                    <pd>Type of content to record:
+                        <ul>
+                            <li><codeph>STREAM_TYPE_AUDIO</codeph>: Record audio only.</li>
+                            <li><codeph>STREAM_TYPE_VIDEO</codeph>: Record video only.</li>
+                            <li><codeph>STREAM_TYPE_BOTH</codeph>: (Default) Record both audio and video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>maxDurationMs</pt>
+                    <pd>Maximum duration of the recording in milliseconds. Default is 120000.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>recorderInfoUpdateInterval</pt>
+                    <pd>Interval for updating recording information, in milliseconds. Valid range is [1000, 10000]. The SDK triggers the <xref keyref="onRecorderInfoUpdated"/> callback based on this value to update recording information.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>width</pt>
+                    <pd>(Required) Width of the recorded video in pixels. The product of width and height must not exceed 3840 × 2160.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>(Required) Height of the recorded video in pixels. The product of width and height must not exceed 3840 × 2160.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>fps</pt>
+                    <pd>(Required) Frame rate of the recorded video. The maximum frame rate must not exceed 30, e.g., 5, 10, 15, 24, 30, etc.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sample_rate</pt>
+                    <pd>(Required) Sample rate (Hz) of the recorded audio. Can be set to 16000, 32000, 44100, 48000.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channel_num</pt>
+                    <pd>(Required) Number of audio channels:
+                        <ul>
+                            <li>1: Mono.</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoSourceType</pt>
+                    <pd>(Required) Type of video source used for recording. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

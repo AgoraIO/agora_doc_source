@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setvideodenoiseroptions">
+    <title><ph keyref="setVideoDenoiserOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables video denoising.</ph><ph id="shortdesc" props="android">Sets the video denoising feature and its options.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setVideoDenoiserOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setVideoDenoiserOptions(bool enabled, const VideoDenoiserOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setVideoDenoiserOptions(boolean enabled, VideoDenoiserOptions options);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.0.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v3.6.2.</dd>
+                </dlentry>
+            </dl>
+            <p props="android">You can call this method to configure the options for the video denoising effect.</p>
+            <note props="cpp">
+                <ul>
+                    <li>This method depends on the beauty effect dynamic library <xref keyref="clearvision"/>. If this library is deleted, the feature cannot be enabled properly.</li>
+                    <li>Video denoising has certain performance requirements. If your device overheats after enabling video denoising, Agora recommends setting the denoising option to a lower performance consumption level or disabling it entirely.</li>
+                    <li>If the denoising effect provided by this method does not meet your needs, Agora recommends calling <xref keyref="setBeautyEffectOptions"/> to enable beauty and smoothing effects for better video denoising. Recommended <xref keyref="BeautyOptions"/> settings for strong denoising:
+                        <ul>
+                            <li><codeph>lighteningContrastLevel</codeph>: LIGHTENING_CONTRAST_NORMAL.</li>
+                            <li><codeph>lighteningLevel</codeph>: 0.0.</li>
+                            <li><codeph>smoothnessLevel</codeph>: 0.5.</li>
+                            <li><codeph>rednessLevel</codeph>: 0.0.</li>
+                            <li><codeph>sharpnessLevel</codeph>: 0.1.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>This method depends on the beauty effect dynamic library <xref keyref="clearvision"/>. If the library is removed, the feature cannot be enabled properly.</li>
+                    <li>Video denoising requires certain device performance. If enabling it causes device overheating, Agora recommends lowering the performance level of the denoising option or disabling the video denoising feature.</li>
+                    <li>If the denoising effect provided by this method does not meet your needs, Agora recommends calling the <codeph>setBeautyEffectOptions</codeph> method to enable beauty and smoothing effects for better denoising. Recommended <xref keyref="BeautyOptions"/> settings for strong denoising effect:
+                        <ul>
+                            <li><codeph>lighteningContrastLevel</codeph>: <codeph>LIGHTENING_CONTRAST_NORMAL</codeph></li>
+                            <li><codeph>lighteningLevel</codeph>: 0.0</li>
+                            <li><codeph>smoothnessLevel</codeph>: 0.5</li>
+                            <li><codeph>rednessLevel</codeph>: 0.0</li>
+                            <li><codeph>sharpnessLevel</codeph>: 0.1</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In low-light environments or when using low-end video capture devices, video images may exhibit noticeable noise, affecting video quality. In real-time interaction scenarios, video noise also consumes bitrate resources and reduces encoding efficiency. This method is applicable to multi-channel scenarios.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after calling <xref keyref="enableVideo"/>.</p>
+            <p props="android">Call this method after calling <xref keyref="enableVideo"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable video denoising:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable video denoising.</li>
+                            <li><xref keyref="false"/>: (Default) Disable video denoising.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>options</pt>
+                    <pd>Video denoising options. See <xref keyref="VideoDenoiserOptions"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>Media source type. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, only the following two settings are supported:
+                            <ul>
+                                <li>If using a camera to capture local video, use the default <codeph>PRIMARY_CAMERA_SOURCE</codeph>.</li>
+                                <li>If using a custom video source, set this parameter to <codeph>CUSTOM_VIDEO_SOURCE</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable video denoising:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable video denoising.</li>
+                            <li><xref keyref="false"/>: (Default) Disable video denoising.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>Video denoising options. See <xref keyref="VideoDenoiserOptions"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

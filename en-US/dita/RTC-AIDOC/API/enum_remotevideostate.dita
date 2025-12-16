@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_remotevideostate">
+    <title><ph keyref="REMOTE_VIDEO_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Remote video stream states.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>REMOTE_VIDEO_STATE_STOPPED</pt>
+                    <pd>(0): The remote video is in the initial state. The SDK reports this state when <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED</codeph>, or <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE</codeph> occurs.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>REMOTE_VIDEO_STATE_STARTING</pt>
+                    <pd>(1): The first remote video packet has been received.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>REMOTE_VIDEO_STATE_DECODING</pt>
+                    <pd>(2): The remote video stream is decoded and playing normally. The SDK reports this state when <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED</codeph>, or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY</codeph> occurs.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>REMOTE_VIDEO_STATE_FROZEN</pt>
+                    <pd>(3): The remote video is frozen. The SDK reports this state when <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION</codeph> or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK</codeph> occurs.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>REMOTE_VIDEO_STATE_FAILED</pt>
+                    <pd>(4): Failed to start the remote video. The SDK reports this state when <codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL</codeph> occurs.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

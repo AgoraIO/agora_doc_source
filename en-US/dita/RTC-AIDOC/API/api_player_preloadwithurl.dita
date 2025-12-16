@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_player_preloadwithurl">
+    <title><ph keyref="PreloadWithUrl"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Preloads a URL resource.</ph><ph id="shortdesc" props="android">Preloads a URL resource.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="PreloadWithUrl"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">static bool PreloadWithUrl(const char* url, Error *err = nullptr)</codeblock>
+                <codeblock props="android" outputclass="language-java">public static void preloadWithUrl(String url) throws RteException</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">After successful preloading, opening the URL resource via <xref keyref="OpenWithUrl"/> can be faster, reducing wait time and improving the audio-visual experience.</p>
+            <p props="android">Successfully preloading a resource can speed up opening the URL resource with <xref keyref="OpenWithUrl"/>, thereby reducing wait time.</p>
+            <note props="cpp">This method currently only supports URLs starting with <codeph>rte://</codeph>. You can preload up to 20 URLs. If the limit is exceeded, the earliest preloaded URL will be replaced by the newly preloaded one.</note>
+            <note props="android">This method currently only supports URLs prefixed with <codeph>rte://</codeph>. You can preload up to 20 URLs. If the limit is exceeded, the newly preloaded URL replaces the earliest one.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>Preloading before opening a media resource can reduce user wait time and provide a smoother audiovisual experience.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">This method must be called before calling <xref keyref="OpenWithUrl"/>.</p>
+            <p props="android">You must call this method before calling <xref keyref="OpenWithUrl"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>url</pt>
+                    <pd>A URL starting with <codeph>rte://</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>Output parameter for status or error information. See <xref keyref="Error"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>url</pt>
+                    <pd>A URL prefixed with <codeph>rte://</codeph>. For details of each field, see "Input Online Media Stream" on the audience side.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="exception" props="android">
+            <title>Exceptions</title>
+            <p props="android">When the method call fails, the SDK throws an <xref keyref="RteException"/> containing the corresponding error information. You need to catch and handle the exception.</p>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">Whether the preload succeeds:
+                <ul>
+                    <li><xref keyref="true"/>: Preload succeeds.</li>
+                    <li><xref keyref="false"/>: Preload fails.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

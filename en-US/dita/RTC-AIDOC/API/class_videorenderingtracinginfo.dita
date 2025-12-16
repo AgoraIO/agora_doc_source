@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videorenderingtracinginfo">
+    <title><ph keyref="VideoRenderingTracingInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Represents time consumption metrics for each stage during video frame rendering.</ph><ph id="shortdesc" props="android">Collects key metrics for the video frame rendering process.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct VideoRenderingTracingInfo {
+  int elapsedTime;
+  int start2JoinChannel;
+  int join2JoinSuccess;
+  int joinSuccess2RemoteJoined;
+  int remoteJoined2SetView;
+  int remoteJoined2UnmuteVideo;
+  int remoteJoined2PacketReceived;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class VideoRenderingTracingInfo {
+    public int elapsedTime;
+    public int start2JoinChannel;
+    public int join2JoinSuccess;
+    public int joinSuccess2RemoteJoined;
+    public int remoteJoined2SetView;
+    public int remoteJoined2UnmuteVideo;
+    public int remoteJoined2PacketReceived;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>elapsedTime</pt>
+                    <pd>Time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to SDK triggering the <xref keyref="onVideoRenderingTracingResult"/> callback. Agora recommends calling <xref keyref="startMediaRenderingTracing"/> before joining the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>start2JoinChannel</pt>
+                    <pd>Time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to calling <codeph>joinChannel</codeph>. If this value is negative, it means <xref keyref="startMediaRenderingTracing"/> was called after <codeph>joinChannel</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>join2JoinSuccess</pt>
+                    <pd>Time interval (ms) from calling <codeph>joinChannel</codeph> to successfully joining the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>joinSuccess2RemoteJoined</pt>
+                    <pd>Time interval (ms) from successfully joining the channel to the remote user joining, or from calling <xref keyref="startMediaRenderingTracing"/> to the remote user joining, depending on when you call <xref keyref="startMediaRenderingTracing"/>.
+                        <note>If you call <xref keyref="startMediaRenderingTracing"/> after the remote user joins, this value is 0 and meaningless. To reduce the remote user’s first frame rendering time, Agora recommends joining the channel when the remote user is already in the channel to reduce this value.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>remoteJoined2SetView</pt>
+                    <pd>Time interval (ms) from the remote user joining the channel to setting the remote view, or from calling <xref keyref="startMediaRenderingTracing"/> to setting the remote view, depending on when you call <xref keyref="startMediaRenderingTracing"/>.
+                        <note>If you call <xref keyref="startMediaRenderingTracing"/> after setting the remote view, this value is 0 and invalid. To reduce the remote user’s first frame rendering time, Agora recommends setting the remote view before the remote user joins the channel or immediately after they join to reduce this value.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>remoteJoined2UnmuteVideo</pt>
+                    <pd>Time interval (ms) from the remote user joining the channel to you subscribing to the remote video stream, or from calling <xref keyref="startMediaRenderingTracing"/> to subscribing to the remote video stream, depending on when you call <xref keyref="startMediaRenderingTracing"/>.
+                        <note>If you call <xref keyref="startMediaRenderingTracing"/> after subscribing to the remote video stream, this value is 0 and invalid. To reduce the remote user’s first frame rendering time, Agora recommends subscribing to the remote video stream immediately after the remote user joins the channel to reduce this value.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>remoteJoined2PacketReceived</pt>
+                    <pd>Time interval (ms) from the remote user joining the channel to you receiving the remote video stream, or from calling <xref keyref="startMediaRenderingTracing"/> to receiving the remote video stream, depending on when you call <xref keyref="startMediaRenderingTracing"/>.
+                        <note>If you call <xref keyref="startMediaRenderingTracing"/> after receiving the remote video stream, this value is 0 and invalid. To reduce the remote user’s first frame rendering time, Agora recommends the remote user publish the video stream immediately after joining the channel and you subscribe to it immediately to reduce this value.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>elapsedTime</pt>
+                    <pd>Time interval from calling <xref keyref="startMediaRenderingTracing"/> to the SDK triggering the <xref keyref="onVideoRenderingTracingResult"/> callback, in milliseconds. Agora recommends calling <xref keyref="startMediaRenderingTracing"/> before joining the channel.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>start2JoinChannel</pt>
+                    <pd>Time interval from calling <xref keyref="startMediaRenderingTracing"/> to calling <codeph>joinChannel</codeph>, in milliseconds. If negative, it indicates <codeph>joinChannel</codeph> was called before <xref keyref="startMediaRenderingTracing"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>join2JoinSuccess</pt>
+                    <pd>Time interval from calling <codeph>joinChannel</codeph> to successfully joining the channel, in milliseconds.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>joinSuccess2RemoteJoined</pt>
+                    <pd>If the local user calls <xref keyref="startMediaRenderingTracing"/> before successfully joining the channel, this field indicates the time interval from the local user joining the channel to the remote user joining, in milliseconds. If the local user calls <xref keyref="startMediaRenderingTracing"/> after joining the channel, it indicates the time interval from calling <xref keyref="startMediaRenderingTracing"/> to the remote user joining, in milliseconds.
+                        <note>If the local user calls <xref keyref="startMediaRenderingTracing"/> after the remote user has joined the channel, this value is 0 and has no practical meaning. To reduce the first frame rendering time for the remote user, Agora recommends allowing the local user to join the channel after the remote user has joined, to minimize this value.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>remoteJoined2SetView</pt>
+                    <pd>If the local user calls <xref keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this field indicates the time interval from the remote user joining to the local user setting the remote view, in milliseconds. If the local user calls <xref keyref="startMediaRenderingTracing"/> after the remote user has joined, it indicates the time interval from calling <xref keyref="startMediaRenderingTracing"/> to setting the remote view, in milliseconds.
+                        <note>If the local user calls <xref keyref="startMediaRenderingTracing"/> after setting the remote view, this value is 0 and invalid. To reduce the remote user's first frame rendering time, Agora recommends setting the remote view before the remote user joins the channel or immediately after the remote user joins, to minimize this value.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>remoteJoined2UnmuteVideo</pt>
+                    <pd>If the local user calls <xref keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this field indicates the time interval from the remote user joining to the local user subscribing to the remote video stream, in milliseconds. If the local user calls <xref keyref="startMediaRenderingTracing"/> after the remote user has joined, it indicates the time interval from calling <xref keyref="startMediaRenderingTracing"/> to subscribing to the remote video stream, in milliseconds.
+                        <note>If <xref keyref="startMediaRenderingTracing"/> is called after the local user subscribes to the remote video stream, this value is 0 and invalid. To reduce the remote user's first frame rendering time, Agora recommends subscribing to the remote video stream immediately after the remote user joins the channel, to shorten this value.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>remoteJoined2PacketReceived</pt>
+                    <pd>If the local user calls <xref keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this field indicates the time interval from the remote user joining to the local user receiving the remote video, in milliseconds. If the local user calls <xref keyref="startMediaRenderingTracing"/> after the remote user has joined, it indicates the time interval from calling <xref keyref="startMediaRenderingTracing"/> to receiving the remote video stream, in milliseconds.
+                        <note>If the local user calls <xref keyref="startMediaRenderingTracing"/> after receiving the remote video stream, this value is 0 and invalid. To reduce the remote user's first frame rendering latency, Agora recommends the remote user send video immediately after joining the channel, and the local user subscribe to the video stream immediately, to minimize this value.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
