@@ -35,14 +35,12 @@
                 <plentry props="electron">
                     <pt>jsonOption</pt>
                     <pd>
-                        <note>声网会根据你在 <codeph>sceneType</codeph> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 [计费说明](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <codeph>sceneType</codeph> 的值。</note><ph>扩展 JSON 字段，默认为 null。目前支持传入下列值：</ph><ph>| Key 值 | Value 值 | 示例 |</ph><ph>| --- | --- | --- |</ph><ph>| sceneType | 场景类型：</ph>
+                        <note>声网会根据你在 <codeph>sceneType</codeph> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 [计费说明](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <codeph>sceneType</codeph> 的值。</note><ph>扩展 JSON 字段，默认为 null。目前支持传入下列值：</ph>
                         <ul>
-                            <li>1：直播场景：K 歌及背景音乐播放。</li>
-                            <li>2：直播场景：背景音乐播放。</li>
-                            <li>3：（默认）语聊场景：K 歌。</li>
-                            <li>4：语聊场景：背景音乐播放。</li>
-                            <li>5：VR 场景：K 歌及背景音乐播放。</li>
-                        </ul><ph>声网会根据你在 <codeph>sceneType</codeph> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 [计费说明](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <codeph>sceneType</codeph> 的值。 | {"sceneType":1} |</ph><ph>| highPart | 副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取副歌片段的索引然后传值。索引序号从 0 开始。 | {"format": {"highpart": 0}} |</ph></pd>
+                            <li>sceneType：场景类型。1：直播场景，在线 K 歌房和背景音乐播放；2：直播场景，背景音乐播放；3：（默认）声动语聊场景，在线 K 歌房；4：声动语聊场景，背景音乐播放；5：VR 场景，在线 K 歌房和背景音乐播放。示例：<codeph>{"sceneType":1}</codeph>。</li>
+                            <li>highPart：副歌片段的索引，从 <xref keyref="onMusicCollectionResult"/> 回调中获取，索引从 0 开始。示例：<codeph>{"format": {"highpart": 0}}</codeph>。</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="rn">
                     <pt>songCode</pt>
@@ -51,14 +49,12 @@
                 <plentry props="rn">
                     <pt>jsonOption</pt>
                     <pd>
-                        <note>声网会根据你在 <codeph>sceneType</codeph> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 [计费说明](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <codeph>sceneType</codeph> 的值。</note><ph>扩展 JSON 字段，默认为 null。目前支持传入下列值：</ph><ph>| Key 值 | Value 值 | 示例 |</ph><ph>| --- | --- | --- |</ph><ph>| sceneType | 场景类型：</ph>
+                        <note>声网会根据你在 <codeph>sceneType</codeph> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 [计费说明](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <codeph>sceneType</codeph> 的值。</note><ph>扩展 JSON 字段，默认为 null。目前支持传入下列值：</ph>
                         <ul>
-                            <li>1：直播场景：K 歌及背景音乐播放。</li>
-                            <li>2：直播场景：背景音乐播放。</li>
-                            <li>3：（默认）语聊场景：K 歌。</li>
-                            <li>4：语聊场景：背景音乐播放。</li>
-                            <li>5：VR 场景：K 歌及背景音乐播放。</li>
-                        </ul><ph>声网会根据你在 <codeph>sceneType</codeph> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 [计费说明](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <codeph>sceneType</codeph> 的值。 | {"sceneType":1} |</ph><ph>| highPart | 副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取副歌片段的索引然后传值。索引序号从 0 开始。 | {"format": {"highpart": 0}} |</ph></pd>
+                            <li>sceneType：场景类型。1：直播场景，在线 K 歌房和背景音乐播放；2：直播场景，背景音乐播放；3：（默认）声动语聊场景，在线 K 歌房；4：声动语聊场景，背景音乐播放；5：VR 场景，在线 K 歌房和背景音乐播放。示例：<codeph>{"sceneType":1}</codeph>。</li>
+                            <li>highPart：副歌片段的索引，从 <xref keyref="onMusicCollectionResult"/> 回调中获取，索引从 0 开始。示例：<codeph>{"format": {"highpart": 0}}</codeph>。</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>songCode</pt>
@@ -67,14 +63,12 @@
                 <plentry props="flutter">
                     <pt>jsonOption</pt>
                     <pd>
-                        <note>声网会根据你在 <codeph>sceneType</codeph> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 [计费说明](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <codeph>sceneType</codeph> 的值。</note><ph>扩展 JSON 字段，默认为 <codeph><ph keyref="NULL"/></codeph>。目前支持传入下列值：</ph><ph>| Key 值 | Value 值 | 示例 |</ph><ph>| --- | --- | --- |</ph><ph>| sceneType | 场景类型：</ph>
+                        <note>声网会根据你在 <codeph>sceneType</codeph> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 [计费说明](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <codeph>sceneType</codeph> 的值。</note><ph>扩展 JSON 字段，默认为 <codeph><ph keyref="NULL"/></codeph>。目前支持传入下列值：</ph>
                         <ul>
-                            <li>1：直播场景：K 歌及背景音乐播放。</li>
-                            <li>2：直播场景：背景音乐播放。</li>
-                            <li>3：（默认）语聊场景：K 歌。</li>
-                            <li>4：语聊场景：背景音乐播放。</li>
-                            <li>5：VR 场景：K 歌及背景音乐播放。</li>
-                        </ul><ph>声网会根据你在 <codeph>sceneType</codeph> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 [计费说明](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <codeph>sceneType</codeph> 的值。 | {"sceneType":1} |</ph><ph>| highPart | 副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取副歌片段的索引然后传值。索引序号从 0 开始。 | {"format": {"highpart": 0}} |</ph></pd>
+                            <li>sceneType：场景类型。1：直播场景，在线 K 歌房和背景音乐播放；2：直播场景，背景音乐播放；3：（默认）声动语聊场景，在线 K 歌房；4：声动语聊场景，背景音乐播放；5：VR 场景，在线 K 歌房和背景音乐播放。示例：<codeph>{"sceneType":1}</codeph>。</li>
+                            <li>highPart：副歌片段的索引，从 <xref keyref="onMusicCollectionResult"/> 回调中获取，索引从 0 开始。示例：<codeph>{"format": {"highpart": 0}}</codeph>。</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>songCode</pt>
@@ -83,14 +77,12 @@
                 <plentry props="unity">
                     <pt>jsonOption</pt>
                     <pd>
-                        <note>声网会根据你在 <codeph>sceneType</codeph> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 [计费说明](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <codeph>sceneType</codeph> 的值。</note><ph>扩展 JSON 字段，默认为 <codeph><ph keyref="NULL"/></codeph>。目前支持传入下列值：</ph><ph>| Key 值 | Value 值 | 示例 |</ph><ph>| --- | --- | --- |</ph><ph>| sceneType | 场景类型：</ph>
+                        <note>声网会根据你在 <codeph>sceneType</codeph> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 [计费说明](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <codeph>sceneType</codeph> 的值。</note><ph>扩展 JSON 字段，默认为 <codeph><ph keyref="NULL"/></codeph>。目前支持传入下列值：</ph>
                         <ul>
-                            <li>1：直播场景：K 歌及背景音乐播放。</li>
-                            <li>2：直播场景：背景音乐播放。</li>
-                            <li>3：（默认）语聊场景：K 歌。</li>
-                            <li>4：语聊场景：背景音乐播放。</li>
-                            <li>5：VR 场景：K 歌及背景音乐播放。</li>
-                        </ul><ph>声网会根据你在 <codeph>sceneType</codeph> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 [计费说明](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <codeph>sceneType</codeph> 的值。 | {"sceneType":1} |</ph><ph>| highPart | 副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取副歌片段的索引然后传值。索引序号从 0 开始。 | {"format": {"highpart": 0}} |</ph></pd>
+                            <li>sceneType：场景类型。1：直播场景，在线 K 歌房和背景音乐播放；2：直播场景，背景音乐播放；3：（默认）声动语聊场景，在线 K 歌房；4：声动语聊场景，背景音乐播放；5：VR 场景，在线 K 歌房和背景音乐播放。示例：<codeph>{"sceneType":1}</codeph>。</li>
+                            <li>highPart：副歌片段的索引，从 <codeph>onMusicCollectionResult</codeph> 回调中获取，索引从 0 开始。示例：<codeph>{"format": {"highpart": 0}}</codeph>。</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>internalSongCode</pt>
