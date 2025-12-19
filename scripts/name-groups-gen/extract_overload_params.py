@@ -24,18 +24,34 @@ class OverloadParameterExtractor:
     def __init__(self):
         # Platform mapping: JSON platform name -> keysmap file suffix
         self.platform_mapping = {
+            'electron': 'electron',
+            'flutter': 'flutter',
+            'rn': 'rn',
+            'unity': 'unity',
+            'csharp': 'unity',
+            'unreal-cpp': 'unreal',
+            'unreal-bp': 'blueprint',
             'windows': 'cpp',
-            'android': 'java',
             'ios': 'ios',
-            'macos': 'macos'
+            'android': 'java',
+            'macos': 'macos',
+            'harmonyos': 'harmony'
         }
         
         # Platform props mapping for DITA files (one-to-one)
         self.platform_props = {
+            'electron': ['electron'],
+            'flutter': ['flutter'],
+            'rn': ['rn'],
+            'unity': ['unity'],
+            'csharp': ['cs'],
+            'unreal-cpp': ['unreal'],
+            'unreal-bp': ['bp'],
             'windows': ['cpp'],
-            'android': ['android'],
             'ios': ['ios'],
-            'macos': ['mac']
+            'android': ['android'],
+            'macos': ['mac'],
+            'harmonyos': ['hmos']
         }
         
         # Cache for parsed DITA files to avoid re-parsing
@@ -533,7 +549,7 @@ class OverloadParameterExtractor:
         except Exception as e:
             logger.error(f"Error saving updated JSON to {output_file}: {e}")
     
-    def run(self, input_file: str = "name_groups.json", output_file: str = "name_groups_overload.json") -> None:
+    def run(self, input_file: str = "name_groups.json", output_file: str = "name_groups.json") -> None:
         """
         Run the complete overload parameter extraction process.
         

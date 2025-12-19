@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setainsmode">
+    <title><ph keyref="setAINSMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables AI noise suppression and sets the suppression mode.</ph><ph id="shortdesc" props="android">Enables or disables the AI noise reduction feature and sets the noise reduction mode.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAINSMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setAINSMode(bool enabled,  AUDIO_AINS_MODE mode) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setAINSMode(boolean enabled, int mode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You can call this method to enable AI noise suppression. Once enabled, the SDK automatically detects and reduces both stationary and non-stationary noise in the audio while preserving voice quality.
+Stationary noise refers to noise signals with constant average statistical characteristics and minimal amplitude fluctuation over time. Common sources include:
+                <ul>
+                    <li>TV;</li>
+                    <li>Air conditioners;</li>
+                    <li>Mechanical equipment, etc.</li>
+                </ul><ph>Non-stationary noise refers to noise signals with large amplitude fluctuations over time. Common sources include:</ph>
+                <ul>
+                    <li>Thunder;</li>
+                    <li>Explosions;</li>
+                    <li>Cracking sounds, etc.</li>
+                </ul>
+            </p>
+            <p props="android">You can call this method to enable the AI noise reduction feature. Once enabled, the SDK automatically detects and reduces both stationary and non-stationary noise in the audio while preserving voice quality.
+                <ul>
+                    <li>Stationary noise refers to noise signals with consistent statistical characteristics and minimal amplitude fluctuation over time. Common sources include:
+                        <ul>
+                            <li>TV;</li>
+                            <li>Air conditioners;</li>
+                            <li>Mechanical equipment.</li>
+                        </ul>
+                    </li>
+                    <li>Non-stationary noise refers to noise signals with large amplitude fluctuations over time. Common sources include:
+                        <ul>
+                            <li>Thunder;</li>
+                            <li>Explosions;</li>
+                            <li>Cracking sounds.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <note props="cpp">
+                <ul>
+                    <li>This method depends on the AI noise suppression dynamic library <xref keyref="noisesuppression"/>. If the library is deleted, the feature cannot be enabled.</li>
+                    <li>Agora does not recommend enabling this feature on devices running Android 6.0 or lower.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>This method depends on the AI noise suppression dynamic library <xref keyref="noisesuppression"/>. If the library is removed, the feature cannot be enabled.</li>
+                    <li>Agora does not recommend enabling this feature on devices running Android 6.0 or lower.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In scenarios such as co-hosting, online education, and video conferencing, this feature can detect and reduce background noise to improve the experience.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You can call this method before or after joining a channel.</p>
+            <p props="android">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable AI noise suppression:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable AI noise suppression.</li>
+                            <li><xref keyref="false"/>: (Default) Disable AI noise suppression.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mode</pt>
+                    <pd>AI noise suppression mode. See <xref keyref="AUDIO_AINS_MODE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable AI noise reduction:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable AI noise reduction.</li>
+                            <li><xref keyref="false"/>: (Default) Disable AI noise reduction.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mode</pt>
+                    <pd>AI noise reduction mode:
+                        <ul>
+                            <li>0: (Default) Balanced mode. Balances noise reduction performance and latency.</li>
+                            <li>1: Aggressive mode. Suitable for scenarios requiring strong noise reduction, such as outdoor live streaming. Offers stronger noise reduction but may affect the original audio characteristics.</li>
+                            <li>2: Low-latency aggressive mode. Offers about half the latency of the balanced and aggressive modes. Suitable for scenarios requiring low-latency noise reduction, such as real-time online chorus.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

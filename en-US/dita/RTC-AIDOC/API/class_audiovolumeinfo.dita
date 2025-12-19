@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audiovolumeinfo">
+    <title><ph keyref="AudioVolumeInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to retrieve user volume information.</ph><ph id="shortdesc" props="android">Represents the user's volume information.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct AudioVolumeInfo {
+  uid_t uid;
+  unsigned int volume;
+  unsigned int vad;
+  double voicePitch;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class AudioVolumeInfo {
+  public int uid;
+  public int volume;
+  public int vad;
+  public double voicePitch;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>User ID.
+                        <ul>
+                            <li>In the callback for the local user, <codeph>uid</codeph> is 0.</li>
+                            <li>In the callback for remote users, <codeph>uid</codeph> is the ID of the remote user with the highest instantaneous volume.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>volume</pt>
+                    <pd>User's volume, ranging from 0 (lowest) to 255 (highest).
+                        <ul>
+                            <li>If the local user has enabled audio capture and called <xref keyref="muteLocalAudioStream"/> to mute, this value represents the volume of the captured audio signal.</li>
+                            <li>If the user has called <codeph>startAudioMixing</codeph>, this value represents the mixed audio volume.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>vad</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>The <codeph>vad</codeph> parameter does not report the voice activity status of remote users. In callbacks for remote users, this value is always 1.</li>
+                                <li>To use this parameter, you must set <codeph>reportVad</codeph> to <xref keyref="true"/> when calling <xref keyref="enableAudioVolumeIndication"/>.</li>
+                            </ul>
+                        </note><ph>Voice activity status of the local user.</ph>
+                        <ul>
+                            <li>0: The local user is not speaking.</li>
+                            <li>1: The local user is speaking.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>voicePitch</pt>
+                    <pd>Voice pitch of the local user, ranging from 0.0 to 4000.0.
+                        <note>The <codeph>voicePitch</codeph> parameter does not report the voice pitch of remote users. In callbacks for remote users, this value is always 0.0.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID.
+                        <ul>
+                            <li>In the callback for the local user, <codeph>uid</codeph> is 0.</li>
+                            <li>In the callback for remote users, <codeph>uid</codeph> is the ID of the remote user with the highest instantaneous volume.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>volume</pt>
+                    <pd>User's volume, ranging from 0 (lowest) to 255 (highest). If the local user enables audio capture and calls <xref keyref="muteLocalAudioStream"/> to mute, this value represents the volume of the locally captured audio signal. After calling <codeph>startAudioMixing</codeph>, this value represents the mixed audio volume.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>vad</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>The <codeph>vad</codeph> parameter does not report the voice activity state of remote users. In the callback for remote users, this value is always 1.</li>
+                                <li>To use this parameter, you must set <codeph>reportVad</codeph> to <xref keyref="true"/> when calling <xref keyref="enableAudioVolumeIndication"/>.</li>
+                            </ul>
+                        </note><ph>Voice activity state of the local user:</ph>
+                        <ul>
+                            <li>0: Not speaking;</li>
+                            <li>1: Speaking.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>voicePitch</pt>
+                    <pd>Voice pitch of the local user, ranging from 0.0 to 4000.0.
+                        <note>The <codeph>voicePitch</codeph> parameter does not report the voice pitch of remote users. In the callback for remote users, this value is always 0.0.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

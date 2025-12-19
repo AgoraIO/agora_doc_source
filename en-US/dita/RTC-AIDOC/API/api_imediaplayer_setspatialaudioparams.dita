@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setspatialaudioparams">
+    <title><ph keyref="setSpatialAudioParams"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables spatial audio for the media player.</ph><ph id="shortdesc" props="android">Enables or disables spatial audio for the media player.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setSpatialAudioParams"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setSpatialAudioParams(const SpatialAudioParams&amp; params) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int setSpatialAudioParams(SpatialAudioParams params);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After successfully calling this method to set the spatial audio parameters of the media player, the SDK enables spatial audio for the media player, allowing the local user to hear spatialized media resources. To disable spatial audio, set <codeph>params</codeph> to <xref keyref="NULL"/>.</p>
+            <p props="android">To disable spatial audio, set the <codeph>params</codeph> parameter to <codeph>null</codeph>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>params</pt>
+                    <pd>The spatial audio parameters of the media player. See <xref keyref="SpatialAudioParams"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>params</pt>
+                    <pd>The spatial audio parameters for the media player. See <xref keyref="SpatialAudioParams"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

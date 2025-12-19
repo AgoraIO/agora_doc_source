@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setfiltereffectoptions">
+    <title><ph keyref="setFilterEffectOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets filter effect options and specifies the media source.</ph><ph id="shortdesc" props="android">Sets filter effect parameters and specifies the media source.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setFilterEffectOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setFilterEffectOptions(bool enabled, const FilterEffectOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setFilterEffectOptions(boolean enabled, FilterEffectOptions options, Constants.MediaSourceType sourceType);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.1.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.1.</dd>
+                </dlentry>
+            </dl>
+            <p props="android">This method allows you to set filter effect parameters and specify the media source to which the filter effect is applied.</p>
+            <note props="cpp">This method depends on the beauty effect dynamic library <xref keyref="clearvision"/>. If the library is deleted, this feature cannot be enabled properly.
+This feature requires high device performance. When this method is called, the SDK automatically detects the device's performance capability.</note>
+            <note props="android">
+                <ul>
+                    <li>This method is only applicable to Android 5.0 or later.</li>
+                    <li>This method depends on the beauty effect dynamic library <xref keyref="clearvision"/>. If the library is deleted, this feature cannot be enabled properly.</li>
+                    <li>This feature requires high device performance. When calling this method, the SDK automatically detects the device capabilities.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after calling <xref keyref="enableVideo"/>.</p>
+            <p props="android">Call this method after calling <xref keyref="enableVideo"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the filter effect:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable.</li>
+                            <li><xref keyref="false"/>: (Default) Disable.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>options</pt>
+                    <pd>Filter effect options. See <xref keyref="FilterEffectOptions"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>The media source type to apply the filter effect to. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <ul>
+                            <li>If using the camera to capture local video, use the default value <codeph>PRIMARY_CAMERA_SOURCE</codeph>.</li>
+                            <li>If using a custom video source, set to <codeph>CUSTOM_VIDEO_SOURCE</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the filter effect:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable.</li>
+                            <li><xref keyref="false"/>: (Default) Disable.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>Filter effect parameters. See <xref keyref="FilterEffectOptions"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>The media source type to which the filter effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>This parameter only supports the following two settings:
+                            <ul>
+                                <li>If using the camera to capture local video, use the default value <codeph>PRIMARY_CAMERA_SOURCE</codeph>.</li>
+                                <li>If using a custom video source, set to <codeph>CUSTOM_VIDEO_SOURCE</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

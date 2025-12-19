@@ -1,0 +1,568 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_errorcodetype">
+    <title><ph keyref="ERROR_CODE_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">错误码。</ph><ph id="shortdesc" props="ios">错误码。</ph><ph id="shortdesc" props="mac">错误码。</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>ERR_OK</pt>
+                    <pd>（0）：无错误。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_FAILED</pt>
+                    <pd>（1）：通用错误，原因未分类。请重试该方法。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_INVALID_ARGUMENT</pt>
+                    <pd>（2）：参数无效。例如，频道名包含非法字符。请重新设置参数。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NOT_READY</pt>
+                    <pd>（3）：SDK 未就绪。可能原因包括：<xref keyref="IRtcEngine"/> 初始化失败；调用方法时尚未加入频道；调用 <xref keyref="rate"/> 或 <xref keyref="complain"/> 时用户尚未离开频道；音频模块被禁用；程序不完整。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NOT_SUPPORTED</pt>
+                    <pd>（4）：<xref keyref="IRtcEngine"/> 不支持该请求。可能原因包括：内置加密模式设置错误，或 SDK 加载外部加密库失败。请检查加密模式设置或重新加载外部加密库。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_REFUSED</pt>
+                    <pd>（5）：请求被拒绝。可能原因包括：<xref keyref="IRtcEngine"/> 初始化失败；加入频道时频道名为空；调用 <xref keyref="joinChannelEx"/> 加入多个频道时频道名已被使用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_BUFFER_TOO_SMALL</pt>
+                    <pd>（6）：缓冲区大小不足，无法存储返回数据。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NOT_INITIALIZED</pt>
+                    <pd>（7）：在 <xref keyref="IRtcEngine"/> 初始化前调用了方法。请确保在调用该方法前已初始化 <xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_INVALID_STATE</pt>
+                    <pd>（8）：状态无效。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NO_PERMISSION</pt>
+                    <pd>（9）：无访问权限。请检查应用是否已获取音视频设备权限。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_TIMEDOUT</pt>
+                    <pd>（10）：请求超时。部分 API 调用需要 SDK 返回执行结果，若超过 10 秒未返回，则触发该错误。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_CANCELED</pt>
+                    <pd>（11）：请求被取消。该错误仅用于内部，不通过任何方法或回调返回给应用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_TOO_OFTEN</pt>
+                    <pd>（12）：方法调用过于频繁。该错误仅用于内部，不通过任何方法或回调返回给应用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_BIND_SOCKET</pt>
+                    <pd>（13）：SDK 绑定网络 socket 失败。该错误仅用于内部，不通过任何方法或回调返回给应用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NET_DOWN</pt>
+                    <pd>（14）：网络不可用。该错误仅用于内部，不通过任何方法或回调返回给应用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_JOIN_CHANNEL_REJECTED</pt>
+                    <pd>（17）：加入频道请求被拒绝。可能原因包括：用户已在频道中；调用 <xref keyref="startEchoTest3"/> 后未调用 <xref keyref="stopEchoTest"/> 就尝试加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_LEAVE_CHANNEL_REJECTED</pt>
+                    <pd>（18）：离开频道失败。可能原因包括：调用 <codeph>leaveChannel</codeph> 前用户已离开频道；在加入频道前调用了 <codeph>leaveChannel</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ALREADY_IN_USE</pt>
+                    <pd>（19）：资源已被使用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ABORTED</pt>
+                    <pd>（20）：请求被 SDK 放弃，可能由于请求发送过于频繁。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_INIT_NET_ENGINE</pt>
+                    <pd>（21）：<xref keyref="IRtcEngine"/> 初始化失败并崩溃，可能由于特定 Windows 防火墙设置导致。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_RESOURCE_LIMITED</pt>
+                    <pd>（22）：SDK 分配资源失败，可能由于应用使用了过多系统资源或系统资源不足。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_INVALID_CHANNEL_NAME</pt>
+                    <pd>（102）：指定的频道名无效。可能的原因是参数类型不正确。请使用有效的频道名重新加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NO_SERVER_RESOURCES</pt>
+                    <pd>（103）：无法获取指定区域的服务器资源。初始化 IRtcEngine 时请尝试使用其他区域。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_TOKEN_EXPIRED</pt>
+                    <pd>（109）：当前 Token 已过期。请在服务器上申请新的 Token，并调用 renewToken 方法。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_INVALID_TOKEN</pt>
+                    <pd>（110）：无效的 Token。常见原因包括：
+                        <ul>
+                            <li>在声网控制台启用了 App 证书，但代码仍使用 App ID 进行鉴权。启用 App 证书后，项目必须使用 Token 鉴权。</li>
+                            <li>用于生成 Token 的 uid 与加入频道时使用的 uid 不一致。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_CONNECTION_INTERRUPTED</pt>
+                    <pd>（111）：网络连接中断。建立连接后，如果客户端实例与服务器断开连接超过 4 秒，SDK 会触发该回调。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_CONNECTION_LOST</pt>
+                    <pd>（112）：网络连接丢失。连接中断后，如果客户端实例在 10 秒内无法重新连接到声网边缘服务器，会触发该错误。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_NOT_IN_CHANNEL</pt>
+                    <pd>（113）：调用 sendStreamMessage 方法时，用户不在频道中。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_SIZE_TOO_LARGE</pt>
+                    <pd>（114）：调用 sendStreamMessage 方法时，数据大小超过 1 KB。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_BITRATE_LIMIT</pt>
+                    <pd>（115）：调用 sendStreamMessage 方法时，数据比特率超过 6 KB/s。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_TOO_MANY_DATA_STREAMS</pt>
+                    <pd>（116）：调用 createDataStream(int* streamId, const DataStreamConfig&amp; config) 方法时，创建了超过五个数据流。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_STREAM_MESSAGE_TIMEOUT</pt>
+                    <pd>（117）：数据流传输超时。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_SET_CLIENT_ROLE_NOT_AUTHORIZED</pt>
+                    <pd>（119）：切换角色失败。请尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_DECRYPTION_FAILED</pt>
+                    <pd>（120）：媒体流解密失败。用户可能使用了错误的密码加入频道。请检查输入的密码，或建议用户重新加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_INVALID_USER_ID</pt>
+                    <pd>（121）：用户 ID 无效。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_DATASTREAM_DECRYPTION_FAILED</pt>
+                    <pd>（122）：数据流解密失败。用户可能使用了错误的密码加入频道。请检查输入的密码，或建议用户重新加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_CLIENT_IS_BANNED_BY_SERVER</pt>
+                    <pd>（123）：用户被服务器封禁。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH</pt>
+                    <pd>（130）：SDK 不支持将加密流推送到 CDN。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_LOAD_MEDIA_ENGINE</pt>
+                    <pd>（1001）：加载媒体引擎失败。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ADM_GENERAL_ERROR</pt>
+                    <pd>（1005）：发生通用错误（无具体原因）。请检查音频设备是否被其他应用占用，或尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ADM_INIT_PLAYOUT</pt>
+                    <pd>（1008）：初始化播放设备时发生错误。请检查播放设备是否被其他应用占用，或尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ADM_START_PLAYOUT</pt>
+                    <pd>（1009）：启动播放设备时发生错误。请检查播放设备。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ADM_STOP_PLAYOUT</pt>
+                    <pd>（1010）：停止播放设备时发生错误。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ADM_INIT_RECORDING</pt>
+                    <pd>（1011）：初始化录制设备时发生错误。请检查录制设备，或尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ADM_START_RECORDING</pt>
+                    <pd>（1012）：启动录制设备时发生错误。请检查录制设备。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_ADM_STOP_RECORDING</pt>
+                    <pd>（1013）：停止录制设备时发生错误。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ERR_VDM_CAMERA_NOT_AUTHORIZED</pt>
+                    <pd>（1501）：未授予访问摄像头的权限。请检查是否已授予摄像头权限。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeNoError</pt>
+                    <pd>（0）：无错误。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeFailed</pt>
+                    <pd>（1）：通用错误，原因未分类。请重试调用该方法。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeInvalidArgument</pt>
+                    <pd>（2）：参数无效。例如，频道名包含非法字符。请重新设置参数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeNotReady</pt>
+                    <pd>（3）：SDK 尚未就绪。可能的原因包括：<xref keyref="IRtcEngine"/> 初始化失败；调用方法时无用户加入频道；调用 <xref keyref="rate"/> 或 <xref keyref="complain"/> 方法时用户尚未离开频道；音频模块被禁用；程序不完整。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeNotSupported</pt>
+                    <pd>（4）：<xref keyref="IRtcEngine"/> 不支持该请求。可能的原因包括：内置加密模式设置错误，或 SDK 加载外部加密库失败。请检查加密模式设置或重新加载外部加密库。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeRefused</pt>
+                    <pd>（5）：请求被拒绝。可能的原因包括：<xref keyref="IRtcEngine"/> 初始化失败；加入频道时频道名为空字符串 <codeph>""</codeph>；调用 <xref keyref="joinChannelEx"/> 方法加入多个频道时，指定的频道名已被使用。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeBufferTooSmall</pt>
+                    <pd>（6）：缓冲区大小不足，无法存储返回数据。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeNotInitialized</pt>
+                    <pd>（7）：在 <xref keyref="IRtcEngine"/> 初始化前调用了方法。请确保在调用该方法前已初始化 <xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeInvalidState</pt>
+                    <pd>（8）：状态无效。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeNoPermission</pt>
+                    <pd>（9）：无访问权限。请检查应用是否已获得音视频设备的访问权限。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeTimedOut</pt>
+                    <pd>（10）：超时错误。部分 API 调用需要 SDK 返回执行结果，若超过 10 秒未返回，则触发该错误。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeJoinChannelRejected</pt>
+                    <pd>（17）：加入频道请求被拒绝。可能的原因包括：用户已在频道中。建议通过 connectionChangedToState:reason: 回调判断用户是否在频道中，除非收到 AgoraConnectionStateDisconnected（1）状态，否则不要调用此方法加入频道；调用 startEchoTestWithConfig: 进行通话测试后，未调用 stopEchoTest 结束测试就尝试加入频道。要加入频道，必须先调用 stopEchoTest 结束测试。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeLeaveChannelRejected</pt>
+                    <pd>（18）：离开频道失败。可能的原因包括：在调用 leaveChannel:leaveChannelBlock: 方法前用户已离开频道，建议停止调用此方法以清除错误；在加入频道前调用了 leaveChannel:leaveChannelBlock: 方法，此情况下无需额外操作。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAlreadyInUse</pt>
+                    <pd>（19）：资源已被占用。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAbort</pt>
+                    <pd>（20）：请求被 SDK 放弃，可能是因为请求发送过于频繁。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeInitNetEngine</pt>
+                    <pd>（21）：由于特定的 Windows 防火墙设置，AgoraRtcEngineKit 初始化失败并崩溃。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeResourceLimited</pt>
+                    <pd>（22）：由于应用程序使用了过多系统资源或系统资源不足，SDK 分配资源失败。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeInvalidAppId</pt>
+                    <pd>（101）：指定的 App ID 无效。请使用有效的 App ID 重新加入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeInvalidChannelId</pt>
+                    <pd>（102）：指定的频道名无效。可能的原因是参数类型不正确。请使用有效的频道名重新加入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeNoServerResources</pt>
+                    <pd>（103）：在指定区域无法获取服务器资源。请在调用 sharedEngine 时尝试指定其他区域。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeTokenExpired</pt>
+                    <pd>（109）：当前 Token 已过期。请在服务器上申请新的 Token，并调用 renewToken: 方法。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeInvalidToken</pt>
+                    <pd>（110）：Token 无效。常见原因包括：
+                        <ul>
+                            <li>在声网控制台启用了 App 证书，但代码仍使用 App ID 进行鉴权。启用 App 证书后，必须使用 Token 进行鉴权。</li>
+                            <li>用于生成 Token 的 uid 与加入频道时使用的 uid 不一致。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeConnectionInterrupted</pt>
+                    <pd>（111）：网络连接中断。建立连接后，如果 SDK 与服务器失去连接超过 4 秒，会触发此回调。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeConnectionLost</pt>
+                    <pd>（112）：网络连接丢失。连接中断后，如果 SDK 在 10 秒内无法重新连接到声网边缘服务器，会触发此回调。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeNotInChannel</pt>
+                    <pd>（113）：调用 sendStreamMessage:data: 方法时，用户不在频道中。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeSizeTooLarge</pt>
+                    <pd>（114）：调用 sendStreamMessage:data: 方法时，数据大小超过 1 KB。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeBitrateLimit</pt>
+                    <pd>（115）：调用 sendStreamMessage:data: 方法时，数据传输码率超过 6 KB/s。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeTooManyDataStreams</pt>
+                    <pd>（116）：调用 createDataStream:config: 方法时创建了超过五个数据流。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeEncryptedStreamNotAllowedPublish</pt>
+                    <pd>（130）：SDK 不支持将加密流推送到 CDN。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeInvalidUserAccount</pt>
+                    <pd>（134）：用户账号无效，可能是因为包含无效参数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeLoadMediaEngine</pt>
+                    <pd>（1001）：加载媒体引擎失败。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeStartCall</pt>
+                    <pd>（1002）：启用媒体引擎后启动通话失败。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeStartCamera</pt>
+                    <pd>（1003）：启动摄像头失败。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeStartVideoRender</pt>
+                    <pd>（1004）：启动视频渲染模块失败。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmGeneralError</pt>
+                    <pd>（1005）：发生通用错误（无明确原因）。请检查音频设备是否被其他应用占用，或尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmJavaResource</pt>
+                    <pd>（1006）：音频设备模块：使用 Java 资源时发生错误。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmSampleRate</pt>
+                    <pd>（1007）：音频设备模块：设置采样率时发生错误。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmInitPlayout</pt>
+                    <pd>（1008）：初始化播放设备时发生错误。请检查播放设备是否被其他应用占用，或尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmStartPlayout</pt>
+                    <pd>（1009）：启动播放设备时发生错误。请检查播放设备。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmStopPlayout</pt>
+                    <pd>（1010）：停止播放设备时发生错误。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmInitRecording</pt>
+                    <pd>（1011）：初始化录音设备时发生错误。请检查录音设备，或尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmStartRecording</pt>
+                    <pd>（1012）：启动录音设备时发生错误。请检查录音设备。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmStopRecording</pt>
+                    <pd>（1013）：停止录音设备时发生错误。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmRuntimePlayoutError</pt>
+                    <pd>（1015）：音频设备模块：播放过程中发生错误。请检查播放设备，或尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeNoError</pt>
+                    <pd>（0）：无错误。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeFailed</pt>
+                    <pd>（1）：通用错误，原因未分类。请重试调用该方法。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeInvalidArgument</pt>
+                    <pd>（2）：参数无效。例如，频道名包含非法字符。请重新设置参数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeNotReady</pt>
+                    <pd>（3）：SDK 尚未就绪。可能的原因包括：<xref keyref="IRtcEngine"/> 初始化失败；调用方法时无用户加入频道；调用 <xref keyref="rate"/> 或 <xref keyref="complain"/> 方法时用户尚未离开频道；音频模块被禁用；程序不完整。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeNotSupported</pt>
+                    <pd>（4）：<xref keyref="IRtcEngine"/> 不支持该请求。可能的原因包括：内置加密模式设置错误，或 SDK 加载外部加密库失败。请检查加密模式设置或重新加载外部加密库。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeRefused</pt>
+                    <pd>（5）：请求被拒绝。可能的原因包括：<xref keyref="IRtcEngine"/> 初始化失败；加入频道时频道名为空字符串 <codeph>""</codeph>；调用 <xref keyref="joinChannelEx"/> 方法加入多个频道时，指定的频道名已被使用。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeBufferTooSmall</pt>
+                    <pd>（6）：缓冲区大小不足，无法存储返回数据。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeNotInitialized</pt>
+                    <pd>（7）：在 <xref keyref="IRtcEngine"/> 初始化前调用了方法。请确保在调用该方法前已初始化 <xref keyref="IRtcEngine"/> 对象。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeInvalidState</pt>
+                    <pd>（8）：状态无效。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeNoPermission</pt>
+                    <pd>（9）：无访问权限。请检查应用是否已获得音视频设备的访问权限。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeTimedOut</pt>
+                    <pd>（10）：超时错误。部分 API 调用需要 SDK 返回执行结果，若超过 10 秒未返回，则触发该错误。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeJoinChannelRejected</pt>
+                    <pd>（17）：加入频道请求被拒绝。可能的原因包括：用户已在频道中。建议通过 connectionChangedToState:reason: 回调判断用户是否在频道中，除非收到 AgoraConnectionStateDisconnected（1）状态，否则不要调用此方法加入频道；调用 startEchoTestWithConfig: 进行通话测试后，未调用 stopEchoTest 结束测试就尝试加入频道。要加入频道，必须先调用 stopEchoTest 结束测试。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeLeaveChannelRejected</pt>
+                    <pd>（18）：离开频道失败。可能的原因包括：在调用 leaveChannel:leaveChannelBlock: 方法前用户已离开频道，建议停止调用此方法以清除错误；在加入频道前调用了 leaveChannel:leaveChannelBlock: 方法，此情况下无需额外操作。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAlreadyInUse</pt>
+                    <pd>（19）：资源已被占用。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAbort</pt>
+                    <pd>（20）：请求被 SDK 放弃，可能是因为请求发送过于频繁。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeInitNetEngine</pt>
+                    <pd>（21）：由于特定的 Windows 防火墙设置，AgoraRtcEngineKit 初始化失败并崩溃。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeResourceLimited</pt>
+                    <pd>（22）：由于应用程序使用了过多系统资源或系统资源不足，SDK 分配资源失败。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeInvalidAppId</pt>
+                    <pd>（101）：指定的 App ID 无效。请使用有效的 App ID 重新加入频道。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeInvalidChannelId</pt>
+                    <pd>（102）：指定的频道名无效。可能的原因是参数类型不正确。请使用有效的频道名重新加入频道。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeNoServerResources</pt>
+                    <pd>（103）：在指定区域无法获取服务器资源。请在调用 sharedEngine 时尝试指定其他区域。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeTokenExpired</pt>
+                    <pd>（109）：当前 Token 已过期。请在服务器上申请新的 Token，并调用 renewToken: 方法。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeInvalidToken</pt>
+                    <pd>（110）：Token 无效。常见原因包括：
+                        <ul>
+                            <li>在声网控制台启用了 App 证书，但代码仍使用 App ID 进行鉴权。启用 App 证书后，必须使用 Token 进行鉴权。</li>
+                            <li>用于生成 Token 的 uid 与加入频道时使用的 uid 不一致。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeConnectionInterrupted</pt>
+                    <pd>（111）：网络连接中断。建立连接后，如果 SDK 与服务器失去连接超过 4 秒，会触发此回调。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeConnectionLost</pt>
+                    <pd>（112）：网络连接丢失。连接中断后，如果 SDK 在 10 秒内无法重新连接到声网边缘服务器，会触发此回调。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeNotInChannel</pt>
+                    <pd>（113）：调用 sendStreamMessage:data: 方法时，用户不在频道中。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeSizeTooLarge</pt>
+                    <pd>（114）：调用 sendStreamMessage:data: 方法时，数据大小超过 1 KB。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeBitrateLimit</pt>
+                    <pd>（115）：调用 sendStreamMessage:data: 方法时，数据传输码率超过 6 KB/s。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeTooManyDataStreams</pt>
+                    <pd>（116）：调用 createDataStream:config: 方法时创建了超过五个数据流。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeEncryptedStreamNotAllowedPublish</pt>
+                    <pd>（130）：SDK 不支持将加密流推送到 CDN。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeInvalidUserAccount</pt>
+                    <pd>（134）：用户账号无效，可能是因为包含无效参数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeLoadMediaEngine</pt>
+                    <pd>（1001）：加载媒体引擎失败。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeStartCall</pt>
+                    <pd>（1002）：启用媒体引擎后启动通话失败。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeStartCamera</pt>
+                    <pd>（1003）：启动摄像头失败。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeStartVideoRender</pt>
+                    <pd>（1004）：启动视频渲染模块失败。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmGeneralError</pt>
+                    <pd>（1005）：发生通用错误（无明确原因）。请检查音频设备是否被其他应用占用，或尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmJavaResource</pt>
+                    <pd>（1006）：音频设备模块：使用 Java 资源时发生错误。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmSampleRate</pt>
+                    <pd>（1007）：音频设备模块：设置采样率时发生错误。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmInitPlayout</pt>
+                    <pd>（1008）：初始化播放设备时发生错误。请检查播放设备是否被其他应用占用，或尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmStartPlayout</pt>
+                    <pd>（1009）：启动播放设备时发生错误。请检查播放设备。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmStopPlayout</pt>
+                    <pd>（1010）：停止播放设备时发生错误。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmInitRecording</pt>
+                    <pd>（1011）：初始化录音设备时发生错误。请检查录音设备，或尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmStartRecording</pt>
+                    <pd>（1012）：启动录音设备时发生错误。请检查录音设备。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmStopRecording</pt>
+                    <pd>（1013）：停止录音设备时发生错误。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmRuntimePlayoutError</pt>
+                    <pd>（1015）：音频设备模块：播放过程中发生错误。请检查播放设备，或尝试重新加入频道。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

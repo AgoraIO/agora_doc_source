@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserverbase_onrecordaudioframe_iaudioframeobserverbase">
+    <title><ph keyref="onRecordAudioFrame_IAudioFrameObserverBase"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">采集到音频帧时触发的回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRecordAudioFrame_IAudioFrameObserverBase"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool onRecordAudioFrame(const char* channelId, AudioFrame&amp; audioFrame) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">为了确保采集到的音频帧格式符合预期，你可以通过以下两种方式之一设置音频数据格式：
+                <ul>
+                    <li>方法一：调用 <xref keyref="setRecordingAudioFrameParameters"/> 设置音频数据格式，并调用 <xref keyref="registerAudioFrameObserver_IMediaEngine"/> 注册音频帧观察者对象后，SDK 会根据设置的参数计算采样间隔，并按该间隔触发该回调。</li>
+                    <li>方法二：调用 <xref keyref="registerAudioFrameObserver_IMediaEngine"/> 注册音频帧观察者对象后，在 <xref keyref="getObservedAudioFramePosition_IAudioFrameObserverBase"/> 的返回值中设置音频数据格式。然后 SDK 会根据 <xref keyref="getRecordAudioParams_IAudioFrameObserverBase"/> 的返回值计算采样间隔，并按该间隔触发该回调。</li>
+                </ul><ph>方法一的优先级高于方法二。如果使用方法一设置音频数据格式，则方法二的设置无效。</ph></p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>触发时机</title>
+            <p props="cpp">SDK 根据采样间隔触发该回调。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>channelId</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioFrame</pt>
+                    <pd>输出参数，原始音频数据。详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>：回调处理成功。</li>
+                    <li><xref keyref="false"/>：回调处理失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

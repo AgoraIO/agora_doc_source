@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_takesnapshotex">
+    <title><ph keyref="takeSnapshotEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">使用连接 ID 获取视频截图。</ph><ph id="shortdesc" props="rn">使用连接 ID 获取视频截图。</ph><ph id="shortdesc" props="flutter">使用连接 ID 获取视频截图。</ph><ph id="shortdesc" props="unity">使用连接 ID 获取视频截图。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="takeSnapshotEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract takeSnapshotEx(
+    connection: RtcConnection,
+    uid: number,
+    filePath: string
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract takeSnapshotEx(
+    connection: RtcConnection,
+    uid: number,
+    filePath: string
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; takeSnapshotEx(
+      {required RtcConnection connection,
+      required int uid,
+      required String filePath});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int TakeSnapshotEx(RtcConnection connection, uint uid, string filePath);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">该方法用于对指定用户的视频流进行截图，生成一张 JPG 格式的图片，并保存至指定的路径。</p>
+            <p props="rn">该方法用于对指定用户的视频流进行截图，生成一张 JPG 格式的图片，并保存至指定的路径。</p>
+            <p props="flutter">该方法用于对指定用户的视频流进行截图，生成一张 JPG 格式的图片，并保存至指定的路径。</p>
+            <p props="unity">该方法用于对指定用户的视频流进行截图，生成一张 JPG 格式的图片，并保存至指定的路径。</p>
+            <note props="electron">
+                <ul>
+                    <li>该方法是异步操作，调用返回时 SDK 并没有真正获取截图。</li>
+                    <li>该方法用于本地视频截图时，是对 <xref keyref="ChannelMediaOptions"/> 中指定发布的视频流进行截图。</li>
+                    <li>如果用户的视频经过前处理，例如，添加了水印或美颜，生成的截图会包含前处理效果。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>调用该方法返回时 SDK 并没有真正获取截图。</li>
+                    <li>该方法用于本地视频截图时，是对 <xref keyref="ChannelMediaOptions"/> 中指定发布的视频流进行截图。</li>
+                    <li>如果用户的视频经过前处理，例如，添加了水印或美颜，生成的截图会包含前处理效果。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法是异步操作，调用返回时 SDK 并没有真正获取截图。</li>
+                    <li>该方法用于本地视频截图时，是对 <xref keyref="ChannelMediaOptions"/> 中指定发布的视频流进行截图。</li>
+                    <li>如果用户的视频经过前处理，例如，添加了水印或美颜，生成的截图会包含前处理效果。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法是异步操作，调用返回时 SDK 并没有真正获取截图。</li>
+                    <li>该方法用于本地视频截图时，是对 <xref keyref="ChannelMediaOptions"/> 中指定发布的视频流进行截图。</li>
+                    <li>如果用户的视频经过前处理，例如，添加了水印或美颜，生成的截图会包含前处理效果。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在 <xref keyref="joinChannelEx"/> 后调用。</p>
+            <p props="rn">该方法需要在 <xref keyref="joinChannelEx"/> 后调用。</p>
+            <p props="flutter">该方法需要在 <xref keyref="joinChannelEx"/> 后调用。</p>
+            <p props="unity">该方法需要在 <xref keyref="joinChannelEx"/> 后调用。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>相关回调</title>
+            <p props="electron">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功和获取截图的详情。</p>
+            <p props="rn">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功和获取截图的详情。</p>
+            <p props="flutter">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功和获取截图的详情。</p>
+            <p props="unity">成功调用该方法后，SDK 会触发 <xref keyref="onSnapshotTaken"/> 回调，报告截图是否成功和获取截图的详情。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>用户 ID。如果要对本地用户的视频截图，则设为 0。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>filePath</pt>
+                    <pd>
+                        <note>请确保目录存在且可写。</note><ph>截图的本地保存路径，需精确到文件名及格式，例如：</ph>
+                        <ul>
+                            <li>Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.jpg</codeph></li>
+                            <li>macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>用户 ID。如果要对本地用户的视频截图，则设为 0。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>filePath</pt>
+                    <pd>
+                        <note>请确保目录存在且可写。</note><ph>截图的本地保存路径，需精确到文件名及格式，例如：</ph>
+                        <ul>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>用户 ID。如果要对本地用户的视频截图，则设为 0。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>filePath</pt>
+                    <pd>
+                        <note>请确保目录存在且可写。</note><ph>截图的本地保存路径，需精确到文件名及格式，例如：</ph>
+                        <ul>
+                            <li>Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.jpg</codeph></li>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                            <li>macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>用户 ID。如果要对本地用户的视频截图，则设为 0。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>
+                        <note>请确保目录存在且可写。</note><ph>截图的本地保存路径，需精确到文件名及格式，例如：</ph>
+                        <ul>
+                            <li>Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.jpg</codeph></li>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                            <li>macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

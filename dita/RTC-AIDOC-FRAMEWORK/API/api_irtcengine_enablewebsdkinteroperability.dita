@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablewebsdkinteroperability">
+    <title><ph keyref="enableWebSdkInteroperability"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">打开与 Web SDK 的互通（仅在直播场景适用）。</ph><ph id="shortdesc" props="rn">打开与 Web SDK 的互通（仅在直播场景适用）。</ph><ph id="shortdesc" props="flutter">打开与 Web SDK 的互通（仅在直播场景适用）。</ph><ph id="shortdesc" props="unity">打开与 Web SDK 的互通（仅在直播场景适用）。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableWebSdkInteroperability"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableWebSdkInteroperability(enabled: boolean): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableWebSdkInteroperability(enabled: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableWebSdkInteroperability(bool enabled);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableWebSdkInteroperability(bool enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>废弃</dt>
+                    <dd>弃用: 该方法已废弃，SDK 自动开启与 Web SDK 的互通，无需调用该方法开启。</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>废弃</dt>
+                    <dd>弃用: 该方法已废弃，SDK 自动开启与 Web SDK 的互通，无需调用该方法开启。</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>废弃</dt>
+                    <dd>弃用: 该方法已废弃，SDK 自动开启与 Web SDK 的互通，无需调用该方法开启。</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>废弃</dt>
+                    <dd>弃用: 该方法已废弃，SDK 自动开启与 Web SDK 的互通，无需调用该方法开启。</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">该方法打开或关闭与 Web SDK 的互通。如果有用户通过 Web SDK 加入频道，请确保调用该方法，否则 Web 端用户看 Native 端的画面会是黑屏。
+该方法仅在直播场景下适用，通信场景下默认互通是打开的。</p>
+            <p props="rn">该方法打开或关闭与 Web SDK 的互通。如果有用户通过 Web SDK 加入频道，请确保调用该方法，否则 Web 端用户看 Native 端的画面会是黑屏。
+该方法仅在直播场景下适用，通信场景下默认互通是打开的。</p>
+            <p props="flutter">该方法打开或关闭与 Web SDK 的互通。如果有用户通过 Web SDK 加入频道，请确保调用该方法，否则 Web 端用户看 Native 端的画面会是黑屏。
+该方法仅在直播场景下适用，通信场景下默认互通是打开的。</p>
+            <p props="unity">该方法打开或关闭与 Web SDK 的互通。如果有用户通过 Web SDK 加入频道，请确保调用该方法，否则 Web 端用户看 Native 端的画面会是黑屏。
+该方法仅在直播场景下适用，通信场景下默认互通是打开的。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>是否打开与 Web SDK 的互通：
+                        <ul>
+                            <li><xref keyref="true"/>: 打开互通。</li>
+                            <li><xref keyref="false"/>: (默认) 关闭互通。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>是否打开与 Web SDK 的互通：
+                        <ul>
+                            <li><xref keyref="true"/>: 打开互通。</li>
+                            <li><xref keyref="false"/>: (默认) 关闭互通。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>是否打开与 Web SDK 的互通：
+                        <ul>
+                            <li><xref keyref="true"/>: 打开互通。</li>
+                            <li><xref keyref="false"/>: (默认) 关闭互通。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>是否打开与 Web SDK 的互通：
+                        <ul>
+                            <li><xref keyref="true"/>: 打开互通。</li>
+                            <li><xref keyref="false"/>: (默认) 关闭互通。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

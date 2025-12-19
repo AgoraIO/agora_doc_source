@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_thumbimagebuffer">
+    <title><ph keyref="ThumbImageBuffer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set the image content of a thumbnail or icon.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ThumbImageBuffer {
+  const char* buffer;
+  unsigned int length;
+  unsigned int width;
+  unsigned int height;
+};</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
+            <p props="cpp">Can be set in <xref keyref="ScreenCaptureSourceInfo"/>.</p>
+            <note props="cpp">The default image format is ARGB. If you need to use another format, you need to convert the image yourself.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>buffer</pt>
+                    <pd>Image buffer of the thumbnail or icon.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>length</pt>
+                    <pd>Length of the image buffer in bytes.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>width</pt>
+                    <pd>Actual width of the thumbnail or icon (in pixels).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>Actual height of the thumbnail or icon (in pixels).</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

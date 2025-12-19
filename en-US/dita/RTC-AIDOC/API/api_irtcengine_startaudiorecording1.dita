@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startaudiorecording1">
+    <title><ph keyref="startAudioRecording1"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts client-side audio recording and sets the recording sample rate.</ph><ph id="shortdesc" props="android">Starts client-side audio recording.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startAudioRecording1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, AUDIO_RECORDING_QUALITY_TYPE quality) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startAudioRecording(String filePath, int quality);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling this method, you can record the audio of all users in the channel during a call and generate a recording file that contains all voices. The recording file supports the following formats only:
+                <ul>
+                    <li><codeph>.wav</codeph>: Large file size, high audio fidelity.</li>
+                    <li><codeph>.aac</codeph>: Small file size, lower audio fidelity.</li>
+                </ul>
+            </p>
+            <p props="android">You must call this method after calling <codeph>joinChannel</codeph>. The recording automatically stops when <codeph>leaveChannel</codeph> is called.
+
+Make sure the specified directory exists and is writable.</p>
+            <note props="cpp">
+                <ul>
+                    <li>Make sure the specified path exists and is writable.</li>
+                    <li>You must call this method after calling <codeph>joinChannel</codeph>. If <codeph>leaveChannel</codeph> is called during recording, the recording stops automatically.</li>
+                </ul>
+            </note>
+            <note props="android">When calling this method, the default recording sample rate is 32 kHz and cannot be changed.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>filePath</pt>
+                    <pd>The absolute path (including the file name and extension) where the recording file is saved locally. For example: <xref keyref="recordingPath-example"/>.
+                        <note>Make sure the specified path exists and is writable.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>quality</pt>
+                    <pd>Recording quality. See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>filePath</pt>
+                    <pd>The absolute path of the recording file to be saved locally, including the file name and extension. For example: <xref keyref="recordingPath-example"/>.
+                        <note>Make sure the specified path exists and is writable.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>quality</pt>
+                    <pd>Recording quality:
+                        <ul>
+                            <li>0: Low quality. Sample rate is 32 kHz, about 1.2 MB for 10 minutes.</li>
+                            <li>1: Medium quality. Sample rate is 32 kHz, about 2 MB for 10 minutes.</li>
+                            <li>2: High quality. Sample rate is 32 kHz, about 3.75 MB for 10 minutes.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

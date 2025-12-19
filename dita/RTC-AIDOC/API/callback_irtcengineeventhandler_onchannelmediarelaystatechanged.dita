@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onchannelmediarelaystatechanged">
+    <title><ph keyref="onChannelMediaRelayStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">跨频道媒体流转发状态变化回调。</ph><ph id="shortdesc" props="ios">跨频道媒体流转发状态发生变化回调。</ph><ph id="shortdesc" props="android">跨频道媒体流转发状态发生变化回调。</ph><ph id="shortdesc" props="mac">跨频道媒体流转发状态发生变化回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onChannelMediaRelayStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onChannelMediaRelayStateChanged(int state, int code)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+channelMediaRelayStateDidChange:(AgoraChannelMediaRelayState)state
+            error:(AgoraChannelMediaRelayError)error NS_SWIFT_NAME(rtcEngine(_:channelMediaRelayStateDidChange:error:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onChannelMediaRelayStateChanged(int state, int code)</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+channelMediaRelayStateDidChange:(AgoraChannelMediaRelayState)state
+            error:(AgoraChannelMediaRelayError)error NS_SWIFT_NAME(rtcEngine(_:channelMediaRelayStateDidChange:error:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">该回调返回当前跨频道媒体流转发的状态和错误码信息。</p>
+            <p props="ios">该回调返回当前跨频道媒体流转发的状态及错误码。</p>
+            <p props="android">该回调返回当前跨频道媒体流转发的错误信息。</p>
+            <p props="mac">该回调返回当前跨频道媒体流转发的状态及错误码。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android ios mac">
+            <title>触发时机</title>
+            <p props="ios">该回调在跨频道媒体流转发状态发生变化时触发。</p>
+            <p props="android">该回调在跨频道媒体流转发状态发生变化时被触发。</p>
+            <p props="mac">该回调在跨频道媒体流转发状态发生变化时触发。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>状态码。详见 <xref keyref="CHANNEL_MEDIA_RELAY_STATE"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>code</pt>
+                    <pd>错误码。详见 <xref keyref="CHANNEL_MEDIA_RELAY_ERROR"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>state</pt>
+                    <pd>跨频道媒体流转发的状态码，详见 <xref keyref="CHANNEL_MEDIA_RELAY_STATE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>跨频道媒体流转发的错误码，详见 <xref keyref="CHANNEL_MEDIA_RELAY_ERROR"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>跨频道媒体流转发的状态码：
+                        <ul>
+                            <li><codeph>RELAY_STATE_IDLE</codeph>：SDK 正在初始化。</li>
+                            <li><codeph>RELAY_STATE_CONNECTING</codeph>：SDK 尝试将媒体流转发到目标频道。</li>
+                            <li><codeph>RELAY_STATE_RUNNING</codeph>：SDK 成功将媒体流转发到目标频道。</li>
+                            <li><codeph>RELAY_STATE_FAILURE</codeph>：发生错误，详见 <xref keyref="Code"/>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>code</pt>
+                    <pd>跨频道媒体流转发的错误码：
+                        <ul>
+                            <li><codeph>RELAY_OK</codeph>：一切正常。</li>
+                            <li><codeph>RELAY_ERROR_SERVER_ERROR_RESPONSE</codeph>：服务器响应出错。</li>
+                            <li><codeph>RELAY_ERROR_SERVER_NO_RESPONSE</codeph>：服务器无响应。该错误可能由网络连接不佳引起。如果在启动跨频道媒体流转发时出现该错误，可以稍后重试；如果在转发过程中出现该错误，可以调用 <codeph>leaveChannel</codeph> 离开频道。该错误也可能是项目未启用跨频道媒体流转发服务导致的。你可以[联系技术支持](https://ticket.shengwang.cn/)启用该服务。</li>
+                            <li><codeph>RELAY_ERROR_NO_RESOURCE_AVAILABLE</codeph>：SDK 无法访问服务，可能由于服务器资源有限。</li>
+                            <li><codeph>RELAY_ERROR_FAILED_JOIN_SRC</codeph>：服务器无法发送转发请求。</li>
+                            <li><codeph>RELAY_ERROR_FAILED_JOIN_DEST</codeph>：服务器无法接受转发请求。</li>
+                            <li><codeph>RELAY_ERROR_FAILED_PACKET_RECEIVED_FROM_SRC</codeph>：服务器无法接收媒体流。</li>
+                            <li><codeph>RELAY_ERROR_FAILED_PACKET_SENT_TO_DEST</codeph>：服务器无法发送媒体流。</li>
+                            <li><codeph>RELAY_ERROR_SERVER_CONNECTION_LOST</codeph>：由于网络连接不佳，SDK 与服务器断开连接。你可以调用 <codeph>leaveChannel</codeph> 离开频道。</li>
+                            <li><codeph>RELAY_ERROR_INTERNAL_ERROR</codeph>：服务器内部发生错误。</li>
+                            <li><codeph>RELAY_ERROR_SRC_TOKEN_EXPIRED</codeph>：源频道的 Token 已过期。</li>
+                            <li><codeph>RELAY_ERROR_DEST_TOKEN_EXPIRED</codeph>：目标频道的 Token 已过期。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象，详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>state</pt>
+                    <pd>跨频道媒体流转发的状态码，详见 <xref keyref="CHANNEL_MEDIA_RELAY_STATE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>error</pt>
+                    <pd>跨频道媒体流转发的错误码，详见 <xref keyref="CHANNEL_MEDIA_RELAY_ERROR"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

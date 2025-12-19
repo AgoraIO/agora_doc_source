@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getcallid">
+    <title><ph keyref="getCallId"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the current call ID.</ph><ph id="shortdesc" props="android">Gets the current call ID.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCallId"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getCallId(agora::util::AString&amp; callId) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract String getCallId();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">When a user joins a channel on the client, the SDK generates a <codeph>callId</codeph> to identify the call. You can call this method to get the <codeph>callId</codeph> and pass it to methods such as <xref keyref="rate"/> and <xref keyref="complain"/>.</p>
+            <p props="android">After the user joins a channel, the client generates a <codeph>callId</codeph> to identify the current call. You can call <xref keyref="getCallId"/> to get the <codeph>callId</codeph>, and pass it when calling methods such as <xref keyref="rate"/> and <xref keyref="complain"/>.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after joining a channel.</p>
+            <p props="android">You must call this method after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>callId</pt>
+                    <pd>Output parameter. The <codeph>callId</codeph> of the current call.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>If the method call succeeds, returns the current call <codeph>callId</codeph>.</li>
+                    <li>If the method call fails, returns an empty string.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

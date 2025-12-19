@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_audioeffectpreset">
+    <title><ph keyref="AUDIO_EFFECT_PRESET"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Preset audio effects.</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
+            <p props="cpp">To achieve better audio effects, Agora recommends calling <codeph>setAudioProfile(AUDIO_PROFILE_TYPE profile, AUDIO_SCENARIO_TYPE scenario)</codeph> before using preset audio effects, and setting the <codeph>profile</codeph> parameter as follows:
+                <simpletable>
+                    <sthead>
+                        <stentry>Preset Audio Effect</stentry>
+                        <stentry><codeph>profile</codeph></stentry>
+                    </sthead>
+                    <strow>
+                        <stentry><codeph>ROOM_ACOUSTICS_VIRTUAL_STEREO</codeph>, <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph>, <codeph>ROOM_ACOUSTICS_VIRTUAL_SURROUND_SOUND</codeph></stentry>
+                        <stentry><codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</codeph> or <codeph>AUDIO_PROFILE_MUSIC_STANDARD_STEREO</codeph></stentry>
+                    </strow>
+                    <strow>
+                        <stentry>Other preset audio effects (excluding <codeph>AUDIO_EFFECT_OFF</codeph>)</stentry>
+                        <stentry><codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY</codeph> or <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</codeph></stentry>
+                    </strow>
+                </simpletable>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>AUDIO_EFFECT_OFF</pt>
+                    <pd>(0x00000000): Turns off audio effects and uses the original sound.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ROOM_ACOUSTICS_KTV</pt>
+                    <pd>(0x02010100): Typical audio effect for KTV scenes.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ROOM_ACOUSTICS_VOCAL_CONCERT</pt>
+                    <pd>(0x02010200): Typical audio effect for concert hall scenes.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ROOM_ACOUSTICS_STUDIO</pt>
+                    <pd>(0x02010300): Typical audio effect for studio scenes.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ROOM_ACOUSTICS_PHONOGRAPH</pt>
+                    <pd>(0x02010400): Typical audio effect in the style of a vintage phonograph.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ROOM_ACOUSTICS_VIRTUAL_STEREO</pt>
+                    <pd>(0x02010500): Virtual stereo effect that renders mono audio as stereo.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ROOM_ACOUSTICS_SPACIAL</pt>
+                    <pd>(0x02010600): Audio effect that enhances spatial perception.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ROOM_ACOUSTICS_ETHEREAL</pt>
+                    <pd>(0x02010700): Ethereal-style audio effect.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ROOM_ACOUSTICS_3D_VOICE</pt>
+                    <pd>(0x02010800): 3D audio effect that makes the sound move around the user with a default cycle of 10 seconds. After setting this effect, you can call <xref keyref="setAudioEffectParameters"/> to modify the movement cycle.
+                        <note>To enable this effect, you need to use stereo playback devices to achieve the expected audio effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ROOM_ACOUSTICS_VIRTUAL_SURROUND_SOUND</pt>
+                    <pd>(0x02010900): Virtual surround sound that simulates surround sound fields based on stereo channels to create a surround effect.
+                        <note>To enable this effect, you need to use stereo playback devices to achieve the expected audio effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ROOM_ACOUSTICS_CHORUS</pt>
+                    <pd>(0x02010D00): Chorus audio effect, suitable for chorus scenes, enhancing vocal layering and spatial perception.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>VOICE_CHANGER_EFFECT_UNCLE</pt>
+                    <pd>(0x02020100): Voice of a middle-aged man.
+                        <note>Agora recommends using it for processing male voices; otherwise, the expected audio effect may not be achieved.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>VOICE_CHANGER_EFFECT_OLDMAN</pt>
+                    <pd>(0x02020200): Voice of an elderly man.
+                        <note>Agora recommends using it for processing male voices; otherwise, the expected audio effect may not be achieved.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>VOICE_CHANGER_EFFECT_BOY</pt>
+                    <pd>(0x02020300): Voice of a boy.
+                        <note>Agora recommends using it for processing male voices; otherwise, the expected audio effect may not be achieved.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>VOICE_CHANGER_EFFECT_SISTER</pt>
+                    <pd>(0x02020400): Voice of a young woman.
+                        <note>Agora recommends using it for processing female voices; otherwise, the expected audio effect may not be achieved.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>VOICE_CHANGER_EFFECT_GIRL</pt>
+                    <pd>(0x02020500): Voice of a girl.
+                        <note>Agora recommends using it for processing female voices; otherwise, the expected audio effect may not be achieved.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>VOICE_CHANGER_EFFECT_PIGKING</pt>
+                    <pd>(0x02020600): Voice of Pigsy, similar to a bear roar effect.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>VOICE_CHANGER_EFFECT_HULK</pt>
+                    <pd>(0x02020700): Voice of the Hulk.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>STYLE_TRANSFORMATION_RNB</pt>
+                    <pd>(0x02030100): Typical audio effect in R&amp;B music style.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>STYLE_TRANSFORMATION_POPULAR</pt>
+                    <pd>(0x02030200): Typical audio effect in pop music style.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>PITCH_CORRECTION</pt>
+                    <pd>(0x02040100): Pitch correction effect that adjusts the user's pitch based on the natural C major scale. After setting this effect, you can call <xref keyref="setAudioEffectParameters"/> to adjust the tuning mode and tonic pitch.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

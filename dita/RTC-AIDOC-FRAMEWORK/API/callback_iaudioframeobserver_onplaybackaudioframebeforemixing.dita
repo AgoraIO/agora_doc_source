@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserver_onplaybackaudioframebeforemixing">
+    <title><ph keyref="onPlaybackAudioFrameBeforeMixing"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">获取所订阅的远端用户混音前的声音。</ph><ph id="shortdesc" props="rn">获取所订阅的远端用户混音前的声音。</ph><ph id="shortdesc" props="flutter">获取所订阅的远端用户混音前的声音。</ph><ph id="shortdesc" props="unity">获取所订阅的远端用户混音前的声音。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlaybackAudioFrameBeforeMixing"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onPlaybackAudioFrameBeforeMixing?(
+    channelId: string,
+    uid: number,
+    audioFrame: AudioFrame
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onPlaybackAudioFrameBeforeMixing?(
+    channelId: string,
+    uid: number,
+    audioFrame: AudioFrame
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, int uid, AudioFrame audioFrame)?
+      onPlaybackAudioFrameBeforeMixing;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnPlaybackAudioFrameBeforeMixing(string channel_id,
+                                                        uint uid,
+                                                        AudioFrame audio_frame)
+        {
+            return false;
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">由于框架的限制，该回调不支持将处理后的音频数据发送回 SDK。</note>
+            <note props="rn">由于框架的限制，该回调不支持将处理后的音频数据发送回 SDK。</note>
+            <note props="flutter">由于框架的限制，该回调不支持将处理后的音频数据发送回 SDK。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>channelId</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>订阅的远端用户的 ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioFrame</pt>
+                    <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channelId</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>订阅的远端用户的 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioFrame</pt>
+                    <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channelId</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>订阅的远端用户的 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioFrame</pt>
+                    <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channel_id</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>订阅的远端用户的 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audio_frame</pt>
+                    <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>返回值</title>
+            <p props="unity">无实际含义。</p>
+        </section>
+    </refbody>
+</reference>

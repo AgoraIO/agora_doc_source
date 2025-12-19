@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_createdatastream2">
+    <title><ph keyref="createDataStream2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Creates a data stream.</ph><ph id="shortdesc" props="android">Creates a data stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createDataStream2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int createDataStream(int* streamId, const DataStreamConfig&amp; config) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int createDataStream(DataStreamConfig config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method does not guarantee the reliability of data transmission. If a data packet is not received within five seconds after being sent, the SDK discards the packet. Compared with the <codeph>createDataStream</codeph> method, this method is suitable for scenarios with high real-time requirements but tolerable data loss.</p>
+            <p props="android">This method does not guarantee reliable data transmission. If the data packet is not received within five seconds after being sent, the SDK discards the data.</p>
+            <note props="cpp">Each user can create up to five data streams during the lifecycle of <xref keyref="IRtcEngine"/>. The data streams are destroyed when you leave the channel. To use them again, you need to recreate them. If you need a more comprehensive solution for low-latency, high-concurrency, and scalable real-time messaging and state synchronization, it is recommended to use real-time messaging.</note>
+            <note props="android">Each user can create up to five data streams during the lifecycle of <xref keyref="IRtcEngine"/>. Data streams are destroyed when leaving the channel. To continue using them, you need to recreate them. If you require a more comprehensive real-time messaging and state synchronization solution with low latency, high concurrency, and scalability, consider using Agora Real-time Messaging.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You can call this method before or after joining the channel.</p>
+            <p props="android">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>streamId</pt>
+                    <pd>Output parameter. The ID of the created data stream.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>Configuration of the data stream. See <xref keyref="DataStreamConfig"/> for details.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>The configuration of the data stream. See <xref keyref="DataStreamConfig"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>On success, returns the ID of the created data stream.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

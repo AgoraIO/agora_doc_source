@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablevirtualbackground">
+    <title><ph keyref="enableVirtualBackground"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables the virtual background feature.</ph><ph id="shortdesc" props="android">Enables or disables the virtual background feature.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableVirtualBackground"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableVirtualBackground(boolean enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v3.7.200.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">The virtual background feature allows the local user to replace the original background with a static image, dynamic video, blurred background, or portrait segmentation to achieve a picture-in-picture effect. Once enabled, all users in the channel can see the customized background. Call this method after <xref keyref="enableVideo"/> or <codeph>startPreview</codeph>.</p>
+            <p props="android">The virtual background feature allows the local user to replace the original background with a static image, dynamic video, blurred background, or portrait segmentation to achieve picture-in-picture effects. Once enabled, all users in the channel can see the customized background. Call this method after <xref keyref="enableVideo"/> or <codeph>startPreview</codeph>.</p>
+            <note props="cpp">
+                <ul>
+                    <li>Using a video as a virtual background may cause continuous memory growth, potentially leading to app crashes. It is recommended to reduce the resolution and frame rate of the video.</li>
+                    <li>This feature requires high device performance. When this method is called, the SDK automatically detects the device's performance. Agora recommends using the virtual background feature on the following processors:
+                        <ul>
+                            <li>Snapdragon 700 series 750G and above.</li>
+                            <li>Snapdragon 800 series 835 and above.</li>
+                            <li>Dimensity 700 series 720 and above.</li>
+                            <li>Kirin 800 series 810 and above.</li>
+                            <li>Kirin 900 series 980 and above.</li>
+                            <li>Devices equipped with i5 CPUs and above.</li>
+                            <li>Devices equipped with A9 chips and above, including:
+                                <ul>
+                                    <li>iPhone 6S and above.</li>
+                                    <li>iPad Air 3rd generation and above.</li>
+                                    <li>iPad 5th generation and above.</li>
+                                    <li>iPad Pro 1st generation and above.</li>
+                                    <li>iPad mini 5th generation and above.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>Agora recommends using this feature in the following scenarios:
+                        <ul>
+                            <li>Using a high-definition camera in evenly lit environments.</li>
+                            <li>Few objects in the frame, with unobstructed upper-body portraits.</li>
+                            <li>A solid color background that contrasts with the user's clothing.</li>
+                        </ul>
+                    </li>
+                    <li>This method depends on the virtual background dynamic library <xref keyref="segmentation"/>. If this dynamic library is deleted, the feature cannot be enabled properly.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>Using a video as a virtual background may cause continuous memory growth, potentially leading to app crashes. It is recommended to reduce the resolution and frame rate of the video.</li>
+                    <li>This feature requires high device performance. When this method is called, the SDK automatically detects the device's performance. Agora recommends using the following processors:
+                        <ul>
+                            <li>Snapdragon 700 series 750G or above.</li>
+                            <li>Snapdragon 800 series 835 or above.</li>
+                            <li>Dimensity 700 series 720 or above.</li>
+                            <li>Kirin 800 series 810 or above.</li>
+                            <li>Kirin 900 series 980 or above.</li>
+                        </ul>
+                    </li>
+                    <li>Agora recommends using this feature in the following scenarios:
+                        <ul>
+                            <li>When using high-definition camera devices with even lighting.</li>
+                            <li>When there are few objects in the frame, and the portrait is a half-body shot with no obstructions.</li>
+                            <li>When the background is a solid color and clearly different from the user's clothing.</li>
+                        </ul>
+                    </li>
+                    <li>This method depends on the virtual background dynamic library <xref keyref="segmentation"/>. If the library is deleted, the feature cannot be enabled.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the virtual background:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable virtual background.</li>
+                            <li><xref keyref="false"/>: Disable virtual background.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>backgroundSource</pt>
+                    <pd>Custom background. The SDK scales and crops the custom background image to fit the captured video resolution while ensuring the image content is not distorted. See <xref keyref="VirtualBackgroundSource"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>segproperty</pt>
+                    <pd>Processing properties of the background image. See <xref keyref="SegmentationProperty"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>The media source type to apply the filter effect to. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <ul>
+                            <li>When using the camera to capture local video, use the default value <codeph>PRIMARY_CAMERA_SOURCE</codeph>.</li>
+                            <li>When using a custom video source, set to <codeph>CUSTOM_VIDEO_SOURCE</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the virtual background:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable virtual background.</li>
+                            <li><xref keyref="false"/>: Disable virtual background.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>backgroundSource</pt>
+                    <pd>The custom background. To adapt the resolution of the custom background image to the video resolution captured by the SDK, the SDK scales and crops the image to ensure no distortion. See <xref keyref="VirtualBackgroundSource"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>segproperty</pt>
+                    <pd>The processing properties of the background image. See <xref keyref="SegmentationProperty"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-4: The device performance does not meet the requirements for the virtual background feature. Try this feature on a higher-performance device.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-4: The device does not meet the performance requirements for the virtual background feature. Agora recommends using a higher-performance device.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

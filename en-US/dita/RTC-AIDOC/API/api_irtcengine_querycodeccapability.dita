@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_querycodeccapability">
+    <title><ph keyref="queryCodecCapability"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Queries the video codec capabilities supported by the SDK.</ph><ph id="shortdesc" props="android">Queries the SDK's video codec capabilities.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="queryCodecCapability"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int queryCodecCapability(CodecCapInfo* codecInfo, int&amp; size) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract CodecCapInfo[] queryCodecCapability();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>codecInfo</pt>
+                    <pd>Input and output parameter representing the array of video codec capabilities supported by the SDK. You pass a <xref keyref="CodecCapInfo"/> array when calling this method to indicate the video codec capabilities to query. After execution, the array is filled with the actual video codec capabilities supported by the SDK. See <xref keyref="CodecCapInfo"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>size</pt>
+                    <pd>Input and output parameter representing the size of the <codeph>codecInfo</codeph> array. You pass in the size of <codeph>codecInfo</codeph> when calling this method. After execution, this value is updated to the actual size of the returned <codeph>codecInfo</codeph> array.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">If the method call succeeds, it returns an array of <xref keyref="CodecCapInfo"/>, indicating the device's video encoding capabilities. If the method call times out, please modify your logic to avoid calling this method on the main thread.</p>
+        </section>
+    </refbody>
+</reference>

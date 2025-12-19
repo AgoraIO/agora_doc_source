@@ -1,0 +1,371 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videorenderingtracinginfo">
+    <title><ph keyref="VideoRenderingTracingInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">视频帧渲染过程中的指标信息。</ph><ph id="shortdesc" props="rn">视频帧渲染过程中的指标信息。</ph><ph id="shortdesc" props="flutter">视频帧渲染过程中的指标信息。</ph><ph id="shortdesc" props="unity">视频帧渲染过程中的指标信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class VideoRenderingTracingInfo {
+  elapsedTime?: number;
+  start2JoinChannel?: number;
+  join2JoinSuccess?: number;
+  joinSuccess2RemoteJoined?: number;
+  remoteJoined2SetView?: number;
+  remoteJoined2UnmuteVideo?: number;
+  remoteJoined2PacketReceived?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class VideoRenderingTracingInfo {
+  elapsedTime?: number;
+  start2JoinChannel?: number;
+  join2JoinSuccess?: number;
+  joinSuccess2RemoteJoined?: number;
+  remoteJoined2SetView?: number;
+  remoteJoined2UnmuteVideo?: number;
+  remoteJoined2PacketReceived?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class VideoRenderingTracingInfo {
+  const VideoRenderingTracingInfo(
+      {this.elapsedTime,
+      this.start2JoinChannel,
+      this.join2JoinSuccess,
+      this.joinSuccess2RemoteJoined,
+      this.remoteJoined2SetView,
+      this.remoteJoined2UnmuteVideo,
+      this.remoteJoined2PacketReceived});
+
+  @JsonKey(name: 'elapsedTime')
+  final int? elapsedTime;
+
+  @JsonKey(name: 'start2JoinChannel')
+  final int? start2JoinChannel;
+
+  @JsonKey(name: 'join2JoinSuccess')
+  final int? join2JoinSuccess;
+
+  @JsonKey(name: 'joinSuccess2RemoteJoined')
+  final int? joinSuccess2RemoteJoined;
+
+  @JsonKey(name: 'remoteJoined2SetView')
+  final int? remoteJoined2SetView;
+
+  @JsonKey(name: 'remoteJoined2UnmuteVideo')
+  final int? remoteJoined2UnmuteVideo;
+
+  @JsonKey(name: 'remoteJoined2PacketReceived')
+  final int? remoteJoined2PacketReceived;
+
+  factory VideoRenderingTracingInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$VideoRenderingTracingInfoFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoRenderingTracingInfoToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class VideoRenderingTracingInfo
+    {
+
+        public int elapsedTime;
+        public int start2JoinChannel;
+        public int join2JoinSuccess;
+        public int joinSuccess2RemoteJoined;
+        public int remoteJoined2SetView;
+        public int remoteJoined2UnmuteVideo;
+        public int remoteJoined2PacketReceived;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>elapsedTime</pt>
+                    <pd>从调用 <xref keyref="startMediaRenderingTracing"/> 到触发 <xref keyref="onVideoRenderingTracingResult"/> 回调的时间间隔 (ms)。建议在加入频道前调用 <xref keyref="startMediaRenderingTracing"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>start2JoinChannel</pt>
+                    <pd>从调用 <xref keyref="startMediaRenderingTracing"/> 到调用 <xref keyref="joinChannel2"/> 的时间间隔 (ms)。负数表示在调用 <xref keyref="joinChannel2"/> 后调用 <xref keyref="startMediaRenderingTracing"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>join2JoinSuccess</pt>
+                    <pd>从调用 <codeph>joinChannel1</codeph> 或 <xref keyref="joinChannel2"/> 到成功加入频道的时间间隔 (ms)。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>joinSuccess2RemoteJoined</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果本地用户在远端用户加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
+                                <li>为提升远端用户出图速度，建议远端用户加入频道中后，本地用户再加入频道，以降低该值。</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>如果本地用户成功加入频道前调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从本地用户成功加入频道到远端用户加入频道的时间间隔 (ms)。</li>
+                            <li>如果本地用户成功加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从调用 <xref keyref="startMediaRenderingTracing"/> 到远端用户加入频道的时间间隔 (ms)。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteJoined2SetView</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果本地用户在设置远端视图后再调用 <xref keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
+                                <li>为提升远端用户出图速度，建议在远端用户加入频道之前设置远端视图，或者远端用户加入频道后立即设置远端视图，以降低该值。</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>如果本地用户在远端用户加入频道前调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户设置远端视图的时间间隔 (ms)。</li>
+                            <li>如果本地用户在远端用户加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从调用 <xref keyref="startMediaRenderingTracing"/> 到设置远端视图的时间间隔 (ms)。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteJoined2UnmuteVideo</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果在订阅远端视频流后再调用 <xref keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
+                                <li>为提升远端用户出图速度，建议在远端用户加入频道后，本地用户立即订阅远端视频流，以降低该值。</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>如果本地用户在远端用户加入频道前调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到订阅远端视频流的时间间隔 (ms)。</li>
+                            <li>如果本地用户在远端用户加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从调用 <xref keyref="startMediaRenderingTracing"/> 到订阅远端视频流的时间间隔 (ms)。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteJoined2PacketReceived</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果在接收到远端视频流后再调用 <xref keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
+                                <li>为提升远端用户出图速度，建议在远端用户加入频道后立即发布视频流，本地用户立即订阅远端视频流，以降低该值。</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>如果本地用户在远端用户加入频道前调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户接收到首个远端数据包的时间间隔 (ms)。</li>
+                            <li>如果本地用户在远端用户加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从调用 <xref keyref="startMediaRenderingTracing"/> 到接收到首个远端数据包的时间间隔 (ms)。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>elapsedTime</pt>
+                    <pd>从调用 <xref keyref="startMediaRenderingTracing"/> 到触发 <xref keyref="onVideoRenderingTracingResult"/> 回调的时间间隔 (ms)。建议在加入频道前调用 <xref keyref="startMediaRenderingTracing"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>start2JoinChannel</pt>
+                    <pd>从调用 <xref keyref="startMediaRenderingTracing"/> 到调用 <xref keyref="joinChannel2"/> 的时间间隔 (ms)。负数表示在调用 <xref keyref="joinChannel2"/> 后调用 <xref keyref="startMediaRenderingTracing"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>join2JoinSuccess</pt>
+                    <pd>从调用 <codeph>joinChannel1</codeph> 或 <xref keyref="joinChannel2"/> 到成功加入频道的时间间隔 (ms)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>joinSuccess2RemoteJoined</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果本地用户在远端用户加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
+                                <li>为提升远端用户出图速度，建议远端用户加入频道中后，本地用户再加入频道，以降低该值。</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>如果本地用户成功加入频道前调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从本地用户成功加入频道到远端用户加入频道的时间间隔 (ms)。</li>
+                            <li>如果本地用户成功加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从调用 <xref keyref="startMediaRenderingTracing"/> 到远端用户加入频道的时间间隔 (ms)。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteJoined2SetView</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果本地用户在设置远端视图后再调用 <xref keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
+                                <li>为提升远端用户出图速度，建议在远端用户加入频道之前设置远端视图，或者远端用户加入频道后立即设置远端视图，以降低该值。</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>如果本地用户在远端用户加入频道前调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户设置远端视图的时间间隔 (ms)。</li>
+                            <li>如果本地用户在远端用户加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从调用 <xref keyref="startMediaRenderingTracing"/> 到设置远端视图的时间间隔 (ms)。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteJoined2UnmuteVideo</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果在订阅远端视频流后再调用 <xref keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
+                                <li>为提升远端用户出图速度，建议在远端用户加入频道后，本地用户立即订阅远端视频流，以降低该值。</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>如果本地用户在远端用户加入频道前调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到订阅远端视频流的时间间隔 (ms)。</li>
+                            <li>如果本地用户在远端用户加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从调用 <xref keyref="startMediaRenderingTracing"/> 到订阅远端视频流的时间间隔 (ms)。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteJoined2PacketReceived</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果在接收到远端视频流后再调用 <xref keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
+                                <li>为提升远端用户出图速度，建议在远端用户加入频道后立即发布视频流，本地用户立即订阅远端视频流，以降低该值。</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>如果本地用户在远端用户加入频道前调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户接收到首个远端数据包的时间间隔 (ms)。</li>
+                            <li>如果本地用户在远端用户加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从调用 <xref keyref="startMediaRenderingTracing"/> 到接收到首个远端数据包的时间间隔 (ms)。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>elapsedTime</pt>
+                    <pd>从调用 <xref keyref="startMediaRenderingTracing"/> 到触发 <xref keyref="onVideoRenderingTracingResult"/> 回调的时间间隔 (ms)。建议在加入频道前调用 <xref keyref="startMediaRenderingTracing"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>start2JoinChannel</pt>
+                    <pd>从调用 <xref keyref="startMediaRenderingTracing"/> 到调用 <xref keyref="joinChannel2"/> 的时间间隔 (ms)。负数表示在调用 <xref keyref="joinChannel2"/> 后调用 <xref keyref="startMediaRenderingTracing"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>join2JoinSuccess</pt>
+                    <pd>从调用 <codeph>joinChannel1</codeph> 或 <xref keyref="joinChannel2"/> 到成功加入频道的时间间隔 (ms)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>joinSuccess2RemoteJoined</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果本地用户在远端用户加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
+                                <li>为提升远端用户出图速度，建议远端用户加入频道中后，本地用户再加入频道，以降低该值。</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>如果本地用户成功加入频道前调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从本地用户成功加入频道到远端用户加入频道的时间间隔 (ms)。</li>
+                            <li>如果本地用户成功加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从调用 <xref keyref="startMediaRenderingTracing"/> 到远端用户加入频道的时间间隔 (ms)。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteJoined2SetView</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果本地用户在设置远端视图后再调用 <xref keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
+                                <li>为提升远端用户出图速度，建议在远端用户加入频道之前设置远端视图，或者远端用户加入频道后立即设置远端视图，以降低该值。</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>如果本地用户在远端用户加入频道前调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户设置远端视图的时间间隔 (ms)。</li>
+                            <li>如果本地用户在远端用户加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从调用 <xref keyref="startMediaRenderingTracing"/> 到设置远端视图的时间间隔 (ms)。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteJoined2UnmuteVideo</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果在订阅远端视频流后再调用 <xref keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
+                                <li>为提升远端用户出图速度，建议在远端用户加入频道后，本地用户立即订阅远端视频流，以降低该值。</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>如果本地用户在远端用户加入频道前调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到订阅远端视频流的时间间隔 (ms)。</li>
+                            <li>如果本地用户在远端用户加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从调用 <xref keyref="startMediaRenderingTracing"/> 到订阅远端视频流的时间间隔 (ms)。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteJoined2PacketReceived</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果在接收到远端视频流后再调用 <xref keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
+                                <li>为提升远端用户出图速度，建议在远端用户加入频道后立即发布视频流，本地用户立即订阅远端视频流，以降低该值。</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>如果本地用户在远端用户加入频道前调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户接收到首个远端数据包的时间间隔 (ms)。</li>
+                            <li>如果本地用户在远端用户加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从调用 <xref keyref="startMediaRenderingTracing"/> 到接收到首个远端数据包的时间间隔 (ms)。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>elapsedTime</pt>
+                    <pd>从调用 <xref keyref="startMediaRenderingTracing"/> 到触发 <xref keyref="onVideoRenderingTracingResult"/> 回调的时间间隔 (ms)。建议在加入频道前调用 <xref keyref="startMediaRenderingTracing"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>start2JoinChannel</pt>
+                    <pd>从调用 <xref keyref="startMediaRenderingTracing"/> 到调用 <xref keyref="joinChannel1"/> 或 <xref keyref="joinChannel2"/> 的时间间隔 (ms)。负数表示在调用 <xref keyref="joinChannel2"/> 后调用 <xref keyref="startMediaRenderingTracing"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>join2JoinSuccess</pt>
+                    <pd>从调用 <xref keyref="joinChannel1"/> 或 <xref keyref="joinChannel2"/> 到成功加入频道的时间间隔 (ms)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>joinSuccess2RemoteJoined</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果本地用户在远端用户加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
+                                <li>为提升远端用户出图速度，建议远端用户加入频道中后，本地用户再加入频道，以降低该值。</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>如果本地用户成功加入频道前调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从本地用户成功加入频道到远端用户加入频道的时间间隔 (ms)。</li>
+                            <li>如果本地用户成功加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从调用 <xref keyref="startMediaRenderingTracing"/> 到远端用户加入频道的时间间隔 (ms)。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteJoined2SetView</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果本地用户在设置远端视图后再调用 <xref keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
+                                <li>为提升远端用户出图速度，建议在远端用户加入频道之前设置远端视图，或者远端用户加入频道后立即设置远端视图，以降低该值。</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>如果本地用户在远端用户加入频道前调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户设置远端视图的时间间隔 (ms)。</li>
+                            <li>如果本地用户在远端用户加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从调用 <xref keyref="startMediaRenderingTracing"/> 到设置远端视图的时间间隔 (ms)。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteJoined2UnmuteVideo</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果在订阅远端视频流后再调用 <xref keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
+                                <li>为提升远端用户出图速度，建议在远端用户加入频道后，本地用户立即订阅远端视频流，以降低该值。</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>如果本地用户在远端用户加入频道前调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到订阅远端视频流的时间间隔 (ms)。</li>
+                            <li>如果本地用户在远端用户加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从调用 <xref keyref="startMediaRenderingTracing"/> 到订阅远端视频流的时间间隔 (ms)。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteJoined2PacketReceived</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>如果在接收到远端视频流后再调用 <xref keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
+                                <li>为提升远端用户出图速度，建议在远端用户加入频道后立即发布视频流，本地用户立即订阅远端视频流，以降低该值。</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>如果本地用户在远端用户加入频道前调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户接收到首个远端数据包的时间间隔 (ms)。</li>
+                            <li>如果本地用户在远端用户加入频道后调用 <xref keyref="startMediaRenderingTracing"/>，则该值为从调用 <xref keyref="startMediaRenderingTracing"/> 到接收到首个远端数据包的时间间隔 (ms)。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

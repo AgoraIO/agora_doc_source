@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_contentinspectconfig">
+    <title><ph keyref="ContentInspectConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">配置视频截图和上传功能。</ph><ph id="shortdesc" props="ios">截图和上传配置。</ph><ph id="shortdesc" props="android">用于配置截图和上传功能。</ph><ph id="shortdesc" props="mac">截图和上传配置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ContentInspectConfig {
+  const char* extraInfo;
+  const char* serverConfig;
+  ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
+  int moduleCount;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
+@property (nonatomic, copy) NSString* _Nullable extraInfo;
+@property (nonatomic, copy) NSString* _Nullable serverConfig;
+@property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*&gt;* _Nullable modules;
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class ContentInspectConfig {
+  public final static int CONTENT_INSPECT_TYPE_INVALID = 0;
+  @Deprecated public final static int CONTENT_INSPECT_TYPE_MODERATION = 1;
+  public final static int CONTENT_INSPECT_TYPE_SUPERVISE = 2;
+  public final static int CONTENT_INSPECT_TYPE_IMAGE_MODERATION = 3;
+  public static final int MAX_CONTENT_INSPECT_MODULE_COUNT = 32;
+  public String extraInfo;
+  public String serverConfig;
+  public ContentInspectModule[] modules;
+  public int moduleCount;
+}</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
+@property (nonatomic, copy) NSString* _Nullable extraInfo;
+@property (nonatomic, copy) NSString* _Nullable serverConfig;
+@property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*&gt;* _Nullable modules;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v3.4.2 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">SDK 会将视频截图和附加信息上传至声网服务器。上传完成后，声网服务器会将回调通知和附加信息发送至你的服务器。</p>
+            <p props="ios">用于配置本地截图上传功能。上传完成后，声网服务器会将附加信息和回调通知发送至你的服务器。</p>
+            <p props="android">用于设置截图和上传的相关参数。</p>
+            <p props="mac">用于配置本地截图上传功能。上传完成后，声网服务器会将附加信息和回调通知发送至你的服务器。</p>
+            <note props="cpp">一个功能模块最多只能配置一个实例。目前仅支持本地截图上传功能。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>extraInfo</pt>
+                    <pd>视频内容的附加信息（最大长度为 1024 字节）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>serverConfig</pt>
+                    <pd>（可选）通过声网 Extensions Marketplace 上传视频截图的服务器配置。仅当 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <codeph>CONTENT_INSPECT_IMAGE_MODERATION</codeph> 时该参数才生效。如需使用，请[联系技术支持](https://ticket.shengwang.cn/)。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>modules</pt>
+                    <pd>功能模块。最多可配置 32 个 <xref keyref="ContentInspectModule"/> 实例。详见 <xref keyref="ContentInspectModule"/>。
+                        <note>一个功能模块最多只能配置一个实例。目前仅支持本地截图上传功能。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>moduleCount</pt>
+                    <pd>功能模块的数量，即配置的 <xref keyref="ContentInspectModule"/> 实例数量，必须与 <codeph>modules</codeph> 中配置的实例数量一致。最大数量为 32。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>extraInfo</pt>
+                    <pd>视频内容的附加信息（最大长度为 1024 字节）。SDK 会将截图和视频内容的附加信息上传至声网服务器。上传完成后，声网服务器会将附加信息和回调通知发送至你的服务器。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>serverConfig</pt>
+                    <pd>通过声网 Extensions Marketplace 上传视频截图的扩展相关的服务器配置。仅当 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <codeph>AgoraContentInspectTypeImageModeration</codeph> 时该参数才生效。如需使用该功能，请[联系技术支持](https://ticket.shengwang.cn/)。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>modules</pt>
+                    <pd>功能模块。最多可配置 32 个 <xref keyref="ContentInspectModule"/> 实例，<codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> 的取值范围为 [1, 32] 的整数。详见 <xref keyref="ContentInspectModule"/>。
+                        <note>每个功能模块最多只能配置一个实例。目前仅支持本地截图上传功能。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
+                    <pd>0：（默认）无实际功能。不要将 <codeph>type</codeph> 设置为该值。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>CONTENT_INSPECT_TYPE_MODERATION</pt>
+                    <pd>已废弃的视频内容审核类型。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>CONTENT_INSPECT_TYPE_SUPERVISE</pt>
+                    <pd>2：通过声网自研扩展进行视频截图并上传。SDK 会对本地用户发送的视频进行截图并上传。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>CONTENT_INSPECT_TYPE_IMAGE_MODERATION</pt>
+                    <pd>3：通过声网扩展市场中的扩展插件进行视频截图并上传。SDK 使用扩展插件对频道中的视频流进行截图并上传。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MAX_CONTENT_INSPECT_MODULE_COUNT</pt>
+                    <pd>功能模块的最大配置数量为 32。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>extraInfo</pt>
+                    <pd>视频内容的附加信息（最大长度为 1024 字节）。SDK 会将截图和附加信息一并发送到声网服务器。完成上传后，声网服务器会将附加信息和回调通知发送到你的服务器。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>serverConfig</pt>
+                    <pd>（可选）通过声网扩展市场中的扩展上传视频截图时的服务器配置。仅当 <xref keyref="ContentInspectModule"/> 中 <codeph>type</codeph> 设置为 <codeph>CONTENT_INSPECT_TYPE_IMAGE_MODERATION</codeph> 时该参数才生效。如需使用该功能，请[联系技术支持](https://ticket.shengwang.cn/)。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>modules</pt>
+                    <pd>功能模块。最多支持配置 32 个实例，取值范围为 [1, 32]。详见 <xref keyref="ContentInspectModule"/>。
+                        <note>每个功能模块最多只能配置一个实例。目前仅支持本地截图上传功能。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>moduleCount</pt>
+                    <pd>功能模块的数量，即配置的 <xref keyref="ContentInspectModule"/> 实例数量。必须与 <codeph>modules</codeph> 中配置的实例数量一致，最大值为 32。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>extraInfo</pt>
+                    <pd>视频内容的附加信息（最大长度为 1024 字节）。SDK 会将截图和视频内容的附加信息上传至声网服务器。上传完成后，声网服务器会将附加信息和回调通知发送至你的服务器。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>serverConfig</pt>
+                    <pd>通过声网 Extensions Marketplace 上传视频截图的扩展相关的服务器配置。仅当 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <codeph>AgoraContentInspectTypeImageModeration</codeph> 时该参数才生效。如需使用该功能，请[联系技术支持](https://ticket.shengwang.cn/)。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>modules</pt>
+                    <pd>功能模块。最多可配置 32 个 <xref keyref="ContentInspectModule"/> 实例，<codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> 的取值范围为 [1, 32] 的整数。详见 <xref keyref="ContentInspectModule"/>。
+                        <note>每个功能模块最多只能配置一个实例。目前仅支持本地截图上传功能。</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

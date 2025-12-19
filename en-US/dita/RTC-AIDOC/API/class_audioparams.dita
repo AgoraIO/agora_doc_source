@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audioparams">
+    <title><ph keyref="AudioParams"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set the audio data format.</ph><ph id="shortdesc" props="android">Used to set the audio data format.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct AudioParams {
+  int sample_rate;
+  int channels;
+  rtc::RAW_AUDIO_FRAME_OP_MODE_TYPE mode;
+  int samples_per_call;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class AudioParams {
+  public int sampleRate = 0;
+  public int channel = 0;
+  public int mode = Constants.RAW_AUDIO_FRAME_OP_MODE_READ_ONLY;
+  public int samplesPerCall = 0;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
+            <p props="cpp">You can pass the <xref keyref="AudioParams"/> object in the following APIs to set the audio data format for the corresponding callback:
+                <ul>
+                    <li><xref keyref="getRecordAudioParams_IAudioFrameObserverBase"/>: Sets the audio data format for the <xref keyref="onRecordAudioFrame_IAudioFrameObserverBase"/> callback.</li>
+                    <li><xref keyref="getPlaybackAudioParams_IAudioFrameObserverBase"/>: Sets the audio data format for the <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> callback.</li>
+                    <li><xref keyref="getMixedAudioParams_IAudioFrameObserverBase"/>: Sets the audio data format for the <xref keyref="onMixedAudioFrame_IAudioFrameObserverBase"/> callback.</li>
+                    <li><xref keyref="getEarMonitoringAudioParams_IAudioFrameObserverBase"/>: Sets the audio data format for the <xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/> callback.</li>
+                </ul>
+            </p>
+            <p props="android">You can pass the <xref keyref="AudioParams"/> object in the following APIs to set the data format for the corresponding callbacks:
+                <ul>
+                    <li><xref keyref="getRecordAudioParams"/>: Sets the data format for the <xref keyref="onRecordAudioFrame"/> callback.</li>
+                    <li><xref keyref="getPlaybackAudioParams"/>: Sets the data format for the <xref keyref="onPlaybackAudioFrame"/> callback.</li>
+                    <li><xref keyref="getMixedAudioParams"/>: Sets the data format for the <xref keyref="onMixedAudioFrame"/> callback.</li>
+                    <li><xref keyref="getEarMonitoringAudioParams"/>: Sets the data format for the <xref keyref="onEarMonitoringAudioFrame"/> callback.</li>
+                </ul>
+            </p>
+            <note props="cpp">The SDK calculates the sampling interval using the <codeph>samplesPerCall</codeph>, <codeph>sampleRate</codeph>, and <codeph>channel</codeph> parameters in <xref keyref="AudioParams"/>, and triggers the <xref keyref="onRecordAudioFrame_IAudioFrameObserverBase"/>, <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/>, <xref keyref="onMixedAudioFrame_IAudioFrameObserverBase"/>, and <xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/> callbacks based on the sampling interval.
+Sampling interval (seconds) = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>).
+Make sure the sampling interval is ≥ 0.01 seconds.</note>
+            <note props="android">The SDK calculates the sampling interval using the <codeph>samplesPerCall</codeph>, <codeph>sampleRate</codeph>, and <codeph>channel</codeph> parameters in <xref keyref="AudioParams"/>, and triggers the <xref keyref="onRecordAudioFrame"/>, <xref keyref="onPlaybackAudioFrame"/>, <xref keyref="onMixedAudioFrame"/>, and <xref keyref="onEarMonitoringAudioFrame"/> callbacks accordingly.
+Sampling interval (seconds) = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>).
+Ensure the sampling interval is ≥ 0.01 seconds.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>sample_rate</pt>
+                    <pd>Audio sample rate (Hz). Can be set to one of the following values: 8000, 16000 (default), 32000, 44100, 48000.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>channels</pt>
+                    <pd>Number of audio channels. Can be set to one of the following values:
+                        <ul>
+                            <li>1: Mono (default).</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mode</pt>
+                    <pd>Usage mode of the audio data. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>samples_per_call</pt>
+                    <pd>Number of samples per call, e.g., 1024 for media streaming.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sampleRate</pt>
+                    <pd>Audio sampling rate (Hz). Can be set to:
+                        <ul>
+                            <li>8000.</li>
+                            <li>(Default) 16000.</li>
+                            <li>32000.</li>
+                            <li>44100.</li>
+                            <li>48000.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channel</pt>
+                    <pd>Number of audio channels. Can be set to:
+                        <ul>
+                            <li>1: (Default) Mono.</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mode</pt>
+                    <pd>Usage mode of the audio data. Can be set to:
+                        <ul>
+                            <li><codeph>RAW_AUDIO_FRAME_OP_MODE_READ_ONLY</codeph> (0): Read-only mode, for example, when the user pushes the data stream using the Agora SDK.</li>
+                            <li><codeph>RAW_AUDIO_FRAME_OP_MODE_READ_WRITE</codeph> (2): Read-write mode, for example, when the user applies custom audio effects or preprocessing such as voice changing.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>samplesPerCall</pt>
+                    <pd>Number of samples per callback, e.g., set to 1024 for media pushing.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

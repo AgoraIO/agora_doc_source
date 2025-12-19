@@ -1,0 +1,662 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rtcstats">
+    <title><ph keyref="RtcStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于统计通话会话相关数据。</ph><ph id="shortdesc" props="ios">通话会话的统计信息。</ph><ph id="shortdesc" props="android">通话会话的统计信息。</ph><ph id="shortdesc" props="mac">通话会话的统计信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct RtcStats {
+  unsigned int duration;
+  unsigned int txBytes;
+  unsigned int rxBytes;
+  unsigned int txAudioBytes;
+  unsigned int txVideoBytes;
+  unsigned int rxAudioBytes;
+  unsigned int rxVideoBytes;
+  unsigned short txKBitRate;
+  unsigned short rxKBitRate;
+  unsigned short rxAudioKBitRate;
+  unsigned short txAudioKBitRate;
+  unsigned short rxVideoKBitRate;
+  unsigned short txVideoKBitRate;
+  unsigned short lastmileDelay;
+  unsigned int userCount;
+  double cpuAppUsage;
+  double cpuTotalUsage;
+  int gatewayRtt;
+  double memoryAppUsageRatio;
+  double memoryTotalUsageRatio;
+  int memoryAppUsageInKbytes;
+  int connectTimeMs;
+  int firstAudioPacketDuration;
+  int firstVideoPacketDuration;
+  int firstVideoKeyFramePacketDuration;
+  int packetsBeforeFirstKeyFramePacket;
+  int firstAudioPacketDurationAfterUnmute;
+  int firstVideoPacketDurationAfterUnmute;
+  int firstVideoKeyFramePacketDurationAfterUnmute;
+  int firstVideoKeyFrameDecodedDurationAfterUnmute;
+  int firstVideoKeyFrameRenderedDurationAfterUnmute;
+  int txPacketLossRate;
+  int rxPacketLossRate;
+  int lanAccelerateState;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelStats : NSObject
+@property(assign, nonatomic) NSUInteger duration;
+@property(assign, nonatomic) NSUInteger txBytes;
+@property(assign, nonatomic) NSUInteger rxBytes;
+@property(assign, nonatomic) NSUInteger txAudioKBitrate;
+@property(assign, nonatomic) NSUInteger rxAudioKBitrate;
+@property(assign, nonatomic) NSUInteger txVideoKBitrate;
+@property(assign, nonatomic) NSUInteger rxVideoKBitrate;
+@property(assign, nonatomic) NSUInteger txAudioBytes;
+@property(assign, nonatomic) NSUInteger txVideoBytes;
+@property(assign, nonatomic) NSUInteger rxAudioBytes;
+@property(assign, nonatomic) NSUInteger rxVideoBytes;
+@property(assign, nonatomic) NSUInteger lastmileDelay;
+@property(assign, nonatomic) NSUInteger userCount;
+@property(assign, nonatomic) double cpuAppUsage;
+@property(assign, nonatomic) double cpuTotalUsage;
+@property(assign, nonatomic) NSInteger gatewayRtt;
+@property(assign, nonatomic) double memoryAppUsageRatio;
+@property(assign, nonatomic) double memoryTotalUsageRatio;
+@property(assign, nonatomic) NSInteger memoryAppUsageInKbytes;
+@property(assign, nonatomic) NSInteger connectTimeMs;
+@property(assign, nonatomic) NSUInteger txKBitrate;
+@property(assign, nonatomic) NSUInteger rxKBitrate;
+@property(assign, nonatomic) NSInteger firstAudioPacketDuration;
+@property(assign, nonatomic) NSInteger firstVideoPacketDuration;
+@property(assign, nonatomic) NSInteger firstVideoKeyFramePacketDuration;
+@property(assign, nonatomic) NSInteger packetsBeforeFirstKeyFramePacket;
+@property(assign, nonatomic) NSInteger txPacketLossRate;
+@property(assign, nonatomic) NSInteger rxPacketLossRate;
+@property(assign, nonatomic) NSInteger lanAccelerateState;
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class RtcStats {
+    public int totalDuration;
+    public int txBytes;
+    public int rxBytes;
+    public int txKBitRate;
+    public int txAudioBytes;
+    public int rxAudioBytes;
+    public int txVideoBytes;
+    public int rxVideoBytes;
+    public int rxKBitRate;
+    public int txAudioKBitRate;
+    public int rxAudioKBitRate;
+    public int txVideoKBitRate;
+    public int rxVideoKBitRate;
+    public int lastmileDelay;
+    public double cpuTotalUsage;
+    public int gatewayRtt;
+    public double cpuAppUsage;
+    public int users;
+    public int connectTimeMs;
+    public int txPacketLossRate;
+    public int rxPacketLossRate;
+    public double memoryAppUsageRatio;
+    public double memoryTotalUsageRatio;
+    public int memoryAppUsageInKbytes;
+    public int lanAccelerateState;
+  }</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelStats : NSObject
+@property(assign, nonatomic) NSUInteger duration;
+@property(assign, nonatomic) NSUInteger txBytes;
+@property(assign, nonatomic) NSUInteger rxBytes;
+@property(assign, nonatomic) NSUInteger txAudioKBitrate;
+@property(assign, nonatomic) NSUInteger rxAudioKBitrate;
+@property(assign, nonatomic) NSUInteger txVideoKBitrate;
+@property(assign, nonatomic) NSUInteger rxVideoKBitrate;
+@property(assign, nonatomic) NSUInteger txAudioBytes;
+@property(assign, nonatomic) NSUInteger txVideoBytes;
+@property(assign, nonatomic) NSUInteger rxAudioBytes;
+@property(assign, nonatomic) NSUInteger rxVideoBytes;
+@property(assign, nonatomic) NSUInteger lastmileDelay;
+@property(assign, nonatomic) NSUInteger userCount;
+@property(assign, nonatomic) double cpuAppUsage;
+@property(assign, nonatomic) double cpuTotalUsage;
+@property(assign, nonatomic) NSInteger gatewayRtt;
+@property(assign, nonatomic) double memoryAppUsageRatio;
+@property(assign, nonatomic) double memoryTotalUsageRatio;
+@property(assign, nonatomic) NSInteger memoryAppUsageInKbytes;
+@property(assign, nonatomic) NSInteger connectTimeMs;
+@property(assign, nonatomic) NSUInteger txKBitrate;
+@property(assign, nonatomic) NSUInteger rxKBitrate;
+@property(assign, nonatomic) NSInteger firstAudioPacketDuration;
+@property(assign, nonatomic) NSInteger firstVideoPacketDuration;
+@property(assign, nonatomic) NSInteger firstVideoKeyFramePacketDuration;
+@property(assign, nonatomic) NSInteger packetsBeforeFirstKeyFramePacket;
+@property(assign, nonatomic) NSInteger txPacketLossRate;
+@property(assign, nonatomic) NSInteger rxPacketLossRate;
+@property(assign, nonatomic) NSInteger lanAccelerateState;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>duration</pt>
+                    <pd>本地用户的通话时长（秒），为聚合值。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txBytes</pt>
+                    <pd>发送的字节总数。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxBytes</pt>
+                    <pd>接收的字节总数。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txAudioBytes</pt>
+                    <pd>发送的音频字节总数，为聚合值。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txVideoBytes</pt>
+                    <pd>发送的视频字节总数，为聚合值。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxAudioBytes</pt>
+                    <pd>接收的音频字节总数，为聚合值。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxVideoBytes</pt>
+                    <pd>接收的视频字节总数，为聚合值。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txKBitRate</pt>
+                    <pd>发送本地视频流的实际码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxKBitRate</pt>
+                    <pd>接收的总码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxAudioKBitRate</pt>
+                    <pd>接收音频的码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txAudioKBitRate</pt>
+                    <pd>发送音频的码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxVideoKBitRate</pt>
+                    <pd>接收视频的码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txVideoKBitRate</pt>
+                    <pd>发送视频的码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>lastmileDelay</pt>
+                    <pd>客户端到服务器的网络延迟（毫秒）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>userCount</pt>
+                    <pd>频道内的用户数量。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cpuAppUsage</pt>
+                    <pd>应用的 CPU 使用率（%）。
+                        <note>
+                            <ul>
+                                <li>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</li>
+                                <li>自 Android 8.1 起，受系统限制无法获取该值。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cpuTotalUsage</pt>
+                    <pd>系统的 CPU 使用率（%）。在 Windows 多核环境下，该值为平均 CPU 使用率，计算方式为：(100 - 任务管理器中的系统空闲进度)/100。
+                        <note>
+                            <ul>
+                                <li>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</li>
+                                <li>自 Android 8.1 起，受系统限制无法获取该值。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>gatewayRtt</pt>
+                    <pd>客户端到本地路由器的往返时延（毫秒）。
+                        <note>该属性在 iOS 14 及以上版本默认禁用，iOS 14 以下版本默认启用。如需在 iOS 14 及以上版本启用，请[联系技术支持](https://ticket.shengwang.cn/)。在 Android 上，需在 <codeph>AndroidManifest.xml</codeph> 文件中 <codeph>&lt;/application&gt;</codeph> 后添加 <codeph>android.permission.ACCESS_WIFI_STATE</codeph> 权限。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>memoryAppUsageRatio</pt>
+                    <pd>应用占用的内存比例（%）。
+                        <note>该值仅供参考，受系统限制可能无法获取。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>memoryTotalUsageRatio</pt>
+                    <pd>系统占用的内存比例（%）。
+                        <note>该值仅供参考，受系统限制可能无法获取。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>memoryAppUsageInKbytes</pt>
+                    <pd>应用占用的内存大小（KB）。
+                        <note>该值仅供参考，受系统限制可能无法获取。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connectTimeMs</pt>
+                    <pd>从 SDK 开始连接到连接建立之间的时长（毫秒）。值为 0 表示无效。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>firstAudioPacketDuration</pt>
+                    <pd>应用开始连接到频道到接收到首个音频包之间的时长（毫秒）。0 表示该字段不适用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>firstVideoPacketDuration</pt>
+                    <pd>应用开始连接到频道到接收到首个视频包之间的时长（毫秒）。0 表示该字段不适用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>firstVideoKeyFramePacketDuration</pt>
+                    <pd>应用开始连接到频道到接收到首个视频关键帧之间的时长（毫秒）。0 表示该字段不适用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>packetsBeforeFirstKeyFramePacket</pt>
+                    <pd>接收到首个视频关键帧前的视频包数量。0 表示该字段不适用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>firstAudioPacketDurationAfterUnmute</pt>
+                    <pd>上次取消音频静音到接收到首个音频包之间的时长（毫秒）。0 表示该字段不适用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>firstVideoPacketDurationAfterUnmute</pt>
+                    <pd>上次取消视频静音到接收到首个视频包之间的时长（毫秒）。0 表示该字段不适用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>firstVideoKeyFramePacketDurationAfterUnmute</pt>
+                    <pd>上次取消视频静音到接收到首个视频关键帧之间的时长（毫秒）。0 表示该字段不适用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>firstVideoKeyFrameDecodedDurationAfterUnmute</pt>
+                    <pd>上次取消视频静音到解码首个视频关键帧之间的时长（毫秒）。0 表示该字段不适用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>firstVideoKeyFrameRenderedDurationAfterUnmute</pt>
+                    <pd>上次取消视频静音到渲染首个视频关键帧之间的时长（毫秒）。0 表示该字段不适用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txPacketLossRate</pt>
+                    <pd>应用抗丢包算法前，客户端到声网服务器的丢包率（%）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxPacketLossRate</pt>
+                    <pd>使用抗丢包方法前，声网服务器到客户端的丢包率（%）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>duration</pt>
+                    <pd>本地用户通话时长，单位为秒，表示为累计值。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>txBytes</pt>
+                    <pd>发送的字节数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>rxBytes</pt>
+                    <pd>接收的字节数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>txAudioKBitrate</pt>
+                    <pd>音频发送码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>rxAudioKBitrate</pt>
+                    <pd>音频接收码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>txVideoKBitrate</pt>
+                    <pd>视频发送码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>rxVideoKBitrate</pt>
+                    <pd>视频接收码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>txAudioBytes</pt>
+                    <pd>发送的音频字节总数，表示为累计值。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>txVideoBytes</pt>
+                    <pd>发送的视频字节总数，表示为累计值。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>rxAudioBytes</pt>
+                    <pd>接收的音频字节总数，表示为累计值。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>rxVideoBytes</pt>
+                    <pd>接收的视频字节总数，表示为累计值。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>lastmileDelay</pt>
+                    <pd>客户端到服务器的延迟，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>userCount</pt>
+                    <pd>频道中的用户数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>cpuAppUsage</pt>
+                    <pd>应用程序的 CPU 使用率（%）。
+                        <note>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>cpuTotalUsage</pt>
+                    <pd>系统的 CPU 使用率（%）。
+                        <note>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>gatewayRtt</pt>
+                    <pd>客户端到本地路由器的往返时延，单位为毫秒。
+                        <note>该属性在运行 iOS 14 或更高版本的设备上默认禁用，在运行早期版本的设备上默认启用。要在 iOS 14 或更高版本的设备上启用该属性，请[联系技术支持](https://ticket.shengwang.cn/)。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>memoryAppUsageRatio</pt>
+                    <pd>应用程序占用的内存比例（%）。
+                        <note>该值仅供参考。由于系统限制，可能无法获取该值。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>memoryTotalUsageRatio</pt>
+                    <pd>系统占用的内存比例（%）。
+                        <note>该值仅供参考。由于系统限制，可能无法获取该值。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>memoryAppUsageInKbytes</pt>
+                    <pd>应用程序占用的内存大小，单位为 KB。
+                        <note>该值仅供参考。由于系统限制，可能无法获取该值。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>connectTimeMs</pt>
+                    <pd>从 SDK 开始连接到连接建立之间的耗时，单位为毫秒。若值为 0，表示无效。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>txKBitrate</pt>
+                    <pd>本地视频流发送时的实际码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>rxKBitrate</pt>
+                    <pd>接收码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>firstAudioPacketDuration</pt>
+                    <pd>从连接开始到接收到首个音频包的耗时，单位为毫秒。若值为 0，表示无效。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>firstVideoPacketDuration</pt>
+                    <pd>从连接开始到接收到首个视频包的耗时，单位为毫秒。若值为 0，表示无效。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>firstVideoKeyFramePacketDuration</pt>
+                    <pd>从连接开始到接收到首个视频关键帧的耗时，单位为毫秒。若值为 0，表示无效。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>packetsBeforeFirstKeyFramePacket</pt>
+                    <pd>在接收到首个视频关键帧前接收到的视频包数量。若值为 0，表示无效。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>txPacketLossRate</pt>
+                    <pd>应用抗丢包算法前，客户端到声网服务器的丢包率（%）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>rxPacketLossRate</pt>
+                    <pd>使用抗丢包方法前，声网服务器到客户端的丢包率（%）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>totalDuration</pt>
+                    <pd>本地用户的通话时长（秒），以累计值表示。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txBytes</pt>
+                    <pd>已发送的字节数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxBytes</pt>
+                    <pd>已接收的字节数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txKBitRate</pt>
+                    <pd>发送本地视频流的实际码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txAudioBytes</pt>
+                    <pd>发送的音频字节总数，以累计值表示。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxAudioBytes</pt>
+                    <pd>接收的音频字节总数，以累计值表示。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txVideoBytes</pt>
+                    <pd>发送的视频字节总数，以累计值表示。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxVideoBytes</pt>
+                    <pd>接收的视频字节总数，以累计值表示。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxKBitRate</pt>
+                    <pd>接收码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txAudioKBitRate</pt>
+                    <pd>音频发送码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxAudioKBitRate</pt>
+                    <pd>音频接收码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txVideoKBitRate</pt>
+                    <pd>视频发送码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxVideoKBitRate</pt>
+                    <pd>视频接收码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lastmileDelay</pt>
+                    <pd>客户端到服务器的延迟（毫秒）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cpuTotalUsage</pt>
+                    <pd>系统 CPU 使用率（%）。
+                        <note>
+                            <ul>
+                                <li>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</li>
+                                <li>从 Android 8.1 开始，受系统限制无法获取该值。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>gatewayRtt</pt>
+                    <pd>客户端到本地路由器的往返时延（毫秒）。
+                        <note>在 Android 上，如需获取该值，请确保在项目的 <codeph>AndroidManifest.xml</codeph> 文件中，在 <codeph>&lt;/application&gt;</codeph> 后添加权限 <codeph>android.permission.ACCESS_WIFI_STATE</codeph>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cpuAppUsage</pt>
+                    <pd>应用的 CPU 使用率（%）。
+                        <note>
+                            <ul>
+                                <li>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</li>
+                                <li>从 Android 8.1 开始，受系统限制无法获取该值。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>users</pt>
+                    <pd>频道中的用户人数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connectTimeMs</pt>
+                    <pd>SDK 开始连接到连接建立之间的时长（毫秒）。若值为 0，表示无效。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txPacketLossRate</pt>
+                    <pd>客户端发送到声网服务器的丢包率（%），为应用抗丢包机制前的值。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxPacketLossRate</pt>
+                    <pd>声网服务器发送到客户端前，未使用抗丢包机制时的丢包率（%）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>memoryAppUsageRatio</pt>
+                    <pd>应用占用的内存比例（%）。
+                        <note>该值仅供参考，因系统限制可能无法获取。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>memoryTotalUsageRatio</pt>
+                    <pd>系统占用的内存比例（%）。
+                        <note>该值仅供参考，因系统限制可能无法获取。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>memoryAppUsageInKbytes</pt>
+                    <pd>应用占用的内存大小（KB）。
+                        <note>该值仅供参考，因系统限制可能无法获取。</note>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>duration</pt>
+                    <pd>本地用户通话时长，单位为秒，表示为累计值。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>txBytes</pt>
+                    <pd>发送的字节数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>rxBytes</pt>
+                    <pd>接收的字节数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>txAudioKBitrate</pt>
+                    <pd>音频发送码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>rxAudioKBitrate</pt>
+                    <pd>音频接收码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>txVideoKBitrate</pt>
+                    <pd>视频发送码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>rxVideoKBitrate</pt>
+                    <pd>视频接收码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>txAudioBytes</pt>
+                    <pd>发送的音频字节总数，表示为累计值。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>txVideoBytes</pt>
+                    <pd>发送的视频字节总数，表示为累计值。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>rxAudioBytes</pt>
+                    <pd>接收的音频字节总数，表示为累计值。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>rxVideoBytes</pt>
+                    <pd>接收的视频字节总数，表示为累计值。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>lastmileDelay</pt>
+                    <pd>客户端到服务器的延迟，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>userCount</pt>
+                    <pd>频道中的用户数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>cpuAppUsage</pt>
+                    <pd>应用程序的 CPU 使用率（%）。
+                        <note>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</note>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>cpuTotalUsage</pt>
+                    <pd>系统的 CPU 使用率（%）。
+                        <note>在 <xref keyref="onLeaveChannel"/> 回调中，该值始终为 0。</note>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>gatewayRtt</pt>
+                    <pd>客户端到本地路由器的往返时延，单位为毫秒。
+                        <note>该属性在运行 iOS 14 或更高版本的设备上默认禁用，在运行早期版本的设备上默认启用。要在 iOS 14 或更高版本的设备上启用该属性，请[联系技术支持](https://ticket.shengwang.cn/)。</note>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>memoryAppUsageRatio</pt>
+                    <pd>应用程序占用的内存比例（%）。
+                        <note>该值仅供参考。由于系统限制，可能无法获取该值。</note>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>memoryTotalUsageRatio</pt>
+                    <pd>系统占用的内存比例（%）。
+                        <note>该值仅供参考。由于系统限制，可能无法获取该值。</note>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>memoryAppUsageInKbytes</pt>
+                    <pd>应用程序占用的内存大小，单位为 KB。
+                        <note>该值仅供参考。由于系统限制，可能无法获取该值。</note>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>connectTimeMs</pt>
+                    <pd>从 SDK 开始连接到连接建立之间的耗时，单位为毫秒。若值为 0，表示无效。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>txKBitrate</pt>
+                    <pd>本地视频流发送时的实际码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>rxKBitrate</pt>
+                    <pd>接收码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>firstAudioPacketDuration</pt>
+                    <pd>从连接开始到接收到首个音频包的耗时，单位为毫秒。若值为 0，表示无效。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>firstVideoPacketDuration</pt>
+                    <pd>从连接开始到接收到首个视频包的耗时，单位为毫秒。若值为 0，表示无效。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>firstVideoKeyFramePacketDuration</pt>
+                    <pd>从连接开始到接收到首个视频关键帧的耗时，单位为毫秒。若值为 0，表示无效。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>packetsBeforeFirstKeyFramePacket</pt>
+                    <pd>在接收到首个视频关键帧前接收到的视频包数量。若值为 0，表示无效。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>txPacketLossRate</pt>
+                    <pd>应用抗丢包算法前，客户端到声网服务器的丢包率（%）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>rxPacketLossRate</pt>
+                    <pd>使用抗丢包方法前，声网服务器到客户端的丢包率（%）。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,368 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videoencoderconfiguration">
+    <title><ph keyref="VideoEncoderConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于设置视频编码参数。</ph><ph id="shortdesc" props="ios">视频编码器配置。</ph><ph id="shortdesc" props="android">用于设置视频编码器的参数。</ph><ph id="shortdesc" props="mac">视频编码器配置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct VideoEncoderConfiguration {
+  VIDEO_CODEC_TYPE codecType;
+  VideoDimensions dimensions;
+  int frameRate;
+  int bitrate;
+  int minBitrate;
+  ORIENTATION_MODE orientationMode;
+  DEGRADATION_PREFERENCE degradationPreference;
+  VIDEO_MIRROR_MODE_TYPE mirrorMode;
+  AdvanceOptions advanceOptions;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
+@property(assign, nonatomic) CGSize dimensions;
+@property(assign, nonatomic) AgoraVideoCodecType codecType;
+@property(assign, nonatomic) NSInteger frameRate;
+@property(assign, nonatomic) NSInteger bitrate;
+@property(assign, nonatomic) NSInteger minBitrate;
+@property(assign, nonatomic) AgoraVideoOutputOrientationMode orientationMode;
+@property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
+@property (assign, nonatomic) AgoraDegradationPreference degradationPreference;
+@property (strong, nonatomic) AgoraAdvancedVideoOptions *_Nullable advancedVideoOptions;
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class VideoEncoderConfiguration {
+  public final static VideoDimensions VD_120x120 = new VideoDimensions(120, 120);
+  public final static VideoDimensions VD_160x120 = new VideoDimensions(160, 120);
+  public final static VideoDimensions VD_180x180 = new VideoDimensions(180, 180);
+  public final static VideoDimensions VD_240x180 = new VideoDimensions(240, 180);
+  public final static VideoDimensions VD_320x180 = new VideoDimensions(320, 180);
+  public final static VideoDimensions VD_240x240 = new VideoDimensions(240, 240);
+  public final static VideoDimensions VD_320x240 = new VideoDimensions(320, 240);
+  public final static VideoDimensions VD_424x240 = new VideoDimensions(424, 240);
+  public final static VideoDimensions VD_360x360 = new VideoDimensions(360, 360);
+  public final static VideoDimensions VD_480x360 = new VideoDimensions(480, 360);
+  public final static VideoDimensions VD_640x360 = new VideoDimensions(640, 360);
+  public final static VideoDimensions VD_480x480 = new VideoDimensions(480, 480);
+  public final static VideoDimensions VD_640x480 = new VideoDimensions(640, 480);
+  public final static VideoDimensions VD_840x480 = new VideoDimensions(840, 480);
+  public final static VideoDimensions VD_960x540 = new VideoDimensions(960, 540);
+  public final static VideoDimensions VD_960x720 = new VideoDimensions(960, 720);
+  public final static VideoDimensions VD_1280x720 = new VideoDimensions(1280, 720);
+  public final static VideoDimensions VD_1920x1080 = new VideoDimensions(1920, 1080);
+  public final static VideoDimensions VD_2540x1440 = new VideoDimensions(2540, 1440);
+  public final static VideoDimensions VD_3840x2160 = new VideoDimensions(3840, 2160);
+  public static final int STANDARD_BITRATE = 0;
+  public static final int COMPATIBLE_BITRATE = -1;
+  public static final int DEFAULT_MIN_BITRATE = -1;
+  public static final int DEFAULT_MIN_FRAMERATE = -1;
+  public static final int DEFAULT_MIN_BITRATE_EQUAL_TO_TARGET_BITRATE = -2;
+  public VideoDimensions dimensions;
+  public int frameRate;
+  public int minFrameRate;
+  public int bitrate;
+  public int minBitrate;
+  public ORIENTATION_MODE orientationMode;
+  public DEGRADATION_PREFERENCE degradationPrefer;
+  public MIRROR_MODE_TYPE mirrorMode;
+  public AdvanceOptions advanceOptions;
+  public VIDEO_CODEC_TYPE codecType;
+}</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
+@property(assign, nonatomic) CGSize dimensions;
+@property(assign, nonatomic) AgoraVideoCodecType codecType;
+@property(assign, nonatomic) NSInteger frameRate;
+@property(assign, nonatomic) NSInteger bitrate;
+@property(assign, nonatomic) NSInteger minBitrate;
+@property(assign, nonatomic) AgoraVideoOutputOrientationMode orientationMode;
+@property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
+@property (assign, nonatomic) AgoraDegradationPreference degradationPreference;
+@property (strong, nonatomic) AgoraAdvancedVideoOptions *_Nullable advancedVideoOptions;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
+            <p props="android">你可以自定义分辨率，或从预设分辨率中选择。支持设置不同的编码码率和帧率，以适配不同的频道场景类型，还可以指定视频编码方向、镜像模式和编码器优先策略等。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>codecType</pt>
+                    <pd>本地视频流的编解码器类型。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>dimensions</pt>
+                    <pd>编码后的视频尺寸（像素）。该参数以长 × 宽的格式衡量视频编码质量。默认值为 960 × 540。你可以设置自定义值。详见 <xref keyref="VideoDimensions"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>frameRate</pt>
+                    <pd>编码视频帧的帧率（fps）。默认值为 15。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>bitrate</pt>
+                    <pd>视频的编码码率（Kbps）。该参数无需设置，保持默认值 <xref keyref="STANDARD_BITRATE"/> 即可。SDK 会根据你设置的视频分辨率和帧率自动匹配最合适的码率。
+                        <ul>
+                            <li><xref keyref="STANDARD_BITRATE"/>（0）：推荐使用的标准码率模式。</li>
+                            <li><xref keyref="COMPATIBLE_BITRATE"/>（-1）：自适应码率模式，通常不建议使用该值。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>minBitrate</pt>
+                    <pd>视频的最小编码码率（Kbps）。SDK 会自动调整编码码率以适应网络状况。使用高于默认值的设置会强制视频编码器输出高质量图像，但可能导致更多丢包并影响视频传输的流畅性。
+                        <note>该参数仅适用于互动直播场景。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>orientationMode</pt>
+                    <pd>编码后的视频方向模式。详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>degradationPreference</pt>
+                    <pd>在带宽受限的情况下的视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/>。
+                        <note>当该参数设置为 <codeph>MAINTAIN_FRAMERATE</codeph>（1）或 <codeph>MAINTAIN_BALANCED</codeph>（2）时，<codeph>orientationMode</codeph> 也必须设置为 <codeph>ORIENTATION_MODE_ADAPTIVE</codeph>（0），否则该设置不生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mirrorMode</pt>
+                    <pd>设置本地视频流发布时的镜像模式，仅影响远端用户看到的视频。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>默认情况下，视频不镜像。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>advanceOptions</pt>
+                    <pd>视频编码的高级选项。详见 <xref keyref="AdvanceOptions"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>dimensions</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>是否支持 720p 或更高分辨率取决于设备性能。如果设备不支持 720p，帧率将低于设置值。</li>
+                                <li>默认值为 960 × 540。</li>
+                            </ul>
+                        </note><ph>你可以自行设置分辨率，或从以下列表中选择：</ph>
+                        <ul>
+                            <li><codeph>AgoraVideoDimension120x120</codeph>：120 × 120。</li>
+                            <li><codeph>AgoraVideoDimension160x120</codeph>：160 × 120。</li>
+                            <li><codeph>AgoraVideoDimension180x180</codeph>：180 × 180。</li>
+                            <li><codeph>AgoraVideoDimension240x180</codeph>：240 × 180。</li>
+                            <li><codeph>AgoraVideoDimension320x180</codeph>：320 × 180。</li>
+                            <li><codeph>AgoraVideoDimension240x240</codeph>：240 × 240。</li>
+                            <li><codeph>AgoraVideoDimension320x240</codeph>：320 × 240。</li>
+                            <li><codeph>AgoraVideoDimension424x240</codeph>：424 × 240。</li>
+                            <li><codeph>AgoraVideoDimension360x360</codeph>：360 × 360。</li>
+                            <li><codeph>AgoraVideoDimension480x360</codeph>：480 × 360。</li>
+                            <li><codeph>AgoraVideoDimension640x360</codeph>：640 × 360。</li>
+                            <li><codeph>AgoraVideoDimension480x480</codeph>：480 × 480。</li>
+                            <li><codeph>AgoraVideoDimension640x480</codeph>：640 × 480。</li>
+                            <li><codeph>AgoraVideoDimension840x480</codeph>：840 × 480。</li>
+                            <li><codeph>AgoraVideoDimension960x540</codeph>：960 × 540。</li>
+                            <li><codeph>AgoraVideoDimension960x720</codeph>：960 × 720。</li>
+                            <li><codeph>AgoraVideoDimension1280x720</codeph>：1280 × 720。</li>
+                            <li><codeph>AgoraVideoDimension1920x1080</codeph>：1920 × 1080。</li>
+                            <li><codeph>AgoraVideoDimension2540x1440</codeph>：2540 × 1440。</li>
+                            <li><codeph>AgoraVideoDimension3840x2160</codeph>：3840 × 2160。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>codecType</pt>
+                    <pd>本地视频流的编解码器类型。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>frameRate</pt>
+                    <pd>编码视频帧的帧率（fps）。默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>bitrate</pt>
+                    <pd>视频的编码码率（Kbps）。无需手动设置该参数，保持默认值 <xref keyref="STANDARD_BITRATE"/> 即可。SDK 会根据设置的视频分辨率和帧率自动匹配最合适的码率。
+                        <ul>
+                            <li><xref keyref="STANDARD_BITRATE"/>（0）：（推荐）标准码率模式。</li>
+                            <li><xref keyref="COMPATIBLE_BITRATE"/>（-1）：自适应码率模式，一般不建议使用该值。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>minBitrate</pt>
+                    <pd>视频的最小编码码率（Kbps）。SDK 会自动调整编码码率以适应网络状况。设置高于默认值会强制编码器输出高质量图像，但可能导致更多丢包，影响视频流畅性。
+                        <note>该参数仅适用于互动直播场景。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>orientationMode</pt>
+                    <pd>编码视频的方向模式。详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mirrorMode</pt>
+                    <pd>设置本地视频流发布时的镜像模式，仅影响远端用户看到的视频。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>默认情况下，视频不镜像。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>degradationPreference</pt>
+                    <pd>在带宽受限的情况下的视频降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/>。
+                        <note>当该参数设置为 <codeph>AgoraDegradationMaintainFramerate</codeph>（1）或 <codeph>AgoraDegradationBalanced</codeph>（2）时，<codeph>orientationMode</codeph> 需同时设置为 <codeph>AgoraVideoOutputOrientationModeAdaptative</codeph>（0），否则设置不生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>advancedVideoOptions</pt>
+                    <pd>视频编码的高级选项。详见 <xref keyref="AdvanceOptions"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>dimensions</pt>
+                    <pd>
+                        <note>是否支持 720p 或更高分辨率取决于设备性能。如果设备无法支持 720p，帧率可能低于设定值。默认值为 960 × 540。</note><ph>视频分辨率。你可以自定义设置，或从以下列表中选择：</ph>
+                        <ul>
+                            <li><codeph>VD_120x120</codeph>：120 × 120</li>
+                            <li><codeph>VD_160x120</codeph>：160 × 120</li>
+                            <li><codeph>VD_180x180</codeph>：180 × 180</li>
+                            <li><codeph>VD_240x180</codeph>：240 × 180</li>
+                            <li><codeph>VD_320x180</codeph>：320 × 180</li>
+                            <li><codeph>VD_240x240</codeph>：240 × 240</li>
+                            <li><codeph>VD_320x240</codeph>：320 × 240</li>
+                            <li><codeph>VD_424x240</codeph>：424 × 240</li>
+                            <li><codeph>VD_360x360</codeph>：360 × 360</li>
+                            <li><codeph>VD_480x360</codeph>：480 × 360</li>
+                            <li><codeph>VD_640x360</codeph>：640 × 360</li>
+                            <li><codeph>VD_480x480</codeph>：480 × 480</li>
+                            <li><codeph>VD_640x480</codeph>：640 × 480</li>
+                            <li><codeph>VD_840x480</codeph>：840 × 480</li>
+                            <li><codeph>VD_960x540</codeph>：960 × 540</li>
+                            <li><codeph>VD_960x720</codeph>：960 × 720</li>
+                            <li><codeph>VD_1280x720</codeph>：1280 × 720</li>
+                            <li><codeph>VD_1920x1080</codeph>：1920 × 1080</li>
+                            <li><codeph>VD_2540x1440</codeph>：2540 × 1440</li>
+                            <li><codeph>VD_3840x2160</codeph>：3840 × 2160。</li>
+                        </ul><ph>详见 <xref keyref="VideoDimensions"/>。</ph></pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>frameRate</pt>
+                    <pd>编码视频帧的帧率（fps）。默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>minFrameRate</pt>
+                    <pd>（预留参数）最小视频编码帧率（fps）。默认值为 <codeph>DEFAULT_MIN_FRAMERATE(-1)</codeph>，即 SDK 使用最低编码帧率。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>bitrate</pt>
+                    <pd>视频编码码率（Kbps）。无需手动设置该参数，保持默认值 <xref keyref="STANDARD_BITRATE"/> 即可。SDK 会根据设置的视频分辨率和帧率自动匹配最合适的码率。
+                        <ul>
+                            <li><codeph>STANDARD_BITRATE (0)</codeph>：推荐使用的标准码率模式。</li>
+                            <li><codeph>COMPATIBLE_BITRATE (-1)</codeph>：自适应码率模式。一般不建议使用该值。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>minBitrate</pt>
+                    <pd>视频的最小编码码率（Kbps）。SDK 会自动调整编码码率以适应网络状况。设置高于默认值可能会强制编码器输出高质量图像，但可能导致更高丢包率并影响传输流畅性。
+                        <note>该参数仅适用于互动直播场景。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>orientationMode</pt>
+                    <pd>编码视频的方向模式。详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>degradationPrefer</pt>
+                    <pd>带宽受限时的视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/>。
+                        <note>当该参数设置为 <codeph>MAINTAIN_FRAMERATE (1)</codeph> 或 <codeph>MAINTAIN_BALANCED (2)</codeph> 时，<codeph>orientationMode</codeph> 需同时设为 <codeph>ORIENTATION_MODE_ADAPTIVE (0)</codeph>，否则该设置无效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mirrorMode</pt>
+                    <pd>
+                        <note>默认情况下，视频无镜像效果。</note><ph>设置本地视频流发布时的镜像模式，仅影响远端用户看到的视频：</ph>
+                        <ul>
+                            <li><codeph>VIDEO_MIRROR_MODE_AUTO (0)</codeph>：SDK 决定是否启用镜像模式，默认关闭。</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_ENABLED (1)</codeph>：开启远端镜像。</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_DISABLED (2)</codeph>：关闭远端镜像。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>advanceOptions</pt>
+                    <pd>视频编码的高级选项。详见 <xref keyref="AdvanceOptions"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>codecType</pt>
+                    <pd>本地视频流的编解码器类型。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>dimensions</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>是否支持 720p 或更高分辨率取决于设备性能。如果设备不支持 720p，帧率将低于设置值。</li>
+                                <li>默认值为 960 × 540。</li>
+                            </ul>
+                        </note><ph>你可以自行设置分辨率，或从以下列表中选择：</ph>
+                        <ul>
+                            <li><codeph>AgoraVideoDimension120x120</codeph>：120 × 120。</li>
+                            <li><codeph>AgoraVideoDimension160x120</codeph>：160 × 120。</li>
+                            <li><codeph>AgoraVideoDimension180x180</codeph>：180 × 180。</li>
+                            <li><codeph>AgoraVideoDimension240x180</codeph>：240 × 180。</li>
+                            <li><codeph>AgoraVideoDimension320x180</codeph>：320 × 180。</li>
+                            <li><codeph>AgoraVideoDimension240x240</codeph>：240 × 240。</li>
+                            <li><codeph>AgoraVideoDimension320x240</codeph>：320 × 240。</li>
+                            <li><codeph>AgoraVideoDimension424x240</codeph>：424 × 240。</li>
+                            <li><codeph>AgoraVideoDimension360x360</codeph>：360 × 360。</li>
+                            <li><codeph>AgoraVideoDimension480x360</codeph>：480 × 360。</li>
+                            <li><codeph>AgoraVideoDimension640x360</codeph>：640 × 360。</li>
+                            <li><codeph>AgoraVideoDimension480x480</codeph>：480 × 480。</li>
+                            <li><codeph>AgoraVideoDimension640x480</codeph>：640 × 480。</li>
+                            <li><codeph>AgoraVideoDimension840x480</codeph>：840 × 480。</li>
+                            <li><codeph>AgoraVideoDimension960x540</codeph>：960 × 540。</li>
+                            <li><codeph>AgoraVideoDimension960x720</codeph>：960 × 720。</li>
+                            <li><codeph>AgoraVideoDimension1280x720</codeph>：1280 × 720。</li>
+                            <li><codeph>AgoraVideoDimension1920x1080</codeph>：1920 × 1080。</li>
+                            <li><codeph>AgoraVideoDimension2540x1440</codeph>：2540 × 1440。</li>
+                            <li><codeph>AgoraVideoDimension3840x2160</codeph>：3840 × 2160。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>codecType</pt>
+                    <pd>本地视频流的编解码器类型。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>frameRate</pt>
+                    <pd>编码视频帧的帧率（fps）。默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>bitrate</pt>
+                    <pd>视频的编码码率（Kbps）。无需手动设置该参数，保持默认值 <xref keyref="STANDARD_BITRATE"/> 即可。SDK 会根据设置的视频分辨率和帧率自动匹配最合适的码率。
+                        <ul>
+                            <li><xref keyref="STANDARD_BITRATE"/>（0）：（推荐）标准码率模式。</li>
+                            <li><xref keyref="COMPATIBLE_BITRATE"/>（-1）：自适应码率模式，一般不建议使用该值。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>minBitrate</pt>
+                    <pd>视频的最小编码码率（Kbps）。SDK 会自动调整编码码率以适应网络状况。设置高于默认值会强制编码器输出高质量图像，但可能导致更多丢包，影响视频流畅性。
+                        <note>该参数仅适用于互动直播场景。</note>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>orientationMode</pt>
+                    <pd>编码视频的方向模式。详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mirrorMode</pt>
+                    <pd>设置本地视频流发布时的镜像模式，仅影响远端用户看到的视频。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>默认情况下，视频不镜像。</note>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>degradationPreference</pt>
+                    <pd>在带宽受限的情况下的视频降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/>。
+                        <note>当该参数设置为 <codeph>AgoraDegradationMaintainFramerate</codeph>（1）或 <codeph>AgoraDegradationBalanced</codeph>（2）时，<codeph>orientationMode</codeph> 需同时设置为 <codeph>AgoraVideoOutputOrientationModeAdaptative</codeph>（0），否则设置不生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>advancedVideoOptions</pt>
+                    <pd>视频编码的高级选项。详见 <xref keyref="AdvanceOptions"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

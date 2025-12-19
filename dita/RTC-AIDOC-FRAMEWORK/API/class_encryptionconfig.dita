@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_encryptionconfig">
+    <title><ph keyref="EncryptionConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">配置内置加密模式和密钥。</ph><ph id="shortdesc" props="rn">配置内置加密模式和密钥。</ph><ph id="shortdesc" props="flutter">配置内置加密模式和密钥。</ph><ph id="shortdesc" props="unity">配置内置加密模式和密钥。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class EncryptionConfig {
+
+  encryptionMode?: EncryptionMode;
+
+  encryptionKey?: string;
+
+  encryptionKdfSalt?: number[];
+
+  datastreamEncryptionEnabled?: boolean;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class EncryptionConfig {
+
+  encryptionMode?: EncryptionMode;
+
+  encryptionKey?: string;
+
+  encryptionKdfSalt?: number[];
+
+  datastreamEncryptionEnabled?: boolean;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class EncryptionConfig {
+  const EncryptionConfig(
+      {this.encryptionMode,
+      this.encryptionKey,
+      this.encryptionKdfSalt,
+      this.datastreamEncryptionEnabled});
+
+  @JsonKey(name: 'encryptionMode')
+  final EncryptionMode? encryptionMode;
+
+  @JsonKey(name: 'encryptionKey')
+  final String? encryptionKey;
+
+  @JsonKey(name: 'encryptionKdfSalt', ignore: true)
+  final Uint8List? encryptionKdfSalt;
+
+  @JsonKey(name: 'datastreamEncryptionEnabled')
+  final bool? datastreamEncryptionEnabled;
+
+  factory EncryptionConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$EncryptionConfigFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$EncryptionConfigToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class EncryptionConfig
+    {
+        public ENCRYPTION_MODE encryptionMode;
+        public string encryptionKey;
+        public byte[] encryptionKdfSalt;
+        public bool datastreamEncryptionEnabled;
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>encryptionMode</pt>
+                    <pd>内置加密模式。详见 <xref keyref="ENCRYPTION_MODE"/>。建议使用 <codeph>Aes128Gcm2</codeph> 或 <codeph>Aes256Gcm2</codeph> 加密模式。这两种模式支持使用盐，安全性更高。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>encryptionKey</pt>
+                    <pd>内置加密密钥，字符串类型，长度无限制。建议使用 32 字节的密钥。
+                        <note>如果未指定该参数或将该参数设置为 <xref keyref="NULL"/>，则无法启用内置加密，且 SDK 会返回错误码 <codeph>-2</codeph>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>encryptionKdfSalt</pt>
+                    <pd>盐，长度为 32 字节。建议你在服务端使用 OpenSSL 生成盐。
+                        <note>只有在 <codeph>Aes128Gcm2</codeph> 或 <codeph>Aes256Gcm2</codeph> 加密模式下，该参数才生效。此时，需确保填入该参数的值不全为 <codeph>0</codeph>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>datastreamEncryptionEnabled</pt>
+                    <pd>是否开启数据流加密：
+                        <ul>
+                            <li><xref keyref="true"/>：开启数据流加密。</li>
+                            <li><xref keyref="false"/>：（默认）关闭数据流加密。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encryptionMode</pt>
+                    <pd>内置加密模式。详见 <xref keyref="ENCRYPTION_MODE"/>。建议使用 <codeph>Aes128Gcm2</codeph> 或 <codeph>Aes256Gcm2</codeph> 加密模式。这两种模式支持使用盐，安全性更高。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encryptionKey</pt>
+                    <pd>内置加密密钥，字符串类型，长度无限制。建议使用 32 字节的密钥。
+                        <note>如果未指定该参数或将该参数设置为 <xref keyref="NULL"/>，则无法启用内置加密，且 SDK 会返回错误码 <codeph>-2</codeph>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encryptionKdfSalt</pt>
+                    <pd>盐，长度为 32 字节。建议你在服务端使用 OpenSSL 生成盐。
+                        <note>只有在 <codeph>Aes128Gcm2</codeph> 或 <codeph>Aes256Gcm2</codeph> 加密模式下，该参数才生效。此时，需确保填入该参数的值不全为 <codeph>0</codeph>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>datastreamEncryptionEnabled</pt>
+                    <pd>是否开启数据流加密：
+                        <ul>
+                            <li><xref keyref="true"/>：开启数据流加密。</li>
+                            <li><xref keyref="false"/>：（默认）关闭数据流加密。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encryptionMode</pt>
+                    <pd>内置加密模式。详见 <xref keyref="ENCRYPTION_MODE"/>。建议使用 <codeph>aes128Gcm2</codeph> 或 <codeph>aes256Gcm2</codeph> 加密模式。这两种模式支持使用盐，安全性更高。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encryptionKey</pt>
+                    <pd>内置加密密钥，字符串类型，长度无限制。建议使用 32 字节的密钥。
+                        <note>如果未指定该参数或将该参数设置为 <codeph>NULL</codeph>，则无法启用内置加密，且 SDK 会返回错误码 <codeph>-2</codeph>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encryptionKdfSalt</pt>
+                    <pd>盐，长度为 32 字节。建议你在服务端使用 OpenSSL 生成盐。
+                        <note>只有在 <codeph>aes128Gcm2</codeph> 或 <codeph>aes256Gcm2</codeph> 加密模式下，该参数才生效。此时，需确保填入该参数的值不全为 <codeph>0</codeph>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>datastreamEncryptionEnabled</pt>
+                    <pd>是否开启数据流加密：
+                        <ul>
+                            <li><xref keyref="true"/>：开启数据流加密。</li>
+                            <li><xref keyref="false"/>：（默认）关闭数据流加密。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encryptionMode</pt>
+                    <pd>内置加密模式。详见 <xref keyref="ENCRYPTION_MODE"/>。建议使用 <codeph>AES_128_GCM2</codeph> 或 <codeph>AES_256_GCM2</codeph> 加密模式。这两种模式支持使用盐，安全性更高。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encryptionKey</pt>
+                    <pd>内置加密密钥，字符串类型，长度无限制。建议使用 32 字节的密钥。
+                        <note>如果未指定该参数或将该参数设置为 <codeph>NULL</codeph>，则无法启用内置加密，且 SDK 会返回错误码 <codeph>-2</codeph>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encryptionKdfSalt</pt>
+                    <pd>盐，长度为 32 字节。建议你在服务端使用 OpenSSL 生成盐。
+                        <note>只有在 <codeph>AES_128_GCM2</codeph> 或 <codeph>AES_256_GCM2</codeph> 加密模式下，该参数才生效。此时，需确保填入该参数的值不全为 <codeph>0</codeph>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>datastreamEncryptionEnabled</pt>
+                    <pd>是否开启数据流加密：
+                        <ul>
+                            <li><xref keyref="true"/>：开启数据流加密。</li>
+                            <li><xref keyref="false"/>：（默认）关闭数据流加密。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

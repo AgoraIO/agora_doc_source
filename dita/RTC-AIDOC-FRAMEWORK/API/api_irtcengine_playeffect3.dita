@@ -1,0 +1,312 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_playeffect3">
+    <title><ph keyref="playEffect3"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">播放指定的本地或在线音效文件。</ph><ph id="shortdesc" props="rn">播放指定的本地或在线音效文件。</ph><ph id="shortdesc" props="flutter">播放指定的本地或在线音效文件。</ph><ph id="shortdesc" props="unity">播放指定的本地或在线音效文件。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="playEffect3"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract playEffect(
+    soundId: number,
+    filePath: string,
+    loopCount: number,
+    pitch: number,
+    pan: number,
+    gain: number,
+    publish?: boolean,
+    startPos?: number
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract playEffect(
+    soundId: number,
+    filePath: string,
+    loopCount: number,
+    pitch: number,
+    pan: number,
+    gain: number,
+    publish?: boolean,
+    startPos?: number
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; playEffect(
+    {required int soundId,
+    required String filePath,
+    required int loopCount,
+    required double pitch,
+    required double pan,
+    required int gain,
+    bool publish = false,
+    int startPos = 0});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int PlayEffect(int soundId, string filePath, int loopCount, double pitch, double pan, int gain, bool publish = false, int startPos = 0);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">你可以多次调用该方法，传入不同的 <codeph>soundID</codeph> 和 <codeph>filePath</codeph>，同时播放多个音效文件。为获得最佳用户体验，建议同时播放的音效文件不超过 3 个。</p>
+            <p props="rn">你可以多次调用该方法，传入不同的 <codeph>soundID</codeph> 和 <codeph>filePath</codeph>，同时播放多个音效文件。为获得最佳用户体验，建议同时播放的音效文件不超过 3 个。</p>
+            <p props="flutter">你可以多次调用该方法，传入不同的 <codeph>soundID</codeph> 和 <codeph>filePath</codeph>，同时播放多个音效文件。为获得最佳用户体验，建议同时播放的音效文件不超过 3 个。</p>
+            <p props="unity">你可以多次调用该方法，传入不同的 <codeph>soundID</codeph> 和 <codeph>filePath</codeph>，同时播放多个音效文件。为获得最佳用户体验，建议同时播放的音效文件不超过 3 个。</p>
+            <note props="electron">如果你需要播放在线音效文件，声网建议先将在线音效文件缓存到本地设备，调用 <xref keyref="preloadEffect"/> 将缓存的音效文件预加载到内存中，然后再调用此方法播放音效。否则，可能出现因在线音效文件加载超时、加载失败而导致的播放失败和无声的问题。</note>
+            <note props="rn">如果你需要播放在线音效文件，声网建议先将在线音效文件缓存到本地设备，调用 <xref keyref="preloadEffect"/> 将缓存的音效文件预加载到内存中，然后再调用此方法播放音效。否则，可能出现因在线音效文件加载超时、加载失败而导致的播放失败和无声的问题。</note>
+            <note props="flutter">如果你需要播放在线音效文件，声网建议先将在线音效文件缓存到本地设备，调用 <xref keyref="preloadEffect"/> 将缓存的音效文件预加载到内存中，然后再调用此方法播放音效。否则，可能出现因在线音效文件加载超时、加载失败而导致的播放失败和无声的问题。</note>
+            <note props="unity">如果你需要播放在线音效文件，声网建议先将在线音效文件缓存到本地设备，调用 <xref keyref="preloadEffect"/> 将缓存的音效文件预加载到内存中，然后再调用此方法播放音效。否则，可能出现因在线音效文件加载超时、加载失败而导致的播放失败和无声的问题。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法在加入频道前后均可调用。</p>
+            <p props="rn">该方法在加入频道前后均可调用。</p>
+            <p props="flutter">该方法在加入频道前后均可调用。</p>
+            <p props="unity">该方法在加入频道前后均可调用。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>相关回调</title>
+            <p props="electron">音效文件播放结束后，SDK 会触发 <xref keyref="onAudioEffectFinished"/> 回调。</p>
+            <p props="rn">音效文件播放结束后，SDK 会触发 <xref keyref="onAudioEffectFinished"/> 回调。</p>
+            <p props="flutter">音效文件播放结束后，SDK 会触发 <xref keyref="onAudioEffectFinished"/> 回调。</p>
+            <p props="unity">音效文件播放结束后，SDK 会触发 <xref keyref="onAudioEffectFinished"/> 回调。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>soundId</pt>
+                    <pd>音效的 ID。每个音效的 ID 具有唯一性。
+                        <note>如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <xref keyref="preloadEffect"/> 中设置的 <codeph>soundId</codeph> 相同。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>filePath</pt>
+                    <pd>播放文件的地址，支持在线文件的 URL 地址、播放文件的绝对路径，需精确到文件名及后缀。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP 等。
+                        <note>如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <xref keyref="preloadEffect"/> 中设置的 <codeph>filePath</codeph> 相同。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>loopCount</pt>
+                    <pd>音效循环播放的次数。
+                        <ul>
+                            <li>≥ 0: 循环播放次数。例如，1 表示循环播放 1 次，即总计播放 2 次。</li>
+                            <li>-1: 无限循环播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>pitch</pt>
+                    <pd>音效的音调，取值范围为 [0.5,2.0]。默认值为 1.0，表示原始音调。取值越小，则音调越低。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>pan</pt>
+                    <pd>音效的空间位置。取值范围为 [-1.0,1.0]，例如：
+                        <ul>
+                            <li>-1.0：音效出现在左边</li>
+                            <li>0.0：音效出现在正前方</li>
+                            <li>1.0：音效出现在右边</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>gain</pt>
+                    <pd>音效的音量。取值范围为 [0.0,100.0]。默认值为 100.0，表示原始音量。取值越小，则音量越低。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publish</pt>
+                    <pd>是否将音效发布至远端：
+                        <ul>
+                            <li><xref keyref="true"/>: 将音效发布至远端。本地用户和远端用户都能听到音效。</li>
+                            <li><xref keyref="false"/>: 不将音效发布至远端。只有本地用户能听到音效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>startPos</pt>
+                    <pd>音效文件的播放位置，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>soundId</pt>
+                    <pd>音效的 ID。每个音效的 ID 具有唯一性。
+                        <note>如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <xref keyref="preloadEffect"/> 中设置的 <codeph>soundId</codeph> 相同。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>filePath</pt>
+                    <pd>播放文件的地址，支持在线文件的 URL 地址、播放文件的绝对路径，需精确到文件名及后缀。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP 等。
+                        <note>如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <xref keyref="preloadEffect"/> 中设置的 <codeph>filePath</codeph> 相同。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>loopCount</pt>
+                    <pd>音效循环播放的次数。
+                        <ul>
+                            <li>≥ 0: 循环播放次数。例如，1 表示循环播放 1 次，即总计播放 2 次。</li>
+                            <li>-1: 无限循环播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>pitch</pt>
+                    <pd>音效的音调，取值范围为 [0.5,2.0]。默认值为 1.0，表示原始音调。取值越小，则音调越低。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>pan</pt>
+                    <pd>音效的空间位置。取值范围为 [-1.0,1.0]，例如：
+                        <ul>
+                            <li>-1.0：音效出现在左边</li>
+                            <li>0.0：音效出现在正前方</li>
+                            <li>1.0：音效出现在右边</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>gain</pt>
+                    <pd>音效的音量。取值范围为 [0.0,100.0]。默认值为 100.0，表示原始音量。取值越小，则音量越低。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publish</pt>
+                    <pd>是否将音效发布至远端：
+                        <ul>
+                            <li><xref keyref="true"/>: 将音效发布至远端。本地用户和远端用户都能听到音效。</li>
+                            <li><xref keyref="false"/>: 不将音效发布至远端。只有本地用户能听到音效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>startPos</pt>
+                    <pd>音效文件的播放位置，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>soundId</pt>
+                    <pd>音效的 ID。每个音效的 ID 具有唯一性。
+                        <note>如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <xref keyref="preloadEffect"/> 中设置的 <codeph>soundId</codeph> 相同。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>filePath</pt>
+                    <pd>播放文件的地址，支持在线文件的 URL 地址、播放文件的绝对路径，需精确到文件名及后缀。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP 等。
+                        <note>如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <xref keyref="preloadEffect"/> 中设置的 <codeph>filePath</codeph> 相同。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>loopCount</pt>
+                    <pd>音效循环播放的次数。
+                        <ul>
+                            <li>≥ 0: 循环播放次数。例如，1 表示循环播放 1 次，即总计播放 2 次。</li>
+                            <li>-1: 无限循环播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pitch</pt>
+                    <pd>音效的音调，取值范围为 [0.5,2.0]。默认值为 1.0，表示原始音调。取值越小，则音调越低。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pan</pt>
+                    <pd>音效的空间位置。取值范围为 [-1.0,1.0]，例如：
+                        <ul>
+                            <li>-1.0：音效出现在左边</li>
+                            <li>0.0：音效出现在正前方</li>
+                            <li>1.0：音效出现在右边</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>gain</pt>
+                    <pd>音效的音量。取值范围为 [0.0,100.0]。默认值为 100.0，表示原始音量。取值越小，则音量越低。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publish</pt>
+                    <pd>是否将音效发布至远端：
+                        <ul>
+                            <li><xref keyref="true"/>: 将音效发布至远端。本地用户和远端用户都能听到音效。</li>
+                            <li><xref keyref="false"/>: 不将音效发布至远端。只有本地用户能听到音效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>startPos</pt>
+                    <pd>音效文件的播放位置，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>soundId</pt>
+                    <pd>音效的 ID。每个音效的 ID 具有唯一性。
+                        <note>如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <xref keyref="preloadEffect"/> 中设置的 <codeph>soundId</codeph> 相同。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>播放文件的地址，支持在线文件的 URL 地址、播放文件的绝对路径，需精确到文件名及后缀。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP 等。
+                        <note>如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <xref keyref="preloadEffect"/> 中设置的 <codeph>filePath</codeph> 相同。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>loopCount</pt>
+                    <pd>音效循环播放的次数。
+                        <ul>
+                            <li>≥ 0: 循环播放次数。例如，1 表示循环播放 1 次，即总计播放 2 次。</li>
+                            <li>-1: 无限循环播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>pitch</pt>
+                    <pd>音效的音调，取值范围为 [0.5,2.0]。默认值为 1.0，表示原始音调。取值越小，则音调越低。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>pan</pt>
+                    <pd>音效的空间位置。取值范围为 [-1.0,1.0]，例如：
+                        <ul>
+                            <li>-1.0：音效出现在左边</li>
+                            <li>0.0：音效出现在正前方</li>
+                            <li>1.0：音效出现在右边</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>gain</pt>
+                    <pd>音效的音量。取值范围为 [0.0,100.0]。默认值为 100.0，表示原始音量。取值越小，则音量越低。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publish</pt>
+                    <pd>是否将音效发布至远端：
+                        <ul>
+                            <li><xref keyref="true"/>: 将音效发布至远端。本地用户和远端用户都能听到音效。</li>
+                            <li><xref keyref="false"/>: 不将音效发布至远端。只有本地用户能听到音效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>startPos</pt>
+                    <pd>音效文件的播放位置，单位为毫秒。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
+                <ul>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

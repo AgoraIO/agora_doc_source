@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screenaudioparameters">
+    <title><ph keyref="ScreenAudioParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set audio parameters for the screen sharing stream.</ph><ph id="shortdesc" props="android">Configures audio parameters for screen sharing stream.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ScreenAudioParameters {
+  int sampleRate = 16000;
+  int channels = 2;
+  int captureSignalVolume = 100;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class AudioCaptureParameters {
+    public int sampleRate = 16000;
+    public int channels = 2;
+    public int captureSignalVolume = 100;
+    public boolean allowCaptureCurrentApp = true;
+  }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v3.7.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">Takes effect only when <codeph>captureAudio</codeph> is <xref keyref="true"/>.</p>
+            <p props="android">Takes effect only when <codeph>captureAudio</codeph> is set to <xref keyref="true"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>sampleRate</pt>
+                    <pd>Audio sample rate (Hz). Default is 16000.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>channels</pt>
+                    <pd>Number of audio channels. Default is 2, indicating stereo.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>captureSignalVolume</pt>
+                    <pd>Volume of captured system audio. Range is [0, 100], default is 100.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sampleRate</pt>
+                    <pd>Audio sampling rate (Hz). Default is 16000.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channels</pt>
+                    <pd>Number of audio channels. Default is 2 (stereo).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>captureSignalVolume</pt>
+                    <pd>Volume of captured system audio. Range: [0, 100]. Default is 100.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>allowCaptureCurrentApp</pt>
+                    <pd>
+                        <note>This parameter only controls whether to capture audio from the current app. It does not control whether the captured audio is published to the channel. You need to configure it via the <codeph>options</codeph> parameter when calling <codeph>joinChannel</codeph> or <xref keyref="updateChannelMediaOptions"/>.</note><ph>Whether to capture audio from the current app:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Capture audio from the current app.</li>
+                            <li><xref keyref="false"/>: Do not capture audio from the current app.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

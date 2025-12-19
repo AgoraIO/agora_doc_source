@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_createcustomaudiotrack_imediaengine">
+    <title><ph keyref="createCustomAudioTrack_IMediaEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Creates a custom audio track.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createCustomAudioTrack_IMediaEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual rtc::track_id_t createCustomAudioTrack(rtc::AUDIO_TRACK_TYPE trackType, const rtc::AudioTrackConfig&amp; config) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">To publish a custom audio source, follow these steps:
+                <ol>
+                    <li>Call this method to create a custom audio track and obtain the track ID.</li>
+                    <li>Call <codeph>joinChannel</codeph> to join a channel. In <xref keyref="ChannelMediaOptions"/>, set <codeph>publishCustomAudioTrackId</codeph> to the track ID and <codeph>publishCustomAudioTrack</codeph> to <xref keyref="true"/>.</li>
+                    <li>Call <xref keyref="pushAudioFrame"/>, and set <codeph>trackId</codeph> to the track ID from step 2 to publish the custom audio source in the channel.</li>
+                </ol>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method before joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>trackType</pt>
+                    <pd>Type of custom audio track. See <xref keyref="AUDIO_TRACK_TYPE"/>.
+                        <note>If this parameter is set to <codeph>AUDIO_TRACK_DIRECT</codeph>, you must set <codeph>publishMicrophoneTrack</codeph> to <xref keyref="false"/> in <xref keyref="ChannelMediaOptions"/> when calling <codeph>joinChannel</codeph>, otherwise the channel join will fail and return error code -2.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>Configuration of the custom audio track. See <xref keyref="AudioTrackConfig"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>On success, returns the audio track ID as a unique identifier.</li>
+                    <li>On failure, returns <codeph>0xffffffff</codeph>.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

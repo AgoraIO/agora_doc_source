@@ -33,12 +33,13 @@
             <p id="desc">SDK 默认在发送端开启小流自适应模式 (<apiname keyref="AUTO_SIMULCAST_STREAM"/>)，即发送端不主动发送小流，<b>主播身份</b>的接收端可以调用 <xref keyref="setRemoteVideoStreamType"/> 发起小流申请，发送端收到申请后开始自动发送小流。<ul>
                 <li>如果你想修改此行为，可以调用该方法并修改 <parmname>mode</parmname> 为 <apiname keyref="DISABLE_SIMULCAST_STREAM"/>（始终不发送小流）或 <apiname keyref="ENABLE_SIMULCAST_STREAM"/>（始终发送小流）。</li>
                 <li>如果你在进行修改后又想恢复该默认行为，可重新调用该方法，并将 <parmname>mode</parmname> 设置为 <apiname keyref="AUTO_SIMULCAST_STREAM"/>。</li></ul></p>
-            <note id="note" props="android cpp apple framework">该方法和 <xref keyref="enableDualStreamMode"/> 的区别与联系如下：
-                <ul>
-                <li>调用该方法并设置 <parmname>mode</parmname> 为 <apiname keyref="DISABLE_SIMULCAST_STREAM"/> 时，跟 <apiname keyref="enableDualStreamMode"/><codeph>(<ph keyref="false"/>)</codeph> 的效果相同。</li>
-                <li>调用该方法并设置 <parmname>mode</parmname> 为 <apiname keyref="ENABLE_SIMULCAST_STREAM"/> 时，跟 <apiname keyref="enableDualStreamMode"/><codeph>(<ph keyref="true"/>)</codeph> 的效果相同。</li>
-                <li>两种方法均可在加入频道前后调用，若同时使用，则以后调用的方法中的设置为准。</li>
-                </ul></note>
+                <note id="note" props="android cpp apple framework">该方法和 <xref keyref="enableDualStreamMode"/> 的区别与联系如下：
+                    <ul>
+                        <li>调用该方法并设置 <parmname>mode</parmname> 为 <apiname keyref="DISABLE_SIMULCAST_STREAM"/> 时，跟 <apiname keyref="enableDualStreamMode"/> 设为 <codeph><ph keyref="false"/></codeph> 的效果相同。</li>
+                        <li>调用该方法并设置 <parmname>mode</parmname> 为 <apiname keyref="ENABLE_SIMULCAST_STREAM"/> 时，跟 <apiname keyref="enableDualStreamMode"/> 设为 <codeph><ph keyref="true"/></codeph> 的效果相同。</li>
+                        <li>两种方法均可在加入频道前后调用，若同时使用，则以后调用的方法中的设置为准。</li>
+                    </ul>
+                </note>
         </section>
         <section id="parameters">
             <title>参数</title>

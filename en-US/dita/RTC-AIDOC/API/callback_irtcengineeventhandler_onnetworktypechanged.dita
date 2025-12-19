@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onnetworktypechanged">
+    <title><ph keyref="onNetworkTypeChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the local network type changes.</ph><ph id="shortdesc" props="android">Callback when the local network type changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onNetworkTypeChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onNetworkTypeChanged(NETWORK_TYPE type)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onNetworkTypeChanged(int type)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You can use this callback to get the connection state and the reason for its change. When the network is disconnected, this callback helps determine whether the disconnection is due to a change in network type or poor network conditions.</p>
+            <p props="android">You can use this callback to get the connection state and the reason for the change. When the network connection is interrupted, this callback indicates whether the interruption is due to a change in network type or poor network conditions.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the local network type changes.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>The type of local network connection. See <xref keyref="NETWORK_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>type</pt>
+                    <pd>Network type:
+                        <ul>
+                            <li><codeph>NETWORK_TYPE_UNKNOWN</codeph> (-1): Unknown network type.</li>
+                            <li><codeph>NETWORK_TYPE_DISCONNECTED</codeph> (0): SDK is disconnected from the network.</li>
+                            <li><codeph>NETWORK_TYPE_LAN</codeph> (1): LAN network type.</li>
+                            <li><codeph>NETWORK_TYPE_WIFI</codeph> (2): Wi-Fi network type (including hotspots).</li>
+                            <li><codeph>NETWORK_TYPE_MOBILE_2G</codeph> (3): Mobile 2G network type.</li>
+                            <li><codeph>NETWORK_TYPE_MOBILE_3G</codeph> (4): Mobile 3G network type.</li>
+                            <li><codeph>NETWORK_TYPE_MOBILE_4G</codeph> (5): Mobile 4G network type.</li>
+                            <li><codeph>NETWORK_TYPE_MOBILE_5G</codeph> (6): Mobile 5G network type.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_lastmileproberesult">
+    <title><ph keyref="LastmileProbeResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Represents the result of uplink and downlink Last-mile network probing.</ph><ph id="shortdesc" props="android">Represents the result of uplink and downlink last-mile network probing.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct LastmileProbeResult {
+  LASTMILE_PROBE_RESULT_STATE state;
+  LastmileProbeOneWayResult uplinkReport;
+  LastmileProbeOneWayResult downlinkReport;
+  unsigned int rtt;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class LastmileProbeResult {
+  public static class LastmileProbeOneWayResult {
+    public int packetLossRate;
+    public int jitter;
+    public int availableBandwidth;
+  }
+  public short state;
+  public int rtt;
+  public LastmileProbeOneWayResult uplinkReport = new LastmileProbeOneWayResult();
+  public LastmileProbeOneWayResult downlinkReport = new LastmileProbeOneWayResult();
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>The state of Last-mile network probing. See <xref keyref="LASTMILE_PROBE_RESULT_STATE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uplinkReport</pt>
+                    <pd>The result of uplink Last-mile network probing. See <xref keyref="LastmileProbeOneWayResult"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>downlinkReport</pt>
+                    <pd>The result of downlink Last-mile network probing. See <xref keyref="LastmileProbeOneWayResult"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rtt</pt>
+                    <pd>Round-trip time (ms).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>The status of the last-mile network probe, including:
+                        <ul>
+                            <li><codeph>LASTMILE_PROBE_RESULT_COMPLETE</codeph> (1): Probe completed.</li>
+                            <li><codeph>LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE</codeph> (2): Probe incomplete due to lack of bandwidth estimation, possibly due to temporarily limited testing resources.</li>
+                            <li><codeph>LASTMILE_PROBE_RESULT_UNAVAILABLE</codeph> (3): Probe not conducted, possibly due to poor network conditions.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rtt</pt>
+                    <pd>Round-trip time in milliseconds.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uplinkReport</pt>
+                    <pd>Uplink last-mile network probe result. See <xref keyref="LastmileProbeOneWayResult"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>downlinkReport</pt>
+                    <pd>Downlink last-mile network probe result. See <xref keyref="LastmileProbeOneWayResult"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

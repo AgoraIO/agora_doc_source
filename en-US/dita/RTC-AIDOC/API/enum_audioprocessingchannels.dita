@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_audioprocessingchannels">
+    <title><ph keyref="AUDIO_PROCESSING_CHANNELS"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Sets the number of channels for audio preprocessing.</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
+            <p props="android">In scenarios requiring enhanced realism, such as concerts, local users may need to capture stereo audio and send it to remote users. For example, a singer, guitarist, and drummer are positioned at different locations on stage. The audio capture device collects their stereo audio and sends it to remote users. Remote users can hear the vocals, guitar, and drums from different directions, as if they were in the audience. You can achieve stereo by enabling stereo processing. Agora recommends the following settings:
+                <ol>
+                    <li>Preprocessing: Call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> in <xref keyref="AdvancedAudioOptions"/> to <codeph>AGORA_AUDIO_STEREO_PROCESSING</codeph> (2);</li>
+                    <li>Post-processing: Call <codeph>setAudioProfile(int profile)</codeph> and set <codeph>profile</codeph> to <codeph>MUSIC_STANDARD_STEREO</codeph> (3) or <codeph>MUSIC_HIGH_QUALITY_STEREO</codeph> (5).</li>
+                </ol>
+            </p>
+            <note props="android">Stereo settings only take effect when the SDK uses media volume.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="android">
+                    <pt>AGORA_AUDIO_MONO_PROCESSING</pt>
+                    <pd>(1): (Default) Mono.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>AGORA_AUDIO_STEREO_PROCESSING</pt>
+                    <pd>(2): Stereo.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

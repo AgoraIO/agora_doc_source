@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_localaudiomixerconfiguration">
+    <title><ph keyref="LocalAudioMixerConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">配置本地音频混音。</ph><ph id="shortdesc" props="ios">配置本地音频混音。</ph><ph id="shortdesc" props="android">用于配置本地音频混音。</ph><ph id="shortdesc" props="mac">配置本地音频混音。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct LocalAudioMixerConfiguration {
+  unsigned int streamCount;
+  MixedAudioStream* audioInputStreams;
+  bool syncWithLocalMic;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLocalAudioMixerConfiguration: NSObject
+@property(copy, nonatomic) NSArray&lt;AgoraMixedAudioStream *&gt; *_Nullable audioInputStreams;
+@property(assign, nonatomic) BOOL syncWithLocalMic;
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class LocalAudioMixerConfiguration {
+  public ArrayList&lt;MixedAudioStream&gt; audioInputStreams;
+  public boolean syncWithLocalMic;
+}</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLocalAudioMixerConfiguration: NSObject
+@property(copy, nonatomic) NSArray&lt;AgoraMixedAudioStream *&gt; *_Nullable audioInputStreams;
+@property(assign, nonatomic) BOOL syncWithLocalMic;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>streamCount</pt>
+                    <pd>本地混音的音频流数量。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioInputStreams</pt>
+                    <pd>本地混音的音频流来源。详见 <xref keyref="MixedAudioStream"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>syncWithLocalMic</pt>
+                    <pd>混音后的音频流是否使用本地麦克风采集的音频帧的时间戳。
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）使用本地麦克风采集的音频帧时间戳。如果希望所有本地采集的音频流同步，请设置为该值。</li>
+                            <li><xref keyref="false"/>：使用混音时音频帧的时间戳。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>audioInputStreams</pt>
+                    <pd>本地混音的音频流来源，详见 <xref keyref="MixedAudioStream"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>syncWithLocalMic</pt>
+                    <pd>混音后的音频流是否使用本地麦克风采集的音频帧的时间戳。
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）使用本地麦克风采集的音频帧时间戳，可实现所有本地采集音频流的同步。</li>
+                            <li><xref keyref="false"/>：使用混音时音频帧的时间戳。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioInputStreams</pt>
+                    <pd>本地混音的音频流来源，详见 <xref keyref="MixedAudioStream"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>syncWithLocalMic</pt>
+                    <pd>混音后音频流是否使用本地麦克风采集音频帧的时间戳。
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）是。若希望所有本地采集的音频流同步处理，建议设置为该值。</li>
+                            <li><xref keyref="false"/>：否。SDK 使用混音时生成的音频帧时间戳。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>audioInputStreams</pt>
+                    <pd>本地混音的音频流来源，详见 <xref keyref="MixedAudioStream"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>syncWithLocalMic</pt>
+                    <pd>混音后的音频流是否使用本地麦克风采集的音频帧的时间戳。
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）使用本地麦克风采集的音频帧时间戳，可实现所有本地采集音频流的同步。</li>
+                            <li><xref keyref="false"/>：使用混音时音频帧的时间戳。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

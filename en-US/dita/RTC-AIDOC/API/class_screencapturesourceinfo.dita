@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screencapturesourceinfo">
+    <title><ph keyref="ScreenCaptureSourceInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes information about shareable windows or screens.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureSourceInfo {
+  ScreenCaptureSourceType type;
+  int64_t sourceId;
+  const char* sourceName;
+  ThumbImageBuffer thumbImage;
+  ThumbImageBuffer iconImage;
+  const char* processPath;
+  const char* sourceTitle;
+  bool primaryMonitor;
+  bool isOccluded;
+  Rectangle position;
+#if defined(_WIN32)
+  bool minimizeWindow;
+  int64_t sourceDisplayId;
+#else
+#endif
+};</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
+            <p props="cpp">This information is returned by <xref keyref="IScreenCaptureSourceList"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>Type of the sharing target. See <xref keyref="ScreenCaptureSourceType"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sourceId</pt>
+                    <pd>ID of the window or display ID of the screen.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sourceName</pt>
+                    <pd>Name of the window or screen, encoded in UTF-8.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>thumbImage</pt>
+                    <pd>Image content of the thumbnail. See <xref keyref="ThumbImageBuffer"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>iconImage</pt>
+                    <pd>Image content of the icon. See <xref keyref="ThumbImageBuffer"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>processPath</pt>
+                    <pd>Path of the process to which the window belongs, encoded in UTF-8.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sourceTitle</pt>
+                    <pd>Title of the window, encoded in UTF-8.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>primaryMonitor</pt>
+                    <pd>Whether it is the primary monitor:
+                        <ul>
+                            <li><xref keyref="true"/>: It is the primary monitor.</li>
+                            <li><xref keyref="false"/>: It is not the primary monitor.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>isOccluded</pt>
+                    <pd>Whether it is occluded:
+                        <ul>
+                            <li><xref keyref="true"/>: The window is occluded.</li>
+                            <li><xref keyref="false"/>: The window is not occluded.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>position</pt>
+                    <pd>The position of the window relative to the entire screen space (including all shareable screens). See <xref keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>minimizeWindow</pt>
+                    <pd>
+                        <note>(Windows only)</note><ph>Whether the window is minimized:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: The window is minimized.</li>
+                            <li><xref keyref="false"/>: The window is not minimized.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sourceDisplayId</pt>
+                    <pd>ID of the screen where the window is located (Windows only). If the window spans multiple screens, this parameter represents the ID of the screen with the largest intersection area; if the window is outside the visible screen, the value is -2.
+                        <note>(Windows only)</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

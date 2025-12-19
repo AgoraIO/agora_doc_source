@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onplaybufferupdated">
+    <title><ph keyref="onPlayBufferUpdated"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reports the playback duration supported by the buffered data.</ph><ph id="shortdesc" props="android"><xref keyref="onPlayBufferUpdated"/> callback: Reports the duration that buffered data can support playback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlayBufferUpdated"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayBufferUpdated(int64_t playCachedBuffer) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">void onPlayBufferUpdated(long playCachedBuffer)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">When playing online media resources, the SDK triggers this callback every two seconds to report the playback duration supported by the current buffered data.
+                <ul>
+                    <li>When the buffered playback duration is less than the threshold (default is 0), the SDK returns <codeph>PLAYER_EVENT_BUFFER_LOW</codeph> (6).</li>
+                    <li>When the buffered playback duration exceeds the threshold (default is 0), the SDK returns <codeph>PLAYER_EVENT_BUFFER_RECOVER</codeph> (7).</li>
+                </ul>
+            </p>
+            <p props="android">This callback is triggered every two seconds during online media playback.
+                <ul>
+                    <li>When the duration that buffered data can support playback is less than the threshold (default is 0), the SDK returns <codeph>PLAYER_EVENT_BUFFER_LOW</codeph> (6).</li>
+                    <li>When the duration is greater than the threshold (default is 0), the SDK returns <codeph>PLAYER_EVENT_BUFFER_RECOVER</codeph> (7).</li>
+                </ul>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">When playing online media resources, the SDK triggers this callback every two seconds.</p>
+            <p props="android">This callback is triggered every two seconds during online media playback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>playCachedBuffer</pt>
+                    <pd>Playback duration supported by the buffered data, in milliseconds.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>playCachedBuffer</pt>
+                    <pd>Duration that buffered data can support playback, in milliseconds.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

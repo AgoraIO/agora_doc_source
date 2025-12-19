@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onvideosizechanged">
+    <title><ph keyref="onVideoSizeChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Triggered when the video size or rotation of a specified user changes.</ph><ph id="shortdesc" props="android">Callback when the video size or rotation information of a specified user changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onVideoSizeChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onVideoSizeChanged(VIDEO_SOURCE_TYPE sourceType, uid_t uid, int width, int height, int rotation)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onVideoSizeChanged(Constants.VideoSourceType source, int uid, int width, int height, int rotation)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">The <codeph>rotation</codeph> parameter is always 0 on iOS.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the video size or rotation angle of a specified user changes.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>sourceType</pt>
+                    <pd>Video source type. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>User ID whose video size or rotation changed. A <codeph>uid</codeph> of 0 indicates the local user (local preview).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>width</pt>
+                    <pd>Width of the video stream (pixels).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>Height of the video stream (pixels).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rotation</pt>
+                    <pd>Video rotation angle, range [0, 360).
+                        <note>The <codeph>rotation</codeph> parameter is always 0 on iOS.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>source</pt>
+                    <pd>Video source type. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID whose video size or rotation changed. For the local user, <codeph>uid</codeph> is 0, indicating the local video preview.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>width</pt>
+                    <pd>Width of the video stream (in pixels).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>Height of the video stream (in pixels).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rotation</pt>
+                    <pd>Video rotation angle, range [0, 360).</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

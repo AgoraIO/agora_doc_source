@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_packet">
+    <title><ph keyref="Packet"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置 <xref keyref="Packet"/> 实例。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct Packet {
+  const unsigned char* buffer;
+  unsigned int size;
+};</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>buffer</pt>
+                    <pd>发送或接收数据的缓冲区地址。
+                        <note>声网建议将 <codeph>buffer</codeph> 设置为大于 2048 字节的值。否则，可能会遇到未定义行为（如崩溃）。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>size</pt>
+                    <pd>发送或接收数据的缓冲区大小。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

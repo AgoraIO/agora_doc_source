@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audioparams">
+    <title><ph keyref="AudioParams"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">音频数据格式。</ph><ph id="shortdesc" props="rn">音频数据格式。</ph><ph id="shortdesc" props="flutter">音频数据格式。</ph><ph id="shortdesc" props="unity">音频数据格式。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class AudioParams {
+  
+  sample_rate?: number;
+  
+  channels?: number;
+  
+  mode?: RawAudioFrameOpModeType;
+  
+  samples_per_call?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class AudioParams {
+  
+  sample_rate?: number;
+  
+  channels?: number;
+  
+  mode?: RawAudioFrameOpModeType;
+  
+  samples_per_call?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class AudioParams {
+  const AudioParams(
+      {this.sampleRate, this.channels, this.mode, this.samplesPerCall});
+
+  @JsonKey(name: 'sample_rate')
+  final int? sampleRate;
+
+  @JsonKey(name: 'channels')
+  final int? channels;
+
+  @JsonKey(name: 'mode')
+  final RawAudioFrameOpModeType? mode;
+
+  @JsonKey(name: 'samples_per_call')
+  final int? samplesPerCall;
+
+  factory AudioParams.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$AudioParamsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioParamsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class AudioParams
+    {
+        public int sample_rate { set; get; }
+        public int channels { set; get; }
+        public RAW_AUDIO_FRAME_OP_MODE_TYPE mode { set; get; }
+        public int samples_per_call { set; get; }
+
+        public AudioParams()
+        {
+            sample_rate = 0;
+            channels = 0;
+            mode = RAW_AUDIO_FRAME_OP_MODE_TYPE.RAW_AUDIO_FRAME_OP_MODE_READ_ONLY;
+            samples_per_call = 0;
+        }
+
+        public AudioParams(int samplerate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE type, int samplesPerCall)
+        {
+            sample_rate = samplerate;
+            channels = channel;
+            mode = type;
+            samples_per_call = samplesPerCall;
+        }
+    };</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <p props="electron">SDK 会根据 <xref keyref="AudioParams"/> 设置以下回调中的音频数据格式：
+                <ul>
+                    <li><xref keyref="onRecordAudioFrame"/></li>
+                    <li><xref keyref="onPlaybackAudioFrame"/></li>
+                    <li><xref keyref="onMixedAudioFrame"/></li>
+                </ul>
+            </p>
+            <p props="rn">SDK 会根据 <xref keyref="AudioParams"/> 设置以下回调中的音频数据格式：
+                <ul>
+                    <li><xref keyref="onRecordAudioFrame"/></li>
+                    <li><xref keyref="onPlaybackAudioFrame"/></li>
+                    <li><xref keyref="onMixedAudioFrame"/></li>
+                </ul>
+            </p>
+            <p props="unity">你可以在以下 API 中传入 <xref keyref="AudioParams"/> 对象，用于设置对应回调报告的音频数据格式：
+                <ul>
+                    <li><xref keyref="setRecordingAudioFrameParameters"/>：设置 <xref keyref="onRecordAudioFrame"/> 回调的数据格式。</li>
+                    <li><xref keyref="setPlaybackAudioFrameParameters"/>：设置 <xref keyref="onPlaybackAudioFrame"/> 回调的数据格式。</li>
+                    <li><xref keyref="setMixedAudioFrameParameters"/>：设置 <xref keyref="onMixedAudioFrame"/> 回调的数据格式。</li>
+                    <li><xref keyref="setEarMonitoringAudioFrameParameters"/>：设置 <xref keyref="onEarMonitoringAudioFrame"/> 回调的数据格式。</li>
+                </ul>
+            </p>
+            <note props="electron">
+                <ul>
+                    <li>SDK 会通过 <xref keyref="AudioParams"/> 中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔，并根据该采样间隔触发 <xref keyref="onRecordAudioFrame"/>、<xref keyref="onPlaybackAudioFrame"/>、<xref keyref="onMixedAudioFrame"/> 和 <xref keyref="onEarMonitoringAudioFrame"/> 回调。</li>
+                    <li>采样间隔 = <codeph>samplesPerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。</li>
+                    <li>请确保采样间隔不得小于 0.01 (s)。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>SDK 会通过 <xref keyref="AudioParams"/> 中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔，并根据该采样间隔触发 <xref keyref="onRecordAudioFrame"/>、<xref keyref="onPlaybackAudioFrame"/>、<xref keyref="onMixedAudioFrame"/> 和 <xref keyref="onEarMonitoringAudioFrame"/> 回调。</li>
+                    <li>采样间隔 = <codeph>samplesPerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。</li>
+                    <li>请确保采样间隔不得小于 0.01 (s)。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>SDK 会通过 <xref keyref="AudioParams"/> 中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔，并根据该采样间隔触发 <xref keyref="onRecordAudioFrame"/>、<xref keyref="onPlaybackAudioFrame"/>、<xref keyref="onMixedAudioFrame"/> 和 <xref keyref="onEarMonitoringAudioFrame"/> 回调。</li>
+                    <li>采样间隔 = <codeph>samplesPerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。</li>
+                    <li>请确保采样间隔不得小于 0.01 (s)。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>SDK 会通过 <xref keyref="AudioParams"/> 中的 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔，并根据该采样间隔触发 <xref keyref="onRecordAudioFrame"/>、<xref keyref="onPlaybackAudioFrame"/>、<xref keyref="onMixedAudioFrame"/> 和 <xref keyref="onEarMonitoringAudioFrame"/> 回调。</li>
+                    <li>采样间隔 = <codeph>samplesPerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。</li>
+                    <li>请确保采样间隔不得小于 0.01 (s)。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>sample_rate</pt>
+                    <pd>数据的采样率，单位为 Hz，取值如下：
+                        <ul>
+                            <li>8000</li>
+                            <li>16000（默认值）</li>
+                            <li>32000</li>
+                            <li>44100</li>
+                            <li>48000</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channels</pt>
+                    <pd>数据的声道数，取值如下：
+                        <ul>
+                            <li>1：单声道（默认值）</li>
+                            <li>2：双声道</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>mode</pt>
+                    <pd>数据的使用模式。详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>samples_per_call</pt>
+                    <pd>数据的采样点数，如旁路推流应用中通常为 1024。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sample_rate</pt>
+                    <pd>数据的采样率，单位为 Hz，取值如下：
+                        <ul>
+                            <li>8000</li>
+                            <li>16000（默认值）</li>
+                            <li>32000</li>
+                            <li>44100</li>
+                            <li>48000</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channels</pt>
+                    <pd>数据的声道数，取值如下：
+                        <ul>
+                            <li>1：单声道（默认值）</li>
+                            <li>2：双声道</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mode</pt>
+                    <pd>数据的使用模式。详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>samples_per_call</pt>
+                    <pd>数据的采样点数，如旁路推流应用中通常为 1024。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sampleRate</pt>
+                    <pd>数据的采样率，单位为 Hz，取值如下：
+                        <ul>
+                            <li>8000</li>
+                            <li>16000（默认值）</li>
+                            <li>32000</li>
+                            <li>44100</li>
+                            <li>48000</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channels</pt>
+                    <pd>数据的声道数，取值如下：
+                        <ul>
+                            <li>1：单声道（默认值）</li>
+                            <li>2：双声道</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mode</pt>
+                    <pd>数据的使用模式。详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>samplesPerCall</pt>
+                    <pd>数据的采样点数，如旁路推流应用中通常为 1024。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sample_rate</pt>
+                    <pd>数据的采样率，单位为 Hz，取值如下：
+                        <ul>
+                            <li>8000</li>
+                            <li>16000（默认值）</li>
+                            <li>32000</li>
+                            <li>44100</li>
+                            <li>48000</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channels</pt>
+                    <pd>数据的声道数，取值如下：
+                        <ul>
+                            <li>1：单声道（默认值）</li>
+                            <li>2：双声道</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mode</pt>
+                    <pd>数据的使用模式。详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>samples_per_call</pt>
+                    <pd>数据的采样点数，如旁路推流应用中通常为 1024。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

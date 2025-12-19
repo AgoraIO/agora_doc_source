@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserver_onplaybackaudioframe">
+    <title><ph keyref="onPlaybackAudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">获取用于播放的原始音频帧回调。</ph><ph id="shortdesc" props="android">获取用于播放的原始音频帧回调。</ph><ph id="shortdesc" props="mac">获取用于播放的原始音频帧回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlaybackAudioFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (BOOL)onPlaybackAudioFrame:(AgoraAudioFrame* _Nonnull)frame channelId:(NSString * _Nonnull)channelId  NS_SWIFT_NAME(onPlaybackAudioFrame(_:channelId:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract boolean onPlaybackAudioFrame(String channelId, int type, int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer, long renderTimeMs, int avsync_type);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (BOOL)onPlaybackAudioFrame:(AgoraAudioFrame* _Nonnull)frame channelId:(NSString * _Nonnull)channelId  NS_SWIFT_NAME(onPlaybackAudioFrame(_:channelId:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">为了确保播放音频帧的数据格式符合预期，声网建议你通过以下两种方法之一设置音频数据格式：
+                <ul>
+                    <li>方法一：调用 <xref keyref="setPlaybackAudioFrameParameters"/> 设置音频数据格式，并调用 <xref keyref="registerAudioFrameObserver"/> 注册音频帧观察者对象。SDK 会根据设置的参数计算采样间隔，并按照采样间隔触发该回调。</li>
+                    <li>方法二：调用 <xref keyref="registerAudioFrameObserver"/> 注册音频帧观察者对象，并在 <xref keyref="getObservedAudioFramePosition"/> 的返回值中设置音频数据格式。SDK 会根据 <xref keyref="getPlaybackAudioParams"/> 的返回值计算采样间隔，并按照采样间隔触发该回调。</li>
+                </ul>
+            </p>
+            <p props="android">你可以通过以下两种方式之一设置音频数据格式：
+                <ul>
+                    <li>方法一：调用 <xref keyref="setPlaybackAudioFrameParameters"/> 设置音频数据格式，并调用 <xref keyref="registerAudioFrameObserver"/> 注册音频帧观察者对象后，SDK 会根据设置的参数计算采样间隔，并按照采样间隔触发该回调。</li>
+                    <li>方法二：调用 <xref keyref="registerAudioFrameObserver"/> 注册音频帧观察者对象后，在 <xref keyref="getObservedAudioFramePosition"/> 回调的返回值中设置音频数据格式。SDK 会根据 <xref keyref="getPlaybackAudioParams"/> 回调的返回值计算采样间隔，并按照采样间隔触发该回调。</li>
+                </ul>
+            </p>
+            <p props="mac">为了确保播放音频帧的数据格式符合预期，声网建议你通过以下两种方法之一设置音频数据格式：
+                <ul>
+                    <li>方法一：调用 <xref keyref="setPlaybackAudioFrameParameters"/> 设置音频数据格式，并调用 <xref keyref="registerAudioFrameObserver"/> 注册音频帧观察者对象。SDK 会根据设置的参数计算采样间隔，并按照采样间隔触发该回调。</li>
+                    <li>方法二：调用 <xref keyref="registerAudioFrameObserver"/> 注册音频帧观察者对象，并在 <xref keyref="getObservedAudioFramePosition"/> 的返回值中设置音频数据格式。SDK 会根据 <xref keyref="getPlaybackAudioParams"/> 的返回值计算采样间隔，并按照采样间隔触发该回调。</li>
+                </ul>
+            </p>
+            <note props="ios"><xref keyref="setPlaybackAudioFrameParameters"/> 的优先级高于 <xref keyref="getObservedAudioFramePosition"/> 和 <xref keyref="getPlaybackAudioParams"/>。如果使用方法一设置音频数据格式，则方法二的设置无效。</note>
+            <note props="android"><xref keyref="setPlaybackAudioFrameParameters"/> 的设置优先级高于 <xref keyref="getObservedAudioFramePosition"/>。如果使用方法一设置音频数据格式，则方法二的设置无效。</note>
+            <note props="mac"><xref keyref="setPlaybackAudioFrameParameters"/> 的优先级高于 <xref keyref="getObservedAudioFramePosition"/> 和 <xref keyref="getPlaybackAudioParams"/>。如果使用方法一设置音频数据格式，则方法二的设置无效。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="ios mac">
+            <title>触发时机</title>
+            <p props="ios">该回调在 SDK 获取到用于播放的音频帧时被触发。</p>
+            <p props="mac">该回调在 SDK 获取到用于播放的音频帧时被触发。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>frame</pt>
+                    <pd>原始音频数据，详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>channelId</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channelId</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>type</pt>
+                    <pd>音频帧类型。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>samplesPerChannel</pt>
+                    <pd>每个声道中的采样点数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>bytesPerSample</pt>
+                    <pd>每个音频采样点的字节数。例如，每个 PCM 音频采样点通常占用 16 位（2 字节）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channels</pt>
+                    <pd>声道数：
+                        <ul>
+                            <li>1：单声道。</li>
+                            <li>2：立体声。若为立体声，数据为交错排列。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>samplesPerSec</pt>
+                    <pd>录音采样率（Hz）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>buffer</pt>
+                    <pd>音频缓冲区。缓冲区大小 = <codeph>samplesPerChannel</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>renderTimeMs</pt>
+                    <pd>外部音频帧的时间戳（毫秒）。你可以使用该参数在视频或音频相关场景中（包括使用外部视频源的场景）实现音视频帧同步。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>avsync_type</pt>
+                    <pd>预留参数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>frame</pt>
+                    <pd>原始音频数据，详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channelId</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android ios mac">
+            <title>返回值</title>
+            <p props="ios">
+                <ul>
+                    <li><xref keyref="true"/>：处理成功。</li>
+                    <li><xref keyref="false"/>：处理失败。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li><xref keyref="true"/>：回调处理成功。</li>
+                    <li><xref keyref="false"/>：回调处理失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li><xref keyref="true"/>：处理成功。</li>
+                    <li><xref keyref="false"/>：处理失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_registerlocaluseraccount">
+    <title><ph keyref="registerLocalUserAccount"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">注册本地用户 User Account。</ph><ph id="shortdesc" props="rn">注册本地用户 User Account。</ph><ph id="shortdesc" props="flutter">注册本地用户 User Account。</ph><ph id="shortdesc" props="unity">注册本地用户 User Account。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerLocalUserAccount"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract registerLocalUserAccount(appId: string, userAccount: string): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract registerLocalUserAccount(appId: string, userAccount: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; registerLocalUserAccount(
+    {required String appId, required String userAccount});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int RegisterLocalUserAccount(string appId, string userAccount);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">该方法为本地用户注册一个 User Account。注册成功后，该 User Account 即可标识该本地用户的身份，用户可以使用它加入频道。
+该方法为可选。如果你希望用户使用 User Account 加入频道，可参考下列任意一种方式实现：
+                <ul>
+                    <li>先调用 <xref keyref="registerLocalUserAccount"/> 方法注册 Account，再调用 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道，可以缩短进入频道的时间。</li>
+                    <li>直接调用 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道。</li>
+                </ul>
+            </p>
+            <p props="rn">该方法为本地用户注册一个 User Account。注册成功后，该 User Account 即可标识该本地用户的身份，用户可以使用它加入频道。
+该方法为可选。如果你希望用户使用 User Account 加入频道，可参考下列任意一种方式实现：
+                <ul>
+                    <li>先调用 <xref keyref="registerLocalUserAccount"/> 方法注册 Account，再调用 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道，可以缩短进入频道的时间。</li>
+                    <li>直接调用 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道。</li>
+                </ul>
+            </p>
+            <p props="flutter">该方法为本地用户注册一个 User Account。注册成功后，该 User Account 即可标识该本地用户的身份，用户可以使用它加入频道。
+该方法为可选。如果你希望用户使用 User Account 加入频道，可参考下列任意一种方式实现：
+                <ul>
+                    <li>先调用 <xref keyref="registerLocalUserAccount"/> 方法注册 Account，再调用 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道，可以缩短进入频道的时间。</li>
+                    <li>直接调用 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道。</li>
+                </ul>
+            </p>
+            <p props="unity">该方法为本地用户注册一个 User Account。注册成功后，该 User Account 即可标识该本地用户的身份，用户可以使用它加入频道。
+该方法为可选。如果你希望用户使用 User Account 加入频道，可参考下列任意一种方式实现：
+                <ul>
+                    <li>先调用 <xref keyref="registerLocalUserAccount"/> 方法注册 Account，再调用 <xref keyref="joinChannelWithUserAccount1"/> 或 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道，可以缩短进入频道的时间。</li>
+                    <li>直接调用 <xref keyref="joinChannelWithUserAccount1"/> 或 <xref keyref="joinChannelWithUserAccount2"/> 方法加入频道。</li>
+                </ul>
+            </p>
+            <note props="electron">
+                <ul>
+                    <li>请确保在该方法中设置的 <codeph>userAccount</codeph> 在频道中的唯一性。</li>
+                    <li>为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>请确保在该方法中设置的 <codeph>userAccount</codeph> 在频道中的唯一性。</li>
+                    <li>为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>请确保在该方法中设置的 <codeph>userAccount</codeph> 在频道中的唯一性。</li>
+                    <li>为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>请确保在该方法中设置的 <codeph>userAccount</codeph> 在频道中的唯一性。</li>
+                    <li>为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>相关回调</title>
+            <p props="electron">成功调用该方法后，本地会触发 <xref keyref="onLocalUserRegistered"/> 回调，告知本地用户的 UID 和 User Account。</p>
+            <p props="rn">成功调用该方法后，本地会触发 <xref keyref="onLocalUserRegistered"/> 回调，告知本地用户的 UID 和 User Account。</p>
+            <p props="flutter">成功调用该方法后，本地会触发 <xref keyref="onLocalUserRegistered"/> 回调，告知本地用户的 UID 和 User Account。</p>
+            <p props="unity">成功调用该方法后，本地会触发 <xref keyref="onLocalUserRegistered"/> 回调，告知本地用户的 UID 和 User Account。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>appId</pt>
+                    <pd>你的项目在控制台注册的 App ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>userAccount</pt>
+                    <pd>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。该参数为必填，最大不超过 255 字节，不可填 null。以下为支持的字符集范围（共 89 个字符）：
+                        <ul>
+                            <li>26 个小写英文字母 a-z</li>
+                            <li>26 个大写英文字母 A-Z</li>
+                            <li>10 个数字 0-9</li>
+                            <li>空格</li>
+                            <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>appId</pt>
+                    <pd>你的项目在控制台注册的 App ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>userAccount</pt>
+                    <pd>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。该参数为必填，最大不超过 255 字节，不可填 null。以下为支持的字符集范围（共 89 个字符）：
+                        <ul>
+                            <li>26 个小写英文字母 a-z</li>
+                            <li>26 个大写英文字母 A-Z</li>
+                            <li>10 个数字 0-9</li>
+                            <li>空格</li>
+                            <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>appId</pt>
+                    <pd>你的项目在控制台注册的 App ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>userAccount</pt>
+                    <pd>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。该参数为必填，最大不超过 255 字节，不可填 <codeph><ph keyref="NULL"/></codeph>。以下为支持的字符集范围（共 89 个字符）：
+                        <ul>
+                            <li>26 个小写英文字母 a-z</li>
+                            <li>26 个大写英文字母 A-Z</li>
+                            <li>10 个数字 0-9</li>
+                            <li>空格</li>
+                            <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>appId</pt>
+                    <pd>你的项目在控制台注册的 App ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>userAccount</pt>
+                    <pd>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。该参数为必填，最大不超过 255 字节，不可填 <codeph><ph keyref="NULL"/></codeph>。以下为支持的字符集范围（共 89 个字符）：
+                        <ul>
+                            <li>26 个小写英文字母 a-z</li>
+                            <li>26 个大写英文字母 A-Z</li>
+                            <li>10 个数字 0-9</li>
+                            <li>空格</li>
+                            <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

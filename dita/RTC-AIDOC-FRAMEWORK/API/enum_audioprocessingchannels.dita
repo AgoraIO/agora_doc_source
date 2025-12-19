@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_audioprocessingchannels">
+    <title><ph keyref="AUDIO_PROCESSING_CHANNELS"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">音频前处理的声道数。</ph><ph id="shortdesc" props="rn">音频前处理的声道数。</ph><ph id="shortdesc" props="flutter">音频前处理的声道数。</ph><ph id="shortdesc" props="unity">音频前处理的声道数。</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <p props="electron">在演唱会等需要增强真实感的场景中，本地用户可能需要采集立体声并发送立体声信号给远端用户。
+例如，在演唱会的舞台上，主唱、吉他手、鼓手分别站在不同的位置，现场设备采集到了三者的立体声，并把立体声信号发送给远端用户，远端用户可以像亲临舞台一样听到来自不同方向的歌声、吉他声和鼓声。
+通过该类，你可以设置双声道处理，实现立体声。建议按如下步骤设置：
+                <ol>
+                    <li>前处理：调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <xref keyref="AdvancedAudioOptions"/> 中设置 <codeph>audioProcessingChannels</codeph> 为 <codeph>AudioProcessingStereo</codeph> (2)。</li>
+                    <li>后处理：调用  <xref keyref="setAudioProfile"/> 并将 <codeph>profile</codeph> 设为 <codeph>AudioProfileMusicStandardStereo</codeph> (3) 或 <codeph>AudioProfileMusicHighQualityStereo</codeph> (5)。</li>
+                </ol>
+            </p>
+            <p props="rn">在演唱会等需要增强真实感的场景中，本地用户可能需要采集立体声并发送立体声信号给远端用户。
+例如，在演唱会的舞台上，主唱、吉他手、鼓手分别站在不同的位置，现场设备采集到了三者的立体声，并把立体声信号发送给远端用户，远端用户可以像亲临舞台一样听到来自不同方向的歌声、吉他声和鼓声。
+通过该类，你可以设置双声道处理，实现立体声。建议按如下步骤设置：
+                <ol>
+                    <li>前处理：调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <xref keyref="AdvancedAudioOptions"/> 中设置 <codeph>audioProcessingChannels</codeph> 为 <codeph>AudioProcessingStereo</codeph> (2)。</li>
+                    <li>后处理：调用  <xref keyref="setAudioProfile"/> 并将 <codeph>profile</codeph> 设为 <codeph>AudioProfileMusicStandardStereo</codeph> (3) 或 <codeph>AudioProfileMusicHighQualityStereo</codeph> (5)。</li>
+                </ol>
+            </p>
+            <p props="flutter">在演唱会等需要增强真实感的场景中，本地用户可能需要采集立体声并发送立体声信号给远端用户。
+例如，在演唱会的舞台上，主唱、吉他手、鼓手分别站在不同的位置，现场设备采集到了三者的立体声，并把立体声信号发送给远端用户，远端用户可以像亲临舞台一样听到来自不同方向的歌声、吉他声和鼓声。
+通过该类，你可以设置双声道处理，实现立体声。建议按如下步骤设置：
+                <ol>
+                    <li>前处理：调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <xref keyref="AdvancedAudioOptions"/> 中设置 <codeph>audioProcessingChannels</codeph> 为 <codeph>audioProcessingStereo</codeph> (2)。</li>
+                    <li>后处理：调用 <codeph>setAudioProfile2</codeph>  并将 <codeph>profile</codeph> 设为 <codeph>audioProfileMusicStandardStereo</codeph> (3) 或 <codeph>audioProfileMusicHighQualityStereo</codeph> (5)。</li>
+                </ol>
+            </p>
+            <p props="unity">在演唱会等需要增强真实感的场景中，本地用户可能需要采集立体声并发送立体声信号给远端用户。
+例如，在演唱会的舞台上，主唱、吉他手、鼓手分别站在不同的位置，现场设备采集到了三者的立体声，并把立体声信号发送给远端用户，远端用户可以像亲临舞台一样听到来自不同方向的歌声、吉他声和鼓声。
+通过该类，你可以设置双声道处理，实现立体声。建议按如下步骤设置：
+                <ol>
+                    <li>前处理：调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <xref keyref="AdvancedAudioOptions"/> 中设置 <codeph>audioProcessingChannels</codeph> 为 <codeph>AUDIO_PROCESSING_STEREO</codeph> (2)。</li>
+                    <li>后处理：调用 <xref keyref="setAudioProfile2"/>  并将 <codeph>profile</codeph> 设为 <codeph>AUDIO_PROFILE_MUSIC_STANDARD_STEREO</codeph> (3) 或 <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</codeph> (5)。</li>
+                </ol>
+            </p>
+            <note props="electron">
+                <ul>
+                    <li>立体声设置仅在媒体音量下生效。</li>
+                </ul><ph>如需了解媒体音量和通话音量的区别，</ph></note>
+            <note props="rn">
+                <ul>
+                    <li>立体声设置仅在媒体音量下生效。</li>
+                </ul><ph>如需了解媒体音量和通话音量的区别，详见[音量类型](https://doc.shengwang.cn/faq/integration-issues/system-volume)。</ph>
+                <ul>
+                    <li>在 iOS 上，实现立体声 iOS 系统版本为 14.0 及以上。最低设备要求如下：
+                        <ul>
+                            <li>iPhone XS</li>
+                            <li>iPhone XS Max</li>
+                            <li>iPhone XR</li>
+                            <li>iPhone 11</li>
+                            <li>iPhone 11 Pro</li>
+                            <li>iPhone 11 Pro Max</li>
+                            <li>iPhone SE (2020)</li>
+                            <li>11 英寸 或 12.9 英寸 iPad Pro（第三代）</li>
+                            <li>11 英寸 或 12.9 英寸 iPad Pro（第四代）</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>立体声设置仅在媒体音量下生效。</li>
+                </ul><ph>如需了解媒体音量和通话音量的区别，详见[音量类型](https://doc.shengwang.cn/faq/integration-issues/system-volume)。</ph>
+                <ul>
+                    <li>在 iOS 上，实现立体声 iOS 系统版本为 14.0 及以上。最低设备要求如下：
+                        <ul>
+                            <li>iPhone XS</li>
+                            <li>iPhone XS Max</li>
+                            <li>iPhone XR</li>
+                            <li>iPhone 11</li>
+                            <li>iPhone 11 Pro</li>
+                            <li>iPhone 11 Pro Max</li>
+                            <li>iPhone SE (2020)</li>
+                            <li>11 英寸 或 12.9 英寸 iPad Pro（第三代）</li>
+                            <li>11 英寸 或 12.9 英寸 iPad Pro（第四代）</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>立体声设置仅在媒体音量下生效。</li>
+                </ul><ph>如需了解媒体音量和通话音量的区别，详见[音量类型](https://doc.shengwang.cn/faq/integration-issues/system-volume)。</ph>
+                <ul>
+                    <li>在 iOS 上，实现立体声 iOS 系统版本为 14.0 及以上。最低设备要求如下：
+                        <ul>
+                            <li>iPhone XS</li>
+                            <li>iPhone XS Max</li>
+                            <li>iPhone XR</li>
+                            <li>iPhone 11</li>
+                            <li>iPhone 11 Pro</li>
+                            <li>iPhone 11 Pro Max</li>
+                            <li>iPhone SE (2020)</li>
+                            <li>11 英寸 或 12.9 英寸 iPad Pro（第三代）</li>
+                            <li>11 英寸 或 12.9 英寸 iPad Pro（第四代）</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>AudioProcessingMono</pt>
+                    <pd>1: （默认）单声道。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioProcessingStereo</pt>
+                    <pd>2: 双声道。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProcessingMono</pt>
+                    <pd>1: （默认）单声道。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProcessingStereo</pt>
+                    <pd>2: 双声道。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProcessingMono</pt>
+                    <pd>1: （默认）单声道。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProcessingStereo</pt>
+                    <pd>2: 双声道。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROCESSING_MONO</pt>
+                    <pd>1: （默认）单声道。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROCESSING_STEREO</pt>
+                    <pd>2: 双声道。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

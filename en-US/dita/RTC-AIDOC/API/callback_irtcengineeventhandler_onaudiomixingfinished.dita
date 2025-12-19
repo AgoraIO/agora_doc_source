@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudiomixingfinished">
+    <title><ph keyref="onAudioMixingFinished"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the local music file finishes playing.</ph><ph id="shortdesc" props="android">Callback for when local music file playback ends.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioMixingFinished"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioMixingFinished() __deprecated {}</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onAudioMixingFinished()</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use <xref keyref="onAudioMixingStateChanged"/> instead.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use <xref keyref="onAudioMixingStateChanged"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">This callback is triggered when the local music file finishes playing after calling <codeph>startAudioMixing</codeph>. If the call to <codeph>startAudioMixing</codeph> fails, it returns the error code <codeph>WARN_AUDIO_MIXING_OPEN_ERROR</codeph>.</p>
+            <p props="android">After calling <codeph>startAudioMixing</codeph> to play a local music file, this callback is triggered when playback ends. If <codeph>startAudioMixing</codeph> fails, it returns the error code <codeph>WARN_AUDIO_MIXING_OPEN_ERROR</codeph>.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">Triggered when the local music file finishes playing after calling <codeph>startAudioMixing</codeph>.</p>
+            <p props="android">This callback is triggered when the local music file playback ends.</p>
+        </section>
+    </refbody>
+</reference>

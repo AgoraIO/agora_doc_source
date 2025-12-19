@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_stopaudiodeviceloopbacktest">
+    <title><ph keyref="stopAudioDeviceLoopbackTest"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">停止音频设备回路测试。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="stopAudioDeviceLoopbackTest"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int stopAudioDeviceLoopbackTest() = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp"><xref keyref="stopAudioDeviceLoopbackTest"/> 方法仅适用于 Windows 和 macOS 平台。你可以在加入频道前或加入频道后调用该方法。该方法仅在主播角色调用时生效。调用 <xref keyref="startAudioDeviceLoopbackTest"/> 方法开始回路测试后，请确保调用该方法停止回路测试。</note>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

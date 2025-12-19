@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enumeratedevices">
+    <title><ph keyref="enumerateDevices"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="mac">枚举系统中的所有音频和视频设备。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enumerateDevices"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="mac" outputclass="language-objectivec">- (NSArray&lt;AgoraRtcDeviceInfo *&gt; * _Nullable)enumerateDevices:(AgoraMediaDeviceType)type NS_SWIFT_NAME(enumerateDevices(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="mac">该方法返回一个 <codeph>NSArray</codeph> 对象，其中包含系统中的所有音频和视频设备。你可以使用 <codeph>NSArray</codeph> 类型的 <xref keyref="AgoraRtcDeviceInfo"/> 对象来枚举设备。</p>
+            <note props="mac">请勿在主线程中调用此方法。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="mac">
+                    <pt>type</pt>
+                    <pd>设备类型，包括音频采集、音频播放、视频采集或视频播放设备。详见 <xref keyref="MEDIA_DEVICE_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="mac">
+            <title>返回值</title>
+            <p props="mac">
+                <ul>
+                    <li>方法调用成功，返回一个包含所有音频和视频设备的 <codeph>NSArray</codeph> 对象，详见 <xref keyref="AgoraRtcDeviceInfo"/>。</li>
+                    <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

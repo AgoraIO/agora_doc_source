@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ilocalspatialaudioengine_muteremoteaudiostream_ilocalspatialaudioengine">
+    <title><ph keyref="muteRemoteAudioStream_ILocalSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Stops or resumes subscribing to the specified remote user's audio stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="muteRemoteAudioStream_ILocalSpatialAudioEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int muteRemoteAudioStream(uid_t uid, bool mute) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">
+                <ul>
+                    <li>Call this method after calling <codeph>joinChannel</codeph>.</li>
+                    <li>When using spatial audio, if you need to set whether to stop subscribing to a specific user's audio stream, Agora recommends calling this method instead of the <xref keyref="muteRemoteAudioStream_ILocalSpatialAudioEngine"/> method.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>User ID. This value must be the same as the user ID passed in when the user joined the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mute</pt>
+                    <pd>Whether to subscribe to the specified remote user's audio stream:
+                        <ul>
+                            <li><xref keyref="true"/>: Stop subscribing to this user's audio stream.</li>
+                            <li><xref keyref="false"/>: (Default) Subscribe to this user's audio stream. The SDK determines whether to subscribe based on the distance between the local and remote users.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

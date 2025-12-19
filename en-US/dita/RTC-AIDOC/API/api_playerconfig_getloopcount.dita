@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_playerconfig_getloopcount">
+    <title><ph keyref="GetLoopCount"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the loop count of the media file.</ph><ph id="shortdesc" props="android">Gets the number of times the media file loops during playback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="GetLoopCount"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">int32_t GetLoopCount(Error *err = nullptr)</codeblock>
+                <codeblock props="android" outputclass="language-java">public int getLoopCount() throws RteException</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.5.1.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.5.1.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>Output parameter. Status or error information. See <xref keyref="Error"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="exception" props="android">
+            <title>Exceptions</title>
+            <p props="android">If getting fails, the SDK throws an exception and returns the corresponding error message. You need to catch and handle the exception.</p>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">Returns the loop count of the media file if the method call succeeds.</p>
+            <p props="android">The number of times the media file loops, if the method call succeeds.</p>
+        </section>
+    </refbody>
+</reference>

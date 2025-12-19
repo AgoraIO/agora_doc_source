@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_iscameraexposuresupported">
+    <title><ph keyref="isCameraExposureSupported"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">查询当前摄像头是否支持曝光调节。</ph><ph id="shortdesc" props="flutter">查询当前摄像头是否支持曝光调节。</ph><ph id="shortdesc" props="unity">查询当前摄像头是否支持曝光调节。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="isCameraExposureSupported"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract isCameraExposureSupported(): boolean;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;bool&gt; isCameraExposureSupported();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract bool IsCameraExposureSupported();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="rn">
+                <ul>
+                    <li>该方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>LocalVideoStreamStateCapturing</codeph> (1) 之后调用。</li>
+                    <li>建议你在调用 <xref keyref="setCameraExposureFactor"/> 调节曝光系数前，先调用该方法查询当前摄像头是否支持曝光调节。</li>
+                    <li>当你调用该方法时，查询的是当前正在使用的摄像头是否支持曝光调节，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法仅适用于 Android 和 iOS。</li>
+                    <li>该方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>localVideoStreamStateCapturing</codeph> (1) 之后调用。</li>
+                    <li>建议你在调用 <xref keyref="setCameraExposureFactor"/> 调节曝光系数前，先调用该方法查询当前摄像头是否支持曝光调节。</li>
+                    <li>当你调用该方法时，查询的是当前正在使用的摄像头是否支持曝光调节，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法仅适用于 Android 和 iOS。</li>
+                    <li>该方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1) 之后调用。</li>
+                    <li>建议你在调用 <xref keyref="setCameraExposureFactor"/> 调节曝光系数前，先调用该方法查询当前摄像头是否支持曝光调节。</li>
+                    <li>当你调用该方法时，查询的是当前正在使用的摄像头是否支持曝光调节，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>返回值</title>
+            <p props="rn">
+                <ul>
+                    <li><xref keyref="true"/>：方法调用成功。</li>
+                    <li><xref keyref="false"/>：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li><xref keyref="true"/>：方法调用成功。</li>
+                    <li><xref keyref="false"/>：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li><xref keyref="true"/>：方法调用成功。</li>
+                    <li><xref keyref="false"/>：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

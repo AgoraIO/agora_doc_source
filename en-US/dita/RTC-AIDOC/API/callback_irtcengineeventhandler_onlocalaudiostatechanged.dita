@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onlocalaudiostatechanged">
+    <title><ph keyref="onLocalAudioStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for changes in the local audio stream state.</ph><ph id="shortdesc" props="android">Callback for changes in local audio stream state.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalAudioStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onLocalAudioStateChanged(LOCAL_AUDIO_STREAM_STATE state, LOCAL_AUDIO_STREAM_REASON reason)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onLocalAudioStateChanged(int state, int reason)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">When the state of the local audio stream (including audio capture and encoding state) changes, the SDK triggers this callback to report the current state, helping you troubleshoot audio issues.</p>
+            <p props="android">When the state of the local audio stream changes, the SDK triggers this callback to report the current state, helping you troubleshoot audio issues.</p>
+            <note props="cpp">When the state is <codeph>LOCAL_AUDIO_STREAM_STATE_FAILED</codeph> (3), you can check the error information in the <codeph>reason</codeph> parameter.</note>
+            <note props="android">When the state is <codeph>LOCAL_AUDIO_STREAM_STATE_FAILED</codeph> (3), you can check the error information in the <codeph>error</codeph> parameter.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the state of the local audio stream changes.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>The state of the local audio stream. See <xref keyref="LOCAL_AUDIO_STREAM_STATE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>The reason for the local audio stream state change. See <xref keyref="LOCAL_AUDIO_STREAM_REASON"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>The state of the local audio:
+                        <ul>
+                            <li><codeph>LOCAL_AUDIO_STREAM_STATE_STOPPED</codeph> (0): The local audio is in the initial state.</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_STATE_RECORDING</codeph> (1): The local audio capturing device is started successfully.</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_STATE_ENCODING</codeph> (2): The first frame of audio is encoded successfully.</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_STATE_FAILED</codeph> (3): Failed to start the local audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>The reason for the local audio state change:
+                        <ul>
+                            <li><codeph>LOCAL_AUDIO_STREAM_REASON_OK</codeph> (0): The local audio state is normal.</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_REASON_FAILURE</codeph> (1): The reason for local audio failure is unclear. Prompt the user to rejoin the channel.</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_REASON_DEVICE_NO_PERMISSION</codeph> (2): No permission to use the local audio capturing device. Prompt the user to grant permission.</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_REASON_DEVICE_BUSY</codeph> (3): The microphone is occupied. Prompt the user to check if another app is using the microphone. Audio capturing will automatically resume about five seconds after the microphone is free, or you can try rejoining the channel.</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_REASON_CAPTURE_FAILURE</codeph> (4): Failed to capture local audio.</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_REASON_ENCODE_FAILURE</codeph> (5): Failed to encode local audio.</li>
+                            <li><codeph>LOCAL_AUDIO_STREAM_REASON_INTERRUPTED</codeph> (8): Local audio capturing is interrupted by a system phone call, smart assistant, or alarm. To continue capturing, prompt the user to end the phone call, smart assistant, or alarm.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

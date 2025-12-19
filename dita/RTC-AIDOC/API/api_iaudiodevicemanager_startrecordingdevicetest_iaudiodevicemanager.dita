@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_startrecordingdevicetest_iaudiodevicemanager">
+    <title><ph keyref="startRecordingDeviceTest_IAudioDeviceManager"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">开始音频采集设备测试。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startRecordingDeviceTest_IAudioDeviceManager"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startRecordingDeviceTest(int indicationInterval) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">调用该方法可以测试本地音频采集设备是否正常工作。调用后，SDK 会按照设定的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调，报告 <codeph>uid</codeph> 为 0 的采集设备音量信息。该方法仅检测本地音频采集设备，而 <xref keyref="startEchoTest3"/> 方法还可检测音视频设备和网络状况。</p>
+            <note props="cpp">请在加入频道前调用该方法。测试完成后，请在加入频道前调用 <xref keyref="stopRecordingDeviceTest_IAudioDeviceManager"/> 停止测试。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>indicationInterval</pt>
+                    <pd>触发 <xref keyref="onAudioVolumeIndication"/> 回调的时间间隔（毫秒）。该值必须大于 10，否则无法收到 <xref keyref="onAudioVolumeIndication"/> 回调，且 SDK 返回错误码 -2。建议设置为 100。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2：参数无效，请检查参数设置。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

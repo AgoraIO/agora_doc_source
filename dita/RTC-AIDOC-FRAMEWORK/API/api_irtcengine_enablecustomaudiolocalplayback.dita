@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablecustomaudiolocalplayback">
+    <title><ph keyref="enableCustomAudioLocalPlayback"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置是否在本地播放外部音频源。</ph><ph id="shortdesc" props="rn">设置是否在本地播放外部音频源。</ph><ph id="shortdesc" props="flutter">设置是否在本地播放外部音频源。</ph><ph id="shortdesc" props="unity">设置是否在本地播放外部音频源。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableCustomAudioLocalPlayback"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableCustomAudioLocalPlayback(
+    trackId: number,
+    enabled: boolean
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableCustomAudioLocalPlayback(
+    trackId: number,
+    enabled: boolean
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableCustomAudioLocalPlayback(
+      {required int trackId, required bool enabled});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableCustomAudioLocalPlayback(uint trackId, bool enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">调用该方法设置在本地播放外部采集的音频源后，如需停止本地播放，可以再次调用该方法并设置 <codeph>enabled</codeph> 为 <xref keyref="false"/>。
+你可以调用 <xref keyref="adjustCustomAudioPlayoutVolume"/> 调节自定义音频采集轨道在本地播放的音量。</p>
+            <p props="rn">调用该方法设置在本地播放外部采集的音频源后，如需停止本地播放，可以再次调用该方法并设置 <codeph>enabled</codeph> 为 <xref keyref="false"/>。
+你可以调用 <xref keyref="adjustCustomAudioPlayoutVolume"/> 调节自定义音频采集轨道在本地播放的音量。</p>
+            <p props="flutter">调用该方法设置在本地播放外部采集的音频源后，如需停止本地播放，可以再次调用该方法并设置 <codeph>enabled</codeph> 为 <xref keyref="false"/>。
+你可以调用 <xref keyref="adjustCustomAudioPlayoutVolume"/> 调节自定义音频采集轨道在本地播放的音量。</p>
+            <p props="unity">调用该方法设置在本地播放外部采集的音频源后，如需停止本地播放，可以再次调用该方法并设置 <codeph>enabled</codeph> 为 <xref keyref="false"/>。
+你可以调用 <xref keyref="adjustCustomAudioPlayoutVolume"/> 调节自定义音频采集轨道在本地播放的音量。</p>
+            <note props="electron">在调用该方法前，请确保你已经调用 <xref keyref="createCustomAudioTrack"/> 方法创建自定义音频采集轨道。</note>
+            <note props="rn">在调用该方法前，请确保你已经调用 <xref keyref="createCustomAudioTrack"/> 方法创建自定义音频采集轨道。</note>
+            <note props="flutter">在调用该方法前，请确保你已经调用 <xref keyref="createCustomAudioTrack"/> 方法创建自定义音频采集轨道。</note>
+            <note props="unity">在调用该方法前，请确保你已经调用 <xref keyref="createCustomAudioTrack"/> 方法创建自定义音频采集轨道。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。将该参数设置为调用 <xref keyref="createCustomAudioTrack"/> 方法返回的自定义音频轨道 ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>是否在本地播放外部音频源：
+                        <ul>
+                            <li><xref keyref="true"/>：在本地播放。</li>
+                            <li><xref keyref="false"/>：（默认）不在本地播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。将该参数设置为调用 <xref keyref="createCustomAudioTrack"/> 方法返回的自定义音频轨道 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>是否在本地播放外部音频源：
+                        <ul>
+                            <li><xref keyref="true"/>：在本地播放。</li>
+                            <li><xref keyref="false"/>：（默认）不在本地播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。将该参数设置为调用 <xref keyref="createCustomAudioTrack"/> 方法返回的自定义音频轨道 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>是否在本地播放外部音频源：
+                        <ul>
+                            <li><xref keyref="true"/>：在本地播放。</li>
+                            <li><xref keyref="false"/>：（默认）不在本地播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>trackId</pt>
+                    <pd>音频轨道 ID。将该参数设置为调用 <xref keyref="createCustomAudioTrack"/> 方法返回的自定义音频轨道 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>是否在本地播放外部音频源：
+                        <ul>
+                            <li><xref keyref="true"/>：在本地播放。</li>
+                            <li><xref keyref="false"/>：（默认）不在本地播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

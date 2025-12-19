@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_clientrolechangefailedreason">
+    <title><ph keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reasons for client role change failure.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>CLIENT_ROLE_CHANGE_FAILED_TOO_MANY_BROADCASTERS</pt>
+                    <pd>(1): The number of broadcasters in the channel exceeds the limit.
+                        <note>This enumeration value is reported only when the 128-user feature is enabled. The maximum number of broadcasters depends on the actual number of broadcasters configured when the 128-user feature is enabled.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CLIENT_ROLE_CHANGE_FAILED_NOT_AUTHORIZED</pt>
+                    <pd>(2): The request was rejected by the Agora server. It is recommended to prompt the user to retry switching roles.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT</pt>
+                    <pd>(3): Request timed out. It is recommended to prompt the user to check the network connection and retry switching roles.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED</pt>
+                    <pd>(4): The client instance is disconnected from the Agora edge server. You can troubleshoot the failure reason via the <codeph>reason</codeph> in the <xref keyref="onConnectionStateChanged"/> callback.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

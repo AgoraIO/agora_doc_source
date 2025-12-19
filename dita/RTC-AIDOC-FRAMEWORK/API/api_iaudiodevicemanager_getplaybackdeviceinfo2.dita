@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_getplaybackdeviceinfo2">
+    <title><ph keyref="getPlaybackDeviceInfo2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">获取音频播放设备信息及其类型。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getPlaybackDeviceInfo2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetPlaybackDeviceInfo(ref string deviceId, ref string deviceName, ref string deviceTypeName);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">该方法仅适用于 macOS。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>deviceId</pt>
+                    <pd>输出参数，播放设备的设备 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceName</pt>
+                    <pd>输出参数，播放设备的设备名称。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceTypeName</pt>
+                    <pd>输出参数，音频播放设备类型，如：built-in、USB、HDMI 等。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>返回值</title>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rtcengineconfig">
+    <title><ph keyref="RtcEngineConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron"><xref keyref="RtcEngineConfig"/> 定义。</ph><ph id="shortdesc" props="rn"><xref keyref="RtcEngineConfig"/> 定义。</ph><ph id="shortdesc" props="flutter"><xref keyref="RtcEngineConfig"/> 定义。</ph><ph id="shortdesc" props="unity"><xref keyref="RtcEngineConfig"/> 定义。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class RtcEngineContext {
+
+  appId?: string;
+
+  channelProfile?: ChannelProfileType;
+
+  audioScenario?: AudioScenarioType;
+
+  areaCode?: number;
+
+  logConfig?: LogConfig;
+
+  threadPriority?: ThreadPriorityType;
+
+  useExternalEglContext?: boolean;
+
+  domainLimit?: boolean;
+
+  autoRegisterAgoraExtensions?: boolean;
+
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class RtcEngineContext {
+
+  appId?: string;
+
+  channelProfile?: ChannelProfileType;
+
+  audioScenario?: AudioScenarioType;
+
+  areaCode?: number;
+
+  logConfig?: LogConfig;
+
+  threadPriority?: ThreadPriorityType;
+
+  useExternalEglContext?: boolean;
+
+  domainLimit?: boolean;
+
+  autoRegisterAgoraExtensions?: boolean;
+
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class RtcEngineContext {
+  const RtcEngineContext(
+      {this.appId,
+      this.channelProfile,
+      this.audioScenario,
+      this.areaCode,
+      this.logConfig,
+      this.threadPriority,
+      this.domainLimit,
+      this.autoRegisterAgoraExtensions});
+
+  @JsonKey(name: 'appId')
+  final String? appId;
+
+  @JsonKey(name: 'channelProfile')
+  final ChannelProfileType? channelProfile;
+
+  @JsonKey(name: 'audioScenario')
+  final AudioScenarioType? audioScenario;
+
+  @JsonKey(name: 'areaCode')
+  final int? areaCode;
+
+  @JsonKey(name: 'logConfig')
+  final LogConfig? logConfig;
+
+  @JsonKey(name: 'threadPriority')
+  final ThreadPriorityType? threadPriority;
+
+  @JsonKey(name: 'domainLimit')
+  final bool? domainLimit;
+
+  @JsonKey(name: 'autoRegisterAgoraExtensions')
+  final bool? autoRegisterAgoraExtensions;
+
+  factory RtcEngineContext.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$RtcEngineContextFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$RtcEngineContextToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class RtcEngineContext : OptionalJsonParse
+    {
+
+        public string appId;
+        public UInt64 context;
+        public CHANNEL_PROFILE_TYPE channelProfile;
+        public AUDIO_SCENARIO_TYPE audioScenario;
+        public AREA_CODE areaCode;
+        public LogConfig logConfig;
+        public bool domainLimit;
+        public bool autoRegisterAgoraExtensions;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>appId</pt>
+                    <pd>声网为 App 开发者签发的 App ID。 使用同一个 App ID 的 App 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/>。如需更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 <xref keyref="IRtcEngine"/> 再重新创建。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channelProfile</pt>
+                    <pd>频道使用场景。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioScenario</pt>
+                    <pd>音频场景。不同的音频场景下，设备的音量类型是不同的。
+详见 <xref keyref="AUDIO_SCENARIO_TYPE"/> 。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>areaCode</pt>
+                    <pd>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持位操作。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>logConfig</pt>
+                    <pd>设置 SDK 输出的日志文件。详见 <xref keyref="LogConfig"/>。
+默认情况下，SDK 会生成 5 个 SDK 日志文件和 5 个 API 调用日志文件，规则如下：</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>domainLimit</pt>
+                    <pd>是否开启域名限制：
+                        <ul>
+                            <li><xref keyref="true"/>：开启域名限制。该设置适用于 IoT 设备使用物联网卡进行网络访问的场景。SDK 会仅连接到已向运营商报备的域名或 IP 白名单中的服务器。</li>
+                            <li><xref keyref="false"/>：（默认）关闭域名限制。该设置适用于大部分普通场景。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>autoRegisterAgoraExtensions</pt>
+                    <pd>是否在初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件。</li>
+                            <li><xref keyref="false"/>：初始化 <xref keyref="IRtcEngine"/> 时不注册声网插件。你需要调用 <xref keyref="enableExtension"/> 来注册声网插件。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>appId</pt>
+                    <pd>声网为 App 开发者签发的 App ID。 使用同一个 App ID 的 App 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/>。如需更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 <xref keyref="IRtcEngine"/> 再重新创建。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channelProfile</pt>
+                    <pd>频道使用场景。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioScenario</pt>
+                    <pd>音频场景。不同的音频场景下，设备的音量类型是不同的。
+详见 <xref keyref="AUDIO_SCENARIO_TYPE"/> 。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>areaCode</pt>
+                    <pd>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持位操作。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>logConfig</pt>
+                    <pd>设置 SDK 输出的日志文件。详见 <xref keyref="LogConfig"/>。
+默认情况下，SDK 会生成 5 个 SDK 日志文件和 5 个 API 调用日志文件，规则如下：</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>domainLimit</pt>
+                    <pd>是否开启域名限制：
+                        <ul>
+                            <li><xref keyref="true"/>：开启域名限制。该设置适用于 IoT 设备使用物联网卡进行网络访问的场景。SDK 会仅连接到已向运营商报备的域名或 IP 白名单中的服务器。</li>
+                            <li><xref keyref="false"/>：（默认）关闭域名限制。该设置适用于大部分普通场景。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>autoRegisterAgoraExtensions</pt>
+                    <pd>是否在初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件。</li>
+                            <li><xref keyref="false"/>：初始化 <xref keyref="IRtcEngine"/> 时不注册声网插件。你需要调用 <xref keyref="enableExtension"/> 来注册声网插件。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>appId</pt>
+                    <pd>声网为 App 开发者签发的 App ID。 使用同一个 App ID 的 App 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/>。如需更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 <xref keyref="IRtcEngine"/> 再重新创建。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channelProfile</pt>
+                    <pd>频道使用场景。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioScenario</pt>
+                    <pd>音频场景。不同的音频场景下，设备的音量类型是不同的。
+详见 <xref keyref="AUDIO_SCENARIO_TYPE"/> 。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>areaCode</pt>
+                    <pd>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持位操作。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>logConfig</pt>
+                    <pd>设置 SDK 输出的日志文件。详见 <xref keyref="LogConfig"/>。
+默认情况下，SDK 会生成 5 个 SDK 日志文件和 5 个 API 调用日志文件，规则如下：</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>domainLimit</pt>
+                    <pd>是否开启域名限制：
+                        <ul>
+                            <li><xref keyref="true"/>：开启域名限制。该设置适用于 IoT 设备使用物联网卡进行网络访问的场景。SDK 会仅连接到已向运营商报备的域名或 IP 白名单中的服务器。</li>
+                            <li><xref keyref="false"/>：（默认）关闭域名限制。该设置适用于大部分普通场景。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>autoRegisterAgoraExtensions</pt>
+                    <pd>是否在初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件。</li>
+                            <li><xref keyref="false"/>：初始化 <xref keyref="IRtcEngine"/> 时不注册声网插件。你需要调用 <xref keyref="enableExtension"/> 来注册声网插件。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>eventHandler</pt>
+                    <pd><xref keyref="IRtcEngine"/> 的事件句柄，详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>appId</pt>
+                    <pd>声网为 App 开发者签发的 App ID。 使用同一个 App ID 的 App 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/>。如需更换 App ID，必须先调用 <xref keyref="dispose_IMediaPlayer"/> 销毁当前 <xref keyref="IRtcEngine"/> 再重新创建。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>context</pt>
+                    <pd>
+                        <ul>
+                            <li>Windows 平台上，context 是视窗句柄。如设值，则表示支持设备热插拔。</li>
+                            <li>Android 平台上，context 是安卓活动上下文。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelProfile</pt>
+                    <pd>频道使用场景。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioScenario</pt>
+                    <pd>音频场景。不同的音频场景下，设备的音量类型是不同的。
+详见 <xref keyref="AUDIO_SCENARIO_TYPE"/> 。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>areaCode</pt>
+                    <pd>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持位操作。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>logConfig</pt>
+                    <pd>设置 SDK 输出的日志文件。详见 <xref keyref="LogConfig"/>。
+默认情况下，SDK 会生成 5 个 SDK 日志文件和 5 个 API 调用日志文件，规则如下：</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>domainLimit</pt>
+                    <pd>是否开启域名限制：
+                        <ul>
+                            <li><xref keyref="true"/>：开启域名限制。该设置适用于 IoT 设备使用物联网卡进行网络访问的场景。SDK 会仅连接到已向运营商报备的域名或 IP 白名单中的服务器。</li>
+                            <li><xref keyref="false"/>：（默认）关闭域名限制。该设置适用于大部分普通场景。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>autoRegisterAgoraExtensions</pt>
+                    <pd>是否在初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件。</li>
+                            <li><xref keyref="false"/>：初始化 <xref keyref="IRtcEngine"/> 时不注册声网插件。你需要调用 <xref keyref="enableExtension"/> 来注册声网插件。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_remotevoicepositioninfo">
+    <title><ph keyref="RemoteVoicePositionInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set the spatial position information of a remote user or media player.</ph><ph id="shortdesc" props="android"><xref keyref="RemoteVoicePositionInfo"/> represents the spatial position of a remote user or media player.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct RemoteVoicePositionInfo {
+  float position[3];
+  float forward[3];
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class RemoteVoicePositionInfo {
+  public float[] position;
+  public float[] forward;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>position</pt>
+                    <pd>Coordinates in the world coordinate system. This parameter is an array of length 3, with the three values representing the front, right, and up coordinates respectively.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>forward</pt>
+                    <pd>Unit vector along the x-axis in the coordinate system. This parameter is an array of length 3, with the three values representing the front, right, and up coordinates respectively.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>position</pt>
+                    <pd>Coordinates in the world coordinate system. This parameter is an array of length 3, with the three values representing the coordinates in the forward, right, and up directions respectively.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>forward</pt>
+                    <pd>Unit vector of the x-axis in the coordinate system. This parameter is an array of length 3, with the three values representing the coordinates in the forward, right, and up directions respectively.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

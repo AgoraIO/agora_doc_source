@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_stopscreencapture2">
+    <title><ph keyref="stopScreenCapture2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">停止对指定的视频源进行屏幕采集。</ph><ph id="shortdesc" props="flutter">停止对指定的视频源进行屏幕采集。</ph><ph id="shortdesc" props="unity">停止对指定的视频源进行屏幕采集。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="stopScreenCapture2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract stopScreenCaptureBySourceType(sourceType: VideoSourceType): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopScreenCaptureBySourceType(VideoSourceType sourceType);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StopScreenCapture(VIDEO_SOURCE_TYPE sourceType);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="flutter">该方法仅适用于 macOS 和 Windows 平台。</note>
+            <note props="unity">该方法仅适用于 macOS 和 Windows 平台。</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>如果你调用了 <codeph>startScreenCaptureBySourceType</codeph> 开启一路或多路屏幕采集，则停止屏幕采集时需要调用该方法，并通过 <codeph>sourceType</codeph> 参数指定屏幕。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter unity">
+            <title>调用时机</title>
+            <p props="electron">该方法在加入频道前后均可调用。</p>
+            <p props="flutter">该方法在加入频道前后均可调用。</p>
+            <p props="unity">该方法在加入频道前后均可调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

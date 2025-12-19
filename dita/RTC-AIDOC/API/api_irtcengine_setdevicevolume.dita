@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setdevicevolume">
+    <title><ph keyref="setDeviceVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="mac">设置指定设备的音量。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDeviceVolume"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setDeviceVolume:(AgoraMediaDeviceType)type volume:(int)volume NS_SWIFT_NAME(setDeviceVolume(_:volume:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="mac">设置音频或视频采集或播放设备的音量。</p>
+            <note props="mac">请在加入频道后调用该方法。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="mac">
+                    <pt>type</pt>
+                    <pd>设备类型，包括音频采集、音频播放、视频采集或视频播放设备，详见 <xref keyref="MEDIA_DEVICE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>volume</pt>
+                    <pd>指定设备的音量，取值范围为 [0, 255]。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="mac">
+            <title>返回值</title>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

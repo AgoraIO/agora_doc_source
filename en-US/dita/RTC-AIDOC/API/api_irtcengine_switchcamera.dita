@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_switchcamera">
+    <title><ph keyref="switchCamera"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Switches between front and rear cameras.</ph><ph id="shortdesc" props="android">Switches between front and rear cameras.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="switchCamera"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int switchCamera() = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int switchCamera();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You can call this method to dynamically switch between the front and rear cameras based on the available cameras during app runtime, without restarting the video stream or reconfiguring the video source.</p>
+            <p props="android">You can call this method during runtime to dynamically switch between front and rear cameras based on the available cameras, without restarting the video stream or reconfiguring the video source. This method and <codeph>switchCamera(String cameraId)</codeph> can both be used to switch cameras. The difference is that <codeph>switchCamera(String cameraId)</codeph> switches to a specific camera by specifying the camera ID, while this method switches the camera direction (front or rear).</p>
+            <note props="cpp">
+                <ul>
+                    <li>This method only switches the camera for the video stream captured by the first camera, that is, the video stream whose source is set to <codeph>VIDEO_SOURCE_CAMERA</codeph> (0) when calling <xref keyref="startCameraCapture"/>.</li>
+                    <li>This method is only applicable to Android and iOS platforms.</li>
+                </ul>
+            </note>
+            <note props="android">This method only switches the camera for the video stream captured by the primary camera, i.e., the video stream whose source is set to <codeph>VIDEO_SOURCE_CAMERA_PRIMARY</codeph> (0) when calling <xref keyref="startCameraCapture"/>.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You must call this method after the camera is successfully enabled, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</p>
+            <p props="android">You must call this method after the camera is successfully enabled, i.e., after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</p>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

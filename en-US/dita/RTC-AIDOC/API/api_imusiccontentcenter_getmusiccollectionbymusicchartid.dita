@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_getmusiccollectionbymusicchartid">
+    <title><ph keyref="getMusicCollectionByMusicChartId"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Retrieves the list of music resources for the specified music chart ID.</ph><ph id="shortdesc" props="android">Retrieves the music resource list by music chart ID.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getMusicCollectionByMusicChartId"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getMusicCollectionByMusicChartId(agora::util::AString&amp; requestId, int32_t musicChartId, int32_t page, int32_t pageSize, const char* jsonOption = nullptr) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public String getMusicCollectionByMusicChartId(int musicChartId, int page, int pageSize)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling this method, the SDK triggers the <xref keyref="onMusicCollectionResult"/> callback to report details of the music resources in the chart.</p>
+            <p props="android">After successfully calling this method, the SDK triggers the <xref keyref="onMusicCollectionResult"/> callback and returns detailed information about the music resources in the chart.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>requestId</pt>
+                    <pd>The request ID, used to uniquely identify the request.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>musicChartId</pt>
+                    <pd>The ID of the music chart. You can obtain this ID via the <xref keyref="onMusicChartsResult"/> callback or by using the RESTful API to get the full or incremental music library list.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>page</pt>
+                    <pd>The current page number, starting from 1.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>pageSize</pt>
+                    <pd>The number of music resources returned per page, with a maximum value of 50.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>jsonOption</pt>
+                    <pd>Extended JSON field, default is <xref keyref="NULL"/>. You can use this field to filter the desired music resources. Currently supported filters:
+                        <ul>
+                            <li><codeph>pitchType</codeph>: Whether scoring is supported.
+                                <ul>
+                                    <li>1: Scorable music.</li>
+                                    <li>2: Non-scorable music.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>needHighPart</codeph>: Whether chorus segments are needed.
+                                <ul>
+                                    <li><xref keyref="true"/>: Chorus segments required.</li>
+                                    <li><xref keyref="false"/>: Chorus segments not required.</li>
+                                </ul>
+                            </li>
+                        </ul><ph>Examples:</ph>
+                        <ul>
+                            <li><codeph>{ "pitchType": 1 }</codeph></li>
+                            <li><codeph>{ "needHighPart": true }</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>musicChartId</pt>
+                    <pd>The ID of the music chart. You can obtain it from the <xref keyref="onMusicChartsResult"/> callback.
+                        <note>You can also use the RESTful API to get the complete song list or incremental song list of the music library.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>page</pt>
+                    <pd>The current page number, starting from 1 by default.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>pageSize</pt>
+                    <pd>The total number of pages in the current music resource list. The maximum value is 50.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See the error code documentation for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>On success, returns the unique identifier <codeph>requestId</codeph> for the request.</li>
+                    <li>On failure, returns an empty string.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

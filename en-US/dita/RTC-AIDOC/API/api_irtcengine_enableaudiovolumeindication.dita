@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enableaudiovolumeindication">
+    <title><ph keyref="enableAudioVolumeIndication"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables the audio volume indication reporting.</ph><ph id="shortdesc" props="android">Enables the reporting of user volume indications.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableAudioVolumeIndication"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableAudioVolumeIndication(int interval, int smooth, bool reportVad) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableAudioVolumeIndication(int interval, int smooth, boolean reportVad);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method enables the SDK to periodically report the volume information of the local user who sends the audio stream and up to three remote users with the highest instantaneous volume.</p>
+            <p props="android">This method enables the SDK to periodically report the volume information of the local sending stream user and up to three remote users with the highest instantaneous volume to the app.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You can call this method before or after joining a channel.</p>
+            <p props="android">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After successfully calling this method, if a user publishes an audio stream in the channel, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback at the set interval.</p>
+            <p props="android">After this method is successfully called, if there are users publishing streams in the channel, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback based on the configured interval.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>interval</pt>
+                    <pd>The time interval (ms) between two volume indications:
+                        <ul>
+                            <li>≤ 0: Disables the volume indication.</li>
+                            <li>&gt; 0: The interval in milliseconds. Must be greater than 10 to receive the <xref keyref="onAudioVolumeIndication"/> callback. A value greater than 100 is recommended.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>smooth</pt>
+                    <pd>The smoothing factor of the volume indication. The range is 0 to 10. The recommended value is 3. The higher the value, the more sensitive the indication.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reportVad</pt>
+                    <pd>Whether to enable the voice activity detection (VAD) of the local user:
+                        <ul>
+                            <li><xref keyref="true"/>: Enables VAD. The <codeph>vad</codeph> parameter in the <xref keyref="onAudioVolumeIndication"/> callback reports the local user's voice activity status.</li>
+                            <li><xref keyref="false"/>: (Default) Disables VAD. The <codeph>vad</codeph> parameter in the <xref keyref="onAudioVolumeIndication"/> callback does not report the local user's voice activity status unless the engine detects voice activity automatically.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>interval</pt>
+                    <pd>Sets the interval (ms) between two volume indications:
+                        <ul>
+                            <li>≤ 0: Disable volume indication.</li>
+                            <li>&gt; 0: Interval (ms) between two volume indications. The value must be greater than 10, otherwise the <xref keyref="onAudioVolumeIndication"/> callback will not be received. It is recommended to set it greater than 100.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>smooth</pt>
+                    <pd>Sets the smoothing factor for the sensitivity of volume indication. Range is 0 to 10, recommended value is 3. The higher the value, the more sensitive the indication.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reportVad</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: Enable voice activity detection (VAD) for the local user. When enabled, the <codeph>vad</codeph> parameter in the <xref keyref="onAudioVolumeIndication"/> callback reports the local user's voice activity status.</li>
+                            <li><xref keyref="false"/>: (Default) Disable VAD for the local user. When disabled, the <codeph>vad</codeph> parameter in the <xref keyref="onAudioVolumeIndication"/> callback does not report the local user's voice activity status unless the engine automatically detects voice activity.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

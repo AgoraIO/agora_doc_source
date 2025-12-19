@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startlastmileprobetest">
+    <title><ph keyref="startLastmileProbeTest"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启动 Last-mile 网络探测测试。</ph><ph id="shortdesc" props="ios">启动 Last mile 网络探测测试。</ph><ph id="shortdesc" props="android">开始 Last-mile 网络探测测试。</ph><ph id="shortdesc" props="mac">启动 Last mile 网络探测测试。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startLastmileProbeTest"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startLastmileProbeTest(const LastmileProbeConfig&amp; config) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)startLastmileProbeTest:(AgoraLastmileProbeConfig *_Nullable)config NS_SWIFT_NAME(startLastmileProbeTest(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startLastmileProbeTest(LastmileProbeConfig config);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)startLastmileProbeTest:(AgoraLastmileProbeConfig *_Nullable)config NS_SWIFT_NAME(startLastmileProbeTest(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">调用时序：在收到 <xref keyref="onLastmileQuality"/> 和 <xref keyref="onLastmileProbeResult"/> 回调前，不要调用其他方法，否则可能会中断这些回调。
+相关回调：成功调用该方法后，SDK 会依次触发以下两个回调：
+                <ul>
+                    <li><xref keyref="onLastmileQuality"/>：SDK 会在约两秒内根据网络状况触发该回调。该回调用于评估网络质量，更贴近用户体验。</li>
+                    <li><xref keyref="onLastmileProbeResult"/>：SDK 会在约 30 秒内根据网络状况触发该回调。该回调返回网络状况的实时统计数据，更加客观。</li>
+                </ul>
+            </p>
+            <p props="ios">该方法在加入频道前启动 Last mile 网络探测测试，以获取上行和下行 Last mile 网络的统计数据，包括带宽、丢包率、抖动和往返时延（RTT）。</p>
+            <p props="android">该方法在加入频道前启动 Last-mile 网络探测测试，用于获取上行和下行的网络统计信息，包括带宽、丢包率、抖动和往返时延（RTT）。</p>
+            <p props="mac">该方法在加入频道前启动 Last mile 网络探测测试，以获取上行和下行 Last mile 网络的统计数据，包括带宽、丢包率、抖动和往返时延（RTT）。</p>
+            <note props="ios">在收到 <xref keyref="onLastmileQuality"/> 和 <xref keyref="onLastmileProbeResult"/> 回调前，不要调用其他方法，否则可能会中断这些回调。</note>
+            <note props="android">调用时序：在收到 <xref keyref="onLastmileQuality"/> 和 <xref keyref="onLastmileProbeResult"/> 回调前，请勿调用其他方法，否则可能会中断这些回调。
+相关回调：成功调用该方法后，SDK 会依次触发以下两个回调：
+                <ul>
+                    <li><xref keyref="onLastmileQuality"/>：SDK 会在约两秒内根据网络状况触发该回调。该回调用于评估网络质量，与用户体验更相关。</li>
+                    <li><xref keyref="onLastmileProbeResult"/>：SDK 会在约 30 秒内根据网络状况触发该回调。该回调返回网络状况的实时统计数据，更加客观。</li>
+                </ul>
+            </note>
+            <note props="mac">在收到 <xref keyref="onLastmileQuality"/> 和 <xref keyref="onLastmileProbeResult"/> 回调前，不要调用其他方法，否则可能会中断这些回调。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>Last-mile 网络探测测试的配置。详见 <xref keyref="LastmileProbeConfig"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>Last mile 网络探测测试的配置。详见 <xref keyref="LastmileProbeConfig"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>Last-mile 网络探测测试的配置。详见 <xref keyref="LastmileProbeConfig"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>config</pt>
+                    <pd>Last mile 网络探测测试的配置。详见 <xref keyref="LastmileProbeConfig"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

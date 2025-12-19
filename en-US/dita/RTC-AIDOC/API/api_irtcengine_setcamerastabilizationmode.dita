@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setcamerastabilizationmode">
+    <title><ph keyref="setCameraStabilizationMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the camera stabilization mode.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setCameraStabilizationMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setCameraStabilizationMode(CAMERA_STABILIZATION_MODE mode) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Camera stabilization mode is disabled by default. You need to call this method to enable stabilization and set the appropriate mode.</p>
+            <note props="cpp">
+                <ul>
+                    <li>Camera stabilization applies only to video resolutions greater than 1280 × 720.</li>
+                    <li>The higher the stabilization level, the smaller the field of view and the higher the latency. To improve user experience, it is recommended to set the <codeph>mode</codeph> parameter to <codeph>CAMERA_STABILIZATION_MODE_LEVEL_1</codeph>.</li>
+                    <li>This method applies to iOS only.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In mobile shooting, low-light environments, or when using mobile devices, you can set the camera stabilization mode to reduce shake and obtain more stable and clearer images.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Timing</title>
+            <p props="cpp">You must call this method after the camera is successfully started, that is, when the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mode</pt>
+                    <pd>The camera stabilization mode. See <xref keyref="CAMERA_STABILIZATION_MODE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

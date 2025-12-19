@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onremotevideotransportstats">
+    <title><ph keyref="onRemoteVideoTransportStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reports transport-layer statistics of each remote video stream.</ph><ph id="shortdesc" props="android">Callback for transport-layer statistics of remote video stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteVideoTransportStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteVideoTransportStats(uid_t uid, unsigned short delay, unsigned short lost, unsigned short rxKBitRate) __deprecated</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onRemoteVideoTransportStats(int uid, int delay, int lost, int rxKBitRate)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use <xref keyref="onRemoteVideoStats"/> instead.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use <xref keyref="onRemoteVideoStats"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="android">This callback reports transport-layer statistics such as packet loss rate and network delay. It is triggered every 2 seconds during the call when the local user receives video packets from a remote user or host.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">During a call, this callback is triggered every 2 seconds when you receive video packets sent by a remote user or host.</p>
+            <p props="android">This callback is triggered every 2 seconds during the call when the local user receives video packets from a remote user or host.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>The remote user ID, indicating the sender of the video packets.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>delay</pt>
+                    <pd>Network delay from the sender to the receiver (ms).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>lost</pt>
+                    <pd>Packet loss rate (%) of the video packets sent by the remote user.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxKBitRate</pt>
+                    <pd>Video receiving bitrate (Kbps).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>delay</pt>
+                    <pd>Network delay from sender to receiver (ms).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lost</pt>
+                    <pd>Packet loss rate (%) of video packets sent from the remote user.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxKBitRate</pt>
+                    <pd>Received video bitrate (Kbps).</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

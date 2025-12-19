@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudioframeobserverbase_getplaybackaudioparams_iaudioframeobserverbase">
+    <title><ph keyref="getPlaybackAudioParams_IAudioFrameObserverBase"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the audio format for the <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> callback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getPlaybackAudioParams_IAudioFrameObserverBase"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual AudioParams getPlaybackAudioParams() = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You need to register the callback when calling the <xref keyref="registerAudioFrameObserver_IMediaEngine"/> method. After successful registration, the SDK triggers the callback, and you can set the audio format in the return value of this callback.</p>
+            <note props="cpp">The SDK calculates the sampling interval based on the <xref keyref="AudioParams"/> you set in the return value, and triggers the <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> callback accordingly. The formula for calculating the sampling interval is: Sampling interval (seconds) = <codeph>samplePerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>). Make sure the sampling interval is ≥ 0.01 seconds.</note>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">When the method call succeeds, returns an audio parameter for playback. See <xref keyref="AudioParams"/>.</p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_preloadeffect">
+    <title><ph keyref="preloadEffect"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Preloads the specified sound effect file into memory.</ph><ph id="shortdesc" props="android">Preloads the specified audio effect file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="preloadEffect"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath, int startPos = 0) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int preloadEffect(int soundId, String filePath, int startPos);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Make sure the total size of all preloaded files does not exceed the limit.</p>
+            <p props="android">You can call this method multiple times to preload multiple audio effect files into memory. After preloading, you can call <codeph>playEffect</codeph> to play a specific effect or <xref keyref="playAllEffects"/> to play all preloaded effects.</p>
+            <note props="cpp">
+                <ul>
+                    <li>If you call <xref keyref="preloadEffect"/> before <xref keyref="playEffect3"/>, the file resource will not be closed after <xref keyref="playEffect3"/> is executed. The next call to <xref keyref="playEffect3"/> will start playback from the beginning.</li>
+                    <li>If you do not call <xref keyref="preloadEffect"/> before <xref keyref="playEffect3"/>, the resource will be destroyed after <xref keyref="playEffect3"/> is executed. The next call to <xref keyref="playEffect3"/> will attempt to reopen the file and play from the beginning.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>To ensure smooth communication, limit the size of audio effect files.</li>
+                    <li>Agora recommends calling this method before joining a channel.</li>
+                    <li>If you call <codeph>preloadEffect</codeph> before <codeph>playEffect</codeph>, the file resource will not be closed after <codeph>playEffect</codeph> executes. The next call to <codeph>playEffect</codeph> will start playback from the beginning.</li>
+                    <li>If you do not call <codeph>preloadEffect</codeph> before <codeph>playEffect</codeph>, the resource will be destroyed after <codeph>playEffect</codeph> executes. The next call to <codeph>playEffect</codeph> will attempt to reopen the file and play from the beginning.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Timing</title>
+            <p props="cpp">It is recommended to call this method before joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>soundId</pt>
+                    <pd>Sound effect ID. The ID of each sound effect file must be unique.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>filePath</pt>
+                    <pd>File path:
+                        <ul>
+                            <li>Android: The path must include the file name and extension. Supports URL, absolute path, or path starting with <codeph>/assets/</codeph>. Using an absolute path to access local files may cause permission issues. It is recommended to use a URI, e.g., <codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>.</li>
+                            <li>Windows: Absolute path or URL of the sound effect file (including file extension), e.g., <xref keyref="filePath-example"/>.</li>
+                            <li>iOS or macOS: Absolute path or URL of the sound effect file (including file extension), e.g., <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>startPos</pt>
+                    <pd>Start position of the sound effect file in milliseconds.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>soundId</pt>
+                    <pd>The ID of the audio effect.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>filePath</pt>
+                    <pd>The absolute path of the local audio effect file or the URL of an online audio effect file.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>startPos</pt>
+                    <pd>The starting playback position of the online audio effect file. Supported audio formats include: mp3, mp4, m4a, aac, 3gp, mkv, and wav.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onconnectioninterrupted">
+    <title><ph keyref="onConnectionInterrupted"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onConnectionInterrupted"/> callback.</ph><ph id="shortdesc" props="android"><xref keyref="onConnectionInterrupted"/> callback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onConnectionInterrupted"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onConnectionInterrupted() __deprecated {}</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onConnectionInterrupted() {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use <xref keyref="onConnectionStateChanged"/> instead.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use <xref keyref="onConnectionStateChanged"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">This callback is triggered when the SDK loses connection to the server for more than 4 seconds after establishing a connection. After triggering, the SDK attempts to reconnect. You can use this callback to implement a popup reminder.</p>
+            <p props="android">This callback is triggered when the SDK loses connection with the server for more than four seconds after the connection is established. After this callback is triggered, the SDK tries to reconnect to the server. You can use this callback to implement a pop-up alert.
+The difference between this callback and <xref keyref="onConnectionLost"/> is as follows:
+                <ul>
+                    <li>After successfully joining a channel, if the SDK loses connection with the server for more than four seconds, the <xref keyref="onConnectionInterrupted"/> callback is triggered.</li>
+                    <li>Whether or not the SDK has joined a channel, if it loses connection with the server for more than 10 seconds, the <xref keyref="onConnectionLost"/> callback is triggered.</li>
+                </ul><ph>If the SDK fails to rejoin the channel within 20 minutes after disconnecting from the Agora edge server, it stops trying to reconnect.</ph></p>
+            <note props="cpp">The difference between <xref keyref="onConnectionInterrupted"/> and <xref keyref="onConnectionLost"/> is as follows:
+                <ul>
+                    <li><xref keyref="onConnectionInterrupted"/> is triggered when the SDK loses connection to the server for more than 4 seconds after successfully joining a channel.</li>
+                    <li><xref keyref="onConnectionLost"/> is triggered when the SDK loses connection to the server for more than 10 seconds, regardless of whether it has joined a channel.</li>
+                </ul><ph>If the SDK fails to rejoin the channel within 20 minutes after losing connection to the Agora edge server, it stops trying to reconnect.</ph></note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">Triggered when the SDK loses connection to the server for more than 4 seconds.</p>
+            <p props="android">This callback is triggered when the SDK loses connection with the server for more than four seconds.</p>
+        </section>
+    </refbody>
+</reference>

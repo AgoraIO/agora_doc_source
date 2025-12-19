@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enableextension">
+    <title><ph keyref="enableExtension"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用或禁用插件。</ph><ph id="shortdesc" props="ios">启用或禁用扩展功能。</ph><ph id="shortdesc" props="android">启用或禁用扩展功能。</ph><ph id="shortdesc" props="mac">启用或禁用扩展功能。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableExtension"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableExtension(const char* provider, const char* extension, const ExtensionInfo&amp; extensionInfo, bool enable = true) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)enableExtensionWithVendor:(NSString * _Nonnull)provider
+                       extension:(NSString * _Nonnull)extension
+                         enabled:(BOOL)enabled
+                      sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(enableExtension(withVendor:extension:enabled:sourceType:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableExtension(String provider, String extension, boolean enable);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)enableExtensionWithVendor:(NSString * _Nonnull)provider
+                       extension:(NSString * _Nonnull)extension
+                         enabled:(BOOL)enabled
+                      sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(enableExtension(withVendor:extension:enabled:sourceType:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">通过调用该方法，你可以在不更改处理流程的情况下动态启用或禁用插件。例如，启用或禁用 <codeph>Extension_A</codeph> 表示数据将被 <codeph>Extension_A</codeph> 处理或绕过。</p>
+            <p props="android">通过调用该方法，你可以动态启用或禁用扩展功能，而无需更改处理流程。</p>
+            <note props="cpp">出于兼容性考虑，如果你尚未调用 <xref keyref="registerExtension"/>，<xref keyref="enableExtension"/> 会自动注册指定的插件。建议你显式调用 <xref keyref="registerExtension"/>。</note>
+            <note props="ios">
+                <ul>
+                    <li>如果你想启用多个扩展，需要多次调用该方法。</li>
+                    <li>成功调用该方法后，不能再加载其他扩展。</li>
+                </ul>
+            </note>
+            <note props="android"><xref keyref="enableExtension"/> 会在未调用 <xref keyref="registerExtension"/> 的情况下自动注册指定扩展，以保证兼容性。建议你显式调用 <xref keyref="registerExtension"/>。</note>
+            <note props="mac">
+                <ul>
+                    <li>如果你想启用多个扩展，需要多次调用该方法。</li>
+                    <li>成功调用该方法后，不能再加载其他扩展。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="ios mac">
+            <title>调用时机</title>
+            <p props="ios">该方法建议在你加入频道后调用。</p>
+            <p props="mac">该方法建议在你加入频道后调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>provider</pt>
+                    <pd>插件提供方的名称，例如 <codeph>agora.io</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>extension</pt>
+                    <pd>插件名称，例如 <codeph>agora.beauty</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>extensionInfo</pt>
+                    <pd><codeph>ExtensionInfo</codeph> 对象，表示插件的信息。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enable</pt>
+                    <pd>是否启用插件：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）启用插件。</li>
+                            <li><xref keyref="false"/>：禁用插件。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>provider</pt>
+                    <pd>扩展提供方的名称。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>extension</pt>
+                    <pd>扩展的名称。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>enabled</pt>
+                    <pd>是否启用该扩展：
+                        <ul>
+                            <li><xref keyref="true"/>：启用扩展。</li>
+                            <li><xref keyref="false"/>：禁用扩展。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sourceType</pt>
+                    <pd>扩展的来源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>provider</pt>
+                    <pd>扩展功能提供方的名称，例如 <codeph>agora.io</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>extension</pt>
+                    <pd>扩展功能的名称，例如 <codeph>agora.beauty</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enable</pt>
+                    <pd>是否启用该扩展功能：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）启用扩展功能。</li>
+                            <li><xref keyref="false"/>：禁用扩展功能。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>provider</pt>
+                    <pd>扩展提供方的名称。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>extension</pt>
+                    <pd>扩展的名称。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enabled</pt>
+                    <pd>是否启用该扩展：
+                        <ul>
+                            <li><xref keyref="true"/>：启用扩展。</li>
+                            <li><xref keyref="false"/>：禁用扩展。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sourceType</pt>
+                    <pd>扩展的来源类型，详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-3：扩展库未加载。声网建议你检查动态库的存储位置或名称。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-3：扩展库未加载。声网建议你检查动态库的存储位置或名称。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

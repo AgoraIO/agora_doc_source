@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imusiccontentcentereventhandler_onmusicchartsresult">
+    <title><ph keyref="onMusicChartsResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for retrieving music chart results.</ph><ph id="shortdesc" props="android">Callback after retrieving music charts.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onMusicChartsResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onMusicChartsResult(const char* requestId, agora_refptr&lt;MusicChartCollection&gt; result, MusicContentCenterStateReason reason) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">@CalledByNative void onMusicChartsResult(String requestId, MusicChartInfo[] list, int reason);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling <xref keyref="getMusicCharts"/>, the SDK triggers this callback.</p>
+            <p props="android">This callback is triggered after calling <xref keyref="getMusicCharts"/>.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered after calling the <xref keyref="getMusicCharts"/> method.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>requestId</pt>
+                    <pd>Request ID, used to identify the uniqueness of this request.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>result</pt>
+                    <pd>List of currently playable music charts. See <xref keyref="MusicChartCollection"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>Request status code. See <xref keyref="MusicContentCenterStateReason"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>requestId</pt>
+                    <pd>Request ID, used to uniquely identify this request.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>list</pt>
+                    <pd>List of currently playable music charts. See <xref keyref="MusicChartInfo"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>Request status code from Music Content Center:
+                        <ul>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_OK</codeph> (0): Request successful.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_ERROR</codeph> (1): General error, no specific reason.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_GATEWAY</codeph> (2): Gateway error. Possible reasons include:
+                                <ul>
+                                    <li>The current token has expired. Please regenerate the token.</li>
+                                    <li>The provided token is invalid. Please ensure you are using an RTM token.</li>
+                                    <li>Network error. Please check your network connection.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_PERMISSION_AND_RESOURCE</codeph> (3): Permission error or music resource not found. Please ensure your project has enabled access to Agora Music Content Center. Contact technical support if needed.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_INTERNAL_DATA_PARSE</codeph> (4): Internal data parsing error. Please contact technical support.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_LOADING</codeph> (5): Error occurred while loading music resource. Please contact technical support.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_DECRYPTION</codeph> (6): Error occurred while decrypting music resource. Please contact technical support.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_HTTP_INTERNAL</codeph> (7): Internal HTTP error. Please try again later.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
