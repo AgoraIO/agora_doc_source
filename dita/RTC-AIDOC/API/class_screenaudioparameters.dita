@@ -7,9 +7,13 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">struct ScreenAudioParameters {
-  int sampleRate = 16000;
-  int channels = 2;
-  int captureSignalVolume = 100;
+  int sampleRate;
+  int channels;
+  int captureSignalVolume;
+#if defined(__APPLE__) &amp;&amp; !TARGET_OS_IOS
+  bool excludeCurrentProcessAudio = true;
+#else
+#endif
 };</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenAudioParameters : NSObject
 @property(assign, nonatomic) NSInteger captureSignalVolume;
@@ -38,15 +42,15 @@
             <parml>
                 <plentry props="cpp">
                     <pt>sampleRate</pt>
-                    <pd>音频采样率（Hz）。默认值为 16000。</pd>
+                    <pd>音频采样率，单位为 Hz。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>channels</pt>
-                    <pd>音频声道数。默认值为 2，表示立体声。</pd>
+                    <pd>音频通道数。默认值为 2，表示立体声。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>captureSignalVolume</pt>
-                    <pd>采集的系统音频音量。取值范围为 [0, 100]，默认值为 100。</pd>
+                    <pd>采集的系统音频音量，取值范围为 [0, 100]，默认值为 100。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>captureSignalVolume</pt>

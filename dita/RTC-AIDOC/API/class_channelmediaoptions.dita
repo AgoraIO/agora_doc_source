@@ -12,9 +12,11 @@
   Optional&lt;bool&gt; publishThirdCameraTrack;
   Optional&lt;bool&gt; publishFourthCameraTrack;
   Optional&lt;bool&gt; publishMicrophoneTrack;
+#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE) || defined(TARGET_OS_MAC) || defined(__OHOS__)
+  Optional&lt;bool&gt; publishScreenCaptureAudio;
+#endif
 #if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE) || defined(__OHOS__)
   Optional&lt;bool&gt; publishScreenCaptureVideo;
-  Optional&lt;bool&gt; publishScreenCaptureAudio;
 #else
   Optional&lt;bool&gt; publishScreenTrack;
   Optional&lt;bool&gt; publishSecondaryScreenTrack;
@@ -181,11 +183,11 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
-            <p props="cpp">支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，可以同时将 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph> 设置为 <xref keyref="true"/>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>、<codeph>publishScreenTrack</codeph>、<codeph>publishCustomVideoTrack</codeph> 或 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
+            <p props="cpp">声网支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，可以同时将 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph> 设置为 <xref keyref="true"/>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>、<codeph>publishScreenTrack</codeph>、<codeph>publishCustomVideoTrack</codeph> 或 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
             <p props="ios">支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，你可以同时将 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph> 设置为 <xref keyref="true"/>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>（iOS）/<codeph>publishScreenTrack</codeph>（macOS）、<codeph>publishCustomVideoTrack</codeph> 和 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
             <p props="android">支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，可以同时启用 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>、<codeph>publishCustomVideoTrack</codeph> 和 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
             <p props="mac">支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，你可以同时将 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph> 设置为 <xref keyref="true"/>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>（iOS）/<codeph>publishScreenTrack</codeph>（macOS）、<codeph>publishCustomVideoTrack</codeph> 和 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
-            <note props="cpp">建议你根据业务场景自行设置成员参数的值，否则 SDK 会自动为其赋值。</note>
+            <note props="cpp">声网建议你根据业务场景自行设置成员参数值，否则 SDK 会自动为成员参数分配值。</note>
             <note props="ios">建议你根据业务场景自行设置各成员参数值，否则 SDK 会自动为其赋值。</note>
             <note props="android">建议你根据业务场景自行设置各成员参数值，否则 SDK 会自动分配默认值。</note>
             <note props="mac">建议你根据业务场景自行设置各成员参数值，否则 SDK 会自动为其赋值。</note>
@@ -252,11 +254,10 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishScreenCaptureAudio</pt>
-                    <pd>
-                        <note>该参数仅适用于 Android 和 iOS 平台。</note><ph>是否发布屏幕采集的音频：</ph>
+                    <pd>是否发布屏幕采集器的音频轨道：
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集的音频。</li>
-                            <li><codeph><ph keyref="false"/></codeph>：不发布屏幕采集的音频。</li>
+                            <li><xref keyref="true"/>：发布屏幕采集器的音频。</li>
+                            <li><xref keyref="false"/>：（默认）不发布屏幕采集器的音频轨道。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -310,7 +311,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishCustomAudioTrackId</pt>
-                    <pd>要发布的自定义音频轨道的 ID。默认值为 0。你可以通过 createCustomAudioTrack 获取自定义音频轨道 ID。</pd>
+                    <pd>要发布的自定义音频轨道的 ID。默认值为 0。你可以通过 <xref keyref="createCustomAudioTrack_IMediaEngine"/> 获取自定义音频轨道 ID。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishCustomVideoTrack</pt>
@@ -351,7 +352,7 @@
                 <plentry props="cpp">
                     <pt>publishTranscodedVideoTrack</pt>
                     <pd>
-                        <note>自 v4.2.0 起，参数名从 publishTrancodedVideoTrack 更正为 publishTranscodedVideoTrack。</note><ph>是否发布本地合图视频：</ph>
+                        <note>自 v4.2.0 起，参数名从 <codeph>publishTrancodedVideoTrack</codeph> 更正为 <codeph>publishTranscodedVideoTrack</codeph>。</note><ph>是否发布本地合图视频：</ph>
                         <ul>
                             <li><codeph><ph keyref="true"/></codeph>：发布本地合图视频。</li>
                             <li><codeph><ph keyref="false"/></codeph>：不发布本地合图视频。</li>

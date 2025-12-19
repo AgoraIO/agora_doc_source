@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_getaudiobufferdelay">
+    <title><ph keyref="getAudioBufferDelay"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取播放媒体文件时的音频缓冲延迟。</ph><ph id="shortdesc" props="ios">获取你播放媒体文件时的音频缓冲延迟。</ph><ph id="shortdesc" props="android">获取播放媒体文件时的音频缓冲延迟。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getAudioBufferDelay"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getAudioBufferDelay(int32_t&amp; delayMs) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (NSInteger)getAudioBufferDelay NS_SWIFT_NAME(getAudioBufferDelay());</codeblock>
+                <codeblock props="android" outputclass="language-java">int getAudioBufferDelay();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>delayMs</pt>
+                    <pd>输出参数，表示播放媒体文件时的音频缓冲延迟，单位为毫秒。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功，返回音频缓冲延迟（毫秒）。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。你可以使用 <codeph>MediaPlayerReason</codeph> 检查失败原因。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功，返回音频缓冲延迟（单位：毫秒）。</li>
+                    <li>方法调用失败，返回小于 0 的错误码。你可以使用 <xref keyref="MEDIA_PLAYER_REASON"/> 检查错误原因。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>
