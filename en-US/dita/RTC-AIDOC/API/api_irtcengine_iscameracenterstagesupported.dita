@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_iscameracenterstagesupported">
+    <title><ph keyref="isCameraCenterStageSupported"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Checks whether the current camera supports Center Stage.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="isCameraCenterStageSupported"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool isCameraCenterStageSupported() = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">It is recommended to call this method before calling <xref keyref="enableCameraCenterStage"/> to enable Center Stage, to confirm whether the current device supports this feature. You must call this method after the camera is successfully enabled, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</p>
+            <note props="cpp">This method is only applicable to iOS and macOS platforms.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Timing</title>
+            <p props="cpp">You must call this method after the camera is successfully enabled, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</p>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>: The current camera supports Center Stage.</li>
+                    <li><xref keyref="false"/>: The current camera does not support Center Stage.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

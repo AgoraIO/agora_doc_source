@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_audiotracktype">
+    <title><ph keyref="AUDIO_TRACK_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Audio track type.</ph><ph id="shortdesc" props="android">Audio track type.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>AUDIO_TRACK_INVALID</pt>
+                    <pd>(-1): Invalid audio track.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_TRACK_MIXABLE</pt>
+                    <pd>(0): Mixable audio track. Supports mixing with other audio streams (such as microphone-captured audio) and playing locally or publishing to the channel after mixing. This type of audio track has higher latency than direct audio tracks.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_TRACK_DIRECT</pt>
+                    <pd>(1): Direct audio track. Replaces the microphone-captured audio stream and does not support mixing with other audio streams. This type of audio track has lower latency than mixable audio tracks.
+                        <note>If this parameter is set to <codeph>AUDIO_TRACK_DIRECT</codeph>, you must set <codeph>publishMicrophoneTrack</codeph> in <xref keyref="ChannelMediaOptions"/> to <xref keyref="false"/> when calling <codeph>joinChannel(const char* token, const char* channelId, uid_t uid, const ChannelMediaOptions&amp; options)</codeph> to join a channel. Otherwise, joining the channel will fail and return error code -2.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>AUDIO_TRACK_MIXABLE</pt>
+                    <pd>(0): Mixable audio track. Supports mixing with other audio streams (such as audio captured via microphone), and can be locally played or published to the channel after mixing. Has higher latency than direct audio track.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>AUDIO_TRACK_DIRECT</pt>
+                    <pd>(1): Direct audio track. Replaces audio streams captured via microphone, and does not support mixing with other audio streams. Has lower latency than mixable audio track.
+                        <note>If this parameter is set to <codeph>AUDIO_TRACK_DIRECT</codeph>, you must set <codeph>publishMicrophoneTrack</codeph> in <xref keyref="ChannelMediaOptions"/> to <xref keyref="false"/> when calling <codeph>joinChannel</codeph> to join the channel. Otherwise, the join will fail and return error code -2.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,330 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videoframe">
+    <title><ph keyref="VideoFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置视频帧。</ph><ph id="shortdesc" props="ios">视频帧的配置信息。</ph><ph id="shortdesc" props="mac">视频帧的配置信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct VideoFrame {
+  VIDEO_PIXEL_FORMAT type;
+  int width;
+  int height;
+  int yStride;
+  int uStride;
+  int vStride;
+  uint8_t* yBuffer;
+  uint8_t* uBuffer;
+  uint8_t* vBuffer;
+  int rotation;
+  int64_t renderTimeMs;
+  int avsync_type;
+  uint8_t* metadata_buffer;
+  int metadata_size;
+  void* sharedContext;
+  int textureId;
+  void* d3d11Texture2d;
+  float matrix[16];
+  uint8_t* alphaBuffer;
+  ALPHA_STITCH_MODE alphaStitchMode;
+  void* pixelBuffer;
+  IVideoFrameMetaInfo* metaInfo;
+  Hdr10MetadataInfo hdr10MetadataInfo;
+  ColorSpace colorSpace;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">@interface AgoraOutputVideoFrame : NSObject
+@property (nonatomic, assign) NSInteger type;
+@property (nonatomic, assign) int width;
+@property (nonatomic, assign) int height;
+@property (nonatomic, assign) int yStride;
+@property (nonatomic, assign) int uStride;
+@property (nonatomic, assign) int vStride;
+@property (nonatomic, assign) uint8_t* _Nullable yBuffer;
+@property (nonatomic, assign) uint8_t* _Nullable uBuffer;
+@property (nonatomic, assign) uint8_t* _Nullable vBuffer;
+@property (nonatomic, assign) int rotation;
+@property (nonatomic, assign) int64_t renderTimeMs;
+@property (nonatomic, assign) int avSyncType;
+@property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
+@property (nonatomic, assign) uint8_t* _Nullable alphaBuffer;
+@property (nonatomic, assign) AgoraAlphaStitchMode alphaStitchMode;
+@property(nonatomic, strong) NSDictionary *_Nonnull metaInfo;
+@property(nonatomic, strong) AgoraColorSpace* _Nullable colorSpace;
+@end</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">@interface AgoraOutputVideoFrame : NSObject
+@property (nonatomic, assign) NSInteger type;
+@property (nonatomic, assign) int width;
+@property (nonatomic, assign) int height;
+@property (nonatomic, assign) int yStride;
+@property (nonatomic, assign) int uStride;
+@property (nonatomic, assign) int vStride;
+@property (nonatomic, assign) uint8_t* _Nullable yBuffer;
+@property (nonatomic, assign) uint8_t* _Nullable uBuffer;
+@property (nonatomic, assign) uint8_t* _Nullable vBuffer;
+@property (nonatomic, assign) int rotation;
+@property (nonatomic, assign) int64_t renderTimeMs;
+@property (nonatomic, assign) int avSyncType;
+@property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
+@property (nonatomic, assign) uint8_t* _Nullable alphaBuffer;
+@property (nonatomic, assign) AgoraAlphaStitchMode alphaStitchMode;
+@property(nonatomic, strong) NSDictionary *_Nonnull metaInfo;
+@property(nonatomic, strong) AgoraColorSpace* _Nullable colorSpace;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp ios mac">
+            <p props="cpp">注意，缓冲区是指向指针的指针。该接口无法修改缓冲区的指针，但可以修改缓冲区的内容。</p>
+            <p props="ios">缓冲区提供的是指针的指针。该接口无法修改缓冲区的指针，但可以修改缓冲区的内容。</p>
+            <p props="mac">缓冲区提供的是指针的指针。该接口无法修改缓冲区的指针，但可以修改缓冲区的内容。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>width</pt>
+                    <pd>视频帧的宽度，单位为像素。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>视频帧的高度，单位为像素。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>yStride</pt>
+                    <pd>对于 YUV 数据，为 Y 缓冲区的每行跨度；对于 RGBA 数据，为总数据长度。
+                        <note>处理视频数据时，必须根据该参数处理每行像素数据之间的偏移，否则可能导致图像失真。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uStride</pt>
+                    <pd>对于 YUV 数据，为 U 缓冲区的每行跨度；对于 RGBA 数据，该值为 0。
+                        <note>处理视频数据时，必须根据该参数处理每行像素数据之间的偏移，否则可能导致图像失真。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>vStride</pt>
+                    <pd>对于 YUV 数据，为 V 缓冲区的每行跨度；对于 RGBA 数据，该值为 0。
+                        <note>处理视频数据时，必须根据该参数处理每行像素数据之间的偏移，否则可能导致图像失真。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>yBuffer</pt>
+                    <pd>输出参数，对于 YUV 数据，为 Y 缓冲区的指针；对于 RGBA 数据，为数据缓冲区。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uBuffer</pt>
+                    <pd>输出参数，对于 YUV 数据，为 U 缓冲区的指针；对于 RGBA 数据，该值为 0。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>vBuffer</pt>
+                    <pd>输出参数，对于 YUV 数据，为 V 缓冲区的指针；对于 RGBA 数据，该值为 0。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rotation</pt>
+                    <pd>视频帧在渲染前的顺时针旋转角度。支持的取值包括 0、90、180 和 270 度。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>renderTimeMs</pt>
+                    <pd>视频帧渲染时的 Unix 时间戳（毫秒）。该时间戳可用于指导视频帧的渲染。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>avsync_type</pt>
+                    <pd>保留参数，供未来使用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>metadata_buffer</pt>
+                    <pd>输出参数，仅适用于 Texture 格式的视频数据。元数据缓冲区，默认值为 <xref keyref="NULL"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>metadata_size</pt>
+                    <pd>仅适用于 Texture 格式的视频数据。元数据大小，默认值为 0。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sharedContext</pt>
+                    <pd>仅适用于 Texture 格式的视频数据。EGL 上下文。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>textureId</pt>
+                    <pd>仅适用于 Texture 格式的视频数据。纹理 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>d3d11Texture2d</pt>
+                    <pd>仅适用于 Windows Texture 格式的视频数据。指向 <codeph>ID3D11Texture2D</codeph> 类型对象的指针，该对象由视频帧使用。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>matrix</pt>
+                    <pd>仅适用于 Texture 格式的视频数据。输入的 4×4 变换矩阵，典型值为单位矩阵。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>alphaBuffer</pt>
+                    <pd>输出参数，使用人像分割算法生成的 Alpha 通道数据。该数据与视频帧大小一致，每个像素值范围为 [0, 255]，其中 0 表示背景，255 表示前景（人像）。通过设置该参数，可以将视频背景渲染为透明、纯色、图像、视频等多种效果。
+                        <note>请确保 <codeph>alphaBuffer</codeph> 的大小与视频帧（width × height）完全一致，否则可能导致应用崩溃。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>alphaStitchMode</pt>
+                    <pd>当视频帧包含 Alpha 通道数据时，表示 <codeph>alphaBuffer</codeph> 与视频帧的相对位置。详见 <xref keyref="ALPHA_STITCH_MODE"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>pixelBuffer</pt>
+                    <pd>仅适用于 iOS 和 macOS。<codeph>CVPixelBufferRef</codeph> 类型。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>metaInfo</pt>
+                    <pd>输出参数，视频帧中的元信息。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>hdr10MetadataInfo</pt>
+                    <pd>HDR 视频数据的元数据信息。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>colorSpace</pt>
+                    <pd>视频帧的色彩空间属性，默认采用 Full Range 和 BT.709 标准配置。详见 [<codeph>VideoColorSpace</codeph>](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace)。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>type</pt>
+                    <pd>输入视频帧的格式。该参数必须指定为以下值之一：1：I420；2：BGRA；3：NV21；4：RGBA；5：IMC2；7：ARGB；8：NV12；12：iOS 纹理（<codeph>CVPixelBufferRef</codeph>）；16：I422。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>width</pt>
+                    <pd>视频的宽度，单位为像素。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>height</pt>
+                    <pd>视频的高度，单位为像素。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>yStride</pt>
+                    <pd>对于 YUV 数据，为 Y 缓冲区的每行跨度；对于 RGBA 数据，为总数据长度。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uStride</pt>
+                    <pd>对于 YUV 数据，为 U 缓冲区的每行跨度；对于 RGBA 数据，该值为 0。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>vStride</pt>
+                    <pd>对于 YUV 数据，为 V 缓冲区的每行跨度；对于 RGBA 数据，该值为 0。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>yBuffer</pt>
+                    <pd>对于 YUV 数据，为 Y 缓冲区的指针；对于 RGBA 数据，为数据缓冲区。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uBuffer</pt>
+                    <pd>对于 YUV 数据，为 U 缓冲区的指针；对于 RGBA 数据，该值为 0。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>vBuffer</pt>
+                    <pd>对于 YUV 数据，为 V 缓冲区的指针；对于 RGBA 数据，该值为 0。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>rotation</pt>
+                    <pd>视频帧在渲染前的顺时针旋转角度。支持的值包括 0、90、180 和 270 度。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>renderTimeMs</pt>
+                    <pd>视频帧渲染时的 Unix 时间戳（毫秒）。该时间戳可用于指导视频帧的渲染。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>avSyncType</pt>
+                    <pd>预留参数</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>pixelBuffer</pt>
+                    <pd>将数据填充到 <codeph>CVPixelBuffer</codeph> 中。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>alphaBuffer</pt>
+                    <pd>使用人像分割算法输出的 Alpha 通道数据。该数据与视频帧大小一致，每个像素值范围为 [0, 255]，其中 0 表示背景，255 表示前景（人像）。通过设置该参数，可以将视频背景渲染为透明、纯色、图像、视频等多种效果。
+                        <note>请确保 <codeph>alphaBuffer</codeph> 的大小与视频帧（width × height）完全一致，否则可能导致应用崩溃。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>alphaStitchMode</pt>
+                    <pd>当视频帧包含 Alpha 通道数据时，表示 <codeph>alphaBuffer</codeph> 与视频帧的相对位置。详见 <xref keyref="ALPHA_STITCH_MODE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>metaInfo</pt>
+                    <pd>视频帧中的元信息。如需使用该参数，请[联系技术支持](https://ticket.shengwang.cn/)。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>colorSpace</pt>
+                    <pd>视频帧的色彩空间配置，默认采用 Full Range 和 BT.709 标准。详见 [<codeph>VideoColorSpace</codeph>](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace)。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>type</pt>
+                    <pd>输入视频帧的格式。该参数必须指定为以下值之一：1：I420；2：BGRA；3：NV21；4：RGBA；5：IMC2；7：ARGB；8：NV12；12：iOS 纹理（<codeph>CVPixelBufferRef</codeph>）；16：I422。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>width</pt>
+                    <pd>视频的宽度，单位为像素。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>height</pt>
+                    <pd>视频的高度，单位为像素。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>yStride</pt>
+                    <pd>对于 YUV 数据，为 Y 缓冲区的每行跨度；对于 RGBA 数据，为总数据长度。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uStride</pt>
+                    <pd>对于 YUV 数据，为 U 缓冲区的每行跨度；对于 RGBA 数据，该值为 0。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>vStride</pt>
+                    <pd>对于 YUV 数据，为 V 缓冲区的每行跨度；对于 RGBA 数据，该值为 0。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>yBuffer</pt>
+                    <pd>对于 YUV 数据，为 Y 缓冲区的指针；对于 RGBA 数据，为数据缓冲区。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uBuffer</pt>
+                    <pd>对于 YUV 数据，为 U 缓冲区的指针；对于 RGBA 数据，该值为 0。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>vBuffer</pt>
+                    <pd>对于 YUV 数据，为 V 缓冲区的指针；对于 RGBA 数据，该值为 0。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>rotation</pt>
+                    <pd>视频帧在渲染前的顺时针旋转角度。支持的值包括 0、90、180 和 270 度。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>renderTimeMs</pt>
+                    <pd>视频帧渲染时的 Unix 时间戳（毫秒）。该时间戳可用于指导视频帧的渲染。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>avSyncType</pt>
+                    <pd>预留参数</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>pixelBuffer</pt>
+                    <pd>将数据填充到 <codeph>CVPixelBuffer</codeph> 中。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>alphaBuffer</pt>
+                    <pd>使用人像分割算法输出的 Alpha 通道数据。该数据与视频帧大小一致，每个像素值范围为 [0, 255]，其中 0 表示背景，255 表示前景（人像）。通过设置该参数，可以将视频背景渲染为透明、纯色、图像、视频等多种效果。
+                        <note>请确保 <codeph>alphaBuffer</codeph> 的大小与视频帧（width × height）完全一致，否则可能导致应用崩溃。</note>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>alphaStitchMode</pt>
+                    <pd>当视频帧包含 Alpha 通道数据时，表示 <codeph>alphaBuffer</codeph> 与视频帧的相对位置。详见 <xref keyref="ALPHA_STITCH_MODE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>metaInfo</pt>
+                    <pd>视频帧中的元信息。如需使用该参数，请[联系技术支持](https://ticket.shengwang.cn/)。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>colorSpace</pt>
+                    <pd>视频帧的色彩空间配置，默认采用 Full Range 和 BT.709 标准。详见 [<codeph>VideoColorSpace</codeph>](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace)。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

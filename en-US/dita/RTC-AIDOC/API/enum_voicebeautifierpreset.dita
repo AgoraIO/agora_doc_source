@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_voicebeautifierpreset">
+    <title><ph keyref="VOICE_BEAUTIFIER_PRESET"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">SDK preset voice beautifier options for voice chat.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>VOICE_BEAUTIFIER_OFF</pt>
+                    <pd>(0x00000000): Turns off the voice beautifier and uses the original voice.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CHAT_BEAUTIFIER_MAGNETIC</pt>
+                    <pd>(0x01010100): A more magnetic voice.
+                        <note>Agora recommends using this for male voices. Otherwise, audio distortion may occur.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CHAT_BEAUTIFIER_FRESH</pt>
+                    <pd>(0x01010200): A fresher voice.
+                        <note>Agora recommends using this for female voices. Otherwise, audio distortion may occur.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CHAT_BEAUTIFIER_VITALITY</pt>
+                    <pd>(0x01010300): A more energetic voice.
+                        <note>Agora recommends using this for female voices. Otherwise, audio distortion may occur.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>SINGING_BEAUTIFIER</pt>
+                    <pd>(0x01020100): Singing beautifier effect.
+                        <note>Calling <codeph>setVoiceBeautifierPreset(SINGING_BEAUTIFIER)</codeph> beautifies male voices and adds a small room reverb effect. Agora recommends using this for male voices. Otherwise, audio distortion may occur. Calling <codeph>setVoiceBeautifierParameters(SINGING_BEAUTIFIER, param1, param2)</codeph> beautifies both male and female voices and adds a reverb effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>TIMBRE_TRANSFORMATION_VIGOROUS</pt>
+                    <pd>(0x01030100): A more powerful voice.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>TIMBRE_TRANSFORMATION_DEEP</pt>
+                    <pd>(0x01030200): A deeper voice.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>TIMBRE_TRANSFORMATION_MELLOW</pt>
+                    <pd>(0x01030300): A mellower voice.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>TIMBRE_TRANSFORMATION_FALSETTO</pt>
+                    <pd>(0x01030400): Falsetto effect.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>TIMBRE_TRANSFORMATION_FULL</pt>
+                    <pd>(0x01030500): A fuller voice.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>TIMBRE_TRANSFORMATION_CLEAR</pt>
+                    <pd>(0x01030600): A clearer voice.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>TIMBRE_TRANSFORMATION_RESOUNDING</pt>
+                    <pd>(0x01030700): A more resounding voice.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>TIMBRE_TRANSFORMATION_RINGING</pt>
+                    <pd>(0x01030800): A more ringing voice.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ULTRA_HIGH_QUALITY_VOICE</pt>
+                    <pd>(0x01040100): Ultra high-quality effect that makes the audio clearer and restores more details.
+                        <note>To achieve better audio quality, Agora recommends setting the <codeph>profile</codeph> in <codeph>setAudioProfile(AUDIO_PROFILE_TYPE profile)</codeph> to <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY</codeph> (4) or <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</codeph> (5), and setting <codeph>scenario</codeph> to <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph> (3) before calling <xref keyref="setVoiceBeautifierPreset"/>. If your audio capture device already supports high-fidelity audio, it is recommended not to enable ultra high-quality voice. Otherwise, the SDK may over-enhance audio details, resulting in unexpected sound effects.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_isfeatureavailableondevice">
+    <title><ph keyref="isFeatureAvailableOnDevice"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Checks whether the current device supports the specified advanced feature.</ph><ph id="shortdesc" props="android">Checks whether the current device supports the specified advanced feature.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="isFeatureAvailableOnDevice"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool isFeatureAvailableOnDevice(FeatureType type) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract boolean isFeatureAvailableOnDevice(int type);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.3.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.3.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">You can use this method to determine whether the current device meets the performance requirements for using advanced features such as virtual background and beauty effects, thereby avoiding performance degradation or feature unavailability on low-end devices. Based on the return result, you can decide whether to display or enable the corresponding feature button, or prompt the user if the device performance is insufficient.</p>
+            <p props="android">Before using advanced features, it is recommended to call this method to check whether the current device meets the required capabilities, to avoid performance degradation or feature unavailability on low-end devices. You can use the return value of this method to decide whether to display or enable the corresponding feature button, or to notify the user when the device lacks sufficient capabilities.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>The type of advanced feature. See <xref keyref="FeatureType"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>type</pt>
+                    <pd>Type of advanced feature:
+                        <ul>
+                            <li><codeph>FEATURE_VIDEO_VIRTUAL_BACKGROUND</codeph> (1): Virtual background.</li>
+                            <li><codeph>FEATURE_VIDEO_BEAUTY_EFFECT</codeph> (2): Beauty effect.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>: The current device supports the specified feature.</li>
+                    <li><xref keyref="false"/>: The current device does not support the specified feature.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li><xref keyref="true"/>: The current device supports the specified feature.</li>
+                    <li><xref keyref="false"/>: The current device does not support the specified feature.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

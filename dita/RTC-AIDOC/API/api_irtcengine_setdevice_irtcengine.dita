@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setdevice_irtcengine">
+    <title><ph keyref="setDevice_IRtcEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="mac">指定具有设备 ID 的设备。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDevice_IRtcEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setDevice:(AgoraMediaDeviceType)type deviceId:(NSString * _Nonnull)deviceId NS_SWIFT_NAME(setDevice(_:deviceId:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="mac">
+                    <pt>type</pt>
+                    <pd>设备类型，包括音频采集、音频播放、视频采集或视频播放设备。详见 <xref keyref="MEDIA_DEVICE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>deviceId</pt>
+                    <pd>设备 ID。你可以通过调用 <xref keyref="enumerateDevices"/> 获取设备 ID。连接或断开音频设备不会改变该值。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="mac">
+            <title>返回值</title>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudioroutingchanged">
+    <title><ph keyref="onAudioRoutingChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the local audio routing changes.</ph><ph id="shortdesc" props="android">Callback when the local audio route changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioRoutingChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioRoutingChanged(int routing) { (void)routing; }</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onAudioRouteChanged(int routing) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">This callback applies to Android, iOS, and macOS only.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the local audio route changes.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>routing</pt>
+                    <pd>Current audio routing. See <xref keyref="AudioRoute"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>routing</pt>
+                    <pd>The current audio route.
+                        <ul>
+                            <li><codeph>AUDIO_ROUTE_DEFAULT</codeph> (-1): Default audio route.</li>
+                            <li><codeph>AUDIO_ROUTE_HEADSET</codeph> (0): Headset with microphone.</li>
+                            <li><codeph>AUDIO_ROUTE_EARPIECE</codeph> (1): Earpiece.</li>
+                            <li><codeph>AUDIO_ROUTE_HEADSETNOMIC</codeph> (2): Headset without microphone.</li>
+                            <li><codeph>AUDIO_ROUTE_SPEAKERPHONE</codeph> (3): Built-in speaker.</li>
+                            <li><codeph>AUDIO_ROUTE_LOUDSPEAKER</codeph> (4): External speaker (reserved).</li>
+                            <li><codeph>AUDIO_ROUTE_BLUETOOTH_DEVICE_HFP</codeph> (5): Bluetooth device using HFP protocol.</li>
+                            <li><codeph>AUDIO_ROUTE_BLUETOOTH_DEVICE_A2DP</codeph> (10): Bluetooth device using A2DP protocol.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

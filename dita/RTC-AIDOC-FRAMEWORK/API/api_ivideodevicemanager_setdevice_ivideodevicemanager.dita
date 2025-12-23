@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ivideodevicemanager_setdevice_ivideodevicemanager">
+    <title><ph keyref="setDevice_IVideoDeviceManager"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">通过设备 ID 指定视频采集设备。</ph><ph id="shortdesc" props="flutter">通过设备 ID 指定视频采集设备。</ph><ph id="shortdesc" props="unity">通过设备 ID 指定视频采集设备。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDevice_IVideoDeviceManager"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setDevice(deviceIdUTF8: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDevice(String deviceIdUTF8);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetDevice(string deviceIdUTF8);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">
+                <ul>
+                    <li>插拔设备不会改变设备 ID。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>插拔设备不会改变设备 ID。</li>
+                    <li>该方法仅适用于 Windows 和 macOS。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>插拔设备不会改变设备 ID。</li>
+                    <li>该方法仅适用于 Windows 和 macOS。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>deviceIdUTF8</pt>
+                    <pd>设备 ID。可通过调用 <xref keyref="enumerateVideoDevices"/> 方法获取。
+最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceIdUTF8</pt>
+                    <pd>设备 ID。可通过调用 <xref keyref="enumerateVideoDevices"/> 方法获取。
+最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceIdUTF8</pt>
+                    <pd>设备 ID。可通过调用 <xref keyref="enumerateVideoDevices"/> 方法获取。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

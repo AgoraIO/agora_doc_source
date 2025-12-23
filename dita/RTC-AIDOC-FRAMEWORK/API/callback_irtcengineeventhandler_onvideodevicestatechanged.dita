@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onvideodevicestatechanged">
+    <title><ph keyref="onVideoDeviceStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">视频设备变化回调。</ph><ph id="shortdesc" props="flutter">视频设备变化回调。</ph><ph id="shortdesc" props="unity">视频设备变化回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onVideoDeviceStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onVideoDeviceStateChanged?(
+    deviceId: string,
+    deviceType: MediaDeviceType,
+    deviceState: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(String deviceId, MediaDeviceType deviceType,
+      MediaDeviceStateType deviceState)? onVideoDeviceStateChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoDeviceStateChanged(string deviceId, int deviceType, int deviceState)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">该回调提示系统视频设备状态发生改变，比如被拔出或移除。如果设备已使用外接摄像头采集，外接摄像头被拔开后，视频会中断。</p>
+            <p props="flutter">该回调提示系统视频设备状态发生改变，比如被拔出或移除。如果设备已使用外接摄像头采集，外接摄像头被拔开后，视频会中断。</p>
+            <p props="unity">该回调提示系统视频设备状态发生改变，比如被拔出或移除。如果设备已使用外接摄像头采集，外接摄像头被拔开后，视频会中断。</p>
+            <note props="flutter">该回调仅适用于 Windows 和 macOS。</note>
+            <note props="unity">该回调仅适用于 Windows 和 macOS。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>deviceId</pt>
+                    <pd>设备 ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>deviceType</pt>
+                    <pd>设备类型。详见 <xref keyref="MEDIA_DEVICE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>deviceState</pt>
+                    <pd>设备状态。详见 <xref keyref="MEDIA_DEVICE_STATE_TYPE"/> 。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceId</pt>
+                    <pd>设备 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceType</pt>
+                    <pd>设备类型。详见 <xref keyref="MEDIA_DEVICE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceState</pt>
+                    <pd>设备状态。详见 <xref keyref="MEDIA_DEVICE_STATE_TYPE"/> 。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceId</pt>
+                    <pd>设备 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceType</pt>
+                    <pd>设备类型。详见 <xref keyref="MEDIA_DEVICE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceState</pt>
+                    <pd>设备状态。详见 <xref keyref="MEDIA_DEVICE_STATE_TYPE"/> 。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

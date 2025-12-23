@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayercachemanager_removeoldcache">
+    <title><ph keyref="removeOldCache"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">删除媒体播放器中近期最少使用的一个缓存媒体文件。</ph><ph id="shortdesc" props="rn">删除媒体播放器中近期最少使用的一个缓存媒体文件。</ph><ph id="shortdesc" props="flutter">删除媒体播放器中近期最少使用的一个缓存媒体文件。</ph><ph id="shortdesc" props="unity">删除媒体播放器中近期最少使用的一个缓存媒体文件。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="removeOldCache"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract removeOldCache(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract removeOldCache(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; removeOldCache();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int RemoveOldCache();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">缓存媒体文件占用过多空间时，你可以调用该方法清理缓存文件。调用该方法后，SDK 会删除最少使用的一个缓存媒体文件。</p>
+            <p props="rn">缓存媒体文件占用过多空间时，你可以调用该方法清理缓存文件。调用该方法后，SDK 会删除最少使用的一个缓存媒体文件。</p>
+            <p props="flutter">缓存媒体文件占用过多空间时，你可以调用该方法清理缓存文件。调用该方法后，SDK 会删除最少使用的一个缓存媒体文件。</p>
+            <p props="unity">缓存媒体文件占用过多空间时，你可以调用该方法清理缓存文件。调用该方法后，SDK 会删除最少使用的一个缓存媒体文件。</p>
+            <note props="electron">当你调用此方法删除缓存媒体文件时，当前正在播放的已缓存媒体文件不会被删除。</note>
+            <note props="rn">当你调用此方法删除缓存媒体文件时，当前正在播放的已缓存媒体文件不会被删除。</note>
+            <note props="flutter">当你调用此方法删除缓存媒体文件时，当前正在播放的已缓存媒体文件不会被删除。</note>
+            <note props="unity">当你调用此方法删除缓存媒体文件时，当前正在播放的已缓存媒体文件不会被删除。</note>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
+                <ul>
+                    <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

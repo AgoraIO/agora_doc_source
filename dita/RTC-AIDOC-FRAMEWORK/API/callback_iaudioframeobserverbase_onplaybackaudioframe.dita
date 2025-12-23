@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserverbase_onplaybackaudioframe">
+    <title><ph keyref="onPlaybackAudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">获得播放的原始音频数据。</ph><ph id="shortdesc" props="rn">获得播放的原始音频数据。</ph><ph id="shortdesc" props="flutter">获得播放的原始音频数据。</ph><ph id="shortdesc" props="unity">获得播放的原始音频数据。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlaybackAudioFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onPlaybackAudioFrame?(channelId: string, audioFrame: AudioFrame): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onPlaybackAudioFrame?(channelId: string, audioFrame: AudioFrame): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, AudioFrame audioFrame)?
+      onPlaybackAudioFrame;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnPlaybackAudioFrame(string channelId, AudioFrame audio_frame)
+        {
+            return true;
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">为保证播放的音频数据格式符合预期，你可以在如下方法设置音频的数据格式：调用 <xref keyref="setPlaybackAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <xref keyref="onPlaybackAudioFrame"/> 回调。</p>
+            <p props="rn">为保证播放的音频数据格式符合预期，你可以在如下方法设置音频的数据格式：调用 <xref keyref="setPlaybackAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <xref keyref="onPlaybackAudioFrame"/> 回调。</p>
+            <p props="flutter">为保证播放的音频数据格式符合预期，你可以在如下方法设置音频的数据格式：调用 <xref keyref="setPlaybackAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <xref keyref="onPlaybackAudioFrame"/> 回调。</p>
+            <p props="unity">为保证播放的音频数据格式符合预期，你可以调用 <xref keyref="setPlaybackAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <xref keyref="onPlaybackAudioFrame"/> 回调。</p>
+            <note props="flutter">
+                <ul>
+                    <li>由于框架的限制，该回调不支持将处理后的音频数据发送回 SDK。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>audioFrame</pt>
+                    <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channelId</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioFrame</pt>
+                    <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channelId</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioFrame</pt>
+                    <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channelId</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audio_frame</pt>
+                    <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelId</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>返回值</title>
+            <p props="unity">无实际含义。</p>
+        </section>
+    </refbody>
+</reference>

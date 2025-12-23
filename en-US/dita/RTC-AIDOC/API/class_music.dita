@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_music">
+    <title><ph keyref="Music"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes detailed information about a music resource.</ph><ph id="shortdesc" props="android">Represents detailed information about a music resource.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct Music {
+    int64_t songCode;
+    const char* name;
+    const char* singer;
+    const char* poster;
+    const char* releaseTime;
+    int32_t durationS;
+    int32_t type;
+    int32_t pitchType;
+    int32_t lyricCount;
+    int32_t* lyricList;
+    int32_t climaxSegmentCount;
+    ClimaxSegment* climaxSegmentList;
+    int32_t mvPropertyCount;
+    MvProperty* mvPropertyList;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class Music {
+  public long songCode;
+  public String name;
+  public String singer;
+  public String poster;
+  public String releaseTime;
+  public int type;
+  public int pitchType;
+  public int durationS;
+  public int[] lyricTypes;
+  public MvProperty[] mvProperties;
+  public ClimaxSegment[] climaxSegments;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>songCode</pt>
+                    <pd>The ID of the music resource, used to identify a music entry.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>name</pt>
+                    <pd>The name of the music resource.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>singer</pt>
+                    <pd>The name of the singer.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>poster</pt>
+                    <pd>Download link for the music poster.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>releaseTime</pt>
+                    <pd>The release time of the music resource.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>durationS</pt>
+                    <pd>Total duration of the music resource (in seconds).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>Type of the music resource:
+                        <ul>
+                            <li>1: Single track, left channel is accompaniment, right channel is original vocals.</li>
+                            <li>2: Single track, accompaniment only.</li>
+                            <li>3: Single track, original vocals only.</li>
+                            <li>4: Multi-track audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>pitchType</pt>
+                    <pd>Whether the song supports pitch scoring:
+                        <ul>
+                            <li>1: Supports pitch scoring.</li>
+                            <li>2: Does not support pitch scoring.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>lyricCount</pt>
+                    <pd>The number of available lyrics for the song.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>lyricList</pt>
+                    <pd>Supported lyric formats:
+                        <ul>
+                            <li>0: XML format.</li>
+                            <li>1: LRC format.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>climaxSegmentCount</pt>
+                    <pd>The number of climax segments.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>climaxSegmentList</pt>
+                    <pd>List of climax segments. See <xref keyref="ClimaxSegment"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mvPropertyCount</pt>
+                    <pd>Number of MVs. If this value is greater than 0, it indicates that the current music has MV resources.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mvPropertyList</pt>
+                    <pd>List of MV properties.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>songCode</pt>
+                    <pd>The unique identifier of the music resource, used to identify a specific music resource.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>name</pt>
+                    <pd>The name of the music resource.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>singer</pt>
+                    <pd>The name of the singer.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>poster</pt>
+                    <pd>The download URL of the music resource poster.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>releaseTime</pt>
+                    <pd>The release time of the music resource.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>type</pt>
+                    <pd>The type of the music resource:
+                        <ul>
+                            <li>1: Single-track audio, left channel is accompaniment, right channel is original vocal.</li>
+                            <li>2: Single-track audio, accompaniment only.</li>
+                            <li>3: Single-track audio, original vocal only.</li>
+                            <li>4: Multi-track audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>pitchType</pt>
+                    <pd>Whether the song supports scoring:
+                        <ul>
+                            <li>1: Supports scoring.</li>
+                            <li>2: Does not support scoring.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>durationS</pt>
+                    <pd>The total duration of the music resource (in seconds).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lyricTypes</pt>
+                    <pd>Supported lyric types:
+                        <ul>
+                            <li>0: XML format.</li>
+                            <li>1: LRC format.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mvProperties</pt>
+                    <pd>List of MV properties, representing MV information contained in the music resource.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>climaxSegments</pt>
+                    <pd>List of music climax segments. See <xref keyref="ClimaxSegment"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

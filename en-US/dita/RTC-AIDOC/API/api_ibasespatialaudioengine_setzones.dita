@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ibasespatialaudioengine_setzones">
+    <title><ph keyref="setZones"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Sets sound insulation zones.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setZones"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int setZones(SpatialAudioZone[] zones);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">In virtual interaction scenarios, you can use this method to set sound insulation zones and sound attenuation coefficients. When the sound source (can be a user or media player) and the receiver are inside and outside the sound insulation zone respectively, you can experience attenuation effects similar to real environments where sound is blocked by walls:
+                <ul>
+                    <li>When the sound source and receiver are inside and outside the sound insulation zone respectively, the attenuation effect is determined by the sound attenuation coefficient in <xref keyref="SpatialAudioZone"/>.</li>
+                    <li>If the user or media player is inside the same sound insulation zone, the attenuation effect is determined by the <codeph>attenuation</codeph> parameter in <xref keyref="setPlayerAttenuation"/> or <xref keyref="setRemoteAudioAttenuation"/>. If you do not call <xref keyref="setPlayerAttenuation"/> or <xref keyref="setRemoteAudioAttenuation"/>, the SDK uses a default sound attenuation coefficient of 0.5 to simulate real-world sound attenuation.</li>
+                    <li>If the sound source and receiver are in two different sound insulation zones, the receiver cannot hear the sound source.</li>
+                </ul>
+            </p>
+            <note props="android">If this method is called multiple times, the last setting will take effect.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>zones</pt>
+                    <pd>Sound insulation zone settings. If this parameter is set to <codeph>null</codeph>, all sound insulation zones are cleared. See <xref keyref="SpatialAudioZone"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

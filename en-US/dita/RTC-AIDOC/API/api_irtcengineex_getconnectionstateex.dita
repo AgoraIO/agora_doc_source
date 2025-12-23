@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_getconnectionstateex">
+    <title><ph keyref="getConnectionStateEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the current connection state of the SDK.</ph><ph id="shortdesc" props="android">Gets the current connection state of the SDK.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getConnectionStateEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual CONNECTION_STATE_TYPE getConnectionStateEx(const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getConnectionStateEx(RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method applies to multi-channel scenarios.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You can call this method before or after joining a channel.</p>
+            <p props="android">This method can be called before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">Current connection state. See <xref keyref="CONNECTION_STATE_TYPE"/>.</p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

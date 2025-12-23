@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_removelistener">
+    <title><ph keyref="removeListener"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">移除指定的 <xref keyref="IRtcEngineEvent"/> 监听器。</ph><ph id="shortdesc" props="rn">移除指定的 <xref keyref="IRtcEngineEvent"/> 监听器。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="removeListener"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">removeListener?&lt;EventType extends keyof IRtcEngineEvent&gt;(
+      eventType: EventType,
+      listener: IRtcEngineEvent[EventType]
+    ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">removeListener?&lt;EventType extends keyof IRtcEngineEvent&gt;(
+      eventType: EventType,
+      listener: IRtcEngineEvent[EventType]
+    ): void;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">对于某些已监听的回调函数，如果你在收到相应回调事件后无需再次接收回调消息，可以调用该方法移除对应的监听器。</p>
+            <p props="rn">对于某些已监听的回调函数，如果你在收到相应回调事件后无需再次接收回调消息，可以调用该方法移除对应的监听器。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron rn">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>eventType</pt>
+                    <pd>需要监听的目标事件名。详见 <xref keyref="IRtcEngineEvent"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>listener</pt>
+                    <pd><codeph>eventType</codeph> 对应的回调函数。必须传入 <xref keyref="addListener"/> 中传入的同一个函数对象。以取消监听 <xref keyref="onJoinChannelSuccess"/> 为例：
+                        <codeblock outputclass="language-typescript">const onJoinChannelSuccess = (connection: RtcConnection, elapsed: number) =&gt; {};
+engine.addListener('onJoinChannelSuccess', onJoinChannelSuccess);
+engine.removeListener('onJoinChannelSuccess', onJoinChannelSuccess);</codeblock>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>eventType</pt>
+                    <pd>需要监听的目标事件名。详见 <xref keyref="IRtcEngineEvent"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>listener</pt>
+                    <pd><codeph>eventType</codeph> 对应的回调函数。必须传入 <xref keyref="addListener"/> 中传入的同一个函数对象。以取消监听 <xref keyref="onJoinChannelSuccess"/> 为例：
+                        <codeblock outputclass="language-typescript">const onJoinChannelSuccess = (connection: RtcConnection, elapsed: number) =&gt; {};
+engine.addListener('onJoinChannelSuccess', onJoinChannelSuccess);
+engine.removeListener('onJoinChannelSuccess', onJoinChannelSuccess);</codeblock>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

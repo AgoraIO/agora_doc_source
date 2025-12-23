@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setdirectcdnstreamingvideoconfiguration">
+    <title><ph keyref="setDirectCdnStreamingVideoConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置主播直接 CDN 推流的视频属性。</ph><ph id="shortdesc" props="ios">设置你通过直推 CDN 推送的媒体流的视频属性。</ph><ph id="shortdesc" props="android">设置主播直接 CDN 推流的视频属性配置。</ph><ph id="shortdesc" props="mac">设置你通过直推 CDN 推送的媒体流的视频属性。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDirectCdnStreamingVideoConfiguration"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setDirectCdnStreamingVideoConfiguration(const VideoEncoderConfiguration&amp; config) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setDirectCdnStreamingVideoConfiguration:(AgoraVideoEncoderConfiguration * _Nonnull)config NS_SWIFT_NAME(setDirectCdnStreamingVideoConfiguration(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setDirectCdnStreamingVideoConfiguration(VideoEncoderConfiguration config);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setDirectCdnStreamingVideoConfiguration:(AgoraVideoEncoderConfiguration * _Nonnull)config NS_SWIFT_NAME(setDirectCdnStreamingVideoConfiguration(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>废弃</dt>
+                    <dd>自 v4.6.0 版本废弃。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>废弃</dt>
+                    <dd>自 v4.6.0 版本废弃。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>废弃</dt>
+                    <dd>自 v4.6.0 版本废弃。</dd>
+                </dlentry>
+                <dlentry props="mac">
+                    <dt>废弃</dt>
+                    <dd>自 v4.6.0 版本废弃。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">该方法仅影响通过摄像头、屏幕或自定义视频采集源采集的视频流。当你在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishCameraTrack</codeph> 或 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/> 时，可以调用该方法设置视频属性。
+
+如果本地摄像头不支持你设置的视频分辨率，SDK 会自动将分辨率调整为最接近的值进行采集、编码或推流，并保持你设置的宽高比。你可以通过 <xref keyref="onDirectCdnStreamingStats"/> 回调获取实际的视频分辨率。</p>
+            <p props="ios">该方法仅影响通过摄像头、屏幕或自定义视频源采集的视频流。也就是说，当你在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishCameraTrack</codeph> 或 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/> 以采集视频时，可以调用该方法设置视频属性。如果本地摄像头不支持你设置的视频分辨率，SDK 会自动将其调整为最接近你设置值的分辨率进行采集、编码或传输，并保持你设置的宽高比。你可以通过 <xref keyref="onDirectCdnStreamingStats"/> 回调获取视频流的实际分辨率。</p>
+            <p props="android">该方法仅影响通过摄像头、屏幕或自定义视频源采集的视频流。也就是说，当你在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishCameraTrack</codeph> 或 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/> 时，可以调用该方法设置视频属性配置。
+
+如果本地摄像头不支持你设置的视频分辨率，SDK 会自动将其调整为最接近的分辨率进行采集、编码或推流，并保持你设置的分辨率的宽高比。你可以通过 <xref keyref="onDirectCdnStreamingStats"/> 回调获取视频流的实际分辨率。</p>
+            <p props="mac">该方法仅影响通过摄像头、屏幕或自定义视频源采集的视频流。也就是说，当你在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <codeph>publishCameraTrack</codeph> 或 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/> 以采集视频时，可以调用该方法设置视频属性。如果本地摄像头不支持你设置的视频分辨率，SDK 会自动将其调整为最接近你设置值的分辨率进行采集、编码或传输，并保持你设置的宽高比。你可以通过 <xref keyref="onDirectCdnStreamingStats"/> 回调获取视频流的实际分辨率。</p>
+            <note props="cpp">在 CDN 直播过程中，声网仅支持将 <xref keyref="ORIENTATION_MODE"/> 设置为 <codeph>ORIENTATION_MODE_FIXED_LANDSCAPE</codeph> 或 <codeph>ORIENTATION_MODE_FIXED_PORTRAIT</codeph>。</note>
+            <note props="ios">在 CDN 直播过程中，声网仅支持将 <xref keyref="ORIENTATION_MODE"/> 设置为 <codeph>AgoraVideoOutputOrientationModeFixedLandscape</codeph> 或 <codeph>AgoraVideoOutputOrientationModeFixedPortrait</codeph>。</note>
+            <note props="android">在 CDN 直播过程中，声网仅支持将 <xref keyref="ORIENTATION_MODE"/> 设置为 <codeph>ORIENTATION_MODE_FIXED_LANDSCAPE</codeph> 或 <codeph>ORIENTATION_MODE_FIXED_PORTRAIT</codeph>。</note>
+            <note props="mac">在 CDN 直播过程中，声网仅支持将 <xref keyref="ORIENTATION_MODE"/> 设置为 <codeph>AgoraVideoOutputOrientationModeFixedLandscape</codeph> 或 <codeph>AgoraVideoOutputOrientationModeFixedPortrait</codeph>。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>视频属性。详见 <xref keyref="VideoEncoderConfiguration"/>。
+                        <note>在 CDN 直播过程中，声网仅支持将 <xref keyref="ORIENTATION_MODE"/> 设置为 <codeph>ORIENTATION_MODE_FIXED_LANDSCAPE</codeph> 或 <codeph>ORIENTATION_MODE_FIXED_PORTRAIT</codeph>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>视频属性，详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>视频属性配置。详见 <xref keyref="VideoEncoderConfiguration"/>。
+                        <note>在 CDN 直播过程中，声网仅支持将 <xref keyref="ORIENTATION_MODE"/> 设置为 <codeph>ORIENTATION_MODE_FIXED_LANDSCAPE</codeph> 或 <codeph>ORIENTATION_MODE_FIXED_PORTRAIT</codeph>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>config</pt>
+                    <pd>视频属性，详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_playerconfig_setplaybackspeed">
+    <title><ph keyref="SetPlaybackSpeed"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the playback speed parameter.</ph><ph id="shortdesc" props="android">Sets the playback speed parameter.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SetPlaybackSpeed"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">void SetPlaybackSpeed(int32_t speed, Error *err = nullptr)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void setPlaybackSpeed(int speed) throws RteException</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.5.1.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.5.1.</dd>
+                </dlentry>
+            </dl>
+            <p props="android">You can call this method after calling <xref keyref="OpenWithUrl"/>.</p>
+            <note props="cpp">You can call this method after calling the <xref keyref="OpenWithUrl"/> method.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>speed</pt>
+                    <pd>Playback speed. Valid range is [50, 400].</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>Status or error information. See <xref keyref="Error"/>.
+                        <ul>
+                            <li><codeph>kRteOk</codeph>: Call succeeded.</li>
+                            <li><codeph>kRteErrorInvalidArgument</codeph>: The <codeph>speed</codeph> parameter is set to an invalid value.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>speed</pt>
+                    <pd>Playback speed. Valid range is [50, 400].</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="exception" props="android">
+            <title>Exceptions</title>
+            <p props="android">If setting the playback speed fails, the SDK throws an exception and returns the corresponding error message. You need to catch and handle the exception.</p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setexternalvideosource">
+    <title><ph keyref="setExternalVideoSource"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Configures external video source.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalVideoSource"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int setExternalVideoSource(boolean enable, boolean useTexture, Constants.ExternalVideoSourceType sourceType);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">After calling this method, you can call <codeph>pushExternalVideoFrameById</codeph> to push external video data to the SDK.</p>
+            <note props="android">Dynamic switching of video sources is not supported in the channel. To switch from external to internal video source, you must leave the channel, disable the external video source with this method, and rejoin the channel.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">Call this method before joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>enable</pt>
+                    <pd>Whether to use an external video source:
+                        <ul>
+                            <li><xref keyref="true"/>: Use external video source. SDK prepares to receive external video frames.</li>
+                            <li><xref keyref="false"/>: (Default) Do not use external video source.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>useTexture</pt>
+                    <pd>Whether to use Texture format for external video frames:
+                        <ul>
+                            <li><xref keyref="true"/>: Use Texture format.</li>
+                            <li><xref keyref="false"/>: (Default) Do not use Texture format.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>Whether the external video frame is encoded. See <xref keyref="EXTERNAL_VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

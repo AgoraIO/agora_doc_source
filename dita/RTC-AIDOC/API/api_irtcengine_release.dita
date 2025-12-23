@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_release">
+    <title><ph keyref="release"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">释放 <xref keyref="IRtcEngine"/> 实例。</ph><ph id="shortdesc" props="ios">释放 <xref keyref="IRtcEngine"/> 实例。</ph><ph id="shortdesc" props="android">释放 <xref keyref="IRtcEngine"/> 实例。</ph><ph id="shortdesc" props="mac">释放 <xref keyref="IRtcEngine"/> 实例。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="release"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">AGORA_CPP_API static void release(RtcEngineReleaseCallback callback = nullptr);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">+ (void)destroy NS_SWIFT_NAME(destroy());</codeblock>
+                <codeblock props="android" outputclass="language-java">public static synchronized void destroy()</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">+ (void)destroy NS_SWIFT_NAME(destroy());</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">该方法释放声网 SDK 占用的所有资源，适用于用户偶尔进行语音或视频通话的场景。当用户不再通话时，可以释放资源以供其他操作使用。调用该方法成功后，将无法再使用 SDK 中的任何方法或回调。如需再次使用实时通信功能，必须调用 <xref keyref="createAgoraRtcEngine"/> 和 <xref keyref="initialize"/> 创建新的 <xref keyref="IRtcEngine"/> 实例。</p>
+            <p props="ios">该方法会释放 SDK 使用的所有资源。适用于用户偶尔进行语音或视频通话的场景。当你不再进行通话时，可以通过该方法释放资源，以便用于其他操作。成功调用该方法后，将无法再使用 SDK 中的任何方法或回调。如需再次使用实时通信功能，必须调用 <xref keyref="initialize"/> 方法重新创建 <xref keyref="IRtcEngine"/> 实例。</p>
+            <p props="android">该方法释放所有由声网 SDK 占用的资源。成功调用该方法后，将无法再使用 SDK 中的任何方法或回调。如需再次使用实时通信功能，必须调用 <xref keyref="initialize"/> 创建新的 <xref keyref="IRtcEngine"/> 实例。</p>
+            <p props="mac">该方法会释放 SDK 使用的所有资源。适用于用户偶尔进行语音或视频通话的场景。当你不再进行通话时，可以通过该方法释放资源，以便用于其他操作。成功调用该方法后，将无法再使用 SDK 中的任何方法或回调。如需再次使用实时通信功能，必须调用 <xref keyref="initialize"/> 方法重新创建 <xref keyref="IRtcEngine"/> 实例。</p>
+            <note props="cpp">不建议在 SDK 的任何回调中调用 <xref keyref="release"/>，否则 SDK 需等待回调返回后才能释放资源，可能导致死锁。</note>
+            <note props="ios">声网不建议你在 SDK 的任何回调中调用 <xref keyref="release"/> 方法。否则，SDK 需等待回调返回结果后才能释放资源，可能导致死锁。</note>
+            <note props="android">不建议在 SDK 的任何回调中调用该方法。否则，SDK 需等待回调返回结果后才能释放资源，可能导致死锁。</note>
+            <note props="mac">声网不建议你在 SDK 的任何回调中调用 <xref keyref="release"/> 方法。否则，SDK 需等待回调返回结果后才能释放资源，可能导致死锁。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>callback</pt>
+                    <pd>用于设置引擎销毁模式的回调函数指针，详见 <xref keyref="RtcEngineReleaseCallback"/>。
+                        <ul>
+                            <li>非 <codeph>nullptr</codeph>：异步销毁引擎。该方法会立即返回，此时引擎资源可能尚未完全释放。引擎销毁后，SDK 会触发 <xref keyref="RtcEngineReleaseCallback"/>。</li>
+                            <li><codeph>nullptr</codeph>：同步销毁引擎。该方法仅在引擎资源完全释放后才返回。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

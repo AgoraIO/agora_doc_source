@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_enablecontentinspectex">
+    <title><ph keyref="enableContentInspectEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables the local snapshot upload feature.</ph><ph id="shortdesc" props="android">Enables or disables local snapshot upload.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableContentInspectEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableContentInspectEx(bool enabled, const media::ContentInspectConfig &amp;config, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableContentInspectEx(boolean enabled, ContentInspectConfig config, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method allows you to capture and upload snapshots from multiple video streams. Once enabled, the SDK captures and uploads snapshots of the local user's video based on the module type and frequency you set in <xref keyref="ContentInspectConfig"/>. After the upload is complete, the Agora server sends a callback notification to your application server via HTTPS and uploads all snapshots to a third-party cloud storage service.</p>
+            <p props="android">When enabled, the SDK captures and uploads snapshots of the local user's video based on the module type and frequency set in <xref keyref="ContentInspectConfig"/>. After uploading, the Agora server sends a callback notification to your app server via HTTPS and uploads all snapshots to a third-party cloud storage service.</p>
+            <note props="cpp">Before calling this method, ensure that the local snapshot upload feature is enabled in the Agora Console.</note>
+            <note props="android">Before calling this method, make sure you have contacted technical support to enable the local snapshot upload service.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method is applicable in multi-channel scenarios.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You can call this method before or after joining a channel.</p>
+            <p props="android">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the local snapshot upload feature:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable.</li>
+                            <li><xref keyref="false"/>: Disable.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>Configuration for snapshot and upload. See <xref keyref="ContentInspectConfig"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable local snapshot upload:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable local snapshot upload.</li>
+                            <li><xref keyref="false"/>: Disable local snapshot upload.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>Configuration parameters for snapshot upload. See <xref keyref="ContentInspectConfig"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

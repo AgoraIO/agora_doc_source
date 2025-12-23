@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_enabledualstreammodeex">
+    <title><ph keyref="enableDualStreamModeEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables video streams with different quality levels on the sender side.</ph><ph id="shortdesc" props="android">Enables or disables dual-stream mode on the sending side.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableDualStreamModeEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableDualStreamModeEx(bool enabled, const SimulcastStreamConfig&amp; streamConfig, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableDualStreamModeEx(boolean enabled, SimulcastStreamConfig streamConfig, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.2.0. Use <xref keyref="setDualStreamModeEx"/> instead.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.2.0. Use <xref keyref="setDualStreamModeEx"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">Video streams with different quality levels consist of a pair of high-quality (high bitrate, high resolution) and low-quality (low bitrate, low resolution) streams.
+After enabling this feature, you can call the <xref keyref="setRemoteVideoStreamType"/> method on the subscriber side to choose to receive either high- or low-quality video streams.</p>
+            <p props="android">You can call this method to enable or disable dual-stream mode on the sending side. Dual-stream consists of a high-quality video stream and a low-quality video stream:
+                <ul>
+                    <li>High-quality stream: High bitrate, high resolution.</li>
+                    <li>Low-quality stream: Low bitrate, low resolution.</li>
+                </ul><ph>After enabling dual-stream mode, you can call <codeph>setRemoteVideoStreamType</codeph> to choose whether to receive the high-quality or low-quality stream on the receiving side.</ph></p>
+            <note props="cpp">This method applies to all types of video streams on the sender side, including but not limited to camera-captured streams, screen sharing streams, and custom captured streams.</note>
+            <note props="android">This method applies to all types of video streams on the sending side, including but not limited to camera-captured video, screen sharing, and custom captured video streams.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method is applicable in multi-channel scenarios.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable video streams with different quality levels:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable.</li>
+                            <li><xref keyref="false"/>: (Default) Disable.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>streamConfig</pt>
+                    <pd>Configuration for the low-quality stream. See <xref keyref="SimulcastStreamConfig"/>.
+                        <note>When <codeph>mode</codeph> is set to <codeph>DISABLE_SIMULCAST_STREAM</codeph>, setting <codeph>streamConfig</codeph> has no effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable dual-stream mode:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable dual-stream mode.</li>
+                            <li><xref keyref="false"/>: (Default) Disable dual-stream mode.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>streamConfig</pt>
+                    <pd>Configuration of the low-quality stream. See <xref keyref="SimulcastStreamConfig"/>.
+                        <note>When <codeph>mode</codeph> is set to <codeph>DISABLE_SIMULCAST_STREAM</codeph>, <codeph>streamConfig</codeph> has no effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_localaccesspointconfiguration">
+    <title><ph keyref="LocalAccessPointConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置本地接入点。</ph><ph id="shortdesc" props="ios">本地接入点配置。</ph><ph id="shortdesc" props="android">用于配置本地接入点。</ph><ph id="shortdesc" props="mac">本地接入点配置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct LocalAccessPointConfiguration {
+  const char** ipList;
+  int ipListSize;
+  const char** domainList;
+  int domainListSize;
+  const char* verifyDomainName;
+  LOCAL_PROXY_MODE mode;
+  AdvancedConfigInfo advancedConfig;
+  bool disableAut;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraLocalAccessPointConfiguration) __attribute__((visibility("default"))) @interface AgoraLocalAccessPointConfiguration : NSObject
+@property(copy, nonatomic) NSArray* _Nullable ipList NS_SWIFT_NAME(ipList);
+@property(copy, nonatomic) NSArray* _Nullable domainList NS_SWIFT_NAME(domainList);
+@property(copy, nonatomic) NSString* _Nullable verifyDomainName NS_SWIFT_NAME(verifyDomainName);
+@property(assign, nonatomic) AgoraLocalProxyMode mode NS_SWIFT_NAME(mode);
+@property(strong, nonatomic) AdvancedConfigInfo* _Nullable advancedConfig NS_SWIFT_NAME(advancedConfig);
+@property(assign, nonatomic) BOOL disableAut;
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class LocalAccessPointConfiguration {
+  public ArrayList&lt;String&gt; ipList = null;
+  public ArrayList&lt;String&gt; domainList = null;
+  public String verifyDomainName = null;
+  public int mode = Constants.LOCAL_RPOXY_CONNECTIVITY_FIRST;
+  public boolean disableAut = true;
+  public AdvancedConfigInfo advancedConfig = null;
+}</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraLocalAccessPointConfiguration) __attribute__((visibility("default"))) @interface AgoraLocalAccessPointConfiguration : NSObject
+@property(copy, nonatomic) NSArray* _Nullable ipList NS_SWIFT_NAME(ipList);
+@property(copy, nonatomic) NSArray* _Nullable domainList NS_SWIFT_NAME(domainList);
+@property(copy, nonatomic) NSString* _Nullable verifyDomainName NS_SWIFT_NAME(verifyDomainName);
+@property(assign, nonatomic) AgoraLocalProxyMode mode NS_SWIFT_NAME(mode);
+@property(strong, nonatomic) AdvancedConfigInfo* _Nullable advancedConfig NS_SWIFT_NAME(advancedConfig);
+@property(assign, nonatomic) BOOL disableAut;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>ipList</pt>
+                    <pd>本地接入点的内网 IP 地址列表。你必须在 <codeph>ipList</codeph> 或 <codeph>domainList</codeph> 中至少指定一个。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ipListSize</pt>
+                    <pd>本地接入点的内网 IP 地址数量。该值必须与你提供的 IP 地址数量一致。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>domainList</pt>
+                    <pd>本地接入点的域名列表。SDK 会根据你提供的域名解析本地接入点的 IP 地址，DNS 解析超时时间为 10 秒。你必须在 <codeph>ipList</codeph> 或 <codeph>domainList</codeph> 中至少指定一个。如果同时指定了 IP 地址和域名，SDK 会合并并去重解析出的 IP 地址和指定的 IP 地址，然后随机选择一个用于负载均衡。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>domainListSize</pt>
+                    <pd>本地接入点的域名数量。该值必须与你提供的域名数量一致。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>verifyDomainName</pt>
+                    <pd>用于内部证书校验的域名。如果为空，SDK 使用默认域名 <codeph>secure-edge.local</codeph> 进行证书校验。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mode</pt>
+                    <pd>连接模式，详见 <xref keyref="LOCAL_PROXY_MODE"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>advancedConfig</pt>
+                    <pd>本地接入点的高级配置选项。详见 <xref keyref="AdvancedConfigInfo"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>disableAut</pt>
+                    <pd>是否禁用 vos-aut：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）禁用 vos-aut。</li>
+                            <li><xref keyref="false"/>：不禁用 vos-aut。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>ipList</pt>
+                    <pd>本地接入点的内网 IP 地址列表。你必须至少提供 <codeph>ipList</codeph> 或 <codeph>domainList</codeph> 中的一个。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>domainList</pt>
+                    <pd>本地接入点的域名列表。SDK 会根据你提供的域名解析本地接入点的 IP 地址，解析超时时间为 10 秒。你必须至少指定 <codeph>ipList</codeph> 或 <codeph>domainList</codeph> 中的一个。如果同时指定了 IP 地址和域名，SDK 会合并并去重解析出的 IP 地址和你提供的 IP 地址，然后随机连接一个 IP 地址以实现负载均衡。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>verifyDomainName</pt>
+                    <pd>内网证书验证域名。如果该值为 <xref keyref="NULL"/>，SDK 使用默认的证书验证域名 <codeph>secure-edge.local</codeph>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mode</pt>
+                    <pd>连接模式。详见 <xref keyref="LOCAL_PROXY_MODE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>advancedConfig</pt>
+                    <pd>本地接入点的高级配置项。详见 <xref keyref="AdvancedConfigInfo"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>disableAut</pt>
+                    <pd>是否禁用 vos-aut：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）禁用 vos-aut。</li>
+                            <li><xref keyref="false"/>：不禁用 vos-aut。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>ipList</pt>
+                    <pd>本地接入点的内网 IP 地址列表。<codeph>ipList</codeph> 或 <codeph>domainList</codeph> 至少需提供一个。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>domainList</pt>
+                    <pd>本地接入点的域名列表。SDK 会根据你提供的域名解析本地接入点的 IP 地址，解析超时时间为 10 秒。<codeph>ipList</codeph> 或 <codeph>domainList</codeph> 至少需提供一个。如果同时指定了 IP 地址和域名，SDK 会合并并去重解析得到的 IP 地址和指定的 IP 地址，然后随机连接一个 IP 地址以实现负载均衡。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>verifyDomainName</pt>
+                    <pd>内网证书校验域名。如果该值为 <codeph>null</codeph>，SDK 默认使用 <codeph>secure-edge.local</codeph> 作为证书校验域名。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mode</pt>
+                    <pd>连接模式：
+                        <ul>
+                            <li><codeph>LOCAL_RPOXY_CONNECTIVITY_FIRST</codeph>（0）：SDK 优先尝试连接指定的声网私有媒体服务器；如果连接失败，则连接声网 SD-RTN™。</li>
+                            <li><codeph>LOCAL_RPOXY_LOCAL_ONLY</codeph>（1）：SDK 只连接指定的声网私有媒体服务器。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>disableAut</pt>
+                    <pd>是否禁用 vos-aut：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）禁用 vos-aut。</li>
+                            <li><xref keyref="false"/>：不禁用 vos-aut。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>advancedConfig</pt>
+                    <pd>本地接入点的高级配置项。详见 <xref keyref="AdvancedConfigInfo"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>ipList</pt>
+                    <pd>本地接入点的内网 IP 地址列表。你必须至少提供 <codeph>ipList</codeph> 或 <codeph>domainList</codeph> 中的一个。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>domainList</pt>
+                    <pd>本地接入点的域名列表。SDK 会根据你提供的域名解析本地接入点的 IP 地址，解析超时时间为 10 秒。你必须至少指定 <codeph>ipList</codeph> 或 <codeph>domainList</codeph> 中的一个。如果同时指定了 IP 地址和域名，SDK 会合并并去重解析出的 IP 地址和你提供的 IP 地址，然后随机连接一个 IP 地址以实现负载均衡。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>verifyDomainName</pt>
+                    <pd>内网证书验证域名。如果该值为 <xref keyref="NULL"/>，SDK 使用默认的证书验证域名 <codeph>secure-edge.local</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mode</pt>
+                    <pd>连接模式。详见 <xref keyref="LOCAL_PROXY_MODE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>advancedConfig</pt>
+                    <pd>本地接入点的高级配置项。详见 <xref keyref="AdvancedConfigInfo"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>disableAut</pt>
+                    <pd>是否禁用 vos-aut：
+                        <ul>
+                            <li><xref keyref="true"/>：（默认）禁用 vos-aut。</li>
+                            <li><xref keyref="false"/>：不禁用 vos-aut。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

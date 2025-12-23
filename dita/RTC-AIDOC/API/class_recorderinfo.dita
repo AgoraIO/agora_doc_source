@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_recorderinfo">
+    <title><ph keyref="RecorderInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">包含录制文件相关信息的结构体。</ph><ph id="shortdesc" props="ios">录制文件信息。</ph><ph id="shortdesc" props="android">用于记录录制文件的信息。</ph><ph id="shortdesc" props="mac">录制文件信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct RecorderInfo {
+  const char* fileName;
+  unsigned int durationMs;
+  unsigned int fileSize;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaRecorderInfo : NSObject
+@property(copy, nonatomic) NSString* _Nonnull recorderFileName;
+@property(assign, nonatomic) NSUInteger durationMs;
+@property(assign, nonatomic) NSUInteger fileSize;
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class RecorderInfo {
+  public String fileName;
+  public int durationMs;
+  public int fileSize;
+}</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaRecorderInfo : NSObject
+@property(copy, nonatomic) NSString* _Nonnull recorderFileName;
+@property(assign, nonatomic) NSUInteger durationMs;
+@property(assign, nonatomic) NSUInteger fileSize;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v3.5.2 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v3.5.2 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>fileName</pt>
+                    <pd>录制文件的绝对路径。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>durationMs</pt>
+                    <pd>录制文件的时长，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>fileSize</pt>
+                    <pd>录制文件的大小，单位为字节。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>recorderFileName</pt>
+                    <pd>录制文件的绝对存储路径。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>durationMs</pt>
+                    <pd>录制文件的时长，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>fileSize</pt>
+                    <pd>录制文件的大小，单位为字节。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>fileName</pt>
+                    <pd>录制文件的绝对存储路径。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>durationMs</pt>
+                    <pd>录制文件的时长，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>fileSize</pt>
+                    <pd>录制文件的大小，单位为字节。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>recorderFileName</pt>
+                    <pd>录制文件的绝对存储路径。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>durationMs</pt>
+                    <pd>录制文件的时长，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>fileSize</pt>
+                    <pd>录制文件的大小，单位为字节。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

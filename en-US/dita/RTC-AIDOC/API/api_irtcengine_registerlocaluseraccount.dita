@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_registerlocaluseraccount">
+    <title><ph keyref="registerLocalUserAccount"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Registers a user account.</ph><ph id="shortdesc" props="android">Registers a user account.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerLocalUserAccount"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int registerLocalUserAccount(const char* appId, const char* userAccount) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int registerLocalUserAccount(String appId, String userAccount);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method registers a user account. After successful registration, the user account can be used to identify the local user when joining a channel. You can choose one of the following methods to join a channel using a user account:
+                <ul>
+                    <li>First call <xref keyref="registerLocalUserAccount"/> to register the user account, then call <codeph>joinChannelWithUserAccount</codeph> to join the channel. This can reduce the time needed to join the channel.</li>
+                    <li>Directly call <codeph>joinChannelWithUserAccount</codeph> to join the channel.</li>
+                </ul><ph>Starting from v4.6.0, the SDK no longer automatically maps an <codeph>int</codeph> type user ID to the <codeph>string</codeph> type <codeph>userAccount</codeph> used during registration. If you want to join a channel with the original <codeph>string</codeph> type <codeph>userAccount</codeph> you registered, use <codeph>joinChannelWithUserAccount</codeph> instead of calling <codeph>joinChannel</codeph> with the <codeph>int</codeph> type user ID obtained from this method.</ph><ph>Ensure that <codeph>userAccount</codeph> is unique within the channel.</ph><ph>To ensure smooth communication, it is recommended to identify users using the same parameter type. For example, if one user joins the channel with a user ID, other users should also use user IDs; similarly, if one uses a user account, others should also use user accounts. If users join the channel using the Agora Web SDK, ensure that the user ID uses the same parameter type.</ph></p>
+            <p props="android">This method registers a user account. After successful registration, the user account can be used to identify the local user when joining a channel. This method is optional. If you want to join a channel using a user account, you can choose either of the following:
+                <ul>
+                    <li>Call <xref keyref="registerLocalUserAccount"/> first to register the user account, then call <codeph>joinChannelWithUserAccount</codeph> to join the channel. This may reduce the time required to join the channel.</li>
+                    <li>Directly call <codeph>joinChannelWithUserAccount</codeph> to join the channel.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After successfully calling this method, the SDK triggers the <xref keyref="onLocalUserRegistered"/> callback to report the local user's user ID and user account.</p>
+            <p props="android">After this method is successfully called, the SDK triggers the <xref keyref="onLocalUserRegistered"/> callback to report the local user's user ID and user account.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>appId</pt>
+                    <pd>The App ID of your project in the Agora Console.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>userAccount</pt>
+                    <pd>The user account used to identify the user in a channel for real-time audio and video interaction. You need to set and manage the user account yourself and ensure that each user account is unique within the same channel. The maximum length of this parameter is 255 bytes and it cannot be empty. Supported characters (89 total) include:
+                        <ul>
+                            <li>26 lowercase English letters: a to z.</li>
+                            <li>26 uppercase English letters: A to Z.</li>
+                            <li>All numeric digits: 0 to 9.</li>
+                            <li>Space</li>
+                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>appId</pt>
+                    <pd>The App ID of your project in the Agora Console.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userAccount</pt>
+                    <pd>The user account used to identify the user in the channel for real-time audio and video interaction. You must set and manage this account yourself and ensure it is unique within the same channel. The maximum length of this parameter is 255 bytes and it cannot be empty. Supported characters (total 89):
+                        <ul>
+                            <li>26 lowercase letters: a to z.</li>
+                            <li>26 uppercase letters: A to Z.</li>
+                            <li>All numeric characters: 0 to 9.</li>
+                            <li>Space</li>
+                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

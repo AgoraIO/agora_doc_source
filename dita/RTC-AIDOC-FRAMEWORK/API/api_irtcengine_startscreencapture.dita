@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startscreencapture">
+    <title><ph keyref="startScreenCapture"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">开始屏幕采集。</ph><ph id="shortdesc" props="flutter">开始屏幕采集。</ph><ph id="shortdesc" props="unity">开始屏幕采集。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startScreenCapture"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract startScreenCapture(captureParams: ScreenCaptureParameters2): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="rn">
+                <ul>
+                    <li>屏幕共享流的计费标准以 <xref keyref="ScreenVideoParameters"/> 中的 <codeph>dimensions</codeph> 值为准：
+                        <ul>
+                            <li>当你未传值时，以 1280 × 720 计费。</li>
+                            <li>当你传值时，以你传入的值计费。</li>
+                        </ul>
+                    </li>
+                    <li>在 iOS 平台上，屏幕共享仅适用于 iOS 12.0 及以上。</li>
+                    <li>在 iOS 平台上，如果你使用音频自采集而非 SDK 采集音频，为避免应用退后台后屏幕共享停止，建议你对应用添加保活处理逻辑。</li>
+                    <li>在 iOS 平台上，该功能对设备性能要求较高，建议你在 iPhone X 及之后机型上使用。</li>
+                    <li>在 iOS 平台上，该方法依赖于屏幕共享动态库 <codeph>AgoraReplayKitExtension.xcframework</codeph>，如果删除该动态库会导致无法正常开启屏幕共享。</li>
+                    <li>在 Android 平台上，如果用户未授予 App 屏幕采集权限，SDK 会上报 <codeph>onPermissionError(2)</codeph> 回调。</li>
+                    <li>在 Android 9 及之后版本上，为避免应用退后台后被系统杀死，建议你在 <codeph>/app/Manifests/AndroidManifest.xml</codeph> 文件中添加前台服务权限：<codeph>android.permission.FOREGROUND_SERVICE</codeph>。</li>
+                    <li>因 Android 性能限制，屏幕共享不支持 Android TV。</li>
+                    <li>因 Android 系统限制，使用华为手机进行屏幕共享时，为避免崩溃，请不要在共享过程中调节屏幕共享流的视频编码分辨率。</li>
+                    <li>因 Android 系统限制，部分小米手机不支持屏幕共享时采集系统音频。</li>
+                    <li>为提高屏幕共享时采集系统音频的成功率，建议你在加入频道前通过 <xref keyref="setAudioScenario"/> 方法设置音频场景为 <codeph>AudioScenarioGameStreaming</codeph>。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法仅适用于 Android 和 iOS 平台。</li>
+                    <li>屏幕共享流的计费标准以 <xref keyref="ScreenVideoParameters"/> 中的 <codeph>dimensions</codeph> 值为准：
+                        <ul>
+                            <li>当你未传值时，以 1280 × 720 计费。</li>
+                            <li>当你传值时，以你传入的值计费。</li>
+                        </ul>
+                    </li>
+                    <li>在 iOS 平台上，屏幕共享仅适用于 iOS 12.0 及以上。</li>
+                    <li>在 iOS 平台上，如果你使用音频自采集而非 SDK 采集音频，为避免应用退后台后屏幕共享停止，建议你对应用添加保活处理逻辑。</li>
+                    <li>在 iOS 平台上，该功能对设备性能要求较高，建议你在 iPhone X 及之后机型上使用。</li>
+                    <li>在 iOS 平台上，该方法依赖于屏幕共享动态库 <codeph>AgoraReplayKitExtension.xcframework</codeph>，如果删除该动态库会导致无法正常开启屏幕共享。</li>
+                    <li>在 Android 平台上，如果用户未授予 App 屏幕采集权限，SDK 会上报 <codeph>onPermissionError(2)</codeph> 回调。</li>
+                    <li>在 Android 9 及之后版本上，为避免应用退后台后被系统杀死，建议你在 <codeph>/app/Manifests/AndroidManifest.xml</codeph> 文件中添加前台服务权限：<codeph>android.permission.FOREGROUND_SERVICE</codeph>。</li>
+                    <li>因 Android 性能限制，屏幕共享不支持 Android TV。</li>
+                    <li>因 Android 系统限制，使用华为手机进行屏幕共享时，为避免崩溃，请不要在共享过程中调节屏幕共享流的视频编码分辨率。</li>
+                    <li>因 Android 系统限制，部分小米手机不支持屏幕共享时采集系统音频。</li>
+                    <li>为提高屏幕共享时采集系统音频的成功率，建议你在加入频道前通过 <xref keyref="setAudioScenario"/> 方法设置音频场景为 <codeph>audioScenarioGameStreaming</codeph>。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法仅适用于 Android 和 iOS 平台。</li>
+                    <li>屏幕共享流的计费标准以 <xref keyref="ScreenVideoParameters"/> 中的 <codeph>dimensions</codeph> 值为准：
+                        <ul>
+                            <li>当你未传值时，以 1280 × 720 计费。</li>
+                            <li>当你传值时，以你传入的值计费。</li>
+                        </ul>
+                    </li>
+                    <li>在 iOS 平台上，屏幕共享仅适用于 iOS 12.0 及以上。</li>
+                    <li>在 iOS 平台上，如果你使用音频自采集而非 SDK 采集音频，为避免应用退后台后屏幕共享停止，建议你对应用添加保活处理逻辑。</li>
+                    <li>在 iOS 平台上，该功能对设备性能要求较高，建议你在 iPhone X 及之后机型上使用。</li>
+                    <li>在 iOS 平台上，该方法依赖于屏幕共享动态库 <codeph>AgoraReplayKitExtension.xcframework</codeph>，如果删除该动态库会导致无法正常开启屏幕共享。</li>
+                    <li>在 Android 平台上，如果用户未授予 App 屏幕采集权限，SDK 会上报 <codeph>OnPermissionError(2)</codeph> 回调。</li>
+                    <li>在 Android 9 及之后版本上，为避免应用退后台后被系统杀死，建议你在 <codeph>/app/Manifests/AndroidManifest.xml</codeph> 文件中添加前台服务权限：<codeph>android.permission.FOREGROUND_SERVICE</codeph>。</li>
+                    <li>因 Android 性能限制，屏幕共享不支持 Android TV。</li>
+                    <li>因 Android 系统限制，使用华为手机进行屏幕共享时，为避免崩溃，请不要在共享过程中调节屏幕共享流的视频编码分辨率。</li>
+                    <li>因 Android 系统限制，部分小米手机不支持屏幕共享时采集系统音频。</li>
+                    <li>为提高屏幕共享时采集系统音频的成功率，建议你在加入频道前通过 <xref keyref="setAudioScenario"/> 方法设置音频场景为 <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph>。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>在屏幕共享场景下，你需要调用该方法开始采集屏幕视频流。有关屏幕共享的实现方法，详见[屏幕共享](https://doc.shengwang.cn/doc/rtc/rn/basic-features/screen-share)。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>调用时机</title>
+            <p props="rn">该方法在加入频道前后均可调用，区别如下：
+                <ul>
+                    <li>如果在加入频道前调用该方法，然后调用 <xref keyref="joinChannel2"/> 加入频道，并设置 <codeph>publishScreenCaptureVideo</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                    <li>如果在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 更新频道媒体选项，并设置 <codeph>publishScreenCaptureVideo</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                </ul>
+            </p>
+            <p props="flutter">该方法在加入频道前后均可调用，区别如下：
+                <ul>
+                    <li>如果在加入频道前调用该方法，然后调用 <xref keyref="joinChannel2"/> 加入频道，并设置 <codeph>publishScreenCaptureVideo</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                    <li>如果在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 更新频道媒体选项，并设置 <codeph>publishScreenCaptureVideo</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                </ul>
+            </p>
+            <p props="unity">该方法在加入频道前后均可调用，区别如下：
+                <ul>
+                    <li>如果在加入频道前调用该方法，然后调用 <xref keyref="joinChannel2"/> 加入频道，并设置 <codeph>publishScreenCaptureVideo</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                    <li>如果在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 更新频道媒体选项，并设置 <codeph>publishScreenCaptureVideo</codeph> 为 <xref keyref="true"/>，即可开始屏幕共享。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享的编码参数配置。详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享的编码参数配置。详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享的编码参数配置。详见 <xref keyref="ScreenCaptureParameters2"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>返回值</title>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2 (iOS 平台): 参数为空。</li>
+                            <li>-2 (Anroid 平台): 系统版本过低，请确保 Android API 级别不低于 21。</li>
+                            <li>-3 (Anroid 平台): 无法采集系统音频，请确保 Android API 级别不低于 29。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2 (iOS 平台): 参数为空。</li>
+                            <li>-2 (Anroid 平台): 系统版本过低，请确保 Android API 级别不低于 21。</li>
+                            <li>-3 (Anroid 平台): 无法采集系统音频，请确保 Android API 级别不低于 29。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

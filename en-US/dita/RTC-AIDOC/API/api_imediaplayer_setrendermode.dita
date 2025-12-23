@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setrendermode">
+    <title><ph keyref="setRenderMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the render mode of the media player.</ph><ph id="shortdesc" props="android">Sets the rendering mode of the media player.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRenderMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setRenderMode(media::base::RENDER_MODE_TYPE renderMode) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int setRenderMode(int mode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>renderMode</pt>
+                    <pd>The render mode. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mode</pt>
+                    <pd>Sets the rendering mode of the view:
+                        <ul>
+                            <li><codeph>RENDER_MODE_HIDDEN</codeph> (1): Hidden mode. Scales the video proportionally until it fills the view bounds, which may crop part of the video.</li>
+                            <li><codeph>RENDER_MODE_FIT</codeph> (2): Fit mode. Scales the video proportionally until one side fits the view bounds. Black bars are used to fill the remaining area due to aspect ratio differences.</li>
+                            <li><codeph>RENDER_MODE_ADAPTIVE</codeph> (3): Adaptive mode. This enum value is deprecated and not recommended.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

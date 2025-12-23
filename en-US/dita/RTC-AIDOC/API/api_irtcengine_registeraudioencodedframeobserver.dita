@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_registeraudioencodedframeobserver">
+    <title><ph keyref="registerAudioEncodedFrameObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Registers an observer for encoded audio data.</ph><ph id="shortdesc" props="android">Registers an observer for encoded audio data.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerAudioEncodedFrameObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int registerAudioEncodedFrameObserver(const AudioEncodedFrameObserverConfig&amp; config,  IAudioEncodedFrameObserver *observer) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int registerAudioEncodedFrameObserver(AudioEncodedFrameObserverConfig config, IAudioEncodedFrameObserver observer);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">You need to call this method after joining a channel. You can call this method or <codeph>startAudioRecording</codeph> to set the recording type and quality of the audio file, but Agora does not recommend using both methods at the same time. Only the method called later takes effect.</note>
+            <note props="android">Call this method after joining a channel. You can use this method or <codeph>startAudioRecording</codeph> to configure the recording type and quality of the audio file, but using both is not recommended. Only the method called last takes effect.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>Configuration for the encoded audio observer. See <xref keyref="AudioEncodedFrameObserverConfig"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>observer</pt>
+                    <pd>Observer for encoded audio data. See <xref keyref="IAudioEncodedFrameObserver"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>Configuration for the encoded audio observer. See <xref keyref="AudioEncodedFrameObserverConfig"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>observer</pt>
+                    <pd>The observer for encoded audio data. See <xref keyref="IAudioEncodedFrameObserver"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

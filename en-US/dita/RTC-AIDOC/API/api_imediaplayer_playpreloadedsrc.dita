@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_playpreloadedsrc">
+    <title><ph keyref="playPreloadedSrc"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Plays a preloaded media resource.</ph><ph id="shortdesc" props="android">Plays a preloaded media resource.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="playPreloadedSrc"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int playPreloadedSrc(const char* src) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int playPreloadedSrc(String src);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling <xref keyref="preloadSrc"/> to preload a media resource into the playlist, you can call this method to play the resource. If the call is successful and the <xref keyref="onPlayerSourceStateChanged"/> callback reports the <codeph>PLAYER_STATE_PLAYING</codeph> state, it indicates that playback has started.
+
+If you want to switch to another preloaded media resource, call this method again with a new media resource URL. To replay the same media resource, you need to call <xref keyref="preloadSrc"/> again to preload it.
+
+To clear the playlist, call the <xref keyref="stop"/> method.</p>
+            <p props="android">After preloading a media resource into the playlist using <xref keyref="preloadSrc"/>, you can call <xref keyref="playPreloadedSrc"/> to play it. If you receive the <xref keyref="onPlayerSourceStateChanged"/> callback reporting the <codeph>PLAYER_STATE_PLAYING</codeph> state, playback is successful.
+To switch to another preloaded media resource, call <xref keyref="playPreloadedSrc"/> again with a new media resource URL. To replay the same media resource, preload it again using <xref keyref="preloadSrc"/> before playing. To clear the playlist, call <xref keyref="Stop_Player"/>.</p>
+            <note props="cpp">If you call this method while playback is paused, it will not take effect until playback resumes.</note>
+            <note props="android">If you call this method while playback is paused, it will not take effect until playback resumes.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>src</pt>
+                    <pd>The URL of the media resource in the playlist. It must match the <codeph>src</codeph> set via <xref keyref="preloadSrc"/>; otherwise, the media resource cannot be played.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>src</pt>
+                    <pd>URL of the media resource in the playlist. Must match the <codeph>src</codeph> set by <xref keyref="preloadSrc"/>, otherwise the media resource cannot be played.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

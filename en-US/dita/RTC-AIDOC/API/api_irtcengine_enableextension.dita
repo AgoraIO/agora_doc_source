@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enableextension">
+    <title><ph keyref="enableExtension"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables an extension.</ph><ph id="shortdesc" props="android">Enables or disables an extension feature.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableExtension"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableExtension(const char* provider, const char* extension, const ExtensionInfo&amp; extensionInfo, bool enable = true) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableExtension(String provider, String extension, boolean enable);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">By calling this method, you can dynamically enable or disable an extension without changing the processing flow. For example, enabling or disabling <codeph>Extension_A</codeph> means the data will be processed by or bypass <codeph>Extension_A</codeph>.</p>
+            <p props="android">You can dynamically enable or disable an extension feature by calling this method without changing the processing flow.</p>
+            <note props="cpp">For compatibility, if you have not called <xref keyref="registerExtension"/>, <xref keyref="enableExtension"/> will automatically register the specified extension. It is recommended to call <xref keyref="registerExtension"/> explicitly.</note>
+            <note props="android"><xref keyref="enableExtension"/> automatically registers the specified extension if <xref keyref="registerExtension"/> is not called, to ensure compatibility. It is recommended to explicitly call <xref keyref="registerExtension"/>.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>provider</pt>
+                    <pd>The name of the extension provider, for example, <codeph>agora.io</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>extension</pt>
+                    <pd>The name of the extension, for example, <codeph>agora.beauty</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>extensionInfo</pt>
+                    <pd>The <codeph>ExtensionInfo</codeph> object representing the extension information.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enable</pt>
+                    <pd>Whether to enable the extension:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Enable the extension.</li>
+                            <li><xref keyref="false"/>: Disable the extension.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>provider</pt>
+                    <pd>The name of the extension provider, e.g., <codeph>agora.io</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>extension</pt>
+                    <pd>The name of the extension feature, e.g., <codeph>agora.beauty</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enable</pt>
+                    <pd>Whether to enable the extension feature:
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Enable the extension feature.</li>
+                            <li><xref keyref="false"/>: Disable the extension feature.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

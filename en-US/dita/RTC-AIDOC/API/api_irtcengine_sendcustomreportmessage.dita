@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_sendcustomreportmessage">
+    <title><ph keyref="sendCustomReportMessage"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sends a custom report message.</ph><ph id="shortdesc" props="android">Reports a custom message.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="sendCustomReportMessage"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int sendCustomReportMessage(const char* id, const char* category, const char* event, const char* label, int value) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int sendCustomReportMessage(String id, String category, String event, String label, int value);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This feature is in testing. It supports sending and analyzing custom messages and is currently available for free trial. In the test version, up to 10 messages can be sent within 6 seconds, each message no more than 256 bytes, and each string no more than 100 bytes. To try this feature, please contact sales to discuss the custom message format.</p>
+            <p props="android">This feature is currently in testing and is available for free trial. In the test version, you can report up to 10 messages within 6 seconds. Each message must not exceed 256 bytes, and each string must not exceed 100 bytes. To try this feature, contact technical support and discuss the format of the custom message with us.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>id</pt>
+                    <pd>The unique identifier of the message.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>category</pt>
+                    <pd>The category of the message.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>event</pt>
+                    <pd>The event name.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>label</pt>
+                    <pd>The message label.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>value</pt>
+                    <pd>The value of the message.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>id</pt>
+                    <pd>The ID of the custom message.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>category</pt>
+                    <pd>The category of the custom message.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>event</pt>
+                    <pd>The event name of the custom message.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>label</pt>
+                    <pd>The label of the custom message.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>value</pt>
+                    <pd>The value of the custom message.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

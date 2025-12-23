@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlogfile">
+    <title><ph keyref="setLogFile"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the SDK log output file path.</ph><ph id="shortdesc" props="android">Sets the SDK log output file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLogFile"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setLogFile(const char* filePath) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setLogFile(String filePath);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use the <codeph>context</codeph> parameter in <xref keyref="initialize"/> to set the log file path instead.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Set the log file path using the <codeph>config</codeph> parameter when calling <xref keyref="initialize"/>.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">Specifies the file path for SDK log output. The log file records all log data during SDK operation. You must call this method immediately after calling <xref keyref="initialize"/>, otherwise the log output may be incomplete.</p>
+            <p props="android">You must call this method immediately after calling <xref keyref="initialize"/>, or the log output may be incomplete.</p>
+            <note props="cpp">Make sure the directory for the log file exists and has write permissions.</note>
+            <note props="android">Ensure the directory for the log file exists and is writable.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You must call this method immediately after calling <xref keyref="initialize"/>, otherwise the log output may be incomplete.</p>
+            <p props="android">You must call this method immediately after calling <xref keyref="create_ILocalSpatialAudioEngine"/>, or the log output may be incomplete.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>filePath</pt>
+                    <pd>The full path of the log file, encoded in UTF-8.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>filePath</pt>
+                    <pd>The full path of the log file, encoded in UTF-8.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

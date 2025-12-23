@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startlocalvideotranscoder">
+    <title><ph keyref="startLocalVideoTranscoder"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts local video compositing.</ph><ph id="shortdesc" props="android">Starts local video composition.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startLocalVideoTranscoder"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startLocalVideoTranscoder(const LocalTranscoderConfiguration&amp; config) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startLocalVideoTranscoder(LocalTranscoderConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You can call this method to locally merge multiple video streams into one, such as camera video, screen sharing, media player, remote video, video files, images, etc., and publish the mixed video stream to the channel.
+Here is a typical use case for implementing portrait picture-in-picture:
+                <ol>
+                    <li>Call <xref keyref="enableVirtualBackground"/> and set the custom background image to <codeph>BACKGROUND_NONE</codeph> to separate the portrait from the background in the camera video.</li>
+                    <li>Call <codeph>startScreenCapture</codeph> to start capturing the screen sharing video stream.</li>
+                    <li>Call <xref keyref="startLocalVideoTranscoder"/> and set the portrait video source as one of the sources for local video compositing to achieve portrait picture-in-picture in the final composited video.</li>
+                </ol>
+            </p>
+            <p props="android">After calling this method, you can locally merge multiple video streams into one, such as camera capture, screen sharing, media player, remote video, video files, images, etc., and then publish the mixed video stream to the channel. Below is a typical use case for implementing portrait picture-in-picture:
+                <ol>
+                    <li>Call <codeph>enableVirtualBackground</codeph> and set the custom background image to <codeph>BACKGROUND_NONE</codeph> to separate the portrait from the background in the camera-captured video.</li>
+                    <li>Call <xref keyref="startScreenCapture"/> to start capturing the screen sharing video stream.</li>
+                    <li>Call <xref keyref="startLocalVideoTranscoder"/> and set the captured portrait video source as one of the sources for local video composition to achieve portrait picture-in-picture effect in the video.</li>
+                </ol>
+            </p>
+            <note props="cpp">
+                <ul>
+                    <li>Local video compositing requires high device performance. It is recommended to use high-performance devices.</li>
+                    <li>To mix locally captured video streams, the SDK supports the following combinations:
+                        <ul>
+                            <li>Windows: Up to 4 camera streams + 4 screen sharing streams.</li>
+                            <li>macOS: Up to 4 camera streams + 1 screen sharing stream.</li>
+                            <li>Android and iOS: Up to 2 camera streams (requires dual-camera or external camera support) + 1 screen sharing stream.</li>
+                        </ul>
+                    </li>
+                    <li>When configuring local video mixing, make sure the layer index of the portrait video stream is higher than that of the screen sharing stream. Otherwise, the portrait will be covered and not visible in the final composited video.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>Local video composition requires more CPU resources. Agora recommends enabling this feature on high-performance devices.</li>
+                    <li>To mix locally captured video streams, the SDK supports the following combinations:
+                        <ul>
+                            <li>On Android, supports up to 2 camera-captured video streams (the device must support dual cameras or external cameras) + 1 screen sharing stream.</li>
+                        </ul>
+                    </li>
+                    <li>When configuring local video composition, ensure the layer number of the portrait video stream is greater than that of the screen sharing stream. Otherwise, the portrait will be blocked by the screen sharing and will not appear in the final mixed video.</li>
+                    <li>The maximum resolution for each video stream participating in local video composition is 4096 × 2160. If this limit is exceeded, the video composition will not take effect.</li>
+                    <li>The maximum resolution of the mixed video stream is 4096 × 2160.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>Applicable to scenarios such as remote meetings, live streaming, and online education. It helps users view and manage multiple video streams and supports features like portrait picture-in-picture.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">
+                <ul>
+                    <li>To mix locally captured video streams, call this method after calling <xref keyref="startCameraCapture"/> or <codeph>startScreenCapture</codeph>.</li>
+                    <li>To publish the composited video stream to the channel, set <codeph>publishTranscodedVideoTrack</codeph> to <xref keyref="true"/> in <xref keyref="ChannelMediaOptions"/> when calling <codeph>joinChannel</codeph> or <xref keyref="updateChannelMediaOptions"/>.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>To mix locally captured video streams, call this method after calling <xref keyref="startCameraCapture"/> or <xref keyref="startScreenCapture"/>.</li>
+                    <li>To publish the mixed video stream to the channel, set <codeph>publishTranscodedVideoTrack</codeph> to <xref keyref="true"/> in the <xref keyref="ChannelMediaOptions"/> when calling <codeph>joinChannel</codeph> or <xref keyref="updateChannelMediaOptions"/>.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">If this method fails, the SDK triggers the <xref keyref="onLocalVideoTranscoderError"/> callback to report the failure reason.</p>
+            <p props="android">If this method call fails, the SDK triggers the <xref keyref="onLocalVideoTranscoderError"/> callback to report the failure reason.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>Local video compositing configuration. See <xref keyref="LocalTranscoderConfiguration"/>.
+                        <note>
+                            <ul>
+                                <li>The maximum resolution for each video stream participating in local compositing is 4096 × 2160. Exceeding this limit will cause compositing to fail.</li>
+                                <li>The maximum resolution of the composited video stream is 4096 × 2160.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>Configuration for local video composition. See <xref keyref="LocalTranscoderConfiguration"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

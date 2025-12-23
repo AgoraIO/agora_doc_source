@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_destroymusicplayer">
+    <title><ph keyref="destroyMusicPlayer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Destroys the music player object.</ph><ph id="shortdesc" props="android">Destroys the music player object.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="destroyMusicPlayer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int destroyMusicPlayer(agora_refptr&lt;IMusicPlayer&gt; music_player) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int destroyMusicPlayer(IAgoraMusicPlayer player);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">When you no longer need the music player, you can call this method to destroy the object. If you need to use the music player again after destruction, call <xref keyref="createMusicPlayer"/> to recreate it.</p>
+            <p props="android">If you need to use the music player again after destroying it, you must call the <xref keyref="createMusicPlayer"/> method to recreate it.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You can call this method before or after joining a channel, but it must be called before calling the <xref keyref="release_IMusicContentCenter"/> method.</p>
+            <p props="android">You can call this method before or after joining a channel, but you must ensure it is called before the <xref keyref="destroy_IMusicContentCenter"/> method.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>music_player</pt>
+                    <pd>The music player object. See <xref keyref="IMusicPlayer"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>player</pt>
+                    <pd>The music player object. See <xref keyref="IMusicPlayer"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

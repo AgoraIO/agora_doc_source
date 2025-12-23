@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_updatechannelmediaoptionsex">
+    <title><ph keyref="updateChannelMediaOptionsEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Updates channel media options after joining a channel.</ph><ph id="shortdesc" props="android">Updates the channel media options after joining a channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updateChannelMediaOptionsEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int updateChannelMediaOptionsEx(const ChannelMediaOptions&amp; options, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int updateChannelMediaOptionsEx(ChannelMediaOptions options, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method applies to multi-channel scenarios.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>options</pt>
+                    <pd>Channel media options. See <xref keyref="ChannelMediaOptions"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>Channel media options. See <xref keyref="ChannelMediaOptions"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-2: Invalid member values in <xref keyref="ChannelMediaOptions"/>, such as an invalid <codeph>token</codeph> or user ID. You need to provide valid parameters.</li>
+                            <li>-7: The <xref keyref="IRtcEngine"/> object has not been initialized. You need to initialize the <xref keyref="IRtcEngine"/> object before calling this method.</li>
+                            <li>-8: Internal state error of the <xref keyref="IRtcEngine"/> object, possibly because the user has not joined the channel. Agora recommends that you use the <xref keyref="onConnectionStateChanged"/> callback to determine whether the user is in the channel. If you receive <codeph>CONNECTION_STATE_DISCONNECTED</codeph> (1) or <codeph>CONNECTION_STATE_FAILED</codeph> (5), it means the user is not in the channel. You need to call <codeph>joinChannel</codeph> to join the channel before calling this method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-2: Invalid member value in <xref keyref="ChannelMediaOptions"/>, such as an invalid <codeph>token</codeph> or user ID. You need to provide valid parameters.</li>
+                            <li>-7: <xref keyref="IRtcEngine"/> is not initialized. You must initialize the <xref keyref="IRtcEngine"/> object before calling this method.</li>
+                            <li>-8: Internal state error of the <xref keyref="IRtcEngine"/> object, possibly because the user is not in a channel. Agora recommends that you determine whether the user is in a channel by using the <xref keyref="onConnectionStateChanged"/> callback. If you receive <codeph>CONNECTION_STATE_DISCONNECTED</codeph> (1) or <codeph>CONNECTION_STATE_FAILED</codeph> (5), the user is not in a channel. You need to call <codeph>joinChannel</codeph> before calling this method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

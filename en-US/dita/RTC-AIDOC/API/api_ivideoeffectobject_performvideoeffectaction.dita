@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ivideoeffectobject_performvideoeffectaction">
+    <title><ph keyref="performVideoEffectAction"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Performs an action on the specified video effect node.</ph><ph id="shortdesc" props="android">Performs an action on the specified video effect node.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="performVideoEffectAction"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int performVideoEffectAction(uint32_t nodeId, VIDEO_EFFECT_ACTION actionId) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int performVideoEffectAction(int nodeId, VIDEO_EFFECT_ACTION actionId);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>nodeId</pt>
+                    <pd>Unique identifier of the video effect node.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>actionId</pt>
+                    <pd>Action to perform. See <xref keyref="VIDEO_EFFECT_ACTION"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>nodeId</pt>
+                    <pd>Unique identifier of the video effect node.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>actionId</pt>
+                    <pd>Action to perform on the video effect node. See <xref keyref="VIDEO_EFFECT_ACTION"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

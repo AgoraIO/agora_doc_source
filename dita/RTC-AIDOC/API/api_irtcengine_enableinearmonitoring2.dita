@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enableinearmonitoring2">
+    <title><ph keyref="enableInEarMonitoring2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用或关闭耳返功能。</ph><ph id="shortdesc" props="ios">启用或关闭耳返监听功能。</ph><ph id="shortdesc" props="android">启用或关闭耳返监听功能。</ph><ph id="shortdesc" props="mac">启用或关闭耳返监听功能。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableInEarMonitoring2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableInEarMonitoring(bool enabled, int includeAudioFilters) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)enableInEarMonitoring:(BOOL)enabled includeAudioFilters:(AgoraEarMonitoringFilterType)includeAudioFilters NS_SWIFT_NAME(enable(inEarMonitoring:includeAudioFilters:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableInEarMonitoring(boolean enabled, int includeAudioFilters);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)enableInEarMonitoring:(BOOL)enabled includeAudioFilters:(AgoraEarMonitoringFilterType)includeAudioFilters NS_SWIFT_NAME(enable(inEarMonitoring:includeAudioFilters:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">你必须使用有线或蓝牙耳机才能听到耳返效果。</note>
+            <note props="ios">你必须使用有线或蓝牙耳机才能听到耳返监听效果。</note>
+            <note props="android">你必须使用有线或蓝牙耳机才能听到耳返监听效果。</note>
+            <note props="mac">你必须使用有线或蓝牙耳机才能听到耳返监听效果。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">你可以在加入频道前或加入频道后调用该方法。</p>
+            <p props="ios">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="android">该方法可以在加入频道前或加入频道后调用。</p>
+            <p props="mac">该方法可以在加入频道前或加入频道后调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>是否启用耳返功能。
+                        <note>
+                            <ul>
+                                <li><xref keyref="true"/>：启用耳返功能。</li>
+                                <li><xref keyref="false"/>：（默认）关闭耳返功能。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>includeAudioFilters</pt>
+                    <pd>耳返功能使用的音频滤镜类型，详见 <xref keyref="EAR_MONITORING_FILTER_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>enabled</pt>
+                    <pd>是否启用耳返监听功能。
+                        <ul>
+                            <li><xref keyref="true"/>：启用耳返监听。</li>
+                            <li><xref keyref="false"/>：（默认）关闭耳返监听。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>includeAudioFilters</pt>
+                    <pd>耳返监听的音频滤波器类型，详见 <xref keyref="EAR_MONITORING_FILTER_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>是否启用耳返监听功能。
+                        <ul>
+                            <li><xref keyref="true"/>：启用耳返监听。</li>
+                            <li><xref keyref="false"/>：（默认）关闭耳返监听。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>includeAudioFilters</pt>
+                    <pd>
+                        <note>该参数仅在 <codeph>enabled</codeph> 为 <xref keyref="true"/> 时生效。</note><ph>耳返监听的音频滤镜类型：</ph>
+                        <ul>
+                            <li><codeph>EAR_MONITORING_FILTER_NONE (1 &lt;&lt; 0)</codeph>：（1）耳返监听中不添加音频滤镜。</li>
+                            <li><codeph>EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS (1 &lt;&lt; 1)</codeph>：（2）在耳返监听中添加人声特效音频滤镜。如果你实现了美声、音效等功能，用户可以听到添加这些效果后的声音。该枚举值支持使用按位或运算符（|）组合使用。</li>
+                            <li><codeph>EAR_MONITORING_FILTER_NOISE_SUPPRESSION (1 &lt;&lt; 2)</codeph>：（4）在耳返监听中添加降噪音频滤镜。该枚举值支持使用按位或运算符（|）组合使用。</li>
+                            <li><codeph>EAR_MONITORING_FILTER_REUSE_POST_PROCESSING_FILTER (1 &lt;&lt; 15)</codeph>：复用发送端已处理的音频滤镜用于耳返监听。该枚举值可降低 CPU 使用率，但会增加耳返监听延迟，适用于对延迟不敏感但要求低 CPU 消耗的场景。该枚举值仅支持单独使用，选中后其他音频滤镜配置将自动失效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>enabled</pt>
+                    <pd>是否启用耳返监听功能。
+                        <ul>
+                            <li><xref keyref="true"/>：启用耳返监听。</li>
+                            <li><xref keyref="false"/>：（默认）关闭耳返监听。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>includeAudioFilters</pt>
+                    <pd>耳返监听的音频滤波器类型，详见 <xref keyref="EAR_MONITORING_FILTER_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-8：请确保当前的音频路由为蓝牙或有线耳机。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-8：请确保当前音频路由为蓝牙或有线耳机。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-8：请确保当前音频路由为蓝牙或有线耳机。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-8：请确保当前音频路由为蓝牙或有线耳机。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

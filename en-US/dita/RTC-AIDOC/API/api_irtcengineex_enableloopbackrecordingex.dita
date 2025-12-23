@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_enableloopbackrecordingex">
+    <title><ph keyref="enableLoopbackRecordingEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables loopback recording, mixing the sound card output into the audio stream sent.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableLoopbackRecordingEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableLoopbackRecordingEx(const RtcConnection&amp; connection, bool enabled, const char* deviceName = NULL) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After enabling this feature, the sound card output is mixed into the audio stream sent to remote users.</p>
+            <note props="cpp">
+                <ul>
+                    <li>This method is only applicable to macOS and Windows.</li>
+                    <li>macOS does not support loopback recording from the default sound card. To use this feature, use a virtual sound card and pass its name to the <codeph>deviceName</codeph> parameter. <codeph>AgoraALD</codeph> is recommended as the virtual sound card.</li>
+                    <li>This method supports only one sound card for audio capture.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method applies to multi-channel scenarios.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable loopback recording:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable loopback recording.</li>
+                            <li><xref keyref="false"/>: (Default) Disable loopback recording.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>deviceName</pt>
+                    <pd>
+                        <ul>
+                            <li>macOS: Name of the virtual sound card. Default is <xref keyref="NULL"/>, which uses <codeph>AgoraALD</codeph> for loopback recording.</li>
+                            <li>Windows: Name of the sound card. Default is <xref keyref="NULL"/>, which uses the current device's sound card for recording.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

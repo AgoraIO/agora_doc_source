@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayercustomdataprovider_onseek">
+    <title><ph keyref="onSeek"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when seeking media resource data.</ph><ph id="shortdesc" props="android">Callback triggered when the SDK seeks media resource data.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onSeek"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int64_t onSeek(int64_t offset, int whence) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">long onSeek(long offset, int whence)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback is triggered when calling <xref keyref="openWithMediaSource"/> or <xref keyref="open"/> to open a custom media resource, and is used to request data from a specified position in the media resource.</p>
+            <p props="android">When you call the <xref keyref="openWithMediaSource"/> or <codeph>open</codeph> method to open a custom media resource, the SDK triggers this callback and requests data at a specific position in the media resource.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>offset</pt>
+                    <pd>Offset from the starting point to the target position, in bytes. This value can be positive or negative.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>whence</pt>
+                    <pd>Starting point, can be set to one of the following values:
+                        <ul>
+                            <li>0: Start from the beginning of the data, the actual offset is <codeph>offset</codeph>.</li>
+                            <li>1: Start from the current position, the actual offset is the current position plus <codeph>offset</codeph>.</li>
+                            <li>2: Start from the end of the data, the actual offset is the total data length plus <codeph>offset</codeph>.</li>
+                            <li>65536: Do not perform seek, return the file size. Recommended for pure audio files such as MP3, WAV.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>offset</pt>
+                    <pd>Offset from the starting point to the target position, in bytes. This value can be positive or negative.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>whence</pt>
+                    <pd>Starting point. Can be set to one of the following values:
+                        <ul>
+                            <li>0: Start from the beginning of the data. The actual data offset after seeking is <codeph>offset</codeph>.</li>
+                            <li>1: Start from the current position. The actual data offset after seeking is current position plus <codeph>offset</codeph>.</li>
+                            <li>2: Start from the end of the data. The actual data offset after seeking is total data length plus <codeph>offset</codeph>.</li>
+                            <li>65536: Do not perform seek. Returns the file size. Recommended for pure audio files such as MP3, WAV.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>When <codeph>whence</codeph> is <codeph>65536</codeph>, returns the size of the media file.</li>
+                    <li>When <codeph>whence</codeph> is <codeph>0</codeph>, <codeph>1</codeph>, or <codeph>2</codeph>, returns the actual offset after seeking.</li>
+                    <li>-1: Seek failed.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>When <codeph>whence</codeph> is 65536, returns the media file size.</li>
+                    <li>When <codeph>whence</codeph> is 0, 1, or 2, returns the actual data offset after seeking.</li>
+                    <li>-1: Seek failed.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

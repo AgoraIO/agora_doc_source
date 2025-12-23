@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getcurrentmonotonictimeinms">
+    <title><ph keyref="getCurrentMonotonicTimeInMs"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">获取 SDK 当前的 Monotonic Time。</ph><ph id="shortdesc" props="rn">获取 SDK 当前的 Monotonic Time。</ph><ph id="shortdesc" props="flutter">获取 SDK 当前的 Monotonic Time。</ph><ph id="shortdesc" props="unity">获取 SDK 当前的 Monotonic Time。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCurrentMonotonicTimeInMs"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getCurrentMonotonicTimeInMs(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getCurrentMonotonicTimeInMs(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getCurrentMonotonicTimeInMs();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract long GetCurrentMonotonicTimeInMs();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Monotonic Time 是指一个单调递增的时间序列，它的值会随着时间的推移而增加。单位为毫秒。
+在自定义视频采集、自定义音频采集场景中，为确保音视频同步，声网建议你调用该方法获取 SDK 当前的 Monotonic Time 后，将该值传入采集的视频帧（<xref keyref="VideoFrame"/>）、音频帧（<xref keyref="AudioFrame"/>）的时间戳参数。</p>
+            <p props="rn">Monotonic Time 是指一个单调递增的时间序列，它的值会随着时间的推移而增加。单位为毫秒。
+在自定义视频采集、自定义音频采集场景中，为确保音视频同步，声网建议你调用该方法获取 SDK 当前的 Monotonic Time 后，将该值传入采集的视频帧（<xref keyref="VideoFrame"/>）、音频帧（<xref keyref="AudioFrame"/>）的时间戳参数。</p>
+            <p props="flutter">Monotonic Time 是指一个单调递增的时间序列，它的值会随着时间的推移而增加。单位为毫秒。
+在自定义视频采集、自定义音频采集场景中，为确保音视频同步，声网建议你调用该方法获取 SDK 当前的 Monotonic Time 后，将该值传入采集的视频帧（<xref keyref="VideoFrame"/>）、音频帧（<xref keyref="AudioFrame"/>）的时间戳参数。</p>
+            <p props="unity">Monotonic Time 是指一个单调递增的时间序列，它的值会随着时间的推移而增加。单位为毫秒。
+在自定义视频采集、自定义音频采集场景中，为确保音视频同步，声网建议你调用该方法获取 SDK 当前的 Monotonic Time 后，将该值传入采集的视频帧（<xref keyref="VideoFrame"/>）、音频帧（<xref keyref="AudioFrame"/>）的时间戳参数。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">加入频道前后均可调用。</p>
+            <p props="rn">加入频道前后均可调用。</p>
+            <p props="flutter">加入频道前后均可调用。</p>
+            <p props="unity">加入频道前后均可调用。</p>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>≥ 0: 方法调用成功，返回 SDK 当前的 Monotonic Time（毫秒）。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>≥ 0: 方法调用成功，返回 SDK 当前的 Monotonic Time（毫秒）。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>≥ 0: 方法调用成功，返回 SDK 当前的 Monotonic Time（毫秒）。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>≥ 0: 方法调用成功，返回 SDK 当前的 Monotonic Time（毫秒）。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

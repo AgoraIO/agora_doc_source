@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audiospectrumdata">
+    <title><ph keyref="AudioSpectrumData"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">表示音频频谱数据。</ph><ph id="shortdesc" props="android">用于获取音频频谱数据。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct AudioSpectrumData {
+  const float* audioSpectrumData;
+  int dataLength;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class AudioSpectrumInfo {
+  private float[] audioSpectrumData;
+  private int dataLength;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>audioSpectrumData</pt>
+                    <pd>音频频谱数据。声网将音频频率划分为 256 个频域，并通过该参数上报每个频域的能量值。每个能量值的取值范围为 [-300, 1]，单位为 dBFS。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>dataLength</pt>
+                    <pd>音频频谱数据的长度为 256。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioSpectrumData</pt>
+                    <pd>音频频谱数据。声网将音频频率划分为 256 个频率域，并通过该参数报告每个频率域的能量值。每个能量值的取值范围为 [-300, 1]，单位为 dBFS。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>dataLength</pt>
+                    <pd>音频频谱数据的长度，固定为 256。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_rte_getconfigs_rte">
+    <title><ph keyref="GetConfigs_Rte"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Retrieves the configuration information of the <codeph>RTE</codeph> object.</ph><ph id="shortdesc" props="android">Retrieves the configuration information of the <xref keyref="Rte_Rte"/> object.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="GetConfigs_Rte"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">bool GetConfigs(Config *config, Error *err = nullptr)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void getConfigs(Config config) throws RteException</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Added since v4.4.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Added since version v4.4.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after calling <xref keyref="Rte_Rte"/>.</p>
+            <p props="android">This method must be used after calling <xref keyref="Rte_Rte"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>An output parameter. Represents the configuration information of the <codeph>RTE</codeph> object. See <xref keyref="Config"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>An output parameter. Status or error information. See <xref keyref="Error"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>See <xref keyref="Config"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="exception" props="android">
+            <title>Exceptions</title>
+            <p props="android">If the method call fails, the SDK throws an <xref keyref="RteException"/> and returns the corresponding error information. You need to catch and handle this exception.</p>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>: Retrieval succeeded.</li>
+                    <li><xref keyref="false"/>: Retrieval failed.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

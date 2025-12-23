@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startrtmpstreamwithouttranscoding">
+    <title><ph keyref="startRtmpStreamWithoutTranscoding"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts pushing media streams to CDN without transcoding.</ph><ph id="shortdesc" props="android">Starts pushing audio and video streams to the CDN without transcoding.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startRtmpStreamWithoutTranscoding"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startRtmpStreamWithoutTranscoding(const char* url) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startRtmpStreamWithoutTranscoding(String url);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Agora recommends using a more comprehensive server-side streaming feature. See [Implement server-side CDN streaming](https://doc.shengwang.cn/doc/media-push/restful/landing-page).
+You can call this method to push audio or video streams to a specified CDN address. This method can only push media streams to one CDN address at a time. To push to multiple addresses, call this method multiple times.</p>
+            <p props="android">Agora recommends using a more complete server-side streaming solution. See [Implement server-side live streaming](https://doc.shengwang.cn/doc/media-push/restful/landing-page).
+You can call this method to push audio or video streams to a specified CDN URL. This method can only push media streams to one CDN URL at a time. To push to multiple URLs, call this method multiple times.</p>
+            <note props="cpp">
+                <ul>
+                    <li>Call this method after joining a channel.</li>
+                    <li>Only the host role in <codeph>LIVE_BROADCASTING</codeph> mode can call this method.</li>
+                    <li>If a retry is needed after a streaming failure, call <xref keyref="stopRtmpStream"/> first to stop streaming, then call this method again to retry. Otherwise, the SDK returns the same error code as the previous failure.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>Call this method after joining a channel.</li>
+                    <li>Only users with the broadcaster role in <codeph>LIVE_BROADCASTING</codeph> mode can call this method.</li>
+                    <li>If you need to retry after a streaming failure, first call <xref keyref="stopRtmpStream"/> to stop streaming, then call this method again; otherwise, the SDK will return the same error code as the previous failure.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After successfully calling this method, the SDK triggers the <xref keyref="onRtmpStreamingStateChanged"/> callback to report the streaming state.</p>
+            <p props="android">After this method is successfully called, the SDK triggers the <xref keyref="onRtmpStreamingStateChanged"/> callback to report the streaming status.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>url</pt>
+                    <pd>CDN streaming URL. Format must be RTMP or RTMPS. The string length must not exceed 1024 bytes.
+                        <note>Chinese and other special characters are not supported.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>url</pt>
+                    <pd>The streaming URL in RTMP or RTMPS format. The length must not exceed 1024 bytes. Chinese or other special characters are not supported.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-2: Invalid <codeph>url</codeph> or transcoding configuration. Please check the <codeph>url</codeph> and transcoding configuration.</li>
+                            <li>-7: SDK is not initialized before calling this method.</li>
+                            <li>-19: The CDN streaming URL is already in use. Please use a different URL.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-2: Invalid <codeph>url</codeph>.</li>
+                            <li>-7: SDK not initialized before calling this method.</li>
+                            <li>-19: Streaming URL already in use. Please use a different URL.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

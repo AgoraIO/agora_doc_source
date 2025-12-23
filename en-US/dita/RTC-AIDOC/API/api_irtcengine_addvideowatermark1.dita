@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_addvideowatermark1">
+    <title><ph keyref="addVideoWatermark1"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Adds a PNG format watermark image to the local video stream.</ph><ph id="shortdesc" props="android">Adds a watermark image to the local video.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addVideoWatermark1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int addVideoWatermark(const RtcImage&amp; watermark) __deprecated = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int addVideoWatermark(AgoraImage watermark)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v2.9.1. Use <xref keyref="addVideoWatermark3"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">After adding a watermark image, all users in the channel (including CDN viewers) and video capture devices can see and capture the image. If you only want to add a watermark in CDN streaming, refer to <xref keyref="startRtmpStreamWithTranscoding"/>.</p>
+            <p props="android">This method adds a PNG watermark image to the local video stream in a live broadcast scenario. All users in the channel (including CDN viewers) and video capture devices can see and capture the watermark image. If you only want to add a watermark to the CDN stream, use the <xref keyref="startRtmpStreamWithTranscoding"/> method.</p>
+            <note props="cpp">
+                <ul>
+                    <li>The meaning of the URL differs between local video and CDN streaming: in the local video stream, the URL refers to the absolute path of the watermark image file in the local video stream; in CDN streaming, the URL refers to the URL address of the watermark image in the CDN stream.</li>
+                    <li>The source file of the watermark image must be in PNG format. If the width and height of the PNG file do not match the settings in this method, the SDK will crop the file to fit the settings.</li>
+                    <li>The Agora SDK only supports adding one watermark image in either the local video or the CDN stream. A newly added watermark image will replace the previous one.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>The meaning of the URL differs between local video and CDN streaming: in the local video stream, the URL refers to the absolute path of the watermark image file; in CDN streaming, the URL refers to the address of the watermark image in the CDN stream.</li>
+                    <li>The source file of the watermark image must be in PNG format. If the width and height of the PNG file do not match the settings in this method, the SDK will crop the PNG file to fit the settings.</li>
+                    <li>The SDK only supports adding one watermark image to either the local video or the CDN stream. A newly added watermark image will replace the previous one.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>watermark</pt>
+                    <pd>Watermark image. See <xref keyref="RtcImage"/> for details.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>watermark</pt>
+                    <pd>The watermark image to be added to the local live stream. See <xref keyref="RtcImage"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

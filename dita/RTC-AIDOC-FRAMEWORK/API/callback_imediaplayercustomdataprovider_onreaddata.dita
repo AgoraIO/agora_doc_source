@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayercustomdataprovider_onreaddata">
+    <title><ph keyref="onReadData"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">读取媒体资源数据回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onReadData"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public virtual int OnReadData(IntPtr bufferPtr, int bufferSize)
+        {
+            return 0;
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">使用 <xref keyref="openWithMediaSource"/> 打开媒体资源时，SDK 会触发该回调向你请求传入媒体资源数据的 Buffer。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>bufferPtr</pt>
+                    <pd>输入参数，数据 Buffer，单位为字节。请将 SDK 报告的 <codeph>bufferSize</codeph> 数据写入到此参数中。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>bufferSize</pt>
+                    <pd>数据 Buffer 的长度，单位为字节。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>返回值</title>
+            <p props="unity">
+                <ul>
+                    <li>如果读取数据成功，请在返回值中传入你实际读取的数据长度，单位为字节。</li>
+                    <li>如果读取数据失败，请在返回值中传入 0。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

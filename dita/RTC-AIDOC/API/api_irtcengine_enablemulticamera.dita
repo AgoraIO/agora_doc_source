@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablemulticamera">
+    <title><ph keyref="enableMultiCamera"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用或关闭多摄像头采集功能。</ph><ph id="shortdesc" props="ios">启用或关闭多摄像头采集模式。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableMultiCamera"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableMultiCamera(bool enabled, const CameraCapturerConfiguration&amp; config) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)enableMultiCamera:(BOOL)enabled config:(AgoraCameraCapturerConfiguration* _Nullable)config NS_SWIFT_NAME(enableMultiCamera(_:config:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">声网建议你在已有摄像头用于视频采集的场景中，按照以下步骤使用多个摄像头进行视频采集和发布：
+                <ol>
+                    <li>调用该方法启用多摄像头采集。</li>
+                    <li>调用 <codeph>startPreview</codeph> 启动本地视频预览。</li>
+                    <li>调用 <xref keyref="startCameraCapture"/>，并设置 <codeph>sourceType</codeph>，以使用第二个摄像头开始采集。</li>
+                    <li>调用 <xref keyref="joinChannelEx"/>，并将 <codeph>publishSecondaryCameraTrack</codeph> 设置为 <xref keyref="true"/>，以发布第二个摄像头采集的视频流。</li>
+                </ol><ph>若需关闭多摄像头采集，请按以下步骤操作：</ph>
+                <ol>
+                    <li>调用 <xref keyref="stopCameraCapture"/>。</li>
+                    <li>调用该方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。</li>
+                </ol><ph>该方法仅适用于 iOS 平台。</ph><ph>使用该功能时，请确保系统版本为 13.0 或更高。</ph><ph>支持多摄像头采集的最低 iOS 设备型号如下：</ph>
+                <ul>
+                    <li>iPhone XR。</li>
+                    <li>iPhone XS。</li>
+                    <li>iPhone XS Max。</li>
+                    <li>iPad Pro 第三代及更新机型。</li>
+                </ul>
+            </p>
+            <p props="ios">声网建议你在已有摄像头用于视频采集的场景中，按照以下步骤使用多摄像头进行视频采集和发布：
+                <ol>
+                    <li>调用该方法启用多摄像头采集模式。</li>
+                    <li>调用 <xref keyref="startPreview2"/> 启动本地视频预览。</li>
+                    <li>调用 <xref keyref="startCameraCapture"/>，并设置 <codeph>sourceType</codeph> 以使用第二个摄像头进行视频采集。</li>
+                    <li>调用 <xref keyref="joinChannelEx"/>，并将 <codeph>publishSecondaryCameraTrack</codeph> 设置为 <xref keyref="true"/>，以在频道中发布第二个摄像头采集的视频流。</li>
+                </ol><ph>如果你想关闭多摄像头采集模式，请按以下步骤操作：</ph>
+                <ol>
+                    <li>调用 <xref keyref="stopCameraCapture"/>。</li>
+                    <li>调用该方法并将 <codeph>enabled</codeph> 设置为 <xref keyref="false"/>。</li>
+                </ol><ph>使用该功能时，请确保系统版本为 iOS 13.0 或更高。</ph><ph>支持多摄像头采集的最低 iOS 设备型号如下：</ph>
+                <ul>
+                    <li>iPhone XR</li>
+                    <li>iPhone XS</li>
+                    <li>iPhone XS Max</li>
+                    <li>iPad Pro 第三代及更新机型</li>
+                </ul>
+            </p>
+            <note props="cpp">你可以在调用 <codeph>startPreview</codeph> 之前或之后调用该方法启用多摄像头采集：
+                <ul>
+                    <li>如果在调用 <codeph>startPreview</codeph> 之前启用，则本地视频预览会同时显示两个摄像头采集的画面。</li>
+                    <li>如果在调用 <codeph>startPreview</codeph> 之后启用，SDK 会先停止当前摄像头采集，然后启用主摄像头和第二个摄像头。本地视频预览会短暂变黑，随后自动恢复。</li>
+                </ul>
+            </note>
+            <note props="ios">你可以在调用 <xref keyref="startPreview2"/> 之前或之后调用该方法启用多摄像头采集：
+                <ul>
+                    <li>如果在 <xref keyref="startPreview2"/> 之前启用，本地视频预览会同时显示两个摄像头采集的画面。</li>
+                    <li>如果在 <xref keyref="startPreview2"/> 之后启用，SDK 会先停止当前摄像头采集，然后启用主摄像头和第二个摄像头。本地视频预览会短暂变黑，然后自动恢复正常。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp ios">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>是否启用多摄像头视频采集模式：
+                        <ul>
+                            <li><xref keyref="true"/>：启用多摄像头采集模式，SDK 使用多个摄像头进行视频采集。</li>
+                            <li><xref keyref="false"/>：关闭多摄像头采集模式，SDK 使用单个摄像头进行视频采集。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>第二个摄像头的采集配置，详见 <xref keyref="CameraCapturerConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>enabled</pt>
+                    <pd>是否启用多摄像头视频采集模式：
+                        <ul>
+                            <li><xref keyref="true"/>：启用多摄像头采集模式，SDK 使用多个摄像头进行视频采集。</li>
+                            <li><xref keyref="false"/>：关闭多摄像头采集模式，SDK 使用单个摄像头进行视频采集。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>第二个摄像头的采集配置。详见 <xref keyref="CameraCapturerConfiguration"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp ios">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

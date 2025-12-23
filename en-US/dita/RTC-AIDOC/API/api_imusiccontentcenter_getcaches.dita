@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_getcaches">
+    <title><ph keyref="getCaches"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Retrieves information about cached music resources.</ph><ph id="shortdesc" props="android">Retrieves information about cached music resources.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCaches"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getCaches(MusicCacheInfo *cacheInfo, int32_t* cacheInfoSize) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract MusicCacheInfo[] getCaches();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Before calling this method, you need to preallocate memory to store information about cached music resources. If you want to set the number of music resources that can be cached, you can configure it through the <codeph>configuration</codeph> parameter in <xref keyref="initialize_IMusicContentCenter"/>. When these cached resources are no longer needed, you should release the memory in time to avoid memory leaks.</p>
+            <p props="android">Before calling this method, you need to preallocate memory to store information about cached music resources. To set the number of cacheable music resources, configure the <codeph>configuration</codeph> parameter of <xref keyref="initialize_IMusicContentCenter"/>. When the cached music resources are no longer needed, you should release the memory in time to avoid memory leaks.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>cacheInfo</pt>
+                    <pd>Output parameter. Pointer to the memory buffer used to store information about cached music resources. See <xref keyref="MusicCacheInfo"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cacheInfoSize</pt>
+                    <pd>Input and output parameter indicating the size of the <xref keyref="MusicCacheInfo"/> array.
+                        <ul>
+                            <li>Input: Number of allocated <xref keyref="MusicCacheInfo"/> structures.</li>
+                            <li>Output: Number of <xref keyref="MusicCacheInfo"/> structures returned after method execution.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>If the method call succeeds, returns an array of <xref keyref="MusicCacheInfo"/> objects.</li>
+                    <li>If the method call fails, returns <codeph>null</codeph>.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

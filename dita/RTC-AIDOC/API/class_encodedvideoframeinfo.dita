@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_encodedvideoframeinfo">
+    <title><ph keyref="EncodedVideoFrameInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">描述外部编码视频帧的信息。</ph><ph id="shortdesc" props="ios">描述外部编码视频帧的信息。</ph><ph id="shortdesc" props="android">包含外部编码视频帧的相关信息。</ph><ph id="shortdesc" props="mac">描述外部编码视频帧的信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct EncodedVideoFrameInfo {
+  VIDEO_CODEC_TYPE codecType;
+  int width;
+  int height;
+  int framesPerSecond;
+  VIDEO_FRAME_TYPE frameType;
+  VIDEO_ORIENTATION rotation;
+  int trackId;
+  int64_t captureTimeMs;
+  int64_t decodeTimeMs;
+  VIDEO_STREAM_TYPE streamType;
+  int64_t presentationMs;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncodedVideoFrameInfo: NSObject
+@property (assign, nonatomic) AgoraVideoCodecType codecType;
+@property (assign, nonatomic) NSInteger width;
+@property (assign, nonatomic) NSInteger height;
+@property (assign, nonatomic) NSInteger framesPerSecond;
+@property (assign, nonatomic) AgoraVideoFrameType frameType;
+@property (assign, nonatomic) NSInteger rotation;
+@property (assign, nonatomic) NSInteger trackId;
+@property (assign, nonatomic) NSInteger captureTimeMs;
+@property (assign, nonatomic) NSInteger decodeTimeMs;
+@property (assign, nonatomic) AgoraVideoStreamType streamType;
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class EncodedVideoFrameInfo {
+  public int codecType;
+  public int width;
+  public int height;
+  public int framesPerSecond;
+  public int frameType;
+  public int rotation;
+  public int trackId;
+  public long captureTimeMs;
+  public long decodeTimeMs;
+  public int streamType;
+}</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncodedVideoFrameInfo: NSObject
+@property (assign, nonatomic) AgoraVideoCodecType codecType;
+@property (assign, nonatomic) NSInteger width;
+@property (assign, nonatomic) NSInteger height;
+@property (assign, nonatomic) NSInteger framesPerSecond;
+@property (assign, nonatomic) AgoraVideoFrameType frameType;
+@property (assign, nonatomic) NSInteger rotation;
+@property (assign, nonatomic) NSInteger trackId;
+@property (assign, nonatomic) NSInteger captureTimeMs;
+@property (assign, nonatomic) NSInteger decodeTimeMs;
+@property (assign, nonatomic) AgoraVideoStreamType streamType;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>codecType</pt>
+                    <pd>本地视频流的编解码器类型。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>width</pt>
+                    <pd>视频帧的宽度（单位为像素）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>视频帧的高度（单位为像素）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>framesPerSecond</pt>
+                    <pd>视频帧的每秒帧数。当该参数不为 0 时，可用于计算外部编码视频帧的 Unix 时间戳。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>frameType</pt>
+                    <pd>视频帧的类型。详见 <xref keyref="VIDEO_FRAME_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rotation</pt>
+                    <pd>视频帧的旋转信息。详见 <xref keyref="VIDEO_ORIENTATION"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>trackId</pt>
+                    <pd>预留参数，用于未来支持多个视频轨道。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>captureTimeMs</pt>
+                    <pd>外部编码视频帧的采集时间戳（单位为毫秒，Unix 时间戳）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>decodeTimeMs</pt>
+                    <pd>外部编码视频帧的解码时间戳（单位为毫秒，Unix 时间戳）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>streamType</pt>
+                    <pd>视频流的类型。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>codecType</pt>
+                    <pd>本地视频流的编解码器类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>width</pt>
+                    <pd>视频帧的宽度（像素）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>height</pt>
+                    <pd>视频帧的高度（像素）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>framesPerSecond</pt>
+                    <pd>视频帧的每秒帧数。当该参数不为 0 时，可用于计算外部编码视频帧的 Unix 时间戳。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>frameType</pt>
+                    <pd>视频帧的类型，详见 <xref keyref="VIDEO_FRAME_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>rotation</pt>
+                    <pd>视频帧的旋转信息。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>trackId</pt>
+                    <pd>预留参数，用于未来支持多个视频轨道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>captureTimeMs</pt>
+                    <pd>外部编码视频帧的采集时间戳（毫秒）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>decodeTimeMs</pt>
+                    <pd>输出参数，表示用于解码视频帧的时间戳（毫秒）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>streamType</pt>
+                    <pd>视频流的类型，详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>codecType</pt>
+                    <pd>
+                        <note>在某些场景下，例如采集的视频流分辨率较低或设备性能受限，SDK 会自动调整为 H.264 编码格式。</note><ph>视频的编解码器类型：</ph>
+                        <ul>
+                            <li><codeph>1</codeph>：<codeph>VIDEO_CODEC_VP8</codeph>，VP8。</li>
+                            <li><codeph>2</codeph>：<codeph>VIDEO_CODEC_H264</codeph>，H.264。</li>
+                            <li><codeph>3</codeph>：（默认）<codeph>VIDEO_CODEC_H265</codeph>，H.265。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>width</pt>
+                    <pd>视频帧的宽度（单位：像素）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>视频帧的高度（单位：像素）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>framesPerSecond</pt>
+                    <pd>视频帧的每秒帧数。当该参数不为 <codeph>0</codeph> 时，你可以使用它来计算外部编码视频帧的 Unix 时间戳。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>frameType</pt>
+                    <pd>视频帧类型：
+                        <ul>
+                            <li><codeph>0</codeph>：（默认）<codeph>VIDEO_FRAME_TYPE_BLANK_FRAME</codeph>，空白帧。</li>
+                            <li><codeph>3</codeph>：<codeph>VIDEO_FRAME_TYPE_KEY_FRAME</codeph>，关键帧。</li>
+                            <li><codeph>4</codeph>：<codeph>VIDEO_FRAME_TYPE_DELTA_FRAME</codeph>，Delta 帧。</li>
+                            <li><codeph>5</codeph>：<codeph>VIDEO_FRAME_TYPE_B_FRAME</codeph>，B 帧。</li>
+                            <li><codeph>6</codeph>：<codeph>VIDEO_FRAME_TYPE_UNKNOW</codeph>，未知帧。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rotation</pt>
+                    <pd>视频帧的旋转角度：
+                        <ul>
+                            <li><codeph>0</codeph>：（默认）0 度。</li>
+                            <li><codeph>90</codeph>：90 度。</li>
+                            <li><codeph>180</codeph>：180 度。</li>
+                            <li><codeph>270</codeph>：270 度。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>trackId</pt>
+                    <pd>保留参数，用于未来扩展。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>captureTimeMs</pt>
+                    <pd>外部编码视频帧采集时的 Unix 时间戳（单位：毫秒）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>decodeTimeMs</pt>
+                    <pd>输出参数，表示解码该视频帧的时间戳（单位：毫秒）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>streamType</pt>
+                    <pd>视频流的类型。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>codecType</pt>
+                    <pd>本地视频流的编解码器类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>width</pt>
+                    <pd>视频帧的宽度（像素）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>height</pt>
+                    <pd>视频帧的高度（像素）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>framesPerSecond</pt>
+                    <pd>视频帧的每秒帧数。当该参数不为 0 时，可用于计算外部编码视频帧的 Unix 时间戳。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>frameType</pt>
+                    <pd>视频帧的类型，详见 <xref keyref="VIDEO_FRAME_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>rotation</pt>
+                    <pd>视频帧的旋转信息。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>trackId</pt>
+                    <pd>预留参数，用于未来支持多个视频轨道。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>captureTimeMs</pt>
+                    <pd>外部编码视频帧的采集时间戳（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>decodeTimeMs</pt>
+                    <pd>输出参数，表示用于解码视频帧的时间戳（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>streamType</pt>
+                    <pd>视频流的类型，详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

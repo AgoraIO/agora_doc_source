@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ibasespatialaudioengine_updateplayerpositioninfo">
+    <title><ph keyref="updatePlayerPositionInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Updates the spatial position of the media player.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updatePlayerPositionInfo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int updatePlayerPositionInfo(int playerId, RemoteVoicePositionInfo positionInfo);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">After calling this method, the local user can hear the spatial position changes of the media player.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">This method can be called before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>playerId</pt>
+                    <pd>The ID of the media player. You can get this ID by calling <xref keyref="getMediaPlayerId"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>positionInfo</pt>
+                    <pd>The spatial position of the media player. See <xref keyref="RemoteVoicePositionInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

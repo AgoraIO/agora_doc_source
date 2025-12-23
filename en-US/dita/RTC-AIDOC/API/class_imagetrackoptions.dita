@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_imagetrackoptions">
+    <title><ph keyref="ImageTrackOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used for image configuration.</ph><ph id="shortdesc" props="android">Image configuration parameters.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ImageTrackOptions {
+  const char* imageUrl;
+  int fps;
+  VIDEO_MIRROR_MODE_TYPE mirrorMode;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class ImageTrackOptions {
+  private String imageUrl;
+  private int fps;
+  private VideoEncoderConfiguration.MIRROR_MODE_TYPE mirrorMode;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>imageUrl</pt>
+                    <pd>URL of the image. Supported image formats include JPEG, JPG, PNG, and GIF. Supports adding images from local absolute or relative paths.
+                        <note>On Android, adding images from <codeph>/assets/</codeph> is not supported.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>fps</pt>
+                    <pd>Frame rate of the published video stream, range is [1, 30], default is 1.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mirrorMode</pt>
+                    <pd>Mirror mode. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>imageUrl</pt>
+                    <pd>URL of the image. Supported image formats include JPEG, JPG, PNG, and GIF. You can add images using either an absolute or relative local path.
+                        <note>On Android, adding images from <codeph>/assets/</codeph> is not supported.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>fps</pt>
+                    <pd>Frame rate of the currently published video stream. Value range is [1, 30], default is 1.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mirrorMode</pt>
+                    <pd>Mirror mode:
+                        <ul>
+                            <li><codeph>VIDEO_MIRROR_MODE_AUTO (0)</codeph>: The SDK determines whether to enable mirror mode. Disabled by default.</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_ENABLED (1)</codeph>: Enable remote mirror.</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_DISABLED (2)</codeph>: Disable remote mirror.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

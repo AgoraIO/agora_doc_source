@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_localaudiostats">
+    <title><ph keyref="LocalAudioStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">本地音频统计信息结构体。</ph><ph id="shortdesc" props="ios">本地音频统计信息。</ph><ph id="shortdesc" props="android"><xref keyref="LocalAudioStats"/> 提供本地音频的统计信息。</ph><ph id="shortdesc" props="mac">本地音频统计信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct LocalAudioStats {
+  int numChannels;
+  int sentSampleRate;
+  int sentBitrate;
+  int internalCodec;
+  unsigned short txPacketLossRate;
+  int audioDeviceDelay;
+  int audioPlayoutDelay;
+  int earMonitorDelay;
+  int aecEstimatedDelay;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalAudioStats : NSObject
+@property(assign, nonatomic) NSUInteger numChannels;
+@property(assign, nonatomic) NSUInteger sentSampleRate;
+@property(assign, nonatomic) NSUInteger sentBitrate;
+@property(assign, nonatomic) NSUInteger internalCodec;
+@property(assign, nonatomic) NSUInteger txPacketLossRate;
+@property(assign, nonatomic) NSUInteger audioDeviceDelay;
+@property(assign, nonatomic) NSUInteger audioPlayoutDelay;
+@property(assign, nonatomic) NSUInteger earMonitorDelay;
+@property(assign, nonatomic) NSUInteger aecEstimatedDelay;
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class LocalAudioStats {
+  public int numChannels;
+  public int sentSampleRate;
+  public int sentBitrate;
+  public int internalCodec;
+  public int txPacketLossRate;
+  public int audioDeviceDelay;
+  public int audioPlayoutDelay;
+  public int earMonitorDelay;
+  public int aecEstimatedDelay;
+}</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalAudioStats : NSObject
+@property(assign, nonatomic) NSUInteger numChannels;
+@property(assign, nonatomic) NSUInteger sentSampleRate;
+@property(assign, nonatomic) NSUInteger sentBitrate;
+@property(assign, nonatomic) NSUInteger internalCodec;
+@property(assign, nonatomic) NSUInteger txPacketLossRate;
+@property(assign, nonatomic) NSUInteger audioDeviceDelay;
+@property(assign, nonatomic) NSUInteger audioPlayoutDelay;
+@property(assign, nonatomic) NSUInteger earMonitorDelay;
+@property(assign, nonatomic) NSUInteger aecEstimatedDelay;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>numChannels</pt>
+                    <pd>音频通道数。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sentSampleRate</pt>
+                    <pd>本地用户音频流的发送采样率，单位为 Hz。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sentBitrate</pt>
+                    <pd>本地用户音频流的平均发送码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>internalCodec</pt>
+                    <pd>内部使用的负载编解码器。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txPacketLossRate</pt>
+                    <pd>应用抗丢包策略前，从本地客户端到声网服务器的音频丢包率，单位为百分比（%）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioDeviceDelay</pt>
+                    <pd>播放或录制音频时，音频设备模块的延迟，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioPlayoutDelay</pt>
+                    <pd>设备的播放延迟，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>earMonitorDelay</pt>
+                    <pd>耳返延迟，单位为毫秒，即从麦克风输入到耳机输出的延迟。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>aecEstimatedDelay</pt>
+                    <pd>声学回声消除（AEC）模块估算的延迟，单位为毫秒，即本地播放音频到本地采集之间的信号延迟。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>numChannels</pt>
+                    <pd>音频通道数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sentSampleRate</pt>
+                    <pd>本地用户发送音频流的采样率（Hz）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sentBitrate</pt>
+                    <pd>本地用户发送音频流的平均码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>internalCodec</pt>
+                    <pd>内部负载编解码器。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>txPacketLossRate</pt>
+                    <pd>应用抗丢包策略前，从本地客户端到声网服务器的音频丢包率（%）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>audioDeviceDelay</pt>
+                    <pd>播放或录制音频时的音频设备模块延迟（毫秒）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>audioPlayoutDelay</pt>
+                    <pd>设备的音频播放延迟（毫秒）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>earMonitorDelay</pt>
+                    <pd>耳返延迟（毫秒），即从麦克风输入到耳机输出的延迟。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>aecEstimatedDelay</pt>
+                    <pd>声学回声消除（AEC）模块估算的延迟（毫秒），即本地播放音频到本地采集之间的信号延迟。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>numChannels</pt>
+                    <pd>音频通道数。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sentSampleRate</pt>
+                    <pd>本地用户发送音频流的采样率，单位为 Hz。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sentBitrate</pt>
+                    <pd>本地用户发送音频流的平均码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>internalCodec</pt>
+                    <pd>内部使用的负载编解码器。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txPacketLossRate</pt>
+                    <pd>应用抗丢包策略前，从本地客户端到声网服务器的音频丢包率（%）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioDeviceDelay</pt>
+                    <pd>音频设备模块在播放或采集音频时的延迟，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioPlayoutDelay</pt>
+                    <pd>设备播放音频的延迟，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>earMonitorDelay</pt>
+                    <pd>耳返延迟，单位为毫秒，指从麦克风输入到耳机输出的延迟。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>aecEstimatedDelay</pt>
+                    <pd>回声消除（AEC）模块估算的延迟，单位为毫秒，指本地播放音频到被本地采集之间的信号延迟。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>numChannels</pt>
+                    <pd>音频通道数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sentSampleRate</pt>
+                    <pd>本地用户发送音频流的采样率（Hz）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sentBitrate</pt>
+                    <pd>本地用户发送音频流的平均码率（Kbps）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>internalCodec</pt>
+                    <pd>内部负载编解码器。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>txPacketLossRate</pt>
+                    <pd>应用抗丢包策略前，从本地客户端到声网服务器的音频丢包率（%）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>audioDeviceDelay</pt>
+                    <pd>播放或录制音频时的音频设备模块延迟（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>audioPlayoutDelay</pt>
+                    <pd>设备的音频播放延迟（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>earMonitorDelay</pt>
+                    <pd>耳返延迟（毫秒），即从麦克风输入到耳机输出的延迟。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>aecEstimatedDelay</pt>
+                    <pd>声学回声消除（AEC）模块估算的延迟（毫秒），即本地播放音频到本地采集之间的信号延迟。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

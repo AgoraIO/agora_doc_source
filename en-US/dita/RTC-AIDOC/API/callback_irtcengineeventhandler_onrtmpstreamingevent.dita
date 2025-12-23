@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onrtmpstreamingevent">
+    <title><ph keyref="onRtmpStreamingEvent"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reports events during RTMP streaming.</ph><ph id="shortdesc" props="android">Callback for RTMP streaming events.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRtmpStreamingEvent"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onRtmpStreamingEvent(const char* url, RTMP_STREAMING_EVENT eventCode)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onRtmpStreamingEvent(String url, int event)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v3.1.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>url</pt>
+                    <pd>The RTMP streaming URL.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>eventCode</pt>
+                    <pd>RTMP streaming event code. See <xref keyref="RTMP_STREAMING_EVENT"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>url</pt>
+                    <pd>The RTMP streaming URL.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>event</pt>
+                    <pd>The event code for RTMP streaming:
+                        <ul>
+                            <li><codeph>RTMP_STREAMING_EVENT_FAILED_LOAD_IMAGE</codeph> (1): Error occurred when adding background or watermark image.</li>
+                            <li><codeph>RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE</codeph> (2): The streaming URL is already in use. Use a new URL to start a new stream.</li>
+                            <li><codeph>RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT</codeph> (3): This feature is not supported.</li>
+                            <li><codeph>RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN</codeph> (4): Reserved parameter.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

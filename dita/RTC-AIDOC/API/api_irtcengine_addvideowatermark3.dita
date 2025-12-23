@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_addvideowatermark3">
+    <title><ph keyref="addVideoWatermark3"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">向本地视频流添加水印图像。</ph><ph id="shortdesc" props="ios">向本地视频添加水印图像。</ph><ph id="shortdesc" props="android">向本地视频流添加水印图像。</ph><ph id="shortdesc" props="mac">向本地视频添加水印图像。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addVideoWatermark3"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int addVideoWatermark(const WatermarkConfig&amp; configs) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)addVideoWatermarkWithConfig:(WatermarkConfig* _Nonnull)config NS_SWIFT_NAME(addVideoWatermark(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int addVideoWatermark(WatermarkConfig config);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)addVideoWatermarkWithConfig:(WatermarkConfig* _Nonnull)config NS_SWIFT_NAME(addVideoWatermark(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">你可以使用该方法在本地视频流中叠加水印图像，并通过 <xref keyref="WatermarkConfig"/> 设置水印在预览画面中的位置、大小和可见性。</p>
+            <p props="ios">你可以使用此方法在本地视频流上叠加水印图像，并通过 <xref keyref="WatermarkConfig"/> 配置水印的位置、大小以及在预览中的可见性。</p>
+            <p props="android">你可以使用该方法通过 <xref keyref="WatermarkConfig"/> 配置，在本地视频流中叠加水印图像，包括设置水印在预览中的位置、大小和可见性。</p>
+            <p props="mac">你可以使用此方法在本地视频流上叠加水印图像，并通过 <xref keyref="WatermarkConfig"/> 配置水印的位置、大小以及在预览中的可见性。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>configs</pt>
+                    <pd>水印配置。详见 <xref keyref="WatermarkConfig"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>水印图像的配置。详见 <xref keyref="WatermarkConfig"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>水印配置。详见 <xref keyref="WatermarkConfig"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>config</pt>
+                    <pd>水印图像的配置。详见 <xref keyref="WatermarkConfig"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

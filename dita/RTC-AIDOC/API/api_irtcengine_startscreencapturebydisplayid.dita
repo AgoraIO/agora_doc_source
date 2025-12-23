@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startscreencapturebydisplayid">
+    <title><ph keyref="startScreenCaptureByDisplayId"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">通过指定屏幕 ID 采集屏幕。</ph><ph id="shortdesc" props="mac">通过指定屏幕 ID 采集屏幕。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startScreenCaptureByDisplayId"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByDisplayId(int64_t displayId, const Rectangle&amp; regionRect, const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByDisplayId:(UInt32)displayId
+                          regionRect:(CGRect)regionRect
+                       captureParams:(AgoraScreenCaptureParameters *_Nonnull)captureParams  NS_SWIFT_NAME(startScreenCapture(byDisplayId:regionRect:captureParams:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="mac">采集整个屏幕或部分屏幕区域的视频流。</p>
+            <note props="cpp">该方法仅适用于 Windows 和 macOS 平台。</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>在屏幕共享场景中，你需要调用此方法开始采集屏幕视频流。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp mac">
+            <title>调用时机</title>
+            <p props="cpp">你可以在加入频道前或加入频道后调用该方法，具体区别如下：
+                <ul>
+                    <li>在加入频道前调用该方法，然后调用 <codeph>joinChannel</codeph> 加入频道，并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
+                    <li>在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
+                </ul>
+            </p>
+            <p props="mac">你可以在加入频道前或加入频道后调用此方法，具体区别如下：
+                <ul>
+                    <li>在加入频道前调用此方法，然后调用 <codeph>joinChannelByToken</codeph> 加入频道，并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
+                    <li>在加入频道后调用此方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>displayId</pt>
+                    <pd>要共享的屏幕的屏幕 ID。
+                        <note>在 Windows 平台，如果需要同时共享两个屏幕（主屏幕和副屏幕），可以在调用该方法时将 <codeph>displayId</codeph> 设置为 <codeph>-1</codeph>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>regionRect</pt>
+                    <pd>（可选）设置相对于屏幕的区域位置。传入 <xref keyref="NULL"/> 表示共享整个屏幕。详见 <xref keyref="Rectangle"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享配置。默认视频尺寸为 1920 × 1080，即 2,073,600 像素。声网会根据该参数的值计算费用。屏幕共享视频流的视频属性只需通过该参数设置，与 <xref keyref="setVideoEncoderConfiguration"/> 无关。详见 <xref keyref="ScreenCaptureParameters"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>displayId</pt>
+                    <pd>要共享的屏幕的屏幕 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>regionRect</pt>
+                    <pd>（可选）相对于窗口的区域位置。如果未设置该参数，SDK 共享整个窗口。该参数包含以下字段：
+                        <ul>
+                            <li><codeph>x</codeph>：距窗口左上角的水平偏移。</li>
+                            <li><codeph>y</codeph>：距窗口左上角的垂直偏移。</li>
+                            <li><codeph>width</codeph>：区域的宽度。</li>
+                            <li><codeph>height</codeph>：区域的高度。</li>
+                        </ul><ph>如果指定的区域超出窗口范围，SDK 仅共享窗口内的区域；如果设置 <codeph>width</codeph> 或 <codeph>height</codeph> 为 0，SDK 共享整个窗口。</ph></pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>captureParams</pt>
+                    <pd>屏幕共享配置。默认视频分辨率为 1920 × 1080，即 2,073,600 像素。声网会根据该参数的值计算费用。屏幕共享视频流的视频属性仅需通过该参数设置，与 <xref keyref="setVideoEncoderConfiguration"/> 无关。详见 <xref keyref="ScreenCaptureParameters"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2：参数无效。</li>
+                            <li>-8：屏幕共享状态无效。可能是因为你已共享了其他屏幕或窗口。请调用 <codeph>stopScreenCapture</codeph> 停止当前共享后重新开始。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-2：参数无效。</li>
+                            <li>-8：屏幕共享状态无效。可能是因为你已共享了其他屏幕或窗口。请尝试调用 <xref keyref="stopScreenCapture"/> 停止当前共享，然后重新开始屏幕共享。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

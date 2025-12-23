@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediarecorderobserver_onrecorderstatechanged">
+    <title><ph keyref="onRecorderStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">录制状态发生变化时的回调。</ph><ph id="shortdesc" props="ios">录制状态发生变化时的回调。</ph><ph id="shortdesc" props="android">录制状态发生变化时的回调。</ph><ph id="shortdesc" props="mac">录制状态发生变化时的回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRecorderStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onRecorderStateChanged(const char* channelId, rtc::uid_t uid, RecorderState state, RecorderReasonCode reason) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)mediaRecorder:(AgoraMediaRecorder* _Nonnull)recorder stateDidChanged:(NSString * _Nonnull)channelId uid:(NSUInteger)uid state:(AgoraMediaRecorderState)state reason:(AgoraMediaRecorderReasonCode)reason;</codeblock>
+                <codeblock props="android" outputclass="language-java">@CalledByNative void onRecorderStateChanged(String channelId, int uid, int state, int reason);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)mediaRecorder:(AgoraMediaRecorder* _Nonnull)recorder stateDidChanged:(NSString * _Nonnull)channelId uid:(NSUInteger)uid state:(AgoraMediaRecorderState)state reason:(AgoraMediaRecorderReasonCode)reason;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.0.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.0.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.0.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">当音视频流的录制状态发生变化时，SDK 会触发该回调，报告当前的录制状态及其变化原因。</p>
+            <p props="android">SDK 在音视频流的录制状态发生变化时会触发该回调，报告当前的录制状态及其变化原因。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="ios mac">
+            <title>触发时机</title>
+            <p props="ios">当音视频流的录制状态发生变化时触发。</p>
+            <p props="mac">当音视频流的录制状态发生变化时触发。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>channelId</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>当前录制状态。详见 <xref keyref="RecorderState"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>录制状态变化的原因。详见 <xref keyref="RecorderReasonCode"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>recorder</pt>
+                    <pd>录制器实例。详见 <xref keyref="IMediaRecorder"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>channelId</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>state</pt>
+                    <pd>当前的录制状态，详见 <xref keyref="RecorderState"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>reason</pt>
+                    <pd>录制状态变化的原因，详见 <xref keyref="RecorderReasonCode"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channelId</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>当前录制状态：
+                        <ul>
+                            <li><codeph>RECORDER_STATE_ERROR</codeph>（-1）：录制过程中发生错误。</li>
+                            <li><codeph>RECORDER_STATE_START</codeph>（2）：开始录制音视频流。</li>
+                            <li><codeph>RECORDER_STATE_STOP</codeph>（3）：停止录制音视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>录制状态变化的原因：
+                        <ul>
+                            <li><codeph>RECORDER_REASON_NONE</codeph>（0）：一切正常。</li>
+                            <li><codeph>RECORDER_REASON_WRITE_FAILED</codeph>（1）：录制文件写入失败。</li>
+                            <li><codeph>RECORDER_REASON_NO_STREAM</codeph>（2）：无可用音视频流，或音视频流中断超过 5 秒。</li>
+                            <li><codeph>RECORDER_REASON_OVER_MAX_DURATION</codeph>（3）：录制时长超过最大限制。</li>
+                            <li><codeph>RECORDER_REASON_CONFIG_CHANGED</codeph>（4）：录制配置发生变化。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>recorder</pt>
+                    <pd>录制器实例。详见 <xref keyref="IMediaRecorder"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channelId</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>state</pt>
+                    <pd>当前的录制状态，详见 <xref keyref="RecorderState"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>reason</pt>
+                    <pd>录制状态变化的原因，详见 <xref keyref="RecorderReasonCode"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

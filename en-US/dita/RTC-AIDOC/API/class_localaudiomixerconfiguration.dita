@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_localaudiomixerconfiguration">
+    <title><ph keyref="LocalAudioMixerConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Configure local audio mixing.</ph><ph id="shortdesc" props="android">Used to configure local audio mixing.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct LocalAudioMixerConfiguration {
+  unsigned int streamCount;
+  MixedAudioStream* audioInputStreams;
+  bool syncWithLocalMic;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class LocalAudioMixerConfiguration {
+  public ArrayList&lt;MixedAudioStream&gt; audioInputStreams;
+  public boolean syncWithLocalMic;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>streamCount</pt>
+                    <pd>The number of audio streams for local mixing.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioInputStreams</pt>
+                    <pd>The source of audio streams for local mixing. See <xref keyref="MixedAudioStream"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>syncWithLocalMic</pt>
+                    <pd>Whether the mixed audio stream uses the timestamp of audio frames captured by the local microphone.
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Use the timestamp of audio frames captured by the local microphone. Set this value if you want all locally captured audio streams to be synchronized.</li>
+                            <li><xref keyref="false"/>: Use the timestamp of audio frames during mixing.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioInputStreams</pt>
+                    <pd>Sources of the local mixed audio stream. See <xref keyref="MixedAudioStream"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>syncWithLocalMic</pt>
+                    <pd>Whether the mixed audio stream uses the timestamp of audio frames captured by the local mic.
+                        <ul>
+                            <li><xref keyref="true"/> (default): Yes. Recommended if you want all locally captured audio streams to be processed synchronously.</li>
+                            <li><xref keyref="false"/>: No. The SDK uses the timestamp generated during mixing.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

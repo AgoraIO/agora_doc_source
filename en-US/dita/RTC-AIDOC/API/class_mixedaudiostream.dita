@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_mixedaudiostream">
+    <title><ph keyref="MixedAudioStream"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set the source of the audio stream for local audio mixing.</ph><ph id="shortdesc" props="android">Used to set the source of local mixed audio stream.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct MixedAudioStream {
+  AUDIO_SOURCE_TYPE sourceType;
+  uid_t remoteUserUid;
+  const char* channelId;
+  track_id_t trackId;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class MixedAudioStream {
+  public int remoteUserUid;
+  public String channelId;
+  public Constants.AudioSourceType sourceType;
+  public int trackId;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>sourceType</pt>
+                    <pd>Audio source type. See <xref keyref="AUDIO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>remoteUserUid</pt>
+                    <pd>Remote user ID.
+                        <note>This parameter must be set when the source type of the local mixed audio stream is <codeph>AUDIO_SOURCE_REMOTE_USER</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>channelId</pt>
+                    <pd>
+                        <note>This parameter must be set when the source type of the local mixed audio stream is <codeph>AUDIO_SOURCE_REMOTE_CHANNEL</codeph> or <codeph>AUDIO_SOURCE_REMOTE_USER</codeph>.</note><ph>Channel name. This parameter indicates the channel where users engage in real-time audio and video interaction. Users with the same App ID and channel name will join the same channel for interaction. The string length must not exceed 64 bytes. Supported characters (89 total):</ph>
+                        <ul>
+                            <li>All lowercase letters: a to z.</li>
+                            <li>All uppercase letters: A to Z.</li>
+                            <li>All numeric characters: 0 to 9.</li>
+                            <li>Special characters: "!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>trackId</pt>
+                    <pd>Audio track ID. Set to the custom audio track ID returned by <xref keyref="createCustomAudioTrack_IMediaEngine"/>.
+                        <note>This parameter must be set when the source type of the local mixed audio stream is <codeph>AUDIO_SOURCE_CUSTOM</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>remoteUserUid</pt>
+                    <pd>Remote user ID.
+                        <note>This parameter is required only when the source type of the local mixed audio stream is <codeph>AUDIO_SOURCE_REMOTE_USER</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channelId</pt>
+                    <pd>Channel name. The string length must not exceed 64 bytes. Supported characters (89 total): lowercase a-z, uppercase A-Z, digits 0-9, and the following symbols: !, #, $, %, &amp;, (, ), +, -, :, ;, &lt;, =, ., &gt;, ?, @, [, ], ^, _, {, }, |, ~, ,
+                        <note>This parameter is required only when the source type of the local mixed audio stream is <codeph>AUDIO_SOURCE_REMOTE_CHANNEL</codeph> or <codeph>AUDIO_SOURCE_REMOTE_USER</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>Audio source type. See <xref keyref="AUDIO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>trackId</pt>
+                    <pd>Audio track ID.
+                        <note>This parameter is required only when the source type of the local mixed audio stream is <codeph>AUDIO_SOURCE_CUSTOM</codeph>. Set it to the custom audio track ID returned by <xref keyref="createCustomAudioTrack"/>.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

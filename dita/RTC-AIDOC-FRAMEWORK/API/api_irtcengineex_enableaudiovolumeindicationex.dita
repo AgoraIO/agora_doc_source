@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_enableaudiovolumeindicationex">
+    <title><ph keyref="enableAudioVolumeIndicationEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">启用用户音量提示。</ph><ph id="shortdesc" props="rn">启用用户音量提示。</ph><ph id="shortdesc" props="flutter">启用用户音量提示。</ph><ph id="shortdesc" props="unity">启用用户音量提示。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableAudioVolumeIndicationEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableAudioVolumeIndicationEx(
+    interval: number,
+    smooth: number,
+    reportVad: boolean,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableAudioVolumeIndicationEx(
+    interval: number,
+    smooth: number,
+    reportVad: boolean,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableAudioVolumeIndicationEx(
+      {required int interval,
+      required int smooth,
+      required bool reportVad,
+      required RtcConnection connection});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableAudioVolumeIndicationEx(int interval, int smooth, bool reportVad, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">该方法允许 SDK 定期向 App 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。</p>
+            <p props="rn">该方法允许 SDK 定期向 App 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。</p>
+            <p props="flutter">该方法允许 SDK 定期向 App 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。</p>
+            <p props="unity">该方法允许 SDK 定期向 App 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在 <xref keyref="joinChannelEx"/> 之后调用。</p>
+            <p props="rn">该方法需要在 <xref keyref="joinChannelEx"/> 之后调用。</p>
+            <p props="flutter">该方法需要在 <xref keyref="joinChannelEx"/> 之后调用。</p>
+            <p props="unity">该方法需要在 <xref keyref="joinChannelEx"/> 之后调用。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>相关回调</title>
+            <p props="electron">成功调用该方法、且频道内存在发流用户时，SDK 会按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调。</p>
+            <p props="rn">成功调用该方法、且频道内存在发流用户时，SDK 会按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调。</p>
+            <p props="flutter">成功调用该方法、且频道内存在发流用户时，SDK 会按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调。</p>
+            <p props="unity">成功调用该方法、且频道内存在发流用户时，SDK 会按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>interval</pt>
+                    <pd>指定音量提示的时间间隔：
+                        <ul>
+                            <li>≤ 0: 禁用音量提示功能。</li>
+                            <li>&gt; 0: 返回音量提示的间隔，单位为毫秒。建议设置到大于 100 毫秒，不得小于 10 毫秒，否则会收不到 <xref keyref="onAudioVolumeIndication"/> 回调。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>smooth</pt>
+                    <pd>平滑系数，指定音量提示的灵敏度。取值范围为 [0,10]，建议值为 3。数字越大，波动越灵敏；数字越小，波动越平滑。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>reportVad</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>：开启本地人声检测功能。开启后，<xref keyref="onAudioVolumeIndication"/> 回调的 <codeph>vad</codeph> 参数会报告是否在本地检测到人声。</li>
+                            <li><xref keyref="false"/>：（默认）关闭本地人声检测功能。除引擎自动进行本地人声检测的场景外，<xref keyref="onAudioVolumeIndication"/> 回调的 <codeph>vad</codeph> 参数不会报告是否在本地检测到人声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>interval</pt>
+                    <pd>指定音量提示的时间间隔：
+                        <ul>
+                            <li>≤ 0: 禁用音量提示功能。</li>
+                            <li>&gt; 0: 返回音量提示的间隔，单位为毫秒。建议设置到大于 100 毫秒，不得小于 10 毫秒，否则会收不到 <xref keyref="onAudioVolumeIndication"/> 回调。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>smooth</pt>
+                    <pd>平滑系数，指定音量提示的灵敏度。取值范围为 [0,10]，建议值为 3。数字越大，波动越灵敏；数字越小，波动越平滑。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>reportVad</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>：开启本地人声检测功能。开启后，<xref keyref="onAudioVolumeIndication"/> 回调的 <codeph>vad</codeph> 参数会报告是否在本地检测到人声。</li>
+                            <li><xref keyref="false"/>：（默认）关闭本地人声检测功能。除引擎自动进行本地人声检测的场景外，<xref keyref="onAudioVolumeIndication"/> 回调的 <codeph>vad</codeph> 参数不会报告是否在本地检测到人声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>interval</pt>
+                    <pd>指定音量提示的时间间隔：
+                        <ul>
+                            <li>≤ 0: 禁用音量提示功能。</li>
+                            <li>&gt; 0: 返回音量提示的间隔，单位为毫秒。建议设置到大于 100 毫秒，不得小于 10 毫秒，否则会收不到 <xref keyref="onAudioVolumeIndication"/> 回调。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>smooth</pt>
+                    <pd>平滑系数，指定音量提示的灵敏度。取值范围为 [0,10]，建议值为 3。数字越大，波动越灵敏；数字越小，波动越平滑。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>reportVad</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>：开启本地人声检测功能。开启后，<xref keyref="onAudioVolumeIndication"/> 回调的 <codeph>vad</codeph> 参数会报告是否在本地检测到人声。</li>
+                            <li><xref keyref="false"/>：（默认）关闭本地人声检测功能。除引擎自动进行本地人声检测的场景外，<xref keyref="onAudioVolumeIndication"/> 回调的 <codeph>vad</codeph> 参数不会报告是否在本地检测到人声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>interval</pt>
+                    <pd>指定音量提示的时间间隔：
+                        <ul>
+                            <li>≤ 0: 禁用音量提示功能。</li>
+                            <li>&gt; 0: 返回音量提示的间隔，单位为毫秒。建议设置到大于 100 毫秒，不得小于 10 毫秒，否则会收不到 <xref keyref="onAudioVolumeIndication"/> 回调。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>smooth</pt>
+                    <pd>平滑系数，指定音量提示的灵敏度。取值范围为 [0,10]，建议值为 3。数字越大，波动越灵敏；数字越小，波动越平滑。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>reportVad</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>：开启本地人声检测功能。开启后，<xref keyref="onAudioVolumeIndication"/> 回调的 <codeph>vad</codeph> 参数会报告是否在本地检测到人声。</li>
+                            <li><xref keyref="false"/>：（默认）关闭本地人声检测功能。除引擎自动进行本地人声检测的场景外，<xref keyref="onAudioVolumeIndication"/> 回调的 <codeph>vad</codeph> 参数不会报告是否在本地检测到人声。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
+                <ul>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

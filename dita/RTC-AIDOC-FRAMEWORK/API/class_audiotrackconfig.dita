@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audiotrackconfig">
+    <title><ph keyref="AudioTrackConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">自定义音频轨道的配置选项。</ph><ph id="shortdesc" props="rn">自定义音频轨道的配置选项。</ph><ph id="shortdesc" props="flutter">自定义音频轨道的配置选项。</ph><ph id="shortdesc" props="unity">自定义音频轨道的配置选项。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class AudioTrackConfig {
+  enableLocalPlayback?: boolean;
+  enableAudioProcessing?: boolean;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class AudioTrackConfig {
+  enableLocalPlayback?: boolean;
+  enableAudioProcessing?: boolean;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class AudioTrackConfig {
+  const AudioTrackConfig(
+      {this.enableLocalPlayback, this.enableAudioProcessing});
+
+  @JsonKey(name: 'enableLocalPlayback')
+  final bool? enableLocalPlayback;
+
+  @JsonKey(name: 'enableAudioProcessing')
+  final bool? enableAudioProcessing;
+
+  factory AudioTrackConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$AudioTrackConfigFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioTrackConfigToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class AudioTrackConfig
+{
+    public bool enableLocalPlayback;
+    public bool enableAudioProcessing;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enableLocalPlayback</pt>
+                    <pd>是否启用本地音频播放：
+                        <ul>
+                            <li><xref keyref="true"/>：(默认) 启用本地音频播放。</li>
+                            <li><xref keyref="false"/>：不启用本地音频播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enableAudioProcessing</pt>
+                    <pd>
+                        <note>该参数设置仅对 AudioTrackDirect 类型的自定义音频采集轨道生效。</note><ph>是否启用音频处理模块：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：启用音频处理模块，应用回声消除 (AEC)、降噪 (ANS) 和自动增益控制 (AGC) 效果。</li>
+                            <li><xref keyref="false"/>：（默认）不启用音频处理模块。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enableLocalPlayback</pt>
+                    <pd>是否启用本地音频播放：
+                        <ul>
+                            <li><xref keyref="true"/>：(默认) 启用本地音频播放。</li>
+                            <li><xref keyref="false"/>：不启用本地音频播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enableAudioProcessing</pt>
+                    <pd>
+                        <note>该参数设置仅对 AudioTrackDirect 类型的自定义音频采集轨道生效。</note><ph>是否启用音频处理模块：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：启用音频处理模块，应用回声消除 (AEC)、降噪 (ANS) 和自动增益控制 (AGC) 效果。</li>
+                            <li><xref keyref="false"/>：（默认）不启用音频处理模块。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enableLocalPlayback</pt>
+                    <pd>是否启用本地音频播放：
+                        <ul>
+                            <li><xref keyref="true"/>：(默认) 启用本地音频播放。</li>
+                            <li><xref keyref="false"/>：不启用本地音频播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enableAudioProcessing</pt>
+                    <pd>
+                        <note>该参数设置仅对 audioTrackDirect 类型的自定义音频采集轨道生效。</note><ph>是否启用音频处理模块：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：启用音频处理模块，应用回声消除 (AEC)、降噪 (ANS) 和自动增益控制 (AGC) 效果。</li>
+                            <li><xref keyref="false"/>：（默认）不启用音频处理模块。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enableLocalPlayback</pt>
+                    <pd>是否启用本地音频播放：
+                        <ul>
+                            <li><xref keyref="true"/>：(默认) 启用本地音频播放。</li>
+                            <li><xref keyref="false"/>：不启用本地音频播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enableAudioProcessing</pt>
+                    <pd>
+                        <note>该参数设置仅对 AUDIO_TRACK_DIRECT 类型的自定义音频采集轨道生效。</note><ph>是否启用音频处理模块：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：启用音频处理模块，应用回声消除 (AEC)、降噪 (ANS) 和自动增益控制 (AGC) 效果。</li>
+                            <li><xref keyref="false"/>：（默认）不启用音频处理模块。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
