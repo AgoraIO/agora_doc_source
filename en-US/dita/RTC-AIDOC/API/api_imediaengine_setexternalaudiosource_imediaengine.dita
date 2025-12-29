@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_setexternalaudiosource_imediaengine">
+    <title><ph keyref="setExternalAudioSource_IMediaEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets external audio source parameters.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalAudioSource_IMediaEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setExternalAudioSource(bool enabled, int sampleRate, int channels, bool localPlayback = false, bool publish = true) __deprecated = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use <xref keyref="createCustomAudioTrack_IMediaEngine"/> instead.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method before joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the external audio source:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable external audio source.</li>
+                            <li><xref keyref="false"/>: (Default) Do not enable external audio source.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sampleRate</pt>
+                    <pd>Sample rate (Hz) of the external audio source. Can be 8000, 16000, 32000, 44100, or 48000.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>channels</pt>
+                    <pd>Number of channels of the external audio source. Can be 1 (mono) or 2 (stereo).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>localPlayback</pt>
+                    <pd>Whether to play the external audio source locally:
+                        <ul>
+                            <li><xref keyref="true"/>: Play locally.</li>
+                            <li><xref keyref="false"/>: (Default) Do not play locally.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publish</pt>
+                    <pd>Whether to publish audio to remote users:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Publish audio to remote users.</li>
+                            <li><xref keyref="false"/>: Do not publish audio to remote users.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -24,18 +24,34 @@ class OverloadParameterExtractor:
     def __init__(self):
         # Platform mapping: JSON platform name -> keysmap file suffix
         self.platform_mapping = {
+            'electron': 'electron',
+            'flutter': 'flutter',
+            'rn': 'rn',
+            'unity': 'unity',
+            'csharp': 'unity',
+            'unreal-cpp': 'unreal',
+            'unreal-bp': 'blueprint',
             'windows': 'cpp',
-            'android': 'java',
             'ios': 'ios',
-            'macos': 'macos'
+            'android': 'java',
+            'macos': 'macos',
+            'harmonyos': 'harmony'
         }
         
         # Platform props mapping for DITA files (one-to-one)
         self.platform_props = {
+            'electron': ['electron'],
+            'flutter': ['flutter'],
+            'rn': ['rn'],
+            'unity': ['unity'],
+            'csharp': ['cs'],
+            'unreal-cpp': ['unreal'],
+            'unreal-bp': ['bp'],
             'windows': ['cpp'],
-            'android': ['android'],
             'ios': ['ios'],
-            'macos': ['mac']
+            'android': ['android'],
+            'macos': ['mac'],
+            'harmonyos': ['hmos']
         }
         
         # Cache for parsed DITA files to avoid re-parsing
@@ -78,7 +94,13 @@ class OverloadParameterExtractor:
         # Group keys by their base names
         for key in api_data.keys():
             # Extract base name (remove trailing digits)
-            base_name = re.sub(r'\d+$', '', key)
+            # Handle two patterns:
+            # 1. methodName1, methodName2 -> methodName
+            # 2. methodName2_ClassName -> methodName_ClassName
+            base_name = re.sub(r'\d+$', '', key)  # Pattern 1: digits at end
+            if base_name == key:
+                # No digits at end, try pattern 2: digits before underscore
+                base_name = re.sub(r'\d+(_)', r'\1', key)
             
             if base_name not in overload_groups:
                 overload_groups[base_name] = []
@@ -98,7 +120,7 @@ class OverloadParameterExtractor:
     
     def load_keysmap_href_mappings(self) -> None:
         """Load href mappings from all keysmap files."""
-        config_dir = "dita/RTC-NG/config"
+        config_dir = "../../dita/RTC-NG/config"
         
         for platform, file_suffix in self.platform_mapping.items():
             file_path = os.path.join(config_dir, f"keys-rtc-ng-api-{file_suffix}.ditamap")
@@ -116,7 +138,8 @@ class OverloadParameterExtractor:
                         keys = keydef.get('keys')
                         href = keydef.get('href')
                         
-                        if keys and href and href.startswith('../API/api_'):
+                        # Load both API files (api_*) and class files (class_*)
+                        if keys and href and (href.startswith('../API/api_')  or href.startswith('../API/class_') or href.startswith('../API/callback_')):
                             # Store the href for this key
                             if keys not in self.href_cache:
                                 self.href_cache[keys] = href
@@ -139,7 +162,7 @@ class OverloadParameterExtractor:
         if dita_path in self.dita_cache:
             return self.dita_cache[dita_path]
         
-        full_path = os.path.join("dita/RTC-NG", dita_path.lstrip('../'))
+        full_path = os.path.join("../../dita/RTC-NG", dita_path.lstrip('../'))
         
         try:
             tree = ET.parse(full_path)
@@ -150,12 +173,13 @@ class OverloadParameterExtractor:
             logger.error(f"Error parsing DITA file {full_path}: {e}")
             return None
     
-    def resolve_conkeyref(self, conkeyref: str, visited_refs: Set[str] = None) -> List[Dict]:
+    def resolve_conkeyref(self, conkeyref: str, referrer_props: str = '', visited_refs: Set[str] = None) -> List[Dict]:
         """
         Resolve conkeyref references to get parameter information.
         
         Args:
             conkeyref: The conkeyref attribute value (e.g., "joinChannel2/token")
+            referrer_props: The props attribute from the referrer plentry (if any)
             visited_refs: Set to track visited references to prevent infinite loops
             
         Returns:
@@ -196,7 +220,25 @@ class OverloadParameterExtractor:
                     if (plentry.tag.endswith('plentry') and 
                         plentry.get('id') == param_id):
                         
-                        return self.extract_params_from_plentry(plentry, visited_refs)
+                        # Extract params from the referenced plentry
+                        params = self.extract_params_from_plentry(plentry, visited_refs)
+                        
+                        # If the referrer has props, we need to filter the platforms
+                        if referrer_props:
+                            referrer_platforms = self.parse_props_to_platforms(referrer_props)
+                            # Filter each parameter's platforms
+                            filtered_params = []
+                            for param in params:
+                                # Intersect with referrer platforms
+                                filtered_platforms = [p for p in param['platforms'] if p in referrer_platforms]
+                                if filtered_platforms:
+                                    filtered_params.append({
+                                        'name': param['name'],
+                                        'platforms': filtered_platforms
+                                    })
+                            return filtered_params
+                        
+                        return params
         
         logger.warning(f"Referenced parameter not found: {conkeyref}")
         return []
@@ -218,9 +260,16 @@ class OverloadParameterExtractor:
         # Check if this plentry has a conkeyref
         conkeyref = plentry.get('conkeyref')
         if conkeyref:
-            return self.resolve_conkeyref(conkeyref, visited_refs)
+            # Pass the plentry's props to resolve_conkeyref
+            plentry_props = plentry.get('props', '')
+            return self.resolve_conkeyref(conkeyref, plentry_props, visited_refs)
         
-        params = []
+        # Check if plentry itself has props
+        plentry_props = plentry.get('props', '')
+        
+        # Dictionary to store parameter names by platform
+        # This handles cases where different platforms use different parameter names
+        platform_param_names = {}
         
         # Extract pt elements
         for pt in plentry.iter():
@@ -228,18 +277,41 @@ class OverloadParameterExtractor:
                 param_name = pt.text.strip()
                 
                 # Get platform information from props
-                props = pt.get('props', '')
-                if props:
-                    # Parse props to get platforms
-                    platforms = self.parse_props_to_platforms(props)
+                # Priority: pt props > plentry props > no props (all platforms)
+                pt_props = pt.get('props', '')
+                
+                if pt_props:
+                    # pt has its own props, use it
+                    platforms = self.parse_props_to_platforms(pt_props)
+                elif plentry_props:
+                    # plentry has props, use it
+                    platforms = self.parse_props_to_platforms(plentry_props)
                 else:
                     # No props means all platforms
                     platforms = list(self.platform_mapping.keys())
                 
-                params.append({
-                    'name': param_name,
-                    'platforms': platforms
-                })
+                # Store the parameter name for each platform
+                for platform in platforms:
+                    if platform not in platform_param_names:
+                        platform_param_names[platform] = []
+                    platform_param_names[platform].append(param_name)
+        
+        # Convert to the expected format
+        # Group by parameter name and collect platforms
+        param_dict = {}
+        for platform, param_names in platform_param_names.items():
+            for param_name in param_names:
+                if param_name not in param_dict:
+                    param_dict[param_name] = []
+                param_dict[param_name].append(platform)
+        
+        # Convert to list format
+        params = []
+        for param_name, platforms in param_dict.items():
+            params.append({
+                'name': param_name,
+                'platforms': platforms
+            })
         
         return params
     
@@ -256,19 +328,23 @@ class OverloadParameterExtractor:
         props_list = [p.strip() for p in props.split()]
         applicable_platforms = []
         
-        # Handle special props shortcuts
+        # Handle special props shortcuts first
         if 'native' in props_list:
             # native means all platforms: android, cpp, ios, mac
             applicable_platforms.extend(['android', 'windows', 'ios', 'macos'])
-        elif 'apple' in props_list:
-            # apple means iOS and macOS platforms: ios, mac
-            applicable_platforms.extend(['ios', 'macos'])
         else:
-            # Normal props processing
+            # Handle apple shortcut (can coexist with other props)
+            if 'apple' in props_list:
+                # apple means iOS and macOS platforms: ios, mac
+                applicable_platforms.extend(['ios', 'macos'])
+            
+            # Normal props processing (check all other props)
             for platform, platform_props in self.platform_props.items():
                 # Check if any of the platform's props are in the props list
                 if any(prop in props_list for prop in platform_props):
-                    applicable_platforms.append(platform)
+                    # Avoid adding duplicates from apple shortcut
+                    if platform not in applicable_platforms:
+                        applicable_platforms.append(platform)
         
         # Remove duplicates while preserving order
         seen = set()
@@ -305,6 +381,14 @@ class OverloadParameterExtractor:
             logger.debug(f"No parameters section found in {dita_path}")
             return {}
         
+        # Check if the parameters section itself has props
+        section_props = parameters_section.get('props', '')
+        section_platforms = None
+        if section_props:
+            # If the section has props, only these platforms should have parameters
+            section_platforms = self.parse_props_to_platforms(section_props)
+            logger.debug(f"Parameters section has props='{section_props}', applicable platforms: {section_platforms}")
+        
         # Initialize platform parameter lists
         platform_params = {platform: [] for platform in self.platform_mapping.keys()}
         
@@ -316,6 +400,10 @@ class OverloadParameterExtractor:
                 for param in params:
                     param_name = param['name']
                     param_platforms = param['platforms']
+                    
+                    # If section has props, intersect with param platforms
+                    if section_platforms:
+                        param_platforms = [p for p in param_platforms if p in section_platforms]
                     
                     # Add parameter to applicable platforms
                     for platform in param_platforms:
@@ -347,7 +435,7 @@ class OverloadParameterExtractor:
             logger.warning("No 'api' section found in JSON data")
             return data
         
-        # Get all overloaded keys
+        # Get all overloaded keys (from identified groups)
         all_overloaded_keys = set()
         for keys in overloaded_methods.values():
             all_overloaded_keys.update(keys)
@@ -355,7 +443,13 @@ class OverloadParameterExtractor:
         updated_apis = {}
         
         for key, platforms_data in data['api'].items():
-            if key in all_overloaded_keys:
+            # Check if this is an overloaded method:
+            # 1. It's in the identified overloaded groups, OR
+            # 2. It already has isOverload=true in the original data
+            is_overloaded = (key in all_overloaded_keys or 
+                           (isinstance(platforms_data, dict) and platforms_data.get('isOverload')))
+            
+            if is_overloaded:
                 # This is an overloaded method, add isOverload and params
                 logger.debug(f"Processing overloaded method: {key}")
                 
@@ -455,7 +549,7 @@ class OverloadParameterExtractor:
         except Exception as e:
             logger.error(f"Error saving updated JSON to {output_file}: {e}")
     
-    def run(self, input_file: str = "name_groups.json", output_file: str = "name_groups_overload.json") -> None:
+    def run(self, input_file: str = "name_groups.json", output_file: str = "name_groups.json") -> None:
         """
         Run the complete overload parameter extraction process.
         

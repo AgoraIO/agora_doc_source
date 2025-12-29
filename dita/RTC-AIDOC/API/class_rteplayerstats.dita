@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rteplayerstats">
+    <title><ph keyref="RtePlayerStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于统计当前播放媒体资源的相关信息。</ph><ph id="shortdesc" props="ios">获取正在播放的媒体资源的统计信息。</ph><ph id="shortdesc" props="android">用于统计当前正在播放的媒体资源。</ph><ph id="shortdesc" props="mac">获取正在播放的媒体资源的统计信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">typedef struct RtePlayerStats {
+  int video_decode_frame_rate;
+  int video_render_frame_rate;
+  int video_bitrate;
+  int audio_bitrate;
+} RtePlayerStats;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">@interface AgoraRtePlayerStats : NSObject
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class PlayerStats {
+  private long mNativeHandle = 0;
+  private boolean mIsNativeOwner = true;
+}</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">@interface AgoraRtePlayerStats : NSObject
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>video_decode_frame_rate</pt>
+                    <pd>视频解码帧率，单位为 fps。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>video_render_frame_rate</pt>
+                    <pd>视频渲染帧率，单位为 fps。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>video_bitrate</pt>
+                    <pd>视频码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audio_bitrate</pt>
+                    <pd>音频码率，单位为 Kbps。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

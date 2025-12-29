@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onlocalvideotranscodererror">
+    <title><ph keyref="onLocalVideoTranscoderError"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when an error occurs during local video mixing.</ph><ph id="shortdesc" props="android">Callback for errors during local video mixing.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalVideoTranscoderError"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onLocalVideoTranscoderError(const TranscodingVideoStream&amp; stream, VIDEO_TRANSCODER_ERROR error)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onLocalVideoTranscoderError(LocalTranscoderConfiguration.TranscodingVideoStream stream, int error)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">When calling <xref keyref="startLocalVideoTranscoder"/> or <xref keyref="updateLocalTranscoderConfiguration"/> fails, the SDK triggers this callback to report the failure reason.</p>
+            <p props="android">When <xref keyref="startLocalVideoTranscoder"/> or <xref keyref="updateLocalTranscoderConfiguration"/> fails, the SDK triggers this callback to report the reason for the failure.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when calling <xref keyref="startLocalVideoTranscoder"/> or <xref keyref="updateLocalTranscoderConfiguration"/> fails.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>stream</pt>
+                    <pd>The video stream that could not be mixed during video mixing. See <xref keyref="TranscodingVideoStream"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>error</pt>
+                    <pd>The reason for local video mixing failure. See <xref keyref="VIDEO_TRANSCODER_ERROR"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>stream</pt>
+                    <pd>Video stream that cannot be mixed during video mixing. See <xref keyref="TranscodingVideoStream"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>error</pt>
+                    <pd>Reason for the local video mixing error:
+                        <ul>
+                            <li>1: The specified video source has not started video capture. You need to create a video track and start capture.</li>
+                            <li>2: Invalid video source type. You need to specify a supported video source type.</li>
+                            <li>3: Invalid image path. You need to specify the correct image path.</li>
+                            <li>4: Invalid image format. Make sure the image format is PNG, JPEG, or GIF.</li>
+                            <li>5: Invalid resolution after mixing.</li>
+                            <li>20: Internal error.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudioroutingchanged">
+    <title><ph keyref="onAudioRoutingChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">音频路由已发生变化回调。</ph><ph id="shortdesc" props="rn">音频路由已发生变化回调。</ph><ph id="shortdesc" props="flutter">音频路由已发生变化回调。</ph><ph id="shortdesc" props="unity">音频路由已发生变化回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioRoutingChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onAudioRoutingChanged?(routing: number): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onAudioRoutingChanged?(routing: number): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(int routing)? onAudioRoutingChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioRoutingChanged(int routing) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">该回调仅适用于 macOS 平台。</note>
+            <note props="flutter">该回调仅适用于 Android、iOS 和 macOS 平台。</note>
+            <note props="unity">该回调仅适用于 Android、iOS 和 macOS 平台。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>routing</pt>
+                    <pd>当前的音频路由：
+                        <ul>
+                            <li>-1：使用默认的音频路由。</li>
+                            <li>0：音频路由为带麦克风的耳机。</li>
+                            <li>1：音频路由为听筒。</li>
+                            <li>2：音频路由为不带麦克风的耳机。</li>
+                            <li>3：音频路由为设备自带的扬声器。</li>
+                            <li>4：音频路由为外接的扬声器。（仅适用于 iOS 和 macOS）</li>
+                            <li>5：音频路由为蓝牙耳机。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>routing</pt>
+                    <pd>当前的音频路由：
+                        <ul>
+                            <li>-1：使用默认的音频路由。</li>
+                            <li>0：音频路由为带麦克风的耳机。</li>
+                            <li>1：音频路由为听筒。</li>
+                            <li>2：音频路由为不带麦克风的耳机。</li>
+                            <li>3：音频路由为设备自带的扬声器。</li>
+                            <li>4：音频路由为外接的扬声器。（仅适用于 iOS 和 macOS）</li>
+                            <li>5：音频路由为蓝牙耳机。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>routing</pt>
+                    <pd>当前的音频路由。详见 <xref keyref="AudioRoute"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>routing</pt>
+                    <pd>当前的音频路由。详见 <xref keyref="AudioRoute"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

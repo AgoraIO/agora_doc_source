@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_registervideoencodedframeobserver_imediaengine">
+    <title><ph keyref="registerVideoEncodedFrameObserver_IMediaEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">注册用于接收编码后视频帧的观察器对象。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerVideoEncodedFrameObserver_IMediaEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int registerVideoEncodedFrameObserver(IVideoEncodedFrameObserver* observer) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">如果你只需要监听编码后的视频帧（例如 H.264 格式），而不进行解码和渲染，建议通过此方法注册一个自定义的 <xref keyref="IVideoEncodedFrameObserver"/> 实例。</p>
+            <note props="cpp">请在加入频道前调用此方法。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>observer</pt>
+                    <pd>编码后视频帧观察器对象。详见 <xref keyref="IVideoEncodedFrameObserver"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

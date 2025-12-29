@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_musiccontentcenterstatereason">
+    <title><ph keyref="MusicContentCenterStateReason"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Request status codes for the music content center.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">class MusicContentCenterStateReason {
+    public static final int MUSIC_CONTENT_CENTER_STATE_REASON_OK = 0;
+    public static final int MUSIC_CONTENT_CENTER_STATE_REASON_ERROR = 1;
+    public static final int MUSIC_CONTENT_CENTER_STATE_REASON_GATEWAY = 2;
+    public static final int MUSIC_CONTENT_CENTER_STATE_REASON_PERMISSION_AND_RESOURCE = 3;
+    public static final int MUSIC_CONTENT_CENTER_STATE_REASON_INTERNAL_DATA_PARSE = 4;
+    public static final int MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_LOADING = 5;
+    public static final int MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_DECRYPTION = 6;
+    public static final int MUSIC_CONTENT_CENTER_STATE_REASON_HTTP_INTERNAL = 7;
+  }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Properties</title>
+            <parml>
+                <plentry props="android">
+                    <pt>MUSIC_CONTENT_CENTER_STATE_REASON_OK</pt>
+                    <pd>0: Request succeeded.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MUSIC_CONTENT_CENTER_STATE_REASON_ERROR</pt>
+                    <pd>1: General error with no specific cause.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MUSIC_CONTENT_CENTER_STATE_REASON_GATEWAY</pt>
+                    <pd>2: Gateway error. Possible reasons include:
+                        <ul>
+                            <li>The current temporary Token has expired. Please regenerate a temporary Token.</li>
+                            <li>The provided temporary Token is invalid. Make sure you are using an RTM temporary Token.</li>
+                            <li>Network error. Please check your network connection.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MUSIC_CONTENT_CENTER_STATE_REASON_PERMISSION_AND_RESOURCE</pt>
+                    <pd>3: Permission error or music resource does not exist. Make sure your project has enabled the Agora copyrighted music content center. For assistance, contact technical support.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MUSIC_CONTENT_CENTER_STATE_REASON_INTERNAL_DATA_PARSE</pt>
+                    <pd>4: Internal data parsing error. Please contact technical support.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_LOADING</pt>
+                    <pd>5: Error occurred while loading the music resource. Please contact technical support.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_DECRYPTION</pt>
+                    <pd>6: Error occurred while decrypting the music resource. Please contact technical support.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MUSIC_CONTENT_CENTER_STATE_REASON_HTTP_INTERNAL</pt>
+                    <pd>7: Internal HTTP error occurred. Please try again later.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

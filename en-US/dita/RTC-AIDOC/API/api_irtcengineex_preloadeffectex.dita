@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_preloadeffectex">
+    <title><ph keyref="preloadEffectEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Preloads a specified sound effect file into the channel.</ph><ph id="shortdesc" props="android">Preloads the specified audio effect file into the channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="preloadEffectEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int preloadEffectEx(const RtcConnection&amp; connection, int soundId, const char* filePath, int startPos = 0) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int preloadEffectEx(RtcConnection connection, int soundId, String filePath, int startPos);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Added since v4.6.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">Each call to this method can preload only one sound effect file into memory. If you need to preload multiple sound effect files, call this method multiple times. After preloading is complete, you can call <xref keyref="playEffect3"/> to play a specific sound effect or <xref keyref="playAllEffects"/> to play all preloaded sound effects.</p>
+            <p props="android">Each call to this method can only preload one audio effect file into memory. To preload multiple audio effect files, call this method multiple times. You can call <codeph>playEffect</codeph> to play the preloaded audio effect, or call <xref keyref="playAllEffects"/> to play all preloaded audio effects.</p>
+            <note props="cpp">
+                <ul>
+                    <li>To ensure smooth user experience, the size of the sound effect file should not exceed the limit.</li>
+                    <li>Agora recommends calling this method before joining a channel.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>To ensure smooth user experience, the size of the audio effect file should not exceed the limit.</li>
+                    <li>Agora recommends calling this method before joining a channel.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method is applicable in multi-channel scenarios.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>soundId</pt>
+                    <pd>Sound effect ID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>filePath</pt>
+                    <pd>Absolute path of the local file or URL of the online file. Supported audio formats include: mp3, mp4, m4a, aac, 3gp, mkv, and wav.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>startPos</pt>
+                    <pd>Start position for playing the sound effect file (in milliseconds).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>soundId</pt>
+                    <pd>Audio effect ID.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>filePath</pt>
+                    <pd>The absolute path of a local file or the URL of an online file. Supported audio formats include: mp3, mp4, m4a, aac, 3gp, mkv, and wav.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>startPos</pt>
+                    <pd>The starting position (in milliseconds) for playing the audio effect file.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_createmediarecorder">
+    <title><ph keyref="createMediaRecorder"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">创建一个音视频录制器实例。</ph><ph id="shortdesc" props="ios">创建一个媒体录制器实例。</ph><ph id="shortdesc" props="android">创建用于音视频录制的录制器实例。</ph><ph id="shortdesc" props="mac">创建一个媒体录制器实例。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createMediaRecorder"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual agora_refptr&lt;IMediaRecorder&gt; createMediaRecorder(const RecorderStreamInfo&amp; info) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (AgoraMediaRecorder * _Nullable)createMediaRecorder:(AgoraRecorderStreamInfo * _Nonnull)info NS_SWIFT_NAME(createMediaRecorder(withInfo:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract AgoraMediaRecorder createMediaRecorder(RecorderStreamInfo info);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (AgoraMediaRecorder * _Nullable)createMediaRecorder:(AgoraRecorderStreamInfo * _Nonnull)info NS_SWIFT_NAME(createMediaRecorder(withInfo:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">在开始录制音频和视频流之前，你需要调用该方法创建一个录制器实例。SDK 支持录制来自本地或远端用户的多个音视频流。你可以多次调用该方法创建多个录制器实例，并通过参数 <codeph>info</codeph> 指定要录制的频道名和远端用户 ID。创建成功后，你需要调用 <xref keyref="setMediaRecorderObserver"/> 为录制器实例注册观察者以监听相关回调，然后调用 <xref keyref="startRecording"/> 开始录制。</p>
+            <p props="ios">在开始音视频流录制之前，你需要调用该方法创建一个媒体录制器实例。SDK 支持录制来自本地或远端用户的多个音视频流。你可以多次调用该方法创建多个录制器实例，并使用 <codeph>info</codeph> 参数指定要录制的频道名和远端用户 ID。
+
+成功创建录制器实例后，你需要调用 <xref keyref="setMediaRecorderObserver"/> 方法为该录制器注册一个观察者，以监听相关回调，然后调用 <xref keyref="startRecording"/> 方法开始录制。</p>
+            <p props="android">在开始录制音视频流之前，你需要调用该方法创建一个录制器实例。你可以多次调用该方法创建多个录制器，并通过 <codeph>info</codeph> 参数指定要录制的频道名和用户 ID。
+
+成功创建录制器后，你需要调用 <xref keyref="setMediaRecorderObserver"/> 为录制器注册观察者以监听录制相关的回调，然后调用 <xref keyref="startRecording"/> 开始录制。</p>
+            <p props="mac">在开始音视频流录制之前，你需要调用该方法创建一个媒体录制器实例。SDK 支持录制来自本地或远端用户的多个音视频流。你可以多次调用该方法创建多个录制器实例，并使用 <codeph>info</codeph> 参数指定要录制的频道名和远端用户 ID。
+
+成功创建录制器实例后，你需要调用 <xref keyref="setMediaRecorderObserver"/> 方法为该录制器注册一个观察者，以监听相关回调，然后调用 <xref keyref="startRecording"/> 方法开始录制。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>info</pt>
+                    <pd>音视频流信息。详见 <xref keyref="RecorderStreamInfo"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>info</pt>
+                    <pd>要录制的音视频流的信息，详见 <xref keyref="RecorderStreamInfo"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>info</pt>
+                    <pd>要录制的音视频流的信息。详见 <xref keyref="RecorderStreamInfo"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>info</pt>
+                    <pd>要录制的音视频流的信息，详见 <xref keyref="RecorderStreamInfo"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">方法调用成功，返回 <xref keyref="IMediaRecorder"/> 实例。详见 <xref keyref="IMediaRecorder"/>。
+方法调用失败，返回 <xref keyref="NULL"/>。</p>
+            <p props="ios">
+                <ul>
+                    <li>方法调用成功，返回 <xref keyref="IMediaRecorder"/> 对象。</li>
+                    <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功，返回 <xref keyref="IMediaRecorder"/> 实例。</li>
+                    <li>方法调用失败，返回 <codeph>null</codeph>。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>方法调用成功，返回 <xref keyref="IMediaRecorder"/> 对象。</li>
+                    <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

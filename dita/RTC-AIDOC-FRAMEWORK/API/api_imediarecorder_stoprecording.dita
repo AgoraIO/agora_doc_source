@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediarecorder_stoprecording">
+    <title><ph keyref="stopRecording"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">停止音视频流录制。</ph><ph id="shortdesc" props="rn">停止音视频流录制。</ph><ph id="shortdesc" props="flutter">停止音视频流录制。</ph><ph id="shortdesc" props="unity">停止音视频流录制。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="stopRecording"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract stopRecording(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract stopRecording(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopRecording();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StopRecording();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">调用 <xref keyref="startRecording"/> 后，如果要停止录制，请调用该方法停止录制；否则，生成的录制文件可能无法正常播放。</note>
+            <note props="rn">调用 <xref keyref="startRecording"/> 后，如果要停止录制，请调用该方法停止录制；否则，生成的录制文件可能无法正常播放。</note>
+            <note props="flutter">调用 <xref keyref="startRecording"/> 后，如果要停止录制，请调用该方法停止录制；否则，生成的录制文件可能无法正常播放。</note>
+            <note props="unity">调用 <xref keyref="startRecording"/> 后，如果要停止录制，请调用该方法停止录制；否则，生成的录制文件可能无法正常播放。</note>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败：
+                        <ul>
+                            <li>-7: <xref keyref="IRtcEngine"/> 尚未初始化就调用方法。请确认在调用该方法前已创建 <xref keyref="IMediaRecorder"/> 对象。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败：
+                        <ul>
+                            <li>-7: <xref keyref="IRtcEngine"/> 尚未初始化就调用方法。请确认在调用该方法前已创建 <xref keyref="IMediaRecorder"/> 对象。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败：
+                        <ul>
+                            <li>-7: <xref keyref="IRtcEngine"/> 尚未初始化就调用方法。请确认在调用该方法前已创建 <xref keyref="IMediaRecorder"/> 对象。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

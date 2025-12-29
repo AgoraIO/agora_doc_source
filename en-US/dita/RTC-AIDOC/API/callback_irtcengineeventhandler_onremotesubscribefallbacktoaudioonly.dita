@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onremotesubscribefallbacktoaudioonly">
+    <title><ph keyref="onRemoteSubscribeFallbackToAudioOnly"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the remote media stream switches between audio and video due to network changes.</ph><ph id="shortdesc" props="android"><xref keyref="onRemoteSubscribeFallbackToAudioOnly"/> callback. Triggered when the remote media stream switches between audio and video due to network changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteSubscribeFallbackToAudioOnly"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteSubscribeFallbackToAudioOnly(uid_t uid, bool isFallbackOrRecover)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onRemoteSubscribeFallbackToAudioOnly(int uid, boolean isFallbackOrRecover)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">If you call <xref keyref="setRemoteSubscribeFallbackOption"/> and set <codeph>option</codeph> to <codeph>STREAM_FALLBACK_OPTION_AUDIO_ONLY</codeph>, the SDK triggers this callback in the following cases:
+                <ul>
+                    <li>The subscribed video stream is downgraded to audio-only due to poor downlink network conditions.</li>
+                    <li>The subscribed stream recovers to video when the network improves.</li>
+                </ul>
+            </p>
+            <p props="android">If you call <codeph>setRemoteSubscribeFallbackOption</codeph> and set <codeph>option</codeph> to <codeph>STREAM_FALLBACK_OPTION_AUDIO_ONLY</codeph>, the SDK triggers this callback in the following cases:
+                <ul>
+                    <li>The subscribed video stream switches to audio-only due to poor downlink network conditions.</li>
+                    <li>The subscribed stream switches back to video after the network improves.</li>
+                </ul>
+            </p>
+            <note props="cpp">When the remote media stream switches to a low-quality video stream due to weak network, you can monitor the switch between high-quality and low-quality video streams via the <xref keyref="onRemoteVideoStats"/> callback.</note>
+            <note props="android">You can monitor the switch between high-quality and low-quality video streams in the <xref keyref="onRemoteVideoStats"/> callback.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the remote media stream switches between audio and video due to network changes.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>isFallbackOrRecover</pt>
+                    <pd>Whether the media stream switched due to network changes:
+                        <ul>
+                            <li><xref keyref="true"/>: The subscribed media stream was downgraded to audio-only due to poor network conditions.</li>
+                            <li><xref keyref="false"/>: The subscribed media stream recovered to video after the network improved.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>The user ID of the remote user.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>isFallbackOrRecover</pt>
+                    <pd>Whether the switch between audio and video is triggered by network changes:
+                        <ul>
+                            <li><xref keyref="true"/>: The subscribed media stream switches to audio-only due to poor network conditions.</li>
+                            <li><xref keyref="false"/>: The subscribed media stream switches back to video after the network improves.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

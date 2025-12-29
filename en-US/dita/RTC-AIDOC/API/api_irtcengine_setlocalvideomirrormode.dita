@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalvideomirrormode">
+    <title><ph keyref="setLocalVideoMirrorMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the mirror mode of the local video.</ph><ph id="shortdesc" props="android">Sets the local video mirror mode.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalVideoMirrorMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalVideoMirrorMode(VIDEO_MIRROR_MODE_TYPE mirrorMode) __deprecated = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setLocalVideoMirrorMode(int mode)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use <xref keyref="setupLocalVideo"/> or <codeph>setLocalRenderMode</codeph> instead.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mirrorMode</pt>
+                    <pd>The mirror mode of the local video. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mode</pt>
+                    <pd>Local video mirror mode:
+                        <ul>
+                            <li><codeph>VIDEO_MIRROR_MODE_AUTO</codeph> (0): The SDK decides whether to enable mirror mode. Mirror mode is enabled by default for the front camera and disabled for the rear camera.</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_ENABLED</codeph> (1): Enable mirror mode for the local view.</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_DISABLED</codeph> (2): Disable mirror mode for the local view.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

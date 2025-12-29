@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setdefaultaudioroutetospeakerphone">
+    <title><ph keyref="setDefaultAudioRouteToSpeakerphone"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the default audio playback route.</ph><ph id="shortdesc" props="android">Sets the default audio playback route.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDefaultAudioRouteToSpeakerphone"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setDefaultAudioRoutetoSpeakerphone(boolean defaultToSpeaker);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Most phones have two audio routes: the earpiece at the top and the speaker at the bottom. The earpiece has lower volume, while the speaker has higher volume. You can use this method to set whether to use the earpiece or speaker by default when no external audio device is connected.
+Default audio routes for different scenarios:
+                <ul>
+                    <li>Voice call: Earpiece.</li>
+                    <li>Audio live streaming: Speaker.</li>
+                    <li>Video call: Speaker.</li>
+                    <li>Video live streaming: Speaker.</li>
+                </ul>
+            </p>
+            <p props="android">Most phones have two audio routes: the earpiece at the top and the speaker at the bottom. You can call this method to set the default audio route, determining whether audio plays through the earpiece or speaker when no external audio device is connected.
+In different scenarios, the system's default audio routes are:
+                <ul>
+                    <li>Voice call: Earpiece.</li>
+                    <li>Audio live streaming: Speaker.</li>
+                    <li>Video call: Speaker.</li>
+                    <li>Video live streaming: Speaker.</li>
+                </ul>
+            </p>
+            <note props="cpp">This method applies to Android and iOS only.</note>
+            <note props="android">After setting the default audio route with this method, the actual audio route will automatically switch based on the connection status of external audio devices (e.g., wired or Bluetooth headsets).</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method before joining a channel. To change the audio route after joining a channel, call <xref keyref="setEnableSpeakerphone"/>.</p>
+            <p props="android">Call this method before joining a channel. If you need to change the audio route after joining a channel, call <xref keyref="setEnableSpeakerphone"/>.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After this method is successfully called, the SDK triggers the <xref keyref="onAudioRoutingChanged"/> callback to report the current audio route.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>defaultToSpeaker</pt>
+                    <pd>Whether to set the speaker as the default audio route:
+                        <ul>
+                            <li><xref keyref="true"/>: Set the speaker as the default audio route.</li>
+                            <li><xref keyref="false"/>: Set the earpiece as the default audio route.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>defaultToSpeaker</pt>
+                    <pd>Whether to set the speaker as the default audio route:
+                        <ul>
+                            <li><xref keyref="true"/>: Set the speaker as the default audio route.</li>
+                            <li><xref keyref="false"/>: Set the earpiece as the default audio route.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

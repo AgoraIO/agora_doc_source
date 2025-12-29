@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_muterecordingsignal">
+    <title><ph keyref="muteRecordingSignal"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">是否将录音信号静音。</ph><ph id="shortdesc" props="rn">是否将录音信号静音。</ph><ph id="shortdesc" props="flutter">是否将录音信号静音。</ph><ph id="shortdesc" props="unity">是否将录音信号静音。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="muteRecordingSignal"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract muteRecordingSignal(mute: boolean): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract muteRecordingSignal(mute: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteRecordingSignal(bool mute);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int MuteRecordingSignal(bool mute);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">如果你已经调用 <xref keyref="adjustRecordingSignalVolume"/> 调节了音频采集信号音量，则调用该方法并设置为 <xref keyref="true"/> 时，SDK 的行为如下：
+                <ol>
+                    <li>记录调节后的音量。</li>
+                    <li>将音频采集信号静音。</li>
+                </ol><ph>当你再次调用该方法并设置为 <xref keyref="false"/> 时，录音信号会恢复为静音前 SDK 记录的音量。</ph></p>
+            <p props="rn">如果你已经调用 <xref keyref="adjustRecordingSignalVolume"/> 调节了音频采集信号音量，则调用该方法并设置为 <xref keyref="true"/> 时，SDK 的行为如下：
+                <ol>
+                    <li>记录调节后的音量。</li>
+                    <li>将音频采集信号静音。</li>
+                </ol><ph>当你再次调用该方法并设置为 <xref keyref="false"/> 时，录音信号会恢复为静音前 SDK 记录的音量。</ph></p>
+            <p props="flutter">如果你已经调用 <xref keyref="adjustRecordingSignalVolume"/> 调节了音频采集信号音量，则调用该方法并设置为 <xref keyref="true"/> 时，SDK 的行为如下：
+                <ol>
+                    <li>记录调节后的音量。</li>
+                    <li>将音频采集信号静音。</li>
+                </ol><ph>当你再次调用该方法并设置为 <xref keyref="false"/> 时，录音信号会恢复为静音前 SDK 记录的音量。</ph></p>
+            <p props="unity">如果你已经调用 <xref keyref="adjustRecordingSignalVolume"/> 调节了音频采集信号音量，则调用该方法并设置为 <xref keyref="true"/> 时，SDK 的行为如下：
+                <ol>
+                    <li>记录调节后的音量。</li>
+                    <li>将音频采集信号静音。</li>
+                </ol><ph>当你再次调用该方法并设置为 <xref keyref="false"/> 时，录音信号会恢复为静音前 SDK 记录的音量。</ph></p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">加入频道前后均可调用。</p>
+            <p props="rn">加入频道前后均可调用。</p>
+            <p props="flutter">加入频道前后均可调用。</p>
+            <p props="unity">加入频道前后均可调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>mute</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: 静音。</li>
+                            <li><xref keyref="false"/>:（默认）原始音量。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mute</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: 静音。</li>
+                            <li><xref keyref="false"/>:（默认）原始音量。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mute</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: 静音。</li>
+                            <li><xref keyref="false"/>:（默认）原始音量。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mute</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: 静音。</li>
+                            <li><xref keyref="false"/>:（默认）原始音量。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

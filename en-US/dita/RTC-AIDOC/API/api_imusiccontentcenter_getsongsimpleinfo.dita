@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_getsongsimpleinfo">
+    <title><ph keyref="getSongSimpleInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Retrieves detailed information of the specified music resource.</ph><ph id="shortdesc" props="android">Retrieves detailed information about a specific music resource.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getSongSimpleInfo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getSongSimpleInfo(agora::util::AString&amp; requestId, int64_t songCode) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract String getSongSimpleInfo(long songCode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Before calling this method, you need to obtain the song code of the target music resource. You can do this by calling <xref keyref="getMusicCollectionByMusicChartId"/> or <xref keyref="searchMusic"/>, and retrieve the song code from the <xref keyref="onMusicCollectionResult"/> callback triggered by these methods. After calling this method, the SDK triggers the <xref keyref="onSongSimpleInfoResult"/> callback to return the detailed information of the music resource.</p>
+            <p props="android">Before calling this method, you need to obtain the identifier of the target music resource. You can get the music resource by calling <codeph>getMusicCollectionByMusicChartId</codeph> or <codeph>searchMusic</codeph>, and obtain the identifier (<codeph>songCode</codeph>) from the triggered <xref keyref="onMusicCollectionResult"/> callback.</p>
+            <note props="android">After this method is successfully called, the SDK triggers the <xref keyref="onSongSimpleInfoResult"/> callback to report the detailed information of the music resource.</note>
+        </section>
+        <section id="related" deliveryTarget="details" props="cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After this method is successfully called, the SDK triggers the <xref keyref="onSongSimpleInfoResult"/> callback to return the detailed information of the music resource.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>requestId</pt>
+                    <pd>Request ID, used to uniquely identify the request.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>songCode</pt>
+                    <pd>The song code of the music resource, used to identify the music.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>songCode</pt>
+                    <pd>The identifier of the music resource to query.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>If the method call succeeds, returns the <codeph>requestId</codeph> that uniquely identifies the request.</li>
+                    <li>If the method call fails, returns an empty string.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

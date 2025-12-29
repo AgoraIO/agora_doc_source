@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onremoteaudiostatechanged">
+    <title><ph keyref="onRemoteAudioStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">远端音频状态发生变化回调。</ph><ph id="shortdesc" props="ios">远端音频状态发生变化回调。</ph><ph id="shortdesc" props="android">远端音频状态发生变化回调。</ph><ph id="shortdesc" props="mac">远端音频状态发生变化回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteAudioStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteAudioStateChanged(uid_t uid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine remoteAudioStateChangedOfUid:(NSUInteger)uid state:(AgoraAudioRemoteState)state reason:(AgoraAudioRemoteReason)reason elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:remoteAudioStateChangedOfUid:state:reason:elapsed:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onRemoteAudioStateChanged(int uid, int state, int reason, int elapsed)</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine remoteAudioStateChangedOfUid:(NSUInteger)uid state:(AgoraAudioRemoteState)state reason:(AgoraAudioRemoteReason)reason elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:remoteAudioStateChangedOfUid:state:reason:elapsed:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">当语音/视频通话频道中的远端用户，或直播频道中的主播的音频状态发生变化时，SDK 会触发该回调以报告远端音频流的当前状态。</p>
+            <p props="android">该回调在语音/视频通话频道中的远端用户或直播频道中的主播的音频状态发生变化时被触发，用于报告远端音频流的当前状态。</p>
+            <p props="mac">当语音/视频通话频道中的远端用户，或直播频道中的主播的音频状态发生变化时，SDK 会触发该回调以报告远端音频流的当前状态。</p>
+            <note props="cpp">当通信场景下的用户或直播场景下的主播数量超过 32 时，该回调无法正常工作。</note>
+            <note props="ios">当频道中的用户（通信场景）或主播（直播频道）数量超过 32 时，该回调可能无法正常工作。</note>
+            <note props="android">当频道中的用户（通信场景）或主播（直播场景）数量超过 32 时，该回调可能无法正常工作。</note>
+            <note props="mac">当频道中的用户（通信场景）或主播（直播频道）数量超过 32 时，该回调可能无法正常工作。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>触发时机</title>
+            <p props="cpp">当远端用户的音频状态发生变化时触发。</p>
+            <p props="ios">该回调在远端用户的音频状态发生变化时被触发。</p>
+            <p props="android">该回调在远端用户的音频状态发生变化时被触发。</p>
+            <p props="mac">该回调在远端用户的音频状态发生变化时被触发。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>音频状态发生变化的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>远端音频状态。详见 <xref keyref="REMOTE_AUDIO_STATE"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>远端音频状态变化的原因。详见 <xref keyref="REMOTE_AUDIO_STATE_REASON"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 方法到 SDK 触发该回调的时间间隔（毫秒）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>音频状态发生变化的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>state</pt>
+                    <pd>远端音频的状态，详见 <xref keyref="REMOTE_AUDIO_STATE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>reason</pt>
+                    <pd>远端音频状态变化的原因，详见 <xref keyref="REMOTE_AUDIO_STATE_REASON"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>elapsed</pt>
+                    <pd>从调用 <codeph>joinChannelByToken</codeph> 方法到 SDK 触发该回调的时间（毫秒）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>音频状态发生变化的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>远端音频状态：
+                        <ul>
+                            <li><codeph>REMOTE_AUDIO_STATE_STOPPED</codeph>（0）：远端音频处于初始状态。SDK 在 <codeph>REMOTE_AUDIO_REASON_LOCAL_MUTED</codeph>、<codeph>REMOTE_AUDIO_REASON_REMOTE_MUTED</codeph> 或 <codeph>REMOTE_AUDIO_REASON_REMOTE_OFFLINE</codeph> 的情况下报告该状态。</li>
+                            <li><codeph>REMOTE_AUDIO_STATE_STARTING</codeph>（1）：已接收到第一包远端音频数据。</li>
+                            <li><codeph>REMOTE_AUDIO_STATE_DECODING</codeph>（2）：远端音频流解码并正常播放。SDK 在 <codeph>REMOTE_AUDIO_REASON_NETWORK_RECOVERY</codeph>、<codeph>REMOTE_AUDIO_REASON_LOCAL_UNMUTED</codeph> 或 <codeph>REMOTE_AUDIO_REASON_REMOTE_UNMUTED</codeph> 的情况下报告该状态。</li>
+                            <li><codeph>REMOTE_AUDIO_STATE_FROZEN</codeph>（3）：远端音频卡顿。SDK 在 <codeph>REMOTE_AUDIO_REASON_NETWORK_CONGESTION</codeph> 的情况下报告该状态。</li>
+                            <li><codeph>REMOTE_AUDIO_STATE_FAILED</codeph>（4）：远端音频启动失败。SDK 在 <codeph>REMOTE_AUDIO_REASON_INTERNAL</codeph> 的情况下报告该状态。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>远端音频状态变化的原因：
+                        <ul>
+                            <li><codeph>REMOTE_AUDIO_REASON_INTERNAL</codeph>（0）：SDK 音频状态改变时报告该原因。</li>
+                            <li><codeph>REMOTE_AUDIO_REASON_NETWORK_CONGESTION</codeph>（1）：网络拥塞。</li>
+                            <li><codeph>REMOTE_AUDIO_REASON_NETWORK_RECOVERY</codeph>（2）：网络恢复。</li>
+                            <li><codeph>REMOTE_AUDIO_REASON_LOCAL_MUTED</codeph>（3）：本地用户停止接收远端音频流或关闭音频模块。</li>
+                            <li><codeph>REMOTE_AUDIO_REASON_LOCAL_UNMUTED</codeph>（4）：本地用户恢复接收远端音频流或开启音频模块。</li>
+                            <li><codeph>REMOTE_AUDIO_REASON_REMOTE_MUTED</codeph>（5）：远端用户停止发送音频流或关闭音频模块。</li>
+                            <li><codeph>REMOTE_AUDIO_REASON_REMOTE_UNMUTED</codeph>（6）：远端用户恢复发送音频流或开启音频模块。</li>
+                            <li><codeph>REMOTE_AUDIO_REASON_REMOTE_OFFLINE</codeph>（7）：远端用户离开频道。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <codeph>joinChannel</codeph> 方法到 SDK 触发该回调的时间（毫秒）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>音频状态发生变化的远端用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>state</pt>
+                    <pd>远端音频的状态，详见 <xref keyref="REMOTE_AUDIO_STATE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>reason</pt>
+                    <pd>远端音频状态变化的原因，详见 <xref keyref="REMOTE_AUDIO_STATE_REASON"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>elapsed</pt>
+                    <pd>从调用 <codeph>joinChannelByToken</codeph> 方法到 SDK 触发该回调的时间（毫秒）。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rtcengineconfig">
+    <title><ph keyref="RtcEngineConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the <xref keyref="RtcEngineConfig"/> instance.</ph><ph id="shortdesc" props="android">Configures parameters for the <xref keyref="IRtcEngine"/> instance.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct RtcEngineContext {
+  IRtcEngineEventHandler* eventHandler;
+  const char* appId;
+  void* context;
+  CHANNEL_PROFILE_TYPE channelProfile;
+  const char* license;
+  AUDIO_SCENARIO_TYPE audioScenario;
+  unsigned int areaCode;
+  commons::LogConfig logConfig;
+  Optional&lt;THREAD_PRIORITY_TYPE&gt; threadPriority;
+  bool useExternalEglContext;
+  bool domainLimit;
+  bool autoRegisterAgoraExtensions;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class RtcEngineConfig {
+  public IRtcEngineEventHandler mEventHandler;
+  public Context mContext;
+  public String mAppId;
+  public int mAreaCode;
+  public int mChannelProfile;
+  public String mLicense;
+  public int mAudioScenario;
+  public boolean mAutoRegisterAgoraExtensions;
+  public List&lt;String&gt; mExtensionList;
+  public IMediaExtensionObserver mExtensionObserver;
+  public LogConfig mLogConfig;
+  public Integer mThreadPriority;
+  public String mNativeLibPath;
+  public boolean mDomainLimit;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>eventHandler</pt>
+                    <pd>Event handler for <xref keyref="IRtcEngine"/>. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>appId</pt>
+                    <pd>App ID issued by Agora for your project. Only users under the same App ID can join the same channel and communicate with each other. An App ID can only be used to create one <xref keyref="IRtcEngine"/> instance. To change the App ID, you must call <xref keyref="release"/> to destroy the current <xref keyref="IRtcEngine"/> instance and then create a new one.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>context</pt>
+                    <pd>On Windows platform, this parameter is the application window handle. After setting, it allows connecting or disconnecting video devices while the device is powered on.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>channelProfile</pt>
+                    <pd>Channel profile type. See <xref keyref="CHANNEL_PROFILE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>license</pt>
+                    <pd>License used for authentication when joining a channel. Charges are based on the license.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioScenario</pt>
+                    <pd>Audio scenario type. Different scenarios use different volume types. See <xref keyref="AUDIO_SCENARIO_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>areaCode</pt>
+                    <pd>Connection region. This advanced feature is for scenarios with regional restrictions. Supported regions are listed in <xref keyref="AREA_CODE"/>. Area codes support bitwise operations.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>logConfig</pt>
+                    <pd>Log configuration. See <xref keyref="LogConfig"/>.
+By default, the SDK generates five SDK log files and five API call log files as follows:
+                        <ul>
+                            <li>SDK log files: <codeph>agorasdk.log</codeph>, <codeph>agorasdk.1.log</codeph>, <codeph>agorasdk.2.log</codeph>, <codeph>agorasdk.3.log</codeph>, and <codeph>agorasdk.4.log</codeph>.</li>
+                            <li>API call log files: <codeph>agoraapi.log</codeph>, <codeph>agoraapi.1.log</codeph>, <codeph>agoraapi.2.log</codeph>, <codeph>agoraapi.3.log</codeph>, and <codeph>agoraapi.4.log</codeph>.</li>
+                            <li>Each log file has a default size of 2048 KB and is encoded in UTF-8.</li>
+                            <li>The SDK writes the latest logs to <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph>.</li>
+                            <li>When <codeph>agorasdk.log</codeph> is full, the SDK handles log files in the following order:
+                                <ol>
+                                    <li>Delete <codeph>agorasdk.4.log</codeph> (if exists);</li>
+                                    <li>Rename <codeph>agorasdk.3.log</codeph> to <codeph>agorasdk.4.log</codeph>;</li>
+                                    <li>Rename <codeph>agorasdk.2.log</codeph> to <codeph>agorasdk.3.log</codeph>;</li>
+                                    <li>Rename <codeph>agorasdk.1.log</codeph> to <codeph>agorasdk.2.log</codeph>;</li>
+                                    <li>Create a new <codeph>agorasdk.log</codeph> file.</li>
+                                </ol>
+                            </li>
+                            <li>The overwrite rule for <codeph>agoraapi.log</codeph> is the same as <codeph>agorasdk.log</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>threadPriority</pt>
+                    <pd>Thread priority for SDK general threads. See <codeph>THREAD_PRIORITY_TYPE</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>useExternalEglContext</pt>
+                    <pd>
+                        <note>(Android only)</note><ph>Whether to use the EGL context in the current thread as the root EGL context for the SDK. This context is shared by all EGL-related modules, such as camera capture and video rendering.</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Use the EGL context in the current thread.</li>
+                            <li><xref keyref="false"/>: (default) Do not use the EGL context in the current thread.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>domainLimit</pt>
+                    <pd>Whether to enable domain restriction:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable domain restriction. Suitable for IoT devices using IoT SIM cards to access the network. The SDK only connects to servers in the domain or IP whitelist reported to the carrier.</li>
+                            <li><xref keyref="false"/>: (default) Do not enable domain restriction. Suitable for most common scenarios.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>autoRegisterAgoraExtensions</pt>
+                    <pd>Whether to automatically register Agora extensions when initializing <xref keyref="IRtcEngine"/>:
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Automatically register extensions.</li>
+                            <li><xref keyref="false"/>: Do not automatically register extensions. You need to manually register using <xref keyref="enableExtension"/>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mEventHandler</pt>
+                    <pd>Event callback handler. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mContext</pt>
+                    <pd>Context object of the Android Activity.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mAppId</pt>
+                    <pd>App ID issued by Agora for the project. Only users with the same App ID can join the same channel for audio and video calls. An App ID can only be used to create one <xref keyref="IRtcEngine"/> instance. To change the App ID, you must call <xref keyref="destroy1"/> to destroy the original instance before creating a new one.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mAreaCode</pt>
+                    <pd>Connection region, applicable in scenarios with regional restrictions. Supports bitwise OR operation to combine multiple region codes. See <xref keyref="AreaCode"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mChannelProfile</pt>
+                    <pd>Channel profile type:
+                        <ul>
+                            <li><codeph>CHANNEL_PROFILE_COMMUNICATION</codeph> (0): Communication scenario. Agora recommends using the live broadcasting scenario for better audio and video experience.</li>
+                            <li><codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph> (1): (Default) Live broadcasting scenario.</li>
+                            <li><codeph>CHANNEL_PROFILE_GAME</codeph> (2): Gaming scenario. Deprecated since v4.x.x. Use <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph> instead.</li>
+                            <li><codeph>CHANNEL_PROFILE_CLOUD_GAMING</codeph> (3): Interactive scenario optimized for low latency, suitable for frequent user interactions. Deprecated since v4.x.x. Use <codeph>CHANNEL_PROFILE_LIVE_BROADCASTING</codeph> instead.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mLicense</pt>
+                    <pd>License used for channel connection verification. Billing is based on the license.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mAudioScenario</pt>
+                    <pd>
+                        <note>Before using this enumeration, you must call <xref keyref="getAudioDeviceInfo"/> to check whether the audio device supports ultra-low-latency capture and playback. To experience ultra-low latency, ensure that the audio device supports ultra-low latency (<codeph>isLowLatencyAudioSupported</codeph> = <xref keyref="true"/>).</note><ph>Audio scenario type. The volume type used by the device varies in different scenarios:</ph>
+                        <ul>
+                            <li><codeph>AUDIO_SCENARIO_DEFAULT</codeph> (0): (Default) Automatic scenario. The SDK selects the appropriate audio quality based on the user role and audio route.</li>
+                            <li><codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph> (3): High-quality audio scenario, suitable for music playback.</li>
+                            <li><codeph>AUDIO_SCENARIO_CHATROOM</codeph> (5): Chatroom scenario, suitable for frequent role switching or microphone mute control.</li>
+                            <li><codeph>AUDIO_SCENARIO_CHORUS</codeph> (7): Real-time chorus scenario, suitable for users with good network conditions and high requirements for ultra-low latency.</li>
+                            <li><codeph>AUDIO_SCENARIO_MEETING</codeph> (8): Meeting scenario, mainly for transmitting voice.</li>
+                            <li><codeph>AUDIO_SCENARIO_AI_CLIENT</codeph> (10): AI conversation scenario (AI client only), only applicable when interacting with agents created using <codeph>Conversational AI Engine</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mAutoRegisterAgoraExtensions</pt>
+                    <pd>Whether to automatically register Agora extensions when initializing the <xref keyref="IRtcEngine"/>:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Automatically registers extensions.</li>
+                            <li><xref keyref="false"/>: Does not automatically register extensions. You must call <xref keyref="enableExtension"/> to register manually.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mExtensionList</pt>
+                    <pd>List of extension library names.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mExtensionObserver</pt>
+                    <pd><xref keyref="IMediaExtensionObserver"/> instance. See <xref keyref="IMediaExtensionObserver"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mLogConfig</pt>
+                    <pd>Log configuration. See <xref keyref="LogConfig"/>.
+By default, the SDK generates 5 SDK log files and 5 API log files:
+                        <ul>
+                            <li>SDK log files include: <codeph>agorasdk.log</codeph>, <codeph>agorasdk.1.log</codeph>, <codeph>agorasdk.2.log</codeph>, <codeph>agorasdk.3.log</codeph>, <codeph>agorasdk.4.log</codeph></li>
+                            <li>API log files include: <codeph>agoraapi.log</codeph>, <codeph>agoraapi.1.log</codeph>, <codeph>agoraapi.2.log</codeph>, <codeph>agoraapi.3.log</codeph>, <codeph>agoraapi.4.log</codeph></li>
+                            <li>Each log file has a default size of 2048 KB and uses UTF-8 encoding.</li>
+                            <li>The SDK writes the latest logs to <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph>.</li>
+                            <li>When <codeph>agorasdk.log</codeph> is full, the SDK deletes old files in order and renames them to generate new log files.</li>
+                            <li><codeph>agoraapi.log</codeph> follows the same rollover rules.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mThreadPriority</pt>
+                    <pd>Thread priority type. See <codeph>ThreadPriorityType</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mNativeLibPath</pt>
+                    <pd>
+                        <note>Applicable to manual SDK integration. Not applicable when integrating via Maven Central or JitPack. Ensure the directory exists, otherwise <xref keyref="IRtcEngine"/> initialization will fail.</note><ph>Directory where <codeph>.so</codeph> files are stored. This directory must be a valid private directory of the app and can be obtained via <codeph>Context.getDir</codeph>.</ph>
+                        <ul>
+                            <li>After setting this parameter, the SDK loads <codeph>.so</codeph> files from the specified directory to enable dynamic loading and reduce package size.</li>
+                            <li>If not set or set to <codeph>null</codeph>, the SDK loads <codeph>.so</codeph> files from the default compiled path, which increases the package size.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mDomainLimit</pt>
+                    <pd>Whether to enable domain name restriction:
+                        <ul>
+                            <li><xref keyref="true"/>: Enables domain name restriction. Suitable for IoT devices using IoT SIM cards. The SDK only connects to domains or IPs registered in the carrier whitelist.</li>
+                            <li><xref keyref="false"/>: (Default) Does not enable domain name restriction. Suitable for most general scenarios.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

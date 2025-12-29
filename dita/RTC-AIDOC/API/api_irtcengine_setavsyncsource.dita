@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setavsyncsource">
+    <title><ph keyref="setAVSyncSource"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置发送端的音视频同步。</ph><ph id="shortdesc" props="ios">设置发布端的音视频同步。</ph><ph id="shortdesc" props="android">设置发布端的音视频同步源。</ph><ph id="shortdesc" props="mac">设置发布端的音视频同步。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAVSyncSource"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setAVSyncSource(const char* channelId, uid_t uid) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setAVSyncSource:(NSString* _Nonnull)channelId uid:(NSUInteger)uid NS_SWIFT_NAME(setAVSyncSource(_:uid:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setAVSyncSource(String channelId, int uid);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setAVSyncSource:(NSString* _Nonnull)channelId uid:(NSUInteger)uid NS_SWIFT_NAME(setAVSyncSource(_:uid:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">用户可能会使用两台独立设备分别发送音频和视频流。为了确保接收端的音视频同步，你可以在视频发送端调用该方法，并传入音频发送端的频道名和用户 ID。SDK 会以音频流的时间戳为参考，自动调整视频流，即使两台发送设备处于不同的上行网络（如 Wi-Fi 和 4G），也能实现音视频同步。</p>
+            <p props="ios">你可以使用两台独立设备分别发送音频和视频流。为了确保接收端的音视频同步，你需要在视频发布设备上调用该方法，并传入音频发布设备所在的频道名和用户 ID。SDK 会根据发送音频流的时间戳自动调整视频流，从而确保即使两个发布设备处于不同的上行网络（例如 Wi-Fi 和 4G）时，接收端也能实现音视频同步。</p>
+            <p props="android">你可以在视频发布设备上调用该方法，并传入音频发布设备所在频道的频道名和用户 ID。SDK 会以发送的音频流的时间戳为参考，自动调整视频流，从而确保即使两个发布设备的上行网络条件不同（例如一个使用 Wi-Fi，另一个使用 4G），接收端的音视频也能实现时间同步。</p>
+            <p props="mac">你可以使用两台独立设备分别发送音频和视频流。为了确保接收端的音视频同步，你需要在视频发布设备上调用该方法，并传入音频发布设备所在的频道名和用户 ID。SDK 会根据发送音频流的时间戳自动调整视频流，从而确保即使两个发布设备处于不同的上行网络（例如 Wi-Fi 和 4G）时，接收端也能实现音视频同步。</p>
+            <note props="cpp">声网建议你在加入频道前调用该方法。</note>
+            <note props="ios">该方法需要在加入频道前调用。</note>
+            <note props="android">建议在加入频道前调用此方法。</note>
+            <note props="mac">该方法需要在加入频道前调用。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>channelId</pt>
+                    <pd>音频发送端的频道名。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>音频发送端的用户 ID。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>channelId</pt>
+                    <pd>音频发布设备所在的频道名。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>uid</pt>
+                    <pd>音频发布设备的用户 ID。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channelId</pt>
+                    <pd>音频发布设备所在频道的频道名。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>音频发布设备的用户 ID。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>channelId</pt>
+                    <pd>音频发布设备所在的频道名。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>uid</pt>
+                    <pd>音频发布设备的用户 ID。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

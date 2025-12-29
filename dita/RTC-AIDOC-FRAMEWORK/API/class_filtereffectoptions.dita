@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_filtereffectoptions">
+    <title><ph keyref="FilterEffectOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">滤镜效果选项。</ph><ph id="shortdesc" props="rn">滤镜效果选项。</ph><ph id="shortdesc" props="flutter">滤镜效果选项。</ph><ph id="shortdesc" props="unity">滤镜效果选项。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class FilterEffectOptions {
+  path?: string;
+  strength?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class FilterEffectOptions {
+  path?: string;
+  strength?: number;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>path</pt>
+                    <pd>3D 立方体贴图文件的本地绝对路径，该文件用于实现自定义滤镜效果。引用的 .cube 文件必须严格遵循立方体查找表（Cube LUT）规范，否则滤镜效果无法生效。以下为 .cube 文件的示例：
+                        <codeblock outputclass="language-typescript">LUT_3D_SIZE 32
+0.0039215689 0 0.0039215682
+0.0086021447 0.0037950677 0
+...
+0.0728652592 0.0039215689 0</codeblock>
+                        <note>
+                            <ul>
+                                <li>立方体贴图文件首行的 <codeph>LUT_3D_SIZE</codeph> 标识符表示三维查找表的尺寸，滤镜效果的 LUT 尺寸目前仅支持设为 32。</li>
+                                <li>SDK 提供了一个内置的 <codeph>built_in_whiten_filter.cube</codeph> 文件，传入该文件的绝对路径可实现美白滤镜效果。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>strength</pt>
+                    <pd>滤镜效果强度，取值范围为 [0.0,1.0]，其中 0.0 表示无滤镜效果，默认值为 0.5。取值越大，滤镜效果越强。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>path</pt>
+                    <pd>3D 立方体贴图文件的本地绝对路径，该文件用于实现自定义滤镜效果。引用的 .cube 文件必须严格遵循立方体查找表（Cube LUT）规范，否则滤镜效果无法生效。以下为 .cube 文件的示例：
+                        <codeblock outputclass="language-typescript">LUT_3D_SIZE 32
+0.0039215689 0 0.0039215682
+0.0086021447 0.0037950677 0
+...
+0.0728652592 0.0039215689 0</codeblock>
+                        <note>
+                            <ul>
+                                <li>立方体贴图文件首行的 <codeph>LUT_3D_SIZE</codeph> 标识符表示三维查找表的尺寸，滤镜效果的 LUT 尺寸目前仅支持设为 32。</li>
+                                <li>SDK 提供了一个内置的 <codeph>built_in_whiten_filter.cube</codeph> 文件，传入该文件的绝对路径可实现美白滤镜效果。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>strength</pt>
+                    <pd>滤镜效果强度，取值范围为 [0.0,1.0]，其中 0.0 表示无滤镜效果，默认值为 0.5。取值越大，滤镜效果越强。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>path</pt>
+                    <pd>3D 立方体贴图文件的本地绝对路径，该文件用于实现自定义滤镜效果。引用的 .cube 文件必须严格遵循立方体查找表（Cube LUT）规范，否则滤镜效果无法生效。以下为 .cube 文件的示例：
+                        <codeblock outputclass="language-dart">LUT_3D_SIZE 32
+0.0039215689 0 0.0039215682
+0.0086021447 0.0037950677 0
+...
+0.0728652592 0.0039215689 0</codeblock>
+                        <note>
+                            <ul>
+                                <li>立方体贴图文件首行的 <codeph>LUT_3D_SIZE</codeph> 标识符表示三维查找表的尺寸，滤镜效果的 LUT 尺寸目前仅支持设为 32。</li>
+                                <li>SDK 提供了一个内置的 <codeph>built_in_whiten_filter.cube</codeph> 文件，传入该文件的绝对路径可实现美白滤镜效果。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>strength</pt>
+                    <pd>滤镜效果强度，取值范围为 [0.0,1.0]，其中 0.0 表示无滤镜效果，默认值为 0.5。取值越大，滤镜效果越强。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>path</pt>
+                    <pd>3D 立方体贴图文件的本地绝对路径，该文件用于实现自定义滤镜效果。引用的 .cube 文件必须严格遵循立方体查找表（Cube LUT）规范，否则滤镜效果无法生效。以下为 .cube 文件的示例：
+                        <codeblock outputclass="language-csharp">LUT_3D_SIZE 32
+0.0039215689 0 0.0039215682
+0.0086021447 0.0037950677 0
+...
+0.0728652592 0.0039215689 0</codeblock>
+                        <note>
+                            <ul>
+                                <li>立方体贴图文件首行的 <codeph>LUT_3D_SIZE</codeph> 标识符表示三维查找表的尺寸，滤镜效果的 LUT 尺寸目前仅支持设为 32。</li>
+                                <li>SDK 提供了一个内置的 <codeph>built_in_whiten_filter.cube</codeph> 文件，传入该文件的绝对路径可实现美白滤镜效果。</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>strength</pt>
+                    <pd>滤镜效果强度，取值范围为 [0.0,1.0]，其中 0.0 表示无滤镜效果，默认值为 0.5。取值越大，滤镜效果越强。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_registeraudioframeobserver_imediaengine">
+    <title><ph keyref="registerAudioFrameObserver_IMediaEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">注册音频帧观测器对象。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerAudioFrameObserver_IMediaEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int registerAudioFrameObserver(IAudioFrameObserver* observer) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">调用该方法可注册音频帧观测器对象。当你需要 SDK 触发 <xref keyref="onMixedAudioFrame_IAudioFrameObserverBase"/>、<xref keyref="onRecordAudioFrame_IAudioFrameObserverBase"/>、<xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/>、<xref keyref="onPlaybackAudioFrameBeforeMixing_IAudioFrameObserverBase"/> 或 <xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/> 回调时，需调用该方法进行注册。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>调用时机</title>
+            <p props="cpp">在加入频道前调用该方法。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>observer</pt>
+                    <pd>音频帧观测器实例。设置为 <xref keyref="NULL"/> 可释放该实例。建议在收到 <xref keyref="onLeaveChannel"/> 回调后调用该方法释放音频帧观测器对象。详见 <xref keyref="IAudioFrameObserver"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getfaceshapeareaoptions2">
+    <title><ph keyref="getFaceShapeAreaOptions2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">获取当前的美颜特效设置。</ph><ph id="shortdesc" props="android">获取当前美颜效果区域的设置选项。</ph><ph id="shortdesc" props="mac">获取当前的美颜特效设置。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getFaceShapeAreaOptions2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (AgoraFaceShapeAreaOptions * _Nullable)getFaceShapeAreaOptions:(AgoraFaceShapeArea) area NS_SWIFT_NAME(getFaceShapeAreaOptions(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract FaceShapeAreaOptions getFaceShapeAreaOptions(int shapeArea);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (AgoraFaceShapeAreaOptions * _Nullable)getFaceShapeAreaOptions:(AgoraFaceShapeArea) area NS_SWIFT_NAME(getFaceShapeAreaOptions(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">你可以调用该方法获取当前美颜效果的设置选项，并根据返回结果刷新界面菜单，更新 UI。</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>当用户在应用中打开美颜区域和塑形强度菜单时，可调用此方法获取当前美颜效果选项，然后根据结果刷新用户界面中的菜单并更新 UI。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android ios mac">
+            <title>调用时机</title>
+            <p props="ios">在调用 <xref keyref="enableVideo"/> 之后调用此方法。</p>
+            <p props="android">在调用 <xref keyref="enableVideo"/> 方法之后调用此方法。</p>
+            <p props="mac">在调用 <xref keyref="enableVideo"/> 之后调用此方法。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>area</pt>
+                    <pd>美型增强区域。参见 <xref keyref="FACE_SHAPE_AREA"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>shapeArea</pt>
+                    <pd>美颜增强区域。
+                        <ul>
+                            <li><codeph>FACE_SHAPE_AREA_NONE</codeph>（-1）：（默认）无效区域，不应用美颜效果。</li>
+                            <li><codeph>FACE_SHAPE_AREA_HEADSCALE</codeph>（100）：头部，用于实现小头效果。调整范围为 [0, 100]，值越大头部越小，默认值为 100。</li>
+                            <li><codeph>FACE_SHAPE_AREA_FOREHEAD</codeph>（101）：额头，用于调整发际线高度。调整范围为 [-100, 100]，正值抬高发际线，负值降低发际线，绝对值越大效果越明显，默认值为 50。</li>
+                            <li><codeph>FACE_SHAPE_AREA_FACECONTOUR</codeph>（102）：脸型轮廓，用于实现瘦脸效果。调整范围为 [0, 100]，值越大瘦脸效果越明显，默认值为 10。</li>
+                            <li><codeph>FACE_SHAPE_AREA_FACELENGTH</codeph>（103）：脸长，用于实现拉长脸部效果。调整范围为 [-100, 100]，正值拉长脸部，负值缩短脸部，绝对值越大效果越明显，默认值为 0。</li>
+                            <li><codeph>FACE_SHAPE_AREA_FACEWIDTH</codeph>（104）：脸宽，用于实现窄脸效果。调整范围为 [0, 100]，值越大脸部越窄，默认值为 10。</li>
+                            <li><codeph>FACE_SHAPE_AREA_CHEEKBONE</codeph>（105）：颧骨，用于调整颧骨宽度。调整范围为 [0, 100]，值越大颧骨越窄，默认值为 43。</li>
+                            <li><codeph>FACE_SHAPE_AREA_CHEEK</codeph>（106）：面颊，用于调整面颊宽度。调整范围为 [0, 100]，值越大面颊越窄，默认值为 50。</li>
+                            <li><codeph>FACE_SHAPE_AREA_CHIN</codeph>（108）：下巴，用于调整下巴长度。调整范围为 [-100, 100]，正值拉长下巴，负值缩短下巴，绝对值越大效果越明显，默认值为 -20。</li>
+                            <li><codeph>FACE_SHAPE_AREA_EYESCALE</codeph>（200）：眼睛，用于实现大眼效果。调整范围为 [0, 100]，值越大眼睛越大，默认值为 50。</li>
+                            <li><codeph>FACE_SHAPE_AREA_EYEDISTANCE</codeph>（201）：眼距调整。调整范围为 [-100, 100]，负值表示相反方向，绝对值越大调整越明显，默认值为 0。</li>
+                            <li><codeph>FACE_SHAPE_AREA_EYEPOSITION</codeph>（202）：眼睛位置调整。调整范围为 [-100, 100]，负值表示相反方向，绝对值越大调整越明显，默认值为 0。</li>
+                            <li><codeph>FACE_SHAPE_AREA_LOWEREYELID</codeph>（203）：下眼睑调整。调整范围为 [0, 100]，值越大调整越明显，默认值为 0。</li>
+                            <li><codeph>FACE_SHAPE_AREA_EYEPUPILS</codeph>（204）：瞳孔大小调整。调整范围为 [0, 100]，值越大调整越明显，默认值为 0。</li>
+                            <li><codeph>FACE_SHAPE_AREA_EYEINNERCORNER</codeph>（205）：内眼角调整。调整范围为 [0, 100]，值越大调整越明显，默认值为 0。</li>
+                            <li><codeph>FACE_SHAPE_AREA_EYEOUTERCORNER</codeph>（206）：外眼角调整。调整范围为 [0, 100]，值越大调整越明显，默认值为 0。</li>
+                            <li><codeph>FACE_SHAPE_AREA_NOSELENGTH</codeph>（300）：鼻子长度，用于实现拉长鼻子效果。调整范围为 [-100, 100]，正值拉长鼻子，负值缩短鼻子，绝对值越大效果越明显，默认值为 -10。</li>
+                            <li><codeph>FACE_SHAPE_AREA_NOSEWIDTH</codeph>（301）：鼻子宽度，用于实现瘦鼻效果。调整范围为 [-100, 100]，正值加宽鼻子，负值缩窄鼻子，绝对值越大效果越明显，默认值为 72。</li>
+                            <li><codeph>FACE_SHAPE_AREA_NOSEWING</codeph>（302）：鼻翼调整。调整范围为 [0, 100]，值越大调整越明显，默认值为 0。</li>
+                            <li><codeph>FACE_SHAPE_AREA_NOSEROOT</codeph>（303）：鼻根调整。调整范围为 [0, 100]，值越大调整越明显，默认值为 0。</li>
+                            <li><codeph>FACE_SHAPE_AREA_NOSEBRIDGE</codeph>（304）：鼻梁调整。调整范围为 [0, 100]，值越大调整越明显，默认值为 0。</li>
+                            <li><codeph>FACE_SHAPE_AREA_NOSETIP</codeph>（305）：鼻尖调整。调整范围为 [0, 100]，值越大调整越明显，默认值为 0。</li>
+                            <li><codeph>FACE_SHAPE_AREA_NOSEGENERAL</codeph>（306）：整体鼻子调整。调整范围为 [0, 100]，值越大调整越明显，默认值为 0。</li>
+                            <li><codeph>FACE_SHAPE_AREA_MOUTHSCALE</codeph>（400）：嘴巴，用于实现大嘴效果。调整范围为 [0, 100]，值越大嘴巴越大，默认值为 50。</li>
+                            <li><codeph>FACE_SHAPE_AREA_MOUTHPOSITION</codeph>（401）：嘴巴位置调整。调整范围为 [-100, 100]，负值表示相反方向，绝对值越大调整越明显，默认值为 0。</li>
+                            <li><codeph>FACE_SHAPE_AREA_MOUTHSMILE</codeph>（402）：嘴角微笑调整。调整范围为 [0, 100]，值越大调整越明显，默认值为 0。</li>
+                            <li><codeph>FACE_SHAPE_AREA_MOUTHLIP</codeph>（403）：唇形调整。调整范围为 [0, 100]，值越大调整越明显，默认值为 0。</li>
+                            <li><codeph>FACE_SHAPE_AREA_EYEBROWPOSITION</codeph>（500）：眉毛位置调整。调整范围为 [-100, 100]，负值表示相反方向，绝对值越大调整越明显，默认值为 0。</li>
+                            <li><codeph>FACE_SHAPE_AREA_EYEBROWTHICKNESS</codeph>（501）：眉毛粗细调整。调整范围为 [0, 100]，值越大调整越明显，默认值为 0。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>area</pt>
+                    <pd>美型增强区域。参见 <xref keyref="FACE_SHAPE_AREA"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android ios mac">
+            <title>返回值</title>
+            <p props="ios">方法调用成功，返回 <xref keyref="FaceShapeAreaOptions"/> 对象。
+方法调用失败，返回 <xref keyref="NULL"/>。</p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功，返回 <xref keyref="FaceShapeAreaOptions"/> 实例。</li>
+                    <li>方法调用失败，返回 <codeph>null</codeph>。</li>
+                </ul>
+            </p>
+            <p props="mac">方法调用成功，返回 <xref keyref="FaceShapeAreaOptions"/> 对象。
+方法调用失败，返回 <xref keyref="NULL"/>。</p>
+        </section>
+    </refbody>
+</reference>

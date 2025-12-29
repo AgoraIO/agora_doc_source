@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_querycodeccapability">
+    <title><ph keyref="queryCodecCapability"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">查询 SDK 支持的视频编解码器能力。</ph><ph id="shortdesc" props="ios">查询设备支持的视频编解码能力。</ph><ph id="shortdesc" props="android">查询 SDK 的视频编解码能力。</ph><ph id="shortdesc" props="mac">查询设备支持的视频编解码能力。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="queryCodecCapability"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int queryCodecCapability(CodecCapInfo* codecInfo, int&amp; size) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (NSArray &lt;AgoraVideoCodecCapInfo *&gt; *_Nullable)queryCodecCapability;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract CodecCapInfo[] queryCodecCapability();</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (NSArray &lt;AgoraVideoCodecCapInfo *&gt; *_Nullable)queryCodecCapability;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>codecInfo</pt>
+                    <pd>输入和输出参数，表示 SDK 支持的视频编解码器能力数组。你在调用该方法时传入一个 <xref keyref="CodecCapInfo"/> 数组，表示要查询的视频编解码器能力。方法执行完毕后，该数组将被填充为 SDK 实际支持的视频编解码器能力。详见 <xref keyref="CodecCapInfo"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>size</pt>
+                    <pd>输入和输出参数，表示 <codeph>codecInfo</codeph> 数组的大小。你在调用该方法时传入 <codeph>codecInfo</codeph> 的大小。方法执行完毕后，该值将被更新为实际返回的 <codeph>codecInfo</codeph> 数组大小。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>方法调用成功时，返回一个 <xref keyref="CodecCapInfo"/> 数组，表示设备的视频编码能力，详见 <xref keyref="CodecCapInfo"/>。</li>
+                    <li>方法调用失败时，返回 <xref keyref="NULL"/>。如果调用超时，请调整调用逻辑，避免在主线程中调用该方法。</li>
+                </ul>
+            </p>
+            <p props="android">方法调用成功，返回 <xref keyref="CodecCapInfo"/> 数组，表示设备的视频编码能力。方法调用超时，请修改调用逻辑，避免在主线程中调用该方法。</p>
+            <p props="mac">
+                <ul>
+                    <li>方法调用成功时，返回一个 <xref keyref="CodecCapInfo"/> 数组，表示设备的视频编码能力，详见 <xref keyref="CodecCapInfo"/>。</li>
+                    <li>方法调用失败时，返回 <xref keyref="NULL"/>。如果调用超时，请调整调用逻辑，避免在主线程中调用该方法。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

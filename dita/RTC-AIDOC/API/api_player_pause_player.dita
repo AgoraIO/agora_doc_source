@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_player_pause_player">
+    <title><ph keyref="Pause_Player"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">暂停播放。</ph><ph id="shortdesc" props="ios">暂停播放。</ph><ph id="shortdesc" props="android">暂停播放。</ph><ph id="shortdesc" props="mac">暂停播放。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="Pause_Player"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">bool Pause(Error *err = nullptr)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (BOOL)pause:(AgoraRteError * _Nullable)error;</codeblock>
+                <codeblock props="android" outputclass="language-java">public void pause() throws RteException</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (BOOL)pause:(AgoraRteError * _Nullable)error;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">调用 <xref keyref="Play_Player"/> 播放 URL 资源后，可以调用此方法暂停播放。如果需要停止播放，请调用 <xref keyref="Stop_Player"/> 方法。</p>
+            <p props="ios">调用 <xref keyref="Play_Player"/> 播放 URL 资源后，如果你希望暂停播放，可以调用该方法。如果你希望停止播放，请调用 <xref keyref="Pause_Player"/>。你必须在调用 <xref keyref="Play_Player"/> 之后调用该方法。</p>
+            <p props="android">调用 <xref keyref="Play_Player"/> 播放 URL 资源后，如需暂停播放，可以调用该方法。如需停止播放，请调用 <xref keyref="Stop_Player"/>。</p>
+            <p props="mac">调用 <xref keyref="Play_Player"/> 播放 URL 资源后，如果你希望暂停播放，可以调用该方法。如果你希望停止播放，请调用 <xref keyref="Pause_Player"/>。你必须在调用 <xref keyref="Play_Player"/> 之后调用该方法。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">该方法必须在调用 <xref keyref="Play_Player"/> 之后调用。</p>
+            <p props="ios">你必须在调用 <xref keyref="Play_Player"/> 之后调用该方法。</p>
+            <p props="android">该方法必须在调用 <xref keyref="Play_Player"/> 之后调用。</p>
+            <p props="mac">你必须在调用 <xref keyref="Play_Player"/> 之后调用该方法。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
+            <title>相关回调</title>
+            <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onStateChanged"/> 回调报告播放器状态为 <codeph>kRtePlayerStatePaused</codeph>。</p>
+            <p props="android">成功调用该方法后，会触发 <xref keyref="onStateChanged"/> 回调，报告播放器状态为 <codeph>PAUSED</codeph>。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>输出参数，状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>error</pt>
+                    <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="exception" props="android">
+            <title>异常</title>
+            <p props="android">如果该方法调用失败，SDK 会抛出带有相应错误信息的 <xref keyref="RteException"/> 异常。你需要捕获并处理该异常。</p>
+        </section>
+        <section id="return_values" props="cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>：暂停播放成功。</li>
+                    <li><xref keyref="false"/>：暂停播放失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li><xref keyref="true"/>：暂停播放成功。</li>
+                    <li><xref keyref="false"/>：暂停播放失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li><xref keyref="true"/>：暂停播放成功。</li>
+                    <li><xref keyref="false"/>：暂停播放失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

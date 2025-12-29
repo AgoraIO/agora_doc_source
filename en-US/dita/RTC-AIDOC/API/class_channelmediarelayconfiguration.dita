@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_channelmediarelayconfiguration">
+    <title><ph keyref="ChannelMediaRelayConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure media stream relay across channels.</ph><ph id="shortdesc" props="android">Used to configure cross-channel media stream relay.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
+  ChannelMediaInfo* srcInfo;
+  ChannelMediaInfo* destInfos;
+  int destCount;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class ChannelMediaRelayConfiguration {
+  private ChannelMediaInfo srcInfo = null;
+  private Map&lt;String, ChannelMediaInfo&gt; destInfos = null;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>srcInfo</pt>
+                    <pd>Information of the source channel. See <xref keyref="ChannelMediaInfo"/>. This struct includes the following members:
+                        <ul>
+                            <li><codeph>channelName</codeph>: Name of the source channel. Default is <xref keyref="NULL"/>, indicating the SDK uses the current channel name.</li>
+                            <li><codeph>token</codeph>: Token used to join the source channel, generated from <codeph>channelName</codeph> and <codeph>uid</codeph>.
+                                <ul>
+                                    <li>If you have not enabled App Certificate, set this parameter to the default value <xref keyref="NULL"/>, indicating the SDK uses the App ID.</li>
+                                    <li>If you have enabled App Certificate, you must use a Token generated from <codeph>channelName</codeph> and <codeph>uid</codeph>, and <codeph>uid</codeph> must be set to 0.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>uid</codeph>: Unique user ID used to identify the relay stream in the source channel. It is recommended to keep the default value of 0.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>destInfos</pt>
+                    <pd>
+                        <note>If the Token of any destination channel expires, the entire media stream relay will stop. It is recommended to set the same Token expiration time for all destination channels.</note><ph>Information of the destination channels. See <xref keyref="ChannelMediaInfo"/>. This struct includes the following members:</ph>
+                        <ul>
+                            <li><codeph>channelName</codeph>: Name of the destination channel.</li>
+                            <li><codeph>token</codeph>: Token used to join the destination channel, generated from <codeph>channelName</codeph> and <codeph>uid</codeph>.
+                                <ul>
+                                    <li>If you have not enabled App Certificate, set this parameter to the default value <xref keyref="NULL"/>, indicating the SDK uses the App ID.</li>
+                                    <li>If you have enabled App Certificate, you must use a Token generated from <codeph>channelName</codeph> and <codeph>uid</codeph>.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>uid</codeph>: Unique user ID used to identify the relay stream in the destination channel. The value range is 0 to (2^32 - 1). To avoid user ID conflicts, this ID must differ from other users in the destination channel. Default is 0, indicating the SDK will generate a random UID. See <xref keyref="ChannelMediaInfo"/>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>destCount</pt>
+                    <pd>Number of destination channels. Default is 0. Value range is [0, 6]. Make sure this value matches the number of <xref keyref="ChannelMediaInfo"/> structs defined in <codeph>destInfos</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>srcInfo</pt>
+                    <pd>Media information of the source channel. See <xref keyref="ChannelMediaInfo"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>destInfos</pt>
+                    <pd>Collection of media information for destination channels. The key is the channel name, and the value is the corresponding media information. See <xref keyref="ChannelMediaInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

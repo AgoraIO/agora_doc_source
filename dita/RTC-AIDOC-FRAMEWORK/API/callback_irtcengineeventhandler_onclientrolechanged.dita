@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onclientrolechanged">
+    <title><ph keyref="onClientRoleChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">用户角色、观众端延时级别已切换回调。</ph><ph id="shortdesc" props="rn">用户角色、观众端延时级别已切换回调。</ph><ph id="shortdesc" props="flutter">用户角色、观众端延时级别已切换回调。</ph><ph id="shortdesc" props="unity">用户角色、观众端延时级别已切换回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onClientRoleChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onClientRoleChanged?(
+    connection: RtcConnection,
+    oldRole: ClientRoleType,
+    newRole: ClientRoleType
+    newRoleOptions: ClientRoleOptions
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onClientRoleChanged?(
+    connection: RtcConnection,
+    oldRole: ClientRoleType,
+    newRole: ClientRoleType
+    newRoleOptions: ClientRoleOptions
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(
+      RtcConnection connection,
+      ClientRoleType oldRole,
+      ClientRoleType newRole,
+      ClientRoleOptions newRoleOptions)? onClientRoleChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnClientRoleChanged(RtcConnection connection, CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole, ClientRoleOptions newRoleOptions) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">当你在加入频道前调用 <xref keyref="setClientRole2"/> 并将用户角色设为 <codeph>BROADCASTER</codeph> 时，不会触发此回调。</note>
+            <note props="rn">当你在加入频道前调用 <xref keyref="setClientRole2"/> 并将用户角色设为 <codeph>BROADCASTER</codeph> 时，不会触发此回调。</note>
+            <note props="flutter">当你在加入频道前调用 <xref keyref="setClientRole2"/> 并将用户角色设为 <codeph>BROADCASTER</codeph> 时，不会触发此回调。</note>
+            <note props="unity">当你在加入频道前调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设为 <codeph>BROADCASTER</codeph> 时，不会触发此回调。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>触发时机</title>
+            <p props="electron">在以下任意一种情况时，会触发此回调：
+                <ul>
+                    <li>在加入频道后调用 <xref keyref="setClientRole2"/> 设置用户角色或观众端延时级别。</li>
+                    <li>在加入频道前调用 <xref keyref="setClientRole2"/> 并将用户角色设为 <codeph>AUDIENCE</codeph>。</li>
+                </ul>
+            </p>
+            <p props="rn">在以下任意一种情况时，会触发此回调：
+                <ul>
+                    <li>在加入频道后调用 <xref keyref="setClientRole2"/> 设置用户角色或观众端延时级别。</li>
+                    <li>在加入频道前调用 <xref keyref="setClientRole2"/> 并将用户角色设为 <codeph>AUDIENCE</codeph>。</li>
+                </ul>
+            </p>
+            <p props="flutter">在以下任意一种情况时，会触发此回调：
+                <ul>
+                    <li>在加入频道后调用 <xref keyref="setClientRole2"/> 设置用户角色或观众端延时级别。</li>
+                    <li>在加入频道前调用 <xref keyref="setClientRole2"/> 并将用户角色设为 <codeph>AUDIENCE</codeph>。</li>
+                </ul>
+            </p>
+            <p props="unity">在以下任意一种情况时，会触发此回调：
+                <ul>
+                    <li>在加入频道后调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 设置用户角色或观众端延时级别。</li>
+                    <li>在加入频道前调用 <xref keyref="setClientRole1"/> 或 <xref keyref="setClientRole2"/> 并将用户角色设为 <codeph>AUDIENCE</codeph>。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>oldRole</pt>
+                    <pd>切换前的角色：<xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>newRole</pt>
+                    <pd>切换后的角色：<xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>newRoleOptions</pt>
+                    <pd>切换后的角色属性。详见 <xref keyref="ClientRoleOptions"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>oldRole</pt>
+                    <pd>切换前的角色：<xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>newRole</pt>
+                    <pd>切换后的角色：<xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>newRoleOptions</pt>
+                    <pd>切换后的角色属性。详见 <xref keyref="ClientRoleOptions"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>oldRole</pt>
+                    <pd>切换前的角色：<xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>newRole</pt>
+                    <pd>切换后的角色：<xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>newRoleOptions</pt>
+                    <pd>切换后的角色属性。详见 <xref keyref="ClientRoleOptions"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>oldRole</pt>
+                    <pd>切换前的角色：<xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>newRole</pt>
+                    <pd>切换后的角色：<xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>newRoleOptions</pt>
+                    <pd>切换后的角色属性。详见 <xref keyref="ClientRoleOptions"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_setexternalaudiosink">
+    <title><ph keyref="setExternalAudioSink"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置外部音频渲染。</ph><ph id="shortdesc" props="rn">设置外部音频渲染。</ph><ph id="shortdesc" props="flutter">设置外部音频渲染。</ph><ph id="shortdesc" props="unity">设置外部音频渲染。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalAudioSink"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setExternalAudioSink(
+    enabled: boolean,
+    sampleRate: number,
+    channels: number
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setExternalAudioSink(
+    enabled: boolean,
+    sampleRate: number,
+    channels: number
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setExternalAudioSink(
+    {required bool enabled, required int sampleRate, required int channels});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalAudioSink(bool enabled, int sampleRate, int channels);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">调用该方法开启外部音频渲染后，你可以调用 <xref keyref="pullAudioFrame"/> 拉取远端音频数据。App 可以对拉取到的原始音频数据进行处理后再渲染，获取想要的音频效果。</p>
+            <p props="rn">调用该方法开启外部音频渲染后，你可以调用 <xref keyref="pullAudioFrame"/> 拉取远端音频数据。App 可以对拉取到的原始音频数据进行处理后再渲染，获取想要的音频效果。</p>
+            <p props="flutter">调用该方法开启外部音频渲染后，你可以调用 <xref keyref="pullAudioFrame"/> 拉取远端音频数据。App 可以对拉取到的原始音频数据进行处理后再渲染，获取想要的音频效果。</p>
+            <p props="unity">调用该方法开启外部音频渲染后，你可以调用 <xref keyref="pullAudioFrame"/> 拉取远端音频数据。App 可以对拉取到的原始音频数据进行处理后再渲染，获取想要的音频效果。</p>
+            <note props="electron">调用该方法开启外部音频渲染后，App 将无法从 <xref keyref="onPlaybackAudioFrame"/> 回调中获得数据。</note>
+            <note props="rn">调用该方法开启外部音频渲染后，App 将无法从 <xref keyref="onPlaybackAudioFrame"/> 回调中获得数据。</note>
+            <note props="flutter">调用该方法开启外部音频渲染后，App 将无法从 <xref keyref="onPlaybackAudioFrame"/> 回调中获得数据。</note>
+            <note props="unity">调用该方法开启外部音频渲染后，App 将无法从 <xref keyref="onPlaybackAudioFrame"/> 回调中获得数据。</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>该方法适用于需要自行渲染音频的场景。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在加入频道前调用。</p>
+            <p props="rn">该方法需要在加入频道前调用。</p>
+            <p props="flutter">该方法需要在加入频道前调用。</p>
+            <p props="unity">该方法需要在加入频道前调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>设置是否开启外部音频渲染：
+                        <ul>
+                            <li><xref keyref="true"/>：开启外部音频渲染。</li>
+                            <li><xref keyref="false"/>：（默认）关闭外部音频渲染。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sampleRate</pt>
+                    <pd>外部音频渲染的采样率 (Hz)，可设置为 16000，32000，44100 或 48000。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channels</pt>
+                    <pd>外部音频渲染的声道数:
+                        <ul>
+                            <li>1: 单声道</li>
+                            <li>2: 双声道</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>设置是否开启外部音频渲染：
+                        <ul>
+                            <li><xref keyref="true"/>：开启外部音频渲染。</li>
+                            <li><xref keyref="false"/>：（默认）关闭外部音频渲染。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sampleRate</pt>
+                    <pd>外部音频渲染的采样率 (Hz)，可设置为 16000，32000，44100 或 48000。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channels</pt>
+                    <pd>外部音频渲染的声道数:
+                        <ul>
+                            <li>1: 单声道</li>
+                            <li>2: 双声道</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>设置是否开启外部音频渲染：
+                        <ul>
+                            <li><xref keyref="true"/>：开启外部音频渲染。</li>
+                            <li><xref keyref="false"/>：（默认）关闭外部音频渲染。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sampleRate</pt>
+                    <pd>外部音频渲染的采样率 (Hz)，可设置为 16000，32000，44100 或 48000。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channels</pt>
+                    <pd>外部音频渲染的声道数:
+                        <ul>
+                            <li>1: 单声道</li>
+                            <li>2: 双声道</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>设置是否开启外部音频渲染：
+                        <ul>
+                            <li><xref keyref="true"/>：开启外部音频渲染。</li>
+                            <li><xref keyref="false"/>：（默认）关闭外部音频渲染。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sampleRate</pt>
+                    <pd>外部音频渲染的采样率 (Hz)，可设置为 16000，32000，44100 或 48000。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channels</pt>
+                    <pd>外部音频渲染的声道数:
+                        <ul>
+                            <li>1: 单声道</li>
+                            <li>2: 双声道</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

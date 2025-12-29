@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ibasespatialaudioengine_setplayerattenuation">
+    <title><ph keyref="setPlayerAttenuation"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Sets the sound attenuation properties of the media player.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlayerAttenuation"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int setPlayerAttenuation(int playerId, double attenuation, boolean forceSet);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>playerId</pt>
+                    <pd>The ID of the media player. You can get this ID by calling <xref keyref="getMediaPlayerId"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>attenuation</pt>
+                    <pd>Sound attenuation coefficient of the remote user or media player. Value range: [0,1]. Details:
+                        <ul>
+                            <li>0: Broadcast mode. Volume and tone do not attenuate with distance. The local user hears the same volume and tone regardless of distance.</li>
+                            <li>(0, 0.5): Weak attenuation mode. Volume and tone attenuate slightly during transmission. Sound travels farther than in real environments.</li>
+                            <li>0.5: (Default) Simulates real-world volume attenuation. Equivalent to not setting the <codeph>speaker_attenuation</codeph> parameter.</li>
+                            <li>(0.5, 1]: Strong attenuation mode. Volume and tone attenuate rapidly during transmission.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>forceSet</pt>
+                    <pd>Whether to forcefully set the media player’s sound attenuation effect:
+                        <ul>
+                            <li><xref keyref="true"/>: Forcefully use the <codeph>attenuation</codeph> value to set the media player’s attenuation effect. In this case, the <codeph>audioAttenuation</codeph> setting in <xref keyref="SpatialAudioZone"/> has no effect on the media player.</li>
+                            <li><xref keyref="false"/>: Do not forcefully use the <codeph>attenuation</codeph> value to set the media player’s sound attenuation effect. Details:
+                                <ul>
+                                    <li>If the sound source and listener are inside and outside the sound insulation zone respectively, the attenuation effect is determined by the <codeph>audioAttenuation</codeph> in <xref keyref="SpatialAudioZone"/>.</li>
+                                    <li>If the sound source and listener are inside the same or outside the same sound insulation zone, the attenuation effect is determined by the <codeph>attenuation</codeph> parameter in this method.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

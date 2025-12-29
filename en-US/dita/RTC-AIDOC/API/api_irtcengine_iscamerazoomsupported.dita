@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_iscamerazoomsupported">
+    <title><ph keyref="isCameraZoomSupported"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Checks whether the device supports camera zoom.</ph><ph id="shortdesc" props="android">Checks whether the device supports camera zoom.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="isCameraZoomSupported"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool isCameraZoomSupported() = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract boolean isCameraZoomSupported();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">The <xref keyref="isCameraZoomSupported"/> method is only applicable to Android and iOS platforms.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You must call this method after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</p>
+            <p props="android">You must call this method after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</p>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp"><xref keyref="true"/>: The device supports camera zoom.
+<xref keyref="false"/>: The device does not support camera zoom.</p>
+            <p props="android">
+                <ul>
+                    <li><xref keyref="true"/>: The device supports camera zoom.</li>
+                    <li><xref keyref="false"/>: The device does not support camera zoom.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

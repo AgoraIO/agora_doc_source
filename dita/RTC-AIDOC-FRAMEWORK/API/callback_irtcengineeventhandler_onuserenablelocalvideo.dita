@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onuserenablelocalvideo">
+    <title><ph keyref="onUserEnableLocalVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">远端用户开/关本地视频采集回调。</ph><ph id="shortdesc" props="rn">远端用户开/关本地视频采集回调。</ph><ph id="shortdesc" props="flutter">远端用户开/关本地视频采集回调。</ph><ph id="shortdesc" props="unity">远端用户开/关本地视频采集回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserEnableLocalVideo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onUserEnableLocalVideo?(
+    connection: RtcConnection,
+    remoteUid: number,
+    enabled: boolean
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onUserEnableLocalVideo?(
+    connection: RtcConnection,
+    remoteUid: number,
+    enabled: boolean
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, bool enabled)?
+      onUserEnableLocalVideo;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserEnableLocalVideo(RtcConnection connection, uint remoteUid, bool enabled) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该回调已废弃，请改用 <xref keyref="onRemoteVideoStateChanged"/> 回调的如下枚举：
+                        <ul>
+                            <li><codeph>RemoteVideoStateStopped</codeph>(0) 和 <codeph>RemoteVideoStateReasonRemoteMuted</codeph>(5)。</li>
+                            <li><codeph>RemoteVideoStateDecoding</codeph> (2) 和 <codeph>RemoteVideoStateReasonRemoteUnmuted</codeph>(6)。</li>
+                        </ul>
+                    </dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该回调已废弃，请改用 <xref keyref="onRemoteVideoStateChanged"/> 回调的如下枚举：
+                        <ul>
+                            <li><codeph>RemoteVideoStateStopped</codeph>(0) 和 <codeph>RemoteVideoStateReasonRemoteMuted</codeph>(5)。</li>
+                            <li><codeph>RemoteVideoStateDecoding</codeph> (2) 和 <codeph>RemoteVideoStateReasonRemoteUnmuted</codeph>(6)。</li>
+                        </ul>
+                    </dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该回调已废弃，请改用 <xref keyref="onRemoteVideoStateChanged"/> 回调的如下枚举：
+                        <ul>
+                            <li><codeph>remoteVideoStateStopped</codeph>(0) 和 <codeph>remoteVideoStateReasonRemoteMuted</codeph>(5)。</li>
+                            <li><codeph>remoteVideoStateDecoding</codeph> (2) 和 <codeph>remoteVideoStateReasonRemoteUnmuted</codeph>(6)。</li>
+                        </ul>
+                    </dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>废弃</dt>
+                    <dd>弃用： 该回调已废弃，请改用 <xref keyref="onRemoteVideoStateChanged"/> 回调的如下枚举：
+                        <ul>
+                            <li><codeph>REMOTE_VIDEO_STATE_STOPPED</codeph>(0) 和 <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED</codeph>(5)。</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_DECODING</codeph> (2) 和 <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED</codeph>(6)。</li>
+                        </ul>
+                    </dd>
+                </dlentry>
+            </dl>
+            <p props="electron">该回调是由远端用户调用 <xref keyref="enableLocalVideo"/> 方法开启或关闭视频采集触发的。</p>
+            <p props="rn">该回调是由远端用户调用 <xref keyref="enableLocalVideo"/> 方法开启或关闭视频采集触发的。</p>
+            <p props="flutter">该回调是由远端用户调用 <xref keyref="enableLocalVideo"/> 方法开启或关闭视频采集触发的。</p>
+            <p props="unity">该回调是由远端用户调用 <xref keyref="enableLocalVideo"/> 方法开启或关闭视频采集触发的。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteUid</pt>
+                    <pd>用户 ID，提示是哪个用户的视频流。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>远端用户是否启用视频采集：
+                        <ul>
+                            <li><xref keyref="true"/>: 该用户已启用视频功能。启用后，其他用户可以接收到该用户的视频流。</li>
+                            <li><xref keyref="false"/>: 该用户已关闭视频功能。关闭后，该用户仍然可以接收其他用户的视频流，但其他用户接收不到该用户的视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteUid</pt>
+                    <pd>用户 ID，提示是哪个用户的视频流。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>远端用户是否启用视频采集：
+                        <ul>
+                            <li><xref keyref="true"/>: 该用户已启用视频功能。启用后，其他用户可以接收到该用户的视频流。</li>
+                            <li><xref keyref="false"/>: 该用户已关闭视频功能。关闭后，该用户仍然可以接收其他用户的视频流，但其他用户接收不到该用户的视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteUid</pt>
+                    <pd>用户 ID，提示是哪个用户的视频流。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>远端用户是否启用视频采集：
+                        <ul>
+                            <li><xref keyref="true"/>: 该用户已启用视频功能。启用后，其他用户可以接收到该用户的视频流。</li>
+                            <li><xref keyref="false"/>: 该用户已关闭视频功能。关闭后，该用户仍然可以接收其他用户的视频流，但其他用户接收不到该用户的视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteUid</pt>
+                    <pd>用户 ID，提示是哪个用户的视频流。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>远端用户是否启用视频采集：
+                        <ul>
+                            <li><xref keyref="true"/>: 该用户已启用视频功能。启用后，其他用户可以接收到该用户的视频流。</li>
+                            <li><xref keyref="false"/>: 该用户已关闭视频功能。关闭后，该用户仍然可以接收其他用户的视频流，但其他用户接收不到该用户的视频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

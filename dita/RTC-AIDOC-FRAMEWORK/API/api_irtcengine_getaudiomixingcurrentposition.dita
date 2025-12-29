@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getaudiomixingcurrentposition">
+    <title><ph keyref="getAudioMixingCurrentPosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">获取音乐文件的播放进度。</ph><ph id="shortdesc" props="rn">获取音乐文件的播放进度。</ph><ph id="shortdesc" props="flutter">获取音乐文件的播放进度。</ph><ph id="shortdesc" props="unity">获取音乐文件的播放进度。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getAudioMixingCurrentPosition"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getAudioMixingCurrentPosition(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getAudioMixingCurrentPosition(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getAudioMixingCurrentPosition();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetAudioMixingCurrentPosition();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">该方法获取当前音乐文件播放进度，单位为毫秒。</p>
+            <p props="rn">该方法获取当前音乐文件播放进度，单位为毫秒。</p>
+            <p props="flutter">该方法获取当前音乐文件播放进度，单位为毫秒。</p>
+            <p props="unity">该方法获取当前音乐文件播放进度，单位为毫秒。</p>
+            <note props="electron">
+                <ul>
+                    <li>你需要在调用 <xref keyref="startAudioMixing2"/> 并收到 <codeph>onAudioMixingStateChanged(AudioMixingStatePlaying)</codeph> 回调后调用该方法。</li>
+                    <li>如需多次调用 <xref keyref="getAudioMixingCurrentPosition"/>，请确保调用间隔大于 500 ms。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>你需要在调用 <xref keyref="startAudioMixing2"/> 并收到 <codeph>onAudioMixingStateChanged(AudioMixingStatePlaying)</codeph> 回调后调用该方法。</li>
+                    <li>如需多次调用 <xref keyref="getAudioMixingCurrentPosition"/>，请确保调用间隔大于 500 ms。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>你需要在调用 <xref keyref="startAudioMixing2"/> 并收到 <codeph>onAudioMixingStateChanged(audioMixingStatePlaying)</codeph> 回调后调用该方法。</li>
+                    <li>如需多次调用 <xref keyref="getAudioMixingCurrentPosition"/>，请确保调用间隔大于 500 ms。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>你需要在调用 <xref keyref="startAudioMixing2"/> 并收到 <codeph>OnAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)</codeph> 回调后调用该方法。</li>
+                    <li>如需多次调用 <xref keyref="getAudioMixingCurrentPosition"/>，请确保调用间隔大于 500 ms。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>≥ 0: 方法调用成功，返回当前音乐文件播放进度（ms）。0 表示当前音乐文件未开始播放。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>≥ 0: 方法调用成功，返回当前音乐文件播放进度（ms）。0 表示当前音乐文件未开始播放。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>≥ 0: 方法调用成功，返回当前音乐文件播放进度（ms）。0 表示当前音乐文件未开始播放。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>≥ 0: 方法调用成功，返回当前音乐文件播放进度（ms）。0 表示当前音乐文件未开始播放。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

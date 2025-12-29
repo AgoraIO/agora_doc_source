@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_watermarkbuffer">
+    <title><ph keyref="WatermarkBuffer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Configures the format, size, and pixel buffer of the watermark image.</ph><ph id="shortdesc" props="android">Configures the format, size, and pixel buffer of the watermark image.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct WatermarkBuffer {
+  int width;
+  int height;
+  int length;
+  media::base::VIDEO_PIXEL_FORMAT format;
+  const uint8_t* buffer;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class WatermarkBuffer {
+  public final static int WATERMARK_BUFFER_FORMAT_I420 = 1;
+  public final static int WATERMARK_BUFFER_FORMAT_BGRA = 2;
+  public final static int WATERMARK_BUFFER_FORMAT_NV21 = 3;
+  public final static int WATERMARK_BUFFER_FORMAT_RGBA = 4;
+  public ByteBuffer buffer;
+  public int width;
+  public int height;
+  public int format;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Added since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="android">Defines the buffer data structure for the watermark image.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>width</pt>
+                    <pd>Width of the watermark image in pixels.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>Height of the watermark image in pixels.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>length</pt>
+                    <pd>Length of the watermark image buffer in bytes.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>format</pt>
+                    <pd>Pixel format of the watermark image. See <xref keyref="VIDEO_PIXEL_FORMAT"/>. The default value is <codeph>VIDEO_PIXEL_I420</codeph>. Supported formats include: <codeph>VIDEO_PIXEL_I420</codeph>, <codeph>VIDEO_PIXEL_RGBA</codeph>, <codeph>VIDEO_PIXEL_BGRA</codeph>, and <codeph>VIDEO_PIXEL_NV21</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>buffer</pt>
+                    <pd>Pixel buffer data of the watermark image.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>WATERMARK_BUFFER_FORMAT_I420</pt>
+                    <pd>Specifies the watermark buffer format as I420.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>WATERMARK_BUFFER_FORMAT_BGRA</pt>
+                    <pd>Specifies the watermark buffer format as BGRA.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>WATERMARK_BUFFER_FORMAT_NV21</pt>
+                    <pd>Specifies the watermark buffer format as NV21.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>WATERMARK_BUFFER_FORMAT_RGBA</pt>
+                    <pd>Specifies the watermark buffer format as RGBA.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>buffer</pt>
+                    <pd>Stores the pixel data of the watermark image. See <codeph>ByteBuffer</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>width</pt>
+                    <pd>The width of the watermark image in pixels.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>The height of the watermark image in pixels.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>format</pt>
+                    <pd>The format of the watermark image:
+                        <ul>
+                            <li><codeph>WATERMARK_BUFFER_FORMAT_I420</codeph>: I420 format.</li>
+                            <li><codeph>WATERMARK_BUFFER_FORMAT_BGRA</codeph>: BGRA format.</li>
+                            <li><codeph>WATERMARK_BUFFER_FORMAT_NV21</codeph>: NV21 format.</li>
+                            <li><codeph>WATERMARK_BUFFER_FORMAT_RGBA</codeph>: RGBA format.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediarecorder_setmediarecorderobserver">
+    <title><ph keyref="setMediaRecorderObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">注册 <xref keyref="IMediaRecorderObserver"/> 观测器。</ph><ph id="shortdesc" props="rn">注册 <xref keyref="IMediaRecorderObserver"/> 观测器。</ph><ph id="shortdesc" props="flutter">注册 <xref keyref="IMediaRecorderObserver"/> 观测器。</ph><ph id="shortdesc" props="unity">注册 <xref keyref="IMediaRecorderObserver"/> 观测器。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setMediaRecorderObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setMediaRecorderObserver(callback: IMediaRecorderObserver): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setMediaRecorderObserver(callback: IMediaRecorderObserver): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setMediaRecorderObserver(
+      {required RtcConnection connection,
+      required MediaRecorderObserver callback});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetMediaRecorderObserver(IMediaRecorderObserver callback);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">该方法用于设置音视频录制的回调，以便在录制过程中向 App 通知音视频流的录制状态和信息。
+调用该方法前请确保：
+                <ul>
+                    <li>已创建并初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                    <li>已通过 <xref keyref="createMediaRecorder"/> 创建音视频录制对象。</li>
+                </ul>
+            </p>
+            <p props="rn">该方法用于设置音视频录制的回调，以便在录制过程中向 App 通知音视频流的录制状态和信息。
+调用该方法前请确保：
+                <ul>
+                    <li>已创建并初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                    <li>已通过 <xref keyref="createMediaRecorder"/> 创建音视频录制对象。</li>
+                </ul>
+            </p>
+            <p props="flutter">该方法用于设置音视频录制的回调，以便在录制过程中向 App 通知音视频流的录制状态和信息。
+调用该方法前请确保：
+                <ul>
+                    <li>已创建并初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                    <li>已通过 <xref keyref="createMediaRecorder"/> 创建音视频录制对象。</li>
+                </ul>
+            </p>
+            <p props="unity">该方法用于设置音视频录制的回调，以便在录制过程中向 App 通知音视频流的录制状态和信息。
+调用该方法前请确保：
+                <ul>
+                    <li>已创建并初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+                    <li>已通过 <xref keyref="createMediaRecorder"/> 创建音视频录制对象。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>callback</pt>
+                    <pd>音视频流录制回调，详见 <xref keyref="IMediaRecorderObserver"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>callback</pt>
+                    <pd>音视频流录制回调，详见 <xref keyref="IMediaRecorderObserver"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>callback</pt>
+                    <pd>音视频流录制回调，详见 <xref keyref="IMediaRecorderObserver"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>callback</pt>
+                    <pd>音视频流录制回调，详见 <xref keyref="IMediaRecorderObserver"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

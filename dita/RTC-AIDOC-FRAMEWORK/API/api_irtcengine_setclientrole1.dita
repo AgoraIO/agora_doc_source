@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setclientrole1">
+    <title><ph keyref="setClientRole1"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">设置用户角色。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setClientRole1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetClientRole(CLIENT_ROLE_TYPE role);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">SDK 默认设置用户角色为观众，你可以调用该方法设置用户角色为主播。用户角色（<codeph>role</codeph>）确定用户在 SDK 层的权限，包含是否可以发送流等。</p>
+            <note props="unity">在频道外调用本方法并将用户角色设为 <codeph>BROADCASTER</codeph>（主播）时，本地不会触发 <xref keyref="onClientRoleChanged"/> 回调。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="unity">
+            <title>调用时机</title>
+            <p props="unity">该方法在加入频道前后均可调用。
+如果你在加入频道前调用该方法设置用户角色为主播、并且调用 <xref keyref="setEnable"/> 方法开启视频渲染，则用户加入频道时会自动开启本地视频预览。
+如果你在加入频道后调用该方法切换用户角色，调用成功后，SDK 会自动调用 <xref keyref="muteLocalAudioStream"/> 和 <xref keyref="muteLocalVideoStream"/> 修改发布音视频流的状态。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="unity">
+            <title>相关回调</title>
+            <p props="unity">如果你在加入频道后成功调用该方法切换用户角色，SDK 会触发下列回调：
+                <ul>
+                    <li>本地触发 <xref keyref="onClientRoleChanged"/> 回调。在加入频道前调用该方法并将 <codeph>role</codeph> 设为 <codeph>AUDIENCE</codeph>（观众）时，也会触发该回调。</li>
+                    <li>远端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
+                </ul><ph>如果你在加入频道后调用该方法切换用户角色失败，SDK 会触发 <xref keyref="onClientRoleChangeFailed"/>，报告切换失败的原因和当前的用户角色。</ph></p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>role</pt>
+                    <pd>用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。
+                        <note>角色为观众的用户无法在频道内发布音视频流。在直播场景下发流时，请确保你的用户角色已切换为主播。</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>返回值</title>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-1: 一般性的错误（未明确归类）。</li>
+                            <li>-2: 参数无效。</li>
+                            <li>-7: SDK 尚未初始化。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

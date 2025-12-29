@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ivideodevicemanager_numberofcapabilities">
+    <title><ph keyref="numberOfCapabilities"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the number of video formats supported by the specified video capture device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="numberOfCapabilities"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int numberOfCapabilities(const char* deviceIdUTF8) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You can call this method to get the number of video formats supported by the specified video capture device, and then call <xref keyref="getCapability"/> to get the corresponding video frame information. The video capture device may support multiple video formats, each with different combinations of frame width, height, and frame rate.</p>
+            <note props="cpp">This method applies to Windows and macOS platforms only.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>deviceIdUTF8</pt>
+                    <pd>ID of the video capture device.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>&gt; 0: Method call succeeds and returns the number of video formats supported by the device. For example, if the specified camera supports 10 different video formats, the return value is 10.</li>
+                    <li>≤ 0: Method call fails.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

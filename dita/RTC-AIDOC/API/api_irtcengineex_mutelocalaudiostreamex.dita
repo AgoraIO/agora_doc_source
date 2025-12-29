@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_mutelocalaudiostreamex">
+    <title><ph keyref="muteLocalAudioStreamEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">停止或恢复发布本地音频流。</ph><ph id="shortdesc" props="ios">停止或恢复发布本地音频流。</ph><ph id="shortdesc" props="android">停止或恢复发布本地音频流。</ph><ph id="shortdesc" props="mac">停止或恢复发布本地音频流。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="muteLocalAudioStreamEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int muteLocalAudioStreamEx(bool mute, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)muteLocalAudioStreamEx:(BOOL)mute connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(muteLocalAudioStreamEx(_:connection:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int muteLocalAudioStreamEx(boolean muted, RtcConnection connection);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)muteLocalAudioStreamEx:(BOOL)mute connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(muteLocalAudioStreamEx(_:connection:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">成功调用该方法后，远端会触发 <xref keyref="onUserMuteAudio"/> 和 <xref keyref="onRemoteAudioStateChanged"/> 回调。</p>
+            <p props="android">成功调用该方法后，远端客户端会收到 <xref keyref="onUserMuteAudio"/> 和 <xref keyref="onRemoteAudioStateChanged"/> 回调。</p>
+            <p props="mac">成功调用该方法后，远端会触发 <xref keyref="onUserMuteAudio"/> 和 <xref keyref="onRemoteAudioStateChanged"/> 回调。</p>
+            <note props="cpp">该方法不会影响正在进行的音频录制，因为不会禁用音频采集设备。</note>
+            <note props="ios">该方法不会影响任何正在进行的音频录制，因为它不会禁用音频采集设备。</note>
+            <note props="android">该方法不会影响任何正在进行的音频录制，因为它不会禁用音频采集设备。</note>
+            <note props="mac">该方法不会影响任何正在进行的音频录制，因为它不会禁用音频采集设备。</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>该方法适用于多频道场景。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="cpp">
+            <title>相关回调</title>
+            <p props="cpp">成功调用该方法后，远端会触发 <xref keyref="onUserMuteAudio"/> 和 <xref keyref="onRemoteAudioStateChanged"/> 回调。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mute</pt>
+                    <pd>是否停止发布本地音频流：
+                        <ul>
+                            <li><xref keyref="true"/>：停止发布本地音频流。</li>
+                            <li><xref keyref="false"/>：（默认）恢复发布本地音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>mute</pt>
+                    <pd>是否停止发布本地音频流：
+                        <ul>
+                            <li><xref keyref="true"/>：停止发布本地音频流。</li>
+                            <li><xref keyref="false"/>：（默认）恢复发布本地音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>muted</pt>
+                    <pd>是否停止发布本地音频流：
+                        <ul>
+                            <li><xref keyref="true"/>：停止发布本地音频流。</li>
+                            <li><xref keyref="false"/>：（默认）恢复发布本地音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>mute</pt>
+                    <pd>是否停止发布本地音频流：
+                        <ul>
+                            <li><xref keyref="true"/>：停止发布本地音频流。</li>
+                            <li><xref keyref="false"/>：（默认）恢复发布本地音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

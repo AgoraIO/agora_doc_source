@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_echotestconfiguration">
+    <title><ph keyref="EchoTestConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure audio and video call loopback testing.</ph><ph id="shortdesc" props="android">Used to configure audio and video call loopback tests.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct EchoTestConfiguration {
+  view_t view;
+  bool enableAudio;
+  bool enableVideo;
+  const char* token;
+  const char* channelId;
+  int intervalInSeconds;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class EchoTestConfiguration {
+  public SurfaceView view = null;
+  public boolean enableAudio = true;
+  public boolean enableVideo = true;
+  public String token = null;
+  public String channelId = null;
+  public int intervalInSeconds = 2;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>view</pt>
+                    <pd>View used to render the local user's video. This parameter takes effect only when <xref keyref="enableVideo"/> is <xref keyref="true"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enableAudio</pt>
+                    <pd>Whether to enable audio device for loopback test:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Enable audio device. Set this to <xref keyref="true"/> to test the audio device.</li>
+                            <li><xref keyref="false"/>: Do not enable audio device.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enableVideo</pt>
+                    <pd>Whether to enable video device for loopback test:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Enable video device. Set this to <xref keyref="true"/> to test the video device.</li>
+                            <li><xref keyref="false"/>: Do not enable video device.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>token</pt>
+                    <pd>Dynamic key Token used to secure the audio and video call loopback test. If you have not enabled App Certificate in the Agora Console, you do not need to pass this parameter. If you have enabled App Certificate, you must pass the Token. The <codeph>uid</codeph> used to generate the Token must be 0xFFFFFFFF, and the channel name must be the one used to identify each loopback test.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>channelId</pt>
+                    <pd>Channel name used to identify each audio and video call loopback test. To ensure the loopback test functions properly, users under the same project (App ID) on different devices must use different channel names for the loopback test.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>intervalInSeconds</pt>
+                    <pd>Time interval or delay for returning the loopback test result, in seconds. Value range is [2, 10], default is 2 seconds.
+                        <ul>
+                            <li>For audio loopback testing, results are returned at the set interval.</li>
+                            <li>For video loopback testing, the video is displayed briefly, then the delay gradually increases until it reaches the set delay time.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>view</pt>
+                    <pd>The view used to render the local user's video. This parameter only applies to scenarios where video devices are tested, i.e., it is effective only when <xref keyref="enableVideo"/> is <xref keyref="true"/>. See <codeph>SurfaceView</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enableAudio</pt>
+                    <pd>Whether to enable audio devices for loopback testing:
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Enables audio devices. To test audio devices, set this parameter to <xref keyref="true"/>.</li>
+                            <li><xref keyref="false"/>: Disables audio devices.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enableVideo</pt>
+                    <pd>Whether to enable video devices for loopback testing:
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Enables video devices. To test video devices, set this parameter to <xref keyref="true"/>.</li>
+                            <li><xref keyref="false"/>: Disables video devices.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>token</pt>
+                    <pd>The dynamic key (Token) used to secure audio and video loopback tests. If you have not enabled App Certificate in the Agora Console, you can omit this parameter; if you have enabled App Certificate, you must provide the Token. The <codeph>uid</codeph> used when generating the Token must be 0xFFFFFFFF, and the channel name used must match the one used to identify each loopback test.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channelId</pt>
+                    <pd>The channel name used to identify each audio and video loopback test. To ensure the loopback test functions properly, when users of the same project (App ID) perform loopback tests on different devices, the channel names passed in must not be the same.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>intervalInSeconds</pt>
+                    <pd>Sets the time interval or delay for returning audio and video loopback test results, in seconds. The valid range is [2, 10], and the default value is 2.
+                        <ul>
+                            <li>For audio loopback tests, results are returned based on the set interval.</li>
+                            <li>For video loopback tests, the video is displayed briefly, then the delay gradually increases until it reaches the set value.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

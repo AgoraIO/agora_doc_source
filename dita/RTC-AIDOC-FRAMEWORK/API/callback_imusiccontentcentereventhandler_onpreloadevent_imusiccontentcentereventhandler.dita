@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imusiccontentcentereventhandler_onpreloadevent_imusiccontentcentereventhandler">
+    <title><ph keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">报告预加载音乐资源的事件。</ph><ph id="shortdesc" props="rn">报告预加载音乐资源的事件。</ph><ph id="shortdesc" props="flutter">报告预加载音乐资源的事件。</ph><ph id="shortdesc" props="unity">报告预加载音乐资源的事件。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onPreLoadEvent?(
+    requestId: string,
+    songCode: number,
+    percent: number,
+    lyricUrl: string,
+    status: PreloadState,
+    reason: MusicContentCenterStateReason
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onPreLoadEvent?(
+    requestId: string,
+    songCode: number,
+    percent: number,
+    lyricUrl: string,
+    status: PreloadState,
+    reason: MusicContentCenterStateReason
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(
+    String requestId,
+    int songCode,
+    int percent,
+    String lyricUrl,
+    PreloadState state,
+    MusicContentCenterStateReason reason)? onPreLoadEvent;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract void OnPreLoadEvent(string requestId, long songCode, int percent, string lyricUrl, PreloadState state, MusicContentCenterStateReason reason);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">当你调用 <xref keyref="preload2"/> 方法预加载音乐资源后，SDK 会触发该回调。</p>
+            <p props="rn">当你调用 <xref keyref="preload2"/> 方法预加载音乐资源后，SDK 会触发该回调。</p>
+            <p props="flutter">当你调用 <xref keyref="preload2"/> 方法预加载音乐资源后，SDK 会触发该回调。</p>
+            <p props="unity">当你调用 <xref keyref="preload"/> 或 <xref keyref="preload2"/> 方法预加载音乐资源后，SDK 会触发该回调。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识一个音乐资源。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>percent</pt>
+                    <pd>音乐资源当前的加载进度，取值范围为 [0,100]。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>lyricUrl</pt>
+                    <pd>歌词下载地址。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>state</pt>
+                    <pd>当前音乐资源的加载状态。详见 <xref keyref="PreloadState"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>reason</pt>
+                    <pd>音乐内容中心的请求状态码，详见 <xref keyref="MusicContentCenterStateReason"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>requestId</pt>
+                    <pd>请求 ID。本次请求的唯一标识。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识一个音乐资源。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>percent</pt>
+                    <pd>音乐资源当前的加载进度，取值范围为 [0,100]。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lyricUrl</pt>
+                    <pd>歌词下载地址。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>state</pt>
+                    <pd>当前音乐资源的加载状态。详见 <xref keyref="PreloadState"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>reason</pt>
+                    <pd>音乐内容中心的请求状态码，详见 <xref keyref="MusicContentCenterStateReason"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>requestId</pt>
+                    <pd>请求 ID。本次请求的唯一标识。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识一个音乐资源。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>percent</pt>
+                    <pd>音乐资源当前的加载进度，取值范围为 [0,100]。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lyricUrl</pt>
+                    <pd>歌词下载地址。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>state</pt>
+                    <pd>当前音乐资源的加载状态。详见 <xref keyref="PreloadState"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>reason</pt>
+                    <pd>音乐内容中心的请求状态码，详见 <xref keyref="MusicContentCenterStateReason"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>requestId</pt>
+                    <pd>请求 ID。本次请求的唯一标识。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的编号，用于标识一个音乐资源。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>percent</pt>
+                    <pd>音乐资源当前的加载进度，取值范围为 [0,100]。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lyricUrl</pt>
+                    <pd>歌词下载地址。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>state</pt>
+                    <pd>当前音乐资源的加载状态。详见 <xref keyref="PreloadState"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>reason</pt>
+                    <pd>音乐内容中心的请求状态码，详见 <xref keyref="MusicContentCenterStateReason"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

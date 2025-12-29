@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_preload">
+    <title><ph keyref="preload"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">预加载音乐资源。</ph><ph id="shortdesc" props="ios">预加载音乐资源。</ph><ph id="shortdesc" props="android">预加载音乐资源。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="preload"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int preload(int64_t songCode, const char* jsonOption) __deprecated = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (NSInteger)preloadWithSongCode:(NSInteger)songCode jsonOption:(NSString* _Nullable)jsonOption NS_SWIFT_NAME(preload(songCode:jsonOption:))  __attribute__((deprecated("Use preload(songCode:) instead.")));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int preload(long songCode, String jsonOption)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>废弃</dt>
+                    <dd>该方法已废弃，请改用 <xref keyref="preload2"/> 方法。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>废弃</dt>
+                    <dd>该方法已废弃，请改用 <codeph>preload(songCode:)</codeph>。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>废弃</dt>
+                    <dd>该方法已废弃，请改用 <xref keyref="preload2"/>。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">你可以调用该方法预加载想要播放的音乐资源。成功调用该方法后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调报告预加载事件。在调用该方法之前，你需要先调用 <codeph>getMusicCollectionWithMusicChartId</codeph> 或 <xref keyref="searchMusic"/> 获取目标音乐资源，并从 <xref keyref="onMusicCollectionResult"/> 回调中获取歌曲编号 <codeph>songCode</codeph>。</p>
+            <p props="ios">你可以调用此方法预加载你想播放的音乐资源。</p>
+            <p props="android">调用成功后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调报告预加载事件。在调用该方法前，你需要先调用 <codeph>getMusicCollectionByMusicChartId</codeph> 或 <codeph>searchMusic</codeph> 获取音乐资源，并从 <xref keyref="onMusicCollectionResult"/> 回调中获取资源标识符（<codeph>songCode</codeph>）。</p>
+            <note props="cpp">在销毁 <xref keyref="IRtcEngine"/> 对象前，请确保已收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后再调用 <xref keyref="release_IMusicContentCenter"/> 方法。</note>
+            <note props="ios">在销毁 <xref keyref="IRtcEngine"/> 对象前，请确保等待 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后再调用 <xref keyref="destroy_IMusicContentCenter"/> 方法。</note>
+            <note props="android">销毁 <xref keyref="IRtcEngine"/> 对象前，请确保在收到 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调后调用 <xref keyref="destroy1"/> 方法。</note>
+        </section>
+        <section id="related" deliveryTarget="details" props="ios">
+            <title>相关回调</title>
+            <p props="ios">成功调用该方法后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调报告预加载音乐资源的事件。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>songCode</pt>
+                    <pd>用于标识音乐资源的歌曲编号。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>jsonOption</pt>
+                    <pd>扩展的 JSON 字段。声网会根据你在 <codeph>sceneType</codeph> 字段中传入的应用场景计费，不同场景的计费标准不同：
+                        <ul>
+                            <li>1：直播场景：在线 K 歌房和背景音乐播放。</li>
+                            <li>2：直播场景：背景音乐播放。</li>
+                            <li>3：（默认）声动语聊场景：在线 K 歌房。</li>
+                            <li>4：声动语聊场景：背景音乐播放。</li>
+                            <li>5：VR 场景：在线 K 歌房和背景音乐播放。</li>
+                        </ul><ph>如果你需要切换到其他场景，请再次调用该方法并在该字段中传入新的 <codeph>sceneType</codeph> 值。</ph><ph>示例：<codeph>{"sceneType":1}</codeph>。</ph></pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的 ID，用于标识音乐。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>jsonOption</pt>
+                    <pd>扩展的 JSON 字段。声网会根据你在 <codeph>sceneType</codeph> 字段中传入的应用场景进行计费。不同的应用场景对应不同的计费标准。
+                        <ul>
+                            <li>1：频道场景：直播中的在线 K 歌和背景音乐播放。</li>
+                            <li>2：频道场景：直播中的背景音乐播放。</li>
+                            <li>3：（默认）频道场景：声动语聊中的在线 K 歌。</li>
+                            <li>4：频道场景：声动语聊中的背景音乐播放。</li>
+                            <li>5：频道场景：VR 中的在线 K 歌和背景音乐播放。</li>
+                        </ul><ph>如果你需要切换到其他场景，必须重新调用此方法并在该字段中传入新的 <codeph>sceneType</codeph> 值。</ph><ph>示例：<codeph>{"sceneType":1}</codeph>。</ph></pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>songCode</pt>
+                    <pd>音乐资源的标识符。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>jsonOption</pt>
+                    <pd>扩展的 JSON 字段。声网会根据你在 <codeph>sceneType</codeph> 字段中设置的应用场景计费，不同场景的计费标准不同，详见计费文档。
+                        <ul>
+                            <li>1：直播场景：在线 K 歌房和背景音乐播放。</li>
+                            <li>2：直播场景：背景音乐播放。</li>
+                            <li>3：（默认）声动语聊场景：在线 K 歌房。</li>
+                            <li>4：声动语聊场景：背景音乐播放。</li>
+                            <li>5：VR 场景：在线 K 歌房和背景音乐播放。</li>
+                        </ul><ph>如果你需要切换到其他场景，必须重新调用该方法并在该字段中传入新的 <codeph>sceneType</codeph> 值。</ph><ph>示例：<codeph>{"sceneType":1}</codeph>。</ph></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

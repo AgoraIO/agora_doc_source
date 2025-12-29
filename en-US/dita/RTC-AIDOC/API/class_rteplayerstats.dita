@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rteplayerstats">
+    <title><ph keyref="RtePlayerStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Statistics of the currently playing media resource.</ph><ph id="shortdesc" props="android">Used to collect statistics on the currently playing media resource.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">typedef struct RtePlayerStats {
+  int video_decode_frame_rate;
+  int video_render_frame_rate;
+  int video_bitrate;
+  int audio_bitrate;
+} RtePlayerStats;</codeblock>
+                <codeblock props="android" outputclass="language-java">public class PlayerStats {
+  private long mNativeHandle = 0;
+  private boolean mIsNativeOwner = true;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>video_decode_frame_rate</pt>
+                    <pd>Video decode frame rate, in fps.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>video_render_frame_rate</pt>
+                    <pd>Video render frame rate, in fps.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>video_bitrate</pt>
+                    <pd>Video bitrate, in Kbps.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audio_bitrate</pt>
+                    <pd>Audio bitrate, in Kbps.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

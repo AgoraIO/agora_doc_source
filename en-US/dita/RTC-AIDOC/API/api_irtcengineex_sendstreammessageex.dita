@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_sendstreammessageex">
+    <title><ph keyref="sendStreamMessageEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sends a data stream message.</ph><ph id="shortdesc" props="android">Sends data stream messages.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="sendStreamMessageEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int sendStreamMessageEx(int streamId, const char* data, size_t length, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int sendStreamMessageEx(int streamId, byte[] message, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling <codeph>createDataStreamEx</codeph> to create a data channel, you can call this method to send data stream messages to all users in the channel. The SDK imposes the following limitations on this method:
+                <ul>
+                    <li>Each client can have up to 5 data channels in a channel at the same time, and the total bitrate shared by all data channels is limited to 30 KB/s;</li>
+                    <li>Each data channel can send up to 60 data packets per second, with each packet being a maximum of 1 KB.</li>
+                </ul>
+            </p>
+            <p props="android">After calling <codeph>createDataStreamEx</codeph>, you can use this method to send data stream messages to all users in the channel. The SDK imposes the following limits on this method:
+                <ul>
+                    <li>Each client instance can have up to 5 data channels in a channel, and the total bitrate shared by all data channels is limited to 30 KB/s.</li>
+                    <li>Each data channel can send up to 60 data packets per second, and each packet must not exceed 1 KB.</li>
+                </ul>
+            </p>
+            <note props="cpp">
+                <ul>
+                    <li>If you need a more comprehensive solution for low-latency, high-concurrency, and scalable real-time messaging and state synchronization, we recommend using Real-time Messaging.</li>
+                    <li>Call this method after calling <xref keyref="joinChannelEx"/>.</li>
+                    <li>Make sure to create the data channel using <codeph>createDataStreamEx</codeph> before calling this method.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>If you need a more comprehensive real-time messaging and state synchronization solution with low latency, high concurrency, and scalability, we recommend using Agora's real-time messaging.</li>
+                    <li>Call this method after <xref keyref="joinChannelEx"/>.</li>
+                    <li>Make sure to create the data channel using <codeph>createDataStreamEx</codeph> before calling this method.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method applies to multi-channel scenarios.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After this method is successfully called, the SDK triggers the <xref keyref="onStreamMessage"/> callback on the remote client. The remote user can receive the data stream message through this callback. If the call fails, the SDK triggers the <xref keyref="onStreamMessageError"/> callback on the remote client.</p>
+            <p props="android">If the call succeeds, the remote client receives the <xref keyref="onStreamMessage"/> callback, from which the user can get the data stream message. If the call fails, the remote client receives the <xref keyref="onStreamMessageError"/> callback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>streamId</pt>
+                    <pd>The data stream ID, obtained by calling <codeph>createDataStreamEx</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>data</pt>
+                    <pd>The content of the message to be sent.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>length</pt>
+                    <pd>The length of the data.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>streamId</pt>
+                    <pd>The data stream ID. You can get this ID by calling <codeph>createDataStreamEx</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>message</pt>
+                    <pd>The message content to be sent.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_codeccapinfo">
+    <title><ph keyref="CodecCapInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">SDK 支持的编解码能力信息。</ph><ph id="shortdesc" props="rn">SDK 支持的编解码能力信息。</ph><ph id="shortdesc" props="flutter">SDK 支持的编解码能力信息。</ph><ph id="shortdesc" props="unity">SDK 支持的编解码能力信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class CodecCapInfo {
+  codecType?: VideoCodecType;
+  codecCapMask?: number;
+  codecLevels?: CodecCapLevels;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class CodecCapInfo {
+  codecType?: VideoCodecType;
+  codecCapMask?: number;
+  codecLevels?: CodecCapLevels;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class CodecCapInfo {
+  const CodecCapInfo({this.codecType, this.codecCapMask, this.codecLevels});
+
+  @JsonKey(name: 'codecType')
+  final VideoCodecType? codecType;
+
+  @JsonKey(name: 'codecCapMask')
+  final int? codecCapMask;
+
+  @JsonKey(name: 'codecLevels')
+  final CodecCapLevels? codecLevels;
+
+  factory CodecCapInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$CodecCapInfoFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$CodecCapInfoToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class CodecCapInfo
+    {
+        public VIDEO_CODEC_TYPE codecType;
+
+        public int codecCapMask;
+
+        public CodecCapLevels codecLevels;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>codecType</pt>
+                    <pd>视频编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>codecCapMask</pt>
+                    <pd>SDK 编解码类型的 bit mask。详见 <xref keyref="CODEC_CAP_MASK"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>codecLevels</pt>
+                    <pd>SDK 支持的编解码能力等级。详见 <xref keyref="CodecCapLevels"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>codecType</pt>
+                    <pd>视频编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>codecCapMask</pt>
+                    <pd>SDK 编解码类型的 bit mask。详见 <xref keyref="CODEC_CAP_MASK"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>codecType</pt>
+                    <pd>视频编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>codecCapMask</pt>
+                    <pd>SDK 编解码类型的 bit mask。详见 <xref keyref="CODEC_CAP_MASK"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>codecLevels</pt>
+                    <pd>SDK 支持的编解码能力等级。详见 <xref keyref="CodecCapLevels"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>codecType</pt>
+                    <pd>视频编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>codecCapMask</pt>
+                    <pd>SDK 编解码类型的 bit mask。详见 <xref keyref="CODEC_CAP_MASK"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>codecLevels</pt>
+                    <pd>SDK 支持的编解码能力等级。详见 <xref keyref="CodecCapLevels"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

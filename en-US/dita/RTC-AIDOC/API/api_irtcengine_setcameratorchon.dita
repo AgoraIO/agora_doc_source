@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setcameratorchon">
+    <title><ph keyref="setCameraTorchOn"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Turns the camera flash on or off.</ph><ph id="shortdesc" props="android">Turns the camera flash on or off.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setCameraTorchOn"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setCameraTorchOn(bool isOn) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setCameraTorchOn(boolean isOn);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp"><xref keyref="setCameraTorchOn"/> applies to Android and iOS only. You must call this method after calling <xref keyref="enableVideo"/>. The setting takes effect after the camera is successfully started, that is, when the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</note>
+            <note props="android">You must call this method after calling <xref keyref="enableVideo"/>. The setting takes effect after the camera is successfully started, i.e., after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>isOn</pt>
+                    <pd>Whether to turn on the camera flash:
+                        <ul>
+                            <li><xref keyref="true"/>: Turn on the flash.</li>
+                            <li><xref keyref="false"/>: (Default) Turn off the flash.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>isOn</pt>
+                    <pd>Whether to turn on the camera flash:
+                        <ul>
+                            <li><xref keyref="true"/>: Turn on the flash.</li>
+                            <li><xref keyref="false"/>: (default) Turn off the flash.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

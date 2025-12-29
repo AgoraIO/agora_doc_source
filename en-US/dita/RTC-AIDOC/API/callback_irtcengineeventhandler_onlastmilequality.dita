@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onlastmilequality">
+    <title><ph keyref="onLastmileQuality"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback reporting the last-mile network quality of the local user.</ph><ph id="shortdesc" props="android">Callback for the local user's Last-mile network quality.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLastmileQuality"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onLastmileQuality(int quality) { (void)quality; }</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onLastmileQuality(int quality)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback is triggered before joining a channel to report the network quality between the local user and the Agora edge server (i.e., last-mile network condition). After calling <xref keyref="startLastmileProbeTest"/>, the SDK triggers this callback.</p>
+            <p props="android">This callback is triggered before the user joins the channel to report the Last-mile network quality between the local user and the Agora edge server. After calling <xref keyref="startLastmileProbeTest"/>, the SDK triggers this callback.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered after calling the <xref keyref="startLastmileProbeTest"/> method.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>quality</pt>
+                    <pd>Last-mile network quality. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>quality</pt>
+                    <pd>Last-mile network quality:
+                        <ul>
+                            <li><codeph>QUALITY_UNKNOWN</codeph> (0): Unknown network quality.</li>
+                            <li><codeph>QUALITY_EXCELLENT</codeph> (1): Excellent network quality.</li>
+                            <li><codeph>QUALITY_GOOD</codeph> (2): Good network quality, but bitrate may be slightly lower than excellent.</li>
+                            <li><codeph>QUALITY_POOR</codeph> (3): Slight degradation in communication quality.</li>
+                            <li><codeph>QUALITY_BAD</codeph> (4): Unable to communicate smoothly.</li>
+                            <li><codeph>QUALITY_VBAD</codeph> (5): Very poor network quality, almost unable to communicate.</li>
+                            <li><codeph>QUALITY_DOWN</codeph> (6): Network disconnected, unable to communicate.</li>
+                            <li><codeph>QUALITY_DETECTING</codeph> (8): Performing Last-mile probe.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

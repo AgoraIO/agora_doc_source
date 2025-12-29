@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onactivespeaker">
+    <title><ph keyref="onActiveSpeaker"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for the most active remote speaker.</ph><ph id="shortdesc" props="android">Callback for the most active remote speaker.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onActiveSpeaker"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onActiveSpeaker(uid_t uid)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onActiveSpeaker(int uid)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling <xref keyref="enableAudioVolumeIndication"/> successfully, the SDK continuously detects which remote user has the highest volume. The remote user with the most occurrences of highest volume in the current interval is considered the most active speaker. When there are at least two users in the channel and there is an active remote speaker, the SDK triggers this callback and reports the user ID of the most active remote speaker.
+                <ul>
+                    <li>If the most active speaker remains the same, the SDK triggers this callback only once.</li>
+                    <li>If the most active speaker changes, the SDK triggers this callback again and reports the new most active speaker's user ID.</li>
+                </ul>
+            </p>
+            <p props="android">After successfully calling <xref keyref="enableAudioVolumeIndication"/>, the SDK continuously detects which remote user has the highest volume. The remote user with the most occurrences of highest volume within the current cycle is considered the most active speaker. When there are at least two users in the channel and an active remote speaker exists, the SDK triggers this callback and reports the user ID of the most active remote speaker.
+                <ul>
+                    <li>If the most active remote speaker remains the same, the SDK triggers this callback only once.</li>
+                    <li>If the most active remote speaker changes, the SDK triggers this callback again and reports the new user ID.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the most active remote speaker is detected.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>The user ID of the most active remote speaker.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID of the most active remote speaker.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

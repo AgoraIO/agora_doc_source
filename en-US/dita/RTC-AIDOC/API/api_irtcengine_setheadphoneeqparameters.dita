@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setheadphoneeqparameters">
+    <title><ph keyref="setHeadphoneEQParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the low and high frequency parameters of the headphone equalizer.</ph><ph id="shortdesc" props="android">Sets the low and high frequency parameters of the headphone equalizer.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setHeadphoneEQParameters"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setHeadphoneEQParameters(int lowGain, int highGain) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setHeadphoneEQParameters(int lowGain, int highGain);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">In spatial audio scenarios, if calling <xref keyref="setHeadphoneEQPreset"/> does not achieve the desired headphone equalizer effect, you can further adjust it by calling this method.</p>
+            <p props="android">If calling <xref keyref="setHeadphoneEQPreset"/> does not achieve the desired effect, you can call <xref keyref="setHeadphoneEQParameters"/> to further adjust the low and high frequency parameters of the headphone equalizer.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>lowGain</pt>
+                    <pd>Low frequency parameter of the headphone equalizer. The range is [-10, 10]. The larger the value, the fuller the sound.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>highGain</pt>
+                    <pd>High frequency parameter of the headphone equalizer. The range is [-10, 10]. The larger the value, the clearer the sound.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lowGain</pt>
+                    <pd>Low frequency parameter of the headphone equalizer, range is [-10, 10]. The higher the value, the deeper the sound.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>highGain</pt>
+                    <pd>High frequency parameter of the headphone equalizer, range is [-10, 10]. The higher the value, the clearer the sound.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-1: A general error occurred (no specific reason).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-1: A general error occurred.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

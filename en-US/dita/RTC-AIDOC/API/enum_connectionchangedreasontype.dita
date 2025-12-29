@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_connectionchangedreasontype">
+    <title><ph keyref="CONNECTION_CHANGED_REASON_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">The reason for connection state change.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_CONNECTING</pt>
+                    <pd>(0): The SDK is connecting to the Agora edge server.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_JOIN_SUCCESS</pt>
+                    <pd>(1): The SDK has successfully joined the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_INTERRUPTED</pt>
+                    <pd>(2): The connection between the SDK and Agora edge server is interrupted.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_BANNED_BY_SERVER</pt>
+                    <pd>(3): The connection between the SDK and Agora edge server is banned by the server. For example, this state is returned when a user is kicked from the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_JOIN_FAILED</pt>
+                    <pd>(4): The SDK failed to join the channel. If joining fails for more than 20 minutes, this status code is returned and reconnection stops. You should prompt the user to switch networks and rejoin the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_LEAVE_CHANNEL</pt>
+                    <pd>(5): The SDK has left the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_INVALID_APP_ID</pt>
+                    <pd>(6): Invalid App ID. Please rejoin the channel using a valid App ID and ensure it matches the one generated in the Agora Console.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_INVALID_CHANNEL_NAME</pt>
+                    <pd>(7): Invalid channel name. Please rejoin the channel using a valid name. The channel name is a string of up to 64 bytes, supporting 89 characters including: lowercase letters a–z, uppercase letters A–Z, digits 0–9, and the following symbols: ! # $ % &amp; ( ) + - : ; &lt; = . &gt; ? @ [ ] ^ _ { } | ~ ,</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_INVALID_TOKEN</pt>
+                    <pd>(8): Invalid Token. Possible reasons: the project has App Certificate enabled in the Agora Console but no Token is provided when joining the channel; the <codeph>uid</codeph> specified in <codeph>joinChannel</codeph> does not match the one used to generate the Token; the generated Token does not match the one used to join. Ensure that: a Token is provided when joining channels for projects with App Certificate enabled; the user ID used to generate the Token matches the one used to join; the generated Token matches the one passed in.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_TOKEN_EXPIRED</pt>
+                    <pd>(9): The current Token has expired. You need to generate a new Token on your server and rejoin the channel using it.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_REJECTED_BY_SERVER</pt>
+                    <pd>(10): The connection is rejected by the server. Possible reasons: the user is already in the channel and calls <codeph>joinChannel</codeph> again — stop calling the method to clear the error; the user tries to join a channel during a call test — join after the test ends.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_SETTING_PROXY_SERVER</pt>
+                    <pd>(11): The SDK sets a proxy server, and the connection state changes to reconnecting.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_RENEW_TOKEN</pt>
+                    <pd>(12): The connection state changes due to Token renewal.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED</pt>
+                    <pd>(13): The client IP address has changed. If this status code is received multiple times, prompt the user to switch networks and rejoin the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT</pt>
+                    <pd>(14): The keep-alive connection between the SDK and Agora edge server times out. The SDK will automatically attempt to reconnect.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_REJOIN_SUCCESS</pt>
+                    <pd>(15): The user has successfully rejoined the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_LOST</pt>
+                    <pd>(16): The connection between the SDK and the server is lost.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_ECHO_TEST</pt>
+                    <pd>(17): The connection state changes due to echo test.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED_BY_USER</pt>
+                    <pd>(18): The local IP address is changed by the user.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_SAME_UID_LOGIN</pt>
+                    <pd>(19): The same UID is used to join the same channel on different devices.
+                        <note>Using the same UID to join the same channel is undefined behavior. Agora does not guarantee that all such cases will receive <codeph>reason</codeph> 19.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_TOO_MANY_BROADCASTERS</pt>
+                    <pd>(20): The number of broadcasters in the channel has reached the limit.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_LICENSE_VALIDATION_FAILURE</pt>
+                    <pd>(21): The connection fails due to license validation failure.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_CERTIFICATION_VERYFY_FAILURE</pt>
+                    <pd>(22): The connection fails due to certificate verification failure.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_STREAM_CHANNEL_NOT_AVAILABLE</pt>
+                    <pd>(23): The connection fails because stream channel permission is not granted.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>CONNECTION_CHANGED_INCONSISTENT_APPID</pt>
+                    <pd>(24): The connection fails due to inconsistent App ID used when joining the channel.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

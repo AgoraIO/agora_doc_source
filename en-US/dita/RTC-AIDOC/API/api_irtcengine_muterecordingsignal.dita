@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_muterecordingsignal">
+    <title><ph keyref="muteRecordingSignal"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Mutes or unmutes the recording signal.</ph><ph id="shortdesc" props="android">Sets whether to mute the recording signal.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="muteRecordingSignal"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int muteRecordingSignal(bool mute) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int muteRecordingSignal(boolean muted);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">If you have already called <xref keyref="adjustRecordingSignalVolume"/> to adjust the recording signal volume, when you call this method and set the parameter to <xref keyref="true"/>, the SDK will:
+                <ul>
+                    <li>Record the current adjusted volume.</li>
+                    <li>Mute the recording signal.</li>
+                </ul><ph>When you call this method again and set the parameter to <xref keyref="false"/>, the recording signal volume will be restored to the pre-muted value.</ph><ph>This method can be called before or after joining a channel.</ph></p>
+            <p props="android">If you have called <xref keyref="adjustRecordingSignalVolume"/> to adjust the recording signal volume, when you call this method and set the parameter to <xref keyref="true"/>, the SDK performs the following:
+                <ul>
+                    <li>Records the adjusted volume.</li>
+                    <li>Mutes the recording signal.</li>
+                </ul><ph>When you call this method again and set the parameter to <xref keyref="false"/>, the recording signal volume is restored to the volume recorded before muting.</ph></p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">This method can be called before or after joining a channel.</p>
+            <p props="android">This method can be called before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mute</pt>
+                    <pd>Whether to mute the recording signal:
+                        <ul>
+                            <li><xref keyref="true"/>: Mute the recording signal.</li>
+                            <li><xref keyref="false"/>: (Default) Do not mute the recording signal.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>muted</pt>
+                    <pd>Whether to mute the recording signal:
+                        <ul>
+                            <li><xref keyref="true"/>: Mute the recording signal.</li>
+                            <li><xref keyref="false"/>: (default) Do not mute the recording signal.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

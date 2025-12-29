@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_adjustaudiomixingpublishvolume">
+    <title><ph keyref="adjustAudioMixingPublishVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Adjusts the audio mixing volume for publishing.</ph><ph id="shortdesc" props="android">Adjusts the audio mixing volume for publishing.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="adjustAudioMixingPublishVolume"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int adjustAudioMixingPublishVolume(int volume) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int adjustAudioMixingPublishVolume(int volume);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">This method adjusts the audio mixing volume sent to other users.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after calling <codeph>startAudioMixing</codeph> and receiving the <xref keyref="onAudioMixingStateChanged"/> (<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>) callback.</p>
+            <p props="android">Call this method after calling <codeph>startAudioMixing</codeph> and receiving the <xref keyref="onAudioMixingStateChanged"/> (<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>) callback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>volume</pt>
+                    <pd>The audio mixing volume for publishing. Range: 0 to 100. The default value is 100, which represents the original volume.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>volume</pt>
+                    <pd>The audio mixing volume for publishing. The value range is [0, 100], with a default of 100, which means the original volume.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

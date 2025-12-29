@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setcameraexposurefactor">
+    <title><ph keyref="setCameraExposureFactor"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the camera exposure value.</ph><ph id="shortdesc" props="android">Sets the camera exposure value.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setCameraExposureFactor"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setCameraExposureFactor(float factor) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setCameraExposureFactor(int factor);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Added since v4.2.2.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.2.2.</dd>
+                </dlentry>
+            </dl>
+            <note props="cpp">
+                <ul>
+                    <li>This method applies to Android and iOS only.</li>
+                    <li>You must call this method after calling <xref keyref="enableVideo"/>. The setting takes effect after the camera is successfully started, that is, when the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</li>
+                    <li>Before calling this method, Agora recommends calling <xref keyref="isCameraExposureSupported"/> to check whether the current camera supports exposure adjustment.</li>
+                    <li>This method is used to adjust the exposure value of the currently active camera, which is the one specified when calling <xref keyref="setCameraCapturerConfiguration"/>.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>You must call this method after calling <xref keyref="enableVideo"/>. The setting takes effect after the camera is successfully started, i.e., after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</li>
+                    <li>Before calling this method, Agora recommends calling <xref keyref="isCameraExposureSupported"/> to check whether the current camera supports adjusting exposure.</li>
+                    <li>By calling this method, you can adjust the exposure of the currently active camera, i.e., the one specified in <xref keyref="setCameraCapturerConfiguration"/>.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>factor</pt>
+                    <pd>The camera exposure value. The default value is 0, which means using the camera's default exposure. The higher the value, the stronger the exposure. Lower the value when the image is overexposed; increase when underexposed and details in dark areas are lost. If the value exceeds the supported range, the SDK automatically adjusts it to a valid range.
+                        <note>
+                            <ul>
+                                <li>On Android, the range is [-20.0, 20.0].</li>
+                                <li>On iOS, the range is [-8.0, 8.0].</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>factor</pt>
+                    <pd>Camera exposure value. The default is 0, which means using the camera's default exposure. The higher the value, the stronger the exposure. If the video image is overexposed, you can reduce the exposure value; if the image is underexposed and lacks detail in dark areas, you can increase the exposure value. If the set value exceeds the supported range of the device, the SDK automatically adjusts it to the supported range. The valid range is [-20, 20].</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

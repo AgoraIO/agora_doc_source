@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_geterrordescription">
+    <title><ph keyref="getErrorDescription"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="getErrorDescription"/>：获取警告或错误描述。</ph><ph id="shortdesc" props="ios">获取警告或错误描述信息。</ph><ph id="shortdesc" props="android">获取警告或错误码对应的描述信息。</ph><ph id="shortdesc" props="mac">获取警告或错误描述信息。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getErrorDescription"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual const char* getErrorDescription(int code) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">+ (NSString* _Nonnull)getErrorDescription:(NSInteger)error NS_SWIFT_NAME(getErrorDescription(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public static String getErrorDescription(int error)</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">+ (NSString* _Nonnull)getErrorDescription:(NSInteger)error NS_SWIFT_NAME(getErrorDescription(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">你可以通过该方法获取由 SDK 报告的警告或错误码所对应的描述信息。</p>
+            <p props="mac">你可以通过该方法获取由 SDK 报告的警告或错误码所对应的描述信息。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>code</pt>
+                    <pd>SDK 报告的错误码。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>SDK 报告的错误码。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>error</pt>
+                    <pd>SDK 报告的错误码。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>error</pt>
+                    <pd>SDK 报告的错误码。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>方法调用成功时，返回错误码对应的描述字符串。</li>
+                    <li>方法调用失败时，返回空字符串。</li>
+                </ul>
+            </p>
+            <p props="ios">方法调用成功时，返回错误码对应的描述信息。</p>
+            <p props="android">方法调用成功时，返回错误码对应的描述信息。
+方法调用失败，返回空字符串。</p>
+            <p props="mac">方法调用成功时，返回错误码对应的描述信息。</p>
+        </section>
+    </refbody>
+</reference>

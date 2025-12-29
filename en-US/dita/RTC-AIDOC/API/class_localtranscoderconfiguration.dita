@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_localtranscoderconfiguration">
+    <title><ph keyref="LocalTranscoderConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the video mixing feature for the local client.</ph><ph id="shortdesc" props="android">Used to configure video composition on the local client.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct LocalTranscoderConfiguration {
+  unsigned int streamCount;
+  TranscodingVideoStream* videoInputStreams;
+  VideoEncoderConfiguration videoOutputConfiguration;
+  bool syncWithPrimaryCamera;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class LocalTranscoderConfiguration {
+  public ArrayList&lt;TranscodingVideoStream&gt; transcodingVideoStreams;
+  public boolean syncWithPrimaryCamera;
+  public VideoEncoderConfiguration videoOutputConfiguration;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>streamCount</pt>
+                    <pd>The number of video streams for local video mixing.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoInputStreams</pt>
+                    <pd>The video streams used for local video mixing. See <xref keyref="TranscodingVideoStream"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoOutputConfiguration</pt>
+                    <pd>The encoding configuration of the mixed video after mixing. See <xref keyref="VideoEncoderConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>syncWithPrimaryCamera</pt>
+                    <pd>Whether to use the timestamp of video frames captured by the primary camera as the timestamp of the mixed video.
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Use the timestamp of captured video frames as the timestamp of the mixed video frames.</li>
+                            <li><xref keyref="false"/>: Do not use the timestamp of captured video frames as the timestamp of the mixed video; instead, use the timestamp when constructing the mixed video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>transcodingVideoStreams</pt>
+                    <pd>Video streams used for local composition. See <xref keyref="TranscodingVideoStream"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>syncWithPrimaryCamera</pt>
+                    <pd>Whether to use the timestamp of the video frame captured by the primary camera as the timestamp of the composed video frame.
+                        <ul>
+                            <li><xref keyref="true"/>: (default) use the captured frame timestamp.</li>
+                            <li><xref keyref="false"/>: use the timestamp of the composed frame.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoOutputConfiguration</pt>
+                    <pd>Encoding configuration of the output video stream after local composition. See <xref keyref="VideoEncoderConfiguration"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

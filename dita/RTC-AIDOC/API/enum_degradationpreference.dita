@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_degradationpreference">
+    <title><ph keyref="DEGRADATION_PREFERENCE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">带宽受限时的视频降级偏好设置。</ph><ph id="shortdesc" props="ios">带宽受限时的视频降级偏好设置。</ph><ph id="shortdesc" props="android">带宽受限时的视频降级偏好设置。</ph><ph id="shortdesc" props="mac">带宽受限时的视频降级偏好设置。</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>MAINTAIN_AUTO</pt>
+                    <pd>（-1）：自动模式（默认）。SDK 会根据设置的视频场景自动选择 <codeph>MAINTAIN_FRAMERATE</codeph>、<codeph>MAINTAIN_BALANCED</codeph> 或 <codeph>MAINTAIN_RESOLUTION</codeph>，以实现最佳的整体体验质量（QoE）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>MAINTAIN_QUALITY</pt>
+                    <pd>（0）：在带宽受限的视频编码过程中，优先降低帧率以保持分辨率。适用于对画质要求较高的场景。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>MAINTAIN_FRAMERATE</pt>
+                    <pd>（1）：在带宽受限的视频编码过程中，优先降低分辨率以保持帧率。适用于对流畅度要求较高且可接受画质降低的场景。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>MAINTAIN_BALANCED</pt>
+                    <pd>（2）：在带宽受限的视频编码过程中，同时降低帧率和分辨率。降级程度低于 <codeph>MAINTAIN_QUALITY</codeph> 和 <codeph>MAINTAIN_FRAMERATE</codeph>，适用于对流畅度和画质均有要求的场景。
+                        <note>发送端视频的分辨率可能会发生变化，远端用户需要处理该问题。详见 <xref keyref="onVideoSizeChanged"/>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>MAINTAIN_RESOLUTION</pt>
+                    <pd>（3）：在带宽受限的视频编码过程中，优先降低帧率以保持分辨率。适用于对画质要求较高的场景。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>DISABLED</pt>
+                    <pd>（100）：关闭 VQC 调整功能。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraDegradationMaintainAuto</pt>
+                    <pd>（-1）：（默认）自动模式。SDK 会根据设置的视频场景自动选择 <codeph>AgoraDegradationMaintainFramerate</codeph>、<codeph>AgoraDegradationBalanced</codeph> 或 <codeph>AgoraDegradationMaintainResolution</codeph>，以实现最佳的整体用户体验（QoE）。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraDegradationMaintainQuality</pt>
+                    <pd>（0）：在带宽受限的视频编码过程中，优先降低视频帧率以保持视频分辨率。适用于对视频画质要求较高的场景。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraDegradationMaintainFramerate</pt>
+                    <pd>（1）：在带宽受限的视频编码过程中，优先降低视频分辨率以保持视频帧率。适用于对视频流畅性要求较高且可接受画质降低的场景。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraDegradationBalanced</pt>
+                    <pd>（2）：在带宽受限的视频编码过程中，同时降低视频帧率和分辨率。相比 <codeph>AgoraDegradationMaintainQuality</codeph> 和 <codeph>AgoraDegradationMaintainFramerate</codeph>，该模式的降级程度更小，适用于对流畅性和画质均有要求的场景。
+                        <note>发送端视频分辨率可能会发生变化，接收端需处理该问题。详见 <xref keyref="onVideoSizeChanged"/>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraDegradationMaintainResolution</pt>
+                    <pd>（3）：在带宽受限的视频编码过程中，优先降低视频帧率以保持视频分辨率。适用于对视频画质要求较高的场景。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraDegradationDisable</pt>
+                    <pd>（100）：禁用 VQC 调整。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MAINTAIN_AUTO</pt>
+                    <pd>（-1）：（默认）自动模式。SDK 会根据设置的视频场景自动选择 <codeph>MAINTAIN_FRAMERATE</codeph>、<codeph>MAINTAIN_BALANCED</codeph> 或 <codeph>MAINTAIN_RESOLUTION</codeph>，以实现最佳的整体体验质量（QoE）。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MAINTAIN_QUALITY</pt>
+                    <pd>（0）：在带宽受限的视频编码过程中，优先降低帧率以保持分辨率。适用于对视频质量要求较高的场景。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MAINTAIN_FRAMERATE</pt>
+                    <pd>（1）：在带宽受限的视频编码过程中，优先降低分辨率以保持帧率。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MAINTAIN_BALANCED</pt>
+                    <pd>（2）：在带宽受限的视频编码过程中，同时降低帧率和分辨率。该模式的降级程度低于 <codeph>MAINTAIN_QUALITY</codeph> 和 <codeph>MAINTAIN_FRAMERATE</codeph>，适用于对流畅度和视频质量均有要求的场景。
+                        <note>发送端视频的分辨率可能会发生变化，远端用户需要处理该问题。详见 <xref keyref="onVideoSizeChanged"/>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MAINTAIN_RESOLUTION</pt>
+                    <pd>（3）：在带宽受限的视频编码过程中，优先降低帧率以保持分辨率。适用于对视频质量要求较高的场景。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>DISABLED</pt>
+                    <pd>（100）：关闭视频质量控制（VQC）调节功能。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraDegradationMaintainAuto</pt>
+                    <pd>（-1）：（默认）自动模式。SDK 会根据设置的视频场景自动选择 <codeph>AgoraDegradationMaintainFramerate</codeph>、<codeph>AgoraDegradationBalanced</codeph> 或 <codeph>AgoraDegradationMaintainResolution</codeph>，以实现最佳的整体用户体验（QoE）。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraDegradationMaintainQuality</pt>
+                    <pd>（0）：在带宽受限的视频编码过程中，优先降低视频帧率以保持视频分辨率。适用于对视频画质要求较高的场景。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraDegradationMaintainFramerate</pt>
+                    <pd>（1）：在带宽受限的视频编码过程中，优先降低视频分辨率以保持视频帧率。适用于对视频流畅性要求较高且可接受画质降低的场景。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraDegradationBalanced</pt>
+                    <pd>（2）：在带宽受限的视频编码过程中，同时降低视频帧率和分辨率。相比 <codeph>AgoraDegradationMaintainQuality</codeph> 和 <codeph>AgoraDegradationMaintainFramerate</codeph>，该模式的降级程度更小，适用于对流畅性和画质均有要求的场景。
+                        <note>发送端视频分辨率可能会发生变化，接收端需处理该问题。详见 <xref keyref="onVideoSizeChanged"/>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraDegradationMaintainResolution</pt>
+                    <pd>（3）：在带宽受限的视频编码过程中，优先降低视频帧率以保持视频分辨率。适用于对视频画质要求较高的场景。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraDegradationDisable</pt>
+                    <pd>（100）：禁用 VQC 调整。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

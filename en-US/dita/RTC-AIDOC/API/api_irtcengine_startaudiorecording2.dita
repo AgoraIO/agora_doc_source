@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startaudiorecording2">
+    <title><ph keyref="startAudioRecording2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts client-side audio recording and sets the recording sample rate.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startAudioRecording2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, int sampleRate, AUDIO_RECORDING_QUALITY_TYPE quality) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling this method, you can record the audio of all users in the channel on the client during the call and generate a recording file that contains all voices. The recording file supports the following formats only:
+                <ul>
+                    <li><codeph>.wav</codeph>: Large file size, high audio fidelity.</li>
+                    <li><codeph>.aac</codeph>: Small file size, low audio fidelity.</li>
+                </ul>
+            </p>
+            <note props="cpp">
+                <ul>
+                    <li>Ensure that the specified path in this method exists and is writable.</li>
+                    <li>You must call this method after calling <codeph>joinChannel</codeph>. If you call <codeph>leaveChannel</codeph> during recording, the recording stops automatically.</li>
+                    <li>To ensure recording quality, when <codeph>sampleRate</codeph> is set to 44.1 kHz or 48 kHz, it is recommended to set <codeph>quality</codeph> to <codeph>AUDIO_RECORDING_QUALITY_MEDIUM</codeph> or <codeph>AUDIO_RECORDING_QUALITY_HIGH</codeph>.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>filePath</pt>
+                    <pd>The absolute path to save the recording file locally, including the file name and extension. For example: <xref keyref="recordingPath-example"/>.
+                        <note>Ensure the specified path exists and is writable.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sampleRate</pt>
+                    <pd>Recording sample rate (Hz). You can set it to one of the following values:
+                        <ul>
+                            <li>16000</li>
+                            <li>32000 (default)</li>
+                            <li>44100</li>
+                            <li>48000</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>quality</pt>
+                    <pd>Recording quality. See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

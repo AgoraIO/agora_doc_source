@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setscreencapturecontenthint">
+    <title><ph keyref="setScreenCaptureContentHint"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the content hint for screen sharing.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setScreenCaptureContentHint"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setScreenCaptureContentHint(VIDEO_CONTENT_HINT contentHint) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method sets the content type hint for screen sharing, so that the SDK can apply corresponding optimization algorithms based on different types of content. If you do not call this method, the default content hint is <codeph>CONTENT_HINT_NONE</codeph>.</p>
+            <note props="cpp">You can call this method before or after starting or stopping screen sharing.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>contentHint</pt>
+                    <pd>Content hint for screen sharing. See <xref keyref="VIDEO_CONTENT_HINT"/> for details.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.
+                        <ul>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-8: Invalid screen sharing state, possibly because you are already sharing another screen or window. Call <codeph>stopScreenCapture</codeph> to stop the current sharing and try again.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

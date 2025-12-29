@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_rte_initmediaengine">
+    <title><ph keyref="InitMediaEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Initializes the <codeph>RTE</codeph> engine.</ph><ph id="shortdesc" props="android">Initializes the <codeph>RTE</codeph> engine.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="InitMediaEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">bool InitMediaEngine(std::function&lt;void(rte::Error *err)&gt; cb, Error *err = nullptr)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void initMediaEngine(AsyncCallback callBack) throws RteException</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Added since version v4.4.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="android">This is an asynchronous method that returns the initialization result via a callback function. You need to call this method after creating the <codeph>RTE</codeph> object and setting the App ID.</p>
+            <note props="cpp">The return value of <xref keyref="InitMediaEngine"/> only indicates whether the initialization operation was successfully enqueued to the asynchronous task queue, not whether the initialization itself succeeded.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Timing</title>
+            <p props="cpp">This method must be called after creating the <codeph>RTE</codeph> object and setting the App ID.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>cb</pt>
+                    <pd>Callback for asynchronous notification of the initialization result. You can obtain the result or error code via the <codeph>err</codeph> parameter of this callback. See <xref keyref="Error"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>An output parameter. Indicates the status or error information generated during initialization. See <xref keyref="Error"/>. When calling <xref keyref="InitMediaEngine"/>, if an immediately detectable error occurs (such as invalid parameters or insufficient resources), the SDK synchronously returns the error information through this parameter.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>callBack</pt>
+                    <pd>Callback for asynchronously returning the engine initialization result. See <xref keyref="AsyncCallback"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="exception" props="android">
+            <title>Exceptions</title>
+            <p props="android">If initialization fails, the SDK throws an exception and returns the corresponding error information. You need to catch and handle the exception.</p>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>: Successfully enqueued the initialization operation to the asynchronous task queue.</li>
+                    <li><xref keyref="false"/>: Failed to enqueue the initialization operation to the asynchronous task queue.</li>
+                </ul><ph>This return value only indicates whether the initialization operation was successfully enqueued, not whether the initialization itself succeeded.</ph></p>
+        </section>
+    </refbody>
+</reference>

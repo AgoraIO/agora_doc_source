@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startaudiorecording3">
+    <title><ph keyref="startAudioRecording3"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">开始客户端音频录制，并设置录制参数。</ph><ph id="shortdesc" props="ios">开始客户端录制并配置录制设置。</ph><ph id="shortdesc" props="android">开始客户端录制并应用录制配置。</ph><ph id="shortdesc" props="mac">开始客户端录制并配置录制设置。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startAudioRecording3"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioRecording(const AudioRecordingConfiguration&amp; config) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)startAudioRecordingWithConfig:(AgoraAudioRecordingConfiguration * _Nonnull)config NS_SWIFT_NAME(startAudioRecording(withConfig:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startAudioRecording(AudioRecordingConfiguration config);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)startAudioRecordingWithConfig:(AgoraAudioRecordingConfiguration * _Nonnull)config NS_SWIFT_NAME(startAudioRecording(withConfig:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">调用 <codeph>startAudioRecording</codeph> 方法后，你可以在通话过程中在客户端录制频道中用户的音频，并获取录音文件。录音文件支持以下格式：
+                <ul>
+                    <li>WAV：音频保真度高，文件体积大。例如，在采样率为 32000 Hz 的情况下，10 分钟的录音约为 73 MB。</li>
+                    <li>AAC：音频保真度较低，文件体积小。例如，在采样率为 32000 Hz 且录音质量设置为 <codeph>AUDIO_RECORDING_QUALITY_MEDIUM</codeph> 的情况下，10 分钟的录音约为 2 MB。</li>
+                </ul><ph>当用户离开频道时，录音会自动停止。</ph></p>
+            <p props="ios">调用该方法后，你可以录制频道中用户的音频并生成录音文件。录音文件仅支持以下格式：
+                <ul>
+                    <li>WAV：音频保真度较高但文件较大。例如，采样率为 32000 Hz 的 10 分钟录音文件约为 73 MB。</li>
+                    <li>AAC：音频保真度较低但文件较小。例如，采样率为 32000 Hz 且录音质量为 <codeph>AgoraAudioRecordingQualityMedium</codeph> 的 10 分钟录音文件约为 2 MB。</li>
+                </ul><ph>当你离开频道时，录制会自动停止。</ph><ph>该方法支持在通话过程中进行客户端录制。</ph></p>
+            <p props="android">调用该方法后，你可以录制频道中用户的音频并获取录音文件。录音文件仅支持以下格式：
+                <ul>
+                    <li>WAV：音频保真度高但文件较大。例如，在 32000 Hz 采样率下，10 分钟录音约为 73 MB。</li>
+                    <li>AAC：音频保真度较低但文件较小。例如，在 32000 Hz 采样率和 <codeph>AUDIO_RECORDING_QUALITY_MEDIUM</codeph> 录音质量下，10 分钟录音约为 2 MB。</li>
+                </ul><ph>当用户离开频道时，录制会自动停止。</ph></p>
+            <p props="mac">调用该方法后，你可以录制频道中用户的音频并生成录音文件。录音文件仅支持以下格式：
+                <ul>
+                    <li>WAV：音频保真度较高但文件较大。例如，采样率为 32000 Hz 的 10 分钟录音文件约为 73 MB。</li>
+                    <li>AAC：音频保真度较低但文件较小。例如，采样率为 32000 Hz 且录音质量为 <codeph>AgoraAudioRecordingQualityMedium</codeph> 的 10 分钟录音文件约为 2 MB。</li>
+                </ul><ph>当你离开频道时，录制会自动停止。</ph><ph>该方法支持在通话过程中进行客户端录制。</ph></p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">该方法必须在加入频道后调用。</p>
+            <p props="ios">该方法必须在加入频道后调用。</p>
+            <p props="android">你必须在加入频道后调用该方法。</p>
+            <p props="mac">该方法必须在加入频道后调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>录音配置。详见 <xref keyref="AudioRecordingConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>config</pt>
+                    <pd>录制配置，详见 <xref keyref="AudioRecordingConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>录制配置。详见 <xref keyref="AudioRecordingConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>config</pt>
+                    <pd>录制配置，详见 <xref keyref="AudioRecordingConfiguration"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

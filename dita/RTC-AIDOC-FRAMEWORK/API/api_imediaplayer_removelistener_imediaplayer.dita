@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_removelistener_imediaplayer">
+    <title><ph keyref="removeListener_IMediaPlayer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">移除指定的 <xref keyref="IMediaPlayerEvent"/> 监听器。</ph><ph id="shortdesc" props="rn">移除指定的 <xref keyref="IMediaPlayerEvent"/> 监听器。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="removeListener_IMediaPlayer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">removeListener?&lt;EventType extends keyof IMediaPlayerEvent&gt;(
+      eventType: EventType,
+      listener: IMediaPlayerEvent[EventType]
+    ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">removeListener?&lt;EventType extends keyof IMediaPlayerEvent&gt;(
+      eventType: EventType,
+      listener: IMediaPlayerEvent[EventType]
+    ): void;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="electron rn">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>eventType</pt>
+                    <pd>需要监听的目标事件名。详见 <xref keyref="IMediaPlayerEvent"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>listener</pt>
+                    <pd><codeph>eventType</codeph> 对应的回调函数。必须传入 <xref keyref="addListener_IMediaPlayer"/> 中传入的同一个函数对象。以取消监听 <xref keyref="onPlayerSourceStateChanged"/> 为例：
+                        <codeblock outputclass="language-typescript">const onPlayerSourceStateChanged = (state: MediaPlayerState, ec: MediaPlayerError) =&gt; {};
+engine.addListener('onPlayerSourceStateChanged', onPlayerSourceStateChanged);
+engine.removeListener('onPlayerSourceStateChanged', onPlayerSourceStateChanged);</codeblock>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>eventType</pt>
+                    <pd>需要监听的目标事件名。详见 <xref keyref="IMediaPlayerEvent"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>listener</pt>
+                    <pd><codeph>eventType</codeph> 对应的回调函数。必须传入 <xref keyref="addListener_IMediaPlayer"/> 中传入的同一个函数对象。以取消监听 <xref keyref="onPlayerSourceStateChanged"/> 为例：
+                        <codeblock outputclass="language-typescript">const onPlayerSourceStateChanged = (state: MediaPlayerState, ec: MediaPlayerError) =&gt; {};
+engine.addListener('onPlayerSourceStateChanged', onPlayerSourceStateChanged);
+engine.removeListener('onPlayerSourceStateChanged', onPlayerSourceStateChanged);</codeblock>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

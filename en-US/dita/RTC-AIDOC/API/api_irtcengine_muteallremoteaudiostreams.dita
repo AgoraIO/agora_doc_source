@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_muteallremoteaudiostreams">
+    <title><ph keyref="muteAllRemoteAudioStreams"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Stops or resumes receiving all remote audio streams.</ph><ph id="shortdesc" props="android">Stops or resumes subscribing to all remote users' audio streams.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="muteAllRemoteAudioStreams"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int muteAllRemoteAudioStreams(bool mute) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int muteAllRemoteAudioStreams(boolean muted);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method stops or resumes receiving audio streams from all remote users who have joined or will join the channel via <codeph>joinChannel</codeph>. It is equivalent to <codeph>autoSubscribeAudio</codeph> in <xref keyref="ChannelMediaOptions"/>.</p>
+            <p props="android">Call this method after joining a channel. The local user will stop or resume subscribing to all remote users' audio streams, including users who join later.</p>
+            <note props="cpp">Make sure to call this method after joining the channel. If you call <codeph>muteAllRemoteAudioStreams(true)</codeph> after joining, the local user stops receiving audio streams from all users in the channel, including those who join after the call.</note>
+            <note props="android">If you call this method and then call <xref keyref="enableAudio"/> or <xref keyref="disableAudio"/>, the last call takes effect. By default, the SDK automatically subscribes to all remote users' audio streams when joining a channel. You can set <codeph>autoSubscribeAudio</codeph> to <xref keyref="false"/> in <xref keyref="ChannelMediaOptions"/> when calling <codeph>joinChannel</codeph> to cancel the subscription to all users' audio streams upon joining.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">Call this method after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mute</pt>
+                    <pd>Whether to stop receiving all remote audio streams:
+                        <ul>
+                            <li><xref keyref="true"/>: Stop receiving.</li>
+                            <li><xref keyref="false"/>: Resume receiving.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>muted</pt>
+                    <pd>Whether to stop subscribing to all remote users' audio streams:
+                        <ul>
+                            <li><xref keyref="true"/>: Stop subscribing to all remote users' audio streams.</li>
+                            <li><xref keyref="false"/>: (Default) Subscribe to all remote users' audio streams.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

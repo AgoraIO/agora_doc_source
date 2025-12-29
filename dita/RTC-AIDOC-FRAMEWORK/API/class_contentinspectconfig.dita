@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_contentinspectconfig">
+    <title><ph keyref="ContentInspectConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">本地截图上传配置。</ph><ph id="shortdesc" props="rn">本地截图上传配置。</ph><ph id="shortdesc" props="flutter">本地截图上传配置。</ph><ph id="shortdesc" props="unity">本地截图上传配置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class ContentInspectConfig {
+
+  extraInfo?: string;
+
+  serverConfig?: string;
+
+  modules?: ContentInspectModule[];
+
+  moduleCount?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class ContentInspectConfig {
+
+  extraInfo?: string;
+
+  serverConfig?: string;
+
+  modules?: ContentInspectModule[];
+
+  moduleCount?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class ContentInspectConfig {
+  const ContentInspectConfig(
+      {this.extraInfo, this.serverConfig, this.modules, this.moduleCount});
+
+  @JsonKey(name: 'extraInfo')
+  final String? extraInfo;
+
+  @JsonKey(name: 'serverConfig')
+  final String? serverConfig;
+
+  @JsonKey(name: 'modules')
+  final List&lt;ContentInspectModule&gt;? modules;
+
+  @JsonKey(name: 'moduleCount')
+  final int? moduleCount;
+
+  factory ContentInspectConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ContentInspectConfigFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ContentInspectConfigToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class ContentInspectConfig
+                {
+                    public string extraInfo;
+                    public string serverConfig;
+                    public ContentInspectModule[] modules;
+                    public int moduleCount;
+
+                    public ContentInspectConfig()
+                    {
+                        extraInfo = "";
+                        serverConfig = "";
+                        modules = null;
+                        moduleCount = 0;
+                    }
+                };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>extraInfo</pt>
+                    <pd>附加信息，最大长度为 1024 字节。
+SDK 会将附加信息和截图一起上传至声网服务器；截图完成后，声网服务器会将附加信息随回调通知一起发送给你的服务器。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>modules</pt>
+                    <pd>功能模块。详见 <xref keyref="ContentInspectModule"/>。
+最多支持配置 32 个 <xref keyref="ContentInspectModule"/> 实例，<codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> 的取值范围为 [1,32] 中的整数。
+                        <note>一个功能模块最多只能配置一个实例。目前仅支持截图上传功能。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>moduleCount</pt>
+                    <pd>功能模块数，即配置的 <xref keyref="ContentInspectModule"/> 实例的数量，必须与 <codeph>modules</codeph> 中配置的实例个数一致。最大值为 32。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>extraInfo</pt>
+                    <pd>附加信息，最大长度为 1024 字节。
+SDK 会将附加信息和截图一起上传至声网服务器；截图完成后，声网服务器会将附加信息随回调通知一起发送给你的服务器。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>serverConfig</pt>
+                    <pd>（可选）云市场视频审核相关服务端配置，该参数仅在 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <codeph>ContentInspectImageModeration</codeph> 时生效。如需使用，请[联系技术支持](https://ticket.shengwang.cn/)。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>modules</pt>
+                    <pd>功能模块。详见 <xref keyref="ContentInspectModule"/>。
+最多支持配置 32 个 <xref keyref="ContentInspectModule"/> 实例，<codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> 的取值范围为 [1,32] 中的整数。
+                        <note>一个功能模块最多只能配置一个实例。目前仅支持截图上传功能。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>moduleCount</pt>
+                    <pd>功能模块数，即配置的 <xref keyref="ContentInspectModule"/> 实例的数量，必须与 <codeph>modules</codeph> 中配置的实例个数一致。最大值为 32。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>extraInfo</pt>
+                    <pd>附加信息，最大长度为 1024 字节。
+SDK 会将附加信息和截图一起上传至声网服务器；截图完成后，声网服务器会将附加信息随回调通知一起发送给你的服务器。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>serverConfig</pt>
+                    <pd>（可选）云市场视频审核相关服务端配置，该参数仅在 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <codeph>contentInspectImageModeration</codeph> 时生效。如需使用，请[联系技术支持](https://ticket.shengwang.cn/)。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>modules</pt>
+                    <pd>功能模块。详见 <xref keyref="ContentInspectModule"/>。
+最多支持配置 32 个 <xref keyref="ContentInspectModule"/> 实例，<codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> 的取值范围为 [1,32] 中的整数。
+                        <note>一个功能模块最多只能配置一个实例。目前仅支持截图上传功能。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>moduleCount</pt>
+                    <pd>功能模块数，即配置的 <xref keyref="ContentInspectModule"/> 实例的数量，必须与 <codeph>modules</codeph> 中配置的实例个数一致。最大值为 32。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>extraInfo</pt>
+                    <pd>附加信息，最大长度为 1024 字节。
+SDK 会将附加信息和截图一起上传至声网服务器；截图完成后，声网服务器会将附加信息随回调通知一起发送给你的服务器。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>serverConfig</pt>
+                    <pd>（可选）云市场视频审核相关服务端配置，该参数仅在 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <codeph>CONTENT_INSPECT_IMAGE_MODERATION</codeph> 时生效。如需使用，请[联系技术支持](https://ticket.shengwang.cn/)。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>modules</pt>
+                    <pd>功能模块。详见 <xref keyref="ContentInspectModule"/>。
+最多支持配置 32 个 <xref keyref="ContentInspectModule"/> 实例，<codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> 的取值范围为 [1,32] 中的整数。
+                        <note>一个功能模块最多只能配置一个实例。目前仅支持截图上传功能。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>moduleCount</pt>
+                    <pd>功能模块数，即配置的 <xref keyref="ContentInspectModule"/> 实例的数量，必须与 <codeph>modules</codeph> 中配置的实例个数一致。最大值为 32。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

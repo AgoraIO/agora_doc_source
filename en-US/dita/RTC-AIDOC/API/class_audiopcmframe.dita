@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audiopcmframe">
+    <title><ph keyref="AudioPcmFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to describe parameters of PCM format audio frames.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct AudioPcmFrame {
+  OPTIONAL_ENUM_SIZE_T{
+    kMaxDataSizeSamples = 3840,
+    kMaxDataSizeBytes = kMaxDataSizeSamples * sizeof(int16_t),
+  };
+  int64_t capture_timestamp;
+  size_t samples_per_channel_;
+  int sample_rate_hz_;
+  size_t num_channels_;
+  int audio_track_number_;
+  rtc::BYTES_PER_SAMPLE bytes_per_sample;
+  int16_t data_[kMaxDataSizeSamples];
+  bool is_stereo_;
+};</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>capture_timestamp</pt>
+                    <pd>Timestamp of the audio frame (unit: milliseconds).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>samples_per_channel_</pt>
+                    <pd>Number of samples per channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sample_rate_hz_</pt>
+                    <pd>Audio sample rate (unit: Hz).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>num_channels_</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>bytes_per_sample</pt>
+                    <pd>Number of bytes per sample.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>data_</pt>
+                    <pd>Raw data of the audio frame.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imetadataobserver_getmaxmetadatasize">
+    <title><ph keyref="getMaxMetadataSize"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">当 SDK 请求元数据最大大小时触发的回调。</ph><ph id="shortdesc" props="android">当 SDK 请求元数据最大大小时触发的回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getMaxMetadataSize"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getMaxMetadataSize() { return DEFAULT_METADATA_SIZE_IN_BYTE; }</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getMaxMetadataSize()</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">调用 <xref keyref="registerMediaMetadataObserver"/> 成功注册后，SDK 在每发送一帧视频时会触发该回调。你需要在该回调的返回值中指定元数据的最大大小。</p>
+            <p props="android">调用 <xref keyref="registerMediaMetadataObserver"/> 成功注册后，SDK 在每发送一帧视频时会触发该回调。你需要在该回调的返回值中指定元数据的最大大小。</p>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>返回值</title>
+            <p props="cpp">方法调用成功，返回你希望使用的元数据 <codeph>buffer</codeph> 的最大大小，单位为字节。最大值为 1024 字节。</p>
+            <p props="android">方法调用成功，返回你希望使用的元数据 <codeph>buffer</codeph> 的最大大小，单位为字节。最大值为 1024 字节。请确保设置返回值。</p>
+        </section>
+    </refbody>
+</reference>

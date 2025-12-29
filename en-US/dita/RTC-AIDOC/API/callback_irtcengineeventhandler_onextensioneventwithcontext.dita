@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onextensioneventwithcontext">
+    <title><ph keyref="onExtensionEventWithContext"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for extension events.</ph><ph id="shortdesc" props="android">Extended event callback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onExtensionEventWithContext"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onExtensionEventWithContext(const ExtensionContext &amp;context, const char* key, const char* value)</codeblock>
+                <codeblock props="android" outputclass="language-java">default void onEventWithContext(ExtensionContext extContext, String key, String value)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You need to register this callback when listening to events during the extension runtime.</p>
+            <p props="android">You need to register this callback to listen for events during extension runtime.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>context</pt>
+                    <pd>Context information of the extension. See <xref keyref="ExtensionContext"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>key</pt>
+                    <pd>Key of the extension event.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>value</pt>
+                    <pd>Value corresponding to the extension event key.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>extContext</pt>
+                    <pd>Context information of the extension. See <xref keyref="ExtensionContext"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>key</pt>
+                    <pd>Key of the extension event.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>value</pt>
+                    <pd>Value corresponding to the extension event key.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onrtmpstreamingstatechanged">
+    <title><ph keyref="onRtmpStreamingStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">旁路推流状态发生变化时触发的回调。</ph><ph id="shortdesc" props="ios">RTMP 或 RTMPS 推流状态发生变化时触发的回调。</ph><ph id="shortdesc" props="android">旁路推流状态发生变化回调。</ph><ph id="shortdesc" props="mac">RTMP 或 RTMPS 推流状态发生变化时触发的回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRtmpStreamingStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onRtmpStreamingStateChanged(const char* url, RTMP_STREAM_PUBLISH_STATE state, RTMP_STREAM_PUBLISH_REASON reason)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine rtmpStreamingChangedToState:(NSString* _Nonnull)url state:(AgoraRtmpStreamingState)state reason:(AgoraRtmpStreamingReason)reason NS_SWIFT_NAME(rtcEngine(_:rtmpStreamingChangedToState:state:reason:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onRtmpStreamingStateChanged(String url, int state, int reason)</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine rtmpStreamingChangedToState:(NSString* _Nonnull)url state:(AgoraRtmpStreamingState)state reason:(AgoraRtmpStreamingReason)reason NS_SWIFT_NAME(rtcEngine(_:rtmpStreamingChangedToState:state:reason:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">当旁路推流状态发生变化时，SDK 会触发该回调，并报告对应的 URL 和当前的旁路推流状态。当出现异常时，你可以参考错误码参数中的详细错误信息进行排查。</p>
+            <p props="ios">当 RTMP 或 RTMPS 推流状态发生变化时，SDK 会触发该回调，用于报告你调用 <codeph>addPublishStreamUrl</codeph> 或 <codeph>removePublishStreamUrl</codeph> 的结果。该回调返回推流地址及其当前的推流状态。当出现异常时，你可以通过 <codeph>reason</codeph> 参数中的详细错误信息进行排查。</p>
+            <p props="android">该回调用于指示旁路推流的状态。当旁路推流状态发生变化时，SDK 会触发该回调，并返回对应的 URL 地址和当前的推流状态。当出现异常时，你可以参考错误码参数中的详细错误信息进行排查。</p>
+            <p props="mac">当 RTMP 或 RTMPS 推流状态发生变化时，SDK 会触发该回调，用于报告你调用 <codeph>addPublishStreamUrl</codeph> 或 <codeph>removePublishStreamUrl</codeph> 的结果。该回调返回推流地址及其当前的推流状态。当出现异常时，你可以通过 <codeph>reason</codeph> 参数中的详细错误信息进行排查。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android ios mac">
+            <title>触发时机</title>
+            <p props="ios">该回调在你调用 <codeph>addPublishStreamUrl</codeph> 或 <codeph>removePublishStreamUrl</codeph> 方法后，推流状态发生变化时被触发。</p>
+            <p props="android">该回调在旁路推流状态发生变化时被触发。</p>
+            <p props="mac">该回调在你调用 <codeph>addPublishStreamUrl</codeph> 或 <codeph>removePublishStreamUrl</codeph> 方法后，推流状态发生变化时被触发。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>url</pt>
+                    <pd>旁路推流状态发生变化的 URL 地址。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>当前的旁路推流状态，详见 <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>旁路推流状态变化的原因，详见 <xref keyref="RTMP_STREAM_PUBLISH_REASON"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>url</pt>
+                    <pd>CDN 推流地址。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>state</pt>
+                    <pd>RTMP 或 RTMPS 推流状态，详见 <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>reason</pt>
+                    <pd>推流的详细错误信息，详见 <xref keyref="RTMP_STREAM_PUBLISH_REASON"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>url</pt>
+                    <pd>发生状态变化的旁路推流地址。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>当前旁路推流的状态：
+                        <ul>
+                            <li><codeph>RTMP_STREAM_PUBLISH_STATE_IDLE</codeph>(0)：旁路推流尚未开始或已结束。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_STATE_CONNECTING</codeph>(1)：正在连接推流服务器和 CDN 服务器。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_STATE_RUNNING</codeph>(2)：正在推流。SDK 成功推送 RTMP 或 RTMPS 流并返回该状态。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_STATE_RECOVERING</codeph>(3)：正在恢复推流。当 CDN 出现异常或旁路推流中断时，SDK 会尝试恢复推流并返回该状态。
+                                <ul>
+                                    <li>如果 SDK 成功恢复推流，则返回 <codeph>RTMP_STREAM_PUBLISH_STATE_RUNNING</codeph>(2)。</li>
+                                    <li>如果在 60 秒内未恢复推流或服务器发生错误，则返回 <codeph>RTMP_STREAM_PUBLISH_STATE_FAILURE</codeph>(4)。你也可以通过调用 <xref keyref="startRtmpStreamWithTranscoding"/>、<xref keyref="startRtmpStreamWithoutTranscoding"/> 和 <xref keyref="stopRtmpStream"/> 方法重新连接服务器。</li>
+                                </ul>
+                            </li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_STATE_FAILURE</codeph>(4)：推流失败。你可以参考错误码参数中的详细错误信息进行排查，也可以尝试重新推流。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_STATE_DISCONNECTING</codeph>(5)：SDK 正在断开与声网旁路推流服务器和 CDN 服务器的连接。当你调用 <xref keyref="stopRtmpStream"/> 正常停止旁路推流时，SDK 会依次返回 <codeph>RTMP_STREAM_PUBLISH_STATE_DISCONNECTING</codeph> 和 <codeph>RTMP_STREAM_PUBLISH_STATE_IDLE</codeph> 状态。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>旁路推流状态变化的原因：
+                        <ul>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_OK</codeph>(0)：推流成功。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_INVALID_ARGUMENT</codeph>(1)：参数无效。请检查参数设置。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_ENCRYPTED_STREAM_NOT_ALLOWED</codeph>(2)：加密流无法推送。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_CONNECTION_TIMEOUT</codeph>(3)：推流超时。你可以尝试重新推流。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_INTERNAL_SERVER_ERROR</codeph>(4)：声网推流服务器内部错误。你可以尝试重新推流。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_RTMP_SERVER_ERROR</codeph>(5)：CDN 服务器错误。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_TOO_OFTEN</codeph>(6)：保留参数。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_REACH_LIMIT</codeph>(7)：主播推送的 URL 超过 10 个。你可以停止向不必要的 URL 推流。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_NOT_AUTHORIZED</codeph>(8)：主播操作了其他主播的 URL，例如更新或停止其他主播的流。请检查你的应用逻辑。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_STREAM_NOT_FOUND</codeph>(9)：声网服务器未找到旁路推流的媒体流。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_FORMAT_NOT_SUPPORTED</codeph>(10)：旁路推流地址格式不支持。请检查 URL 格式是否正确。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_NOT_BROADCASTER</codeph>(11)：用户角色不是主播，无法使用旁路推流功能。请检查你的应用代码逻辑。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_TRANSCODING_NO_MIX_STREAM</codeph>(13)：在无转码的旁路推流场景中调用了 <xref keyref="updateRtmpTranscoding"/> 方法更新转码配置。请检查你的应用代码逻辑。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_NET_DOWN</codeph>(14)：主播端网络异常。</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_INVALID_PRIVILEGE</codeph>(16)：项目无权限使用旁路推流服务。</li>
+                            <li><codeph>RTMP_STREAM_UNPUBLISH_REASON_OK</codeph>(100)：已正常停止旁路推流。调用 <xref keyref="stopRtmpStream"/> 停止推流后，SDK 返回该值。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>url</pt>
+                    <pd>CDN 推流地址。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>state</pt>
+                    <pd>RTMP 或 RTMPS 推流状态，详见 <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>reason</pt>
+                    <pd>推流的详细错误信息，详见 <xref keyref="RTMP_STREAM_PUBLISH_REASON"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

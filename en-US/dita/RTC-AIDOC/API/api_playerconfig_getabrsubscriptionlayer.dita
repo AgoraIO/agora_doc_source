@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_playerconfig_getabrsubscriptionlayer">
+    <title><ph keyref="GetAbrSubscriptionLayer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Retrieves the current quality layer of the subscribed video stream.</ph><ph id="shortdesc" props="android">Gets the quality level of the subscribed video stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="GetAbrSubscriptionLayer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">AbrSubscriptionLayer GetAbrSubscriptionLayer(Error *err = nullptr)</codeblock>
+                <codeblock props="android" outputclass="language-java">public Constants.AbrSubscriptionLayer getAbrSubscriptionLayer() throws RteException</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after calling <codeph>GetConfigs</codeph>.</p>
+            <p props="android">You need to call this method after calling <codeph>getConfigs</codeph>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>Output parameter. Status or error information. See <xref keyref="Error"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="exception" props="android">
+            <title>Exceptions</title>
+            <p props="android">If the method call fails, the SDK throws an <xref keyref="RteException"/> containing the corresponding error message. You need to catch and handle the exception.</p>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">If the method call succeeds, returns the currently set video quality layer. See <xref keyref="RteAbrSubscriptionLayer"/>.</p>
+            <p props="android">If the method call succeeds, returns the currently set video quality level. See <xref keyref="RteAbrSubscriptionLayer"/>.</p>
+        </section>
+    </refbody>
+</reference>

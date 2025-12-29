@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setexternalmediaprojection">
+    <title><ph keyref="setExternalMediaProjection"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Configures an external <codeph>MediaProjection</codeph> for the SDK to capture screen video streams.</ph><ph id="shortdesc" props="android">Configures an external <codeph>MediaProjection</codeph> for the SDK to capture screen video streams.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalMediaProjection"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setExternalMediaProjection(void* mediaProjection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setExternalMediaProjection(MediaProjection mediaProjection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling this method, the external <codeph>MediaProjection</codeph> you set will replace the one requested by the SDK to capture screen video streams. When screen sharing stops or <xref keyref="IRtcEngine"/> is destroyed, the SDK will automatically release the <codeph>MediaProjection</codeph>.</p>
+            <p props="android">After calling this method successfully, the provided external <codeph>MediaProjection</codeph> replaces the one requested by the SDK for capturing screen video streams. When screen sharing stops or <xref keyref="IRtcEngine"/> is destroyed, the SDK automatically releases the <codeph>MediaProjection</codeph>.</p>
+            <note props="cpp">Before calling this method, you must obtain the [<codeph>MediaProjection</codeph>](https://developer.android.com/reference/android/media/projection/MediaProjection) permission. This method is for Android only.</note>
+            <note props="android">You must request [<codeph>MediaProjection</codeph>](https://developer.android.com/reference/android/media/projection/MediaProjection) permission before calling this method.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>If you have already obtained a <codeph>MediaProjection</codeph>, you can use your own <codeph>MediaProjection</codeph> directly without using the one requested by the SDK. Applicable scenarios include:
+                <ul>
+                    <li>On customized system devices, avoid system pop-ups (such as user authorization for screen capture) and start capturing screen video streams directly.</li>
+                    <li>In screen sharing processes involving one or more subprocesses, avoid potential errors when creating objects in subprocesses to prevent screen capture failure.</li>
+                </ul><ph>This method is applicable in multi-channel scenarios.</ph></p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after calling <codeph>startScreenCapture</codeph>.</p>
+            <p props="android">Call this method after <xref keyref="startScreenCapture"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mediaProjection</pt>
+                    <pd><codeph>MediaProjection</codeph> object used to capture screen video streams.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mediaProjection</pt>
+                    <pd>The object used to capture screen video streams.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

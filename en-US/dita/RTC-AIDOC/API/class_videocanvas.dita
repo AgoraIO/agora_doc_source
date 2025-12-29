@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videocanvas">
+    <title><ph keyref="VideoCanvas"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the properties of the video canvas.</ph><ph id="shortdesc" props="android">Used to set the display, rendering, and layout properties of the video canvas.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
+  uid_t uid;
+  uid_t subviewUid;
+  view_t view;
+  uint32_t backgroundColor;
+  media::base::RENDER_MODE_TYPE renderMode;
+  VIDEO_MIRROR_MODE_TYPE mirrorMode;
+  VIDEO_VIEW_SETUP_MODE setupMode;
+  VIDEO_SOURCE_TYPE sourceType;
+  int mediaPlayerId;
+  Rectangle cropArea;
+  bool enableAlphaMask;
+  media::base::VIDEO_MODULE_POSITION position;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class VideoCanvas {
+  public int uid;
+  public int subviewUid;
+  public static final int RENDER_MODE_HIDDEN = 1;
+  public static final int RENDER_MODE_FIT = 2;
+  public static final int RENDER_MODE_ADAPTIVE = 3;
+  public static final int VIEW_SETUP_MODE_REPLACE = 0;
+  public static final int VIEW_SETUP_MODE_ADD = 1;
+  public static final int VIEW_SETUP_MODE_REMOVE = 2;
+  public View view;
+  public SurfaceTexture surfaceTexture;
+  public int renderMode;
+  public int mirrorMode;
+  public int setupMode = VIEW_SETUP_MODE_REPLACE;
+  public int sourceType;
+  public int mediaPlayerId;
+  public Rect rect;
+  public boolean enableAlphaMask;
+  public int backgroundColor;
+  public Constants.VideoModulePosition position = Constants.VideoModulePosition.VIDEO_MODULE_POSITION_POST_CAPTURER;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>User ID of the published video source.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>subviewUid</pt>
+                    <pd>User ID of the specific sub-video stream published in video mixing.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>view</pt>
+                    <pd>Video display window.
+                        <note>Only one of <codeph>view</codeph> or <codeph>surfaceTexture</codeph> can be set in a <xref keyref="VideoCanvas"/>. If both are set, only <codeph>view</codeph> takes effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>backgroundColor</pt>
+                    <pd>Background color of the video canvas in RGBA format. Default is 0x00000000 (black).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>renderMode</pt>
+                    <pd>Video rendering mode. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mirrorMode</pt>
+                    <pd>Mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.
+                        <note>
+                            <ul>
+                                <li>Mirror mode for local video view: when using the front camera, the SDK enables mirror mode by default; when using the rear camera, the SDK disables mirror mode by default.</li>
+                                <li>Mirror mode is disabled by default for remote users.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>setupMode</pt>
+                    <pd>View setup mode. See <xref keyref="VIDEO_VIEW_SETUP_MODE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sourceType</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mediaPlayerId</pt>
+                    <pd>ID of the media player. You can get the device ID by calling <xref keyref="getMediaPlayerId"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cropArea</pt>
+                    <pd>Display area of the video frame. <codeph>width</codeph> and <codeph>height</codeph> indicate the pixel width and height of the area. Default is <xref keyref="NULL"/> (i.e., <codeph>width</codeph> or <codeph>height</codeph> is 0), which means the actual resolution of the video frame is displayed. See <xref keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enableAlphaMask</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>The receiver can render alpha channel information only if the sender enables alpha channel transmission.</li>
+                                <li>To enable alpha channel transmission, contact technical support.</li>
+                            </ul>
+                        </note><ph>Whether to enable alpha mask rendering:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Enable alpha mask rendering.</li>
+                            <li><xref keyref="false"/>: (default) Disable alpha mask rendering.</li>
+                        </ul><ph>Alpha mask rendering can create transparent images and extract portraits from video. When used with other methods, it can achieve effects such as picture-in-picture and portrait watermark.</ph></pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>position</pt>
+                    <pd>Observation position of the video frame in the video pipeline. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID of the published video source.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>subviewUid</pt>
+                    <pd>User ID of the specific sub-video stream in a composite video stream.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>RENDER_MODE_HIDDEN</pt>
+                    <pd>Hidden mode: Scales the video proportionally until the view is filled (some parts of the video may be cropped).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>RENDER_MODE_FIT</pt>
+                    <pd>Fit mode: Scales the video proportionally until one dimension fits the view boundary, with black padding for the remaining area.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>RENDER_MODE_ADAPTIVE</pt>
+                    <pd>Adaptive mode. This mode is deprecated and not recommended by Agora.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>VIEW_SETUP_MODE_REPLACE</pt>
+                    <pd>Sets the view mode to replace mode, which is the default value.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>VIEW_SETUP_MODE_ADD</pt>
+                    <pd>Sets the view mode to add a new view.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>VIEW_SETUP_MODE_REMOVE</pt>
+                    <pd>Sets the view mode to remove a view.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>view</pt>
+                    <pd>The view window used to display the video. Must be of type <codeph>SurfaceView</codeph> or <codeph>TextureView</codeph>.
+                        <note>Only one of <codeph>view</codeph> or <codeph>surfaceTexture</codeph> can be set in a <xref keyref="VideoCanvas"/>. If both are set, only <codeph>view</codeph> takes effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>surfaceTexture</pt>
+                    <pd>The container that provides the video image.
+                        <note>Only one of <codeph>view</codeph> or <codeph>surfaceTexture</codeph> can be set in a <xref keyref="VideoCanvas"/>. If both are set, only <codeph>view</codeph> takes effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>renderMode</pt>
+                    <pd>Rendering mode:
+                        <ul>
+                            <li><codeph>RENDER_MODE_HIDDEN</codeph> (1): Hidden mode.</li>
+                            <li><codeph>RENDER_MODE_FIT</codeph> (2): Fit mode.</li>
+                            <li><codeph>RENDER_MODE_ADAPTIVE</codeph> (3): Adaptive mode (deprecated and not recommended by Agora).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mirrorMode</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>Local video view mirror mode: enabled by default when using the front camera, disabled by default when using the rear camera.</li>
+                                <li>Mirror mode is disabled by default for remote users.</li>
+                            </ul>
+                        </note><ph>Mirror mode:</ph>
+                        <ul>
+                            <li><codeph>VIDEO_MIRROR_MODE_AUTO</codeph> (0): SDK automatically determines whether to enable mirror mode.</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_ENABLED</codeph> (1): Enables mirror mode for local view.</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_DISABLED</codeph> (2): Disables mirror mode for local view.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>setupMode</pt>
+                    <pd>
+                        <note>It is recommended to set <codeph>setupMode</codeph> to <codeph>VIEW_SETUP_MODE_REMOVE</codeph> when the view is no longer used to prevent rendering resource leaks.</note><ph>View setup mode:</ph>
+                        <ul>
+                            <li><codeph>VIEW_SETUP_MODE_REPLACE</codeph> (0): Replace view, default value.</li>
+                            <li><codeph>VIEW_SETUP_MODE_ADD</codeph> (1): Add view.</li>
+                            <li><codeph>VIEW_SETUP_MODE_REMOVE</codeph> (2): Remove view.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mediaPlayerId</pt>
+                    <pd>ID of the media player.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rect</pt>
+                    <pd>Display area of the video frame. <codeph>width</codeph> and <codeph>height</codeph> indicate the pixel dimensions of the video in this area. Default is <codeph>null</codeph> (width or height is 0), which means the actual resolution of the video frame is displayed. See <codeph>Rect</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enableAlphaMask</pt>
+                    <pd>Whether to enable alpha mask rendering:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable.</li>
+                            <li><xref keyref="false"/>: Disable.</li>
+                        </ul><ph>This feature enables transparent image effects, such as extracting portraits from video and combining with other features to achieve picture-in-picture, watermarking, etc.</ph></pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>backgroundColor</pt>
+                    <pd>Background color of the video canvas in RGBA format. Default is 0x00000000, which indicates black.
+                        <note>
+                            <ul>
+                                <li>If you are developing with Kotlin and encounter a compilation error when setting it to <codeph>0xFFFFFFFF</codeph>, use <codeph>(0xFFFFFFFF).toInt()</codeph> or <codeph>android.graphics.Color.parseColor("#FFFFFFFF")</codeph>.</li>
+                                <li>Alpha channel is not supported when using RGBA format.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>position</pt>
+                    <pd>Observation position of the video frame in the video pipeline. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

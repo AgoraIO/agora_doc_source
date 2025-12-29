@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onfirstremoteaudiodecoded">
+    <title><ph keyref="onFirstRemoteAudioDecoded"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">已解码远端音频首帧的回调。</ph><ph id="shortdesc" props="rn">已解码远端音频首帧的回调。</ph><ph id="shortdesc" props="flutter">已解码远端音频首帧的回调。</ph><ph id="shortdesc" props="unity">已解码远端音频首帧的回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onFirstRemoteAudioDecoded"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onFirstRemoteAudioDecoded?(
+    connection: RtcConnection,
+    uid: number,
+    elapsed: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onFirstRemoteAudioDecoded?(
+    connection: RtcConnection,
+    uid: number,
+    elapsed: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int uid, int elapsed)?
+      onFirstRemoteAudioDecoded;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteAudioDecoded(RtcConnection connection, uint uid, int elapsed) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>废弃</dt>
+                    <dd>弃用： 请改用 <xref keyref="onRemoteAudioStateChanged"/> 。</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>废弃</dt>
+                    <dd>弃用： 请改用 <xref keyref="onRemoteAudioStateChanged"/> 。</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>废弃</dt>
+                    <dd>弃用： 请改用 <xref keyref="onRemoteAudioStateChanged"/> 。</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>废弃</dt>
+                    <dd>弃用： 请改用 <xref keyref="onRemoteAudioStateChanged"/> 。</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">SDK 会在以下时机触发该回调：
+                <ul>
+                    <li>远端用户首次上线后发送音频。</li>
+                    <li>远端用户音频离线再上线发送音频。音频离线指本地在 15 秒内没有收到音频包，可能有如下原因：
+                        <ul>
+                            <li>远端用户离开频道</li>
+                            <li>远端用户掉线</li>
+                            <li>远端用户调用 <xref keyref="muteLocalAudioStream"/> 方法停止发送音频流</li>
+                            <li>远端用户调用 <xref keyref="disableAudio"/> 方法关闭音频</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">SDK 会在以下时机触发该回调：
+                <ul>
+                    <li>远端用户首次上线后发送音频。</li>
+                    <li>远端用户音频离线再上线发送音频。音频离线指本地在 15 秒内没有收到音频包，可能有如下原因：
+                        <ul>
+                            <li>远端用户离开频道</li>
+                            <li>远端用户掉线</li>
+                            <li>远端用户调用 <xref keyref="muteLocalAudioStream"/> 方法停止发送音频流</li>
+                            <li>远端用户调用 <xref keyref="disableAudio"/> 方法关闭音频</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">SDK 会在以下时机触发该回调：
+                <ul>
+                    <li>远端用户首次上线后发送音频。</li>
+                    <li>远端用户音频离线再上线发送音频。音频离线指本地在 15 秒内没有收到音频包，可能有如下原因：
+                        <ul>
+                            <li>远端用户离开频道</li>
+                            <li>远端用户掉线</li>
+                            <li>远端用户调用 <xref keyref="muteLocalAudioStream"/> 方法停止发送音频流</li>
+                            <li>远端用户调用 <xref keyref="disableAudio"/> 方法关闭音频</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="unity">SDK 会在以下时机触发该回调：
+                <ul>
+                    <li>远端用户首次上线后发送音频。</li>
+                    <li>远端用户音频离线再上线发送音频。音频离线指本地在 15 秒内没有收到音频包，可能有如下原因：
+                        <ul>
+                            <li>远端用户离开频道</li>
+                            <li>远端用户掉线</li>
+                            <li>远端用户调用 <xref keyref="muteLocalAudioStream"/> 方法停止发送音频流</li>
+                            <li>远端用户调用 <xref keyref="disableAudio"/> 方法关闭音频</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <xref keyref="joinChannel2"/> 直至该回调触发的延迟，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <xref keyref="joinChannel2"/> 直至该回调触发的延迟，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <xref keyref="joinChannel2"/> 直至该回调触发的延迟，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>elapsed</pt>
+                    <pd>从本地用户调用 <xref keyref="joinChannel2"/> 直至该回调触发的延迟，单位为毫秒。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

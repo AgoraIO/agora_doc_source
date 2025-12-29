@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_metadata">
+    <title><ph keyref="Metadata"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">媒体附属信息。</ph><ph id="shortdesc" props="rn">媒体附属信息。</ph><ph id="shortdesc" props="flutter">媒体附属信息。</ph><ph id="shortdesc" props="unity">媒体附属信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class Metadata {
+  channelId?: string;
+  uid?: number;
+  size?: number;
+  buffer?: Uint8Array;
+  timeStampMs?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class Metadata {
+  channelId?: string;
+  uid?: number;
+  size?: number;
+  buffer?: Uint8Array;
+  timeStampMs?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class Metadata {
+  const Metadata(
+      {this.channelId, this.uid, this.size, this.buffer, this.timeStampMs});
+
+  @JsonKey(name: 'channelId')
+  final String? channelId;
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+
+  @JsonKey(name: 'size')
+  final int? size;
+
+  @JsonKey(name: 'buffer', ignore: true)
+  final Uint8List? buffer;
+
+  @JsonKey(name: 'timeStampMs')
+  final int? timeStampMs;
+
+  factory Metadata.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$MetadataFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$MetadataToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class Metadata
+    {
+        public string channelId;
+        public uint uid;
+        public uint size;
+        public IntPtr buffer;
+        public long timeStampMs;
+
+        public Metadata()
+        {
+            this.channelId = "";
+            this.uid = 0;
+            this.size = 0;
+            this.buffer = IntPtr.Zero;
+            this.timeStampMs = 0;
+        }
+
+        public Metadata(string channelId, uint uid, uint size, IntPtr buffer, long timeStampMs)
+        {
+            this.channelId = channelId;
+            this.uid = uid;
+            this.size = size;
+            this.buffer = buffer;
+            this.timeStampMs = timeStampMs;
+        }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>channelId</pt>
+                    <pd>频道名称。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>用户 ID。
+                        <ul>
+                            <li>对于接收者：发送该 <xref keyref="Metadata"/> 的远端用户的 ID。</li>
+                            <li>对于发送者：请忽略。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>size</pt>
+                    <pd>接收到的或发送的 <xref keyref="Metadata"/> 的缓存大小。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>buffer</pt>
+                    <pd>接收到的 <xref keyref="Metadata"/> 的缓存地址。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>timeStampMs</pt>
+                    <pd>发送 <xref keyref="Metadata"/> 的时间戳，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channelId</pt>
+                    <pd>频道名称。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>用户 ID。
+                        <ul>
+                            <li>对于接收者：发送该 <xref keyref="Metadata"/> 的远端用户的 ID。</li>
+                            <li>对于发送者：请忽略。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>size</pt>
+                    <pd>接收到的或发送的 <xref keyref="Metadata"/> 的缓存大小。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>buffer</pt>
+                    <pd>接收到的 <xref keyref="Metadata"/> 的缓存地址。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>timeStampMs</pt>
+                    <pd>发送 <xref keyref="Metadata"/> 的时间戳，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channelId</pt>
+                    <pd>频道名称。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>用户 ID。
+                        <ul>
+                            <li>对于接收者：发送该 <xref keyref="Metadata"/> 的远端用户的 ID。</li>
+                            <li>对于发送者：请忽略。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>size</pt>
+                    <pd>接收到的或发送的 <xref keyref="Metadata"/> 的缓存大小。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>buffer</pt>
+                    <pd>接收到的 <xref keyref="Metadata"/> 的缓存地址。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>timeStampMs</pt>
+                    <pd>发送 <xref keyref="Metadata"/> 的时间戳，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelId</pt>
+                    <pd>频道名称。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>用户 ID。
+                        <ul>
+                            <li>对于接收者：发送该 <xref keyref="Metadata"/> 的远端用户的 ID。</li>
+                            <li>对于发送者：请忽略。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>size</pt>
+                    <pd>接收到的或发送的 <xref keyref="Metadata"/> 的缓存大小。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>buffer</pt>
+                    <pd>接收到的 <xref keyref="Metadata"/> 的缓存地址。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>timeStampMs</pt>
+                    <pd>发送 <xref keyref="Metadata"/> 的时间戳，单位为毫秒。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

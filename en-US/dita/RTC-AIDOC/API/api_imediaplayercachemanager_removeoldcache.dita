@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayercachemanager_removeoldcache">
+    <title><ph keyref="removeOldCache"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Deletes the least-used cached media file.</ph><ph id="shortdesc" props="android">Deletes the least used cached media file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="removeOldCache"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int removeOldCache() = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int removeOldCache();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">When the storage space for cached files is about to reach the limit, you can call this method. The SDK will delete the least-used cached media file.</p>
+            <p props="android">You can call this method when the storage space for cached files is about to reach its limit. After calling this method, the SDK deletes the least used cached media file.</p>
+            <note props="cpp"><xref keyref="removeOldCache"/> does not delete the cached media file that is currently playing.</note>
+            <note props="android"><xref keyref="removeOldCache"/> does not delete the currently playing cached media file.</note>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See <xref keyref="MEDIA_PLAYER_REASON"/>.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See <xref keyref="MEDIA_PLAYER_REASON"/>.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

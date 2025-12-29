@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_playeffect1">
+    <title><ph keyref="playEffect1"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">播放指定的本地或在线音效文件。</ph><ph id="shortdesc" props="mac">播放指定的本地或在线音效文件。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="playEffect1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (int)playEffect:(int)soundId
+         filePath:(NSString* _Nonnull)filePath
+        loopCount:(NSInteger)loopCount
+            pitch:(double)pitch
+              pan:(double)pan
+             gain:(NSInteger)gain NS_SWIFT_NAME(playEffect(_:filePath:loopCount:pitch:pan:gain:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)playEffect:(int)soundId
+         filePath:(NSString* _Nonnull)filePath
+        loopCount:(NSInteger)loopCount
+            pitch:(double)pitch
+              pan:(double)pan
+             gain:(NSInteger)gain NS_SWIFT_NAME(playEffect(_:filePath:loopCount:pitch:pan:gain:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">你可以多次调用该方法，并传入不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph>，以同时播放多个音效文件。为获得最佳用户体验，声网建议不要同时播放超过三个音效文件。</p>
+            <p props="mac">你可以多次调用该方法，并传入不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph>，以同时播放多个音效文件。为获得最佳用户体验，声网建议不要同时播放超过三个音效文件。</p>
+            <note props="ios">如果需要播放在线音效文件，声网建议先将其缓存到本地设备，调用 <xref keyref="preloadEffect2"/> 将其预加载到内存中，再调用本方法播放。否则，可能因加载超时或失败导致播放失败或无声。</note>
+            <note props="mac">如果需要播放在线音效文件，声网建议先将其缓存到本地设备，调用 <xref keyref="preloadEffect2"/> 将其预加载到内存中，再调用本方法播放。否则，可能因加载超时或失败导致播放失败或无声。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="ios mac">
+            <title>调用时机</title>
+            <p props="ios">你可以在加入频道前或加入频道后调用该方法。</p>
+            <p props="mac">你可以在加入频道前或加入频道后调用该方法。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>soundId</pt>
+                    <pd>音效 ID。每个音效文件的 ID 必须唯一。注意：如果你已通过调用 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，确保该参数的值与 <xref keyref="preloadEffect2"/> 中的 <codeph>soundId</codeph> 相同。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>filePath</pt>
+                    <pd>音效文件路径。支持以 <codeph>ipod-library://</codeph> 开头的路径、URL 以及本地文件的绝对路径。绝对路径需精确到文件名及扩展名。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。注意：如果你已通过调用 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，确保该参数的值与 <xref keyref="preloadEffect2"/> 中的 <codeph>filePath</codeph> 相同。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>loopCount</pt>
+                    <pd>音效循环播放的次数。
+                        <ul>
+                            <li>≥ 0：播放的次数。例如，1 表示循环播放一次，即总共播放两次。</li>
+                            <li>-1：无限循环播放该音效文件。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>pitch</pt>
+                    <pd>音效的音调。取值范围为 0.5 到 2.0。默认值为 1.0，表示原始音调。值越小，音调越低。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>pan</pt>
+                    <pd>音效的空间位置。取值范围为 -1.0 到 1.0：
+                        <ul>
+                            <li>-1.0：音效从你左侧播放。</li>
+                            <li>0.0：音效从你正前方播放。</li>
+                            <li>1.0：音效从你右侧播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>gain</pt>
+                    <pd>音效的音量。取值范围为 0 到 100。默认值为 100，表示原始音量。值越小，音量越低。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>soundId</pt>
+                    <pd>音效 ID。每个音效文件的 ID 必须唯一。注意：如果你已通过调用 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，确保该参数的值与 <xref keyref="preloadEffect2"/> 中的 <codeph>soundId</codeph> 相同。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>filePath</pt>
+                    <pd>音效文件路径。支持以 <codeph>ipod-library://</codeph> 开头的路径、URL 以及本地文件的绝对路径。绝对路径需精确到文件名及扩展名。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。注意：如果你已通过调用 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，确保该参数的值与 <xref keyref="preloadEffect2"/> 中的 <codeph>filePath</codeph> 相同。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>loopCount</pt>
+                    <pd>音效循环播放的次数。
+                        <ul>
+                            <li>≥ 0：播放的次数。例如，1 表示循环播放一次，即总共播放两次。</li>
+                            <li>-1：无限循环播放该音效文件。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>pitch</pt>
+                    <pd>音效的音调。取值范围为 0.5 到 2.0。默认值为 1.0，表示原始音调。值越小，音调越低。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>pan</pt>
+                    <pd>音效的空间位置。取值范围为 -1.0 到 1.0：
+                        <ul>
+                            <li>-1.0：音效从你左侧播放。</li>
+                            <li>0.0：音效从你正前方播放。</li>
+                            <li>1.0：音效从你右侧播放。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>gain</pt>
+                    <pd>音效的音量。取值范围为 0 到 100。默认值为 100，表示原始音量。值越小，音量越低。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="ios mac">
+            <title>返回值</title>
+            <p props="ios">0：方法调用成功。
+&lt; 0：方法调用失败。</p>
+            <p props="mac">0：方法调用成功。
+&lt; 0：方法调用失败。</p>
+        </section>
+    </refbody>
+</reference>
