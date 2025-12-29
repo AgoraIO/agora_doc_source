@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setplaybackaudioframeparameters">
     <title><ph keyref="setPlaybackAudioFrameParameters"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the format of the raw audio playback data.</ph><ph id="shortdesc" props="android">Sets the format of the raw audio playback data.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置原始音频播放数据的格式。</ph><ph id="shortdesc" props="android">设置原始音频播放数据的格式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -18,63 +18,75 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">The SDK calculates the sampling interval based on <codeph>samplesPerCall</codeph>, <codeph>sampleRate</codeph>, and <codeph>channel</codeph>: Sampling interval (in seconds) = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>). Make sure the interval is ≥ 0.01 seconds. The SDK triggers the <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> callback based on this interval.</p>
-            <p props="android">The SDK calculates the sampling interval based on the <codeph>samplesPerCall</codeph>, <codeph>sampleRate</codeph>, and <codeph>channel</codeph> parameters. Sampling interval (in seconds) = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>). Ensure the sampling interval is no less than 0.01 seconds. The SDK triggers the <xref keyref="onPlaybackAudioFrame"/> callback based on the sampling interval.</p>
+            <p props="cpp"><codeph>SDK</codeph> 会根据 <codeph>samplesPerCall</codeph>、<codeph>sampleRate</codeph> 和 <codeph>channel</codeph> 参数计算采样间隔。采样间隔（单位：秒） = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>)。请确保采样间隔 ≥ 0.01 秒。<codeph>SDK</codeph> 会根据采样间隔触发 <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> 回调。</p>
+            <p props="android">SDK 会根据 samplesPerCall、sampleRate 和 channel 参数计算采样间隔。采样间隔（单位：秒） = samplesPerCall /（sampleRate × channel）。请确保采样间隔不小于 0.01 秒。SDK 会根据采样间隔触发 onPlaybackAudioFrame 回调。</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
-            <p props="cpp">Call this method before joining a channel.</p>
-            <p props="android">Call this method before joining a channel.</p>
+            <p props="cpp">请在加入频道前调用该方法。</p>
+            <p props="android">在加入频道前调用此方法。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp"><codeph>SDK</codeph> 会根据采样间隔触发 <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> 回调。</p>
+            <p props="android">该方法会根据采样间隔触发 <xref keyref="onPlaybackAudioFrame"/> 回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
                     <pt>sampleRate</pt>
-                    <pd>The sampling rate returned in the callback. Can be set to 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+                    <pd>回调中返回的采样率，可设置为 24000、32000、44100 或 48000 Hz。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>channel</pt>
-                    <pd>Number of audio channels. Can be set to:
+                    <pd>音频声道数。可设置为：
                         <ul>
-                            <li>1: Mono.</li>
-                            <li>2: Stereo.</li>
+                            <li>1：单声道。</li>
+                            <li>2：立体声。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>mode</pt>
-                    <pd>The usage mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>.</pd>
+                    <pd>音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>samplesPerCall</pt>
-                    <pd>The number of samples returned per call, e.g., 1024 for media streaming.</pd>
+                    <pd>每次调用返回的数据采样数，例如媒体推流时为 1024。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>sampleRate</pt>
-                    <pd>The sampling rate returned in the callback. Can be set to 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+                    <pd>回调中返回的采样率。可设置为以下值：
+                        <ul>
+                            <li>24000：（24 kHz）。</li>
+                            <li>32000：（32 kHz）。</li>
+                            <li>44100：（44.1 kHz）。</li>
+                            <li>48000：（48 kHz）。</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>channel</pt>
-                    <pd>Number of audio channels:
+                    <pd>音频声道数。可设置为以下值：
                         <ul>
-                            <li>1: Mono.</li>
-                            <li>2: Stereo.</li>
+                            <li>1：单声道。</li>
+                            <li>2：立体声。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>mode</pt>
-                    <pd>Usage mode of the audio frame:
+                    <pd>音频帧的使用模式：
                         <ul>
-                            <li><codeph>0</codeph> (default): Read-only mode. For example, the user retrieves data via the Agora SDK and pushes RTMP or RTMPS streams.</li>
-                            <li><codeph>2</codeph>: Read-write mode. The user reads data from <xref keyref="AudioFrame"/>, modifies it, and plays it back. For example, the user has a custom audio effects module and performs voice preprocessing such as voice changing.</li>
+                            <li><codeph>RAW_AUDIO_FRAME_OP_MODE_READ_ONLY</codeph>（0）：（默认）只读模式。例如，用户通过声网 SDK 获取数据后推送 RTMP 或 RTMPS 流。</li>
+                            <li><codeph>RAW_AUDIO_FRAME_OP_MODE_READ_WRITE</codeph>（2）：读写模式。用户从 <xref keyref="AudioFrame"/> 中读取数据并进行修改后播放。例如，用户有自己的音效处理模块并进行语音预处理，如变声。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>samplesPerCall</pt>
-                    <pd>Number of samples per call, e.g., 1024 for media streaming.</pd>
+                    <pd>每次调用的数据采样数，例如媒体推流时为 1024。</pd>
                 </plentry>
             </parml>
         </section>
@@ -82,14 +94,14 @@
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
-                    <li>0: Success.</li>
-                    <li>&lt; 0: Failure.</li>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="android">
                 <ul>
-                    <li>0: Success.</li>
-                    <li>&lt; 0: Failure.</li>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
         </section>

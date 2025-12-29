@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onlocalvideoevent">
+    <title><ph keyref="onLocalVideoEvent"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when a local video event occurs.</ph><ph id="shortdesc" props="android"><xref keyref="onLocalVideoEvent"/> callback triggered when a local video event occurs.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalVideoEvent"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onLocalVideoEvent(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_EVENT_TYPE event)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onLocalVideoEvent(Constants.VideoSourceType source, int event)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Added since v4.6.1.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">You can use this callback to get the reason for the local video event.</p>
+            <p props="android">You can use this callback to get the reason for the event.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>source</pt>
+                    <pd>Video source type. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>event</pt>
+                    <pd>Local video event type. See <xref keyref="LOCAL_VIDEO_EVENT_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>source</pt>
+                    <pd>Video source type. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>event</pt>
+                    <pd>Local video event type:
+                        <ul>
+                            <li><codeph>LOCAL_VIDEO_EVENT_TYPE_SCREEN_CAPTURE_WINDOW_HIDDEN</codeph>: The screen capture window is hidden.</li>
+                            <li><codeph>LOCAL_VIDEO_EVENT_TYPE_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN</codeph>: The screen capture window recovers from being hidden.</li>
+                            <li><codeph>LOCAL_VIDEO_EVENT_TYPE_SCREEN_CAPTURE_STOPPED_BY_USER</codeph>: Screen capture is stopped by the user.</li>
+                            <li><codeph>LOCAL_VIDEO_EVENT_TYPE_SCREEN_CAPTURE_SYSTEM_INTERNAL_ERROR</codeph>: A system internal error occurs during screen capture.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

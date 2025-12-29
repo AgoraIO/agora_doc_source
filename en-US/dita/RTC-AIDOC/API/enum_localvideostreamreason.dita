@@ -2,136 +2,136 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_localvideostreamreason">
     <title><ph keyref="LOCAL_VIDEO_STREAM_REASON"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">The reason for local video state change.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">本地视频状态变化的原因。</ph></shortdesc>
     <refbody>
         <section id="parameters" deliveryTarget="details" props="cpp">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_OK</pt>
-                    <pd>(0): Local video is working properly.</pd>
+                    <pd>（0）：本地视频状态正常。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_FAILURE</pt>
-                    <pd>(1): An unspecified error occurred in the local video.</pd>
+                    <pd>（1）：本地视频出现异常，未指定具体原因。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_DEVICE_NO_PERMISSION</pt>
-                    <pd>(2): No permission to use the local video capture device. Prompt the user to grant permission and rejoin the channel.</pd>
+                    <pd>（2）：无权限使用本地视频采集设备。请提示用户授予权限并重新加入频道。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_DEVICE_BUSY</pt>
-                    <pd>(3): The local video capture device is occupied. Prompt the user to check whether the camera is being used by another app or try rejoining the channel.</pd>
+                    <pd>（3）：本地视频采集设备被占用。请提示用户检查摄像头是否被其他应用占用，或尝试重新加入频道。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE</pt>
-                    <pd>(4): Failed to capture local video. Prompt the user to check whether the video capture device is functioning properly, whether the camera is occupied by another app, or try rejoining the channel.</pd>
+                    <pd>（4）：本地视频采集失败。请提示用户检查视频采集设备是否正常工作，摄像头是否被其他应用占用，或尝试重新加入频道。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT</pt>
-                    <pd>(5): Local video encoding failed.</pd>
+                    <pd>（5）：本地视频编码失败。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_CAPTURE_INBACKGROUND</pt>
-                    <pd>(6): (iOS only) The app is in the background. Prompt the user that video cannot be captured while the app is in the background.</pd>
+                    <pd>（6）：（仅适用于 iOS 平台）应用处于后台状态。请提示用户，应用在后台时无法正常采集视频。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_CAPTURE_MULTIPLE_FOREGROUND_APPS</pt>
-                    <pd>(7): (iOS only) The app window is in Slide Over, Split View, or Picture-in-Picture mode, and the camera is occupied by another app. Prompt the user that in these modes, if the camera is occupied by another app, video cannot be captured properly.</pd>
+                    <pd>（7）：（仅适用于 iOS 平台）当前应用窗口处于 Slide Over、Split View 或画中画模式，且摄像头被其他应用占用。请提示用户，在上述模式下若摄像头被其他应用占用，应用将无法正常采集视频。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_DEVICE_NOT_FOUND</pt>
-                    <pd>(8): No local video capture device found. Prompt the user to check whether the camera is properly connected or functioning, and rejoin the channel.</pd>
+                    <pd>（8）：未找到本地视频采集设备。请提示用户检查摄像头是否正确连接或正常工作，并重新加入频道。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_DEVICE_DISCONNECTED</pt>
-                    <pd>(9): (macOS and Windows only) The current video capture device was disconnected (e.g., unplugged).</pd>
+                    <pd>（9）：（仅适用于 macOS 和 Windows 平台）当前使用的视频采集设备已断开连接（例如被拔出）。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_DEVICE_INVALID_ID</pt>
-                    <pd>(10): (macOS and Windows only) The SDK cannot find the video device in the device list. Check whether the video device ID is valid.</pd>
+                    <pd>（10）：（仅适用于 macOS 和 Windows 平台）SDK 在视频设备列表中找不到该视频设备。请检查视频设备的 ID 是否有效。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_DEVICE_INTERRUPT</pt>
-                    <pd>(14): (Android only) Video capture was interrupted. Possible reasons include: the camera is occupied by another app; the app switched to the background. You can use a foreground service notification to inform the system to continue video capture even when the app is in the background.</pd>
+                    <pd>（14）：（仅适用于 Android 平台）视频采集被中断。可能原因包括：摄像头被其他应用占用；当前应用切换到后台。你可以使用前台服务通知操作系统，确保应用切换到后台后仍能采集视频。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_DEVICE_FATAL_ERROR</pt>
-                    <pd>(15): (Android only) A fatal error occurred with the video capture device. Prompt the user to turn off and restart the camera. If the issue persists, check for hardware failure.</pd>
+                    <pd>（15）：（仅适用于 Android 平台）视频采集设备发生错误。请提示用户关闭并重启摄像头以恢复功能。如果问题仍未解决，请检查摄像头是否存在硬件故障。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_DEVICE_SYSTEM_PRESSURE</pt>
-                    <pd>(101): The video capture device is unavailable due to high system pressure.</pd>
+                    <pd>（101）：当前视频采集设备因系统压力过大而不可用。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_MINIMIZED</pt>
-                    <pd>(11): (macOS and Windows only) The shared window is minimized when calling <xref keyref="startScreenCaptureByWindowId"/>. The SDK cannot share a minimized window. Prompt the user to restore the window.</pd>
+                    <pd>（11）：（仅适用于 macOS 和 Windows 平台）调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，被共享窗口已最小化。SDK 无法共享最小化的窗口。请提示用户取消最小化该窗口。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_CLOSED</pt>
-                    <pd>(12): (macOS and Windows only) The shared window is closed, or a fullscreen window exited fullscreen mode. After exiting fullscreen, remote users will not see the shared window. To avoid showing a black screen to remote users, it is recommended to stop screen sharing immediately. Common scenarios include: local user closes the shared window; local user starts fullscreen slideshow and shares the window, then exits fullscreen; local user watches fullscreen web video or document and shares the window, then exits fullscreen.</pd>
+                    <pd>（12）：（仅适用于 macOS 和 Windows 平台）被共享的窗口已关闭，或全屏窗口退出了全屏模式。退出全屏后，远端用户将无法看到共享窗口。为避免远端用户看到黑屏，建议立即停止屏幕共享。常见场景包括：本地用户关闭共享窗口；本地用户先全屏播放幻灯片再共享幻灯片窗口，退出全屏后触发该错误码；本地用户先全屏观看网页视频或文档再共享其窗口，退出全屏后触发该错误码。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_OCCLUDED</pt>
-                    <pd>(13): (Windows only) The shared window is occluded by another window, and the SDK blacks out the occluded area.</pd>
+                    <pd>（13）：（仅适用于 Windows 平台）被共享的窗口被其他窗口遮挡，SDK 会将被遮挡区域置黑。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED</pt>
-                    <pd>(20): Local screen sharing of the window is not supported.</pd>
+                    <pd>（20）：不支持本地屏幕共享窗口。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_FAILURE</pt>
-                    <pd>(21): (Windows and Android only) No data is available in the captured window.</pd>
+                    <pd>（21）：（仅适用于 Windows 和 Android 平台）当前被采集的窗口无数据。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_NO_PERMISSION</pt>
-                    <pd>(22): (Windows and macOS only) No screen sharing permission.</pd>
+                    <pd>（22）：（仅适用于 Windows 和 macOS 平台）无屏幕共享权限。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_AUTO_FALLBACK</pt>
-                    <pd>(24): (Windows only) An error occurred during screen sharing (possibly due to failure to occlude windows), causing performance degradation, but the screen sharing itself is not affected.
-                        <note>During screen sharing, if window occlusion fails due to driver issues, the SDK reports this event and automatically falls back to sharing the entire screen. If your use case requires occluding specific windows for privacy, we recommend listening for this event and implementing additional privacy protection mechanisms when triggered.</note>
+                    <pd>（24）：（仅适用于 Windows 平台）屏幕共享过程中发生异常错误（可能由于窗口遮挡失败），导致性能下降，但屏幕共享过程本身未受影响。
+                        <note>在屏幕共享过程中，如果由于设备驱动问题导致遮挡特定窗口失败，SDK 会上报此事件并自动回退为共享整个屏幕。如果你的使用场景需要遮挡特定窗口以保护隐私，建议监听此事件并在触发时实现额外的隐私保护机制。</note>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_HIDDEN</pt>
-                    <pd>(25): (Windows only) The shared window is hidden and not visible on the current screen.</pd>
+                    <pd>（25）：（仅适用于 Windows 平台）当前屏幕共享的窗口被隐藏，在当前屏幕上不可见。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN</pt>
-                    <pd>(26): (Windows only) The shared window has recovered from a hidden state.</pd>
+                    <pd>（26）：（仅适用于 Windows 平台）屏幕共享的窗口已从隐藏状态恢复。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED</pt>
-                    <pd>(27): (macOS and Windows only) The shared window has recovered from a minimized state.</pd>
+                    <pd>（27）：（仅适用于 macOS 和 Windows 平台）屏幕共享的窗口已从最小化状态恢复。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_PAUSED</pt>
-                    <pd>(28): (Windows only) Screen sharing is paused. Common scenarios include switching to a secure desktop such as UAC dialog or Winlogon desktop.</pd>
+                    <pd>（28）：（仅适用于 Windows 平台）屏幕共享已暂停。常见场景包括：当前屏幕切换到安全桌面，例如 UAC 对话框或 Winlogon 桌面。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_RESUMED</pt>
-                    <pd>(29): (Windows only) Screen sharing has resumed from a paused state.</pd>
+                    <pd>（29）：（仅适用于 Windows 平台）屏幕共享已从暂停状态恢复。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED</pt>
-                    <pd>(30): (Windows and macOS only) The display used for screen sharing has been disconnected, and screen sharing is paused. Prompt the user to restart screen sharing.</pd>
+                    <pd>（30）：（仅适用于 Windows 和 macOS 平台）用于屏幕共享的显示器已断开连接，当前屏幕共享已暂停。请提示用户重新开始屏幕共享。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_STOPPED_BY_USER</pt>
-                    <pd>(31): (HarmonyOS only) Screen sharing was stopped by the user.</pd>
+                    <pd>（31）：（仅适用于鸿蒙平台）屏幕共享被用户停止。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_INTERRUPTED_BY_OTHER</pt>
-                    <pd>(32): (HarmonyOS only) Screen sharing was interrupted by another screen sharing session.</pd>
+                    <pd>（32）：（仅适用于鸿蒙平台）屏幕共享被其他屏幕共享中断。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_STOPPED_BY_CALL</pt>
-                    <pd>(33): (HarmonyOS only) Screen sharing was stopped due to a SIM call.</pd>
+                    <pd>（33）：（仅适用于鸿蒙平台）屏幕共享因 SIM 通话被停止。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_EXCLUDE_WINDOW_FAILED</pt>
-                    <pd>(34): (Windows only) Failed to exclude some windows in the exclude list during screen sharing.</pd>
+                    <pd>（34）：（仅适用于 Windows 平台）屏幕共享时，排除窗口列表中的部分窗口排除失败。</pd>
                 </plentry>
             </parml>
         </section>

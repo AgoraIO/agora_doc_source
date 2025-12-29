@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediaoptions">
     <title><ph keyref="ChannelMediaOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set channel media options.</ph><ph id="shortdesc" props="android">Configures media publishing and subscription options in the channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于设置频道媒体选项。</ph><ph id="shortdesc" props="android">Configures media publishing and subscription options in the channel.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -12,9 +12,11 @@
   Optional&lt;bool&gt; publishThirdCameraTrack;
   Optional&lt;bool&gt; publishFourthCameraTrack;
   Optional&lt;bool&gt; publishMicrophoneTrack;
+#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE) || defined(TARGET_OS_MAC) || defined(__OHOS__)
+  Optional&lt;bool&gt; publishScreenCaptureAudio;
+#endif
 #if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE) || defined(__OHOS__)
   Optional&lt;bool&gt; publishScreenCaptureVideo;
-  Optional&lt;bool&gt; publishScreenCaptureAudio;
 #else
   Optional&lt;bool&gt; publishScreenTrack;
   Optional&lt;bool&gt; publishSecondaryScreenTrack;
@@ -95,9 +97,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
-            <p props="cpp">Supports publishing multiple audio streams and one video stream simultaneously in the same <xref keyref="RtcConnection"/>. For example, you can set <codeph>publishMicrophoneTrack</codeph>, <codeph>publishCustomAudioTrack</codeph>, and <codeph>publishMediaPlayerAudioTrack</codeph> to <xref keyref="true"/> at the same time, but only one of <codeph>publishCameraTrack</codeph>, <codeph>publishScreenCaptureVideo</codeph>, <codeph>publishScreenTrack</codeph>, <codeph>publishCustomVideoTrack</codeph>, or <codeph>publishEncodedVideoTrack</codeph> can be set to <xref keyref="true"/>.</p>
+            <p props="cpp">支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，可以同时将 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph> 设置为 <xref keyref="true"/>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>、<codeph>publishScreenTrack</codeph>、<codeph>publishCustomVideoTrack</codeph> 或 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
             <p props="android">Supports publishing multiple audio streams and one video stream simultaneously within the same <xref keyref="RtcConnection"/>. For example, you can enable <codeph>publishMicrophoneTrack</codeph>, <codeph>publishCustomAudioTrack</codeph>, and <codeph>publishMediaPlayerAudioTrack</codeph> at the same time, but only one of <codeph>publishCameraTrack</codeph>, <codeph>publishScreenCaptureVideo</codeph>, <codeph>publishCustomVideoTrack</codeph>, and <codeph>publishEncodedVideoTrack</codeph> can be set to <xref keyref="true"/>.</p>
-            <note props="cpp">We recommend that you set the member parameters according to your business scenario. Otherwise, the SDK automatically assigns values to them.</note>
+            <note props="cpp">声网建议你根据业务场景自行设置成员参数的值，否则 SDK 会自动为成员参数分配默认值。</note>
             <note props="android">It is recommended that you set the values of each member parameter according to your business scenario; otherwise, the SDK will assign default values automatically.</note>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp">
@@ -105,252 +107,242 @@
             <parml>
                 <plentry props="cpp">
                     <pt>publishCameraTrack</pt>
-                    <pd>Whether to publish the video captured by the camera:
+                    <pd>是否发布摄像头采集的视频：
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the camera video.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the camera video.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布摄像头采集的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布摄像头采集的视频。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishSecondaryCameraTrack</pt>
-                    <pd>Whether to publish the video captured by the secondary camera:
+                    <pd>是否发布第二路摄像头采集的视频：
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the secondary camera video.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the secondary camera video.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布第二路摄像头采集的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布第二路摄像头采集的视频。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishThirdCameraTrack</pt>
                     <pd>
-                        <note>(Android, Windows, and macOS only)</note><ph>Whether to publish the video captured by the third camera:</ph>
+                        <note>该参数仅适用于 Android、Windows 和 macOS 平台。</note><ph>是否发布第三路摄像头采集的视频：</ph>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the third camera video.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the third camera video.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布第三路摄像头采集的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布第三路摄像头采集的视频。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishFourthCameraTrack</pt>
                     <pd>
-                        <note>(Android, Windows, and macOS only)</note><ph>Whether to publish the video captured by the fourth camera:</ph>
+                        <note>该参数仅适用于 Android、Windows 和 macOS 平台。</note><ph>是否发布第四路摄像头采集的视频：</ph>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the fourth camera video.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the fourth camera video.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布第四路摄像头采集的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布第四路摄像头采集的视频。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishMicrophoneTrack</pt>
-                    <pd>Whether to publish the audio captured by the microphone:
+                    <pd>是否发布麦克风采集的音频：
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the microphone audio.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the microphone audio.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布麦克风采集的音频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布麦克风采集的音频。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishScreenCaptureVideo</pt>
                     <pd>
-                        <note>(Android and iOS only)</note><ph>Whether to publish the video captured from the screen:</ph>
+                        <note>该参数仅适用于 Android 和 iOS 平台。</note><ph>是否发布屏幕采集的视频：</ph>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the screen video.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the screen video.</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="cpp">
-                    <pt>publishScreenCaptureAudio</pt>
-                    <pd>
-                        <note>(Android and iOS only)</note><ph>Whether to publish the audio captured from the screen:</ph>
-                        <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the screen audio.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the screen audio.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布屏幕采集的视频。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishScreenTrack</pt>
                     <pd>
-                        <note>(Windows and macOS only)</note><ph>Whether to publish the video captured from the screen:</ph>
+                        <note>该参数仅适用于 Windows 和 macOS 平台。</note><ph>是否发布屏幕采集的视频：</ph>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the screen video.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the screen video.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布屏幕采集的视频。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishSecondaryScreenTrack</pt>
-                    <pd>Whether to publish the video captured from the second screen:
+                    <pd>是否发布第二块屏幕采集的视频：
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the second screen video.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the second screen video.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布第二块屏幕采集的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布第二块屏幕采集的视频。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishThirdScreenTrack</pt>
                     <pd>
-                        <note>(Windows and macOS only)</note><ph>Whether to publish the video captured from the third screen:</ph>
+                        <note>该参数仅适用于 Windows 和 macOS 平台。</note><ph>是否发布第三块屏幕采集的视频：</ph>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the third screen video.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the third screen video.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布第三块屏幕采集的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布第三块屏幕采集的视频。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishFourthScreenTrack</pt>
                     <pd>
-                        <note>(Windows and macOS only)</note><ph>Whether to publish the video captured from the fourth screen:</ph>
+                        <note>该参数仅适用于 Windows 和 macOS 平台。</note><ph>是否发布第四块屏幕采集的视频：</ph>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the fourth screen video.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the fourth screen video.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布第四块屏幕采集的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布第四块屏幕采集的视频。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishCustomAudioTrack</pt>
-                    <pd>Whether to publish the audio from a custom audio source:
+                    <pd>是否发布自定义音频源采集的音频：
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the custom audio.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the custom audio.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布自定义音频源采集的音频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布自定义音频源采集的音频。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishCustomAudioTrackId</pt>
-                    <pd>The ID of the custom audio track to publish. Default is 0. You can get the custom audio track ID by calling <xref keyref="createCustomAudioTrack_IMediaEngine"/>.</pd>
+                    <pd>要发布的自定义音频轨道的 ID。默认值为 0。你可以通过 <xref keyref="createCustomAudioTrack_IMediaEngine"/> 获取自定义音频轨道 ID。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishCustomVideoTrack</pt>
-                    <pd>Whether to publish the video from a custom video source:
+                    <pd>是否发布自定义视频源采集的视频：
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the custom video.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the custom video.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布自定义视频源采集的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布自定义视频源采集的视频。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishEncodedVideoTrack</pt>
-                    <pd>Whether to publish the encoded video:
+                    <pd>是否发布编码后的视频：
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the encoded video.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the encoded video.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布编码后的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布编码后的视频。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishMediaPlayerAudioTrack</pt>
-                    <pd>Whether to publish the audio from the media player:
+                    <pd>是否发布媒体播放器的音频：
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the media player audio.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the media player audio.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布媒体播放器的音频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布媒体播放器的音频。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishMediaPlayerVideoTrack</pt>
-                    <pd>Whether to publish the video from the media player:
+                    <pd>是否发布媒体播放器的视频：
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the media player video.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the media player video.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布媒体播放器的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布媒体播放器的视频。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishTranscodedVideoTrack</pt>
                     <pd>
-                        <note>Since v4.2.0, the parameter name has been corrected from <codeph>publishTrancodedVideoTrack</codeph> to <codeph>publishTranscodedVideoTrack</codeph>.</note><ph>Whether to publish the local transcoded video:</ph>
+                        <note>自 v4.2.0 起，参数名从 <codeph>publishTrancodedVideoTrack</codeph> 更正为 <codeph>publishTranscodedVideoTrack</codeph>。</note><ph>是否发布本地合图视频：</ph>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the local transcoded video.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the local transcoded video.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布本地合图视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布本地合图视频。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishMixedAudioTrack</pt>
-                    <pd>Whether to publish the mixed audio track:
+                    <pd>是否发布混音音频轨道：
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the mixed audio track.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the mixed audio track.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布混音音频轨道。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布混音音频轨道。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishLipSyncTrack</pt>
-                    <pd>Whether to publish the video track processed by voice-driven extension:
+                    <pd>是否发布由语音驱动扩展处理后的视频轨道：
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the video track processed by voice-driven extension.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the video track processed by voice-driven extension.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布由语音驱动扩展处理后的视频轨道。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：（默认）不发布由语音驱动扩展处理后的视频轨道。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>autoSubscribeAudio</pt>
-                    <pd>Whether to automatically subscribe to all remote audio streams when joining a channel:
+                    <pd>用户加入频道时，是否自动订阅所有远端音频流：
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Subscribe to all remote audio streams.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not automatically subscribe to any remote audio streams.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：订阅所有远端音频流。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不自动订阅任何远端音频流。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>autoSubscribeVideo</pt>
-                    <pd>Whether to automatically subscribe to all remote video streams when joining a channel:
+                    <pd>用户加入频道时，是否自动订阅所有远端视频流：
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Subscribe to all remote video streams.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not automatically subscribe to any remote video streams.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：订阅所有远端视频流。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不自动订阅任何远端视频流。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>enableAudioRecordingOrPlayout</pt>
                     <pd>
-                        <note>If you want to publish microphone audio, make sure this parameter is set to <codeph><ph keyref="true"/></codeph>.</note><ph>Whether to enable audio recording or playout:</ph>
+                        <note>如果你需要发布麦克风采集的音频流，请确保该参数设置为 <codeph><ph keyref="true"/></codeph>。</note><ph>是否启用音频采集或播放：</ph>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Enable recording or playout.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not enable recording or playout.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：启用音频采集或播放。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不启用音频采集或播放。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishMediaPlayerId</pt>
-                    <pd>The ID of the media player to publish. Default is 0.</pd>
+                    <pd>要发布的媒体播放器 ID。默认值为 0。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>clientRoleType</pt>
-                    <pd>User role. See <xref keyref="CLIENT_ROLE_TYPE"/>.
-                        <note>If the user role is set to audience, you cannot publish audio or video streams in the channel. If you want to publish media streams in a live broadcast, make sure to set the user role to broadcaster.</note>
+                    <pd>用户角色。详见 CLIENT_ROLE_TYPE。
+                        <note>如果将用户角色设置为观众，则无法在频道中发布音视频流。如果你希望在直播中发布媒体流，请确保将用户角色设置为主播。</note>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>audienceLatencyLevel</pt>
-                    <pd>Latency level for audience in interactive live streaming. See <xref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>.</pd>
+                    <pd>互动直播中观众的延迟等级。详见 AUDIENCE_LATENCY_LEVEL_TYPE。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>defaultVideoStreamType</pt>
-                    <pd>Default video stream type. See <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
+                    <pd>默认的视频流类型。详见 VIDEO_STREAM_TYPE。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>channelProfile</pt>
-                    <pd>Channel profile. See <xref keyref="CHANNEL_PROFILE_TYPE"/>.</pd>
+                    <pd>频道场景。详见 CHANNEL_PROFILE_TYPE。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>audioDelayMs</pt>
-                    <pd>Delay in sending audio frames (in ms). You can use this parameter to delay audio frames to ensure audio-video sync. Set to 0 to disable delay.</pd>
+                    <pd>发送音频帧的延迟（单位为毫秒）。你可以使用该参数设置需要发送的音频帧的延迟，以确保音视频同步。要关闭延迟，请将该值设置为 0。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>mediaPlayerAudioDelayMs</pt>
-                    <pd>Delay in sending media player audio frames (in ms). Used to explicitly control audio-video sync. Set to 0 to disable delay.</pd>
+                    <pd>发送媒体播放器音频帧的延迟（单位为毫秒）。用于显式控制音视频同步。要关闭延迟，请将该值设置为 0。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>token</pt>
-                    <pd>(Optional) Token for authentication generated on your server.
+                    <pd>（可选）你在服务器上生成的用于鉴权的 Token。
                         <note>
                             <ul>
-                                <li>This parameter takes effect only when calling <xref keyref="updateChannelMediaOptions"/> or <xref keyref="updateChannelMediaOptionsEx"/>.</li>
-                                <li>Make sure the App ID, channel name, and user name used to generate the token are the same as those used in the <xref keyref="initialize"/>, <codeph>joinChannel</codeph>, and <xref keyref="joinChannelEx"/> methods.</li>
+                                <li>该参数仅在调用 updateChannelMediaOptions 或 updateChannelMediaOptionsEx 时生效。</li>
+                                <li>请确保用于生成 Token 的 App ID、频道名和用户名与用于初始化 RTC 引擎的 initialize 方法，以及用于加入频道的 joinChannel 和 joinChannelEx 方法中使用的参数一致。</li>
                             </ul>
                         </note>
                     </pd>
@@ -358,19 +350,19 @@
                 <plentry props="cpp">
                     <pt>enableBuiltInMediaEncryption</pt>
                     <pd>
-                        <note>Ignored when calling <xref keyref="updateChannelMediaOptions"/>.</note><ph>Whether to enable media packet encryption:</ph>
+                        <note>调用 updateChannelMediaOptions 时该参数被忽略。</note><ph>是否启用媒体包加密：</ph>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Enable.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: (Default) Do not enable.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：启用。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：（默认）不启用。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishRhythmPlayerTrack</pt>
-                    <pd>Whether to publish the metronome sound to remote users:
+                    <pd>是否向远端用户发布节拍器的声音：
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the processed audio frame. Both local and remote users can hear the metronome.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the metronome sound. Only the local user can hear it.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：发布处理后的音频帧，本地用户和远端用户都能听到节拍器。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布节拍器的声音，只有本地用户能听到节拍器。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -379,63 +371,72 @@
                     <pd>
                         <note>
                             <ul>
-                                <li>This parameter applies only to co-hosted live streaming scenarios. Co-hosts must call <xref keyref="joinChannelEx"/> to join another host's channel as an audience and set <codeph>isInteractiveAudience</codeph> to true.</li>
-                                <li>This parameter takes effect only when the user role is <codeph>CLIENT_ROLE_AUDIENCE</codeph>.</li>
+                                <li>该参数仅适用于连麦直播场景。联合主播需调用 joinChannelEx 方法以观众身份加入其他主播频道，并将 isInteractiveAudience 设置为 <codeph><ph keyref="true"/></codeph>。</li>
+                                <li>该参数仅在用户角色为 CLIENT_ROLE_AUDIENCE 时生效。</li>
                             </ul>
-                        </note><ph>Whether to enable interactive mode:</ph>
+                        </note><ph>是否启用互动模式：</ph>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Enable interactive mode.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not enable interactive mode.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：启用互动模式。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不启用互动模式。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>customVideoTrackId</pt>
-                    <pd>The video track ID returned by calling <xref keyref="createCustomVideoTrack"/>. Default is 0.</pd>
+                    <pd>调用 createCustomVideoTrack 方法返回的视频轨道 ID。默认值为 0。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>isAudioFilterable</pt>
                     <pd>
-                        <note>To enable this feature, contact technical support.</note><ph>Whether to filter the published audio stream based on volume algorithm:</ph>
+                        <note>如需启用该功能，请[联系技术支持](https://ticket.shengwang.cn/)</note><ph>发布的音频流是否根据音量算法进行过滤：</ph>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Audio stream is filtered. This setting has no effect if audio stream filtering is not enabled.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Audio stream is not filtered.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：音频流被过滤。如果未启用音频流过滤器，该设置不生效。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：音频流不被过滤。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>enableMultipath</pt>
                     <pd>
-                        <note>Permissions and system requirements:
+                        <note>权限和系统要求：
                             <ul>
-                                <li>Android: Android 7.0 or later (API level 24+), requires <codeph>ACCESS_NETWORK_STATE</codeph> and <codeph>CHANGE_NETWORK_STATE</codeph> permissions.</li>
-                                <li>iOS: iOS 12.0 or later.</li>
-                                <li>macOS: 10.14 or later.</li>
-                                <li>Windows: Windows Vista or later.</li>
+                                <li>Android：Android 7.0 或更高版本（API 级别 24 或更高），需要 ACCESS_NETWORK_STATE 和 CHANGE_NETWORK_STATE 权限。</li>
+                                <li>iOS：iOS 12.0 或更高版本。</li>
+                                <li>macOS：10.14 或更高版本。</li>
+                                <li>Windows：Windows Vista 或更高版本。</li>
                             </ul>
-                        </note><ph>Whether to enable multipath transmission:</ph>
+                        </note><ph>是否启用多路径传输：</ph>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Enable multipath.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Disable multipath.</li>
+                            <li><codeph><ph keyref="true"/></codeph>：启用多路径传输。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：禁用多路径传输。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>uplinkMultipathMode</pt>
-                    <pd>Uplink transmission mode. See <xref keyref="MultipathMode"/>.
-                        <note>Make sure <codeph>enableMultipath</codeph> is set to true when using this parameter.</note>
+                    <pd>上行传输模式。详见 MultipathMode。
+                        <note>使用该参数时，请确保已将 enableMultipath 设置为 <codeph><ph keyref="true"/></codeph>。</note>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>downlinkMultipathMode</pt>
-                    <pd>Downlink transmission mode. See <xref keyref="MultipathMode"/>.
-                        <note>Make sure <codeph>enableMultipath</codeph> is set to true when using this parameter.</note>
+                    <pd>下行传输模式。详见 MultipathMode。
+                        <note>使用该参数时，请确保已将 enableMultipath 设置为 <codeph><ph keyref="true"/></codeph>。</note>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>preferMultipathType</pt>
-                    <pd>Preferred path type for transmission. See <xref keyref="MultipathType"/>.
-                        <note>Make sure <codeph>enableMultipath</codeph> is set to true when using this parameter.</note>
+                    <pd>首选的传输路径类型。详见 MultipathType。
+                        <note>使用该参数时，请确保已将 enableMultipath 设置为 <codeph><ph keyref="true"/></codeph>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishScreenCaptureAudio</pt>
+                    <pd>是否发布屏幕采集器的音频轨道：
+                        <ul>
+                            <li><xref keyref="true"/>：发布屏幕采集器的音频。</li>
+                            <li><xref keyref="false"/>：（默认）不发布屏幕采集器的音频轨道。</li>
+                        </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">

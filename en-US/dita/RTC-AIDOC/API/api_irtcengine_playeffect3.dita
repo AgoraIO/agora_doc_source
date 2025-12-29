@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_playeffect3">
     <title><ph keyref="playEffect3"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Plays the specified local or online sound effect file.</ph><ph id="shortdesc" props="android">Plays the specified local or online audio effect file.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Plays the specified local or online sound effect file.</ph><ph id="shortdesc" props="android">播放指定的本地或在线音效文件。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,21 +19,27 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">To play multiple sound effect files simultaneously, call this method multiple times with different <codeph>soundId</codeph> and <codeph>filePath</codeph>. For the best user experience, Agora recommends not playing more than three sound effect files at the same time.</p>
-            <p props="android">This method supports playing URI files that start with <codeph>content://</codeph>. For supported audio file formats, see [What audio file formats does the Agora RTC SDK support](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format). If the local audio file does not exist, the SDK does not support the file format, or the audio file URL cannot be accessed, the SDK returns the error code <codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph>.</p>
+            <p props="android">该方法支持播放以 <codeph>content://</codeph> 开头的 URI 文件。关于支持的音频文件格式，参见 <codeph>What formats of audio files does the Agora RTC SDK support</codeph>。如果本地音频文件不存在、SDK 不支持该文件格式，或无法访问音频文件的 URL，SDK 会返回 <codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph>。</p>
             <note props="cpp">If you need to play online sound effect files, Agora recommends caching them to the local device first, preloading them into memory with <xref keyref="preloadEffect"/>, and then calling this method to play the sound effect. Otherwise, playback may fail or be silent due to loading timeout or failure.
 If <xref keyref="preloadEffect"/> is called before <xref keyref="playEffect3"/>, the file resource will not be closed after <xref keyref="playEffect3"/> is executed. The next call to <xref keyref="playEffect3"/> will start playback from the beginning.
 If <xref keyref="preloadEffect"/> is not called before <xref keyref="playEffect3"/>, the resource will be destroyed after <xref keyref="playEffect3"/> is executed. The next call to <xref keyref="playEffect3"/> will attempt to reopen the file and play from the beginning.</note>
-            <note props="android">If you need to play an online audio effect file, Agora recommends caching it to the local device first, preloading the file into memory using <codeph>preloadEffect</codeph>, and then calling this method to play the effect. Otherwise, playback may fail or be silent due to timeout or loading failure.</note>
+            <note props="android">
+                <ul>
+                    <li>如果需要播放在线音效文件，建议先将其缓存到本地设备，调用 <codeph>preloadEffect</codeph> 将文件预加载到内存中，再调用此方法播放。否则可能因加载超时或失败导致播放失败或无声。</li>
+                    <li>如果在调用 <codeph>playEffectEx</codeph> 前调用了 <codeph>preloadEffectEx</codeph>，则播放后文件资源不会被关闭。下次调用 <codeph>playEffectEx</codeph> 时将从头开始播放。</li>
+                    <li>如果未调用 <codeph>preloadEffectEx</codeph> 就调用了 <codeph>playEffectEx</codeph>，则播放后资源会被销毁。下次调用 <codeph>playEffectEx</codeph> 时将尝试重新打开文件并从头播放。</li>
+                </ul>
+            </note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
             <p props="cpp">You can call this method before or after joining a channel.</p>
-            <p props="android">You can call this method before or after joining a channel.</p>
+            <p props="android">你可以在加入频道前或加入频道后调用该方法。</p>
         </section>
         <section id="related" deliveryTarget="details" props="android cpp">
             <title>Related Callbacks</title>
             <p props="cpp">After this method is successfully called, the SDK triggers the <xref keyref="onAudioEffectFinished"/> callback to report the completion of sound effect playback.</p>
-            <p props="android">After the audio effect file finishes playing, the SDK triggers the <xref keyref="onAudioEffectFinished"/> callback.</p>
+            <p props="android">音效文件播放完成后，SDK 会触发 <xref keyref="onAudioEffectFinished"/> 回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
@@ -88,55 +94,55 @@ If <xref keyref="preloadEffect"/> is not called before <xref keyref="playEffect3
                 </plentry>
                 <plentry props="android">
                     <pt>soundId</pt>
-                    <pd>Audio effect ID. Each audio effect file must have a unique ID.
-                        <note>If you have preloaded the audio effect into memory using <codeph>preloadEffect</codeph>, make sure this parameter value is the same as the <codeph>soundId</codeph> used in <codeph>preloadEffect</codeph>.</note>
+                    <pd>音效 ID。每个音效文件的 ID 必须唯一。
+                        <note>如果你已通过调用 <codeph>preloadEffect</codeph> 将音效预加载到内存中，请确保该参数的值与 <codeph>preloadEffect</codeph> 中的 <codeph>soundId</codeph> 相同。</note>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>filePath</pt>
-                    <pd>Path of the audio effect file. Supports URI addresses starting with <codeph>content://</codeph>, paths starting with <codeph>/assets/</codeph>, URLs, and absolute paths of local files. The path must include the file name and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP.
-                        <note>If you have preloaded the audio effect into memory using <codeph>preloadEffect</codeph>, make sure this parameter value is the same as the <codeph>filePath</codeph> used in <codeph>preloadEffect</codeph>.</note>
+                    <pd>音效文件路径。支持以 <codeph>content://</codeph> 开头的 URI、以 <codeph>/assets/</codeph> 开头的路径、URL 以及本地文件的绝对路径。路径需精确到文件名及扩展名。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。
+                        <note>如果你已通过调用 <codeph>preloadEffect</codeph> 将音效预加载到内存中，请确保该参数的值与 <codeph>preloadEffect</codeph> 中的 <codeph>filePath</codeph> 相同。</note>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>loopCount</pt>
-                    <pd>Number of times the audio effect loops:
+                    <pd>音效循环播放的次数：
                         <ul>
-                            <li>≥ 0: Number of times to play. For example, 1 means loop once, i.e., play twice in total.</li>
-                            <li>-1: Loop the audio file indefinitely.</li>
+                            <li>≥ 0：播放的次数。例如，1 表示循环播放一次，即总共播放两次。</li>
+                            <li>-1：无限循环播放该音频文件。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>pitch</pt>
-                    <pd>Pitch of the audio effect. The range is from 0.5 to 2.0. The default value is 1.0, which represents the original pitch. The smaller the value, the lower the pitch.</pd>
+                    <pd>音效的音调。取值范围为 0.5 到 2.0。默认值为 1.0，表示原始音调。值越小，音调越低。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>pan</pt>
-                    <pd>Spatial position of the audio effect. The range is from -1.0 to 1.0:
+                    <pd>音效的空间位置。取值范围为 -1.0 到 1.0：
                         <ul>
-                            <li>-1.0: Audio effect plays from the user's left.</li>
-                            <li>0.0: Audio effect plays from the front.</li>
-                            <li>1.0: Audio effect plays from the user's right.</li>
+                            <li>-1.0：音效从用户左侧播放。</li>
+                            <li>0.0：音效从用户正前方播放。</li>
+                            <li>1.0：音效从用户右侧播放。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>gain</pt>
-                    <pd>Volume of the audio effect. The range is from 0.0 to 100.0. The default value is 100.0, which represents the original volume. The smaller the value, the lower the volume.</pd>
+                    <pd>音效的音量。取值范围为 0.0 到 100.0。默认值为 100.0，表示原始音量。值越小，音量越低。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>publish</pt>
-                    <pd>Whether to publish the audio effect to remote users:
+                    <pd>是否将音效发布给远端用户：
                         <ul>
-                            <li><xref keyref="true"/>: Publish the audio effect to remote users. Both local and remote users can hear it.</li>
-                            <li><xref keyref="false"/>: Do not publish the audio effect to remote users. Only the local user can hear it.</li>
+                            <li><xref keyref="true"/>：将音效发布给远端用户，本地用户和远端用户都能听到音效。</li>
+                            <li><xref keyref="false"/>：不将音效发布给远端用户，只有本地用户能听到音效。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>startPos</pt>
-                    <pd>The starting position for playing the audio effect file, in milliseconds.</pd>
+                    <pd>音效文件的播放起始位置，单位为毫秒。</pd>
                 </plentry>
             </parml>
         </section>
@@ -150,8 +156,8 @@ If <xref keyref="preloadEffect"/> is not called before <xref keyref="playEffect3
             </p>
             <p props="android">
                 <ul>
-                    <li>0: Success.</li>
-                    <li>&lt; 0: Failure.</li>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
         </section>

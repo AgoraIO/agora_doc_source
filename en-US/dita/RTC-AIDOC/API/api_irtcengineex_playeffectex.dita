@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_playeffectex">
     <title><ph keyref="playEffectEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Plays a specified sound effect in the channel.</ph><ph id="shortdesc" props="android">Plays the specified audio effect in the channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">在频道中播放指定音效。</ph><ph id="shortdesc" props="android">Plays a specified sound effect in the channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,87 +21,91 @@
             <dl outputclass="since">
                 <dlentry props="cpp">
                     <dt>Since</dt>
-                    <dd>Added since v4.6.0.</dd>
+                    <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
                 <dlentry props="android">
                     <dt>Since</dt>
                     <dd>Available since v4.6.0.</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">You can call this method to play a specified sound effect to all users in the channel. Each call can play only one sound effect. To play multiple sound effects simultaneously, use different <codeph>soundId</codeph> and <codeph>filePath</codeph> and call this method multiple times. You can also set whether to publish the sound effect in the channel.</p>
-            <p props="android">You can call this method to play the specified audio effect to all users in the channel. Each call to this method can only play one audio effect. To play multiple audio effects simultaneously, use different <codeph>soundId</codeph> and <codeph>filePath</codeph> values and call this method multiple times. You can also set whether to publish the audio effect in the channel.</p>
+            <p props="cpp">你可以调用该方法在频道内向所有用户播放指定的音效。每次调用该方法只能播放一个音效。若需同时播放多个音效，只需使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。该方法允许你设置是否在频道中发布音效。</p>
+            <p props="android">You can call this method to play a specified sound effect to all users in the channel. Each call to this method can only play one sound effect. To play multiple sound effect files simultaneously, call this method multiple times with different <codeph>soundId</codeph> and <codeph>filePath</codeph> values and set the playback parameters separately.</p>
             <note props="cpp">
                 <ul>
-                    <li>Agora recommends not playing more than three sound effects simultaneously.</li>
-                    <li>The sound effect ID and file path in this method must match those in the <xref keyref="preloadEffect"/> method.</li>
+                    <li>声网建议不要同时播放超过三个音效。</li>
+                    <li>该方法中的音效 ID 和文件路径必须与 <xref keyref="preloadEffectEx"/> 方法中的一致。</li>
+                    <li>如果在调用 <xref keyref="playEffectEx"/> 之前调用了 <xref keyref="preloadEffectEx"/>，则在 <xref keyref="playEffectEx"/> 执行后文件资源不会被关闭。下次调用 <xref keyref="playEffectEx"/> 时将直接从头开始播放。</li>
+                    <li>如果在调用 <xref keyref="playEffectEx"/> 之前未调用 <xref keyref="preloadEffectEx"/>，则在 <xref keyref="playEffectEx"/> 执行后资源将被销毁。下次调用 <xref keyref="playEffectEx"/> 时将尝试重新打开文件并从头开始播放。</li>
                 </ul>
             </note>
             <note props="android">
                 <ul>
-                    <li>Agora recommends not playing more than three audio effects simultaneously.</li>
-                    <li>The audio effect ID and file path in this method must match those used in <codeph>preloadEffect</codeph>.</li>
+                    <li>Agora recommends not playing more than three sound effects at the same time.</li>
+                    <li>The <codeph>soundId</codeph> and <codeph>filePath</codeph> in this method must be the same as those in the <codeph>preloadEffectEx</codeph> method.</li>
+                    <li>If you call <codeph>preloadEffectEx</codeph> before <codeph>playEffectEx</codeph>, the file resource will not be released after <codeph>playEffectEx</codeph> is executed. The next call to <codeph>playEffectEx</codeph> will start playback from the beginning.</li>
+                    <li>If you do not call <codeph>preloadEffectEx</codeph> before <codeph>playEffectEx</codeph>, the resource will be released after <codeph>playEffectEx</codeph> is executed. The next call to <codeph>playEffectEx</codeph> will attempt to reopen the file and start playback from the beginning.</li>
                 </ul>
             </note>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
-            <p>This method is applicable in multi-channel scenarios.</p>
+            <p>该方法适用于多频道场景。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd><xref keyref="RtcConnection"/> object. See <xref keyref="RtcConnection"/>.</pd>
+                    <pd><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>soundId</pt>
-                    <pd>Sound effect ID.</pd>
+                    <pd>音效 ID。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>filePath</pt>
-                    <pd>Absolute path of the local file or URL of the online file. Supported audio formats include mp3, mp4, m4a, aac, 3gp, mkv, and wav.</pd>
+                    <pd>本地文件的绝对路径或在线文件的 URL。支持的音频格式包括 mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>loopCount</pt>
-                    <pd>Number of times the sound effect loops:
+                    <pd>音效的循环播放次数：
                         <ul>
-                            <li><codeph>-1</codeph>: Loop indefinitely until <xref keyref="stopEffect"/> or <xref keyref="stopAllEffects"/> is called.</li>
-                            <li><codeph>0</codeph>: Play once.</li>
-                            <li><codeph>1</codeph>: Play twice.</li>
+                            <li><codeph>-1</codeph>：无限循环，直到调用 <xref keyref="stopEffect"/> 或 <xref keyref="stopAllEffects"/>。</li>
+                            <li><codeph>0</codeph>：播放一次。</li>
+                            <li><codeph>1</codeph>：播放两次。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>pitch</pt>
-                    <pd>Pitch of the sound effect. Range: 0.5 to 2.0. Default is 1.0 (original pitch). Lower values indicate lower pitch.</pd>
+                    <pd>音效的音调。范围为 0.5 到 2.0，默认值为 1.0（原始音调）。值越小，音调越低。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>pan</pt>
-                    <pd>Spatial position of the sound effect. Range: -1.0 to 1.0:
+                    <pd>音效的空间位置。取值范围为 -1.0 到 1.0：
                         <ul>
-                            <li><codeph>-1.0</codeph>: Sound comes from the left.</li>
-                            <li><codeph>0.0</codeph>: Sound comes from the front.</li>
-                            <li><codeph>1.0</codeph>: Sound comes from the right.</li>
+                            <li><codeph>-1.0</codeph>：音效从用户左侧播放。</li>
+                            <li><codeph>0.0</codeph>：音效从用户正前方播放。</li>
+                            <li><codeph>1.0</codeph>：音效从用户右侧播放。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>gain</pt>
-                    <pd>Volume of the sound effect. Range: 0 to 100. Default is 100 (original volume). Lower values indicate lower volume.</pd>
+                    <pd>音效的音量。取值范围为 0 到 100，默认值为 100（原始音量）。值越小，音量越低。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publish</pt>
-                    <pd>Whether to publish the sound effect in the channel:
+                    <pd>是否在频道中发布该音效：
                         <ul>
-                            <li><xref keyref="true"/>: Publish.</li>
-                            <li><xref keyref="false"/>: (Default) Do not publish.</li>
+                            <li><xref keyref="true"/>：在频道中发布该音效。</li>
+                            <li><xref keyref="false"/>：（默认）不在频道中发布该音效。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>startPos</pt>
-                    <pd>Start position for playing the sound effect file, in milliseconds.</pd>
+                    <pd>音效文件的播放起始位置（单位为毫秒）。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>connection</pt>
@@ -109,7 +113,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>soundId</pt>
-                    <pd>Audio effect ID.</pd>
+                    <pd>Sound effect ID.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>filePath</pt>
@@ -117,44 +121,44 @@
                 </plentry>
                 <plentry props="android">
                     <pt>loopCount</pt>
-                    <pd>The number of times the audio effect loops:
+                    <pd>The number of times the sound effect is played:
                         <ul>
-                            <li><codeph>-1</codeph>: Loops indefinitely until <xref keyref="stopEffect"/> or <xref keyref="stopAllEffects"/> is called.</li>
-                            <li><codeph>0</codeph>: Plays once.</li>
-                            <li><codeph>1</codeph>: Plays twice.</li>
+                            <li><codeph>-1</codeph>: Loop indefinitely until <xref keyref="stopEffect"/> or <xref keyref="stopAllEffects"/> is called.</li>
+                            <li><codeph>0</codeph>: Play once.</li>
+                            <li><codeph>1</codeph>: Play twice.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>pitch</pt>
-                    <pd>The pitch of the audio effect. The range is from 0.5 to 2.0, with the default value being 1.0 (original pitch). The smaller the value, the lower the pitch.</pd>
+                    <pd>The pitch of the sound effect. The value range is 0.5 to 2.0. The default value is 1.0 (original pitch). The smaller the value, the lower the pitch.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>pan</pt>
-                    <pd>The spatial position of the audio effect. The range is from -1.0 to 1.0:
+                    <pd>The spatial position of the sound effect. The value range is -1.0 to 1.0:
                         <ul>
-                            <li><codeph>-1.0</codeph>: The audio effect comes from the left of the user.</li>
-                            <li><codeph>0.0</codeph>: The audio effect comes from the front of the user.</li>
-                            <li><codeph>1.0</codeph>: The audio effect comes from the right of the user.</li>
+                            <li><codeph>-1.0</codeph>: The sound effect comes from the user's left.</li>
+                            <li><codeph>0.0</codeph>: The sound effect comes from the user's front.</li>
+                            <li><codeph>1.0</codeph>: The sound effect comes from the user's right.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>gain</pt>
-                    <pd>The volume of the audio effect. The range is from 0.0 to 100.0, with the default value being 100.0 (original volume). The smaller the value, the lower the volume.</pd>
+                    <pd>The volume of the sound effect. The value range is 0.0 to 100.0. The default value is 100 (original volume). The smaller the value, the lower the volume.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>publish</pt>
-                    <pd>Whether to publish the audio effect in the channel:
+                    <pd>Whether to publish the sound effect in the channel:
                         <ul>
-                            <li><xref keyref="true"/>: Publish the audio effect in the channel.</li>
-                            <li><xref keyref="false"/>: Do not publish the audio effect in the channel.</li>
+                            <li><xref keyref="true"/>: Publish the sound effect in the channel.</li>
+                            <li><xref keyref="false"/>: Do not publish the sound effect in the channel.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>startPos</pt>
-                    <pd>The starting position (in milliseconds) for playing the audio effect file.</pd>
+                    <pd>The starting position (in milliseconds) for playing the sound effect file.</pd>
                 </plentry>
             </parml>
         </section>
@@ -162,8 +166,8 @@
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
-                    <li>0: Success.</li>
-                    <li>&lt; 0: Failure.</li>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
             <p props="android">
