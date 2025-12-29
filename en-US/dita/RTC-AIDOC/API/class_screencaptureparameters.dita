@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencaptureparameters">
     <title><ph keyref="ScreenCaptureParameters"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置屏幕共享的参数。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Parameters used to configure screen sharing.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -28,89 +28,73 @@
                 <plentry props="cpp">
                     <pt>dimensions</pt>
                     <pd>
-                        <note>在文档共享场景中设置编码分辨率时，请参考建议设置方式。</note><ph>屏幕共享视频流的编码分辨率。默认值为 1920 × 1080，即 2,073,600 像素。声网会根据该参数的值计算费用。如果屏幕尺寸与该参数值不同，SDK 会采用以下编码策略。假设 <codeph>dimensions</codeph> 设置为 1920 × 1080：</ph>
+                        <note>When setting the encoding resolution in document sharing scenarios, refer to the recommended settings.</note><ph>The encoding resolution of the screen sharing video stream. The default value is 1920 × 1080, which equals 2,073,600 pixels. Agora calculates the cost based on this value. If the screen size differs from this value, the SDK uses the following encoding strategy. Assuming <codeph>dimensions</codeph> is set to 1920 × 1080:</ph>
                         <ul>
-                            <li>如果屏幕尺寸小于 <codeph>dimensions</codeph>，例如 1000 × 1000 像素，SDK 使用屏幕尺寸（即 1000 × 1000 像素）进行编码。</li>
-                            <li>如果屏幕尺寸大于 <codeph>dimensions</codeph>，例如 2000 × 1500 像素，SDK 会在保持屏幕宽高比（4:3）的前提下，使用不超过 <codeph>dimensions</codeph> 的最大值进行编码，即 1440 × 1080。</li>
-                        </ul><ph>详见 <xref keyref="VideoDimensions"/>。</ph></pd>
+                            <li>If the screen size is smaller than <codeph>dimensions</codeph>, such as 1000 × 1000 pixels, the SDK encodes using the screen size (i.e., 1000 × 1000 pixels).</li>
+                            <li>If the screen size is larger than <codeph>dimensions</codeph>, such as 2000 × 1500 pixels, the SDK encodes using the maximum value that does not exceed <codeph>dimensions</codeph> while maintaining the screen's aspect ratio (4:3), i.e., 1440 × 1080.</li>
+                        </ul><ph>See also <xref keyref="VideoDimensions"/>.</ph></pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>frameRate</pt>
-                    <pd>在 Windows 和 macOS 上，表示屏幕共享视频流的编码帧率（fps）。默认值为 5。声网不建议设置超过 15 的值。</pd>
+                    <pd>On Windows and macOS, specifies the encoding frame rate (fps) of the screen sharing video stream. The default value is 5. Agora does not recommend setting a value greater than 15.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>bitrate</pt>
-                    <pd>在 Windows 和 macOS 上，表示屏幕共享视频流的编码码率（Kbps）。默认值为 0，表示 SDK 会根据当前屏幕的分辨率自动计算码率。</pd>
+                    <pd>On Windows and macOS, specifies the encoding bitrate (Kbps) of the screen sharing video stream. The default value is 0, meaning the SDK automatically calculates the bitrate based on the current screen resolution.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>captureMouseCursor</pt>
                     <pd>
-                        <note>由于 macOS 系统限制，在屏幕共享时设置为 <xref keyref="false"/> 无效（共享窗口时不受影响）。</note><ph>是否在屏幕共享中捕获鼠标：</ph>
+                        <note>Due to macOS system limitations, setting this to <xref keyref="false"/> during screen sharing has no effect (not applicable when sharing a window).</note><ph>Whether to capture the mouse cursor during screen sharing:</ph>
                         <ul>
-                            <li><xref keyref="true"/>：（默认）捕获鼠标。</li>
-                            <li><xref keyref="false"/>：不捕获鼠标。</li>
+                            <li><xref keyref="true"/>: (default) Capture the mouse.</li>
+                            <li><xref keyref="false"/>: Do not capture the mouse.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>windowFocus</pt>
                     <pd>
-                        <note>由于 macOS 系统限制，当设置该参数将窗口置于前台时，如果当前应用有多个窗口，只有主窗口会被置于前台。</note><ph>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口置于前台：</ph>
+                        <note>Due to macOS system limitations, when setting this parameter to bring the window to the front, only the main window will be brought to the front if the current app has multiple windows.</note><ph>When calling the <xref keyref="startScreenCaptureByWindowId"/> method to share a window, whether to bring the window to the front:</ph>
                         <ul>
-                            <li><xref keyref="true"/>：将窗口置于前台。</li>
-                            <li><xref keyref="false"/>：（默认）不将窗口置于前台。</li>
+                            <li><xref keyref="true"/>: Bring the window to the front.</li>
+                            <li><xref keyref="false"/>: (default) Do not bring the window to the front.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>excludeWindowList</pt>
-                    <pd>要屏蔽的窗口 ID 列表。调用 <xref keyref="startScreenCaptureByDisplayId"/> 开始屏幕共享时，可使用该参数屏蔽指定窗口。调用 <xref keyref="updateScreenCaptureParameters"/> 更新屏幕共享配置时，也可使用该参数动态屏蔽指定窗口。</pd>
+                    <pd>List of window IDs to exclude. When calling <xref keyref="startScreenCaptureByDisplayId"/> to start screen sharing, you can use this parameter to exclude specific windows. When calling <xref keyref="updateScreenCaptureParameters"/> to update screen sharing configuration, you can also use this parameter to dynamically exclude specific windows.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>excludeWindowCount</pt>
-                    <pd>要排除的窗口数量。
-                        <note>在 Windows 平台上，该参数的最大值为 24；若超过此值，窗口排除将失败。</note>
+                    <pd>Number of windows to exclude.
+                        <note>On Windows, the maximum value of this parameter is 24; exceeding this value will cause window exclusion to fail.</note>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>highLightWidth</pt>
-                    <pd>（仅适用于 macOS 和 Windows）边框的宽度（像素）。默认值为 5，取值范围为 (0, 50]。
-                        <note>仅当 <codeph>highLighted</codeph> 设置为 <xref keyref="true"/> 时该参数才生效。</note>
+                    <pd>(Applicable only to macOS and Windows) Border width (in pixels). The default value is 5. Value range is (0, 50].
+                        <note>This parameter takes effect only when <codeph>highLighted</codeph> is set to <xref keyref="true"/>.</note>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>highLightColor</pt>
-                    <pd>（仅适用于 macOS 和 Windows）
+                    <pd>(Applicable only to macOS and Windows)
                         <ul>
-                            <li>在 Windows 平台上，边框颜色为 ARGB 格式。默认值为 0xFF8CBF26。</li>
-                            <li>在 macOS 上，<codeph>COLOR_CLASS</codeph> 表示 <codeph>NSColor</codeph>。</li>
+                            <li>On Windows, the border color is in ARGB format. Default value is 0xFF8CBF26.</li>
+                            <li>On macOS, <codeph>COLOR_CLASS</codeph> refers to <codeph>NSColor</codeph>.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>enableHighLight</pt>
                     <pd>
-                        <note>当共享窗口或屏幕的部分区域时，若设置该参数为 <xref keyref="true"/>，SDK 会在整个窗口或屏幕周围显示边框。</note><ph>（仅适用于 macOS 和 Windows）是否在共享的窗口或屏幕周围显示边框：</ph>
+                        <note>When sharing a portion of a window or screen, if this parameter is set to <xref keyref="true"/>, the SDK displays a border around the entire window or screen.</note><ph>(Applicable only to macOS and Windows) Whether to show a border around the shared window or screen:</ph>
                         <ul>
-                            <li><xref keyref="true"/>：显示边框。</li>
-                            <li><xref keyref="false"/>：（默认）不显示边框。</li>
+                            <li><xref keyref="true"/>: Show the border.</li>
+                            <li><xref keyref="false"/>: (default) Do not show the border.</li>
                         </ul>
-                    </pd>
-                </plentry>
-                <plentry props="cpp">
-                    <pt>captureAudio</pt>
-                    <pd>
-                        <note>由于系统限制，仅 Android API 级别 29 及以上（即 Android 10 及以上）支持采集系统音频。</note><ph>是否在屏幕共享时采集系统音频：</ph>
-                        <ul>
-                            <li><xref keyref="true"/>：采集系统音频。</li>
-                            <li><xref keyref="false"/>：（默认）不采集系统音频。</li>
-                        </ul>
-                    </pd>
-                </plentry>
-                <plentry props="cpp">
-                    <pt>audioParams</pt>
-                    <pd>音频配置参数。详见 <xref keyref="ScreenAudioParameters"/>。
-                        <note>仅当 <codeph>captureAudio</codeph> 为 <xref keyref="true"/> 时该参数才生效。</note>
                     </pd>
                 </plentry>
             </parml>

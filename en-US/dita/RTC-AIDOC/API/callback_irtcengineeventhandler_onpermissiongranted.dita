@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onpermissiongranted">
     <title><ph keyref="onPermissionGranted"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onPermissionGranted"/> callback: Reports the granted permission.</ph><ph id="shortdesc" props="android"><xref keyref="onPermissionGranted"/> callback. Reports the granted permission.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when a permission is granted.</ph><ph id="shortdesc" props="android"><xref keyref="onPermissionGranted"/> callback. Used to report granted permissions.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,9 +17,7 @@
                 <codeblock props="android" outputclass="language-java">public void onPermissionGranted(int permission)</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="android">This callback is used to report the type of granted permission.</p>
-        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
         <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
@@ -29,11 +27,11 @@
                 </plentry>
                 <plentry props="android">
                     <pt>permission</pt>
-                    <pd>Permission type. Possible values:
+                    <pd>Permission type, including:
                         <ul>
-                            <li><codeph>Constants.RECORD_AUDIO</codeph>: Microphone permission.</li>
-                            <li><codeph>Constants.CAMERA</codeph>: Camera permission.</li>
-                            <li><codeph>Constants.SCREEN_CAPTURE</codeph>: Screen capture permission.</li>
+                            <li><codeph>RECORD_AUDIO</codeph>: Microphone permission.</li>
+                            <li><codeph>CAMERA</codeph>: Camera permission.</li>
+                            <li><codeph>SCREEN_CAPTURE</codeph>: Screen capture permission.</li>
                         </ul>
                     </pd>
                 </plentry>

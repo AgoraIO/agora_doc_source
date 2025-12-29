@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoencodedframeobserver_onencodedvideoframereceived">
     <title><ph keyref="onEncodedVideoFrameReceived"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">报告接收端已接收到远端发送的待解码视频帧。</ph><ph id="shortdesc" props="ios">Local callback for receiving encoded video frame information sent by remote users.</ph><ph id="shortdesc" props="android">Callback when the receiver receives a remote encoded video frame.</ph><ph id="shortdesc" props="mac">Local callback for receiving encoded video frame information sent by remote users.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reports that the receiver has received the encoded video frame sent by the remote user.</ph><ph id="shortdesc" props="ios">Callback when a remote encoded video frame is received.</ph><ph id="shortdesc" props="android">Callback when the receiver receives a remote encoded video frame.</ph><ph id="shortdesc" props="mac">Callback when a remote encoded video frame is received.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,11 +23,11 @@
             <dl outputclass="since">
                 <dlentry props="cpp">
                     <dt>Since</dt>
-                    <dd>自 v4.6.0 版本新增。</dd>
+                    <dd>Available since v4.6.0.</dd>
                 </dlentry>
                 <dlentry props="ios">
                     <dt>Since</dt>
-                    <dd>Added since v4.6.0.</dd>
+                    <dd>Available since v4.6.0.</dd>
                 </dlentry>
                 <dlentry props="android">
                     <dt>Since</dt>
@@ -35,36 +35,41 @@
                 </dlentry>
                 <dlentry props="mac">
                     <dt>Since</dt>
-                    <dd>Added since v4.6.0.</dd>
+                    <dd>Available since v4.6.0.</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">如果你调用了 <xref keyref="setRemoteVideoSubscriptionOptions"/> 方法并将 <codeph>encodedFrameOnly</codeph> 设置为 <xref keyref="true"/>，SDK 会在本地触发该回调，报告接收到的编码视频帧信息。</p>
+            <p props="cpp">If you call the <xref keyref="setRemoteVideoSubscriptionOptions"/> method and set <codeph>encodedFrameOnly</codeph> to <xref keyref="true"/>, the SDK triggers this callback locally to report the received encoded video frame information.</p>
             <p props="ios">If you call the <codeph>setRemoteVideoSubscriptionOptions</codeph> method and set <codeph>encodedFrameOnly</codeph> to <xref keyref="true"/>, the SDK triggers this callback locally to report the received encoded video frame information.</p>
             <p props="android">If you call the <xref keyref="setRemoteVideoSubscriptionOptions"/> method and set <codeph>encodedFrameOnly</codeph> to <xref keyref="true"/>, the SDK triggers this callback locally to report the received encoded video frame information.</p>
             <p props="mac">If you call the <codeph>setRemoteVideoSubscriptionOptions</codeph> method and set <codeph>encodedFrameOnly</codeph> to <xref keyref="true"/>, the SDK triggers this callback locally to report the received encoded video frame information.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="ios mac">
+            <title>Trigger Timing</title>
+            <p props="ios">This callback is triggered when you set <codeph>encodedFrameOnly</codeph> to <xref keyref="true"/>.</p>
+            <p props="mac">This callback is triggered when you set <codeph>encodedFrameOnly</codeph> to <xref keyref="true"/>.</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
                     <pt>channelId</pt>
-                    <pd>频道名。</pd>
+                    <pd>The channel name.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>uid</pt>
-                    <pd>远端用户 ID。</pd>
+                    <pd>The remote user ID.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>imageBuffer</pt>
-                    <pd>编码后的视频图像缓冲区。</pd>
+                    <pd>The buffer of the encoded video image.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>length</pt>
-                    <pd>视频图像的数据长度。</pd>
+                    <pd>The length of the video image data.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>videoEncodedFrameInfo</pt>
-                    <pd>编码视频帧的信息，详见 <xref keyref="EncodedVideoFrameInfo"/>。</pd>
+                    <pd>Information about the encoded video frame. See <xref keyref="EncodedVideoFrameInfo"/>.</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>videoData</pt>
@@ -76,7 +81,7 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>videoFrameInfo</pt>
-                    <pd>Encoded video frame information. See <codeph>AgoraEncodedVideoFrameInfo</codeph>.</pd>
+                    <pd>Information about the encoded video frame. See <codeph>AgoraEncodedVideoFrameInfo</codeph>.</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>channelId</pt>
@@ -112,7 +117,7 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>videoFrameInfo</pt>
-                    <pd>Encoded video frame information. See <codeph>AgoraEncodedVideoFrameInfo</codeph>.</pd>
+                    <pd>Information about the encoded video frame. See <codeph>AgoraEncodedVideoFrameInfo</codeph>.</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>channelId</pt>
@@ -128,8 +133,8 @@
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
-                    <li><xref keyref="true"/>：回调处理成功。</li>
-                    <li><xref keyref="false"/>：回调处理失败。</li>
+                    <li><xref keyref="true"/>: Callback handled successfully.</li>
+                    <li><xref keyref="false"/>: Callback handling failed.</li>
                 </ul>
             </p>
             <p props="ios">

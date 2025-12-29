@@ -17,7 +17,13 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="android">Ensure the total size of all preloaded files does not exceed the limit. For supported audio file formats, see [What audio file formats does Agora RTC SDK support](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format).</p>
+            <p props="android">Make sure the total size of all preloaded files does not exceed the limit. See <codeph>What formats of audio files does the Agora RTC SDK support</codeph>.</p>
+            <note props="android">
+                <ul>
+                    <li>If you call <codeph>preloadEffect</codeph> before <codeph>playEffect</codeph>, the file resource will not be closed after <codeph>playEffect</codeph> is executed. The next time you call <codeph>playEffect</codeph>, it will start playing from the beginning.</li>
+                    <li>If you do not call <codeph>preloadEffect</codeph> before <codeph>playEffect</codeph>, the resource will be destroyed after <codeph>playEffect</codeph> is executed. The next time you call <codeph>playEffect</codeph>, it will try to reopen the file and play from the beginning.</li>
+                </ul>
+            </note>
         </section>
         <section id="timing" deliveryTarget="details" props="android">
             <title>Timing</title>
@@ -28,14 +34,16 @@
             <parml>
                 <plentry props="android">
                     <pt>soundId</pt>
-                    <pd>Sound effect ID. Each effect file must have a unique ID.</pd>
+                    <pd>Audio effect ID. Each audio effect file must have a unique ID.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>filePath</pt>
-                    <pd>File path:
+                    <pd>File path. Supports the following formats:
                         <ul>
-                            <li>Android: The path must include the file name and extension. Agora supports URLs, absolute paths, or paths starting with <codeph>/assets/</codeph>. If you use an absolute path to access a local file, permission issues may occur. Therefore, using a URI is recommended. For example:</li>
-                        </ul><ph><codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>.</ph></pd>
+                            <li>URL.</li>
+                            <li>Absolute path.</li>
+                            <li>File path starting with <codeph>/assets/</codeph>.</li>
+                        </ul><ph>The path must include the file name and extension. If you access a local file using an absolute path, you may encounter permission issues. It is recommended to use a URI, for example:</ph><ph><codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>.</ph></pd>
                 </plentry>
             </parml>
         </section>
@@ -43,8 +51,8 @@
             <title>Return Values</title>
             <p props="android">
                 <ul>
-                    <li>0: Success.</li>
-                    <li>&lt; 0: Failure.</li>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
                 </ul>
             </p>
         </section>

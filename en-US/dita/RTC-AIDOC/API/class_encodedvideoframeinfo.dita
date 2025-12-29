@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encodedvideoframeinfo">
     <title><ph keyref="EncodedVideoFrameInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">描述外部编码视频帧的信息。</ph><ph id="shortdesc" props="android">Contains information about externally encoded video frames.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes information of externally encoded video frames.</ph><ph id="shortdesc" props="android">Contains information about externally encoded video frames.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -38,52 +38,52 @@
             <parml>
                 <plentry props="cpp">
                     <pt>codecType</pt>
-                    <pd>本地视频流的编解码器类型。详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                    <pd>The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>width</pt>
-                    <pd>视频帧的宽度（单位为像素）。</pd>
+                    <pd>The width of the video frame (in pixels).</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>height</pt>
-                    <pd>视频帧的高度（单位为像素）。</pd>
+                    <pd>The height of the video frame (in pixels).</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>framesPerSecond</pt>
-                    <pd>视频帧的每秒帧数。当该参数不为 0 时，可用于计算外部编码视频帧的 Unix 时间戳。</pd>
+                    <pd>The frame rate of the video frame. When this parameter is not 0, it can be used to calculate the Unix timestamp of the externally encoded video frame.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>frameType</pt>
-                    <pd>视频帧的类型。详见 <xref keyref="VIDEO_FRAME_TYPE"/>。</pd>
+                    <pd>The type of the video frame. See <xref keyref="VIDEO_FRAME_TYPE"/>.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>rotation</pt>
-                    <pd>视频帧的旋转信息。详见 <xref keyref="VIDEO_ORIENTATION"/>。</pd>
+                    <pd>The rotation information of the video frame. See <xref keyref="VIDEO_ORIENTATION"/>.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>trackId</pt>
-                    <pd>预留参数，用于未来支持多个视频轨道。</pd>
+                    <pd>Reserved parameter for future support of multiple video tracks.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>captureTimeMs</pt>
-                    <pd>外部编码视频帧的采集时间戳（单位为毫秒，Unix 时间戳）。</pd>
+                    <pd>The capture timestamp of the externally encoded video frame (in milliseconds, Unix timestamp).</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>decodeTimeMs</pt>
-                    <pd>外部编码视频帧的解码时间戳（单位为毫秒，Unix 时间戳）。</pd>
+                    <pd>The decode timestamp of the externally encoded video frame (in milliseconds, Unix timestamp).</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>streamType</pt>
-                    <pd>视频流的类型。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
+                    <pd>The type of the video stream. See <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>codecType</pt>
                     <pd>
-                        <note>In some scenarios, such as when the captured video stream has low resolution or the device performance is limited, the SDK automatically switches to H.264 encoding format.</note><ph>The codec type of the video:</ph>
+                        <note>In certain scenarios, such as when the captured video stream has low resolution or the device performance is limited, the SDK automatically switches to the H.264 codec format.</note><ph>The codec type of the video:</ph>
                         <ul>
                             <li><codeph>1</codeph>: <codeph>VIDEO_CODEC_VP8</codeph>, VP8.</li>
                             <li><codeph>2</codeph>: <codeph>VIDEO_CODEC_H264</codeph>, H.264.</li>
-                            <li><codeph>3</codeph>: (Default) <codeph>VIDEO_CODEC_H265</codeph>, H.265.</li>
+                            <li><codeph>3</codeph>: (default) <codeph>VIDEO_CODEC_H265</codeph>, H.265.</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -97,13 +97,13 @@
                 </plentry>
                 <plentry props="android">
                     <pt>framesPerSecond</pt>
-                    <pd>The frame rate of the video frame. When this parameter is not <codeph>0</codeph>, you can use it to calculate the Unix timestamp of the externally encoded video frame.</pd>
+                    <pd>The number of frames per second of the video frame. When this parameter is not <codeph>0</codeph>, you can use it to calculate the Unix timestamp of the externally encoded video frame.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>frameType</pt>
-                    <pd>The type of video frame:
+                    <pd>The type of the video frame:
                         <ul>
-                            <li><codeph>0</codeph>: (Default) <codeph>VIDEO_FRAME_TYPE_BLANK_FRAME</codeph>, blank frame.</li>
+                            <li><codeph>0</codeph>: (default) <codeph>VIDEO_FRAME_TYPE_BLANK_FRAME</codeph>, blank frame.</li>
                             <li><codeph>3</codeph>: <codeph>VIDEO_FRAME_TYPE_KEY_FRAME</codeph>, key frame.</li>
                             <li><codeph>4</codeph>: <codeph>VIDEO_FRAME_TYPE_DELTA_FRAME</codeph>, delta frame.</li>
                             <li><codeph>5</codeph>: <codeph>VIDEO_FRAME_TYPE_B_FRAME</codeph>, B frame.</li>
@@ -115,7 +115,7 @@
                     <pt>rotation</pt>
                     <pd>The rotation angle of the video frame:
                         <ul>
-                            <li><codeph>0</codeph>: (Default) 0 degrees.</li>
+                            <li><codeph>0</codeph>: (default) 0 degrees.</li>
                             <li><codeph>90</codeph>: 90 degrees.</li>
                             <li><codeph>180</codeph>: 180 degrees.</li>
                             <li><codeph>270</codeph>: 270 degrees.</li>
@@ -132,11 +132,11 @@
                 </plentry>
                 <plentry props="android">
                     <pt>decodeTimeMs</pt>
-                    <pd>Output parameter that indicates the timestamp (in milliseconds) when the video frame was decoded.</pd>
+                    <pd>Output parameter indicating the timestamp (in milliseconds) when the video frame was decoded.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>streamType</pt>
-                    <pd>The type of video stream.</pd>
+                    <pd>The type of the video stream.</pd>
                 </plentry>
             </parml>
         </section>

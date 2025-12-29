@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_preloadeffectex">
     <title><ph keyref="preloadEffectEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">预加载指定音效文件到频道中。</ph><ph id="shortdesc" props="android">将指定音效预加载到频道中。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Preloads the specified sound effect into the channel.</ph><ph id="shortdesc" props="android">Preloads the specified audio effect into the channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,70 +21,70 @@
             <dl outputclass="since">
                 <dlentry props="cpp">
                     <dt>Since</dt>
-                    <dd>自 v4.6.0 版本新增。</dd>
+                    <dd>Available since v4.6.0.</dd>
                 </dlentry>
                 <dlentry props="android">
                     <dt>Since</dt>
-                    <dd>自 v4.6.0 版本新增。</dd>
+                    <dd>Added since v4.6.0.</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">每次调用该方法只能将一个音效文件预加载到内存中。如需预加载多个音效文件，请多次调用该方法。预加载完成后，你可以调用 <xref keyref="playEffect3"/> 播放预加载的音效，或调用 <xref keyref="playAllEffects"/> 播放所有预加载的音效。</p>
-            <p props="android">每次调用该方法时只能将一个音效文件预加载到内存中。如果需要预加载多个音效文件，请多次调用该方法。你可以调用 <codeph>playEffect</codeph> 播放预加载的音效，或调用 <xref keyref="playAllEffects"/> 播放所有预加载的音效。</p>
+            <p props="cpp">Each time you call this method, you can preload only one sound effect file into memory. To preload multiple sound effect files, call this method multiple times. After preloading is complete, you can call <xref keyref="playEffect3"/> to play the preloaded sound effect, or call <xref keyref="playAllEffects"/> to play all preloaded sound effects.</p>
+            <p props="android">Each call to this method can preload only one audio effect file into memory. To preload multiple audio effect files, call this method multiple times. After preloading, you can call <codeph>playEffect</codeph> to play the preloaded audio effect, or call <xref keyref="playAllEffects"/> to play all preloaded audio effects.</p>
             <note props="cpp">
                 <ul>
-                    <li>为确保使用体验流畅，音效文件的大小不应超过限制。</li>
-                    <li>声网建议在加入频道前调用该方法。</li>
-                    <li>如果在调用 <xref keyref="playEffectEx"/> 前已调用 <xref keyref="preloadEffectEx"/>，则 <xref keyref="playEffectEx"/> 执行后不会关闭文件资源，下一次调用 <xref keyref="playEffectEx"/> 时将从头开始播放。</li>
-                    <li>如果在调用 <xref keyref="playEffectEx"/> 前未调用 <xref keyref="preloadEffectEx"/>，则 <xref keyref="playEffectEx"/> 执行后会销毁文件资源，下一次调用 <xref keyref="playEffectEx"/> 时会尝试重新打开文件并从头开始播放。</li>
+                    <li>To ensure a smooth user experience, the size of the sound effect file should not exceed the limit.</li>
+                    <li>Agora recommends calling this method before joining a channel.</li>
+                    <li>If you call <xref keyref="preloadEffectEx"/> before calling <xref keyref="playEffectEx"/>, the file resource will not be closed after <xref keyref="playEffectEx"/> is executed. The next time you call <xref keyref="playEffectEx"/>, playback will start from the beginning.</li>
+                    <li>If you do not call <xref keyref="preloadEffectEx"/> before calling <xref keyref="playEffectEx"/>, the resource will be destroyed after <xref keyref="playEffectEx"/> is executed. The next time you call <xref keyref="playEffectEx"/>, it will attempt to reopen the file and start playback from the beginning.</li>
                 </ul>
             </note>
             <note props="android">
                 <ul>
-                    <li>为确保使用体验流畅，音效文件的大小不应超过限制。</li>
-                    <li>声网建议你在加入频道前调用该方法。</li>
-                    <li>如果在调用 <codeph>playEffectEx</codeph> 之前调用了 <codeph>preloadEffectEx</codeph>，则在 <codeph>playEffectEx</codeph> 执行后文件资源不会被关闭。下次调用 <codeph>playEffectEx</codeph> 时将从头开始播放。</li>
-                    <li>如果在调用 <codeph>playEffectEx</codeph> 之前未调用 <codeph>preloadEffectEx</codeph>，则在 <codeph>playEffectEx</codeph> 执行后资源将被销毁。下次调用 <codeph>playEffectEx</codeph> 时将尝试重新打开文件并从头开始播放。</li>
+                    <li>To ensure a smooth experience, the size of the audio effect file should not exceed the limit.</li>
+                    <li>Agora recommends calling this method before joining a channel.</li>
+                    <li>If <codeph>preloadEffectEx</codeph> is called before <codeph>playEffectEx</codeph>, then after <codeph>playEffectEx</codeph> is executed, the file resource will not be closed. The next call to <codeph>playEffectEx</codeph> will start playback from the beginning.</li>
+                    <li>If <codeph>preloadEffectEx</codeph> is not called before <codeph>playEffectEx</codeph>, then after <codeph>playEffectEx</codeph> is executed, the file resource will be destroyed. The next call to <codeph>playEffectEx</codeph> will attempt to reopen the file and play from the beginning.</li>
                 </ul>
             </note>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
-            <p>该方法适用于多频道场景。</p>
+            <p>This method applies to multi-channel scenarios.</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>soundId</pt>
-                    <pd>音效 ID。</pd>
+                    <pd>Sound effect ID.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>filePath</pt>
-                    <pd>本地文件的绝对路径或在线文件的 URL。支持的音频格式包括：mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
+                    <pd>The absolute path of the local file or the URL of the online file. Supported audio formats include: mp3, mp4, m4a, aac, 3gp, mkv, and wav.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>startPos</pt>
-                    <pd>音效文件的播放起始位置（毫秒）。</pd>
+                    <pd>The starting position (in milliseconds) for playing the sound effect file.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>connection</pt>
-                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>soundId</pt>
-                    <pd>音效 ID。</pd>
+                    <pd>Audio effect ID.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>filePath</pt>
-                    <pd>本地文件的绝对路径或在线文件的 URL。支持的音频格式包括：mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
+                    <pd>Absolute path of a local file or URL of an online file. Supported audio formats include: mp3, mp4, m4a, aac, 3gp, mkv, and wav.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>startPos</pt>
-                    <pd>音效文件的播放起始位置（毫秒）。</pd>
+                    <pd>Start position of the audio effect file in milliseconds.</pd>
                 </plentry>
             </parml>
         </section>
@@ -92,14 +92,14 @@
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
             <p props="android">
                 <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
         </section>

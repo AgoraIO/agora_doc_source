@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_getaudiobufferdelay">
     <title><ph keyref="getAudioBufferDelay"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Retrieves the audio buffer delay when playing a media file.</ph><ph id="shortdesc" props="ios">Retrieves the audio buffer delay when playing a media file.</ph><ph id="shortdesc" props="android">Retrieves the audio buffer delay when playing a media file.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the audio buffer delay when playing media files.</ph><ph id="shortdesc" props="ios">Gets the audio buffer delay when you play a media file.</ph><ph id="shortdesc" props="android">Gets the audio buffer delay when playing media files.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,7 +24,7 @@
             <parml>
                 <plentry props="cpp">
                     <pt>delayMs</pt>
-                    <pd>Output parameter that represents the audio buffer delay in milliseconds.</pd>
+                    <pd>Output parameter. The audio buffer delay when playing media files, in milliseconds.</pd>
                 </plentry>
             </parml>
         </section>
@@ -32,20 +32,20 @@
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
-                    <li>0: Success.</li>
-                    <li>&lt; 0: Failure.</li>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
                 </ul>
             </p>
             <p props="ios">
                 <ul>
-                    <li>0: The method call succeeds and returns the audio buffer delay (ms).</li>
-                    <li>&lt; 0: The method call fails. You can use <codeph>MediaPlayerReason</codeph> to check the reason for failure.</li>
+                    <li>0: Success. Returns the audio buffer delay in milliseconds.</li>
+                    <li>&lt; 0: Failure. You can use <codeph>MediaPlayerReason</codeph> to check the reason for the failure.</li>
                 </ul>
             </p>
             <p props="android">
                 <ul>
-                    <li>If the method call succeeds, returns the audio buffer delay (ms).</li>
-                    <li>If the method call fails, returns a value less than 0. You can use <xref keyref="MEDIA_PLAYER_REASON"/> to check the reason for failure.</li>
+                    <li>If the method call succeeds, returns the audio buffer delay (in milliseconds).</li>
+                    <li>If the method call fails, returns an error code less than 0. You can use <xref keyref="MEDIA_PLAYER_REASON"/> to check the error reason.</li>
                 </ul>
             </p>
         </section>
