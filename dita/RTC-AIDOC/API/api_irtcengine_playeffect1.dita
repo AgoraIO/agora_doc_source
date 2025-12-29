@@ -14,29 +14,41 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="ios" outputclass="language-objectivec">- (int)playEffect:(int)soundId
-         filePath:(NSString* _Nonnull)filePath
-        loopCount:(NSInteger)loopCount
-            pitch:(double)pitch
-              pan:(double)pan
-             gain:(NSInteger)gain NS_SWIFT_NAME(playEffect(_:filePath:loopCount:pitch:pan:gain:));</codeblock>
+          filePath:(NSString* _Nonnull)filePath
+         loopCount:(NSInteger)loopCount
+             pitch:(double)pitch
+               pan:(double)pan
+              gain:(NSInteger)gain NS_SWIFT_NAME(playEffect(_:filePath:loopCount:pitch:pan:gain:));</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)playEffect:(int)soundId
-         filePath:(NSString* _Nonnull)filePath
-        loopCount:(NSInteger)loopCount
-            pitch:(double)pitch
-              pan:(double)pan
-             gain:(NSInteger)gain NS_SWIFT_NAME(playEffect(_:filePath:loopCount:pitch:pan:gain:));</codeblock>
+          filePath:(NSString* _Nonnull)filePath
+         loopCount:(NSInteger)loopCount
+             pitch:(double)pitch
+               pan:(double)pan
+              gain:(NSInteger)gain NS_SWIFT_NAME(playEffect(_:filePath:loopCount:pitch:pan:gain:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="ios">你可以多次调用该方法，并传入不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph>，以同时播放多个音效文件。为获得最佳用户体验，声网建议不要同时播放超过三个音效文件。</p>
-            <p props="mac">你可以多次调用该方法，并传入不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph>，以同时播放多个音效文件。为获得最佳用户体验，声网建议不要同时播放超过三个音效文件。</p>
-            <note props="ios">如果需要播放在线音效文件，声网建议先将其缓存到本地设备，调用 <xref keyref="preloadEffect2"/> 将其预加载到内存中，再调用本方法播放。否则，可能因加载超时或失败导致播放失败或无声。</note>
-            <note props="mac">如果需要播放在线音效文件，声网建议先将其缓存到本地设备，调用 <xref keyref="preloadEffect2"/> 将其预加载到内存中，再调用本方法播放。否则，可能因加载超时或失败导致播放失败或无声。</note>
+            <p props="ios">要同时播放多个音效文件，请使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。为获得最佳用户体验，声网建议你不要同时播放超过三个音频文件。</p>
+            <p props="mac">要同时播放多个音效文件，请使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。为获得最佳用户体验，声网建议你不要同时播放超过三个音频文件。</p>
+            <note props="ios">
+                <ul>
+                    <li>如果你需要播放在线音效文件，声网建议你先将该文件缓存到本地设备，调用 <xref keyref="preloadEffect2"/> 将其预加载到内存中，然后再调用该方法播放音效。否则，可能因加载超时或失败导致播放失败或无声音。</li>
+                    <li>如果在调用 <codeph>playEffect</codeph> 之前调用了 <codeph>preloadEffect</codeph>，<codeph>playEffect</codeph> 播放后不会关闭文件资源。下次调用 <codeph>playEffect</codeph> 时将直接从头开始播放。</li>
+                    <li>如果在调用 <codeph>playEffect</codeph> 之前未调用 <codeph>preloadEffect</codeph>，<codeph>playEffect</codeph> 播放后将销毁资源。下次调用 <codeph>playEffect</codeph> 时将尝试重新打开文件并从头开始播放。</li>
+                </ul>
+            </note>
+            <note props="mac">
+                <ul>
+                    <li>如果你需要播放在线音效文件，声网建议你先将该文件缓存到本地设备，调用 <xref keyref="preloadEffect2"/> 将其预加载到内存中，然后再调用该方法播放音效。否则，可能因加载超时或失败导致播放失败或无声音。</li>
+                    <li>如果在调用 <codeph>playEffect</codeph> 之前调用了 <codeph>preloadEffect</codeph>，<codeph>playEffect</codeph> 播放后不会关闭文件资源。下次调用 <codeph>playEffect</codeph> 时将直接从头开始播放。</li>
+                    <li>如果在调用 <codeph>playEffect</codeph> 之前未调用 <codeph>preloadEffect</codeph>，<codeph>playEffect</codeph> 播放后将销毁资源。下次调用 <codeph>playEffect</codeph> 时将尝试重新打开文件并从头开始播放。</li>
+                </ul>
+            </note>
         </section>
         <section id="timing" deliveryTarget="details" props="ios mac">
             <title>调用时机</title>
-            <p props="ios">你可以在加入频道前或加入频道后调用该方法。</p>
-            <p props="mac">你可以在加入频道前或加入频道后调用该方法。</p>
+            <p props="ios">你可以在加入频道前或后调用该方法。</p>
+            <p props="mac">你可以在加入频道前或后调用该方法。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="ios mac">
             <title>参数</title>
@@ -115,10 +127,18 @@
         </section>
         <section id="return_values" props="ios mac">
             <title>返回值</title>
-            <p props="ios">0：方法调用成功。
-&lt; 0：方法调用失败。</p>
-            <p props="mac">0：方法调用成功。
-&lt; 0：方法调用失败。</p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
         </section>
     </refbody>
 </reference>

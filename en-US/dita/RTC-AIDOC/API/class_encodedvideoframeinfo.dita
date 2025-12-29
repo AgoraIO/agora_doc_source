@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encodedvideoframeinfo">
     <title><ph keyref="EncodedVideoFrameInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes information about externally encoded video frames.</ph><ph id="shortdesc" props="android">Contains information about externally encoded video frames.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes information of externally encoded video frames.</ph><ph id="shortdesc" props="android">Contains information about externally encoded video frames.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -38,27 +38,27 @@
             <parml>
                 <plentry props="cpp">
                     <pt>codecType</pt>
-                    <pd>Codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
+                    <pd>The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>width</pt>
-                    <pd>Width of the video frame (in pixels).</pd>
+                    <pd>The width of the video frame (in pixels).</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>height</pt>
-                    <pd>Height of the video frame (in pixels).</pd>
+                    <pd>The height of the video frame (in pixels).</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>framesPerSecond</pt>
-                    <pd>Frames per second of the video frame. When this parameter is not 0, it can be used to calculate the Unix timestamp of the externally encoded video frame.</pd>
+                    <pd>The frame rate of the video frame. When this parameter is not 0, it can be used to calculate the Unix timestamp of the externally encoded video frame.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>frameType</pt>
-                    <pd>Type of the video frame. See <xref keyref="VIDEO_FRAME_TYPE"/>.</pd>
+                    <pd>The type of the video frame. See <xref keyref="VIDEO_FRAME_TYPE"/>.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>rotation</pt>
-                    <pd>Rotation information of the video frame. See <xref keyref="VIDEO_ORIENTATION"/>.</pd>
+                    <pd>The rotation information of the video frame. See <xref keyref="VIDEO_ORIENTATION"/>.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>trackId</pt>
@@ -66,44 +66,44 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>captureTimeMs</pt>
-                    <pd>Capture timestamp of the externally encoded video frame (in milliseconds, Unix timestamp).</pd>
+                    <pd>The capture timestamp of the externally encoded video frame (in milliseconds, Unix timestamp).</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>decodeTimeMs</pt>
-                    <pd>Decode timestamp of the externally encoded video frame (in milliseconds, Unix timestamp).</pd>
+                    <pd>The decode timestamp of the externally encoded video frame (in milliseconds, Unix timestamp).</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>streamType</pt>
-                    <pd>Type of the video stream. See <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
+                    <pd>The type of the video stream. See <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>codecType</pt>
                     <pd>
-                        <note>In certain scenarios, such as when the captured video stream has low resolution or the device has limited performance, the SDK automatically switches to H.264 encoding.</note><ph>Video codec type:</ph>
+                        <note>In certain scenarios, such as when the captured video stream has low resolution or the device performance is limited, the SDK automatically switches to the H.264 codec format.</note><ph>The codec type of the video:</ph>
                         <ul>
                             <li><codeph>1</codeph>: <codeph>VIDEO_CODEC_VP8</codeph>, VP8.</li>
                             <li><codeph>2</codeph>: <codeph>VIDEO_CODEC_H264</codeph>, H.264.</li>
-                            <li><codeph>3</codeph> (default): <codeph>VIDEO_CODEC_H265</codeph>, H.265.</li>
+                            <li><codeph>3</codeph>: (default) <codeph>VIDEO_CODEC_H265</codeph>, H.265.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>width</pt>
-                    <pd>Width of the video frame (in pixels).</pd>
+                    <pd>The width of the video frame (in pixels).</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>height</pt>
-                    <pd>Height of the video frame (in pixels).</pd>
+                    <pd>The height of the video frame (in pixels).</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>framesPerSecond</pt>
-                    <pd>Frames per second of the video frame. When this parameter is not <codeph>0</codeph>, you can use it to calculate the Unix timestamp of the externally encoded video frame.</pd>
+                    <pd>The number of frames per second of the video frame. When this parameter is not <codeph>0</codeph>, you can use it to calculate the Unix timestamp of the externally encoded video frame.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>frameType</pt>
-                    <pd>Video frame type:
+                    <pd>The type of the video frame:
                         <ul>
-                            <li><codeph>0</codeph> (default): <codeph>VIDEO_FRAME_TYPE_BLANK_FRAME</codeph>, blank frame.</li>
+                            <li><codeph>0</codeph>: (default) <codeph>VIDEO_FRAME_TYPE_BLANK_FRAME</codeph>, blank frame.</li>
                             <li><codeph>3</codeph>: <codeph>VIDEO_FRAME_TYPE_KEY_FRAME</codeph>, key frame.</li>
                             <li><codeph>4</codeph>: <codeph>VIDEO_FRAME_TYPE_DELTA_FRAME</codeph>, delta frame.</li>
                             <li><codeph>5</codeph>: <codeph>VIDEO_FRAME_TYPE_B_FRAME</codeph>, B frame.</li>
@@ -113,9 +113,9 @@
                 </plentry>
                 <plentry props="android">
                     <pt>rotation</pt>
-                    <pd>Rotation angle of the video frame:
+                    <pd>The rotation angle of the video frame:
                         <ul>
-                            <li><codeph>0</codeph> (default): 0 degrees.</li>
+                            <li><codeph>0</codeph>: (default) 0 degrees.</li>
                             <li><codeph>90</codeph>: 90 degrees.</li>
                             <li><codeph>180</codeph>: 180 degrees.</li>
                             <li><codeph>270</codeph>: 270 degrees.</li>
@@ -128,7 +128,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>captureTimeMs</pt>
-                    <pd>Unix timestamp (in milliseconds) when the externally encoded video frame was captured.</pd>
+                    <pd>The Unix timestamp (in milliseconds) when the externally encoded video frame was captured.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>decodeTimeMs</pt>
@@ -136,7 +136,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>streamType</pt>
-                    <pd>Type of the video stream.</pd>
+                    <pd>The type of the video stream.</pd>
                 </plentry>
             </parml>
         </section>

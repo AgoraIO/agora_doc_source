@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setplaybackaudioframeparameters">
     <title><ph keyref="setPlaybackAudioFrameParameters"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the format of the raw audio playback data.</ph><ph id="shortdesc" props="android">Sets the format of the raw audio playback data.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the format of the raw playback audio data.</ph><ph id="shortdesc" props="android">Sets the format of raw audio playback data.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -18,20 +18,25 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">The SDK calculates the sampling interval based on <codeph>samplesPerCall</codeph>, <codeph>sampleRate</codeph>, and <codeph>channel</codeph>: Sampling interval (in seconds) = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>). Make sure the interval is ≥ 0.01 seconds. The SDK triggers the <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> callback based on this interval.</p>
-            <p props="android">The SDK calculates the sampling interval based on the <codeph>samplesPerCall</codeph>, <codeph>sampleRate</codeph>, and <codeph>channel</codeph> parameters. Sampling interval (in seconds) = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>). Ensure the sampling interval is no less than 0.01 seconds. The SDK triggers the <xref keyref="onPlaybackAudioFrame"/> callback based on the sampling interval.</p>
+            <p props="cpp">The SDK calculates the sampling interval based on the <codeph>samplesPerCall</codeph>, <codeph>sampleRate</codeph>, and <codeph>channel</codeph> parameters. Sampling interval (in seconds) = <codeph>samplesPerCall / (sampleRate × channel)</codeph>. Make sure the sampling interval is ≥ 0.01 seconds. The SDK triggers the <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> callback based on the sampling interval.</p>
+            <p props="android">The SDK calculates the sampling interval based on the <codeph>samplesPerCall</codeph>, <codeph>sampleRate</codeph>, and <codeph>channel</codeph> parameters. Sampling interval (in seconds) = <codeph>samplesPerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>). Ensure that the sampling interval is ≥ 0.01 seconds. The SDK triggers the <xref keyref="onPlaybackAudioFrame"/> callback based on the sampling interval.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
             <p props="cpp">Call this method before joining a channel.</p>
             <p props="android">Call this method before joining a channel.</p>
         </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After this method is successfully called, the SDK triggers the <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> callback to report playback audio frames.</p>
+            <p props="android">This method triggers the <xref keyref="onPlaybackAudioFrame"/> callback based on the sampling interval.</p>
+        </section>
         <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
                     <pt>sampleRate</pt>
-                    <pd>The sampling rate returned in the callback. Can be set to 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+                    <pd>Sampling rate returned in the callback. Can be set to 8000, 16000, 24000, 32000, 44100, or 48000 Hz.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>channel</pt>
@@ -44,19 +49,19 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>mode</pt>
-                    <pd>The usage mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>.</pd>
+                    <pd>Usage mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/> for details.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>samplesPerCall</pt>
-                    <pd>The number of samples returned per call, e.g., 1024 for media streaming.</pd>
+                    <pd>Number of audio samples per callback, for example, 1024 for media streaming.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>sampleRate</pt>
-                    <pd>The sampling rate returned in the callback. Can be set to 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+                    <pd>Sampling rate returned in the callback. Can be set to 8000, 16000, 24000, 32000, 44100, or 48000 Hz.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>channel</pt>
-                    <pd>Number of audio channels:
+                    <pd>Number of audio channels. Can be set to:
                         <ul>
                             <li>1: Mono.</li>
                             <li>2: Stereo.</li>
@@ -67,14 +72,14 @@
                     <pt>mode</pt>
                     <pd>Usage mode of the audio frame:
                         <ul>
-                            <li><codeph>0</codeph> (default): Read-only mode. For example, the user retrieves data via the Agora SDK and pushes RTMP or RTMPS streams.</li>
-                            <li><codeph>2</codeph>: Read-write mode. The user reads data from <xref keyref="AudioFrame"/>, modifies it, and plays it back. For example, the user has a custom audio effects module and performs voice preprocessing such as voice changing.</li>
+                            <li><codeph>RAW_AUDIO_FRAME_OP_MODE_READ_ONLY</codeph> (0): (Default) Read-only mode. For example, the user obtains data through the Agora SDK and pushes RTMP or RTMPS streams.</li>
+                            <li><codeph>RAW_AUDIO_FRAME_OP_MODE_READ_WRITE</codeph> (2): Read-write mode. The user reads data from <xref keyref="AudioFrame"/>, modifies it, and then plays it. For example, the user has their own audio effect processing module and performs voice preprocessing, such as voice changing.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>samplesPerCall</pt>
-                    <pd>Number of samples per call, e.g., 1024 for media streaming.</pd>
+                    <pd>Number of data samples returned per call, e.g., 1024 for media streaming.</pd>
                 </plentry>
             </parml>
         </section>
@@ -82,8 +87,8 @@
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
-                    <li>0: Success.</li>
-                    <li>&lt; 0: Failure.</li>
+                    <li>0: Method call succeeded.</li>
+                    <li>&lt; 0: Method call failed.</li>
                 </ul>
             </p>
             <p props="android">

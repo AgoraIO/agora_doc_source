@@ -14,22 +14,22 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="ios" outputclass="language-objectivec">- (int)playEffectEx:(AgoraRtcConnection* _Nonnull)connection
-            soundId:(int)soundId
-           filePath:(NSString* _Nonnull)filePath
-          loopCount:(NSInteger)loopCount
-              pitch:(double)pitch
-                pan:(double)pan
-               gain:(NSInteger)gain
-           publish:(BOOL)publish NS_SWIFT_NAME(playEffectEx(_:soundId:filePath:loopCount:pitch:pan:gain:publish:));</codeblock>
+             soundId:(int)soundId
+            filePath:(NSString* _Nonnull)filePath
+           loopCount:(NSInteger)loopCount
+               pitch:(double)pitch
+                 pan:(double)pan
+                gain:(NSInteger)gain
+            publish:(BOOL)publish NS_SWIFT_NAME(playEffectEx(_:soundId:filePath:loopCount:pitch:pan:gain:publish:));</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int playEffectEx(RtcConnection connection, int soundId, String filePath, int loopCount, double pitch, double pan, double gain, boolean publish);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)playEffectEx:(AgoraRtcConnection* _Nonnull)connection
-            soundId:(int)soundId
-           filePath:(NSString* _Nonnull)filePath
-          loopCount:(NSInteger)loopCount
-              pitch:(double)pitch
-                pan:(double)pan
-               gain:(NSInteger)gain
-           publish:(BOOL)publish NS_SWIFT_NAME(playEffectEx(_:soundId:filePath:loopCount:pitch:pan:gain:publish:));</codeblock>
+             soundId:(int)soundId
+            filePath:(NSString* _Nonnull)filePath
+           loopCount:(NSInteger)loopCount
+               pitch:(double)pitch
+                 pan:(double)pan
+                gain:(NSInteger)gain
+            publish:(BOOL)publish NS_SWIFT_NAME(playEffectEx(_:soundId:filePath:loopCount:pitch:pan:gain:publish:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -47,25 +47,31 @@
                     <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="ios">该方法用于设置是否在频道中发布音效。若需同时播放多个音效文件，只需使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。在调用 <xref keyref="preloadEffect2"/> 预加载音效后，可调用此方法将指定音效播放给频道内所有用户。每次调用该方法只能播放一个音效。若需同时播放多个音效，请多次调用该方法。</p>
-            <p props="android">调用 <codeph>preloadEffect</codeph> 预加载音效后，你可以调用 <codeph>playEffectEx</codeph> 将指定音效播放给频道内所有用户。每次调用该方法只能播放一个音效，若需同时播放多个音效，请使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。</p>
-            <p props="mac">该方法用于设置是否在频道中发布音效。若需同时播放多个音效文件，只需使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。在调用 <xref keyref="preloadEffect2"/> 预加载音效后，可调用此方法将指定音效播放给频道内所有用户。每次调用该方法只能播放一个音效。若需同时播放多个音效，请多次调用该方法。</p>
+            <p props="ios">该方法用于设置是否在频道中发布音效。若需同时播放多个音效文件，只需使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。在通过 <codeph>preloadEffectEx:filePath:</codeph> 预加载音效后，可调用此方法将指定音效播放给频道中的所有用户。每次调用该方法只能播放一个音效。若需同时播放多个音效，请多次调用此方法。</p>
+            <p props="android">调用 <codeph>preloadEffectEx</codeph> 预加载音效后，可以使用该方法将指定音效播放给频道中的所有用户。你可以多次调用该方法，并传入不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph>，以同时播放多个音效文件。每次调用该方法只能播放一个音效。</p>
+            <p props="mac">该方法用于设置是否在频道中发布音效。若需同时播放多个音效文件，只需使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。在通过 <codeph>preloadEffectEx:filePath:</codeph> 预加载音效后，可调用此方法将指定音效播放给频道中的所有用户。每次调用该方法只能播放一个音效。若需同时播放多个音效，请多次调用此方法。</p>
             <note props="ios">
                 <ul>
                     <li>声网建议不要同时播放超过三个音效。</li>
-                    <li>本方法中的音效 ID 和文件路径必须与 <xref keyref="preloadEffect2"/> 中的保持一致。</li>
+                    <li>此方法中的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 必须与 <codeph>preloadEffectEx:filePath:</codeph> 方法中的保持一致。</li>
+                    <li>如果在执行 <codeph>playEffectEx</codeph> 之前调用了 <codeph>preloadEffectEx</codeph>，则 <codeph>playEffectEx</codeph> 执行后不会关闭文件资源。下次执行 <codeph>playEffectEx</codeph> 时将直接从头开始播放。</li>
+                    <li>如果在执行 <codeph>playEffectEx</codeph> 之前未调用 <codeph>preloadEffectEx</codeph>，则 <codeph>playEffectEx</codeph> 执行后资源将被销毁。下次执行 <codeph>playEffectEx</codeph> 时将尝试重新打开文件并从头播放。</li>
                 </ul>
             </note>
             <note props="android">
                 <ul>
                     <li>声网建议不要同时播放超过三个音效。</li>
-                    <li>本方法中的音效 ID 和文件路径必须与 <codeph>preloadEffect</codeph> 中保持一致。</li>
+                    <li>本方法中的音效 ID 和文件路径必须与 <codeph>preloadEffectEx</codeph> 方法中保持一致。</li>
+                    <li>如果在调用 <codeph>playEffectEx</codeph> 之前调用了 <codeph>preloadEffectEx</codeph>，则在 <codeph>playEffectEx</codeph> 执行后文件资源不会被关闭。下次调用 <codeph>playEffectEx</codeph> 时将从头开始播放。</li>
+                    <li>如果在调用 <codeph>playEffectEx</codeph> 之前未调用 <codeph>preloadEffectEx</codeph>，则在 <codeph>playEffectEx</codeph> 执行后资源将被销毁。下次调用 <codeph>playEffectEx</codeph> 时将尝试重新打开文件并从头播放。</li>
                 </ul>
             </note>
             <note props="mac">
                 <ul>
                     <li>声网建议不要同时播放超过三个音效。</li>
-                    <li>本方法中的音效 ID 和文件路径必须与 <xref keyref="preloadEffect2"/> 中的保持一致。</li>
+                    <li>此方法中的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 必须与 <codeph>preloadEffectEx:filePath:</codeph> 方法中的保持一致。</li>
+                    <li>如果在执行 <codeph>playEffectEx</codeph> 之前调用了 <codeph>preloadEffectEx</codeph>，则 <codeph>playEffectEx</codeph> 执行后不会关闭文件资源。下次执行 <codeph>playEffectEx</codeph> 时将直接从头开始播放。</li>
+                    <li>如果在执行 <codeph>playEffectEx</codeph> 之前未调用 <codeph>preloadEffectEx</codeph>，则 <codeph>playEffectEx</codeph> 执行后资源将被销毁。下次执行 <codeph>playEffectEx</codeph> 时将尝试重新打开文件并从头播放。</li>
                 </ul>
             </note>
         </section>
@@ -78,19 +84,19 @@
             <parml>
                 <plentry props="ios">
                     <pt>connection</pt>
-                    <pd>连接对象。详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>soundId</pt>
-                    <pd>音效的 ID。每个音效文件的唯一标识。如果通过 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，请确保该参数值与 <xref keyref="preloadEffect2"/> 中的值一致。</pd>
+                    <pd>音效的 ID。每个音效文件的唯一 ID。请确保该参数值与 <codeph>preloadEffectEx:filePath:</codeph> 方法中的值一致。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>filePath</pt>
-                    <pd>本地音效文件的绝对路径（包含文件扩展名）或在线音效文件的 URL，例如 /var/mobile/Containers/Data/audio.mp4。支持的音频格式包括：mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
+                    <pd>本地音效文件的绝对路径（包括文件扩展名）或在线音效文件的 URL，例如 <xref keyref="filePath-example"/>。支持的音频格式包括 mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>loopCount</pt>
-                    <pd>音效的循环播放次数：
+                    <pd>设置音效的循环播放次数：
                         <ul>
                             <li>0：播放一次。</li>
                             <li>1：播放两次。</li>
@@ -106,9 +112,9 @@
                     <pt>pan</pt>
                     <pd>音效的空间位置。取值范围为 -1.0 到 1.0：
                         <ul>
-                            <li>0.0：音效从用户正前方传来。</li>
-                            <li>1.0：音效从用户右侧传来。</li>
-                            <li>-1.0：音效从用户左侧传来。</li>
+                            <li>0.0：音效从你正前方传来。</li>
+                            <li>1.0：音效从你右侧传来。</li>
+                            <li>-1.0：音效从你左侧传来。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -127,7 +133,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>connection</pt>
-                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd>连接信息，详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>soundId</pt>
@@ -135,7 +141,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>filePath</pt>
-                    <pd>本地文件的绝对路径或在线文件的 URL。支持的音频格式包括 mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
+                    <pd>本地文件的绝对路径或在线文件的 URL。支持的音频格式包括：mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>loopCount</pt>
@@ -149,21 +155,21 @@
                 </plentry>
                 <plentry props="android">
                     <pt>pitch</pt>
-                    <pd>音效的音调。取值范围为 0.5 到 2.0，默认值为 1.0（原始音调）。数值越小，音调越低。</pd>
+                    <pd>音效的音调。取值范围为 0.5 到 2.0，默认值为 1.0（原始音调）。值越小，音调越低。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>pan</pt>
                     <pd>音效的空间位置。取值范围为 -1.0 到 1.0：
                         <ul>
-                            <li><codeph>-1.0</codeph>：音效从用户左侧传来。</li>
-                            <li><codeph>0.0</codeph>：音效从用户正前方传来。</li>
-                            <li><codeph>1.0</codeph>：音效从用户右侧传来。</li>
+                            <li><codeph>-1.0</codeph>：音效从用户左侧播放。</li>
+                            <li><codeph>0.0</codeph>：音效从用户正前方播放。</li>
+                            <li><codeph>1.0</codeph>：音效从用户右侧播放。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>gain</pt>
-                    <pd>音效的音量。取值范围为 0.0 到 100.0，默认值为 100（原始音量）。数值越小，音量越低。</pd>
+                    <pd>音效的音量。取值范围为 0.0 到 100.0，默认值为 100（原始音量）。值越小，音量越低。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>publish</pt>
@@ -176,19 +182,19 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>connection</pt>
-                    <pd>连接对象。详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd><xref keyref="RtcConnection"/> 对象。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>soundId</pt>
-                    <pd>音效的 ID。每个音效文件的唯一标识。如果通过 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，请确保该参数值与 <xref keyref="preloadEffect2"/> 中的值一致。</pd>
+                    <pd>音效的 ID。每个音效文件的唯一 ID。请确保该参数值与 <codeph>preloadEffectEx:filePath:</codeph> 方法中的值一致。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>filePath</pt>
-                    <pd>本地音效文件的绝对路径（包含文件扩展名）或在线音效文件的 URL，例如 /var/mobile/Containers/Data/audio.mp4。支持的音频格式包括：mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
+                    <pd>本地音效文件的绝对路径（包括文件扩展名）或在线音效文件的 URL，例如 <xref keyref="filePath-example"/>。支持的音频格式包括 mp3、mp4、m4a、aac、3gp、mkv 和 wav。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>loopCount</pt>
-                    <pd>音效的循环播放次数：
+                    <pd>设置音效的循环播放次数：
                         <ul>
                             <li>0：播放一次。</li>
                             <li>1：播放两次。</li>
@@ -204,9 +210,9 @@
                     <pt>pan</pt>
                     <pd>音效的空间位置。取值范围为 -1.0 到 1.0：
                         <ul>
-                            <li>0.0：音效从用户正前方传来。</li>
-                            <li>1.0：音效从用户右侧传来。</li>
-                            <li>-1.0：音效从用户左侧传来。</li>
+                            <li>0.0：音效从你正前方传来。</li>
+                            <li>1.0：音效从你右侧传来。</li>
+                            <li>-1.0：音效从你左侧传来。</li>
                         </ul>
                     </pd>
                 </plentry>

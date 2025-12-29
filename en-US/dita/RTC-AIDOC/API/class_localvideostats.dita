@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localvideostats">
     <title><ph keyref="LocalVideoStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to collect statistics about the local video stream.</ph><ph id="shortdesc" props="android">Statistics of the local video stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Collects statistics of the local video stream.</ph><ph id="shortdesc" props="android">Statistics of the local video stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -58,7 +58,7 @@
     public boolean dualStreamEnabled;
     public int hwEncoderAccelerating;
     public int encodedFrameDepth;
-  }</codeblock>
+}</codeblock>
             </p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp">
@@ -66,39 +66,39 @@
             <parml>
                 <plentry props="cpp">
                     <pt>uid</pt>
-                    <pd>The user ID of the local user.</pd>
+                    <pd>User ID of the local user.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>sentBitrate</pt>
-                    <pd>Actual bitrate (Kbps) of the local video stream sent.</pd>
+                    <pd>Actual bitrate (Kbps) of the sent local video stream.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>sentFrameRate</pt>
-                    <pd>Actual frame rate (fps) of the local video stream sent.</pd>
+                    <pd>Actual frame rate (fps) of the sent local video stream.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>captureFrameRate</pt>
-                    <pd>Frame rate (fps) of the local video stream captured.</pd>
+                    <pd>Frame rate (fps) of the captured local video stream.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>captureFrameWidth</pt>
-                    <pd>Width (px) of the local video stream captured.</pd>
+                    <pd>Width (px) of the captured local video stream.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>captureFrameHeight</pt>
-                    <pd>Height (px) of the local video stream captured.</pd>
+                    <pd>Height (px) of the captured local video stream.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>regulatedCaptureFrameRate</pt>
-                    <pd>Frame rate (fps) of the local video stream after adjustment by the SDK's built-in video capture regulator.</pd>
+                    <pd>Frame rate (fps) of the local video stream after being adjusted by the SDK's built-in video capture regulator.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>regulatedCaptureFrameWidth</pt>
-                    <pd>Width (px) of the local video stream after adjustment by the SDK's built-in video capture regulator.</pd>
+                    <pd>Width (px) of the local video stream after being adjusted by the SDK's built-in video capture regulator.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>regulatedCaptureFrameHeight</pt>
-                    <pd>Height (px) of the local video stream after adjustment by the SDK's built-in video capture regulator.</pd>
+                    <pd>Height (px) of the local video stream after being adjusted by the SDK's built-in video capture regulator.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>encoderOutputFrameRate</pt>
@@ -118,7 +118,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>targetBitrate</pt>
-                    <pd>Target bitrate (Kbps) of the current encoder, estimated by the SDK based on current network conditions.</pd>
+                    <pd>Target bitrate (Kbps) of the current encoder, estimated by the SDK based on the current network conditions.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>targetFrameRate</pt>
@@ -126,7 +126,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>qualityAdaptIndication</pt>
-                    <pd>Quality adaptation of the local video stream during the reporting interval (based on target frame rate and target bitrate). See <xref keyref="QUALITY_ADAPT_INDICATION"/>.</pd>
+                    <pd>Quality adaptation status of the local video stream during the reporting interval (based on target frame rate and target bitrate). See <xref keyref="QUALITY_ADAPT_INDICATION"/>.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>encodedBitrate</pt>
@@ -134,7 +134,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>encodedFrameCount</pt>
-                    <pd>Total number of video frames sent (aggregated value).</pd>
+                    <pd>Total number of sent video frames (aggregated value).</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>codecType</pt>
@@ -159,7 +159,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>hwEncoderAccelerating</pt>
-                    <pd>Local video encoding acceleration type:
+                    <pd>Local video encoder acceleration type:
                         <ul>
                             <li>0: Software encoding, no acceleration.</li>
                             <li>1: Hardware encoding acceleration.</li>
@@ -176,13 +176,13 @@
                 </plentry>
                 <plentry props="android">
                     <pt>sentBitrate</pt>
-                    <pd>Actual bitrate (Kbps) during the sending of the local video stream.
+                    <pd>Actual bitrate (Kbps) of the local video stream during transmission.
                         <note>This value does not include the bitrate of retransmissions caused by packet loss.</note>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>sentFrameRate</pt>
-                    <pd>Actual frame rate (fps) during the sending of the local video stream.
+                    <pd>Actual frame rate (fps) of the local video stream during transmission.
                         <note>This value does not include the frame rate of retransmissions caused by packet loss.</note>
                     </pd>
                 </plentry>
@@ -200,15 +200,15 @@
                 </plentry>
                 <plentry props="android">
                     <pt>regulatedCaptureFrameRate</pt>
-                    <pd>Frame rate (fps) of the local video after adjustment by the built-in video capture regulator according to the encoding configuration.</pd>
+                    <pd>Frame rate (fps) of the local video adjusted by the built-in video capture regulator of the Agora SDK based on the encoding configuration.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>regulatedCaptureFrameWidth</pt>
-                    <pd>Width (px) of the local video after adjustment by the built-in video capture regulator according to the encoding configuration.</pd>
+                    <pd>Width (px) of the local video adjusted by the built-in video capture regulator of the Agora SDK based on the encoding configuration.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>regulatedCaptureFrameHeight</pt>
-                    <pd>Height (px) of the local video after adjustment by the built-in video capture regulator according to the encoding configuration.</pd>
+                    <pd>Height (px) of the local video adjusted by the built-in video capture regulator of the Agora SDK based on the encoding configuration.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>encoderOutputFrameRate</pt>
@@ -221,7 +221,7 @@
                 <plentry props="android">
                     <pt>targetBitrate</pt>
                     <pd>Target bitrate (Kbps) of the current encoder.
-                        <note>This value is estimated by the SDK based on current network conditions.</note>
+                        <note>This value is estimated by the SDK based on the current network conditions.</note>
                     </pd>
                 </plentry>
                 <plentry props="android">
@@ -230,11 +230,11 @@
                 </plentry>
                 <plentry props="android">
                     <pt>qualityAdaptIndication</pt>
-                    <pd>Video quality adaptation status of the local video stream during the statistics interval:
+                    <pd>Video quality adaptation status of the local video stream during the statistical period:
                         <ul>
-                            <li><codeph>ADAPT_NONE</codeph> (0): Local video quality remains unchanged.</li>
-                            <li><codeph>ADAPT_UP_BANDWIDTH</codeph> (1): Local video quality improves due to increased network bandwidth.</li>
-                            <li><codeph>ADAPT_DOWN_BANDWIDTH</codeph> (2): Local video quality degrades due to decreased network bandwidth.</li>
+                            <li><codeph>ADAPT_NONE</codeph> (0): Video quality remains unchanged.</li>
+                            <li><codeph>ADAPT_UP_BANDWIDTH</codeph> (1): Video quality improves due to increased network bandwidth.</li>
+                            <li><codeph>ADAPT_DOWN_BANDWIDTH</codeph> (2): Video quality degrades due to decreased network bandwidth.</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -259,7 +259,7 @@
                 <plentry props="android">
                     <pt>codecType</pt>
                     <pd>
-                        <note>In some scenarios (e.g., low capture resolution or limited device performance), the SDK automatically switches to H.264 encoding format.</note><ph>Type of encoder used for the local video. Optional values, see <xref keyref="VIDEO_CODEC_TYPE"/>:</ph>
+                        <note>In some scenarios (e.g., low capture resolution or limited device performance), the SDK automatically switches to H.264 encoding format.</note><ph>Encoder type used for the local video. The optional values are as follows. See <xref keyref="VIDEO_CODEC_TYPE"/>:</ph>
                         <ul>
                             <li><codeph>VIDEO_CODEC_VP8</codeph> (1): VP8.</li>
                             <li><codeph>VIDEO_CODEC_H264</codeph> (2): H.264.</li>
@@ -274,7 +274,7 @@
                 <plentry props="android">
                     <pt>captureBrightnessLevel</pt>
                     <pd>
-                        <note>Wait a few seconds to get the brightness level from the next callback via <codeph>captureBrightnessLevel</codeph>.</note><ph>Brightness level of the video captured by the local camera:</ph>
+                        <note>After a few seconds, you can get the brightness level from the next callback's <codeph>captureBrightnessLevel</codeph>.</note><ph>Brightness level of the video image captured by the local camera:</ph>
                         <ul>
                             <li><codeph>CAPTURE_BRIGHTNESS_LEVEL_INVALID</codeph> (-1): SDK did not detect brightness.</li>
                             <li><codeph>CAPTURE_BRIGHTNESS_LEVEL_NORMAL</codeph> (0): Normal brightness.</li>
@@ -294,10 +294,10 @@
                 </plentry>
                 <plentry props="android">
                     <pt>hwEncoderAccelerating</pt>
-                    <pd>Local video encoder acceleration type:
+                    <pd>Hardware acceleration type for local video encoding:
                         <ul>
                             <li>0: Software encoding, no acceleration.</li>
-                            <li>1: Hardware-accelerated encoding.</li>
+                            <li>1: Hardware encoding acceleration.</li>
                         </ul>
                     </pd>
                 </plentry>
