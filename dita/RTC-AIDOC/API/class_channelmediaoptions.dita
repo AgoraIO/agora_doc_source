@@ -12,9 +12,11 @@
   Optional&lt;bool&gt; publishThirdCameraTrack;
   Optional&lt;bool&gt; publishFourthCameraTrack;
   Optional&lt;bool&gt; publishMicrophoneTrack;
+#if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE) || defined(TARGET_OS_MAC) || defined(__OHOS__)
+  Optional&lt;bool&gt; publishScreenCaptureAudio;
+#endif
 #if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE) || defined(__OHOS__)
   Optional&lt;bool&gt; publishScreenCaptureVideo;
-  Optional&lt;bool&gt; publishScreenCaptureAudio;
 #else
   Optional&lt;bool&gt; publishScreenTrack;
   Optional&lt;bool&gt; publishSecondaryScreenTrack;
@@ -181,11 +183,11 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
-            <p props="cpp">支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，可以同时将 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph> 设置为 <xref keyref="true"/>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>、<codeph>publishScreenTrack</codeph>、<codeph>publishCustomVideoTrack</codeph> 或 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
+            <p props="cpp">声网支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，可以同时将 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph> 设置为 <xref keyref="true"/>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>、<codeph>publishScreenTrack</codeph>、<codeph>publishCustomVideoTrack</codeph> 或 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
             <p props="ios">支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，你可以同时将 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph> 设置为 <xref keyref="true"/>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>（iOS）/<codeph>publishScreenTrack</codeph>（macOS）、<codeph>publishCustomVideoTrack</codeph> 和 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
             <p props="android">支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，可以同时启用 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>、<codeph>publishCustomVideoTrack</codeph> 和 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
             <p props="mac">支持在同一个 <xref keyref="RtcConnection"/> 中同时发布多个音频流和一个视频流。例如，你可以同时将 <codeph>publishMicrophoneTrack</codeph>、<codeph>publishCustomAudioTrack</codeph> 和 <codeph>publishMediaPlayerAudioTrack</codeph> 设置为 <xref keyref="true"/>，但 <codeph>publishCameraTrack</codeph>、<codeph>publishScreenCaptureVideo</codeph>（iOS）/<codeph>publishScreenTrack</codeph>（macOS）、<codeph>publishCustomVideoTrack</codeph> 和 <codeph>publishEncodedVideoTrack</codeph> 中只能有一个设置为 <xref keyref="true"/>。</p>
-            <note props="cpp">建议你根据业务场景自行设置成员参数的值，否则 SDK 会自动为其赋值。</note>
+            <note props="cpp">声网建议你根据业务场景自行设置成员参数值，否则 SDK 会自动为成员参数分配值。</note>
             <note props="ios">建议你根据业务场景自行设置各成员参数值，否则 SDK 会自动为其赋值。</note>
             <note props="android">建议你根据业务场景自行设置各成员参数值，否则 SDK 会自动分配默认值。</note>
             <note props="mac">建议你根据业务场景自行设置各成员参数值，否则 SDK 会自动为其赋值。</note>
@@ -252,11 +254,10 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishScreenCaptureAudio</pt>
-                    <pd>
-                        <note>该参数仅适用于 Android 和 iOS 平台。</note><ph>是否发布屏幕采集的音频：</ph>
+                    <pd>是否发布屏幕采集器的音频轨道：
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集的音频。</li>
-                            <li><codeph><ph keyref="false"/></codeph>：不发布屏幕采集的音频。</li>
+                            <li><xref keyref="true"/>：发布屏幕采集器的音频。</li>
+                            <li><xref keyref="false"/>：（默认）不发布屏幕采集器的音频轨道。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -310,7 +311,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishCustomAudioTrackId</pt>
-                    <pd>要发布的自定义音频轨道的 ID。默认值为 0。你可以通过 createCustomAudioTrack 获取自定义音频轨道 ID。</pd>
+                    <pd>要发布的自定义音频轨道的 ID。默认值为 0。你可以通过 <xref keyref="createCustomAudioTrack_IMediaEngine"/> 获取自定义音频轨道 ID。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishCustomVideoTrack</pt>
@@ -351,7 +352,7 @@
                 <plentry props="cpp">
                     <pt>publishTranscodedVideoTrack</pt>
                     <pd>
-                        <note>自 v4.2.0 起，参数名从 publishTrancodedVideoTrack 更正为 publishTranscodedVideoTrack。</note><ph>是否发布本地合图视频：</ph>
+                        <note>自 v4.2.0 起，参数名从 <codeph>publishTrancodedVideoTrack</codeph> 更正为 <codeph>publishTranscodedVideoTrack</codeph>。</note><ph>是否发布本地合图视频：</ph>
                         <ul>
                             <li><codeph><ph keyref="true"/></codeph>：发布本地合图视频。</li>
                             <li><codeph><ph keyref="false"/></codeph>：不发布本地合图视频。</li>
@@ -735,15 +736,15 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>audienceLatencyLevel</pt>
-                    <pd>互动直播中观众的延迟等级，详见 AgoraAudienceLatencyLevelType。</pd>
+                    <pd>互动直播中观众的延迟等级，详见 <xref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>defaultVideoStreamType</pt>
-                    <pd>默认的视频流类型，详见 AgoraVideoStreamType。</pd>
+                    <pd>默认的视频流类型，详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>channelProfile</pt>
-                    <pd>频道场景，详见 AgoraChannelProfile。</pd>
+                    <pd>频道场景，详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>publishMixedAudioTrack</pt>
@@ -767,8 +768,8 @@
                     <pd>你在服务器上生成的用于鉴权的 Token。
                         <note>
                             <ul>
-                                <li>该参数仅在调用 updateChannelWithMediaOptions 或 updateChannelExWithMediaOptions 方法时生效。</li>
-                                <li>请确保用于生成 Token 的 App ID、频道名和用户名与用于初始化 RTC 引擎的 sharedEngineWithConfig:delegate: 方法，以及用于加入频道的 joinChannelByToken:channelId:uid:mediaOptions:joinSuccess: 和 joinChannelExByToken:connection:delegate:mediaOptions:joinSuccess: 方法中使用的参数一致。</li>
+                                <li>该参数仅在调用 <codeph>updateChannelWithMediaOptions</codeph> 或 <codeph>updateChannelExWithMediaOptions</codeph> 方法时生效。</li>
+                                <li>请确保用于生成 Token 的 App ID、频道名和用户名与用于初始化 RTC 引擎的 <xref keyref="initialize"/> 方法，以及用于加入频道的 <xref keyref="joinChannel2"/> 和 <xref keyref="joinChannelEx"/> 方法中使用的参数一致。</li>
                             </ul>
                         </note>
                     </pd>
@@ -797,8 +798,8 @@
                     <pd>
                         <note>
                             <ul>
-                                <li>该参数仅适用于连麦直播场景。联播主播需调用 joinChannelExByToken:connection:delegate:mediaOptions:joinSuccess: 方法以观众身份加入其他主播的频道，并将 isInteractiveAudience 设置为 YES。</li>
-                                <li>该参数仅在用户角色为 AgoraClientRoleAudience 时生效。</li>
+                                <li>该参数仅适用于连麦直播场景。联播主播需调用 <xref keyref="joinChannelEx"/> 方法以观众身份加入其他主播的频道，并将 <codeph>isInteractiveAudience</codeph> 设置为 <xref keyref="true"/>。</li>
+                                <li>该参数仅在用户角色为 <codeph>AgoraClientRoleAudience</codeph> 时生效。</li>
                             </ul>
                         </note><ph>是否启用互动模式：</ph>
                         <ul>
@@ -809,7 +810,7 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>customVideoTrackId</pt>
-                    <pd>调用 createCustomVideoTrack 方法返回的视频轨道 ID。默认值为 0。</pd>
+                    <pd>调用 <xref keyref="createCustomVideoTrack"/> 方法返回的视频轨道 ID。默认值为 0。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>isAudioFilterable</pt>
@@ -1056,8 +1057,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>channelProfile</pt>
-                    <pd>
-                        <note>自 v4.x.x 版本废弃。请改用 CHANNEL_PROFILE_LIVE_BROADCASTING。</note><ph>频道场景：</ph>
+                    <pd>频道场景：
                         <ul>
                             <li>CHANNEL_PROFILE_COMMUNICATION (0)：通信场景。声网推荐使用直播场景以获得更佳的音视频体验。</li>
                             <li>CHANNEL_PROFILE_LIVE_BROADCASTING (1)：直播场景（默认）。</li>
@@ -1368,15 +1368,15 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>audienceLatencyLevel</pt>
-                    <pd>互动直播中观众的延迟等级，详见 AgoraAudienceLatencyLevelType。</pd>
+                    <pd>互动直播中观众的延迟等级，详见 <xref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>defaultVideoStreamType</pt>
-                    <pd>默认的视频流类型，详见 AgoraVideoStreamType。</pd>
+                    <pd>默认的视频流类型，详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>channelProfile</pt>
-                    <pd>频道场景，详见 AgoraChannelProfile。</pd>
+                    <pd>频道场景，详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>publishMixedAudioTrack</pt>
@@ -1400,8 +1400,8 @@
                     <pd>你在服务器上生成的用于鉴权的 Token。
                         <note>
                             <ul>
-                                <li>该参数仅在调用 updateChannelWithMediaOptions 或 updateChannelExWithMediaOptions 方法时生效。</li>
-                                <li>请确保用于生成 Token 的 App ID、频道名和用户名与用于初始化 RTC 引擎的 sharedEngineWithConfig:delegate: 方法，以及用于加入频道的 joinChannelByToken:channelId:uid:mediaOptions:joinSuccess: 和 joinChannelExByToken:connection:delegate:mediaOptions:joinSuccess: 方法中使用的参数一致。</li>
+                                <li>该参数仅在调用 <codeph>updateChannelWithMediaOptions</codeph> 或 <codeph>updateChannelExWithMediaOptions</codeph> 方法时生效。</li>
+                                <li>请确保用于生成 Token 的 App ID、频道名和用户名与用于初始化 RTC 引擎的 <xref keyref="initialize"/> 方法，以及用于加入频道的 <xref keyref="joinChannel2"/> 和 <xref keyref="joinChannelEx"/> 方法中使用的参数一致。</li>
                             </ul>
                         </note>
                     </pd>
@@ -1430,8 +1430,8 @@
                     <pd>
                         <note>
                             <ul>
-                                <li>该参数仅适用于连麦直播场景。联播主播需调用 joinChannelExByToken:connection:delegate:mediaOptions:joinSuccess: 方法以观众身份加入其他主播的频道，并将 isInteractiveAudience 设置为 YES。</li>
-                                <li>该参数仅在用户角色为 AgoraClientRoleAudience 时生效。</li>
+                                <li>该参数仅适用于连麦直播场景。联播主播需调用 <xref keyref="joinChannelEx"/> 方法以观众身份加入其他主播的频道，并将 <codeph>isInteractiveAudience</codeph> 设置为 <xref keyref="true"/>。</li>
+                                <li>该参数仅在用户角色为 <codeph>AgoraClientRoleAudience</codeph> 时生效。</li>
                             </ul>
                         </note><ph>是否启用互动模式：</ph>
                         <ul>
@@ -1442,7 +1442,7 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>customVideoTrackId</pt>
-                    <pd>调用 createCustomVideoTrack 方法返回的视频轨道 ID。默认值为 0。</pd>
+                    <pd>调用 <xref keyref="createCustomVideoTrack"/> 方法返回的视频轨道 ID。默认值为 0。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>isAudioFilterable</pt>

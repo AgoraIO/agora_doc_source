@@ -14,57 +14,81 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="ios" outputclass="language-objectivec">- (int)playEffect:(int)soundId
-         filePath:(NSString* _Nonnull)filePath
-        loopCount:(NSInteger)loopCount
-            pitch:(double)pitch
-              pan:(double)pan
-             gain:(NSInteger)gain
-          publish:(BOOL)publish NS_SWIFT_NAME(playEffect(_:filePath:loopCount:pitch:pan:gain:publish:));</codeblock>
+          filePath:(NSString* _Nonnull)filePath
+         loopCount:(NSInteger)loopCount
+             pitch:(double)pitch
+               pan:(double)pan
+              gain:(NSInteger)gain
+           publish:(BOOL)publish NS_SWIFT_NAME(playEffect(_:filePath:loopCount:pitch:pan:gain:publish:));</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int playEffect(int soundId, String filePath, int loopCount, double pitch, double pan, double gain, boolean publish);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)playEffect:(int)soundId
-         filePath:(NSString* _Nonnull)filePath
-        loopCount:(NSInteger)loopCount
-            pitch:(double)pitch
-              pan:(double)pan
-             gain:(NSInteger)gain
-          publish:(BOOL)publish NS_SWIFT_NAME(playEffect(_:filePath:loopCount:pitch:pan:gain:publish:));</codeblock>
+          filePath:(NSString* _Nonnull)filePath
+         loopCount:(NSInteger)loopCount
+             pitch:(double)pitch
+               pan:(double)pan
+              gain:(NSInteger)gain
+           publish:(BOOL)publish NS_SWIFT_NAME(playEffect(_:filePath:loopCount:pitch:pan:gain:publish:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="ios">你可以多次调用该方法并传入不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph>，以同时播放多个音效文件。为获得最佳用户体验，声网建议你不要同时播放超过三个音效文件。你可以在加入频道前或加入频道后调用该方法。</p>
-            <p props="android">该方法支持播放以 <codeph>content://</codeph> 开头的 URI 文件。关于支持的音频文件格式，详见[声网 RTC SDK 支持哪些格式的音频文件](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。若本地音乐文件不存在、SDK 不支持该文件格式，或无法访问音乐文件的 URL，SDK 会报告 <codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph>。</p>
-            <p props="mac">你可以多次调用该方法并传入不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph>，以同时播放多个音效文件。为获得最佳用户体验，声网建议你不要同时播放超过三个音效文件。你可以在加入频道前或加入频道后调用该方法。</p>
-            <note props="ios">如果你需要播放在线音效文件，声网建议你先将该文件缓存到本地设备，再调用 <xref keyref="preloadEffect2"/> 将其预加载到内存中，然后调用 <xref keyref="playEffect2"/> 播放音效。否则，可能因加载超时或失败导致播放失败或无声。</note>
-            <note props="android">如果需要播放在线音效文件，建议先将其缓存到本地设备，调用 <codeph>preloadEffect</codeph> 将文件预加载到内存中，再调用该方法播放音效。否则可能因加载超时或失败导致播放失败或无声。</note>
-            <note props="mac">如果你需要播放在线音效文件，声网建议你先将该文件缓存到本地设备，再调用 <xref keyref="preloadEffect2"/> 将其预加载到内存中，然后调用 <xref keyref="playEffect2"/> 播放音效。否则，可能因加载超时或失败导致播放失败或无声。</note>
+            <p props="ios">要同时播放多个音效文件，请使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用此方法。为获得最佳用户体验，声网建议你不要同时播放超过三个音效文件。</p>
+            <p props="android">该方法支持播放以 <codeph>content://</codeph> 开头的 URI 文件。关于支持的音频文件格式，详见[声网 RTC SDK 支持哪些格式的音频文件](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。若本地音乐文件不存在、SDK 不支持该文件格式，或无法访问音乐文件的 URL，SDK 会报告 <codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph>。要同时播放多个音效文件，请使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用该方法。为获得最佳用户体验，声网建议不要同时播放超过三个音频文件。</p>
+            <p props="mac">要同时播放多个音效文件，请使用不同的 <codeph>soundId</codeph> 和 <codeph>filePath</codeph> 多次调用此方法。为获得最佳用户体验，声网建议你不要同时播放超过三个音效文件。</p>
+            <note props="ios">
+                <ul>
+                    <li>如果你需要播放在线音效文件，声网建议你先将该文件缓存到本地设备，调用 <xref keyref="preloadEffect2"/> 将其预加载到内存中，再调用此方法播放音效。否则，可能因加载超时或失败导致播放失败或无声。</li>
+                    <li>如果在调用 <codeph>playEffect</codeph> 之前调用了 <codeph>preloadEffect</codeph>，则 <codeph>playEffect</codeph> 执行后不会关闭文件资源。下次调用 <codeph>playEffect</codeph> 时将直接从头开始播放。</li>
+                    <li>如果在调用 <codeph>playEffect</codeph> 之前未调用 <codeph>preloadEffect</codeph>，则 <codeph>playEffect</codeph> 执行后会销毁资源。下次调用 <codeph>playEffect</codeph> 时将尝试重新打开文件并从头开始播放。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>如果需要播放在线音效文件，建议先将其缓存到本地设备，调用 <codeph>preloadEffect</codeph> 将文件预加载到内存中，再调用该方法播放音效。否则可能因加载超时或失败导致播放失败或无声。</li>
+                    <li>如果在调用 <codeph>playEffectEx</codeph> 前调用了 <codeph>preloadEffectEx</codeph>，则 <codeph>playEffectEx</codeph> 执行后不会关闭文件资源。下次调用 <codeph>playEffectEx</codeph> 时将从头开始播放。</li>
+                    <li>如果未调用 <codeph>preloadEffectEx</codeph> 就直接调用 <codeph>playEffectEx</codeph>，则 <codeph>playEffectEx</codeph> 执行后会销毁资源。下次调用时将尝试重新打开文件并从头播放。</li>
+                </ul>
+            </note>
+            <note props="mac">
+                <ul>
+                    <li>如果你需要播放在线音效文件，声网建议你先将该文件缓存到本地设备，调用 <xref keyref="preloadEffect2"/> 将其预加载到内存中，再调用此方法播放音效。否则，可能因加载超时或失败导致播放失败或无声。</li>
+                    <li>如果在调用 <codeph>playEffect</codeph> 之前调用了 <codeph>preloadEffect</codeph>，则 <codeph>playEffect</codeph> 执行后不会关闭文件资源。下次调用 <codeph>playEffect</codeph> 时将直接从头开始播放。</li>
+                    <li>如果在调用 <codeph>playEffect</codeph> 之前未调用 <codeph>preloadEffect</codeph>，则 <codeph>playEffect</codeph> 执行后会销毁资源。下次调用 <codeph>playEffect</codeph> 时将尝试重新打开文件并从头开始播放。</li>
+                </ul>
+            </note>
         </section>
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>调用时机</title>
-            <p props="ios">你可以在加入频道前或加入频道后调用该方法。</p>
+            <p props="ios">你可以在加入频道前或加入频道后调用此方法。</p>
             <p props="android">你可以在加入频道前或后调用该方法。</p>
-            <p props="mac">你可以在加入频道前或加入频道后调用该方法。</p>
+            <p props="mac">你可以在加入频道前或加入频道后调用此方法。</p>
         </section>
-        <section id="related" deliveryTarget="details" props="android">
+        <section id="related" deliveryTarget="details" props="android ios mac">
             <title>相关回调</title>
+            <p props="ios">音效文件播放完成后，SDK 会触发 <xref keyref="onAudioEffectFinished"/> 回调。</p>
             <p props="android">音效文件播放完成后，SDK 会触发 <xref keyref="onAudioEffectFinished"/> 回调。</p>
+            <p props="mac">音效文件播放完成后，SDK 会触发 <xref keyref="onAudioEffectFinished"/> 回调。</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>参数</title>
             <parml>
                 <plentry props="ios">
                     <pt>soundId</pt>
-                    <pd>音效 ID。每个音效文件的 ID 必须唯一。注意：如果你已通过 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，确保该参数的值与 <xref keyref="preloadEffect2"/> 中的 <codeph>soundId</codeph> 相同。</pd>
+                    <pd>音效 ID。每个音效文件的 ID 是唯一的。
+                        <note>如果你已通过调用 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，请确保该参数的值与 <xref keyref="preloadEffect2"/> 中的 <codeph>soundId</codeph> 相同。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>filePath</pt>
-                    <pd>音效文件路径。支持以 <codeph>ipod-library://</codeph> 开头的路径、URL 以及本地文件的绝对路径。绝对路径需精确到文件名及扩展名。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。注意：如果你已通过 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，确保该参数的值与 <xref keyref="preloadEffect2"/> 中的 <codeph>filePath</codeph> 相同。</pd>
+                    <pd>文件路径。支持以 <codeph>ipod-library://</codeph> 开头的路径、URL 以及本地文件的绝对路径。绝对路径需精确到文件名及扩展名。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。
+                        <note>如果你已通过调用 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，请确保该参数的值与 <xref keyref="preloadEffect2"/> 中的 <codeph>filePath</codeph> 相同。</note>
+                    </pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>loopCount</pt>
-                    <pd>音效循环播放的次数。
+                    <pd>音效循环播放的次数：
                         <ul>
-                            <li>≥ 0：播放的次数。例如，1 表示循环播放一次，即总共播放两次。</li>
-                            <li>-1：无限循环播放该音效文件。</li>
+                            <li>≥ 0：播放的次数。例如，1 表示循环一次，即总共播放两次。</li>
+                            <li>-1：无限循环播放该音频文件。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -90,18 +114,21 @@
                     <pt>publish</pt>
                     <pd>是否将音效发布给远端用户：
                         <ul>
-                            <li><xref keyref="true"/>：发布音效到远端，远端用户和你都能听到该音效。</li>
-                            <li><xref keyref="false"/>：不发布音效到远端，只有你能听到该音效。</li>
+                            <li><xref keyref="true"/>：将音效发布给远端用户，你和远端用户都能听到音效。</li>
+                            <li><xref keyref="false"/>：不将音效发布给远端用户，只有你能听到音效。</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>soundId</pt>
-                    <pd>音效 ID。每个音效文件的 ID 必须唯一。</pd>
+                    <pd>音效 ID。每个音效文件的 ID 必须唯一。
+                        <note>如果你已通过调用 <codeph>preloadEffect</codeph> 将音效预加载到内存中，请确保该参数的值与 <codeph>preloadEffect</codeph> 中的 <codeph>soundId</codeph> 相同。</note>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>filePath</pt>
-                    <pd>音效文件路径。支持以下格式：
+                    <pd>
+                        <note>如果你已通过调用 <codeph>preloadEffect</codeph> 将音效预加载到内存中，请确保该参数的值与 <codeph>preloadEffect</codeph> 中的 <codeph>filePath</codeph> 相同。</note><ph>音效文件路径。支持以下格式：</ph>
                         <ul>
                             <li>以 <codeph>content://</codeph> 开头的 URI 地址。</li>
                             <li>以 <codeph>/assets/</codeph> 开头的路径。</li>
@@ -147,18 +174,22 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>soundId</pt>
-                    <pd>音效 ID。每个音效文件的 ID 必须唯一。注意：如果你已通过 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，确保该参数的值与 <xref keyref="preloadEffect2"/> 中的 <codeph>soundId</codeph> 相同。</pd>
+                    <pd>音效 ID。每个音效文件的 ID 是唯一的。
+                        <note>如果你已通过调用 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，请确保该参数的值与 <xref keyref="preloadEffect2"/> 中的 <codeph>soundId</codeph> 相同。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>filePath</pt>
-                    <pd>音效文件路径。支持以 <codeph>ipod-library://</codeph> 开头的路径、URL 以及本地文件的绝对路径。绝对路径需精确到文件名及扩展名。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。注意：如果你已通过 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，确保该参数的值与 <xref keyref="preloadEffect2"/> 中的 <codeph>filePath</codeph> 相同。</pd>
+                    <pd>文件路径。支持以 <codeph>ipod-library://</codeph> 开头的路径、URL 以及本地文件的绝对路径。绝对路径需精确到文件名及扩展名。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。
+                        <note>如果你已通过调用 <xref keyref="preloadEffect2"/> 将音效预加载到内存中，请确保该参数的值与 <xref keyref="preloadEffect2"/> 中的 <codeph>filePath</codeph> 相同。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>loopCount</pt>
-                    <pd>音效循环播放的次数。
+                    <pd>音效循环播放的次数：
                         <ul>
-                            <li>≥ 0：播放的次数。例如，1 表示循环播放一次，即总共播放两次。</li>
-                            <li>-1：无限循环播放该音效文件。</li>
+                            <li>≥ 0：播放的次数。例如，1 表示循环一次，即总共播放两次。</li>
+                            <li>-1：无限循环播放该音频文件。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -184,8 +215,8 @@
                     <pt>publish</pt>
                     <pd>是否将音效发布给远端用户：
                         <ul>
-                            <li><xref keyref="true"/>：发布音效到远端，远端用户和你都能听到该音效。</li>
-                            <li><xref keyref="false"/>：不发布音效到远端，只有你能听到该音效。</li>
+                            <li><xref keyref="true"/>：将音效发布给远端用户，你和远端用户都能听到音效。</li>
+                            <li><xref keyref="false"/>：不将音效发布给远端用户，只有你能听到音效。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -193,24 +224,16 @@
         </section>
         <section id="return_values" props="android ios mac">
             <title>返回值</title>
-            <p props="ios">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
+            <p props="ios">0：方法调用成功。
+&lt; 0：方法调用失败。</p>
             <p props="android">
                 <ul>
                     <li>0：方法调用成功。</li>
                     <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
                 </ul>
             </p>
-            <p props="mac">
-                <ul>
-                    <li>0：方法调用成功。</li>
-                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
-                </ul>
-            </p>
+            <p props="mac">0：方法调用成功。
+&lt; 0：方法调用失败。</p>
         </section>
     </refbody>
 </reference>
