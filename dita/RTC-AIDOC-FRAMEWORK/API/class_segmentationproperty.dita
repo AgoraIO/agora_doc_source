@@ -11,16 +11,18 @@
   modelType?: SegModelType;
 
   greenCapacity?: number;
-}</codeblock>
+
+ screenColorType?: ScreenColorType;}</codeblock>
                 <codeblock props="rn" outputclass="language-typescript">export class SegmentationProperty {
 
   modelType?: SegModelType;
 
   greenCapacity?: number;
-}</codeblock>
-                <codeblock props="flutter" outputclass="language-dart">class SegmentationProperty {
 
-  const SegmentationProperty({this.modelType, this.greenCapacity});
+ screenColorType?: ScreenColorType;}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class SegmentationProperty implements AgoraSerializable {
+  const SegmentationProperty(
+      {this.modelType, this.greenCapacity, this.screenColorType});
 
   @JsonKey(name: 'modelType')
   final SegModelType? modelType;
@@ -28,22 +30,37 @@
   @JsonKey(name: 'greenCapacity')
   final double? greenCapacity;
 
+  @JsonKey(name: 'screenColorType')
+  final ScreenColorType? screenColorType;
+
   factory SegmentationProperty.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$SegmentationPropertyFromJson(json);
 
+  @override
   Map&lt;String, dynamic&gt; toJson() =&gt; _$SegmentationPropertyToJson(this);
 }</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public class SegmentationProperty
     {
-        public SEG_MODEL_TYPE modelType { set; get; }
-        public float greenCapacity { set; get; }
+        public SEG_MODEL_TYPE modelType;
+
+        public float greenCapacity;
+
+        public SCREEN_COLOR_TYPE screenColorType;
 
         public SegmentationProperty()
         {
-            modelType = SEG_MODEL_TYPE.SEG_MODEL_AI;
-            greenCapacity = 0.5f;
+            this.modelType = SEG_MODEL_TYPE.SEG_MODEL_AI;
+            this.greenCapacity = 0.5f;
+            this.screenColorType = SCREEN_COLOR_TYPE.SCREEN_COLOR_AUTO;
         }
-    };</codeblock>
+
+        public SegmentationProperty(SEG_MODEL_TYPE modelType, float greenCapacity, SCREEN_COLOR_TYPE screenColorType)
+        {
+            this.modelType = modelType;
+            this.greenCapacity = greenCapacity;
+            this.screenColorType = screenColorType;
+        }
+    }</codeblock>
             </p>
         </section>
         <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
@@ -59,6 +76,10 @@
                         <note>该参数仅在 <codeph>modelType</codeph> 设置为 <codeph>SegModelGreen</codeph> 时生效。</note>
                     </pd>
                 </plentry>
+                <plentry props="electron">
+                    <pt>screenColorType</pt>
+                    <pd>屏幕颜色类型。详见 <xref keyref="SCREEN_COLOR_TYPE"/>。</pd>
+                </plentry>
                 <plentry props="rn">
                     <pt>modelType</pt>
                     <pd>进行背景处理的算法。详见 <xref keyref="SEG_MODEL_TYPE"/>。</pd>
@@ -68,6 +89,10 @@
                     <pd>对画面中背景颜色识别的精度范围。取值范围为 [0,1]，默认值为 0.5。取值越大，代表可识别的纯色范围越大。当该参数取值过大时，人像边缘和人像范围内的纯色也会被识别。建议你根据实际效果动态调整该参数的值。
                         <note>该参数仅在 <codeph>modelType</codeph> 设置为 <codeph>SegModelGreen</codeph> 时生效。</note>
                     </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>screenColorType</pt>
+                    <pd>屏幕颜色类型。详见 <xref keyref="SCREEN_COLOR_TYPE"/>。</pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>modelType</pt>
@@ -79,6 +104,10 @@
                         <note>该参数仅在 <codeph>modelType</codeph> 设置为 <codeph>segModelGreen</codeph> 时生效。</note>
                     </pd>
                 </plentry>
+                <plentry props="flutter">
+                    <pt>screenColorType</pt>
+                    <pd>屏幕颜色类型。详见 <xref keyref="SCREEN_COLOR_TYPE"/>。</pd>
+                </plentry>
                 <plentry props="unity">
                     <pt>modelType</pt>
                     <pd>进行背景处理的算法。详见 <xref keyref="SEG_MODEL_TYPE"/>。</pd>
@@ -88,6 +117,10 @@
                     <pd>对画面中背景颜色识别的精度范围。取值范围为 [0,1]，默认值为 0.5。取值越大，代表可识别的纯色范围越大。当该参数取值过大时，人像边缘和人像范围内的纯色也会被识别。建议你根据实际效果动态调整该参数的值。
                         <note>该参数仅在 <codeph>modelType</codeph> 设置为 <codeph>SEG_MODEL_GREEN</codeph> 时生效。</note>
                     </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>screenColorType</pt>
+                    <pd>屏幕颜色类型。详见 <xref keyref="SCREEN_COLOR_TYPE"/>。</pd>
                 </plentry>
             </parml>
         </section>
