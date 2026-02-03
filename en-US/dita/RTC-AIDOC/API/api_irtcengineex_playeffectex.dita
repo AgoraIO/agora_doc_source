@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_playeffectex">
     <title><ph keyref="playEffectEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Plays a specified sound effect in the channel.</ph><ph id="shortdesc" props="android">Plays the specified audio effect in the channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Plays the specified sound effect in the channel.</ph><ph id="shortdesc" props="android">Plays the specified audio effect in the channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,31 +21,35 @@
             <dl outputclass="since">
                 <dlentry props="cpp">
                     <dt>Since</dt>
-                    <dd>Added since v4.6.0.</dd>
+                    <dd>Available since v4.6.0.</dd>
                 </dlentry>
                 <dlentry props="android">
                     <dt>Since</dt>
                     <dd>Available since v4.6.0.</dd>
                 </dlentry>
             </dl>
-            <p props="cpp">You can call this method to play a specified sound effect to all users in the channel. Each call can play only one sound effect. To play multiple sound effects simultaneously, use different <codeph>soundId</codeph> and <codeph>filePath</codeph> and call this method multiple times. You can also set whether to publish the sound effect in the channel.</p>
-            <p props="android">You can call this method to play the specified audio effect to all users in the channel. Each call to this method can only play one audio effect. To play multiple audio effects simultaneously, use different <codeph>soundId</codeph> and <codeph>filePath</codeph> values and call this method multiple times. You can also set whether to publish the audio effect in the channel.</p>
+            <p props="cpp">You can call this method to play a specified sound effect to all users in the channel. Each call to this method can only play one sound effect. To play multiple sound effects simultaneously, use different <codeph>soundId</codeph> and <codeph>filePath</codeph> values and call this method multiple times. You can also set whether to publish the sound effect in the channel.</p>
+            <p props="android">You can call this method to play the specified audio effect to all users in the channel. Each call to this method can only play one audio effect. To play multiple audio effects simultaneously, call this method multiple times and set different <codeph>soundId</codeph> and <codeph>filePath</codeph> for each audio effect.</p>
             <note props="cpp">
                 <ul>
                     <li>Agora recommends not playing more than three sound effects simultaneously.</li>
-                    <li>The sound effect ID and file path in this method must match those in the <xref keyref="preloadEffect"/> method.</li>
+                    <li>The sound effect ID and file path in this method must match those used in the <xref keyref="preloadEffectEx"/> method.</li>
+                    <li>If you call <xref keyref="preloadEffectEx"/> before calling <xref keyref="playEffectEx"/>, the file resource will not be closed after <xref keyref="playEffectEx"/> is executed. The next time you call <xref keyref="playEffectEx"/>, playback will start from the beginning.</li>
+                    <li>If you do not call <xref keyref="preloadEffectEx"/> before calling <xref keyref="playEffectEx"/>, the resource will be destroyed after <xref keyref="playEffectEx"/> is executed. The next time you call <xref keyref="playEffectEx"/>, it will attempt to reopen the file and start playback from the beginning.</li>
                 </ul>
             </note>
             <note props="android">
                 <ul>
                     <li>Agora recommends not playing more than three audio effects simultaneously.</li>
-                    <li>The audio effect ID and file path in this method must match those used in <codeph>preloadEffect</codeph>.</li>
+                    <li>The sound effect ID and file path in this method must be consistent with those in the <codeph>preloadEffectEx</codeph> method.</li>
+                    <li>If <codeph>preloadEffectEx</codeph> is called before <codeph>playEffectEx</codeph>, the file resource will not be closed after <codeph>playEffectEx</codeph> is executed. The next call to <codeph>playEffectEx</codeph> will start playback from the beginning.</li>
+                    <li>If <codeph>preloadEffectEx</codeph> is not called before <codeph>playEffectEx</codeph>, the resource will be destroyed after <codeph>playEffectEx</codeph> is executed. The next call to <codeph>playEffectEx</codeph> will attempt to reopen the file and play from the beginning.</li>
                 </ul>
             </note>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
-            <p>This method is applicable in multi-channel scenarios.</p>
+            <p>This method applies to multi-channel scenarios.</p>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
@@ -60,11 +64,11 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>filePath</pt>
-                    <pd>Absolute path of the local file or URL of the online file. Supported audio formats include mp3, mp4, m4a, aac, 3gp, mkv, and wav.</pd>
+                    <pd>The absolute path of the local file or the URL of the online file. Supported audio formats include mp3, mp4, m4a, aac, 3gp, mkv, and wav.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>loopCount</pt>
-                    <pd>Number of times the sound effect loops:
+                    <pd>The number of times the sound effect is played in a loop:
                         <ul>
                             <li><codeph>-1</codeph>: Loop indefinitely until <xref keyref="stopEffect"/> or <xref keyref="stopAllEffects"/> is called.</li>
                             <li><codeph>0</codeph>: Play once.</li>
@@ -74,34 +78,34 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>pitch</pt>
-                    <pd>Pitch of the sound effect. Range: 0.5 to 2.0. Default is 1.0 (original pitch). Lower values indicate lower pitch.</pd>
+                    <pd>The pitch of the sound effect. The value range is from 0.5 to 2.0, with the default being 1.0 (original pitch). The smaller the value, the lower the pitch.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>pan</pt>
-                    <pd>Spatial position of the sound effect. Range: -1.0 to 1.0:
+                    <pd>The spatial position of the sound effect. The value range is from -1.0 to 1.0:
                         <ul>
-                            <li><codeph>-1.0</codeph>: Sound comes from the left.</li>
-                            <li><codeph>0.0</codeph>: Sound comes from the front.</li>
-                            <li><codeph>1.0</codeph>: Sound comes from the right.</li>
+                            <li><codeph>-1.0</codeph>: The sound effect comes from the user's left.</li>
+                            <li><codeph>0.0</codeph>: The sound effect comes from directly in front of the user.</li>
+                            <li><codeph>1.0</codeph>: The sound effect comes from the user's right.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>gain</pt>
-                    <pd>Volume of the sound effect. Range: 0 to 100. Default is 100 (original volume). Lower values indicate lower volume.</pd>
+                    <pd>The volume of the sound effect. The value range is from 0 to 100, with the default being 100 (original volume). The smaller the value, the lower the volume.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publish</pt>
                     <pd>Whether to publish the sound effect in the channel:
                         <ul>
-                            <li><xref keyref="true"/>: Publish.</li>
-                            <li><xref keyref="false"/>: (Default) Do not publish.</li>
+                            <li><xref keyref="true"/>: Publish the sound effect in the channel.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish the sound effect in the channel.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>startPos</pt>
-                    <pd>Start position for playing the sound effect file, in milliseconds.</pd>
+                    <pd>The starting position of the sound effect file, in milliseconds.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>connection</pt>
@@ -117,7 +121,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>loopCount</pt>
-                    <pd>The number of times the audio effect loops:
+                    <pd>Number of times the audio effect loops:
                         <ul>
                             <li><codeph>-1</codeph>: Loops indefinitely until <xref keyref="stopEffect"/> or <xref keyref="stopAllEffects"/> is called.</li>
                             <li><codeph>0</codeph>: Plays once.</li>
@@ -127,34 +131,34 @@
                 </plentry>
                 <plentry props="android">
                     <pt>pitch</pt>
-                    <pd>The pitch of the audio effect. The range is from 0.5 to 2.0, with the default value being 1.0 (original pitch). The smaller the value, the lower the pitch.</pd>
+                    <pd>Pitch of the audio effect. The range is from 0.5 to 2.0. The default value is 1.0 (original pitch). The smaller the value, the lower the pitch.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>pan</pt>
-                    <pd>The spatial position of the audio effect. The range is from -1.0 to 1.0:
+                    <pd>Spatial position of the audio effect. The range is from -1.0 to 1.0:
                         <ul>
-                            <li><codeph>-1.0</codeph>: The audio effect comes from the left of the user.</li>
-                            <li><codeph>0.0</codeph>: The audio effect comes from the front of the user.</li>
-                            <li><codeph>1.0</codeph>: The audio effect comes from the right of the user.</li>
+                            <li><codeph>-1.0</codeph>: The audio effect plays from the user's left.</li>
+                            <li><codeph>0.0</codeph>: The audio effect plays from the user's front.</li>
+                            <li><codeph>1.0</codeph>: The audio effect plays from the user's right.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>gain</pt>
-                    <pd>The volume of the audio effect. The range is from 0.0 to 100.0, with the default value being 100.0 (original volume). The smaller the value, the lower the volume.</pd>
+                    <pd>Volume of the audio effect. The range is from 0.0 to 100.0. The default value is 100 (original volume). The smaller the value, the lower the volume.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>publish</pt>
                     <pd>Whether to publish the audio effect in the channel:
                         <ul>
-                            <li><xref keyref="true"/>: Publish the audio effect in the channel.</li>
-                            <li><xref keyref="false"/>: Do not publish the audio effect in the channel.</li>
+                            <li><xref keyref="true"/>: Publishes the audio effect in the channel.</li>
+                            <li><xref keyref="false"/>: Does not publish the audio effect in the channel.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>startPos</pt>
-                    <pd>The starting position (in milliseconds) for playing the audio effect file.</pd>
+                    <pd>The start position (in milliseconds) for playback of the audio effect file.</pd>
                 </plentry>
             </parml>
         </section>

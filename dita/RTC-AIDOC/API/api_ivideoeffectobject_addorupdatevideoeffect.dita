@@ -44,35 +44,35 @@ NS_SWIFT_NAME(addOrUpdateVideoEffect(nodeId:templateName:));</codeblock>
             </dl>
             <note props="cpp">优先级规则：
                 <ul>
-                    <li><codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 节点优先于 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph> 参数。</li>
-                    <li>若要应用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph> 参数，必须先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 节点：</li>
+                    <li>风格妆 (<codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>) 节点优先于滤镜特效 (<codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>) 节点。</li>
+                    <li>若要应用滤镜特效，必须先移除风格妆特效节点：</li>
                 </ul>
                 <codeblock outputclass="language-cpp">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
 addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock>
             </note>
             <note props="ios">优先级规则：
                 <ul>
-                    <li>视频特效节点 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 的优先级高于 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>。</li>
-                    <li>若要应用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>，必须先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>：</li>
+                    <li>风格妆节点 <codeph>AgoraVideoEffectNodeStyleMakeup</codeph> 的优先级高于滤镜特效 <codeph>AgoraVideoEffectNodeFilter</codeph> 节点。</li>
+                    <li>若要应用滤镜特效，必须先移除风格妆特效节点：</li>
                 </ul>
-                <codeblock outputclass="language-objectivec">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
-addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock>
+                <codeblock outputclass="language-objectivec">[self removeVideoEffectWithNodeId:AgoraVideoEffectNodeStyleMakeup];
+[self addOrUpdateVideoEffectWithNodeId:AgoraVideoEffectNodeFilter templateName:@"template name"];</codeblock>
             </note>
             <note props="android">优先级规则：
                 <ul>
-                    <li>风格妆特效节点优先于 <codeph>FILTER</codeph> 参数。</li>
-                    <li>若要应用 <codeph>FILTER</codeph> 参数，必须先移除风格妆特效节点：</li>
+                    <li>风格妆 (<codeph>STYLE_MAKEUP</codeph>) 节点优先于滤镜特效 (<codeph>FILTER</codeph>) 节点。</li>
+                    <li>若要应用滤镜特效，必须先移除风格妆特效节点：</li>
                 </ul>
-                <codeblock outputclass="language-java">removeVideoEffect(`STYLE_MAKEUP`);
-addOrUpdateVideoEffect(`FILTER`, "template name");</codeblock>
+                <codeblock outputclass="language-java">removeVideoEffect(VIDEO_EFFECT_NODE_ID.STYLE_MAKEUP);
+addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID.FILTER, "template name");</codeblock>
             </note>
             <note props="mac">优先级规则：
                 <ul>
-                    <li>视频特效节点 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph> 的优先级高于 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>。</li>
-                    <li>若要应用 <codeph>VIDEO_EFFECT_NODE_ID::FILTER</codeph>，必须先移除 <codeph>VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>：</li>
+                    <li>风格妆节点 <codeph>AgoraVideoEffectNodeStyleMakeup</codeph> 的优先级高于滤镜特效 <codeph>AgoraVideoEffectNodeFilter</codeph> 节点。</li>
+                    <li>若要应用滤镜特效，必须先移除风格妆特效节点：</li>
                 </ul>
-                <codeblock outputclass="language-objectivec">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
-addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock>
+                <codeblock outputclass="language-objectivec">[self removeVideoEffectWithNodeId:AgoraVideoEffectNodeStyleMakeup];
+[self addOrUpdateVideoEffectWithNodeId:AgoraVideoEffectNodeFilter templateName:@"template name"];</codeblock>
             </note>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
@@ -96,8 +96,8 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
                     <pt>nodeId</pt>
                     <pd>视频特效节点的唯一标识符或标识符组合。例如：
                         <ul>
-                            <li>单个特效：<codeph>VIDEO_EFFECT_NODE_ID::BEAUTY</codeph>。</li>
-                            <li>组合特效：<codeph>VIDEO_EFFECT_NODE_ID::BEAUTY | VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>。</li>
+                            <li>单个特效：<codeph>AgoraVideoEffectNodeBeauty</codeph>。</li>
+                            <li>组合特效：<codeph>AgoraVideoEffectNodeBeauty ｜ AgoraVideoEffectNodeStyleMakeup ｜ AgoraVideoEffectNodeFilter</codeph>。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -107,7 +107,12 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
                 </plentry>
                 <plentry props="android">
                     <pt>nodeId</pt>
-                    <pd>视频特效节点的唯一标识符或标识符组合。详见 <xref keyref="VIDEO_EFFECT_NODE_ID"/>。</pd>
+                    <pd>视频特效节点的唯一标识符或标识符组合。详见 <xref keyref="VIDEO_EFFECT_NODE_ID"/>。例如：
+                        <ul>
+                            <li>单个特效：<codeph>VIDEO_EFFECT_NODE_ID.BEAUTY</codeph>。</li>
+                            <li>组合特效：<codeph>VIDEO_EFFECT_NODE_ID.BEAUTY | VIDEO_EFFECT_NODE_ID.STYLE_MAKEUP</codeph>。</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>templateName</pt>
@@ -117,8 +122,8 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
                     <pt>nodeId</pt>
                     <pd>视频特效节点的唯一标识符或标识符组合。例如：
                         <ul>
-                            <li>单个特效：<codeph>VIDEO_EFFECT_NODE_ID::BEAUTY</codeph>。</li>
-                            <li>组合特效：<codeph>VIDEO_EFFECT_NODE_ID::BEAUTY | VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>。</li>
+                            <li>单个特效：<codeph>AgoraVideoEffectNodeBeauty</codeph>。</li>
+                            <li>组合特效：<codeph>AgoraVideoEffectNodeBeauty ｜ AgoraVideoEffectNodeStyleMakeup ｜ AgoraVideoEffectNodeFilter</codeph>。</li>
                         </ul>
                     </pd>
                 </plentry>

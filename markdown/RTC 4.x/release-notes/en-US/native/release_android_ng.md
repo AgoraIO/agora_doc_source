@@ -193,7 +193,7 @@ This version adds the `AUDIO_SCENARIO_AI_CLIENT` audio scenario specifically des
 
 This release fixed the following issues:
 
-- Apps that integrated the Agora SDK and set the `targetSdkVersion` to 34 encountered crashes when attempting to enable screen sharing for the first time on an Android 14 system.
+- Apps that integrated Agora SDK and set the `targetSdkVersion` to 34 encountered crashes when attempting to enable screen sharing for the first time on an Android 14 system.
 - When joining two or more channels simultaneously, and calling the `takeSnapshotEx [1/2]` method to take screenshots of the local video streams in each channel consecutively, the screenshot of the first channel failed.
 - When using the `pause` method to pause playback, then calling `seek` to move to a specified position, and finally calling `play` to continue playback, the Media Player resumed from the position where it was paused, not the new specified position.
 - When using the Media Player, the file path of the media resource returned by the `getPlaySrc [1/2]` did not change after calling the `switchSrc` method to switch to a new media resource.

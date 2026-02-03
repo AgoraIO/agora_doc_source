@@ -14,16 +14,34 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="ios" outputclass="language-objectivec">- (int)preloadEffect:(int)soundId
-            filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(preloadEffect(_:filePath:));</codeblock>
+             filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(preloadEffect(_:filePath:));</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int preloadEffect(int soundId, String filePath);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)preloadEffect:(int)soundId
-            filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(preloadEffect(_:filePath:));</codeblock>
+             filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(preloadEffect(_:filePath:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">确保所有预加载文件的总大小不超过限制。关于该方法支持的音频文件格式，详见[声网 RTC SDK 支持哪些音频文件格式](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。</p>
-            <p props="android">确保所有预加载文件的总大小不超过限制。支持的音频文件格式，详见[声网 RTC SDK 支持哪些音频文件格式](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。</p>
+            <p props="android">确保所有预加载文件的总大小不超过限制。详见 <codeph>声网 RTC SDK 支持哪些音频文件格式</codeph>。</p>
             <p props="mac">确保所有预加载文件的总大小不超过限制。关于该方法支持的音频文件格式，详见[声网 RTC SDK 支持哪些音频文件格式](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format)。</p>
+            <note props="ios">
+                <ul>
+                    <li>如果你在调用 <codeph>playEffect</codeph> 之前调用了 <codeph>preloadEffect</codeph>，则在 <codeph>playEffect</codeph> 执行后文件资源不会被关闭。下次调用 <codeph>playEffect</codeph> 时会直接从头开始播放。</li>
+                    <li>如果你在调用 <codeph>playEffectEx</codeph> 之前未调用 <codeph>preloadEffect</codeph>，则在 <codeph>playEffect</codeph> 执行后资源会被销毁。下次调用 <codeph>playEffect</codeph> 时会尝试重新打开文件并从头开始播放。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>如果在调用 <codeph>playEffect</codeph> 之前调用了 <codeph>preloadEffect</codeph>，<codeph>playEffect</codeph> 执行后不会关闭文件资源。下次调用 <codeph>playEffect</codeph> 时，将从头开始播放。</li>
+                    <li>如果在调用 <codeph>playEffect</codeph> 之前未调用 <codeph>preloadEffect</codeph>，<codeph>playEffect</codeph> 执行后会销毁资源。下次调用 <codeph>playEffect</codeph> 时，将尝试重新打开文件并从头开始播放。</li>
+                </ul>
+            </note>
+            <note props="mac">
+                <ul>
+                    <li>如果你在调用 <codeph>playEffect</codeph> 之前调用了 <codeph>preloadEffect</codeph>，则在 <codeph>playEffect</codeph> 执行后文件资源不会被关闭。下次调用 <codeph>playEffect</codeph> 时会直接从头开始播放。</li>
+                    <li>如果你在调用 <codeph>playEffectEx</codeph> 之前未调用 <codeph>preloadEffect</codeph>，则在 <codeph>playEffect</codeph> 执行后资源会被销毁。下次调用 <codeph>playEffect</codeph> 时会尝试重新打开文件并从头开始播放。</li>
+                </ul>
+            </note>
         </section>
         <section id="timing" deliveryTarget="details" props="android ios mac">
             <title>调用时机</title>
@@ -52,10 +70,12 @@
                 </plentry>
                 <plentry props="android">
                     <pt>filePath</pt>
-                    <pd>文件路径：
+                    <pd>文件路径。支持以下格式：
                         <ul>
-                            <li>Android：文件路径需精确到文件名和后缀名。声网支持 URL 地址、绝对路径，或以 <codeph>/assets/</codeph> 开头的文件路径。如果使用绝对路径访问本地文件，可能会遇到权限问题，因此建议使用 URI 地址。例如：</li>
-                        </ul><ph><codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>。</ph></pd>
+                            <li>URL 地址。</li>
+                            <li>绝对路径。</li>
+                            <li>以 <codeph>/assets/</codeph> 开头的文件路径。</li>
+                        </ul><ph>路径需精确到文件名和后缀名。如果使用绝对路径访问本地文件，可能会遇到权限问题，建议使用 URI 地址，例如：</ph><ph><codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>。</ph></pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>soundId</pt>

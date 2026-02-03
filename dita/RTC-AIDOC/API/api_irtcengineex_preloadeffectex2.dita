@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_preloadeffectex2">
     <title><ph keyref="preloadEffectEx2"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="ios">预加载指定的音效文件到频道中。</ph><ph id="shortdesc" props="android">预加载指定音效文件到频道中。</ph><ph id="shortdesc" props="mac">预加载指定的音效文件到频道中。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">预加载指定的音效文件到频道中。</ph><ph id="shortdesc" props="android">将指定音效预加载到频道中。</ph><ph id="shortdesc" props="mac">预加载指定的音效文件到频道中。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,12 +14,12 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="ios" outputclass="language-objectivec">- (int)preloadEffectEx:(AgoraRtcConnection* _Nonnull)connection
-             soundId:(int)soundId
-            filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(preloadEffectEx(_:soundId:filePath:));</codeblock>
+              soundId:(int)soundId
+             filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(preloadEffectEx(_:soundId:filePath:));</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int preloadEffectEx(RtcConnection connection, int soundId, String filePath);</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">- (int)preloadEffectEx:(AgoraRtcConnection* _Nonnull)connection
-             soundId:(int)soundId
-            filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(preloadEffectEx(_:soundId:filePath:));</codeblock>
+              soundId:(int)soundId
+             filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(preloadEffectEx(_:soundId:filePath:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -37,25 +37,31 @@
                     <dd>自 v4.6.0 版本新增。</dd>
                 </dlentry>
             </dl>
-            <p props="ios">每次调用该方法只能将一个音效文件预加载到内存中。如果你需要预加载多个音效文件，请多次调用该方法。预加载完成后，你可以调用 <codeph>playEffect</codeph> 播放预加载的音效，或调用 <codeph>playAllEffects</codeph> 播放所有预加载的音效。</p>
-            <p props="android">每次调用该方法时只能将一个音效文件预加载到内存中。如果需要预加载多个音效文件，请多次调用该方法。预加载完成后，你可以调用 <codeph>playEffect</codeph> 播放预加载的音效，或调用 <xref keyref="playAllEffects"/> 播放所有预加载的音效。</p>
-            <p props="mac">每次调用该方法只能将一个音效文件预加载到内存中。如果你需要预加载多个音效文件，请多次调用该方法。预加载完成后，你可以调用 <codeph>playEffect</codeph> 播放预加载的音效，或调用 <codeph>playAllEffects</codeph> 播放所有预加载的音效。</p>
+            <p props="ios">每次调用该方法时，你只能将一个音效文件预加载到内存中。如果需要预加载多个音效文件，请多次调用该方法。预加载完成后，你可以调用 <xref keyref="playEffect3"/> 播放预加载的音效，或调用 <codeph>playAllEffects:loopCount:pitch:pan:gain:publish:</codeph> 播放所有预加载的音效。</p>
+            <p props="android">每次调用该方法时只能将一个音效文件预加载到内存中。如果需要预加载多个音效文件，请多次调用该方法。预加载完成后，可以调用 <codeph>playEffect</codeph> 播放预加载的音效，或调用 <xref keyref="playAllEffects"/> 播放所有预加载的音效。</p>
+            <p props="mac">每次调用该方法时，你只能将一个音效文件预加载到内存中。如果需要预加载多个音效文件，请多次调用该方法。预加载完成后，你可以调用 <xref keyref="playEffect3"/> 播放预加载的音效，或调用 <codeph>playAllEffects:loopCount:pitch:pan:gain:publish:</codeph> 播放所有预加载的音效。</p>
             <note props="ios">
                 <ul>
                     <li>为确保使用体验流畅，音效文件的大小不应超过限制。</li>
                     <li>声网建议你在加入频道前调用该方法。</li>
+                    <li>如果在调用 <codeph>playEffectEx</codeph> 之前调用了 <codeph>preloadEffectEx</codeph>，则 <codeph>playEffectEx</codeph> 执行后不会关闭文件资源。下次执行 <codeph>playEffectEx</codeph> 时会直接从头开始播放。</li>
+                    <li>如果在调用 <codeph>playEffectEx</codeph> 之前未调用 <codeph>preloadEffectEx</codeph>，则 <codeph>playEffectEx</codeph> 执行后会销毁资源。下次执行 <codeph>playEffectEx</codeph> 时会尝试重新打开文件并从头开始播放。</li>
                 </ul>
             </note>
             <note props="android">
                 <ul>
                     <li>为确保使用体验流畅，音效文件的大小不应超过限制。</li>
-                    <li>声网建议你在加入频道前调用该方法。</li>
+                    <li>声网建议在加入频道前调用该方法。</li>
+                    <li>如果在调用 <codeph>playEffectEx</codeph> 之前调用了 <codeph>preloadEffectEx</codeph>，则在 <codeph>playEffectEx</codeph> 执行后文件资源不会被关闭。下次调用 <codeph>playEffectEx</codeph> 时将从头开始播放。</li>
+                    <li>如果在调用 <codeph>playEffectEx</codeph> 之前未调用 <codeph>preloadEffectEx</codeph>，则在 <codeph>playEffectEx</codeph> 执行后资源将被销毁。下次调用 <codeph>playEffectEx</codeph> 时将尝试重新打开文件并从头开始播放。</li>
                 </ul>
             </note>
             <note props="mac">
                 <ul>
                     <li>为确保使用体验流畅，音效文件的大小不应超过限制。</li>
                     <li>声网建议你在加入频道前调用该方法。</li>
+                    <li>如果在调用 <codeph>playEffectEx</codeph> 之前调用了 <codeph>preloadEffectEx</codeph>，则 <codeph>playEffectEx</codeph> 执行后不会关闭文件资源。下次执行 <codeph>playEffectEx</codeph> 时会直接从头开始播放。</li>
+                    <li>如果在调用 <codeph>playEffectEx</codeph> 之前未调用 <codeph>preloadEffectEx</codeph>，则 <codeph>playEffectEx</codeph> 执行后会销毁资源。下次执行 <codeph>playEffectEx</codeph> 时会尝试重新打开文件并从头开始播放。</li>
                 </ul>
             </note>
         </section>
@@ -68,7 +74,7 @@
             <parml>
                 <plentry props="ios">
                     <pt>connection</pt>
-                    <pd>连接对象。详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>soundId</pt>
@@ -92,7 +98,7 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>connection</pt>
-                    <pd>连接对象。详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>soundId</pt>
