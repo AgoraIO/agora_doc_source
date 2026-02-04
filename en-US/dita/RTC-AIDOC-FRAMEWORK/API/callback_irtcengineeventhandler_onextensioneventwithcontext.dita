@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onextensioneventwithcontext">
+    <title><ph keyref="onExtensionEventWithContext"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback for extension events.</ph><ph id="shortdesc" props="rn">Plugin event callback.</ph><ph id="shortdesc" props="flutter">Plugin event callback.</ph><ph id="shortdesc" props="unity">Callback for extension events.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onExtensionEventWithContext"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onExtensionEventWithContext?(
+    context: ExtensionContext,
+    key: string,
+    value: string
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onExtensionEventWithContext?(
+    context: ExtensionContext,
+    key: string,
+    value: string
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(ExtensionContext context, String key, String value)?
+    onExtensionEventWithContext;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionEventWithContext(ExtensionContext context, string key, string value){}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">To listen to extension events, you need to register this callback.</p>
+            <p props="rn">To listen for plugin events, you need to register this callback.</p>
+            <p props="flutter">To listen for plugin events, you need to register this callback.</p>
+            <p props="unity">To listen for extension events, you need to register this callback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>context</pt>
+                    <pd>Extension context information. See <xref keyref="ExtensionContext"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>key</pt>
+                    <pd>The key of the extension property.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>value</pt>
+                    <pd>The value corresponding to the extension property key.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>context</pt>
+                    <pd>Plugin context information. See <xref keyref="ExtensionContext"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>key</pt>
+                    <pd>The key of the plugin property.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>value</pt>
+                    <pd>The value corresponding to the plugin property key.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>context</pt>
+                    <pd>Plugin context information. See <xref keyref="ExtensionContext"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>key</pt>
+                    <pd>Key of the plugin property.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>value</pt>
+                    <pd>Value corresponding to the plugin property key.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>context</pt>
+                    <pd>Extension context information. See <xref keyref="ExtensionContext"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>key</pt>
+                    <pd>The key of the extension property.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>value</pt>
+                    <pd>The value corresponding to the extension property key.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

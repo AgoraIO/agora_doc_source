@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_directcdnstreamingstate">
+    <title><ph keyref="DIRECT_CDN_STREAMING_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Current CDN streaming state.</ph><ph id="shortdesc" props="rn">Current CDN streaming state.</ph><ph id="shortdesc" props="flutter">Current CDN streaming state.</ph><ph id="shortdesc" props="unity">Current CDN streaming state.</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>DirectCdnStreamingStateIdle</pt>
+                    <pd>0: Initial state, streaming has not started yet.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>DirectCdnStreamingStateRunning</pt>
+                    <pd>1: Streaming is in progress. When you call <xref keyref="startDirectCdnStreaming"/> and streaming starts successfully, the SDK returns this value.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>DirectCdnStreamingStateStopped</pt>
+                    <pd>2: Streaming has ended normally. When you call <xref keyref="stopDirectCdnStreaming"/> to stop streaming, the SDK returns this value.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>DirectCdnStreamingStateFailed</pt>
+                    <pd>3: Streaming failed. You can troubleshoot based on the information reported by the <xref keyref="onDirectCdnStreamingStateChanged"/> callback, and then restart streaming.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>DirectCdnStreamingStateRecovering</pt>
+                    <pd>4: Attempting to reconnect to Agora server and CDN. Up to 10 reconnection attempts are made. If reconnection still fails, the streaming state changes to DirectCdnStreamingStateFailed.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>DirectCdnStreamingStateIdle</pt>
+                    <pd>0: Initial state, streaming has not started yet.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>DirectCdnStreamingStateRunning</pt>
+                    <pd>1: Streaming in progress. When you call <xref keyref="startDirectCdnStreaming"/> and the streaming starts successfully, the SDK returns this value.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>DirectCdnStreamingStateStopped</pt>
+                    <pd>2: Streaming has ended normally. When you call <xref keyref="stopDirectCdnStreaming"/> to stop streaming manually, the SDK returns this value.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>DirectCdnStreamingStateFailed</pt>
+                    <pd>3: Streaming failed. You can troubleshoot the issue using the information reported in the <xref keyref="onDirectCdnStreamingStateChanged"/> callback, then restart streaming.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>DirectCdnStreamingStateRecovering</pt>
+                    <pd>4: Attempting to reconnect to the Agora server and CDN. The SDK tries to reconnect up to 10 times. If reconnection still fails, the streaming state changes to <codeph>DirectCdnStreamingStateFailed</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>directCdnStreamingStateIdle</pt>
+                    <pd>0: Initial state, streaming has not started yet.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>directCdnStreamingStateRunning</pt>
+                    <pd>1: Streaming is in progress. When you call <xref keyref="startDirectCdnStreaming"/> and streaming starts successfully, the SDK returns this value.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>directCdnStreamingStateStopped</pt>
+                    <pd>2: Streaming has ended normally. When you call <xref keyref="stopDirectCdnStreaming"/> to stop streaming proactively, the SDK returns this value.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>directCdnStreamingStateFailed</pt>
+                    <pd>3: Streaming failed. You can troubleshoot the issue using the information reported in the <xref keyref="onDirectCdnStreamingStateChanged"/> callback, and then restart streaming.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>directCdnStreamingStateRecovering</pt>
+                    <pd>4: Attempting to reconnect to the Agora server and CDN. Will retry up to 10 times. If reconnection still fails, the streaming state changes to <codeph>directCdnStreamingStateFailed</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>DIRECT_CDN_STREAMING_STATE_IDLE</pt>
+                    <pd>0: Initial state, streaming has not started yet.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>DIRECT_CDN_STREAMING_STATE_RUNNING</pt>
+                    <pd>1: Streaming in progress. When you call <xref keyref="startDirectCdnStreaming"/> and streaming starts successfully, the SDK returns this value.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>DIRECT_CDN_STREAMING_STATE_STOPPED</pt>
+                    <pd>2: Streaming has ended normally. When you call <xref keyref="stopDirectCdnStreaming"/> to stop streaming manually, the SDK returns this value.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>DIRECT_CDN_STREAMING_STATE_FAILED</pt>
+                    <pd>3: Streaming failed. You can troubleshoot using the information reported by the <xref keyref="onDirectCdnStreamingStateChanged"/> callback and then restart streaming.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>DIRECT_CDN_STREAMING_STATE_RECOVERING</pt>
+                    <pd>4: Attempting to reconnect to the Agora server and CDN. It retries up to 10 times. If reconnection still fails, the streaming state changes to DIRECT_CDN_STREAMING_STATE_FAILED.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

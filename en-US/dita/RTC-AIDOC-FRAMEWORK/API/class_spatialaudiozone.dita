@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_spatialaudiozone">
+    <title><ph keyref="SpatialAudioZone"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sound isolation zone settings.</ph><ph id="shortdesc" props="rn">Sound isolation zone settings.</ph><ph id="shortdesc" props="flutter">Sound insulation zone settings.</ph><ph id="shortdesc" props="unity">Sound insulation zone settings.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class SpatialAudioZone {
+  zoneSetId?: number;
+  position?: number[];
+  forward?: number[];
+  right?: number[];
+  up?: number[];
+  forwardLength?: number;
+  rightLength?: number;
+  upLength?: number;
+  audioAttenuation?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class SpatialAudioZone {
+  zoneSetId?: number;
+  position?: number[];
+  forward?: number[];
+  right?: number[];
+  up?: number[];
+  forwardLength?: number;
+  rightLength?: number;
+  upLength?: number;
+  audioAttenuation?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class SpatialAudioZone {
+  const SpatialAudioZone(
+      {this.zoneSetId,
+      this.position,
+      this.forward,
+      this.right,
+      this.up,
+      this.forwardLength,
+      this.rightLength,
+      this.upLength,
+      this.audioAttenuation});
+
+  @JsonKey(name: 'zoneSetId')
+  final int? zoneSetId;
+
+  @JsonKey(name: 'position')
+  final List&lt;double&gt;? position;
+
+  @JsonKey(name: 'forward')
+  final List&lt;double&gt;? forward;
+
+  @JsonKey(name: 'right')
+  final List&lt;double&gt;? right;
+
+  @JsonKey(name: 'up')
+  final List&lt;double&gt;? up;
+
+  @JsonKey(name: 'forwardLength')
+  final double? forwardLength;
+
+  @JsonKey(name: 'rightLength')
+  final double? rightLength;
+
+  @JsonKey(name: 'upLength')
+  final double? upLength;
+
+  @JsonKey(name: 'audioAttenuation')
+  final double? audioAttenuation;
+
+  factory SpatialAudioZone.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$SpatialAudioZoneFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$SpatialAudioZoneToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class SpatialAudioZone
+    {
+        public int zoneSetId;
+        public float[] position;
+        public float[] forward;
+        public float[] right;
+        public float[] up;
+        public float forwardLength;
+        public float rightLength;
+        public float upLength;
+        public float audioAttenuation;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>zoneSetId</pt>
+                    <pd>ID of the sound isolation zone.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>position</pt>
+                    <pd>Spatial center point of the sound isolation zone. This parameter is an array of length 3, representing the coordinates in the forward, right, and up directions.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>forward</pt>
+                    <pd>Unit vector in the forward direction from <codeph>position</codeph>. This parameter is an array of length 3 representing the coordinates in the forward, right, and up directions.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>right</pt>
+                    <pd>Unit vector in the right direction from <codeph>position</codeph>. This parameter is an array of length 3 representing the coordinates in the forward, right, and up directions.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>up</pt>
+                    <pd>Unit vector in the upward direction from <codeph>position</codeph>. This parameter is an array of length 3 representing the coordinates in the forward, right, and up directions.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>forwardLength</pt>
+                    <pd>Treating the sound isolation zone as a cube, this represents the length of the forward edge, in game engine units.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rightLength</pt>
+                    <pd>Treating the sound isolation zone as a cube, this represents the length of the right edge, in game engine units.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>upLength</pt>
+                    <pd>Treating the sound isolation zone as a cube, this represents the length of the upward edge, in game engine units.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioAttenuation</pt>
+                    <pd>Sound attenuation coefficient when users inside and outside the sound isolation zone communicate. Value range: [0,1]:
+                        <ul>
+                            <li>0: Broadcast mode. Volume and timbre do not attenuate with distance.</li>
+                            <li>(0,0.5): Weak attenuation. Volume and timbre attenuate slightly, allowing sound to travel farther than in real environments.</li>
+                            <li>0.5: Simulates real-world volume attenuation. Equivalent to not setting <codeph>audioAttenuation</codeph>.</li>
+                            <li>(0.5,1]: Strong attenuation (default is 1). Volume and timbre attenuate rapidly.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>zoneSetId</pt>
+                    <pd>ID of the sound isolation zone.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>position</pt>
+                    <pd>The spatial center point of the sound isolation zone. This parameter is an array of length 3, representing coordinates in the forward, right, and up directions respectively.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>forward</pt>
+                    <pd>Unit vector pointing forward from <codeph>position</codeph>. This parameter is an array of length 3, representing coordinates in the forward, right, and up directions respectively.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>right</pt>
+                    <pd>Unit vector pointing right from <codeph>position</codeph>. This parameter is an array of length 3, representing coordinates in the forward, right, and up directions respectively.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>up</pt>
+                    <pd>Unit vector pointing upward from <codeph>position</codeph>. This parameter is an array of length 3, representing coordinates in the forward, right, and up directions respectively.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>forwardLength</pt>
+                    <pd>Treating the entire sound isolation zone as a cube, this represents the length of the forward edge, in game engine units.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rightLength</pt>
+                    <pd>Treating the entire sound isolation zone as a cube, this represents the length of the right edge, in game engine units.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>upLength</pt>
+                    <pd>Treating the entire sound isolation zone as a cube, this represents the length of the upward edge, in game engine units.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioAttenuation</pt>
+                    <pd>Sound attenuation coefficient when users inside and outside the sound isolation zone communicate. Value range: [0,1]. Where:
+                        <ul>
+                            <li>0: Broadcast mode, volume and timbre do not attenuate with distance; the local user hears no change regardless of distance.</li>
+                            <li>(0,0.5): Weak attenuation mode; volume and timbre attenuate slightly, allowing sound to travel farther than in real environments.</li>
+                            <li>0.5: Simulates real-world volume attenuation, equivalent to not setting <codeph>audioAttenuation</codeph>.</li>
+                            <li>(0.5,1]: Strong attenuation mode (default is 1); volume and timbre attenuate rapidly.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>zoneSetId</pt>
+                    <pd>ID of the sound insulation zone.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>position</pt>
+                    <pd>The spatial center point of the sound insulation zone. This parameter is an array of length 3, representing the coordinates in the forward, right, and up directions.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>forward</pt>
+                    <pd>Unit vector in the forward direction starting from <codeph>position</codeph>. This parameter is an array of length 3, representing the coordinates in the forward, right, and up directions.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>right</pt>
+                    <pd>Unit vector in the right direction starting from <codeph>position</codeph>. This parameter is an array of length 3, representing the coordinates in the forward, right, and up directions.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>up</pt>
+                    <pd>Unit vector in the upward direction starting from <codeph>position</codeph>. This parameter is an array of length 3, representing the coordinates in the forward, right, and up directions.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>forwardLength</pt>
+                    <pd>Assuming the sound insulation zone is a cube, this represents the length in the forward direction, in game engine units.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rightLength</pt>
+                    <pd>Assuming the sound insulation zone is a cube, this represents the length in the right direction, in game engine units.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>upLength</pt>
+                    <pd>Assuming the sound insulation zone is a cube, this represents the length in the upward direction, in game engine units.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioAttenuation</pt>
+                    <pd>Sound attenuation coefficient when users inside and outside the sound insulation zone communicate. Value range: [0,1]:
+                        <ul>
+                            <li>0: Broadcast mode. Volume and timbre do not attenuate with distance.</li>
+                            <li>(0,0.5): Weak attenuation. Slight attenuation of volume and timbre during transmission. Sound travels farther than in real environments.</li>
+                            <li>0.5: Simulates real-world volume attenuation. Equivalent to not setting the <codeph>audioAttenuation</codeph> parameter.</li>
+                            <li>(0.5,1]: Strong attenuation (default is 1). Rapid attenuation of volume and timbre during transmission.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>zoneSetId</pt>
+                    <pd>The ID of the sound insulation zone.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>position</pt>
+                    <pd>The spatial center of the sound insulation zone. This parameter is an array of length 3, representing the coordinates in the forward, right, and up directions.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>forward</pt>
+                    <pd>The unit vector in the forward direction from <codeph>position</codeph>. This parameter is an array of length 3, representing the coordinates in the forward, right, and up directions.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>right</pt>
+                    <pd>The unit vector in the right direction from <codeph>position</codeph>. This parameter is an array of length 3, representing the coordinates in the forward, right, and up directions.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>up</pt>
+                    <pd>The unit vector in the upward direction from <codeph>position</codeph>. This parameter is an array of length 3, representing the coordinates in the forward, right, and up directions.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>forwardLength</pt>
+                    <pd>Assuming the sound insulation zone is a cube, this represents the length in the forward direction, in game engine units.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rightLength</pt>
+                    <pd>Assuming the sound insulation zone is a cube, this represents the length in the right direction, in game engine units.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>upLength</pt>
+                    <pd>Assuming the sound insulation zone is a cube, this represents the length in the upward direction, in game engine units.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioAttenuation</pt>
+                    <pd>The sound attenuation coefficient when users inside and outside the sound insulation zone communicate. Range: [0,1]:
+                        <ul>
+                            <li>0: Broadcast mode, no volume or timbre attenuation with distance.</li>
+                            <li>(0,0.5): Weak attenuation, slight volume and timbre attenuation, allowing sound to travel farther than in real environments.</li>
+                            <li>0.5: Simulates real-world volume attenuation, same as not setting the <codeph>audioAttenuation</codeph> parameter.</li>
+                            <li>(0.5,1]: Strong attenuation (default is 1), rapid volume and timbre attenuation during propagation.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

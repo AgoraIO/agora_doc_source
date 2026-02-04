@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startscreencapture">
+    <title><ph keyref="startScreenCapture"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Starts screen capture.</ph><ph id="shortdesc" props="flutter">Starts screen capture.</ph><ph id="shortdesc" props="unity">Starts screen capture.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startScreenCapture"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract startScreenCapture(captureParams: ScreenCaptureParameters2): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="rn">
+                <ul>
+                    <li>The billing standard for screen sharing streams is based on the <codeph>dimensions</codeph> value in <xref keyref="ScreenVideoParameters"/>:
+                        <ul>
+                            <li>If not specified, billing is based on 1280 × 720.</li>
+                            <li>If specified, billing is based on the value you provide.</li>
+                        </ul>
+                    </li>
+                    <li>On iOS, screen sharing is only supported on iOS 12.0 and later.</li>
+                    <li>On iOS, if you use custom audio capture instead of SDK audio capture, to prevent screen sharing from stopping when the app goes to the background, it is recommended to implement a keep-alive mechanism.</li>
+                    <li>On iOS, this feature requires high device performance. It is recommended to use it on iPhone X or later.</li>
+                    <li>On iOS, this method depends on the screen sharing dynamic library <codeph>AgoraReplayKitExtension.xcframework</codeph>. Removing this library will cause screen sharing to fail.</li>
+                    <li>On Android, if the user does not grant screen capture permission to the app, the SDK triggers the <codeph>onPermissionError(2)</codeph> callback.</li>
+                    <li>On Android 9 and later, to prevent the system from killing the app when it goes to the background, it is recommended to add the foreground service permission <codeph>android.permission.FOREGROUND_SERVICE</codeph> in <codeph>/app/Manifests/AndroidManifest.xml</codeph>.</li>
+                    <li>Due to Android performance limitations, screen sharing is not supported on Android TV.</li>
+                    <li>Due to Android system limitations, when using Huawei phones for screen sharing, to avoid crashes, do not change the video encoding resolution during sharing.</li>
+                    <li>Due to Android system limitations, some Xiaomi phones do not support capturing system audio during screen sharing.</li>
+                    <li>To improve the success rate of capturing system audio during screen sharing, it is recommended to set the audio scenario to <codeph>AudioScenarioGameStreaming</codeph> using the <xref keyref="setAudioScenario"/> method before joining the channel.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method is only applicable to Android and iOS platforms.</li>
+                    <li>Screen sharing stream billing is based on the <codeph>dimensions</codeph> value in <xref keyref="ScreenVideoParameters"/>:
+                        <ul>
+                            <li>If not specified, billing is based on 1280 × 720.</li>
+                            <li>If specified, billing is based on the provided value.</li>
+                        </ul>
+                    </li>
+                    <li>On iOS, screen sharing is only supported on iOS 12.0 and above.</li>
+                    <li>On iOS, if you use external audio capture instead of SDK audio capture, to prevent screen sharing from stopping when the app goes to the background, it is recommended to implement keep-alive logic.</li>
+                    <li>On iOS, this feature requires high device performance. It is recommended to use it on iPhone X or later.</li>
+                    <li>On iOS, this method depends on the screen sharing dynamic library <codeph>AgoraReplayKitExtension.xcframework</codeph>. Removing this library will cause screen sharing to fail.</li>
+                    <li>On Android, if the user does not grant screen capture permission to the app, the SDK reports the <codeph>onPermissionError(2)</codeph> callback.</li>
+                    <li>On Android 9 and above, to prevent the app from being killed when it goes to the background, add the foreground service permission <codeph>android.permission.FOREGROUND_SERVICE</codeph> in <codeph>/app/Manifests/AndroidManifest.xml</codeph>.</li>
+                    <li>Due to Android performance limitations, screen sharing is not supported on Android TV.</li>
+                    <li>Due to Android system limitations, avoid changing the screen sharing stream's video encoding resolution during sharing on Huawei devices to prevent crashes.</li>
+                    <li>Due to Android system limitations, some Xiaomi devices do not support capturing system audio during screen sharing.</li>
+                    <li>To improve the success rate of capturing system audio during screen sharing, it is recommended to call <xref keyref="setAudioScenario"/> and set the audio scenario to <codeph>audioScenarioGameStreaming</codeph> before joining the channel.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method applies to Android and iOS only.</li>
+                    <li>The billing standard for the screen sharing stream is based on the <codeph>dimensions</codeph> value in <xref keyref="ScreenVideoParameters"/>:
+                        <ul>
+                            <li>If you do not pass a value, billing is based on 1280 × 720.</li>
+                            <li>If you pass a value, billing is based on the value you provide.</li>
+                        </ul>
+                    </li>
+                    <li>On iOS, screen sharing is supported on iOS 12.0 and above only.</li>
+                    <li>On iOS, if you use custom audio capture instead of SDK audio capture, to prevent screen sharing from stopping when the app goes to the background, it is recommended to add keep-alive logic to your app.</li>
+                    <li>On iOS, this feature requires high device performance. It is recommended to use it on iPhone X and later models.</li>
+                    <li>On iOS, this method depends on the screen sharing dynamic library <codeph>AgoraReplayKitExtension.xcframework</codeph>. Removing this library will cause screen sharing to fail.</li>
+                    <li>On Android, if the user does not grant screen capture permission to the app, the SDK will report the <codeph>OnPermissionError(2)</codeph> callback.</li>
+                    <li>On Android 9 and later, to prevent the app from being killed when going to the background, it is recommended to add the foreground service permission <codeph>android.permission.FOREGROUND_SERVICE</codeph> in the <codeph>/app/Manifests/AndroidManifest.xml</codeph> file.</li>
+                    <li>Due to Android performance limitations, screen sharing is not supported on Android TV.</li>
+                    <li>Due to Android system limitations, when using Huawei phones for screen sharing, to avoid crashes, do not change the video encoding resolution of the screen sharing stream during sharing.</li>
+                    <li>Due to Android system limitations, some Xiaomi phones do not support capturing system audio during screen sharing.</li>
+                    <li>To improve the success rate of capturing system audio during screen sharing, it is recommended to set the audio scenario to <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph> using the <xref keyref="setAudioScenario"/> method before joining the channel.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In screen sharing scenarios, you need to call this method to start capturing screen video streams. For implementation details, see [Screen Sharing](https://doc.shengwang.cn/doc/rtc/rn/basic-features/screen-share).</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>Timing</title>
+            <p props="rn">This method can be called before or after joining the channel, with the following differences:
+                <ul>
+                    <li>If called before joining the channel, then call <xref keyref="joinChannel2"/> and set <codeph>publishScreenCaptureVideo</codeph> to <xref keyref="true"/>, screen sharing starts.</li>
+                    <li>If called after joining the channel, then call <xref keyref="updateChannelMediaOptions"/> and set <codeph>publishScreenCaptureVideo</codeph> to <xref keyref="true"/>, screen sharing starts.</li>
+                </ul>
+            </p>
+            <p props="flutter">This method can be called before or after joining a channel, with the following differences:
+                <ul>
+                    <li>If called before joining a channel, then call <xref keyref="joinChannel2"/> and set <codeph>publishScreenCaptureVideo</codeph> to <xref keyref="true"/>, screen sharing starts.</li>
+                    <li>If called after joining a channel, then call <xref keyref="updateChannelMediaOptions"/> and set <codeph>publishScreenCaptureVideo</codeph> to <xref keyref="true"/>, screen sharing starts.</li>
+                </ul>
+            </p>
+            <p props="unity">This method can be called before or after joining a channel, with the following differences:
+                <ul>
+                    <li>If you call this method before joining the channel, then call <xref keyref="joinChannel2"/> and set <codeph>publishScreenCaptureVideo</codeph> to <xref keyref="true"/>, screen sharing starts.</li>
+                    <li>If you call this method after joining the channel, then call <xref keyref="updateChannelMediaOptions"/> and set <codeph>publishScreenCaptureVideo</codeph> to <xref keyref="true"/>, screen sharing starts.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>captureParams</pt>
+                    <pd>The configuration for screen sharing encoding parameters. See <xref keyref="ScreenCaptureParameters2"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureParams</pt>
+                    <pd>Encoding parameter configuration for screen sharing. See <xref keyref="ScreenCaptureParameters2"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureParams</pt>
+                    <pd>Configuration of encoding parameters for screen sharing. See <xref keyref="ScreenCaptureParameters2"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2 (iOS): Parameter is null.</li>
+                            <li>-2 (Android): System version too low. Make sure the Android API level is at least 21.</li>
+                            <li>-3 (Android): Cannot capture system audio. Make sure the Android API level is at least 29.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2 (iOS): Parameter is null.</li>
+                            <li>-2 (Android): System version too low. Ensure the Android API level is at least 21.</li>
+                            <li>-3 (Android): Unable to capture system audio. Ensure the Android API level is at least 29.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

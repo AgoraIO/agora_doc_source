@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayercachemanager_getcachedir">
+    <title><ph keyref="getCacheDir"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets the storage path of cached files.</ph><ph id="shortdesc" props="rn">Gets the storage path of the cache file.</ph><ph id="shortdesc" props="flutter">Gets the storage path of the cached files.</ph><ph id="shortdesc" props="unity">Gets the storage path of cached files.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCacheDir"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getCacheDir(length: number): string;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getCacheDir(length: number): string;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; getCacheDir(int length);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetCacheDir(out string path, int length);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">If you do not call the <xref keyref="setCacheDir"/> method to customize the cache file storage path before calling this method, it returns the SDK's default cache file storage path.</p>
+            <p props="rn">If you have not called the <xref keyref="setCacheDir"/> method to customize the storage path of the cache file before calling this method, it returns the SDK's default cache file storage path.</p>
+            <p props="flutter">If you have not called the <xref keyref="setCacheDir"/> method to customize the cache file storage path before calling this method, the method returns the SDK's default cache file storage path.</p>
+            <p props="unity">If you have not called <xref keyref="setCacheDir"/> to customize the cache file storage path before calling this method, it returns the default cache file storage path used by the SDK.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>length</pt>
+                    <pd>Input parameter. The maximum length of the cache file storage path string.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>length</pt>
+                    <pd>Input parameter. The maximum length of the cache file storage path string.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>length</pt>
+                    <pd>Input parameter. The maximum length of the cache file storage path string.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>path</pt>
+                    <pd>Output parameter. Storage path of cached files.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>length</pt>
+                    <pd>Input parameter. Maximum length of the cache file storage path string. Fill in based on the string obtained in <codeph>path</codeph>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>On success, returns the storage path of the cached file.</li>
+                    <li>&lt; 0: Failure. See <xref keyref="MEDIA_PLAYER_REASON"/>.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>The storage path of the cache file, if the method call succeeds.</li>
+                    <li>&lt; 0: Failure. See <xref keyref="MEDIA_PLAYER_REASON"/>.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>On success, returns the storage path of the cached files.</li>
+                    <li>&lt; 0: Failure. See <xref keyref="MEDIA_PLAYER_REASON"/>.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See <xref keyref="MEDIA_PLAYER_REASON"/>.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

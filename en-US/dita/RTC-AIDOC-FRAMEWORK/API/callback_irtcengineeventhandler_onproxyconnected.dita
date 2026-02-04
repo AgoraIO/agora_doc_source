@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onproxyconnected">
+    <title><ph keyref="onProxyConnected"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback for proxy connection status.</ph><ph id="shortdesc" props="rn">Callback for proxy connection status.</ph><ph id="shortdesc" props="flutter">Callback for proxy connection status.</ph><ph id="shortdesc" props="unity">Callback for proxy connection status.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onProxyConnected"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onProxyConnected?(
+    channel: string,
+    uid: number,
+    proxyType: ProxyType,
+    localProxyIp: string,
+    elapsed: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onProxyConnected?(
+    channel: string,
+    uid: number,
+    proxyType: ProxyType,
+    localProxyIp: string,
+    elapsed: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(String channel, int uid, ProxyType proxyType,
+      String localProxyIp, int elapsed)? onProxyConnected;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnProxyConnected(string channel, uint uid, PROXY_TYPE proxyType, string localProxyIp, int elapsed)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">You can use this callback to monitor the SDK’s proxy connection status. For example, when a user calls <xref keyref="setCloudProxy"/> to set a proxy and successfully joins a channel, the SDK triggers this callback to report the user ID, the type of connected proxy, and the time elapsed from calling <xref keyref="joinChannel2"/> to triggering this callback.</p>
+            <p props="rn">You can use this callback to listen for the SDK's proxy connection status. For example, when a user calls <xref keyref="setCloudProxy"/> to set a proxy and successfully joins a channel, the SDK triggers this callback to report the user ID, type of connected proxy, and the time elapsed from calling <xref keyref="joinChannel2"/> to triggering this callback.</p>
+            <p props="flutter">You can use this callback to monitor the SDK's connection status to the proxy. For example, when a user calls <xref keyref="setCloudProxy"/> to set the proxy and successfully joins a channel, the SDK triggers this callback to report the user ID, proxy type connected, and the time elapsed from calling <xref keyref="joinChannel2"/> to triggering this callback.</p>
+            <p props="unity">You can use this callback to monitor the SDK's proxy connection status. For example, when a user calls <xref keyref="setCloudProxy"/> to set a proxy and successfully joins a channel, the SDK triggers this callback to report the user ID, the type of proxy connected, and the time elapsed from calling <xref keyref="joinChannel2"/> to this callback being triggered.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>channel</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>User ID</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>proxyType</pt>
+                    <pd>Type of connected proxy. See <xref keyref="PROXY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>localProxyIp</pt>
+                    <pd>Reserved parameter, currently not supported.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (in milliseconds) from calling <xref keyref="joinChannel2"/> to the SDK triggering this callback.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channel</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>User ID</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>proxyType</pt>
+                    <pd>Type of connected proxy. See <xref keyref="PROXY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>localProxyIp</pt>
+                    <pd>Reserved parameter, not supported yet.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (in milliseconds) from calling <xref keyref="joinChannel2"/> to the SDK triggering this callback.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channel</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>User ID</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>localProxyIp</pt>
+                    <pd>Reserved parameter, currently not supported.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (in milliseconds) from calling <xref keyref="joinChannel2"/> to the SDK triggering this callback.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channel</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>User ID</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>proxyType</pt>
+                    <pd>Type of proxy connected. See <xref keyref="PROXY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>localProxyIp</pt>
+                    <pd>Reserved parameter, currently not supported.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (ms) from calling <xref keyref="joinChannel2"/> to the SDK triggering this callback.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_takesnapshotex">
+    <title><ph keyref="takeSnapshotEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Takes a video snapshot using the connection ID.</ph><ph id="shortdesc" props="rn">Takes a snapshot of the video using the connection ID.</ph><ph id="shortdesc" props="flutter">Takes a video snapshot using the connection ID.</ph><ph id="shortdesc" props="unity">Captures a video snapshot using a connection ID.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="takeSnapshotEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract takeSnapshotEx(
+    connection: RtcConnection,
+    uid: number,
+    filePath: string
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract takeSnapshotEx(
+    connection: RtcConnection,
+    uid: number,
+    filePath: string
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; takeSnapshotEx(
+      {required RtcConnection connection,
+      required int uid,
+      required String filePath});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int TakeSnapshotEx(RtcConnection connection, uint uid, string filePath);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method captures a snapshot of the specified user's video stream, generates a JPG image, and saves it to the specified path.</p>
+            <p props="rn">This method takes a snapshot of the specified user's video stream, generates a JPG image, and saves it to the specified path.</p>
+            <p props="flutter">This method takes a snapshot of the specified user's video stream, generates a JPG image, and saves it to the specified path.</p>
+            <p props="unity">This method captures a snapshot of the specified user's video stream, generates a JPG image, and saves it to the specified path.</p>
+            <note props="electron">
+                <ul>
+                    <li>This method is asynchronous. When the call returns, the SDK has not actually taken the snapshot.</li>
+                    <li>When used to capture a local video snapshot, it captures the video stream specified in <xref keyref="ChannelMediaOptions"/>.</li>
+                    <li>If the video has been pre-processed, such as with watermarking or beautification, the snapshot will include the effects of the pre-processing.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>When this method returns, the SDK has not actually taken the snapshot.</li>
+                    <li>When used for local video snapshot, it captures the video stream specified in <xref keyref="ChannelMediaOptions"/>.</li>
+                    <li>If the video has been pre-processed, such as with watermarking or beautification, the snapshot will include the effects of the pre-processing.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method is asynchronous. When the call returns, the SDK has not actually captured the snapshot.</li>
+                    <li>When used for local video snapshot, it captures the video stream specified in <xref keyref="ChannelMediaOptions"/>.</li>
+                    <li>If the user's video has undergone preprocessing, such as watermarking or beautification, the snapshot will include these effects.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method is asynchronous. When the call returns, the SDK has not yet completed the snapshot.</li>
+                    <li>When used for local video snapshots, it captures the video stream specified in <xref keyref="ChannelMediaOptions"/>.</li>
+                    <li>If the video has been post-processed (e.g., with watermark or beautification), the snapshot will include the effects.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called after <xref keyref="joinChannelEx"/>.</p>
+            <p props="rn">You must call this method after <xref keyref="joinChannelEx"/>.</p>
+            <p props="flutter">You must call this method after <xref keyref="joinChannelEx"/>.</p>
+            <p props="unity">Call this method after <xref keyref="joinChannelEx"/>.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Related Callbacks</title>
+            <p props="electron">After this method is successfully called, the SDK triggers the <xref keyref="onSnapshotTaken"/> callback to report whether the snapshot was successful and provide details.</p>
+            <p props="rn">After this method is successfully called, the SDK triggers the <xref keyref="onSnapshotTaken"/> callback to report whether the snapshot was successful and provide details.</p>
+            <p props="flutter">After this method is successfully called, the SDK triggers the <xref keyref="onSnapshotTaken"/> callback to report whether the snapshot was successful and provide the snapshot details.</p>
+            <p props="unity">After successfully calling this method, the SDK triggers the <xref keyref="onSnapshotTaken"/> callback to report whether the snapshot was successful and provide details.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>User ID. Set to 0 to capture a snapshot of the local user's video.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>filePath</pt>
+                    <pd>
+                        <note>Make sure the directory exists and is writable.</note><ph>The local path to save the snapshot, including file name and format. For example:</ph>
+                        <ul>
+                            <li>Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.jpg</codeph></li>
+                            <li>macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>User ID. Set to 0 to capture the local user's video.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>filePath</pt>
+                    <pd>
+                        <note>Make sure the directory exists and is writable.</note><ph>The local path where the snapshot is saved, including the file name and format. For example:</ph>
+                        <ul>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>User ID. Set to 0 to capture the local user's video.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>filePath</pt>
+                    <pd>
+                        <note>Make sure the directory exists and is writable.</note><ph>The local path to save the snapshot. The path must include the file name and format, for example:</ph>
+                        <ul>
+                            <li>Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.jpg</codeph></li>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                            <li>macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>User ID. Set to 0 to capture a snapshot of the local user's video.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>
+                        <note>Make sure the directory exists and is writable.</note><ph>Local path to save the snapshot, including file name and format. For example:</ph>
+                        <ul>
+                            <li>Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.jpg</codeph></li>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                            <li>macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

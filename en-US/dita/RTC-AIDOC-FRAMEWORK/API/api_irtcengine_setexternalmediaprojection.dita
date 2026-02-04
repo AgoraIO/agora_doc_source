@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setexternalmediaprojection">
+    <title><ph keyref="setExternalMediaProjection"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Sets an external <codeph>MediaProjection</codeph> to capture screen video streams.</ph><ph id="shortdesc" props="flutter">Sets an external <codeph>MediaProjection</codeph> to capture screen video stream.</ph><ph id="shortdesc" props="unity">Sets an external <codeph>MediaProjection</codeph> to capture screen video stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalMediaProjection"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract setExternalMediaProjection(mediaProjection: any): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setExternalMediaProjection(int mediaProjection);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalMediaProjection(IntPtr mediaProjection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">After successfully calling this method, the external <codeph>MediaProjection</codeph> you set will replace the <codeph>MediaProjection</codeph> obtained by the SDK to capture screen video streams.
+When screen sharing stops or <xref keyref="IRtcEngine"/> is destroyed, the SDK automatically releases the MediaProjection.</p>
+            <p props="flutter">After this method is successfully called, the external <codeph>MediaProjection</codeph> you set will replace the one applied by the SDK to capture the screen video stream.
+When screen sharing is stopped or <xref keyref="IRtcEngine"/> is destroyed, the SDK automatically releases the MediaProjection.</p>
+            <p props="unity">After successfully calling this method, the external <codeph>MediaProjection</codeph> you set will replace the one requested by the SDK to capture the screen video stream.
+When screen sharing stops or <xref keyref="IRtcEngine"/> is destroyed, the SDK automatically releases the MediaProjection.</p>
+            <note props="rn">This method is for Android only.
+You must obtain the <codeph>MediaProjection</codeph> permission before calling this method.</note>
+            <note props="flutter">This method is applicable to Android only.
+You must obtain <codeph>MediaProjection</codeph> permission before calling this method.</note>
+            <note props="unity">This method is for Android only.
+You must request <codeph>MediaProjection</codeph> permission before calling this method.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>If you are capable of obtaining <codeph>MediaProjection</codeph> yourself, you can use your own <codeph>MediaProjection</codeph> to replace the one obtained by the SDK. Here are two usage scenarios:
+                <ul>
+                    <li>On customized system devices, you can avoid system pop-ups (which require user permission for screen capture) and directly start screen capture.</li>
+                    <li>In a screen sharing process with one or more subprocesses, this avoids errors caused by creating objects in subprocesses that may lead to capture failure.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>Timing</title>
+            <p props="rn">This method must be called before <xref keyref="startScreenCapture"/>.</p>
+            <p props="flutter">This method must be called before <xref keyref="startScreenCapture"/>.</p>
+            <p props="unity">This method must be called before <xref keyref="startScreenCapture"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>mediaProjection</pt>
+                    <pd>A [MediaProjection](https://developer.android.com/reference/android/media/projection/MediaProjection) object used to capture screen video streams.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mediaProjection</pt>
+                    <pd>A [MediaProjection](https://developer.android.com/reference/android/media/projection/MediaProjection) object used to capture screen video stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mediaProjection</pt>
+                    <pd>A [MediaProjection](https://developer.android.com/reference/android/media/projection/MediaProjection) object used to capture the screen video stream.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

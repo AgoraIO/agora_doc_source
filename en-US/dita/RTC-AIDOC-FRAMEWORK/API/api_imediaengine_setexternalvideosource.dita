@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_setexternalvideosource">
+    <title><ph keyref="setExternalVideoSource"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the external video source.</ph><ph id="shortdesc" props="rn">Sets the external video source.</ph><ph id="shortdesc" props="flutter">Sets the external video source.</ph><ph id="shortdesc" props="unity">Sets the external video source.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalVideoSource"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setExternalVideoSource(
+    enabled: boolean,
+    useTexture: boolean,
+    sourceType?: ExternalVideoSourceType,
+    encodedVideoOption?: SenderOptions
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setExternalVideoSource(
+    enabled: boolean,
+    useTexture: boolean,
+    sourceType?: ExternalVideoSourceType,
+    encodedVideoOption?: SenderOptions
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setExternalVideoSource(
+    {required bool enabled,
+    required bool useTexture,
+    ExternalVideoSourceType sourceType = ExternalVideoSourceType.videoFrame,
+    SenderOptions encodedVideoOption = const SenderOptions()});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalVideoSource(bool enabled, bool useTexture, EXTERNAL_VIDEO_SOURCE_TYPE sourceType, SenderOptions encodedVideoOption);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After calling this method to enable the external video source, you can call <xref keyref="pushVideoFrame"/> to push external video data to the SDK.</p>
+            <p props="rn">After enabling an external video source by calling this method, you can call <xref keyref="pushVideoFrame"/> to push external video data to the SDK.</p>
+            <p props="flutter">After calling this method to enable the external video source, you can call <xref keyref="pushVideoFrame"/> to push external video data to the SDK.</p>
+            <p props="unity">After calling this method to enable the external video source, you can call <xref keyref="pushVideoFrame"/> to push external video data to the SDK.</p>
+            <note props="electron">Dynamic switching of video sources within a channel is not supported. If you have enabled the external video source and joined a channel, to switch to the internal video source, you must leave the channel first, then call this method to disable the external video source, and rejoin the channel.</note>
+            <note props="rn">Switching video sources dynamically within the channel is not supported. If you have enabled an external video source and joined a channel, to switch to an internal video source, you must first leave the channel, then call this method to disable the external video source, and rejoin the channel.</note>
+            <note props="flutter">Switching video sources dynamically within a channel is not supported. If you have already called this method to enable an external video source and joined a channel, to switch to an internal video source, you must first leave the channel, then call this method to disable the external video source, and rejoin the channel.</note>
+            <note props="unity">Switching video sources dynamically in the channel is not supported. If you have called this method to enable the external video source and joined a channel, to switch to an internal video source, you must first leave the channel, then call this method to disable the external video source, and rejoin the channel.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">You must call this method before joining a channel.</p>
+            <p props="rn">This method must be called before joining a channel.</p>
+            <p props="flutter">This method must be called before joining the channel.</p>
+            <p props="unity">You need to call this method before joining the channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the external video source:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable the external video source. The SDK is ready to receive external video frames.</li>
+                            <li><xref keyref="false"/>: (Default) Do not enable the external video source.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>useTexture</pt>
+                    <pd>Whether to use external video frames in Texture format:
+                        <ul>
+                            <li><xref keyref="true"/>: Use external video frames in Texture format.</li>
+                            <li><xref keyref="false"/>: Do not use external video frames in Texture format.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sourceType</pt>
+                    <pd>Whether the external video frame is encoded. See <xref keyref="EXTERNAL_VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>encodedVideoOption</pt>
+                    <pd>Video encoding options. If <codeph>sourceType</codeph> is <codeph>EncodedVideoFrame</codeph>, you need to set this parameter. You can [contact technical support](https://ticket.shengwang.cn/) to learn how to configure this parameter.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the external video source:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable the external video source. The SDK prepares to receive external video frames.</li>
+                            <li><xref keyref="false"/>: (default) Do not enable the external video source.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>useTexture</pt>
+                    <pd>Whether to use external video frames in Texture format:
+                        <ul>
+                            <li><xref keyref="true"/>: Use external video frames in Texture format.</li>
+                            <li><xref keyref="false"/>: Do not use external video frames in Texture format.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceType</pt>
+                    <pd>Whether the external video frame is encoded. See <xref keyref="EXTERNAL_VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encodedVideoOption</pt>
+                    <pd>Video encoding options. If <codeph>sourceType</codeph> is <codeph>EncodedVideoFrame</codeph>, this parameter must be set. You can [contact technical support](https://ticket.shengwang.cn/) to learn how to set this parameter.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the external video source:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable the external video source. The SDK is ready to receive external video frames.</li>
+                            <li><xref keyref="false"/>: (Default) Do not enable the external video source.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>useTexture</pt>
+                    <pd>Whether to use external video frames in Texture format:
+                        <ul>
+                            <li><xref keyref="true"/>: Use Texture format for external video frames.</li>
+                            <li><xref keyref="false"/>: Do not use Texture format for external video frames.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceType</pt>
+                    <pd>Whether the external video frame is encoded. See <xref keyref="EXTERNAL_VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encodedVideoOption</pt>
+                    <pd>Video encoding options. If <codeph>sourceType</codeph> is <codeph>encodedVideoFrame</codeph>, this parameter must be set. You can [contact technical support](https://ticket.shengwang.cn/) to learn how to configure this parameter.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the external video source:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable the external video source. The SDK is ready to receive external video frames.</li>
+                            <li><xref keyref="false"/>: (Default) Do not enable the external video source.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>useTexture</pt>
+                    <pd>Whether to use Texture format for external video frames:
+                        <ul>
+                            <li><xref keyref="true"/>: Use Texture format for external video frames.</li>
+                            <li><xref keyref="false"/>: Do not use Texture format for external video frames.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sourceType</pt>
+                    <pd>Whether the external video frames are encoded. See <xref keyref="EXTERNAL_VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encodedVideoOption</pt>
+                    <pd>Video encoding options. If <codeph>sourceType</codeph> is <codeph>ENCODED_VIDEO_FRAME</codeph>, this parameter must be set. You can [contact technical support](https://ticket.shengwang.cn/) to learn how to set this parameter.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

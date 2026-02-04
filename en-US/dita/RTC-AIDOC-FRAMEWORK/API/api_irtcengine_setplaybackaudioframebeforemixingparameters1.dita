@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setplaybackaudioframebeforemixingparameters1">
+    <title><ph keyref="setPlaybackAudioFrameBeforeMixingParameters1"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the raw audio playback data format before mixing.</ph><ph id="shortdesc" props="rn">Sets the raw audio playback data format before mixing.</ph><ph id="shortdesc" props="flutter">Sets the format of the raw audio playback data before mixing.</ph><ph id="shortdesc" props="unity">Sets the raw audio playback data format before mixing.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlaybackAudioFrameBeforeMixingParameters1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setPlaybackAudioFrameBeforeMixingParameters(
+    sampleRate: number,
+    channel: number
+    samplesPerCall: number
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setPlaybackAudioFrameBeforeMixingParameters(
+    sampleRate: number,
+    channel: number
+    samplesPerCall: number
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setPlaybackAudioFrameBeforeMixingParameters(
+      {required int sampleRate, required int channel
+      {required int sampleRate, required int samplesPerCall});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetPlaybackAudioFrameBeforeMixingParameters(int sampleRate, int channel, int samplesPerCall);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">The SDK triggers the <xref keyref="onPlaybackAudioFrameBeforeMixing"/> callback based on this sampling interval.</p>
+            <p props="rn">The SDK triggers the <xref keyref="onPlaybackAudioFrameBeforeMixing"/> callback based on this sampling interval.</p>
+            <p props="flutter">The SDK triggers the <xref keyref="onPlaybackAudioFrameBeforeMixing"/> callback based on the sampling interval.</p>
+            <p props="unity">The SDK triggers the <xref keyref="onPlaybackAudioFrameBeforeMixing"/> callback based on this sampling interval.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called before joining a channel.</p>
+            <p props="rn">This method must be called before joining a channel.</p>
+            <p props="flutter">You must call this method before joining a channel.</p>
+            <p props="unity">You need to call this method before joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>sampleRate</pt>
+                    <pd>Sampling rate (Hz) of the audio data. Can be set to 8000, 16000, 32000, 44100, or 48000.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channel</pt>
+                    <pd>Number of audio channels. Can be set to 1 or 2:
+                        <ul>
+                            <li>1: Mono.</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>samplesPerCall</pt>
+                    <pd>Sets the number of samples in the audio data returned in the <xref keyref="onPlaybackAudioFrameBeforeMixing"/> callback. In RTMP streaming scenarios, it is recommended to set this to 1024.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sampleRate</pt>
+                    <pd>The sample rate (Hz) of the audio data, can be set to 8000, 16000, 32000, 44100, or 48000.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channel</pt>
+                    <pd>The number of audio channels, can be set to 1 or 2:
+                        <ul>
+                            <li>1: Mono.</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>samplesPerCall</pt>
+                    <pd>Sets the number of audio samples returned in the <xref keyref="onPlaybackAudioFrameBeforeMixing"/> callback. In RTMP streaming scenarios, it is recommended to set this to 1024.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sampleRate</pt>
+                    <pd>The sample rate (Hz) of the audio data. You can set it to 8000, 16000, 32000, 44100, or 48000.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channel</pt>
+                    <pd>The number of audio channels. You can set it to 1 or 2:
+                        <ul>
+                            <li>1: Mono.</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>samplesPerCall</pt>
+                    <pd>Sets the number of audio samples returned in the <xref keyref="onPlaybackAudioFrameBeforeMixing"/> callback. In RTMP streaming scenarios, it is recommended to set this to 1024.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sampleRate</pt>
+                    <pd>The sampling rate (Hz) of the audio data. Can be set to 8000, 16000, 32000, 44100, or 48000.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channel</pt>
+                    <pd>The number of channels of the audio data. Can be set to 1 or 2:
+                        <ul>
+                            <li>1: Mono.</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>samplesPerCall</pt>
+                    <pd>Sets the number of audio samples returned in the <codeph>onPlaybackAudioFrameBeforeMixing</codeph> callback. In RTMP streaming scenarios, it is recommended to set this to 1024.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">This method returns no value if the call succeeds. If the method call fails, it throws an <xref keyref="AgoraRtcException"/>, which you need to catch and handle. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and suggested solutions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enableinstantmediarendering">
+    <title><ph keyref="enableInstantMediaRendering"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Enables accelerated rendering of audio and video frames.</ph><ph id="shortdesc" props="rn">Enables accelerated rendering of audio and video frames.</ph><ph id="shortdesc" props="flutter">Enables accelerated rendering of audio and video frames.</ph><ph id="shortdesc" props="unity">Enables accelerated audio and video frame rendering.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableInstantMediaRendering"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableInstantMediaRendering(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableInstantMediaRendering(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableInstantMediaRendering();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableInstantMediaRendering();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After this method is successfully called, the SDK enables accelerated rendering for both video and audio, speeding up the first frame rendering and audio output after joining a channel.</p>
+            <p props="rn">After successfully calling this method, the SDK enables accelerated rendering for both video and audio frames, which speeds up the time to first frame and first audio after a user joins a channel.</p>
+            <p props="flutter">After successfully calling this method, the SDK enables accelerated rendering mode for both video and audio, which speeds up the time to first frame and first sound after joining a channel.</p>
+            <p props="unity">After successfully calling this method, the SDK enables accelerated rendering for both video and audio, which speeds up the first frame rendering and audio output after a user joins the channel.</p>
+            <note props="electron">Both broadcaster and audience must call this method to experience accelerated rendering.
+Once successfully called, you can only disable accelerated rendering by calling the <xref keyref="release"/> method to destroy the <xref keyref="IRtcEngine"/> object.</note>
+            <note props="rn">Both broadcaster and audience must call this method to experience accelerated audio and video rendering.
+Once this method is successfully called, you can only disable accelerated rendering by calling the <xref keyref="release"/> method to destroy the <xref keyref="IRtcEngine"/> object.</note>
+            <note props="flutter">Both the host and audience need to call this method to enable accelerated rendering of audio and video frames to experience this feature.
+Once this method is successfully called, you can only disable accelerated rendering by calling the <xref keyref="release"/> method to destroy the <xref keyref="IRtcEngine"/> object.</note>
+            <note props="unity">Both broadcaster and audience need to call this method to enable accelerated audio and video frame rendering to experience the feature.
+Once this method is successfully called, the only way to disable accelerated rendering is to destroy the <xref keyref="IRtcEngine"/> object by calling <xref keyref="release"/>.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>Agora recommends enabling this mode for audience users in live streaming scenarios.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called before joining a channel.</p>
+            <p props="rn">This method must be called before joining a channel.</p>
+            <p props="flutter">This method must be called before joining a channel.</p>
+            <p props="unity">This method must be called before joining a channel.</p>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-7: The <xref keyref="IRtcEngine"/> is not initialized when the method is called.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-7: <xref keyref="IRtcEngine"/> not initialized before calling the method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-7: <xref keyref="IRtcEngine"/> is not initialized when calling the method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setextensionproviderproperty">
+    <title><ph keyref="setExtensionProviderProperty"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the properties of an extension provider.</ph><ph id="shortdesc" props="rn">Sets a property for the plugin provider.</ph><ph id="shortdesc" props="flutter">Sets a property for the extension provider.</ph><ph id="shortdesc" props="unity">Sets the properties of the extension provider.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExtensionProviderProperty"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setExtensionProviderProperty(
+    provider: string,
+    key: string,
+    value: string
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setExtensionProviderProperty(
+    provider: string,
+    key: string,
+    value: string
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setExtensionProviderProperty(
+    {required String provider, required String key, required String value});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetExtensionProviderProperty(string provider, string key, string value);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">You can call this method to set the properties of an extension provider and initialize related parameters based on the provider type.</p>
+            <p props="rn">You can call this method to set properties for the plugin provider and initialize related parameters based on the provider type.</p>
+            <p props="flutter">You can call this method to set the properties of the extension provider and initialize related parameters based on the provider type.</p>
+            <p props="unity">You can call this method to set the properties of the extension provider and initialize related parameters based on the provider type.</p>
+            <note props="electron">To set properties for multiple extension providers, you need to call this method multiple times.</note>
+            <note props="rn">To set properties for multiple plugin providers, call this method multiple times.</note>
+            <note props="flutter">To set properties for multiple extension providers, call this method multiple times.</note>
+            <note props="unity">To set properties for multiple extension providers, call this method multiple times.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Call this method after <xref keyref="registerExtension"/> and before <xref keyref="enableExtension"/>.</p>
+            <p props="rn">Call this method after <xref keyref="registerExtension"/> and before <xref keyref="enableExtension"/>.</p>
+            <p props="flutter">Call this method after <xref keyref="registerExtension"/> and before <xref keyref="enableExtension"/>.</p>
+            <p props="unity">Call this method after <xref keyref="registerExtension"/> and before <xref keyref="enableExtension"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>provider</pt>
+                    <pd>The name of the extension provider.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>key</pt>
+                    <pd>The key of the extension property.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>value</pt>
+                    <pd>The value corresponding to the extension property key.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>provider</pt>
+                    <pd>The name of the plugin provider.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>key</pt>
+                    <pd>The key of the plugin property.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>value</pt>
+                    <pd>The value corresponding to the plugin property key.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>provider</pt>
+                    <pd>The name of the extension provider.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>key</pt>
+                    <pd>The key of the extension property.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>value</pt>
+                    <pd>The value corresponding to the extension property key.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>provider</pt>
+                    <pd>The name of the extension provider.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>key</pt>
+                    <pd>The key of the extension property.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>value</pt>
+                    <pd>The value corresponding to the extension property key.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

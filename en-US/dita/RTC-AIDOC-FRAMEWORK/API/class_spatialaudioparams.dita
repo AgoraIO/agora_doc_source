@@ -1,0 +1,420 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_spatialaudioparams">
+    <title><ph keyref="SpatialAudioParams"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Spatial audio parameters.</ph><ph id="shortdesc" props="rn">Spatial audio parameters.</ph><ph id="shortdesc" props="flutter">Spatial audio parameters.</ph><ph id="shortdesc" props="unity">Spatial audio parameters.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class SpatialAudioParams {
+  
+  speaker_azimuth?: number;
+  
+  speaker_elevation?: number;
+  
+  speaker_distance?: number;
+  
+  speaker_orientation?: number;
+  
+  enable_blur?: boolean;
+  
+  enable_air_absorb?: boolean;
+  
+  speaker_attenuation?: number;
+
+  enable_doppler?: boolean;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class SpatialAudioParams {
+  
+  speaker_azimuth?: number;
+  
+  speaker_elevation?: number;
+  
+  speaker_distance?: number;
+  
+  speaker_orientation?: number;
+  
+  enable_blur?: boolean;
+  
+  enable_air_absorb?: boolean;
+  
+  speaker_attenuation?: number;
+
+  enable_doppler?: boolean;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class SpatialAudioParams {
+  const SpatialAudioParams(
+      {this.speakerAzimuth,
+      this.speakerElevation,
+      this.speakerDistance,
+      this.speakerOrientation,
+      this.enableBlur,
+      this.enableAirAbsorb,
+      this.speakerAttenuation,
+      this.enableDoppler});
+
+  @JsonKey(name: 'speaker_azimuth')
+  final double? speakerAzimuth;
+
+  @JsonKey(name: 'speaker_elevation')
+  final double? speakerElevation;
+
+  @JsonKey(name: 'speaker_distance')
+  final double? speakerDistance;
+
+  @JsonKey(name: 'speaker_orientation')
+  final int? speakerOrientation;
+
+  @JsonKey(name: 'enable_blur')
+  final bool? enableBlur;
+
+  @JsonKey(name: 'enable_air_absorb')
+  final bool? enableAirAbsorb;
+
+  @JsonKey(name: 'speaker_attenuation')
+  final double? speakerAttenuation;
+
+  @JsonKey(name: 'enable_doppler')
+  final bool? enableDoppler;
+
+  factory SpatialAudioParams.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$SpatialAudioParamsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$SpatialAudioParamsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class SpatialAudioParams : OptionalJsonParse
+    {
+        public Optional&lt;double&gt; speaker_azimuth = new Optional&lt;double&gt;();
+        public Optional&lt;double&gt; speaker_elevation = new Optional&lt;double&gt;();
+        public Optional&lt;double&gt; speaker_distance = new Optional&lt;double&gt;();
+        public Optional&lt;int&gt; speaker_orientation = new Optional&lt;int&gt;();
+        public Optional&lt;bool&gt; enable_blur = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; enable_air_absorb = new Optional&lt;bool&gt;();
+        public Optional&lt;double&gt; speaker_attenuation = new Optional&lt;double&gt;();
+        public Optional&lt;bool&gt; enable_doppler = new Optional&lt;bool&gt;();
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>speaker_azimuth</pt>
+                    <pd>The horizontal angle of the remote user or media player relative to the local user. Value range: [0,360], in degrees:
+                        <ul>
+                            <li>0: (default) 0 degrees, directly in front on the horizontal plane.</li>
+                            <li>90: 90 degrees, to the left on the horizontal plane.</li>
+                            <li>180: 180 degrees, directly behind on the horizontal plane.</li>
+                            <li>270: 270 degrees, to the right on the horizontal plane.</li>
+                            <li>360: 360 degrees, same as 0 degrees.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>speaker_elevation</pt>
+                    <pd>The vertical angle (elevation) of the remote user or media player relative to the local user. Value range: [-90,90], in degrees:
+                        <ul>
+                            <li>0: (default) 0 degrees, no tilt on the horizontal plane.</li>
+                            <li>-90: -90 degrees, tilted downward 90 degrees.</li>
+                            <li>90: 90 degrees, tilted upward 90 degrees.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>speaker_distance</pt>
+                    <pd>The distance of the remote user or media player from the local user. Value range: [1,50], in meters. Default is 1 meter.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>speaker_orientation</pt>
+                    <pd>The orientation of the remote user or media player relative to the local user. Value range: [0,180], in degrees:
+                        <ul>
+                            <li>0: (default) 0 degrees, source and listener face the same direction.</li>
+                            <li>180: 180 degrees, source and listener face each other.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enable_blur</pt>
+                    <pd>Whether to enable sound blurring:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable blurring.</li>
+                            <li><xref keyref="false"/>: (default) Disable blurring.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enable_air_absorb</pt>
+                    <pd>Whether to enable air absorption, simulating the attenuation of sound timbre during air transmission: high frequencies attenuate faster than low frequencies over distance.
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Enable air absorption. Ensure <codeph>speaker_attenuation</codeph> is not <codeph>0</codeph>, otherwise this setting has no effect.</li>
+                            <li><xref keyref="false"/>: Disable air absorption.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>speaker_attenuation</pt>
+                    <pd>Attenuation coefficient of the remote user or media player sound. Value range: [0,1]:
+                        <ul>
+                            <li>0: Broadcast mode. Volume and timbre do not attenuate with distance.</li>
+                            <li>(0,0.5): Weak attenuation. Volume and timbre (requires <codeph>enable_air_absorb</codeph>) attenuate slightly, allowing sound to travel farther than in real environments.</li>
+                            <li>0.5: (default) Simulates real-world volume attenuation. Equivalent to not setting <codeph>speaker_attenuation</codeph>.</li>
+                            <li>(0.5,1]: Strong attenuation. Volume and timbre (requires <codeph>enable_air_absorb</codeph>) attenuate rapidly.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enable_doppler</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>This parameter is suitable for scenarios with fast-moving sound sources (e.g., racing games). It is not recommended in typical audio/video interaction scenarios (voice chat, co-hosting, online karaoke).</li>
+                                <li>When enabled, it is recommended to update the relative distance between source and listener periodically (e.g., every 30 ms) by calling <xref keyref="updatePlayerPositionInfo"/>, <xref keyref="updateSelfPosition"/>, and <xref keyref="updateRemotePosition"/>. The Doppler effect may not work as expected or may produce jitter if: update interval is too long, update interval is irregular, or distance info is lost due to network packet loss or latency.</li>
+                            </ul>
+                        </note><ph>Whether to enable Doppler effect: when the sound source and listener move relative to each other, the pitch heard by the listener changes.</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Enable Doppler effect.</li>
+                            <li><xref keyref="false"/>: (default) Disable Doppler effect.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>speaker_azimuth</pt>
+                    <pd>The horizontal angle of the remote user or media player relative to the local user. Value range: [0,360] degrees. Where:
+                        <ul>
+                            <li>0: (default) 0 degrees, directly in front on the horizontal plane.</li>
+                            <li>90: 90 degrees, directly to the left.</li>
+                            <li>180: 180 degrees, directly behind.</li>
+                            <li>270: 270 degrees, directly to the right.</li>
+                            <li>360: 360 degrees, same as 0 degrees.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>speaker_elevation</pt>
+                    <pd>The elevation angle of the remote user or media player relative to the local user. Value range: [-90,90] degrees. Where:
+                        <ul>
+                            <li>0: (default) 0 degrees, no vertical rotation.</li>
+                            <li>-90: -90 degrees, rotated 90 degrees downward.</li>
+                            <li>90: 90 degrees, rotated 90 degrees upward.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>speaker_distance</pt>
+                    <pd>The distance of the remote user or media player relative to the local user. Value range: [1,50] meters. Default is 1 meter.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>speaker_orientation</pt>
+                    <pd>The orientation of the remote user or media player relative to the local user. Value range: [0,180] degrees. Where:
+                        <ul>
+                            <li>0: (default) 0 degrees, both source and listener face the same direction.</li>
+                            <li>180: 180 degrees, source and listener face each other.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enable_blur</pt>
+                    <pd>Whether to enable sound blur processing:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable blur.</li>
+                            <li><xref keyref="false"/>: (default) Disable blur.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enable_air_absorb</pt>
+                    <pd>Whether to enable air absorption, simulating the attenuation of sound timbre as it travels through air: at certain distances, high frequencies attenuate faster than low frequencies.
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Enable air absorption. Make sure <codeph>speaker_attenuation</codeph> is not <codeph>0</codeph>, otherwise this setting has no effect.</li>
+                            <li><xref keyref="false"/>: Disable air absorption.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>speaker_attenuation</pt>
+                    <pd>Sound attenuation coefficient for the remote user or media player, value range [0,1]. Where:
+                        <ul>
+                            <li>0: Broadcast mode, volume and timbre do not attenuate with distance; the local user hears no change regardless of distance.</li>
+                            <li>(0,0.5): Weak attenuation mode; volume and timbre (requires <codeph>enable_air_absorb</codeph>) attenuate slightly, allowing sound to travel farther than in real environments.</li>
+                            <li>0.5: (default) Simulates real-world volume attenuation, equivalent to not setting <codeph>speaker_attenuation</codeph>.</li>
+                            <li>(0.5,1]: Strong attenuation mode; volume and timbre (requires <codeph>enable_air_absorb</codeph>) attenuate rapidly.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enable_doppler</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>This parameter is suitable for scenarios with fast-moving sound sources (e.g., racing games). It is not recommended for typical audio/video interaction scenarios (voice chat, co-hosting, online KTV).</li>
+                                <li>When enabled, it is recommended to set a regular update interval (e.g., 30 ms) and continuously call <xref keyref="updatePlayerPositionInfo"/>, <xref keyref="updateSelfPosition"/>, and <xref keyref="updateRemotePosition"/> to update the relative distance between the source and receiver. The Doppler effect may not work as expected or may cause jitter if: the update interval is too long, the updates are irregular, or packet loss/delay causes distance info loss.</li>
+                            </ul>
+                        </note><ph>Whether to enable Doppler effect: when there is relative movement between the sound source and the receiver, the pitch heard by the receiver changes.</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Enable Doppler effect.</li>
+                            <li><xref keyref="false"/>: (default) Disable Doppler effect.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>speaker_azimuth</pt>
+                    <pd>The horizontal angle of the remote user or media player relative to the local user. Value range: [0,360], in degrees:
+                        <ul>
+                            <li>0: (default) 0°, directly in front.</li>
+                            <li>90: 90°, directly to the left.</li>
+                            <li>180: 180°, directly behind.</li>
+                            <li>270: 270°, directly to the right.</li>
+                            <li>360: 360°, same as 0°, directly in front.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>speaker_elevation</pt>
+                    <pd>The vertical angle of the remote user or media player relative to the local user. Value range: [-90,90], in degrees:
+                        <ul>
+                            <li>0: (default) 0°, no tilt.</li>
+                            <li>-90: -90°, tilted downward.</li>
+                            <li>90: 90°, tilted upward.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>speaker_distance</pt>
+                    <pd>The distance between the remote user or media player and the local user. Value range: [1,50], in meters. Default is 1 meter.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>speaker_orientation</pt>
+                    <pd>The orientation of the remote user or media player relative to the local user. Value range: [0,180], in degrees:
+                        <ul>
+                            <li>0: (default) 0°, facing the same direction.</li>
+                            <li>180: 180°, facing each other.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enable_blur</pt>
+                    <pd>Whether to enable sound blur processing:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable blur.</li>
+                            <li><xref keyref="false"/>: (default) Disable blur.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enable_air_absorb</pt>
+                    <pd>Whether to enable air absorption, which simulates the attenuation of sound timbre as it travels through air: high frequencies attenuate faster than low frequencies over distance.
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Enable air absorption. Make sure <codeph>speaker_attenuation</codeph> is not <codeph>0</codeph>, otherwise this setting has no effect.</li>
+                            <li><xref keyref="false"/>: Disable air absorption.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>speaker_attenuation</pt>
+                    <pd>The sound attenuation coefficient of the remote user or media player. Value range: [0,1]:
+                        <ul>
+                            <li>0: Broadcast mode. Volume and timbre do not attenuate with distance.</li>
+                            <li>(0,0.5): Weak attenuation. Slight attenuation of volume and timbre (requires <codeph>enable_air_absorb</codeph>) during transmission. Sound travels farther than in real environments.</li>
+                            <li>0.5: (default) Simulates real-world volume attenuation. Equivalent to not setting <codeph>speaker_attenuation</codeph>.</li>
+                            <li>(0.5,1]: Strong attenuation. Rapid attenuation of volume and timbre (requires <codeph>enable_air_absorb</codeph>) during transmission.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enable_doppler</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>This parameter is suitable for scenarios with fast-moving sound sources (e.g., racing games). It is not recommended for standard audio/video interaction scenarios (voice chat, co-hosting, online KTV).</li>
+                                <li>When enabled, it is recommended to update the relative distance between source and receiver periodically (e.g., every 30 ms) using <xref keyref="updatePlayerPositionInfo"/>, <xref keyref="updateSelfPosition"/>, and <xref keyref="updateRemotePosition"/>. The Doppler effect may not work as expected or may cause jitter if updates are infrequent, irregular, or affected by network issues such as packet loss or latency.</li>
+                            </ul>
+                        </note><ph>Whether to enable Doppler effect: when there is relative motion between the sound source and receiver, the pitch heard by the receiver changes.</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Enable Doppler effect.</li>
+                            <li><xref keyref="false"/>: (default) Disable Doppler effect.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>speaker_azimuth</pt>
+                    <pd>The horizontal angle of the remote user or media player relative to the local user. Range: [0,360], in degrees:
+                        <ul>
+                            <li>0: (default) 0 degrees, directly in front.</li>
+                            <li>90: 90 degrees, to the left.</li>
+                            <li>180: 180 degrees, behind.</li>
+                            <li>270: 270 degrees, to the right.</li>
+                            <li>360: 360 degrees, directly in front.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>speaker_elevation</pt>
+                    <pd>The elevation angle of the remote user or media player relative to the local user. Range: [-90,90], in degrees:
+                        <ul>
+                            <li>0: (default) 0 degrees, no vertical rotation.</li>
+                            <li>-90: -90 degrees, rotated downward.</li>
+                            <li>90: 90 degrees, rotated upward.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>speaker_distance</pt>
+                    <pd>The distance between the remote user or media player and the local user. Range: [1,50], in meters. Default is 1 meter.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>speaker_orientation</pt>
+                    <pd>The orientation of the remote user or media player relative to the local user. Range: [0,180], in degrees:
+                        <ul>
+                            <li>0: (default) 0 degrees, facing the same direction.</li>
+                            <li>180: 180 degrees, facing each other.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enable_blur</pt>
+                    <pd>Whether to enable sound blur processing:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable blur.</li>
+                            <li><xref keyref="false"/>: (default) Disable blur.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enable_air_absorb</pt>
+                    <pd>Whether to enable air absorption, simulating timbre attenuation during sound propagation in air: high frequencies attenuate faster than low frequencies over distance.
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Enable air absorption. Make sure <codeph>speaker_attenuation</codeph> is not <codeph>0</codeph>, otherwise this setting has no effect.</li>
+                            <li><xref keyref="false"/>: Disable air absorption.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>speaker_attenuation</pt>
+                    <pd>The sound attenuation coefficient of the remote user or media player. Range: [0,1]:
+                        <ul>
+                            <li>0: Broadcast mode, no volume or timbre attenuation with distance.</li>
+                            <li>(0,0.5): Weak attenuation, slight volume and timbre attenuation (requires <codeph>enable_air_absorb</codeph>), allowing sound to travel farther than in real environments.</li>
+                            <li>0.5: (default) Simulates real-world volume attenuation, same as not setting <codeph>speaker_attenuation</codeph>.</li>
+                            <li>(0.5,1]: Strong attenuation, rapid volume and timbre attenuation (requires <codeph>enable_air_absorb</codeph>).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enable_doppler</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>This parameter applies to scenarios with fast-moving sound sources (e.g., racing games). It is not recommended for typical audio/video interaction scenarios (voice chat, co-hosting, online karaoke).</li>
+                                <li>When enabled, it is recommended to update the relative distance between the source and receiver at regular intervals (e.g., every 30 ms) using <xref keyref="updatePlayerPositionInfo"/>, <xref keyref="updateSelfPosition"/>, and <xref keyref="updateRemotePosition"/>. The Doppler effect may not work as expected or may cause audio jitter if: the update interval is too long, updates are irregular, or distance info is lost due to packet loss or latency.</li>
+                            </ul>
+                        </note><ph>Whether to enable Doppler effect: when there is relative motion between the sound source and receiver, the pitch changes.</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Enable Doppler effect.</li>
+                            <li><xref keyref="false"/>: (default) Disable Doppler effect.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

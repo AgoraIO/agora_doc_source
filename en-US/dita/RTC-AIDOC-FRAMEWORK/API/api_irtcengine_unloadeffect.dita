@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_unloadeffect">
+    <title><ph keyref="unloadEffect"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Releases a preloaded audio effect file from memory.</ph><ph id="shortdesc" props="rn">Releases a preloaded audio effect file from memory.</ph><ph id="shortdesc" props="flutter">Releases a specific preloaded audio effect file from memory.</ph><ph id="shortdesc" props="unity">Releases a preloaded audio effect file from memory.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="unloadEffect"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract unloadEffect(soundId: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract unloadEffect(soundId: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; unloadEffect(int soundId);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int UnloadEffect(int soundId);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After loading an audio effect file into memory using <xref keyref="preloadEffect"/>, call this method to release the audio effect file.</p>
+            <p props="rn">After calling <xref keyref="preloadEffect"/> to load an audio effect file into memory, call this method to release the file.</p>
+            <p props="flutter">After loading the audio effect file into memory using <xref keyref="preloadEffect"/>, call this method to release the audio effect file.</p>
+            <p props="unity">After calling <xref keyref="preloadEffect"/> to load an audio effect file into memory, you can call this method to release it.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">You can call this method before or after joining a channel.</p>
+            <p props="rn">You can call this method either before or after joining a channel.</p>
+            <p props="flutter">This method can be called before or after joining a channel.</p>
+            <p props="unity">This method can be called before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>soundId</pt>
+                    <pd>The ID of the specified audio effect file. Each audio effect file has a unique ID.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>soundId</pt>
+                    <pd>The ID of the specified audio effect file. Each audio effect file has a unique ID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>soundId</pt>
+                    <pd>The ID of the specified audio effect file. Each audio effect file has a unique ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>soundId</pt>
+                    <pd>The ID of the specified audio effect file. Each audio effect file has a unique ID.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onplayercachestats">
+    <title><ph keyref="onPlayerCacheStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Reports information about the media resources currently in cache.</ph><ph id="shortdesc" props="rn">Reports information about the currently cached media resources.</ph><ph id="shortdesc" props="flutter">Reports information about the media resources currently in cache.</ph><ph id="shortdesc" props="unity">Reports information about the media resources currently in cache.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlayerCacheStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onPlayerCacheStats?(stats: CacheStatistics): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onPlayerCacheStats?(stats: CacheStatistics): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(CacheStatistics stats)? onPlayerCacheStats;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerCacheStats(CacheStatistics stats)
+                {
+                }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After calling the <xref keyref="openWithMediaSource"/> method and setting the <codeph>enableCache</codeph> member to <xref keyref="true"/>, the SDK triggers this callback once per second after the media file is opened to report statistics of the cached media files.</p>
+            <p props="rn">After calling the <xref keyref="openWithMediaSource"/> method and setting the <codeph>enableCache</codeph> member to <xref keyref="true"/>, the SDK triggers this callback once per second after the media file is opened, reporting statistical data of the currently cached media files.</p>
+            <p props="flutter">After calling the <xref keyref="openWithMediaSource"/> method and setting the <codeph>enableCache</codeph> member to <xref keyref="true"/>, the SDK triggers this callback once per second after the media file is opened to report statistics of the currently cached media files.</p>
+            <p props="unity">After calling the <xref keyref="openWithMediaSource"/> method and setting the <codeph>enableCache</codeph> member to <xref keyref="true"/>, the SDK triggers this callback once per second after the media file is opened to report statistics about the currently cached media files.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>stats</pt>
+                    <pd>Information about the media resources in cache. See <xref keyref="CacheStatistics"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>stats</pt>
+                    <pd>Information about the media resources in the cache. See <xref keyref="CacheStatistics"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>stats</pt>
+                    <pd>Information about the media resources in cache. See <xref keyref="CacheStatistics"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>stats</pt>
+                    <pd>Information about the media resources in the cache. See <xref keyref="CacheStatistics"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

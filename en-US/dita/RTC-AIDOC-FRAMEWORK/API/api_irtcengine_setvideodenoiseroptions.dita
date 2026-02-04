@@ -1,0 +1,218 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setvideodenoiseroptions">
+    <title><ph keyref="setVideoDenoiserOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets video denoising.</ph><ph id="shortdesc" props="rn">Enables video denoising.</ph><ph id="shortdesc" props="flutter">Sets the video denoising feature.</ph><ph id="shortdesc" props="unity">Sets the video denoising feature.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setVideoDenoiserOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setVideoDenoiserOptions(
+    enabled: boolean,
+    options: VideoDenoiserOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setVideoDenoiserOptions(
+    enabled: boolean,
+    options: VideoDenoiserOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setVideoDenoiserOptions(
+      {required bool enabled,
+      required VideoDenoiserOptions options,
+      MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetVideoDenoiserOptions(bool enabled, VideoDenoiserOptions options, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">You can call this method to enable video denoising and configure its effect.</p>
+            <p props="rn">You can call this method to enable video denoising and configure its effect.</p>
+            <p props="flutter">You can call this method to enable the video denoising feature and configure its effects.</p>
+            <p props="unity">You can call this method to enable the video denoising feature and set its effect.</p>
+            <note props="electron">If the denoising strength provided by this method does not meet your needs, Agora recommends that you call the <xref keyref="setBeautyEffectOptions"/> method to enable the beauty skin smoothing feature for better video denoising. Recommended <xref keyref="BeautyOptions"/> settings for strong denoising:
+                <ul>
+                    <li><codeph>lighteningContrastLevel</codeph>: LighteningContrastNormal</li>
+                    <li><codeph>lighteningLevel</codeph>: 0.0</li>
+                    <li><codeph>smoothnessLevel</codeph>: 0.5</li>
+                    <li><codeph>rednessLevel</codeph>: 0.0</li>
+                    <li><codeph>sharpnessLevel</codeph>: 0.1</li>
+                    <li>This method depends on the video enhancement dynamic library <codeph>libagora_clear_vision_extension.dll</codeph>. Removing this library will prevent the feature from functioning properly.</li>
+                    <li>Video denoising requires certain device performance. If the device overheats after enabling this feature, consider lowering the denoising level or disabling the feature.</li>
+                </ul>
+            </note>
+            <note props="rn">If the denoising intensity provided by this method does not meet your needs, Agora recommends using the <xref keyref="setBeautyEffectOptions"/> method to enable the skin smoothing feature for better denoising. Recommended <xref keyref="BeautyOptions"/> settings for strong denoising:
+                <ul>
+                    <li><codeph>lighteningContrastLevel</codeph>: LighteningContrastNormal</li>
+                    <li><codeph>lighteningLevel</codeph>: 0.0</li>
+                    <li><codeph>smoothnessLevel</codeph>: 0.5</li>
+                    <li><codeph>rednessLevel</codeph>: 0.0</li>
+                    <li><codeph>sharpnessLevel</codeph>: 0.1</li>
+                    <li>This method depends on the video enhancement dynamic library <codeph>libagora_clear_vision_extension.dll</codeph>. Removing this library will cause the feature to fail.</li>
+                    <li>Video denoising has certain performance requirements. If the device overheats or experiences issues after enabling this feature, consider lowering the denoising level or disabling the feature.</li>
+                </ul>
+            </note>
+            <note props="flutter">If the denoising strength provided by this method does not meet your needs, Agora recommends calling the <xref keyref="setBeautyEffectOptions"/> method to enable the skin smoothing feature for better video denoising. Recommended <xref keyref="BeautyOptions"/> settings for strong denoising:
+                <ul>
+                    <li><codeph>lighteningContrastLevel</codeph>: lighteningContrastNormal</li>
+                    <li><codeph>lighteningLevel</codeph>: 0.0</li>
+                    <li><codeph>smoothnessLevel</codeph>: 0.5</li>
+                    <li><codeph>rednessLevel</codeph>: 0.0</li>
+                    <li><codeph>sharpnessLevel</codeph>: 0.1</li>
+                    <li>This method depends on the video enhancement dynamic library <codeph>libagora_clear_vision_extension.dll</codeph>. If this library is removed, the feature cannot be enabled properly.</li>
+                    <li>Video denoising has certain performance requirements. After enabling it, if the device experiences severe overheating, it is recommended to lower the denoising level to a less performance-intensive one or disable the feature.</li>
+                </ul>
+            </note>
+            <note props="unity">If the denoising strength provided by this method does not meet your needs, Agora recommends that you call the <xref keyref="setBeautyEffectOptions"/> method to enable the beauty smoothing feature for better video denoising. Recommended <xref keyref="BeautyOptions"/> settings for strong denoising effect:
+                <ul>
+                    <li><codeph>lighteningContrastLevel</codeph>: LIGHTENING_CONTRAST_NORMAL</li>
+                    <li><codeph>lighteningLevel</codeph>: 0.0</li>
+                    <li><codeph>smoothnessLevel</codeph>: 0.5</li>
+                    <li><codeph>rednessLevel</codeph>: 0.0</li>
+                    <li><codeph>sharpnessLevel</codeph>: 0.1</li>
+                    <li>This method depends on the video enhancement dynamic library <codeph>libagora_clear_vision_extension.dll</codeph>. Deleting this library will cause the feature to fail.</li>
+                    <li>Video denoising requires certain device performance. If the device overheats after enabling this feature, it is recommended to reduce the denoising level or disable the feature.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>Poor lighting and low-end video capture devices can cause noticeable noise in video images, affecting video quality. In real-time interactive scenarios, video noise can also consume bitrate resources during encoding and reduce encoding efficiency.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Call this method after <xref keyref="enableVideo"/>.</p>
+            <p props="rn">Call this method after <xref keyref="enableVideo"/>.</p>
+            <p props="flutter">Call this method after <xref keyref="enableVideo"/>.</p>
+            <p props="unity">Call this method after <xref keyref="enableVideo"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable video denoising:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable video denoising.</li>
+                            <li><xref keyref="false"/>: (default) Disable video denoising.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>options</pt>
+                    <pd>Video denoising options used to configure the effect. See <xref keyref="VideoDenoiserOptions"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>The media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, this parameter only supports the following settings:
+                            <ul>
+                                <li>When capturing local video using the camera, keep the default value <codeph>PrimaryCameraSource</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>CustomVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable video denoising:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable video denoising.</li>
+                            <li><xref keyref="false"/>: (Default) Disable video denoising.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>options</pt>
+                    <pd>Video denoising options to configure the effect. See <xref keyref="VideoDenoiserOptions"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>The media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, only the following two settings are supported:
+                            <ul>
+                                <li>When using the camera to capture local video, keep the default value <codeph>PrimaryCameraSource</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>CustomVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the video denoising feature:
+                        <ul>
+                            <li><xref keyref="true"/>: Enables video denoising.</li>
+                            <li><xref keyref="false"/>: (Default) Disables video denoising.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>options</pt>
+                    <pd>Video denoising options for configuring the effect. See <xref keyref="VideoDenoiserOptions"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>The type of media source to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, this parameter only supports the following two settings:
+                            <ul>
+                                <li>When using the camera to capture local video, keep the default value <codeph>primaryCameraSource</codeph>.</li>
+                                <li>If you want to use custom captured video, set this parameter to <codeph>customVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable video denoising:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable video denoising.</li>
+                            <li><xref keyref="false"/>: (Default) Disable video denoising.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>options</pt>
+                    <pd>Video denoising options for setting the effect. See <xref keyref="VideoDenoiserOptions"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>The media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, this parameter only supports the following two settings:
+                            <ul>
+                                <li>When capturing local video using the camera, keep the default value <codeph>PRIMARY_CAMERA_SOURCE</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>CUSTOM_VIDEO_SOURCE</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

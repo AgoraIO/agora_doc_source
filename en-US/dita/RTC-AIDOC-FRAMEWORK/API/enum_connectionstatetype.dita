@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_connectionstatetype">
+    <title><ph keyref="CONNECTION_STATE_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Network connection state.</ph><ph id="shortdesc" props="rn">Network connection state.</ph><ph id="shortdesc" props="flutter">Network connection state.</ph><ph id="shortdesc" props="unity">Network connection state.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>ConnectionStateDisconnected</pt>
+                    <pd>1: Disconnected from the network. This state indicates that the SDK is:
+                        <ul>
+                            <li>In the initialization phase before calling <xref keyref="joinChannel2"/>.</li>
+                            <li>Or in the leave phase after calling <xref keyref="leaveChannel2"/>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionStateConnecting</pt>
+                    <pd>2: Connecting to the network. This state indicates that the SDK is establishing a connection to the specified channel after calling <xref keyref="joinChannel2"/>.
+                        <ul>
+                            <li>If the channel is joined successfully, the app receives the <xref keyref="onConnectionStateChanged"/> callback indicating the network state has changed to ConnectionStateConnected.</li>
+                            <li>After the connection is established, the SDK initializes media and triggers the <xref keyref="onJoinChannelSuccess"/> callback when ready.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionStateConnected</pt>
+                    <pd>3: Connected to the network. This state indicates that the user has joined the channel and can publish or subscribe to media streams. If the connection is interrupted due to network issues or switching, the SDK automatically reconnects. The app receives the <xref keyref="onConnectionStateChanged"/> callback indicating the network state has changed to ConnectionStateReconnecting.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionStateReconnecting</pt>
+                    <pd>4: Reconnecting to the network. This state indicates that the SDK was previously connected to the channel but the connection was interrupted due to network issues. The SDK is now trying to reconnect to the channel.
+                        <ul>
+                            <li>If the SDK fails to rejoin the channel within 10 seconds, <xref keyref="onConnectionLost"/> is triggered. The SDK remains in the ConnectionStateReconnecting state and continues trying to rejoin.</li>
+                            <li>If the SDK fails to rejoin the channel within 20 minutes after disconnection, the app receives the <xref keyref="onConnectionStateChanged"/> callback indicating the network state has changed to ConnectionStateFailed, and the SDK stops trying to reconnect.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionStateFailed</pt>
+                    <pd>5: Network connection failed. This state indicates that the SDK has stopped trying to rejoin the channel. You need to call <xref keyref="leaveChannel2"/> to leave the channel.
+                        <ul>
+                            <li>If the user wants to rejoin the channel, call <xref keyref="joinChannel2"/> again.</li>
+                            <li>If the SDK is banned from joining the channel by the server using RESTful API, the app receives the <xref keyref="onConnectionStateChanged"/> callback.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionStateDisconnected</pt>
+                    <pd>1: Network connection is disconnected. This state indicates that the SDK is in:
+                        <ul>
+                            <li>The initialization phase before calling <xref keyref="joinChannel2"/> to join a channel.</li>
+                            <li>Or the phase after calling <xref keyref="leaveChannel2"/> to leave a channel.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionStateConnecting</pt>
+                    <pd>2: Connecting to the network. This state indicates that the SDK is establishing a connection with the specified channel after calling <xref keyref="joinChannel2"/>.
+                        <ul>
+                            <li>If the channel is joined successfully, the app receives the <xref keyref="onConnectionStateChanged"/> callback, indicating the network state has changed to ConnectionStateConnected.</li>
+                            <li>After the connection is established, the SDK initializes media and triggers the <xref keyref="onJoinChannelSuccess"/> callback once everything is ready.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionStateConnected</pt>
+                    <pd>3: Network is connected. This state indicates that the user has joined the channel and can publish or subscribe to media streams. If the connection is interrupted due to network disconnection or switching, the SDK automatically reconnects. The app receives the <xref keyref="onConnectionStateChanged"/> callback, indicating the network state has changed to ConnectionStateReconnecting.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionStateReconnecting</pt>
+                    <pd>4: Reconnecting to the network. This state indicates that the SDK had previously joined a channel but the connection was interrupted due to network issues. The SDK is now trying to reconnect to the channel.
+                        <ul>
+                            <li>If the SDK cannot rejoin the channel within 10 seconds, <xref keyref="onConnectionLost"/> is triggered. The SDK remains in the ConnectionStateReconnecting state and continues trying to rejoin.</li>
+                            <li>If the SDK still cannot rejoin the channel within 20 minutes after disconnection, the app receives the <xref keyref="onConnectionStateChanged"/> callback, indicating that the network state has changed to ConnectionStateFailed, and the SDK stops trying to reconnect.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionStateFailed</pt>
+                    <pd>5: Network connection failed. This state indicates that the SDK has stopped trying to rejoin the channel and you need to call <xref keyref="leaveChannel2"/> to leave the channel.
+                        <ul>
+                            <li>If the user wants to rejoin the channel, they need to call <xref keyref="joinChannel2"/> again.</li>
+                            <li>If the SDK is prohibited from joining the channel by the server using RESTful API, the app will receive <xref keyref="onConnectionStateChanged"/>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionStateDisconnected</pt>
+                    <pd>1: Disconnected from the network. This state indicates the SDK is:
+                        <ul>
+                            <li>In the initialization phase before calling <xref keyref="joinChannel2"/>.</li>
+                            <li>Or in the phase after calling <xref keyref="leaveChannel2"/>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionStateConnecting</pt>
+                    <pd>2: Connecting to the network. This state indicates the SDK is establishing a connection to the specified channel after calling <xref keyref="joinChannel2"/>.
+                        <ul>
+                            <li>If the channel is joined successfully, the app receives the <xref keyref="onConnectionStateChanged"/> callback indicating the network state has changed to connectionStateConnected.</li>
+                            <li>After establishing the connection, the SDK initializes media and calls back <xref keyref="onJoinChannelSuccess"/> when everything is ready.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionStateConnected</pt>
+                    <pd>3: Network connected. This state indicates the user has joined the channel and can publish or subscribe to media streams. If the connection to the channel is lost due to network issues or switching, the SDK attempts to reconnect. The app receives the <xref keyref="onConnectionStateChanged"/> callback indicating the network state has changed to connectionStateReconnecting.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionStateReconnecting</pt>
+                    <pd>4: Reconnecting to the network. This state indicates the SDK had previously joined the channel but the connection was interrupted due to network issues. The SDK automatically attempts to rejoin the channel.
+                        <ul>
+                            <li>If the SDK fails to rejoin within 10 seconds, <xref keyref="onConnectionLost"/> is triggered. The SDK remains in the connectionStateReconnecting state and continues trying to rejoin.</li>
+                            <li>If the SDK fails to rejoin the channel within 20 minutes after disconnection, the app receives the <xref keyref="onConnectionStateChanged"/> callback indicating the network state has changed to connectionStateFailed, and the SDK stops trying to reconnect.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionStateFailed</pt>
+                    <pd>5: Network connection failed. This state indicates the SDK has stopped trying to rejoin the channel and you need to call <xref keyref="leaveChannel2"/> to leave.
+                        <ul>
+                            <li>If the user wants to rejoin the channel, call <xref keyref="joinChannel2"/> again.</li>
+                            <li>If the SDK is forbidden to join the channel due to the server using RESTful API, the app receives <xref keyref="onConnectionStateChanged"/>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_STATE_DISCONNECTED</pt>
+                    <pd>1: Network disconnected. This state indicates the SDK is:
+                        <ul>
+                            <li>In the initialization phase before calling <xref keyref="joinChannel2"/>.</li>
+                            <li>Or in the leave phase after calling <xref keyref="leaveChannel2"/>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_STATE_CONNECTING</pt>
+                    <pd>2: Connecting to the network. This state indicates the SDK is establishing a connection to the specified channel after calling <xref keyref="joinChannel2"/>.
+                        <ul>
+                            <li>If the channel is joined successfully, the app receives the <xref keyref="onConnectionStateChanged"/> callback indicating the state changes to CONNECTION_STATE_CONNECTED.</li>
+                            <li>After the connection is established, the SDK initializes media and then triggers <xref keyref="onJoinChannelSuccess"/> when ready.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_STATE_CONNECTED</pt>
+                    <pd>3: Network connected. This state indicates the user has joined the channel and can publish or subscribe to media streams. If the connection is interrupted due to network issues or switching, the SDK automatically reconnects. The app receives the <xref keyref="onConnectionStateChanged"/> callback indicating the state changes to CONNECTION_STATE_RECONNECTING.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_STATE_RECONNECTING</pt>
+                    <pd>4: Reconnecting to the network. This state indicates the SDK had previously joined the channel but got disconnected due to network issues. The SDK automatically attempts to rejoin the channel.
+                        <ul>
+                            <li>If the SDK fails to rejoin within 10 seconds, <xref keyref="onConnectionLost"/> is triggered. The SDK remains in CONNECTION_STATE_RECONNECTING and keeps trying to rejoin.</li>
+                            <li>If the SDK fails to rejoin within 20 minutes, the app receives the <xref keyref="onConnectionStateChanged"/> callback indicating the state changes to CONNECTION_STATE_FAILED, and the SDK stops trying to reconnect.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_STATE_FAILED</pt>
+                    <pd>5: Network connection failed. This state indicates the SDK has stopped trying to rejoin the channel. You need to call <xref keyref="leaveChannel"/> to leave the channel.
+                        <ul>
+                            <li>If the user wants to rejoin, call <xref keyref="joinChannel2"/> again.</li>
+                            <li>If the SDK is prevented from joining by the server using RESTful API, the app receives <xref keyref="onConnectionStateChanged"/>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

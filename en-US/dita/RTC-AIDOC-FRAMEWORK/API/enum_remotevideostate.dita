@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_remotevideostate">
+    <title><ph keyref="REMOTE_VIDEO_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">State of the remote video stream.</ph><ph id="shortdesc" props="rn">Remote video stream state.</ph><ph id="shortdesc" props="flutter">Remote video stream state.</ph><ph id="shortdesc" props="unity">Remote video stream state.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>RemoteVideoStateStopped</pt>
+                    <pd>0: The default initial state of the remote video. This state is reported under <codeph>RemoteVideoStateReasonLocalMuted</codeph>, <codeph>RemoteVideoStateReasonRemoteMuted</codeph>, or <codeph>RemoteVideoStateReasonRemoteOffline</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RemoteVideoStateStarting</pt>
+                    <pd>1: The local user has received the first packet of the remote video.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RemoteVideoStateDecoding</pt>
+                    <pd>2: The remote video stream is being decoded and playing normally. This state is reported under <codeph>RemoteVideoStateReasonNetworkRecovery</codeph>, <codeph>RemoteVideoStateReasonLocalUnmuted</codeph>, or <codeph>RemoteVideoStateReasonRemoteUnmuted</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RemoteVideoStateFrozen</pt>
+                    <pd>3: The remote video stream is frozen. This state is reported under <codeph>RemoteVideoStateReasonNetworkCongestion</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RemoteVideoStateFailed</pt>
+                    <pd>4: Failed to play the remote video stream. This state is reported under <codeph>RemoteVideoStateReasonInternal</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RemoteVideoStateStopped</pt>
+                    <pd>0: The default initial state of the remote video. This state is reported under <codeph>RemoteVideoStateReasonLocalMuted</codeph>, <codeph>RemoteVideoStateReasonRemoteMuted</codeph>, or <codeph>RemoteVideoStateReasonRemoteOffline</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RemoteVideoStateStarting</pt>
+                    <pd>1: The local user has received the first packet of the remote video.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RemoteVideoStateDecoding</pt>
+                    <pd>2: The remote video stream is being decoded and playing normally. This state is reported under <codeph>RemoteVideoStateReasonNetworkRecovery</codeph>, <codeph>RemoteVideoStateReasonLocalUnmuted</codeph>, or <codeph>RemoteVideoStateReasonRemoteUnmuted</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RemoteVideoStateFrozen</pt>
+                    <pd>3: The remote video stream is frozen. This state is reported under <codeph>RemoteVideoStateReasonNetworkCongestion</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RemoteVideoStateFailed</pt>
+                    <pd>4: Failed to play the remote video stream. This state is reported under <codeph>RemoteVideoStateReasonInternal</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteVideoStateStopped</pt>
+                    <pd>0: The default initial state of the remote video. This state is reported in cases of <codeph>remoteVideoStateReasonLocalMuted</codeph>, <codeph>remoteVideoStateReasonRemoteMuted</codeph>, or <codeph>remoteVideoStateReasonRemoteOffline</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteVideoStateStarting</pt>
+                    <pd>1: The local user has received the first packet of the remote video.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteVideoStateDecoding</pt>
+                    <pd>2: The remote video stream is decoding and playing normally. This state is reported in cases of <codeph>remoteVideoStateReasonNetworkRecovery</codeph>, <codeph>remoteVideoStateReasonLocalUnmuted</codeph>, <codeph>remoteVideoStateReasonRemoteUnmuted</codeph>, or <codeph>remoteVideoStateReasonAudioFallbackRecovery</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteVideoStateFrozen</pt>
+                    <pd>3: The remote video stream is frozen. This state is reported in cases of <codeph>remoteVideoStateReasonNetworkCongestion</codeph> or <codeph>remoteVideoStateReasonAudioFallback</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteVideoStateFailed</pt>
+                    <pd>4: The remote video stream failed to play. This state is reported in the case of <codeph>remoteVideoStateReasonInternal</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>REMOTE_VIDEO_STATE_STOPPED</pt>
+                    <pd>0: Default initial state of the remote video. This state is reported under <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED</codeph>, or <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>REMOTE_VIDEO_STATE_STARTING</pt>
+                    <pd>1: The local user has received the first packet of the remote video.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>REMOTE_VIDEO_STATE_DECODING</pt>
+                    <pd>2: Remote video stream is decoding and playing normally. This state is reported under <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED</codeph>, or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>REMOTE_VIDEO_STATE_FROZEN</pt>
+                    <pd>3: Remote video stream is frozen. This state is reported under <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION</codeph> or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>REMOTE_VIDEO_STATE_FAILED</pt>
+                    <pd>4: Remote video stream playback failed. This state is reported under <codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL</codeph>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

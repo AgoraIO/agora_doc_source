@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onuserenablevideo">
+    <title><ph keyref="onUserEnableVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Occurs when a remote user enables or disables the video module.</ph><ph id="shortdesc" props="rn">Occurs when a remote user enables or disables the video module.</ph><ph id="shortdesc" props="flutter">Callback when a remote user enables/disables the video module.</ph><ph id="shortdesc" props="unity">Callback when a remote user enables or disables the video module.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserEnableVideo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onUserEnableVideo?(
+    connection: RtcConnection,
+    remoteUid: number,
+    enabled: boolean
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onUserEnableVideo?(
+    connection: RtcConnection,
+    remoteUid: number,
+    enabled: boolean
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, bool enabled)?
+      onUserEnableVideo;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserEnableVideo(RtcConnection connection, uint remoteUid, bool enabled) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Disabling the video module means the user can only make voice calls, and cannot display or send their own video, nor receive or display others’ video.
+This callback is triggered when the remote user calls the <xref keyref="enableVideo"/> or <xref keyref="disableVideo"/> method to enable or disable the video module.</p>
+            <p props="rn">Disabling the video function means the user can only make voice calls, cannot display or send their own video, and cannot receive or display others' video.
+This callback is triggered when a remote user calls the <xref keyref="enableVideo"/> or <xref keyref="disableVideo"/> method to enable or disable the video module.</p>
+            <p props="flutter">Disabling the video function means the user can only make voice calls, cannot display or send their own video, and cannot receive or display others' video.
+This callback is triggered when a remote user calls the <xref keyref="enableVideo"/> or <xref keyref="disableVideo"/> method to enable or disable the video module.</p>
+            <p props="unity">Disabling the video feature means the user can only make voice calls, cannot display or send their own video, nor receive or display others' video.
+This callback is triggered when a remote user calls the <xref keyref="enableVideo"/> or <xref keyref="disableVideo"/> method to enable or disable the video module.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteUid</pt>
+                    <pd>The user ID indicating whose video stream it is.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: The user has enabled video.</li>
+                            <li><xref keyref="false"/>: The user has disabled video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteUid</pt>
+                    <pd>The user ID indicating whose video stream is affected.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: The user has enabled the video function.</li>
+                            <li><xref keyref="false"/>: The user has disabled the video function.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteUid</pt>
+                    <pd>User ID indicating which user's video stream it is.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: The user has enabled the video function.</li>
+                            <li><xref keyref="false"/>: The user has disabled the video function.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteUid</pt>
+                    <pd>User ID indicating which user's video stream it is.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: The user has enabled the video feature.</li>
+                            <li><xref keyref="false"/>: The user has disabled the video feature.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

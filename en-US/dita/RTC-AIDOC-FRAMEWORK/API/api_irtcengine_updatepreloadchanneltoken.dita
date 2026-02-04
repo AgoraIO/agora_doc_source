@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_updatepreloadchanneltoken">
+    <title><ph keyref="updatePreloadChannelToken"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Updates the wildcard token for the preloaded channel.</ph><ph id="shortdesc" props="rn">Updates the wildcard token for the preloaded channel.</ph><ph id="shortdesc" props="flutter">Updates the wildcard token for the preloaded channel.</ph><ph id="shortdesc" props="unity">Updates the wildcard token for the preloaded channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updatePreloadChannelToken"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract updatePreloadChannelToken(token: string): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract updatePreloadChannelToken(token: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updatePreloadChannelToken(String token);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int UpdatePreloadChannelToken(string token);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">You need to manage the lifecycle of the wildcard token yourself. When the token expires, you must generate a new one on your server and pass it to the SDK using this method.</p>
+            <p props="rn">You need to manage the lifecycle of the wildcard token yourself. When the wildcard token expires, you need to generate a new one on your server and pass it in through this method.</p>
+            <p props="flutter">You need to manage the lifecycle of the wildcard token yourself. When the wildcard token expires, you need to generate a new one on your server and pass it in using this method.</p>
+            <p props="unity">You need to manage the lifecycle of the wildcard token yourself. When the wildcard token expires, you need to generate a new one on your server and pass it in using this method.</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In scenarios where frequent channel switching or multiple channels are needed, using a wildcard token avoids repeated token requests when switching channels, which speeds up the switching process and reduces the load on your token server.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>token</pt>
+                    <pd>The new token.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>token</pt>
+                    <pd>The new token.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>token</pt>
+                    <pd>The new token.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>token</pt>
+                    <pd>The new token.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.
+                        <ul>
+                            <li>-2: Invalid parameter. For example, an invalid token. You must provide valid parameters and rejoin the channel.</li>
+                            <li>-7: The <xref keyref="IRtcEngine"/> object is not initialized. You must initialize the <xref keyref="IRtcEngine"/> object before calling this method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: The passed parameter is invalid. For example, an illegal token is used. You need to provide valid parameters and rejoin the channel.</li>
+                            <li>-7: The <xref keyref="IRtcEngine"/> object is not initialized. You need to initialize the <xref keyref="IRtcEngine"/> object before calling this method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: The input parameter is invalid. For example, an invalid token is used. You need to provide valid parameters and rejoin the channel.</li>
+                            <li>-7: The <xref keyref="IRtcEngine"/> object is not initialized. You must successfully initialize the <xref keyref="IRtcEngine"/> object before calling this method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_updatechannelmediaoptionsex">
+    <title><ph keyref="updateChannelMediaOptionsEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Updates channel media options after joining the channel.</ph><ph id="shortdesc" props="rn">Updates the channel media options after joining a channel.</ph><ph id="shortdesc" props="flutter">Updates channel media options after joining the channel.</ph><ph id="shortdesc" props="unity">Updates channel media options after joining the channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updateChannelMediaOptionsEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract updateChannelMediaOptionsEx(
+    options: ChannelMediaOptions,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract updateChannelMediaOptionsEx(
+    options: ChannelMediaOptions,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateChannelMediaOptionsEx(
+    {required ChannelMediaOptions options,
+    required RtcConnection connection});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateChannelMediaOptionsEx(ChannelMediaOptions options, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>options</pt>
+                    <pd>Channel media options. See <xref keyref="ChannelMediaOptions"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>options</pt>
+                    <pd>The channel media options. See <xref keyref="ChannelMediaOptions"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>options</pt>
+                    <pd>Channel media options. See <xref keyref="ChannelMediaOptions"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>options</pt>
+                    <pd>Channel media options. See <xref keyref="ChannelMediaOptions"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.
+                        <ul>
+                            <li>-2: Invalid <xref keyref="ChannelMediaOptions"/> values. For example, using an invalid token or setting an invalid user role. You must provide valid parameters.</li>
+                            <li>-7: The <xref keyref="IRtcEngine"/> object is not initialized. You must initialize the <xref keyref="IRtcEngine"/> object before calling this method.</li>
+                            <li>-8: The internal state of the <xref keyref="IRtcEngine"/> object is incorrect. This may happen if the user is not in a channel. Use the <xref keyref="onConnectionStateChanged"/> callback to determine whether the user is in a channel. If you receive <codeph>ConnectionStateDisconnected</codeph>(1) or <codeph>ConnectionStateFailed</codeph>(5), the user is not in a channel. You must call <xref keyref="joinChannel2"/> before using this method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: The value of a <xref keyref="ChannelMediaOptions"/> member is invalid. For example, an illegal token is used or an invalid user role is set. You need to provide valid parameters.</li>
+                            <li>-7: The <xref keyref="IRtcEngine"/> object is not initialized. You need to initialize the <xref keyref="IRtcEngine"/> object before calling this method.</li>
+                            <li>-8: The internal state of the <xref keyref="IRtcEngine"/> object is incorrect. A possible reason is that the user is not in a channel. It is recommended to determine whether the user is in a channel through the <xref keyref="onConnectionStateChanged"/> callback. If you receive <codeph>ConnectionStateDisconnected</codeph>(1) or <codeph>ConnectionStateFailed</codeph>(5), it means the user is not in a channel. You need to call <xref keyref="joinChannel2"/> before calling this method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid <xref keyref="ChannelMediaOptions"/> member values. For example, using an invalid token or setting an invalid user role. You need to provide valid parameters.</li>
+                            <li>-7: The <xref keyref="IRtcEngine"/> object is not initialized. You must successfully initialize the <xref keyref="IRtcEngine"/> object before calling this method.</li>
+                            <li>-8: Internal state error of the <xref keyref="IRtcEngine"/> object. This may be because the user is not in the channel. It is recommended to use the <xref keyref="onConnectionStateChanged"/> callback to determine whether the user is in the channel. If you receive <codeph>CONNECTION_STATE_DISCONNECTED</codeph> (1) or <codeph>CONNECTION_STATE_FAILED</codeph> (5), it means the user is not in the channel. You need to call <xref keyref="joinChannel2"/> before calling this method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

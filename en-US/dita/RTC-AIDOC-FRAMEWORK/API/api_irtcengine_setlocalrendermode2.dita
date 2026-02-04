@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalrendermode2">
+    <title><ph keyref="setLocalRenderMode2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Updates the local view display mode.</ph><ph id="shortdesc" props="rn">Updates the local view display mode.</ph><ph id="shortdesc" props="flutter">Updates the local view display mode.</ph><ph id="shortdesc" props="unity">Updates the local view display mode.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalRenderMode2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setLocalRenderMode(
+    renderMode: RenderModeType,
+    mirrorMode?: VideoMirrorModeType
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setLocalRenderMode(
+    renderMode: RenderModeType,
+    mirrorMode?: VideoMirrorModeType
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalRenderMode(
+    {required RenderModeType renderMode,
+    VideoMirrorModeType mirrorMode =
+        VideoMirrorModeType.videoMirrorModeAuto});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After initializing the local user view, you can call this method to update the rendering and mirroring mode of the local user view. This method only affects the video seen by the local user and does not affect the published video.</p>
+            <p props="rn">After initializing the local user view, you can call this method to update the rendering and mirror mode of the local user view. This method only affects the video image seen by the local user and does not affect the publishing of the local video.</p>
+            <p props="flutter">After initializing the local user view, you can call this method to update the rendering and mirror mode of the local user view. This method only affects the video seen by the local user and does not affect the published video.</p>
+            <p props="unity">After initializing the local user view, you can call this method to update the rendering and mirror mode of the local user view. This method only affects what the local user sees and does not affect the publishing of the local video.</p>
+            <note props="electron">This method only takes effect for the first camera <codeph>(PrimaryCameraSource)</codeph>. In scenarios using custom video capture or other video sources, use the <xref keyref="setupLocalVideo"/> method instead.</note>
+            <note props="flutter">This method only takes effect for the first camera <codeph>(primaryCameraSource)</codeph>. In scenarios with custom video capture or other types of video sources, you need to use the <xref keyref="setupLocalVideo"/> method instead.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">
+                <ul>
+                    <li>Call this method after initializing the local view with <xref keyref="setupLocalVideo"/>.</li>
+                    <li>You can call this method multiple times during a call to update the local view display mode.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>You can call this method multiple times during a call to update the display mode of the local user view.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>Call this method after initializing the local view using the <xref keyref="setupLocalVideo"/> method.</li>
+                    <li>You can call this method multiple times during a call to update the display mode of the local user view.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>Call this method after calling <xref keyref="setupLocalVideo"/> to initialize the local view.</li>
+                    <li>You can call this method multiple times during a call to update the local user view display mode.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>renderMode</pt>
+                    <pd>Local view display mode. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>mirrorMode</pt>
+                    <pd>Local view mirror mode. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.
+                        <note>If you are using the front camera, the local view mirror mode is enabled by default. If you are using the rear camera, it is disabled by default.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>renderMode</pt>
+                    <pd>The display mode of the local view. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mirrorMode</pt>
+                    <pd>The mirror mode of the local view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.
+                        <note>If you use the front camera, the mirror mode of the local user view is enabled by default; if you use the rear camera, the mirror mode is disabled by default.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>renderMode</pt>
+                    <pd>Local view display mode. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mirrorMode</pt>
+                    <pd>Mirror mode for the local view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.
+                        <note>If you use the front camera, the local user view mirror mode is enabled by default; if you use the rear camera, the mirror mode is disabled by default.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>renderMode</pt>
+                    <pd>Local view display mode. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mirrorMode</pt>
+                    <pd>Mirror mode of the local view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.
+                        <note>This parameter only takes effect when the SDK handles rendering. If you want to set view mirroring, you can set the GameObject's scaleX to <codeph>-1</codeph> or <codeph>+1</codeph>.
+If you use the front camera, the local user view mirror mode is enabled by default; if you use the rear camera, it is disabled by default.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

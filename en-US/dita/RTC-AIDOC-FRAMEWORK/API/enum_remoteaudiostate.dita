@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_remoteaudiostate">
+    <title><ph keyref="REMOTE_AUDIO_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">State of the remote audio stream.</ph><ph id="shortdesc" props="rn">Remote audio stream state.</ph><ph id="shortdesc" props="flutter">Remote audio stream state.</ph><ph id="shortdesc" props="unity">Remote audio stream state.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>RemoteAudioStateStopped</pt>
+                    <pd>0: The default initial state of the remote audio. This state is reported under <codeph>RemoteAudioReasonLocalMuted</codeph>, <codeph>RemoteAudioReasonRemoteMuted</codeph>, or <codeph>RemoteAudioReasonRemoteOffline</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RemoteAudioStateStarting</pt>
+                    <pd>1: The local user has received the first packet of the remote audio.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RemoteAudioStateDecoding</pt>
+                    <pd>2: The remote audio stream is being decoded and playing normally. This state is reported under <codeph>RemoteAudioReasonNetworkRecovery</codeph>, <codeph>RemoteAudioReasonLocalUnmuted</codeph>, or <codeph>RemoteAudioReasonRemoteUnmuted</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RemoteAudioStateFrozen</pt>
+                    <pd>3: The remote audio stream is frozen. This state is reported under <codeph>RemoteAudioReasonNetworkCongestion</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RemoteAudioStateFailed</pt>
+                    <pd>4: Failed to play the remote audio stream. This state is reported under <codeph>RemoteAudioReasonInternal</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RemoteAudioStateStopped</pt>
+                    <pd>0: Default initial state of remote audio. This state is reported under <codeph>RemoteAudioReasonLocalMuted</codeph>, <codeph>RemoteAudioReasonRemoteMuted</codeph>, or <codeph>RemoteAudioReasonRemoteOffline</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RemoteAudioStateStarting</pt>
+                    <pd>1: Local user has received the first packet of remote audio.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RemoteAudioStateDecoding</pt>
+                    <pd>2: Remote audio stream is decoding and playing normally. This state is reported under <codeph>RemoteAudioReasonNetworkRecovery</codeph>, <codeph>RemoteAudioReasonLocalUnmuted</codeph>, or <codeph>RemoteAudioReasonRemoteUnmuted</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RemoteAudioStateFrozen</pt>
+                    <pd>3: Remote audio stream is frozen. This state is reported under <codeph>RemoteAudioReasonNetworkCongestion</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RemoteAudioStateFailed</pt>
+                    <pd>4: Failed to play remote audio stream. This state is reported under <codeph>RemoteAudioReasonInternal</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteAudioStateStopped</pt>
+                    <pd>0: The default initial state of the remote audio. This state is reported in cases of <codeph>remoteAudioReasonLocalMuted</codeph>, <codeph>remoteAudioReasonRemoteMuted</codeph>, or <codeph>remoteAudioReasonRemoteOffline</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteAudioStateStarting</pt>
+                    <pd>1: The local user has received the first packet of the remote audio.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteAudioStateDecoding</pt>
+                    <pd>2: The remote audio stream is decoding and playing normally. This state is reported in cases of <codeph>remoteAudioReasonNetworkRecovery</codeph>, <codeph>remoteAudioReasonLocalUnmuted</codeph>, or <codeph>remoteAudioReasonRemoteUnmuted</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteAudioStateFrozen</pt>
+                    <pd>3: The remote audio stream is frozen. This state is reported in the case of <codeph>remoteAudioReasonNetworkCongestion</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteAudioStateFailed</pt>
+                    <pd>4: The remote audio stream failed to play. This state is reported in the case of <codeph>remoteAudioReasonInternal</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>REMOTE_AUDIO_STATE_STOPPED</pt>
+                    <pd>0: Default initial state of the remote audio. This state is reported under <codeph>REMOTE_AUDIO_REASON_LOCAL_MUTED</codeph>, <codeph>REMOTE_AUDIO_REASON_REMOTE_MUTED</codeph>, or <codeph>REMOTE_AUDIO_REASON_REMOTE_OFFLINE</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>REMOTE_AUDIO_STATE_STARTING</pt>
+                    <pd>1: The local user has received the first packet of the remote audio.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>REMOTE_AUDIO_STATE_DECODING</pt>
+                    <pd>2: Remote audio stream is decoding and playing normally. This state is reported under <codeph>REMOTE_AUDIO_REASON_NETWORK_RECOVERY</codeph>, <codeph>REMOTE_AUDIO_REASON_LOCAL_UNMUTED</codeph>, or <codeph>REMOTE_AUDIO_REASON_REMOTE_UNMUTED</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>REMOTE_AUDIO_STATE_FROZEN</pt>
+                    <pd>3: Remote audio stream is frozen. This state is reported under <codeph>REMOTE_AUDIO_REASON_NETWORK_CONGESTION</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>REMOTE_AUDIO_STATE_FAILED</pt>
+                    <pd>4: Remote audio stream playback failed. This state is reported under <codeph>REMOTE_AUDIO_REASON_INTERNAL</codeph>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

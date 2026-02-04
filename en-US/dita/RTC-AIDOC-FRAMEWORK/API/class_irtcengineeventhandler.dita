@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_irtcengineeventhandler">
+    <title><ph keyref="IRtcEngineEventHandler"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">The <xref keyref="IRtcEngineEventHandler"/> interface class is used by the SDK to send event notifications to the app. The app receives these notifications by inheriting methods of this interface class.</ph><ph id="shortdesc" props="rn">The <xref keyref="IRtcEngineEventHandler"/> interface class is used by the SDK to send event notifications to the App. The App obtains SDK event notifications by inheriting methods of this interface class.</ph><ph id="shortdesc" props="flutter">The <xref keyref="IRtcEngineEventHandler"/> interface class is used by the SDK to send event notifications to the app. The app receives SDK event notifications by inheriting the methods of this interface class.</ph><ph id="shortdesc" props="unity">The <xref keyref="IRtcEngineEventHandler"/> interface class is used by the SDK to send event notifications to the App. The App receives the SDK's event notifications by inheriting methods of this interface class.</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <p props="electron">All methods in this interface class have default (empty) implementations. The app can override only the events it is interested in.</p>
+            <p props="rn">All methods of this interface class have default (empty) implementations. The App can choose to inherit only the events it cares about.</p>
+            <p props="flutter">All methods of this interface class have default (empty) implementations. The app can choose to inherit only the events of interest.</p>
+            <p props="unity">All methods in this interface class have default (empty) implementations. The App can choose to inherit only the events it cares about.</p>
+            <note props="electron">
+                <ul>
+                    <li>In the callback methods, the app should not perform time-consuming operations or call APIs that may block (such as <codeph>sendMessage</codeph>), otherwise it may affect the operation of the SDK.</li>
+                    <li>The SDK no longer catches exceptions thrown from the app's own logic implemented in <xref keyref="IRtcEngineEventHandler"/> callbacks. You need to handle such exceptions yourself, otherwise they may crash the app.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>In the callback methods, the App should not perform time-consuming operations or call APIs that may cause blocking (such as <codeph>sendMessage</codeph>), otherwise it may affect the operation of the SDK.</li>
+                    <li>The SDK no longer catches exceptions in the code logic implemented by the developer in the callbacks of the <xref keyref="IRtcEngineEventHandler"/> class. You need to handle such exceptions yourself, otherwise the App may crash when exceptions occur.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>In callback methods, the app should not perform time-consuming operations or call APIs that may cause blocking (such as <codeph>sendMessage</codeph>), otherwise it may affect the operation of the SDK.</li>
+                    <li>The SDK no longer catches exceptions in the custom logic implemented by developers in the <xref keyref="IRtcEngineEventHandler"/> class callbacks. You need to handle such exceptions yourself, otherwise they may cause the app to crash.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>In callback methods, the App should not perform time-consuming operations or call APIs that might block (such as <codeph>sendMessage</codeph>), otherwise it may affect the SDK's operation.</li>
+                    <li>The SDK no longer catches exceptions in the code logic implemented by the developer in the <xref keyref="IRtcEngineEventHandler"/> class callbacks. You need to handle such exceptions yourself; otherwise, they may cause the App to crash when they occur.</li>
+                </ul>
+            </note>
+        </section>
+    </refbody>
+</reference>

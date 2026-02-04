@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screenaudioparameters">
+    <title><ph keyref="ScreenAudioParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Audio configuration for the shared screen stream.</ph><ph id="shortdesc" props="flutter">Audio configuration for screen sharing stream.</ph><ph id="shortdesc" props="unity">Audio configuration for the shared screen stream.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">export class ScreenAudioParameters {
+  
+  sampleRate?: number;
+  
+  channels?: number;
+  
+  captureSignalVolume?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class ScreenAudioParameters {
+  const ScreenAudioParameters(
+      {this.sampleRate, this.channels, this.captureSignalVolume});
+
+  @JsonKey(name: 'sampleRate')
+  final int? sampleRate;
+
+  @JsonKey(name: 'channels')
+  final int? channels;
+
+  @JsonKey(name: 'captureSignalVolume')
+  final int? captureSignalVolume;
+
+  factory ScreenAudioParameters.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ScreenAudioParametersFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenAudioParametersToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class ScreenAudioParameters
+    {
+        public int sampleRate { set; get; }
+        public int channels { set; get; }
+        public int captureSignalVolume { set; get; }
+
+        public ScreenAudioParameters()
+        {
+            sampleRate = 16000;
+            channels = 2;
+            captureSignalVolume = 100;
+        }
+    };</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="flutter rn unity">
+            <p props="rn">(Android only) Applies only when <codeph>captureAudio</codeph> is set to <xref keyref="true"/>.</p>
+            <p props="flutter">(flutter only) Only applicable when <codeph>captureAudio</codeph> is set to <xref keyref="true"/>.</p>
+            <p props="unity">Only applicable when <codeph>captureAudio</codeph> is set to <xref keyref="true"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>sampleRate</pt>
+                    <pd>Audio sample rate (Hz). Default is 16000.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channels</pt>
+                    <pd>Number of channels. Default is 2, indicating stereo.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>captureSignalVolume</pt>
+                    <pd>Captured system volume. Value range: [0, 100]. Default is 100.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sampleRate</pt>
+                    <pd>Audio sampling rate (Hz). Default is 16000.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channels</pt>
+                    <pd>Number of audio channels. Default is 2, which means stereo.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureSignalVolume</pt>
+                    <pd>Captured system volume. Value range is [0,100]. Default is 100.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sampleRate</pt>
+                    <pd>Audio sampling rate (Hz). Default is 16000.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channels</pt>
+                    <pd>Number of audio channels. Default is 2, indicating stereo.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureSignalVolume</pt>
+                    <pd>Captured system volume. Value range is [0,100]. Default is 100.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

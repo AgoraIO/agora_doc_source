@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onconnectioninterrupted">
+    <title><ph keyref="onConnectionInterrupted"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Occurs when the network connection is interrupted.</ph><ph id="shortdesc" props="rn">Callback when the network connection is interrupted.</ph><ph id="shortdesc" props="flutter">Callback when the network connection is interrupted.</ph><ph id="shortdesc" props="unity">Callback when the network connection is interrupted.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onConnectionInterrupted"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onConnectionInterrupted?(connection: RtcConnection): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onConnectionInterrupted?(connection: RtcConnection): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection)? onConnectionInterrupted;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnConnectionInterrupted(RtcConnection connection) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use the <xref keyref="onConnectionStateChanged"/> callback instead.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use <xref keyref="onConnectionStateChanged"/> instead.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use <xref keyref="onConnectionStateChanged"/> callback instead.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use the <xref keyref="onConnectionStateChanged"/> callback instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">After the SDK establishes a connection with the server, if the network connection is lost for more than 4 seconds, this callback is triggered. After the event is triggered, the SDK will attempt to reconnect to the server, so this event can be used for UI prompts. The difference between this callback and <xref keyref="onConnectionLost"/> is:
+                <ul>
+                    <li><xref keyref="onConnectionInterrupted"/> is triggered only after successfully joining a channel and when the SDK has just lost connection to the server for more than 4 seconds.</li>
+                    <li><xref keyref="onConnectionLost"/> is triggered regardless of whether the channel is joined successfully, as long as the SDK cannot connect to the server within 10 seconds.</li>
+                </ul><ph>If the SDK still fails to rejoin the channel within 20 minutes after disconnection, it will stop trying to reconnect.</ph></p>
+            <p props="rn">This callback is triggered when the SDK loses connection to the server for more than 4 seconds after a connection has been established. After the event is triggered, the SDK will attempt to reconnect to the server, so this event can be used for UI prompts. The difference between this callback and <xref keyref="onConnectionLost"/> is:
+                <ul>
+                    <li><xref keyref="onConnectionInterrupted"/> is always triggered after successfully joining a channel and when the SDK has just lost connection to the server for more than 4 seconds.</li>
+                    <li><xref keyref="onConnectionLost"/> is triggered regardless of whether the channel is joined successfully, as long as the SDK cannot connect to the server within 10 seconds.</li>
+                </ul><ph>If the SDK fails to rejoin the channel within 20 minutes after disconnection, it will stop trying to reconnect.</ph></p>
+            <p props="flutter">This callback is triggered when the SDK loses connection to the server for more than 4 seconds after establishing a connection. After this event is triggered, the SDK will try to reconnect to the server. You can use this event to prompt the UI. The difference between this callback and <xref keyref="onConnectionLost"/> is:
+                <ul>
+                    <li><xref keyref="onConnectionInterrupted"/> is triggered only after successfully joining a channel and when the SDK loses connection to the server for more than 4 seconds.</li>
+                    <li><xref keyref="onConnectionLost"/> is triggered regardless of whether the user has joined a channel, as long as the SDK cannot connect to the server within 10 seconds.</li>
+                </ul><ph>If the SDK still fails to rejoin the channel within 20 minutes after disconnection, it stops trying to reconnect.</ph></p>
+            <p props="unity">The SDK triggers this callback when it loses network connection for more than 4 seconds after establishing a connection with the server. After this event is triggered, the SDK attempts to reconnect to the server, so this event can be used for UI prompts. The difference between this callback and <xref keyref="onConnectionLost"/> is:
+                <ul>
+                    <li><xref keyref="onConnectionInterrupted"/> is triggered only after successfully joining a channel and when the SDK loses connection with the server for more than 4 seconds.</li>
+                    <li><xref keyref="onConnectionLost"/> is triggered regardless of whether the channel is joined, as long as the SDK fails to connect to the server within 10 seconds.</li>
+                </ul><ph>If the SDK fails to rejoin the channel within 20 minutes after disconnection, it stops trying to reconnect.</ph></p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

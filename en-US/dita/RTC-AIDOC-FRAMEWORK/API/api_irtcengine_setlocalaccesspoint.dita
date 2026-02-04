@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalaccesspoint">
+    <title><ph keyref="setLocalAccessPoint"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Configures the connection to the Agora private media server access module.</ph><ph id="shortdesc" props="rn">Configures the connection to Agora's private media server access module.</ph><ph id="shortdesc" props="flutter">Configures the connection to Agora's private media server access module.</ph><ph id="shortdesc" props="unity">Configures the connection to the Agora private media server access module.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalAccessPoint"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setLocalAccessPoint(config: LocalAccessPointConfiguration): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setLocalAccessPoint(config: LocalAccessPointConfiguration): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalAccessPoint(LocalAccessPointConfiguration config);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalAccessPoint(LocalAccessPointConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After successfully deploying the Agora private media server and integrating the 4.x RTC SDK on intranet devices, you can call this method to specify the Local Access Point and assign the access module to the SDK.</p>
+            <p props="rn">After successfully deploying Agora's private media server and integrating the 4.x RTC SDK in an intranet terminal, you can call this method to specify the Local Access Point and assign the access module to the SDK.</p>
+            <p props="flutter">After successfully deploying Agora's private media server and integrating the 4.x RTC SDK on intranet terminals, you can call this method to specify the Local Access Point and assign the access module to the SDK.</p>
+            <p props="unity">After successfully deploying the Agora private media server and integrating the 4.x RTC SDK on the intranet terminal, you can call this method to specify the Local Access Point and assign the access module to the SDK.</p>
+            <note props="electron">This method takes effect only after deploying the Agora hybrid cloud solution. You can [contact sales](https://www.shengwang.cn/contact-sales/) to learn more and deploy the hybrid cloud.</note>
+            <note props="rn">This method only takes effect after deploying the Agora hybrid cloud solution. You can [contact sales](https://www.shengwang.cn/contact-sales/) to learn more and deploy the Agora hybrid cloud.</note>
+            <note props="flutter">This method takes effect only after deploying Agora's hybrid cloud solution. You can [contact sales](https://www.shengwang.cn/contact-sales/) to learn about and deploy the hybrid cloud solution.</note>
+            <note props="unity">This method takes effect only after deploying the Agora hybrid cloud solution. You can [contact sales](https://www.shengwang.cn/contact-sales/) to learn more and deploy the Agora hybrid cloud.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called before joining a channel.</p>
+            <p props="rn">This method must be called before joining the channel.</p>
+            <p props="flutter">This method must be called before joining the channel.</p>
+            <p props="unity">This method must be called before joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>The Local Access Point configuration. See <xref keyref="LocalAccessPointConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>config</pt>
+                    <pd>Local Access Point configuration. See <xref keyref="LocalAccessPointConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>Local Access Point configuration. See <xref keyref="LocalAccessPointConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>Local Access Point configuration. See <xref keyref="LocalAccessPointConfiguration"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

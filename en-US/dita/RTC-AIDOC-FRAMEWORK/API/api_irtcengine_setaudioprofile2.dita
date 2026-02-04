@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setaudioprofile2">
+    <title><ph keyref="setAudioProfile2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Sets the audio encoding profile.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAudioProfile2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioProfile(AUDIO_PROFILE_TYPE profile);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">If you want to set the audio scenario, you can call the <xref keyref="setAudioScenario"/> method directly, or call <xref keyref="initialize"/> and set the <codeph>audioScenario</codeph> field in the <xref keyref="RtcEngineConfig"/> structure.</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method applies to various audio scenarios. You can choose as needed. For example, in scenarios requiring high audio quality such as music teaching, set <codeph>profile</codeph> to <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY</codeph>(4).</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="unity">
+            <title>Timing</title>
+            <p props="unity">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudiodevicevolumechanged">
+    <title><ph keyref="onAudioDeviceVolumeChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback when the volume of an audio device or app changes.</ph><ph id="shortdesc" props="flutter">Occurs when the volume of the audio device or app changes.</ph><ph id="shortdesc" props="unity">Callback when the volume of an audio device or the app changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioDeviceVolumeChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onAudioDeviceVolumeChanged?(
+    deviceType: MediaDeviceType,
+    volume: number,
+    muted: boolean
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(MediaDeviceType deviceType, int volume, bool muted)?
+      onAudioDeviceVolumeChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioDeviceVolumeChanged(MEDIA_DEVICE_TYPE deviceType, int volume, bool muted)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This callback is triggered when the volume of an audio playback or recording device, or the app, changes.</p>
+            <p props="flutter">This callback is triggered when the volume of an audio playback or recording device or the app changes.</p>
+            <p props="unity">This callback is triggered when the volume of the audio playback device, capture device, or app changes.</p>
+            <note props="flutter">This callback is only applicable to Windows and macOS.</note>
+            <note props="unity">This callback applies to Windows and macOS only.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>deviceType</pt>
+                    <pd>Device type definition. See <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>volume</pt>
+                    <pd>Volume. Range: [0,255].</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>muted</pt>
+                    <pd>Whether the audio device is muted:
+                        <ul>
+                            <li><xref keyref="true"/>: The audio device is muted.</li>
+                            <li><xref keyref="false"/>: The audio device is not muted.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceType</pt>
+                    <pd>The device type definition. See <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>volume</pt>
+                    <pd>The volume, ranging from [0,255].</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>muted</pt>
+                    <pd>Whether the audio device is muted:
+                        <ul>
+                            <li><xref keyref="true"/>: The audio device is muted.</li>
+                            <li><xref keyref="false"/>: The audio device is not muted.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceType</pt>
+                    <pd>Device type definition. See <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>volume</pt>
+                    <pd>Volume. Range: [0,255].</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>muted</pt>
+                    <pd>Whether the audio device is muted:
+                        <ul>
+                            <li><xref keyref="true"/>: The audio device is muted.</li>
+                            <li><xref keyref="false"/>: The audio device is not muted.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

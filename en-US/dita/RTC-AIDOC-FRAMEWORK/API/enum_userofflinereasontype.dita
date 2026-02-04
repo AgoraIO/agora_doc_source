@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_userofflinereasontype">
+    <title><ph keyref="USER_OFFLINE_REASON_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Reason for user going offline.</ph><ph id="shortdesc" props="rn">Reason for user going offline.</ph><ph id="shortdesc" props="flutter">Reason for user going offline.</ph><ph id="shortdesc" props="unity">Reason for user going offline.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>UserOfflineQuit</pt>
+                    <pd>0: User left voluntarily.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>UserOfflineDropped</pt>
+                    <pd>1: Timed out due to not receiving packets from the peer for a long time.
+                        <note>Since the SDK uses an unreliable channel, it is also possible that the peer left the channel voluntarily, but the local side did not receive the leave message and mistakenly judged it as a timeout.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>UserOfflineBecomeAudience</pt>
+                    <pd>2: User role changed from broadcaster to audience.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>UserOfflineQuit</pt>
+                    <pd>0: The user left voluntarily.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>UserOfflineDropped</pt>
+                    <pd>1: Timed out due to not receiving packets from the peer for a long time.
+                        <note>Since the SDK uses an unreliable channel, it is also possible that the peer left the channel voluntarily, but the local side did not receive the leave message and mistakenly determined it as a timeout.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>UserOfflineBecomeAudience</pt>
+                    <pd>2: The user's role changed from host to audience.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>userOfflineQuit</pt>
+                    <pd>0: User left voluntarily.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>userOfflineDropped</pt>
+                    <pd>1: Timed out due to not receiving packets from the peer for a long time.
+                        <note>Since the SDK uses an unreliable channel, it is also possible that the peer left the channel voluntarily, but the local side did not receive the leave message and mistakenly judged it as a timeout.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>userOfflineBecomeAudience</pt>
+                    <pd>2: User switched role from host to audience.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>USER_OFFLINE_QUIT</pt>
+                    <pd>0: User left voluntarily.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>USER_OFFLINE_DROPPED</pt>
+                    <pd>1: Timed out due to not receiving packets from the peer for a long time.
+                        <note>Since the SDK uses an unreliable channel, it is also possible that the peer left the channel voluntarily, but the local side did not receive the leave message and mistakenly judged it as a timeout.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>USER_OFFLINE_BECOME_AUDIENCE</pt>
+                    <pd>2: The user's role switched from host to audience.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

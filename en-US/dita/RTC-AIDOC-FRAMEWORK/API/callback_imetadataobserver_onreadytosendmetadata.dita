@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imetadataobserver_onreadytosendmetadata">
+    <title><ph keyref="onReadyToSendMetadata"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Occurs when the sender is ready to send metadata.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onReadyToSendMetadata"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnReadyToSendMetadata(ref Metadata metadata, VIDEO_SOURCE_TYPE source_type)
+        {
+            return false;
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">This callback is triggered when the SDK is ready to send metadata.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>source_Type</pt>
+                    <pd>The type of video data. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>metadata</pt>
+                    <pd>The metadata the user wants to send. See <xref keyref="Metadata"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li><xref keyref="true"/>: Send</li>
+                    <li><xref keyref="false"/>: Do not send</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

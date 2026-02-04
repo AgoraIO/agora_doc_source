@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startlocalaudiomixer">
+    <title><ph keyref="startLocalAudioMixer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Starts local audio mixing.</ph><ph id="shortdesc" props="rn">Starts local audio mixing.</ph><ph id="shortdesc" props="flutter">Starts local audio mixing.</ph><ph id="shortdesc" props="unity">Starts local audio mixing.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startLocalAudioMixer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startLocalAudioMixer(config: LocalAudioMixerConfiguration): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startLocalAudioMixer(config: LocalAudioMixerConfiguration): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startLocalAudioMixer(LocalAudioMixerConfiguration config);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartLocalAudioMixer(LocalAudioMixerConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method allows you to merge multiple audio streams locally into a single stream. For example, you can merge audio from the local microphone, media player, sound card, and remote users into one stream, and then publish it to the channel.
+                <ul>
+                    <li>To mix local audio streams, set <codeph>publishMixedAudioTrack</codeph> in <xref keyref="ChannelMediaOptions"/> to <xref keyref="true"/> to publish the mixed stream to the channel.</li>
+                    <li>To mix remote audio streams, ensure the remote streams are published and subscribed to in the channel.</li>
+                </ul>
+            </p>
+            <p props="rn">This method allows you to mix multiple local audio streams into a single stream. For example, you can mix audio from the local microphone, media player, sound card, and remote users into one audio stream and publish it to the channel.
+                <ul>
+                    <li>To mix locally captured audio, set <codeph>publishMixedAudioTrack</codeph> in <xref keyref="ChannelMediaOptions"/> to <xref keyref="true"/> to publish the mixed audio stream to the channel.</li>
+                    <li>To mix remote audio streams, ensure that the remote streams are published in the channel and have been subscribed to.</li>
+                </ul>
+            </p>
+            <p props="flutter">This method supports merging multiple local audio streams into a single audio stream. For example: merge audio from the local microphone, media player, sound card, remote audio streams, etc., into one stream and publish it to the channel.
+                <ul>
+                    <li>If you want to mix local captured audio, you can set <codeph>publishMixedAudioTrack</codeph> in <xref keyref="ChannelMediaOptions"/> to <xref keyref="true"/> to publish the mixed audio stream to the channel.</li>
+                    <li>If you want to mix remote audio streams, make sure the remote audio streams are published in the channel and subscribed.</li>
+                </ul>
+            </p>
+            <p props="unity">This method supports merging multiple audio streams locally into a single audio stream. For example: merge audio from the local microphone, media player, sound card, and remote audio streams into one, and then publish the mixed audio stream to the channel.
+                <ul>
+                    <li>To mix locally captured audio streams, set <codeph>publishMixedAudioTrack</codeph> in <xref keyref="ChannelMediaOptions"/> to <xref keyref="true"/> to publish the mixed audio stream to the channel.</li>
+                    <li>To mix remote audio streams, ensure the remote audio streams are published in the channel and have been subscribed to.</li>
+                </ul>
+            </p>
+            <note props="electron">To ensure audio quality, it is recommended not to exceed 10 audio streams in local mixing.</note>
+            <note props="rn">To ensure audio quality, it is recommended that the number of audio streams involved in local mixing does not exceed 10.</note>
+            <note props="flutter">To ensure audio quality, it is recommended that no more than 10 audio streams participate in local mixing.</note>
+            <note props="unity">To ensure audio quality, it is recommended that no more than 10 audio streams participate in local mixing.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>You can enable this feature in the following scenarios:
+                <ul>
+                    <li>Used with local video compositing, to synchronize and publish the audio streams related to the composed video.</li>
+                    <li>In live streaming, users receive audio streams from the channel, mix them locally, and forward them to another channel.</li>
+                    <li>In education, teachers can mix audio from interactions with students locally and forward the mixed stream to another channel.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method can be called before or after joining a channel.</p>
+            <p props="rn">This method can be called before or after joining a channel.</p>
+            <p props="flutter">This method can be called before or after joining a channel.</p>
+            <p props="unity">This method can be called before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>Configuration for local audio mixing. See <xref keyref="LocalAudioMixerConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>config</pt>
+                    <pd>Configuration for local audio mixing. See <xref keyref="LocalAudioMixerConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>Configuration for local audio mixing. See <xref keyref="LocalAudioMixerConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>Configuration for local audio mixing. See <xref keyref="LocalAudioMixerConfiguration"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-7: The <xref keyref="IRtcEngine"/> object is not initialized. You must successfully initialize the <xref keyref="IRtcEngine"/> object before calling this method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-7: <xref keyref="IRtcEngine"/> object is not initialized. You must initialize the <xref keyref="IRtcEngine"/> object before calling this method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-7: The <xref keyref="IRtcEngine"/> object is not initialized. You need to initialize the <xref keyref="IRtcEngine"/> object successfully before calling this method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

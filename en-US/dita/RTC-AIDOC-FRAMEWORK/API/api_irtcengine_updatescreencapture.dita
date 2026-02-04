@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_updatescreencapture">
+    <title><ph keyref="updateScreenCapture"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Updates the parameter configuration for screen capture.</ph><ph id="shortdesc" props="flutter">Updates the parameter configuration for screen capture.</ph><ph id="shortdesc" props="unity">Updates the configuration parameters for screen capture.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updateScreenCapture"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract updateScreenCapture(captureParams: ScreenCaptureParameters2): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">If system audio is not captured when screen sharing is enabled and you want to update the parameter configuration to publish system audio, follow these steps:
+                <ol>
+                    <li>Call this method and set <codeph>captureAudio</codeph> to <xref keyref="true"/>.</li>
+                    <li>Call <xref keyref="updateChannelMediaOptions"/> and set <codeph>publishScreenCaptureAudio</codeph> to <xref keyref="true"/> to publish the audio captured from the screen.</li>
+                </ol>
+            </p>
+            <p props="flutter">If system audio is not captured when screen sharing is enabled and you want to update the configuration and publish system audio, follow these steps:
+                <ol>
+                    <li>Call this method and set <codeph>captureAudio</codeph> to <xref keyref="true"/>.</li>
+                    <li>Call <xref keyref="updateChannelMediaOptions"/> and set <codeph>publishScreenCaptureAudio</codeph> to <xref keyref="true"/> to publish the screen capture audio.</li>
+                </ol>
+            </p>
+            <p props="unity">If system audio was not captured when screen sharing started and you want to update the configuration to publish system audio, follow these steps:
+                <ol>
+                    <li>Call this method and set <codeph>captureAudio</codeph> to <xref keyref="true"/>.</li>
+                    <li>Call <xref keyref="updateChannelMediaOptions"/> and set <codeph>publishScreenCaptureAudio</codeph> to <xref keyref="true"/> to publish the captured audio.</li>
+                </ol>
+            </p>
+            <note props="rn">
+                <ul>
+                    <li>This method is applicable to Android and iOS only.</li>
+                    <li>On iOS, screen sharing is supported on iOS 12.0 and later.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method is applicable to Android and iOS only.</li>
+                    <li>On iOS, screen sharing is supported only on iOS 12.0 and later.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method is only applicable to Android and iOS platforms.</li>
+                    <li>On iOS, screen sharing is only supported on iOS 12.0 and later.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>captureParams</pt>
+                    <pd>Encoding parameter configuration for screen sharing. See <xref keyref="ScreenCaptureParameters2"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureParams</pt>
+                    <pd>Encoding parameter configuration for screen sharing. See <xref keyref="ScreenCaptureParameters2"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureParams</pt>
+                    <pd>Encoding configuration parameters for screen sharing. See <xref keyref="ScreenCaptureParameters2"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-2: The parameter passed in is invalid.</li>
+                            <li>-8: The screen sharing state is invalid. This may be because you are already sharing another screen or window. Try calling <xref keyref="stopScreenCapture"/> to stop the current sharing and start screen sharing again.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.
+                        <ul>
+                            <li>-2: The input parameter is invalid.</li>
+                            <li>-8: The screen sharing state is invalid. This may occur if you are already sharing another screen or window. Try calling <xref keyref="stopScreenCapture"/> to stop the current sharing and then restart screen sharing.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

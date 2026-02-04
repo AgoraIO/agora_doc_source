@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_setremotevideostreamtypeex">
+    <title><ph keyref="setRemoteVideoStreamTypeEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the video stream type to subscribe to.</ph><ph id="shortdesc" props="rn">Sets the type of video stream to subscribe to.</ph><ph id="shortdesc" props="flutter">Sets the video stream type to subscribe to.</ph><ph id="shortdesc" props="unity">Sets the video stream type to subscribe to.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteVideoStreamTypeEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setRemoteVideoStreamTypeEx(
+    uid: number,
+    streamType: VideoStreamType,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setRemoteVideoStreamTypeEx(
+    uid: number,
+    streamType: VideoStreamType,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteVideoStreamTypeEx(
+      {required int uid,
+      required VideoStreamType streamType,
+      required RtcConnection connection});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteVideoStreamTypeEx(uint uid, VIDEO_STREAM_TYPE streamType, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Depending on the sender's default behavior and the configuration of <xref keyref="setDualStreamMode2"/>, the receiver's use of this method falls into the following cases:
+                <ul>
+                    <li>By default, the SDK enables the adaptive low stream mode (<codeph>AutoSimulcastStream</codeph>) on the sender side. That is, the sender only sends the high stream. Only receivers with host role can call this method to request the low stream. Once the sender receives the request, it starts sending the low stream automatically. At this point, all users in the channel can call this method to switch to low stream subscription mode.</li>
+                    <li>If the sender calls <xref keyref="setDualStreamMode2"/> and sets <codeph>mode</codeph> to <codeph>DisableSimulcastStream</codeph> (never send low stream), then this method has no effect.</li>
+                    <li>If the sender calls <xref keyref="setDualStreamMode2"/> and sets <codeph>mode</codeph> to <codeph>EnableSimulcastStream</codeph> (always send low stream), then both host and audience receivers can call this method to switch to low stream subscription mode.</li>
+                </ul><ph>When receiving low video streams, the SDK dynamically adjusts the video stream size based on the size of the video window to save bandwidth and computing resources. The aspect ratio of the low stream is the same as that of the high stream. Based on the current aspect ratio of the high stream, the system automatically allocates resolution, frame rate, and bitrate for the low stream.</ph></p>
+            <p props="rn">Depending on the default behavior of the sender and the specific settings of <xref keyref="setDualStreamMode2"/>, the receiver can use this method in the following situations:
+                <ul>
+                    <li>By default, the SDK enables the low stream adaptive mode (<codeph>AutoSimulcastStream</codeph>) on the sender, meaning the sender only sends the high stream. Only receivers with host role can call this method to request the low stream. Once the sender receives the request, it starts sending the low stream automatically. At this point, all users in the channel can call this method to switch to low stream subscription mode.</li>
+                    <li>If the sender calls <xref keyref="setDualStreamMode2"/> and sets <codeph>mode</codeph> to <codeph>DisableSimulcastStream</codeph> (never send low stream), this method has no effect.</li>
+                    <li>If the sender calls <xref keyref="setDualStreamMode2"/> and sets <codeph>mode</codeph> to <codeph>EnableSimulcastStream</codeph> (always send low stream), both hosts and audience can call this method to switch to low stream subscription mode.</li>
+                </ul><ph>When receiving the low video stream, the SDK dynamically adjusts the video stream size based on the size of the video window to save bandwidth and computing resources. The aspect ratio of the low stream is the same as that of the high stream. Based on the current aspect ratio of the high stream, the system automatically allocates the resolution, frame rate, and bitrate of the low stream.</ph></p>
+            <p props="flutter">Depending on the sender's default behavior and the specific settings of <xref keyref="setDualStreamMode2"/>, the receiver's call to this method falls into the following cases:
+                <ul>
+                    <li>By default, the SDK enables the small stream adaptive mode (<codeph>autoSimulcastStream</codeph>) on the sender side, meaning the sender only sends the high-quality stream. Only receivers with host role can call this method to request the low-quality stream. Once the sender receives the request, it starts sending the low-quality stream. All users in the channel can then call this method to switch to low-quality stream subscription mode.</li>
+                    <li>If the sender calls <xref keyref="setDualStreamMode2"/> and sets <codeph>mode</codeph> to <codeph>disableSimulcastStream</codeph> (never send low-quality stream), this method has no effect.</li>
+                    <li>If the sender calls <xref keyref="setDualStreamMode2"/> and sets <codeph>mode</codeph> to <codeph>enableSimulcastStream</codeph> (always send low-quality stream), both hosts and audience can call this method to switch to low-quality stream subscription mode.</li>
+                </ul><ph>When receiving the low-quality stream, the SDK dynamically adjusts the video stream size according to the video window size to save bandwidth and computing resources. The default aspect ratio of the low-quality stream is consistent with the high-quality stream. Based on the current high-quality stream's aspect ratio, the system automatically assigns resolution, frame rate, and bitrate to the low-quality stream.</ph></p>
+            <p props="unity">Depending on the sender's default behavior and the specific configuration of <xref keyref="setDualStreamMode2"/>, the receiver's behavior when calling this method is as follows:
+                <ul>
+                    <li>By default, the SDK enables small stream adaptive mode (<codeph>AUTO_SIMULCAST_STREAM</codeph>) on the sender side, meaning the sender only sends the high-quality stream. Only receivers with host roles can call this method to request the low-quality stream. Once the sender receives the request, it starts sending the low-quality stream automatically. At this point, all users in the channel can call this method to switch to the low-quality stream subscription mode.</li>
+                    <li>If the sender calls <xref keyref="setDualStreamMode2"/> and sets <codeph>mode</codeph> to <codeph>DISABLE_SIMULCAST_STREAM</codeph> (never send low-quality stream), this method has no effect.</li>
+                    <li>If the sender calls <xref keyref="setDualStreamMode2"/> and sets <codeph>mode</codeph> to <codeph>ENABLE_SIMULCAST_STREAM</codeph> (always send low-quality stream), both host and audience roles on the receiver side can call this method to switch to low-quality stream subscription mode.</li>
+                </ul><ph>When receiving a low-quality video stream, the SDK dynamically adjusts the video stream size based on the size of the video window to save bandwidth and computing resources. The aspect ratio of the low-quality stream is the same as that of the high-quality stream. Based on the current high-quality stream's aspect ratio, the system automatically assigns resolution, frame rate, and bitrate for the low-quality stream.</ph></p>
+            <note props="electron">If the sender has called <xref keyref="setDualStreamModeEx"/> and set <codeph>mode</codeph> to <codeph>DisableSimulcastStream</codeph> (never send low stream), then this method has no effect. You need to call <xref keyref="setDualStreamModeEx"/> again on the sender side to change the setting.</note>
+            <note props="rn">If the sender has already called <xref keyref="setDualStreamModeEx"/> and set <codeph>mode</codeph> to <codeph>DisableSimulcastStream</codeph> (never send low stream), this method has no effect. You need to call <xref keyref="setDualStreamModeEx"/> again on the sender to change the setting.</note>
+            <note props="flutter">If the sender has already called <xref keyref="setDualStreamModeEx"/> and set <codeph>mode</codeph> to <codeph>disableSimulcastStream</codeph> (never send low-quality stream), this method has no effect. You need to call <xref keyref="setDualStreamModeEx"/> again on the sender side to change the setting.</note>
+            <note props="unity">If the sender has already called <xref keyref="setDualStreamModeEx"/> and set <codeph>mode</codeph> to <codeph>DISABLE_SIMULCAST_STREAM</codeph> (never send low-quality stream), this method has no effect. You need to call <xref keyref="setDualStreamModeEx"/> again on the sender side to change the configuration.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>streamType</pt>
+                    <pd>Video stream type: <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>streamType</pt>
+                    <pd>Video stream type: <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamType</pt>
+                    <pd>Video stream type: <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>streamType</pt>
+                    <pd>Video stream type: <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserverbase_onmixedaudioframe">
+    <title><ph keyref="onMixedAudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Retrieves the audio data after mixing the captured and playback audio.</ph><ph id="shortdesc" props="rn">Retrieves the data after audio mixing of capture and playback.</ph><ph id="shortdesc" props="flutter">Retrieves the data after mixing recorded and playback audio.</ph><ph id="shortdesc" props="unity">Retrieves the audio data after mixing captured and playback audio.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onMixedAudioFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onMixedAudioFrame?(channelId: string, audioFrame: AudioFrame): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onMixedAudioFrame?(channelId: string, audioFrame: AudioFrame): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, AudioFrame audioFrame)?
+      onMixedAudioFrame;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnMixedAudioFrame(string channelId, AudioFrame audio_frame)
+        {
+            return true;
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">To ensure that the format of the mixed audio data from capture and playback meets expectations, you can set the audio data format using the following method: After calling <xref keyref="setMixedAudioFrameParameters"/> to set the audio data format, call <xref keyref="registerAudioFrameObserver"/> to register the audio observer object. The SDK calculates the sampling interval based on the parameters in this method and triggers the <xref keyref="onMixedAudioFrame"/> callback accordingly.</p>
+            <p props="rn">To ensure that the audio data format after capture and playback mixing meets expectations, you can set the audio data format using the following methods: call <xref keyref="setMixedAudioFrameParameters"/> to set the audio data format, then call <xref keyref="registerAudioFrameObserver"/> to register the audio observer object. The SDK will calculate the sampling interval based on the parameters in this method and trigger the <xref keyref="onMixedAudioFrame"/> callback accordingly.</p>
+            <p props="flutter">To ensure the format of the mixed audio data from recording and playback meets expectations, you can set the audio data format using the following methods: Call <xref keyref="setMixedAudioFrameParameters"/> to set the audio data format, then call <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer object. The SDK calculates the sampling interval based on the parameters of this method and triggers the <xref keyref="onMixedAudioFrame"/> callback accordingly.</p>
+            <p props="unity">To ensure the format of the audio data after mixing capture and playback meets expectations, you can call <xref keyref="setMixedAudioFrameParameters"/> to set the audio data format, and then call <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer. The SDK calculates the sampling interval based on the parameters of this method and triggers the <xref keyref="onMixedAudioFrame"/> callback accordingly.</p>
+            <note props="flutter">
+                <ul>
+                    <li>Due to framework limitations, this callback does not support sending the processed audio data back to the SDK.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>audioFrame</pt>
+                    <pd>Raw audio data. See <xref keyref="AudioFrame"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channelId</pt>
+                    <pd>Channel ID.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioFrame</pt>
+                    <pd>Raw audio data. See <xref keyref="AudioFrame"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channelId</pt>
+                    <pd>Channel ID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioFrame</pt>
+                    <pd>Raw audio data. See <xref keyref="AudioFrame"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channelId</pt>
+                    <pd>Channel ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audio_frame</pt>
+                    <pd>Raw audio data. See <xref keyref="AudioFrame"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelId</pt>
+                    <pd>Channel ID.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">No actual meaning.</p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_getinternalsongcode">
+    <title><ph keyref="getInternalSongCode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Creates an internal code for a music resource's chorus segment.</ph><ph id="shortdesc" props="rn">Creates a chorus segment ID for a music resource.</ph><ph id="shortdesc" props="flutter">Creates an internal ID for the chorus segment of a music resource.</ph><ph id="shortdesc" props="unity">Creates a chorus segment ID for a music resource.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getInternalSongCode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getInternalSongCode(songCode: number, jsonOption: string): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getInternalSongCode(songCode: number, jsonOption: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getInternalSongCode(
+      {required int songCode, required String jsonOption});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetInternalSongCode(Int64 songCode, string jsonOption, ref Int64 internalSongCode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>Before playing a chorus segment of a music resource, you need to call this method with the <codeph>jsonOption</codeph> parameter and the <codeph>songCode</codeph> of the music resource to create an internal code as the unique identifier for the segment. Once you obtain the internal code, pass it to the <codeph>songCode</codeph> parameter when calling the corresponding methods to open, preload, or remove the resource.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>songCode</pt>
+                    <pd>The music resource code used to identify the music resource. You can obtain it by calling <xref keyref="getMusicCollectionByMusicChartId"/> or <xref keyref="searchMusic"/>, and then receiving the <codeph>songCode</codeph> in the <xref keyref="onMusicCollectionResult"/> callback.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>jsonOption</pt>
+                    <pd>
+                        <note>Agora charges based on the scene type you pass in <codeph>sceneType</codeph>. Different scenarios have different rates. Refer to [Billing Instructions](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) for details. To switch to a different scene, you need to call this method again and pass a new <codeph>sceneType</codeph> value.</note><ph>Extended JSON field, default is null. Currently supports the following values:</ph>
+                        <ul>
+                            <li>sceneType: Scene type. 1: Live streaming scene, online karaoke room and background music playback; 2: Live streaming scene, background music playback; 3: (default) Voice chat scene, online karaoke room; 4: Voice chat scene, background music playback; 5: VR scene, online karaoke room and background music playback. Example: <codeph>{"sceneType":1}</codeph>.</li>
+                            <li>highPart: Index of the chorus segment, obtained from the <xref keyref="onMusicCollectionResult"/> callback, starting from 0. Example: <codeph>{"format": {"highpart": 0}}</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>songCode</pt>
+                    <pd>The ID of the music resource, used to identify the music resource. You can obtain music resources by calling <xref keyref="getMusicCollectionByMusicChartId"/> or <xref keyref="searchMusic"/>, and get the resource ID (<codeph>songCode</codeph>) from the <xref keyref="onMusicCollectionResult"/> callback triggered by these methods.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>jsonOption</pt>
+                    <pd>
+                        <note>Agora charges based on the application scenario you pass in <codeph>sceneType</codeph>. Different scenarios correspond to different rates. You can refer to the [Billing Instructions](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) for detailed billing information. If you need to switch to a different scenario, you must call this method again and pass the new <codeph>sceneType</codeph> value.</note><ph>Extended JSON field, default is null. Currently supports the following values:</ph>
+                        <ul>
+                            <li>sceneType: Scene type. 1: Live streaming scene, online karaoke room and background music playback; 2: Live streaming scene, background music playback; 3: (default) Voice chat scene, online karaoke room; 4: Voice chat scene, background music playback; 5: VR scene, online karaoke room and background music playback. Example: <codeph>{"sceneType":1}</codeph>.</li>
+                            <li>highPart: Index of the chorus segment, obtained from the <xref keyref="onMusicCollectionResult"/> callback. Index starts from 0. Example: <codeph>{"format": {"highpart": 0}}</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>songCode</pt>
+                    <pd>The music resource ID used to identify the music resource. You can obtain music resources by calling <xref keyref="getMusicCollectionByMusicChartId"/> or <xref keyref="searchMusic"/>, and get the <codeph>songCode</codeph> from the triggered <xref keyref="onMusicCollectionResult"/> callback.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>jsonOption</pt>
+                    <pd>
+                        <note>Agora charges based on the application scene you pass in <codeph>sceneType</codeph>. Different scenes have different rates. You can refer to [Billing Information](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) for details. If you need to switch to a different scene, you must call this method again and pass the new <codeph>sceneType</codeph> value.</note><ph>Extended JSON fields, default is <codeph><ph keyref="NULL"/></codeph>. Currently supports the following values:</ph>
+                        <ul>
+                            <li>sceneType: Scene type. 1: Live scene, online karaoke room and background music playback; 2: Live scene, background music playback; 3: (default) Voice chat scene, online karaoke room; 4: Voice chat scene, background music playback; 5: VR scene, online karaoke room and background music playback. Example: <codeph>{"sceneType":1}</codeph>.</li>
+                            <li>highPart: Index of the chorus segment, obtained from the <xref keyref="onMusicCollectionResult"/> callback, starting from 0. Example: <codeph>{"format": {"highpart": 0}}</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>songCode</pt>
+                    <pd>The music resource ID used to identify the music resource. You can obtain the music resource by calling <xref keyref="getMusicCollectionByMusicChartId"/> or <xref keyref="searchMusic"/>, and retrieve the <codeph>songCode</codeph> from the triggered <xref keyref="onMusicCollectionResult"/> callback.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>jsonOption</pt>
+                    <pd>
+                        <note>Agora charges based on the application scenario you pass in <codeph>sceneType</codeph>. Different scenarios correspond to different rates. You can refer to the [Billing Instructions](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) for detailed pricing. If you need to switch to a different scenario, you must call this method again and pass the new <codeph>sceneType</codeph> value.</note><ph>Extended JSON field, default is <codeph><ph keyref="NULL"/></codeph>. Currently supports the following values:</ph>
+                        <ul>
+                            <li>sceneType: Scene type. 1: Live scene, online karaoke room and background music playback; 2: Live scene, background music playback; 3: (default) Voice chat scene, online karaoke room; 4: Voice chat scene, background music playback; 5: VR scene, online karaoke room and background music playback. Example: <codeph>{"sceneType":1}</codeph>.</li>
+                            <li>highPart: Index of the chorus segment, obtained from the <codeph>onMusicCollectionResult</codeph> callback, starting from 0. Example: <codeph>{"format": {"highpart": 0}}</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>internalSongCode</pt>
+                    <pd>An output parameter. The internal song ID of the music resource.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>If the method call succeeds, returns the created internal code for the music resource.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>If the method call succeeds, returns the created internal ID of the music resource.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>On success, returns the created internal ID of the music resource.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

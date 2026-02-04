@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_contentinspectconfig">
+    <title><ph keyref="ContentInspectConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Local screenshot upload configuration.</ph><ph id="shortdesc" props="rn">Local screenshot upload configuration.</ph><ph id="shortdesc" props="flutter">Local screenshot upload configuration.</ph><ph id="shortdesc" props="unity">Local screenshot upload configuration.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class ContentInspectConfig {
+
+  extraInfo?: string;
+
+  serverConfig?: string;
+
+  modules?: ContentInspectModule[];
+
+  moduleCount?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class ContentInspectConfig {
+
+  extraInfo?: string;
+
+  serverConfig?: string;
+
+  modules?: ContentInspectModule[];
+
+  moduleCount?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class ContentInspectConfig {
+  const ContentInspectConfig(
+      {this.extraInfo, this.serverConfig, this.modules, this.moduleCount});
+
+  @JsonKey(name: 'extraInfo')
+  final String? extraInfo;
+
+  @JsonKey(name: 'serverConfig')
+  final String? serverConfig;
+
+  @JsonKey(name: 'modules')
+  final List&lt;ContentInspectModule&gt;? modules;
+
+  @JsonKey(name: 'moduleCount')
+  final int? moduleCount;
+
+  factory ContentInspectConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ContentInspectConfigFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ContentInspectConfigToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class ContentInspectConfig
+                {
+                    public string extraInfo;
+                    public string serverConfig;
+                    public ContentInspectModule[] modules;
+                    public int moduleCount;
+
+                    public ContentInspectConfig()
+                    {
+                        extraInfo = "";
+                        serverConfig = "";
+                        modules = null;
+                        moduleCount = 0;
+                    }
+                };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>extraInfo</pt>
+                    <pd>Additional information, maximum length is 1024 bytes.
+The SDK uploads this information along with the screenshot to the Agora server; after the screenshot is complete, the Agora server sends the additional information to your server along with the callback notification.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>modules</pt>
+                    <pd>Function modules. See <xref keyref="ContentInspectModule"/>.
+You can configure up to 32 <xref keyref="ContentInspectModule"/> instances. The value range of <codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> is an integer in [1,32].
+                        <note>Only one instance can be configured per function module. Currently, only screenshot upload is supported.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>moduleCount</pt>
+                    <pd>Number of function modules, i.e., the number of configured <xref keyref="ContentInspectModule"/> instances. Must match the number of instances configured in <codeph>modules</codeph>. Maximum value is 32.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>extraInfo</pt>
+                    <pd>Additional information, with a maximum length of 1024 bytes.
+The SDK uploads this information along with the screenshot to the Agora server. After the screenshot is complete, the Agora server sends the additional information back to your server in the callback notification.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>serverConfig</pt>
+                    <pd>(Optional) Server configuration for video moderation services on the cloud marketplace. This parameter only takes effect when the <codeph>type</codeph> in <xref keyref="ContentInspectModule"/> is set to <codeph>ContentInspectImageModeration</codeph>. To use this feature, please [contact technical support](https://ticket.shengwang.cn/).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>modules</pt>
+                    <pd>Function modules. See <xref keyref="ContentInspectModule"/>.
+Up to 32 <xref keyref="ContentInspectModule"/> instances are supported. The value range of <codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> is an integer in [1,32].
+                        <note>Only one instance can be configured per function module. Currently, only screenshot upload is supported.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>moduleCount</pt>
+                    <pd>Number of function modules, i.e., the number of <xref keyref="ContentInspectModule"/> instances configured. Must match the number of instances in <codeph>modules</codeph>. Maximum value is 32.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>extraInfo</pt>
+                    <pd>Additional information, with a maximum length of 1024 bytes.
+The SDK uploads the additional information along with the screenshot to the Agora server; after the screenshot is completed, the Agora server sends the additional information to your server along with the callback notification.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>serverConfig</pt>
+                    <pd>(Optional) Server configuration related to video moderation in the Cloud Marketplace. This parameter takes effect only when the <codeph>type</codeph> in <xref keyref="ContentInspectModule"/> is set to <codeph>contentInspectImageModeration</codeph>. To use this feature, please [contact technical support](https://ticket.shengwang.cn/).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>modules</pt>
+                    <pd>Function modules. See <xref keyref="ContentInspectModule"/>.
+Supports up to 32 <xref keyref="ContentInspectModule"/> instances. The value range for <codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> is an integer between [1, 32].
+                        <note>Only one instance can be configured for each function module. Currently, only screenshot upload is supported.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>moduleCount</pt>
+                    <pd>The number of function modules, i.e., the number of configured <xref keyref="ContentInspectModule"/> instances. Must match the number of instances configured in <codeph>modules</codeph>. Maximum value is 32.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>extraInfo</pt>
+                    <pd>Additional information, with a maximum length of 1024 bytes.
+The SDK uploads the additional information along with the screenshot to the Agora server. After the screenshot is completed, the Agora server sends the additional information to your server along with the callback notification.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>serverConfig</pt>
+                    <pd>(Optional) Cloud Marketplace video moderation related server configuration. This parameter takes effect only when the <codeph>type</codeph> in <xref keyref="ContentInspectModule"/> is set to <codeph>CONTENT_INSPECT_IMAGE_MODERATION</codeph>. To use this feature, [contact technical support](https://ticket.shengwang.cn/).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>modules</pt>
+                    <pd>Functional modules. See <xref keyref="ContentInspectModule"/>.
+Supports up to 32 <xref keyref="ContentInspectModule"/> instances. The value range for <codeph>MAX_CONTENT_INSPECT_MODULE_COUNT</codeph> is an integer between [1, 32].
+                        <note>Only one instance can be configured for each functional module. Currently, only screenshot upload is supported.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>moduleCount</pt>
+                    <pd>Number of functional modules, i.e., the number of configured <xref keyref="ContentInspectModule"/> instances. Must match the number of instances configured in <codeph>modules</codeph>. Maximum value is 32.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

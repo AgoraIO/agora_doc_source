@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusicplayer_setplaymode">
+    <title><ph keyref="setPlayMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the playback mode of the music resource.</ph><ph id="shortdesc" props="rn">Sets the playback mode of the music resource.</ph><ph id="shortdesc" props="flutter">Sets the playback mode for music resources.</ph><ph id="shortdesc" props="unity">Sets the playback mode of the music content.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlayMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setPlayMode(mode: MusicPlayMode): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setPlayMode(mode: MusicPlayMode): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setPlayMode(MusicPlayMode mode);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetPlayMode(MusicPlayMode mode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">You can call this method to set the playback mode to original, accompaniment, or guide vocals. If you do not call this method, accompaniment is played by default; if the music resource does not have accompaniment, the original version is played.</p>
+            <p props="rn">You can call this method to enable original vocals, accompaniment, or guide vocals. If you do not call this method, accompaniment is played by default. If the music resource has no accompaniment, the original vocals are played.</p>
+            <p props="flutter">You can call this method to enable original vocals, accompaniment, or guide vocals. If you do not call this method, accompaniment is played by default. If the music resource does not have accompaniment, the original vocals are played.</p>
+            <p props="unity">You can call this method to enable original vocals, accompaniment, or guide vocals. If you do not call this method, accompaniment is played by default; if there is no accompaniment, the original vocals are played.</p>
+            <note props="electron">You can get detailed information about the music resource through the <xref keyref="onMusicCollectionResult"/> callback, and determine the supported playback type of the copyrighted music to be played via the <codeph>result</codeph> parameter.</note>
+            <note props="rn">You can obtain detailed information about the music resource through the <xref keyref="onMusicCollectionResult"/> callback, and determine the supported playback types for the copyrighted music to be played via the <codeph>result</codeph> parameter.</note>
+            <note props="flutter">You can obtain detailed information about the music resource via the <xref keyref="onMusicCollectionResult"/> callback and determine the supported playback types of the copyrighted music through the <codeph>result</codeph> parameter.</note>
+            <note props="unity">You can use the <xref keyref="onMusicCollectionResult"/> callback to obtain detailed information about the music content. The <codeph>result</codeph> parameter in the callback indicates the supported playback types of the copyrighted music.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In entertainment scenarios such as online karaoke or live shows, if you need to play copyrighted music provided by the Agora content center, you can call this method to set the playback mode.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called after <xref keyref="createMusicPlayer"/>.</p>
+            <p props="rn">This method must be called after <xref keyref="createMusicPlayer"/>.</p>
+            <p props="flutter">This method must be called after <xref keyref="createMusicPlayer"/>.</p>
+            <p props="unity">This method must be called after <xref keyref="createMusicPlayer"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>mode</pt>
+                    <pd>Playback mode. See <xref keyref="MusicPlayMode"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mode</pt>
+                    <pd>Playback mode. See <xref keyref="MusicPlayMode"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mode</pt>
+                    <pd>Playback mode. See <xref keyref="MusicPlayMode"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mode</pt>
+                    <pd>Playback mode. See <xref keyref="MusicPlayMode"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter setting. Please reset the parameter.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter setting. Please reset the parameters.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter setting. Please reset the parameters.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

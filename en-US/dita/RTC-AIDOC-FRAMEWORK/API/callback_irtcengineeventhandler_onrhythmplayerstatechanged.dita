@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onrhythmplayerstatechanged">
+    <title><ph keyref="onRhythmPlayerStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback when the virtual metronome state changes.</ph><ph id="shortdesc" props="rn">Occurs when the state of the virtual metronome changes.</ph><ph id="shortdesc" props="flutter">Callback when the state of the virtual metronome changes.</ph><ph id="shortdesc" props="unity">Callback when the virtual metronome state changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRhythmPlayerStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onRhythmPlayerStateChanged?(
+    state: RhythmPlayerStateType,
+    reason: RhythmPlayerReason
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onRhythmPlayerStateChanged?(
+    state: RhythmPlayerStateType,
+    reason: RhythmPlayerReason
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RhythmPlayerStateType state, RhythmPlayerReason reason)?
+    onRhythmPlayerStateChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRhythmPlayerStateChanged(RHYTHM_PLAYER_STATE_TYPE state, RHYTHM_PLAYER_REASON reason)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">When the virtual metronome state changes, the SDK triggers this callback to report the current state. If the metronome encounters an issue, this callback helps you identify the current state and the cause of the issue for troubleshooting.</p>
+            <p props="rn">This callback is triggered when the state of the virtual metronome changes. When the virtual metronome encounters an issue, this callback helps you understand its current state and the reason for the failure, which facilitates troubleshooting.</p>
+            <p props="flutter">When the state of the virtual metronome changes, the SDK triggers this callback to report the current state. If a fault occurs with the virtual metronome, this callback helps you understand the current state and the reason for the fault, allowing you to troubleshoot.</p>
+            <p props="unity">This callback is triggered when the virtual metronome state changes. If the virtual metronome encounters a failure, this callback helps you understand the current state and the reason for the failure, facilitating troubleshooting.</p>
+            <note props="flutter">This callback applies to Android and iOS only.</note>
+            <note props="unity">(Android and iOS only)</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>state</pt>
+                    <pd>Current state of the virtual metronome. See <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>reason</pt>
+                    <pd>Error code and message when the virtual metronome encounters an error. See <xref keyref="RHYTHM_PLAYER_REASON"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>state</pt>
+                    <pd>The current state of the virtual metronome. See <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>reason</pt>
+                    <pd>The error code and message when the virtual metronome encounters an error. See <xref keyref="RHYTHM_PLAYER_REASON"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>state</pt>
+                    <pd>The current state of the virtual metronome. See <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>reason</pt>
+                    <pd>The error code and message when the virtual metronome encounters an error. See <xref keyref="RHYTHM_PLAYER_REASON"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>state</pt>
+                    <pd>Current state of the virtual metronome. See <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>reason</pt>
+                    <pd>Error code and message when an error occurs in the virtual metronome. See <xref keyref="RHYTHM_PLAYER_REASON"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

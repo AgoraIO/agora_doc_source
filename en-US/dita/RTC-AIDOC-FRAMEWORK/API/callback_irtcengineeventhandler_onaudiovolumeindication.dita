@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudiovolumeindication">
+    <title><ph keyref="onAudioVolumeIndication"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback for user audio volume indication.</ph><ph id="shortdesc" props="rn">Occurs when the SDK reports the volume of users.</ph><ph id="shortdesc" props="flutter">Callback for user audio volume indication.</ph><ph id="shortdesc" props="unity">Reports the audio volume indication of users.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioVolumeIndication"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onAudioVolumeIndication?(connection: RtcConnection, speakers: AudioVolumeInfo[], speakerNumber: number, totalVolume: number): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onAudioVolumeIndication?(
+  connection: RtcConnection,
+  speakers: AudioVolumeInfo[],
+  speakerNumber: number,
+  totalVolume: number
+): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, List&lt;AudioVolumeInfo&gt; speakers,
+      int speakerNumber, int totalVolume)? onAudioVolumeIndication;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(RtcConnection connection, AudioVolumeInfo[] speakers, uint speakerNumber, int totalVolume) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This callback is disabled by default. You can enable it by calling <xref keyref="enableAudioVolumeIndication"/>. Once enabled, as long as there are users publishing streams in the channel, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback at the interval set in <xref keyref="enableAudioVolumeIndication"/> after joining the channel. Two <xref keyref="onAudioVolumeIndication"/> callbacks are triggered each time: one reporting volume information of the local user, and the other reporting volume information of up to 3 remote users with the highest instantaneous volume.</p>
+            <p props="rn">This callback is disabled by default. You can enable it by calling <xref keyref="enableAudioVolumeIndication"/>. Once enabled, as long as there are users publishing streams in the channel, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback at the time interval set in <xref keyref="enableAudioVolumeIndication"/> after joining the channel. Two <xref keyref="onAudioVolumeIndication"/> callbacks are triggered each time: one reports the volume information of the local publishing user, and the other reports the volume information of the remote users (up to 3) with the highest instantaneous volume.</p>
+            <p props="flutter">This callback is disabled by default. You can enable it using <xref keyref="enableAudioVolumeIndication"/>. Once enabled, as long as there are users publishing streams in the channel, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback at the interval set in <xref keyref="enableAudioVolumeIndication"/> after joining the channel. Each time, two <xref keyref="onAudioVolumeIndication"/> callbacks are triggered: one reports the local user's volume information, and the other reports the volume information of the remote users (up to 3) with the highest instantaneous volume.</p>
+            <p props="unity">This callback is disabled by default. You can enable it by calling <xref keyref="enableAudioVolumeIndication"/>. Once enabled, as long as there are users publishing streams in the channel, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback at the time interval set in <xref keyref="enableAudioVolumeIndication"/> after joining the channel. Each time, two <xref keyref="onAudioVolumeIndication"/> callbacks are triggered: one reports the volume information of the local user who is publishing, and the other reports the volume information of up to three remote users with the highest instantaneous volume.</p>
+            <note props="electron">After enabling this feature, if a user mutes themselves (by calling <xref keyref="muteLocalAudioStream"/>), the SDK continues to report the local user's volume indication callback.
+If the remote user with the highest instantaneous volume mutes themselves, they will be excluded from the remote volume indication callback after 20 seconds. If all remote users mute themselves, the SDK stops reporting the remote volume indication callback after 20 seconds.</note>
+            <note props="rn">After this feature is enabled, if a user mutes themselves (by calling <xref keyref="muteLocalAudioStream"/>), the SDK continues to report the local user's volume indication callback.
+If a remote user with the highest instantaneous volume mutes themselves, they will no longer be included in the remote volume indication callback after 20 seconds. If all remote users mute themselves, the SDK stops reporting remote volume indication callbacks after 20 seconds.</note>
+            <note props="flutter">After enabling this feature, if a user mutes themselves (by calling <xref keyref="muteLocalAudioStream"/>), the SDK continues to report the local user's volume indication callback.
+If the remote user with the highest instantaneous volume mutes themselves for 20 seconds, they will no longer be included in the remote volume indication callback. If all remote users mute themselves, the SDK stops reporting remote volume indication callbacks after 20 seconds.</note>
+            <note props="unity">After enabling this feature, if a user mutes themselves (by calling <xref keyref="muteLocalAudioStream"/>), the SDK continues to report the local user's volume indication callback.
+If a remote user with the highest instantaneous volume mutes themselves for 20 seconds, they will no longer be included in the remote volume indication callback. If all remote users mute themselves, the SDK stops reporting the remote volume indication callback after 20 seconds.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>speakers</pt>
+                    <pd>User volume information. See <xref keyref="AudioVolumeInfo"/> array. If <codeph>speakers</codeph> is empty, it means no remote users are publishing streams or there are no remote users.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>speakerNumber</pt>
+                    <pd>Number of users.
+                        <ul>
+                            <li>In the local user's callback, as long as the local user is publishing, <codeph>speakerNumber</codeph> is always 1.</li>
+                            <li>In the remote users' callback, <codeph>speakerNumber</codeph> ranges from [0,3]. If the number of remote users publishing is greater than 3, the value of <codeph>speakerNumber</codeph> in this callback is 3.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>totalVolume</pt>
+                    <pd>Total mixed volume, ranging from [0,255].
+                        <ul>
+                            <li>In the local user's callback, <codeph>totalVolume</codeph> is the volume of the local user publishing.</li>
+                            <li>In the remote users' callback, <codeph>totalVolume</codeph> is the total mixed volume of up to 3 remote users with the highest instantaneous volume.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>speakers</pt>
+                    <pd>User volume information. See the <xref keyref="AudioVolumeInfo"/> array. If <codeph>speakers</codeph> is empty, it means no remote users are publishing streams or there are no remote users.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>speakerNumber</pt>
+                    <pd>Number of users.
+                        <ul>
+                            <li>In the local user's callback, as long as the local user is publishing, <codeph>speakerNumber</codeph> is always 1.</li>
+                            <li>In the remote users' callback, the value range of <codeph>speakerNumber</codeph> is [0,3]. If there are more than 3 remote publishing users, <codeph>speakerNumber</codeph> is 3 in this callback.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>totalVolume</pt>
+                    <pd>Total mixed volume, range [0,255].
+                        <ul>
+                            <li>In the local user's callback, <codeph>totalVolume</codeph> is the volume of the local publishing user.</li>
+                            <li>In the remote users' callback, <codeph>totalVolume</codeph> is the total mixed volume of the remote users (up to 3) with the highest instantaneous volume.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>speakers</pt>
+                    <pd>User volume information. See the <xref keyref="AudioVolumeInfo"/> array. If <codeph>speakers</codeph> is empty, it means no remote users are publishing streams or there are no remote users.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>speakerNumber</pt>
+                    <pd>Number of users.
+                        <ul>
+                            <li>In the local user's callback, as long as the local user is publishing, <codeph>speakerNumber</codeph> is always 1.</li>
+                            <li>In the remote users' callback, <codeph>speakerNumber</codeph> ranges from [0,3]. If there are more than 3 remote users publishing, <codeph>speakerNumber</codeph> is 3.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>totalVolume</pt>
+                    <pd>Total mixed volume, range [0,255].
+                        <ul>
+                            <li>In the local user's callback, <codeph>totalVolume</codeph> is the local user's volume.</li>
+                            <li>In the remote users' callback, <codeph>totalVolume</codeph> is the total mixed volume of the top 3 remote users with the highest instantaneous volume.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>speakers</pt>
+                    <pd>User volume information. See the <xref keyref="AudioVolumeInfo"/> array. If <codeph>speakers</codeph> is empty, it indicates that no remote user is publishing or there are no remote users.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>speakerNumber</pt>
+                    <pd>Number of users.
+                        <ul>
+                            <li>In the local user's callback, as long as the local user is publishing, <codeph>speakerNumber</codeph> is always 1.</li>
+                            <li>In the remote users' callback, <codeph>speakerNumber</codeph> ranges from [0,3]. If there are more than 3 remote users publishing, <codeph>speakerNumber</codeph> is 3 in this callback.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>totalVolume</pt>
+                    <pd>Total mixed volume, ranging from [0,255].
+                        <ul>
+                            <li>In the local user's callback, <codeph>totalVolume</codeph> is the volume of the local user.</li>
+                            <li>In the remote users' callback, <codeph>totalVolume</codeph> is the total mixed volume of up to three remote users with the highest instantaneous volume.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

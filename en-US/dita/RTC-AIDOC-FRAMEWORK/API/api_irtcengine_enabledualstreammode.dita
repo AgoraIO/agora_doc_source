@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enabledualstreammode">
+    <title><ph keyref="enableDualStreamMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Enables or disables dual-stream mode on the sending side.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableDualStreamMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableDualStreamMode(bool enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Deprecated since v4.2.0. Use <xref keyref="setDualStreamMode"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="unity">Dual-stream refers to high-quality (high resolution, high frame rate) and low-quality (low resolution, low frame rate) video streams:
+                <ul>
+                    <li>High-quality stream: High resolution and high frame rate video stream.</li>
+                    <li>Low-quality stream: Low resolution and low frame rate video stream.</li>
+                </ul><ph>After enabling dual-stream mode, you can call <xref keyref="setRemoteVideoStreamType"/> on the receiving side to choose whether to receive the high-quality or low-quality video stream.</ph></p>
+            <note props="unity">
+                <ul>
+                    <li>This method applies to all types of streams sent by the sender, including but not limited to camera-captured video, screen sharing, and custom captured video streams.</li>
+                    <li>To enable dual-stream in multi-channel scenarios, call <xref keyref="enableDualStreamModeEx"/>.</li>
+                    <li>This method can be called before or after joining a channel.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable dual-stream mode.
+                        <ul>
+                            <li><xref keyref="true"/>: Enable dual-stream mode.</li>
+                            <li><xref keyref="false"/>: (Default) Disable dual-stream mode.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

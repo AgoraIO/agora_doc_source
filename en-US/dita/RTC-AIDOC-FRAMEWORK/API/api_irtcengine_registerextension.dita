@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_registerextension">
+    <title><ph keyref="registerExtension"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Registers an extension.</ph><ph id="shortdesc" props="rn">Registers an extension.</ph><ph id="shortdesc" props="flutter">Registers an extension.</ph><ph id="shortdesc" props="unity">Registers an extension.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerExtension"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract registerExtension(
+    provider: string,
+    extension: string,
+    type?: MediaSourceType
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract registerExtension(
+    provider: string,
+    extension: string,
+    type?: MediaSourceType
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; registerExtension(
+      {required String provider,
+      required String extension,
+      MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int RegisterExtension(string provider, string extension, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.UNKNOWN_MEDIA_SOURCE);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">For external extensions (such as cloud marketplace extensions and SDK expansion extensions), after loading the extension, you need to call this method to register it. Internal SDK extensions (those included in the SDK package) are automatically loaded and registered after initializing <xref keyref="IRtcEngine"/>, so you do not need to call this method.</p>
+            <p props="rn">For external SDK extensions (such as marketplace plugins and SDK extension plugins), after loading the plugin, you need to call this method to register it. Internal SDK plugins (included in the SDK package) are automatically loaded and registered after initializing <xref keyref="IRtcEngine"/>, so you don't need to call this method.</p>
+            <p props="flutter">For external SDK extensions (such as marketplace or SDK extension plugins), after loading the extension, you need to call this method to register it. Internal SDK extensions (those included in the SDK package) are automatically loaded and registered after initializing <xref keyref="IRtcEngine"/>, so you do not need to call this method.</p>
+            <p props="unity">For external SDK extensions (such as Marketplace extensions and SDK extension plugins), after loading the extension, you need to call this method to register it. Internal SDK extensions (included in the SDK package) are automatically loaded and registered after <xref keyref="IRtcEngine"/> is initialized, and do not require this method.</p>
+            <note props="electron">
+                <ul>
+                    <li>To register multiple extensions, you need to call this method multiple times.</li>
+                    <li>The order in which different extensions process data in the SDK is determined by the order of registration. That is, extensions registered earlier process data first.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>To register multiple plugins, call this method multiple times.</li>
+                    <li>The order in which different plugins process data in the SDK is determined by the order in which they are registered. That is, plugins registered earlier process data first.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>To register multiple extensions, call this method multiple times.</li>
+                    <li>The order in which different extensions process data in the SDK is determined by the registration order. That is, extensions registered earlier process data first.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>To register multiple extensions, call this method multiple times.</li>
+                    <li>The order in which different extensions process data in the SDK is determined by the registration order. That is, extensions registered earlier process data first.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">
+                <ul>
+                    <li>It is recommended to call this method after initializing <xref keyref="IRtcEngine"/> and before joining a channel.</li>
+                    <li>For video-related extensions (such as beauty filters), you need to call this method before enabling the video module (<xref keyref="enableVideo"/>/<xref keyref="enableLocalVideo"/>).</li>
+                    <li>Before calling this method, you need to call <xref keyref="loadExtensionProvider"/> to load the extension.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>It is recommended to call this method after initializing <xref keyref="IRtcEngine"/> and before joining a channel.</li>
+                    <li>For video-related plugins (such as beauty filters), call this method before enabling the video module (<xref keyref="enableVideo"/>/<xref keyref="enableLocalVideo"/>).</li>
+                    <li>Before calling this method, you need to call <xref keyref="loadExtensionProvider"/> to load the plugin.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>It is recommended to call this method after initializing <xref keyref="IRtcEngine"/> and before joining a channel.</li>
+                    <li>For video-related extensions (such as beauty filters), you need to call this method before enabling the video module (<xref keyref="enableVideo"/>/<xref keyref="enableLocalVideo"/>).</li>
+                    <li>Before calling this method, you must call <xref keyref="loadExtensionProvider"/> to load the extension.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>It is recommended to call this method after initializing <xref keyref="IRtcEngine"/> and before joining a channel.</li>
+                    <li>For video-related extensions (such as beauty filters), call this method before enabling the video module (<xref keyref="enableVideo"/>/<xref keyref="enableLocalVideo"/>).</li>
+                    <li>Before calling this method, you need to call <xref keyref="loadExtensionProvider"/> to load the extension.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>provider</pt>
+                    <pd>The name of the extension provider.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>extension</pt>
+                    <pd>The name of the extension.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>The media source type of the extension. See <xref keyref="MEDIA_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>provider</pt>
+                    <pd>The name of the plugin provider.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>extension</pt>
+                    <pd>The name of the plugin.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>The media source type of the plugin. See <xref keyref="MEDIA_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>provider</pt>
+                    <pd>The name of the extension provider.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>extension</pt>
+                    <pd>The name of the extension.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>The media source type of the extension. See <xref keyref="MEDIA_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>provider</pt>
+                    <pd>The name of the extension provider.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>extension</pt>
+                    <pd>The name of the extension.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>The media source type of the extension. See <xref keyref="MEDIA_SOURCE_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-3: The extension dynamic library was not loaded. Agora recommends checking whether the dynamic library is placed in the expected location or whether the library name is correct.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-3: The extension dynamic library was not loaded. Agora recommends checking whether the library is placed in the expected location or whether the library name is correct.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

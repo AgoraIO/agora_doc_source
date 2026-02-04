@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_enableloopbackrecordingex">
+    <title><ph keyref="enableLoopbackRecordingEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Enables loopback recording.</ph><ph id="shortdesc" props="flutter">Enables loopback recording.</ph><ph id="shortdesc" props="unity">Enables loopback recording.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableLoopbackRecordingEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableLoopbackRecordingEx(
+    connection: RtcConnection,
+    enabled: boolean,
+    deviceName?: string
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableLoopbackRecordingEx(
+      {required RtcConnection connection,
+      required bool enabled,
+      String? deviceName});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableLoopbackRecordingEx(RtcConnection connection, bool enabled, string deviceName);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After enabling loopback recording, the sound played by the sound card will be mixed into the local audio stream and can be sent to the remote side.</p>
+            <p props="flutter">After enabling loopback recording, the sound played through the sound card is mixed into the local audio stream and can be sent to the remote end.</p>
+            <p props="unity">After enabling loopback recording, the sound played by the sound card will be mixed into the local audio stream and can be sent to the remote end.</p>
+            <note props="electron">
+                <ul>
+                    <li>The default sound card on macOS does not support recording. If you need to use this feature, please enable a virtual sound card and set <codeph>deviceName</codeph> to the name of that virtual sound card. Agora recommends using its self-developed virtual sound card AgoraALD for recording.</li>
+                    <li>This method currently supports only one loopback recording stream.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method is applicable to macOS and Windows only.</li>
+                    <li>The default sound card on macOS does not support recording. If you need to use this feature, enable a virtual sound card and set <codeph>deviceName</codeph> to the name of that virtual device. Agora recommends using its self-developed virtual sound card AgoraALD for recording.</li>
+                    <li>Currently, only one loopback recording is supported.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method is only applicable to macOS and Windows platforms.</li>
+                    <li>The default sound card on macOS does not support recording. If you need this feature, please enable a virtual sound card and set <codeph>deviceName</codeph> to the device name of the virtual sound card. Agora recommends using the self-developed virtual sound card AgoraALD for recording.</li>
+                    <li>Currently, only one loopback recording is supported.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable loopback recording:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable loopback recording.</li>
+                            <li><xref keyref="false"/>: (Default) Disable loopback recording.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>deviceName</pt>
+                    <pd>
+                        <note>Electron for UnionTech OS SDK does not support this parameter.</note>
+                        <ul>
+                            <li>macOS: The device name of the virtual sound card. Default is empty, which means using the AgoraALD virtual sound card for recording.</li>
+                            <li>Windows: The device name of the sound card. Default is empty, which means using the built-in sound card of the device.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable loopback recording:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable loopback recording.</li>
+                            <li><xref keyref="false"/>: (default) Do not enable loopback recording.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceName</pt>
+                    <pd>
+                        <ul>
+                            <li>macOS: The name of the virtual sound card. Default is empty, which means using the AgoraALD virtual sound card for recording.</li>
+                            <li>Windows: The name of the sound card. Default is empty, which means using the built-in sound card of the device for recording.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable loopback recording:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable loopback recording.</li>
+                            <li><xref keyref="false"/>: (Default) Do not enable loopback recording.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceName</pt>
+                    <pd>
+                        <ul>
+                            <li>macOS: The device name of the virtual sound card. Default is empty, which means using the AgoraALD virtual sound card for recording.</li>
+                            <li>Windows: The device name of the sound card. Default is empty, which means using the built-in sound card of the device for recording.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

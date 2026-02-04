@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setcolorenhanceoptions">
+    <title><ph keyref="setColorEnhanceOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Enables color enhancement.</ph><ph id="shortdesc" props="rn">Sets color enhancement options.</ph><ph id="shortdesc" props="flutter">Sets the color enhancement feature.</ph><ph id="shortdesc" props="unity">Sets the color enhancement feature.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setColorEnhanceOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setColorEnhanceOptions(
+    enabled: boolean,
+    options: ColorEnhanceOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setColorEnhanceOptions(
+    enabled: boolean,
+    options: ColorEnhanceOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setColorEnhanceOptions(
+      {required bool enabled,
+      required ColorEnhanceOptions options,
+      MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetColorEnhanceOptions(bool enabled, ColorEnhanceOptions options, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Video captured by the camera may suffer from color distortion. The color enhancement feature improves color richness and accuracy by intelligently adjusting video characteristics such as saturation and contrast, making the video more vivid.
+You can call this method to enable color enhancement and configure its effects.</p>
+            <p props="rn">Video captured by the camera may have color distortion. The color enhancement feature intelligently adjusts video characteristics such as saturation and contrast to improve color richness and accuracy, resulting in more vivid video.
+You can call this method to enable the color enhancement feature and set its effect.</p>
+            <p props="flutter">The video captured by the camera may suffer from color distortion. The color enhancement feature can intelligently adjust video characteristics such as saturation and contrast to improve color richness and accuracy, making the video more vivid.
+You can call this method to enable color enhancement and set the enhancement effect.</p>
+            <p props="unity">Video captured by the camera may suffer from color distortion. The color enhancement feature can improve the richness and fidelity of video colors by intelligently adjusting video attributes such as saturation and contrast, making the video more vivid.
+You can call this method to enable the color enhancement feature and set the color enhancement effect.</p>
+            <note props="electron">
+                <ul>
+                    <li>Call this method after <xref keyref="enableVideo"/>.</li>
+                    <li>Color enhancement requires certain device performance. If the device overheats or experiences issues after enabling color enhancement, it is recommended to lower the enhancement level or disable the feature.</li>
+                    <li>This method depends on the video enhancement dynamic library <codeph>libagora_clear_vision_extension.dll</codeph>. Deleting this library will prevent the feature from functioning properly.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>Call this method after <xref keyref="enableVideo"/>.</li>
+                    <li>Color enhancement requires certain device performance. If the device overheats or encounters issues after enabling it, consider lowering the enhancement level or disabling the feature.</li>
+                    <li>This method depends on the video enhancement dynamic library <codeph>libagora_clear_vision_extension.dll</codeph>. Removing this library will prevent the feature from working properly.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>Call this method after <xref keyref="enableVideo"/>.</li>
+                    <li>Color enhancement requires a certain level of device performance. After enabling it, if the device overheats or encounters other issues, it is recommended to lower the enhancement level or disable the feature.</li>
+                    <li>This method depends on the video enhancement dynamic library <codeph>libagora_clear_vision_extension.dll</codeph>. Deleting this library will cause the feature to fail to start.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>Call this method after <xref keyref="enableVideo"/>.</li>
+                    <li>Color enhancement has certain performance requirements. If the device experiences issues such as overheating after enabling this feature, it is recommended to reduce the enhancement level to a less performance-intensive setting or disable the feature.</li>
+                    <li>This method depends on the video enhancement dynamic library <codeph>libagora_clear_vision_extension.dll</codeph>. Removing this library will cause this feature to fail.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable color enhancement:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable color enhancement.</li>
+                            <li><xref keyref="false"/>: (default) Disable color enhancement.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>options</pt>
+                    <pd>Color enhancement options used to configure the effect. See <xref keyref="ColorEnhanceOptions"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>The media source type to apply the effect to. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>This method only supports the following two settings:
+                            <ul>
+                                <li>When using the camera to capture local video, keep the default value <codeph>PrimaryCameraSource</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>CustomVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the color enhancement feature:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable color enhancement.</li>
+                            <li><xref keyref="false"/>: (default) Disable color enhancement.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>options</pt>
+                    <pd>Color enhancement options used to set the enhancement effect. See <xref keyref="ColorEnhanceOptions"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>The media source type to apply the effect to. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>This method only supports the following two settings:
+                            <ul>
+                                <li>For local video captured by the camera, keep the default value <codeph>PrimaryCameraSource</codeph>.</li>
+                                <li>For custom captured video, set this parameter to <codeph>CustomVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the color enhancement feature:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable color enhancement.</li>
+                            <li><xref keyref="false"/>: (Default) Disable color enhancement.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>options</pt>
+                    <pd>Color enhancement options used to configure the enhancement effect. See <xref keyref="ColorEnhanceOptions"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>The media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, this parameter only supports the following two settings:
+                            <ul>
+                                <li>When capturing local video using the camera, keep the default value <codeph>primaryCameraSource</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>customVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the color enhancement feature:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable color enhancement.</li>
+                            <li><xref keyref="false"/>: (default) Disable color enhancement.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>options</pt>
+                    <pd>Color enhancement options used to configure the effect. See <xref keyref="ColorEnhanceOptions"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>The media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, this parameter only supports the following two settings:
+                            <ul>
+                                <li>When using the camera to capture local video, keep the default value <codeph>PRIMARY_CAMERA_SOURCE</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>CUSTOM_VIDEO_SOURCE</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

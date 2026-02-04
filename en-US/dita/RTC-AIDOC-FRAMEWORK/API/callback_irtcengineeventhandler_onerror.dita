@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onerror">
+    <title><ph keyref="onError"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback when an error occurs.</ph><ph id="shortdesc" props="rn">Occurs when an error is reported.</ph><ph id="shortdesc" props="flutter">Callback when an error occurs.</ph><ph id="shortdesc" props="unity">Callback when an error occurs.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onError"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onError?(err: ErrorCodeType, msg: string): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onError?(err: ErrorCodeType, msg: string): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(ErrorCodeType err, String msg)? onError;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnError(int err, string msg) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This callback indicates that a network or media-related error occurred during SDK runtime. Typically, errors reported by the SDK mean that the SDK cannot recover automatically and require intervention from the app or user notification.</p>
+            <p props="rn">This callback indicates that a network or media-related error occurred during SDK runtime. In most cases, errors reported by the SDK mean it cannot recover automatically and requires app intervention or user notification.</p>
+            <p props="flutter">This callback indicates that a network or media-related error occurred during SDK runtime. In most cases, errors reported by the SDK mean it cannot recover automatically and requires app intervention or user notification.</p>
+            <p props="unity">This callback indicates that a network or media-related error occurred during SDK runtime. In most cases, errors reported by the SDK mean that the SDK cannot recover automatically and requires app intervention or user notification.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>err</pt>
+                    <pd>Error code. See <xref keyref="ERROR_CODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>msg</pt>
+                    <pd>Error description.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>err</pt>
+                    <pd>The error code. See <xref keyref="ERROR_CODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>msg</pt>
+                    <pd>The error description.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>err</pt>
+                    <pd>Error code. See <xref keyref="ERROR_CODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>msg</pt>
+                    <pd>Error description.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>err</pt>
+                    <pd>Error code. See <xref keyref="ERROR_CODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>msg</pt>
+                    <pd>Error description.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

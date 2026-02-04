@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_createdatastream2">
+    <title><ph keyref="createDataStream2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Creates a data stream.</ph><ph id="shortdesc" props="rn">Creates a data stream.</ph><ph id="shortdesc" props="flutter">Creates a data stream.</ph><ph id="shortdesc" props="unity">Creates a data stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createDataStream2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract createDataStream(config: DataStreamConfig): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract createDataStream(config: DataStreamConfig): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; createDataStream(DataStreamConfig config);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int CreateDataStream(ref int streamId, DataStreamConfig config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">Compared with <xref keyref="createDataStream1"/>, this method does not guarantee the reliability of data transmission. The receiver discards packets that are received more than 5 seconds after being sent.</p>
+            <note props="electron">Within the lifecycle of <xref keyref="IRtcEngine"/>, each user can create up to 5 data streams. The data streams are destroyed when leaving the channel. To use them again, you need to recreate them.</note>
+            <note props="rn">Within the lifecycle of <xref keyref="IRtcEngine"/>, each user can create up to 5 data streams. The data streams are destroyed when leaving the channel. You need to recreate them to use again.</note>
+            <note props="flutter">If you need a more comprehensive, low-latency, high-concurrency, and scalable real-time messaging and state synchronization solution, we recommend using [Real-time Messaging](https://doc.shengwang.cn/doc/rtm2/flutter/landing-page).
+During the lifecycle of <xref keyref="IRtcEngine"/>, each user can create up to 5 data streams. The data streams are destroyed when leaving the channel. If needed again, you must recreate them.</note>
+            <note props="unity">If you need a more comprehensive low-latency, high-concurrency, and scalable real-time messaging and state synchronization solution, we recommend using [Real-time Messaging](https://doc.shengwang.cn/doc/rtm2/unity/landing-page).
+During the lifecycle of <xref keyref="IRtcEngine"/>, each user can create up to 5 data streams. The data streams are destroyed when leaving the channel. To use them again, you need to recreate the data streams.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method can be called before or after joining a channel.</p>
+            <p props="rn">This method can be called before or after joining a channel.</p>
+            <p props="flutter">This method can be called before or after joining a channel.</p>
+            <p props="unity">This method can be called before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>Data stream configuration. See <xref keyref="DataStreamConfig"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>config</pt>
+                    <pd>Data stream configuration. See <xref keyref="DataStreamConfig"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>Data stream configuration. See <xref keyref="DataStreamConfig"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>streamId</pt>
+                    <pd>Output parameter. The ID of the created data stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>Data stream configuration. See <xref keyref="DataStreamConfig"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>ID of the created data stream: if the method call succeeds.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>The ID of the created data stream: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>ID of the created data stream: method call succeeded.</li>
+                    <li>&lt; 0: method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Data stream created successfully.</li>
+                    <li>&lt; 0: Method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_playeffectex">
+    <title><ph keyref="playEffectEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Plays the specified sound effect in the channel.</ph><ph id="shortdesc" props="rn">Plays the specified sound effect in the channel.</ph><ph id="shortdesc" props="flutter">Plays the specified audio effect in the channel.</ph><ph id="shortdesc" props="unity">Plays the specified sound effect in the channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="playEffectEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract playEffectEx(
+    connection: RtcConnection,
+    soundId: number,
+    filePath: string,
+    loopCount: number,
+    pitch: number,
+    pan: number,
+    gain: number,
+    publish?: boolean,
+    startPos?: number
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract playEffectEx(
+    connection: RtcConnection,
+    soundId: number,
+    filePath: string,
+    loopCount: number,
+    pitch: number,
+    pan: number,
+    gain: number,
+    publish?: boolean,
+    startPos?: number
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; playEffectEx(
+      {required RtcConnection connection,
+      required int soundId,
+      required String filePath,
+      required int loopCount,
+      required double pitch,
+      required double pan,
+      required int gain,
+      bool publish = false,
+      int startPos = 0});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int PlayEffectEx(RtcConnection connection, int soundId, string filePath, int loopCount, double pitch, double pan, int gain, bool publish = false, int startPos = 0);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.2.</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">You can call this method to play a specified sound effect to all users in the channel. Each call to this method can only play one sound effect. To play multiple sound effects simultaneously, use different <codeph>soundId</codeph> and <codeph>filePath</codeph> values and call this method multiple times. You can also set whether to publish the sound effect in the channel.</p>
+            <p props="rn">You can call this method to play the specified sound effect to all users in the channel. Each call can only play one sound effect. To play multiple sound effects simultaneously, use different <codeph>soundId</codeph> and <codeph>filePath</codeph> values and call this method multiple times. You can also set whether to publish the sound effect in the channel.</p>
+            <p props="flutter">You can call this method to play a specified audio effect to all users in the channel. Each call plays only one audio effect. To play multiple audio effects simultaneously, call this method multiple times with different <codeph>soundId</codeph> and <codeph>filePath</codeph>. You can also set whether to publish the audio effect in the channel.</p>
+            <p props="unity">You can call this method to play the specified sound effect to all users in the channel. Each call to this method can only play one sound effect. To play multiple sound effects simultaneously, use different <codeph>soundId</codeph> and <codeph>filePath</codeph> and call this method multiple times. You can also set whether to publish the sound effect in the channel.</p>
+            <note props="electron">
+                <ul>
+                    <li>Agora recommends not playing more than three sound effects simultaneously.</li>
+                    <li>The sound effect ID and file path in this method must match those in the <xref keyref="preloadEffectEx"/> method.</li>
+                    <li>If you call <xref keyref="preloadEffectEx"/> before calling <xref keyref="playEffectEx"/>, the file resource will not be closed after <xref keyref="playEffectEx"/> is executed. The next call to <xref keyref="playEffectEx"/> will start playback from the beginning.</li>
+                    <li>If you do not call <xref keyref="preloadEffectEx"/> before calling <xref keyref="playEffectEx"/>, the file resource will be destroyed after <xref keyref="playEffectEx"/> is executed. The next call to <xref keyref="playEffectEx"/> will attempt to reopen the file and play from the beginning.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>Agora recommends not playing more than three sound effects simultaneously.</li>
+                    <li>The sound effect ID and file path in this method must match those used in the <xref keyref="preloadEffectEx"/> method.</li>
+                    <li>If <xref keyref="preloadEffectEx"/> is called before <xref keyref="playEffectEx"/>, then after <xref keyref="playEffectEx"/> is executed, the file resource is not released. The next <xref keyref="playEffectEx"/> call will start playback from the beginning.</li>
+                    <li>If <xref keyref="preloadEffectEx"/> is not called before <xref keyref="playEffectEx"/>, then after <xref keyref="playEffectEx"/> is executed, the resource is destroyed. The next <xref keyref="playEffectEx"/> call will attempt to reopen the file and play from the beginning.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>Agora recommends not playing more than three audio effects simultaneously.</li>
+                    <li>The audio effect ID and file path in this method must match those in the <xref keyref="preloadEffectEx"/> method.</li>
+                    <li>If <xref keyref="preloadEffectEx"/> is called before <xref keyref="playEffectEx"/>, the file resource is not released after <xref keyref="playEffectEx"/> is executed. The next time you call <xref keyref="playEffectEx"/>, it will start playing from the beginning.</li>
+                    <li>If <xref keyref="preloadEffectEx"/> is not called before <xref keyref="playEffectEx"/>, the resource is destroyed after <xref keyref="playEffectEx"/> is executed. The next time you call <xref keyref="playEffectEx"/>, it will attempt to reopen the file and play from the beginning.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>Agora recommends not playing more than three sound effects at the same time.</li>
+                    <li>The sound effect ID and file path in this method must be the same as those in the <codeph>preloadEffectEx</codeph> method.</li>
+                    <li>If you call <codeph>preloadEffectEx</codeph> before calling <codeph>playEffectEx</codeph>, then <codeph>playEffectEx</codeph> will not release the file resource after execution. The next time you call <codeph>playEffectEx</codeph>, it will start playing from the beginning.</li>
+                    <li>If you do not call <codeph>preloadEffectEx</codeph> before calling <codeph>playEffectEx</codeph>, then <codeph>playEffectEx</codeph> will destroy the resource after execution. The next time you call <codeph>playEffectEx</codeph>, it will attempt to reopen the file and start playing from the beginning.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method applies to multi-channel scenarios.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd><xref keyref="RtcConnection"/> object. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>soundId</pt>
+                    <pd>Sound effect ID.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>filePath</pt>
+                    <pd>Absolute path of the local file or URL of the online file. Supported audio formats include mp3, mp4, m4a, aac, 3gp, mkv, and wav.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>loopCount</pt>
+                    <pd>Number of times the sound effect is played:
+                        <ul>
+                            <li><codeph>-1</codeph>: Loops indefinitely until <xref keyref="stopEffect"/> or <xref keyref="stopAllEffects"/> is called.</li>
+                            <li><codeph>0</codeph>: Plays once.</li>
+                            <li><codeph>1</codeph>: Plays twice.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>pitch</pt>
+                    <pd>Pitch of the sound effect. The range is 0.5 to 2.0. The default value is 1.0 (original pitch). The smaller the value, the lower the pitch.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>pan</pt>
+                    <pd>Spatial position of the sound effect. The range is -1.0 to 1.0:
+                        <ul>
+                            <li><codeph>-1.0</codeph>: The sound effect comes from the user's left.</li>
+                            <li><codeph>0.0</codeph>: The sound effect comes from the front.</li>
+                            <li><codeph>1.0</codeph>: The sound effect comes from the user's right.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>gain</pt>
+                    <pd>Volume of the sound effect. The range is 0 to 100. The default value is 100 (original volume). The smaller the value, the lower the volume.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publish</pt>
+                    <pd>Whether to publish the sound effect in the channel:
+                        <ul>
+                            <li><xref keyref="true"/>: Publishes the sound effect in the channel.</li>
+                            <li><xref keyref="false"/>: (Default) Does not publish the sound effect in the channel.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>startPos</pt>
+                    <pd>Start position (in milliseconds) for playing the sound effect file.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd><xref keyref="RtcConnection"/> object. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>soundId</pt>
+                    <pd>Sound effect ID.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>filePath</pt>
+                    <pd>Absolute path of the local file or URL of the online file. Supported audio formats include mp3, mp4, m4a, aac, 3gp, mkv, and wav.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>loopCount</pt>
+                    <pd>Number of times to loop the sound effect:
+                        <ul>
+                            <li><codeph>-1</codeph>: Infinite loop until <xref keyref="stopEffect"/> or <xref keyref="stopAllEffects"/> is called.</li>
+                            <li><codeph>0</codeph>: Play once.</li>
+                            <li><codeph>1</codeph>: Play twice.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>pitch</pt>
+                    <pd>Pitch of the sound effect. Range: 0.5 to 2.0. Default is 1.0 (original pitch). The smaller the value, the lower the pitch.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>pan</pt>
+                    <pd>Spatial position of the sound effect. Range: -1.0 to 1.0:
+                        <ul>
+                            <li><codeph>-1.0</codeph>: Sound comes from the left.</li>
+                            <li><codeph>0.0</codeph>: Sound comes from the front.</li>
+                            <li><codeph>1.0</codeph>: Sound comes from the right.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>gain</pt>
+                    <pd>Volume of the sound effect. Range: 0 to 100. Default is 100 (original volume). The smaller the value, the lower the volume.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publish</pt>
+                    <pd>Whether to publish the sound effect in the channel:
+                        <ul>
+                            <li><xref keyref="true"/>: Publish the sound effect in the channel.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish the sound effect in the channel.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>startPos</pt>
+                    <pd>Start position for playing the sound effect file, in milliseconds.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd><xref keyref="RtcConnection"/> object. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>soundId</pt>
+                    <pd>Audio effect ID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>filePath</pt>
+                    <pd>The absolute path of a local file or the URL of an online file. Supported audio formats include mp3, mp4, m4a, aac, 3gp, mkv, and wav.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>loopCount</pt>
+                    <pd>The number of times the audio effect is played:
+                        <ul>
+                            <li><codeph>-1</codeph>: Loops indefinitely until <xref keyref="stopEffect"/> or <xref keyref="stopAllEffects"/> is called.</li>
+                            <li><codeph>0</codeph>: Plays once.</li>
+                            <li><codeph>1</codeph>: Plays twice.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pitch</pt>
+                    <pd>The pitch of the audio effect. The range is 0.5 to 2.0. The default value is 1.0 (original pitch). The smaller the value, the lower the pitch.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pan</pt>
+                    <pd>The spatial position of the audio effect. The range is -1.0 to 1.0:
+                        <ul>
+                            <li><codeph>-1.0</codeph>: Audio effect comes from the user's left.</li>
+                            <li><codeph>0.0</codeph>: Audio effect comes from the front.</li>
+                            <li><codeph>1.0</codeph>: Audio effect comes from the user's right.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>gain</pt>
+                    <pd>The volume of the audio effect. The range is 0 to 100. The default value is 100 (original volume). The smaller the value, the lower the volume.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publish</pt>
+                    <pd>Whether to publish the audio effect in the channel:
+                        <ul>
+                            <li><xref keyref="true"/>: Publishes the audio effect in the channel.</li>
+                            <li><xref keyref="false"/>: (Default) Does not publish the audio effect in the channel.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>startPos</pt>
+                    <pd>The start position for playing the audio effect file, in milliseconds.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd><xref keyref="RtcConnection"/> object. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>soundId</pt>
+                    <pd>Sound effect ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>The absolute path of the local file or the URL of the online file. Supported audio formats include mp3, mp4, m4a, aac, 3gp, mkv, and wav.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>loopCount</pt>
+                    <pd>Number of times the sound effect loops:
+                        <ul>
+                            <li><codeph>-1</codeph>: Infinite loop until <codeph>stopEffect</codeph> or <codeph>stopAllEffects</codeph> is called.</li>
+                            <li><codeph>0</codeph>: Play once.</li>
+                            <li><codeph>1</codeph>: Play twice.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>pitch</pt>
+                    <pd>Pitch of the sound effect. The range is from 0.5 to 2.0. The default value is 1.0 (original pitch). The smaller the value, the lower the pitch.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>pan</pt>
+                    <pd>Spatial position of the sound effect. The range is from -1.0 to 1.0:
+                        <ul>
+                            <li><codeph>-1.0</codeph>: The sound effect comes from the left of the user.</li>
+                            <li><codeph>0.0</codeph>: The sound effect comes from the front of the user.</li>
+                            <li><codeph>1.0</codeph>: The sound effect comes from the right of the user.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>gain</pt>
+                    <pd>Volume of the sound effect. The range is from 0 to 100. The default value is 100 (original volume). The smaller the value, the lower the volume.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publish</pt>
+                    <pd>Whether to publish the sound effect in the channel:
+                        <ul>
+                            <li><xref keyref="true"/>: Publish the sound effect in the channel.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish the sound effect in the channel.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>startPos</pt>
+                    <pd>The start position for playing the sound effect file, in milliseconds.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

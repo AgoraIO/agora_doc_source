@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_querycodeccapability">
+    <title><ph keyref="queryCodecCapability"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Queries the video codec capabilities supported by the SDK.</ph><ph id="shortdesc" props="rn">Queries the video codec capabilities supported by the SDK.</ph><ph id="shortdesc" props="flutter">Queries the video codec capabilities supported by the SDK.</ph><ph id="shortdesc" props="unity">Queries the video codec capabilities supported by the SDK.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="queryCodecCapability"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract queryCodecCapability(): { codecInfo: CodecCapInfo[]; size: number };</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract queryCodecCapability(): { codecInfo: CodecCapInfo[]; size: number };</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;CodecCapInfo&gt;&gt; queryCodecCapability(int size);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int QueryCodecCapability(ref CodecCapInfo[] codecInfo, ref int size);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="flutter">
+                    <pt>size</pt>
+                    <pd>The size of <xref keyref="CodecCapInfo"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>codecInfo</pt>
+                    <pd>Input and output parameter, representing the array of video codec capabilities supported by the SDK. See <xref keyref="CodecCapInfo"/>.
+                        <ul>
+                            <li>Input: The <xref keyref="CodecCapInfo"/> defined by the user when calling this method, indicating the video codec capabilities to query.</li>
+                            <li>Output: The <xref keyref="CodecCapInfo"/> returned after the method execution, indicating the actual video codec capabilities supported by the SDK.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>size</pt>
+                    <pd>Input and output parameter, indicating the size of the <xref keyref="CodecCapInfo"/> array.
+                        <ul>
+                            <li>Input: The size of <xref keyref="CodecCapInfo"/> defined by the user when calling this method.</li>
+                            <li>Output: The size of <xref keyref="CodecCapInfo"/> returned after the method execution.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>If the call succeeds, it returns an object with the following properties:
+                        <ul>
+                            <li><codeph>codecInfo</codeph>: An array of <xref keyref="CodecCapInfo"/> representing the SDK's video encoding capabilities.</li>
+                            <li><codeph>size</codeph>: The size of the <xref keyref="CodecCapInfo"/> array.</li>
+                        </ul>
+                    </li>
+                    <li>If the call times out, adjust your logic to avoid calling this method on the main thread.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>If the call succeeds, returns an object with the following properties:
+                        <ul>
+                            <li><codeph>codecInfo</codeph>: An array of <xref keyref="CodecCapInfo"/>, representing the SDK's video encoding capabilities.</li>
+                            <li><codeph>size</codeph>: The size of the <xref keyref="CodecCapInfo"/> array.</li>
+                        </ul>
+                    </li>
+                    <li>If the call times out, modify your logic to avoid calling this method on the main thread.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>If the call succeeds, returns an array of <xref keyref="CodecCapInfo"/>, indicating the SDK's video encoding capabilities.</li>
+                    <li>If the call times out, modify your call logic and avoid calling this method on the main thread.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

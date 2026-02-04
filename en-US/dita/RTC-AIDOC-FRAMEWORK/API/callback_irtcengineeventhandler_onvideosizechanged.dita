@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onvideosizechanged">
+    <title><ph keyref="onVideoSizeChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Occurs when the local or remote video size or rotation changes.</ph><ph id="shortdesc" props="rn">Occurs when the size or rotation of the local or remote video changes.</ph><ph id="shortdesc" props="flutter">Callback when the size and rotation of local or remote video changes.</ph><ph id="shortdesc" props="unity">Callback when the size or rotation of local or remote video changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onVideoSizeChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onVideoSizeChanged?(
+    connection: RtcConnection,
+    sourceType: VideoSourceType,
+    uid: number,
+    width: number,
+    height: number,
+    rotation: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onVideoSizeChanged?(
+    connection: RtcConnection,
+    sourceType: VideoSourceType,
+    uid: number,
+    width: number,
+    height: number,
+    rotation: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, VideoSourceType sourceType,
+      int uid, int width, int height, int rotation)? onVideoSizeChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoSizeChanged(RtcConnection connection, VIDEO_SOURCE_TYPE sourceType, uint uid, int width, int height, int rotation) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sourceType</pt>
+                    <pd>The type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>The user ID whose video size or rotation changed (<codeph>uid</codeph> is 0 for the local user, indicating the video is from the local preview).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>The width (pixels) of the video stream.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>The height (pixels) of the video stream.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rotation</pt>
+                    <pd>The rotation information, in the range [0, 360).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceType</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>User ID whose video size or rotation has changed (the <codeph>uid</codeph> of the local user is 0, indicating this is a local video preview).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>width</pt>
+                    <pd>Width of the video stream (pixels).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>Height of the video stream (pixels).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rotation</pt>
+                    <pd>Rotation information, range [0, 360).
+                        <note>On iOS, this value is always 0.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceType</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>User ID whose video size or rotation has changed (<codeph>uid</codeph> is 0 for local user, indicating local video preview).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>Width of the video stream (pixels).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>Height of the video stream (pixels).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rotation</pt>
+                    <pd>Rotation information, value range [0,360).
+                        <note>On iOS, this value is always 0.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sourceType</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>User ID whose image size or rotation changes (the <codeph>uid</codeph> of the local user is 0, in which case the video is a local preview).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>Width of the video stream (pixels).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>Height of the video stream (pixels).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rotation</pt>
+                    <pd>Rotation information, range [0,360).
+                        <note>On iOS, this parameter is always 0.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

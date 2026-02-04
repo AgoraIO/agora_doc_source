@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudioquality">
+    <title><ph keyref="onAudioQuality"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback for remote audio quality.</ph><ph id="shortdesc" props="rn">Reports the audio quality of a remote user.</ph><ph id="shortdesc" props="flutter">Callback for remote audio quality.</ph><ph id="shortdesc" props="unity">Reports the audio quality of a remote user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioQuality"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onAudioQuality?(
+    connection: RtcConnection,
+    remoteUid: number,
+    quality: QualityType,
+    delay: number,
+    lost: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onAudioQuality?(
+    connection: RtcConnection,
+    remoteUid: number,
+    quality: QualityType,
+    delay: number,
+    lost: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid,
+      QualityType quality, int delay, int lost)? onAudioQuality;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioQuality(RtcConnection connection, uint remoteUid, int quality, UInt16 delay, UInt16 lost) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use <xref keyref="onRemoteAudioStats"/> instead.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use <xref keyref="onRemoteAudioStats"/> instead.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use <xref keyref="onRemoteAudioStats"/> instead.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use <xref keyref="onRemoteAudioStats"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">This callback describes the audio quality of remote users during a call. It is triggered once every 2 seconds for each remote user/host. If there are multiple remote users/hosts, this callback is triggered multiple times every 2 seconds.</p>
+            <p props="rn">This callback reports the audio quality of a remote user during a call. It is triggered every 2 seconds for each remote user/host. If there are multiple remote users/hosts, the callback is triggered multiple times every 2 seconds.</p>
+            <p props="flutter">This callback describes the audio quality of a remote user during a call and is triggered every 2 seconds for each remote user/host. If there are multiple remote users/hosts, the callback is triggered multiple times every 2 seconds.</p>
+            <p props="unity">This callback reports the audio quality of a remote user during a call. It is triggered every 2 seconds for each remote user/host. If there are multiple remote users/hosts, this callback is triggered multiple times every 2 seconds.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteUid</pt>
+                    <pd>The user ID of the sender of the audio stream.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>quality</pt>
+                    <pd>Audio quality. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>delay</pt>
+                    <pd>The delay (ms) from the sender to the receiver, including delays caused by audio pre-processing, network transmission, and jitter buffering.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>lost</pt>
+                    <pd>The packet loss rate (%) from the sender to the receiver.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteUid</pt>
+                    <pd>The user ID of the sender of the audio stream.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>quality</pt>
+                    <pd>The audio quality. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>delay</pt>
+                    <pd>The delay (ms) from the sender to the receiver, including pre-processing, network transmission, and jitter buffer delay.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lost</pt>
+                    <pd>The packet loss rate (%) from the sender to the receiver.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteUid</pt>
+                    <pd>User ID of the sender of the audio stream.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>quality</pt>
+                    <pd>Audio quality. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>delay</pt>
+                    <pd>Delay (ms) from the sender to the receiver, including preprocessing, network transmission, and jitter buffer delay.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lost</pt>
+                    <pd>Packet loss rate (%) from the sender to the receiver.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteUid</pt>
+                    <pd>The user ID of the sender of the audio stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>quality</pt>
+                    <pd>Audio quality. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>delay</pt>
+                    <pd>The delay (ms) from the sender to the receiver, including preprocessing, network transmission, and jitter buffer delay.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lost</pt>
+                    <pd>The packet loss rate (%) from the sender to the receiver.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

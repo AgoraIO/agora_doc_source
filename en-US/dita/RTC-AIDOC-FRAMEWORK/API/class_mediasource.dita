@@ -1,0 +1,374 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_mediasource">
+    <title><ph keyref="MediaSource"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Information and playback settings of the media file to be played.</ph><ph id="shortdesc" props="rn">Information and playback settings for the media file to be played.</ph><ph id="shortdesc" props="flutter">Information and playback settings for the media file to be played.</ph><ph id="shortdesc" props="unity">Information and playback settings for the media file to be played.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class MediaSource {
+
+  url?: string;
+
+  uri?: string;
+
+  startPos?: number;
+
+  autoPlay?: boolean;
+
+  enableCache?: boolean;
+
+  isAgoraSource?: boolean;
+
+  isLiveSource?: boolean;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class MediaSource {
+
+  url?: string;
+
+  uri?: string;
+
+  startPos?: number;
+
+  autoPlay?: boolean;
+
+  enableCache?: boolean;
+
+  isAgoraSource?: boolean;
+
+  isLiveSource?: boolean;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class MediaSource {
+  const MediaSource(
+      {this.url,
+      this.uri,
+      this.startPos,
+      this.autoPlay,
+      this.enableCache,
+      this.isAgoraSource,
+      this.isLiveSource});
+
+  @JsonKey(name: 'url')
+  final String? url;
+
+  @JsonKey(name: 'uri')
+  final String? uri;
+
+  @JsonKey(name: 'startPos')
+  final int? startPos;
+
+  @JsonKey(name: 'autoPlay')
+  final bool? autoPlay;
+
+  @JsonKey(name: 'enableCache')
+  final bool? enableCache;
+
+  @JsonKey(name: 'isAgoraSource')
+  final bool? isAgoraSource;
+
+  @JsonKey(name: 'isLiveSource')
+  final bool? isLiveSource;
+
+  factory MediaSource.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$MediaSourceFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$MediaSourceToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class MediaSource : OptionalJsonParse
+    {
+        public string url { set; get; }
+        public string uri { set; get; }
+        public int64_t startPos { set; get; }
+        public bool autoPlay { set; get; }
+        public bool enableCache { set; get; }
+        public Optional&lt;bool&gt; isAgoraSource = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; isLiveSource = new Optional&lt;bool&gt;();
+        public IMediaPlayerCustomDataProvider provider { set; get; }
+
+        public MediaSource()
+        {
+            url = "";
+            uri = "";
+            startPos = 0;
+            autoPlay = true;
+            enableCache = false;
+            provider = null;
+        }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>url</pt>
+                    <pd>URL of the media resource to be played.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uri</pt>
+                    <pd>URI (Uniform Resource Identifier) of the media file, used to identify the media file.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>startPos</pt>
+                    <pd>Start playback position in milliseconds. Default is 0.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>autoPlay</pt>
+                    <pd>
+                        <note>If you disable auto-play, call the <xref keyref="play"/> method after opening the media file to start playback.</note><ph>Whether to enable auto-play after opening the media file:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Enable auto-play.</li>
+                            <li><xref keyref="false"/>: Disable auto-play.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enableCache</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>The SDK currently supports caching for on-demand streams, but not for on-demand streams transmitted via HLS protocol.</li>
+                                <li>Before caching, pass a value to <codeph>uri</codeph>, otherwise the player uses the media file's <codeph>url</codeph> as the cache index.</li>
+                                <li>When real-time caching is enabled, the player pre-caches part of the media file being played to local storage. The next time you play the file, the player loads data from the cache, saving network traffic. The statistics of the cached media file are updated every second after playback starts. See <xref keyref="CacheStatistics"/>.</li>
+                            </ul>
+                        </note><ph>Whether to enable real-time caching for this playback:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Enable real-time caching.</li>
+                            <li><xref keyref="false"/>: (default) Disable real-time caching.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enableMultiAudioTrack</pt>
+                    <pd>Whether to allow selecting different audio tracks during this playback:
+                        <ul>
+                            <li><xref keyref="true"/>: Allow selecting different audio tracks.</li>
+                            <li><xref keyref="false"/>: (default) Do not allow selecting different audio tracks.</li>
+                        </ul><ph>If you need to set different audio tracks for local playback and publishing to remote, set this parameter to <xref keyref="true"/> and then call the <xref keyref="selectMultiAudioTrack"/> method to set the audio track.</ph></pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>isAgoraSource</pt>
+                    <pd>
+                        <note>If the media resource to be opened is a live or on-demand stream distributed via Agora Fusion CDN, pass the stream URL to <codeph>url</codeph> and set <codeph>isAgoraSource</codeph> to <xref keyref="true"/>. Otherwise, you do not need to set <codeph>isAgoraSource</codeph>.</note><ph>Whether the media resource opened is a live or on-demand stream distributed via Agora Fusion CDN:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: The media resource is distributed via Agora Fusion CDN.</li>
+                            <li><xref keyref="false"/>: (default) The media resource is not distributed via Agora Fusion CDN.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>isLiveSource</pt>
+                    <pd>
+                        <note><codeph>isLiveSource</codeph> should be set to <xref keyref="true"/> only when the media resource is a live stream to accelerate the opening speed.</note><ph>Whether the media resource opened is a live stream:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Live stream.</li>
+                            <li><xref keyref="false"/>: (default) Not a live stream.</li>
+                        </ul><ph>If the media resource is a live stream, it is recommended to set this parameter to <xref keyref="true"/> to speed up the opening of the live stream.</ph></pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>url</pt>
+                    <pd>URL of the media resource to be played.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uri</pt>
+                    <pd>URI (Uniform Resource Identifier) of the media file, used to identify the media file.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>startPos</pt>
+                    <pd>Start playback position in milliseconds. Default is 0.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>autoPlay</pt>
+                    <pd>
+                        <note>If you disable auto-play, call the <xref keyref="play"/> method after opening the media file to start playback.</note><ph>Whether to enable auto-play after opening the media file:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Enable auto-play.</li>
+                            <li><xref keyref="false"/>: Disable auto-play.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enableCache</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>The SDK currently only supports caching for on-demand streams, not for on-demand streams transmitted via HLS.</li>
+                                <li>Set a value for <codeph>uri</codeph> before enabling caching; otherwise, the player uses the media file's <codeph>url</codeph> as the cache index.</li>
+                                <li>When real-time caching is enabled, the player preloads part of the media file to local storage. When you play the file again, the player loads data from the cache to save bandwidth. The statistics of the cached media file update every second after playback starts. See <xref keyref="CacheStatistics"/>.</li>
+                            </ul>
+                        </note><ph>Whether to enable real-time caching for this playback:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Enable real-time caching.</li>
+                            <li><xref keyref="false"/>: (Default) Disable real-time caching.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enableMultiAudioTrack</pt>
+                    <pd>Whether to allow selecting different audio tracks for this playback:
+                        <ul>
+                            <li><xref keyref="true"/>: Allow selecting different audio tracks.</li>
+                            <li><xref keyref="false"/>: (Default) Do not allow selecting different audio tracks.</li>
+                        </ul><ph>If you need to set different audio tracks for local playback and publishing to remote, set this parameter to <xref keyref="true"/> and then call the <xref keyref="selectMultiAudioTrack"/> method to set the audio track.</ph></pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>isAgoraSource</pt>
+                    <pd>
+                        <note>If the media resource you want to open is a live or on-demand stream distributed via Agora's CDN, pass the stream URL to <codeph>url</codeph> and set <codeph>isAgoraSource</codeph> to <xref keyref="true"/>. Otherwise, you do not need to set <codeph>isAgoraSource</codeph>.</note><ph>Whether the opened media resource is a live or on-demand stream distributed via Agora's CDN:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: The media resource is distributed via Agora's CDN.</li>
+                            <li><xref keyref="false"/>: (Default) The media resource is not distributed via Agora's CDN.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>isLiveSource</pt>
+                    <pd>
+                        <note>Only when the media resource is a live stream, setting <codeph>isLiveSource</codeph> to <xref keyref="true"/> can speed up the opening of the media resource.</note><ph>Whether the opened media resource is a live stream:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Live stream.</li>
+                            <li><xref keyref="false"/>: (Default) Not a live stream.</li>
+                        </ul><ph>If the media resource is a live stream, it is recommended to set this parameter to <xref keyref="true"/> to speed up the opening of the live stream.</ph></pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>url</pt>
+                    <pd>URL of the media resource to be played.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uri</pt>
+                    <pd>URI (Uniform Resource Identifier) of the media file, used to identify the media file.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>startPos</pt>
+                    <pd>Start playback position in milliseconds. Default is 0.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>autoPlay</pt>
+                    <pd>
+                        <note>If you disable autoplay, call the <xref keyref="play"/> method to play the media file after opening it.</note><ph>Whether to enable autoplay after opening the media file:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Enable autoplay.</li>
+                            <li><xref keyref="false"/>: Disable autoplay.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enableCache</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>The SDK currently only supports caching for on-demand streams, not for on-demand streams transmitted via HLS protocol.</li>
+                                <li>Before caching, assign a value to <codeph>uri</codeph>, otherwise the player uses the media file's <codeph>url</codeph> as the cache index.</li>
+                                <li>After enabling real-time caching, the player pre-caches part of the currently playing media file locally. When you play the file again, the player loads data from the cache, saving network traffic. The statistics of the currently cached media file are updated every second after playback starts. See <xref keyref="CacheStatistics"/>.</li>
+                            </ul>
+                        </note><ph>Whether to enable real-time caching for this playback:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Enable real-time caching.</li>
+                            <li><xref keyref="false"/>: (default) Disable real-time caching.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enableMultiAudioTrack</pt>
+                    <pd>Whether to allow selecting different audio tracks for this playback:
+                        <ul>
+                            <li><xref keyref="true"/>: Allow selecting different audio tracks.</li>
+                            <li><xref keyref="false"/>: (default) Do not allow selecting different audio tracks.</li>
+                        </ul><ph>If you need to set different audio tracks for local playback and publishing to remote, set this parameter to <xref keyref="true"/> and then call the <xref keyref="selectMultiAudioTrack"/> method to set the audio track.</ph></pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>isAgoraSource</pt>
+                    <pd>
+                        <note>If the media resource to be opened is a live or on-demand stream distributed via Agora Fusion CDN, pass the stream URL to <codeph>url</codeph> and set <codeph>isAgoraSource</codeph> to <xref keyref="true"/>. Otherwise, you do not need to set <codeph>isAgoraSource</codeph>.</note><ph>Whether the opened media resource is a live or on-demand stream distributed via Agora Fusion CDN:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: The media resource is a live or on-demand stream distributed via Agora Fusion CDN.</li>
+                            <li><xref keyref="false"/>: (default) The media resource is not distributed via Agora Fusion CDN.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>isLiveSource</pt>
+                    <pd>
+                        <note>Only when the media resource is a live stream, setting <codeph>isLiveSource</codeph> to <xref keyref="true"/> can speed up opening the media resource.</note><ph>Whether the opened media resource is a live stream:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Live stream.</li>
+                            <li><xref keyref="false"/>: (default) Not a live stream.</li>
+                        </ul><ph>If the media resource is a live stream, it is recommended to set this parameter to <xref keyref="true"/> to speed up the opening of the live stream.</ph></pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>url</pt>
+                    <pd>URL of the media resource to be played.
+                        <note>If you are opening a regular media resource, assign a value to <codeph>url</codeph>; if you are opening a custom media resource, assign a value to <codeph>provider</codeph>. Assigning values to both will cause the method call to fail.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uri</pt>
+                    <pd>URI (Uniform Resource Identifier) of the media file, used to identify the media file.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>startPos</pt>
+                    <pd>Start playback position in milliseconds. Default is 0.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>autoPlay</pt>
+                    <pd>
+                        <note>If you disable auto-play, call the <xref keyref="play"/> method after opening the media file to start playback.</note><ph>Whether to enable auto-play after opening the media file:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Enable auto-play.</li>
+                            <li><xref keyref="false"/>: Disable auto-play.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enableCache</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>The SDK currently supports caching for on-demand streams, but not for on-demand streams delivered via HLS protocol.</li>
+                                <li>Before caching, assign a value to <codeph>uri</codeph>, otherwise the player will use the media file's <codeph>url</codeph> as the cache index.</li>
+                                <li>When real-time caching is enabled, the player preloads part of the currently playing media file to local storage. The next time you play the file, the player loads data directly from the cache, saving network traffic. Statistics for the cached media file are updated every second after playback starts. See <xref keyref="CacheStatistics"/>.</li>
+                            </ul>
+                        </note><ph>Whether to enable real-time caching for this playback:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Enable real-time caching.</li>
+                            <li><xref keyref="false"/>: (Default) Disable real-time caching.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enableMultiAudioTrack</pt>
+                    <pd>Whether to allow selecting different audio tracks for this playback:
+                        <ul>
+                            <li><xref keyref="true"/>: Allow selecting different audio tracks.</li>
+                            <li><xref keyref="false"/>: (Default) Do not allow selecting different audio tracks.</li>
+                        </ul><ph>If you need to set different audio tracks for local playback and publishing to remote, set this parameter to <xref keyref="true"/> and then call the <xref keyref="selectMultiAudioTrack"/> method to configure audio tracks.</ph></pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>isAgoraSource</pt>
+                    <pd>
+                        <note>If the media resource to be opened is a live or on-demand stream delivered via Agora Fusion CDN, assign the stream URL to <codeph>url</codeph> and set <codeph>isAgoraSource</codeph> to <xref keyref="true"/>. Otherwise, there is no need to set <codeph>isAgoraSource</codeph>.</note><ph>Whether the media resource is a live or on-demand stream delivered via Agora Fusion CDN:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: The media resource is delivered via Agora Fusion CDN.</li>
+                            <li><xref keyref="false"/>: (Default) The media resource is not delivered via Agora Fusion CDN.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>isLiveSource</pt>
+                    <pd>
+                        <note>Only when the media resource is a live stream, setting <codeph>isLiveSource</codeph> to <xref keyref="true"/> can speed up the opening of the media resource.</note><ph>Whether the media resource is a live stream:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Live stream.</li>
+                            <li><xref keyref="false"/>: (Default) Not a live stream.</li>
+                        </ul><ph>If the media resource is a live stream, it is recommended to set this parameter to <xref keyref="true"/> to speed up the opening of the live stream.</ph></pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>provider</pt>
+                    <pd>Callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider"/>.
+                        <note>If you are opening a custom media resource, assign a value to <codeph>provider</codeph> only. If you are opening a regular media resource, assign a value to <codeph>url</codeph>. Assigning values to both <codeph>url</codeph> and <codeph>provider</codeph> will cause the method call to fail.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

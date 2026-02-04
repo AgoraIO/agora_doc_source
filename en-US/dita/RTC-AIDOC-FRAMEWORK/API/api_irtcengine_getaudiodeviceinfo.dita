@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getaudiodeviceinfo">
+    <title><ph keyref="getAudioDeviceInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Gets the audio device information.</ph><ph id="shortdesc" props="flutter">Gets audio device information.</ph><ph id="shortdesc" props="unity">Gets audio device information.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getAudioDeviceInfo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract getAudioDeviceInfo(): DeviceInfo;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;DeviceInfo&gt; getAudioDeviceInfo();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetAudioDeviceInfo(ref DeviceInfoMobile deviceInfo);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">After calling this method, you can get whether the audio device supports ultra-low latency capture and playback.</p>
+            <p props="flutter">After calling this method, you can check whether the audio device supports ultra-low latency recording and playback.</p>
+            <p props="unity">After calling this method, you can check whether the audio device supports ultra-low latency capture and playback.</p>
+            <note props="rn">
+                <ul>
+                    <li>This method can be called before or after joining a channel.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method is applicable to Android only.</li>
+                    <li>This method can be called before or after joining a channel.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method is for Android only.</li>
+                    <li>This method can be called both before and after joining a channel.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>deviceInfo</pt>
+                    <pd>Audio device information. See <xref keyref="DeviceInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">A <xref keyref="DeviceInfo"/> object containing the audio device information.
+                <ul>
+                    <li>Non-null: The method call succeeds.</li>
+                    <li>Null: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">A <xref keyref="DeviceInfo"/> object containing audio device information.
+                <ul>
+                    <li>Non-null: The method call succeeds.</li>
+                    <li>Null: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

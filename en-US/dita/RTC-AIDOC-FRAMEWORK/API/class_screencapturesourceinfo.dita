@@ -1,0 +1,259 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screencapturesourceinfo">
+    <title><ph keyref="ScreenCaptureSourceInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Information about shareable windows or screens.</ph><ph id="shortdesc" props="flutter">Information about shareable windows or screens.</ph><ph id="shortdesc" props="unity">Information about shareable windows or screens.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureSourceInfo {
+  
+  type?: ScreenCaptureSourceType;
+  
+  sourceId?: any;
+  
+  sourceName?: string;
+  
+  thumbImage?: ThumbImageBuffer;
+  
+  iconImage?: ThumbImageBuffer;
+  
+  processPath?: string;
+  
+  sourceTitle?: string;
+  
+  primaryMonitor?: boolean;
+
+  position?: Rectangle;
+
+  minimizeWindow?: boolean;
+
+  sourceDisplayId?: any;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureSourceInfo {
+  const ScreenCaptureSourceInfo(
+      {this.type,
+      this.sourceId,
+      this.sourceName,
+      this.thumbImage,
+      this.iconImage,
+      this.processPath,
+      this.sourceTitle,
+      this.primaryMonitor,
+      this.position,
+      this.minimizeWindow,
+      this.sourceDisplayId});
+
+  @JsonKey(name: 'type')
+  final ScreenCaptureSourceType? type;
+
+  @JsonKey(name: 'sourceId')
+  final int? sourceId;
+
+  @JsonKey(name: 'sourceName')
+  final String? sourceName;
+
+  @JsonKey(name: 'thumbImage')
+  final ThumbImageBuffer? thumbImage;
+
+  @JsonKey(name: 'iconImage')
+  final ThumbImageBuffer? iconImage;
+
+  @JsonKey(name: 'processPath')
+  final String? processPath;
+
+  @JsonKey(name: 'sourceTitle')
+  final String? sourceTitle;
+
+  @JsonKey(name: 'primaryMonitor')
+  final bool? primaryMonitor;
+
+  @JsonKey(name: 'position')
+  final Rectangle? position;
+
+  @JsonKey(name: 'minimizeWindow')
+  final bool? minimizeWindow;
+
+  @JsonKey(name: 'sourceDisplayId')
+  final int? sourceDisplayId;
+
+  factory ScreenCaptureSourceInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ScreenCaptureSourceInfoFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenCaptureSourceInfoToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureSourceInfo
+    {
+        public ScreenCaptureSourceType type;
+        public long sourceId;
+        public string sourceName;
+        public ThumbImageBuffer thumbImage;
+        public ThumbImageBuffer iconImage;
+        public string processPath;
+        public string sourceTitle;
+        public bool primaryMonitor;
+        public Rectangle position;
+        public long sourceDisplayId;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>Type of the sharing target. See <xref keyref="ScreenCaptureSourceType"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sourceId</pt>
+                    <pd>For windows, indicates the Window ID; for screens, indicates the Display ID.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sourceName</pt>
+                    <pd>Name of the window or screen. UTF-8 encoded.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>thumbImage</pt>
+                    <pd>Image content of the thumbnail. See <xref keyref="ThumbImageBuffer"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>iconImage</pt>
+                    <pd>Image content of the icon. See <xref keyref="ThumbImageBuffer"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>processPath</pt>
+                    <pd>Process to which the window belongs. UTF-8 encoded.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sourceTitle</pt>
+                    <pd>Window title. UTF-8 encoded.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>primaryMonitor</pt>
+                    <pd>Whether the screen is the primary display:
+                        <ul>
+                            <li><xref keyref="true"/>: The screen is the primary display.</li>
+                            <li><xref keyref="false"/>: The screen is not the primary display.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>position</pt>
+                    <pd>Position of the window relative to the entire screen space (including all shareable screens). See <xref keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>minimizeWindow</pt>
+                    <pd>(Windows only) Whether the window is minimized:
+                        <ul>
+                            <li><xref keyref="true"/>: The window is minimized.</li>
+                            <li><xref keyref="false"/>: The window is not minimized.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sourceDisplayId</pt>
+                    <pd>(Windows only) ID of the screen where the window is located. If the window spans multiple screens, it refers to the screen with the largest intersecting area. If the window is outside the visible screen, the value is -2.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>Type of the sharing target. See <xref keyref="ScreenCaptureSourceType"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceId</pt>
+                    <pd>For windows, represents the Window ID; for screens, represents the Display ID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceName</pt>
+                    <pd>Name of the window or screen. UTF-8 encoded.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>thumbImage</pt>
+                    <pd>Image content of the thumbnail. See <xref keyref="ThumbImageBuffer"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>iconImage</pt>
+                    <pd>Image content of the icon. See <xref keyref="ThumbImageBuffer"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>processPath</pt>
+                    <pd>Process to which the window belongs. UTF-8 encoded.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceTitle</pt>
+                    <pd>Window title. UTF-8 encoded.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>primaryMonitor</pt>
+                    <pd>Whether the screen is the primary display:
+                        <ul>
+                            <li><xref keyref="true"/>: The screen is the primary display.</li>
+                            <li><xref keyref="false"/>: The screen is not the primary display.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>position</pt>
+                    <pd>Position of the window relative to the entire screen space (including all shareable screens). See <xref keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>minimizeWindow</pt>
+                    <pd>(Windows only) Whether the window is minimized:
+                        <ul>
+                            <li><xref keyref="true"/>: The window is minimized.</li>
+                            <li><xref keyref="false"/>: The window is not minimized.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceDisplayId</pt>
+                    <pd>(Windows only) ID of the screen where the window is located. If the window spans multiple screens, this indicates the screen with the largest intersection area. If the window is outside the visible screen area, the value is -2.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>Type of the sharing target. See <xref keyref="ScreenCaptureSourceType"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sourceId</pt>
+                    <pd>For a window, this is the Window ID; for a screen, this is the Display ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sourceName</pt>
+                    <pd>Name of the window or screen. UTF-8 encoded.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>thumbImage</pt>
+                    <pd>Image content of the thumbnail. See <xref keyref="ThumbImageBuffer"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>iconImage</pt>
+                    <pd>Image content of the icon. See <xref keyref="ThumbImageBuffer"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>processPath</pt>
+                    <pd>Process to which the window belongs. UTF-8 encoded.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sourceTitle</pt>
+                    <pd>Window title. UTF-8 encoded.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>primaryMonitor</pt>
+                    <pd>Whether the screen is the primary display:
+                        <ul>
+                            <li><xref keyref="true"/>: The screen is the primary display.</li>
+                            <li><xref keyref="false"/>: The screen is not the primary display.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>position</pt>
+                    <pd>Position of the window relative to the entire screen space (including all shareable screens). See <xref keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sourceDisplayId</pt>
+                    <pd>(Windows only) ID of the screen where the window is located. If the window spans multiple screens, this is the ID of the screen with the largest intersection area. If the window is outside the visible screen area, the value is -2.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

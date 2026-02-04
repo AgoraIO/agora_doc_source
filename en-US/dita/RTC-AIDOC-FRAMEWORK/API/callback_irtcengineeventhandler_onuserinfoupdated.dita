@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onuserinfoupdated">
+    <title><ph keyref="onUserInfoUpdated"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback when remote user information is updated.</ph><ph id="shortdesc" props="rn">Occurs when the remote user's information is updated.</ph><ph id="shortdesc" props="flutter">Callback when remote user information is updated.</ph><ph id="shortdesc" props="unity">Callback when remote user information is updated.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserInfoUpdated"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onUserInfoUpdated?(uid: number, info: UserInfo): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onUserInfoUpdated?(uid: number, info: UserInfo): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(int uid, UserInfo info)? onUserInfoUpdated;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserInfoUpdated(uint uid, UserInfo info)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After a remote user joins the channel, the SDK obtains the UID and User Account of the remote user, then caches a mapping table containing the UID and User Account, and triggers this callback locally.</p>
+            <p props="rn">After a remote user joins the channel, the SDK obtains the user's UID and User Account, caches a mapping table containing the UID and User Account, and triggers this callback locally.</p>
+            <p props="flutter">After a remote user joins the channel, the SDK obtains the user's UID and User Account, then caches a mapping table that includes the remote user's UID and User Account, and triggers this callback locally.</p>
+            <p props="unity">After a remote user joins a channel, the SDK obtains the UID and User Account of the remote user, then caches a mapping table containing the remote user's UID and User Account, and triggers this callback locally.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>The ID of the remote user.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>info</pt>
+                    <pd>The <xref keyref="UserInfo"/> object that identifies the user information, including the UID and User Account. See the <xref keyref="UserInfo"/> class.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>The ID of the remote user.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>info</pt>
+                    <pd>The <xref keyref="UserInfo"/> object that identifies the user's information, including the UID and User Account. See the <xref keyref="UserInfo"/> class.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>The ID of the remote user.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>info</pt>
+                    <pd>The <xref keyref="UserInfo"/> object that identifies the user information, including the user's UID and User Account. See <xref keyref="UserInfo"/> class.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>info</pt>
+                    <pd>The <xref keyref="UserInfo"/> object identifying user information, including UID and User Account. See the <xref keyref="UserInfo"/> class.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

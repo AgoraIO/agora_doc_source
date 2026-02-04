@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startscreencapturebydisplayid">
+    <title><ph keyref="startScreenCaptureByDisplayId"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Starts capturing video stream from the specified screen.</ph><ph id="shortdesc" props="flutter">Starts capturing the video stream of the specified screen.</ph><ph id="shortdesc" props="unity">Starts capturing the video stream of the specified screen.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startScreenCaptureByDisplayId"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureByDisplayId(
+    displayId: number,
+    regionRect: Rectangle,
+    captureParams: ScreenCaptureParameters
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCaptureByDisplayId(
+    {required int displayId,
+    required Rectangle regionRect,
+    required ScreenCaptureParameters captureParams});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCaptureByDisplayId(uint displayId, Rectangle regionRect, ScreenCaptureParameters captureParams);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Captures the video stream of a screen or a specific region of the screen.</p>
+            <p props="flutter">Captures the video stream of a screen or a specific region of the screen.</p>
+            <p props="unity">Captures the video stream of a screen or a region of the screen.</p>
+            <note props="flutter">This method is only applicable to Windows and macOS.</note>
+            <note props="unity">This method applies to Windows and macOS only.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In screen sharing scenarios, you need to call this method to start capturing screen video streams. For implementation details, see [Screen Sharing](https://doc.shengwang.cn/doc/rtc/electron/basic-features/screen-share).</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter unity">
+            <title>Timing</title>
+            <p props="electron">This method can be called before or after joining a channel:
+                <ul>
+                    <li>If called before joining a channel, then call <xref keyref="joinChannel2"/> and set <codeph>publishScreenTrack</codeph> or <codeph>publishSecondaryScreenTrack</codeph> to <xref keyref="true"/> to start screen sharing.</li>
+                    <li>If called after joining a channel, then call <xref keyref="updateChannelMediaOptions"/> and set <codeph>publishScreenTrack</codeph> or <codeph>publishSecondaryScreenTrack</codeph> to <xref keyref="true"/> to start screen sharing.</li>
+                </ul>
+            </p>
+            <p props="flutter">This method can be called before or after joining a channel, with the following differences:
+                <ul>
+                    <li>If you call this method before joining a channel, then call <xref keyref="joinChannel2"/> to join the channel and set <codeph>publishScreenTrack</codeph> or <codeph>publishSecondaryScreenTrack</codeph> to <xref keyref="true"/>, screen sharing will start.</li>
+                    <li>If you call this method after joining a channel, then call <xref keyref="updateChannelMediaOptions"/> to update the channel media options and set <codeph>publishScreenTrack</codeph> or <codeph>publishSecondaryScreenTrack</codeph> to <xref keyref="true"/>, screen sharing will start.</li>
+                </ul>
+            </p>
+            <p props="unity">This method can be called before or after joining a channel, with the following differences:
+                <ul>
+                    <li>If you call this method before joining the channel, then call <xref keyref="joinChannel2"/> and set <codeph>publishScreenTrack</codeph> or <codeph>publishSecondaryScreenTrack</codeph> to <xref keyref="true"/>, screen sharing starts.</li>
+                    <li>If you call this method after joining the channel, then call <xref keyref="updateChannelMediaOptions"/> and set <codeph>publishScreenTrack</codeph> or <codeph>publishSecondaryScreenTrack</codeph> to <xref keyref="true"/>, screen sharing starts.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>displayId</pt>
+                    <pd>Specifies the screen ID to be shared.
+                        <note>On Windows, if you want to share two screens (main + secondary) simultaneously, set <codeph>displayId</codeph> to <codeph>-1</codeph> when calling this method.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>regionRect</pt>
+                    <pd>(Optional) Specifies the region to be shared relative to the entire screen. To share the entire screen, set this to <codeph>nil</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>captureParams</pt>
+                    <pd>Configuration parameters for screen sharing. The default video encoding resolution is 1920 × 1080 (2,073,600 pixels), which is used for billing. See <xref keyref="ScreenCaptureParameters"/>.
+                        <note>The video properties of the screen sharing stream should only be set via this parameter and are unrelated to <xref keyref="setVideoEncoderConfiguration"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>displayId</pt>
+                    <pd>Specifies the ID of the screen to be shared.
+                        <note>On Windows, if you want to share two screens (primary + secondary) simultaneously, you can set <codeph>displayId</codeph> to <codeph>-1</codeph> when calling this method.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>regionRect</pt>
+                    <pd>(Optional) Specifies the position of the region to be shared relative to the entire screen. To share the entire screen, set to <codeph>nil</codeph>.
+See <xref keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureParams</pt>
+                    <pd>Configuration parameters for screen sharing. The default video encoding resolution is 1920 × 1080, i.e., 2,073,600 pixels. This pixel count is used for billing. See <xref keyref="ScreenCaptureParameters"/>.
+                        <note>The video properties of the screen sharing stream only need to be configured through this parameter and are unrelated to <xref keyref="setVideoEncoderConfiguration"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>displayId</pt>
+                    <pd>Specifies the ID of the screen to be shared.
+                        <note>On Windows, if you want to share two screens (main + secondary), you can set <codeph>displayId</codeph> to <codeph>-1</codeph> when calling this method.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>regionRect</pt>
+                    <pd>(Optional) Specifies the region to be shared relative to the entire screen. To share the full screen, set to <codeph>nil</codeph>.
+See <xref keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureParams</pt>
+                    <pd>Configuration parameters for screen sharing. The default video encoding resolution is 1920 × 1080, i.e., 2,073,600 pixels. This pixel count is used for billing. See <xref keyref="ScreenCaptureParameters"/>.
+                        <note>The video properties of the screen sharing stream should be set only through this parameter and are unrelated to <xref keyref="setVideoEncoderConfiguration"/>.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-8: Invalid screen sharing state. This may occur if you are already sharing another screen or window. Try calling <xref keyref="stopScreenCapture"/> to stop the current sharing, then restart screen sharing.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameters.</li>
+                            <li>-8: Invalid screen sharing state. You may already be sharing another screen or window. Try calling <xref keyref="stopScreenCapture"/> to stop the current sharing before starting again.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

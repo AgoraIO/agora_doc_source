@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_switchsrc">
+    <title><ph keyref="switchSrc"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Switches the media source.</ph><ph id="shortdesc" props="rn">Switches the media resource.</ph><ph id="shortdesc" props="flutter">Switches the media resource.</ph><ph id="shortdesc" props="unity">Switches the media resource.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="switchSrc"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract switchSrc(src: string, syncPts?: boolean): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract switchSrc(src: string, syncPts?: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; switchSrc({required String src, bool syncPts = true});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SwitchSrc(string src, bool syncPts = true);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">You can call this method to switch the bitrate of the media source being played based on the current network condition. For example:
+                <ul>
+                    <li>When the network is poor, switch to a lower bitrate media source URL.</li>
+                    <li>When the network is good, switch to a higher bitrate media source URL.</li>
+                </ul><ph>After calling this method, if you receive the <xref keyref="onPlayerEvent"/> callback reporting the <codeph>PlayerEventSwitchComplete</codeph> event, the media source has been switched successfully. If the switch fails, the SDK automatically retries 3 times. If it still fails, you will receive the <xref keyref="onPlayerEvent"/> callback reporting the <codeph>PlayerEventSwitchError</codeph> event, indicating an error occurred during the media source switch.</ph></p>
+            <p props="rn">You can call this method to switch the bitrate of the media resource being played based on the current network conditions. For example:
+                <ul>
+                    <li>When the network is poor, switch to a lower bitrate media resource.</li>
+                    <li>When the network is good, switch to a higher bitrate media resource.</li>
+                </ul><ph>After calling this method, if you receive the <xref keyref="onPlayerEvent"/> callback with the event <codeph>PlayerEventSwitchComplete</codeph>, the switch is successful. If the switch fails, the SDK automatically retries 3 times. If it still fails, you will receive the <xref keyref="onPlayerEvent"/> callback with the event <codeph>PlayerEventSwitchError</codeph>, indicating an error occurred during the switch.</ph></p>
+            <p props="flutter">You can call this method to switch the bitrate of the media resource being played based on the current network conditions. For example:
+                <ul>
+                    <li>When the network is poor, switch to a lower bitrate media resource.</li>
+                    <li>When the network is good, switch to a higher bitrate media resource.</li>
+                </ul><ph>After calling this method, if you receive the <xref keyref="onPlayerEvent"/> callback reporting the <codeph>playerEventSwitchComplete</codeph> event, the media resource has been switched successfully. If the switch fails, the SDK retries 3 times. If it still fails, you receive the <xref keyref="onPlayerEvent"/> callback reporting the <codeph>playerEventSwitchError</codeph> event, indicating an error occurred during the switch.</ph></p>
+            <p props="unity">You can call this method to switch the bitrate of the currently playing media resource based on the network conditions. For example:
+                <ul>
+                    <li>When the network is poor, switch to a lower bitrate media resource.</li>
+                    <li>When the network is good, switch to a higher bitrate media resource.</li>
+                </ul><ph>After calling this method, if you receive the <xref keyref="onPlayerEvent"/> callback reporting the event <codeph>PLAYER_EVENT_SWITCH_COMPLETE</codeph>, the switch was successful. If the switch fails, the SDK retries 3 times. If it still fails, you receive the <xref keyref="onPlayerEvent"/> callback reporting the <codeph>PLAYER_EVENT_SWITCH_ERROR</codeph> event, indicating an error occurred during the switch.</ph></p>
+            <note props="electron">
+                <ul>
+                    <li>Make sure to call this method after <xref keyref="open"/>.</li>
+                    <li>To ensure normal playback, pay attention to the following when calling this method:
+                        <ul>
+                            <li>Do not call this method while playback is paused.</li>
+                            <li>Do not call <xref keyref="seek"/> during bitrate switching.</li>
+                            <li>Ensure the playback position before switching is not greater than the total duration of the target media source.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>Make sure to call this method after <xref keyref="open"/>.</li>
+                    <li>To ensure normal playback, note the following when calling this method:
+                        <ul>
+                            <li>Do not call this method while playback is paused.</li>
+                            <li>Do not call <xref keyref="seek"/> during bitrate switching.</li>
+                            <li>Ensure the playback position before switching is not greater than the total duration of the target media resource.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>Make sure to call this method after <xref keyref="open"/>.</li>
+                    <li>To ensure normal playback, note the following when calling this method:
+                        <ul>
+                            <li>Do not call this method while playback is paused.</li>
+                            <li>Do not call <xref keyref="seek"/> during bitrate switching.</li>
+                            <li>Ensure the playback position before switching does not exceed the total duration of the media resource to be switched.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>Make sure to call this method after <xref keyref="open"/>.</li>
+                    <li>To ensure normal playback, pay attention to the following when calling this method:
+                        <ul>
+                            <li>Do not call this method while playback is paused.</li>
+                            <li>Do not call <xref keyref="seek"/> during bitrate switching.</li>
+                            <li>Ensure the playback position before switching is not greater than the total duration of the media resource being switched to.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>src</pt>
+                    <pd>The network path of the media source.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>syncPts</pt>
+                    <pd>Whether to synchronize the starting playback position before and after the switch:
+                        <ul>
+                            <li><xref keyref="true"/>: Synchronize.</li>
+                            <li><xref keyref="false"/>: (Default) Do not synchronize.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>src</pt>
+                    <pd>The network path of the media resource.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>syncPts</pt>
+                    <pd>Whether to synchronize the starting playback position before and after the switch:
+                        <ul>
+                            <li><xref keyref="true"/>: Synchronize.</li>
+                            <li><xref keyref="false"/>: (Default) Do not synchronize.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>src</pt>
+                    <pd>Network path of the media resource.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>syncPts</pt>
+                    <pd>Whether to synchronize the start playback position before and after switching:
+                        <ul>
+                            <li><xref keyref="true"/>: Synchronize.</li>
+                            <li><xref keyref="false"/>: (Default) Do not synchronize.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>src</pt>
+                    <pd>The network path of the media resource.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>syncPts</pt>
+                    <pd>Whether to synchronize the start playback position before and after switching:
+                        <ul>
+                            <li><xref keyref="true"/>: Synchronize.</li>
+                            <li><xref keyref="false"/>: (Default) Do not synchronize.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

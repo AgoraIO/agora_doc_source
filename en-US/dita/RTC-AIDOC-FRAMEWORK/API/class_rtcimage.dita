@@ -1,0 +1,246 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rtcimage">
+    <title><ph keyref="RtcImage"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Image properties.</ph><ph id="shortdesc" props="rn">Image properties.</ph><ph id="shortdesc" props="flutter">Image properties.</ph><ph id="shortdesc" props="unity">Image properties.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class RtcImage {
+  
+  url?: string;
+  
+  x?: number;
+  
+  y?: number;
+  
+  width?: number;
+  
+  height?: number;
+  
+  zOrder?: number;
+  
+  alpha?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class RtcImage {
+  
+  url?: string;
+  
+  x?: number;
+  
+  y?: number;
+  
+  width?: number;
+  
+  height?: number;
+  
+  zOrder?: number;
+  
+  alpha?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class RtcImage {
+  const RtcImage(
+      {this.url,
+      this.x,
+      this.y,
+      this.width,
+      this.height,
+      this.zOrder,
+      this.alpha});
+
+  @JsonKey(name: 'url')
+  final String? url;
+  @JsonKey(name: 'x')
+  final int? x;
+  @JsonKey(name: 'y')
+  final int? y;
+  @JsonKey(name: 'width')
+  final int? width;
+  @JsonKey(name: 'height')
+  final int? height;
+  @JsonKey(name: 'zOrder')
+  final int? zOrder;
+  @JsonKey(name: 'alpha')
+  final double? alpha;
+  factory RtcImage.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$RtcImageFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$RtcImageToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class RtcImage
+    {
+        public RtcImage()
+        {
+            url = null;
+            x = 0;
+            y = 0;
+            width = 0;
+            height = 0;
+            zOrder = 0;
+            alpha = 1.0;
+        }
+
+        public RtcImage(string url, int x, int y, int width, int height, int zOrder, double alpha)
+        {
+            this.url = url;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.zOrder = zOrder;
+            this.alpha = alpha;
+        }
+        public string url { set; get; }
+        public int x { set; get; }
+        public int y { set; get; }
+        public int width { set; get; }
+        public int height { set; get; }
+        public int zOrder { set; get; }
+        public double alpha { set; get; }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <p props="electron">Used to set watermark and background image properties for live video.</p>
+            <p props="rn">Used to set the watermark and background image properties for live video.</p>
+            <p props="flutter">Used to set the properties of watermark and background images in live video.</p>
+            <p props="unity">Used to set the watermark and background image properties for live video.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>url</pt>
+                    <pd>HTTP/HTTPS URL of the image on the live video. The character length must not exceed 1024 bytes.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>x</pt>
+                    <pd>The x-coordinate (px) of the image on the video frame, with the top-left corner of the output video as the origin.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>y</pt>
+                    <pd>The y-coordinate (px) of the image on the video frame, with the top-left corner of the output video as the origin.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>The width (px) of the image on the video frame.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>The height (px) of the image on the video frame.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>zOrder</pt>
+                    <pd>Layer number of the watermark or background image. When adding one or more watermarks using an array, you must set a value for <codeph>zOrder</codeph>, with a valid range of [1,255], otherwise the SDK will report an error. In other cases, <codeph>zOrder</codeph> is optional, with a valid range of [0,255], where 0 is the default. 0 indicates the bottom layer, and 255 indicates the top layer.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>alpha</pt>
+                    <pd>Transparency of the watermark or background image. Range: [0.0, 1.0]:
+                        <ul>
+                            <li>0.0: Fully transparent.</li>
+                            <li>1.0: (Default) Fully opaque.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>url</pt>
+                    <pd>The HTTP/HTTPS URL of the image on the live video. The character length must not exceed 1024 bytes.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>x</pt>
+                    <pd>The x-coordinate (px) of the image on the video frame, using the top-left corner of the output video frame as the origin.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>y</pt>
+                    <pd>The y-coordinate (px) of the image on the video frame, using the top-left corner of the output video frame as the origin.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>width</pt>
+                    <pd>The width (px) of the image on the video frame.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>The height (px) of the image on the video frame.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>zOrder</pt>
+                    <pd>The z-order of the watermark or background image. When adding one or more watermarks using an array, you must assign a value to <codeph>zOrder</codeph>, with a valid range of [1,255], otherwise the SDK will report an error. In other cases, <codeph>zOrder</codeph> is optional, with a valid range of [0,255], where 0 is the default. 0 indicates the bottom layer, and 255 indicates the top layer.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>alpha</pt>
+                    <pd>The transparency of the watermark or background image. Valid range is [0.0, 1.0]:
+                        <ul>
+                            <li>0.0: Fully transparent.</li>
+                            <li>1.0: (Default) Fully opaque.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>url</pt>
+                    <pd>The HTTP/HTTPS URL of the image on the live video. The character length must not exceed 1024 bytes.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>x</pt>
+                    <pd>The x-coordinate (px) of the image on the video frame, using the top-left corner of the output video frame as the origin.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>y</pt>
+                    <pd>The y-coordinate (px) of the image on the video frame, using the top-left corner of the output video frame as the origin.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>The width (px) of the image on the video frame.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>The height (px) of the image on the video frame.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>zOrder</pt>
+                    <pd>The layer index of the watermark or background image. When adding one or more watermarks using a watermark array, you must assign a value to <codeph>zOrder</codeph>. The valid range is [1,255]; otherwise, the SDK will report an error. In other cases, <codeph>zOrder</codeph> is optional. The valid range is [0,255], with 0 as the default. 0 represents the bottom layer, and 255 represents the top layer.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>alpha</pt>
+                    <pd>The transparency of the watermark or background image. The valid range is [0.0,1.0]:
+                        <ul>
+                            <li>0.0: Fully transparent.</li>
+                            <li>1.0: (Default) Fully opaque.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>url</pt>
+                    <pd>HTTP/HTTPS address of the image on the live video. The character length must not exceed 1024 bytes.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>x</pt>
+                    <pd>The x-coordinate (in px) of the image on the video frame, with the top-left corner of the output video frame as the origin.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>y</pt>
+                    <pd>The y-coordinate (in px) of the image on the video frame, with the top-left corner of the output video frame as the origin.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>The width (in px) of the image on the video frame.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>The height (in px) of the image on the video frame.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>zOrder</pt>
+                    <pd>Z-order of the watermark or background image. When using an array of watermarks to add one or more watermarks, you must assign a value to <codeph>zOrder</codeph>, with a valid range of [1,255], otherwise the SDK will report an error. In other cases, <codeph>zOrder</codeph> is optional, with a valid range of [0,255]. 0 is the default value. 0 represents the bottom layer, and 255 represents the top layer.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>alpha</pt>
+                    <pd>Transparency of the watermark or background image. Value range is [0.0,1.0]:
+                        <ul>
+                            <li>0.0: Fully transparent.</li>
+                            <li>1.0: (Default) Fully opaque.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

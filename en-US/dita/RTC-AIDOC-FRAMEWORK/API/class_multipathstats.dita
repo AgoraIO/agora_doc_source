@@ -1,0 +1,268 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_multipathstats">
+    <title><ph keyref="MultipathStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Used to aggregate statistics for each network path in multipath transmission.</ph><ph id="shortdesc" props="rn">Used to aggregate statistics of each network path in multipath transmission.</ph><ph id="shortdesc" props="flutter">Used to summarize statistics of each network path in multipath transmission.</ph><ph id="shortdesc" props="unity">Used to aggregate statistics of each network path in multipath transmission.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class MultipathStats {
+lanTxBytes?: number;
+lanRxBytes?: number;
+wifiTxBytes?: number;
+wifiRxBytes?: number;
+mobileTxBytes?: number;
+mobileRxBytes?: number;
+activePathNum?: number;
+pathStats?: PathStats[];
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class MultipathStats {
+lanTxBytes?: number;
+lanRxBytes?: number;
+wifiTxBytes?: number;
+wifiRxBytes?: number;
+mobileTxBytes?: number;
+mobileRxBytes?: number;
+activePathNum?: number;
+pathStats?: PathStats[];
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class MultipathStats implements AgoraSerializable {
+  const MultipathStats(
+      {this.lanTxBytes,
+      this.lanRxBytes,
+      this.wifiTxBytes,
+      this.wifiRxBytes,
+      this.mobileTxBytes,
+      this.mobileRxBytes,
+      this.activePathNum,
+      this.pathStats});
+
+  @JsonKey(name: 'lanTxBytes')
+  final int? lanTxBytes;
+
+  @JsonKey(name: 'lanRxBytes')
+  final int? lanRxBytes;
+
+  @JsonKey(name: 'wifiTxBytes')
+  final int? wifiTxBytes;
+
+  @JsonKey(name: 'wifiRxBytes')
+  final int? wifiRxBytes;
+
+  @JsonKey(name: 'mobileTxBytes')
+  final int? mobileTxBytes;
+
+  @JsonKey(name: 'mobileRxBytes')
+  final int? mobileRxBytes;
+
+  @JsonKey(name: 'activePathNum')
+  final int? activePathNum;
+
+  @JsonKey(name: 'pathStats')
+  final List&lt;PathStats&gt;? pathStats;
+
+  factory MultipathStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$MultipathStatsFromJson(json);
+
+  @override
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$MultipathStatsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">    public class MultipathStats
+    {
+        public uint lanTxBytes;
+
+        public uint lanRxBytes;
+
+        public uint wifiTxBytes;
+
+        public uint wifiRxBytes;
+
+        public uint mobileTxBytes;
+
+        public uint mobileRxBytes;
+
+        public int activePathNum;
+
+        public PathStats[] pathStats;
+
+        public MultipathStats()
+        {
+            this.lanTxBytes = 0;
+            this.lanRxBytes = 0;
+            this.wifiTxBytes = 0;
+            this.wifiRxBytes = 0;
+            this.mobileTxBytes = 0;
+            this.mobileRxBytes = 0;
+            this.activePathNum = 0;
+            this.pathStats = null;
+        }
+
+        public MultipathStats(uint lanTxBytes, uint lanRxBytes, uint wifiTxBytes, uint wifiRxBytes, uint mobileTxBytes, uint mobileRxBytes, int activePathNum, PathStats[] pathStats)
+        {
+            this.lanTxBytes = lanTxBytes;
+            this.lanRxBytes = lanRxBytes;
+            this.wifiTxBytes = wifiTxBytes;
+            this.wifiRxBytes = wifiRxBytes;
+            this.mobileTxBytes = mobileTxBytes;
+            this.mobileRxBytes = mobileRxBytes;
+            this.activePathNum = activePathNum;
+            this.pathStats = pathStats;
+        }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.2.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>lanTxBytes</pt>
+                    <pd>Total number of bytes sent over the LAN path.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>lanRxBytes</pt>
+                    <pd>Total number of bytes received over the LAN path.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>wifiTxBytes</pt>
+                    <pd>Total number of bytes sent over the Wi-Fi path.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>wifiRxBytes</pt>
+                    <pd>Total number of bytes received over the Wi-Fi path.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>mobileTxBytes</pt>
+                    <pd>Total number of bytes sent over the mobile network path.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>mobileRxBytes</pt>
+                    <pd>Total number of bytes received over the mobile network path.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>activePathNum</pt>
+                    <pd>The number of currently active transmission paths.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>pathStats</pt>
+                    <pd>Array of statistics for each active transmission path. See <xref keyref="PathStats"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lanTxBytes</pt>
+                    <pd>Total bytes sent through the LAN path.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lanRxBytes</pt>
+                    <pd>Total bytes received through the LAN path.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>wifiTxBytes</pt>
+                    <pd>Total bytes sent through the Wi-Fi path.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>wifiRxBytes</pt>
+                    <pd>Total bytes received through the Wi-Fi path.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mobileTxBytes</pt>
+                    <pd>Total bytes sent through the mobile network path.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mobileRxBytes</pt>
+                    <pd>Total bytes received through the mobile network path.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>activePathNum</pt>
+                    <pd>The number of currently active transmission paths.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>pathStats</pt>
+                    <pd>An array of statistics for each active transmission path. See <xref keyref="PathStats"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lanTxBytes</pt>
+                    <pd>Total bytes sent over the LAN path.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lanRxBytes</pt>
+                    <pd>Total bytes received over the LAN path.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>wifiTxBytes</pt>
+                    <pd>Total bytes sent over the Wi-Fi path.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>wifiRxBytes</pt>
+                    <pd>Total bytes received over the Wi-Fi path.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mobileTxBytes</pt>
+                    <pd>Total bytes sent over the mobile network path.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mobileRxBytes</pt>
+                    <pd>Total bytes received over the mobile network path.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>activePathNum</pt>
+                    <pd>The number of currently active transmission paths.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pathStats</pt>
+                    <pd>An array of statistics for each active transmission path. See <xref keyref="PathStats"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lanTxBytes</pt>
+                    <pd>Total bytes sent via LAN path.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lanRxBytes</pt>
+                    <pd>Total bytes received via LAN path.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>wifiTxBytes</pt>
+                    <pd>Total bytes sent via Wi-Fi path.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>wifiRxBytes</pt>
+                    <pd>Total bytes received via Wi-Fi path.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mobileTxBytes</pt>
+                    <pd>Total bytes sent via mobile network path.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mobileRxBytes</pt>
+                    <pd>Total bytes received via mobile network path.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>activePathNum</pt>
+                    <pd>Number of currently active transmission paths.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>pathStats</pt>
+                    <pd>Array of statistics for each active transmission path. See <xref keyref="PathStats"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

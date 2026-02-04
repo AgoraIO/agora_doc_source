@@ -1,0 +1,359 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_playerstreaminfo">
+    <title><ph keyref="PlayerStreamInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">All information about the player media stream.</ph><ph id="shortdesc" props="rn">All information about the player media stream.</ph><ph id="shortdesc" props="flutter">All information of the player media stream.</ph><ph id="shortdesc" props="unity">All information about the media stream of the player.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class PlayerStreamInfo {
+
+  streamIndex?: number;
+
+  streamType?: MediaStreamType;
+
+  codecName?: string;
+
+  language?: string;
+
+  videoFrameRate?: number;
+
+  videoBitRate?: number;
+
+  videoWidth?: number;
+
+  videoHeight?: number;
+
+  videoRotation?: number;
+
+  audioSampleRate?: number;
+
+  audioChannels?: number;
+
+  audioBitsPerSample?: number;
+
+  duration?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class PlayerStreamInfo {
+
+  streamIndex?: number;
+
+  streamType?: MediaStreamType;
+
+  codecName?: string;
+
+  language?: string;
+
+  videoFrameRate?: number;
+
+  videoBitRate?: number;
+
+  videoWidth?: number;
+
+  videoHeight?: number;
+
+  videoRotation?: number;
+
+  audioSampleRate?: number;
+
+  audioChannels?: number;
+
+  audioBitsPerSample?: number;
+
+  duration?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class PlayerStreamInfo {
+  const PlayerStreamInfo(
+      {this.streamIndex,
+      this.streamType,
+      this.codecName,
+      this.language,
+      this.videoFrameRate,
+      this.videoBitRate,
+      this.videoWidth,
+      this.videoHeight,
+      this.videoRotation,
+      this.audioSampleRate,
+      this.audioChannels,
+      this.audioBitsPerSample,
+      this.duration});
+
+  @JsonKey(name: 'streamIndex')
+  final int? streamIndex;
+  @JsonKey(name: 'streamType')
+  final MediaStreamType? streamType;
+  @JsonKey(name: 'codecName')
+  final String? codecName;
+  @JsonKey(name: 'language')
+  final String? language;
+  @JsonKey(name: 'videoFrameRate')
+  final int? videoFrameRate;
+  @JsonKey(name: 'videoBitRate')
+  final int? videoBitRate;
+  @JsonKey(name: 'videoWidth')
+  final int? videoWidth;
+  @JsonKey(name: 'videoHeight')
+  final int? videoHeight;
+  @JsonKey(name: 'videoRotation')
+  final int? videoRotation;
+  @JsonKey(name: 'audioSampleRate')
+  final int? audioSampleRate;
+  @JsonKey(name: 'audioChannels')
+  final int? audioChannels;
+  @JsonKey(name: 'audioBitsPerSample')
+  final int? audioBitsPerSample;
+  @JsonKey(name: 'duration')
+  final int? duration;
+  factory PlayerStreamInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$PlayerStreamInfoFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$PlayerStreamInfoToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class PlayerStreamInfo
+    {
+        public int streamIndex { set; get; }
+        public MEDIA_STREAM_TYPE streamType { set; get; }
+        public string codecName { set; get; }
+        public string language { set; get; }
+        public int videoFrameRate { set; get; }
+        public int videoBitRate { set; get; }
+        public int videoWidth { set; get; }
+        public int videoHeight { set; get; }
+        public int videoRotation { set; get; }
+        public int audioSampleRate { set; get; }
+        public int audioChannels { set; get; }
+        public int audioBitsPerSample { set; get;
+        public int64_t duration { set; get; }
+        public PlayerStreamInfo()
+        {
+            streamIndex = 0;
+            streamType = MEDIA_STREAM_TYPE.STREAM_TYPE_UNKNOWN;
+            videoFrameRate = 0;
+            videoBitRate = 0;
+            videoWidth = 0;
+            videoHeight = 0;
+            videoRotation = 0;
+            audioSampleRate = 0;
+            audioChannels = 0;
+            audioBitsPerSample = 0;
+            duration = 0;
+            codecName = "";
+            language = "";
+        }
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>streamIndex</pt>
+                    <pd>The index of the media stream.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>streamType</pt>
+                    <pd>The type of this media stream. See <xref keyref="MEDIA_STREAM_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>codecName</pt>
+                    <pd>The codec specification of this media stream.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>language</pt>
+                    <pd>The language of this media stream.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoFrameRate</pt>
+                    <pd>This parameter applies only to video streams and indicates the video frame rate (fps).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoBitRate</pt>
+                    <pd>This parameter applies only to video streams and indicates the video bitrate (bps).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoWidth</pt>
+                    <pd>This parameter applies only to video streams and indicates the video width (px).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoHeight</pt>
+                    <pd>This parameter applies only to video streams and indicates the video height (px).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoRotation</pt>
+                    <pd>This parameter applies only to video streams and indicates the rotation angle.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioSampleRate</pt>
+                    <pd>This parameter applies only to audio streams and indicates the audio sample rate (Hz).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioChannels</pt>
+                    <pd>This parameter applies only to audio streams and indicates the number of channels.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioBitsPerSample</pt>
+                    <pd>This parameter applies only to audio streams and indicates the number of bits per audio sample (bit).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>duration</pt>
+                    <pd>The duration of the media stream (milliseconds).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>streamIndex</pt>
+                    <pd>The index of the media stream.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>streamType</pt>
+                    <pd>The type of the media stream. See <xref keyref="MEDIA_STREAM_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>codecName</pt>
+                    <pd>The codec specification of the media stream.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>language</pt>
+                    <pd>The language of the media stream.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoFrameRate</pt>
+                    <pd>Applies to video streams only. Indicates the video frame rate (fps).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoBitRate</pt>
+                    <pd>Applies to video streams only. Indicates the video bitrate (bps).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoWidth</pt>
+                    <pd>Applies to video streams only. Indicates the video width (px).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoHeight</pt>
+                    <pd>Applies to video streams only. Indicates the video height (px).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoRotation</pt>
+                    <pd>Applies to video streams only. Indicates the rotation angle.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioSampleRate</pt>
+                    <pd>Applies to audio streams only. Indicates the audio sample rate (Hz).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioChannels</pt>
+                    <pd>Applies to audio streams only. Indicates the number of audio channels.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioBitsPerSample</pt>
+                    <pd>Applies to audio streams only. Indicates the number of bits per audio sample (bit).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>duration</pt>
+                    <pd>The duration of the media stream (milliseconds).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamIndex</pt>
+                    <pd>The index of the media stream.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamType</pt>
+                    <pd>The type of this media stream. See <xref keyref="MEDIA_STREAM_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>codecName</pt>
+                    <pd>The codec specification of this media stream.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>language</pt>
+                    <pd>The language of this media stream.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoFrameRate</pt>
+                    <pd>Applies to video streams only. Indicates the video frame rate (fps).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoBitRate</pt>
+                    <pd>Applies to video streams only. Indicates the video bitrate (bps).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoWidth</pt>
+                    <pd>Applies to video streams only. Indicates the video width (px).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoHeight</pt>
+                    <pd>Applies to video streams only. Indicates the video height (px).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoRotation</pt>
+                    <pd>Applies to video streams only. Indicates the rotation angle.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioSampleRate</pt>
+                    <pd>Applies to audio streams only. Indicates the audio sample rate (Hz).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioChannels</pt>
+                    <pd>Applies to audio streams only. Indicates the number of audio channels.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioBitsPerSample</pt>
+                    <pd>Applies to audio streams only. Indicates the number of bits per audio sample (bit).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>duration</pt>
+                    <pd>The duration of the media stream (milliseconds).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>streamIndex</pt>
+                    <pd>Index of the media stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>streamType</pt>
+                    <pd>Type of the media stream. See <xref keyref="MEDIA_STREAM_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>codecName</pt>
+                    <pd>Codec specification of the media stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>language</pt>
+                    <pd>Language of the media stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoFrameRate</pt>
+                    <pd>This parameter applies only to video streams and indicates the video frame rate (fps).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoBitRate</pt>
+                    <pd>This parameter applies only to video streams and indicates the video bitrate (bps).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoWidth</pt>
+                    <pd>This parameter applies only to video streams and indicates the video width (px).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoHeight</pt>
+                    <pd>This parameter applies only to video streams and indicates the video height (px).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoRotation</pt>
+                    <pd>This parameter applies only to video streams and indicates the rotation angle.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioSampleRate</pt>
+                    <pd>This parameter applies only to audio streams and indicates the audio sample rate (Hz).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioChannels</pt>
+                    <pd>This parameter applies only to audio streams and indicates the number of audio channels.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioBitsPerSample</pt>
+                    <pd>This parameter applies only to audio streams and indicates the number of bits per audio sample (bit).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>duration</pt>
+                    <pd>Duration of the media stream (milliseconds).</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

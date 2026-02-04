@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onfirstremoteaudioframe">
+    <title><ph keyref="onFirstRemoteAudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Occurs when the first frame of remote audio is received.</ph><ph id="shortdesc" props="rn">Occurs when the first remote audio frame is received.</ph><ph id="shortdesc" props="flutter">Callback when the first remote audio frame is received.</ph><ph id="shortdesc" props="unity">Occurs when the first remote audio frame is received.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onFirstRemoteAudioFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onFirstRemoteAudioFrame?(
+    connection: RtcConnection,
+    userId: number,
+    elapsed: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onFirstRemoteAudioFrame?(
+    connection: RtcConnection,
+    userId: number,
+    elapsed: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int userId, int elapsed)?
+      onFirstRemoteAudioFrame;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteAudioFrame(RtcConnection connection, uint userId, int elapsed) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Please use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>userId</pt>
+                    <pd>User ID of the remote user who sends the audio frame.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (ms) from the local user calling <xref keyref="joinChannel2"/> to this callback being triggered.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>userId</pt>
+                    <pd>User ID of the remote user who sent the audio frame.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (ms) from the local user calling <xref keyref="joinChannel2"/> until this callback is triggered.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>userId</pt>
+                    <pd>User ID of the remote user sending the audio frame.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>elapsed</pt>
+                    <pd>The delay (in milliseconds) from the local user calling <xref keyref="joinChannel2"/> to the triggering of this callback.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>userId</pt>
+                    <pd>The user ID of the remote user who sends the audio frame.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>elapsed</pt>
+                    <pd>The delay (ms) from the local user calling <xref keyref="joinChannel2"/> to the triggering of this callback.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

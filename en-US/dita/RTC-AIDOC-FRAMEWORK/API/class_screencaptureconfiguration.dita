@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screencaptureconfiguration">
+    <title><ph keyref="ScreenCaptureConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Screen capture configuration.</ph><ph id="shortdesc" props="flutter">Screen capture configuration.</ph><ph id="shortdesc" props="unity">Screen capture configuration.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureConfiguration {
+  
+  isCaptureWindow?: boolean;
+  
+  displayId?: number;
+  
+  screenRect?: Rectangle;
+  
+  windowId?: any;
+  
+  params?: ScreenCaptureParameters;
+  
+  regionRect?: Rectangle;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureConfiguration {
+  const ScreenCaptureConfiguration(
+      {this.isCaptureWindow,
+      this.displayId,
+      this.screenRect,
+      this.windowId,
+      this.params,
+      this.regionRect});
+
+  @JsonKey(name: 'isCaptureWindow')
+  final bool? isCaptureWindow;
+  @JsonKey(name: 'displayId')
+  final int? displayId;
+  @JsonKey(name: 'screenRect')
+  final Rectangle? screenRect;
+  @JsonKey(name: 'windowId')
+  final int? windowId;
+  @JsonKey(name: 'params')
+  final ScreenCaptureParameters? params;
+  @JsonKey(name: 'regionRect')
+  final Rectangle? regionRect;
+  factory ScreenCaptureConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ScreenCaptureConfigurationFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenCaptureConfigurationToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureConfiguration
+    {
+        public bool isCaptureWindow;
+        public long displayId;
+        public Rectangle screenRect;
+        public long windowId;
+
+        public ScreenCaptureParameters @params;
+        public Rectangle regionRect;
+
+        public ScreenCaptureConfiguration()
+        {
+            this.isCaptureWindow = false;
+            this.displayId = 0;
+            this.windowId = 0;
+        }
+
+        public ScreenCaptureConfiguration(bool isCaptureWindow, long displayId, Rectangle screenRect, long windowId, ScreenCaptureParameters @params, Rectangle regionRect)
+        {
+            this.isCaptureWindow = isCaptureWindow;
+            this.displayId = displayId;
+            this.screenRect = screenRect;
+            this.windowId = windowId;
+            this.@params = @params;
+            this.regionRect = regionRect;
+        }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>isCaptureWindow</pt>
+                    <pd>Whether to capture a window on the screen:
+                        <ul>
+                            <li><xref keyref="true"/>: Capture the window.</li>
+                            <li><xref keyref="false"/>: (Default) Capture the screen, not the window.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>displayId</pt>
+                    <pd>(macOS only) Display ID of the screen.
+                        <note>Use this parameter only when capturing the screen on Mac devices.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>screenRect</pt>
+                    <pd>(Windows only) Position of the screen to be shared relative to the virtual screen.
+                        <note>Use this parameter only when capturing the screen on Windows devices.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>windowId</pt>
+                    <pd>Window ID.
+                        <note>Use this parameter only when capturing a window.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>params</pt>
+                    <pd>Encoding parameter configuration for the screen sharing stream. See <xref keyref="ScreenCaptureParameters"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>regionRect</pt>
+                    <pd>Position of the region to be shared relative to the entire screen. See <xref keyref="Rectangle"/>. If not specified, the entire screen is shared. If the specified region exceeds the screen boundaries, only the content within the screen is shared. If the <codeph>width</codeph> or <codeph>height</codeph> in <xref keyref="Rectangle"/> is set to 0, the entire screen is shared.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>isCaptureWindow</pt>
+                    <pd>Whether to capture a window on the screen:
+                        <ul>
+                            <li><xref keyref="true"/>: Capture window.</li>
+                            <li><xref keyref="false"/>: (Default) Capture screen, not window.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>displayId</pt>
+                    <pd>(macOS only) Display ID of the screen.
+                        <note>Use this parameter only when capturing the screen on Mac devices.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>screenRect</pt>
+                    <pd>(Windows only) Position of the screen to be shared relative to the virtual screen.
+                        <note>Use this parameter only when capturing the screen on Windows devices.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>windowId</pt>
+                    <pd>(Windows and macOS only) Window ID.
+                        <note>Use this parameter only when capturing a window.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>params</pt>
+                    <pd>(Windows and macOS only) Encoding parameter configuration for screen sharing stream. See <xref keyref="ScreenCaptureParameters"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>regionRect</pt>
+                    <pd>(Windows and macOS only) Position of the region to be shared relative to the entire screen. See <xref keyref="Rectangle"/>. If not set, the entire screen is shared. If the specified region exceeds screen boundaries, only the content within the screen is shared. If <codeph>width</codeph> or <codeph>height</codeph> in <xref keyref="Rectangle"/> is set to 0, the entire screen is shared.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>isCaptureWindow</pt>
+                    <pd>Whether to capture a window on the screen:
+                        <ul>
+                            <li><xref keyref="true"/>: Capture the window.</li>
+                            <li><xref keyref="false"/>: (Default) Capture the screen, not the window.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>displayId</pt>
+                    <pd>(macOS only) The display ID of the screen.
+                        <note>Use this parameter only when capturing the screen on Mac devices.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>screenRect</pt>
+                    <pd>(Windows only) The position of the screen to be shared relative to the virtual screen.
+                        <note>Use this parameter only when capturing the screen on Windows devices.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>windowId</pt>
+                    <pd>(Windows and macOS only) The window ID.
+                        <note>Use this parameter only when capturing a window.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>parameters</pt>
+                    <pd>(Windows and macOS only) Encoding parameter configuration for screen sharing stream. See <xref keyref="ScreenCaptureParameters"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>regionRect</pt>
+                    <pd>(Windows and macOS only) The position of the region to be shared relative to the entire screen. See <xref keyref="Rectangle"/>. If not set, the entire screen is shared. If the shared region exceeds the screen boundaries, only the content within the screen is shared. If the <codeph>width</codeph> or <codeph>height</codeph> in <xref keyref="Rectangle"/> is set to 0, the entire screen is shared.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setdefaultaudioroutetospeakerphone">
+    <title><ph keyref="setDefaultAudioRouteToSpeakerphone"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Sets the default audio route.</ph><ph id="shortdesc" props="flutter">Sets the default audio route.</ph><ph id="shortdesc" props="unity">Sets the default audio route.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDefaultAudioRouteToSpeakerphone"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract setDefaultAudioRouteToSpeakerphone(
+    defaultToSpeaker: boolean
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">Mobile devices typically have two audio routes: the earpiece at the top, which plays sound at a lower volume, and the speaker at the bottom, which plays sound at a higher volume. Setting the default audio route means specifying whether the system uses the earpiece or speaker to play audio when no external device is connected.
+The system defaults vary by scenario:
+                <ul>
+                    <li>Voice call: Earpiece</li>
+                    <li>Voice live streaming: Speaker</li>
+                    <li>Video call: Speaker</li>
+                    <li>Video live streaming: Speaker</li>
+                </ul><ph>Calling this API allows you to change the default audio route above.</ph></p>
+            <p props="flutter">Mobile devices typically have two audio routes: the earpiece at the top, which has lower volume, and the speaker at the bottom, which has higher volume. Setting the default audio route determines whether the system uses the earpiece or speaker to play audio when no external device is connected.
+The system default audio route varies by scenario:
+                <ul>
+                    <li>Voice call: Earpiece</li>
+                    <li>Voice live broadcast: Speaker</li>
+                    <li>Video call: Speaker</li>
+                    <li>Video live broadcast: Speaker</li>
+                </ul><ph>Calling this API allows you to change the default audio route described above.</ph></p>
+            <p props="unity">Mobile devices typically have two audio routes: the earpiece at the top with lower volume, and the speaker at the bottom with higher volume. Setting the default audio route determines whether the system uses the earpiece or speaker to play audio when no external device is connected.
+The system's default audio route varies by scenario:
+                <ul>
+                    <li>Voice call: Earpiece</li>
+                    <li>Voice live streaming: Speaker</li>
+                    <li>Video call: Speaker</li>
+                    <li>Video live streaming: Speaker</li>
+                </ul><ph>Calling this API allows you to change the default audio route.</ph></p>
+            <note props="rn">After setting the default audio route using this method, the actual audio route may change when external audio devices (wired or Bluetooth headsets) are connected. See [Audio Route](https://doc.shengwang.cn/doc/rtc/android/advanced-features/audio-route).</note>
+            <note props="flutter">This method is applicable only on Android and iOS platforms.
+After setting the default audio route using this method, the actual audio route may change depending on the connection of external audio devices (wired or Bluetooth headsets). See [Audio Routing](https://doc.shengwang.cn/doc/rtc/android/advanced-features/audio-route) for details.</note>
+            <note props="unity">This method is for Android and iOS only.
+After setting the default audio route using this method, the actual audio route may change depending on whether an external audio device (wired or Bluetooth headset) is connected. See [Audio Route](https://doc.shengwang.cn/doc/rtc/android/advanced-features/audio-route) for details.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>Timing</title>
+            <p props="rn">Call this method before joining a channel. To switch the audio route after joining a channel, call <xref keyref="setEnableSpeakerphone"/>.</p>
+            <p props="flutter">This method must be called before joining a channel. To switch the audio route after joining a channel, call <xref keyref="setEnableSpeakerphone"/>.</p>
+            <p props="unity">You must call this method before joining a channel. To switch audio routes after joining a channel, call <xref keyref="setEnableSpeakerphone"/>.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="flutter rn unity">
+            <title>Related Callbacks</title>
+            <p props="rn">After successfully changing the audio route, the SDK triggers the <xref keyref="onAudioRoutingChanged"/> callback to report the current audio route.</p>
+            <p props="flutter">After the audio route is successfully changed, the SDK triggers the <xref keyref="onAudioRoutingChanged"/> callback to report the current audio route.</p>
+            <p props="unity">After the audio route is successfully changed, the SDK triggers the <xref keyref="onAudioRoutingChanged"/> callback to report the current audio route.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>defaultToSpeaker</pt>
+                    <pd>Whether to use the speaker as the default audio route:
+                        <ul>
+                            <li><xref keyref="true"/>: Set the default audio route to speaker.</li>
+                            <li><xref keyref="false"/>: Set the default audio route to earpiece.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>defaultToSpeaker</pt>
+                    <pd>Whether to use the speaker as the default audio route:
+                        <ul>
+                            <li><xref keyref="true"/>: Set the default audio route to speaker.</li>
+                            <li><xref keyref="false"/>: Set the default audio route to earpiece.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>defaultToSpeaker</pt>
+                    <pd>Whether to use the speaker as the default audio route:
+                        <ul>
+                            <li><xref keyref="true"/>: Set the default audio route to speaker.</li>
+                            <li><xref keyref="false"/>: Set the default audio route to earpiece.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

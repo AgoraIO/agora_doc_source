@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_audioprofiletype">
+    <title><ph keyref="AUDIO_PROFILE_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Audio encoding properties.</ph><ph id="shortdesc" props="rn">Audio encoding properties.</ph><ph id="shortdesc" props="flutter">Audio encoding attributes.</ph><ph id="shortdesc" props="unity">Audio encoding profile.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>AudioProfileDefault</pt>
+                    <pd>0: Default value.
+                        <ul>
+                            <li>In live broadcast scenarios: 48 kHz sampling rate, music encoding, mono channel, maximum bitrate 64 Kbps.</li>
+                            <li>In communication scenarios:
+                                <ul>
+                                    <li>Windows platform: 16 kHz sampling rate, speech encoding, mono channel, maximum bitrate 16 Kbps.</li>
+                                    <li>macOS platform: 32 kHz sampling rate, speech encoding, mono channel, maximum bitrate 18 Kbps.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioProfileSpeechStandard</pt>
+                    <pd>1: Specifies 32 kHz sampling rate, speech encoding, mono channel, maximum bitrate 18 Kbps.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioProfileMusicStandard</pt>
+                    <pd>2: Specifies 48 kHz sampling rate, music encoding, mono channel, maximum bitrate 64 Kbps.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioProfileMusicStandardStereo</pt>
+                    <pd>3: Specifies 48 kHz sampling rate, music encoding, stereo channel, maximum bitrate 80 Kbps.
+To achieve stereo, you also need to call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> to <codeph>AudioProcessingStereo</codeph> in <xref keyref="AdvancedAudioOptions"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioProfileMusicHighQuality</pt>
+                    <pd>4: Specifies 48 kHz sampling rate, music encoding, mono channel, maximum bitrate 96 Kbps.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioProfileMusicHighQualityStereo</pt>
+                    <pd>5: Specifies 48 kHz sampling rate, music encoding, stereo channel, maximum bitrate 128 Kbps.
+To achieve stereo, you also need to call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> to <codeph>AudioProcessingStereo</codeph> in <xref keyref="AdvancedAudioOptions"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioProfileIot</pt>
+                    <pd>6: Specifies 16 kHz sampling rate, speech encoding, mono channel, applies echo cancellation algorithm AEC.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioProfileNum</pt>
+                    <pd>Enumeration value boundary.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProfileDefault</pt>
+                    <pd>0: Default value.
+                        <ul>
+                            <li>In live broadcast: 48 kHz sample rate, music encoding, mono, max bitrate 64 Kbps.</li>
+                            <li>In communication: 32 kHz sample rate, speech encoding, mono, max bitrate 18 Kbps.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProfileSpeechStandard</pt>
+                    <pd>1: Sets 32 kHz sample rate, speech encoding, mono, max bitrate 18 Kbps.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProfileMusicStandard</pt>
+                    <pd>2: Sets 48 kHz sample rate, music encoding, mono, max bitrate 64 Kbps.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProfileMusicStandardStereo</pt>
+                    <pd>3: Sets 48 kHz sample rate, music encoding, stereo, max bitrate 80 Kbps.
+To enable stereo, you also need to call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> to <codeph>AudioProcessingStereo</codeph> in <xref keyref="AdvancedAudioOptions"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProfileMusicHighQuality</pt>
+                    <pd>4: Sets 48 kHz sample rate, music encoding, mono, max bitrate 96 Kbps.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProfileMusicHighQualityStereo</pt>
+                    <pd>5: Sets 48 kHz sample rate, music encoding, stereo, max bitrate 128 Kbps.
+To enable stereo, you also need to call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> to <codeph>AudioProcessingStereo</codeph> in <xref keyref="AdvancedAudioOptions"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProfileIot</pt>
+                    <pd>6: Sets 16 kHz sample rate, speech encoding, mono, applies echo cancellation algorithm AEC.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProfileNum</pt>
+                    <pd>Boundary of enum values.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProfileDefault</pt>
+                    <pd>0: Default value.
+                        <ul>
+                            <li>In live broadcast: 48 kHz sample rate, music encoding, mono, max bitrate 64 Kbps.</li>
+                            <li>In communication:
+                                <ul>
+                                    <li>Windows: 16 kHz sample rate, voice encoding, mono, max bitrate 16 Kbps.</li>
+                                    <li>Android, macOS, iOS: 32 kHz sample rate, voice encoding, mono, max bitrate 18 Kbps.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProfileSpeechStandard</pt>
+                    <pd>1: 32 kHz sample rate, voice encoding, mono, max bitrate 18 Kbps.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProfileMusicStandard</pt>
+                    <pd>2: 48 kHz sample rate, music encoding, mono, max bitrate 64 Kbps.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProfileMusicStandardStereo</pt>
+                    <pd>3: 48 kHz sample rate, music encoding, stereo, max bitrate 80 Kbps.
+To enable stereo, you also need to call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> to <codeph>audioProcessingStereo</codeph> in <xref keyref="AdvancedAudioOptions"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProfileMusicHighQuality</pt>
+                    <pd>4: 48 kHz sample rate, music encoding, mono, max bitrate 96 Kbps.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProfileMusicHighQualityStereo</pt>
+                    <pd>5: 48 kHz sample rate, music encoding, stereo, max bitrate 128 Kbps.
+To enable stereo, you also need to call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> to <codeph>audioProcessingStereo</codeph> in <xref keyref="AdvancedAudioOptions"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProfileIot</pt>
+                    <pd>6: 16 kHz sample rate, voice encoding, mono, applies echo cancellation algorithm AEC.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProfileNum</pt>
+                    <pd>Enum boundary value.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROFILE_DEFAULT</pt>
+                    <pd>0: Default value.
+                        <ul>
+                            <li>In live broadcast scenarios: 48 kHz sampling rate, music encoding, mono, max bitrate 64 Kbps.</li>
+                            <li>In communication scenarios:
+                                <ul>
+                                    <li>Windows: 16 kHz sampling rate, voice encoding, mono, max bitrate 16 Kbps.</li>
+                                    <li>Android, macOS, iOS: 32 kHz sampling rate, voice encoding, mono, max bitrate 18 Kbps.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROFILE_SPEECH_STANDARD</pt>
+                    <pd>1: Specifies 32 kHz sampling rate, voice encoding, mono, max bitrate 18 Kbps.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROFILE_MUSIC_STANDARD</pt>
+                    <pd>2: Specifies 48 kHz sampling rate, music encoding, mono, max bitrate 64 Kbps.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROFILE_MUSIC_STANDARD_STEREO</pt>
+                    <pd>3: Specifies 48 kHz sampling rate, music encoding, stereo, max bitrate 80 Kbps.
+To enable stereo, you also need to call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> in <xref keyref="AdvancedAudioOptions"/> to <codeph>AUDIO_PROCESSING_STEREO</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROFILE_MUSIC_HIGH_QUALITY</pt>
+                    <pd>4: Specifies 48 kHz sampling rate, music encoding, mono, max bitrate 96 Kbps.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</pt>
+                    <pd>5: Specifies 48 kHz sampling rate, music encoding, stereo, max bitrate 128 Kbps.
+To enable stereo, you also need to call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> in <xref keyref="AdvancedAudioOptions"/> to <codeph>AUDIO_PROCESSING_STEREO</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROFILE_IOT</pt>
+                    <pd>6: Specifies 16 kHz sampling rate, voice encoding, mono, applies echo cancellation algorithm AEC.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROFILE_NUM</pt>
+                    <pd>Enumeration boundary value.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

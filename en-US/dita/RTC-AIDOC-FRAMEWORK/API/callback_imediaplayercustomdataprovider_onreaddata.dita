@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayercustomdataprovider_onreaddata">
+    <title><ph keyref="onReadData"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Callback to read media resource data.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onReadData"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public virtual int OnReadData(IntPtr bufferPtr, int bufferSize)
+        {
+            return 0;
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">When using <xref keyref="openWithMediaSource"/> to open a media resource, the SDK triggers this callback to request a buffer containing media resource data from you.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>bufferPtr</pt>
+                    <pd>Input parameter. Data buffer in bytes. Write the data of size <codeph>bufferSize</codeph> reported by the SDK into this parameter.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>bufferSize</pt>
+                    <pd>Length of the data buffer in bytes.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li>If data is read successfully, return the actual number of bytes read.</li>
+                    <li>If data reading fails, return 0.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

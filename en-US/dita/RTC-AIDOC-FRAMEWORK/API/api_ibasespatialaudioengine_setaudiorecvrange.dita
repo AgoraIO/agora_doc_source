@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ibasespatialaudioengine_setaudiorecvrange">
+    <title><ph keyref="setAudioRecvRange"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the audio reception range for the local user.</ph><ph id="shortdesc" props="rn">Sets the audio reception range for the local user.</ph><ph id="shortdesc" props="flutter">Sets the audio receive range for the local user.</ph><ph id="shortdesc" props="unity">Sets the audio reception range of the local user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAudioRecvRange"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setAudioRecvRange(range: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setAudioRecvRange(range: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioRecvRange(double range);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioRecvRange(float range);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After successful setting, the user can only hear remote users within the specified range or those in the same team. You can call this method at any time to update the audio reception range.</p>
+            <p props="rn">After this method is successfully called, the user can only hear remote users within the specified range or those in the same team. You can call this method at any time to update the audio reception range.</p>
+            <p props="flutter">After setting successfully, the user can only hear remote users within the specified range or those in the same team. You can call this method at any time to update the audio receive range.</p>
+            <p props="unity">After this method is successfully called, the user can only hear remote users within the specified range or in the same team. You can call this method at any time to update the audio reception range.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>range</pt>
+                    <pd>Maximum range for receiving audio, measured in the distance units of the game engine. The value must be greater than 0. Default is 20.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>range</pt>
+                    <pd>The maximum range for receiving audio, in distance units defined by the game engine. The value must be greater than 0. Default is 20.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>range</pt>
+                    <pd>Maximum range for receiving audio, in the distance unit used by the game engine. The value must be greater than 0. The default is 20.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>range</pt>
+                    <pd>The maximum range for receiving audio, in the distance unit of the game engine. The value must be greater than 0. The default value is 20.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_openwithmediasource">
+    <title><ph keyref="openWithMediaSource"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Opens a media resource and configures playback.</ph><ph id="shortdesc" props="rn">Opens a media resource and configures playback settings.</ph><ph id="shortdesc" props="flutter">Opens a media resource and sets playback options.</ph><ph id="shortdesc" props="unity">Opens a media resource and configures playback settings.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="openWithMediaSource"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract openWithMediaSource(source: MediaSource): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract openWithMediaSource(source: MediaSource): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; openWithMediaSource(MediaSource source);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int OpenWithMediaSource(MediaSource source);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method allows you to open different types of media resources, including custom media files, and configure playback.</p>
+            <p props="rn">This method allows you to open different types of media resources, including custom media files, and configure playback settings.</p>
+            <p props="flutter">This method allows you to open different types of media resources, including custom media files, and configure playback settings.</p>
+            <p props="unity">This method allows you to open different types of media resources, including custom media files, and configure playback settings.</p>
+            <note props="electron">This method is asynchronous. To play the media file, call the <xref keyref="play"/> method after receiving the <xref keyref="onPlayerSourceStateChanged"/> callback with status <codeph>PlayerStateOpenCompleted</codeph>.</note>
+            <note props="rn">This method is asynchronous. To play the media file, call the <xref keyref="play"/> method after receiving the <xref keyref="onPlayerSourceStateChanged"/> callback with the state <codeph>PlayerStateOpenCompleted</codeph>.</note>
+            <note props="flutter">This method is asynchronous. To play the media file, call the <xref keyref="play"/> method after receiving the <xref keyref="onPlayerSourceStateChanged"/> callback reporting the state <codeph>playerStateOpenCompleted</codeph>.</note>
+            <note props="unity">This method is asynchronous. To play the media file, you need to call the <xref keyref="play"/> method after receiving the <xref keyref="onPlayerSourceStateChanged"/> callback reporting the <codeph>PLAYER_STATE_OPEN_COMPLETED</codeph> state.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method can be called before or after joining a channel.</p>
+            <p props="rn">This method can be called before or after joining a channel.</p>
+            <p props="flutter">This method can be called before or after joining a channel.</p>
+            <p props="unity">Can be called before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>source</pt>
+                    <pd>The media resource. See <xref keyref="MediaSource"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>source</pt>
+                    <pd>The media resource. See <xref keyref="MediaSource"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>source</pt>
+                    <pd>Media resource. See <xref keyref="MediaSource"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>source</pt>
+                    <pd>The media resource. See <xref keyref="MediaSource"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                <ul>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

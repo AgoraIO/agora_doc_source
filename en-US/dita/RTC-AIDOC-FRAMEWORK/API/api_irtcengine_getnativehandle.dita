@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getnativehandle">
+    <title><ph keyref="getNativeHandle"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets the C++ handle of the Native SDK.</ph><ph id="shortdesc" props="rn">Gets the C++ handle of the Native SDK.</ph><ph id="shortdesc" props="flutter">Gets the C++ handle of the Native SDK.</ph><ph id="shortdesc" props="unity">Gets the C++ handle of the Native SDK.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getNativeHandle"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getNativeHandle(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getNativeHandle(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getNativeHandle();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetNativeHandler(ref IntPtr nativeHandler);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method gets the C++ handle of the Native SDK engine, used in special scenarios such as registering audio and video callbacks.</p>
+            <p props="rn">This method gets the C++ handle of the Native SDK engine, used in special scenarios such as registering audio and video callbacks.</p>
+            <p props="flutter">This method gets the C++ handle of the Native SDK engine, which is used in special scenarios including registering audio and video callbacks.</p>
+            <p props="unity">This method gets the C++ handle of the Native SDK engine, used in special scenarios including registering audio and video callbacks.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>nativeHandler</pt>
+                    <pd>An output parameter. The native handle of the SDK engine.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">The Native handle of the SDK engine.</p>
+            <p props="rn">The Native handle of the SDK engine.</p>
+            <p props="flutter">Native handle of the SDK engine.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_echotestconfiguration">
+    <title><ph keyref="EchoTestConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Configuration for audio and video loop test.</ph><ph id="shortdesc" props="rn">Configuration for audio and video loopback testing.</ph><ph id="shortdesc" props="flutter">Configuration for audio and video echo test.</ph><ph id="shortdesc" props="unity">Configuration for audio and video loopback test.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class EchoTestConfiguration {
+
+  view?: any;
+
+  enableAudio?: boolean;
+
+  enableVideo?: boolean;
+
+  token?: string;
+
+  channelId?: string;
+
+  intervalInSeconds?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class EchoTestConfiguration {
+
+  view?: any;
+
+  enableAudio?: boolean;
+
+  enableVideo?: boolean;
+
+  token?: string;
+
+  channelId?: string;
+
+  intervalInSeconds?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class EchoTestConfiguration {
+  const EchoTestConfiguration(
+      {this.view,
+      this.enableAudio,
+      this.enableVideo,
+      this.token,
+      this.channelId,
+      this.intervalInSeconds});
+
+  @JsonKey(name: 'view')
+  final int? view;
+
+  @JsonKey(name: 'enableAudio')
+  final bool? enableAudio;
+
+  @JsonKey(name: 'enableVideo')
+  final bool? enableVideo;
+
+  @JsonKey(name: 'token')
+  final String? token;
+
+  @JsonKey(name: 'channelId')
+  final String? channelId;
+
+  @JsonKey(name: 'intervalInSeconds')
+  final int? intervalInSeconds;
+
+  factory EchoTestConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$EchoTestConfigurationFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$EchoTestConfigurationToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class EchoTestConfiguration
+    {
+        public view_t view;
+        public bool enableAudio;
+        public bool enableVideo;
+        public string token;
+        public string channelId;
+        public int intervalInSeconds;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>view</pt>
+                    <pd>The view used to render the local user's video. This parameter is only applicable for testing video devices. Make sure <xref keyref="enableVideo"/> is set to true.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enableAudio</pt>
+                    <pd>Whether to enable the audio device:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Enable the audio device. Set to true to test the audio device.</li>
+                            <li><xref keyref="false"/>: Disable the audio device.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enableVideo</pt>
+                    <pd>Whether to enable the video device. Video device detection is not currently supported. Set this parameter to <xref keyref="false"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>token</pt>
+                    <pd>The token used to ensure the security of the audio and video loop test. If you have not enabled the App Certificate in the console, you do not need to pass a value for this parameter. If you have enabled the App Certificate in the console, you must pass in a token, and the <codeph>uid</codeph> used when generating the token must be 0xFFFFFFFF, and the channel name must uniquely identify each loop test. For how to generate a token on the server, refer to [Use Token Authentication](https://doc.shengwang.cn/doc/rtc/electron/basic-features/token-authentication).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channelId</pt>
+                    <pd>The channel name that identifies each audio and video loop test. To ensure the loop test functions properly, when users under the same project (App ID) perform loop tests on different devices, the channel names passed in must be different.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>intervalInSeconds</pt>
+                    <pd>Sets the interval or delay for returning the audio and video loop test results. Value range is [2,10] in seconds, default is 2 seconds.
+                        <ul>
+                            <li>For audio loop tests, the test result is returned based on the interval you set.</li>
+                            <li>For video loop tests, the video is displayed briefly, then the delay gradually increases until it reaches the value you set.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>view</pt>
+                    <pd>The view used to render the local user's video. This parameter is only applicable when testing video devices. Make sure <xref keyref="enableVideo"/> is set to true.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enableAudio</pt>
+                    <pd>Whether to enable audio devices:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Enable audio devices. Set to true to test audio devices.</li>
+                            <li><xref keyref="false"/>: Disable audio devices.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enableVideo</pt>
+                    <pd>Whether to enable video devices. Video device testing is not supported currently. Set this parameter to <xref keyref="false"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>token</pt>
+                    <pd>Token used to secure the audio and video loopback test. If you have not enabled App Certificate in the console, you do not need to provide this parameter. If you have enabled App Certificate, you must provide a Token, and the <codeph>uid</codeph> used to generate the Token must be 0xFFFFFFFF, and the channel name must uniquely identify each loopback test. For how to generate a Token on the server, see [Token Authentication](https://doc.shengwang.cn/doc/rtc/rn/basic-features/token-authentication).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channelId</pt>
+                    <pd>The channel name that identifies each audio and video loopback test. To ensure proper loopback testing, users under the same project (App ID) must use different channel names on different devices.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>intervalInSeconds</pt>
+                    <pd>Set the interval or delay for returning loopback test results. Value range: [2,10] seconds. Default is 2 seconds.
+                        <ul>
+                            <li>For audio loopback tests, results are returned based on the interval you set.</li>
+                            <li>For video loopback tests, the video appears briefly, then the delay gradually increases until it reaches the set interval.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>view</pt>
+                    <pd>The view used to render the local user's video. This parameter only applies to scenarios testing video devices. Make sure <xref keyref="enableVideo"/> is set to true.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enableAudio</pt>
+                    <pd>Whether to enable the audio device:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Enables the audio device. Set to true to test the audio device.</li>
+                            <li><xref keyref="false"/>: Disables the audio device.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enableVideo</pt>
+                    <pd>Whether to enable the video device. Video device detection is not supported yet. Set this parameter to <xref keyref="false"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>token</pt>
+                    <pd>Token used to ensure the security of the audio and video echo test. If you have not enabled the App Certificate in the console, you do not need to set this parameter. If you have enabled the App Certificate, you must provide a Token, and the <codeph>uid</codeph> used to generate the Token must be 0xFFFFFFFF, and the channel name used must uniquely identify each echo test. For how to generate a Token on the server, refer to [Use Token for Authentication](https://doc.shengwang.cn/doc/rtc/flutter/basic-features/token-authentication).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channelId</pt>
+                    <pd>Channel name identifying each audio and video echo test. To ensure proper functioning of the echo test, the channel name used by each terminal user under the same project (App ID) on different devices must be unique.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>intervalInSeconds</pt>
+                    <pd>Sets the interval or delay for returning the audio and video echo test results. Value range is [2,10] in seconds. Default is 2 seconds.
+                        <ul>
+                            <li>For audio echo test, the result is returned at the interval you set.</li>
+                            <li>For video echo test, the video is displayed briefly, then the delay gradually increases until it reaches the set value.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>view</pt>
+                    <pd>The view used to render the local user's video. This parameter applies only to scenarios where video device testing is needed. Make sure <codeph>enableVideo</codeph> is set to true.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enableAudio</pt>
+                    <pd>Whether to enable audio device:
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Enables the audio device. Set to true to test audio devices.</li>
+                            <li><xref keyref="false"/>: Disables the audio device.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enableVideo</pt>
+                    <pd>Whether to enable video device. Video device detection is not supported yet. Set this parameter to <xref keyref="false"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>token</pt>
+                    <pd>The token used to ensure the security of the audio and video loopback test. If you have not enabled the App Certificate in the console, you do not need to provide a value for this parameter. If you have enabled the App Certificate in the console, you must provide a token for this parameter, and the <codeph>uid</codeph> used when generating the token must be 0xFFFFFFFF. The channel name used must uniquely identify each audio and video loopback test. For how to generate tokens on the server, see [Use Token Authentication](https://doc.shengwang.cn/doc/rtc/unity/basic-features/token-authentication).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelId</pt>
+                    <pd>The channel name that identifies each audio and video loopback test. To ensure the loopback test functions correctly, the channel names passed in by different terminal users under the same project (App ID) on different devices must be unique.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>intervalInSeconds</pt>
+                    <pd>Sets the interval or delay for returning the audio and video loopback test results. The value range is [2,10] seconds, with a default of 2 seconds.
+                        <ul>
+                            <li>For audio loopback tests, the results are returned based on the interval you set.</li>
+                            <li>For video loopback tests, the video will display briefly, then the delay gradually increases until it reaches the set delay.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

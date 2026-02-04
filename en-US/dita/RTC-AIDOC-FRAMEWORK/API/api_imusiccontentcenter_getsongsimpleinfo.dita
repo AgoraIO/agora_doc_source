@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_getsongsimpleinfo">
+    <title><ph keyref="getSongSimpleInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Retrieves detailed information of a music resource.</ph><ph id="shortdesc" props="rn">Retrieves detailed information of a music resource.</ph><ph id="shortdesc" props="flutter">Gets detailed information of a music resource.</ph><ph id="shortdesc" props="unity">Retrieves detailed information of a music resource.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getSongSimpleInfo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getSongSimpleInfo(songCode: number): string;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getSongSimpleInfo(songCode: number): string;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; getSongSimpleInfo(int songCode);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetSongSimpleInfo(ref string requestId, Int64 songCode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Before calling this method, you need to obtain the corresponding music resource code. You can call the <xref keyref="getMusicCollectionByMusicChartId"/> or <xref keyref="searchMusic"/> methods to get the music resources, and retrieve the music resource code (<codeph>songCode</codeph>) from the <xref keyref="onMusicCollectionResult"/> callback triggered by those methods.
+After you call this method, the SDK triggers the <xref keyref="onSongSimpleInfoResult"/> callback to report detailed information of the music resource.</p>
+            <p props="rn">Before calling this method, you need to obtain the song code of the corresponding music resource. You can get it by calling <xref keyref="getMusicCollectionByMusicChartId"/> or <xref keyref="searchMusic"/>, and then retrieve the <codeph>songCode</codeph> from the <xref keyref="onMusicCollectionResult"/> callback triggered by these methods.
+After calling this method, the SDK triggers the <xref keyref="onSongSimpleInfoResult"/> callback to report the detailed information of the music resource.</p>
+            <p props="flutter">Before calling this method, you need to obtain the song code of the corresponding music resource. You can call the <xref keyref="getMusicCollectionByMusicChartId"/> or <xref keyref="searchMusic"/> method to get the music resource, and then obtain the song code (<codeph>songCode</codeph>) from the triggered <xref keyref="onMusicCollectionResult"/> callback.
+After calling this method, the SDK triggers the <xref keyref="onSongSimpleInfoResult"/> callback to report detailed information of the music resource.</p>
+            <p props="unity">Before calling this method, you need to obtain the corresponding music resource code. You can call the <xref keyref="getMusicCollectionByMusicChartId"/> or <xref keyref="searchMusic"/> method to get music resources, and obtain the music resource code (<codeph>songCode</codeph>) through the triggered <xref keyref="onMusicCollectionResult"/> callback.
+After calling this method, the SDK triggers the <xref keyref="onSongSimpleInfoResult"/> callback to report the detailed information of the music resource.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>songCode</pt>
+                    <pd>The code of the music resource, used to identify the music resource.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>songCode</pt>
+                    <pd>The code of the music resource, used to identify the music resource.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>songCode</pt>
+                    <pd>The song code of the music resource, used to identify the music resource.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>songCode</pt>
+                    <pd>The code of the music resource, used to identify the music resource.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>requestId</pt>
+                    <pd>Request ID. A unique identifier for this request.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">A <codeph>requestId</codeph>, which uniquely identifies this request.</p>
+            <p props="rn">A <codeph>requestId</codeph>, which uniquely identifies this request.</p>
+            <p props="flutter">A <codeph>requestId</codeph>, which is the unique identifier for this request.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

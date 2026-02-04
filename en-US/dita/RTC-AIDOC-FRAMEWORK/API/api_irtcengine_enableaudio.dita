@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enableaudio">
+    <title><ph keyref="enableAudio"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Enables the audio module.</ph><ph id="shortdesc" props="rn">Enables the audio module.</ph><ph id="shortdesc" props="flutter">Enables the audio module.</ph><ph id="shortdesc" props="unity">Enables the audio module.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableAudio"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableAudio(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableAudio(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableAudio();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableAudio();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">The audio module is enabled by default. If you have disabled it using <xref keyref="disableAudio"/>, you can call this method to re-enable it.</p>
+            <p props="rn">The audio module is enabled by default. If you have disabled it using <xref keyref="disableAudio"/>, you can call this method to re-enable it.</p>
+            <p props="flutter">The audio module is enabled by default. If you have called <xref keyref="disableAudio"/> to disable the audio module, you can call this method to re-enable it.</p>
+            <p props="unity">The audio module is enabled by default. If you have disabled it using <xref keyref="disableAudio"/>, you can call this method to re-enable it.</p>
+            <note props="electron">
+                <ul>
+                    <li>Calling this method resets the entire engine and has a relatively slow response time. You can use the following methods to control specific audio module features as needed:
+                        <ul>
+                            <li><xref keyref="enableLocalAudio"/>: Whether to enable microphone capture and create a local audio stream.</li>
+                            <li><xref keyref="muteLocalAudioStream"/>: Whether to publish the local audio stream.</li>
+                            <li><xref keyref="muteRemoteAudioStream"/>: Whether to receive and play the remote audio stream.</li>
+                            <li><xref keyref="muteAllRemoteAudioStreams"/>: Whether to receive and play all remote audio streams.</li>
+                        </ul>
+                    </li>
+                    <li>When calling this method in a channel, it resets the settings of <xref keyref="enableLocalAudio"/>, <xref keyref="muteRemoteAudioStream"/>, and <xref keyref="muteAllRemoteAudioStreams"/>, so use with caution.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>Calling this method resets the entire engine and has a slower response time. You can use the following methods to control specific audio module functions as needed:
+                        <ul>
+                            <li><xref keyref="enableLocalAudio"/>: Whether to enable microphone capture and create a local audio stream.</li>
+                            <li><xref keyref="muteLocalAudioStream"/>: Whether to publish the local audio stream.</li>
+                            <li><xref keyref="muteRemoteAudioStream"/>: Whether to receive and play the remote audio stream.</li>
+                            <li><xref keyref="muteAllRemoteAudioStreams"/>: Whether to receive and play all remote audio streams.</li>
+                        </ul>
+                    </li>
+                    <li>When called in a channel, this method resets the settings of <xref keyref="enableLocalAudio"/>, <xref keyref="muteRemoteAudioStream"/>, and <xref keyref="muteAllRemoteAudioStreams"/>. Use with caution.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>Calling this method resets the entire engine and has a relatively slow response time. You can use the following methods to control specific audio module features based on your needs:
+                        <ul>
+                            <li><xref keyref="enableLocalAudio"/>: Whether to enable microphone capture and create a local audio stream.</li>
+                            <li><xref keyref="muteLocalAudioStream"/>: Whether to publish the local audio stream.</li>
+                            <li><xref keyref="muteRemoteAudioStream"/>: Whether to receive and play the remote audio stream.</li>
+                            <li><xref keyref="muteAllRemoteAudioStreams"/>: Whether to receive and play all remote audio streams.</li>
+                        </ul>
+                    </li>
+                    <li>When calling this method in a channel, it resets the settings of <xref keyref="enableLocalAudio"/>, <xref keyref="muteRemoteAudioStream"/>, and <xref keyref="muteAllRemoteAudioStreams"/>. Use with caution.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>Calling this method resets the entire engine and has a slower response time. You can use the following methods to control specific audio module features as needed:
+                        <ul>
+                            <li><xref keyref="enableLocalAudio"/>: Whether to enable microphone capture and create a local audio stream.</li>
+                            <li><xref keyref="muteLocalAudioStream"/>: Whether to publish the local audio stream.</li>
+                            <li><xref keyref="muteRemoteAudioStream"/>: Whether to receive and play the remote audio stream.</li>
+                            <li><xref keyref="muteAllRemoteAudioStreams"/>: Whether to receive and play all remote audio streams.</li>
+                        </ul>
+                    </li>
+                    <li>When called within a channel, this method resets the settings of <xref keyref="enableLocalAudio"/>, <xref keyref="muteRemoteAudioStream"/>, and <xref keyref="muteAllRemoteAudioStreams"/>. Use with caution.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Can be called before or after joining a channel. Remains effective after leaving the channel.</p>
+            <p props="rn">Can be called before or after joining a channel. Remains effective after leaving the channel.</p>
+            <p props="flutter">Can be called before or after joining a channel. Remains effective after leaving the channel.</p>
+            <p props="unity">Can be called before or after joining a channel. Still effective after leaving the channel.</p>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

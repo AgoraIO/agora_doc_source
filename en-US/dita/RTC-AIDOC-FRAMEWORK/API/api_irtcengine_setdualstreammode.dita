@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setdualstreammode">
+    <title><ph keyref="setDualStreamMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Sets the dual-stream mode on the sender.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDualStreamMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetDualStreamMode(SIMULCAST_STREAM_MODE mode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">By default, the SDK enables adaptive low-quality stream mode (<codeph>AUTO_SIMULCAST_STREAM</codeph>) on the sender, meaning the sender does not actively send low-quality streams. Receivers with host identity can call <xref keyref="setRemoteVideoStreamType"/> to request a low-quality stream, and the sender starts sending it upon receiving the request.
+                <ul>
+                    <li>If you want to change this behavior, call this method and set <codeph>mode</codeph> to <codeph>DISABLE_SIMULCAST_STREAM</codeph> (never send low-quality stream) or <codeph>ENABLE_SIMULCAST_STREAM</codeph> (always send low-quality stream).</li>
+                    <li>If you want to revert to the default behavior after changing it, call this method again and set <codeph>mode</codeph> to <codeph>AUTO_SIMULCAST_STREAM</codeph>.</li>
+                </ul>
+            </p>
+            <note props="unity">The differences and relationships between this method and <xref keyref="enableDualStreamMode"/> are as follows:
+                <ul>
+                    <li>Calling this method and setting <codeph>mode</codeph> to <codeph>DISABLE_SIMULCAST_STREAM</codeph> has the same effect as setting <xref keyref="enableDualStreamMode"/> to <xref keyref="false"/>.</li>
+                    <li>Calling this method and setting <codeph>mode</codeph> to <codeph>ENABLE_SIMULCAST_STREAM</codeph> has the same effect as setting <xref keyref="enableDualStreamMode"/> to <xref keyref="true"/>.</li>
+                    <li>Both methods can be called before or after joining a channel. If both are used, the settings from the later call take effect.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>mode</pt>
+                    <pd>The mode for sending video streams. See <xref keyref="SIMULCAST_STREAM_MODE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

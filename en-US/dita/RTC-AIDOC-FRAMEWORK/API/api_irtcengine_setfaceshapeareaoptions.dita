@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setfaceshapeareaoptions">
+    <title><ph keyref="setFaceShapeAreaOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets face shaping area options and specifies the media source.</ph><ph id="shortdesc" props="rn">Sets face shape area options and specifies the media source.</ph><ph id="shortdesc" props="flutter">Sets face shaping area options and specifies the media source.</ph><ph id="shortdesc" props="unity">Sets face shaping area options and specifies the media source.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setFaceShapeAreaOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setFaceShapeAreaOptions(
+    options: FaceShapeAreaOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setFaceShapeAreaOptions(
+    options: FaceShapeAreaOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setFaceShapeAreaOptions(
+      {required FaceShapeAreaOptions options,
+      MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetFaceShapeAreaOptions(FaceShapeAreaOptions options, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">If the preset face shaping effects implemented in the <xref keyref="setFaceShapeBeautyOptions"/> method do not meet your expectations, you can use this method to set face shaping area options and fine-tune individual facial features for more refined results.</p>
+            <p props="rn">If the preset face shaping effects implemented in the <xref keyref="setFaceShapeBeautyOptions"/> method do not meet your expectations, you can use this method to set face shape area options to fine-tune individual facial features for more refined face shaping effects.</p>
+            <p props="flutter">If the preset face shaping effects set with <xref keyref="setFaceShapeBeautyOptions"/> do not meet expectations, you can use this method to configure face shaping area options and fine-tune individual facial areas for more refined results.</p>
+            <p props="unity">If the preset face shaping effect implemented in the <xref keyref="setFaceShapeBeautyOptions"/> method does not meet expectations, you can use this method to set the face shaping area options and fine-tune each part of the face individually for more refined effects.</p>
+            <note props="electron">Face shaping is a value-added service. See [Billing Strategy](https://doc.shengwang.cn/doc/rtc/android/billing/billing-strategy) for billing details.
+                <ul>
+                    <li>This method depends on the video enhancement dynamic library <codeph>libagora_clear_vision_extension.dll</codeph>. Removing this library will prevent the feature from functioning properly.</li>
+                    <li>This feature requires high device performance. When you call this method, the SDK automatically checks the device capability.</li>
+                </ul>
+            </note>
+            <note props="rn">Face shaping is a value-added service. For billing details, see [Billing Strategy](https://doc.shengwang.cn/doc/rtc/android/billing/billing-strategy).
+                <ul>
+                    <li>On Android, this method is only supported on Android 4.4 and above.</li>
+                    <li>This method depends on the video enhancement dynamic library <codeph>libagora_clear_vision_extension.dll</codeph>. Removing this library will cause the feature to fail.</li>
+                    <li>This feature has high performance requirements. When calling this method, the SDK automatically checks the capabilities of the current device.</li>
+                </ul>
+            </note>
+            <note props="flutter">Face shaping is a value-added service. See [Billing Strategy](https://doc.shengwang.cn/doc/rtc/android/billing/billing-strategy) for pricing details.
+                <ul>
+                    <li>On Android, this method is only supported on Android 4.4 and above.</li>
+                    <li>This method depends on the video enhancement dynamic library <codeph>libagora_clear_vision_extension.dll</codeph>. Deleting this library will cause the feature to fail to start.</li>
+                    <li>This feature requires high device performance. When calling this method, the SDK automatically checks the current device capabilities.</li>
+                </ul>
+            </note>
+            <note props="unity">Face shaping is a value-added service. For billing details, see [Billing Strategy](https://doc.shengwang.cn/doc/rtc/android/billing/billing-strategy).
+                <ul>
+                    <li>On Android, this method applies to Android 4.4 and later only.</li>
+                    <li>This method depends on the video enhancement dynamic library <codeph>libagora_clear_vision_extension.dll</codeph>. Removing this library will cause this feature to fail.</li>
+                    <li>This feature has high performance requirements for the device. When calling this method, the SDK automatically checks the current device capabilities.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Call this method after <xref keyref="setFaceShapeBeautyOptions"/>.</p>
+            <p props="rn">Call this method after <xref keyref="setFaceShapeBeautyOptions"/>.</p>
+            <p props="flutter">Call this method after <xref keyref="setFaceShapeBeautyOptions"/>.</p>
+            <p props="unity">Call this method after <xref keyref="setFaceShapeBeautyOptions"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>options</pt>
+                    <pd>Face shaping area options. See <xref keyref="FaceShapeAreaOptions"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>The media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, this parameter only supports the following settings:
+                            <ul>
+                                <li>When capturing local video using the camera, keep the default value <codeph>PrimaryCameraSource</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>CustomVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>options</pt>
+                    <pd>Face shape area options. See <xref keyref="FaceShapeAreaOptions"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>The media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, only the following two settings are supported:
+                            <ul>
+                                <li>When using the camera to capture local video, keep the default value <codeph>PrimaryCameraSource</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>CustomVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>options</pt>
+                    <pd>Face shaping area options. See <xref keyref="FaceShapeAreaOptions"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>The media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, this parameter only supports the following two settings:
+                            <ul>
+                                <li>When capturing local video using the camera, keep the default value <codeph>primaryCameraSource</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>customVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>options</pt>
+                    <pd>Face shaping area options. See <xref keyref="FaceShapeAreaOptions"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>The media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, this parameter only supports the following two settings:
+                            <ul>
+                                <li>When using the camera to capture local video, keep the default value <codeph>PRIMARY_CAMERA_SOURCE</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>CUSTOM_VIDEO_SOURCE</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-4: The current device does not support this feature. Possible reasons include:
+                                <ul>
+                                    <li>The device does not meet the performance requirements for beauty effects. Consider using a higher-performance device.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-4: The current device does not support this feature. Possible reasons include:
+                                <ul>
+                                    <li>The device does not meet the performance requirements for beauty effects. Consider using a higher-performance device.</li>
+                                    <li>The device runs a version lower than Android 4.4, which is not supported. Consider upgrading the OS or changing the device.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-4: The current device does not support this feature. Possible reasons include:
+                                <ul>
+                                    <li>The current device does not meet the performance requirements for using beauty effects. Consider using a higher-performance device.</li>
+                                    <li>The current device version is lower than Android 4.4 and does not support this operation. Consider changing the device or upgrading the OS.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

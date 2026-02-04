@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onsnapshottaken">
+    <title><ph keyref="onSnapshotTaken"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback for video snapshot result.</ph><ph id="shortdesc" props="rn">Callback for snapshot result.</ph><ph id="shortdesc" props="flutter">Callback for video snapshot result.</ph><ph id="shortdesc" props="unity">Callback for snapshot result.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onSnapshotTaken"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onSnapshotTaken?(
+    connection: RtcConnection,
+    uid: number,
+    filePath: string,
+    width: number,
+    height: number,
+    errCode: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onSnapshotTaken?(
+    connection: RtcConnection,
+    uid: number,
+    filePath: string,
+    width: number,
+    height: number,
+    errCode: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int uid, String filePath,
+      int width, int height, int errCode)? onSnapshotTaken;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnSnapshotTaken(RtcConnection connection, uint uid, string filePath, int width, int height, int errCode) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After <xref keyref="takeSnapshot"/> is successfully called, the SDK triggers this callback to report whether the snapshot was successful and provide details.</p>
+            <p props="rn">After calling <xref keyref="takeSnapshot"/> successfully, the SDK triggers this callback to report whether the snapshot was successful and provide details.</p>
+            <p props="flutter">After successfully calling <xref keyref="takeSnapshot"/>, the SDK triggers this callback to report whether the snapshot was successful and provide the snapshot details.</p>
+            <p props="unity">After successfully calling <xref keyref="takeSnapshot"/>, the SDK triggers this callback to report whether the snapshot succeeded and provide snapshot details.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>User ID. If <codeph>uid</codeph> is 0, it refers to the local user.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>filePath</pt>
+                    <pd>The local path where the snapshot is saved.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>Width of the image (px).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>Height of the image (px).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>errCode</pt>
+                    <pd>Indicates success or reason for failure:
+                        <ul>
+                            <li>0: Snapshot successful.</li>
+                            <li>&lt; 0: Snapshot failed.
+                                <ul>
+                                    <li>-1: Failed to write file or JPEG encoding failed.</li>
+                                    <li>-2: No video frame received from the specified user within 1 second after calling <xref keyref="takeSnapshot"/>. Possible reasons: local capture stopped, remote user stopped publishing, or video data processing is blocked.</li>
+                                    <li>-3: <xref keyref="takeSnapshot"/> was called too frequently.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>User ID. If <codeph>uid</codeph> is 0, it indicates the local user.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>filePath</pt>
+                    <pd>Local path where the snapshot is saved.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>width</pt>
+                    <pd>Image width (px).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>Image height (px).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>errCode</pt>
+                    <pd>Indicates success or reason for failure.
+                        <ul>
+                            <li>0: Snapshot succeeded.</li>
+                            <li>&lt; 0: Snapshot failed.
+                                <ul>
+                                    <li>-1: Failed to write file or JPEG encoding failed.</li>
+                                    <li>-2: No video frame from the specified user within 1 second after calling <xref keyref="takeSnapshot"/>. Possible causes: local capture stopped, remote user stopped publishing, or video processing is blocked.</li>
+                                    <li>-3: <xref keyref="takeSnapshot"/> is called too frequently.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>User ID. If <codeph>uid</codeph> is 0, it indicates the local user.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>filePath</pt>
+                    <pd>The local path where the snapshot is saved.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>Image width (px).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>Image height (px).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>errCode</pt>
+                    <pd>Indicates whether the snapshot was successful or the reason for failure.
+                        <ul>
+                            <li>0: Snapshot successful.</li>
+                            <li>&lt; 0: Snapshot failed.
+                                <ul>
+                                    <li>-1: Failed to write file or JPEG encoding failed.</li>
+                                    <li>-2: No video frame received from the specified user within 1 second after calling <xref keyref="takeSnapshot"/>. Possible reasons include local capture stopped, remote user stopped publishing, or video data processing is blocked.</li>
+                                    <li>-3: <xref keyref="takeSnapshot"/> was called too frequently.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>User ID. If <codeph>uid</codeph> is 0, it refers to the local user.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>Local path where the snapshot is saved.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>Image width (px).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>Image height (px).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>errCode</pt>
+                    <pd>Indicates success or failure of the snapshot.
+                        <ul>
+                            <li>0: Snapshot succeeded.</li>
+                            <li>&lt; 0: Snapshot failed.
+                                <ul>
+                                    <li>-1: Failed to write to file or JPEG encoding failed.</li>
+                                    <li>-2: No video frame received from the specified user within 1 second after calling <xref keyref="takeSnapshot"/>. Possible reasons: local capture stopped, remote user stopped publishing, or video data processing is blocked.</li>
+                                    <li>-3: <xref keyref="takeSnapshot"/> is called too frequently.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

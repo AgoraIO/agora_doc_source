@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setupremotevideo">
+    <title><ph keyref="setupRemoteVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Initializes the remote user view.</ph><ph id="shortdesc" props="flutter">Initializes the remote user view.</ph><ph id="shortdesc" props="unity">Initializes the remote user view.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setupRemoteVideo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setupRemoteVideo(canvas: VideoCanvas): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setupRemoteVideo(VideoCanvas canvas);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetupRemoteVideo(VideoCanvas canvas);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method binds the remote user to a display view and sets the rendering and mirror mode of the remote user view for local display. It only affects the video seen by the local user.
+You need to specify the remote user's ID when calling this method. It is recommended to set it before joining the channel. If the ID is not available beforehand, you can call this method upon receiving the <xref keyref="onUserJoined"/> callback.
+To unbind a remote user from a view, call this method and set <codeph>view</codeph> to null.
+After leaving the channel, the SDK clears the binding between the remote user and the view.</p>
+            <p props="flutter">This method binds a remote user to a display view and sets the rendering and mirror mode of the remote user view displayed locally. It only affects the video seen by the local user.
+You need to specify the remote user's ID when calling this method. Typically, you can set this before joining the channel. If the remote user ID is not available before joining, call this method upon receiving the <xref keyref="onUserJoined"/> callback.
+To unbind a view from a remote user, call this method and set <codeph>view</codeph> to null.
+After leaving the channel, the SDK clears the binding of the remote user view.
+In mobile custom composite layout scenarios, you can call this method to set a separate <codeph>view</codeph> for each sub-video stream of the composite video stream for rendering.</p>
+            <p props="unity">This method binds the remote user and the display view, and sets the rendering and mirror mode of the remote user view when displayed locally. It only affects the video image seen by the local user.
+You need to specify the user ID of the remote video when calling this method. It is generally recommended to set it before joining the channel. If you cannot obtain the remote user's ID before joining the channel, you can call this method upon receiving the <xref keyref="onUserJoined"/> callback.
+To unbind a remote user's view, call this method and set <codeph>view</codeph> to null.
+After leaving the channel, the SDK will clear the binding of the remote user view.
+In mobile custom composite layout scenarios, you can call this method and set a separate <codeph>view</codeph> for each sub-video stream of the composite video stream for rendering.</p>
+            <note props="electron">
+                <ul>
+                    <li>When using the recording service, since it does not send video streams, the app does not need to bind a view for it. If the app cannot identify the recording service, bind the remote user view upon receiving the <xref keyref="onFirstRemoteVideoDecoded"/> callback.</li>
+                    <li>To stop rendering the view, set <codeph>view</codeph> to null and call this method again to stop rendering and clear the rendering cache.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>In Flutter, you do not need to call this method manually. Use <xref keyref="AgoraVideoView"/> to render local and remote views.</li>
+                    <li>If you want to update the rendering or mirror mode of the remote user view during a call, use the <xref keyref="setRemoteRenderMode2"/> method.</li>
+                    <li>When using the recording service, since it does not send video streams, the app does not need to bind a view for it. If the app cannot identify the recording service, bind the remote user view upon receiving the <xref keyref="onFirstRemoteVideoDecoded"/> callback.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>If you want to render images in a native window, call this method; if you only need to render images within a Unity project, you can use the <xref keyref="VideoSurface"/> class directly.</li>
+                    <li>If you want to update the rendering or mirror mode of the remote user view during a call, use the <xref keyref="setRemoteRenderMode2"/> method.</li>
+                    <li>When using the recording service, since it does not send video streams, the app does not need to bind a view for it. If the app cannot identify the recording service, it can bind the remote user view upon receiving the <xref keyref="onFirstRemoteVideoDecoded"/> callback.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>canvas</pt>
+                    <pd>Display properties of the remote video. See <xref keyref="VideoCanvas"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>canvas</pt>
+                    <pd>Display properties of the remote video. See <xref keyref="VideoCanvas"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>canvas</pt>
+                    <pd>Remote video display properties. See <xref keyref="VideoCanvas"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                <ul>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

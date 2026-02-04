@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_resumealleffects">
+    <title><ph keyref="resumeAllEffects"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Resumes playback of all audio effect files.</ph><ph id="shortdesc" props="rn">Resumes playback of all audio effect files.</ph><ph id="shortdesc" props="flutter">Resumes playback of all audio effect files.</ph><ph id="shortdesc" props="unity">Resumes playback of all audio effect files.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="resumeAllEffects"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract resumeAllEffects(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract resumeAllEffects(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; resumeAllEffects();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int ResumeAllEffects();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After calling <xref keyref="pauseAllEffects"/> to pause all audio effects, you can call this method to resume playback.</p>
+            <p props="rn">After calling <xref keyref="pauseAllEffects"/> to pause all audio effect files, you can call this method to resume playback.</p>
+            <p props="flutter">After you call <xref keyref="pauseAllEffects"/> to pause all audio effects, you can call this method to resume playback.</p>
+            <p props="unity">After you call <xref keyref="pauseAllEffects"/> to pause all audio effect files, you can call this method to resume playback.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Call this method after <xref keyref="pauseAllEffects"/>.</p>
+            <p props="rn">This method must be called after <xref keyref="pauseAllEffects"/>.</p>
+            <p props="flutter">This method must be called after <xref keyref="pauseAllEffects"/>.</p>
+            <p props="unity">This method must be called after <xref keyref="pauseAllEffects"/>.</p>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

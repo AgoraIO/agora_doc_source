@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onrtmpstreamingstatechanged">
+    <title><ph keyref="onRtmpStreamingStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback when the RTMP streaming state changes.</ph><ph id="shortdesc" props="rn">Callback when the RTMP streaming state changes.</ph><ph id="shortdesc" props="flutter">Callback when the RTMP streaming state changes.</ph><ph id="shortdesc" props="unity">Callback when the RTMP streaming state changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRtmpStreamingStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onRtmpStreamingStateChanged?(
+    url: string,
+    state: RtmpStreamPublishState,
+    reason: RtmpStreamPublishReason
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onRtmpStreamingStateChanged?(
+    url: string,
+    state: RtmpStreamPublishState,
+    reason: RtmpStreamPublishReason
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(String url, RtmpStreamPublishState state,
+    RtmpStreamPublishReason reason)? onRtmpStreamingStateChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRtmpStreamingStateChanged(string url, RTMP_STREAM_PUBLISH_STATE state, RTMP_STREAM_PUBLISH_REASON reason)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">When the RTMP streaming state changes, the SDK triggers this callback and reports the URL whose state has changed and the current streaming state. This callback helps streaming users understand the current streaming state. If an error occurs, you can determine the cause from the returned error code to facilitate troubleshooting.</p>
+            <p props="rn">When the RTMP streaming state changes, the SDK triggers this callback and provides the URL where the change occurred and the current streaming state. This callback helps streaming users understand the current streaming status. If an error occurs during streaming, you can use the returned error code to identify the cause and troubleshoot accordingly.</p>
+            <p props="flutter">When the RTMP streaming state changes, the SDK triggers this callback and reports the URL and current streaming state. This callback helps streaming users understand the current streaming state. If an error occurs, you can use the returned error code to identify the cause and troubleshoot the issue.</p>
+            <p props="unity">The SDK triggers this callback when the RTMP streaming state changes. The callback provides the URL whose state changed and the current streaming state. This helps users understand the current streaming status. If a streaming error occurs, you can use the returned error code to identify the cause and troubleshoot the issue.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>url</pt>
+                    <pd>The URL whose streaming state has changed.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>state</pt>
+                    <pd>The current streaming state. See <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>reason</pt>
+                    <pd>The reason for the change in streaming state. See <xref keyref="RTMP_STREAM_PUBLISH_REASON"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>url</pt>
+                    <pd>The URL where the streaming state changed.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>state</pt>
+                    <pd>The current streaming state. See <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>reason</pt>
+                    <pd>The reason for the change in streaming state. See <xref keyref="RTMP_STREAM_PUBLISH_REASON"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>url</pt>
+                    <pd>The URL of the stream whose state has changed.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>state</pt>
+                    <pd>The current streaming state. See <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>reason</pt>
+                    <pd>The reason for the streaming state change. See <xref keyref="RTMP_STREAM_PUBLISH_REASON"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>url</pt>
+                    <pd>The URL whose streaming state has changed.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>state</pt>
+                    <pd>The current streaming state. See <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>reason</pt>
+                    <pd>The reason for the streaming state change. See <xref keyref="RTMP_STREAM_PUBLISH_REASON"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

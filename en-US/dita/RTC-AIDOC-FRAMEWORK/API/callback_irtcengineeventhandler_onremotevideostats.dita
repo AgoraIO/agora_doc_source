@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onremotevideostats">
+    <title><ph keyref="onRemoteVideoStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Reports the statistics of the video stream sent by each remote user during a call.</ph><ph id="shortdesc" props="rn">Callback for remote video stream statistics during a call.</ph><ph id="shortdesc" props="flutter">Callback for statistics of the remote video stream during a call.</ph><ph id="shortdesc" props="unity">Callback for remote video stream statistics during a call.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteVideoStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onRemoteVideoStats?(connection: RtcConnection, stats: RemoteVideoStats): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onRemoteVideoStats?(connection: RtcConnection, stats: RemoteVideoStats): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, RemoteVideoStats stats)?
+      onRemoteVideoStats;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteVideoStats(RtcConnection connection, RemoteVideoStats stats) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This callback reports end-to-end video stream statistics of remote users during a call. It is triggered every 2 seconds for each remote user/host. If there are multiple remote users/hosts, this callback is triggered multiple times every 2 seconds.</p>
+            <p props="rn">This callback describes end-to-end video stream statistics of remote users during a call. It is triggered every 2 seconds for each remote user/host. If there are multiple remote users/hosts, this callback is triggered multiple times every 2 seconds.</p>
+            <p props="flutter">This callback reports end-to-end statistics of the remote video stream during a call. It is triggered every 2 seconds for each remote user/host. If there are multiple remote users/hosts, this callback is triggered multiple times every 2 seconds.</p>
+            <p props="unity">This callback reports end-to-end video stream statistics of remote users during a call. It is triggered every 2 seconds for each remote user/host. If there are multiple remote users/hosts, this callback is triggered multiple times every 2 seconds.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>stats</pt>
+                    <pd>Remote video statistics. See <xref keyref="RemoteVideoStats"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>stats</pt>
+                    <pd>Remote video statistics. See <xref keyref="RemoteVideoStats"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>stats</pt>
+                    <pd>Statistics of the remote video. See <xref keyref="RemoteVideoStats"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>stats</pt>
+                    <pd>Remote video statistics. See <xref keyref="RemoteVideoStats"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

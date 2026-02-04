@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_startrtmpstreamwithtranscodingex">
+    <title><ph keyref="startRtmpStreamWithTranscodingEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Starts pushing streams to a CDN and sets the transcoding configuration.</ph><ph id="shortdesc" props="rn">Starts pushing media streams to a CDN and sets the transcoding configuration.</ph><ph id="shortdesc" props="flutter">Starts pushing streams with transcoding settings.</ph><ph id="shortdesc" props="unity">Starts RTMP streaming with transcoding settings.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startRtmpStreamWithTranscodingEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startRtmpStreamWithTranscodingEx(
+    url: string,
+    transcoding: LiveTranscoding,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startRtmpStreamWithTranscodingEx(
+    url: string,
+    transcoding: LiveTranscoding,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startRtmpStreamWithTranscodingEx(
+      {required String url,
+      required LiveTranscoding transcoding,
+      required RtcConnection connection});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartRtmpStreamWithTranscodingEx(string url, LiveTranscoding transcoding, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Agora recommends using the more comprehensive server-side streaming feature. See [Implement server-side CDN streaming](https://doc.shengwang.cn/doc/media-push/restful/landing-page).
+Call this method to push live audio and video streams to the specified CDN streaming URL and set the transcoding configuration. This method can only push media streams to one URL at a time. To push to multiple URLs, call this method multiple times.
+After calling this method, the SDK triggers the <xref keyref="onRtmpStreamingStateChanged"/> callback locally to report the streaming status.</p>
+            <p props="rn">Agora recommends using the more comprehensive server-side CDN streaming service. See [Implement server-side CDN streaming](https://doc.shengwang.cn/doc/media-push/restful/landing-page).
+Call this method to push live audio and video streams to the specified CDN streaming URL and set the transcoding configuration. This method can only push media streams to one URL at a time. To push to multiple URLs, call this method multiple times.
+After calling this method, the SDK triggers the <xref keyref="onRtmpStreamingStateChanged"/> callback locally to report the streaming status.</p>
+            <p props="flutter">Agora recommends using the more comprehensive server-side streaming feature. See [Implement Server-Side Streaming](https://doc.shengwang.cn/doc/media-push/restful/landing-page).
+You can call this method to push live audio and video streams to a specified CDN streaming URL with transcoding settings. This method can only push to one URL at a time. To push to multiple URLs, you must call this method multiple times.
+After calling this method, the SDK triggers the <xref keyref="onRtmpStreamingStateChanged"/> callback locally to report the streaming status.</p>
+            <p props="unity">Agora recommends using a more comprehensive server-side streaming feature. See [Implement server-side streaming](https://doc.shengwang.cn/doc/media-push/restful/landing-page).
+By calling this method, you can push live audio and video streams to the specified RTMP address and set transcoding parameters. This method can only push to one address at a time. If you need to push to multiple addresses, call this method multiple times.
+After calling this method, the SDK triggers the <xref keyref="onRtmpStreamingStateChanged"/> callback locally to report the streaming state.</p>
+            <note props="electron">
+                <ul>
+                    <li>Make sure the CDN streaming service is enabled.</li>
+                    <li>Call this method after joining a channel.</li>
+                    <li>Only hosts in a live streaming scenario can call this method.</li>
+                    <li>If the stream push fails and you want to retry, you must call <xref keyref="stopRtmpStreamEx"/> before calling this method again. Otherwise, the SDK returns the same error code as the previous failure.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>Make sure the CDN streaming service is enabled.</li>
+                    <li>Call this method after joining a channel.</li>
+                    <li>Only hosts in a live streaming scenario can call this method.</li>
+                    <li>If the streaming fails and you want to restart it, you must call <xref keyref="stopRtmpStreamEx"/> before calling this method again. Otherwise, the SDK returns the same error code as the previous failure.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>Make sure the CDN streaming service is enabled.</li>
+                    <li>Call this method after joining a channel.</li>
+                    <li>Only hosts in live streaming scenarios can call this method.</li>
+                    <li>If the stream fails to start and you want to restart it, you must call <xref keyref="stopRtmpStreamEx"/> before calling this method again. Otherwise, the SDK returns the same error code as the previous failure.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>Make sure the RTMP streaming service is enabled.</li>
+                    <li>Call this method after joining a channel.</li>
+                    <li>Only hosts in a live broadcast scenario can call this method.</li>
+                    <li>If the streaming fails and you want to restart it, make sure to call <xref keyref="stopRtmpStreamEx"/> before calling this method again, otherwise the SDK returns the same error code as the last failure.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>url</pt>
+                    <pd>The CDN streaming URL. Must be in RTMP or RTMPS format. The character length must not exceed 1024 bytes. Special characters such as Chinese characters are not supported.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>transcoding</pt>
+                    <pd>The transcoding configuration for the CDN stream. See <xref keyref="LiveTranscoding"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>url</pt>
+                    <pd>The CDN streaming URL. The format must be RTMP or RTMPS. The character length must not exceed 1024 bytes. Chinese characters and other special characters are not supported.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>transcoding</pt>
+                    <pd>The transcoding configuration for CDN streaming. See <xref keyref="LiveTranscoding"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>url</pt>
+                    <pd>The CDN streaming URL. The format must be RTMP or RTMPS. The character length must not exceed 1024 bytes. Special characters such as Chinese are not supported.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>transcoding</pt>
+                    <pd>The transcoding settings for the CDN stream. See <xref keyref="LiveTranscoding"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>url</pt>
+                    <pd>The RTMP or RTMPS streaming URL. The character length must not exceed 1024 bytes. Chinese characters and other special characters are not supported.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>transcoding</pt>
+                    <pd>The transcoding settings for RTMP streaming. See <xref keyref="LiveTranscoding"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: The URL or transcoding parameter is invalid. Check your URL or parameter settings.</li>
+                            <li>-7: The SDK is not initialized before calling this method.</li>
+                            <li>-19: The CDN streaming URL is already in use. Use a different URL.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: The URL or transcoding parameter is invalid. Check your URL or parameter settings.</li>
+                            <li>-7: The SDK is not initialized before calling this method.</li>
+                            <li>-19: The CDN streaming URL is already in use. Use another CDN streaming URL.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid URL or transcoding parameters. Please check your URL or parameter settings.</li>
+                            <li>-7: The SDK was not initialized before calling this method.</li>
+                            <li>-19: The RTMP URL is already in use. Please use another RTMP URL.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

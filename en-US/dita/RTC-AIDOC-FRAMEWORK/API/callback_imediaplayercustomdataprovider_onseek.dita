@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayercustomdataprovider_onseek">
+    <title><ph keyref="onSeek"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Callback for seeking media resource data.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onSeek"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public virtual Int64 OnSeek(Int64 offset, int whence)
+        {
+            return 0;
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">When opening a media resource using <xref keyref="openWithMediaSource"/> or <xref keyref="open"/>, the SDK triggers this callback to request seeking to a specified position in the media resource.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>offset</pt>
+                    <pd>Input parameter. The offset from the origin to seek to, in bytes. Can be positive or negative.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>whence</pt>
+                    <pd>Input parameter. Indicates the origin position for seeking. Possible values:
+                        <ul>
+                            <li>0: Origin is the beginning of the data. Actual offset is <codeph>offset</codeph>.</li>
+                            <li>1: Origin is the current position. Actual offset is current position plus <codeph>offset</codeph>.</li>
+                            <li>2: Origin is the end of the data. Actual offset is file length plus <codeph>offset</codeph>.</li>
+                            <li>65536: Do not perform seek operation; return file size. Recommended for playing pure audio files such as MP3 or WAV.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li>When <codeph>whence</codeph> is <codeph>65536</codeph>, returns the media file size.</li>
+                    <li>When <codeph>whence</codeph> is <codeph>0</codeph>/<codeph>1</codeph>/<codeph>2</codeph>, returns the actual offset after seeking.</li>
+                    <li>-1: Seek failed.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>
