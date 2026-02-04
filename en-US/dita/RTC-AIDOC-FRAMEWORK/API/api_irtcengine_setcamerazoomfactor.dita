@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setcamerazoomfactor">
+    <title><ph keyref="setCameraZoomFactor"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Sets the zoom factor of the camera.</ph><ph id="shortdesc" props="flutter">Sets the camera zoom factor.</ph><ph id="shortdesc" props="unity">Sets the camera zoom factor.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setCameraZoomFactor"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract setCameraZoomFactor(factor: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraZoomFactor(double factor);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetCameraZoomFactor(float factor);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">Some iOS devices have rear cameras composed of multiple lenses, such as dual cameras (wide-angle and ultra-wide-angle) or triple cameras (wide-angle, ultra-wide-angle, and telephoto). For such composite lenses with ultra-wide-angle capabilities, you can call <xref keyref="setCameraCapturerConfiguration"/> and set <codeph>cameraFocalLengthType</codeph> to <codeph>CameraFocalLengthDefault</codeph> (0) (standard lens), then call this method to set the camera zoom factor to a value less than 1.0 to achieve an ultra-wide-angle shooting effect.</p>
+            <p props="flutter">Some iOS devices use a composite rear camera consisting of multiple lenses, such as dual cameras (wide-angle and ultra-wide-angle) or triple cameras (wide-angle, ultra-wide-angle, and telephoto). For such composite lenses with ultra-wide-angle capability, you can call <xref keyref="setCameraCapturerConfiguration"/> to set <codeph>cameraFocalLengthType</codeph> to <codeph>cameraFocalLengthDefault</codeph> (0) (standard lens), and then call this method to set the camera zoom factor to a value less than 1.0 to achieve an ultra-wide-angle shooting effect.</p>
+            <p props="unity">Some iOS devices have composite rear cameras consisting of multiple lenses, such as dual-camera (wide and ultra-wide) or triple-camera (wide, ultra-wide, and telephoto). For such composite lenses with ultra-wide capability, you can call <xref keyref="setCameraCapturerConfiguration"/> to set <codeph>cameraFocalLengthType</codeph> to <codeph>CAMERA_FOCAL_LENGTH_DEFAULT</codeph> (0) (standard lens), and then call this method to set the zoom factor to a value less than 1.0 to achieve an ultra-wide-angle effect.</p>
+            <note props="rn">
+                <ul>
+                    <li>You must call this method after <xref keyref="enableVideo"/>. The setting takes effect after the camera is successfully turned on, that is, when the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LocalVideoStreamStateCapturing</codeph> (1).</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method is applicable only to Android and iOS.</li>
+                    <li>You must call this method after <xref keyref="enableVideo"/>. The setting takes effect after the camera is successfully started, that is, when the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>localVideoStreamStateCapturing</codeph> (1).</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method is applicable to Android and iOS only.</li>
+                    <li>You must call this method after <xref keyref="enableVideo"/>. The setting takes effect after the camera is successfully started, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>factor</pt>
+                    <pd>The zoom factor of the camera. For devices that do not support ultra-wide-angle, the range is from 1.0 to the maximum zoom factor; for devices that support ultra-wide-angle, the range is from 0.5 to the maximum zoom factor. You can use <xref keyref="getCameraMaxZoomFactor"/> to get the maximum zoom factor supported by the device.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>factor</pt>
+                    <pd>Camera zoom factor. For devices that do not support ultra-wide-angle, the value ranges from 1.0 to the maximum zoom factor; for devices that support ultra-wide-angle, the value ranges from 0.5 to the maximum zoom factor. You can call <xref keyref="getCameraMaxZoomFactor"/> to get the maximum zoom factor supported by the device.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>factor</pt>
+                    <pd>Camera zoom factor. For devices that do not support ultra-wide-angle, the range is from 1.0 to the maximum zoom factor. For devices that support ultra-wide-angle, the range is from 0.5 to the maximum zoom factor. You can call <xref keyref="getCameraMaxZoomFactor"/> to get the maximum supported zoom factor.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">
+                <ul>
+                    <li>If the method call succeeds: returns the set <codeph>factor</codeph> value.</li>
+                    <li>If the method call fails: returns a value &lt; 0.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                <ul>
+                    <li>Failure: return value &lt; 0.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>On success: Returns the set <codeph>factor</codeph> value.</li>
+                    <li>On failure: Return value &lt; 0.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

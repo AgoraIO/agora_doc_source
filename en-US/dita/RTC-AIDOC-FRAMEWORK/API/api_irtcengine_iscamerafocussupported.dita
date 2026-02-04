@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_iscamerafocussupported">
+    <title><ph keyref="isCameraFocusSupported"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Checks whether the device supports manual focus.</ph><ph id="shortdesc" props="flutter">Checks whether the device supports manual focus.</ph><ph id="shortdesc" props="unity">Checks whether the device supports manual focus.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="isCameraFocusSupported"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract isCameraFocusSupported(): boolean;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;bool&gt; isCameraFocusSupported();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract bool IsCameraFocusSupported();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="rn">
+                <ul>
+                    <li>You must call this method after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LocalVideoStreamStateCapturing</codeph> (1).</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method is only applicable to Android and iOS.</li>
+                    <li>You must call this method after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and the local video state returns <codeph>localVideoStreamStateCapturing</codeph> (1).</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method is only applicable to Android and iOS.</li>
+                    <li>You must call this method after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and the local video state returns <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</li>
+                </ul>
+            </note>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">
+                <ul>
+                    <li><xref keyref="true"/>: The device supports manual focus.</li>
+                    <li><xref keyref="false"/>: The device does not support manual focus.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li><xref keyref="true"/>: The device supports manual focus.</li>
+                    <li><xref keyref="false"/>: The device does not support manual focus.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li><xref keyref="true"/>: The device supports manual focus.</li>
+                    <li><xref keyref="false"/>: The device does not support manual focus.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_videomoduleposition">
+    <title><ph keyref="VIDEO_MODULE_POSITION"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Video observation position.</ph><ph id="shortdesc" props="rn">Video observation position.</ph><ph id="shortdesc" props="flutter">Video observation position.</ph><ph id="shortdesc" props="unity">Video observation position.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>PositionPostCapturer</pt>
+                    <pd>1: Position after local video capture and preprocessing, corresponding to the <xref keyref="onCaptureVideoFrame"/> callback. The video observed here includes video preprocessing effects, which can be verified by enabling beauty effects, virtual background, or watermark.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>PositionPreRenderer</pt>
+                    <pd>2: Position before rendering of received remote video, corresponding to the <xref keyref="onRenderVideoFrame"/> callback.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>PositionPreEncoder</pt>
+                    <pd>4: Position before local video encoding, corresponding to the <xref keyref="onPreEncodeVideoFrame"/> callback. The video observed here includes preprocessing and pre-encoding effects:
+                        <ul>
+                            <li>For preprocessing effects, you can verify by enabling beauty effects, virtual background, or watermark.</li>
+                            <li>For pre-encoding effects, you can verify by setting a low frame rate (e.g., 5 fps).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>PositionPostCapturerOrigin</pt>
+                    <pd>8: Position after local video capture and before preprocessing. The video observed here does not include preprocessing effects, which can be verified by enabling beauty effects, virtual background, or watermark.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>PositionPostCapturer</pt>
+                    <pd>1: The position after local video is captured and pre-processed, corresponding to the <xref keyref="onCaptureVideoFrame"/> callback. The video observed here includes pre-processing effects, which can be verified by enabling beauty effects, virtual background, or watermark.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>PositionPreRenderer</pt>
+                    <pd>2: The position before rendering the received remote video, corresponding to the <xref keyref="onRenderVideoFrame"/> callback.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>PositionPreEncoder</pt>
+                    <pd>4: The position before local video encoding, corresponding to the <xref keyref="onPreEncodeVideoFrame"/> callback. The video observed here includes both pre-processing and pre-encoding processing effects:
+                        <ul>
+                            <li>For pre-processing effects, you can verify by enabling beauty effects, virtual background, or watermark.</li>
+                            <li>For pre-encoding effects, you can verify by setting a lower frame rate (e.g., 5 fps).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>PositionPostCapturerOrigin</pt>
+                    <pd>8: The position after local video is captured but before pre-processing. The video observed here does not include pre-processing effects and can be verified by enabling beauty effects, virtual background, or setting a watermark.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>positionPostCapturer</pt>
+                    <pd>1: Position after local video capture and preprocessing, corresponding to the <xref keyref="onCaptureVideoFrame"/> callback. The observed video at this position includes preprocessing effects and can be verified by enabling beautification, virtual background, or watermark.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>positionPreRenderer</pt>
+                    <pd>2: Position before rendering received remote video, corresponding to the <xref keyref="onRenderVideoFrame"/> callback.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>positionPreEncoder</pt>
+                    <pd>4: Position before local video encoding, corresponding to the <xref keyref="onPreEncodeVideoFrame"/> callback. The observed video at this position includes preprocessing and pre-encoding effects:
+                        <ul>
+                            <li>For preprocessing effects, verify by enabling beautification, virtual background, or watermark.</li>
+                            <li>For pre-encoding effects, verify by setting a low frame rate (e.g., 5 fps).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>positionPostCapturerOrigin</pt>
+                    <pd>8: Position after local video capture and before preprocessing. The observed video at this position does not include preprocessing effects and can be verified by enabling beautification, virtual background, or watermark.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>POSITION_POST_CAPTURER</pt>
+                    <pd>1: Position after local video capture and preprocessing, corresponding to the <xref keyref="onCaptureVideoFrame"/> callback. The observed video includes preprocessing effects, which can be verified by enabling beauty effects, virtual background, or watermark.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>POSITION_PRE_RENDERER</pt>
+                    <pd>2: Position before rendering the received remote video, corresponding to the <xref keyref="onRenderVideoFrame"/> callback.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>POSITION_PRE_ENCODER</pt>
+                    <pd>4: Position before local video encoding, corresponding to the <xref keyref="onPreEncodeVideoFrame"/> callback. The observed video includes preprocessing and pre-encoding effects:
+                        <ul>
+                            <li>Preprocessing effects can be verified by enabling beauty effects, virtual background, or watermark.</li>
+                            <li>Pre-encoding effects can be verified by setting a low frame rate (e.g., 5 fps).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>POSITION_POST_CAPTURER_ORIGIN</pt>
+                    <pd>8: Position after local video capture and before preprocessing. The observed video does not include preprocessing effects, which can be verified by enabling beauty effects, virtual background, or watermark.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

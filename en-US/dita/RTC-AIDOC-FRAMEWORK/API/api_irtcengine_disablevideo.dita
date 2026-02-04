@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_disablevideo">
+    <title><ph keyref="disableVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Disables the video module.</ph><ph id="shortdesc" props="rn">Disables the video module.</ph><ph id="shortdesc" props="flutter">Disables the video module.</ph><ph id="shortdesc" props="unity">Disables the video module.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="disableVideo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract disableVideo(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract disableVideo(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; disableVideo();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int DisableVideo();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method disables the video module.</p>
+            <p props="rn">This method disables the video module.</p>
+            <p props="flutter">This method disables the video module.</p>
+            <p props="unity">This method disables the video module.</p>
+            <note props="electron">
+                <ul>
+                    <li>This method sets the internal engine to a disabled state, which remains effective after leaving the channel.</li>
+                    <li>Calling this method resets the entire engine and has a relatively slow response time. Depending on your needs, you can use the following methods to control specific video module features independently:
+                        <ul>
+                            <li><xref keyref="enableLocalVideo"/>: Whether to start the camera capture and create a local video stream.</li>
+                            <li><xref keyref="muteLocalVideoStream"/>: Whether to publish the local video stream.</li>
+                            <li><xref keyref="muteRemoteVideoStream"/>: Whether to receive and play the remote video stream.</li>
+                            <li><xref keyref="muteAllRemoteVideoStreams"/>: Whether to receive and play all remote video streams.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>This method sets the internal engine to a disabled state and remains effective after leaving the channel.</li>
+                    <li>Calling this method resets the entire engine and may take longer to respond. You can use the following methods to control specific video module features as needed:
+                        <ul>
+                            <li><xref keyref="enableLocalVideo"/>: Whether to enable camera capture and create a local video stream.</li>
+                            <li><xref keyref="muteLocalVideoStream"/>: Whether to publish the local video stream.</li>
+                            <li><xref keyref="muteRemoteVideoStream"/>: Whether to receive and play the remote video stream.</li>
+                            <li><xref keyref="muteAllRemoteVideoStreams"/>: Whether to receive and play all remote video streams.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method sets the internal engine to a disabled state and remains effective after leaving the channel.</li>
+                    <li>Calling this method resets the entire engine and may take longer to respond. You can use the following methods to control specific video functions as needed:
+                        <ul>
+                            <li><xref keyref="enableLocalVideo"/>: Whether to enable camera capture and create the local video stream.</li>
+                            <li><xref keyref="muteLocalVideoStream"/>: Whether to publish the local video stream.</li>
+                            <li><xref keyref="muteRemoteVideoStream"/>: Whether to receive and play the remote video stream.</li>
+                            <li><xref keyref="muteAllRemoteVideoStreams"/>: Whether to receive and play all remote video streams.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method sets the internal engine to a disabled state and remains effective after leaving the channel.</li>
+                    <li>Calling this method resets the entire engine, which may result in a slower response. You can use the following methods to independently control specific video module features as needed:
+                        <ul>
+                            <li><xref keyref="enableLocalVideo"/>: Whether to start camera capture and create a local video stream.</li>
+                            <li><xref keyref="muteLocalVideoStream"/>: Whether to publish the local video stream.</li>
+                            <li><xref keyref="muteRemoteVideoStream"/>: Whether to receive and play the remote video stream.</li>
+                            <li><xref keyref="muteAllRemoteVideoStreams"/>: Whether to receive and play all remote video streams.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Can be called before or after joining a channel:
+                <ul>
+                    <li>If called before joining a channel, audio-only mode is enabled.</li>
+                    <li>If called after joining a channel, the mode switches from video to audio-only. You can call the <xref keyref="enableVideo"/> method to switch back to video mode.</li>
+                </ul>
+            </p>
+            <p props="rn">Can be called before or after joining a channel:
+                <ul>
+                    <li>If called before joining, it enables audio-only mode.</li>
+                    <li>If called after joining, it switches from video mode to audio-only mode. You can call <xref keyref="enableVideo"/> to switch back to video mode.</li>
+                </ul>
+            </p>
+            <p props="flutter">Can be called before or after joining a channel:
+                <ul>
+                    <li>If called before joining, audio-only mode is enabled.</li>
+                    <li>If called after joining, switches from video mode to audio-only mode. You can call <xref keyref="enableVideo"/> to switch back to video mode.</li>
+                </ul>
+            </p>
+            <p props="unity">Can be called before or after joining a channel:
+                <ul>
+                    <li>If called before joining a channel, audio-only mode is enabled.</li>
+                    <li>If called after joining a channel, it switches from video mode to audio-only mode. You can then call the <xref keyref="enableVideo"/> method to enable video mode.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Related Callbacks</title>
+            <p props="electron">After this method is successfully called, the remote user receives the <xref keyref="onUserEnableVideo"/> (<xref keyref="false"/>) callback.</p>
+            <p props="rn">After successfully calling this method, the remote side receives the <xref keyref="onUserEnableVideo"/> (<xref keyref="false"/>) callback.</p>
+            <p props="flutter">After this method is successfully called, the remote side receives the <xref keyref="onUserEnableVideo"/> (<xref keyref="false"/>) callback.</p>
+            <p props="unity">After this method is called successfully, the remote side triggers the <xref keyref="onUserEnableVideo"/> (<xref keyref="false"/>) callback.</p>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting tips.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Method call succeeded.</li>
+                    <li>&lt; 0: Method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

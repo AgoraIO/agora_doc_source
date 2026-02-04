@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setcameracapturerconfiguration">
+    <title><ph keyref="setCameraCapturerConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the camera capture configuration.</ph><ph id="shortdesc" props="rn">Sets the camera capture configuration.</ph><ph id="shortdesc" props="flutter">Sets the camera capture configuration.</ph><ph id="shortdesc" props="unity">Sets the camera capture configuration.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setCameraCapturerConfiguration"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setCameraCapturerConfiguration(
+    config: CameraCapturerConfiguration
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setCameraCapturerConfiguration(
+    config: CameraCapturerConfiguration
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraCapturerConfiguration(
+      CameraCapturerConfiguration config);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetCameraCapturerConfiguration(CameraCapturerConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="rn">Before adjusting the camera's focal length configuration, it is recommended to call <xref keyref="queryCameraFocalLengthCapability"/> to query the device's supported focal length capabilities, and configure accordingly.
+Due to limitations on some Android devices, even if you configure the focal length type based on the result of <xref keyref="queryCameraFocalLengthCapability"/>, the setting may not take effect.</note>
+            <note props="flutter">Before adjusting the camera focal length configuration, it is recommended to call <xref keyref="queryCameraFocalLengthCapability"/> to check the supported focal length capabilities of the device, and then configure accordingly.
+Due to limitations of some Android devices, the configuration may not take effect even if you set the focal length type based on the result of <xref keyref="queryCameraFocalLengthCapability"/>.</note>
+            <note props="unity">Before adjusting the camera focal length configuration, it is recommended to call <xref keyref="queryCameraFocalLengthCapability"/> to query the supported focal length capabilities of the device, and then configure accordingly.
+Due to limitations on some Android devices, even if the focal length type is set according to the result of <xref keyref="queryCameraFocalLengthCapability"/>, the setting may not take effect.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called before starting local camera capture, such as before calling <xref keyref="startPreview2"/> or <xref keyref="joinChannel2"/>.</p>
+            <p props="rn">You must call this method before enabling local camera capture, such as before calling <xref keyref="startPreview2"/> or <xref keyref="joinChannel2"/>.</p>
+            <p props="flutter">You must call this method before starting local camera capture, such as before calling <xref keyref="startPreview2"/> and <xref keyref="joinChannel2"/>.</p>
+            <p props="unity">You must call this method before starting local camera capture, such as before calling <xref keyref="startPreview2"/> and <xref keyref="joinChannel2"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>Camera capture configuration. See <xref keyref="CameraCapturerConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>config</pt>
+                    <pd>Camera capture configuration. See <xref keyref="CameraCapturerConfiguration"/>.
+                        <note>You do not need to set the <codeph>deviceId</codeph> parameter in this method.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>Camera capture configuration. See <xref keyref="CameraCapturerConfiguration"/>.
+                        <note>You do not need to set the <codeph>deviceId</codeph> parameter in this method.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>Camera capture configuration. See <xref keyref="CameraCapturerConfiguration"/>.
+                        <note>You do not need to set the <codeph>deviceId</codeph> parameter in this method.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                <ul>
+                    <li>&lt; 0: Method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

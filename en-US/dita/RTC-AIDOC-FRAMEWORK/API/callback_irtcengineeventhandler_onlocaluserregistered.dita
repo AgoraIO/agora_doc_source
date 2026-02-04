@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onlocaluserregistered">
+    <title><ph keyref="onLocalUserRegistered"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback when the local user successfully registers a User Account.</ph><ph id="shortdesc" props="rn">Occurs when the local user successfully registers a User Account.</ph><ph id="shortdesc" props="flutter">Callback when the local user successfully registers a User Account.</ph><ph id="shortdesc" props="unity">Callback when the local user successfully registers a User Account.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalUserRegistered"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onLocalUserRegistered?(uid: number, userAccount: string): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onLocalUserRegistered?(uid: number, userAccount: string): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(int uid, String userAccount)? onLocalUserRegistered;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalUserRegistered(uint uid, string userAccount) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After the local user successfully calls <xref keyref="registerLocalUserAccount"/> to register a User Account or calls <xref keyref="joinChannelWithUserAccount2"/> to join a channel, the SDK triggers this callback and reports the UID and User Account of the local user.</p>
+            <p props="rn">After the local user successfully calls <xref keyref="registerLocalUserAccount"/> to register a User Account or calls <xref keyref="joinChannelWithUserAccount2"/> to join a channel, the SDK triggers this callback and reports the local user's UID and User Account.</p>
+            <p props="flutter">When the local user successfully registers a User Account by calling <xref keyref="registerLocalUserAccount"/>, or joins a channel using <xref keyref="joinChannelWithUserAccount2"/>, the SDK triggers this callback and reports the local user's UID and User Account.</p>
+            <p props="unity">This callback is triggered after the local user successfully registers a User Account by calling <xref keyref="registerLocalUserAccount"/>, or joins a channel by calling <xref keyref="joinChannelWithUserAccount2"/>. It informs you of the local user's UID and User Account.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>The ID of the local user.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>userAccount</pt>
+                    <pd>The User Account of the local user.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>The ID of the local user.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>userAccount</pt>
+                    <pd>The User Account of the local user.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>The local user's ID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>userAccount</pt>
+                    <pd>The local user's User Account.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>The local user's ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>userAccount</pt>
+                    <pd>The local user's User Account.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

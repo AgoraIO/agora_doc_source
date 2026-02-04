@@ -1,0 +1,303 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_agorapipoptions">
+    <title><ph keyref="AgoraPipOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Configuration options for Agora picture-in-picture mode.</ph><ph id="shortdesc" props="flutter">Configuration options for Agora picture-in-picture mode.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">export class AgoraPipOptions {
+  autoEnterEnabled?: boolean;
+  aspectRatioX?: number;
+  aspectRatioY?: number;
+  sourceRectHintLeft?: number;
+  sourceRectHintTop?: number;
+  sourceRectHintRight?: number;
+  sourceRectHintBottom?: number;
+  seamlessResizeEnabled?: boolean;
+  useExternalStateMonitor?: boolean;
+  externalStateMonitorInterval?: number;
+  videoStreams?: RtcRendererViewProps[];
+  contentViewLayout?: AgoraPipContentViewLayout;
+  sourceContentView?: number;
+  contentView?: number;
+  preferredContentWidth?: number;
+  preferredContentHeight?: number;
+  controlStyle?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class AgoraPipOptions {
+  final bool? autoEnterEnabled;
+  final int? aspectRatioX;
+  final int? aspectRatioY;
+  final int? sourceRectHintLeft;
+  final int? sourceRectHintTop;
+  final int? sourceRectHintRight;
+  final int? sourceRectHintBottom;
+  final bool? seamlessResizeEnabled;
+  final bool? useExternalStateMonitor;
+  final int? externalStateMonitorInterval;
+  final int? sourceContentView;
+  int? contentView;
+  final List&lt;AgoraPipVideoStream&gt;? videoStreams;
+  final AgoraPipContentViewLayout? contentViewLayout;
+  final int? preferredContentWidth;
+  final int? preferredContentHeight;
+  final int? controlStyle;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="flutter rn">
+            <dl outputclass="since">
+                <dlentry props="rn">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.2.</dd>
+                </dlentry>
+            </dl>
+            <p props="rn">This class provides platform-specific options to configure picture-in-picture behavior on Android and iOS.</p>
+            <p props="flutter">This class provides platform-specific options to configure picture-in-picture behavior on Android and iOS platforms.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn">
+            <title>Properties</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>autoEnterEnabled</pt>
+                    <pd>Whether to automatically enter picture-in-picture mode.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>aspectRatioX</pt>
+                    <pd>Horizontal aspect ratio of the picture-in-picture window.
+
+(Android only)</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>aspectRatioY</pt>
+                    <pd>Vertical aspect ratio of the picture-in-picture window.
+
+(Android only)</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceRectHintLeft</pt>
+                    <pd>Left coordinate of the source rectangle hint.
+
+Used to specify the initial position of the picture-in-picture window.
+(Android only)</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceRectHintTop</pt>
+                    <pd>Top coordinate of the source rectangle hint.
+
+Used to specify the initial position of the picture-in-picture window.
+(Android only)</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceRectHintRight</pt>
+                    <pd>Right coordinate of the source rectangle hint.
+
+Used to specify the initial position of the picture-in-picture window.
+(Android only)</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceRectHintBottom</pt>
+                    <pd>Bottom coordinate of the source rectangle hint.
+
+Used to specify the initial position of the picture-in-picture window.
+(Android only)</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>seamlessResizeEnabled</pt>
+                    <pd>Whether to enable seamless resizing of the picture-in-picture window.
+
+When enabled, the window resizes smoothly.
+Default is <codeph><ph keyref="false"/></codeph>.
+(Android only)</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>useExternalStateMonitor</pt>
+                    <pd>Whether to use an external state monitor.
+
+When enabled, a dedicated thread is created to monitor the state of the picture-in-picture window. Use <codeph>externalStateMonitorInterval</codeph> to configure the monitoring frequency.
+Default is true.
+(Android only)</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>externalStateMonitorInterval</pt>
+                    <pd>Interval for external state monitoring, in milliseconds.
+
+Takes effect only when <codeph>useExternalStateMonitor</codeph> is true.
+Default is 100ms.
+(Android only)</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoStreams</pt>
+                    <pd>Video transcoding configuration.
+
+Takes effect only when <codeph>contentView</codeph> is set to 0. When the SDK manages the views, all video streams are placed in the root view of the picture-in-picture window.
+(iOS only)</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>contentViewLayout</pt>
+                    <pd>Layout configuration for picture-in-picture video streams.
+
+Takes effect only when <codeph>contentView</codeph> is set to 0.
+(iOS only)</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceContentView</pt>
+                    <pd><codeph>sourceContentView</codeph> determines the source frame and restore target for picture-in-picture animation. Pass 0 to use the app's root view. For best animation experience, set this to the view containing video content. The system uses this view for enter/exit animations and as the restore target when returning to the app or stopping picture-in-picture.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>contentView</pt>
+                    <pd><codeph>contentView</codeph> determines which view will be displayed in the picture-in-picture window. If 0 is passed, the picture-in-picture controller automatically manages and displays all video streams. If a specific view ID is passed, you are responsible for managing the content displayed in the picture-in-picture window.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>preferredContentWidth</pt>
+                    <pd>Preferred width of the picture-in-picture content.
+
+(iOS only)</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>preferredContentHeight</pt>
+                    <pd>Preferred height of the picture-in-picture content.
+
+(iOS only)</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>controlStyle</pt>
+                    <pd>Control style of the picture-in-picture window.
+Available styles:
+                        <ul>
+                            <li>0: Show all system controls (default)</li>
+                            <li>1: Hide forward and back buttons</li>
+                            <li>2: Hide play/pause button and progress bar (recommended)</li>
+                            <li>3: Hide all system controls, including close and restore buttons</li>
+                        </ul><ph>(iOS only)</ph></pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>autoEnterEnabled</pt>
+                    <pd>Whether to automatically enter picture-in-picture mode.
+
+(Android only)</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>aspectRatioX</pt>
+                    <pd>Horizontal aspect ratio of the picture-in-picture window.
+
+(Android only)</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>aspectRatioY</pt>
+                    <pd>Vertical aspect ratio of the picture-in-picture window.
+
+(Android only)</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceRectHintLeft</pt>
+                    <pd>Left coordinate of the source rectangle hint.
+
+Used to specify the initial position of the picture-in-picture window.
+(Android only)</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceRectHintTop</pt>
+                    <pd>Top coordinate of the source rectangle hint.
+
+Used to specify the initial position of the picture-in-picture window.
+(Android only)</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceRectHintRight</pt>
+                    <pd>Right coordinate of the source rectangle hint.
+
+Used to specify the initial position of the picture-in-picture window.
+(Android only)</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceRectHintBottom</pt>
+                    <pd>Bottom coordinate of the source rectangle hint.
+
+Used to specify the initial position of the picture-in-picture window.
+(Android only)</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>seamlessResizeEnabled</pt>
+                    <pd>Whether to enable seamless resizing of the picture-in-picture window.
+
+When enabled, the picture-in-picture window resizes smoothly.
+Default is <codeph><ph keyref="false"/></codeph>.
+(Android only)</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>useExternalStateMonitor</pt>
+                    <pd>Whether to use an external state monitor.
+
+When enabled, a dedicated thread is created to monitor the picture-in-picture window state. Use <codeph>externalStateMonitorInterval</codeph> to configure the monitoring frequency.
+Default is false.
+(Android only)</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>externalStateMonitorInterval</pt>
+                    <pd>Interval for external state monitoring in milliseconds.
+
+Takes effect only when <codeph>useExternalStateMonitor</codeph> is true.
+Default is 100ms.
+(Android only)</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceContentView</pt>
+                    <pd>Identifier of the source content view.
+
+Set to 0 to use the root view as the source.
+(iOS only)</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>contentView</pt>
+                    <pd>Identifier of the content view used for video rendering.
+
+Set to 0 to let the SDK manage the view. When set to 0, you must provide video sources via <codeph>videoStreams</codeph>.
+(iOS only)</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoStreams</pt>
+                    <pd>Video transcoding configuration.
+
+Takes effect only when <codeph>contentView</codeph> is set to 0. When the SDK manages the view, all video streams are placed in the root view of the picture-in-picture window.
+(iOS only)</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>contentViewLayout</pt>
+                    <pd>Layout configuration for picture-in-picture video streams.
+
+Takes effect only when <codeph>contentView</codeph> is set to 0.
+(iOS only)</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>preferredContentWidth</pt>
+                    <pd>Preferred width of the picture-in-picture content.
+
+(iOS only)</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>preferredContentHeight</pt>
+                    <pd>Preferred height of the picture-in-picture content.
+
+(iOS only)</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>controlStyle</pt>
+                    <pd>Control style of the picture-in-picture window.
+Available styles:
+                        <ul>
+                            <li>0: Show all system controls (default)</li>
+                            <li>1: Hide forward and backward buttons</li>
+                            <li>2: Hide play/pause button and progress bar (recommended)</li>
+                            <li>3: Hide all system controls, including close and resume buttons</li>
+                        </ul><ph>(iOS only)</ph></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

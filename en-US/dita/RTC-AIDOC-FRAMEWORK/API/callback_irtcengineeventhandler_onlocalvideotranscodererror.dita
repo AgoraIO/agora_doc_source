@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onlocalvideotranscodererror">
+    <title><ph keyref="onLocalVideoTranscoderError"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback when a local video mixing error occurs.</ph><ph id="shortdesc" props="rn">Callback when a local video compositing error occurs.</ph><ph id="shortdesc" props="flutter">Callback for local video mixing error.</ph><ph id="shortdesc" props="unity">Callback for local video transcoding error.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalVideoTranscoderError"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onLocalVideoTranscoderError?(
+    stream: TranscodingVideoStream,
+    error: VideoTranscoderError
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onLocalVideoTranscoderError?(
+    stream: TranscodingVideoStream,
+    error: VideoTranscoderError
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(
+          TranscodingVideoStream stream, VideoTranscoderError error)?
+      onLocalVideoTranscoderError;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoTranscoderError(TranscodingVideoStream stream, VIDEO_TRANSCODER_ERROR error){}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">When <xref keyref="startLocalVideoTranscoder"/> or <xref keyref="updateLocalTranscoderConfiguration"/> fails, the SDK triggers this callback to report the reason for the mixing failure.</p>
+            <p props="rn">This callback is triggered by the SDK when <xref keyref="startLocalVideoTranscoder"/> or <xref keyref="updateLocalTranscoderConfiguration"/> fails, reporting the reason for the compositing failure.</p>
+            <p props="flutter">When calling <xref keyref="startLocalVideoTranscoder"/> or <xref keyref="updateLocalTranscoderConfiguration"/> fails, the SDK triggers this callback to report the reason for the mixing failure.</p>
+            <p props="unity">When <xref keyref="startLocalVideoTranscoder"/> or <xref keyref="updateLocalTranscoderConfiguration"/> fails, the SDK triggers this callback to report the reason for the failure.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>stream</pt>
+                    <pd>The video stream that failed to mix. See <xref keyref="TranscodingVideoStream"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>error</pt>
+                    <pd>The reason for the local video mixing error. See <xref keyref="VIDEO_TRANSCODER_ERROR"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>stream</pt>
+                    <pd>The video stream that failed to composite. See <xref keyref="TranscodingVideoStream"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>error</pt>
+                    <pd>The reason for the local video compositing error. See <xref keyref="VIDEO_TRANSCODER_ERROR"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>stream</pt>
+                    <pd>The video stream that failed to mix. See <xref keyref="TranscodingVideoStream"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>error</pt>
+                    <pd>The reason for the local video mixing error. See <xref keyref="VIDEO_TRANSCODER_ERROR"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>stream</pt>
+                    <pd>The video stream that failed to transcode. See <xref keyref="TranscodingVideoStream"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>error</pt>
+                    <pd>Reason for the local video transcoding error. See <xref keyref="VIDEO_TRANSCODER_ERROR"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

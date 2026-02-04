@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setheadphoneeqparameters">
+    <title><ph keyref="setHeadphoneEQParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the low and high frequency parameters of the headphone equalizer.</ph><ph id="shortdesc" props="rn">Sets the low and high frequency parameters of the headphone equalizer.</ph><ph id="shortdesc" props="flutter">Sets the low-frequency and high-frequency parameters of the headphone equalizer.</ph><ph id="shortdesc" props="unity">Sets the low and high frequency parameters of the headphone equalizer.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setHeadphoneEQParameters"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setHeadphoneEQParameters(lowGain: number, highGain: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setHeadphoneEQParameters(lowGain: number, highGain: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setHeadphoneEQParameters(
+      {required int lowGain, required int highGain});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetHeadphoneEQParameters(int lowGain, int highGain);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">In spatial audio scenarios, if the expected effect is not achieved after calling the <xref keyref="setHeadphoneEQPreset"/> method to use a preset headphone equalizer, you can further adjust the headphone equalizer effect by calling this method.</p>
+            <p props="rn">In spatial audio scenarios, if the expected effect is not achieved after calling <xref keyref="setHeadphoneEQPreset"/> to use a preset headphone equalizer effect, you can call this method to further adjust the headphone equalizer.</p>
+            <p props="flutter">In spatial audio scenarios, if the preset headphone equalizer effect set by calling <xref keyref="setHeadphoneEQPreset"/> does not meet expectations, you can call this method to further adjust the headphone equalizer effect.</p>
+            <p props="unity">In spatial audio scenarios, if the preset headphone equalizer effect set by calling <xref keyref="setHeadphoneEQPreset"/> does not meet expectations, you can further adjust the headphone equalizer effect by calling this method.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>lowGain</pt>
+                    <pd>Low frequency parameter of the headphone equalizer. Value range: [-10,10]. The higher the value, the deeper the sound.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>highGain</pt>
+                    <pd>High frequency parameter of the headphone equalizer. Value range: [-10,10]. The higher the value, the sharper the sound.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lowGain</pt>
+                    <pd>Low frequency parameter of the headphone equalizer. Range: [-10, 10]. The higher the value, the deeper the sound.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>highGain</pt>
+                    <pd>High frequency parameter of the headphone equalizer. Range: [-10, 10]. The higher the value, the sharper the sound.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lowGain</pt>
+                    <pd>Low-frequency parameter of the headphone equalizer. Value range is [-10,10]. The higher the value, the deeper the sound.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>highGain</pt>
+                    <pd>High-frequency parameter of the headphone equalizer. Value range is [-10,10]. The higher the value, the sharper the sound.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lowGain</pt>
+                    <pd>Low frequency parameter of the headphone equalizer. Value range: [-10,10]. The higher the value, the deeper the sound.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>highGain</pt>
+                    <pd>High frequency parameter of the headphone equalizer. Value range: [-10,10]. The higher the value, the sharper the sound.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure
+                        <ul>
+                            <li>-1: General error (not specifically classified).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure
+                        <ul>
+                            <li>-1: General error (not specifically classified).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure
+                        <ul>
+                            <li>-1: General error (not specifically categorized).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

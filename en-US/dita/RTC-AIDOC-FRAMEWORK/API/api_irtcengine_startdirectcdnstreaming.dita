@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startdirectcdnstreaming">
+    <title><ph keyref="startDirectCdnStreaming"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Starts direct CDN streaming on the host side.</ph><ph id="shortdesc" props="rn">Starts direct CDN streaming from the host.</ph><ph id="shortdesc" props="flutter">Starts pushing streams directly from the host to the CDN.</ph><ph id="shortdesc" props="unity">Starts pushing the stream directly to the CDN from the host.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startDirectCdnStreaming"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startDirectCdnStreaming(
+    eventHandler: IDirectCdnStreamingEventHandler,
+    publishUrl: string,
+    options: DirectCdnStreamingMediaOptions
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startDirectCdnStreaming(
+    eventHandler: IDirectCdnStreamingEventHandler,
+    publishUrl: string,
+    options: DirectCdnStreamingMediaOptions
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startDirectCdnStreaming(
+      {required DirectCdnStreamingEventHandler eventHandler,
+      required String publishUrl,
+      required DirectCdnStreamingMediaOptions options});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartDirectCdnStreaming(string publishUrl, DirectCdnStreamingMediaOptions options);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">The SDK does not support pushing streams to the same URL more than once at the same time.
+Media options explanation:
+The SDK does not support setting both <codeph>publishCameraTrack</codeph> and <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/>, nor both <codeph>publishMicrophoneTrack</codeph> and <codeph>publishCustomAudioTrack</codeph> to <xref keyref="true"/>. You can configure media options (<xref keyref="DirectCdnStreamingMediaOptions"/>) based on your scenario. For example:
+If you want to push custom audio and video streams collected by the host, configure the media options as follows:
+                <ul>
+                    <li>Set <codeph>publishCustomAudioTrack</codeph> to <xref keyref="true"/> and call <xref keyref="pushAudioFrame"/></li>
+                    <li>Set <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/> and call <xref keyref="pushVideoFrame"/></li>
+                    <li>Ensure <codeph>publishCameraTrack</codeph> is <xref keyref="false"/> (default value)</li>
+                    <li>Ensure <codeph>publishMicrophoneTrack</codeph> is <xref keyref="false"/> (default value)</li>
+                </ul><ph>Since v4.2.0, the SDK supports pushing audio-only streams. You can set <codeph>publishCustomAudioTrack</codeph> or <codeph>publishMicrophoneTrack</codeph> to <xref keyref="true"/> in <xref keyref="DirectCdnStreamingMediaOptions"/> and call <xref keyref="pushAudioFrame"/> to push an audio-only stream.</ph></p>
+            <p props="rn">The SDK does not support pushing streams to the same URL simultaneously.
+Media options:
+The SDK does not support setting both <codeph>publishCameraTrack</codeph> and <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/>, nor both <codeph>publishMicrophoneTrack</codeph> and <codeph>publishCustomAudioTrack</codeph> to <xref keyref="true"/>. You can configure the media options (<xref keyref="DirectCdnStreamingMediaOptions"/>) based on your scenario. For example:
+If you want to push custom audio and video streams from the host, set the media options as follows:
+                <ul>
+                    <li>Set <codeph>publishCustomAudioTrack</codeph> to <xref keyref="true"/> and call <xref keyref="pushAudioFrame"/></li>
+                    <li>Set <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/> and call <xref keyref="pushVideoFrame"/></li>
+                    <li>Ensure <codeph>publishCameraTrack</codeph> is <xref keyref="false"/> (default)</li>
+                    <li>Ensure <codeph>publishMicrophoneTrack</codeph> is <xref keyref="false"/> (default)</li>
+                </ul><ph>Since v4.2.0, the SDK supports pushing audio-only streams. You can set <codeph>publishCustomAudioTrack</codeph> or <codeph>publishMicrophoneTrack</codeph> to <xref keyref="true"/> in <xref keyref="DirectCdnStreamingMediaOptions"/> and call <xref keyref="pushAudioFrame"/> to push audio-only streams.</ph></p>
+            <p props="flutter">The SDK does not support pushing to the same URL multiple times simultaneously.
+Media options:
+The SDK does not support <codeph>publishCameraTrack</codeph> and <codeph>publishCustomVideoTrack</codeph> being <xref keyref="true"/> at the same time, nor does it support <codeph>publishMicrophoneTrack</codeph> and <codeph>publishCustomAudioTrack</codeph> being <xref keyref="true"/> at the same time. You can set the media options (<xref keyref="DirectCdnStreamingMediaOptions"/>) based on your scenario. For example:
+If you want to push custom audio and video streams from the host:
+                <ul>
+                    <li>Set <codeph>publishCustomAudioTrack</codeph> to <xref keyref="true"/> and call <xref keyref="pushAudioFrame"/></li>
+                    <li>Set <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/> and call <xref keyref="pushVideoFrame"/></li>
+                    <li>Ensure <codeph>publishCameraTrack</codeph> is <xref keyref="false"/> (default)</li>
+                    <li>Ensure <codeph>publishMicrophoneTrack</codeph> is <xref keyref="false"/> (default)</li>
+                </ul><ph>Since v4.2.0, the SDK supports pushing audio-only streams. You can set <codeph>publishCustomAudioTrack</codeph> or <codeph>publishMicrophoneTrack</codeph> to <xref keyref="true"/> in <xref keyref="DirectCdnStreamingMediaOptions"/>, and call <xref keyref="pushAudioFrame"/> to push audio-only streams.</ph></p>
+            <p props="unity">The SDK does not support pushing to the same URL multiple times simultaneously.
+Media option notes:
+The SDK does not support setting both <codeph>publishCameraTrack</codeph> and <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/>, nor does it support setting both <codeph>publishMicrophoneTrack</codeph> and <codeph>publishCustomAudioTrack</codeph> to <xref keyref="true"/>. You can configure the media options (<xref keyref="DirectCdnStreamingMediaOptions"/>) based on your scenario. For example:
+If you want to push custom audio and video streams from the host, configure the media options as follows:
+                <ul>
+                    <li>Set <codeph>publishCustomAudioTrack</codeph> to <xref keyref="true"/> and call <xref keyref="pushAudioFrame"/></li>
+                    <li>Set <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/> and call <xref keyref="pushVideoFrame"/></li>
+                    <li>Ensure <codeph>publishCameraTrack</codeph> is <xref keyref="false"/> (default)</li>
+                    <li>Ensure <codeph>publishMicrophoneTrack</codeph> is <xref keyref="false"/> (default)</li>
+                </ul><ph>Since v4.2.0, the SDK supports pushing audio-only streams. You can set <codeph>publishCustomAudioTrack</codeph> or <codeph>publishMicrophoneTrack</codeph> to <xref keyref="true"/> in <xref keyref="DirectCdnStreamingMediaOptions"/> and call <xref keyref="pushAudioFrame"/> to push audio-only streams.</ph></p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>eventHandler</pt>
+                    <pd>See <xref keyref="onDirectCdnStreamingStateChanged"/> and <xref keyref="onDirectCdnStreamingStats"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publishUrl</pt>
+                    <pd>CDN streaming URL.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>options</pt>
+                    <pd>Media options for the host. See <xref keyref="DirectCdnStreamingMediaOptions"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>eventHandler</pt>
+                    <pd>See <xref keyref="onDirectCdnStreamingStateChanged"/> and <xref keyref="onDirectCdnStreamingStats"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publishUrl</pt>
+                    <pd>CDN streaming URL.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>options</pt>
+                    <pd>Media options for the host. See <xref keyref="DirectCdnStreamingMediaOptions"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>eventHandler</pt>
+                    <pd>See <xref keyref="onDirectCdnStreamingStateChanged"/> and <xref keyref="onDirectCdnStreamingStats"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publishUrl</pt>
+                    <pd>CDN streaming URL.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>options</pt>
+                    <pd>Media options for the host. See <xref keyref="DirectCdnStreamingMediaOptions"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publishUrl</pt>
+                    <pd>CDN streaming URL.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>options</pt>
+                    <pd>Media options for the host. See <xref keyref="DirectCdnStreamingMediaOptions"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call was successful.</li>
+                    <li>&lt; 0: The method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

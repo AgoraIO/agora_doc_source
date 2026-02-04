@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audiovolumeinfo">
+    <title><ph keyref="AudioVolumeInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">User volume information.</ph><ph id="shortdesc" props="rn">User volume information.</ph><ph id="shortdesc" props="flutter">User volume information.</ph><ph id="shortdesc" props="unity">User volume information.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class AudioVolumeInfo {
+
+  uid?: number;
+
+  volume?: number;
+
+  vad?: number;
+
+  voicePitch?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class AudioVolumeInfo {
+
+  uid?: number;
+
+  volume?: number;
+
+  vad?: number;
+
+  voicePitch?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class AudioVolumeInfo {
+    const AudioVolumeInfo({this.uid, this.volume, this.vad, this.voicePitch});
+
+    @JsonKey(name: 'uid')
+    final int? uid;
+    @JsonKey(name: 'volume')
+    final int? volume;
+    @JsonKey(name: 'vad')
+    final int? vad;
+    @JsonKey(name: 'voicePitch')
+    final double? voicePitch;
+    factory AudioVolumeInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+        _$AudioVolumeInfoFromJson(json);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioVolumeInfoToJson(this);
+  }</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class AudioVolumeInfo
+    {
+        public AudioVolumeInfo()
+        {
+            uid = 0;
+            volume = 0;
+            vad = 0;
+            voicePitch = 0.0;
+        }
+
+        public AudioVolumeInfo(uint uid, uint volume, uint vad, double voicePitch)
+        {
+            this.uid = uid;
+            this.volume = volume;
+            this.vad = vad;
+            this.voicePitch = voicePitch;
+        }
+
+        public uint uid { set; get; }
+        public uint volume { set; get; }
+        public uint vad { set; get; }
+        public double voicePitch { set; get; }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>User ID.
+                        <ul>
+                            <li>In local user callbacks, <codeph>uid</codeph> is 0.</li>
+                            <li>In remote user callbacks, <codeph>uid</codeph> is the ID of the remote user with the highest instantaneous volume (up to 3 users).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>volume</pt>
+                    <pd>User volume, ranging from [0, 255]. If the user mutes themselves (<xref keyref="muteLocalAudioStream"/> is set to <xref keyref="true"/>) but audio capture is enabled, <codeph>volume</codeph> represents the volume of the local captured signal.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>vad</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li><codeph>vad</codeph> does not report remote user voice activity. For remote users, the value of <codeph>vad</codeph> is always 1.</li>
+                                <li>To use this parameter, set <codeph>reportVad</codeph> to <xref keyref="true"/> when calling <xref keyref="enableAudioVolumeIndication"/>.</li>
+                            </ul>
+                        </note><ph>Local user voice activity status.</ph>
+                        <ul>
+                            <li>0: No voice detected locally.</li>
+                            <li>1: Voice detected locally.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>voicePitch</pt>
+                    <pd>Local user voice pitch (Hz). Value range: [0.0, 4000.0].
+                        <note><codeph>voicePitch</codeph> does not report remote user pitch. For remote users, the value of <codeph>voicePitch</codeph> is always 0.0.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>User ID.
+                        <ul>
+                            <li>In the local user callback, <codeph>uid</codeph> is 0.</li>
+                            <li>In the remote user callback, <codeph>uid</codeph> is the ID of the remote user (up to 3) with the highest instantaneous volume.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>volume</pt>
+                    <pd>User volume, range [0,255]. If the user mutes themselves (sets <xref keyref="muteLocalAudioStream"/> to <xref keyref="true"/>) but enables audio capture, the <codeph>volume</codeph> value indicates the volume of the locally captured signal.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>vad</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li><codeph>vad</codeph> cannot report the voice status of remote users. For remote users, the value of <codeph>vad</codeph> is always 1.</li>
+                                <li>To use this parameter, set <codeph>reportVad</codeph> to <xref keyref="true"/> when calling <xref keyref="enableAudioVolumeIndication"/>.</li>
+                            </ul>
+                        </note><ph>Local user's voice activity status.</ph>
+                        <ul>
+                            <li>0: No voice detected locally.</li>
+                            <li>1: Voice detected locally.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>voicePitch</pt>
+                    <pd>Local user's voice pitch (Hz). Value range: [0.0,4000.0].
+                        <note><codeph>voicePitch</codeph> cannot report the pitch of remote users. For remote users, the value of <codeph>voicePitch</codeph> is always 0.0.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>User ID.
+                        <ul>
+                            <li>In the local user's callback, <codeph>uid</codeph> is 0.</li>
+                            <li>In the remote user's callback, <codeph>uid</codeph> is the ID of the remote user with the highest instantaneous volume (up to 3 users).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>volume</pt>
+                    <pd>User volume, range [0,255]. If the user mutes themselves (sets <xref keyref="muteLocalAudioStream"/> to <xref keyref="true"/>) but audio capture is enabled, the <codeph>volume</codeph> value represents the volume of the locally captured signal.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>vad</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li><codeph>vad</codeph> does not report the voice status of remote users. For remote users, the value of <codeph>vad</codeph> is always 1.</li>
+                                <li>To use this parameter, set <codeph>reportVad</codeph> to <xref keyref="true"/> when calling <xref keyref="enableAudioVolumeIndication"/>.</li>
+                            </ul>
+                        </note><ph>Voice activity status of the local user.</ph>
+                        <ul>
+                            <li>0: No voice detected locally.</li>
+                            <li>1: Voice detected locally.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>voicePitch</pt>
+                    <pd>Voice pitch of the local user (Hz). Value range: [0.0, 4000.0].
+                        <note><codeph>voicePitch</codeph> does not report the voice pitch of remote users. For remote users, the value of <codeph>voicePitch</codeph> is always 0.0.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>User ID.
+                        <ul>
+                            <li>In the callback for the local user, <codeph>uid</codeph> is 0.</li>
+                            <li>In the callback for remote users, <codeph>uid</codeph> is the ID of the remote user with the highest instantaneous volume (up to 3 users).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>volume</pt>
+                    <pd>User's volume, ranging from [0,255]. If the user mutes themselves (sets <xref keyref="muteLocalAudioStream"/> to <xref keyref="true"/>) but audio capture is still enabled, the <codeph>volume</codeph> value indicates the volume of the locally captured signal.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>vad</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li><codeph>vad</codeph> cannot report the voice activity status of remote users. For remote users, the value of <codeph>vad</codeph> is always 1.</li>
+                                <li>To use this parameter, set <codeph>reportVad</codeph> to <xref keyref="true"/> when calling <xref keyref="enableAudioVolumeIndication"/>.</li>
+                            </ul>
+                        </note><ph>Voice activity status of the local user.</ph>
+                        <ul>
+                            <li>0: No voice detected locally.</li>
+                            <li>1: Voice detected locally.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>voicePitch</pt>
+                    <pd>Voice pitch of the local user (Hz). Value range: [0.0, 4000.0].
+                        <note><codeph>voicePitch</codeph> cannot report the voice pitch of remote users. For remote users, the value of <codeph>voicePitch</codeph> is always 0.0.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

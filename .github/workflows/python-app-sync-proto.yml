@@ -1,15 +1,24 @@
 # GitHub CI build pipeline
 name: Awesome prototype syncs
 
+# DISABLED: This workflow has been disabled
 on:
     # pull_request:
     #    branches:
     #        - master
     #        - 'release/**'
-    push:
-        branches:
-            - master
-            # - 'release/**'
+    # push:
+    #     branches:
+    #         - master
+    #         # - 'release/**'
+    
+    # Disabled trigger - will never run
+    workflow_dispatch:
+        inputs:
+            disabled:
+                description: 'This workflow is disabled'
+                required: false
+                default: 'disabled'
 jobs:
     build:
         runs-on: ubuntu-latest

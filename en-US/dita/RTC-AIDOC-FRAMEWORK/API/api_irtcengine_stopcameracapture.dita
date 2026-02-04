@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_stopcameracapture">
+    <title><ph keyref="stopCameraCapture"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Stops video capture using the camera.</ph><ph id="shortdesc" props="rn">Stops capturing video from the camera.</ph><ph id="shortdesc" props="flutter">Stops video capture using the camera.</ph><ph id="shortdesc" props="unity">Stops video capture using the camera.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="stopCameraCapture"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract stopCameraCapture(sourceType: VideoSourceType): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract stopCameraCapture(sourceType: VideoSourceType): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopCameraCapture(VideoSourceType sourceType);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StopCameraCapture(VIDEO_SOURCE_TYPE sourceType);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After calling <xref keyref="startCameraCapture"/> to start one or more video streams from camera capture, you can call this method to stop one or more video streams by setting <codeph>sourceType</codeph>.</p>
+            <p props="rn">After calling <xref keyref="startCameraCapture"/> to start one or more camera video streams, you can call this method and specify <codeph>sourceType</codeph> to stop one or more of the camera video captures.</p>
+            <p props="flutter">After calling <xref keyref="startCameraCapture"/> to start one or more camera capture streams, you can call this method with <codeph>sourceType</codeph> to stop one or more camera video captures.</p>
+            <p props="unity">After calling <xref keyref="startCameraCapture"/> to start one or more video streams from camera capture, you can call this method and specify <codeph>sourceType</codeph> to stop one or more of them.</p>
+            <note props="electron">If you are using the local compositing feature, calling this method to stop video capture from the first camera will interrupt the local compositing.</note>
+            <note props="rn">On iOS, to stop multiple camera captures, you need to call this method first, then call <xref keyref="enableMultiCamera"/> and set <codeph>enabled</codeph> to <xref keyref="false"/>.
+If you are using the local composite layout feature, calling this method to stop video capture from the first camera will interrupt the local composite layout.</note>
+            <note props="flutter">On iOS, to disable multiple camera captures, you must call <xref keyref="enableMultiCamera"/> and set <codeph>enabled</codeph> to <xref keyref="false"/> after calling this method.
+If you are using local video mixing, stopping video capture from the first camera using this method will interrupt the local video mixing.</note>
+            <note props="unity">On iOS, to disable multiple camera captures, you must call <xref keyref="enableMultiCamera"/> and set <codeph>enabled</codeph> to <xref keyref="false"/> after calling this method.
+If you are using the local composite feature, stopping the first camera capture using this method will interrupt the local composition.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>sourceType</pt>
+                    <pd>The type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceType</pt>
+                    <pd>The type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceType</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sourceType</pt>
+                    <pd>The type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

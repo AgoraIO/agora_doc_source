@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getvolumeofeffect">
+    <title><ph keyref="getVolumeOfEffect"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets the playback volume of the specified audio effect file.</ph><ph id="shortdesc" props="rn">Gets the playback volume of the specified audio effect file.</ph><ph id="shortdesc" props="flutter">Gets the playback volume of the specified audio effect file.</ph><ph id="shortdesc" props="unity">Gets the playback volume of the specified audio effect.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getVolumeOfEffect"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getVolumeOfEffect(soundId: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getVolumeOfEffect(soundId: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getVolumeOfEffect(int soundId);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetVolumeOfEffect(int soundId);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>soundId</pt>
+                    <pd>The ID of the audio effect file.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>soundId</pt>
+                    <pd>The ID of the audio effect file.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>soundId</pt>
+                    <pd>ID of the audio effect file.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>soundId</pt>
+                    <pd>The ID of the audio effect.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>≥ 0: The method call succeeds and returns the playback volume. Volume range is [0,100]. 100 is the original volume.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>≥ 0: The method call succeeds and returns the playback volume. The volume range is [0,100], where 100 is the original volume.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>≥ 0: The method call succeeds and returns the playback volume. The volume range is [0,100]. 100 is the original volume.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>≥ 0: Method call succeeds and returns the playback volume. The volume range is [0,100]. 100 represents the original volume.</li>
+                    <li>&lt; 0: Method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

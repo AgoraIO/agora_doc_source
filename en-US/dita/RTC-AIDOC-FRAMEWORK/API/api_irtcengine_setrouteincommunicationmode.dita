@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setrouteincommunicationmode">
+    <title><ph keyref="setRouteInCommunicationMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Selects the audio route in communication volume mode.</ph><ph id="shortdesc" props="flutter">Selects the audio route in communication volume mode.</ph><ph id="shortdesc" props="unity">Selects the audio route in communication volume mode.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRouteInCommunicationMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract setRouteInCommunicationMode(route: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRouteInCommunicationMode(int route);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRouteInCommunicationMode(int route);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">This method is used to switch the audio route from a Bluetooth headset to the earpiece, wired headset, or speaker in communication volume mode ([MODE_IN_COMMUNICATION](https://developer.android.google.cn/reference/kotlin/android/media/AudioManager?hl=en#mode_in_communication)).</p>
+            <p props="flutter">This method is used in communication volume mode ([MODE_IN_COMMUNICATION](https://developer.android.google.cn/reference/kotlin/android/media/AudioManager?hl=en#mode_in_communication)) to switch the audio route from a Bluetooth headset to the earpiece, wired headset, or speaker.</p>
+            <p props="unity">This method is used in communication volume mode ([MODE_IN_COMMUNICATION](https://developer.android.google.cn/reference/kotlin/android/media/AudioManager?hl=en#mode_in_communication)) to switch the audio route from a Bluetooth headset to the earpiece, wired headset, or speaker.</p>
+            <note props="rn">This method is for Android only.
+When used together with <xref keyref="setEnableSpeakerphone"/>, it may cause conflicts. Agora recommends using <xref keyref="setRouteInCommunicationMode"/> alone.</note>
+            <note props="flutter">This method is applicable only on Android.
+Using this method together with <xref keyref="setEnableSpeakerphone"/> may cause conflicts. Agora recommends using <xref keyref="setRouteInCommunicationMode"/> alone.</note>
+            <note props="unity">This method is for Android only.
+Using this method together with <xref keyref="setEnableSpeakerphone"/> may cause conflicts. Agora recommends using <xref keyref="setRouteInCommunicationMode"/> alone.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>Timing</title>
+            <p props="rn">Can be called before or after joining a channel.</p>
+            <p props="flutter">Can be called before or after joining a channel.</p>
+            <p props="unity">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="flutter rn unity">
+            <title>Related Callbacks</title>
+            <p props="rn">After this method is successfully called, the SDK triggers the <xref keyref="onAudioRoutingChanged"/> callback to report the current audio route.</p>
+            <p props="flutter">After this method is successfully called, the SDK triggers the <xref keyref="onAudioRoutingChanged"/> callback to report the current audio route.</p>
+            <p props="unity">After this method is successfully called, the SDK triggers the <xref keyref="onAudioRoutingChanged"/> callback to report the current audio route.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>route</pt>
+                    <pd>The desired audio route:
+                        <ul>
+                            <li>-1: The system default audio route.</li>
+                            <li>0: Headset with microphone.</li>
+                            <li>1: Earpiece.</li>
+                            <li>2: Headset without microphone.</li>
+                            <li>3: Built-in speaker.</li>
+                            <li>4: (Not supported) External speaker.</li>
+                            <li>5: Bluetooth headset.</li>
+                            <li>6: USB device.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>route</pt>
+                    <pd>The desired audio route:
+                        <ul>
+                            <li>-1: System default audio route.</li>
+                            <li>0: Headset with microphone.</li>
+                            <li>1: Earpiece.</li>
+                            <li>2: Headset without microphone.</li>
+                            <li>3: Built-in speaker.</li>
+                            <li>4: (Not supported) External speaker.</li>
+                            <li>5: Bluetooth headset.</li>
+                            <li>6: USB device.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>route</pt>
+                    <pd>The desired audio route:
+                        <ul>
+                            <li>-1: System default audio route.</li>
+                            <li>0: Headset with microphone.</li>
+                            <li>1: Earpiece.</li>
+                            <li>2: Headset without microphone.</li>
+                            <li>3: Built-in speaker.</li>
+                            <li>4: (Not supported yet) External speaker.</li>
+                            <li>5: Bluetooth headset.</li>
+                            <li>6: USB device.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">No practical meaning.</p>
+            <p props="flutter">No practical meaning.</p>
+            <p props="unity">No practical significance.</p>
+        </section>
+    </refbody>
+</reference>

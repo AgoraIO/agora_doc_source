@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enableloopbackrecording">
+    <title><ph keyref="enableLoopbackRecording"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Enables loopback recording.</ph><ph id="shortdesc" props="flutter">Enables sound card capture.</ph><ph id="shortdesc" props="unity">Enables loopback recording.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableLoopbackRecording"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableLoopbackRecording(
+    enabled: boolean,
+    deviceName?: string
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableLoopbackRecording(
+    {required bool enabled, String? deviceName});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableLoopbackRecording(bool enabled, string deviceName = "");</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After enabling loopback recording, the sound played by the sound card will be mixed into the local audio stream and can be sent to the remote side.</p>
+            <p props="flutter">After enabling the sound card capture function, the sound played by the sound card is mixed into the local audio stream and can be sent to the remote side.</p>
+            <p props="unity">After enabling loopback recording, the sound played by the sound card will be mixed into the local audio stream and can be sent to the remote end.</p>
+            <note props="electron">
+                <ul>
+                    <li>This method can be called before or after joining a channel.</li>
+                    <li>If you call <xref keyref="disableAudio"/> to disable the audio module, loopback recording will also be disabled. To re-enable loopback recording, you need to call <xref keyref="enableAudio"/> to enable the audio module and then call <xref keyref="enableLoopbackRecording"/> again.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method is only applicable to macOS and Windows platforms.</li>
+                    <li>This method can be called before or after joining a channel.</li>
+                    <li>If you call <xref keyref="disableAudio"/> to disable the audio module, the sound card capture function will also be disabled. To re-enable it, you must call <xref keyref="enableAudio"/> to enable the audio module, and then call <xref keyref="enableLoopbackRecording"/> again.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method is only applicable to macOS and Windows platforms.</li>
+                    <li>It can be called before or after joining a channel.</li>
+                    <li>If you call <xref keyref="disableAudio"/> to disable the audio module, loopback recording will also be disabled. To re-enable loopback recording, you must call <xref keyref="enableAudio"/> to enable the audio module, then call <xref keyref="enableLoopbackRecording"/> again.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable loopback recording:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable loopback recording; the system sound &gt; output interface displays the virtual sound card name.</li>
+                            <li><xref keyref="false"/>: (Default) Disable loopback recording; the system sound &gt; output interface does not display the virtual sound card name.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>deviceName</pt>
+                    <pd>
+                        <note>Electron for UnionTech OS SDK does not support this parameter.</note>
+                        <ul>
+                            <li>macOS: The device name of the virtual sound card. Default is empty, which means using the AgoraALD virtual sound card for recording.</li>
+                            <li>Windows: The device name of the sound card. Default is empty, which means using the built-in sound card of the device.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable sound card capture:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable sound card capture; the virtual sound card name is displayed in System Sound &gt; Output.</li>
+                            <li><xref keyref="false"/>: (Default) Disable sound card capture; the virtual sound card name is not displayed in System Sound &gt; Output.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceName</pt>
+                    <pd>
+                        <ul>
+                            <li>macOS: Device name of the virtual sound card. Default is empty, which means using the AgoraALD virtual sound card for capture.</li>
+                            <li>Windows: Device name of the sound card. Default is empty, which means using the built-in sound card of the device for capture.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable loopback recording:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable loopback recording; the system sound &gt; output interface displays the virtual sound card name.</li>
+                            <li><xref keyref="false"/>: (Default) Disable loopback recording; the system sound &gt; output interface does not display the virtual sound card name.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceName</pt>
+                    <pd>
+                        <ul>
+                            <li>macOS: The device name of the virtual sound card. Default is empty, which means using the AgoraALD virtual sound card for recording.</li>
+                            <li>Windows: The device name of the sound card. Default is empty, which means using the built-in sound card of the device for recording.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

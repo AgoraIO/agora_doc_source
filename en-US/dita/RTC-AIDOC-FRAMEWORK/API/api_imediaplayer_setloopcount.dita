@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setloopcount">
+    <title><ph keyref="setLoopCount"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets loop playback.</ph><ph id="shortdesc" props="rn">Sets loop playback.</ph><ph id="shortdesc" props="flutter">Sets loop playback.</ph><ph id="shortdesc" props="unity">Sets loop playback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLoopCount"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setLoopCount(loopCount: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setLoopCount(loopCount: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLoopCount(int loopCount);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLoopCount(int loopCount);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">If you want to enable loop playback, call this method and set the number of loops.
+When loop playback ends, the SDK triggers the <xref keyref="onPlayerSourceStateChanged"/> callback to report the playback state as PlayerStatePlaybackAllLoopsCompleted.</p>
+            <p props="rn">If you want to enable loop playback, call this method and set the number of loops.
+When loop playback ends, the SDK triggers the <xref keyref="onPlayerSourceStateChanged"/> callback to report the playback state as PlayerStatePlaybackAllLoopsCompleted.</p>
+            <p props="flutter">If you want to enable loop playback, call this method and set the number of loops.
+When loop playback ends, the SDK triggers the <xref keyref="onPlayerSourceStateChanged"/> callback to report the playback state as <codeph>playerStatePlaybackAllLoopsCompleted</codeph>.</p>
+            <p props="unity">If you want to enable loop playback, call this method and set the number of loops.
+When loop playback ends, the SDK triggers the <xref keyref="onPlayerSourceStateChanged"/> callback to report the playback state as PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>loopCount</pt>
+                    <pd>Number of times to loop playback.
+                        <ul>
+                            <li>≥0: Number of loops. For example, 0 means no loop, play once; 1 means loop once, play twice in total.</li>
+                            <li>-1: Loop infinitely.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>loopCount</pt>
+                    <pd>The number of times to loop playback.
+                        <ul>
+                            <li>≥0: Number of loops. For example, 0 means no looping and plays once; 1 means loops once and plays twice in total.</li>
+                            <li>-1: Loop playback indefinitely.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>loopCount</pt>
+                    <pd>Number of playback loops.
+                        <ul>
+                            <li>≥0: Number of loops. For example, 0 means no loop, play once in total; 1 means loop once, play twice in total.</li>
+                            <li>-1: Infinite loop.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>loopCount</pt>
+                    <pd>Number of playback loops.
+                        <ul>
+                            <li>≥0: Number of loops. For example, 0 means no looping, play once; 1 means loop once, play twice in total.</li>
+                            <li>-1: Infinite loop playback.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Code](https://doc.shengwang.cn/api-ref/rtc/rn/error-code) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setaudiopitch">
+    <title><ph keyref="setAudioPitch"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Adjusts the pitch of the currently playing media resource.</ph><ph id="shortdesc" props="rn">Adjusts the pitch of the currently playing media resource.</ph><ph id="shortdesc" props="flutter">Adjusts the pitch of the currently playing media resource.</ph><ph id="shortdesc" props="unity">Adjusts the pitch of the currently playing media resource.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAudioPitch"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setAudioPitch(pitch: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setAudioPitch(pitch: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioPitch(int pitch);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioPitch(int pitch);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">You need to call this method after calling <xref keyref="open"/>.</note>
+            <note props="rn">You need to call this method after calling <xref keyref="open"/>.</note>
+            <note props="flutter">You need to call this method after calling <xref keyref="open"/>.</note>
+            <note props="unity">You need to call this method after calling <xref keyref="open"/>.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>pitch</pt>
+                    <pd>Adjusts the pitch of the locally played music file in semitone scale. Default is 0, meaning no pitch adjustment. Value range is [-12,12], where each adjacent value differs by a semitone. The greater the absolute value, the more the pitch is raised or lowered.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>pitch</pt>
+                    <pd>Adjusts the pitch of the local music file in semitone steps. The default value is 0, meaning no pitch adjustment. The value range is [-12, 12], where each adjacent value represents a semitone difference. The greater the absolute value, the more the pitch is raised or lowered.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pitch</pt>
+                    <pd>Adjusts the pitch of the locally played music file in semitone steps. The default value is 0, meaning no pitch adjustment. The valid range is [-12, 12], where each adjacent value differs by a semitone. The greater the absolute value, the more the pitch is increased or decreased.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>pitch</pt>
+                    <pd>Adjusts the pitch of the locally played music file in semitone steps. The default value is 0, meaning no pitch adjustment. The valid range is [-12,12], where the pitch difference between two adjacent values is one semitone. The greater the absolute value, the more the pitch increases or decreases.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Code](https://doc.shengwang.cn/api-ref/rtc/rn/error-code) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

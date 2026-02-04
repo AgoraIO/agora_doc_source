@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_registervideoframeobserver_imediaplayer">
+    <title><ph keyref="registerVideoFrameObserver_IMediaPlayer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Registers a video frame observer.</ph><ph id="shortdesc" props="rn">Registers a video frame observer.</ph><ph id="shortdesc" props="flutter">Registers a video frame observer.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerVideoFrameObserver_IMediaPlayer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract registerVideoFrameObserver(
+    observer: IMediaPlayerVideoFrameObserver
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract registerVideoFrameObserver(
+    observer: IMediaPlayerVideoFrameObserver
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">void registerVideoFrameObserver(MediaPlayerVideoFrameObserver observer);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">You need to implement a <xref keyref="IMediaPlayerVideoFrameObserver"/> class in this method and register the callbacks of that class as needed. After successful registration, the SDK triggers the registered callbacks when each video frame is captured.</p>
+            <p props="rn">You need to implement an <xref keyref="IMediaPlayerVideoFrameObserver"/> class in this method and register the callbacks of this class as needed. After successfully registering the video frame observer, the SDK triggers the registered callback each time a video frame is captured.</p>
+            <p props="flutter">You need to implement a <xref keyref="IMediaPlayerVideoFrameObserver"/> class in this method and register its callbacks as needed based on your scenario. Once the video frame observer is successfully registered, the SDK triggers the registered callbacks upon capturing each video frame.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>observer</pt>
+                    <pd>The video frame observer that monitors the reception of each video frame. See <xref keyref="IMediaPlayerVideoFrameObserver"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>observer</pt>
+                    <pd>The video frame observer that monitors the reception of each video frame. See <xref keyref="IMediaPlayerVideoFrameObserver"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>observer</pt>
+                    <pd>Video frame observer that monitors the reception of each video frame. See <xref keyref="IMediaPlayerVideoFrameObserver"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+        </section>
+    </refbody>
+</reference>

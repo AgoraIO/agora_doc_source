@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_updatertmptranscoding">
+    <title><ph keyref="updateRtmpTranscoding"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Updates the CDN transcoding configuration.</ph><ph id="shortdesc" props="rn">Updates the transcoding configuration for CDN streaming.</ph><ph id="shortdesc" props="flutter">Updates the RTMP transcoding configuration.</ph><ph id="shortdesc" props="unity">Updates the RTMP transcoding configuration.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updateRtmpTranscoding"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract updateRtmpTranscoding(transcoding: LiveTranscoding): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract updateRtmpTranscoding(transcoding: LiveTranscoding): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateRtmpTranscoding(LiveTranscoding transcoding);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateRtmpTranscoding(LiveTranscoding transcoding);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Agora recommends using the more comprehensive server-side streaming feature. See [Implement server-side CDN streaming](https://doc.shengwang.cn/doc/media-push/restful/landing-page).
+After enabling transcoding streaming, you can dynamically update the transcoding configuration based on your scenario. After the configuration is updated, the SDK triggers the <xref keyref="onTranscodingUpdated"/> callback.</p>
+            <p props="rn">Agora recommends using the more comprehensive server-side CDN streaming service. See [Implement server-side CDN streaming](https://doc.shengwang.cn/doc/media-push/restful/landing-page).
+After enabling transcoding streaming, you can dynamically update the transcoding configuration based on your scenario. After the update, the SDK triggers the <xref keyref="onTranscodingUpdated"/> callback.</p>
+            <p props="flutter">Agora recommends using the more comprehensive server-side streaming feature. See [Implement Server-Side RTMP Streaming](https://doc.shengwang.cn/doc/media-push/restful/landing-page).
+After enabling transcoding streaming, you can dynamically update the transcoding configuration based on your scenario needs. After the transcoding configuration is updated, the SDK triggers the <xref keyref="onTranscodingUpdated"/> callback.</p>
+            <p props="unity">Agora recommends using a more complete server-side streaming service. See [Implement Server-Side RTMP Streaming](https://doc.shengwang.cn/doc/media-push/restful/landing-page).
+After enabling transcoding streaming, you can dynamically update the transcoding configuration based on your scenario. After the transcoding configuration is updated, the SDK triggers the <xref keyref="onTranscodingUpdated"/> callback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>transcoding</pt>
+                    <pd>The transcoding configuration for the CDN stream. See <xref keyref="LiveTranscoding"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>transcoding</pt>
+                    <pd>The transcoding configuration for CDN streaming. See <xref keyref="LiveTranscoding"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>transcoding</pt>
+                    <pd>The transcoding configuration for RTMP streaming. See <xref keyref="LiveTranscoding"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>transcoding</pt>
+                    <pd>The RTMP transcoding configuration. See <xref keyref="LiveTranscoding"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

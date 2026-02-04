@@ -1,0 +1,633 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videoframe">
+    <title><ph keyref="VideoFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Video frame property settings.</ph><ph id="shortdesc" props="rn">Properties of a video frame.</ph><ph id="shortdesc" props="flutter">Video frame property settings.</ph><ph id="shortdesc" props="unity">Video frame property settings.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class VideoFrame {
+
+  type?: VideoPixelFormat;
+
+  width?: number;
+
+  height?: number;
+
+  yStride?: number;
+
+  uStride?: number;
+
+  vStride?: number;
+
+  yBuffer?: Uint8Array;
+
+  uBuffer?: Uint8Array;
+
+  vBuffer?: Uint8Array;
+
+  rotation?: number;
+
+  renderTimeMs?: number;
+
+  avsync_type?: number;
+
+  metadata_buffer?: Uint8Array;
+
+  metadata_size?: number;
+
+  textureId?: number;
+
+  matrix?: number[];
+
+  alphaBuffer?: Uint8Array;
+
+  alphaStitchMode?: AlphaStitchMode;
+
+  colorSpace?: ColorSpace;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class VideoFrame {
+
+  type?: VideoPixelFormat;
+
+  width?: number;
+
+  height?: number;
+
+  yStride?: number;
+
+  uStride?: number;
+
+  vStride?: number;
+
+  yBuffer?: Uint8Array;
+
+  uBuffer?: Uint8Array;
+
+  vBuffer?: Uint8Array;
+
+  rotation?: number;
+
+  renderTimeMs?: number;
+
+  avsync_type?: number;
+
+  metadata_buffer?: Uint8Array;
+
+  metadata_size?: number;
+
+  textureId?: number;
+
+  matrix?: number[];
+
+  alphaBuffer?: Uint8Array;
+
+  alphaStitchMode?: AlphaStitchMode;
+
+  colorSpace?: ColorSpace;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class VideoFrame {
+  const VideoFrame(
+      {this.type,
+      this.width,
+      this.height,
+      this.yStride,
+      this.uStride,
+      this.vStride,
+      this.yBuffer,
+      this.uBuffer,
+      this.vBuffer,
+      this.rotation,
+      this.renderTimeMs,
+      this.avsyncType,
+      this.metadataBuffer,
+      this.metadataSize,
+      this.textureId,
+      this.matrix,
+      this.alphaBuffer,
+      this.alphaStitchMode,
+      this.pixelBuffer,
+      this.metaInfo;
+      this.colorSpace});
+
+  @JsonKey(name: 'type')
+  final VideoPixelFormat? type;
+
+  @JsonKey(name: 'width')
+  final int? width;
+
+  @JsonKey(name: 'height')
+  final int? height;
+
+  @JsonKey(name: 'yStride')
+  final int? yStride;
+
+  @JsonKey(name: 'uStride')
+  final int? uStride;
+
+  @JsonKey(name: 'vStride')
+  final int? vStride;
+
+  @JsonKey(name: 'yBuffer', ignore: true)
+  final Uint8List? yBuffer;
+
+  @JsonKey(name: 'uBuffer', ignore: true)
+  final Uint8List? uBuffer;
+
+  @JsonKey(name: 'vBuffer', ignore: true)
+  final Uint8List? vBuffer;
+
+  @JsonKey(name: 'rotation')
+  final int? rotation;
+
+  @JsonKey(name: 'renderTimeMs')
+  final int? renderTimeMs;
+
+  @JsonKey(name: 'avsync_type')
+  final int? avsyncType;
+
+  @JsonKey(name: 'metadata_buffer', ignore: true)
+  final Uint8List? metadataBuffer;
+
+  @JsonKey(name: 'metadata_size')
+  final int? metadataSize;
+
+  @JsonKey(name: 'textureId')
+  final int? textureId;
+
+  @JsonKey(name: 'matrix')
+  final List&lt;double&gt;? matrix;
+
+  @JsonKey(name: 'alphaBuffer', ignore: true)
+  final Uint8List? alphaBuffer;
+
+  @JsonKey(name: 'alphaStitchMode')
+  final AlphaStitchMode? alphaStitchMode;
+
+  @JsonKey(name: 'pixelBuffer', ignore: true)
+  final Uint8List? pixelBuffer;
+
+  @VideoFrameMetaInfoConverter()
+  @JsonKey(name: 'metaInfo')
+  final VideoFrameMetaInfo? metaInfo;
+
+  @JsonKey(name: 'colorSpace')
+  final ColorSpace? colorSpace;
+
+  factory VideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$VideoFrameFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoFrameToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class VideoFrame
+    {
+        public VIDEO_PIXEL_FORMAT type;
+
+        public int width;
+
+        public int height;
+
+        public int yStride;
+
+        public int uStride;
+
+        public int vStride;
+
+        public byte[] yBuffer;
+
+        public IntPtr yBufferPtr;
+
+        public byte[] uBuffer;
+
+        public IntPtr uBufferPtr;
+
+        public byte[] vBuffer;
+
+        public IntPtr vBufferPtr;
+
+        public int rotation;
+
+        public long renderTimeMs;
+
+        public int avsync_type;
+
+        public IntPtr metadata_buffer;
+
+        public int metadata_size;
+
+        public IntPtr sharedContext;
+
+        public int textureId;
+
+        public IntPtr d3d11Texture2d;
+
+        public float[] matrix;
+
+        public byte[] alphaBuffer;
+
+        public ALPHA_STITCH_MODE alphaStitchMode;
+
+        public IVideoFrameMetaInfo metaInfo;
+
+        public ColorSpace colorSpace;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <p props="electron">The buffer is provided as a pointer to a pointer. This interface cannot modify the buffer pointer, only the buffer content.</p>
+            <p props="rn">The buffer is a pointer to a pointer. This interface cannot modify the pointer of the buffer, only its contents.</p>
+            <p props="flutter">The buffer is a pointer to a pointer. This interface cannot modify the buffer pointer, only the content of the buffer.</p>
+            <p props="unity">The buffer is a pointer to a pointer. This interface cannot modify the buffer pointer, only the buffer content.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>Pixel format. See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>Video pixel width.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>Video pixel height.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>yStride</pt>
+                    <pd>For YUV data, indicates the row stride of the Y buffer; for RGBA data, indicates the total data length.
+                        <note>When processing video data, you need to handle the offset between rows of pixel data according to this parameter, otherwise image distortion may occur.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uStride</pt>
+                    <pd>For YUV data, indicates the row stride of the U buffer; for RGBA data, the value is 0.
+                        <note>When processing video data, you need to handle the offset between rows of pixel data according to this parameter, otherwise image distortion may occur.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>vStride</pt>
+                    <pd>For YUV data, indicates the row stride of the V buffer; for RGBA data, the value is 0.
+                        <note>When processing video data, you need to handle the offset between rows of pixel data according to this parameter, otherwise image distortion may occur.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>yBuffer</pt>
+                    <pd>For YUV data, indicates the pointer to the Y buffer; for RGBA data, indicates the data buffer.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uBuffer</pt>
+                    <pd>For YUV data, indicates the pointer to the U buffer; for RGBA data, the value is empty.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>vBuffer</pt>
+                    <pd>For YUV data, indicates the pointer to the V buffer; for RGBA data, the value is empty.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rotation</pt>
+                    <pd>Sets the clockwise rotation angle of the frame before rendering the video. Currently supports 0, 90, 180, and 270 degrees.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>renderTimeMs</pt>
+                    <pd>The Unix timestamp (in milliseconds) when the video frame is rendered. This timestamp can be used to guide video frame rendering. This parameter is required.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>avsync_type</pt>
+                    <pd>Reserved parameter.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>metadata_buffer</pt>
+                    <pd>This parameter applies only to video data in Texture format. Indicates the data buffer of MetaData. Default is <codeph>NULL</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>metadata_size</pt>
+                    <pd>This parameter applies only to video data in Texture format. Indicates the size of MetaData. Default is <codeph>0</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>textureId</pt>
+                    <pd>This parameter applies only to video data in Texture format. Texture ID.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>matrix</pt>
+                    <pd>This parameter applies only to video data in Texture format. A 4x4 transformation matrix input, typically an identity matrix.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>colorSpace</pt>
+                    <pd>The color space property of the video frame. By default, Full Range and BT.709 standard configuration is applied. You can customize this setting based on your custom capture and rendering needs. See [VideoColorSpace](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>alphaBuffer</pt>
+                    <pd>Alpha channel data output by the portrait segmentation algorithm. This data matches the size of the video frame. Each pixel value ranges from [0, 255], where 0 represents the background and 255 represents the foreground (portrait).
+You can use this parameter to render the video background with various effects, such as transparency, solid color, image, video, etc.
+                        <note>
+                            <ul>
+                                <li>In custom video rendering scenarios, ensure that both the video frame and <codeph>alphaBuffer</codeph> are of Full Range type; other types may cause abnormal Alpha data rendering.</li>
+                                <li>Make sure that <codeph>alphaBuffer</codeph> matches the video frame size (width × height) exactly, otherwise the app may crash.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>alphaStitchMode</pt>
+                    <pd>When the video frame contains Alpha channel data, sets the relative position between <codeph>alphaBuffer</codeph> and the video frame. See <xref keyref="ALPHA_STITCH_MODE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>metaInfo</pt>
+                    <pd>Metadata in the video frame. This parameter requires [contacting technical support](https://ticket.shengwang.cn/) to use.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>Pixel format. See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>width</pt>
+                    <pd>Video pixel width.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>Video pixel height.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>yStride</pt>
+                    <pd>For YUV data, the stride of the Y buffer; for RGBA data, the total data length.
+                        <note>When processing video data, use this parameter to handle the offset between rows of pixel data. Otherwise, image distortion may occur.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uStride</pt>
+                    <pd>For YUV data, the stride of the U buffer; for RGBA data, the value is 0.
+                        <note>When processing video data, use this parameter to handle the offset between rows of pixel data. Otherwise, image distortion may occur.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>vStride</pt>
+                    <pd>For YUV data, the stride of the V buffer; for RGBA data, the value is 0.
+                        <note>When processing video data, use this parameter to handle the offset between rows of pixel data. Otherwise, image distortion may occur.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>yBuffer</pt>
+                    <pd>For YUV data, the pointer to the Y buffer; for RGBA data, the data buffer.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uBuffer</pt>
+                    <pd>For YUV data, the pointer to the U buffer; for RGBA data, the value is empty.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>vBuffer</pt>
+                    <pd>For YUV data, the pointer to the V buffer; for RGBA data, the value is empty.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rotation</pt>
+                    <pd>Clockwise rotation angle to apply before rendering the video. Supported values: 0, 90, 180, and 270 degrees.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>renderTimeMs</pt>
+                    <pd>Unix timestamp (ms) when the video frame is rendered. This timestamp is required and guides the rendering of the video frame.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>avsync_type</pt>
+                    <pd>Reserved parameter.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>metadata_buffer</pt>
+                    <pd>Applicable only to Texture format video data. Metadata buffer. Default is <codeph>NULL</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>metadata_size</pt>
+                    <pd>Applicable only to Texture format video data. Metadata size. Default is <codeph>0</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>textureId</pt>
+                    <pd>Applicable only to Texture format video data. Texture ID.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>matrix</pt>
+                    <pd>Applicable only to Texture format video data. A 4x4 transformation matrix input. Typical value is an identity matrix.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>colorSpace</pt>
+                    <pd>Color space attributes of the video frame. By default, Full Range and BT.709 standard configurations are applied. You can customize this according to custom capture or rendering needs. See [VideoColorSpace](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>alphaBuffer</pt>
+                    <pd>Alpha channel data output by portrait segmentation algorithm. This data matches the video frame dimensions. Each pixel value ranges from [0, 255], where 0 represents background and 255 represents foreground (portrait).
+You can use this parameter to render various background effects such as transparent, solid color, image, or video.
+                        <note>
+                            <ul>
+                                <li>In custom video rendering scenarios, ensure both the video frame and <codeph>alphaBuffer</codeph> are Full Range type; other types may cause rendering issues.</li>
+                                <li>Make sure <codeph>alphaBuffer</codeph> matches the video frame dimensions (width × height) exactly, otherwise the app may crash.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>alphaStitchMode</pt>
+                    <pd>When the video frame includes alpha channel data, sets the relative position of <codeph>alphaBuffer</codeph> and the video frame. See <xref keyref="ALPHA_STITCH_MODE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>metaInfo</pt>
+                    <pd>Metadata in the video frame. Contact [technical support](https://ticket.shengwang.cn/) to use this parameter.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>Pixel format. See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>Pixel width of the video.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>Pixel height of the video.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>yStride</pt>
+                    <pd>For YUV data, the line stride of the Y buffer; for RGBA data, the total data length.
+                        <note>When processing video data, you must handle the offset between each row of pixel data based on this parameter; otherwise, image distortion may occur.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uStride</pt>
+                    <pd>For YUV data, the line stride of the U buffer; for RGBA data, the value is 0.
+                        <note>When processing video data, you must handle the offset between each row of pixel data based on this parameter; otherwise, image distortion may occur.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>vStride</pt>
+                    <pd>For YUV data, the line stride of the V buffer; for RGBA data, the value is 0.
+                        <note>When processing video data, you must handle the offset between each row of pixel data based on this parameter; otherwise, image distortion may occur.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>yBuffer</pt>
+                    <pd>For YUV data, the pointer to the Y buffer; for RGBA data, the data buffer.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uBuffer</pt>
+                    <pd>For YUV data, the pointer to the U buffer; for RGBA data, the value is null.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>vBuffer</pt>
+                    <pd>For YUV data, the pointer to the V buffer; for RGBA data, the value is null.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rotation</pt>
+                    <pd>Clockwise rotation angle of this frame before rendering. Supported values are 0, 90, 180, and 270 degrees.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>renderTimeMs</pt>
+                    <pd>Unix timestamp (in milliseconds) when the video frame is rendered. This timestamp can be used to guide video frame rendering. This parameter is required.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>avsyncType</pt>
+                    <pd>Reserved parameter.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>metadataBuffer</pt>
+                    <pd>This parameter applies only to video data in Texture format. It refers to the data buffer of MetaData. Default is <codeph>NULL</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>metadataSize</pt>
+                    <pd>This parameter applies only to video data in Texture format. It refers to the size of MetaData. Default is <codeph>0</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>textureId</pt>
+                    <pd>This parameter applies only to video data in Texture format. Texture ID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>matrix</pt>
+                    <pd>This parameter applies only to video data in Texture format. A 4x4 transformation matrix input, typically an identity matrix.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>colorSpace</pt>
+                    <pd>Color space properties of the video frame. By default, Full Range and BT.709 configuration is applied. You can customize it according to the needs of custom capture and rendering. See [VideoColorSpace](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>alphaBuffer</pt>
+                    <pd>Alpha channel data output by portrait segmentation algorithm. This data has the same dimensions as the video frame. Each pixel value ranges from [0,255], where 0 represents background and 255 represents foreground (portrait).
+By setting this parameter, you can render the video background with various effects such as transparency, solid color, image, or video.
+                        <note>
+                            <ul>
+                                <li>In custom video rendering scenarios, ensure that both the video frame and <codeph>alphaBuffer</codeph> are Full Range type; other types may result in incorrect rendering of Alpha data.</li>
+                                <li>Make sure that the dimensions of <codeph>alphaBuffer</codeph> exactly match the video frame (width × height), otherwise the app may crash.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>alphaStitchMode</pt>
+                    <pd>When the video frame contains Alpha channel data, sets the relative position of <codeph>alphaBuffer</codeph> and the video frame. See <xref keyref="ALPHA_STITCH_MODE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>metaInfo</pt>
+                    <pd>Metadata in the video frame. This parameter requires [contacting technical support](https://ticket.shengwang.cn/) to use.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>Pixel format. See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>Video pixel width.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>Video pixel height.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>yStride</pt>
+                    <pd>For YUV data, indicates the stride of the Y buffer; for RGBA data, indicates the total data length.
+                        <note>When processing video data, you need to handle the offset between each row of pixel data according to this parameter, otherwise image distortion may occur.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uStride</pt>
+                    <pd>For YUV data, indicates the stride of the U buffer; for RGBA data, the value is 0.
+                        <note>When processing video data, you need to handle the offset between each row of pixel data according to this parameter, otherwise image distortion may occur.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>vStride</pt>
+                    <pd>For YUV data, indicates the stride of the V buffer; for RGBA data, the value is 0.
+                        <note>When processing video data, you need to handle the offset between each row of pixel data according to this parameter, otherwise image distortion may occur.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>yBuffer</pt>
+                    <pd>For YUV data, indicates the pointer to the Y buffer; for RGBA data, indicates the data buffer.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uBuffer</pt>
+                    <pd>For YUV data, indicates the pointer to the U buffer; for RGBA data, the value is null.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>vBuffer</pt>
+                    <pd>For YUV data, indicates the pointer to the V buffer; for RGBA data, the value is null.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rotation</pt>
+                    <pd>Set the clockwise rotation angle of the frame before rendering the video. Currently supports 0, 90, 180, and 270 degrees.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>renderTimeMs</pt>
+                    <pd>The Unix timestamp (in milliseconds) when the video frame is rendered. This timestamp can be used to guide the rendering of the video frame. This parameter is required.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>avsync_type</pt>
+                    <pd>Reserved parameter.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>metadata_buffer</pt>
+                    <pd>This parameter is only applicable to video data in Texture format. Refers to the metadata buffer. The default value is <codeph>NULL</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>metadata_size</pt>
+                    <pd>This parameter is only applicable to video data in Texture format. Refers to the size of the metadata. The default value is <codeph>0</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sharedContext</pt>
+                    <pd>This parameter is only applicable to video data in Texture format. EGL Context.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>textureId</pt>
+                    <pd>This parameter is only applicable to video data in Texture format. Texture ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>d3d11Texture2d</pt>
+                    <pd>This parameter is only applicable to video data in Windows Texture format. Represents a pointer to an object of type <codeph>ID3D11Texture2D</codeph>, which is used by the video frame.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>matrix</pt>
+                    <pd>This parameter is only applicable to video data in Texture format. It is an input 4x4 transformation matrix, typically an identity matrix.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>colorSpace</pt>
+                    <pd>Color space attributes of the video frame. By default, Full Range and BT.709 standard configurations are applied. You can customize the settings based on your custom capture and rendering requirements. See [VideoColorSpace](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>alphaBuffer</pt>
+                    <pd>Alpha channel data output by the portrait segmentation algorithm. This data matches the size of the video frame. Each pixel value ranges from [0, 255], where 0 represents the background and 255 represents the foreground (portrait).
+You can use this parameter to render the video background with various effects, such as transparency, solid color, image, video, etc.
+                        <note>
+                            <ul>
+                                <li>In custom video rendering scenarios, ensure that both the video frame and <codeph>alphaBuffer</codeph> are of Full Range type; other types may cause abnormal Alpha data rendering.</li>
+                                <li>Make sure that <codeph>alphaBuffer</codeph> exactly matches the size of the video frame (width × height), otherwise the app may crash.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>alphaStitchMode</pt>
+                    <pd>When the video frame contains Alpha channel data, sets the relative position of <codeph>alphaBuffer</codeph> and the video frame. See <xref keyref="ALPHA_STITCH_MODE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>metaInfo</pt>
+                    <pd>Metadata in the video frame. This parameter requires [contacting technical support](https://ticket.shengwang.cn/) for use.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

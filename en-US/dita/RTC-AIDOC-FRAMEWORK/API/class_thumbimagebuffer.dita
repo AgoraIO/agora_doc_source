@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_thumbimagebuffer">
+    <title><ph keyref="ThumbImageBuffer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Image content of a thumbnail or icon. Set in <xref keyref="ScreenCaptureSourceInfo"/>.</ph><ph id="shortdesc" props="flutter">Image content of a thumbnail or icon. Set in <xref keyref="ScreenCaptureSourceInfo"/>.</ph><ph id="shortdesc" props="unity">Image content of a thumbnail or icon. Set in <xref keyref="ScreenCaptureSourceInfo"/>.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class ThumbImageBuffer {
+
+  buffer?: Uint8Array;
+
+  length?: number;
+
+  width?: number;
+
+  height?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class ThumbImageBuffer {
+  const ThumbImageBuffer({this.buffer, this.length, this.width, this.height});
+
+  @JsonKey(name: 'buffer', ignore: true)
+  final Uint8List? buffer;
+  @JsonKey(name: 'length')
+  final int? length;
+  @JsonKey(name: 'width')
+  final int? width;
+  @JsonKey(name: 'height')
+  final int? height;
+  factory ThumbImageBuffer.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ThumbImageBufferFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ThumbImageBufferToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class ThumbImageBuffer
+    {
+        public Int64 buffer { set; get; }
+        public uint length { set; get; }
+        public uint width { set; get; }
+        public uint height { set; get; }
+
+        public ThumbImageBuffer()
+        {
+            buffer = 0;
+            length = 0;
+            width = 0;
+            height = 0;
+        }
+    };</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter unity">
+            <note props="electron">The image is in ARGB format by default. If you need another format, please convert it manually.</note>
+            <note props="flutter">The image is in ARGB format by default. If you need to use a different format, please convert it yourself.</note>
+            <note props="unity">The image is in ARGB format by default. If you need another format, please convert it manually.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>buffer</pt>
+                    <pd>Buffer of the thumbnail or icon.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>length</pt>
+                    <pd>Length of the thumbnail or icon buffer, in bytes.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>Actual width of the thumbnail or icon (px).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>Actual height of the thumbnail or icon (px).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>buffer</pt>
+                    <pd>Buffer of the thumbnail or icon.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>length</pt>
+                    <pd>Length of the thumbnail or icon buffer in bytes.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>Actual width of the thumbnail or icon (px).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>Actual height of the thumbnail or icon (px).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>buffer</pt>
+                    <pd>The buffer of the thumbnail or icon.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>length</pt>
+                    <pd>The buffer length of the thumbnail or icon, in bytes.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>The actual width (px) of the thumbnail or icon.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>The actual height (px) of the thumbnail or icon.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

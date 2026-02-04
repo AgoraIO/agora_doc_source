@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onchannelmediarelaystatechanged">
+    <title><ph keyref="onChannelMediaRelayStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Occurs when the state of media stream relay across channels changes.</ph><ph id="shortdesc" props="rn">Occurs when the state of media stream relay across channels changes.</ph><ph id="shortdesc" props="flutter">Callback when the state of the channel media relay changes.</ph><ph id="shortdesc" props="unity">Callback when the state of channel media stream relay changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onChannelMediaRelayStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onChannelMediaRelayStateChanged?(
+    state: ChannelMediaRelayState,
+    code: ChannelMediaRelayError
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onChannelMediaRelayStateChanged?(
+    state: ChannelMediaRelayState,
+    code: ChannelMediaRelayError
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(
+          ChannelMediaRelayState state, ChannelMediaRelayError code)?
+      onChannelMediaRelayStateChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnChannelMediaRelayStateChanged(int state, int code) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Occurs when the state of media stream relay across channels changes. The SDK triggers this callback and reports the current relay state and any associated error information.</p>
+            <p props="rn">Occurs when the state of media stream relay across channels changes. The SDK triggers this callback to report the current relay state and error information.</p>
+            <p props="flutter">This callback is triggered by the SDK when the state of the channel media relay changes, reporting the current relay state and related error information.</p>
+            <p props="unity">When the state of channel media stream relay changes, the SDK triggers this callback and reports the current relay state and related error information.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>state</pt>
+                    <pd>The state of the media stream relay across channels. See <xref keyref="CHANNEL_MEDIA_RELAY_STATE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>code</pt>
+                    <pd>The error code for media stream relay across channels. See <xref keyref="CHANNEL_MEDIA_RELAY_ERROR"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>state</pt>
+                    <pd>The state of media stream relay across channels. See <xref keyref="CHANNEL_MEDIA_RELAY_STATE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>code</pt>
+                    <pd>The error code of the media stream relay across channels. See <xref keyref="CHANNEL_MEDIA_RELAY_ERROR"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>state</pt>
+                    <pd>The channel media relay state. See <xref keyref="CHANNEL_MEDIA_RELAY_STATE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>code</pt>
+                    <pd>The error code of the channel media relay. See <xref keyref="CHANNEL_MEDIA_RELAY_ERROR"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>state</pt>
+                    <pd>The state of channel media stream relay. See <xref keyref="CHANNEL_MEDIA_RELAY_STATE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>code</pt>
+                    <pd>The error code of channel media stream relay. See <xref keyref="CHANNEL_MEDIA_RELAY_ERROR"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_resumeallchannelmediarelayex">
+    <title><ph keyref="resumeAllChannelMediaRelayEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Resumes media stream forwarding to all destination channels.</ph><ph id="shortdesc" props="rn">Resumes media stream forwarding to all destination channels.</ph><ph id="shortdesc" props="flutter">Resumes media stream relay to all destination channels.</ph><ph id="shortdesc" props="unity">Resumes media stream forwarding to all destination channels.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="resumeAllChannelMediaRelayEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract resumeAllChannelMediaRelayEx(connection: RtcConnection): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract resumeAllChannelMediaRelayEx(connection: RtcConnection): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; resumeAllChannelMediaRelayEx(RtcConnection connection);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int ResumeAllChannelMediaRelayEx(RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After calling the <xref keyref="pauseAllChannelMediaRelayEx"/> method, if you need to resume forwarding media streams to all destination channels, you can call this method.</p>
+            <p props="rn">After calling the <xref keyref="pauseAllChannelMediaRelayEx"/> method, you can call this method to resume media stream forwarding to all destination channels.</p>
+            <p props="flutter">After calling the <xref keyref="pauseAllChannelMediaRelayEx"/> method, if you need to resume media stream relay to all destination channels, you can call this method.</p>
+            <p props="unity">After calling the <xref keyref="pauseAllChannelMediaRelayEx"/> method, if you need to resume forwarding to all destination channels, you can call this method.</p>
+            <note props="electron">You must call this method after <xref keyref="pauseAllChannelMediaRelayEx"/>.</note>
+            <note props="rn">You must call this method after <xref keyref="pauseAllChannelMediaRelayEx"/>.</note>
+            <note props="flutter">This method must be called after <xref keyref="pauseAllChannelMediaRelayEx"/>.</note>
+            <note props="unity">You must call this method after <xref keyref="pauseAllChannelMediaRelayEx"/>.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call was successful.</li>
+                    <li>&lt; 0: The method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-5: This method call was rejected. There is no paused cross-channel media stream forwarding.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call was successful.</li>
+                    <li>&lt; 0: The method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-5: This method call was rejected. No paused cross-channel media stream forwarding exists.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                <ul>
+                    <li>&lt; 0: Method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-5: This method call was rejected. There is no paused cross-channel media stream relay.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-5: This method call was rejected. No cross-channel media stream forwarding is currently paused.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

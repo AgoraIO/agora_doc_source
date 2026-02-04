@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_videosurface_setforuser">
+    <title><ph keyref="setForUser"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Sets local/remote video display.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setForUser"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public void SetForUser(uint uid = 0, string channelId = "",
+            VIDEO_SOURCE_TYPE source_type = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY)
+        {
+            Uid = uid;
+            ChannelId = channelId;
+            SourceType = source_type;
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="unity">
+                <ul>
+                    <li>Make sure to call this method on the main thread.</li>
+                    <li>Make sure to call this method before binding <codeph>VideoSurface.cs</codeph>.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>The remote user ID, obtained via <xref keyref="onUserJoined"/>. The default value is 0, which means the local video is visible.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelId</pt>
+                    <pd>Channel ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>source_type</pt>
+                    <pd>Video stream type. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

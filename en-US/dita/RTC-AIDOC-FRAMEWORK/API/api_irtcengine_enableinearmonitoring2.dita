@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enableinearmonitoring2">
+    <title><ph keyref="enableInEarMonitoring2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Enables in-ear monitoring.</ph><ph id="shortdesc" props="rn">Enables in-ear monitoring.</ph><ph id="shortdesc" props="flutter">Enables in-ear monitoring.</ph><ph id="shortdesc" props="unity">Enables in-ear monitoring.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableInEarMonitoring2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableInEarMonitoring(
+    enabled: boolean,
+    includeAudioFilters: EarMonitoringFilterType
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableInEarMonitoring(
+    enabled: boolean,
+    includeAudioFilters: EarMonitoringFilterType
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableInEarMonitoring(
+      {required bool enabled,
+      required EarMonitoringFilterType includeAudioFilters});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableInEarMonitoring(bool enabled, int includeAudioFilters);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method is used to enable or disable in-ear monitoring.</p>
+            <p props="rn">Enables or disables in-ear monitoring.</p>
+            <p props="flutter">This method enables or disables in-ear monitoring.</p>
+            <p props="unity">This method enables or disables in-ear monitoring.</p>
+            <note props="electron">Users must use headphones (wired or Bluetooth) to hear the in-ear monitoring effect.</note>
+            <note props="rn">Users must wear headphones (wired or Bluetooth) to hear the in-ear monitoring.</note>
+            <note props="flutter">The user must use headphones (wired or Bluetooth) to hear the in-ear monitoring effect.</note>
+            <note props="unity">Users must use headphones (wired or Bluetooth) to hear the in-ear monitoring effect.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Can be called before or after joining a channel.</p>
+            <p props="rn">You can call this method before or after joining a channel.</p>
+            <p props="flutter">Can be called before or after joining a channel.</p>
+            <p props="unity">Can be called before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>Enable/disable in-ear monitoring:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable in-ear monitoring.</li>
+                            <li><xref keyref="false"/>: (Default) Disable in-ear monitoring.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>includeAudioFilters</pt>
+                    <pd>Type of in-ear monitoring audio filter. See <xref keyref="EAR_MONITORING_FILTER_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable in-ear monitoring:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable in-ear monitoring.</li>
+                            <li><xref keyref="false"/>: (Default) Disable in-ear monitoring.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>includeAudioFilters</pt>
+                    <pd>The type of audio filter for in-ear monitoring. See <xref keyref="EAR_MONITORING_FILTER_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Enable/disable in-ear monitoring:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable in-ear monitoring.</li>
+                            <li><xref keyref="false"/>: (Default) Disable in-ear monitoring.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>includeAudioFilters</pt>
+                    <pd>The audio filter type for in-ear monitoring. See <xref keyref="EAR_MONITORING_FILTER_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Enable/disable in-ear monitoring:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable in-ear monitoring.</li>
+                            <li><xref keyref="false"/>: (Default) Disable in-ear monitoring.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>includeAudioFilters</pt>
+                    <pd>The type of audio filter for in-ear monitoring. See <xref keyref="EAR_MONITORING_FILTER_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-8: Please ensure the current audio route is Bluetooth or headphones.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-8: Make sure the current audio route is set to Bluetooth or headphones.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-8: Please ensure the current audio route is Bluetooth or headset.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

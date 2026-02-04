@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudiospectrumobserver_onlocalaudiospectrum">
+    <title><ph keyref="onLocalAudioSpectrum"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets the local audio spectrum.</ph><ph id="shortdesc" props="rn">Receives the local audio spectrum.</ph><ph id="shortdesc" props="flutter">Gets the local audio spectrum.</ph><ph id="shortdesc" props="unity">Receives local audio spectrum.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalAudioSpectrum"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onLocalAudioSpectrum?(data: AudioSpectrumData): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onLocalAudioSpectrum?(data: AudioSpectrumData): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(AudioSpectrumData data)? onLocalAudioSpectrum;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnLocalAudioSpectrum(AudioSpectrumData data)
+        {
+            return true;
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After successfully calling <xref keyref="registerAudioSpectrumObserver"/> to implement the <xref keyref="onLocalAudioSpectrum"/> callback in <xref keyref="IAudioSpectrumObserver"/> and calling <xref keyref="enableAudioSpectrumMonitor"/> to enable audio spectrum monitoring, the SDK triggers this callback at the interval you set to report the spectrum of local audio data before encoding.</p>
+            <p props="rn">After successfully calling <xref keyref="registerAudioSpectrumObserver"/>, implementing the <xref keyref="onLocalAudioSpectrum"/> callback of <xref keyref="IAudioSpectrumObserver"/>, and enabling audio spectrum monitoring via <xref keyref="enableAudioSpectrumMonitor"/>, the SDK triggers this callback at the set interval to report the pre-encoded local audio spectrum data.</p>
+            <p props="flutter">After successfully calling <xref keyref="registerAudioSpectrumObserver"/> to implement the <xref keyref="onLocalAudioSpectrum"/> callback in <xref keyref="IAudioSpectrumObserver"/> and calling <xref keyref="enableAudioSpectrumMonitor"/> to enable audio spectrum monitoring, the SDK triggers this callback at the set time interval to report the spectrum of the local audio data before encoding.</p>
+            <p props="unity">After successfully calling <xref keyref="registerAudioSpectrumObserver"/>, implementing the <xref keyref="onLocalAudioSpectrum"/> callback in <xref keyref="IAudioSpectrumObserver"/>, and calling <xref keyref="enableAudioSpectrumMonitor"/> to enable audio spectrum monitoring, the SDK triggers this callback at the interval you set to report the spectrum of local audio data before encoding.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>data</pt>
+                    <pd>The local user's audio spectrum data. See <xref keyref="AudioSpectrumData"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>data</pt>
+                    <pd>The local user's audio spectrum data. See <xref keyref="AudioSpectrumData"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>data</pt>
+                    <pd>The local user's audio spectrum data. See <xref keyref="AudioSpectrumData"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>data</pt>
+                    <pd>Audio spectrum data of the local user. See <xref keyref="AudioSpectrumData"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">Whether to receive spectrum data:
+                <ul>
+                    <li><xref keyref="true"/>: Receive.</li>
+                    <li><xref keyref="false"/>: Do not receive.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

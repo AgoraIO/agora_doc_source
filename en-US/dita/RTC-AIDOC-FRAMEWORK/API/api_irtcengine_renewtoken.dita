@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_renewtoken">
+    <title><ph keyref="renewToken"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Renews the Token.</ph><ph id="shortdesc" props="rn">Renews the token.</ph><ph id="shortdesc" props="flutter">Updates the token.</ph><ph id="shortdesc" props="unity">Renews the Token.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="renewToken"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract renewToken(token: string): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract renewToken(token: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; renewToken(String token);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int RenewToken(string token);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method renews the Token. The Token will expire after a certain period, and the SDK will then be unable to connect to the server.</p>
+            <p props="rn">This method is used to renew the token. The token will expire after a certain period, after which the SDK will not be able to connect to the server.</p>
+            <p props="flutter">This method is used to update the token. The token expires after a certain period, at which point the SDK cannot establish a connection with the server.</p>
+            <p props="unity">This method is used to renew the Token. The Token will expire after a certain period, at which point the SDK will be unable to connect to the server.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">In any of the following situations, Agora recommends that your server regenerate the Token and then call this method to pass in the new Token:
+                <ul>
+                    <li>When receiving the <xref keyref="onTokenPrivilegeWillExpire"/> callback indicating that the Token is about to expire;</li>
+                    <li>When receiving the <xref keyref="onRequestToken"/> callback indicating that the Token has expired;</li>
+                    <li>When receiving the <xref keyref="onConnectionStateChanged"/> callback reporting <codeph>ConnectionChangedTokenExpired</codeph> (9);</li>
+                </ul>
+            </p>
+            <p props="rn">In any of the following cases, Agora recommends that your server regenerate a token and then call this method to pass in the new token:
+                <ul>
+                    <li>When receiving the <xref keyref="onTokenPrivilegeWillExpire"/> callback indicating the token is about to expire;</li>
+                    <li>When receiving the <xref keyref="onRequestToken"/> callback indicating the token has expired;</li>
+                    <li>When receiving the <xref keyref="onConnectionStateChanged"/> callback with <codeph>ConnectionChangedTokenExpired</codeph>(9);</li>
+                </ul>
+            </p>
+            <p props="flutter">In any of the following situations, Agora recommends that you regenerate a token on your server and call this method to pass in the new token:
+                <ul>
+                    <li>When you receive the <xref keyref="onTokenPrivilegeWillExpire"/> callback indicating the token is about to expire;</li>
+                    <li>When you receive the <xref keyref="onRequestToken"/> callback indicating the token has expired;</li>
+                    <li>When you receive the <xref keyref="onConnectionStateChanged"/> callback reporting <codeph>connectionChangedTokenExpired</codeph> (9);</li>
+                </ul>
+            </p>
+            <p props="unity">In any of the following situations, Agora recommends that your server regenerate a Token and then call this method to pass in the new Token:
+                <ul>
+                    <li>When receiving the <xref keyref="onTokenPrivilegeWillExpire"/> callback indicating that the Token is about to expire;</li>
+                    <li>When receiving the <xref keyref="onRequestToken"/> callback indicating that the Token has expired;</li>
+                    <li>When receiving the <xref keyref="onConnectionStateChanged"/> callback reporting <codeph>CONNECTION_CHANGED_TOKEN_EXPIRED</codeph>(9);</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>token</pt>
+                    <pd>The newly generated Token.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>token</pt>
+                    <pd>The newly generated token.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>token</pt>
+                    <pd>The newly generated token.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>token</pt>
+                    <pd>The newly generated Token.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter. For example, the Token is empty.</li>
+                            <li>-7: <xref keyref="IRtcEngine"/> object is not initialized. You need to initialize the <xref keyref="IRtcEngine"/> object successfully before calling this method.</li>
+                            <li>-110: Invalid Token. Make sure that:
+                                <ul>
+                                    <li>The user ID specified when generating the Token is the same as the one used when joining the channel,</li>
+                                    <li>The generated Token is the same as the one used to join the channel.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter. For example, the token is empty.</li>
+                            <li>-7: The <xref keyref="IRtcEngine"/> object is not initialized. You need to initialize the <xref keyref="IRtcEngine"/> object successfully before calling this method.</li>
+                            <li>-110: Invalid token. Make sure:
+                                <ul>
+                                    <li>The user ID specified when generating the token matches the one used to join the channel,</li>
+                                    <li>The generated token matches the one used to join the channel.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter. For example, the Token is empty.</li>
+                            <li>-7: The <xref keyref="IRtcEngine"/> object is not initialized. You need to initialize the <xref keyref="IRtcEngine"/> object successfully before calling this method.</li>
+                            <li>-110: Invalid Token. Please ensure:
+                                <ul>
+                                    <li>The user ID specified when generating the Token matches the one used to join the channel,</li>
+                                    <li>The generated Token matches the one used to join the channel.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

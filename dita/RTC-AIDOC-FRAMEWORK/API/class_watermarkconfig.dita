@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_watermarkconfig">
+    <title><ph keyref="WatermarkConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">用于配置水印信息。</ph><ph id="shortdesc" props="rn">用于配置水印信息。</ph><ph id="shortdesc" props="flutter">用于配置水印信息。</ph><ph id="shortdesc" props="unity">用于配置水印信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class WatermarkConfig {
+id?: string;
+type?: WatermarkSourceType;
+buffer?: WatermarkBuffer;
+timestamp?: WatermarkTimestamp;
+literal?: WatermarkLiteral;
+imageUrl?: string;
+options?: WatermarkOptions;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class WatermarkConfig {
+id?: string;
+type?: WatermarkSourceType;
+buffer?: WatermarkBuffer;
+timestamp?: WatermarkTimestamp;
+literal?: WatermarkLiteral;
+imageUrl?: string;
+options?: WatermarkOptions;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class WatermarkConfig implements AgoraSerializable {
+  const WatermarkConfig(
+      {this.id,
+      this.type,
+      this.buffer,
+      this.timestamp,
+      this.literal,
+      this.imageUrl,
+      this.options});
+
+  @JsonKey(name: 'id')
+  final String? id;
+
+  @JsonKey(name: 'type')
+  final WatermarkSourceType? type;
+
+  @JsonKey(name: 'buffer')
+  final WatermarkBuffer? buffer;
+
+  @JsonKey(name: 'timestamp')
+  final WatermarkTimestamp? timestamp;
+
+  @JsonKey(name: 'literal')
+  final WatermarkLiteral? literal;
+
+  @JsonKey(name: 'imageUrl')
+  final String? imageUrl;
+
+  @JsonKey(name: 'options')
+  final WatermarkOptions? options;
+
+  factory WatermarkConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$WatermarkConfigFromJson(json);
+
+  @override
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$WatermarkConfigToJson(this);
+}
+</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">    public class WatermarkConfig
+    {
+        public string id;
+
+        public WATERMARK_SOURCE_TYPE type;
+
+        public WatermarkBuffer buffer;
+
+        public WatermarkTimestamp timestamp;
+
+        public WatermarkLiteral literal;
+
+        public string imageUrl;
+
+        public WatermarkOptions options;
+
+        public WatermarkConfig()
+        {
+            this.id = "";
+            this.type = WATERMARK_SOURCE_TYPE.IMAGE;
+            this.imageUrl = "";
+        }
+
+        public WatermarkConfig(string id, WATERMARK_SOURCE_TYPE type, WatermarkBuffer buffer, WatermarkTimestamp timestamp, WatermarkLiteral literal, string imageUrl, WatermarkOptions options)
+        {
+            this.id = id;
+            this.type = type;
+            this.buffer = buffer;
+            this.timestamp = timestamp;
+            this.literal = literal;
+            this.imageUrl = imageUrl;
+            this.options = options;
+        }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>id</pt>
+                    <pd>水印的唯一标识符，建议使用 UUID。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>水印类型，详见 <xref keyref="WATERMARK_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>buffer</pt>
+                    <pd>水印的缓冲区。详见 <xref keyref="WatermarkBuffer"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>timestamp</pt>
+                    <pd>水印的时间戳。
+                        <note>仅支持在 Linux 平台使用。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>literal</pt>
+                    <pd>水印的文本内容。
+                        <note>仅支持在 Linux 平台使用。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>imageUrl</pt>
+                    <pd>水印图像文件的 URL，默认值为 <codeph>NULL</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>options</pt>
+                    <pd>水印的配置选项。详见 <xref keyref="WatermarkOptions"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>id</pt>
+                    <pd>水印的唯一标识符，建议使用 UUID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>水印类型，详见 <xref keyref="WATERMARK_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>buffer</pt>
+                    <pd>水印的缓冲区。详见 <xref keyref="WatermarkBuffer"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>timestamp</pt>
+                    <pd>水印的时间戳。
+                        <note>仅支持在 Linux 平台使用。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>literal</pt>
+                    <pd>水印的文本内容。
+                        <note>仅支持在 Linux 平台使用。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>imageUrl</pt>
+                    <pd>水印图像文件的 URL，默认值为 <codeph>NULL</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>options</pt>
+                    <pd>水印的配置选项。详见 <xref keyref="WatermarkOptions"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>id</pt>
+                    <pd>水印的唯一标识符，建议使用 UUID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>水印类型，详见 <xref keyref="WATERMARK_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>buffer</pt>
+                    <pd>水印的缓冲区。详见 <xref keyref="WatermarkBuffer"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>timestamp</pt>
+                    <pd>水印的时间戳。
+                        <note>仅支持在 Linux 平台使用。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>literal</pt>
+                    <pd>水印的文本内容。
+                        <note>仅支持在 Linux 平台使用。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>imageUrl</pt>
+                    <pd>水印图像文件的 URL，默认值为 <codeph>NULL</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>options</pt>
+                    <pd>水印的配置选项。详见 <xref keyref="WatermarkOptions"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>id</pt>
+                    <pd>水印的唯一标识符，建议使用 UUID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>水印类型，详见 <xref keyref="WATERMARK_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>buffer</pt>
+                    <pd>水印的缓冲区。详见 <xref keyref="WatermarkBuffer"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>timestamp</pt>
+                    <pd>水印的时间戳。
+                        <note>仅支持在 Linux 平台使用。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>literal</pt>
+                    <pd>水印的文本内容。
+                        <note>仅支持在 Linux 平台使用。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>imageUrl</pt>
+                    <pd>水印图像文件的 URL，默认值为 <codeph>NULL</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>options</pt>
+                    <pd>水印的配置选项。详见 <xref keyref="WatermarkOptions"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

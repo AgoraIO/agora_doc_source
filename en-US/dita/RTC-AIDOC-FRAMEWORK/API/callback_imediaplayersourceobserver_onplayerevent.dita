@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onplayerevent">
+    <title><ph keyref="onPlayerEvent"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Reports events from the media player.</ph><ph id="shortdesc" props="rn">Reports player events.</ph><ph id="shortdesc" props="flutter">Reports player events.</ph><ph id="shortdesc" props="unity">Reports player events.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlayerEvent"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onPlayerEvent?(
+    eventCode: MediaPlayerEvent,
+    elapsedTime: number,
+    message: string
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onPlayerEvent?(
+    eventCode: MediaPlayerEvent,
+    elapsedTime: number,
+    message: string
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(
+          MediaPlayerEvent eventCode, int elapsedTime, String message)?
+      onPlayerEvent;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerEvent(MEDIA_PLAYER_EVENT eventCode, Int64 elapsedTime, string message) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">
+                <ul>
+                    <li>After calling <xref keyref="seek"/> to seek playback, the SDK triggers this callback to report the result of the seek operation.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>After calling <xref keyref="seek"/> to locate playback, the SDK triggers this callback to report the result of the seek operation.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>After calling <xref keyref="seek"/> to locate playback, the SDK triggers this callback to report the result of the seek operation.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>After calling <xref keyref="seek"/> to seek playback, the SDK triggers this callback to report the result of the seek operation.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>eventCode</pt>
+                    <pd>Media player event. See <xref keyref="MEDIA_PLAYER_EVENT"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>elapsedTime</pt>
+                    <pd>The time (ms) when the event occurred.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>message</pt>
+                    <pd>Information about the event.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>eventCode</pt>
+                    <pd>Player event. See <xref keyref="MEDIA_PLAYER_EVENT"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>elapsedTime</pt>
+                    <pd>Time of the event (in milliseconds).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>message</pt>
+                    <pd>Information about the event.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>eventCode</pt>
+                    <pd>Player event. See <xref keyref="MEDIA_PLAYER_EVENT"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>elapsedTime</pt>
+                    <pd>The time when the event occurred (in milliseconds).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>message</pt>
+                    <pd>Information about the event.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>eventCode</pt>
+                    <pd>Player event. See <xref keyref="MEDIA_PLAYER_EVENT"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>elapsedTime</pt>
+                    <pd>Time when the event occurred (milliseconds).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>message</pt>
+                    <pd>Information about the event.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

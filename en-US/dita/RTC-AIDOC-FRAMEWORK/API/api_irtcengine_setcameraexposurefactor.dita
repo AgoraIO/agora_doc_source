@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setcameraexposurefactor">
+    <title><ph keyref="setCameraExposureFactor"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Sets the exposure factor of the current camera.</ph><ph id="shortdesc" props="flutter">Sets the exposure factor of the current camera.</ph><ph id="shortdesc" props="unity">Sets the exposure factor of the current camera.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setCameraExposureFactor"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract setCameraExposureFactor(factor: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraExposureFactor(double factor);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetCameraExposureFactor(float factor);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">When the lighting in the shooting environment is insufficient or too bright, it can affect the quality of the captured video. To achieve better video effects, you can use this method to adjust the exposure factor of the camera.</p>
+            <p props="flutter">When the lighting in the shooting environment is insufficient or too bright, it affects the quality of video capture. To achieve better video effects, you can use this method to adjust the camera's exposure factor.</p>
+            <p props="unity">Poor or overly bright lighting conditions affect the quality of video capture. To achieve better video results, you can use this method to adjust the camera's exposure factor.</p>
+            <note props="rn">
+                <ul>
+                    <li>You must call this method after <xref keyref="enableVideo"/>. The setting takes effect after the camera is successfully turned on, that is, when the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LocalVideoStreamStateCapturing</codeph> (1).</li>
+                    <li>It is recommended that you call <xref keyref="isCameraExposureSupported"/> before using this method to check whether the current camera supports adjusting the exposure factor.</li>
+                    <li>When you call this method, it sets the exposure factor for the currently used camera, which is the one specified in <xref keyref="setCameraCapturerConfiguration"/>.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method is applicable to Android and iOS only.</li>
+                    <li>You must call this method after <xref keyref="enableVideo"/>. The setting takes effect after the camera is successfully turned on, i.e., after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and the local video state is <codeph>localVideoStreamStateCapturing</codeph> (1).</li>
+                    <li>It is recommended to call <xref keyref="isCameraExposureSupported"/> before using this method to check whether the current camera supports adjusting the exposure factor.</li>
+                    <li>When you call this method, it sets the exposure factor for the currently used camera, which is the one specified in <xref keyref="setCameraCapturerConfiguration"/>.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method is for Android and iOS only.</li>
+                    <li>You must call this method after <xref keyref="enableVideo"/>. The setting takes effect after the camera is successfully enabled, i.e., after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</li>
+                    <li>It is recommended to call <xref keyref="isCameraExposureSupported"/> first to check whether the current camera supports adjusting the exposure factor.</li>
+                    <li>When you call this method, it sets the exposure factor for the currently used camera, i.e., the one specified in <xref keyref="setCameraCapturerConfiguration"/>.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>factor</pt>
+                    <pd>The exposure factor of the camera. The default value is 0, which means using the camera's default exposure. The larger the value, the greater the exposure. If the video image is overexposed, you can lower the exposure factor; if the video image is underexposed and dark details are lost, you can increase the exposure factor. If the specified exposure factor exceeds the supported range of the device, the SDK automatically adjusts it to the supported range.
+On Android, the range is [-20.0,20.0]; on iOS, the range is [-8.0,8.0].</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>factor</pt>
+                    <pd>Exposure factor of the camera. The default value is 0, which means using the camera's default exposure level. The larger the value, the higher the exposure. When the video image is overexposed, you can reduce the exposure factor; when the image is underexposed and dark details are lost, you can increase the exposure factor. If the specified exposure factor exceeds the supported range of the device, the SDK automatically adjusts it to the supported range.
+On Android, the range is [-20.0, 20.0]; on iOS, the range is [-8.0, 8.0].</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>factor</pt>
+                    <pd>Exposure factor of the camera. The default value is 0, which means using the camera's default exposure. The larger the value, the greater the exposure. If the video is overexposed, you can reduce the exposure factor; if the video is underexposed and lacks detail in dark areas, you can increase the exposure factor. If the specified value exceeds the device's supported range, the SDK automatically adjusts it to a supported value.
+On Android, the range is [-20.0, 20.0]; on iOS, the range is [-8.0, 8.0].</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

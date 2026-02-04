@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalvoiceequalization">
+    <title><ph keyref="setLocalVoiceEqualization"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the local voice equalization effect.</ph><ph id="shortdesc" props="rn">Sets the local voice equalization effect.</ph><ph id="shortdesc" props="flutter">Sets the local voice equalization.</ph><ph id="shortdesc" props="unity">Sets the local voice equalization.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalVoiceEqualization"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setLocalVoiceEqualization(
+    bandFrequency: AudioEqualizationBandFrequency,
+    bandGain: number
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setLocalVoiceEqualization(
+    bandFrequency: AudioEqualizationBandFrequency,
+    bandGain: number
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalVoiceEqualization(
+  {required AudioEqualizationBandFrequency bandFrequency,
+  required int bandGain});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalVoiceEqualization(AUDIO_EQUALIZATION_BAND_FREQUENCY bandFrequency, int bandGain);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Can be called before or after joining a channel.</p>
+            <p props="rn">Can be called before or after joining a channel.</p>
+            <p props="flutter">Can be called before and after joining a channel.</p>
+            <p props="unity">Can be called before and after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>bandFrequency</pt>
+                    <pd>Index of the frequency band. The range is [0,9], representing 10 frequency bands. The corresponding center frequencies are [31, 62, 125, 250, 500, 1k, 2k, 4k, 8k, 16k] Hz. See <xref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>bandGain</pt>
+                    <pd>Gain of each band in dB. The value range is [-15,15], with a default of 0.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>bandFrequency</pt>
+                    <pd>Index of the frequency band. The value range is [0,9], representing 10 frequency bands. The corresponding center frequencies are [31, 62, 125, 250, 500, 1k, 2k, 4k, 8k, 16k] Hz. See <xref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>bandGain</pt>
+                    <pd>Gain of each band in dB. The value range is [-15,15], and the default is 0.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>bandFrequency</pt>
+                    <pd>Index of the frequency band. The range is [0,9], representing 10 frequency bands. The corresponding center frequencies are [31, 62, 125, 250, 500, 1k, 2k, 4k, 8k, 16k] Hz. See <xref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>bandGain</pt>
+                    <pd>Gain of each band in dB. The range for each value is [-15,15], with a default value of 0.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>bandFrequency</pt>
+                    <pd>Index of the band frequency. The value range is [0,9], representing 10 bands of the equalizer. The corresponding center frequencies are [31, 62, 125, 250, 500, 1k, 2k, 4k, 8k, 16k] Hz. See <xref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>bandGain</pt>
+                    <pd>Gain of each band in dB. The value range is [-15,15], with a default of 0.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

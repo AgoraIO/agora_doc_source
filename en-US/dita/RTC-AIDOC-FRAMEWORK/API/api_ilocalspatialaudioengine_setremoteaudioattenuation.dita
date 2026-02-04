@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ilocalspatialaudioengine_setremoteaudioattenuation">
+    <title><ph keyref="setRemoteAudioAttenuation"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the audio attenuation effect for the specified user.</ph><ph id="shortdesc" props="rn">Sets the audio attenuation effect for the specified user.</ph><ph id="shortdesc" props="flutter">Sets the sound attenuation effect for a specified user.</ph><ph id="shortdesc" props="unity">Sets the sound attenuation effect for a specified user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteAudioAttenuation"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setRemoteAudioAttenuation(
+    uid: number,
+    attenuation: number,
+    forceSet: boolean
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setRemoteAudioAttenuation(
+    uid: number,
+    attenuation: number,
+    forceSet: boolean
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteAudioAttenuation(
+      {required int uid, required double attenuation, required bool forceSet});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteAudioAttenuation(uint uid, double attenuation, bool forceSet);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>User ID. Must be the same as the user ID used when joining the channel.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>attenuation</pt>
+                    <pd>The audio attenuation coefficient for the user, ranging from [0,1].</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>forceSet</pt>
+                    <pd>Whether to force the audio attenuation effect for the user:
+                        <ul>
+                            <li><xref keyref="true"/>: Forces the use of <codeph>attenuation</codeph> to set the user's audio attenuation effect. In this case, the <codeph>audioAttenuation</codeph> set in <xref keyref="SpatialAudioZone"/> does not apply to the user.</li>
+                            <li><xref keyref="false"/>: Does not force the use of <codeph>attenuation</codeph> to set the user's audio attenuation effect. There are two cases:
+                                <ul>
+                                    <li>If the sound source and listener are inside and outside the sound insulation zone respectively, the attenuation effect is determined by <codeph>audioAttenuation</codeph> in <xref keyref="SpatialAudioZone"/>.</li>
+                                    <li>If the sound source and listener are both inside the same sound insulation zone or both outside, the attenuation effect is determined by <codeph>attenuation</codeph> in this method.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>User ID. Must be the same as the user ID used when joining the channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>attenuation</pt>
+                    <pd>The audio attenuation coefficient for the user. The range is [0,1].</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>forceSet</pt>
+                    <pd>Whether to force the audio attenuation effect for the user:
+                        <ul>
+                            <li><xref keyref="true"/>: Forces the use of <codeph>attenuation</codeph> to set the user's audio attenuation effect. In this case, the <codeph>audioAttenuation</codeph> set in <xref keyref="SpatialAudioZone"/> does not take effect for this user.</li>
+                            <li><xref keyref="false"/>: Does not force the use of <codeph>attenuation</codeph> to set the user's audio attenuation effect. There are two cases:
+                                <ul>
+                                    <li>If the audio source and listener are inside and outside the sound insulation zone respectively, the attenuation effect is determined by <codeph>audioAttenuation</codeph> in <xref keyref="SpatialAudioZone"/>.</li>
+                                    <li>If the audio source and listener are both inside the same sound insulation zone or both outside, the attenuation effect is determined by <codeph>attenuation</codeph> in this method.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>User ID. Must match the user ID used when joining the channel.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>attenuation</pt>
+                    <pd>The sound attenuation coefficient for the specified user, ranging from [0,1].</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>forceSet</pt>
+                    <pd>Whether to forcibly apply the sound attenuation effect for the user:
+                        <ul>
+                            <li><xref keyref="true"/>: Forces the use of <codeph>attenuation</codeph> to set the user's sound attenuation effect. In this case, the <codeph>audioAttenuation</codeph> value set in <xref keyref="SpatialAudioZone"/> has no effect on this user.</li>
+                            <li><xref keyref="false"/>: Does not forcibly apply <codeph>attenuation</codeph> to the user. Behavior depends on the following:
+                                <ul>
+                                    <li>If the audio source and listener are in and out of the sound insulation zone respectively, the attenuation effect is determined by <codeph>audioAttenuation</codeph> in <xref keyref="SpatialAudioZone"/>.</li>
+                                    <li>If the audio source and listener are both inside or both outside the same sound insulation zone, the attenuation effect is determined by the <codeph>attenuation</codeph> parameter in this method.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>User ID. Must match the user ID used when joining the channel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>attenuation</pt>
+                    <pd>Sound attenuation coefficient for the specified user, value range [0,1].</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>forceSet</pt>
+                    <pd>Whether to forcefully apply the sound attenuation effect for the user:
+                        <ul>
+                            <li><xref keyref="true"/>: Forcefully use <codeph>attenuation</codeph> to set the user's sound attenuation effect. In this case, the <codeph>audioAttenuation</codeph> coefficient set in <xref keyref="SpatialAudioZone"/> does not apply to the user.</li>
+                            <li><xref keyref="false"/>: Do not forcefully use <codeph>attenuation</codeph> to set the user's sound attenuation effect. There are two cases:
+                                <ul>
+                                    <li>If the sound source and listener are inside and outside the isolation zone respectively, the sound attenuation effect is determined by the <codeph>audioAttenuation</codeph> in <xref keyref="SpatialAudioZone"/>.</li>
+                                    <li>If the sound source and listener are both inside the same isolation zone or both outside, the sound attenuation effect is determined by the <codeph>attenuation</codeph> in this method.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when it fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

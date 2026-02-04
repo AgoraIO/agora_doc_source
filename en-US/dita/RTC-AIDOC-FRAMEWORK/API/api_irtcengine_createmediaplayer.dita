@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_createmediaplayer">
+    <title><ph keyref="createMediaPlayer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Creates a media player object.</ph><ph id="shortdesc" props="rn">Creates a media player instance.</ph><ph id="shortdesc" props="flutter">Creates a media player object.</ph><ph id="shortdesc" props="unity">Creates a media player object.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createMediaPlayer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract createMediaPlayer(): IMediaPlayer;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract createMediaPlayer(): IMediaPlayer;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;MediaPlayer&gt; createMediaPlayer();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract IMediaPlayer CreateMediaPlayer();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Before calling other APIs under the <xref keyref="IMediaPlayer"/> class, you need to call this method to create a media player instance. If you need to create multiple instances, you can call this method multiple times.</p>
+            <p props="rn">Before calling other APIs under the <xref keyref="IMediaPlayer"/> class, you must call this method to create a media player instance. If you need multiple instances, you can call this method multiple times.</p>
+            <p props="flutter">Before calling other APIs under the <xref keyref="IMediaPlayer"/> class, you need to call this method to create a media player instance. If you need multiple instances, you can call this method multiple times.</p>
+            <p props="unity">Before calling other APIs under the <xref keyref="IMediaPlayer"/> class, you must first call this method to create a media player instance. If you need multiple instances, you can call this method multiple times.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">You can call this method before or after joining a channel.</p>
+            <p props="rn">This method can be called before or after joining a channel.</p>
+            <p props="flutter">This method can be called before or after joining a channel.</p>
+            <p props="unity">This method can be called before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>delegate</pt>
+                    <pd>Event handler of <xref keyref="IRtcEngine"/>. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>delegate</pt>
+                    <pd>The event handler of <xref keyref="IRtcEngine"/>. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>delegate</pt>
+                    <pd>The event handler for <xref keyref="IRtcEngine"/>. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>delegate</pt>
+                    <pd>Event handler for <xref keyref="IRtcEngine"/>. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>The <xref keyref="IMediaPlayer"/> object, if the method call succeeds.</li>
+                    <li>An empty pointer , if the method call fails.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>The <xref keyref="IMediaPlayer"/> object, if the method call succeeds.</li>
+                    <li>An empty pointer , if the method call fails.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>If the method call succeeds: returns a <xref keyref="IMediaPlayer"/> object.</li>
+                    <li>If the method call fails: returns a null pointer.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>The <xref keyref="IMediaPlayer"/> object, if the method call succeeds.</li>
+                    <li>An empty pointer, if the method call fails.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

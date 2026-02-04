@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_videoviewcontroller_videoviewcontrollerconstructor">
+    <title><ph keyref="VideoViewControllerConstructor"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="flutter">Constructor of the <xref keyref="VideoViewController"/> class used to render local video.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="VideoViewControllerConstructor"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="flutter" outputclass="language-dart">VideoViewController({
+    required this.rtcEngine,
+    required this.canvas,
+    this.useFlutterTexture = false,
+    this.useAndroidSurfaceView = false,
+  }) : connection = const RtcConnection();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="flutter">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="flutter">
+                    <pt>rtcEngine</pt>
+                    <pd><xref keyref="IRtcEngine"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>canvas</pt>
+                    <pd>Display properties of the local video. See <xref keyref="VideoCanvas"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>useFlutterTexture</pt>
+                    <pd>
+                        <note><codeph>FlutterTexture</codeph> is only applicable to iOS, macOS, and Windows platforms.</note><ph>Whether to use <codeph>FlutterTexture</codeph> to render video:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Use <codeph>FlutterTexture</codeph> to render video.</li>
+                            <li><xref keyref="false"/>: Do not use <codeph>FlutterTexture</codeph> to render video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>useAndroidSurfaceView</pt>
+                    <pd>
+                        <note>Android <codeph>SurfaceView</codeph> is only applicable to Android platform.</note><ph>Whether to use Android <codeph>SurfaceView</codeph> to render video:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Use Android <codeph>SurfaceView</codeph> to render video.</li>
+                            <li><xref keyref="false"/>: Do not use Android <codeph>SurfaceView</codeph> to render video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

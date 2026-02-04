@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onvideorenderingtracingresult">
+    <title><ph keyref="onVideoRenderingTracingResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Video frame rendering event callback.</ph><ph id="shortdesc" props="rn">Callback for video frame rendering events.</ph><ph id="shortdesc" props="flutter">Callback for video frame rendering events.</ph><ph id="shortdesc" props="unity">Reports video frame rendering events.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onVideoRenderingTracingResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onVideoRenderingTracingResult?(
+    connection: RtcConnection,
+    uid: number,
+    currentEvent: MediaTraceEvent,
+    tracingInfo: VideoRenderingTracingInfo
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onVideoRenderingTracingResult?(
+    connection: RtcConnection,
+    uid: number,
+    currentEvent: MediaTraceEvent,
+    tracingInfo: VideoRenderingTracingInfo
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(
+      RtcConnection connection,
+      int uid,
+      MediaTraceEvent currentEvent,
+      VideoRenderingTracingInfo tracingInfo)? onVideoRenderingTracingResult;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoRenderingTracingResult(RtcConnection connection, uint uid, MEDIA_TRACE_EVENT currentEvent, VideoRenderingTracingInfo tracingInfo) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After calling <xref keyref="startMediaRenderingTracing"/> or joining a channel, the SDK triggers this callback to report events and metrics during the video frame rendering process. Developers can optimize based on these metrics to improve rendering efficiency.</p>
+            <p props="rn">After calling the <xref keyref="startMediaRenderingTracing"/> method or joining a channel, the SDK triggers this callback to report video frame rendering events and metrics during the rendering process. Developers can optimize based on these metrics to improve rendering efficiency.</p>
+            <p props="flutter">After calling the <xref keyref="startMediaRenderingTracing"/> method or joining a channel, the SDK triggers this callback to report video frame rendering events and metrics during the rendering process. Developers can optimize based on these metrics to improve rendering efficiency.</p>
+            <p props="unity">After calling the <xref keyref="startMediaRenderingTracing"/> method or joining a channel, the SDK triggers this callback to report video frame rendering events and metrics during the rendering process. Developers can optimize based on these metrics to improve rendering efficiency.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>currentEvent</pt>
+                    <pd>Current video frame rendering event. See <xref keyref="MEDIA_TRACE_EVENT"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>tracingInfo</pt>
+                    <pd>Metrics during video frame rendering. Developers should minimize these values to improve rendering efficiency. See <xref keyref="VideoRenderingTracingInfo"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>currentEvent</pt>
+                    <pd>Current video frame rendering event. See <xref keyref="MEDIA_TRACE_EVENT"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>tracingInfo</pt>
+                    <pd>Metrics during the video frame rendering process. Developers should minimize the metric values to improve rendering efficiency. See <xref keyref="VideoRenderingTracingInfo"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>currentEvent</pt>
+                    <pd>Current video frame rendering event. See <xref keyref="MEDIA_TRACE_EVENT"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>tracingInfo</pt>
+                    <pd>Metrics during video frame rendering. Developers should minimize the metric values to improve rendering efficiency. See <xref keyref="VideoRenderingTracingInfo"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>currentEvent</pt>
+                    <pd>Current video frame rendering event. See <xref keyref="MEDIA_TRACE_EVENT"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>tracingInfo</pt>
+                    <pd>Metrics during the video frame rendering process. Developers should minimize these values to improve rendering efficiency. See <xref keyref="VideoRenderingTracingInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

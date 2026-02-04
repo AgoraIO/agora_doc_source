@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_watermarktimestamp">
+    <title><ph keyref="WatermarkTimestamp"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">用于配置时间戳水印。</ph><ph id="shortdesc" props="rn">用于配置时间戳水印。</ph><ph id="shortdesc" props="flutter">用于配置时间戳水印。</ph><ph id="shortdesc" props="unity">用于配置时间戳水印。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class WatermarkTimestamp {
+fontSize?: number;
+fontFilePath?: string;
+strokeWidth?: number;
+format?: string;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class WatermarkTimestamp {
+fontSize?: number;
+fontFilePath?: string;
+strokeWidth?: number;
+format?: string;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class WatermarkTimestamp implements AgoraSerializable {
+  const WatermarkTimestamp({this.fontSize, this.fontFilePath, this.strokeWidth, this.format});
+  final int? fontSize;
+  final String? fontFilePath;
+  final int? strokeWidth;
+  final String? format;
+  factory WatermarkTimestamp.fromJson(Map&lt;String, dynamic&gt; json) =&gt; _$WatermarkTimestampFromJson(json);
+  @override
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$WatermarkTimestampToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">    public class WatermarkTimestamp
+    {
+        public int fontSize;
+        public string fontFilePath;
+        public int strokeWidth;
+        public string format;
+        public WatermarkTimestamp()
+        {
+            this.fontSize = 10;
+            this.fontFilePath = "";
+            this.strokeWidth = 1;
+            this.format = "";
+        }
+        public WatermarkTimestamp(int fontSize, string fontFilePath, int strokeWidth, string format)
+        {
+            this.fontSize = fontSize;
+            this.fontFilePath = fontFilePath;
+            this.strokeWidth = strokeWidth;
+            this.format = format;
+        }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <note props="electron">仅适用于 Linux 平台。</note>
+            <note props="rn">仅适用于 Linux 平台。</note>
+            <note props="flutter">仅适用于 Linux 平台。</note>
+            <note props="unity">仅适用于 Linux 平台。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>fontSize</pt>
+                    <pd>时间戳字体的大小。默认值为 10。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>fontFilePath</pt>
+                    <pd>时间戳字体文件的路径。默认值为 <codeph>NULL</codeph>。字体文件需为 .ttf 格式。如果未设置，SDK 会使用系统默认字体（如果可用）。
+                        <note>如果异步使用，请将路径复制到不会被释放的内存中。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>strokeWidth</pt>
+                    <pd>时间戳描边的宽度。默认值为 1。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>format</pt>
+                    <pd>时间戳的格式。默认值为 <codeph>%F %X</codeph>。格式遵循 C 标准库函数 <codeph>strftime</codeph> 的规范，详见 <codeph>strftime</codeph>。
+                        <note>如果异步使用，请将格式字符串复制到不会被释放的内存中。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>fontSize</pt>
+                    <pd>时间戳字体的大小。默认值为 10。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>fontFilePath</pt>
+                    <pd>时间戳字体文件的路径。默认值为 <codeph>NULL</codeph>。字体文件需为 .ttf 格式。如果未设置，SDK 会使用系统默认字体（如果可用）。
+                        <note>如果异步使用，请将路径复制到不会被释放的内存中。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>strokeWidth</pt>
+                    <pd>时间戳描边的宽度。默认值为 1。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>format</pt>
+                    <pd>时间戳的格式。默认值为 <codeph>%F %X</codeph>。格式遵循 C 标准库函数 <codeph>strftime</codeph> 的规范，详见 <codeph>strftime</codeph>。
+                        <note>如果异步使用，请将格式字符串复制到不会被释放的内存中。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>fontSize</pt>
+                    <pd>时间戳字体的大小。默认值为 10。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>fontFilePath</pt>
+                    <pd>时间戳字体文件的路径。默认值为 <codeph>NULL</codeph>。字体文件需为 .ttf 格式。如果未设置，SDK 会使用系统默认字体（如果可用）。
+                        <note>如果异步使用，请将路径复制到不会被释放的内存中。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>strokeWidth</pt>
+                    <pd>时间戳描边的宽度。默认值为 1。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>format</pt>
+                    <pd>时间戳的格式。默认值为 <codeph>%F %X</codeph>。格式遵循 C 标准库函数 <codeph>strftime</codeph> 的规范，详见 <codeph>strftime</codeph>。
+                        <note>如果异步使用，请将格式字符串复制到不会被释放的内存中。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>fontSize</pt>
+                    <pd>时间戳字体的大小。默认值为 10。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>fontFilePath</pt>
+                    <pd>时间戳字体文件的路径。默认值为 <codeph>NULL</codeph>。字体文件需为 .ttf 格式。如果未设置，SDK 会使用系统默认字体（如果可用）。
+                        <note>如果异步使用，请将路径复制到不会被释放的内存中。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>strokeWidth</pt>
+                    <pd>时间戳描边的宽度。默认值为 1。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>format</pt>
+                    <pd>时间戳的格式。默认值为 <codeph>%F %X</codeph>。格式遵循 C 标准库函数 <codeph>strftime</codeph> 的规范，详见 <codeph>strftime</codeph>。
+                        <note>如果异步使用，请将格式字符串复制到不会被释放的内存中。</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

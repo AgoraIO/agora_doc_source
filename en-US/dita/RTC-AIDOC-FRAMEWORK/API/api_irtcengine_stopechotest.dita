@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_stopechotest">
+    <title><ph keyref="stopEchoTest"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Stops the audio loopback test.</ph><ph id="shortdesc" props="rn">Stops the audio call loopback test.</ph><ph id="shortdesc" props="flutter">Stops the audio call loopback test.</ph><ph id="shortdesc" props="unity">Stops the audio loop test.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="stopEchoTest"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract stopEchoTest(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract stopEchoTest(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopEchoTest();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StopEchoTest();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After calling <xref keyref="startEchoTest3"/>, you must call this method to end the test. Otherwise, the user will not be able to perform another loop test or join a channel.</p>
+            <p props="rn">After calling <xref keyref="startEchoTest3"/>, you must call this method to end the test. Otherwise, the user will not be able to perform the next audio/video call loopback test or join a channel.</p>
+            <p props="flutter">After calling <xref keyref="startEchoTest3"/>, you must call this method to end the test. Otherwise, the user cannot perform another audio/video loopback test or join a channel.</p>
+            <p props="unity">After calling <xref keyref="startEchoTest3"/>, you must call this method to end the test. Otherwise, the user will not be able to perform the next audio and video loop test or join a channel.</p>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-5(ERR_REFUSED): Failed to stop the test. The test may not be running.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-5(ERR_REFUSED): Failed to stop the test. The test may not be running.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-5(ERR_REFUSED): Failed to stop the test. The test may not be running.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

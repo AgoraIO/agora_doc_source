@@ -1,0 +1,261 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_directcdnstreamingmediaoptions">
+    <title><ph keyref="DirectCdnStreamingMediaOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Media options for the host.</ph><ph id="shortdesc" props="rn">Media options for the host.</ph><ph id="shortdesc" props="flutter">Media options for the host.</ph><ph id="shortdesc" props="unity">Media options for the host.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class DirectCdnStreamingMediaOptions {
+  publishCameraTrack?: boolean;
+  publishMicrophoneTrack?: boolean;
+  publishCustomAudioTrack?: boolean;
+  publishCustomVideoTrack?: boolean;
+  publishMediaPlayerAudioTrack?: boolean;
+  publishMediaPlayerId?: number;
+  customVideoTrackId?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class DirectCdnStreamingMediaOptions {
+  publishCameraTrack?: boolean;
+  publishMicrophoneTrack?: boolean;
+  publishCustomAudioTrack?: boolean;
+  publishCustomVideoTrack?: boolean;
+  publishMediaPlayerAudioTrack?: boolean;
+  publishMediaPlayerId?: number;
+  customVideoTrackId?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class DirectCdnStreamingMediaOptions {
+  const DirectCdnStreamingMediaOptions(
+      {this.publishCameraTrack,
+      this.publishMicrophoneTrack,
+      this.publishCustomAudioTrack,
+      this.publishCustomVideoTrack,
+      this.publishMediaPlayerAudioTrack,
+      this.publishMediaPlayerId,
+      this.customVideoTrackId});
+
+  @JsonKey(name: 'publishCameraTrack')
+  final bool? publishCameraTrack;
+
+  @JsonKey(name: 'publishMicrophoneTrack')
+  final bool? publishMicrophoneTrack;
+
+  @JsonKey(name: 'publishCustomAudioTrack')
+  final bool? publishCustomAudioTrack;
+
+  @JsonKey(name: 'publishCustomVideoTrack')
+  final bool? publishCustomVideoTrack;
+
+  @JsonKey(name: 'publishMediaPlayerAudioTrack')
+  final bool? publishMediaPlayerAudioTrack;
+
+  @JsonKey(name: 'publishMediaPlayerId')
+  final int? publishMediaPlayerId;
+
+  @JsonKey(name: 'customVideoTrackId')
+  final int? customVideoTrackId;
+
+  factory DirectCdnStreamingMediaOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$DirectCdnStreamingMediaOptionsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$DirectCdnStreamingMediaOptionsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class DirectCdnStreamingMediaOptions : OptionalJsonParse
+    {
+        public Optional&lt;bool&gt; publishCameraTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishMicrophoneTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishCustomAudioTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishCustomVideoTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishMediaPlayerAudioTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;int&gt; publishMediaPlayerId = new Optional&lt;int&gt;();
+        public Optional&lt;video_track_id_t&gt; customVideoTrackId = new Optional&lt;video_track_id_t&gt;();
+    }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>publishCameraTrack</pt>
+                    <pd>Sets whether to publish video captured by the camera.
+                        <ul>
+                            <li><xref keyref="true"/>: Publish video captured by the camera.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish video captured by the camera.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publishMicrophoneTrack</pt>
+                    <pd>Sets whether to publish audio captured by the microphone.
+                        <ul>
+                            <li><xref keyref="true"/>: Publish audio captured by the microphone.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish audio captured by the microphone.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publishCustomAudioTrack</pt>
+                    <pd>Sets whether to publish custom captured audio.
+                        <ul>
+                            <li><xref keyref="true"/>: Publish custom captured audio.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish custom captured audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publishCustomVideoTrack</pt>
+                    <pd>Sets whether to publish custom captured video.
+                        <ul>
+                            <li><xref keyref="true"/>: Publish custom captured video.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish custom captured video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>customVideoTrackId</pt>
+                    <pd>The video track ID returned by the <xref keyref="createCustomVideoTrack"/> method. Default is 0.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publishCameraTrack</pt>
+                    <pd>Whether to publish video captured by the camera.
+                        <ul>
+                            <li><xref keyref="true"/>: Publish camera video.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish camera video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publishMicrophoneTrack</pt>
+                    <pd>Whether to publish audio captured by the microphone.
+                        <ul>
+                            <li><xref keyref="true"/>: Publish microphone audio.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish microphone audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publishCustomAudioTrack</pt>
+                    <pd>Whether to publish custom captured audio.
+                        <ul>
+                            <li><xref keyref="true"/>: Publish custom audio.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish custom audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publishCustomVideoTrack</pt>
+                    <pd>Whether to publish custom captured video.
+                        <ul>
+                            <li><xref keyref="true"/>: Publish custom video.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish custom video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>customVideoTrackId</pt>
+                    <pd>The video track ID returned by the <xref keyref="createCustomVideoTrack"/> method. Default is 0.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publishCameraTrack</pt>
+                    <pd>Sets whether to publish video captured by the camera.
+                        <ul>
+                            <li><xref keyref="true"/>: Publish video captured by the camera.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish video captured by the camera.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publishMicrophoneTrack</pt>
+                    <pd>Sets whether to publish audio captured by the microphone.
+                        <ul>
+                            <li><xref keyref="true"/>: Publish audio captured by the microphone.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish audio captured by the microphone.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publishCustomAudioTrack</pt>
+                    <pd>Sets whether to publish custom captured audio.
+                        <ul>
+                            <li><xref keyref="true"/>: Publish custom captured audio.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish custom captured audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publishCustomVideoTrack</pt>
+                    <pd>Sets whether to publish custom captured video.
+                        <ul>
+                            <li><xref keyref="true"/>: Publish custom captured video.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish custom captured video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>customVideoTrackId</pt>
+                    <pd>The video track ID returned by the <xref keyref="createCustomVideoTrack"/> method. Default value is 0.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publishCameraTrack</pt>
+                    <pd>Sets whether to publish the video captured by the camera.
+                        <ul>
+                            <li><xref keyref="true"/>: Publish camera-captured video.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish camera-captured video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publishMicrophoneTrack</pt>
+                    <pd>Sets whether to publish the audio captured by the microphone.
+                        <ul>
+                            <li><xref keyref="true"/>: Publish microphone-captured audio.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish microphone-captured audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publishCustomAudioTrack</pt>
+                    <pd>Sets whether to publish custom-captured audio.
+                        <ul>
+                            <li><xref keyref="true"/>: Publish custom-captured audio.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish custom-captured audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publishCustomVideoTrack</pt>
+                    <pd>Sets whether to publish custom-captured video.
+                        <ul>
+                            <li><xref keyref="true"/>: Publish custom-captured video.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish custom-captured video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>customVideoTrackId</pt>
+                    <pd>The video track ID returned by the <xref keyref="createCustomVideoTrack"/> method. Default is 0.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

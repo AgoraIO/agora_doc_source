@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_removelistener_imediaengine">
+    <title><ph keyref="removeListener_IMediaEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Removes the specified <xref keyref="IMediaEngineEvent"/> listener.</ph><ph id="shortdesc" props="rn">Removes a specified <xref keyref="IMediaEngineEvent"/> listener.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="removeListener_IMediaEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">removeListener?&lt;EventType extends keyof IMediaEngineEvent&gt;(
+      eventType: EventType,
+      listener: IMediaEngineEvent[EventType]
+    ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">removeListener?&lt;EventType extends keyof IMediaEngineEvent&gt;(
+      eventType: EventType,
+      listener: IMediaEngineEvent[EventType]
+    ): void;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="electron rn">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>eventType</pt>
+                    <pd>The name of the target event to listen to. See <xref keyref="IMediaEngineEvent"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>listener</pt>
+                    <pd>The callback function corresponding to <codeph>eventType</codeph>. You must pass in the same function object that was passed to <xref keyref="addListener_IMediaEngine"/>. For example, to remove the <xref keyref="onJoinChannelSuccess"/> listener:
+                        <codeblock outputclass="language-typescript">const onPlaybackAudioFrameBeforeMixing = (channelId: string, uid: number, audioFrame: AudioFrame) =&gt; {};
+engine.addListener('onPlaybackAudioFrameBeforeMixing', onPlaybackAudioFrameBeforeMixing);
+engine.removeListener('onPlaybackAudioFrameBeforeMixing', onPlaybackAudioFrameBeforeMixing);</codeblock>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>eventType</pt>
+                    <pd>Name of the target event to be listened to. See <xref keyref="IMediaEngineEvent"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>listener</pt>
+                    <pd>Callback function corresponding to <codeph>eventType</codeph>. You must pass the same function object that was passed to <xref keyref="addListener_IMediaEngine"/>. For example, to remove the listener for <xref keyref="onJoinChannelSuccess"/>:
+                        <codeblock outputclass="language-typescript">const onPlaybackAudioFrameBeforeMixing = (channelId: string, uid: number, audioFrame: AudioFrame) =&gt; {};
+engine.addListener('onPlaybackAudioFrameBeforeMixing', onPlaybackAudioFrameBeforeMixing);
+engine.removeListener('onPlaybackAudioFrameBeforeMixing', onPlaybackAudioFrameBeforeMixing);</codeblock>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

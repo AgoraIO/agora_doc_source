@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_startplaybackdevicetest">
+    <title><ph keyref="startPlaybackDeviceTest"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Starts the audio playback device test.</ph><ph id="shortdesc" props="rn">Starts the audio playback device test.</ph><ph id="shortdesc" props="flutter">Starts the audio playback device test.</ph><ph id="shortdesc" props="unity">Starts a playback device test.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startPlaybackDeviceTest"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startPlaybackDeviceTest(testAudioFilePath: string): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startPlaybackDeviceTest(testAudioFilePath: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startPlaybackDeviceTest(String testAudioFilePath);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartPlaybackDeviceTest(string testAudioFilePath);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method tests whether the local audio playback device is working properly. After the test starts, the SDK plays the specified audio file. If the tester can hear the sound, it indicates that the playback device is functioning correctly.
+After calling this method, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback every 100 ms to report the volume information of <codeph>uid</codeph> = 1 and the playback device.
+The difference between this method and <xref keyref="startEchoTest3"/> is that this method tests whether the local audio playback device is working properly, while the latter tests whether the audio/video devices and network are functioning correctly.</p>
+            <p props="rn">This method tests whether the local audio playback device is working properly. After the test starts, the SDK plays the specified audio file. If the tester hears the sound, it indicates the playback device is functioning correctly.
+After calling this method, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback every 100 ms, reporting <codeph>uid</codeph> = 1 and the volume information of the playback device.
+The difference between this method and <xref keyref="startEchoTest3"/> is that this method checks whether the local audio playback device works properly, while the latter checks whether the audio/video devices and network are functioning properly.</p>
+            <p props="flutter">This method tests whether the local audio playback device is working properly. After starting the test, the SDK plays the specified audio file. If you can hear the sound, it indicates that the playback device is functioning correctly.
+After calling this method, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback every 100 ms to report the volume information of <codeph>uid</codeph> = 1 and the playback device.
+The difference between this method and <xref keyref="startEchoTest3"/> is that this method checks whether the local audio playback device works properly, while the latter checks whether the audio/video devices and network are functioning correctly.</p>
+            <p props="unity">This method tests whether the local playback device is working properly. After starting the test, the SDK plays the specified audio file. If the tester hears sound, the playback device is functioning properly.
+After calling this method, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback every 100 milliseconds to report the volume information of <codeph>uid</codeph> = 1 and the playback device.
+The difference between this method and <xref keyref="startEchoTest3"/> is that this method checks whether the local playback device is working, while the latter checks whether the audio/video devices and network are functioning properly.</p>
+            <note props="electron">You must call this method before joining a channel. After testing is complete, if you need to join a channel, make sure to call <xref keyref="stopPlaybackDeviceTest"/> to stop the device test first.</note>
+            <note props="rn">You must call this method before joining a channel. After the test is complete, if you need to join a channel, make sure to call <xref keyref="stopPlaybackDeviceTest"/> to stop the device test.</note>
+            <note props="flutter">You must call this method before joining a channel. After the test is complete, if you want to join a channel, make sure to call <xref keyref="stopPlaybackDeviceTest"/> to stop the device test first.</note>
+            <note props="unity">You must call this method before joining a channel. After the test is complete, if you want to join a channel, make sure to call <xref keyref="stopPlaybackDeviceTest"/> to stop the test first.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>testAudioFilePath</pt>
+                    <pd>The absolute path of the audio file. The path string must be encoded in UTF-8.
+                        <ul>
+                            <li>Supported file formats: wav, mp3, m4a, aac.</li>
+                            <li>Supported sampling rates: 8000, 16000, 32000, 44100, 48000.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>testAudioFilePath</pt>
+                    <pd>The absolute path of the audio file. The path string must be in UTF-8 encoding.
+                        <ul>
+                            <li>Supported file formats: wav, mp3, m4a, aac.</li>
+                            <li>Supported sampling rates: 8000, 16000, 32000, 44100, 48000.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>testAudioFilePath</pt>
+                    <pd>The absolute path of the audio file. The path string must be encoded in UTF-8.
+                        <ul>
+                            <li>Supported file formats: wav, mp3, m4a, aac.</li>
+                            <li>Supported sample rates: 8000, 16000, 32000, 44100, 48000.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>testAudioFilePath</pt>
+                    <pd>The absolute path of the audio file. The path string must be in UTF-8 encoding.
+                        <ul>
+                            <li>Supported file formats: wav, mp3, m4a, aac.</li>
+                            <li>Supported sampling rates: 8000, 16000, 32000, 44100, 48000.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

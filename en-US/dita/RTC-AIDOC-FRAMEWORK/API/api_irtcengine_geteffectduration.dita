@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_geteffectduration">
+    <title><ph keyref="getEffectDuration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets the total duration of the specified audio effect file.</ph><ph id="shortdesc" props="rn">Gets the total duration of the specified sound effect file.</ph><ph id="shortdesc" props="flutter">Gets the total duration of the specified sound effect file.</ph><ph id="shortdesc" props="unity">Gets the total duration of the specified sound effect file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getEffectDuration"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getEffectDuration(filePath: string): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getEffectDuration(filePath: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getEffectDuration(String filePath);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetEffectDuration(string filePath);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">You must call this method after joining a channel.</note>
+            <note props="rn">You must call this method after joining a channel.</note>
+            <note props="flutter">This method must be called after joining a channel.</note>
+            <note props="unity">You must call this method after joining a channel.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>filePath</pt>
+                    <pd>File path:
+                        <ul>
+                            <li>Windows: The absolute path or URL of the audio file, including the file name and extension. For example, <codeph>C:\music\audio.mp4</codeph>.</li>
+                            <li>macOS: The absolute path or URL of the audio file, including the file name and extension. For example, <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>filePath</pt>
+                    <pd>File path:
+                        <ul>
+                            <li>Android: File path, must include the file name and extension. Supports URL addresses for online files, URI addresses for local files, absolute paths, or paths starting with <codeph>/assets/</codeph>. Accessing local files via absolute path may cause permission issues. Using URI addresses is recommended. For example: <codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>.</li>
+                            <li>iOS: Absolute path or URL of the audio file, must include the file name and extension. For example: <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>filePath</pt>
+                    <pd>File path:
+                        <ul>
+                            <li>Android: File path, must include the file name and extension. Supports URL of online files, URI of local files, absolute paths, or paths starting with <codeph>/assets/</codeph>. Accessing local files via absolute path may cause permission issues. It is recommended to use URI. For example: <codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>.</li>
+                            <li>Windows: Absolute path or URL to the audio file, must include the file name and extension. For example: <codeph>C:\music\audio.mp4</codeph>.</li>
+                            <li>iOS or macOS: Absolute path or URL to the audio file, must include the file name and extension. For example: <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>File path:
+                        <ul>
+                            <li>Android: File path, including the file name and extension. Supports URL of online files, URI of local files, absolute path, or path starting with <codeph>/assets/</codeph>. Accessing local files via absolute path may cause permission issues. It is recommended to use URI to access local files. For example: <codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>.</li>
+                            <li>Windows: Absolute path or URL of the audio file, including the file name and extension. For example: <codeph>C:\music\audio.mp4</codeph>.</li>
+                            <li>iOS or macOS: Absolute path or URL of the audio file, including the file name and extension. For example: <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>If the method call succeeds, returns the duration (ms) of the specified audio effect file.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>If the method call succeeds, returns the duration of the specified sound effect file (in milliseconds).</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>If the method call succeeds, returns the duration of the specified sound effect file (milliseconds).</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>If the method call succeeds, returns the duration (in milliseconds) of the specified sound effect file.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

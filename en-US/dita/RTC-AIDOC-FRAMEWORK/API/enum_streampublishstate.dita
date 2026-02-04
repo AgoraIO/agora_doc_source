@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_streampublishstate">
+    <title><ph keyref="STREAM_PUBLISH_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Publish state.</ph><ph id="shortdesc" props="rn">Publishing state.</ph><ph id="shortdesc" props="flutter">Publish state.</ph><ph id="shortdesc" props="unity">Publish state.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>PubStateIdle</pt>
+                    <pd>0: Initial publish state after joining the channel.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>PubStateNoPublished</pt>
+                    <pd>1: Publish failed. Possible reasons:
+                        <ul>
+                            <li>The local user called <xref keyref="muteLocalAudioStream"/>(<xref keyref="true"/>) or <xref keyref="muteLocalVideoStream"/>(<xref keyref="true"/>) to stop sending local media streams.</li>
+                            <li>The local user called <xref keyref="disableAudio"/> or <xref keyref="disableVideo"/> to disable local audio or video modules.</li>
+                            <li>The local user called <xref keyref="enableLocalAudio"/>(<xref keyref="false"/>) or <xref keyref="enableLocalVideo"/>(<xref keyref="false"/>) to disable local audio or video capture.</li>
+                            <li>The local user is an audience member.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>PubStatePublishing</pt>
+                    <pd>2: Publishing.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>PubStatePublished</pt>
+                    <pd>3: Publish successful.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>PubStateIdle</pt>
+                    <pd>0: Initial publishing state after joining the channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>PubStateNoPublished</pt>
+                    <pd>1: Publishing failed. Possible reasons:
+                        <ul>
+                            <li>The local user called <codeph>muteLocalAudioStream(true)</codeph> or <codeph>muteLocalVideoStream(true)</codeph> to stop sending local media streams.</li>
+                            <li>The local user called <xref keyref="disableAudio"/> or <xref keyref="disableVideo"/> to disable the local audio or video module.</li>
+                            <li>The local user called <codeph>enableLocalAudio(false)</codeph> or <codeph>enableLocalVideo(false)</codeph> to disable local audio or video capture.</li>
+                            <li>The local user's role is audience.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>PubStatePublishing</pt>
+                    <pd>2: Publishing in progress.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>PubStatePublished</pt>
+                    <pd>3: Publishing succeeded.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pubStateIdle</pt>
+                    <pd>0: Initial publish state after joining the channel.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pubStateNoPublished</pt>
+                    <pd>1: Publish failed. Possible reasons:
+                        <ul>
+                            <li>The local user called <xref keyref="muteLocalAudioStream"/>(<xref keyref="true"/>) or <xref keyref="muteLocalVideoStream"/>(<xref keyref="true"/>) to stop sending local media streams.</li>
+                            <li>The local user called <xref keyref="disableAudio"/> or <xref keyref="disableVideo"/> to disable local audio or video modules.</li>
+                            <li>The local user called <xref keyref="enableLocalAudio"/>(<xref keyref="false"/>) or <xref keyref="enableLocalVideo"/>(<xref keyref="false"/>) to disable local audio or video capture.</li>
+                            <li>The local user is an audience member.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pubStatePublishing</pt>
+                    <pd>2: Publishing.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pubStatePublished</pt>
+                    <pd>3: Published successfully.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>PUB_STATE_IDLE</pt>
+                    <pd>0: Initial publish state after joining the channel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>PUB_STATE_NO_PUBLISHED</pt>
+                    <pd>1: Publish failed. Possible reasons:
+                        <ul>
+                            <li>The local user called <xref keyref="muteLocalAudioStream"/>(<xref keyref="true"/>) or <xref keyref="muteLocalVideoStream"/>(<xref keyref="true"/>) to stop sending local media streams.</li>
+                            <li>The local user called <xref keyref="disableAudio"/> or <xref keyref="disableVideo"/> to disable the local audio or video module.</li>
+                            <li>The local user called <xref keyref="enableLocalAudio"/>(<xref keyref="false"/>) or <xref keyref="enableLocalVideo"/>(<xref keyref="false"/>) to disable local audio or video capture.</li>
+                            <li>The local user's role is audience.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>PUB_STATE_PUBLISHING</pt>
+                    <pd>2: Publishing.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>PUB_STATE_PUBLISHED</pt>
+                    <pd>3: Publish succeeded.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

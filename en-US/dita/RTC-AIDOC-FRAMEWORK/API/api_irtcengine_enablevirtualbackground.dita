@@ -1,0 +1,306 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablevirtualbackground">
+    <title><ph keyref="enableVirtualBackground"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Enables/disables the virtual background.</ph><ph id="shortdesc" props="rn">Enables/disables the virtual background.</ph><ph id="shortdesc" props="flutter">Enables/disables virtual background.</ph><ph id="shortdesc" props="unity">Enables/disables virtual background.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableVirtualBackground"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableVirtualBackground(
+    enabled: boolean,
+    backgroundSource: VirtualBackgroundSource,
+    segproperty: SegmentationProperty,
+    type?: MediaSourceType
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableVirtualBackground(
+    enabled: boolean,
+    backgroundSource: VirtualBackgroundSource,
+    segproperty: SegmentationProperty,
+    type?: MediaSourceType
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableVirtualBackground(
+      {required bool enabled,
+      required VirtualBackgroundSource backgroundSource,
+      required SegmentationProperty segproperty,
+      MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">The virtual background feature allows you to replace the original background of the local user with a static image, dynamic video, blur effect, or separate the portrait from the background to achieve picture-in-picture. Once successfully enabled, all users in the channel can see the customized background.
+Call this method after <xref keyref="enableVideo"/> or <xref keyref="startPreview2"/>.</p>
+            <p props="rn">The virtual background feature allows replacing the local user's original background with a static image, dynamic video, blur effect, or separating the portrait from the background to create a picture-in-picture effect. Once enabled successfully, all users in the channel can see the customized background.
+Call this method after <xref keyref="enableVideo"/> or <xref keyref="startPreview2"/>.</p>
+            <p props="flutter">The virtual background feature allows replacing the original background of the local user with a static image, dynamic video, blurring the background, or segmenting the portrait from the background to achieve picture-in-picture effects. After successfully enabling the virtual background feature, all users in the channel can see the customized background.
+Call this method after <xref keyref="enableVideo"/> or <xref keyref="startPreview2"/>.</p>
+            <p props="unity">The virtual background feature allows replacing the original background of the local user with a static image, dynamic video, blurred background, or segmenting the portrait from the background to achieve picture-in-picture. Once enabled successfully, all users in the channel can see the customized background.
+Call this method after <xref keyref="enableVideo"/> or <xref keyref="startPreview2"/>.</p>
+            <note props="electron">
+                <ul>
+                    <li>Using a video as a virtual background may cause continuous memory usage growth, which could lead to app crashes. To avoid this, reduce the resolution and frame rate of the video.</li>
+                    <li>This feature requires high device performance. When this method is called, the SDK automatically checks the device capability. It is recommended to use devices with the following specs:
+                        <ul>
+                            <li>CPU: i5 or better</li>
+                        </ul>
+                    </li>
+                    <li>It is recommended to use this feature in scenarios that meet the following conditions:
+                        <ul>
+                            <li>Use a high-definition camera and ensure even lighting.</li>
+                            <li>The video frame contains few objects, the user is shown as a half-body portrait with minimal occlusion, and the background color is simple and different from the user's clothing.</li>
+                        </ul>
+                    </li>
+                    <li>This method depends on the virtual background dynamic library <codeph>libagora_segmentation_extension.dll</codeph>. Deleting this library will prevent the feature from functioning properly.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>Using a video as the virtual background increases memory usage over time, which may cause the app to crash. To avoid this, reduce the resolution and frame rate of the video.</li>
+                    <li>This feature requires high device performance. The SDK automatically checks the device capability when calling this method. Recommended devices include:
+                        <ul>
+                            <li>Snapdragon 700 series 750G and above</li>
+                            <li>Snapdragon 800 series 835 and above</li>
+                            <li>Dimensity 700 series 720 and above</li>
+                            <li>Kirin 800 series 810 and above</li>
+                            <li>Kirin 900 series 980 and above</li>
+                            <li>Devices with A9 chip and above:
+                                <ul>
+                                    <li>iPhone 6S and above</li>
+                                    <li>iPad Air 3rd generation and above</li>
+                                    <li>iPad 5th generation and above</li>
+                                    <li>iPad Pro 1st generation and above</li>
+                                    <li>iPad mini 5th generation and above</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>Recommended usage scenarios:
+                        <ul>
+                            <li>Use a high-definition camera and ensure even lighting.</li>
+                            <li>Few objects in the frame, half-body portrait with minimal occlusion, and a background color distinct from clothing.</li>
+                        </ul>
+                    </li>
+                    <li>This method depends on the virtual background dynamic library <codeph>libagora_segmentation_extension.dll</codeph>. Deleting this library will prevent the feature from working.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>Using video as a virtual background may cause continuous memory usage growth, which can lead to app crashes. Therefore, try to reduce the resolution and frame rate of the video when using it.</li>
+                    <li>This feature has high performance requirements. The SDK automatically checks the current device capability when calling this method. It is recommended to use it on devices with the following chipsets:
+                        <ul>
+                            <li>Snapdragon 700 series 750G and above</li>
+                            <li>Snapdragon 800 series 835 and above</li>
+                            <li>Dimensity 700 series 720 and above</li>
+                            <li>Kirin 800 series 810 and above</li>
+                            <li>Kirin 900 series 980 and above</li>
+                            <li>Devices with A9 and above chips:
+                                <ul>
+                                    <li>iPhone 6S and above</li>
+                                    <li>iPad Air 3rd generation and above</li>
+                                    <li>iPad 5th generation and above</li>
+                                    <li>iPad Pro 1st generation and above</li>
+                                    <li>iPad mini 5th generation and above</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>It is recommended to use this feature under the following conditions:
+                        <ul>
+                            <li>Using a high-definition camera and evenly lit environment.</li>
+                            <li>The scene contains few objects, the user's portrait is half-body and mostly unobstructed, and the background color is relatively uniform and different from the user's clothing color.</li>
+                        </ul>
+                    </li>
+                    <li>This method depends on the virtual background dynamic library <codeph>libagora_segmentation_extension.dll</codeph>. Deleting this library will cause the feature to fail to start properly.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>Using video as a virtual background may lead to continuous memory increase and could cause app crashes. Therefore, reduce the resolution and frame rate of the video whenever possible.</li>
+                    <li>This feature requires high device performance. When you call this method, the SDK automatically checks the device capability. It is recommended to use devices with the following chipsets:
+                        <ul>
+                            <li>Snapdragon 700 series 750G or above</li>
+                            <li>Snapdragon 800 series 835 or above</li>
+                            <li>MediaTek Dimensity 700 series 720 or above</li>
+                            <li>Kirin 800 series 810 or above</li>
+                            <li>Kirin 900 series 980 or above</li>
+                            <li>Devices with i5 CPU or better</li>
+                            <li>Devices with A9 chip or later, including:
+                                <ul>
+                                    <li>iPhone 6S or later</li>
+                                    <li>iPad Air 3rd generation or later</li>
+                                    <li>iPad 5th generation or later</li>
+                                    <li>iPad Pro 1st generation or later</li>
+                                    <li>iPad mini 5th generation or later</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>It is recommended to use this feature under the following conditions:
+                        <ul>
+                            <li>Use a high-definition camera and ensure uniform lighting.</li>
+                            <li>The scene contains few objects, the portrait is half-body and mostly unobstructed, the background color is simple and differs from the user’s clothing.</li>
+                        </ul>
+                    </li>
+                    <li>This method depends on the virtual background dynamic library <codeph>libagora_segmentation_extension.dll</codeph>. If this library is deleted, the feature cannot be enabled properly.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the virtual background:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable virtual background.</li>
+                            <li><xref keyref="false"/>: Disable virtual background.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>backgroundSource</pt>
+                    <pd>Custom background. See <xref keyref="VirtualBackgroundSource"/>. To adapt the resolution of the custom background image to the SDK's video capture resolution, the SDK scales and crops the image without distortion.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>segproperty</pt>
+                    <pd>Processing properties of the background image. See <xref keyref="SegmentationProperty"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>Media source type for applying the effect. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>This parameter only supports the following settings in this method:
+                            <ul>
+                                <li>For camera-captured local video, keep the default value <codeph>PrimaryCameraSource</codeph>.</li>
+                                <li>For custom captured video, set this parameter to <codeph>CustomVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable virtual background:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable virtual background.</li>
+                            <li><xref keyref="false"/>: Disable virtual background.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>backgroundSource</pt>
+                    <pd>Custom background. See <xref keyref="VirtualBackgroundSource"/>. To adapt the resolution of the custom background image to the SDK's video capture resolution, the SDK scales and crops the image without distortion.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>segproperty</pt>
+                    <pd>Processing properties of the background image. See <xref keyref="SegmentationProperty"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>Media source type for applying the effect. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>This parameter only supports the following settings:
+                            <ul>
+                                <li>For video captured by the camera, use the default <codeph>PrimaryCameraSource</codeph>.</li>
+                                <li>For custom captured video, set this parameter to <codeph>CustomVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable virtual background:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable virtual background.</li>
+                            <li><xref keyref="false"/>: Disable virtual background.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>backgroundSource</pt>
+                    <pd>The custom background. See <xref keyref="VirtualBackgroundSource"/>. To adapt the resolution of the custom background image to the SDK's video capture resolution, the SDK scales and crops the custom background image while preserving its aspect ratio.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>segproperty</pt>
+                    <pd>Processing properties of the background image. See <xref keyref="SegmentationProperty"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>The media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, this parameter only supports the following two settings:
+                            <ul>
+                                <li>When using the camera to capture local video, keep the default value <codeph>primaryCameraSource</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>customVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable virtual background:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable virtual background.</li>
+                            <li><xref keyref="false"/>: Disable virtual background.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>backgroundSource</pt>
+                    <pd>Customized background. See <xref keyref="VirtualBackgroundSource"/>. To adapt the resolution of the custom background image to the SDK's video capture resolution, the SDK scales and crops the image while maintaining its aspect ratio.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>segproperty</pt>
+                    <pd>Processing properties for the background image. See <xref keyref="SegmentationProperty"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>Media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, this parameter only supports the following two settings:
+                            <ul>
+                                <li>When using the camera to capture local video, keep the default value <codeph>PRIMARY_CAMERA_SOURCE</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>CUSTOM_VIDEO_SOURCE</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.
+                        <ul>
+                            <li>-4: Device capability does not meet the requirements for using virtual background. Consider using a higher-performance device.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-4: Device capability does not meet the requirements for using the virtual background. Consider using a higher-performance device.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-4: The device does not meet the performance requirements for virtual background. Consider using a higher-performance device.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

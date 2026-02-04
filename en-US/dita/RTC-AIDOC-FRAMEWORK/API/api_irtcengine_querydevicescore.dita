@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_querydevicescore">
+    <title><ph keyref="queryDeviceScore"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Queries the device score level.</ph><ph id="shortdesc" props="rn">Queries the device score level.</ph><ph id="shortdesc" props="flutter">Queries the device score level.</ph><ph id="shortdesc" props="unity">Queries the device score level.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="queryDeviceScore"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract queryDeviceScore(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract queryDeviceScore(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; queryDeviceScore();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int QueryDeviceScore();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In high-definition or ultra-high-definition video scenarios, you can first call this method to query the device score. If the returned score is low (e.g., below 60), you should lower the video resolution accordingly to avoid affecting the video experience. The minimum device score requirement varies by business scenario. For specific recommendations, please [contact technical support](https://ticket.shengwang.cn/).</p>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>&gt; 0: Success. The value is the current device score, ranging from [0,100]. A higher score indicates better device capability. Most devices score between 60 and 100.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>&gt; 0: Success. The value is the current device score, ranging from [0,100]. A higher value indicates stronger device capability. Most device scores range from 60 to 100.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, it returns a value in the range [0,100], indicating the score level of the current device. A higher value indicates better device capability. Most devices score between 60 and 100. When the method call fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly.
+                <ul>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>&gt; 0: The method call succeeds. The value indicates the current device score level, ranging from [0,100]. A higher value indicates better device capability. Most devices score between 60 and 100.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

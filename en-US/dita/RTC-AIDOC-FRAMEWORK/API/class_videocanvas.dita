@@ -1,0 +1,372 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videocanvas">
+    <title><ph keyref="VideoCanvas"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Properties of the video canvas object.</ph><ph id="shortdesc" props="rn">Properties of the video canvas object.</ph><ph id="shortdesc" props="flutter">Properties of the video canvas object.</ph><ph id="shortdesc" props="unity">Properties of the video canvas object.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class VideoCanvas {
+  view?: any
+  uid?: number;
+  subviewUid?: number;
+  backgroundColor?: number;
+  renderMode?: RenderModeType
+  mirrorMode?: VideoMirrorModeType
+  setupMode?: VideoViewSetupMode;
+  sourceType?: VideoSourceType
+  mediaPlayerId?: number;
+  cropArea?: Rectangle;
+  enableAlphaMask?: boolean;
+  position?: VideoModulePosition;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class VideoCanvas {
+  view?: any
+  uid?: number;
+  subviewUid?: number;
+  backgroundColor?: number;
+  renderMode?: RenderModeType
+  mirrorMode?: VideoMirrorModeType
+  setupMode?: VideoViewSetupMode;
+  sourceType?: VideoSourceType
+  mediaPlayerId?: number;
+  cropArea?: Rectangle;
+  enableAlphaMask?: boolean;
+  position?: VideoModulePosition;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class VideoCanvas {
+  const VideoCanvas(
+      {this.uid,
+      this.subviewUid,
+      this.view,
+      this.backgroundColor,
+      this.renderMode,
+      this.mirrorMode,
+      this.setupMode,
+      this.sourceType,
+      this.mediaPlayerId,
+      this.cropArea,
+      this.enableAlphaMask,
+      this.position});
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+
+  @JsonKey(name: 'subviewUid')
+  final int? subviewUid;
+
+  @JsonKey(name: 'view')
+  final int? view;
+
+  @JsonKey(name: 'backgroundColor')
+  final int? backgroundColor;
+
+  @JsonKey(name: 'renderMode')
+  final RenderModeType? renderMode;
+
+  @JsonKey(name: 'mirrorMode')
+  final VideoMirrorModeType? mirrorMode;
+
+  @JsonKey(name: 'setupMode')
+  final VideoViewSetupMode? setupMode;
+
+  @JsonKey(name: 'sourceType')
+  final VideoSourceType? sourceType;
+
+  @JsonKey(name: 'mediaPlayerId')
+  final int? mediaPlayerId;
+
+  @JsonKey(name: 'cropArea')
+  final Rectangle? cropArea;
+
+  @JsonKey(name: 'enableAlphaMask')
+  final bool? enableAlphaMask;
+
+  @JsonKey(name: 'position')
+  final VideoModulePosition? position;
+
+  factory VideoCanvas.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$VideoCanvasFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoCanvasToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class VideoCanvas
+    {
+
+        public view_t view;
+        public uint uid;
+        public uint subviewUid;
+        public uint backgroundColor;
+        public RENDER_MODE_TYPE renderMode;
+        public VIDEO_MIRROR_MODE_TYPE mirrorMode;
+        public VIDEO_VIEW_SETUP_MODE setupMode;
+        public VIDEO_SOURCE_TYPE sourceType;
+        public int mediaPlayerId;
+        public Rectangle cropArea;
+        public bool enableAlphaMask;
+        public VIDEO_MODULE_POSITION position;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>User ID of the published video source.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>subviewUid</pt>
+                    <pd>Reserved parameter.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>view</pt>
+                    <pd>Video display window.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>renderMode</pt>
+                    <pd>Video rendering mode. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>mirrorMode</pt>
+                    <pd>View mirroring mode. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.
+                        <note>
+                            <ul>
+                                <li>Local view mirroring mode: If you use the front camera, local view mirroring is enabled by default; if you use the rear camera, it is disabled by default.</li>
+                                <li>Remote user view mirroring mode: Disabled by default.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sourceType</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>setupMode</pt>
+                    <pd>View setup mode. See <xref keyref="VIDEO_VIEW_SETUP_MODE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>mediaPlayerId</pt>
+                    <pd>Media player ID. You can get it via <xref keyref="getMediaPlayerId"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>cropArea</pt>
+                    <pd>(Optional) Display area of the video frame. See <xref keyref="Rectangle"/>. <codeph>width</codeph> and <codeph>height</codeph> represent the pixel width and height of the area. The default is an empty value (width or height is 0), which means the actual resolution of the video frame is displayed.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>backgroundColor</pt>
+                    <pd>Background color of the video canvas in RGBA format. Default is 0x00000000, which represents black.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enableAlphaMask</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>The receiver can render alpha channel information only when the sender enables the alpha transmission feature.</li>
+                                <li>To enable the alpha transmission feature, please [contact technical support](https://ticket.shengwang.cn/).</li>
+                            </ul>
+                        </note><ph>(Optional) Whether to enable alpha mask rendering:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Enable alpha mask rendering.</li>
+                            <li><xref keyref="false"/>: (Default) Disable alpha mask rendering.</li>
+                        </ul><ph>Alpha mask rendering can create transparent images and extract portraits from video. When used with other methods, it can achieve effects such as picture-in-picture portraits or watermarking.</ph></pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>position</pt>
+                    <pd>Position of the video frame in the video pipeline. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>For Android and iOS platforms, when the video source is a transcoded video stream (<codeph>VideoSourceTranscoded</codeph>), this parameter indicates the user ID of the publisher of the transcoded video stream.
+                        <note>The local user's <codeph>uid</codeph> defaults to 0. If you want to use a custom <codeph>uid</codeph> to render the local view, you also need to pass <codeph>sourceType</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>subviewUid</pt>
+                    <pd>User ID of the publisher of a sub-video stream in the transcoded video.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>view</pt>
+                    <pd>Video display window.
+                        <note>In a single <xref keyref="VideoCanvas"/>, only one of <codeph>view</codeph> or <codeph>surfaceTexture</codeph> can be set. If both are set, only the <codeph>view</codeph> setting takes effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>renderMode</pt>
+                    <pd>Video render mode. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mirrorMode</pt>
+                    <pd>View mirror mode. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.
+                        <note>
+                            <ul>
+                                <li>Local view mirror mode: If you use the front camera, local view mirror mode is enabled by default; if you use the rear camera, it is disabled by default.</li>
+                                <li>Remote user view mirror mode: Disabled by default.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceType</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>setupMode</pt>
+                    <pd>View setup mode. See <xref keyref="VIDEO_VIEW_SETUP_MODE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mediaPlayerId</pt>
+                    <pd>Media player ID. Obtainable via <xref keyref="getMediaPlayerId"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cropArea</pt>
+                    <pd>(Optional) Display area of the video frame. See <xref keyref="Rectangle"/>. <codeph>width</codeph> and <codeph>height</codeph> indicate the pixel width and height of the video in this area. Default is empty (width or height is 0), meaning the video frame is displayed at its actual resolution.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>backgroundColor</pt>
+                    <pd>Background color of the video canvas in RGBA format. Default is 0x00000000, which represents black.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>position</pt>
+                    <pd>Position of the video frame in the video pipeline. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>For Android and iOS platforms, when the video source is a composite video stream (<codeph>videoSourceTranscoded</codeph>), this parameter indicates the user ID that publishes the composite video stream.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>subviewUid</pt>
+                    <pd>User ID that publishes a specific composite sub-video stream.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>view</pt>
+                    <pd>Video display window.
+                        <note>In a <xref keyref="VideoCanvas"/>, you can only set either <codeph>view</codeph> or <codeph>surfaceTexture</codeph>. If both are set, only the configuration in <codeph>view</codeph> takes effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>renderMode</pt>
+                    <pd>Video rendering mode. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mirrorMode</pt>
+                    <pd>View mirroring mode. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.
+                        <note>
+                            <ul>
+                                <li>Local view mirroring mode: If you use the front camera, local view mirroring is enabled by default; if you use the rear camera, it is disabled by default.</li>
+                                <li>Remote user view mirroring mode: Disabled by default.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceType</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>setupMode</pt>
+                    <pd>View setup mode. See <xref keyref="VIDEO_VIEW_SETUP_MODE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mediaPlayerId</pt>
+                    <pd>Media player ID. You can get it through <xref keyref="getMediaPlayerId"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cropArea</pt>
+                    <pd>(Optional) Display area of the video frame. See <xref keyref="Rectangle"/>. <codeph>width</codeph> and <codeph>height</codeph> represent the pixel width and height of the video in this area. The default is null (width or height is 0), which means the actual resolution of the video frame is displayed.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>backgroundColor</pt>
+                    <pd>Background color of the video canvas in RGBA format. The default is 0x00000000, which represents black.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enableAlphaMask</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>The receiver can only render alpha channel information when the sender enables the alpha transmission feature.</li>
+                                <li>To enable alpha transmission, please [contact technical support](https://ticket.shengwang.cn/).</li>
+                            </ul>
+                        </note><ph>(Optional) Whether to enable alpha mask rendering:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Enable alpha mask rendering.</li>
+                            <li><xref keyref="false"/>: (Default) Disable alpha mask rendering.</li>
+                        </ul><ph>Alpha mask rendering can create images with transparency effects and extract portraits from videos. When used with other methods, it can achieve effects such as portrait picture-in-picture or watermark overlays.</ph></pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>position</pt>
+                    <pd>Position of the video frame in the video pipeline. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>For Android and iOS platforms, when the video source is a composite video stream (<codeph>VIDEO_SOURCE_TRANSCODED</codeph>), this parameter represents the user ID that publishes the composite video stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>subviewUid</pt>
+                    <pd>The user ID that publishes a specific sub-video stream of the composite stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>view</pt>
+                    <pd>The video display window.
+                        <note>In a <xref keyref="VideoCanvas"/>, you can only set either <codeph>view</codeph> or <codeph>surfaceTexture</codeph>. If both are set, only the configuration in <codeph>view</codeph> takes effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>renderMode</pt>
+                    <pd>Video rendering mode. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mirrorMode</pt>
+                    <pd>View mirroring mode. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.
+                        <note>
+                            <ul>
+                                <li>Local view mirroring mode: If you use the front camera, local view mirroring is enabled by default; if you use the rear camera, it is disabled by default.</li>
+                                <li>Remote user view mirroring mode: Mirroring is disabled by default for remote users.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sourceType</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>setupMode</pt>
+                    <pd>View setup mode. See <xref keyref="VIDEO_VIEW_SETUP_MODE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mediaPlayerId</pt>
+                    <pd>Media player ID. You can obtain it via <xref keyref="getMediaPlayerId"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cropArea</pt>
+                    <pd>(Optional) Display area of the video frame. See <xref keyref="Rectangle"/>. <codeph>width</codeph> and <codeph>height</codeph> indicate the pixel width and height of the area. The default is null (width or height is 0), which means the actual resolution of the video frame is displayed.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>backgroundColor</pt>
+                    <pd>Background color of the video canvas in RGBA format. The default value is 0x00000000, which represents black.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enableAlphaMask</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>The receiver can render alpha channel information only when the sender enables the alpha transmission feature.</li>
+                                <li>To enable the alpha transmission feature, please [contact technical support](https://ticket.shengwang.cn/).</li>
+                            </ul>
+                        </note><ph>(Optional) Whether to enable alpha mask rendering:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Enable alpha mask rendering.</li>
+                            <li><xref keyref="false"/>: (Default) Disable alpha mask rendering.</li>
+                        </ul><ph>Alpha mask rendering can create transparent images and extract portraits from videos. When used with other methods, it enables effects like portrait picture-in-picture and watermarking.</ph></pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>position</pt>
+                    <pd>The position of the video frame in the video pipeline. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

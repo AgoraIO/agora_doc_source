@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startlastmileprobetest">
+    <title><ph keyref="startLastmileProbeTest"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Starts a last-mile network probe test before a call.</ph><ph id="shortdesc" props="rn">Starts a last-mile network probe test before a call.</ph><ph id="shortdesc" props="flutter">Starts the last-mile network probe test before a call.</ph><ph id="shortdesc" props="unity">Starts last-mile network quality probe before a call.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startLastmileProbeTest"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startLastmileProbeTest(config: LastmileProbeConfig): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startLastmileProbeTest(config: LastmileProbeConfig): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startLastmileProbeTest(LastmileProbeConfig config);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartLastmileProbeTest(LastmileProbeConfig config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Performs a last-mile network probe test before a call to report uplink and downlink bandwidth, packet loss, jitter, and round-trip time.</p>
+            <p props="rn">Starts a last-mile network probe test before a call to provide feedback on uplink and downlink bandwidth, packet loss, jitter, and round-trip time.</p>
+            <p props="flutter">Starts the last-mile network probe test to report the uplink and downlink bandwidth, packet loss, jitter, and round-trip time to the user.</p>
+            <p props="unity">Performs a last-mile network quality probe before a call, providing feedback on uplink and downlink bandwidth, packet loss, jitter, and round-trip time.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called before joining a channel. Do not call other methods before receiving the <xref keyref="onLastmileQuality"/> and <xref keyref="onLastmileProbeResult"/> callbacks, or this method may fail due to excessive API calls.</p>
+            <p props="rn">This method must be called before joining a channel. Do not call other methods until you receive the <xref keyref="onLastmileQuality"/> and <xref keyref="onLastmileProbeResult"/> callbacks, or this method may fail due to frequent API calls.</p>
+            <p props="flutter">You must call this method before joining a channel, and do not call other methods before receiving the <xref keyref="onLastmileQuality"/> and <xref keyref="onLastmileProbeResult"/> callbacks. Otherwise, this method may fail due to frequent API calls.</p>
+            <p props="unity">This method must be called before joining a channel. Do not call other methods before receiving the <xref keyref="onLastmileQuality"/> and <xref keyref="onLastmileProbeResult"/> callbacks, or this method may fail due to frequent API operations.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Related Callbacks</title>
+            <p props="electron">After successfully calling this method, the SDK triggers the following two callbacks in sequence:
+                <ul>
+                    <li><xref keyref="onLastmileQuality"/>, returned within about 2 seconds depending on network conditions. This callback provides a score-based assessment of uplink and downlink quality, closer to the user's subjective experience.</li>
+                    <li><xref keyref="onLastmileProbeResult"/>, returned within about 30 seconds depending on network conditions. This callback provides objective data on uplink and downlink quality.</li>
+                </ul>
+            </p>
+            <p props="rn">After successfully calling this method, the SDK triggers the following two callbacks in sequence:
+                <ul>
+                    <li><xref keyref="onLastmileQuality"/>, returned within about 2 seconds depending on the network. This callback provides a score-based evaluation of network quality, which reflects the user's subjective experience.</li>
+                    <li><xref keyref="onLastmileProbeResult"/>, returned within about 30 seconds depending on the network. This callback provides objective data on network quality.</li>
+                </ul>
+            </p>
+            <p props="flutter">After this method is successfully called, the SDK triggers the following two callbacks:
+                <ul>
+                    <li><xref keyref="onLastmileQuality"/>, which returns within about 2 seconds depending on the network conditions. This callback provides a score-based assessment of the uplink and downlink network quality, reflecting the user’s subjective experience.</li>
+                    <li><xref keyref="onLastmileProbeResult"/>, which returns within about 30 seconds depending on the network conditions. This callback provides detailed metrics for a more objective evaluation of the uplink and downlink network quality.</li>
+                </ul>
+            </p>
+            <p props="unity">After successfully calling this method, the SDK triggers the following two callbacks in order:
+                <ul>
+                    <li><xref keyref="onLastmileQuality"/>, returned in about 2 seconds depending on network conditions. This callback provides a subjective evaluation of network quality.</li>
+                    <li><xref keyref="onLastmileProbeResult"/>, returned in about 30 seconds depending on network conditions. This callback provides objective network quality data.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>Last mile probe configuration. See <xref keyref="LastmileProbeConfig"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>config</pt>
+                    <pd>Configuration for the last-mile network probe. See <xref keyref="LastmileProbeConfig"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>Configuration for the last-mile network probe. See <xref keyref="LastmileProbeConfig"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>Last-mile network probe configuration. See <xref keyref="LastmileProbeConfig"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

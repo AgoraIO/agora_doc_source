@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_rendermodetype">
+    <title><ph keyref="RENDER_MODE_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Video display mode.</ph><ph id="shortdesc" props="rn">Video display mode.</ph><ph id="shortdesc" props="flutter">Video display mode.</ph><ph id="shortdesc" props="unity">Video display mode.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>RenderModeHidden</pt>
+                    <pd>1: The video is scaled proportionally. Priority is given to filling the view. Excess video beyond the view due to size mismatch is cropped.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RenderModeFit</pt>
+                    <pd>2: The video is scaled proportionally. Priority is given to displaying the entire video content. Black bars are added to fill the view if the video size does not match the view size.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RenderModeHidden</pt>
+                    <pd>1: The video is scaled proportionally. Priority is given to filling the view. Any excess part of the video that does not fit due to aspect ratio differences will be cropped.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RenderModeFit</pt>
+                    <pd>2: The video is scaled proportionally. Priority is given to displaying the entire video content. Any area not filled due to aspect ratio differences will be filled with black.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>renderModeHidden</pt>
+                    <pd>1: Video is scaled proportionally. Priority is to fill the view. Excess video that does not fit due to aspect ratio differences is cropped.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>renderModeFit</pt>
+                    <pd>2: Video is scaled proportionally. Priority is to display the entire video content. Black bars are added to fill areas not covered due to aspect ratio differences.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>renderModeAdaptive</pt>
+                    <pd>3: Adaptive mode.
+                        <note>Deprecated: This enum is deprecated and not recommended for use.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RENDER_MODE_HIDDEN</pt>
+                    <pd>1: Video is scaled proportionally. Prioritizes filling the view. Excess video outside the view due to size mismatch is cropped.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RENDER_MODE_FIT</pt>
+                    <pd>2: Video is scaled proportionally. Prioritizes showing the entire video content. Black bars fill the unused view area due to size mismatch.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RENDER_MODE_ADAPTIVE</pt>
+                    <pd>3: Adaptive mode.
+                        <note>Deprecated: This enum is deprecated and not recommended for use.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

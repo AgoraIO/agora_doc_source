@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_leavechannel2">
+    <title><ph keyref="leaveChannel2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets channel options and leaves the channel.</ph><ph id="shortdesc" props="rn">Sets channel options and leaves the channel.</ph><ph id="shortdesc" props="flutter">Sets channel options and leaves the channel.</ph><ph id="shortdesc" props="unity">Sets channel options and leaves the channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="leaveChannel2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract leaveChannel(options?: LeaveChannelOptions): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract leaveChannel(options?: LeaveChannelOptions): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; leaveChannel({LeaveChannelOptions? options});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int LeaveChannel(LeaveChannelOptions options);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After calling this method, the SDK stops all audio and video interactions, leaves the current channel, and releases all session-related resources.
+After successfully joining a channel, you must call this method to end the call, otherwise you cannot start a new one. If you have joined multiple channels using <xref keyref="joinChannelEx"/>, calling this method will leave all joined channels.</p>
+            <p props="rn">After calling this method, the SDK stops all audio and video interactions, leaves the current channel, and releases all session-related resources.
+You must call this method after successfully joining a channel to end the call; otherwise, you cannot start a new call. If you have joined multiple channels using <xref keyref="joinChannelEx"/>, calling this method leaves all joined channels.</p>
+            <p props="flutter">After calling this method, the SDK stops audio and video interaction, leaves the current channel, and releases all session-related resources.
+After successfully joining a channel, you must call this method to end the call; otherwise, you cannot start a new call. If you have joined multiple channels using <xref keyref="joinChannelEx"/>, calling this method will leave all joined channels.</p>
+            <p props="unity">After calling this method, the SDK stops audio and video interactions, leaves the current channel, and releases all session-related resources.
+You must call this method or <xref keyref="leaveChannel"/> after successfully joining a channel to end the call, otherwise you cannot start a new one. If you have joined multiple channels using <xref keyref="joinChannelEx"/>, calling this method leaves all joined channels.</p>
+            <note props="electron">This method is asynchronous. When the call returns, it does not mean the user has actually left the channel.
+If you call <xref keyref="release"/> immediately after this method, the SDK will not trigger the <xref keyref="onLeaveChannel"/> callback.</note>
+            <note props="rn">This method is asynchronous. When the call returns, the channel has not actually been left.
+If you call <xref keyref="release"/> immediately after this method, the SDK will not trigger the <xref keyref="onLeaveChannel"/> callback.</note>
+            <note props="flutter">This method is asynchronous. When the method returns, the user has not actually left the channel yet.
+If you call the <xref keyref="release"/> method immediately after this method, the SDK will not trigger the <xref keyref="onLeaveChannel"/> callback.</note>
+            <note props="unity">This method is asynchronous. The return does not mean you have actually left the channel.
+If you call <xref keyref="release"/> immediately after this method, the SDK will not trigger the <xref keyref="onLeaveChannel"/> callback.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called after joining a channel.</p>
+            <p props="rn">Call this method after joining a channel.</p>
+            <p props="flutter">This method must be called after joining a channel.</p>
+            <p props="unity">Call this method after joining a channel.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Related Callbacks</title>
+            <p props="electron">After successfully calling this method to leave the channel, the following callbacks are triggered:
+                <ul>
+                    <li>Local: <xref keyref="onLeaveChannel"/>.</li>
+                    <li>Remote: When a host leaves the channel, <xref keyref="onUserOffline"/> is triggered on the remote client.</li>
+                </ul>
+            </p>
+            <p props="rn">After successfully calling this method to leave the channel, the following callbacks are triggered:
+                <ul>
+                    <li>Local: <xref keyref="onLeaveChannel"/></li>
+                    <li>Remote: When a host leaves the channel, the remote side triggers <xref keyref="onUserOffline"/>.</li>
+                </ul>
+            </p>
+            <p props="flutter">After successfully calling this method to leave the channel, the following callbacks are triggered:
+                <ul>
+                    <li>Local: <xref keyref="onLeaveChannel"/>.</li>
+                    <li>Remote: When a host leaves the channel, the remote end triggers the <xref keyref="onUserOffline"/> callback.</li>
+                </ul>
+            </p>
+            <p props="unity">After successfully calling this method to leave the channel, the following callbacks are triggered:
+                <ul>
+                    <li>Local: <xref keyref="onLeaveChannel"/></li>
+                    <li>Remote: When a host leaves the channel, the remote side triggers <xref keyref="onUserOffline"/>.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>options</pt>
+                    <pd>Options for leaving the channel. See <xref keyref="LeaveChannelOptions"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>options</pt>
+                    <pd>Options for leaving the channel. See <xref keyref="LeaveChannelOptions"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>options</pt>
+                    <pd>Options for leaving the channel. See <xref keyref="LeaveChannelOptions"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>options</pt>
+                    <pd>Options for leaving the channel. See <xref keyref="LeaveChannelOptions"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when it fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_leavechannel">
+    <title><ph keyref="leaveChannel"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Leaves the channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="leaveChannel"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int LeaveChannel();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">After calling this method, the SDK stops audio and video interactions, leaves the current channel, and releases all session-related resources.
+You must call this method after successfully joining a channel to end the call, otherwise you cannot start a new one.</p>
+            <note props="unity">
+                <ul>
+                    <li>This method is asynchronous. The return does not mean you have actually left the channel.</li>
+                    <li>If you have joined multiple channels using <xref keyref="joinChannelEx"/>, calling this method leaves all joined channels.</li>
+                </ul><ph>If you call <xref keyref="release"/> immediately after this method, the SDK will not trigger the <xref keyref="onLeaveChannel"/> callback.</ph></note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="unity">
+            <title>Timing</title>
+            <p props="unity">Call this method after joining a channel.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="unity">
+            <title>Related Callbacks</title>
+            <p props="unity">After successfully calling this method to leave the channel, the following callbacks are triggered:
+                <ul>
+                    <li>Local: <xref keyref="onLeaveChannel"/></li>
+                    <li>Remote: When a host leaves the channel, the remote side triggers <xref keyref="onUserOffline"/>.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>leaveChannelBlock</pt>
+                    <pd>Callback after successfully leaving the channel, providing call statistics. See <xref keyref="RtcStats"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li>0(ERR_OK): Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and suggestions.
+                        <ul>
+                            <li>-1: General error (not specifically classified).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-7: SDK not initialized.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

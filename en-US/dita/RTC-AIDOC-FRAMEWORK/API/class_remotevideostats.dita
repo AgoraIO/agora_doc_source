@@ -1,0 +1,517 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_remotevideostats">
+    <title><ph keyref="RemoteVideoStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Statistics of the remote video stream.</ph><ph id="shortdesc" props="rn">Statistics of the remote video stream.</ph><ph id="shortdesc" props="flutter">Statistics of the remote video stream.</ph><ph id="shortdesc" props="unity">Statistics of the remote video stream.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class RemoteVideoStats {
+
+  uid?: number;
+
+  delay?: number;
+
+  e2eDelay?: number;
+
+  width?: number;
+
+  height?: number;
+
+  receivedBitrate?: number;
+
+  decoderOutputFrameRate?: number;
+
+  rendererOutputFrameRate?: number;
+
+  frameLossRate?: number;
+
+  packetLossRate?: number;
+
+  rxStreamType?: VideoStreamType;
+
+  totalFrozenTime?: number;
+
+  frozenRate?: number;
+
+  avSyncTimeMs?: number;
+
+  totalActiveTime?: number;
+
+  publishDuration?: number;
+  mosValue?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class RemoteVideoStats {
+
+  uid?: number;
+
+  delay?: number;
+
+  e2eDelay?: number;
+
+  width?: number;
+
+  height?: number;
+
+  receivedBitrate?: number;
+
+  decoderOutputFrameRate?: number;
+
+  rendererOutputFrameRate?: number;
+
+  frameLossRate?: number;
+
+  packetLossRate?: number;
+
+  rxStreamType?: VideoStreamType;
+
+  totalFrozenTime?: number;
+
+  frozenRate?: number;
+
+  avSyncTimeMs?: number;
+
+  totalActiveTime?: number;
+
+  publishDuration?: number;
+
+  mosValue?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class RemoteVideoStats {
+  const RemoteVideoStats(
+      {this.uid,
+      this.delay,
+      this.e2eDelay,
+      this.width,
+      this.height,
+      this.receivedBitrate,
+      this.decoderOutputFrameRate,
+      this.rendererOutputFrameRate,
+      this.frameLossRate,
+      this.packetLossRate,
+      this.rxStreamType,
+      this.totalFrozenTime,
+      this.frozenRate,
+      this.avSyncTimeMs,
+      this.totalActiveTime,
+      this.publishDuration,
+      this.mosValue,
+      this.rxVideoBytes});
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+
+  @JsonKey(name: 'delay')
+  final int? delay;
+
+  @JsonKey(name: 'e2eDelay')
+  final int? e2eDelay;
+
+  @JsonKey(name: 'width')
+  final int? width;
+
+  @JsonKey(name: 'height')
+  final int? height;
+
+  @JsonKey(name: 'receivedBitrate')
+  final int? receivedBitrate;
+
+  @JsonKey(name: 'decoderOutputFrameRate')
+  final int? decoderOutputFrameRate;
+
+  @JsonKey(name: 'rendererOutputFrameRate')
+  final int? rendererOutputFrameRate;
+
+  @JsonKey(name: 'frameLossRate')
+  final int? frameLossRate;
+
+  @JsonKey(name: 'packetLossRate')
+  final int? packetLossRate;
+
+  @JsonKey(name: 'rxStreamType')
+  final VideoStreamType? rxStreamType;
+
+  @JsonKey(name: 'totalFrozenTime')
+  final int? totalFrozenTime;
+
+  @JsonKey(name: 'frozenRate')
+  final int? frozenRate;
+
+  @JsonKey(name: 'avSyncTimeMs')
+  final int? avSyncTimeMs;
+
+  @JsonKey(name: 'totalActiveTime')
+  final int? totalActiveTime;
+
+  @JsonKey(name: 'publishDuration')
+  final int? publishDuration;
+
+  @JsonKey(name: 'mosValue')
+  final int? mosValue;
+
+  @JsonKey(name: 'rxVideoBytes')
+  final int? rxVideoBytes;
+
+  factory RemoteVideoStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$RemoteVideoStatsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$RemoteVideoStatsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class RemoteVideoStats
+    {
+        public uint uid;
+        public int delay;
+        public int e2eDelay;
+        public int width;
+        public int height;
+        public int receivedBitrate;
+        public int decoderOutputFrameRate;
+        public int rendererOutputFrameRate;
+        public int frameLossRate;
+        public int packetLossRate;
+        public VIDEO_STREAM_TYPE rxStreamType;
+        public int totalFrozenTime;
+        public int frozenRate;
+        public int avSyncTimeMs;
+        public int totalActiveTime;
+        public int publishDuration;
+        public int mosValue;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>User ID specifying whose video stream it is.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>delay</pt>
+                    <pd>Delay (ms).
+                        <note>Deprecated: In audio-video scenarios with audio-video sync, refer to <codeph>networkTransportDelay</codeph> and <codeph>jitterBufferDelay</codeph> in <xref keyref="RemoteAudioStats"/> to understand video delay data.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>e2eDelay</pt>
+                    <pd>End-to-end video delay (ms). That is, the total time from when the remote user starts video capture to when the local user receives and renders the video.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>Width of the video stream (pixels).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>Height of the video stream (pixels).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>receivedBitrate</pt>
+                    <pd>Bitrate (Kbps) received since the last report.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>decoderOutputFrameRate</pt>
+                    <pd>Frame rate output by the remote video decoder, in fps.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>Frame rate output by the remote video renderer, in fps.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>frameLossRate</pt>
+                    <pd>Packet loss rate (%) of the remote video.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>packetLossRate</pt>
+                    <pd>Packet loss rate (%) of the remote video after applying anti-packet-loss techniques.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rxStreamType</pt>
+                    <pd>Video stream type: high or low. See <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>totalFrozenTime</pt>
+                    <pd>Total duration (ms) of video freezes after the remote user joined the channel. During the call, if the video frame rate is not lower than 5 fps and the interval between two consecutive rendered frames exceeds 500 ms, it is counted as a video freeze.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>frozenRate</pt>
+                    <pd>Percentage (%) of total freeze duration over total effective video duration after the remote user joined the channel. Effective duration refers to the time after the remote user joins the channel and the video is neither stopped nor disabled.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>totalActiveTime</pt>
+                    <pd>Effective video duration (ms).
+Total effective video duration refers to the time after the remote user or host joins the channel and neither stops sending the video stream nor disables the video module.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publishDuration</pt>
+                    <pd>Total duration (ms) of the remote video stream being published.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>avSyncTimeMs</pt>
+                    <pd>Time (ms) by which audio leads video.
+                        <note>If negative, it indicates that audio lags behind video.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>mosValue</pt>
+                    <pd>Quality of the remote audio stream during the reporting interval. This quality is determined by Agora's real-time audio MOS (Mean Opinion Score) evaluation method. The return value ranges from [0, 500]; divide by 100 to get the MOS score, ranging from 0 to 5. The higher the score, the better the audio quality. The subjective audio quality corresponding to Agora's real-time MOS score is as follows:
+                        <ul>
+                            <li>Greater than 4: Excellent audio quality, clear and smooth.</li>
+                            <li>3.5 - 4: Good audio quality, occasional artifacts but still clear.</li>
+                            <li>3 - 3.5: Fair audio quality, occasional stutters, not very smooth, requires some attention to understand.</li>
+                            <li>2.5 - 3: Poor audio quality, frequent stutters, requires concentration to understand.</li>
+                            <li>2 - 2.5: Very poor audio quality, occasional noise, partial loss of meaning, difficult to communicate.</li>
+                            <li>Less than 2: Extremely poor audio quality, frequent noise, significant loss of meaning, communication impossible.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>User ID identifying which user's video stream it is.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>delay</pt>
+                    <pd>Delay (ms).
+                        <note>Deprecated: In audio-video scenarios with A/V sync, you can refer to the <codeph>networkTransportDelay</codeph> and <codeph>jitterBufferDelay</codeph> members in <xref keyref="RemoteAudioStats"/> for video delay data.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>e2eDelay</pt>
+                    <pd>End-to-end video delay (ms). That is, the total time from when the remote user captures the video to when the local user receives and renders it.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>width</pt>
+                    <pd>Width of the video stream (pixels).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>Height of the video stream (pixels).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>receivedBitrate</pt>
+                    <pd>Bitrate (Kbps) received since the last report.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>decoderOutputFrameRate</pt>
+                    <pd>Output frame rate of the remote video decoder, in fps.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>Output frame rate of the remote video renderer, in fps.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>frameLossRate</pt>
+                    <pd>Remote video frame loss rate (%).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>packetLossRate</pt>
+                    <pd>Remote video packet loss rate (%) after applying anti-packet-loss techniques.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rxStreamType</pt>
+                    <pd>Video stream type: high or low stream. See <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>totalFrozenTime</pt>
+                    <pd>Total duration (ms) of video freeze experienced by the remote user after joining the channel. During the call, if the video frame rate is set to no less than 5 fps and the interval between two consecutive rendered frames exceeds 500 ms, it is counted as a video freeze.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>frozenRate</pt>
+                    <pd>Percentage (%) of total frozen time over the total effective video duration after the remote user joins the channel. The effective duration refers to the time when the video is neither stopped nor disabled.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>totalActiveTime</pt>
+                    <pd>Effective video duration (ms).
+The total effective video duration is the time after the remote user or host joins the channel without stopping the video stream or disabling the video module.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publishDuration</pt>
+                    <pd>Total duration (ms) the remote video stream was published.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>avSyncTimeMs</pt>
+                    <pd>Time (ms) by which audio leads video.
+                        <note>If the value is negative, it indicates that audio lags behind video.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mosValue</pt>
+                    <pd>Quality of the remote audio stream during the reporting interval. This quality is measured using Agora's real-time audio MOS (Mean Opinion Score) method. The return value ranges from [0, 500]; divide by 100 to get the MOS score, which ranges from 0 to 5. Higher scores indicate better audio quality. The subjective audio quality corresponding to Agora's real-time audio MOS score is as follows:
+                        <ul>
+                            <li>Greater than 4: Excellent audio quality, clear and smooth.</li>
+                            <li>3.5 - 4: Good audio quality, occasional artifacts, still clear.</li>
+                            <li>3 - 3.5: Average audio quality, occasional stutters, not very smooth, requires some effort to understand.</li>
+                            <li>2.5 - 3: Poor audio quality, frequent stutters, requires concentration to understand.</li>
+                            <li>2 - 2.5: Very poor audio quality, occasional noise, partial loss of meaning, difficult to communicate.</li>
+                            <li>Less than 2: Extremely poor audio quality, frequent noise, significant loss of meaning, communication impossible.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>User ID that identifies which user's video stream it is.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>delay</pt>
+                    <pd>Delay (ms).
+                        <note>Deprecated: In audio and video scenarios with audio-video sync mechanism, you can refer to the values of <codeph>networkTransportDelay</codeph> and <codeph>jitterBufferDelay</codeph> in <xref keyref="RemoteAudioStats"/> to understand video delay data.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>e2eDelay</pt>
+                    <pd>End-to-end video delay (ms), i.e., the total time from video capture by the remote user to video rendering by the local user.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>Video stream width (pixels).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>Video stream height (pixels).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>receivedBitrate</pt>
+                    <pd>Bitrate received (Kbps) since last statistics.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>decoderOutputFrameRate</pt>
+                    <pd>Output frame rate of the remote video decoder, in fps.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>Output frame rate of the remote video renderer, in fps.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>frameLossRate</pt>
+                    <pd>Remote video frame loss rate (%).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>packetLossRate</pt>
+                    <pd>Packet loss rate (%) of the remote video after applying anti-packet-loss techniques.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rxStreamType</pt>
+                    <pd>Video stream type, either high or low. See <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>totalFrozenTime</pt>
+                    <pd>Total duration (ms) of video freezes experienced by the remote user after joining the channel. During a call, if the video frame rate is set to no less than 5 fps and the interval between two consecutive rendered frames exceeds 500 ms, it is counted as a video freeze.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>frozenRate</pt>
+                    <pd>Percentage (%) of the total duration of video freezes experienced by the remote user after joining the channel relative to the total effective video duration. Effective video duration refers to the time after the remote user joins the channel during which the video is neither stopped nor disabled.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>totalActiveTime</pt>
+                    <pd>Effective video duration (ms).
+The total effective video duration is the time during which the remote user or host has joined the channel and neither stopped sending the video stream nor disabled the video module.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publishDuration</pt>
+                    <pd>Total published duration (ms) of the remote video stream.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>avSyncTimeMs</pt>
+                    <pd>Time (ms) that audio leads video.
+                        <note>If the value is negative, it means audio lags behind video.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mosValue</pt>
+                    <pd>Quality of the remote audio stream during the statistics period. The quality is measured using Agora's real-time audio MOS (Mean Opinion Score) method. The return value ranges from [0, 500]; divide by 100 to get the MOS score, ranging from 0 to 5. The higher the score, the better the audio quality. The subjective audio quality corresponding to the Agora MOS score is:
+                        <ul>
+                            <li>Greater than 4: Excellent audio quality, clear and smooth.</li>
+                            <li>3.5 - 4: Good audio quality, occasional distortion but still clear.</li>
+                            <li>3 - 3.5: Fair audio quality, occasional stuttering, not very smooth, requires some attention to hear clearly.</li>
+                            <li>2.5 - 3: Poor audio quality, frequent stuttering, requires concentration to hear clearly.</li>
+                            <li>2 - 2.5: Very poor audio quality, occasional noise, partial semantic loss, difficult to communicate.</li>
+                            <li>Less than 2: Extremely poor audio quality, frequent noise, significant semantic loss, communication impossible.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>User ID specifying which user's video stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>delay</pt>
+                    <pd>Delay (ms).
+                        <note>Deprecated: In audio-video scenarios with A/V sync mechanisms, refer to the <codeph>networkTransportDelay</codeph> and <codeph>jitterBufferDelay</codeph> members in <xref keyref="RemoteAudioStats"/> for video delay data.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>e2eDelay</pt>
+                    <pd>End-to-end video delay (ms). That is, the total time from when the remote user captures the video to when the local user receives and renders it.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>Width of the video stream (pixels).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>Height of the video stream (pixels).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>receivedBitrate</pt>
+                    <pd>Bitrate (Kbps) received since the last report.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>decoderOutputFrameRate</pt>
+                    <pd>Output frame rate of the remote video decoder, in fps.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>Output frame rate of the remote video renderer, in fps.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>frameLossRate</pt>
+                    <pd>Packet loss rate (%) of the remote video.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>packetLossRate</pt>
+                    <pd>Packet loss rate (%) of the remote video after applying anti-packet-loss techniques.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rxStreamType</pt>
+                    <pd>Video stream type: high stream or low stream. See <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>totalFrozenTime</pt>
+                    <pd>Total duration (ms) of video freezes after the remote user joins the channel. During the call, if the video frame rate is set to no less than 5 fps and the interval between two consecutive rendered frames exceeds 500 ms, it is counted as a video freeze.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>frozenRate</pt>
+                    <pd>Percentage (%) of total freeze time relative to the total duration of valid video. Valid video duration refers to the time after the remote user joins the channel during which video is neither stopped nor disabled.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>totalActiveTime</pt>
+                    <pd>Valid video duration (ms).
+Total valid video duration refers to the time after the remote user or host joins the channel during which video is neither stopped nor disabled.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publishDuration</pt>
+                    <pd>Total publishing duration (ms) of the remote video stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>avSyncTimeMs</pt>
+                    <pd>Time (ms) that audio leads video.
+                        <note>If the value is negative, it means audio lags behind video.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mosValue</pt>
+                    <pd>Quality of the remote audio stream during the reporting interval. The quality is measured by Agora’s real-time audio MOS (Mean Opinion Score) method. The return value ranges from [0, 500]; divide by 100 to get the MOS score, ranging from 0 to 5. The higher the score, the better the audio quality. The subjective audio quality corresponding to the Agora real-time audio MOS score is as follows:
+                        <ul>
+                            <li>Greater than 4: Excellent audio quality, clear and smooth.</li>
+                            <li>3.5 - 4: Good audio quality, occasional artifacts, but still clear.</li>
+                            <li>3 - 3.5: Fair audio quality, occasional stutters, not very smooth, requires some attention to understand.</li>
+                            <li>2.5 - 3: Poor audio quality, frequent stutters, requires concentration to understand.</li>
+                            <li>2 - 2.5: Very poor audio quality, occasional noise, partial semantic loss, difficult to communicate.</li>
+                            <li>Less than 2: Extremely poor audio quality, frequent noise, significant semantic loss, communication impossible.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

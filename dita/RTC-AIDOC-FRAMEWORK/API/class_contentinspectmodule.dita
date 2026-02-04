@@ -11,20 +11,26 @@
   type?: ContentInspectType;
 
   interval?: number;
+
+  position?: VideoModulePosition;
 }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript">export class ContentInspectModule {
 
   type?: ContentInspectType;
 
-  interval?: number;
+  interval?: VideoModulePosition;
+
+  position?: VideoModulePosition;
 }</codeblock>
                 <codeblock props="flutter" outputclass="language-dart">class ContentInspectModule {
 
-  const ContentInspectModule({this.type, this.interval});
+  const ContentInspectModule({this.type, this.interval, this.position});
   @JsonKey(name: 'type')
   final ContentInspectType? type;
   @JsonKey(name: 'interval')
   final int? interval;
+  @JsonKey(name: 'position')
+  final VideoModulePosition? position;
   factory ContentInspectModule.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ContentInspectModuleFromJson(json);
 
@@ -34,11 +40,13 @@
     {
         public CONTENT_INSPECT_TYPE type;
         public uint interval;
+        public VIDEO_MODULE_POSITION position;
 
         public ContentInspectModule()
         {
             type = CONTENT_INSPECT_TYPE.CONTENT_INSPECT_INVALID;
             interval = 0;
+            position = VIDEO_MODULE_POSITION.POSITION_POST_CAPTURER;
         }
     };</codeblock>
             </p>
@@ -54,6 +62,10 @@
                     <pt>interval</pt>
                     <pd>本地截图上传的间隔，单位为秒，取值必须大于 0。默认值为 0，表示不进行截图上传。推荐值为 10 秒，你也可以根据业务需求自行调整。</pd>
                 </plentry>
+                <plentry props="electron">
+                    <pt>position</pt>
+                    <pd>视频观察器的位置。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
+                </plentry>
                 <plentry props="rn">
                     <pt>type</pt>
                     <pd>功能模块的类型。详见 <xref keyref="CONTENT_INSPECT_TYPE"/>。</pd>
@@ -61,6 +73,10 @@
                 <plentry props="rn">
                     <pt>interval</pt>
                     <pd>本地截图上传的间隔，单位为秒，取值必须大于 0。默认值为 0，表示不进行截图上传。推荐值为 10 秒，你也可以根据业务需求自行调整。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>position</pt>
+                    <pd>视频观察器的位置。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>type</pt>
@@ -70,6 +86,10 @@
                     <pt>interval</pt>
                     <pd>本地截图上传的间隔，单位为秒，取值必须大于 0。默认值为 0，表示不进行截图上传。推荐值为 10 秒，你也可以根据业务需求自行调整。</pd>
                 </plentry>
+                <plentry props="flutter">
+                    <pt>position</pt>
+                    <pd>视频观察器的位置。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
+                </plentry>
                 <plentry props="unity">
                     <pt>type</pt>
                     <pd>功能模块的类型。详见 <xref keyref="CONTENT_INSPECT_TYPE"/>。</pd>
@@ -77,6 +97,10 @@
                 <plentry props="unity">
                     <pt>interval</pt>
                     <pd>本地截图上传的间隔，单位为秒，取值必须大于 0。默认值为 0，表示不进行截图上传。推荐值为 10 秒，你也可以根据业务需求自行调整。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>position</pt>
+                    <pd>视频观察器的位置。详见 <xref keyref="VIDEO_MODULE_POSITION"/>。</pd>
                 </plentry>
             </parml>
         </section>

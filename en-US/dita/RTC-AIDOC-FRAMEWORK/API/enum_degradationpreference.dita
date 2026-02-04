@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_degradationpreference">
+    <title><ph keyref="DEGRADATION_PREFERENCE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Video encoding degradation preference when bandwidth is limited.</ph><ph id="shortdesc" props="rn">Video encoding degradation preference when bandwidth is limited.</ph><ph id="shortdesc" props="flutter">Video encoding degradation preference when bandwidth is limited.</ph><ph id="shortdesc" props="unity">Video encoding degradation preference when bandwidth is limited.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>MaintainAuto</pt>
+                    <pd>-1: (Default) Auto mode. The SDK automatically selects MaintainFramerate, MaintainBalanced, or MaintainResolution based on the video scenario you set, to achieve the best overall quality of experience (QoE).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>MaintainQuality</pt>
+                    <pd>0: When bandwidth is limited, the SDK prioritizes reducing frame rate while maintaining resolution during video encoding. This preference is suitable for scenarios where video quality is prioritized.
+                        <note>Deprecated: This enum is deprecated. Use other enums instead.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>MaintainFramerate</pt>
+                    <pd>1: When bandwidth is limited, the SDK prioritizes reducing resolution while maintaining frame rate during video encoding. This preference is suitable for scenarios where smoothness is prioritized and some quality degradation is acceptable.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>MaintainBalanced</pt>
+                    <pd>2: When bandwidth is limited, the SDK reduces both frame rate and resolution during video encoding. The degradation is less severe than MaintainQuality and MaintainFramerate, and is suitable for scenarios where both smoothness and quality are moderately important.
+                        <note>The resolution of locally sent video may change. Remote users must be able to handle this. See <xref keyref="onVideoSizeChanged"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>MaintainResolution</pt>
+                    <pd>3: When bandwidth is limited, the SDK prioritizes reducing frame rate while maintaining resolution during video encoding. This preference is suitable for scenarios where video quality is prioritized.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>MaintainAuto</pt>
+                    <pd>-1: (Default) Auto mode. The SDK automatically selects MaintainFramerate, MaintainBalanced, or MaintainResolution based on your video scenario settings to achieve optimal overall quality of experience (QoE).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>MaintainQuality</pt>
+                    <pd>0: When bandwidth is limited, prioritize reducing video frame rate while maintaining resolution. This degradation preference suits scenarios where video quality is prioritized.
+                        <note>Deprecated: This enum is deprecated. Use other enums instead.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>MaintainFramerate</pt>
+                    <pd>1: When bandwidth is limited, prioritize reducing video resolution while maintaining frame rate. This degradation preference suits scenarios where smoothness is prioritized and some quality loss is acceptable.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>MaintainBalanced</pt>
+                    <pd>2: When bandwidth is limited, reduce both video frame rate and resolution. The degradation level of MaintainBalanced is lower than that of MaintainQuality and MaintainFramerate, suitable for scenarios with both smoothness and quality constraints.
+                        <note>The resolution of the locally sent video may change. The remote user must be able to handle this. See <xref keyref="onVideoSizeChanged"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>MaintainResolution</pt>
+                    <pd>3: When bandwidth is limited, prioritize reducing video frame rate while maintaining resolution. This degradation preference suits scenarios where video quality is prioritized.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>maintainAuto</pt>
+                    <pd>-1: (Default) Auto mode. The SDK automatically selects maintainFramerate, maintainBalanced, or maintainResolution based on your video scenario settings to achieve optimal overall quality experience (QoE).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>maintainQuality</pt>
+                    <pd>0: When bandwidth is limited, prioritize reducing video frame rate while maintaining resolution. This preference is suitable for scenarios prioritizing image quality.
+                        <note>Deprecated: This enumeration is deprecated. Use other enumerations instead.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>maintainFramerate</pt>
+                    <pd>1: When bandwidth is limited, prioritize reducing video resolution while maintaining frame rate. This preference is suitable for scenarios prioritizing smoothness and allowing reduced image quality.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>maintainBalanced</pt>
+                    <pd>2: When bandwidth is limited, reduce both video frame rate and resolution. The degradation level of maintainBalanced is lower than maintainQuality and maintainFramerate, suitable for scenarios with limited smoothness and image quality.
+                        <note>The resolution of the locally sent video may change. Remote users must be able to handle this situation. See <xref keyref="onVideoSizeChanged"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>maintainResolution</pt>
+                    <pd>3: When bandwidth is limited, prioritize reducing video frame rate while keeping resolution unchanged. This preference is suitable for scenarios prioritizing image quality.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>MAINTAIN_AUTO</pt>
+                    <pd>-1: (Default) Auto mode. The SDK automatically selects MAINTAIN_FRAMERATE, MAINTAIN_BALANCED, or MAINTAIN_RESOLUTION based on your video scenario to achieve optimal overall quality experience (QoE).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>MAINTAIN_QUALITY</pt>
+                    <pd>0: When bandwidth is limited, video encoding prioritizes reducing frame rate while maintaining resolution. This preference is suitable for scenarios prioritizing image quality.
+                        <note>Deprecated: This enumeration is deprecated. Use other enumerations instead.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>MAINTAIN_FRAMERATE</pt>
+                    <pd>1: When bandwidth is limited, video encoding prioritizes reducing resolution while maintaining frame rate. This preference suits scenarios prioritizing smoothness and tolerating reduced image quality.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>MAINTAIN_BALANCED</pt>
+                    <pd>2: When bandwidth is limited, video encoding reduces both frame rate and resolution. The degradation level of MAINTAIN_BALANCED is lower than that of MAINTAIN_QUALITY and MAINTAIN_FRAMERATE, suitable for scenarios with limited smoothness and image quality.
+                        <note>The resolution of the locally sent video may change. Remote users must be able to handle this. See <xref keyref="onVideoSizeChanged"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>MAINTAIN_RESOLUTION</pt>
+                    <pd>3: When bandwidth is limited, video encoding prioritizes reducing frame rate while keeping resolution unchanged. This preference is suitable for scenarios prioritizing image quality.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

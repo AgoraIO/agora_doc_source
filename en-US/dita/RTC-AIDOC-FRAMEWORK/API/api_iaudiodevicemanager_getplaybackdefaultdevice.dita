@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_getplaybackdefaultdevice">
+    <title><ph keyref="getPlaybackDefaultDevice"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets the system default playback device.</ph><ph id="shortdesc" props="flutter">Gets the system default audio playback device.</ph><ph id="shortdesc" props="unity">Gets the system default audio playback device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getPlaybackDefaultDevice"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getPlaybackDefaultDevice(): AudioDeviceInfo;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;AudioDeviceInfo&gt; getPlaybackDefaultDevice();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetPlaybackDefaultDevice(ref string deviceId, ref string deviceName);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">This method is applicable only to Windows and macOS.</note>
+            <note props="flutter">This method is applicable to Windows and macOS only.</note>
+            <note props="unity">(Windows and macOS only)</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>deviceId</pt>
+                    <pd>Output parameter. The ID of the system default audio playback device.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceName</pt>
+                    <pd>Output parameter. The name of the system default audio playback device.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">Information of the default playback device. See <xref keyref="AudioDeviceInfo"/>.</p>
+            <p props="flutter">Information about the default audio playback device. See <xref keyref="AudioDeviceInfo"/>.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

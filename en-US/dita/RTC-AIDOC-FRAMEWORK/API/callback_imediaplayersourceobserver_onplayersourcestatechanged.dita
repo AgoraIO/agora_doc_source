@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onplayersourcestatechanged">
+    <title><ph keyref="onPlayerSourceStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Reports changes in the player state.</ph><ph id="shortdesc" props="rn">Reports player state changes.</ph><ph id="shortdesc" props="flutter">Reports changes in player state.</ph><ph id="shortdesc" props="unity">Reports changes in player state.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlayerSourceStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onPlayerSourceStateChanged?(
+    state: MediaPlayerState,
+    reason: MediaPlayerReason
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onPlayerSourceStateChanged?(
+    state: MediaPlayerState,
+    reason: MediaPlayerReason
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(MediaPlayerState state, MediaPlayerReason reason)?
+    onPlayerSourceStateChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerSourceStateChanged(MEDIA_PLAYER_STATE state, MEDIA_PLAYER_REASON reason)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">When the player state changes, the SDK triggers this callback to report the new playback state.</p>
+            <p props="rn">When the player state changes, the SDK triggers this callback to report the new playback state.</p>
+            <p props="flutter">When the player state changes, the SDK triggers this callback to report the new playback state.</p>
+            <p props="unity">This callback is triggered by the SDK when the player state changes, reporting the new playback state.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>state</pt>
+                    <pd>The new playback state. See <xref keyref="MEDIA_PLAYER_STATE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>reason</pt>
+                    <pd>The reason for the player state change. See <xref keyref="MEDIA_PLAYER_REASON"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>state</pt>
+                    <pd>New playback state. See <xref keyref="MEDIA_PLAYER_STATE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>reason</pt>
+                    <pd>Reason for the player state change. See <xref keyref="MEDIA_PLAYER_REASON"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>state</pt>
+                    <pd>The new playback state. See <xref keyref="MEDIA_PLAYER_STATE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>reason</pt>
+                    <pd>The reason for the player state change. See <xref keyref="MEDIA_PLAYER_REASON"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>state</pt>
+                    <pd>The new playback state. See <xref keyref="MEDIA_PLAYER_STATE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>reason</pt>
+                    <pd>The reason for the player state change. See <xref keyref="MEDIA_PLAYER_REASON"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

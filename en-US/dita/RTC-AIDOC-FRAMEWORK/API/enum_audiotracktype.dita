@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_audiotracktype">
+    <title><ph keyref="AUDIO_TRACK_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Type of custom audio capture track.</ph><ph id="shortdesc" props="rn">Type of custom audio capture track.</ph><ph id="shortdesc" props="flutter">Types of custom audio capture tracks.</ph><ph id="shortdesc" props="unity">Type of custom audio capture track.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>AudioTrackMixable</pt>
+                    <pd>0: Mixable audio track. Supports mixing with other audio streams (e.g., microphone-captured audio) before local playback or publishing to the channel. Has higher latency compared to non-mixable audio tracks.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioTrackDirect</pt>
+                    <pd>1: Non-mixable audio track. Replaces microphone capture and does not support mixing with other audio streams. Has lower latency compared to mixable audio tracks.
+                        <note>If <codeph>AudioTrackDirect</codeph> is specified, <codeph>publishMicrophoneTrack</codeph> in <xref keyref="ChannelMediaOptions"/> must be set to <xref keyref="false"/> when calling <xref keyref="joinChannel2"/>, otherwise joining the channel will fail and return error code -2.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioTrackMixable</pt>
+                    <pd>0: Mixable audio track. Supports mixing with other audio streams (e.g., microphone audio) before local playback or publishing to the channel. Has higher latency compared to non-mixable audio tracks.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioTrackDirect</pt>
+                    <pd>1: Non-mixable audio track. Replaces microphone capture and does not support mixing with other audio streams. Has lower latency compared to mixable audio tracks.
+                        <note>If you specify <codeph>AudioTrackDirect</codeph>, you must set <codeph>publishMicrophoneTrack</codeph> in <xref keyref="ChannelMediaOptions"/> to <xref keyref="false"/> when calling <xref keyref="joinChannel2"/>, otherwise joining the channel will fail and return error code -2.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioTrackMixable</pt>
+                    <pd>0: Mixable audio track. Supports mixing with other audio streams (e.g., microphone-captured audio) before local playback or publishing to the channel. Has higher latency compared to non-mixable tracks.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioTrackDirect</pt>
+                    <pd>1: Non-mixable audio track. Replaces microphone capture and does not support mixing with other audio streams. Has lower latency compared to mixable tracks.
+                        <note>If <codeph>audioTrackDirect</codeph> is specified, you must set <codeph>publishMicrophoneTrack</codeph> in <xref keyref="ChannelMediaOptions"/> to <xref keyref="false"/> when calling <xref keyref="joinChannel2"/>, otherwise joining the channel fails and returns error code -2.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_TRACK_MIXABLE</pt>
+                    <pd>0: Mixable audio track. Supports mixing with other audio streams (e.g., microphone audio) before playing locally or publishing to the channel. Higher latency compared to non-mixable tracks.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_TRACK_DIRECT</pt>
+                    <pd>1: Non-mixable audio track. Replaces microphone capture and does not support mixing with other audio streams. Lower latency compared to mixable tracks.
+                        <note>If <codeph>AUDIO_TRACK_DIRECT</codeph> is specified, you must set <codeph>publishMicrophoneTrack</codeph> to <xref keyref="false"/> in <xref keyref="ChannelMediaOptions"/> when calling <xref keyref="joinChannel2"/>; otherwise, joining the channel fails and returns error code -2.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

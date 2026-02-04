@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startscreencapture2">
+    <title><ph keyref="startScreenCapture2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Starts screen capture and specifies the video source.</ph><ph id="shortdesc" props="flutter">Starts screen capture and specifies the video source.</ph><ph id="shortdesc" props="unity">Starts screen capture and specifies the video source.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startScreenCapture2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureBySourceType(
+    sourceType: VideoSourceType,
+    config: ScreenCaptureConfiguration
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCaptureBySourceType(
+      {required VideoSourceType sourceType,
+      required ScreenCaptureConfiguration config});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCapture(VIDEO_SOURCE_TYPE sourceType, ScreenCaptureConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">This method is only available on macOS and Windows platforms.
+                <ul>
+                    <li>If you start screen capture using this method, you must call <xref keyref="stopScreenCapture2"/> to stop it.</li>
+                    <li>On Windows, up to 4 screen capture video streams are supported.</li>
+                    <li>On macOS, only 1 screen capture video stream is supported.</li>
+                </ul>
+            </note>
+            <note props="flutter">This method is only applicable to macOS and Windows platforms.
+                <ul>
+                    <li>If you use this method to start screen capture, you must call <xref keyref="stopScreenCapture2"/> to stop it.</li>
+                    <li>On Windows, up to 4 screen capture video streams are supported.</li>
+                    <li>On macOS, only 1 screen capture video stream is supported.</li>
+                </ul>
+            </note>
+            <note props="unity">This method applies to macOS and Windows only.
+                <ul>
+                    <li>If you call this method to start screen capture, you need to call <xref keyref="stopScreenCapture2"/> to stop it.</li>
+                    <li>On Windows, up to 4 screen capture video streams are supported.</li>
+                    <li>On macOS, only 1 screen capture video stream is supported.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In screen sharing scenarios, you need to call this method to start capturing screen video streams.
+The SDK provides several methods to start screen capture. Choose based on your use case:
+                <ul>
+                    <li><codeph>startScreenCaptureByDisplayId</codeph>/<codeph>startScreenCaptureByWindowId</codeph>: Supports capturing a single screen or window, suitable for sharing a single screen.</li>
+                    <li><codeph>startScreenCaptureBySourceType</codeph>: Supports specifying multiple video sources to capture multiple screen sharing streams, used for local compositing or multi-channel publishing scenarios.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter unity">
+            <title>Timing</title>
+            <p props="electron">This method can be called before or after joining a channel:
+                <ul>
+                    <li>If called before joining a channel, then call <xref keyref="joinChannel2"/> and set <codeph>publishScreenCaptureVideo</codeph> to <xref keyref="true"/> to start screen sharing.</li>
+                    <li>If called after joining a channel, then call <xref keyref="updateChannelMediaOptions"/> and set <codeph>publishScreenCaptureVideo</codeph> to <xref keyref="true"/> to start screen sharing.</li>
+                </ul>
+            </p>
+            <p props="flutter">This method can be called before or after joining a channel, with the following differences:
+                <ul>
+                    <li>If called before joining a channel, then call <xref keyref="joinChannel2"/> and set <codeph>publishScreenCaptureVideo</codeph> to <xref keyref="true"/>, screen sharing starts.</li>
+                    <li>If called after joining a channel, then call <xref keyref="updateChannelMediaOptions"/> and set <codeph>publishScreenCaptureVideo</codeph> to <xref keyref="true"/>, screen sharing starts.</li>
+                </ul>
+            </p>
+            <p props="unity">This method can be called before or after joining a channel, with the following differences:
+                <ul>
+                    <li>If you call this method before joining the channel, then call <xref keyref="joinChannel2"/> and set <codeph>publishScreenCaptureVideo</codeph> to <xref keyref="true"/>, screen sharing starts.</li>
+                    <li>If you call this method after joining the channel, then call <xref keyref="updateChannelMediaOptions"/> and set <codeph>publishScreenCaptureVideo</codeph> to <xref keyref="true"/>, screen sharing starts.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>sourceType</pt>
+                    <pd>The type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.
+                        <note>On macOS, only <codeph>VideoSourceScreen (2)</codeph> is supported for this parameter.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>Screen capture configuration. See <xref keyref="ScreenCaptureConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceType</pt>
+                    <pd>The type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.
+                        <note>On macOS, only <codeph>videoSourceScreen (2)</codeph> is supported for this parameter.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>Screen capture configuration. See <xref keyref="ScreenCaptureConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sourceType</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.
+                        <note>On macOS, only <codeph>VIDEO_SOURCE_SCREEN (2)</codeph> is supported for this parameter.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>Screen capture configuration. See <xref keyref="ScreenCaptureConfiguration"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

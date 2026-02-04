@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_loguploadserverinfo">
+    <title><ph keyref="LogUploadServerInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Configuration information of the log server.</ph><ph id="shortdesc" props="rn">Configuration information of the log server.</ph><ph id="shortdesc" props="flutter">Configuration information of the log server.</ph><ph id="shortdesc" props="unity">Configuration information of the log server.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class LogUploadServerInfo {
+  serverDomain?: string;
+  serverPath?: string;
+  serverPort?: number;
+  serverHttps?: boolean;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class LogUploadServerInfo {
+  serverDomain?: string;
+  serverPath?: string;
+  serverPort?: number;
+  serverHttps?: boolean;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class LogUploadServerInfo {
+  const LogUploadServerInfo(
+      {this.serverDomain, this.serverPath, this.serverPort, this.serverHttps});
+
+  @JsonKey(name: 'serverDomain')
+  final String? serverDomain;
+
+  @JsonKey(name: 'serverPath')
+  final String? serverPath;
+
+  @JsonKey(name: 'serverPort')
+  final int? serverPort;
+
+  @JsonKey(name: 'serverHttps')
+  final bool? serverHttps;
+
+  factory LogUploadServerInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$LogUploadServerInfoFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LogUploadServerInfoToJson(this);
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>serverDomain</pt>
+                    <pd>Domain name of the log server.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>serverPath</pt>
+                    <pd>Storage path of logs on the server.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>serverPort</pt>
+                    <pd>Port of the log server.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>serverHttps</pt>
+                    <pd>Whether the log server uses HTTPS protocol:
+                        <ul>
+                            <li><xref keyref="true"/>: Uses HTTPS protocol.</li>
+                            <li><xref keyref="false"/>: Uses HTTP protocol.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>serverDomain</pt>
+                    <pd>Domain name of the log server.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>serverPath</pt>
+                    <pd>Storage path of the log on the server.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>serverPort</pt>
+                    <pd>Port of the log server.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>serverHttps</pt>
+                    <pd>Whether the log server uses HTTPS protocol:
+                        <ul>
+                            <li><xref keyref="true"/>: Uses HTTPS protocol.</li>
+                            <li><xref keyref="false"/>: Uses HTTP protocol.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>serverDomain</pt>
+                    <pd>Domain name of the log server.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>serverPath</pt>
+                    <pd>Storage path of the log on the server.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>serverPort</pt>
+                    <pd>Port of the log server.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>serverHttps</pt>
+                    <pd>Whether the log server uses HTTPS protocol:
+                        <ul>
+                            <li><xref keyref="true"/>: Uses HTTPS protocol.</li>
+                            <li><xref keyref="false"/>: Uses HTTP protocol.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>serverDomain</pt>
+                    <pd>Domain name of the log server.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>serverPath</pt>
+                    <pd>Storage path of logs on the server.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>serverPort</pt>
+                    <pd>Port of the log server.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>serverHttps</pt>
+                    <pd>Whether the log server uses HTTPS:
+                        <ul>
+                            <li><xref keyref="true"/>: Uses HTTPS protocol.</li>
+                            <li><xref keyref="false"/>: Uses HTTP protocol.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

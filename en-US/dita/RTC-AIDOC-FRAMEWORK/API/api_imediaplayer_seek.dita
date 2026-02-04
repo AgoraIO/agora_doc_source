@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_seek">
+    <title><ph keyref="seek"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Seeks to the specified playback position in the media file.</ph><ph id="shortdesc" props="rn">Seeks to the specified playback position in the media file.</ph><ph id="shortdesc" props="flutter">Seeks to the specified playback position in the media file.</ph><ph id="shortdesc" props="unity">Seeks to the specified playback position in the media file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="seek"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract seek(newPos: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract seek(newPos: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; seek(int newPos);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int Seek(Int64 newPos);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">
+                <ul>
+                    <li>If you call <xref keyref="seek"/> after playback has completed (when the <xref keyref="onPlayerSourceStateChanged"/> callback reports the playback state as <codeph>PlayerStatePlaybackCompleted</codeph> or <codeph>PlayerStatePlaybackAllLoopsCompleted</codeph>), and the call succeeds, the SDK automatically starts playback from the specified position. In this case, you receive the <xref keyref="onPlayerSourceStateChanged"/> callback reporting the playback state as <codeph>PlayerStatePlaying</codeph>.</li>
+                    <li>If you call <xref keyref="seek"/> while playback is paused, upon successful call, the SDK seeks to the specified position. To resume playback, call <xref keyref="resume"/> or <xref keyref="play"/>.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>If you call <xref keyref="seek"/> after playback has completed (as indicated by the <xref keyref="onPlayerSourceStateChanged"/> callback reporting the playback state as PlayerStatePlaybackCompleted or PlayerStatePlaybackAllLoopsCompleted), the SDK automatically starts playback from the specified position upon a successful call. You will receive an <xref keyref="onPlayerSourceStateChanged"/> callback reporting the playback state as PlayerStatePlaying.</li>
+                    <li>If you call <xref keyref="seek"/> while playback is paused, the SDK seeks to the specified position upon success. To resume playback, call <xref keyref="resume"/> or <xref keyref="play"/>.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>If you call <xref keyref="seek"/> after playback has completed (i.e., you received the <xref keyref="onPlayerSourceStateChanged"/> callback reporting the playback state as <codeph>playerStatePlaybackCompleted</codeph> or <codeph>playerStatePlaybackAllLoopsCompleted</codeph>), the SDK will automatically start playback from the specified position upon success. You will receive the <xref keyref="onPlayerSourceStateChanged"/> callback reporting the state as <codeph>playerStatePlaying</codeph>.</li>
+                    <li>If you call <xref keyref="seek"/> while playback is paused, the SDK will seek to the specified position upon success. To start playback, call <xref keyref="resume"/> or <xref keyref="play"/>.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>If you call <xref keyref="seek"/> after playback has completed (as indicated by the <xref keyref="onPlayerSourceStateChanged"/> callback reporting the status as PLAYER_STATE_PLAYBACK_COMPLETED or PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED), the SDK will automatically start playback from the specified position upon successful call. You will receive an <xref keyref="onPlayerSourceStateChanged"/> callback reporting the status as PLAYER_STATE_PLAYING.</li>
+                    <li>If you call <xref keyref="seek"/> while playback is paused, the SDK will seek to the specified position upon success. To play, call <xref keyref="resume"/> or <xref keyref="play"/>.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method can be called before or after joining a channel.</p>
+            <p props="rn">This method can be called both before and after joining a channel.</p>
+            <p props="flutter">This method can be called before or after joining a channel.</p>
+            <p props="unity">This method can be called before or after joining a channel.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Related Callbacks</title>
+            <p props="electron">After this method is successfully called, you receive the <xref keyref="onPlayerEvent"/> callback reporting events such as seek start, success, or failure.</p>
+            <p props="rn">After a successful call to this method, you will receive an <xref keyref="onPlayerEvent"/> callback reporting events such as seeking started, seeking succeeded, or seeking failed.</p>
+            <p props="flutter">After successfully calling this method, you will receive the <xref keyref="onPlayerEvent"/> callback reporting events such as seek start, seek success, or seek failure.</p>
+            <p props="unity">After successfully calling this method, you will receive an <xref keyref="onPlayerEvent"/> callback reporting events such as seek start, seek success, or seek failure.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>newPos</pt>
+                    <pd>The target position in milliseconds.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>newPos</pt>
+                    <pd>The target position in milliseconds.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>newPos</pt>
+                    <pd>The specified position (in milliseconds).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>newPos</pt>
+                    <pd>The specified position (in milliseconds).</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onpositionchanged">
+    <title><ph keyref="onPositionChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Reports the current playback progress of the media resource.</ph><ph id="shortdesc" props="rn">Reports the playback progress of the current media resource.</ph><ph id="shortdesc" props="flutter">Reports the current playback position of the media resource.</ph><ph id="shortdesc" props="unity">Reports the current playback progress of the media resource.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPositionChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onPositionChanged?(positionMs: number): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onPositionChanged?(positionMs: number): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(int position)? onPositionChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnPositionChanged(Int64 position_ms) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">When playing a media file, the SDK automatically triggers this callback every second to report the current playback progress.</p>
+            <p props="rn">While playing a media file, the SDK automatically triggers this callback every second to report the current playback progress.</p>
+            <p props="flutter">While playing media files, the SDK automatically triggers this callback every second to report the current playback position.</p>
+            <p props="unity">While playing a media file, the SDK automatically triggers this callback every second to report the current playback progress.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>positionMs</pt>
+                    <pd>The current playback progress in ms.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>timestampMs</pt>
+                    <pd>The NTP timestamp of the current playback progress in ms.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>positionMs</pt>
+                    <pd>Current playback progress in ms.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>timestampMs</pt>
+                    <pd>NTP timestamp of the current playback progress in ms.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>positionMs</pt>
+                    <pd>Current playback position in milliseconds.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>timestampMs</pt>
+                    <pd>NTP timestamp of the current playback position in milliseconds.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>position_ms</pt>
+                    <pd>Current playback progress in milliseconds.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>timestampMs</pt>
+                    <pd>NTP timestamp of the current playback progress in milliseconds.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

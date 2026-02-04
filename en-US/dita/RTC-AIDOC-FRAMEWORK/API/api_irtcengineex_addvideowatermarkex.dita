@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_addvideowatermarkex">
+    <title><ph keyref="addVideoWatermarkEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Adds a local video watermark.</ph><ph id="shortdesc" props="rn">Adds a local video watermark.</ph><ph id="shortdesc" props="flutter">Adds a local video watermark.</ph><ph id="shortdesc" props="unity">Adds a local video watermark.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addVideoWatermarkEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract addVideoWatermarkEx(
+    watermarkUrl: string,
+    options: WatermarkOptions,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract addVideoWatermarkEx(
+    watermarkUrl: string,
+    options: WatermarkOptions,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; addVideoWatermarkEx(
+      {required String watermarkUrl,
+      required WatermarkOptions options,
+      required RtcConnection connection});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int AddVideoWatermarkEx(string watermarkUrl, WatermarkOptions options, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. Use <xref keyref="addVideoWatermarkEx1"/> instead.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. Use <xref keyref="addVideoWatermarkEx1"/> instead.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. Use <xref keyref="addVideoWatermarkEx1"/> instead.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. Use <codeph>addVideoWatermarkEx [2/2]</codeph> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">This method adds a PNG image as a watermark to the local live video stream. Users in the same live streaming channel, audience of the CDN live stream, and capture devices can see or capture the watermark image. Currently, only one watermark can be added to the live stream. A newly added watermark replaces the previous one.
+The watermark coordinates depend on the settings in the <xref keyref="setVideoEncoderConfigurationEx"/> method:
+                <ul>
+                    <li>If the video orientation (<xref keyref="ORIENTATION_MODE"/>) is fixed to landscape or adaptive landscape, landscape coordinates are used for the watermark.</li>
+                    <li>If the video orientation (<xref keyref="ORIENTATION_MODE"/>) is fixed to portrait or adaptive portrait, portrait coordinates are used for the watermark.</li>
+                    <li>When setting the watermark coordinates, the image area of the watermark must not exceed the video dimensions set in the <xref keyref="setVideoEncoderConfigurationEx"/> method; otherwise, the excess part will be cropped.</li>
+                </ul>
+            </p>
+            <p props="rn">This method adds a PNG image as a watermark to the local published live video stream. Users in the same live channel, audience of the CDN live stream, and capture devices can all see or capture the watermark image. Currently, only one watermark can be added to the live video stream. A newly added watermark replaces the previous one.
+The watermark coordinates depend on the settings in the <xref keyref="setVideoEncoderConfigurationEx"/> method:
+                <ul>
+                    <li>If the video encoding orientation (<xref keyref="ORIENTATION_MODE"/>) is fixed to landscape or landscape in adaptive mode, landscape coordinates are used for the watermark.</li>
+                    <li>If the video encoding orientation (<xref keyref="ORIENTATION_MODE"/>) is fixed to portrait or portrait in adaptive mode, portrait coordinates are used.</li>
+                    <li>When setting the watermark coordinates, the image area of the watermark must not exceed the video dimensions set in the <xref keyref="setVideoEncoderConfigurationEx"/> method. Otherwise, the exceeding part will be cropped.</li>
+                </ul>
+            </p>
+            <p props="flutter">This method adds a PNG image as a watermark to the local published live video stream. Users in the same live streaming channel, audience members of the CDN live stream, and capturing devices can see or capture the watermark image. Currently, only one watermark can be added to the live video stream. Any new watermark added will replace the previous one.
+The watermark coordinates depend on the settings in the <xref keyref="setVideoEncoderConfigurationEx"/> method:
+                <ul>
+                    <li>If the video encoding orientation (<xref keyref="ORIENTATION_MODE"/>) is fixed to landscape or adaptive landscape, the watermark uses landscape coordinates.</li>
+                    <li>If the video encoding orientation (<xref keyref="ORIENTATION_MODE"/>) is fixed to portrait or adaptive portrait, the watermark uses portrait coordinates.</li>
+                    <li>When setting the watermark coordinates, the watermark image area must not exceed the video dimensions set in the <xref keyref="setVideoEncoderConfigurationEx"/> method; otherwise, the exceeding part will be cropped.</li>
+                </ul>
+            </p>
+            <p props="unity">This method adds a PNG image as a watermark to the local published live video stream. Users in the same live channel, CDN audience, and capture devices can see or capture the watermark image. Currently, only one watermark is supported in the live video stream. Adding a new watermark will replace the previous one.
+The watermark coordinates depend on the settings in <xref keyref="setVideoEncoderConfigurationEx"/>:
+                <ul>
+                    <li>If the video orientation (<xref keyref="ORIENTATION_MODE"/>) is fixed to landscape or adaptive landscape, landscape coordinates are used.</li>
+                    <li>If the video orientation is fixed to portrait or adaptive portrait, portrait coordinates are used.</li>
+                    <li>When setting watermark coordinates, the image area must not exceed the video dimensions set in <xref keyref="setVideoEncoderConfigurationEx"/>, otherwise the excess will be cropped.</li>
+                </ul>
+            </p>
+            <note props="electron">
+                <ul>
+                    <li>You must call this method after calling <xref keyref="enableVideo"/>.</li>
+                    <li>The image to be added must be in PNG format. This method supports all pixel formats of PNG images: RGBA, RGB, Palette, Gray, and Alpha_gray.</li>
+                    <li>If the size of the PNG image differs from the size you set in this method, the SDK will scale or crop the image to match the settings.</li>
+                    <li>If you have started the local video preview using <xref keyref="startPreview2"/>, you can use the <codeph>visibleInPreview</codeph> parameter to set whether the watermark is visible during preview.</li>
+                    <li>If local video mirroring is enabled, the local watermark will also be mirrored. To prevent the watermark from being mirrored when viewed locally, we recommend not using both mirroring and watermark features simultaneously. Implement local watermarking at the application level.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>You must call this method after calling <xref keyref="enableVideo"/>.</li>
+                    <li>The watermark image must be in PNG format. This method supports all pixel formats of PNG: RGBA, RGB, Palette, Gray, and Alpha_gray.</li>
+                    <li>If the size of the PNG image to be added does not match the size you set in this method, the SDK will scale or crop the PNG image to match the setting.</li>
+                    <li>If you have already called <xref keyref="startPreview2"/> to start local video preview, the <codeph>visibleInPreview</codeph> parameter in this method determines whether the watermark is visible in the preview.</li>
+                    <li>If local video is set to mirror mode, the local watermark will also be mirrored. To avoid the watermark being mirrored when local users view the local video, it is recommended not to use both mirror and watermark features for local video. Implement the local watermark feature at the application level.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>You must call this method after calling <xref keyref="enableVideo"/>.</li>
+                    <li>The watermark image to be added must be in PNG format. This method supports all pixel formats of PNG images: RGBA, RGB, Palette, Gray, and Alpha_gray.</li>
+                    <li>If the size of the PNG image to be added does not match the size set in this method, the SDK will scale or crop the PNG image to match the settings.</li>
+                    <li>If you have already started local video preview using the <xref keyref="startPreview2"/> method, the <codeph>visibleInPreview</codeph> parameter of this method can be used to set whether the watermark is visible during preview.</li>
+                    <li>If local video mirroring is enabled, the local watermark will also be mirrored. To avoid the watermark being mirrored when local users view their own video, it is recommended not to use both mirroring and watermark features simultaneously for local video. Implement the local watermark feature at the application level.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>You must call this method after calling <xref keyref="enableVideo"/>.</li>
+                    <li>The watermark image must be in PNG format. This method supports all PNG pixel formats: RGBA, RGB, Palette, Gray, and Alpha_gray.</li>
+                    <li>If the size of the PNG image differs from the size set in this method, the SDK will scale or crop the image to match the settings.</li>
+                    <li>If you have already started local video preview using <xref keyref="startPreview2"/>, the <codeph>visibleInPreview</codeph> parameter in this method can control whether the watermark is visible during preview.</li>
+                    <li>If local video is set to mirror mode, the local watermark will also be mirrored. To avoid mirrored watermark for local users, it is recommended not to use both mirror and watermark features together. Implement watermark at the application layer instead.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>watermarkUrl</pt>
+                    <pd>The local path of the watermark image to be added. This method supports adding watermark images from absolute or relative local paths.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>options</pt>
+                    <pd>Settings for the watermark image to be added. See <xref keyref="WatermarkOptions"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>watermarkUrl</pt>
+                    <pd>The local path of the watermark image to be added. This method supports adding watermark images from local absolute/relative paths.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>options</pt>
+                    <pd>Settings for the watermark image to be added. See <xref keyref="WatermarkOptions"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>watermarkUrl</pt>
+                    <pd>Local path of the watermark image to be added. This method supports adding watermark images from local absolute/relative paths.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>options</pt>
+                    <pd>Settings for the watermark image to be added. See <xref keyref="WatermarkOptions"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>watermarkUrl</pt>
+                    <pd>The local path of the watermark image to be added. This method supports adding watermark images from absolute/relative local paths.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>options</pt>
+                    <pd>Settings for the watermark image. See <xref keyref="WatermarkOptions"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

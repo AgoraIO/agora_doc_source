@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startpreview">
+    <title><ph keyref="startPreview"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Starts video preview.</ph><ph id="shortdesc" props="rn">Starts video preview.</ph><ph id="shortdesc" props="flutter">Starts video preview.</ph><ph id="shortdesc" props="unity">Starts video preview.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startPreview"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startPreviewWithoutSourceType(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startPreviewWithoutSourceType(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startPreviewWithoutSourceType();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartPreview();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method starts the local video preview.</p>
+            <p props="rn">This method starts the local video preview.</p>
+            <p props="flutter">This method starts the local video preview.</p>
+            <p props="unity">This method starts the local video preview.</p>
+            <note props="electron">
+                <ul>
+                    <li>Mirror mode is enabled by default for local preview.</li>
+                    <li>After leaving the channel, the local preview remains active. You need to call <xref keyref="stopPreview2"/> to stop the local preview.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>Local preview enables mirroring by default.</li>
+                    <li>After leaving the channel, local preview remains active. You need to call <xref keyref="stopPreview2"/> to stop the local preview.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>Local preview enables mirror mode by default.</li>
+                    <li>After leaving the channel, local preview remains active. You need to call <xref keyref="stopPreview2"/> to stop the local preview.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>Local preview enables mirror mode by default.</li>
+                    <li>After leaving the channel, the local preview remains active. You need to call <xref keyref="stopPreview"/> to stop the local preview.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">You must call this method after <xref keyref="enableVideo"/>.</p>
+            <p props="rn">This method must be called after <xref keyref="enableVideo"/>.</p>
+            <p props="flutter">This method must be called after <xref keyref="enableVideo"/>.</p>
+            <p props="unity">You must call this method after <xref keyref="enableVideo"/>.</p>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

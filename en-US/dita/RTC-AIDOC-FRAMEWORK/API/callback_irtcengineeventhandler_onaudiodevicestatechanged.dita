@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudiodevicestatechanged">
+    <title><ph keyref="onAudioDeviceStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback for changes in audio device state.</ph><ph id="shortdesc" props="flutter">Occurs when the audio device state changes.</ph><ph id="shortdesc" props="unity">Callback for audio device state changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioDeviceStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onAudioDeviceStateChanged?(
+    deviceId: string,
+    deviceType: MediaDeviceType,
+    deviceState: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(String deviceId, MediaDeviceType deviceType,
+      MediaDeviceStateType deviceState)? onAudioDeviceStateChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioDeviceStateChanged(string deviceId, MEDIA_DEVICE_TYPE deviceType, MEDIA_DEVICE_STATE_TYPE deviceState) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Indicates that the system audio device state has changed, such as when a headset is unplugged.</p>
+            <p props="flutter">Indicates that the system audio device state has changed, such as when a headset is unplugged.</p>
+            <p props="unity">Indicates that the system audio device state has changed, such as when a headset is unplugged.</p>
+            <note props="flutter">This method is only applicable to Windows and macOS.</note>
+            <note props="unity">This method is only available on Windows and macOS.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>deviceId</pt>
+                    <pd>Device ID.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>deviceType</pt>
+                    <pd>Device type definition. See <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>deviceState</pt>
+                    <pd>Device state. See <xref keyref="MEDIA_DEVICE_STATE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceId</pt>
+                    <pd>The device ID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceType</pt>
+                    <pd>The device type definition. See <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceState</pt>
+                    <pd>The device state. See <xref keyref="MEDIA_DEVICE_STATE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceId</pt>
+                    <pd>Device ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceType</pt>
+                    <pd>Device type definition. See <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceState</pt>
+                    <pd>Device state. See <xref keyref="MEDIA_DEVICE_STATE_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

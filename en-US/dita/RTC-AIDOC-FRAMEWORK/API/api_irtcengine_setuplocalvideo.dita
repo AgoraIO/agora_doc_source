@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setuplocalvideo">
+    <title><ph keyref="setupLocalVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Initializes the local view.</ph><ph id="shortdesc" props="flutter">Initializes the local view.</ph><ph id="shortdesc" props="unity">Initializes the local view.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setupLocalVideo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setupLocalVideo(canvas: VideoCanvas): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setupLocalVideo(VideoCanvas canvas);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetupLocalVideo(VideoCanvas canvas);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method initializes the local view and sets the display properties of the local user video. It only affects the video seen by the local user and does not affect the publishing of the local video. Call this method to bind the local video stream to a display window (<codeph>view</codeph>), and set the rendering and mirror mode of the local user view.
+The binding remains effective after leaving the channel. To stop rendering or unbind, call this method and set the <codeph>view</codeph> parameter to null to stop rendering and clear the rendering cache.</p>
+            <p props="flutter">This method initializes the local view and sets the display properties of the local user's video. It only affects the video seen by the local user and does not affect the publishing of the local video. Call this method to bind the display window (<codeph>view</codeph>) of the local video stream and set the rendering and mirror mode of the local user view.
+The binding remains effective after leaving the channel. To stop rendering or unbind, you can call this method and set the <codeph>view</codeph> parameter to NULL to stop rendering and clear the rendering cache.</p>
+            <p props="unity">This method initializes the local view and sets the display properties of the local user's video. It only affects the video image seen by the local user and does not affect the publishing of the local video. Calling this method binds the display window (<codeph>view</codeph>) of the local video stream and sets the rendering and mirror mode of the local user view.
+The binding remains effective after leaving the channel. To stop rendering or unbind, you can call this method and set the <codeph>view</codeph> parameter to NULL to stop rendering and clear the rendering cache.</p>
+            <note props="electron">
+                <ul>
+                    <li>In Flutter, you do not need to call this method manually. Use <codeph>AgoraVideoView</codeph> to render local and remote views.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>In Flutter, you do not need to call this method manually. Use <xref keyref="AgoraVideoView"/> to render local and remote views.</li>
+                    <li>If you only want to update the rendering or mirror mode of the local user view during a call, use the <xref keyref="setLocalRenderMode2"/> method.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>In Flutter, you do not need to call this method manually. Use <codeph>AgoraVideoView</codeph> to render local and remote views.</li>
+                    <li>If you want to render images in a native window, call this method; if you only need to render images within a Unity project, you can use the <xref keyref="VideoSurface"/> class directly.</li>
+                    <li>If you only want to update the rendering or mirror mode of the local user view during a call, use the <xref keyref="setLocalRenderMode2"/> method.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In app development, this method is typically called after initialization to configure local video, and then join the channel.
+If you want to display multiple preview views in the local video preview, each showing different observation points in the video pipeline, you can call this method multiple times with different <codeph>view</codeph> values and set different observation positions for each. For example, set the video source to camera and assign two <codeph>view</codeph> values with <codeph>position</codeph> set to PositionPostCapturerOrigin and PositionPostCapturer respectively, to simultaneously preview the raw video and the processed video (beauty effects, virtual background, watermark) locally.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter unity">
+            <title>Timing</title>
+            <p props="electron">You can call this method before or after joining a channel.</p>
+            <p props="flutter">This method can be called before or after joining the channel.</p>
+            <p props="unity">This method can be called before or after joining the channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>canvas</pt>
+                    <pd>Display properties of the local video. See <xref keyref="VideoCanvas"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>canvas</pt>
+                    <pd>Display properties of the local video. See <xref keyref="VideoCanvas"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>canvas</pt>
+                    <pd>Local video display properties. See <xref keyref="VideoCanvas"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                <ul>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

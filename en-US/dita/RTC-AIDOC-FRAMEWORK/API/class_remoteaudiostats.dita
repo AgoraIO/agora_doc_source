@@ -1,0 +1,611 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_remoteaudiostats">
+    <title><ph keyref="RemoteAudioStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Audio statistics of the remote user.</ph><ph id="shortdesc" props="rn">Audio statistics of the remote user.</ph><ph id="shortdesc" props="flutter">Audio statistics of the remote user.</ph><ph id="shortdesc" props="unity">Audio statistics of a remote user.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class RemoteAudioStats {
+
+  uid?: number;
+
+  quality?: number;
+
+  networkTransportDelay?: number;
+
+  jitterBufferDelay?: number;
+
+  audioLossRate?: number;
+
+  numChannels?: number;
+
+  receivedSampleRate?: number;
+
+  receivedBitrate?: number;
+
+  totalFrozenTime?: number;
+
+  frozenRate?: number;
+
+  mosValue?: number;
+
+  totalActiveTime?: number;
+
+  publishDuration?: number;
+
+  qoeQuality?: number;
+
+  qualityChangedReason?: number;
+
+  e2eDelay?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class RemoteAudioStats {
+
+  uid?: number;
+
+  quality?: number;
+
+  networkTransportDelay?: number;
+
+  jitterBufferDelay?: number;
+
+  audioLossRate?: number;
+
+  numChannels?: number;
+
+  receivedSampleRate?: number;
+
+  receivedBitrate?: number;
+
+  totalFrozenTime?: number;
+
+  frozenRate?: number;
+
+  mosValue?: number;
+
+  totalActiveTime?: number;
+
+  publishDuration?: number;
+
+  qoeQuality?: number;
+
+  qualityChangedReason?: number;
+
+  e2eDelay?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class RemoteAudioStats {
+  const RemoteAudioStats(
+      {this.uid,
+      this.quality,
+      this.networkTransportDelay,
+      this.jitterBufferDelay,
+      this.audioLossRate,
+      this.numChannels,
+      this.receivedSampleRate,
+      this.receivedBitrate,
+      this.totalFrozenTime,
+      this.frozenRate,
+      this.mosValue,
+      this.totalActiveTime,
+      this.publishDuration,
+      this.qoeQuality,
+      this.qualityChangedReason,
+      this.e2eDelay});
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+
+  @JsonKey(name: 'quality')
+  final int? quality;
+
+  @JsonKey(name: 'networkTransportDelay')
+  final int? networkTransportDelay;
+
+  @JsonKey(name: 'jitterBufferDelay')
+  final int? jitterBufferDelay;
+
+  @JsonKey(name: 'audioLossRate')
+  final int? audioLossRate;
+
+  @JsonKey(name: 'numChannels')
+  final int? numChannels;
+
+  @JsonKey(name: 'receivedSampleRate')
+  final int? receivedSampleRate;
+
+  @JsonKey(name: 'receivedBitrate')
+  final int? receivedBitrate;
+
+  @JsonKey(name: 'totalFrozenTime')
+  final int? totalFrozenTime;
+
+  @JsonKey(name: 'frozenRate')
+  final int? frozenRate;
+
+  @JsonKey(name: 'mosValue')
+  final int? mosValue;
+
+  @JsonKey(name: 'totalActiveTime')
+  final int? totalActiveTime;
+
+  @JsonKey(name: 'publishDuration')
+  final int? publishDuration;
+
+  @JsonKey(name: 'qoeQuality')
+  final int? qoeQuality;
+
+  @JsonKey(name: 'qualityChangedReason')
+  final int? qualityChangedReason;
+
+  @JsonKey(name: 'e2eDelay')
+  final int? e2eDelay;
+
+  factory RemoteAudioStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$RemoteAudioStatsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$RemoteAudioStatsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class RemoteAudioStats
+    {
+        public RemoteAudioStats()
+        {
+            uid = 0;
+            quality = 0;
+            networkTransportDelay = 0;
+            jitterBufferDelay = 0;
+            audioLossRate = 0;
+            numChannels = 0;
+            receivedSampleRate = 0;
+            receivedBitrate = 0;
+            totalFrozenTime = 0;
+            frozenRate = 0;
+            mosValue = 0;
+            totalActiveTime = 0;
+            publishDuration = 0;
+            qoeQuality = 0;
+            qualityChangedReason = 0;
+            public int e2eDelay;
+        }
+
+        public RemoteAudioStats(uint uid, int quality, int networkTransportDelay, int jitterBufferDelay,
+            int audioLossRate, int numChannels, int receivedSampleRate, int receivedBitrate, int totalFrozenTime,
+            int frozenRate, int mosValue, int totalActiveTime, int publishDuration, int qoeQuality, int qualityChangedReason)
+        {
+            this.uid = uid;
+            this.quality = quality;
+            this.networkTransportDelay = networkTransportDelay;
+            this.jitterBufferDelay = jitterBufferDelay;
+            this.audioLossRate = audioLossRate;
+            this.numChannels = numChannels;
+            this.receivedSampleRate = receivedSampleRate;
+            this.receivedBitrate = receivedBitrate;
+            this.totalFrozenTime = totalFrozenTime;
+            this.frozenRate = frozenRate;
+            this.mosValue = mosValue;
+            this.totalActiveTime = totalActiveTime;
+            this.publishDuration = publishDuration;
+            this.qoeQuality = qoeQuality;
+            this.qualityChangedReason = qualityChangedReason;
+        }
+
+        public uint uid { set; get; }
+        public int quality { set; get; }
+        public int networkTransportDelay { set; get; }
+        public int jitterBufferDelay { set; get; }
+        public int audioLossRate { set; get; }
+        public int numChannels { set; get; }
+        public int receivedSampleRate { set; get; }
+        public int receivedBitrate { set; get; }
+        public int totalFrozenTime { set; get; }
+        public int frozenRate { set; get; }
+        public int mosValue { set; get; }
+        public int totalActiveTime { set; get; }
+        public int publishDuration { set; get; }
+        public int qoeQuality { set; get; }
+        public int qualityChangedReason { set; get; }
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>User ID of the remote user.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>quality</pt>
+                    <pd>Audio stream quality sent by the remote user. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>networkTransportDelay</pt>
+                    <pd>Network delay from the sender to the receiver (ms).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>jitterBufferDelay</pt>
+                    <pd>Network delay from the receiver to the jitter buffer (ms).
+                        <note>This parameter is not effective when the receiver is an audience member and <codeph>audienceLatencyLevel</codeph> in <xref keyref="ClientRoleOptions"/> is 1.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioLossRate</pt>
+                    <pd>Audio frame loss rate (%) of the remote stream during the reporting interval.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>numChannels</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>receivedSampleRate</pt>
+                    <pd>Sampling rate of the received remote audio stream during the reporting interval.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>receivedBitrate</pt>
+                    <pd>Average bitrate (Kbps) of the received remote audio stream during the reporting interval.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>totalFrozenTime</pt>
+                    <pd>Total duration (ms) of audio freezes after the remote user joined the channel. An audio freeze is counted when the audio frame loss rate exceeds 4% during a call.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>frozenRate</pt>
+                    <pd>Percentage (%) of total freeze duration over total effective audio duration. Effective duration refers to the time after the remote user joins the channel and the audio is neither stopped nor disabled.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>totalActiveTime</pt>
+                    <pd>Effective duration (ms) from the start of the audio call to this callback.
+Effective duration excludes the total time the remote user was muted.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publishDuration</pt>
+                    <pd>Total duration (ms) of the remote audio stream being published.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>qoeQuality</pt>
+                    <pd>Subjective experience quality of the local user when receiving remote audio. See <xref keyref="EXPERIENCE_QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>qualityChangedReason</pt>
+                    <pd>Reason for poor subjective experience quality of the local user when receiving remote audio. See <xref keyref="EXPERIENCE_POOR_REASON"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>mosValue</pt>
+                    <pd>Quality score of the received remote audio stream during the reporting interval, based on Agora's real-time audio MOS (Mean Opinion Score) evaluation method. The return value ranges from [0,500]. Divide the value by 100 to get the MOS score, which ranges from [0,5]. The higher the score, the better the audio quality.
+The subjective audio quality corresponding to Agora's real-time MOS score is as follows:
+                        <simpletable>
+                            <sthead>
+                                <stentry>MOS Score</stentry>
+                                <stentry>Audio Quality</stentry>
+                            </sthead>
+                            <strow>
+                                <stentry>Greater than 4</stentry>
+                                <stentry>Excellent audio quality, clear and smooth.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>3.5 - 4</stentry>
+                                <stentry>Good audio quality, occasional artifacts but still clear.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>3 - 3.5</stentry>
+                                <stentry>Fair audio quality, occasional stutters, requires some attention to understand.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>2.5 - 3</stentry>
+                                <stentry>Poor audio quality, frequent stutters, requires concentration to understand.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>2 - 2.5</stentry>
+                                <stentry>Very poor audio quality, occasional noise, partial loss of meaning, difficult to communicate.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>Less than 2</stentry>
+                                <stentry>Extremely poor audio quality, frequent noise, significant loss of meaning, communication impossible.</stentry>
+                            </strow>
+                        </simpletable>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>e2eDelay</pt>
+                    <pd>End-to-end audio delay (ms), i.e., the total time from when the remote user starts audio capture to when the local user starts playback.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>User ID of the remote user.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>quality</pt>
+                    <pd>Audio stream quality sent by the remote user. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>networkTransportDelay</pt>
+                    <pd>Network delay from the audio sender to the receiver (ms).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>jitterBufferDelay</pt>
+                    <pd>Network delay from the receiver to the jitter buffer (ms).
+                        <note>This parameter is not effective when the receiver is an audience member and <codeph>audienceLatencyLevel</codeph> in <xref keyref="ClientRoleOptions"/> is 1.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioLossRate</pt>
+                    <pd>Audio frame loss rate (%) of the remote stream during the reporting interval.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>numChannels</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>receivedSampleRate</pt>
+                    <pd>Sample rate of the remote audio stream received during the reporting interval.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>receivedBitrate</pt>
+                    <pd>Average bitrate (Kbps) of the remote audio stream received during the reporting interval.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>totalFrozenTime</pt>
+                    <pd>Total duration (ms) of audio freeze experienced by the remote user after joining the channel. An audio freeze is counted when the audio frame loss rate exceeds 4% during the call.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>frozenRate</pt>
+                    <pd>Percentage (%) of total frozen time over the total effective duration of the audio. The effective duration refers to the time after the remote user joins the channel during which the audio is neither stopped nor disabled.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>totalActiveTime</pt>
+                    <pd>Effective duration (ms) from the start of the audio call to this callback.
+Effective duration refers to the total time excluding when the remote user is muted.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publishDuration</pt>
+                    <pd>Total duration (ms) the remote audio stream was published.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>qoeQuality</pt>
+                    <pd>Subjective experience quality of the local user when receiving remote audio. See <xref keyref="EXPERIENCE_QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>qualityChangedReason</pt>
+                    <pd>Reason for poor subjective experience quality of the local user when receiving remote audio. See <xref keyref="EXPERIENCE_POOR_REASON"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mosValue</pt>
+                    <pd>Quality score of the remote audio stream received during the reporting interval, evaluated using Agora's real-time audio MOS (Mean Opinion Score) method. The return value ranges from [0, 500]. Divide the value by 100 to get the MOS score, which ranges from [0, 5]. Higher scores indicate better audio quality.
+                        <simpletable>
+                            <sthead>
+                                <stentry>MOS Score</stentry>
+                                <stentry>Audio Quality</stentry>
+                            </sthead>
+                            <strow>
+                                <stentry>Greater than 4</stentry>
+                                <stentry>Excellent audio quality, clear and smooth.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>3.5 - 4</stentry>
+                                <stentry>Good audio quality, occasional artifacts, still clear.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>3 - 3.5</stentry>
+                                <stentry>Average audio quality, occasional stutters, not very smooth, requires some effort to understand.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>2.5 - 3</stentry>
+                                <stentry>Poor audio quality, frequent stutters, requires concentration to understand.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>2 - 2.5</stentry>
+                                <stentry>Very poor audio quality, occasional noise, partial loss of meaning, difficult to communicate.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>Less than 2</stentry>
+                                <stentry>Extremely poor audio quality, frequent noise, significant loss of meaning, communication impossible.</stentry>
+                            </strow>
+                        </simpletable>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>e2eDelay</pt>
+                    <pd>End-to-end audio delay (ms), i.e., the total time from when the remote user captures the audio to when the local user starts playback.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>The user ID of the remote user.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>quality</pt>
+                    <pd>The quality of the audio stream sent by the remote user. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>networkTransportDelay</pt>
+                    <pd>Network delay from the audio sender to the receiver (ms).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>jitterBufferDelay</pt>
+                    <pd>Network delay from the audio receiver to the jitter buffer (ms).
+                        <note>This parameter is not effective when the receiver is an audience member and <codeph>audienceLatencyLevel</codeph> in <xref keyref="ClientRoleOptions"/> is set to 1.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioLossRate</pt>
+                    <pd>Audio frame loss rate (%) of the remote audio stream during the reporting interval.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>numChannels</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>receivedSampleRate</pt>
+                    <pd>Sampling rate of the received remote audio stream during the reporting interval.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>receivedBitrate</pt>
+                    <pd>Average bitrate (Kbps) of the received remote audio stream during the reporting interval.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>totalFrozenTime</pt>
+                    <pd>Total duration (ms) of audio freezes experienced by the remote user after joining the channel. An audio freeze is counted when the audio frame loss rate exceeds 4%.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>frozenRate</pt>
+                    <pd>Percentage (%) of the total freeze duration relative to the total valid audio duration. Valid audio duration refers to the time after the remote user joins the channel during which audio is not stopped or disabled.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>totalActiveTime</pt>
+                    <pd>Total valid time (ms) from the start of the audio call to this callback for the remote user.
+Valid time excludes the total time the remote user was in a muted state.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publishDuration</pt>
+                    <pd>Total publishing duration (ms) of the remote audio stream.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>qoeQuality</pt>
+                    <pd>Subjective experience quality of the local user when receiving remote audio.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>qualityChangedReason</pt>
+                    <pd>Reason for poor subjective experience quality of the local user when receiving remote audio. See <xref keyref="EXPERIENCE_POOR_REASON"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mosValue</pt>
+                    <pd>During the reporting interval, the quality score of the received remote audio stream evaluated by Agora's real-time audio MOS (Mean Opinion Score) method. The return value ranges from [0,500]. Divide the return value by 100 to get the MOS score in the range [0,5], where a higher score indicates better audio quality.
+The subjective audio quality corresponding to the Agora real-time audio MOS score is as follows:
+                        <simpletable>
+                            <sthead>
+                                <stentry>MOS Score</stentry>
+                                <stentry>Audio Quality</stentry>
+                            </sthead>
+                            <strow>
+                                <stentry>Greater than 4</stentry>
+                                <stentry>Excellent audio quality, clear and smooth.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>3.5 - 4</stentry>
+                                <stentry>Good audio quality, occasional impairments, but still clear.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>3 - 3.5</stentry>
+                                <stentry>Fair audio quality, occasional stuttering, not very smooth, requires some effort to understand.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>2.5 - 3</stentry>
+                                <stentry>Poor audio quality, frequent stuttering, requires focus to understand.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>2 - 2.5</stentry>
+                                <stentry>Very poor audio quality, occasional noise, partial semantic loss, difficult to communicate.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>Less than 2</stentry>
+                                <stentry>Extremely poor audio quality, frequent noise, significant semantic loss, communication impossible.</stentry>
+                            </strow>
+                        </simpletable>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>e2eDelay</pt>
+                    <pd>End-to-end audio delay (ms), i.e., the total time from when the remote user captures the audio to when the local user starts playing it.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>User ID of the remote user.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>quality</pt>
+                    <pd>Audio stream quality sent by the remote user. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>networkTransportDelay</pt>
+                    <pd>Network delay from the audio sender to the receiver (ms).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>jitterBufferDelay</pt>
+                    <pd>Network delay from the receiver to the jitter buffer (ms).
+                        <note>This parameter is not valid when the receiver is an audience member and <xref keyref="ClientRoleOptions"/>'s <codeph>audienceLatencyLevel</codeph> is 1.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioLossRate</pt>
+                    <pd>Audio frame loss rate (%) of the remote stream during the reporting interval.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>numChannels</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>receivedSampleRate</pt>
+                    <pd>Sampling rate of the received remote audio stream during the reporting interval.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>receivedBitrate</pt>
+                    <pd>Average bitrate (Kbps) of the received remote audio stream during the reporting interval.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>totalFrozenTime</pt>
+                    <pd>Total duration (ms) of audio freezes after the remote user joins the channel. An audio freeze is defined as a frame loss rate of 4% or higher during a call.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>frozenRate</pt>
+                    <pd>Percentage (%) of total freeze time relative to the total duration of valid audio. Valid audio duration refers to the time after the remote user joins the channel during which audio is neither stopped nor disabled.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>totalActiveTime</pt>
+                    <pd>Valid duration (ms) from the start of the audio call to the current callback.
+Valid duration excludes the total time the remote user was muted.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publishDuration</pt>
+                    <pd>Total publishing duration (ms) of the remote audio stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>qoeQuality</pt>
+                    <pd>Subjective quality of experience perceived by the local user when receiving remote audio. See <xref keyref="EXPERIENCE_QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>qualityChangedReason</pt>
+                    <pd>Reason for poor subjective experience quality when receiving remote audio. See <xref keyref="EXPERIENCE_POOR_REASON"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mosValue</pt>
+                    <pd>During the reporting interval, the quality score of the received remote audio stream as assessed by Agora’s real-time audio MOS (Mean Opinion Score) method. The return value ranges from [0, 500]. Divide the value by 100 to get the MOS score, which ranges from 0 to 5. The higher the score, the better the audio quality.
+                        <simpletable>
+                            <sthead>
+                                <stentry>MOS Score</stentry>
+                                <stentry>Audio Quality</stentry>
+                            </sthead>
+                            <strow>
+                                <stentry>Greater than 4</stentry>
+                                <stentry>Excellent audio quality, clear and smooth.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>3.5 - 4</stentry>
+                                <stentry>Good audio quality, occasional artifacts, but still clear.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>3 - 3.5</stentry>
+                                <stentry>Fair audio quality, occasional stutters, not very smooth, requires some attention to understand.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>2.5 - 3</stentry>
+                                <stentry>Poor audio quality, frequent stutters, requires concentration to understand.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>2 - 2.5</stentry>
+                                <stentry>Very poor audio quality, occasional noise, partial semantic loss, difficult to communicate.</stentry>
+                            </strow>
+                            <strow>
+                                <stentry>Less than 2</stentry>
+                                <stentry>Extremely poor audio quality, frequent noise, significant semantic loss, communication impossible.</stentry>
+                            </strow>
+                        </simpletable>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>e2eDelay</pt>
+                    <pd>End-to-end audio delay (ms), i.e., the total time from when the remote user captures the audio to when the local user starts playing it.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

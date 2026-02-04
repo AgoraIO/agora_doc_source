@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_audioprocessingchannels">
+    <title><ph keyref="AUDIO_PROCESSING_CHANNELS"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Number of channels for audio pre-processing.</ph><ph id="shortdesc" props="rn">Number of audio preprocessing channels.</ph><ph id="shortdesc" props="flutter">Number of audio preprocessing channels.</ph><ph id="shortdesc" props="unity">Number of channels for audio preprocessing.</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <p props="electron">In scenarios such as concerts where enhanced realism is needed, local users may need to capture and send stereo signals to remote users.
+For example, on a concert stage, the lead singer, guitarist, and drummer stand in different positions. The on-site equipment captures stereo sound from each of them and sends the stereo signal to the remote user, who can hear the vocals, guitar, and drums coming from different directions as if they were on stage.
+With this class, you can configure dual-channel processing to achieve stereo sound. It is recommended to configure as follows:
+                <ol>
+                    <li>Pre-processing: Call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> to <codeph>AudioProcessingStereo</codeph> (2) in <xref keyref="AdvancedAudioOptions"/>.</li>
+                    <li>Post-processing: Call <xref keyref="setAudioProfile"/> and set <codeph>profile</codeph> to <codeph>AudioProfileMusicStandardStereo</codeph> (3) or <codeph>AudioProfileMusicHighQualityStereo</codeph> (5).</li>
+                </ol>
+            </p>
+            <p props="rn">In scenarios such as concerts where enhanced realism is needed, local users may need to capture and send stereo audio signals to remote users.
+For example, on a concert stage, the lead singer, guitarist, and drummer stand in different positions. The on-site equipment captures the stereo sound of all three and sends the stereo signal to remote users, allowing them to hear vocals, guitar, and drums from different directions as if they were on stage.
+With this class, you can configure dual-channel processing to achieve stereo sound. It is recommended to configure it as follows:
+                <ol>
+                    <li>Preprocessing: Call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> to <codeph>AudioProcessingStereo</codeph> (2) in <xref keyref="AdvancedAudioOptions"/>.</li>
+                    <li>Post-processing: Call <xref keyref="setAudioProfile"/> and set <codeph>profile</codeph> to <codeph>AudioProfileMusicStandardStereo</codeph> (3) or <codeph>AudioProfileMusicHighQualityStereo</codeph> (5).</li>
+                </ol>
+            </p>
+            <p props="flutter">In scenarios such as concerts where a realistic experience is desired, the local user may need to capture stereo and send stereo signals to remote users.
+For example, on a concert stage, the lead singer, guitarist, and drummer stand in different positions. The on-site equipment captures their stereo sound and sends it to remote users, who can hear the vocals, guitar, and drums from different directions as if they were on stage.
+With this class, you can configure dual-channel processing to achieve stereo. It is recommended to configure as follows:
+                <ol>
+                    <li>Preprocessing: Call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> to <codeph>audioProcessingStereo</codeph> (2) in <xref keyref="AdvancedAudioOptions"/>.</li>
+                    <li>Post-processing: Call <codeph>setAudioProfile2</codeph> and set <codeph>profile</codeph> to <codeph>audioProfileMusicStandardStereo</codeph> (3) or <codeph>audioProfileMusicHighQualityStereo</codeph> (5).</li>
+                </ol>
+            </p>
+            <p props="unity">In scenarios such as concerts where enhanced realism is required, local users may need to capture and send stereo signals to remote users.
+For example, on a concert stage, the lead singer, guitarist, and drummer stand in different positions. The on-site equipment captures stereo sound from all three and sends the stereo signal to remote users, allowing them to hear vocals, guitar, and drums from different directions as if they were on stage.
+With this class, you can set dual-channel processing to achieve stereo. It is recommended to configure it as follows:
+                <ol>
+                    <li>Preprocessing: Call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> in <xref keyref="AdvancedAudioOptions"/> to <codeph>AUDIO_PROCESSING_STEREO</codeph> (2).</li>
+                    <li>Postprocessing: Call <xref keyref="setAudioProfile2"/> and set <codeph>profile</codeph> to <codeph>AUDIO_PROFILE_MUSIC_STANDARD_STEREO</codeph> (3) or <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</codeph> (5).</li>
+                </ol>
+            </p>
+            <note props="electron">
+                <ul>
+                    <li>Stereo configuration only takes effect under media volume.</li>
+                </ul><ph>To learn the difference between media and communication volume,</ph></note>
+            <note props="rn">
+                <ul>
+                    <li>Stereo settings take effect only under media volume.</li>
+                </ul><ph>To learn the difference between media volume and call volume, see [Volume Types](https://doc.shengwang.cn/faq/integration-issues/system-volume).</ph>
+                <ul>
+                    <li>On iOS, stereo is supported on iOS 14.0 and above. Minimum device requirements:
+                        <ul>
+                            <li>iPhone XS</li>
+                            <li>iPhone XS Max</li>
+                            <li>iPhone XR</li>
+                            <li>iPhone 11</li>
+                            <li>iPhone 11 Pro</li>
+                            <li>iPhone 11 Pro Max</li>
+                            <li>iPhone SE (2020)</li>
+                            <li>11-inch or 12.9-inch iPad Pro (3rd generation)</li>
+                            <li>11-inch or 12.9-inch iPad Pro (4th generation)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>Stereo settings only take effect under the media volume.</li>
+                </ul><ph>To learn the difference between media and communication volume, see [Volume Type](https://doc.shengwang.cn/faq/integration-issues/system-volume).</ph>
+                <ul>
+                    <li>On iOS, stereo is supported on iOS 14.0 and above. Minimum device requirements:
+                        <ul>
+                            <li>iPhone XS</li>
+                            <li>iPhone XS Max</li>
+                            <li>iPhone XR</li>
+                            <li>iPhone 11</li>
+                            <li>iPhone 11 Pro</li>
+                            <li>iPhone 11 Pro Max</li>
+                            <li>iPhone SE (2020)</li>
+                            <li>11-inch or 12.9-inch iPad Pro (3rd gen)</li>
+                            <li>11-inch or 12.9-inch iPad Pro (4th gen)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>Stereo settings only take effect under media volume.</li>
+                </ul><ph>To understand the difference between media volume and call volume, see [Volume Types](https://doc.shengwang.cn/faq/integration-issues/system-volume).</ph>
+                <ul>
+                    <li>On iOS, stereo is supported on iOS version 14.0 and above. Minimum device requirements:
+                        <ul>
+                            <li>iPhone XS</li>
+                            <li>iPhone XS Max</li>
+                            <li>iPhone XR</li>
+                            <li>iPhone 11</li>
+                            <li>iPhone 11 Pro</li>
+                            <li>iPhone 11 Pro Max</li>
+                            <li>iPhone SE (2020)</li>
+                            <li>11-inch or 12.9-inch iPad Pro (3rd generation)</li>
+                            <li>11-inch or 12.9-inch iPad Pro (4th generation)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>AudioProcessingMono</pt>
+                    <pd>1: (Default) Mono channel.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioProcessingStereo</pt>
+                    <pd>2: Stereo channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProcessingMono</pt>
+                    <pd>1: (Default) Mono.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProcessingStereo</pt>
+                    <pd>2: Stereo.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProcessingMono</pt>
+                    <pd>1: (Default) Mono.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProcessingStereo</pt>
+                    <pd>2: Stereo.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROCESSING_MONO</pt>
+                    <pd>1: (Default) Mono.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROCESSING_STEREO</pt>
+                    <pd>2: Stereo.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

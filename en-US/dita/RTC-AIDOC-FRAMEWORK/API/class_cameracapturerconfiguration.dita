@@ -1,0 +1,271 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_cameracapturerconfiguration">
+    <title><ph keyref="CameraCapturerConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Camera capture configuration.</ph><ph id="shortdesc" props="rn">Camera capture configuration.</ph><ph id="shortdesc" props="flutter">Camera capture configuration.</ph><ph id="shortdesc" props="unity">Camera capture configuration.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class CameraCapturerConfiguration {
+  
+  deviceId?: string;
+  
+  format?: VideoFormat;
+
+  followEncodeDimensionRatio?: boolean;
+
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class CameraCapturerConfiguration {
+  
+  cameraDirection?: CameraDirection;
+
+  cameraFocalLengthType?: CameraFocalLengthType;
+  
+  deviceId?: string;
+
+  cameraId?: string;
+  
+  format?: VideoFormat;
+
+  followEncodeDimensionRatio?: boolean;
+
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class CameraCapturerConfiguration {
+  const CameraCapturerConfiguration(
+      {this.cameraDirection,
+      this.cameraFocalLengthType,
+      this.deviceId,
+      this.cameraId,
+      this.followEncodeDimensionRatio,
+      this.format});
+
+  @JsonKey(name: 'cameraDirection')
+  final CameraDirection? cameraDirection;
+
+  @JsonKey(name: 'cameraFocalLengthType')
+  final CameraFocalLengthType? cameraFocalLengthType;
+
+  @JsonKey(name: 'deviceId')
+  final String? deviceId;
+
+  @JsonKey(name: 'cameraId')
+  final String? cameraId;
+
+  @JsonKey(name: 'followEncodeDimensionRatio')
+  final bool? followEncodeDimensionRatio;
+
+  @JsonKey(name: 'format')
+  final VideoFormat? format;
+
+  factory CameraCapturerConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$CameraCapturerConfigurationFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$CameraCapturerConfigurationToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class CameraCapturerConfiguration : IOptionalJsonParse
+    {
+        public Optional&lt;CAMERA_DIRECTION&gt; cameraDirection = new Optional&lt;CAMERA_DIRECTION&gt;();
+        public Optional&lt;CAMERA_FOCAL_LENGTH_TYPE&gt; cameraFocalLengthType = new Optional&lt;CAMERA_FOCAL_LENGTH_TYPE&gt;();
+        public Optional&lt;string&gt; deviceId = new Optional&lt;string&gt;();
+        public Optional&lt;string&gt; cameraId = new Optional&lt;string&gt;();
+        public Optional&lt;bool&gt; followEncodeDimensionRatio = new Optional&lt;bool&gt;();
+        public VideoFormat format;
+
+        public CameraCapturerConfiguration()
+        {
+            this.format = new VideoFormat(0, 0, 0);
+        }
+
+        public CameraCapturerConfiguration(Optional&lt;CAMERA_DIRECTION&gt; cameraDirection, Optional&lt;CAMERA_FOCAL_LENGTH_TYPE&gt; cameraFocalLengthType, Optional&lt;string&gt; deviceId, Optional&lt;string&gt; cameraId, Optional&lt;bool&gt; followEncodeDimensionRatio, VideoFormat format)
+        {
+            this.cameraDirection = cameraDirection;
+            this.cameraFocalLengthType = cameraFocalLengthType;
+            this.deviceId = deviceId;
+            this.cameraId = cameraId;
+            this.followEncodeDimensionRatio = followEncodeDimensionRatio;
+            this.format = format;
+        }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>format</pt>
+                    <pd>(Optional) Video frame format. See <xref keyref="VideoFormat"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>deviceId</pt>
+                    <pd>(Optional) Camera ID. Maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>followEncodeDimensionRatio</pt>
+                    <pd>(Optional) Whether to follow the video aspect ratio set in <xref keyref="setVideoEncoderConfiguration"/>:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Follow. The SDK crops the captured video according to the set aspect ratio, which also affects the local preview, and the video frames in <xref keyref="onCaptureVideoFrame"/> and <xref keyref="onPreEncodeVideoFrame"/>.</li>
+                            <li><xref keyref="false"/>: Do not follow. The SDK does not change the aspect ratio of the captured video frame.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cameraDirection</pt>
+                    <pd>(Optional) Camera direction. See <xref keyref="CAMERA_DIRECTION"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cameraId</pt>
+                    <pd>(Optional) Camera ID. Defaults to the ID of the front-facing camera. You can obtain the camera ID using the Android native system API. See [Camera.open()](https://developer.android.google.cn/reference/android/hardware/Camera#open(int)) and [CameraManager.getCameraIdList()](https://developer.android.google.cn/reference/android/hardware/camera2/CameraManager?hl=en#getCameraIdList).
+                        <note>
+                            <ul>
+                                <li>This parameter is for Android only.</li>
+                                <li>Both this parameter and <codeph>cameraDirection</codeph> are used to specify the camera and are mutually exclusive. You can choose either based on your needs. The differences are as follows:</li>
+                            </ul>
+                            <ul>
+                                <li>Using <codeph>cameraDirection</codeph> is simpler. You only need to specify the camera direction (front or rear), without specifying the exact camera ID. The SDK will use system APIs to retrieve and determine the actual camera ID.</li>
+                                <li>Using <codeph>cameraId</codeph> allows you to specify a particular camera more precisely. On devices with multiple cameras, <codeph>cameraDirection</codeph> may not be able to identify or access all available cameras. In such cases, it is recommended to use <codeph>cameraId</codeph> to directly specify the desired camera ID.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cameraFocalLengthType</pt>
+                    <pd>(Optional) Camera focal length type. See <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>.
+                        <note>
+                            <ul>
+                                <li>To set the camera focal length type, only <codeph>cameraDirection</codeph> is supported. <codeph>cameraId</codeph> is not supported.</li>
+                                <li>Some iOS devices have rear cameras composed of multiple lenses, such as dual (wide and ultra-wide) or triple (wide, ultra-wide, and telephoto) cameras. For such composite lenses with ultra-wide capability, you can achieve ultra-wide capture in either of the following ways:</li>
+                            </ul>
+                            <ul>
+                                <li>Option 1: Set this parameter to <codeph>CameraFocalLengthUltraWide</codeph> (2) (ultra-wide lens).</li>
+                                <li>Option 2: Set this parameter to <codeph>CameraFocalLengthDefault</codeph> (0) (standard lens), then call <xref keyref="setCameraZoomFactor"/> to set the camera zoom factor to a value less than 1.0, with a minimum of 0.5.</li>
+                            </ul><ph>            The difference is that Option 1 provides a fixed ultra-wide angle, while Option 2 allows flexible adjustment of the zoom factor.</ph></note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>format</pt>
+                    <pd>(Optional) Video frame format. See <xref keyref="VideoFormat"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>followEncodeDimensionRatio</pt>
+                    <pd>(Optional) Whether to follow the video aspect ratio set in <xref keyref="setVideoEncoderConfiguration"/>:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Follow. The SDK crops the captured video to match the configured aspect ratio, and synchronously updates the local preview, <xref keyref="onCaptureVideoFrame"/>, and <xref keyref="onPreEncodeVideoFrame"/>.</li>
+                            <li><xref keyref="false"/>: Do not follow. The SDK does not change the aspect ratio of the captured video frame.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cameraDirection</pt>
+                    <pd>(Optional) Camera direction. See <xref keyref="CAMERA_DIRECTION"/>.
+                        <note>This parameter is only applicable to Android and iOS platforms.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cameraId</pt>
+                    <pd>(Optional) Camera ID. Defaults to the front camera's ID. You can get the camera ID using Android native system APIs. See [Camera.open()](https://developer.android.google.cn/reference/android/hardware/Camera#open(int)) and [CameraManager.getCameraIdList()](https://developer.android.google.cn/reference/android/hardware/camera2/CameraManager?hl=en#getCameraIdList).
+                        <note>
+                            <ul>
+                                <li>This parameter is only applicable to Android.</li>
+                                <li>This parameter and <codeph>cameraDirection</codeph> are both used to specify the camera and are mutually exclusive. You can choose either one as needed. The differences are:</li>
+                            </ul>
+                            <ul>
+                                <li>Using <codeph>cameraDirection</codeph> is simpler. You only need to specify the direction (front or rear), and the SDK will determine the actual camera ID via system APIs.</li>
+                                <li>Using <codeph>cameraId</codeph> allows you to specify a particular camera more precisely. On multi-camera devices, <codeph>cameraDirection</codeph> may not detect or access all available cameras. In such cases, it's recommended to use <codeph>cameraId</codeph> to directly specify the desired camera ID.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cameraFocalLengthType</pt>
+                    <pd>(Optional) Camera focal length type. See <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>.
+                        <note>
+                            <ul>
+                                <li>This parameter is only applicable to Android and iOS.</li>
+                                <li>To set the camera focal length type, you can only use <codeph>cameraDirection</codeph> to specify the camera. <codeph>cameraId</codeph> is not supported.</li>
+                                <li>Some iOS devices have composite rear cameras, such as dual (wide and ultra-wide) or triple (wide, ultra-wide, and telephoto). For such composite lenses with ultra-wide capabilities, you can achieve ultra-wide capture using either of the following methods:</li>
+                            </ul>
+                            <ul>
+                                <li>Method 1: Set this parameter to <codeph>cameraFocalLengthUltraWide</codeph> (2) (ultra-wide lens).</li>
+                                <li>Method 2: Set this parameter to <codeph>cameraFocalLengthDefault</codeph> (0) (standard lens), then call <xref keyref="setCameraZoomFactor"/> to set the zoom factor to a value less than 1.0, with a minimum of 0.5.</li>
+                            </ul><ph>            The difference is that Method 1 has a fixed ultra-wide view, while Method 2 allows flexible zoom adjustment.</ph></note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>format</pt>
+                    <pd>(Optional) Video frame format. See <xref keyref="VideoFormat"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceId</pt>
+                    <pd>(Optional) Camera ID. Maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.
+                        <note>This parameter is only applicable to Windows and macOS.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>followEncodeDimensionRatio</pt>
+                    <pd>(Optional) Whether to follow the video aspect ratio set in <xref keyref="setVideoEncoderConfiguration"/>:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Follow. The SDK crops the captured video to match the configured aspect ratio. This also affects local preview, <xref keyref="onCaptureVideoFrame"/>, and <xref keyref="onPreEncodeVideoFrame"/>.</li>
+                            <li><xref keyref="false"/>: Do not follow. The SDK does not change the aspect ratio of the captured video frames.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cameraDirection</pt>
+                    <pd>(Optional) Camera direction. See <xref keyref="CAMERA_DIRECTION"/>.
+                        <note>This parameter applies to Android and iOS only.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cameraId</pt>
+                    <pd>(Optional) Camera ID. Defaults to the ID of the front-facing camera. You can obtain the camera ID via Android native system APIs. See [Camera.open()](https://developer.android.google.cn/reference/android/hardware/Camera#open(int)) and [CameraManager.getCameraIdList()](https://developer.android.google.cn/reference/android/hardware/camera2/CameraManager?hl=en#getCameraIdList).
+                        <note>
+                            <ul>
+                                <li>This parameter applies to Android only.</li>
+                                <li>This parameter and <codeph>cameraDirection</codeph> are both used to specify the camera and are mutually exclusive. You can choose either one as needed. The differences are as follows:</li>
+                            </ul>
+                            <ul>
+                                <li>Using <codeph>cameraDirection</codeph> is simpler. You only need to specify the direction (front or rear), and the SDK will retrieve and determine the actual camera ID using system APIs.</li>
+                                <li>Using <codeph>cameraId</codeph> allows you to precisely specify a particular camera. On multi-camera devices, <codeph>cameraDirection</codeph> may not be able to identify or access all available cameras. In such cases, it is recommended to use <codeph>cameraId</codeph> to directly specify the desired camera ID.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cameraFocalLengthType</pt>
+                    <pd>(Optional) Camera focal length type. See <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>.
+                        <note>
+                            <ul>
+                                <li>This parameter applies to Android and iOS only.</li>
+                                <li>To set the camera focal length type, only <codeph>cameraDirection</codeph> is supported. <codeph>cameraId</codeph> is not supported.</li>
+                                <li>Some iOS devices have composite rear cameras, such as dual (wide and ultra-wide) or triple (wide, ultra-wide, and telephoto) lenses. For such composite lenses with ultra-wide capabilities, you can achieve ultra-wide capture using either of the following methods:</li>
+                            </ul>
+                            <ul>
+                                <li>Method 1: Set this parameter to <codeph>CAMERA_FOCAL_LENGTH_ULTRA_WIDE</codeph> (2) (ultra-wide lens).</li>
+                                <li>Method 2: Set this parameter to <codeph>CAMERA_FOCAL_LENGTH_DEFAULT</codeph> (0) (standard lens), then call <xref keyref="setCameraZoomFactor"/> to set the camera zoom factor to a value less than 1.0 (minimum 0.5).</li>
+                            </ul><ph>            The difference is that Method 1 provides a fixed ultra-wide view, while Method 2 allows flexible zoom adjustment.</ph></note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>format</pt>
+                    <pd>(Optional) Video frame format. See <xref keyref="VideoFormat"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceId</pt>
+                    <pd>(Optional) ID of the camera.
+                        <note>This parameter applies to Windows and macOS only.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>followEncodeDimensionRatio</pt>
+                    <pd>(Optional) Whether to follow the video aspect ratio set in <xref keyref="setVideoEncoderConfiguration"/>:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Follow. The SDK crops the captured video to match the configured aspect ratio, and this affects local preview, <xref keyref="onCaptureVideoFrame"/>, and <xref keyref="onPreEncodeVideoFrame"/>.</li>
+                            <li><xref keyref="false"/>: Do not follow. The SDK does not change the aspect ratio of the captured video frames.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

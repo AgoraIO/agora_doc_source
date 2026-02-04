@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioencodedframeobserver_onplaybackaudioencodedframe">
+    <title><ph keyref="onPlaybackAudioEncodedFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Retrieves the encoded audio data of all remote users.</ph><ph id="shortdesc" props="rn">Retrieves the encoded audio data of all remote users.</ph><ph id="shortdesc" props="flutter">Retrieves the audio encoded data of all remote users.</ph><ph id="shortdesc" props="unity">Retrieves the encoded audio data of all remote users.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlaybackAudioEncodedFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onPlaybackAudioEncodedFrame?(
+    frameBuffer: Uint8Array,
+    length: number,
+    audioEncodedFrameInfo: EncodedAudioFrameInfo
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onPlaybackAudioEncodedFrame?(
+    frameBuffer: Uint8Array,
+    length: number,
+    audioEncodedFrameInfo: EncodedAudioFrameInfo
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(Uint8List frameBuffer, int length,
+      EncodedAudioFrameInfo audioEncodedFrameInfo)? onPlaybackAudioEncodedFrame;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlaybackAudioEncodedFrame(IntPtr frameBufferPtr, int length,
+                                                    EncodedAudioFrameInfo audioEncodedFrameInfo)
+        {
+
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After calling <xref keyref="registerAudioEncodedFrameObserver"/> and setting the audio encoding content to AudioEncodedFrameObserverPositionPlayback, you can use this callback to get the encoded audio data of all remote users.</p>
+            <p props="rn">After calling <xref keyref="registerAudioEncodedFrameObserver"/> and setting the audio encoding content to AudioEncodedFrameObserverPositionPlayback, you can use this callback to get the encoded audio data of all remote users.</p>
+            <p props="flutter">After calling <xref keyref="registerAudioEncodedFrameObserver"/> and setting the audio encoded content to audioEncodedFrameObserverPositionPlayback, you can use this callback to get the audio encoded data of all remote users.</p>
+            <p props="unity">After calling <xref keyref="registerAudioEncodedFrameObserver"/> and setting the audio encoded content to AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK, you can use this callback to get the encoded audio data of all remote users.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>frameBuffer</pt>
+                    <pd>Audio buffer.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>length</pt>
+                    <pd>Length of the audio data, in bytes.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioEncodedFrameInfo</pt>
+                    <pd>Information about the encoded audio. See <xref keyref="EncodedAudioFrameInfo"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>frameBuffer</pt>
+                    <pd>Audio buffer.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>length</pt>
+                    <pd>Length of the audio data in bytes.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioEncodedFrameInfo</pt>
+                    <pd>Information about the encoded audio. See <xref keyref="EncodedAudioFrameInfo"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>frameBuffer</pt>
+                    <pd>Audio buffer.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>length</pt>
+                    <pd>Length of the audio data in bytes.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioEncodedFrameInfo</pt>
+                    <pd>Information about the encoded audio. See <xref keyref="EncodedAudioFrameInfo"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>frameBufferPtr</pt>
+                    <pd>Audio buffer.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>length</pt>
+                    <pd>Length of the audio data in bytes.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioEncodedFrameInfo</pt>
+                    <pd>Information about the encoded audio. See <xref keyref="EncodedAudioFrameInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

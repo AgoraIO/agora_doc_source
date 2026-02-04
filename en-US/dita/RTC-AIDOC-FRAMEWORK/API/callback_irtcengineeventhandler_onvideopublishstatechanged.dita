@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onvideopublishstatechanged">
+    <title><ph keyref="onVideoPublishStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Occurs when the video publishing state changes.</ph><ph id="shortdesc" props="rn">Occurs when the video publishing state changes.</ph><ph id="shortdesc" props="flutter">Callback for video publishing state change.</ph><ph id="shortdesc" props="unity">Callback when the video publishing state changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onVideoPublishStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onVideoPublishStateChanged?(
+    source: VideoSourceType,
+    channel: string,
+    oldState: StreamPublishState,
+    newState: StreamPublishState,
+    elapseSinceLastState: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onVideoPublishStateChanged?(
+    source: VideoSourceType,
+    channel: string,
+    oldState: StreamPublishState,
+    newState: StreamPublishState,
+    elapseSinceLastState: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(
+      VideoSourceType source,
+      String channel,
+      StreamPublishState oldState,
+      StreamPublishState newState,
+      int elapseSinceLastState)? onVideoPublishStateChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoPublishStateChanged(VIDEO_SOURCE_TYPE source, string channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>channel</pt>
+                    <pd>The channel name.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>source</pt>
+                    <pd>The type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>oldState</pt>
+                    <pd>The previous publishing state. See <xref keyref="STREAM_PUBLISH_STATE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>newState</pt>
+                    <pd>The current publishing state. See <xref keyref="STREAM_PUBLISH_STATE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>elapseSinceLastState</pt>
+                    <pd>The time interval (ms) between the two state changes.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channel</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>source</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>oldState</pt>
+                    <pd>Previous publishing state. See <xref keyref="STREAM_PUBLISH_STATE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>newState</pt>
+                    <pd>Current publishing state. See <xref keyref="STREAM_PUBLISH_STATE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>elapseSinceLastState</pt>
+                    <pd>Time interval between the two state changes (ms).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channel</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>source</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>oldState</pt>
+                    <pd>Previous publishing state. See <xref keyref="STREAM_PUBLISH_STATE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>newState</pt>
+                    <pd>Current publishing state. See <xref keyref="STREAM_PUBLISH_STATE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>elapseSinceLastState</pt>
+                    <pd>Interval between the two state changes (ms).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channel</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>source</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>oldState</pt>
+                    <pd>Previous publishing state. See <xref keyref="STREAM_PUBLISH_STATE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>newState</pt>
+                    <pd>Current publishing state. See <xref keyref="STREAM_PUBLISH_STATE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>elapseSinceLastState</pt>
+                    <pd>Time interval (ms) between the two state changes.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

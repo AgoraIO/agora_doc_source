@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rtcengineconfig">
+    <title><ph keyref="RtcEngineConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Defines <xref keyref="RtcEngineConfig"/>.</ph><ph id="shortdesc" props="rn">Defines <xref keyref="RtcEngineConfig"/>.</ph><ph id="shortdesc" props="flutter">Definition of <xref keyref="RtcEngineConfig"/>.</ph><ph id="shortdesc" props="unity">Definition of <xref keyref="RtcEngineConfig"/>.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class RtcEngineContext {
+
+  appId?: string;
+
+  channelProfile?: ChannelProfileType;
+
+  audioScenario?: AudioScenarioType;
+
+  areaCode?: number;
+
+  logConfig?: LogConfig;
+
+  threadPriority?: ThreadPriorityType;
+
+  useExternalEglContext?: boolean;
+
+  domainLimit?: boolean;
+
+  autoRegisterAgoraExtensions?: boolean;
+
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class RtcEngineContext {
+
+  appId?: string;
+
+  channelProfile?: ChannelProfileType;
+
+  audioScenario?: AudioScenarioType;
+
+  areaCode?: number;
+
+  logConfig?: LogConfig;
+
+  threadPriority?: ThreadPriorityType;
+
+  useExternalEglContext?: boolean;
+
+  domainLimit?: boolean;
+
+  autoRegisterAgoraExtensions?: boolean;
+
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class RtcEngineContext {
+  const RtcEngineContext(
+      {this.appId,
+      this.channelProfile,
+      this.audioScenario,
+      this.areaCode,
+      this.logConfig,
+      this.threadPriority,
+      this.domainLimit,
+      this.autoRegisterAgoraExtensions});
+
+  @JsonKey(name: 'appId')
+  final String? appId;
+
+  @JsonKey(name: 'channelProfile')
+  final ChannelProfileType? channelProfile;
+
+  @JsonKey(name: 'audioScenario')
+  final AudioScenarioType? audioScenario;
+
+  @JsonKey(name: 'areaCode')
+  final int? areaCode;
+
+  @JsonKey(name: 'logConfig')
+  final LogConfig? logConfig;
+
+  @JsonKey(name: 'threadPriority')
+  final ThreadPriorityType? threadPriority;
+
+  @JsonKey(name: 'domainLimit')
+  final bool? domainLimit;
+
+  @JsonKey(name: 'autoRegisterAgoraExtensions')
+  final bool? autoRegisterAgoraExtensions;
+
+  factory RtcEngineContext.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$RtcEngineContextFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$RtcEngineContextToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class RtcEngineContext : OptionalJsonParse
+    {
+
+        public string appId;
+        public UInt64 context;
+        public CHANNEL_PROFILE_TYPE channelProfile;
+        public AUDIO_SCENARIO_TYPE audioScenario;
+        public AREA_CODE areaCode;
+        public LogConfig logConfig;
+        public bool domainLimit;
+        public bool autoRegisterAgoraExtensions;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>appId</pt>
+                    <pd>The App ID issued by Agora to the App developer. Apps using the same App ID can join the same channel for communication or live streaming. An App ID can only be used to create one <xref keyref="IRtcEngine"/>. To change the App ID, you must call <xref keyref="release"/> to destroy the current <xref keyref="IRtcEngine"/> before creating a new one.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channelProfile</pt>
+                    <pd>Channel profile. See <xref keyref="CHANNEL_PROFILE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioScenario</pt>
+                    <pd>Audio scenario. Different scenarios correspond to different volume types on the device.
+See <xref keyref="AUDIO_SCENARIO_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>areaCode</pt>
+                    <pd>Region for accessing the server. This is an advanced setting suitable for scenarios with restricted access. Supported regions are listed in <xref keyref="AREA_CODE"/>. Bitwise operations are supported for region codes.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>logConfig</pt>
+                    <pd>Sets the log files output by the SDK. See <xref keyref="LogConfig"/>.
+By default, the SDK generates 5 SDK log files and 5 API call log files, with the following rules:</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>domainLimit</pt>
+                    <pd>Whether to enable domain restriction:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable domain restriction. This setting is suitable for IoT devices accessing the network via IoT SIM cards. The SDK only connects to servers in the domain or IP whitelist registered with the carrier.</li>
+                            <li><xref keyref="false"/>: (Default) Disable domain restriction. This setting is suitable for most general scenarios.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>autoRegisterAgoraExtensions</pt>
+                    <pd>Whether to automatically register Agora extensions when initializing <xref keyref="IRtcEngine"/>:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Automatically register Agora extensions when initializing <xref keyref="IRtcEngine"/>.</li>
+                            <li><xref keyref="false"/>: Do not register Agora extensions when initializing <xref keyref="IRtcEngine"/>. You need to call <xref keyref="enableExtension"/> to register them.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>appId</pt>
+                    <pd>The App ID issued by Agora to the App developer. Only apps using the same App ID can join the same channel for communication or live streaming. An App ID can only be used to create one <xref keyref="IRtcEngine"/>. To change the App ID, you must first call <xref keyref="release"/> to destroy the current <xref keyref="IRtcEngine"/> and then recreate it.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channelProfile</pt>
+                    <pd>The channel profile. See <xref keyref="CHANNEL_PROFILE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioScenario</pt>
+                    <pd>The audio scenario. Different audio scenarios use different volume types.
+See <xref keyref="AUDIO_SCENARIO_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>areaCode</pt>
+                    <pd>The region for connecting to the server. This is an advanced setting for scenarios with access security requirements. Supported regions are listed in <xref keyref="AREA_CODE"/>. Bitwise operations are supported for region codes.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>logConfig</pt>
+                    <pd>Sets the log files output by the SDK. See <xref keyref="LogConfig"/>.
+By default, the SDK generates 5 SDK log files and 5 API call log files, with the following rules:</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>domainLimit</pt>
+                    <pd>Whether to enable domain restriction:
+                        <ul>
+                            <li><xref keyref="true"/>: Enables domain restriction. This setting is applicable when IoT devices access the network using IoT SIM cards. The SDK connects only to servers on the domain or IP whitelist reported to the carrier.</li>
+                            <li><xref keyref="false"/>: (Default) Disables domain restriction. This setting is suitable for most common scenarios.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>autoRegisterAgoraExtensions</pt>
+                    <pd>Whether to automatically register Agora extensions when initializing <xref keyref="IRtcEngine"/>:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Automatically registers Agora extensions when initializing <xref keyref="IRtcEngine"/>.</li>
+                            <li><xref keyref="false"/>: Does not register Agora extensions when initializing <xref keyref="IRtcEngine"/>. You need to call <xref keyref="enableExtension"/> to register the Agora extensions.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>appId</pt>
+                    <pd>The App ID issued by Agora to the app developer. Only apps using the same App ID can join the same channel for communication or live streaming. One App ID can only be used to create one <xref keyref="IRtcEngine"/>. To change the App ID, you must first call <xref keyref="release"/> to destroy the current <xref keyref="IRtcEngine"/> and then create a new one.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channelProfile</pt>
+                    <pd>Channel usage scenario. See <xref keyref="CHANNEL_PROFILE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioScenario</pt>
+                    <pd>Audio scenario. Different audio scenarios correspond to different volume types on the device.
+See <xref keyref="AUDIO_SCENARIO_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>areaCode</pt>
+                    <pd>The region for accessing the server. This is an advanced setting suitable for scenarios with access security restrictions. Supported regions are listed in <xref keyref="AREA_CODE"/>. The region code supports bitwise operations.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>logConfig</pt>
+                    <pd>Sets the log files output by the SDK. See <xref keyref="LogConfig"/>.
+By default, the SDK generates 5 SDK log files and 5 API call log files, following these rules:</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>domainLimit</pt>
+                    <pd>Whether to enable domain name restriction:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable domain name restriction. This setting is suitable for IoT devices accessing the network using IoT SIM cards. The SDK will only connect to servers whose domain names or IPs are whitelisted and reported to the carrier.</li>
+                            <li><xref keyref="false"/>: (default) Disable domain name restriction. This setting is suitable for most general scenarios.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>autoRegisterAgoraExtensions</pt>
+                    <pd>Whether to automatically register Agora extensions when initializing <xref keyref="IRtcEngine"/>:
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Automatically register Agora extensions when initializing <xref keyref="IRtcEngine"/>.</li>
+                            <li><xref keyref="false"/>: Do not register Agora extensions when initializing <xref keyref="IRtcEngine"/>. You need to call <xref keyref="enableExtension"/> to register the Agora extensions.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>eventHandler</pt>
+                    <pd>Event handler of <xref keyref="IRtcEngine"/>. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>appId</pt>
+                    <pd>The App ID issued by Agora to the developer. Only apps using the same App ID can join the same channel for a call or live broadcast. An App ID can only be used to create one <xref keyref="IRtcEngine"/>. To change the App ID, you must call <xref keyref="dispose_IMediaPlayer"/> to destroy the current <xref keyref="IRtcEngine"/> and then create a new one.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>context</pt>
+                    <pd>
+                        <ul>
+                            <li>On Windows, context is the window handle. If set, it indicates support for hot-plugging devices.</li>
+                            <li>On Android, context is the Android activity context.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelProfile</pt>
+                    <pd>Channel profile. See <xref keyref="CHANNEL_PROFILE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioScenario</pt>
+                    <pd>Audio scenario. Different audio scenarios have different volume types.
+See <xref keyref="AUDIO_SCENARIO_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>areaCode</pt>
+                    <pd>Region for accessing the server. This is an advanced setting suitable for scenarios with access security restrictions. Supported regions are listed in <xref keyref="AREA_CODE"/>. Area codes support bitwise operations.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>logConfig</pt>
+                    <pd>Sets the log files output by the SDK. See <xref keyref="LogConfig"/>.
+By default, the SDK generates 5 SDK log files and 5 API call log files, following these rules:</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>domainLimit</pt>
+                    <pd>Whether to enable domain name restriction:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable domain name restriction. This setting is suitable for IoT devices accessing the network using IoT SIM cards. The SDK will only connect to servers in the domain or IP whitelist reported to the carrier.</li>
+                            <li><xref keyref="false"/>: (Default) Disable domain name restriction. This setting is suitable for most common scenarios.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>autoRegisterAgoraExtensions</pt>
+                    <pd>Whether to automatically register Agora extensions when initializing <xref keyref="IRtcEngine"/>:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Automatically register Agora extensions when initializing <xref keyref="IRtcEngine"/>.</li>
+                            <li><xref keyref="false"/>: Do not register Agora extensions when initializing <xref keyref="IRtcEngine"/>. You need to call <xref keyref="enableExtension"/> to register the Agora extensions.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

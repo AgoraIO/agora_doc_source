@@ -1,0 +1,340 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_transcodinguser">
+    <title><ph keyref="TranscodingUser"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Settings for each host participating in the transcoding mix.</ph><ph id="shortdesc" props="rn">Settings for each host participating in the transcoding mix.</ph><ph id="shortdesc" props="flutter">Settings for each host involved in transcoding and mixing.</ph><ph id="shortdesc" props="unity">Settings for each host participating in the transcoding mix.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class TranscodingUser {
+  uid?: number
+  x?: number
+  y?: number
+  width?: number
+  height?: number
+  zOrder?: number
+  alpha?: number
+  audioChannel?: number
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class TranscodingUser {
+  uid?: number;
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
+  zOrder?: number;
+  alpha?: number;
+  audioChannel?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class TranscodingUser {
+  const TranscodingUser(
+      {this.uid,
+      this.x,
+      this.y,
+      this.width,
+      this.height,
+      this.zOrder,
+      this.alpha,
+      this.audioChannel});
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+  @JsonKey(name: 'x')
+  final int? x;
+  @JsonKey(name: 'y')
+  final int? y;
+  @JsonKey(name: 'width')
+  final int? width;
+  @JsonKey(name: 'height')
+  final int? height;
+  @JsonKey(name: 'zOrder')
+  final int? zOrder;
+  @JsonKey(name: 'alpha')
+  final double? alpha;
+  @JsonKey(name: 'audioChannel')
+  final int? audioChannel;
+  factory TranscodingUser.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$TranscodingUserFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$TranscodingUserToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class TranscodingUser
+    {
+        public TranscodingUser()
+        {
+            uid = 0;
+            x = 0;
+            y = 0;
+            width = 0;
+            height = 0;
+            zOrder = 0;
+            alpha = 1.0;
+            audioChannel = 0;
+        }
+
+        public TranscodingUser(uint uid, int x, int y, int width, int height, int zOrder, double alpha,
+            int audioChannel)
+        {
+            this.uid = uid;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.zOrder = zOrder;
+            this.alpha = alpha;
+            this.audioChannel = audioChannel;
+        }
+
+        public uint uid { set; get; }
+        public int x { set; get; }
+        public int y { set; get; }
+        public int width { set; get; }
+        public int height { set; get; }
+        public int zOrder { set; get; }
+        public double alpha { set; get; }
+        public int audioChannel { set; get; }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>User ID of the host.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>x</pt>
+                    <pd>The x-coordinate (px) of the host's video on the output video, with the top-left corner of the output video as the origin. Value range: [0,width], where <codeph>width</codeph> is set in <xref keyref="LiveTranscoding"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>y</pt>
+                    <pd>The y-coordinate (px) of the host's video on the output video, with the top-left corner of the output video as the origin. Value range: [0,height], where <codeph>height</codeph> is set in <xref keyref="LiveTranscoding"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>Width (px) of the host's video.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>Height (px) of the host's video.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>zOrder</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If the value is less than 0 or greater than 100, <codeph>ErrInvalidArgument</codeph> is returned.</li>
+                                <li>Setting <codeph>zOrder</codeph> to 0 is supported.</li>
+                            </ul>
+                        </note><ph>Layer index of the host's video. Value range: [0,100].</ph>
+                        <ul>
+                            <li>0: (Default) Video is at the bottom layer.</li>
+                            <li>100: Video is at the top layer.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>alpha</pt>
+                    <pd>Transparency of the host's video. Value range: [0.0,1.0].
+                        <ul>
+                            <li>0.0: Fully transparent.</li>
+                            <li>1.0: (Default) Fully opaque.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioChannel</pt>
+                    <pd>
+                        <note>When the value is not <codeph>0</codeph>, a special player is required.</note><ph>Audio channel used by the host in the output audio. Default is 0. Value range: [0,5]:</ph>
+                        <ul>
+                            <li><codeph>0</codeph>: (Recommended) Default audio mixing setting. Supports up to stereo, depending on the host's upstream audio.</li>
+                            <li><codeph>1</codeph>: Host audio in the FL channel of the output. If the host's upstream audio is multi-channel, the Agora server mixes it down to mono.</li>
+                            <li><codeph>2</codeph>: Host audio in the FC channel of the output. If the host's upstream audio is multi-channel, the Agora server mixes it down to mono.</li>
+                            <li><codeph>3</codeph>: Host audio in the FR channel of the output. If the host's upstream audio is multi-channel, the Agora server mixes it down to mono.</li>
+                            <li><codeph>4</codeph>: Host audio in the BL channel of the output. If the host's upstream audio is multi-channel, the Agora server mixes it down to mono.</li>
+                            <li><codeph>5</codeph>: Host audio in the BR channel of the output. If the host's upstream audio is multi-channel, the Agora server mixes it down to mono.</li>
+                            <li><codeph>0xFF</codeph> or values greater than <codeph>5</codeph>: The host's audio is muted and removed by the Agora server.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>User ID of the host.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>x</pt>
+                    <pd>The x-coordinate (px) of the host's video in the output video, using the top-left corner of the output video as the origin. Value range: [0,width], where <codeph>width</codeph> is set in <xref keyref="LiveTranscoding"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>y</pt>
+                    <pd>The y-coordinate (px) of the host's video in the output video, using the top-left corner of the output video as the origin. Value range: [0,height], where <codeph>height</codeph> is set in <xref keyref="LiveTranscoding"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>width</pt>
+                    <pd>Width (px) of the host's video.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>Height (px) of the host's video.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>zOrder</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If the value is less than 0 or greater than 100, an <codeph>ErrInvalidArgument</codeph> error is returned.</li>
+                                <li>Setting <codeph>zOrder</codeph> to 0 is supported.</li>
+                            </ul>
+                        </note><ph>The layer index of the host's video. Value range: [0,100].</ph>
+                        <ul>
+                            <li>0: (Default) Video is at the bottom layer.</li>
+                            <li>100: Video is at the top layer.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>alpha</pt>
+                    <pd>Transparency of the host's video. Value range: [0.0,1.0].
+                        <ul>
+                            <li>0.0: Fully transparent.</li>
+                            <li>1.0: (Default) Fully opaque.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioChannel</pt>
+                    <pd>
+                        <note>When the value is not <codeph>0</codeph>, a special player is required.</note><ph>The audio channel occupied by the host's audio in the output audio. Default is 0. Value range: [0,5]:</ph>
+                        <ul>
+                            <li><codeph>0</codeph>: (Recommended) Default audio mixing setting, supports up to stereo, related to the host's upstream audio.</li>
+                            <li><codeph>1</codeph>: Host audio in the FL channel of the output audio. If the host's upstream audio is multi-channel, the Agora server mixes it into mono first.</li>
+                            <li><codeph>2</codeph>: Host audio in the FC channel of the output audio. If the host's upstream audio is multi-channel, the Agora server mixes it into mono first.</li>
+                            <li><codeph>3</codeph>: Host audio in the FR channel of the output audio. If the host's upstream audio is multi-channel, the Agora server mixes it into mono first.</li>
+                            <li><codeph>4</codeph>: Host audio in the BL channel of the output audio. If the host's upstream audio is multi-channel, the Agora server mixes it into mono first.</li>
+                            <li><codeph>5</codeph>: Host audio in the BR channel of the output audio. If the host's upstream audio is multi-channel, the Agora server mixes it into mono first.</li>
+                            <li><codeph>0xFF</codeph> or values greater than <codeph>5</codeph>: The host's audio is muted and removed by the Agora server.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>User ID of the host.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>x</pt>
+                    <pd>X-coordinate (px) of the host video in the output video, with the top-left corner of the output video as the origin. Value range: [0, width], where <codeph>width</codeph> is set in <xref keyref="LiveTranscoding"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>y</pt>
+                    <pd>Y-coordinate (px) of the host video in the output video, with the top-left corner of the output video as the origin. Value range: [0, height], where <codeph>height</codeph> is set in <xref keyref="LiveTranscoding"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>Width of the host video (px).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>Height of the host video (px).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>zOrder</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If the value is less than 0 or greater than 100, an <codeph>errInvalidArgument</codeph> error is returned.</li>
+                                <li>Setting <codeph>zOrder</codeph> to 0 is supported.</li>
+                            </ul>
+                        </note><ph>Layer number of the host video. Value range: [0,100].</ph>
+                        <ul>
+                            <li>0: (Default) Video is at the bottom layer.</li>
+                            <li>100: Video is at the top layer.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>alpha</pt>
+                    <pd>Transparency of the host video. Value range: [0.0, 1.0].
+                        <ul>
+                            <li>0.0: Fully transparent.</li>
+                            <li>1.0: (Default) Fully opaque.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioChannel</pt>
+                    <pd>
+                        <note>When the value is not <codeph>0</codeph>, a special player is required.</note><ph>Audio channel occupied by the host audio in the output audio. Default is 0. Value range: [0,5]:</ph>
+                        <ul>
+                            <li><codeph>0</codeph>: (Recommended) Default audio mixing setting, supports up to stereo, related to the host's upstream audio.</li>
+                            <li><codeph>1</codeph>: Host audio in the FL channel of the output audio. If the host's upstream audio is multi-channel, the Agora server mixes it into mono.</li>
+                            <li><codeph>2</codeph>: Host audio in the FC channel of the output audio. If the host's upstream audio is multi-channel, the Agora server mixes it into mono.</li>
+                            <li><codeph>3</codeph>: Host audio in the FR channel of the output audio. If the host's upstream audio is multi-channel, the Agora server mixes it into mono.</li>
+                            <li><codeph>4</codeph>: Host audio in the BL channel of the output audio. If the host's upstream audio is multi-channel, the Agora server mixes it into mono.</li>
+                            <li><codeph>5</codeph>: Host audio in the BR channel of the output audio. If the host's upstream audio is multi-channel, the Agora server mixes it into mono.</li>
+                            <li><codeph>0xFF</codeph> or values greater than <codeph>5</codeph>: The host audio is muted, and the Agora server removes the host's audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>User ID of the host.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>x</pt>
+                    <pd>The x-coordinate (px) of the host video in the output video, with the top-left corner of the output video as the origin. Value range: [0,width], where <codeph>width</codeph> is set in <xref keyref="LiveTranscoding"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>y</pt>
+                    <pd>The y-coordinate (px) of the host video in the output video, with the top-left corner of the output video as the origin. Value range: [0,height], where <codeph>height</codeph> is set in <xref keyref="LiveTranscoding"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>Width (px) of the host video.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>Height (px) of the host video.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>zOrder</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If the value is less than 0 or greater than 100, the error <codeph>ERR_INVALID_ARGUMENT</codeph> is returned.</li>
+                                <li>Setting <codeph>zOrder</codeph> to 0 is supported.</li>
+                            </ul>
+                        </note><ph>Layer number of the host video. Value range: [0,100].</ph>
+                        <ul>
+                            <li>0: (Default) Video is at the bottom layer.</li>
+                            <li>100: Video is at the top layer.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>alpha</pt>
+                    <pd>Transparency of the host video. Value range: [0.0,1.0].
+                        <ul>
+                            <li>0.0: Fully transparent.</li>
+                            <li>1.0: (Default) Fully opaque.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioChannel</pt>
+                    <pd>
+                        <note>When the value is not <codeph>0</codeph>, a special player is required.</note><ph>The audio channel occupied by the host's audio in the output audio. Default is 0. Value range: [0,5]:</ph>
+                        <ul>
+                            <li><codeph>0</codeph>: (Recommended) Default audio mixing setting, supports up to stereo, related to the host's upstream audio.</li>
+                            <li><codeph>1</codeph>: Host audio is in the FL channel of the output audio. If the upstream audio is multi-channel, the Agora server mixes it into mono first.</li>
+                            <li><codeph>2</codeph>: Host audio is in the FC channel of the output audio. If the upstream audio is multi-channel, the Agora server mixes it into mono first.</li>
+                            <li><codeph>3</codeph>: Host audio is in the FR channel of the output audio. If the upstream audio is multi-channel, the Agora server mixes it into mono first.</li>
+                            <li><codeph>4</codeph>: Host audio is in the BL channel of the output audio. If the upstream audio is multi-channel, the Agora server mixes it into mono first.</li>
+                            <li><codeph>5</codeph>: Host audio is in the BR channel of the output audio. If the upstream audio is multi-channel, the Agora server mixes it into mono first.</li>
+                            <li><codeph>0xFF</codeph> or values greater than <codeph>5</codeph>: This host's audio is muted, and the Agora server removes the host's audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

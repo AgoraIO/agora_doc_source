@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getscreencapturesources">
+    <title><ph keyref="getScreenCaptureSources"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets a list of shareable screen and window objects.</ph><ph id="shortdesc" props="flutter">Gets the list of shareable screen and window objects.</ph><ph id="shortdesc" props="unity">Gets the list of shareable screen and window objects.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getScreenCaptureSources"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getScreenCaptureSources(
+    thumbSize: Size,
+    iconSize: Size,
+    includeScreen: boolean
+  ): ScreenCaptureSourceInfo[];</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;ScreenCaptureSourceInfo&gt;&gt; getScreenCaptureSources(
+    {required Size thumbSize,
+    required Size iconSize,
+    required bool includeScreen});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract ScreenCaptureSourceInfo[] GetScreenCaptureSources(SIZE thumbSize, SIZE iconSize, bool includeScreen);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Before screen or window sharing, you can call this method to get a list of shareable screen and window objects, allowing users to select a screen or window to share via thumbnails. The list contains important information such as window ID and screen ID. After obtaining the ID, you can call <xref keyref="startScreenCaptureByWindowId"/> or <xref keyref="startScreenCaptureByDisplayId"/> to start sharing.</p>
+            <p props="flutter">Before screen or window sharing, you can call this method to get a list of shareable screen and window objects, allowing users to select a screen or window to share via thumbnails in the list. The list contains important information such as window ID and screen ID. After obtaining the ID, you can call <xref keyref="startScreenCaptureByWindowId"/> or <xref keyref="startScreenCaptureByDisplayId"/> to start sharing.</p>
+            <p props="unity">Before screen or window sharing, you can call this method to get a list of shareable screen and window objects. This allows users to select a display or window to share based on the thumbnails in the list. The list includes important information such as window ID and screen ID. After obtaining the ID, you can call <xref keyref="startScreenCaptureByWindowId"/> or <xref keyref="startScreenCaptureByDisplayId"/> to start sharing.</p>
+            <note props="flutter">This method is only applicable to macOS and Windows.</note>
+            <note props="unity">This method is for macOS and Windows only.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>thumbSize</pt>
+                    <pd>The target size (width and height in pixels) of the screen or window thumbnail. The SDK scales the original image to match the longest side of the target size without distortion. For example, if the original size is 400 × 300 and <codeph>thumbSize</codeph> is 100 × 100, the thumbnail size will be 100 × 75. If the target size is larger than the original, the original image is used without scaling.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>iconSize</pt>
+                    <pd>The target size (width and height in pixels) of the program icon. The SDK scales the original icon to match the longest side of the target size without distortion. For example, if the original size is 400 × 300 and <codeph>iconSize</codeph> is 100 × 100, the icon size will be 100 × 75. If the target size is larger than the original, the original icon is used without scaling.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>includeScreen</pt>
+                    <pd>Whether the SDK returns screen information in addition to window information:
+                        <ul>
+                            <li><xref keyref="true"/>: SDK returns both screen and window information.</li>
+                            <li><xref keyref="false"/>: SDK returns only window information.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>thumbSize</pt>
+                    <pd>The target size (in pixels) of the thumbnail for the screen or window. The SDK scales the original image to match the longest side of the target size while maintaining the aspect ratio. For example, if the original size is 400 × 300 and <codeph>thumbSize</codeph> is 100 × 100, the actual thumbnail size is 100 × 75. If the target size is larger than the original, the thumbnail is the original image and no scaling is applied.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>iconSize</pt>
+                    <pd>The target size (in pixels) of the icon corresponding to the application. The SDK scales the original image to match the longest side of the target size while maintaining the aspect ratio. For example, if the original size is 400 × 300 and <codeph>iconSize</codeph> is 100 × 100, the actual icon size is 100 × 75. If the target size is larger than the original, the icon is the original image and no scaling is applied.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>includeScreen</pt>
+                    <pd>Whether the SDK returns screen information in addition to window information:
+                        <ul>
+                            <li><xref keyref="true"/>: SDK returns both screen and window information.</li>
+                            <li><xref keyref="false"/>: SDK returns only window information.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>thumbSize</pt>
+                    <pd>Target size (in pixels) of the screen or window thumbnail. The SDK scales the original image to match the longest side of the target size while maintaining the aspect ratio. For example, if the original image is 400 × 300 and <codeph>thumbSize</codeph> is 100 × 100, the thumbnail size will be 100 × 75. If the target size is larger than the original image, the SDK returns the original image without scaling.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>iconSize</pt>
+                    <pd>Target size (in pixels) of the application icon. The SDK scales the original image to match the longest side of the target size while maintaining the aspect ratio. For example, if the original image is 400 × 300 and <codeph>iconSize</codeph> is 100 × 100, the icon size will be 100 × 75. If the target size is larger than the original image, the SDK returns the original image without scaling.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>includeScreen</pt>
+                    <pd>Whether the SDK returns screen information in addition to window information:
+                        <ul>
+                            <li><xref keyref="true"/>: Returns both screen and window information.</li>
+                            <li><xref keyref="false"/>: Returns only window information.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron"><xref keyref="ScreenCaptureSourceInfo"/> array.</p>
+            <p props="flutter">An array of <xref keyref="ScreenCaptureSourceInfo"/>.</p>
+            <p props="unity"><xref keyref="ScreenCaptureSourceInfo"/> array.</p>
+        </section>
+    </refbody>
+</reference>

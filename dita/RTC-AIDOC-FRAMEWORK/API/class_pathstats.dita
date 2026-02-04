@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_pathstats">
+    <title><ph keyref="PathStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">用于获取特定网络路径的统计数据。</ph><ph id="shortdesc" props="rn">用于获取特定网络路径的统计数据。</ph><ph id="shortdesc" props="flutter">用于获取特定网络路径的统计数据。</ph><ph id="shortdesc" props="unity">用于获取特定网络路径的统计数据。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class PathStats {
+type?: MultipathType;
+txKBitRate?: number;
+rxKBitRate?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class PathStats {
+type?: MultipathType;
+txKBitRate?: number;
+rxKBitRate?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class PathStats implements AgoraSerializable {
+  const PathStats({this.type, this.txKBitRate, this.rxKBitRate});
+
+  @JsonKey(name: 'type')
+  final MultipathType? type;
+
+  @JsonKey(name: 'txKBitRate')
+  final int? txKBitRate;
+
+  @JsonKey(name: 'rxKBitRate')
+  final int? rxKBitRate;
+
+  factory PathStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$PathStatsFromJson(json);
+
+  @override
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$PathStatsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">    public class PathStats
+    {
+        public MultipathType type;
+
+        public int txKBitRate;
+
+        public int rxKBitRate;
+
+        public PathStats()
+        {
+            this.type = MultipathType.Unknown;
+            this.txKBitRate = 0;
+            this.rxKBitRate = 0;
+        }
+
+        public PathStats(MultipathType t, int tx, int rx)
+        {
+            this.type = t;
+            this.txKBitRate = tx;
+            this.rxKBitRate = rx;
+        }
+
+    }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>网络路径的类型。详见 <xref keyref="MultipathType"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>txKBitRate</pt>
+                    <pd>该路径的传输码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rxKBitRate</pt>
+                    <pd>该路径的接收码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>网络路径的类型。详见 <xref keyref="MultipathType"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>txKBitRate</pt>
+                    <pd>该路径的传输码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rxKBitRate</pt>
+                    <pd>该路径的接收码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>网络路径的类型。详见 <xref keyref="MultipathType"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>txKBitRate</pt>
+                    <pd>该路径的传输码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rxKBitRate</pt>
+                    <pd>该路径的接收码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>网络路径的类型。详见 <xref keyref="MultipathType"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>txKBitRate</pt>
+                    <pd>该路径的传输码率，单位为 Kbps。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rxKBitRate</pt>
+                    <pd>该路径的接收码率，单位为 Kbps。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

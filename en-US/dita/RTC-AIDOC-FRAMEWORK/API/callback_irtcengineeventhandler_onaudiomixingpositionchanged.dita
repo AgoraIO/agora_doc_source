@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudiomixingpositionchanged">
+    <title><ph keyref="onAudioMixingPositionChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback for music file playback progress.</ph><ph id="shortdesc" props="rn">Reports the playback progress of the music file.</ph><ph id="shortdesc" props="flutter">Reports the playback progress of the music file.</ph><ph id="shortdesc" props="unity">Callback for music file playback progress.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioMixingPositionChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onAudioMixingPositionChanged?(position: number): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onAudioMixingPositionChanged?(position: number): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(int position)? onAudioMixingPositionChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioMixingPositionChanged(long position) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After you call <xref keyref="startAudioMixing2"/> to play a music file, the SDK triggers this callback every second to report the current playback progress of the music file.</p>
+            <p props="rn">After you call the <xref keyref="startAudioMixing2"/> method to play a music file, the SDK triggers this callback every second to report the current playback progress.</p>
+            <p props="flutter">After calling <xref keyref="startAudioMixing2"/> to play a music file, the SDK triggers this callback once every second to report the current playback progress.</p>
+            <p props="unity">After calling the <xref keyref="startAudioMixing2"/> method to play a music file, the SDK triggers this callback every second to report the current playback progress.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>position</pt>
+                    <pd>The current playback progress of the music file in ms.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>position</pt>
+                    <pd>Current playback progress of the music file in ms.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>position</pt>
+                    <pd>The current playback progress of the music file, in ms.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>position</pt>
+                    <pd>The current playback progress of the music file, in ms.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

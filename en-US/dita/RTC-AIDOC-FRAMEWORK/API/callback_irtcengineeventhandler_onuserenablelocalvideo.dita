@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onuserenablelocalvideo">
+    <title><ph keyref="onUserEnableLocalVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Occurs when a remote user enables or disables the local video capture.</ph><ph id="shortdesc" props="rn">Callback when a remote user enables/disables local video capture.</ph><ph id="shortdesc" props="flutter">Callback when a remote user enables/disables local video capture.</ph><ph id="shortdesc" props="unity">Callback when a remote user enables or disables local video capture.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserEnableLocalVideo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onUserEnableLocalVideo?(
+    connection: RtcConnection,
+    remoteUid: number,
+    enabled: boolean
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onUserEnableLocalVideo?(
+    connection: RtcConnection,
+    remoteUid: number,
+    enabled: boolean
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, bool enabled)?
+      onUserEnableLocalVideo;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserEnableLocalVideo(RtcConnection connection, uint remoteUid, bool enabled) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This callback is deprecated. Use the following enumerations of the <xref keyref="onRemoteVideoStateChanged"/> callback instead:
+                        <ul>
+                            <li><codeph>RemoteVideoStateStopped</codeph>(0) and <codeph>RemoteVideoStateReasonRemoteMuted</codeph>(5).</li>
+                            <li><codeph>RemoteVideoStateDecoding</codeph> (2) and <codeph>RemoteVideoStateReasonRemoteUnmuted</codeph>(6).</li>
+                        </ul>
+                    </dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This callback has been deprecated. Use the following enumerations in the <xref keyref="onRemoteVideoStateChanged"/> callback instead:
+                        <ul>
+                            <li><codeph>RemoteVideoStateStopped</codeph>(0) and <codeph>RemoteVideoStateReasonRemoteMuted</codeph>(5).</li>
+                            <li><codeph>RemoteVideoStateDecoding</codeph> (2) and <codeph>RemoteVideoStateReasonRemoteUnmuted</codeph>(6).</li>
+                        </ul>
+                    </dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This callback is deprecated. Use the following enums in the <xref keyref="onRemoteVideoStateChanged"/> callback instead:
+                        <ul>
+                            <li><codeph>remoteVideoStateStopped</codeph>(0) and <codeph>remoteVideoStateReasonRemoteMuted</codeph>(5).</li>
+                            <li><codeph>remoteVideoStateDecoding</codeph> (2) and <codeph>remoteVideoStateReasonRemoteUnmuted</codeph>(6).</li>
+                        </ul>
+                    </dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This callback is deprecated. Use the <xref keyref="onRemoteVideoStateChanged"/> callback with the following enumerations:
+                        <ul>
+                            <li><codeph>REMOTE_VIDEO_STATE_STOPPED</codeph>(0) and <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED</codeph>(5).</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_DECODING</codeph> (2) and <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED</codeph>(6).</li>
+                        </ul>
+                    </dd>
+                </dlentry>
+            </dl>
+            <p props="electron">This callback is triggered when the remote user calls the <xref keyref="enableLocalVideo"/> method to enable or disable video capture.</p>
+            <p props="rn">This callback is triggered when a remote user calls the <xref keyref="enableLocalVideo"/> method to enable or disable video capture.</p>
+            <p props="flutter">This callback is triggered when a remote user calls the <xref keyref="enableLocalVideo"/> method to enable or disable video capture.</p>
+            <p props="unity">This callback is triggered when a remote user calls the <xref keyref="enableLocalVideo"/> method to enable or disable video capture.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteUid</pt>
+                    <pd>The user ID indicating whose video stream it is.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>Whether the remote user enables video capture:
+                        <ul>
+                            <li><xref keyref="true"/>: The user has enabled video. Other users can receive this user’s video stream.</li>
+                            <li><xref keyref="false"/>: The user has disabled video. The user can still receive video streams from others, but others cannot receive this user’s video stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteUid</pt>
+                    <pd>User ID indicating whose video stream it is.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>Whether the remote user has enabled video capture:
+                        <ul>
+                            <li><xref keyref="true"/>: The user has enabled video. Other users can receive this user's video stream.</li>
+                            <li><xref keyref="false"/>: The user has disabled video. The user can still receive video streams from others, but others cannot receive this user's video stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteUid</pt>
+                    <pd>User ID indicating which user's video stream it is.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Whether the remote user enables video capture:
+                        <ul>
+                            <li><xref keyref="true"/>: The user has enabled the video function. Other users can receive this user's video stream.</li>
+                            <li><xref keyref="false"/>: The user has disabled the video function. This user can still receive other users' video streams, but others cannot receive this user's video stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteUid</pt>
+                    <pd>User ID indicating which user's video stream it is.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether the remote user enables video capture:
+                        <ul>
+                            <li><xref keyref="true"/>: The user has enabled the video feature. Other users can receive this user's video stream.</li>
+                            <li><xref keyref="false"/>: The user has disabled the video feature. The user can still receive other users' video streams, but others cannot receive this user's video stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

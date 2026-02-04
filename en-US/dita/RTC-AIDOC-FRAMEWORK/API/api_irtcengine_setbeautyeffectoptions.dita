@@ -1,0 +1,220 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setbeautyeffectoptions">
+    <title><ph keyref="setBeautyEffectOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets beauty effect options.</ph><ph id="shortdesc" props="rn">Sets beauty effect options.</ph><ph id="shortdesc" props="flutter">Sets beauty effect options.</ph><ph id="shortdesc" props="unity">Sets beauty effect options.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setBeautyEffectOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setBeautyEffectOptions(
+    enabled: boolean,
+    options: BeautyOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setBeautyEffectOptions(
+    enabled: boolean,
+    options: BeautyOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setBeautyEffectOptions(
+    {required bool enabled,
+    required BeautyOptions options,
+    MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetBeautyEffectOptions(bool enabled, BeautyOptions options, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Enables local beauty effects and sets the beauty effect options.</p>
+            <p props="rn">Enables the local beauty effect and sets the beauty effect options.</p>
+            <p props="flutter">Enables local beauty effects and sets the beauty effect options.</p>
+            <p props="unity">Enables the local beauty effect and sets the beauty effect options.</p>
+            <note props="electron">
+                <ul>
+                    <li>This method depends on the video enhancement dynamic library <codeph>libagora_clear_vision_extension.dll</codeph>. Deleting this library will prevent the feature from functioning properly.</li>
+                    <li>This feature requires high device performance. When calling this method, the SDK automatically checks the device's capabilities.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>This method depends on the video enhancement dynamic library <codeph>libagora_clear_vision_extension.dll</codeph>. Removing this library will prevent the feature from working properly.</li>
+                    <li>This feature has high performance requirements. When calling this method, the SDK automatically checks the current device capability.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method depends on the video enhancement dynamic library <codeph>libagora_clear_vision_extension.dll</codeph>. Deleting this library will cause the feature to fail to start.</li>
+                    <li>This feature requires high device performance. When calling this method, the SDK automatically checks the current device capabilities.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method depends on the video enhancement dynamic library <codeph>libagora_clear_vision_extension.dll</codeph>. Removing this library will cause this feature to fail.</li>
+                    <li>This feature has high performance requirements for the device. When calling this method, the SDK automatically checks the current device capabilities.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Call this method after <xref keyref="enableVideo"/> or <xref keyref="startPreview2"/>.</p>
+            <p props="rn">Call this method after <xref keyref="enableVideo"/> or <xref keyref="startPreview2"/>.</p>
+            <p props="flutter">Call this method after <xref keyref="enableVideo"/> or <xref keyref="startPreview2"/>.</p>
+            <p props="unity">Call this method after <xref keyref="enableVideo"/> or <xref keyref="startPreview2"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the beauty effect:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable the beauty effect.</li>
+                            <li><xref keyref="false"/>: (default) Disable the beauty effect.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>options</pt>
+                    <pd>Beauty effect options. See <xref keyref="BeautyOptions"/> for details.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>The media source type to apply the effect to. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>This method only supports the following two settings:
+                            <ul>
+                                <li>When using the camera to capture local video, keep the default value <codeph>PrimaryCameraSource</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>CustomVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the beauty effect:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable the beauty effect.</li>
+                            <li><xref keyref="false"/>: (default) Disable the beauty effect.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>options</pt>
+                    <pd>Beauty options. See <xref keyref="BeautyOptions"/> for details.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>The media source type to apply the effect to. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>This method only supports the following two settings:
+                            <ul>
+                                <li>For local video captured by the camera, keep the default value <codeph>PrimaryCameraSource</codeph>.</li>
+                                <li>For custom captured video, set this parameter to <codeph>CustomVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the beauty effect:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable the beauty effect.</li>
+                            <li><xref keyref="false"/>: (Default) Disable the beauty effect.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>options</pt>
+                    <pd>Beauty options. See <xref keyref="BeautyOptions"/> for details.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>The media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, this parameter only supports the following two settings:
+                            <ul>
+                                <li>When capturing local video using the camera, keep the default value <codeph>primaryCameraSource</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>customVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the beauty effect:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable the beauty effect.</li>
+                            <li><xref keyref="false"/>: (default) Disable the beauty effect.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>options</pt>
+                    <pd>Beauty options. See <xref keyref="BeautyOptions"/> for details.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>The media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, this parameter only supports the following two settings:
+                            <ul>
+                                <li>When using the camera to capture local video, keep the default value <codeph>PRIMARY_CAMERA_SOURCE</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>CUSTOM_VIDEO_SOURCE</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-4: The current device does not support this feature. Possible reasons include:
+                                <ul>
+                                    <li>The device does not meet the performance requirements for beauty effects. It is recommended to use a higher-performance device.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-4: The current device does not support this feature. Possible reasons:
+                                <ul>
+                                    <li>The device does not meet the performance requirements for beauty effects. Consider using a higher-performance device.</li>
+                                    <li>The device runs a version lower than Android 5.0, which does not support this operation. Consider upgrading the OS or using a different device.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-4: The current device does not support this feature. Possible reasons include:
+                                <ul>
+                                    <li>The current device does not meet the performance requirements for using beauty effects. Consider using a higher-performance device.</li>
+                                    <li>The current device version is lower than Android 5.0 and does not support this operation. Consider changing the device or upgrading the OS.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setcameraautofocusfacemodeenabled">
+    <title><ph keyref="setCameraAutoFocusFaceModeEnabled"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Enables or disables face auto focus.</ph><ph id="shortdesc" props="flutter">Sets whether to enable face auto-focus.</ph><ph id="shortdesc" props="unity">Enables or disables face auto focus.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setCameraAutoFocusFaceModeEnabled"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract setCameraAutoFocusFaceModeEnabled(enabled: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraAutoFocusFaceModeEnabled(bool enabled);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetCameraAutoFocusFaceModeEnabled(bool enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">By default, the SDK disables face auto focus on Android and enables it on iOS. To configure face auto focus manually, call this method.</p>
+            <p props="flutter">By default, the SDK disables face auto-focus on Android and enables it on iOS. If you want to manually set face auto-focus, call this method.</p>
+            <p props="unity">By default, the SDK disables face auto focus on Android and enables it on iOS. To manually configure face auto focus, call this method.</p>
+            <note props="flutter">This method is applicable to Android and iOS only.</note>
+            <note props="unity">This method is for Android and iOS only.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>Timing</title>
+            <p props="rn">You must call this method after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LocalVideoStreamStateCapturing</codeph> (1).</p>
+            <p props="flutter">You must call this method after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and the local video state is <codeph>localVideoStreamStateCapturing</codeph> (1).</p>
+            <p props="unity">You must call this method after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable face auto focus:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable face auto focus.</li>
+                            <li><xref keyref="false"/>: Disable face auto focus.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable face auto-focus:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable face auto-focus.</li>
+                            <li><xref keyref="false"/>: Disable face auto-focus.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable face auto focus:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable face auto focus.</li>
+                            <li><xref keyref="false"/>: Disable face auto focus.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

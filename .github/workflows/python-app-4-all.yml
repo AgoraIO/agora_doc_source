@@ -8,29 +8,48 @@ on:
     pull_request:
         branches:
             - "master"
+    workflow_dispatch:
+        inputs:
+            test_branch:
+                description: 'Branch to test (optional, defaults to current branch)'
+                required: false
+                type: string
 jobs:
     build:
         strategy:
             matrix:
                 platform: [flutter, ios, macos, electron, unity, rn]
-                working_dir: [../dita/RTC-NG, ../en-US/dita/RTC-NG]
+                language: [en, cn]
         runs-on: ubuntu-latest
-        name: ${{matrix.platform}} ${{matrix.working_dir == '../en-US/dita/RTC-NG' && '(en)' || '(cn)'}}
+        name: ${{matrix.platform}} (${{matrix.language}})
         steps:
             - uses: actions/checkout@v3
             - name: Set up python 3.8
               uses: actions/setup-python@v4
               with:
                   python-version: "3.8"
-            - name: Set Language
+            - name: Set Language and Working Directory
               id: matrix_vars
               run: |
-                  if [[ ${{ matrix.working_dir }} == *en-US* ]]; then
-                    echo "language=en" >> $GITHUB_OUTPUT
-                    echo "filename=${{matrix.platform}}_en_ng.json" >> $GITHUB_OUTPUT
+                  # Set language and filename
+                  echo "language=${{matrix.language}}" >> $GITHUB_OUTPUT
+                  echo "filename=${{matrix.platform}}_${{matrix.language}}_ng.json" >> $GITHUB_OUTPUT
+                  
+                  # Set working directory based on platform and language
+                  if [[ "${{matrix.platform}}" == "flutter" || "${{matrix.platform}}" == "electron" || "${{matrix.platform}}" == "unity" || "${{matrix.platform}}" == "rn" ]]; then
+                    # Framework platforms
+                    if [[ "${{matrix.language}}" == "en" ]]; then
+                      echo "working_dir=en-US/dita/RTC-AIDOC-FRAMEWORK" >> $GITHUB_OUTPUT
                     else
-                    echo "language=cn" >> $GITHUB_OUTPUT
-                    echo "filename=${{matrix.platform}}_cn_ng.json" >> $GITHUB_OUTPUT
+                      echo "working_dir=dita/RTC-AIDOC-FRAMEWORK" >> $GITHUB_OUTPUT
+                    fi
+                  elif [[ "${{matrix.platform}}" == "ios" || "${{matrix.platform}}" == "macos" ]]; then
+                    # Native platforms
+                    if [[ "${{matrix.language}}" == "en" ]]; then
+                      echo "working_dir=en-US/dita/RTC-AIDOC" >> $GITHUB_OUTPUT
+                    else
+                      echo "working_dir=dita/RTC-AIDOC" >> $GITHUB_OUTPUT
+                    fi
                   fi
             - name: Get branch name
               id: branch-name
@@ -42,12 +61,11 @@ jobs:
                   if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
             - name: Run ${{steps.matrix_vars.outputs.language}} JSON creation
               run: |
-                  cd xml2json
-                  python xml2json.py --working_dir ${{matrix.working_dir}} --platform_tag ${{matrix.platform}}\
+                  python xml2json/xml2json.py --working_dir ${{steps.matrix_vars.outputs.working_dir}} --platform_tag ${{matrix.platform}}\
                     --json_file ${{steps.matrix_vars.outputs.filename}}\
                     --language ${{steps.matrix_vars.outputs.language}}
             - name: Validate and Order JSON File
-              run: jq 'sort_by(.'id')' "xml2json/${{steps.matrix_vars.outputs.filename}}" > ${{steps.matrix_vars.outputs.filename}}
+              run: jq 'sort_by(.'id')' "${{steps.matrix_vars.outputs.filename}}" > "${{steps.matrix_vars.outputs.filename}}.tmp" && mv "${{steps.matrix_vars.outputs.filename}}.tmp" "${{steps.matrix_vars.outputs.filename}}"
             - name: Upload ${{matrix.platform}} ${{steps.matrix_vars.outputs.language}} Artifact
               uses: actions/upload-artifact@v4
               with:
@@ -76,50 +94,50 @@ jobs:
             - name: Output Bool
               id: xml2json-changed
               run: echo "updated_xml=${{contains(steps.changed-files.outputs.all_changed_files, 'xml2json/xml2json.py')}}" >> $GITHUB_OUTPUT
-    compare:
-        name: Compare JSON Files
-        needs: [check_changed_files, build]
-        if: needs.check_changed_files.outputs.updated_xml
-        permissions:
-            pull-requests: read
-        runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                platform: [flutter, ios, macos, electron, unity, rn]
-                language: [en, cn]
-        steps:
-            - name: Set up python 3.9
-              uses: actions/setup-python@v4
-              with:
-                  python-version: "3.9"
-            - name: Download DocC Archive ⬇️
-              uses: actions/download-artifact@v3
-              with:
-                  name: ${{matrix.platform}}_ng_json_template_${{matrix.language}}.json
-                  path: artifacts
-            - name: Download current release
-              uses: robinraju/release-downloader@v1.8
-              with:
-                  tag: "master-build"
-                  fileName: ${{matrix.platform}}_ng_json_template_${{matrix.language}}.json
-            - name: Check Sort by ID
-              run: |
-                  # Sorting and moving newly generated JSON
-                  jq 'sort_by(.'id')' "artifacts/${{matrix.platform}}_${{matrix.language}}_ng.json" > ${{matrix.platform}}_${{matrix.language}}_new.json
-                  # mv artifacts/${{matrix.platform}}_${{matrix.language}}_ng.json ${{matrix.platform}}_${{matrix.language}}_new.json
-                  # Sorting and moving latest release JSON
-                  jq 'sort_by(.'id')' "${{matrix.platform}}_ng_json_template_${{matrix.language}}.json" > ${{matrix.platform}}_${{matrix.language}}_old.json
-            - name: Make Diff Compare File
-              run: |
-                  set -e; diff -u ${{matrix.platform}}_${{matrix.language}}_old.json ${{matrix.platform}}_${{matrix.language}}_new.json -U 3 | tee comparison.txt > /dev/null
-            - name: Output Diff
-              run: |
-                  if [[ ! -s comparison.txt ]]; then
-                    echo "No differences found."
-                  else
-                  echo """
-                  \`\`\`diff
-                  $(cat comparison.txt)
-                  \`\`\`
-                  """ >> $GITHUB_STEP_SUMMARY
-                  fi
+    # compare:
+    #     name: Compare JSON Files
+    #     needs: [check_changed_files, build]
+    #     if: needs.check_changed_files.outputs.updated_xml
+    #     permissions:
+    #         pull-requests: read
+    #     runs-on: ubuntu-latest
+    #     strategy:
+    #         matrix:
+    #             platform: [flutter, ios, macos, electron, unity, rn]
+    #             language: [en, cn]
+    #     steps:
+    #         - name: Set up python 3.9
+    #           uses: actions/setup-python@v4
+    #           with:
+    #               python-version: "3.9"
+    #         - name: Download DocC Archive ⬇️
+    #           uses: actions/download-artifact@v4
+    #           with:
+    #               name: ${{matrix.platform}}_ng_json_template_${{matrix.language}}.json
+    #               path: artifacts
+    #         - name: Download current release
+    #           uses: robinraju/release-downloader@v1.8
+    #           with:
+    #               tag: "master-build"
+    #               fileName: ${{matrix.platform}}_ng_json_template_${{matrix.language}}.json
+    #         - name: Check Sort by ID
+    #           run: |
+    #               # Sorting and moving newly generated JSON
+    #               jq 'sort_by(.'id')' "artifacts/${{matrix.platform}}_${{matrix.language}}_ng.json" > ${{matrix.platform}}_${{matrix.language}}_new.json
+    #               # mv artifacts/${{matrix.platform}}_${{matrix.language}}_ng.json ${{matrix.platform}}_${{matrix.language}}_new.json
+    #               # Sorting and moving latest release JSON
+    #               jq 'sort_by(.'id')' "${{matrix.platform}}_ng_json_template_${{matrix.language}}.json" > ${{matrix.platform}}_${{matrix.language}}_old.json
+    #         - name: Make Diff Compare File
+    #           run: |
+    #               set -e; diff -u ${{matrix.platform}}_${{matrix.language}}_old.json ${{matrix.platform}}_${{matrix.language}}_new.json -U 3 | tee comparison.txt > /dev/null
+    #         - name: Output Diff
+    #           run: |
+    #               if [[ ! -s comparison.txt ]]; then
+    #                 echo "No differences found."
+    #               else
+    #               echo """
+    #               \`\`\`diff
+    #               $(cat comparison.txt)
+    #               \`\`\`
+    #               """ >> $GITHUB_STEP_SUMMARY
+    #               fi
