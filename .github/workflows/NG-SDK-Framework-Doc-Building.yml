@@ -2,14 +2,23 @@
 
 name: (NG SDK Frameworks)Awesome OxygenScript for DITA doc building
 
+# DISABLED: This workflow has been disabled
 on:
-    push:
-        # branches: [ master, 'release/**' ]
-        branches: ["release/rtc-ng/4.1.0"]
+    # push:
+    #     # branches: [ master, 'release/**' ]
+    #     branches: ["release/rtc-ng/4.1.0"]
 
-    pull_request:
-        # branches: [ master, 'release/**' ]
-        branches: [ master ]
+    # pull_request:
+    #     # branches: [ master, 'release/**' ]
+    #     branches: [ master ]
+    
+    # Disabled trigger - will never run
+    workflow_dispatch:
+        inputs:
+            disabled:
+                description: 'This workflow is disabled'
+                required: false
+                default: 'disabled'
 
 
 jobs:

@@ -1,15 +1,24 @@
 # GitHub CI build pipeline
 name: Awesome prototype from code to DITA (RN)
 
+# DISABLED: This workflow has been disabled
 on:
-    workflow_dispatch:
+    # workflow_dispatch:
 
-    pull_request:
-        branches:
-            # - 'release/rtc-ng/3.7.203-unity'
-    push:
-        branches:
-            - 'release/rtc-ng/4.2.0-framework'
+    # pull_request:
+    #     branches:
+    #         # - 'release/rtc-ng/3.7.203-unity'
+    # push:
+    #     branches:
+    #         - 'release/rtc-ng/4.2.0-framework'
+    
+    # Disabled trigger - will never run
+    workflow_dispatch:
+        inputs:
+            disabled:
+                description: 'This workflow is disabled'
+                required: false
+                default: 'disabled'
 jobs:
     build:
         runs-on: ubuntu-latest

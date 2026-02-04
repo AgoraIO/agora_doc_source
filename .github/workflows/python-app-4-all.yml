@@ -94,50 +94,50 @@ jobs:
             - name: Output Bool
               id: xml2json-changed
               run: echo "updated_xml=${{contains(steps.changed-files.outputs.all_changed_files, 'xml2json/xml2json.py')}}" >> $GITHUB_OUTPUT
-    compare:
-        name: Compare JSON Files
-        needs: [check_changed_files, build]
-        if: needs.check_changed_files.outputs.updated_xml
-        permissions:
-            pull-requests: read
-        runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                platform: [flutter, ios, macos, electron, unity, rn]
-                language: [en, cn]
-        steps:
-            - name: Set up python 3.9
-              uses: actions/setup-python@v4
-              with:
-                  python-version: "3.9"
-            - name: Download DocC Archive ⬇️
-              uses: actions/download-artifact@v4
-              with:
-                  name: ${{matrix.platform}}_ng_json_template_${{matrix.language}}.json
-                  path: artifacts
-            - name: Download current release
-              uses: robinraju/release-downloader@v1.8
-              with:
-                  tag: "master-build"
-                  fileName: ${{matrix.platform}}_ng_json_template_${{matrix.language}}.json
-            - name: Check Sort by ID
-              run: |
-                  # Sorting and moving newly generated JSON
-                  jq 'sort_by(.'id')' "artifacts/${{matrix.platform}}_${{matrix.language}}_ng.json" > ${{matrix.platform}}_${{matrix.language}}_new.json
-                  # mv artifacts/${{matrix.platform}}_${{matrix.language}}_ng.json ${{matrix.platform}}_${{matrix.language}}_new.json
-                  # Sorting and moving latest release JSON
-                  jq 'sort_by(.'id')' "${{matrix.platform}}_ng_json_template_${{matrix.language}}.json" > ${{matrix.platform}}_${{matrix.language}}_old.json
-            - name: Make Diff Compare File
-              run: |
-                  set -e; diff -u ${{matrix.platform}}_${{matrix.language}}_old.json ${{matrix.platform}}_${{matrix.language}}_new.json -U 3 | tee comparison.txt > /dev/null
-            - name: Output Diff
-              run: |
-                  if [[ ! -s comparison.txt ]]; then
-                    echo "No differences found."
-                  else
-                  echo """
-                  \`\`\`diff
-                  $(cat comparison.txt)
-                  \`\`\`
-                  """ >> $GITHUB_STEP_SUMMARY
-                  fi
+    # compare:
+    #     name: Compare JSON Files
+    #     needs: [check_changed_files, build]
+    #     if: needs.check_changed_files.outputs.updated_xml
+    #     permissions:
+    #         pull-requests: read
+    #     runs-on: ubuntu-latest
+    #     strategy:
+    #         matrix:
+    #             platform: [flutter, ios, macos, electron, unity, rn]
+    #             language: [en, cn]
+    #     steps:
+    #         - name: Set up python 3.9
+    #           uses: actions/setup-python@v4
+    #           with:
+    #               python-version: "3.9"
+    #         - name: Download DocC Archive ⬇️
+    #           uses: actions/download-artifact@v4
+    #           with:
+    #               name: ${{matrix.platform}}_ng_json_template_${{matrix.language}}.json
+    #               path: artifacts
+    #         - name: Download current release
+    #           uses: robinraju/release-downloader@v1.8
+    #           with:
+    #               tag: "master-build"
+    #               fileName: ${{matrix.platform}}_ng_json_template_${{matrix.language}}.json
+    #         - name: Check Sort by ID
+    #           run: |
+    #               # Sorting and moving newly generated JSON
+    #               jq 'sort_by(.'id')' "artifacts/${{matrix.platform}}_${{matrix.language}}_ng.json" > ${{matrix.platform}}_${{matrix.language}}_new.json
+    #               # mv artifacts/${{matrix.platform}}_${{matrix.language}}_ng.json ${{matrix.platform}}_${{matrix.language}}_new.json
+    #               # Sorting and moving latest release JSON
+    #               jq 'sort_by(.'id')' "${{matrix.platform}}_ng_json_template_${{matrix.language}}.json" > ${{matrix.platform}}_${{matrix.language}}_old.json
+    #         - name: Make Diff Compare File
+    #           run: |
+    #               set -e; diff -u ${{matrix.platform}}_${{matrix.language}}_old.json ${{matrix.platform}}_${{matrix.language}}_new.json -U 3 | tee comparison.txt > /dev/null
+    #         - name: Output Diff
+    #           run: |
+    #               if [[ ! -s comparison.txt ]]; then
+    #                 echo "No differences found."
+    #               else
+    #               echo """
+    #               \`\`\`diff
+    #               $(cat comparison.txt)
+    #               \`\`\`
+    #               """ >> $GITHUB_STEP_SUMMARY
+    #               fi

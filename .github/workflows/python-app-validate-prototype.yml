@@ -1,23 +1,32 @@
 # GitHub CI build pipeline
 name: Awesome DITA API doc prototype validation
 
+# DISABLED: This workflow has been disabled
 on:
-    push:
-        branches:
-             - 'release/rtc-ng/4.0.0-framework'
-             # - '3.8.200-framework-suri'
-             # - 'release/rtc-ng/3.8.200-kelu'
-             # - '3.8.200-flutter'
-             # - '3.8.200-electron-yaxi'
+    # push:
+    #     branches:
+    #          - 'release/rtc-ng/4.0.0-framework'
+    #          # - '3.8.200-framework-suri'
+    #          # - 'release/rtc-ng/3.8.200-kelu'
+    #          # - '3.8.200-flutter'
+    #          # - '3.8.200-electron-yaxi'
     
-    pull_request:
-        branches:
-            - "release/rtc-ng/4.0.0-framework"
-            # - master
-            # - '3.8.200-framework-suri'
-            # - 'release/rtc-ng/3.8.200-kelu'
-            # - '3.8.200-flutter'
-            # - '3.8.200-electron-yaxi'
+    # pull_request:
+    #     branches:
+    #         - "release/rtc-ng/4.0.0-framework"
+    #         # - master
+    #         # - '3.8.200-framework-suri'
+    #         # - 'release/rtc-ng/3.8.200-kelu'
+    #         # - '3.8.200-flutter'
+    #         # - '3.8.200-electron-yaxi'
+    
+    # Disabled trigger - will never run
+    workflow_dispatch:
+        inputs:
+            disabled:
+                description: 'This workflow is disabled'
+                required: false
+                default: 'disabled'
 
             
 jobs:
