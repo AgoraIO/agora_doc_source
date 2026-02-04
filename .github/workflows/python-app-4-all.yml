@@ -61,12 +61,11 @@ jobs:
                   if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
             - name: Run ${{steps.matrix_vars.outputs.language}} JSON creation
               run: |
-                  cd xml2json
-                  python xml2json.py --working_dir ${{steps.matrix_vars.outputs.working_dir}} --platform_tag ${{matrix.platform}}\
+                  python xml2json/xml2json.py --working_dir ${{steps.matrix_vars.outputs.working_dir}} --platform_tag ${{matrix.platform}}\
                     --json_file ${{steps.matrix_vars.outputs.filename}}\
                     --language ${{steps.matrix_vars.outputs.language}}
             - name: Validate and Order JSON File
-              run: jq 'sort_by(.'id')' "xml2json/${{steps.matrix_vars.outputs.filename}}" > ${{steps.matrix_vars.outputs.filename}}
+              run: jq 'sort_by(.'id')' "${{steps.matrix_vars.outputs.filename}}" > "${{steps.matrix_vars.outputs.filename}}.tmp" && mv "${{steps.matrix_vars.outputs.filename}}.tmp" "${{steps.matrix_vars.outputs.filename}}"
             - name: Upload ${{matrix.platform}} ${{steps.matrix_vars.outputs.language}} Artifact
               uses: actions/upload-artifact@v4
               with:
