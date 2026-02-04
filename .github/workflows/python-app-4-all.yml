@@ -8,29 +8,48 @@ on:
     pull_request:
         branches:
             - "master"
+    workflow_dispatch:
+        inputs:
+            test_branch:
+                description: 'Branch to test (optional, defaults to current branch)'
+                required: false
+                type: string
 jobs:
     build:
         strategy:
             matrix:
                 platform: [flutter, ios, macos, electron, unity, rn]
-                working_dir: [../dita/RTC-NG, ../en-US/dita/RTC-NG]
+                language: [en, cn]
         runs-on: ubuntu-latest
-        name: ${{matrix.platform}} ${{matrix.working_dir == '../en-US/dita/RTC-NG' && '(en)' || '(cn)'}}
+        name: ${{matrix.platform}} (${{matrix.language}})
         steps:
             - uses: actions/checkout@v3
             - name: Set up python 3.8
               uses: actions/setup-python@v4
               with:
                   python-version: "3.8"
-            - name: Set Language
+            - name: Set Language and Working Directory
               id: matrix_vars
               run: |
-                  if [[ ${{ matrix.working_dir }} == *en-US* ]]; then
-                    echo "language=en" >> $GITHUB_OUTPUT
-                    echo "filename=${{matrix.platform}}_en_ng.json" >> $GITHUB_OUTPUT
+                  # Set language and filename
+                  echo "language=${{matrix.language}}" >> $GITHUB_OUTPUT
+                  echo "filename=${{matrix.platform}}_${{matrix.language}}_ng.json" >> $GITHUB_OUTPUT
+                  
+                  # Set working directory based on platform and language
+                  if [[ "${{matrix.platform}}" == "flutter" || "${{matrix.platform}}" == "electron" || "${{matrix.platform}}" == "unity" || "${{matrix.platform}}" == "rn" ]]; then
+                    # Framework platforms
+                    if [[ "${{matrix.language}}" == "en" ]]; then
+                      echo "working_dir=en-US/dita/RTC-AIDOC-FRAMEWORK" >> $GITHUB_OUTPUT
                     else
-                    echo "language=cn" >> $GITHUB_OUTPUT
-                    echo "filename=${{matrix.platform}}_cn_ng.json" >> $GITHUB_OUTPUT
+                      echo "working_dir=dita/RTC-AIDOC-FRAMEWORK" >> $GITHUB_OUTPUT
+                    fi
+                  elif [[ "${{matrix.platform}}" == "ios" || "${{matrix.platform}}" == "macos" ]]; then
+                    # Native platforms
+                    if [[ "${{matrix.language}}" == "en" ]]; then
+                      echo "working_dir=en-US/dita/RTC-AIDOC" >> $GITHUB_OUTPUT
+                    else
+                      echo "working_dir=dita/RTC-AIDOC" >> $GITHUB_OUTPUT
+                    fi
                   fi
             - name: Get branch name
               id: branch-name
@@ -43,7 +62,7 @@ jobs:
             - name: Run ${{steps.matrix_vars.outputs.language}} JSON creation
               run: |
                   cd xml2json
-                  python xml2json.py --working_dir ${{matrix.working_dir}} --platform_tag ${{matrix.platform}}\
+                  python xml2json.py --working_dir ${{steps.matrix_vars.outputs.working_dir}} --platform_tag ${{matrix.platform}}\
                     --json_file ${{steps.matrix_vars.outputs.filename}}\
                     --language ${{steps.matrix_vars.outputs.language}}
             - name: Validate and Order JSON File
