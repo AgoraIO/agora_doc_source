@@ -10,12 +10,15 @@ on:
             - "master"
     workflow_dispatch:
         inputs:
-            test_branch:
-                description: 'Branch to test (optional, defaults to current branch)'
+            skip_release:
+                description: 'Skip uploading to GitHub Release (only upload artifacts)'
                 required: false
-                type: string
+                type: boolean
+                default: false
 jobs:
     build:
+        permissions:
+            contents: write  # Required to create/update releases
         strategy:
             matrix:
                 platform: [flutter, ios, macos, electron, unity, rn]
@@ -72,13 +75,14 @@ jobs:
                   name: ${{matrix.platform}}_ng_json_template_${{steps.matrix_vars.outputs.language}}.json
                   path: ${{steps.matrix_vars.outputs.filename}}
             - name: Upload ${{matrix.platform}} NG ${{steps.matrix_vars.outputs.language}} JSON to release
-              if: github.ref_name == github.event.repository.default_branch
+              if: github.ref_name == github.event.repository.default_branch && (github.event_name != 'workflow_dispatch' || github.event.inputs.skip_release != 'true')
               uses: svenstaro/upload-release-action@2.6.0
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: ${{steps.matrix_vars.outputs.filename}}
                   asset_name: ${{matrix.platform}}_ng_json_template_${{steps.matrix_vars.outputs.language}}.json
                   tag: ${{steps.branch-name.outputs.current_branch}}-build
+                  release_name: Release ${{steps.branch-name.outputs.current_branch}}-build
                   overwrite: true
                   body: "Template file for automatic comment population."
     check_changed_files:
