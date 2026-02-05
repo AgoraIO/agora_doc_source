@@ -622,6 +622,16 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
     # Get API ID
     api_id = root.attrib
     api_id = api_id.get("id")
+    
+    # Clean up duplicate parent class in id if present
+    if api_id:
+        id_parts = api_id.split("_")
+        if len(id_parts) == 4 and id_parts[1] == id_parts[3]:
+            # Remove the duplicate parent class (fourth segment)
+            original_id = api_id
+            api_id = "_".join(id_parts[:3])
+            localLogger.debug(f"Cleaned duplicate parent class from id: {original_id} -> {api_id}")
+    
     logLines(localLogger.debug, "App ID", api_id)
 
     # Get API name
