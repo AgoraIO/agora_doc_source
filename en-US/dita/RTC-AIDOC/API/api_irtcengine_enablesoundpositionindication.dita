@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablesoundpositionindication">
+    <title><ph keyref="enableSoundPositionIndication"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables stereo panning for remote users.</ph><ph id="shortdesc" props="android">Enables or disables stereo panning for remote users.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableSoundPositionIndication"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableSoundPositionIndication(bool enabled) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableSoundPositionIndication(boolean enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Make sure to call this method before joining a channel. The local user can then call <xref keyref="setRemoteVoicePosition"/> to track the position of remote users.</p>
+            <p props="android">Call this method before joining a channel. Once enabled, the local user can call <xref keyref="setRemoteVoicePosition"/> to track the position of remote users.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable stereo panning for remote users:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable stereo panning.</li>
+                            <li><xref keyref="false"/>: Disable stereo panning.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable stereo panning for remote users:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable stereo panning.</li>
+                            <li><xref keyref="false"/>: Disable stereo panning.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

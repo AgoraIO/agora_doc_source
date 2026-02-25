@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getconnectionstate">
+    <title><ph keyref="getConnectionState"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the current SDK connection state.</ph><ph id="shortdesc" props="android">Gets the current connection state of the SDK.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getConnectionState"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual CONNECTION_STATE_TYPE getConnectionState() = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getConnectionState();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">This method can be called before or after joining a channel.</p>
+            <p props="android">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">If the method call succeeds, returns the current connection state. See <xref keyref="CONNECTION_STATE_TYPE"/>.</p>
+            <p props="android">
+                <ul>
+                    <li>If the method call succeeds, returns the current connection state.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

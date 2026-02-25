@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onrtmpstreamingstatechanged">
+    <title><ph keyref="onRtmpStreamingStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the RTMP streaming state changes.</ph><ph id="shortdesc" props="android">Callback for RTMP streaming state changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRtmpStreamingStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onRtmpStreamingStateChanged(const char* url, RTMP_STREAM_PUBLISH_STATE state, RTMP_STREAM_PUBLISH_REASON reason)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onRtmpStreamingStateChanged(String url, int state, int reason)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">When the RTMP streaming state changes, the SDK triggers this callback and reports the corresponding URL and current streaming state. In case of an exception, you can refer to the error code parameter for troubleshooting.</p>
+            <p props="android">This callback indicates the state of RTMP streaming. When the state changes, the SDK triggers this callback and returns the corresponding URL and current streaming state. If an exception occurs, refer to the error code parameter for detailed error information.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the RTMP streaming state changes.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>url</pt>
+                    <pd>The URL whose RTMP streaming state has changed.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>Current RTMP streaming state. See <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>Reason for the RTMP streaming state change. See <xref keyref="RTMP_STREAM_PUBLISH_REASON"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>url</pt>
+                    <pd>The RTMP streaming URL whose state has changed.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>The current RTMP streaming state:
+                        <ul>
+                            <li><codeph>RTMP_STREAM_PUBLISH_STATE_IDLE</codeph>(0): RTMP streaming has not started or has ended.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_STATE_CONNECTING</codeph>(1): Connecting to the streaming and CDN servers.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_STATE_RUNNING</codeph>(2): Streaming is ongoing. The SDK successfully pushes the RTMP or RTMPS stream and returns this state.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_STATE_RECOVERING</codeph>(3): Attempting to recover the stream. When an exception occurs or streaming is interrupted, the SDK tries to recover and returns this state.
+                                <ul>
+                                    <li>If recovery succeeds, returns <codeph>RTMP_STREAM_PUBLISH_STATE_RUNNING</codeph>(2).</li>
+                                    <li>If recovery fails within 60 seconds or a server error occurs, returns <codeph>RTMP_STREAM_PUBLISH_STATE_FAILURE</codeph>(4). You can also call <xref keyref="startRtmpStreamWithTranscoding"/>, <xref keyref="startRtmpStreamWithoutTranscoding"/>, or <xref keyref="stopRtmpStream"/> to reconnect.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_STATE_FAILURE</codeph>(4): Streaming failed. Refer to the error code for details or try streaming again.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_STATE_DISCONNECTING</codeph>(5): The SDK is disconnecting from the Agora streaming and CDN servers. When you call <xref keyref="stopRtmpStream"/> to stop streaming, the SDK returns <codeph>RTMP_STREAM_PUBLISH_STATE_DISCONNECTING</codeph> followed by <codeph>RTMP_STREAM_PUBLISH_STATE_IDLE</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>The reason for the RTMP streaming state change:
+                        <ul>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_OK</codeph>(0): Streaming succeeded.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_INVALID_ARGUMENT</codeph>(1): Invalid parameter. Check parameter settings.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_ENCRYPTED_STREAM_NOT_ALLOWED</codeph>(2): Encrypted stream cannot be pushed.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_CONNECTION_TIMEOUT</codeph>(3): Streaming timeout. Try streaming again.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_INTERNAL_SERVER_ERROR</codeph>(4): Internal error on Agora streaming server. Try streaming again.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_RTMP_SERVER_ERROR</codeph>(5): CDN server error.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_TOO_OFTEN</codeph>(6): Reserved parameter.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_REACH_LIMIT</codeph>(7): The number of pushed URLs exceeds 10. Stop pushing to unnecessary URLs.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_NOT_AUTHORIZED</codeph>(8): The broadcaster operated on another broadcaster’s URL, such as updating or stopping their stream. Check your app logic.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_STREAM_NOT_FOUND</codeph>(9): The Agora server could not find the media stream for RTMP streaming.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_FORMAT_NOT_SUPPORTED</codeph>(10): Unsupported RTMP streaming URL format. Check if the URL format is correct.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_NOT_BROADCASTER</codeph>(11): The user is not a broadcaster and cannot use RTMP streaming. Check your app code logic.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_TRANSCODING_NO_MIX_STREAM</codeph>(13): Called <xref keyref="updateRtmpTranscoding"/> in a non-transcoding RTMP streaming scenario. Check your app code logic.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_NET_DOWN</codeph>(14): Network issue on the broadcaster's side.</li>
+                            <li><codeph>RTMP_STREAM_PUBLISH_REASON_INVALID_PRIVILEGE</codeph>(16): The project does not have permission to use RTMP streaming.</li>
+                            <li><codeph>RTMP_STREAM_UNPUBLISH_REASON_OK</codeph>(100): RTMP streaming stopped normally. Returned after calling <xref keyref="stopRtmpStream"/>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

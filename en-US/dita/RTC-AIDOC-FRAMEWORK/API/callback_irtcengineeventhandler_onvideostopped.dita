@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onvideostopped">
+    <title><ph keyref="onVideoStopped"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Occurs when the video function is stopped.</ph><ph id="shortdesc" props="rn">Occurs when the video function is stopped.</ph><ph id="shortdesc" props="flutter">Callback when video function is stopped.</ph><ph id="shortdesc" props="unity">Callback when the video function is stopped.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onVideoStopped"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onVideoStopped?(): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onVideoStopped?(): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function()? onVideoStopped;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoStopped()</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use the <codeph>LocalVideoStreamStateStopped</codeph>(0) state in the <xref keyref="onLocalVideoStateChanged"/> callback instead.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use the <xref keyref="onLocalVideoStateChanged"/> callback with <codeph>LocalVideoStreamStateStopped</codeph> (0) instead.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use <codeph>localVideoStreamStateStopped</codeph>(0) in the <xref keyref="onLocalVideoStateChanged"/> callback instead.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use the <xref keyref="onLocalVideoStateChanged"/> callback with <codeph>LOCAL_VIDEO_STREAM_STATE_STOPPED</codeph>(0) instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">If the app needs to perform other operations on the <codeph>view</codeph> after stopping the video (e.g., displaying another image), it can be done in this callback.</p>
+            <p props="rn">If the app needs to perform other operations on the <codeph>view</codeph> after stopping the video (such as displaying other content), you can do so in this callback.</p>
+            <p props="flutter">If the app needs to perform other operations on the <codeph>view</codeph> after stopping video (such as displaying other content), you can do so in this callback.</p>
+            <p props="unity">If the app needs to handle the <codeph>view</codeph> after stopping the video (such as displaying other content), it can do so in this callback.</p>
+        </section>
+    </refbody>
+</reference>

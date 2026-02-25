@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setplaybackaudioframebeforemixingparameters">
+    <title><ph keyref="setPlaybackAudioFrameBeforeMixingParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Sets the raw audio playback data format before mixing.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlaybackAudioFrameBeforeMixingParameters"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetPlaybackAudioFrameBeforeMixingParameters(int sampleRate, int channel);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">The SDK triggers the <xref keyref="onPlaybackAudioFrameBeforeMixing"/> callback based on this sampling interval.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="unity">
+            <title>Timing</title>
+            <p props="unity">You need to call this method before joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>sampleRate</pt>
+                    <pd>The sampling rate (Hz) of the audio data. Can be set to 8000, 16000, 32000, 44100, or 48000.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channel</pt>
+                    <pd>The number of channels of the audio data. Can be set to 1 or 2:
+                        <ul>
+                            <li>1: Mono.</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and suggested solutions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getuserinfobyuid">
+    <title><ph keyref="getUserInfoByUid"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets user information by UID.</ph><ph id="shortdesc" props="rn">Gets user information by UID.</ph><ph id="shortdesc" props="flutter">Gets user information by UID.</ph><ph id="shortdesc" props="unity">Gets user information by UID.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getUserInfoByUid"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getUserInfoByUid(uid: number): UserInfo;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getUserInfoByUid(uid: number): UserInfo;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;UserInfo&gt; getUserInfoByUid(int uid);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetUserInfoByUid(uint uid, ref UserInfo userInfo);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After a remote user joins a channel, the SDK obtains the UID and User Account of the remote user, then caches a mapping table of UID and User Account, and triggers the <xref keyref="onUserInfoUpdated"/> callback locally. After receiving the callback, call this method with the UID to get the <xref keyref="UserInfo"/> object that contains the User Account of the specified user.</p>
+            <p props="rn">After a remote user joins the channel, the SDK obtains the UID and User Account of the remote user, then caches a mapping table containing the UID and User Account of the remote user, and triggers the <xref keyref="onUserInfoUpdated"/> callback locally. After receiving the callback, call this method and pass in the UID to get the <xref keyref="UserInfo"/> object containing the specified user's User Account.</p>
+            <p props="flutter">After a remote user joins a channel, the SDK retrieves the UID and User Account of the remote user and caches a mapping table of UID and User Account. It then triggers the <xref keyref="onUserInfoUpdated"/> callback locally. After receiving this callback, call this method with the UID to get the <xref keyref="UserInfo"/> object that contains the specified user's User Account.</p>
+            <p props="unity">After a remote user joins the channel, the SDK retrieves the UID and User Account of the remote user, then caches a mapping table of UID and User Account, and triggers the <xref keyref="onUserInfoUpdated"/> callback locally. After receiving the callback, call this method with the UID to get the <xref keyref="UserInfo"/> object containing the specified user's User Account.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Call this method after receiving the <xref keyref="onUserInfoUpdated"/> callback.</p>
+            <p props="rn">Call after receiving the <xref keyref="onUserInfoUpdated"/> callback.</p>
+            <p props="flutter">Call this method after receiving the <xref keyref="onUserInfoUpdated"/> callback.</p>
+            <p props="unity">Call this method after receiving the <xref keyref="onUserInfoUpdated"/> callback.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Related Callbacks</title>
+            <p props="electron"><xref keyref="onUserInfoUpdated"/></p>
+            <p props="rn"><xref keyref="onUserInfoUpdated"/></p>
+            <p props="flutter"><xref keyref="onUserInfoUpdated"/></p>
+            <p props="unity"><xref keyref="onUserInfoUpdated"/></p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>userInfo</pt>
+                    <pd>Input and output parameter. The <xref keyref="UserInfo"/> object identifying the user:
+                        <ul>
+                            <li>Input: A <xref keyref="UserInfo"/> object.</li>
+                            <li>Output: A <xref keyref="UserInfo"/> object containing the user's User Account and UID.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>The <xref keyref="UserInfo"/> object, if the method call succeeds.</li>
+                    <li><xref keyref="NULL"/>, if the method call fails.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>The <xref keyref="UserInfo"/> object, if the method call succeeds.</li>
+                    <li><xref keyref="NULL"/>, if the method call fails.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>The <xref keyref="UserInfo"/> object, if the method call succeeds.</li>
+                    <li><codeph><ph keyref="NULL"/></codeph>, if the method call fails.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

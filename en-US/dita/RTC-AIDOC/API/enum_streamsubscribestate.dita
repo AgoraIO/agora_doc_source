@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_streamsubscribestate">
+    <title><ph keyref="STREAM_SUBSCRIBE_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Subscription state.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>SUB_STATE_IDLE</pt>
+                    <pd>(0): Initial subscription state after joining the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>SUB_STATE_NO_SUBSCRIBED</pt>
+                    <pd>(1): Failed to subscribe to remote stream. Possible reasons include:
+                        <ul>
+                            <li>Remote user:
+                                <ul>
+                                    <li>Called <codeph>muteLocalAudioStream(true)</codeph> or <codeph>muteLocalVideoStream(true)</codeph> to stop sending local media stream.</li>
+                                    <li>Called <xref keyref="disableAudio"/> or <xref keyref="disableVideo"/> to disable local audio or video module.</li>
+                                    <li>Called <codeph>enableLocalAudio(false)</codeph> or <codeph>enableLocalVideo(false)</codeph> to disable local audio/video capture.</li>
+                                    <li>Role is audience.</li>
+                                </ul>
+                            </li>
+                            <li>Local user:
+                                <ul>
+                                    <li>Called <codeph>muteRemoteAudioStream(true)</codeph> or <codeph>muteAllRemoteAudioStreams(true)</codeph> to stop receiving remote audio stream.</li>
+                                    <li>Called <codeph>muteRemoteVideoStream(true)</codeph> or <codeph>muteAllRemoteVideoStreams(true)</codeph> to stop receiving remote video stream.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>SUB_STATE_SUBSCRIBING</pt>
+                    <pd>(2): Subscribing to remote stream.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>SUB_STATE_SUBSCRIBED</pt>
+                    <pd>(3): Successfully received remote stream.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

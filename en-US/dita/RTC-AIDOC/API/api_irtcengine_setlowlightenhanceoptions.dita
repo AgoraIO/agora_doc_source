@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlowlightenhanceoptions">
+    <title><ph keyref="setLowlightEnhanceOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the low-light enhancement feature.</ph><ph id="shortdesc" props="android">Enables low-light enhancement.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLowlightEnhanceOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setLowlightEnhanceOptions(bool enabled, const LowlightEnhanceOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setLowlightEnhanceOptions(boolean enabled, LowLightEnhanceOptions options);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.0.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v3.6.2.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">You can call this method to enable the low-light enhancement feature and configure its parameters.</p>
+            <note props="cpp">
+                <ul>
+                    <li>This method depends on the beauty effect dynamic library <xref keyref="clearvision"/>. If the library is deleted, this feature cannot be enabled properly.</li>
+                    <li>Low-light enhancement requires certain device performance. If overheating occurs after enabling it, Agora recommends setting a lower performance level or disabling the feature.</li>
+                    <li>If you want to prioritize video quality when using low-light enhancement (<codeph>LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY</codeph>), you need to call <xref keyref="setVideoDenoiserOptions"/> to enable video denoising. The corresponding settings are:
+                        <ul>
+                            <li>When low-light enhancement is set to auto mode (<codeph>LOW_LIGHT_ENHANCE_AUTO</codeph>), video denoising should be set to high quality (<codeph>VIDEO_DENOISER_LEVEL_HIGH_QUALITY</codeph>) and auto mode (<codeph>VIDEO_DENOISER_AUTO</codeph>).</li>
+                            <li>When low-light enhancement is set to manual mode (<codeph>LOW_LIGHT_ENHANCE_MANUAL</codeph>), video denoising should be set to high quality (<codeph>VIDEO_DENOISER_LEVEL_HIGH_QUALITY</codeph>) and manual mode (<codeph>VIDEO_DENOISER_MANUAL</codeph>).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>This method depends on the beauty effect dynamic library <xref keyref="clearvision"/>. If the library is deleted, the feature cannot be enabled properly.</li>
+                    <li>Low-light enhancement requires certain device performance. If the device overheats after enabling it, Agora recommends setting the low-light enhancement option to a lower performance level or disabling the feature.</li>
+                    <li>If you want to prioritize image quality when using low-light enhancement (<codeph>LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY</codeph>), you need to call <codeph>setVideoDenoiserOptions</codeph> to enable video denoising. The corresponding settings are:
+                        <ul>
+                            <li>When low-light enhancement is set to auto mode (<codeph>LOW_LIGHT_ENHANCE_AUTO</codeph>), video denoising must be set to high quality (<codeph>VIDEO_DENOISER_LEVEL_HIGH_QUALITY</codeph>) and auto mode (<codeph>VIDEO_DENOISER_AUTO</codeph>).</li>
+                            <li>When low-light enhancement is set to manual mode (<codeph>LOW_LIGHT_ENHANCE_MANUAL</codeph>), video denoising must be set to high quality (<codeph>VIDEO_DENOISER_LEVEL_HIGH_QUALITY</codeph>) and manual mode (<codeph>VIDEO_DENOISER_MANUAL</codeph>).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>The low-light enhancement feature adaptively adjusts the brightness of video captured in low-light or uneven lighting conditions such as backlight, cloudy, or dark environments, to restore or highlight image details and improve the overall visual quality of the video.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after calling <xref keyref="enableVideo"/>.</p>
+            <p props="android">Call this method after calling <xref keyref="enableVideo"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the low-light enhancement feature:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable.</li>
+                            <li><xref keyref="false"/>: (Default) Disable.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>options</pt>
+                    <pd>Low-light enhancement options. See <xref keyref="LowlightEnhanceOptions"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>The media source type to apply the filter effect to. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>This method only supports the following settings for this parameter:
+                            <ul>
+                                <li>If using the camera to capture local video, use the default value <codeph>PRIMARY_CAMERA_SOURCE</codeph>.</li>
+                                <li>If using a custom video source, set to <codeph>CUSTOM_VIDEO_SOURCE</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable low-light enhancement:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable.</li>
+                            <li><xref keyref="false"/>: (Default) Disable.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>Low-light enhancement options. See <xref keyref="LowlightEnhanceOptions"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

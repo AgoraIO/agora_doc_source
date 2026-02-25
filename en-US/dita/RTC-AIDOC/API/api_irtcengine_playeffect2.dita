@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_playeffect2">
+    <title><ph keyref="playEffect2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Plays the specified local or online audio effect file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="playEffect2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int playEffect(int soundId, String filePath, int loopCount, double pitch, double pan, double gain, boolean publish);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">This method supports playing URI files that start with <codeph>content://</codeph>. See <codeph>What formats of audio files does the Agora RTC SDK support</codeph> for supported formats. If the local audio file does not exist, the SDK does not support the file format, or the audio file URL is inaccessible, the SDK returns <codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph>.
+To play multiple audio effect files simultaneously, call this method multiple times with different <codeph>soundId</codeph> and <codeph>filePath</codeph>. For the best user experience, Agora recommends not playing more than three audio files simultaneously.</p>
+            <note props="android">
+                <ul>
+                    <li>To play online audio effect files, Agora recommends caching the file on the local device and calling <codeph>preloadEffect</codeph> to preload it into memory before calling this method to play it. Otherwise, playback may fail or be silent due to timeout or loading failure.</li>
+                    <li>If you call <codeph>preloadEffectEx</codeph> before <codeph>playEffectEx</codeph>, the file resource will not be closed after <codeph>playEffectEx</codeph> is executed. The next time you call <codeph>playEffectEx</codeph>, it will start playing from the beginning.</li>
+                    <li>If you call <codeph>playEffectEx</codeph> directly without calling <codeph>preloadEffectEx</codeph>, the resource will be destroyed after <codeph>playEffectEx</codeph> is executed. The next time you call it, it will try to reopen the file and play from the beginning.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android">
+            <title>Related Callbacks</title>
+            <p props="android">After the audio effect file finishes playing, the SDK triggers the <xref keyref="onAudioEffectFinished"/> callback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>soundId</pt>
+                    <pd>Audio effect ID. Each audio effect file must have a unique ID.
+                        <note>If you have preloaded the audio effect into memory using <codeph>preloadEffect</codeph>, make sure this parameter matches the <codeph>soundId</codeph> used in <codeph>preloadEffect</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>filePath</pt>
+                    <pd>File path. Supports URI starting with <codeph>content://</codeph>, path starting with <codeph>/assets/</codeph>, URL, and absolute path of local files. The absolute path must include the file name and extension. Supported formats include MP3, AAC, M4A, MP4, WAV, and 3GP.
+                        <note>If you have preloaded the audio effect into memory using <codeph>preloadEffect</codeph>, make sure this parameter matches the <codeph>filePath</codeph> used in <codeph>preloadEffect</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>loopCount</pt>
+                    <pd>Number of times the audio effect loops:
+                        <ul>
+                            <li>≥ 0: Number of times to play. For example, 1 means loop once, i.e., play twice in total.</li>
+                            <li>-1: Loop the audio file indefinitely.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>pitch</pt>
+                    <pd>Pitch of the audio effect. Range: 0.5 to 2.0. Default is 1.0, which represents the original pitch. The smaller the value, the lower the pitch.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>pan</pt>
+                    <pd>Spatial position of the audio effect. Range: -1.0 to 1.0:
+                        <ul>
+                            <li>-1.0: Played from the user's left.</li>
+                            <li>0.0: Played from the front.</li>
+                            <li>1.0: Played from the user's right.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>gain</pt>
+                    <pd>Volume of the audio effect. Range: 0.0 to 100.0. Default is 100.0, which represents the original volume. The smaller the value, the lower the volume.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publish</pt>
+                    <pd>Whether to publish the audio effect to remote users:
+                        <ul>
+                            <li><xref keyref="true"/>: Publish the audio effect. Both local and remote users can hear it.</li>
+                            <li><xref keyref="false"/>: Do not publish the audio effect. Only the local user can hear it.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">0: The method call succeeds.
+&lt; 0: The method call fails.</p>
+        </section>
+    </refbody>
+</reference>

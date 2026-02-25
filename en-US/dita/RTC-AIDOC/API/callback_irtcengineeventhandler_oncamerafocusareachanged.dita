@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_oncamerafocusareachanged">
+    <title><ph keyref="onCameraFocusAreaChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onCameraFocusAreaChanged"/> callback. Triggered when the camera focus area changes.</ph><ph id="shortdesc" props="android">Callback for when the camera focus area changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onCameraFocusAreaChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onCameraFocusAreaChanged(int x, int y, int width, int height)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onCameraFocusAreaChanged(Rect rect)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">This callback is triggered when the local user calls <xref keyref="setCameraFocusPositionInPreview"/> to change the camera focus position.</p>
+            <note props="cpp">This callback is only applicable to Android and iOS platforms.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>x</pt>
+                    <pd>The x coordinate of the new focus area.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>y</pt>
+                    <pd>The y coordinate of the new focus area.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>width</pt>
+                    <pd>The width of the new focus area.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>The height of the new focus area.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rect</pt>
+                    <pd>The focus rectangle area in the local preview. See [<codeph>Rect</codeph>](https://developer.android.google.cn/reference/android/graphics/Rect).</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

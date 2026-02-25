@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setupremotevideo">
+    <title><ph keyref="setupRemoteVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">初始化远端用户视图。</ph><ph id="shortdesc" props="flutter">初始化远端用户视图。</ph><ph id="shortdesc" props="unity">初始化远端用户视图。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setupRemoteVideo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setupRemoteVideo(canvas: VideoCanvas): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setupRemoteVideo(VideoCanvas canvas);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetupRemoteVideo(VideoCanvas canvas);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">该方法绑定远端用户和显示视图，并设置远端用户视图在本地显示时的渲染模式和镜像模式，只影响本地用户看到的视频画面。
+调用该方法时需要指定远端视频的用户 ID，一般可以在进频道前提前设置好。如果无法在加入频道前得到远端用户的 ID，可以在收到 <xref keyref="onUserJoined"/> 回调时调用该方法。
+如需解除某个远端用户的绑定视图，可以调用该方法并将 <codeph>view</codeph> 设置为空。
+离开频道后，SDK 会清除远端用户视图的绑定关系。</p>
+            <p props="flutter">该方法绑定远端用户和显示视图，并设置远端用户视图在本地显示时的渲染模式和镜像模式，只影响本地用户看到的视频画面。
+调用该方法时需要指定远端视频的用户 ID，一般可以在进频道前提前设置好。如果无法在加入频道前得到远端用户的 ID，可以在收到 <xref keyref="onUserJoined"/> 回调时调用该方法。
+如需解除某个远端用户的绑定视图，可以调用该方法并将 <codeph>view</codeph> 设置为空。
+离开频道后，SDK 会清除远端用户视图的绑定关系。
+在移动端自定义合图布局场景下，你可以调用该方法并针对合图视频流的每一路子视频流设置一个单独的 <codeph>view</codeph> 进行渲染。</p>
+            <p props="unity">该方法绑定远端用户和显示视图，并设置远端用户视图在本地显示时的渲染模式和镜像模式，只影响本地用户看到的视频画面。
+调用该方法时需要指定远端视频的用户 ID，一般可以在进频道前提前设置好。如果无法在加入频道前得到远端用户的 ID，可以在收到 <xref keyref="onUserJoined"/> 回调时调用该方法。
+如需解除某个远端用户的绑定视图，可以调用该方法并将 <codeph>view</codeph> 设置为空。
+离开频道后，SDK 会清除远端用户视图的绑定关系。
+在移动端自定义合图布局场景下，你可以调用该方法并针对合图视频流的每一路子视频流设置一个单独的 <codeph>view</codeph> 进行渲染。</p>
+            <note props="electron">
+                <ul>
+                    <li>当使用录制服务时，由于它不会发送视频流，App 无需为它绑定视图。如果 App 无法识别录制服务，可以在收到 <xref keyref="onFirstRemoteVideoDecoded"/> 回调时再绑定远端用户视图。</li>
+                    <li>如果想要停止渲染视图，需要将 <codeph>view</codeph> 设为 null 后再次调用该方法，以停止渲染并清理渲染缓存。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>在 Flutter 中你不需要主动调用该方法，请使用 <xref keyref="AgoraVideoView"/> 渲染本地和远端视图。</li>
+                    <li>如果你希望在通话中更新远端用户视图的渲染或镜像模式，请使用 <xref keyref="setRemoteRenderMode2"/> 方法。</li>
+                    <li>当使用录制服务时，由于它不会发送视频流，App 无需为它绑定视图。如果 App 无法识别录制服务，可以在收到 <xref keyref="onFirstRemoteVideoDecoded"/> 回调时再绑定远端用户视图。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>如果你想要在原生窗口上渲染图像，请调用此方法；如果你仅需在 Unity 项目内渲染图像，可直接通过 <xref keyref="VideoSurface"/> 类来实现。</li>
+                    <li>如果你希望在通话中更新远端用户视图的渲染或镜像模式，请使用 <xref keyref="setRemoteRenderMode2"/> 方法。</li>
+                    <li>当使用录制服务时，由于它不会发送视频流，App 无需为它绑定视图。如果 App 无法识别录制服务，可以在收到 <xref keyref="onFirstRemoteVideoDecoded"/> 回调时再绑定远端用户视图。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>canvas</pt>
+                    <pd>远端视频显示属性。详见 <xref keyref="VideoCanvas"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>canvas</pt>
+                    <pd>远端视频显示属性。详见 <xref keyref="VideoCanvas"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>canvas</pt>
+                    <pd>远端视频显示属性。详见 <xref keyref="VideoCanvas"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
+                <ul>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

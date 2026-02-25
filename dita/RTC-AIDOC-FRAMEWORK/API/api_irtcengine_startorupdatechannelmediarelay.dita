@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startorupdatechannelmediarelay">
+    <title><ph keyref="startOrUpdateChannelMediaRelay"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">开始或更新跨频道媒体流转发。</ph><ph id="shortdesc" props="rn">开始或更新跨频道媒体流转发。</ph><ph id="shortdesc" props="flutter">开始或更新跨频道媒体流转发。</ph><ph id="shortdesc" props="unity">开始或更新跨频道媒体流转发。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startOrUpdateChannelMediaRelay"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startOrUpdateChannelMediaRelay(
+    configuration: ChannelMediaRelayConfiguration
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startOrUpdateChannelMediaRelay(
+    configuration: ChannelMediaRelayConfiguration
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startOrUpdateChannelMediaRelay(
+      ChannelMediaRelayConfiguration configuration);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartOrUpdateChannelMediaRelay(ChannelMediaRelayConfiguration configuration);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">首次成功调用该方法将开始跨频道转发媒体流。如需将流转发到多个目标频道，或退出当前的转发频道，可以再次调用该方法添加或移除转发的目标频道。该功能最多支持将媒体流转发至 6 个目标频道。
+成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调，报告当前的跨频道媒体流转发状态。常见状态如下：
+                <ul>
+                    <li>如果 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告 <codeph>RelayStateRunning</codeph> (2) 和 <codeph>RelayOk</codeph> (0)， 则表示 SDK 开始在源频道和目标频道之间转发媒体流。</li>
+                    <li>如果 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告 <codeph>RelayStateFailure</codeph> (3)， 则表示跨频道媒体流转发出现异常。</li>
+                </ul>
+            </p>
+            <p props="rn">首次成功调用该方法将开始跨频道转发媒体流。如需将流转发到多个目标频道，或退出当前的转发频道，可以再次调用该方法添加或移除转发的目标频道。该功能最多支持将媒体流转发至 6 个目标频道。
+成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调，报告当前的跨频道媒体流转发状态。常见状态如下：
+                <ul>
+                    <li>如果 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告 <codeph>RelayStateRunning</codeph> (2) 和 <codeph>RelayOk</codeph> (0)， 则表示 SDK 开始在源频道和目标频道之间转发媒体流。</li>
+                    <li>如果 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告 <codeph>RelayStateFailure</codeph> (3)， 则表示跨频道媒体流转发出现异常。</li>
+                </ul>
+            </p>
+            <p props="flutter">首次成功调用该方法将开始跨频道转发媒体流。如需将流转发到多个目标频道，或退出当前的转发频道，可以再次调用该方法添加或移除转发的目标频道。该功能最多支持将媒体流转发至 6 个目标频道。
+成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调，报告当前的跨频道媒体流转发状态。常见状态如下：
+                <ul>
+                    <li>如果 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告 <codeph>relayStateRunning</codeph> (2) 和 <codeph>relayOk</codeph> (0)， 则表示 SDK 开始在源频道和目标频道之间转发媒体流。</li>
+                    <li>如果 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告 <codeph>relayStateFailure</codeph> (3)， 则表示跨频道媒体流转发出现异常。</li>
+                </ul>
+            </p>
+            <p props="unity">首次成功调用该方法将开始跨频道转发媒体流。如需将流转发到多个目标频道，或退出当前的转发频道，可以再次调用该方法添加或移除转发的目标频道。该功能最多支持将媒体流转发至 6 个目标频道。
+成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调，报告当前的跨频道媒体流转发状态。常见状态如下：
+                <ul>
+                    <li>如果 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告 <codeph>RELAY_STATE_RUNNING</codeph> (2) 和 <codeph>RELAY_OK</codeph> (0)， 则表示 SDK 开始在源频道和目标频道之间转发媒体流。</li>
+                    <li>如果 <xref keyref="onChannelMediaRelayStateChanged"/> 回调报告 <codeph>RELAY_STATE_FAILURE</codeph> (3)， 则表示跨频道媒体流转发出现异常。</li>
+                </ul>
+            </p>
+            <note props="electron">
+                <ul>
+                    <li>请在成功加入频道后调用该方法。</li>
+                    <li>在直播场景中，只有角色为主播的用户才能调用该方法。</li>
+                    <li>跨频道媒体流转发功能需要[联系技术支持](https://ticket.shengwang.cn/)开通。</li>
+                    <li>该功能不支持 String 型 UID。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>请在成功加入频道后调用该方法。</li>
+                    <li>在直播场景中，只有角色为主播的用户才能调用该方法。</li>
+                    <li>跨频道媒体流转发功能需要[联系技术支持](https://ticket.shengwang.cn/)开通。</li>
+                    <li>该功能不支持 String 型 UID。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>请在成功加入频道后调用该方法。</li>
+                    <li>在直播场景中，只有角色为主播的用户才能调用该方法。</li>
+                    <li>跨频道媒体流转发功能需要[联系技术支持](https://ticket.shengwang.cn/)开通。</li>
+                    <li>该功能不支持 String 型 UID。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>请在成功加入频道后调用该方法。</li>
+                    <li>在直播场景中，只有角色为主播的用户才能调用该方法。</li>
+                    <li>跨频道媒体流转发功能需要[联系技术支持](https://ticket.shengwang.cn/)开通。</li>
+                    <li>该功能不支持 String 型 UID。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>configuration</pt>
+                    <pd>跨频道媒体流转发参数配置。详见 <xref keyref="ChannelMediaRelayConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>configuration</pt>
+                    <pd>跨频道媒体流转发参数配置。详见 <xref keyref="ChannelMediaRelayConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>configuration</pt>
+                    <pd>跨频道媒体流转发参数配置。详见 <xref keyref="ChannelMediaRelayConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>configuration</pt>
+                    <pd>跨频道媒体流转发参数配置。详见 <xref keyref="ChannelMediaRelayConfiguration"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-1: 一般性的错误（未明确归类）。</li>
+                            <li>-2: 参数无效。</li>
+                            <li>-8：内部状态错误。可能因为用户角色不是主播。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-1: 一般性的错误（未明确归类）。</li>
+                            <li>-2: 参数无效。</li>
+                            <li>-8：内部状态错误。可能因为用户角色不是主播。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
+                <ul>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-1: 一般性的错误（未明确归类）。</li>
+                            <li>-2: 参数无效。</li>
+                            <li>-8：内部状态错误。可能因为用户角色不是主播。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-1: 一般性的错误（未明确归类）。</li>
+                            <li>-2: 参数无效。</li>
+                            <li>-8：内部状态错误。可能因为用户角色不是主播。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

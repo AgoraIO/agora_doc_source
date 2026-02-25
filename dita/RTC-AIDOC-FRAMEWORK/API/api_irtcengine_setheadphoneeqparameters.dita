@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setheadphoneeqparameters">
+    <title><ph keyref="setHeadphoneEQParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置耳机均衡器的低频和高频参数。</ph><ph id="shortdesc" props="rn">设置耳机均衡器的低频和高频参数。</ph><ph id="shortdesc" props="flutter">设置耳机均衡器的低频和高频参数。</ph><ph id="shortdesc" props="unity">设置耳机均衡器的低频和高频参数。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setHeadphoneEQParameters"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setHeadphoneEQParameters(lowGain: number, highGain: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setHeadphoneEQParameters(lowGain: number, highGain: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setHeadphoneEQParameters(
+      {required int lowGain, required int highGain});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetHeadphoneEQParameters(int lowGain, int highGain);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">在空间音频场景下，如果在调用 <xref keyref="setHeadphoneEQPreset"/> 方法使用预设的耳机均衡效果后仍未达到预期，你可以通过调用该方法进一步调节耳机均衡效果。</p>
+            <p props="rn">在空间音频场景下，如果在调用 <xref keyref="setHeadphoneEQPreset"/> 方法使用预设的耳机均衡效果后仍未达到预期，你可以通过调用该方法进一步调节耳机均衡效果。</p>
+            <p props="flutter">在空间音频场景下，如果在调用 <xref keyref="setHeadphoneEQPreset"/> 方法使用预设的耳机均衡效果后仍未达到预期，你可以通过调用该方法进一步调节耳机均衡效果。</p>
+            <p props="unity">在空间音频场景下，如果在调用 <xref keyref="setHeadphoneEQPreset"/> 方法使用预设的耳机均衡效果后仍未达到预期，你可以通过调用该方法进一步调节耳机均衡效果。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>lowGain</pt>
+                    <pd>耳机均衡器的低频参数。取值范围为 [-10,10]，取值越大，声音越低沉。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>highGain</pt>
+                    <pd>耳机均衡器的高频参数。取值范围为 [-10,10]，取值越大，声音越尖锐。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lowGain</pt>
+                    <pd>耳机均衡器的低频参数。取值范围为 [-10,10]，取值越大，声音越低沉。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>highGain</pt>
+                    <pd>耳机均衡器的高频参数。取值范围为 [-10,10]，取值越大，声音越尖锐。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lowGain</pt>
+                    <pd>耳机均衡器的低频参数。取值范围为 [-10,10]，取值越大，声音越低沉。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>highGain</pt>
+                    <pd>耳机均衡器的高频参数。取值范围为 [-10,10]，取值越大，声音越尖锐。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lowGain</pt>
+                    <pd>耳机均衡器的低频参数。取值范围为 [-10,10]，取值越大，声音越低沉。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>highGain</pt>
+                    <pd>耳机均衡器的高频参数。取值范围为 [-10,10]，取值越大，声音越尖锐。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败
+                        <ul>
+                            <li>-1：一般性的错误（未明确归类）。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败
+                        <ul>
+                            <li>-1：一般性的错误（未明确归类）。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败
+                        <ul>
+                            <li>-1：一般性的错误（未明确归类）。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

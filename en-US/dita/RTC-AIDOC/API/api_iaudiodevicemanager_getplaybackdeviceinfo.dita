@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_getplaybackdeviceinfo">
+    <title><ph keyref="getPlaybackDeviceInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Retrieves information of the audio playback device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getPlaybackDeviceInfo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getPlaybackDeviceInfo(char deviceId[MAX_DEVICE_ID_LENGTH], char deviceName[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">This method is applicable to Windows and macOS only.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>deviceId</pt>
+                    <pd>The ID of the audio playback device. The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>deviceName</pt>
+                    <pd>Output parameter. The name of the playback device. The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

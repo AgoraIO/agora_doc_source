@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setaudiomixingposition">
+    <title><ph keyref="setAudioMixingPosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the playback position of the music file.</ph><ph id="shortdesc" props="rn">Sets the playback position of the music file.</ph><ph id="shortdesc" props="flutter">Sets the playback position of the music file.</ph><ph id="shortdesc" props="unity">Sets the playback position of the music file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAudioMixingPosition"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setAudioMixingPosition(pos: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setAudioMixingPosition(pos: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioMixingPosition(int pos);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioMixingPosition(int pos);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method allows you to set the playback position of the audio file, so you can play the file from a specific position instead of from the beginning.</p>
+            <p props="rn">This method sets the playback position of an audio file, allowing you to play from a specific point instead of from the beginning.</p>
+            <p props="flutter">This method sets the playback position of the audio file, allowing you to play the file based on actual needs instead of playing it from start to finish.</p>
+            <p props="unity">This method sets the playback position of the audio file so that you can play it from a specific point instead of from the beginning.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">You need to call this method after <xref keyref="startAudioMixing2"/> and receiving the <codeph>onAudioMixingStateChanged(AudioMixingStatePlaying)</codeph> callback.</p>
+            <p props="rn">You must call this method after <xref keyref="startAudioMixing2"/> and after receiving the <codeph>onAudioMixingStateChanged(AudioMixingStatePlaying)</codeph> callback.</p>
+            <p props="flutter">You must call this method after <xref keyref="startAudioMixing2"/> and after receiving the <codeph>onAudioMixingStateChanged(audioMixingStatePlaying)</codeph> callback.</p>
+            <p props="unity">You need to call this method after <xref keyref="startAudioMixing2"/> and after receiving the <codeph>OnAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)</codeph> callback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>pos</pt>
+                    <pd>Integer. The position of the progress bar in milliseconds.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>pos</pt>
+                    <pd>An integer. The position in the progress bar, in milliseconds.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pos</pt>
+                    <pd>Integer. The position on the progress bar, in milliseconds.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>pos</pt>
+                    <pd>Integer. The position on the progress bar in milliseconds.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

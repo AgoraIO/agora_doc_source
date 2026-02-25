@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_musiccontentcenterconfiguration">
+    <title><ph keyref="MusicContentCenterConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the music content center.</ph><ph id="shortdesc" props="android">Configures the music content center.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct MusicContentCenterConfiguration {
+    const char *appId;
+    const char *token;
+    int64_t mccUid;
+    int32_t maxCacheSize;
+    const char* mccDomain;
+    IMusicContentCenterEventHandler* eventHandler;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class MusicContentCenterConfiguration {
+  public String appId;
+  public String token;
+  public long mccUid;
+  public int maxCacheSize;
+  public IMusicContentCenterEventHandler eventHandler;
+  public String mccDomain;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>appId</pt>
+                    <pd>The App ID of the project that enables the music content center.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>token</pt>
+                    <pd>The token used for authentication with the music content center.
+                        <note>Agora recommends using AccessToken2 for authentication. See <codeph>Deploy Token Server</codeph>. When generating the token, pass the <codeph>String</codeph> type <codeph>mccUid</codeph> into <codeph>uid</codeph>. When the token is about to expire, you can call <xref keyref="renewToken"/> to pass in a new token.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mccUid</pt>
+                    <pd>The user ID used for the music content center. This ID can be the same as the <codeph>uid</codeph> used when joining an RTC channel, but it cannot be 0.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>maxCacheSize</pt>
+                    <pd>The number of music resources that can be cached, with a maximum value of 50.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>eventHandler</pt>
+                    <pd>The event handler used to receive callbacks. See <xref keyref="IMusicContentCenterEventHandler"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>appId</pt>
+                    <pd>The App ID of the project that enables the music content center.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>token</pt>
+                    <pd>The token used for authentication when using the music content center.
+                        <note>Agora recommends using AccessToken2 for authentication. See <codeph>Deploying the Token Server</codeph>. When generating the token, pass the <codeph>String</codeph> type <codeph>mccUid</codeph> as the <codeph>uid</codeph> parameter. When the token is about to expire, you can call <xref keyref="renewToken"/> to provide a new token.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mccUid</pt>
+                    <pd>The user ID for using the music content center. It can be the same as the <codeph>uid</codeph> used when joining the RTC channel, but it cannot be 0.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>maxCacheSize</pt>
+                    <pd>The number of cached music resources must not exceed 50.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>eventHandler</pt>
+                    <pd>The event callback interface. See <xref keyref="IMusicContentCenterEventHandler"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

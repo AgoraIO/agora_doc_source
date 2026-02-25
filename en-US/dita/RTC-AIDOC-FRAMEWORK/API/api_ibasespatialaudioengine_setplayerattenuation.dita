@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ibasespatialaudioengine_setplayerattenuation">
+    <title><ph keyref="setPlayerAttenuation"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the sound attenuation properties of the media player.</ph><ph id="shortdesc" props="rn">Sets the sound attenuation property of the media player.</ph><ph id="shortdesc" props="flutter">Sets the sound attenuation properties of the media player.</ph><ph id="shortdesc" props="unity">Sets the sound attenuation property of the media player.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlayerAttenuation"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setPlayerAttenuation(
+    playerId: number,
+    attenuation: number,
+    forceSet: boolean
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setPlayerAttenuation(
+    playerId: number,
+    attenuation: number,
+    forceSet: boolean
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setPlayerAttenuation(
+      {required int playerId,
+      required double attenuation,
+      required bool forceSet});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetPlayerAttenuation(int playerId, double attenuation, bool forceSet);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>playerId</pt>
+                    <pd>Media player ID.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>attenuation</pt>
+                    <pd>Sound attenuation coefficient of the media player, range [0,1].
+                        <ul>
+                            <li>0: Broadcast mode. Volume and tone do not attenuate with distance. The local user hears the same volume and tone regardless of distance.</li>
+                            <li>(0,0.5): Weak attenuation mode. Volume and tone attenuate slightly during transmission, allowing sound to travel farther than in real environments.</li>
+                            <li>0.5: (Default) Simulates sound attenuation in real environments. Equivalent to not setting the <codeph>attenuation</codeph> parameter.</li>
+                            <li>(0.5,1]: Strong attenuation mode. Volume and tone attenuate rapidly during transmission.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>forceSet</pt>
+                    <pd>Whether to force the media player to use the specified attenuation effect:
+                        <ul>
+                            <li><xref keyref="true"/>: Forces the media player to use the <codeph>attenuation</codeph> setting. In this case, the <codeph>audioAttenuation</codeph> setting in <xref keyref="SpatialAudioZone"/> does not affect the media player.</li>
+                            <li><xref keyref="false"/>: Does not force the media player to use the <codeph>attenuation</codeph> setting. Two scenarios:
+                                <ul>
+                                    <li>If the sound source and listener are in different zones (inside and outside the sound isolation zone), the attenuation effect is determined by <codeph>audioAttenuation</codeph> in <xref keyref="SpatialAudioZone"/>.</li>
+                                    <li>If both are in the same zone or both outside the zone, the attenuation effect is determined by the <codeph>attenuation</codeph> value in this method.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>playerId</pt>
+                    <pd>Media player ID.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>attenuation</pt>
+                    <pd>Sound attenuation coefficient of the media player, range [0,1].
+                        <ul>
+                            <li>0: Broadcast mode, where volume and tone do not attenuate with distance. The local user hears the same volume and tone regardless of distance.</li>
+                            <li>(0,0.5): Weak attenuation mode, where volume and tone attenuate slightly during transmission, allowing sound to travel farther than in a real environment.</li>
+                            <li>0.5: (Default) Simulates attenuation of volume in a real environment. Equivalent to not setting the <codeph>attenuation</codeph> parameter.</li>
+                            <li>(0.5,1]: Strong attenuation mode, where volume and tone attenuate rapidly during transmission.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>forceSet</pt>
+                    <pd>Whether to forcibly apply the sound attenuation effect for the media player:
+                        <ul>
+                            <li><xref keyref="true"/>: Forcibly use the <codeph>attenuation</codeph> value to set the media player's sound attenuation effect. In this case, the <codeph>audioAttenuation</codeph> value set in <xref keyref="SpatialAudioZone"/> has no effect on the media player.</li>
+                            <li><xref keyref="false"/>: Do not forcibly use the <codeph>attenuation</codeph> value. There are two cases:
+                                <ul>
+                                    <li>If the sound source and listener are inside and outside of the sound isolation zone respectively, the attenuation effect is determined by the <codeph>audioAttenuation</codeph> setting in <xref keyref="SpatialAudioZone"/>.</li>
+                                    <li>If the sound source and listener are both inside or both outside the same sound isolation zone, the attenuation effect is determined by the <codeph>attenuation</codeph> value in this method.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>playerId</pt>
+                    <pd>Media player ID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>attenuation</pt>
+                    <pd>The sound attenuation coefficient of the media player, ranging from [0,1].
+                        <ul>
+                            <li>0: Broadcast mode, where volume and timbre do not attenuate with distance. The local user hears no change in volume or timbre regardless of distance.</li>
+                            <li>(0,0.5): Weak attenuation mode, where volume and timbre attenuate slightly during propagation. Compared to the real world, sound can travel farther.</li>
+                            <li>0.5: (Default) Simulates attenuation in a real environment. Equivalent to not setting the <codeph>attenuation</codeph> parameter.</li>
+                            <li>(0.5,1]: Strong attenuation mode, where volume and timbre attenuate rapidly during propagation.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>forceSet</pt>
+                    <pd>Whether to forcibly apply the attenuation effect to the media player:
+                        <ul>
+                            <li><xref keyref="true"/>: Forces the use of <codeph>attenuation</codeph> to set the media player's sound attenuation effect. In this case, the <codeph>audioAttenuation</codeph> value set in <xref keyref="SpatialAudioZone"/> has no effect on the media player.</li>
+                            <li><xref keyref="false"/>: Does not forcibly apply <codeph>attenuation</codeph> to the media player. Behavior depends on the following:
+                                <ul>
+                                    <li>If the audio source and listener are in and out of the sound insulation zone respectively, the attenuation effect is determined by <codeph>audioAttenuation</codeph> in <xref keyref="SpatialAudioZone"/>.</li>
+                                    <li>If the audio source and listener are both inside or both outside the same sound insulation zone, the attenuation effect is determined by the <codeph>attenuation</codeph> parameter in this method.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>playerId</pt>
+                    <pd>Media player ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>attenuation</pt>
+                    <pd>Sound attenuation coefficient of the media player, value range [0,1].
+                        <ul>
+                            <li>0: Broadcast mode. Volume and tone do not attenuate with distance. The local user hears the same volume and tone regardless of distance.</li>
+                            <li>(0,0.5): Weak attenuation mode. Volume and tone attenuate slightly during transmission, allowing sound to travel farther than in a real environment.</li>
+                            <li>0.5: (Default) Simulates volume attenuation in a real environment. Equivalent to not setting the <codeph>attenuation</codeph> parameter.</li>
+                            <li>(0.5,1]: Strong attenuation mode. Volume and tone attenuate rapidly during transmission.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>forceSet</pt>
+                    <pd>Whether to forcefully apply the sound attenuation effect for the media player:
+                        <ul>
+                            <li><xref keyref="true"/>: Forcefully use <codeph>attenuation</codeph> to set the media player's sound attenuation effect. In this case, the <codeph>audioAttenuation</codeph> coefficient set in <xref keyref="SpatialAudioZone"/> does not apply to the media player.</li>
+                            <li><xref keyref="false"/>: Do not forcefully use <codeph>attenuation</codeph> to set the media player's sound attenuation effect. There are two cases:
+                                <ul>
+                                    <li>If the sound source and listener are inside and outside the isolation zone respectively, the sound attenuation effect is determined by the <codeph>audioAttenuation</codeph> in <xref keyref="SpatialAudioZone"/>.</li>
+                                    <li>If the sound source and listener are both inside the same isolation zone or both outside, the sound attenuation effect is determined by the <codeph>attenuation</codeph> in this method.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when it fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

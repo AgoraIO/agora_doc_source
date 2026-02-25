@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ivideodevicemanager_enumeratevideodevices">
+    <title><ph keyref="enumerateVideoDevices"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enumerates video devices in the system.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enumerateVideoDevices"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual IVideoDeviceCollection* enumerateVideoDevices() = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method returns an <xref keyref="IVideoDeviceCollection"/> object that contains all available video devices in the system. You can use this object to enumerate video devices. After use, you must call the <xref keyref="release_IVideoDeviceManager"/> method to free the resources.</p>
+            <note props="cpp">This method applies to Windows and macOS platforms only.</note>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>If the method call succeeds, returns an <xref keyref="IVideoDeviceCollection"/> object. See <xref keyref="IVideoDeviceCollection"/>.</li>
+                    <li>If the method call fails, returns <xref keyref="NULL"/>.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

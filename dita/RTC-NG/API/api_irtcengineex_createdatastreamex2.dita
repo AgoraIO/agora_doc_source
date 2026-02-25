@@ -18,7 +18,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)createDataStreamEx:(NSInteger * _Nonnull)streamId
                    config:(AgoraDataStreamConfig * _Nonnull)config
                connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(createDataStreamEx(_:config:connection:));</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int createDataStreamEx(int* streamId, DataStreamConfig&amp; config, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int createDataStreamEx(int* streamId, const DataStreamConfig&amp; config, const RtcConnection&amp; connection) = 0;</codeblock>
             <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int CreateDataStreamEx(int&amp; streamId, const FDataStreamConfig&amp; config, const FRtcConnection&amp; connection);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract createDataStreamEx(
@@ -36,6 +36,7 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android cpp apple unreal unity cs">相比 <xref keyref="createDataStreamEx1" />，本方法不保证数据传输的可靠性。接收方会丢弃超出发送时间 5 秒后的数据包。</p>
+            <note conkeyref="createDataStream2/note" props="android apple cpp unity flutter"/>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>调用时机</title>

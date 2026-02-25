@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getaudiomixingduration">
+    <title><ph keyref="getAudioMixingDuration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the total duration (ms) of the audio mixing file.</ph><ph id="shortdesc" props="android">Gets the duration of the audio mixing file (milliseconds).</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getAudioMixingDuration"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getAudioMixingDuration() = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getAudioMixingDuration();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after calling <codeph>startAudioMixing</codeph> and receiving the <xref keyref="onAudioMixingStateChanged"/> (<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>) callback.</p>
+            <p props="android">Call this method after calling <codeph>startAudioMixing</codeph> and receiving the <xref keyref="onAudioMixingStateChanged"/> (<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>) callback.</p>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>Success. Returns the total duration of the audio mixing file (ms).</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>On success, returns the duration of the audio mixing (milliseconds).</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

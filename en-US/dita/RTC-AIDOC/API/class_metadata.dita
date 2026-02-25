@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_metadata">
+    <title><ph keyref="Metadata"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to represent media metadata.</ph><ph id="shortdesc" props="android">Media metadata.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct Metadata {
+    const char* channelId;
+    unsigned int uid;
+    unsigned int size;
+    unsigned char *buffer;
+    long long timeStampMs;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class AgoraMetadata {
+  public String channelId;
+  public int uid;
+  public byte[] data;
+  public long timeStampMs;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>channelId</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>User ID.
+                        <ul>
+                            <li>For receivers: the remote user ID that sent this <xref keyref="Metadata"/>.</li>
+                            <li>For senders: ignore this field.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>size</pt>
+                    <pd>Buffer size of the <xref keyref="Metadata"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>buffer</pt>
+                    <pd>Output parameter, indicates the buffer address of the received <xref keyref="Metadata"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>timeStampMs</pt>
+                    <pd>Timestamp when sending <xref keyref="Metadata"/> (in milliseconds).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channelId</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID.
+                        <ul>
+                            <li>For receiver: indicates the remote user ID who sent this <xref keyref="Metadata"/>.</li>
+                            <li>For sender: this value is invalid.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>data</pt>
+                    <pd>Buffer address of the received <xref keyref="Metadata"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>timeStampMs</pt>
+                    <pd>Timestamp (in milliseconds) when the <xref keyref="Metadata"/> was sent.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

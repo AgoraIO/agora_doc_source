@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_lastmileproberesult">
+    <title><ph keyref="LastmileProbeResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Last mile uplink and downlink network quality probe result.</ph><ph id="shortdesc" props="rn">Last mile network quality probe result for both uplink and downlink.</ph><ph id="shortdesc" props="flutter">Last mile uplink and downlink network quality probe result.</ph><ph id="shortdesc" props="unity">Uplink and downlink last mile network quality probe result.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class LastmileProbeResult {
+  
+  state?: LastmileProbeResultState;
+  
+  uplinkReport?: LastmileProbeOneWayResult;
+  
+  downlinkReport?: LastmileProbeOneWayResult;
+  
+  rtt?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class LastmileProbeResult {
+  
+  state?: LastmileProbeResultState;
+  
+  uplinkReport?: LastmileProbeOneWayResult;
+  
+  downlinkReport?: LastmileProbeOneWayResult;
+  
+  rtt?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class LastmileProbeResult {
+  const LastmileProbeResult(
+      {this.state, this.uplinkReport, this.downlinkReport, this.rtt});
+
+  @JsonKey(name: 'state')
+  final LastmileProbeResultState? state;
+  @JsonKey(name: 'uplinkReport')
+  final LastmileProbeOneWayResult? uplinkReport;
+  @JsonKey(name: 'downlinkReport')
+  final LastmileProbeOneWayResult? downlinkReport;
+  @JsonKey(name: 'rtt')
+  final int? rtt;
+  factory LastmileProbeResult.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$LastmileProbeResultFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LastmileProbeResultToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class LastmileProbeResult
+    {
+        public LastmileProbeResult()
+        {
+            state = LASTMILE_PROBE_RESULT_STATE.LASTMILE_PROBE_RESULT_UNAVAILABLE;
+            rtt = 0;
+        }
+
+        public LastmileProbeResult(LASTMILE_PROBE_RESULT_STATE state, LastmileProbeOneWayResult uplinkReport,
+            LastmileProbeOneWayResult downlinkReport, uint rtt)
+        {
+            this.state = state;
+            this.uplinkReport = uplinkReport;
+            this.downlinkReport = downlinkReport;
+            this.rtt = rtt;
+        }
+        public LASTMILE_PROBE_RESULT_STATE state { set; get; }
+        public LastmileProbeOneWayResult uplinkReport { set; get; }
+        public LastmileProbeOneWayResult downlinkReport { set; get; }
+        public uint rtt { set; get; }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>state</pt>
+                    <pd>The state of the last mile probe result. See <xref keyref="LASTMILE_PROBE_RESULT_STATE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uplinkReport</pt>
+                    <pd>Uplink network quality report. See <xref keyref="LastmileProbeOneWayResult"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>downlinkReport</pt>
+                    <pd>Downlink network quality report. See <xref keyref="LastmileProbeOneWayResult"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rtt</pt>
+                    <pd>Round-trip time (ms).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>state</pt>
+                    <pd>Status of the last mile probe result. See <xref keyref="LASTMILE_PROBE_RESULT_STATE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uplinkReport</pt>
+                    <pd>Uplink network quality report. See <xref keyref="LastmileProbeOneWayResult"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>downlinkReport</pt>
+                    <pd>Downlink network quality report. See <xref keyref="LastmileProbeOneWayResult"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rtt</pt>
+                    <pd>Round-trip time (ms).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>state</pt>
+                    <pd>The status of the last mile quality probe result. See: <xref keyref="LASTMILE_PROBE_RESULT_STATE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uplinkReport</pt>
+                    <pd>Uplink network quality report. See <xref keyref="LastmileProbeOneWayResult"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>downlinkReport</pt>
+                    <pd>Downlink network quality report. See <xref keyref="LastmileProbeOneWayResult"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtt</pt>
+                    <pd>Round-trip time (ms).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>state</pt>
+                    <pd>The state of the last mile probe result. See: <xref keyref="LASTMILE_PROBE_RESULT_STATE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uplinkReport</pt>
+                    <pd>Uplink network quality report. See <xref keyref="LastmileProbeOneWayResult"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>downlinkReport</pt>
+                    <pd>Downlink network quality report. See <xref keyref="LastmileProbeOneWayResult"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rtt</pt>
+                    <pd>Round-trip time (ms).</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

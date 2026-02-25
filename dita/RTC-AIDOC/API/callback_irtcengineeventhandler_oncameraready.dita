@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_oncameraready">
+    <title><ph keyref="onCameraReady"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onCameraReady"/> 回调：当摄像头打开并准备好采集视频时触发。</ph><ph id="shortdesc" props="ios">摄像头准备就绪回调。</ph><ph id="shortdesc" props="android">摄像头开启并准备好采集视频时触发的回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onCameraReady"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onCameraReady() __deprecated {}</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngineCameraDidReady:(AgoraRtcEngineKit * _Nonnull)engine NS_SWIFT_NAME(rtcEngineCameraDidReady(_:)) __deprecated_msg("Use rtcEngine:localVideoStateChangedOfState:reason:sourceType: instead");</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onCameraReady() {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>废弃</dt>
+                    <dd>该方法已废弃，请改用 <xref keyref="onLocalVideoStateChanged"/> 中的 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>废弃</dt>
+                    <dd>该方法已废弃，请改用 <xref keyref="onLocalVideoStateChanged"/>。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>废弃</dt>
+                    <dd>该方法已废弃，请改用 <xref keyref="onLocalVideoStateChanged"/>。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android ios">
+            <title>触发时机</title>
+            <p props="ios">该回调在摄像头成功打开并准备好采集视频时触发。</p>
+            <p props="android">该回调在摄像头成功开启并准备好采集视频时被触发。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="ios">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

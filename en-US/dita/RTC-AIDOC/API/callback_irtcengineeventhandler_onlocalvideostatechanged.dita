@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onlocalvideostatechanged">
+    <title><ph keyref="onLocalVideoStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for local video state changes.</ph><ph id="shortdesc" props="android">Callback for changes in local video stream state.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalVideoStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onLocalVideoStateChanged(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_REASON reason)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onLocalVideoStateChanged(Constants.VideoSourceType source, int state, int reason)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">You can use this callback to monitor changes in the local video stream state and take appropriate actions based on the reason to better manage and troubleshoot video stream issues.</p>
+            <note props="cpp">Note that duplicate frame detection only applies to video frames with resolution greater than 200 × 200, frame rate ≥ 10 fps, and bitrate &lt; 20 Kbps.
+In most cases, if video capture fails, you can diagnose the issue using the <codeph>reason</codeph> parameter in this callback. However, on some devices, Android does not throw any error callbacks when capture fails (e.g., freezes), causing the SDK to be unable to report the reason for local video state changes. In such cases, you can determine whether video frames are not being captured by checking if the <codeph>state</codeph> reported is <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> or <codeph>LOCAL_VIDEO_STREAM_STATE_ENCODING</codeph>, and the <codeph>captureFrameRate</codeph> in the <xref keyref="onLocalVideoStats"/> callback is 0.</note>
+            <note props="android">Note that duplicate frame detection only applies to video frames with resolution greater than 200 × 200, frame rate ≥ 10 fps, and bitrate &lt; 20 Kbps.
+In general, if a video capture error occurs, you can troubleshoot using the <codeph>reason</codeph> parameter in this callback. However, on some devices, Android does not throw any error callback when capture issues occur (e.g., stuttering), so the SDK cannot report the reason for local video state changes. In this case, you can determine whether video frames are not captured by checking if this callback reports <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> or <codeph>LOCAL_VIDEO_STREAM_STATE_ENCODING</codeph>, and <codeph>captureFrameRate</codeph> in the <xref keyref="onLocalVideoStats"/> callback is 0.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">The SDK triggers this callback and sets <codeph>state</codeph> to <codeph>LOCAL_VIDEO_STREAM_STATE_FAILED</codeph> and <codeph>reason</codeph> to <codeph>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE</codeph> in the following scenarios:
+                <ul>
+                    <li>The app goes to the background and the system reclaims the camera resource.</li>
+                    <li>On Android 9 and above, the system automatically reclaims camera permissions after the app runs in the background for a while.</li>
+                    <li>On Android 6 and above, if the camera is occupied by a third-party app and then released, the SDK triggers this callback with <codeph>state</codeph> as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> and <codeph>reason</codeph> as <codeph>LOCAL_VIDEO_STREAM_REASON_OK</codeph>.</li>
+                    <li>The camera starts normally but fails to output video frames for four consecutive seconds.</li>
+                    <li>When the camera outputs captured video frames, if the SDK detects 15 consecutive duplicate frames, it triggers this callback with <codeph>state</codeph> as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> and <codeph>reason</codeph> as <codeph>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE</codeph>.</li>
+                </ul>
+            </p>
+            <p props="android">This callback is triggered in the following situations, with <xref keyref="State"/> as <codeph>LOCAL_VIDEO_STREAM_STATE_FAILED</codeph> and <codeph>reason</codeph> as <codeph>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE</codeph>:
+                <ul>
+                    <li>On Android 9 and above, the system may reclaim camera permissions after the app runs in the background for some time.</li>
+                    <li>On Android 6 and above, if the camera is occupied by a third-party app and then released, the SDK triggers this callback with <xref keyref="State"/> as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> and <codeph>reason</codeph> as <codeph>LOCAL_VIDEO_STREAM_REASON_OK</codeph>.</li>
+                    <li>The camera starts normally but does not output video frames for four consecutive seconds.</li>
+                    <li>If the camera outputs video frames, and the SDK detects 15 consecutive duplicate frames, this callback is triggered with <xref keyref="State"/> as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> and <codeph>reason</codeph> as <codeph>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE</codeph>.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>source</pt>
+                    <pd>Video source type. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>Local video state. See <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>Reason for the local video state change. See <xref keyref="LOCAL_VIDEO_STREAM_REASON"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>source</pt>
+                    <pd>The type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>
+                        <ul>
+                            <li><codeph>LOCAL_VIDEO_STREAM_STATE_STOPPED</codeph> (0): The local video is in the initial state.</li>
+                            <li><codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1): The local video capturing device is started successfully.</li>
+                            <li><codeph>LOCAL_VIDEO_STREAM_STATE_ENCODING</codeph> (2): The first frame of video is encoded successfully.</li>
+                            <li><codeph>LOCAL_VIDEO_STREAM_STATE_FAILED</codeph> (3): Failed to start the local video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>
+                        <ul>
+                            <li><codeph>LOCAL_VIDEO_STREAM_REASON_OK</codeph> (0): The local video state is normal.</li>
+                            <li><codeph>LOCAL_VIDEO_STREAM_REASON_FAILURE</codeph> (1): The local video failed for an unspecified reason.</li>
+                            <li><codeph>LOCAL_VIDEO_STREAM_REASON_DEVICE_BUSY</codeph> (3): The local video capturing device is occupied. Prompt the user to check if the camera is used by another app or try rejoining the channel.</li>
+                            <li><codeph>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE</codeph> (4): Failed to capture local video. Prompt the user to check if the video capturing device is working properly, if the camera is used by another app, or try rejoining the channel.</li>
+                            <li><codeph>LOCAL_VIDEO_STREAM_REASON_CODEC_NOT_SUPPORT</codeph> (5): Failed to encode local video.</li>
+                            <li><codeph>LOCAL_VIDEO_STREAM_REASON_DEVICE_NOT_FOUND</codeph> (8): No local video capturing device found. Prompt the user to check if the camera is properly connected or working, then rejoin the channel.</li>
+                            <li><codeph>LOCAL_VIDEO_STREAM_REASON_DEVICE_INTERRUPT</codeph> (14): Video capture interrupted. Possible reasons include:
+                                <ul>
+                                    <li>The camera is used by another app. Prompt the user to check if the camera is in use.</li>
+                                    <li>The device is locked, or the app is sent to the background. You can use a foreground service notification to ensure video capture continues in the background.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>LOCAL_VIDEO_STREAM_REASON_DEVICE_FATAL_ERROR</codeph> (15): The video capturing device encountered a fatal error. Prompt the user to close and restart the camera. If the issue persists, check for hardware failure.</li>
+                            <li><codeph>LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_FAILURE</codeph> (21): The current captured window has no data.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

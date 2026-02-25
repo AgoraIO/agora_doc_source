@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getntpwalltimeinms">
+    <title><ph keyref="getNtpWallTimeInMs"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets the current NTP (Network Time Protocol) time.</ph><ph id="shortdesc" props="rn">Gets the current NTP (Network Time Protocol) time.</ph><ph id="shortdesc" props="flutter">Gets the current NTP (Network Time Protocol) time.</ph><ph id="shortdesc" props="unity">Gets the current NTP (Network Time Protocol) time.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getNtpWallTimeInMs"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getNtpWallTimeInMs(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getNtpWallTimeInMs(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getNtpWallTimeInMs();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract UInt64 GetNtpWallTimeInMs();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">In real-time chorus scenarios, especially when the downlink is inconsistent across receiving ends due to network issues, you can call this method to get the current NTP time as a reference to align lyrics and music across multiple receivers, achieving chorus synchronization.</p>
+            <p props="rn">In real-time chorus scenarios, especially when downlink inconsistencies occur at different receiving ends due to network issues, you can call this method to get the current NTP time as the reference time to align lyrics and music across multiple receivers for chorus synchronization.</p>
+            <p props="flutter">In real-time chorus scenarios, especially when downlink inconsistency occurs across receiving ends due to network issues, you can call this method to get the current NTP time as the reference time to align lyrics and music across multiple receivers and achieve chorus synchronization.</p>
+            <p props="unity">In real-time chorus scenarios, especially when the downlink is inconsistent across receiving ends due to network issues, you can call this method to get the current NTP time as the reference time to align lyrics and music across multiple receivers, enabling chorus synchronization.</p>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">The current NTP time as a Unix timestamp (milliseconds).</p>
+            <p props="rn">The current NTP time as a Unix timestamp (milliseconds).</p>
+            <p props="flutter">Unix timestamp (milliseconds) of the current NTP time.</p>
+            <p props="unity">The Unix timestamp (in milliseconds) of the current NTP time.</p>
+        </section>
+    </refbody>
+</reference>

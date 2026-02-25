@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_adjustloopbacksignalvolume">
+    <title><ph keyref="adjustLoopbackSignalVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">调整声卡采集信号的音量。</ph><ph id="shortdesc" props="mac">调节声卡采集信号的音量。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="adjustLoopbackSignalVolume"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int adjustLoopbackSignalVolume(int volume) = 0;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)adjustLoopbackSignalVolume:(NSInteger)volume NS_SWIFT_NAME(adjustLoopbackSignalVolume(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">在调用 <xref keyref="enableLoopbackRecording"/> 启用环路音频采集后，可以调用该方法调整声卡采集信号的音量。</p>
+            <p props="mac">调用 <xref keyref="enableLoopbackRecording"/> 后，可以调用该方法调节声卡采集信号的音量。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>volume</pt>
+                    <pd>混音音量。取值范围为 0 到 100。（默认值为 100，表示原始音量。）</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>volume</pt>
+                    <pd>混音音量。取值范围为 0 到 100。（默认值为 100，表示原始音量。）</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

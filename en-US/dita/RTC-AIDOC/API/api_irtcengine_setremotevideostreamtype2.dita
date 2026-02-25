@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setremotevideostreamtype2">
+    <title><ph keyref="setRemoteVideoStreamType2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Sets the type of video stream to subscribe to.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteVideoStreamType2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int setRemoteVideoStreamType(int uid, int streamType)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use <codeph>setRemoteVideoStreamType(int uid, Constants.VideoStreamType streamType)</codeph> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="android">Depending on the sender's default behavior and the configuration of <codeph>setDualStreamMode</codeph>, the receiver can call this method in the following scenarios:
+                <ul>
+                    <li>By default, the SDK enables adaptive low-stream mode (<codeph>AUTO_SIMULCAST_STREAM</codeph>) on the sender, meaning only the high-quality stream is sent. Only receivers with the broadcaster role can call this method to request the low-quality stream. Once the sender receives the request, it automatically starts sending the low-quality stream. At this point, all users in the channel can call this method to switch to subscribing to the low-quality stream.</li>
+                    <li>If the sender calls <codeph>setDualStreamMode</codeph> and sets <codeph>mode</codeph> to <codeph>DISABLE_SIMULCAST_STREAM</codeph> (never send low-quality stream), this method call has no effect.</li>
+                    <li>If the sender calls <codeph>setDualStreamMode</codeph> and sets <codeph>mode</codeph> to <codeph>ENABLE_SIMULCAST_STREAM</codeph> (always send low-quality stream), then both broadcasters and audience roles can call this method to switch to the low-quality stream.</li>
+                </ul><ph>The SDK dynamically adjusts the video stream size based on the video window size to save bandwidth and computing resources. The default aspect ratio of the low-quality stream is the same as the high-quality stream. The system automatically allocates resolution, frame rate, and bitrate of the low-quality stream based on the current high-quality stream's aspect ratio.</ph></p>
+            <note props="android">
+                <ul>
+                    <li>You can call this method before or after joining a channel.</li>
+                    <li>If both this method and <codeph>setRemoteDefaultVideoStreamType</codeph> are called, this method takes precedence.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>streamType</pt>
+                    <pd>Video stream type:
+                        <ul>
+                            <li>0: High-quality stream.</li>
+                            <li>1: Low-quality stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

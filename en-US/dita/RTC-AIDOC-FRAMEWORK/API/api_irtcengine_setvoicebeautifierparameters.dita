@@ -1,0 +1,271 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setvoicebeautifierparameters">
+    <title><ph keyref="setVoiceBeautifierParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the parameters for preset voice beautifier effects.</ph><ph id="shortdesc" props="rn">Sets parameters for preset voice beautifier effects.</ph><ph id="shortdesc" props="flutter">Sets the parameters for the preset voice beautifier effect.</ph><ph id="shortdesc" props="unity">Sets the parameters for preset voice beautifier effects.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setVoiceBeautifierParameters"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setVoiceBeautifierParameters(preset: VoiceBeautifierPreset, param1: number, param2: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setVoiceBeautifierParameters(
+  preset: VoiceBeautifierPreset,
+  param1: number,
+  param2: number
+): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setVoiceBeautifierParameters(
+  {required VoiceBeautifierPreset preset,
+  required int param1,
+  required int param2});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetVoiceBeautifierParameters(VOICE_BEAUTIFIER_PRESET preset, int param1, int param2);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Call this method to set the gender characteristics and reverb effect of the singing beautifier. This method applies to the local user who is sending the stream. Once set, all users in the channel can hear the effect.
+To achieve better voice effects, it is recommended to perform the following before calling this method:
+                <ul>
+                    <li>Call <xref keyref="setAudioScenario"/> to set the audio scenario to high quality, i.e., <codeph>AudioScenarioGameStreaming</codeph>(3).</li>
+                    <li>Call <xref keyref="setAudioProfile"/> to set <codeph>profile</codeph> to <codeph>AudioProfileMusicHighQuality</codeph>(4) or <codeph>AudioProfileMusicHighQualityStereo</codeph>(5).</li>
+                </ul>
+            </p>
+            <p props="rn">Call this method to set the gender characteristics and reverb effects of the singing beautifier. This method applies to the local user who is sending the stream. After setting, all users in the channel can hear the effect.
+To achieve better voice effects, it is recommended to perform the following operations before calling this method:
+                <ul>
+                    <li>Call <xref keyref="setAudioScenario"/> to set the audio scenario to high-quality mode, i.e., <codeph>AudioScenarioGameStreaming</codeph>(3).</li>
+                    <li>Call <xref keyref="setAudioProfile"/> to set the <codeph>profile</codeph> to <codeph>AudioProfileMusicHighQuality</codeph>(4) or <codeph>AudioProfileMusicHighQualityStereo</codeph>(5).</li>
+                </ul>
+            </p>
+            <p props="flutter">Call this method to set the gender characteristics and reverb effect for the singing beautifier. This method applies to the local user who is sending the stream. After setting, all users in the channel can hear the effect.
+To achieve better vocal quality, it is recommended to do the following before calling this method:
+                <ul>
+                    <li>Call <xref keyref="setAudioScenario"/> to set the audio scenario to high-quality, i.e., <codeph>audioScenarioGameStreaming</codeph>(3).</li>
+                    <li>Call <xref keyref="setAudioProfile"/> to set the <codeph>profile</codeph> to <codeph>audioProfileMusicHighQuality</codeph>(4) or <codeph>audioProfileMusicHighQualityStereo</codeph>(5).</li>
+                </ul>
+            </p>
+            <p props="unity">Call this method to set the gender characteristics and reverb effect for the singing beautifier. This method applies to the local publishing user. After setting, all users in the channel can hear the effect.
+To achieve better vocal effects, it is recommended to perform the following before calling this method:
+                <ul>
+                    <li>Call <xref keyref="setAudioScenario"/> to set the audio scenario to high-quality, i.e., <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph>(3).</li>
+                    <li>Call <xref keyref="setAudioProfile2"/> to set <codeph>profile</codeph> to <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY</codeph>(4) or <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</codeph>(5).</li>
+                </ul>
+            </p>
+            <note props="electron">
+                <ul>
+                    <li>This method can be called before or after joining a channel.</li>
+                    <li>Do not set the <codeph>profile</codeph> parameter in <xref keyref="setAudioProfile"/> to <codeph>AudioProfileSpeechStandard</codeph>(1) or <codeph>AudioProfileIot</codeph>(6), otherwise this method will not take effect.</li>
+                    <li>This method is best suited for voice processing and is not recommended for audio that contains music.</li>
+                    <li>After calling <xref keyref="setVoiceBeautifierParameters"/>, it is not recommended to call the following methods, or the effect set by <xref keyref="setVoiceBeautifierParameters"/> will be overridden:
+                        <ul>
+                            <li><xref keyref="setAudioEffectPreset"/></li>
+                            <li><xref keyref="setAudioEffectParameters"/></li>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>This method depends on the voice beautifier dynamic library <codeph>libagora_audio_beauty_extension.dll</codeph>. If this library is deleted, the feature cannot be enabled properly.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>This method can be called before or after joining a channel.</li>
+                    <li>Do not set the <codeph>profile</codeph> parameter of <xref keyref="setAudioProfile"/> to <codeph>AudioProfileSpeechStandard</codeph>(1) or <codeph>AudioProfileIot</codeph>(6), otherwise this method will not take effect.</li>
+                    <li>This method is optimized for voice and is not recommended for audio data containing music.</li>
+                    <li>After calling <xref keyref="setVoiceBeautifierParameters"/>, it is not recommended to call the following methods, or the effect set by <xref keyref="setVoiceBeautifierParameters"/> will be overridden:
+                        <ul>
+                            <li><xref keyref="setAudioEffectPreset"/></li>
+                            <li><xref keyref="setAudioEffectParameters"/></li>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>This method depends on the beautifier dynamic library <codeph>libagora_audio_beauty_extension.dll</codeph>. Deleting this library will cause the feature to fail to start properly.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method can be called before or after joining a channel.</li>
+                    <li>Do not set the <codeph>profile</codeph> parameter of <xref keyref="setAudioProfile"/> to <codeph>audioProfileSpeechStandard</codeph>(1) or <codeph>audioProfileIot</codeph>(6), otherwise this method will not take effect.</li>
+                    <li>This method provides optimal processing for vocals and is not recommended for audio data containing music.</li>
+                    <li>After calling <xref keyref="setVoiceBeautifierParameters"/>, do not call the following methods, or the effect set by <xref keyref="setVoiceBeautifierParameters"/> will be overridden:
+                        <ul>
+                            <li><xref keyref="setAudioEffectPreset"/></li>
+                            <li><xref keyref="setAudioEffectParameters"/></li>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>This method depends on the voice beautifier dynamic library <codeph>libagora_audio_beauty_extension.dll</codeph>. If this library is deleted, the feature will not work properly.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method can be called before and after joining a channel.</li>
+                    <li>Do not set the <codeph>profile</codeph> parameter of <xref keyref="setAudioProfile2"/> to <codeph>AUDIO_PROFILE_SPEECH_STANDARD</codeph>(1) or <codeph>AUDIO_PROFILE_IOT</codeph>(6), otherwise this method will not take effect.</li>
+                    <li>This method is optimized for vocal processing and is not recommended for audio data containing music.</li>
+                    <li>After calling <xref keyref="setVoiceBeautifierParameters"/>, do not call the following methods, otherwise the effect set by <xref keyref="setVoiceBeautifierParameters"/> will be overridden:
+                        <ul>
+                            <li><xref keyref="setAudioEffectPreset"/></li>
+                            <li><xref keyref="setAudioEffectParameters"/></li>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>This method depends on the voice beautifier dynamic library <codeph>libagora_audio_beauty_extension.dll</codeph>. Deleting this library will cause the feature to fail.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>preset</pt>
+                    <pd>Preset effect:
+                        <ul>
+                            <li><codeph>SINGING_BEAUTIFIER</codeph>: Singing beautifier.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>param1</pt>
+                    <pd>Gender characteristic of the singing voice:
+                        <ul>
+                            <li><codeph>1</codeph>: Male.</li>
+                            <li><codeph>2</codeph>: Female.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>param2</pt>
+                    <pd>Reverb effect of the singing voice:
+                        <ul>
+                            <li><codeph>1</codeph>: Small room reverb.</li>
+                            <li><codeph>2</codeph>: Large room reverb.</li>
+                            <li><codeph>3</codeph>: Hall reverb.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>preset</pt>
+                    <pd>Preset effect:
+                        <ul>
+                            <li><codeph>SINGING_BEAUTIFIER</codeph>: Singing beautifier.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>param1</pt>
+                    <pd>Gender characteristics of the singing voice:
+                        <ul>
+                            <li><codeph>1</codeph>: Male voice.</li>
+                            <li><codeph>2</codeph>: Female voice.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>param2</pt>
+                    <pd>Reverb effect of the singing voice:
+                        <ul>
+                            <li><codeph>1</codeph>: Small room reverb.</li>
+                            <li><codeph>2</codeph>: Large room reverb.</li>
+                            <li><codeph>3</codeph>: Hall reverb.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>preset</pt>
+                    <pd>The preset audio effect:
+                        <ul>
+                            <li><codeph>SINGING_BEAUTIFIER</codeph>: Singing beautifier.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>param1</pt>
+                    <pd>Gender characteristics of the singing voice:
+                        <ul>
+                            <li><codeph>1</codeph>: Male voice.</li>
+                            <li><codeph>2</codeph>: Female voice.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>param2</pt>
+                    <pd>Reverb effect of the singing voice:
+                        <ul>
+                            <li><codeph>1</codeph>: Reverb effect in a small room.</li>
+                            <li><codeph>2</codeph>: Reverb effect in a large room.</li>
+                            <li><codeph>3</codeph>: Reverb effect in a hall.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>preset</pt>
+                    <pd>Preset effect:
+                        <ul>
+                            <li><codeph>SINGING_BEAUTIFIER</codeph>: Singing beautifier.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>param1</pt>
+                    <pd>Gender characteristic of the singing voice:
+                        <ul>
+                            <li><codeph>1</codeph>: Male voice.</li>
+                            <li><codeph>2</codeph>: Female voice.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>param2</pt>
+                    <pd>Reverb effect of the singing voice:
+                        <ul>
+                            <li><codeph>1</codeph>: Small room reverb.</li>
+                            <li><codeph>2</codeph>: Large room reverb.</li>
+                            <li><codeph>3</codeph>: Hall reverb.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

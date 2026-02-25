@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onlocalaudiostats">
+    <title><ph keyref="onLocalAudioStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for local audio statistics.</ph><ph id="shortdesc" props="android">Callback for local audio stream statistics.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalAudioStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onLocalAudioStats(const LocalAudioStats&amp; stats)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onLocalAudioStats(LocalAudioStats stats) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">This callback is triggered every two seconds.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">The SDK triggers this callback every two seconds.</p>
+            <p props="android">This callback is triggered every two seconds.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>stats</pt>
+                    <pd>Local audio statistics. See <xref keyref="LocalAudioStats"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>stats</pt>
+                    <pd>Local audio statistics. See <xref keyref="LocalAudioStats"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

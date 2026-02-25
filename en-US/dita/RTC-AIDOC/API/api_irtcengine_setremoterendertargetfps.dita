@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setremoterendertargetfps">
+    <title><ph keyref="setRemoteRenderTargetFps"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the maximum frame rate for remote video rendering.</ph><ph id="shortdesc" props="android">Sets the maximum frame rate for rendering remote video.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteRenderTargetFps"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteRenderTargetFps(int targetFps) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setRemoteRenderTargetFps(int targetFps);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">In scenarios where high frame rate rendering is not required (e.g., screen sharing, online education), or when the remote user uses a low- or mid-end device, you can call this method to set the maximum rendering frame rate for the remote client. The SDK tries to keep the actual rendering frame rate close to this value to reduce CPU usage and improve system performance.</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In scenarios where video rendering frame rate is not critical (e.g., screen sharing, online education) or when the remote user is using a low- or mid-end device, you can call this method to set the maximum frame rate for remote client video rendering. The SDK will try to keep the actual rendering frame rate near this value to reduce CPU usage and improve system performance.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You can call this method before or after joining a channel.</p>
+            <p props="android">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>targetFps</pt>
+                    <pd>Maximum rendering frame rate (fps) for remote video. Supported values: 1, 7, 10, 15, 24, 30, 60.
+                        <ul>
+                            <li>Set this parameter to a value lower than the actual video frame rate, otherwise the setting will not take effect.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>targetFps</pt>
+                    <pd>Target rendering frame rate (fps). Supported values: 1, 7, 10, 15, 24, 30, 60.
+                        <note>Set this parameter to a value lower than the actual video frame rate, otherwise the setting will not take effect.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

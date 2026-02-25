@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_registerpacketobserver">
+    <title><ph keyref="registerPacketObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Registers a packet observer.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerPacketObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int registerPacketObserver(IPacketObserver* observer) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Call this method to register a packet observer. When the Agora SDK triggers the <xref keyref="IPacketObserver"/> callback for voice or video packet transmission, you can use this method to process packets, such as encryption or decryption.</p>
+            <note props="cpp">
+                <ul>
+                    <li>The size of the packet sent to the network after processing must not exceed 1200 bytes, otherwise the SDK may fail to send the packet.</li>
+                    <li>Make sure both the sender and receiver call this method; otherwise, undefined behavior such as no audio or black screen may occur.</li>
+                    <li>Agora does not recommend calling this method when using media streaming or recording features.</li>
+                    <li>Call this method before joining a channel.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>observer</pt>
+                    <pd>Packet observer. See <xref keyref="IPacketObserver"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

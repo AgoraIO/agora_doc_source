@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_registervideoframeobserver">
+    <title><ph keyref="registerVideoFrameObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Registers the raw video frame observer object.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerVideoFrameObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int registerVideoFrameObserver(IVideoFrameObserver observer);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">It is recommended to register an <xref keyref="IVideoFrameObserver"/> instance using this method and implement the callbacks as needed. After successful registration, the SDK triggers the corresponding callbacks whenever a video frame is received. You can use this raw video data in video preprocessing scenarios such as virtual background and beauty effects.</p>
+            <note props="android">When processing the video data returned in the callbacks, note that the <codeph>width</codeph> and <codeph>height</codeph> parameters may change under the following conditions:
+                <ul>
+                    <li>When network conditions deteriorate, the video resolution will gradually decrease.</li>
+                    <li>When the user adjusts the video configuration, the resolution in the callback will also change accordingly.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">Call this method before joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>observer</pt>
+                    <pd>Observer instance. See <xref keyref="IVideoFrameObserver"/>.
+                        <note>To release this instance, set this parameter to <codeph>null</codeph>.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_startaudiodeviceloopbacktest">
+    <title><ph keyref="startAudioDeviceLoopbackTest"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts the audio device loopback test.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startAudioDeviceLoopbackTest"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioDeviceLoopbackTest(int indicationInterval) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method tests whether the local audio capturing and playback devices are working properly. After calling this method, the audio capturing device collects local audio, and the playback device plays the captured audio. The SDK triggers two separate <xref keyref="onAudioVolumeIndication"/> callbacks at the specified time interval, reporting the volume information of the capturing device (<codeph>uid</codeph> = 0) and the playback device (<codeph>uid</codeph> = 1).</p>
+            <note props="cpp">
+                <ul>
+                    <li>This method is only applicable to Windows and macOS platforms.</li>
+                    <li>You can call this method before or after joining a channel.</li>
+                    <li>This method only takes effect when called by a host.</li>
+                    <li>This method only tests local audio devices and does not involve network conditions.</li>
+                    <li>After the test is complete, call <xref keyref="stopAudioDeviceLoopbackTest"/> to stop the audio device loopback test.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>indicationInterval</pt>
+                    <pd>The time interval (ms) at which the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback. It is recommended to set this value to greater than 200 ms. This value cannot be less than 10 ms; otherwise, you will not receive the <xref keyref="onAudioVolumeIndication"/> callback.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

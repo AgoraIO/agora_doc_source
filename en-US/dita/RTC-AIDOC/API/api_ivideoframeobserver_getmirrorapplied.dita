@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ivideoframeobserver_getmirrorapplied">
+    <title><ph keyref="getMirrorApplied"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered each time the SDK receives a video frame, used to set whether to mirror the captured video.</ph><ph id="shortdesc" props="android">Callback triggered each time the SDK receives a video frame, used to determine whether to mirror the captured video.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getMirrorApplied"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool getMirrorApplied() { return false; }</codeblock>
+                <codeblock props="android" outputclass="language-java">@CalledByNative boolean getMirrorApplied();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">If you want the obtained video data to be a mirrored image of the original video, you need to register this callback when calling <xref keyref="registerVideoFrameObserver_IMediaEngine"/>. After successfully registering the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set whether to mirror the video frame through the return value of this callback.</p>
+            <p props="android">If you want the obtained video data to be a mirrored image of the original video, you need to register this callback when calling <xref keyref="registerVideoFrameObserver"/>. After successfully registering the video frame observer, the SDK triggers this callback each time it receives a video frame. You must set whether to mirror the video frame in the return value of this callback.</p>
+            <note props="cpp">
+                <ul>
+                    <li>On Windows platform, the supported video data formats for this callback include: I420, RGBA, and TextureBuffer.</li>
+                    <li>On Android platform, the supported video data formats for this callback include: I420, RGBA, and Texture.</li>
+                    <li>On iOS platform, the supported video data formats for this callback include: I420, RGBA, and CVPixelBuffer.</li>
+                    <li>On macOS platform, the supported video data formats for this callback include: I420 and RGBA.</li>
+                    <li>This method and the <xref keyref="setVideoEncoderConfiguration"/> method both support setting mirror effects. It is recommended to use only one of them. Using both simultaneously may result in overlapping mirror effects, causing the setting to fail.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>On Android, this callback supports the following video data formats: I420, RGBA, and Texture.</li>
+                    <li>This method and <xref keyref="setVideoEncoderConfiguration"/> both support setting mirror effects. It is recommended to use only one method. Using both may result in overlapping mirror effects, causing the setting to fail.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Triggered each time the SDK receives a video frame.</p>
+            <p props="android">This callback is triggered each time the SDK receives a video frame.</p>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>: The captured video is mirrored.</li>
+                    <li><xref keyref="false"/>: (Default) The captured video is not mirrored.</li>
+                </ul>
+            </p>
+            <p props="android">Whether to mirror the captured video:
+                <ul>
+                    <li><xref keyref="true"/>: Mirror the captured video.</li>
+                    <li><xref keyref="false"/>: (default) Do not mirror the captured video.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

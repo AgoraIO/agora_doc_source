@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setvideoencoderconfiguration">
+    <title><ph keyref="setVideoEncoderConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the encoder configuration for the local video.</ph><ph id="shortdesc" props="android">Sets the encoder configuration for the local video.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setVideoEncoderConfiguration"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setVideoEncoderConfiguration(const VideoEncoderConfiguration&amp; config) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setVideoEncoderConfiguration(VideoEncoderConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">
+                <ul>
+                    <li>This method and the <xref keyref="getMirrorApplied"/> method both support setting mirror effects. Agora recommends using only one of them; using both may cause the mirror effect to overlap and the setting to fail.</li>
+                    <li>The <codeph>config</codeph> specified in this method represents the maximum values under ideal network conditions. If the video engine cannot render the video using the specified <codeph>config</codeph> due to unstable network conditions, it will try lower parameters in the list until a usable configuration is found.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>This method and <xref keyref="getMirrorApplied"/> both support setting mirror effects. Agora recommends using only one of them. Using both may cause mirror effect stacking, making the mirror setting ineffective.</li>
+                    <li>The <codeph>config</codeph> specified in this method is the maximum value under ideal network conditions. If the video engine cannot render video using the specified <codeph>config</codeph> due to unstable network conditions, it will try lower parameters in the list until it finds a usable configuration.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You can call this method before or after joining a channel. If you do not need to reset the video encoding properties after joining the channel, Agora recommends calling this method before <xref keyref="enableVideo"/> to reduce the time to render the first video frame.</p>
+            <p props="android">You can call this method before or after joining a channel. If the user does not need to reset video encoding properties after joining, Agora recommends calling this method before <xref keyref="enableVideo"/> to reduce the time to render the first video frame.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>Video encoding configuration. See <xref keyref="VideoEncoderConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>Video encoder configuration. See <xref keyref="VideoEncoderConfiguration"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

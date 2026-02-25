@@ -29,7 +29,7 @@
         <section id="detailed_desc">
             <title>Details</title>
             <p>The virtual background feature enables the local user to replace their original background with a static image, dynamic video, blurred background, or portrait-background segmentation to achieve picture-in-picture effect. Once the virtual background feature is enabled, all users in the channel can see the custom background.</p>
-            <p>Both this method and <xref keyref="enableVirtualBackground"/> enable/disable virtual background, but this method allows you to specify the media source to which the virtual background is applied. </p>
+            <p props="android apple">Both this method and <xref keyref="enableVirtualBackground"/> enable/disable virtual background, but this method allows you to specify the media source to which the virtual background is applied. </p>
             <p>Call this method after calling <xref keyref="enableVideo"/> or <xref keyref="startPreview2"/>.</p>
             <note type="attention" conkeyref="enableVirtualBackground/hardware_req"/>
         </section>
@@ -54,7 +54,10 @@
             </plentry>
             <plentry id="sourcetype">
                 <pt props="android apple">sourceType</pt>
-                <pd>The media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE" />.</pd>
+                <pd>The type of the media source to which the filter effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE" />.<note type="attention">In this method, this parameter supports only the following two settings:<ul>
+                    <li>The default value is <apiname keyref="PRIMARY_CAMERA_SOURCE"/>.</li>
+                    <li>Set this parameter to <apiname keyref="CUSTOM_VIDEO_SOURCE"/> if you use custom video source.</li>
+                    </ul></note></pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

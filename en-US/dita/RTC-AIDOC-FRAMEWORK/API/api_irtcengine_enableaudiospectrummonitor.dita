@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enableaudiospectrummonitor">
+    <title><ph keyref="enableAudioSpectrumMonitor"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Enables audio spectrum monitoring.</ph><ph id="shortdesc" props="rn">Enables audio spectrum monitoring.</ph><ph id="shortdesc" props="flutter">Enables audio spectrum monitoring.</ph><ph id="shortdesc" props="unity">Enables audio spectrum monitoring.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableAudioSpectrumMonitor"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableAudioSpectrumMonitor(intervalInMS?: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableAudioSpectrumMonitor(intervalInMS?: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableAudioSpectrumMonitor({int intervalInMS = 100});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableAudioSpectrumMonitor(int intervalInMS = 100);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">If you want to obtain audio spectrum data of local or remote users, register an audio spectrum observer and enable audio spectrum monitoring.</p>
+            <p props="rn">If you want to obtain the audio spectrum data of local or remote users, register an audio spectrum observer and enable audio spectrum monitoring.</p>
+            <p props="flutter">If you want to obtain audio spectrum data of local or remote users, register an audio spectrum observer and enable audio spectrum monitoring.</p>
+            <p props="unity">If you want to obtain audio spectrum data of local or remote users, register an audio spectrum observer and enable audio spectrum monitoring.</p>
+            <note props="electron">This method can be called before or after joining a channel.</note>
+            <note props="rn">This method can be called before or after joining a channel.</note>
+            <note props="flutter">You can call this method either before or after joining a channel.</note>
+            <note props="unity">This method can be called either before or after joining a channel.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>intervalInMS</pt>
+                    <pd>The time interval (ms) at which the SDK triggers the <xref keyref="onLocalAudioSpectrum"/> and <xref keyref="onRemoteAudioSpectrum"/> callbacks. The default is 100 ms. The value must not be less than 10 ms; otherwise, the method call fails.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>intervalInMS</pt>
+                    <pd>The interval (ms) at which the SDK triggers the <xref keyref="onLocalAudioSpectrum"/> and <xref keyref="onRemoteAudioSpectrum"/> callbacks. Default is 100 ms. The value must not be less than 10 ms, otherwise the method call will fail.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>intervalInMS</pt>
+                    <pd>The time interval (in milliseconds) at which the SDK triggers the <xref keyref="onLocalAudioSpectrum"/> and <xref keyref="onRemoteAudioSpectrum"/> callbacks. The default value is 100 ms. The value must not be less than 10 ms, otherwise the method call fails.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>intervalInMS</pt>
+                    <pd>The interval (in milliseconds) at which the SDK triggers the <xref keyref="onLocalAudioSpectrum"/> and <xref keyref="onRemoteAudioSpectrum"/> callbacks. Default is 100 ms. The value must not be less than 10 ms, otherwise the method call will fail.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter settings.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter settings.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter settings.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

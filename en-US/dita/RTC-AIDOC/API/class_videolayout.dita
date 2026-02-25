@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videolayout">
+    <title><ph keyref="VideoLayout"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes the layout information of a sub video stream in a mixed stream.</ph><ph id="shortdesc" props="android">Describes the position and state of a sub video stream in the video mixing layout.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct VideoLayout {
+  const char* channelId;
+  rtc::uid_t uid;
+  user_id_t strUid;
+  uint32_t x;
+  uint32_t y;
+  uint32_t width;
+  uint32_t height;
+  uint32_t videoState;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class VideoLayout {
+  public String channelId;
+  public int uid;
+  public String strUid;
+  public int videoState;
+  public int x;
+  public int y;
+  public int width;
+  public int height;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
+            <p props="cpp">Describes the position, size, and display state of a sub video stream in the composite canvas.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>channelId</pt>
+                    <pd>The channel name to which the sub video stream belongs.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>The user ID of the publisher of the sub video stream.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>strUid</pt>
+                    <pd>Reserved parameter.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>x</pt>
+                    <pd>The X coordinate (in pixels) of the sub video stream on the composite canvas, indicating the horizontal offset of the top-left corner of the video relative to the top-left corner of the canvas.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>y</pt>
+                    <pd>The Y coordinate (in pixels) of the sub video stream on the composite canvas, indicating the vertical offset of the top-left corner of the video relative to the top-left corner of the canvas.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>width</pt>
+                    <pd>The width (in pixels) of the sub video stream.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>The height (in pixels) of the sub video stream.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoState</pt>
+                    <pd>The display state of the sub video stream on the composite canvas:
+                        <ul>
+                            <li><codeph>0</codeph>: Normal. The sub video stream is rendered on the canvas.</li>
+                            <li><codeph>1</codeph>: Placeholder image. The sub video stream has no video frame and is shown as a placeholder image on the canvas.</li>
+                            <li><codeph>2</codeph>: Black image. The sub video stream is replaced with a black image.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channelId</pt>
+                    <pd>The name of the channel to which the sub video stream belongs.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>The user ID that publishes the sub video stream.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>strUid</pt>
+                    <pd>Reserved field for future use.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoState</pt>
+                    <pd>The state of the sub video stream on the mixed video canvas:
+                        <ul>
+                            <li>0: Normal. The sub video stream is rendered on the mixed canvas.</li>
+                            <li>1: Placeholder image. The sub video stream has no video frames and is displayed as a placeholder image on the mixed canvas.</li>
+                            <li>2: Black image. The sub video stream is replaced by a black image.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>x</pt>
+                    <pd>The X coordinate of the sub video stream on the mixed canvas (in px), which is the horizontal offset of the top-left corner of the video relative to the top-left corner of the canvas.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>y</pt>
+                    <pd>The Y coordinate of the sub video stream on the mixed canvas (in px), which is the vertical offset of the top-left corner of the video relative to the top-left corner of the canvas.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>width</pt>
+                    <pd>The width of the sub video stream (in px).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>The height of the sub video stream (in px).</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

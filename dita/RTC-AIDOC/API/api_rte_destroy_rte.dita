@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_rte_destroy_rte">
+    <title><ph keyref="Destroy_Rte"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">销毁 <codeph>RTE</codeph> 对象。</ph><ph id="shortdesc" props="ios">销毁 <codeph>RTE</codeph> 对象。</ph><ph id="shortdesc" props="android">销毁 <codeph>RTE</codeph> 对象，释放相关资源。</ph><ph id="shortdesc" props="mac">销毁 <codeph>RTE</codeph> 对象。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="Destroy_Rte"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">bool Destroy(Error *err = nullptr)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (BOOL)destroy:(AgoraRteError * _Nullable)error;</codeblock>
+                <codeblock props="android" outputclass="language-java">public synchronized void destroy() throws RteException</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (BOOL)destroy:(AgoraRteError * _Nullable)error;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="ios">该方法会释放 <codeph>RTE</codeph> 对象使用的所有资源。</p>
+            <p props="mac">该方法会释放 <codeph>RTE</codeph> 对象使用的所有资源。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>输出参数，状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>error</pt>
+                    <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>error</pt>
+                    <pd>状态或错误信息，详见 <xref keyref="Error"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="exception" props="android">
+            <title>异常</title>
+            <p props="android">销毁失败，SDK 会抛出异常，并返回相应的错误信息。你需要捕获异常并进行处理。</p>
+        </section>
+        <section id="return_values" props="cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>：销毁成功。</li>
+                    <li><xref keyref="false"/>：销毁失败。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li><xref keyref="true"/>：销毁成功。</li>
+                    <li><xref keyref="false"/>：销毁失败。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li><xref keyref="true"/>：销毁成功。</li>
+                    <li><xref keyref="false"/>：销毁失败。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

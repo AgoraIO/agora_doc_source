@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_rtmpstreampublishstate">
+    <title><ph keyref="RTMP_STREAM_PUBLISH_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">RTMP stream publishing state.</ph><ph id="shortdesc" props="rn">Stream publishing state.</ph><ph id="shortdesc" props="flutter">The state of RTMP streaming.</ph><ph id="shortdesc" props="unity">Streaming state.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishStateIdle</pt>
+                    <pd>0: Stream publishing not started or already ended.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishStateConnecting</pt>
+                    <pd>1: Connecting to the streaming server and CDN server.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishStateRunning</pt>
+                    <pd>2: Stream publishing is in progress. This state is returned after successful publishing.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishStateRecovering</pt>
+                    <pd>3: Recovering stream publishing. When the CDN encounters an exception or the stream is briefly interrupted, the SDK automatically attempts to recover the stream and returns this state.
+                        <ul>
+                            <li>If recovery is successful, it enters the <codeph>RtmpStreamPublishStateRunning(2)</codeph> state.</li>
+                            <li>If the server encounters an error or recovery fails within 60 seconds, it enters the <codeph>RtmpStreamPublishStateFailure(4)</codeph> state. If 60 seconds is too long, you can also try to reconnect manually.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishStateFailure</pt>
+                    <pd>4: Stream publishing failed. After failure, you can troubleshoot the issue using the returned error code.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishStateDisconnecting</pt>
+                    <pd>5: The SDK is disconnecting from the streaming server and CDN server. When you call the <xref keyref="stopRtmpStream"/> method to end the stream normally, the SDK sequentially reports the stream states as <codeph>RtmpStreamPublishStateDisconnecting</codeph> and <codeph>RtmpStreamPublishStateIdle</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishStateIdle</pt>
+                    <pd>0: Streaming has not started or has ended.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishStateConnecting</pt>
+                    <pd>1: Connecting to the streaming and CDN servers.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishStateRunning</pt>
+                    <pd>2: Streaming is ongoing. This state is returned after successful publishing.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishStateRecovering</pt>
+                    <pd>3: Recovering the stream. When the CDN encounters an issue or the stream is briefly interrupted, the SDK automatically attempts to recover the stream and returns this state.
+                        <ul>
+                            <li>If recovery is successful, it transitions to <codeph>RtmpStreamPublishStateRunning(2)</codeph>.</li>
+                            <li>If the server fails or recovery is unsuccessful within 60 seconds, it transitions to <codeph>RtmpStreamPublishStateFailure(4)</codeph>. If 60 seconds is too long, you can also manually attempt to reconnect.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishStateFailure</pt>
+                    <pd>4: Streaming failed. After failure, you can troubleshoot using the returned error code.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishStateDisconnecting</pt>
+                    <pd>5: The SDK is disconnecting from the streaming and CDN servers. When you call <xref keyref="stopRtmpStream"/> to end the stream normally, the SDK reports the states <codeph>RtmpStreamPublishStateDisconnecting</codeph> and <codeph>RtmpStreamPublishStateIdle</codeph> in sequence.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishStateIdle</pt>
+                    <pd>0: Streaming has not started or has ended.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishStateConnecting</pt>
+                    <pd>1: Connecting to the streaming server and CDN server.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishStateRunning</pt>
+                    <pd>2: Streaming is in progress. This state is returned after successful streaming.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishStateRecovering</pt>
+                    <pd>3: Recovering the stream. When the CDN encounters an issue or the stream is briefly interrupted, the SDK automatically attempts to recover the stream and returns this state.
+                        <ul>
+                            <li>If recovery is successful, it transitions to <codeph>rtmpStreamPublishStateRunning(2)</codeph>.</li>
+                            <li>If the server fails or recovery is not successful within 60 seconds, it transitions to <codeph>rtmpStreamPublishStateFailure(4)</codeph>. If 60 seconds is too long, you can also manually attempt reconnection.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishStateFailure</pt>
+                    <pd>4: Streaming failed. After failure, you can troubleshoot the error based on the returned error code.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishStateDisconnecting</pt>
+                    <pd>5: The SDK is disconnecting from the streaming server and CDN server. When you call the <xref keyref="stopRtmpStream"/> method to end streaming normally, the SDK reports the streaming state as <codeph>rtmpStreamPublishStateDisconnecting</codeph>, then <codeph>rtmpStreamPublishStateIdle</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_STATE_IDLE</pt>
+                    <pd>0: Streaming has not started or has ended.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_STATE_CONNECTING</pt>
+                    <pd>1: Connecting to the streaming server and CDN server.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_STATE_RUNNING</pt>
+                    <pd>2: Streaming is in progress. This state is returned after successful streaming.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_STATE_RECOVERING</pt>
+                    <pd>3: Recovering the stream. When a CDN exception occurs or the stream is briefly interrupted, the SDK automatically attempts to recover the stream and returns this state.
+                        <ul>
+                            <li>If the stream is successfully recovered, it enters the <codeph>RTMP_STREAM_PUBLISH_STATE_RUNNING(2)</codeph> state.</li>
+                            <li>If the server encounters an error or recovery fails within 60 seconds, it enters the <codeph>RTMP_STREAM_PUBLISH_STATE_FAILURE(4)</codeph> state. If you think 60 seconds is too long, you can also try reconnecting manually.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_STATE_FAILURE</pt>
+                    <pd>4: Streaming failed. After failure, you can troubleshoot the cause using the returned error code.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_STATE_DISCONNECTING</pt>
+                    <pd>5: The SDK is disconnecting from the streaming server and CDN server. When you call the <xref keyref="stopRtmpStream"/> method to end streaming normally, the SDK reports the streaming states in sequence: <codeph>RTMP_STREAM_PUBLISH_STATE_DISCONNECTING</codeph>, <codeph>RTMP_STREAM_PUBLISH_STATE_IDLE</codeph>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

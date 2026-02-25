@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablespatialaudio">
+    <title><ph keyref="enableSpatialAudio"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Enables or disables spatial audio.</ph><ph id="shortdesc" props="rn">Enables or disables spatial audio.</ph><ph id="shortdesc" props="flutter">Enables or disables spatial audio.</ph><ph id="shortdesc" props="unity">Enables or disables spatial audio.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableSpatialAudio"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableSpatialAudio(enabled: boolean): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableSpatialAudio(enabled: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableSpatialAudio(bool enabled);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableSpatialAudio(bool enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After enabling spatial audio, you can call <xref keyref="setRemoteUserSpatialAudioParams"/> to set spatial audio parameters for remote users.</p>
+            <p props="rn">After enabling spatial audio, you can call <xref keyref="setRemoteUserSpatialAudioParams"/> to set spatial audio parameters for remote users.</p>
+            <p props="flutter">After enabling spatial audio, you can call <xref keyref="setRemoteUserSpatialAudioParams"/> to set the spatial audio parameters for remote users.</p>
+            <p props="unity">After enabling spatial audio, you can call <xref keyref="setRemoteUserSpatialAudioParams"/> to set spatial audio parameters for remote users.</p>
+            <note props="electron">
+                <ul>
+                    <li>This method can be called before or after joining a channel.</li>
+                    <li>This method depends on the spatial audio dynamic library <codeph>libagora_spatial_audio_extension.dll</codeph>. Removing the library will prevent the feature from working properly.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>This method can be called before or after joining a channel.</li>
+                    <li>This method depends on the spatial audio dynamic library <codeph>libagora_spatial_audio_extension.dll</codeph>. Removing this library will prevent the feature from working properly.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method can be called before or after joining a channel.</li>
+                    <li>This method depends on the spatial audio dynamic library <codeph>libagora_spatial_audio_extension.dll</codeph>. Deleting this library will cause the feature to fail to enable properly.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method can be called before or after joining a channel.</li>
+                    <li>This method depends on the spatial audio dynamic library <codeph>libagora_spatial_audio_extension.dll</codeph>. Removing this library will prevent the feature from working properly.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable spatial audio:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable spatial audio.</li>
+                            <li><xref keyref="false"/>: Disable spatial audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable spatial audio:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable spatial audio.</li>
+                            <li><xref keyref="false"/>: Disable spatial audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable spatial audio:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable spatial audio.</li>
+                            <li><xref keyref="false"/>: Disable spatial audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable spatial audio:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable spatial audio.</li>
+                            <li><xref keyref="false"/>: Disable spatial audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

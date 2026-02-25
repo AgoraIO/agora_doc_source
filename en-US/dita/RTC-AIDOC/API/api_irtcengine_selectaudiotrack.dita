@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_selectaudiotrack">
+    <title><ph keyref="selectAudioTrack"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Selects the audio track to use during playback.</ph><ph id="shortdesc" props="android">Selects the audio track to use during playback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="selectAudioTrack"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int selectAudioTrack(int index) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int selectAudioTrack(int audioIndex);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After obtaining the audio track index of an audio file, you can call this method to specify any track for playback. For example, if a multi-track file stores songs in different languages on different tracks, you can call this method to set the playback language.</p>
+            <p props="android">After getting the audio track index of the file, you can call this method to specify any track for playback. For example, if different tracks of a multi-track file store songs in different languages, you can use this method to select the playback language.</p>
+            <note props="cpp">
+                <ul>
+                    <li>For supported audio file formats, see [Extended audio file formats](https://docs.agora.io/en/help/general-product-inquiry/audio_format#extended-audio-file-formats).</li>
+                    <li>You need to call this method after calling <codeph>startAudioMixing</codeph> and receiving the <xref keyref="onAudioMixingStateChanged"/> (<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>) callback.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>For supported audio file formats, see [What audio file formats are supported by Agora RTC SDK](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format).</li>
+                    <li>You need to call this method after calling <codeph>startAudioMixing</codeph> and receiving the <xref keyref="onAudioMixingStateChanged"/> (<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>) callback.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>index</pt>
+                    <pd>The specified audio track index. This value should be greater than 0 and less than the value returned by <xref keyref="getAudioTrackCount"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioIndex</pt>
+                    <pd>The index of the audio track you want to specify. This value must be greater than 0 and less than the value returned by <xref keyref="getAudioTrackCount"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

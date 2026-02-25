@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablelocalaudio">
+    <title><ph keyref="enableLocalAudio"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables local audio capture.</ph><ph id="shortdesc" props="android">Enables or disables the local audio capture function.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableLocalAudio"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableLocalAudio(bool enabled) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableLocalAudio(boolean enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method disables or re-enables the local audio function, thereby stopping or restarting local audio capture.
+The difference between this method and <xref keyref="muteLocalAudioStream"/> is as follows:
+                <ul>
+                    <li><xref keyref="enableLocalAudio"/>: Disables or re-enables local audio capture and processing. If you disable or re-enable local audio capture using this method, the local user may hear an interruption in remote audio playback.</li>
+                    <li><xref keyref="muteLocalAudioStream"/>: Only stops or resumes sending the local audio stream without affecting the audio capture state.</li>
+                </ul><ph>This method does not affect receiving remote audio streams. Setting <codeph>enabled</codeph> to <xref keyref="false"/> is suitable for scenarios where you only want to receive remote audio streams without sending local audio.</ph><ph>You can call this method before or after joining a channel. If called before joining, it only sets the device state and takes effect immediately after joining.</ph></p>
+            <p props="android"><xref keyref="enableLocalAudio"/> controls whether to enable local audio capture and processing. When this method is called to disable or re-enable local audio capture, the local user may hear interruptions in remote audio playback.
+The difference between this method and <xref keyref="muteLocalAudioStream"/> is:
+                <ul>
+                    <li><xref keyref="enableLocalAudio"/>: Controls whether to enable local audio capture and processing.</li>
+                    <li><xref keyref="muteLocalAudioStream"/>: Only controls whether to send the local audio stream, without affecting the audio capture state.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p><codeph>enableLocalAudio(false)</codeph> is suitable for scenarios where only remote audio streams are received without sending locally captured audio. This method does not affect receiving remote audio streams.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You can call this method before or after joining a channel. If called before joining, it only sets the device state and takes effect immediately after joining.</p>
+            <p props="android">You can call this method before or after joining a channel. Calling it before joining only sets the device state and takes effect immediately after joining.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After successfully calling this method, the SDK triggers the <xref keyref="onLocalAudioStateChanged"/> callback, reporting <codeph>LOCAL_AUDIO_STREAM_STATE_STOPPED</codeph> (0) or <codeph>LOCAL_AUDIO_STREAM_STATE_RECORDING</codeph> (1).</p>
+            <p props="android">Once the local audio function is disabled or re-enabled, the SDK triggers the <xref keyref="onLocalAudioStateChanged"/> callback to report <codeph>LOCAL_AUDIO_STREAM_STATE_STOPPED</codeph> (0) or <codeph>LOCAL_AUDIO_STREAM_STATE_RECORDING</codeph> (1).</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable local audio capture:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Re-enables the local audio function, i.e., starts the local audio capture device (e.g., microphone).</li>
+                            <li><xref keyref="false"/>: Disables the local audio function, i.e., stops local audio capture.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the local audio function:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Re-enable the local audio function, i.e., start the local audio capture device (e.g., microphone).</li>
+                            <li><xref keyref="false"/>: Disable the local audio function, i.e., stop local audio capture.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

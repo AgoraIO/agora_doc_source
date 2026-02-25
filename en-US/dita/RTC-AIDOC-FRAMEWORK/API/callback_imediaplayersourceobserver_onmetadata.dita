@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onmetadata">
+    <title><ph keyref="onMetaData"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Reports retrieved media metadata.</ph><ph id="shortdesc" props="rn">Reports received media metadata.</ph><ph id="shortdesc" props="flutter">Reports retrieved media metadata.</ph><ph id="shortdesc" props="unity">Reports acquired media metadata.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onMetaData"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onMetaData?(data: Uint8Array, length: number): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onMetaData?(data: Uint8Array, length: number): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(Uint8List data, int length)? onMetaData;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnMetaData(byte[] data, int length) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After parsing the media metadata, the SDK triggers this callback to report the data type and content of the metadata.</p>
+            <p props="rn">After parsing the media metadata, the SDK triggers this callback to report the data type and content of the metadata.</p>
+            <p props="flutter">After parsing the media metadata, the SDK triggers this callback to report the type and content of the metadata.</p>
+            <p props="unity">After parsing the media metadata, the SDK triggers this callback to report the data type and actual data of the metadata.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>data</pt>
+                    <pd>The actual data in a user-defined format.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>length</pt>
+                    <pd>The length of the data in bytes.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>data</pt>
+                    <pd>Specific data in a user-defined format.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>length</pt>
+                    <pd>Data length in bytes.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>data</pt>
+                    <pd>The actual data in a user-defined format.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>length</pt>
+                    <pd>The length of the data in bytes.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>data</pt>
+                    <pd>Actual data in a user-defined format.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>length</pt>
+                    <pd>Length of the data in bytes.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

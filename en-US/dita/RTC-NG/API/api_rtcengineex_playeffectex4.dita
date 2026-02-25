@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_rtcengineex_playeffectex4">
+    <title><ph keyref="playEffectEx4"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Play a specified sound effect in a channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="playEffectEx4"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"></codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)playEffectEx:(AgoraRtcConnection* _Nonnull)connection
+            soundId:(int)soundId
+           filePath:(NSString* _Nonnull)filePath
+          loopCount:(NSInteger)loopCount
+              pitch:(double)pitch
+                pan:(double)pan
+               gain:(NSInteger)gain;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since:</dt>
+                <dd props="android apple">v.4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p>This method allows you to set whether to publish sound effects in a channel. In order to play multiple sound files simultaneously, simply call the method multiple times with different <codeph>soundId</codeph> and <codeph>filePath</codeph> parameters. After calling <xref keyref="preloadEffect"/> to preload the sound effect, you can call this method to play the specified sound effect to all users in the channel. Each call to this method can only play one sound effect. To play multiple sound effects simultaneously, please call this method multiple times.</p>
+            <note type="attention"><ul>
+                        <li>Agora recommends not playing more than three sound effects at the same time.</li>
+                        <li>The sound effect ID and file path in this method must be consistent with those in the <xref keyref="preloadEffect"/> method.</li>
+                        </ul>
+                    </note>
+            </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Applicable scenarios</title>
+            <p>This method can be called in scenarios involving multiple channels.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry props="android apple">
+                <pt props="android apple">connection</pt>
+                <pd props="android">Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                <pd props="apple">One <xref keyref="RtcConnection"/> object. See <xref keyref="RtcConnection"/>.</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt props="android apple">soundId</pt>
+                <pd props="android">The audio effect ID.</pd>
+                <pd props="apple">The ID of the audio effect. The ID of each audio effect file is unique. If preloading sound effects into memory through the <xref keyref="preloadEffect"/> method, make sure that this parameter value is consistent with the value in the <xref keyref="preloadEffect"/> method.</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt props="android apple">filePath</pt>
+                <pd props="android">The absolute path of the local file or the URL of the online file. Supported audio formats: mp3, mp4, m4a, aac, 3gp, mkv and wav.</pd>
+                <pd props="apple">The absolute path of the local sound effect file (including the file name extension) or the URL of the online sound effect file, for example <ph keyref="filePath-example"/>. Supported audio formats include: mp3, mp4, m4a, aac, 3gp, mkv and wav.</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt props="android apple">loopCount</pt>
+                <pd props="android">Number of times the sound effect to be looped:<ul>
+                        <li><codeph>-1</codeph>: Loop infinitely until calling <xref keyref="stopEffect"/> or <xref keyref="stopAllEffects"/>.</li>
+                        <li><codeph>0</codeph>: Play once.</li>
+                        <li><codeph>1</codeph>: Play twice.</li>
+                        </ul>
+                    </pd>
+                <pd props="apple">Set the number of times the sound effect to be looped:<ul>
+                        <li>0: Play once.</li>
+                        <li>1: Play twice.</li>
+                        <li>-1: Loop infinitely until calling <xref keyref="stopEffect"/> or <xref keyref="stopAllEffects"/>.</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt props="android apple">pitch</pt>
+                <pd props="android">The pitch of the audio effect. The range is from 0.5 to 2.0, with a default value of 1.0 (original pitch). The lower the value, the lower the pitch.</pd>
+                <pd props="apple">The pitch of the audio effect. The range is from 0.5 to 2.0, with a default value of 1.0 (original pitch). The lower the value, the lower the pitch.</pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt props="android apple">pan</pt>
+                <pd props="android">The spatial position of the audio effect. The range of values is from -1.0 to 1.0:<ul>
+                        <li><codeph>-1.0</codeph>: The audio effect is heard on the left of the user.</li>
+                        <li><codeph>0.0</codeph>: The audio effect is heard in front of the user.</li>
+                        <li><codeph>1.0</codeph>: The audio effect is heard on the right of the user.</li>
+                        </ul>
+                    </pd>
+                <pd props="apple">The spatial position of the audio effect. The range of values is from -1.0 to 1.0:<ul>
+                        <li>0.0: The audio effect is heard in front of the user.</li>
+                        <li>1.0: The audio effect is heard on the right of the user.</li>
+                        <li>-1.0: The audio effect is heard on the left of the user.</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="android apple">
+                <pt props="android apple">gain</pt>
+                <pd props="android">The volume of the audio effect. The value range is from 0.0 to 100.0, with a default value of 100 (original volume). The smaller the value, the lower the volume.</pd>
+                <pd props="apple">The volume of the audio effect. The value range is 0 to 100, and the default value is 100. The smaller the value, the lower the volume.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="bp cs electron flutter native rn unity unreal">
+            <title><ph keyref="return-section-title"/></title>
+        <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+        <ul props="bp cpp cs electron rn unity unreal">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul>
+        <p props="android apple"><ul>
+                        <li>0: Success.</li>
+                        <li>&lt; 0: Failure.</li>
+                        </ul>
+                    </p>
+    </section>
+        </refbody>
+</reference>

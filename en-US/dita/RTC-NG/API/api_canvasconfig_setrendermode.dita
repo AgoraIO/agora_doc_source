@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_canvasconfig_setrendermode">
+    <title><ph keyref="SetRenderMode_CanvasConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the vide render mode.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SetRenderMode_CanvasConfig"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void setVideoRenderMode(Constants.VideoRenderMode mode) throws RteException ;</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)setVideoMirrorMode:(AgoraRteVideoMirrorMode)mode error:(AgoraRteError* _Nullable)error;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">void SetRenderMode(VideoRenderMode mode, Error *err = nullptr);</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p/>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after <xref keyref="SetConfigs_Canvas"/>.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>None.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>mode</pt>
+                <pd>The video rendering mode. See <xref keyref="RteVideoRenderMode"/>. The default rendering mode is <apiname keyref="kRteVideoRenderModeHidden"/>, which means that the video size is scaled proportionally to fill the view.</pd>
+            </plentry>
+            <plentry props="cpp apple" conkeyref="SetConfigs_Rte/err">
+                <pt></pt>
+                <pd></pd>
+            </plentry>
+            </parml> </section>
+        <section id="exception" props="android" conkeyref="SetAppId/exception"/>
+    </refbody>
+</reference>

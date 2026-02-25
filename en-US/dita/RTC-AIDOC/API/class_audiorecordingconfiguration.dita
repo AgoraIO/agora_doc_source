@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audiorecordingconfiguration">
+    <title><ph keyref="AudioRecordingConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure recording parameters.</ph><ph id="shortdesc" props="android">Recording parameter configuration.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct AudioRecordingConfiguration {
+  const char* filePath;
+  bool encode;
+  int sampleRate;
+  AUDIO_FILE_RECORDING_TYPE fileRecordingType;
+  AUDIO_RECORDING_QUALITY_TYPE quality;
+  int recordingChannel;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class AudioRecordingConfiguration {
+  public String filePath;
+  public int sampleRate;
+  public boolean codec;
+  public int fileRecordOption;
+  public int quality;
+  public int recordingChannel;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>filePath</pt>
+                    <pd>Absolute path of the recording file (including extension), e.g., <xref keyref="recordingPath-example"/>.
+                        <note>Ensure the log file directory exists and is writable.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>encode</pt>
+                    <pd>Whether to encode audio data:
+                        <ul>
+                            <li><xref keyref="true"/>: Encode audio data in AAC format.</li>
+                            <li><xref keyref="false"/>: Do not encode, save raw audio data.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sampleRate</pt>
+                    <pd>
+                        <note>If set to 44100 or 48000, Agora recommends recording WAV files or AAC files with <codeph>quality</codeph> set to <codeph>AUDIO_RECORDING_QUALITY_MEDIUM</codeph> or <codeph>AUDIO_RECORDING_QUALITY_HIGH</codeph> for better quality.</note><ph>Recording sample rate (Hz):</ph>
+                        <ul>
+                            <li>16000</li>
+                            <li>32000 (default)</li>
+                            <li>44100</li>
+                            <li>48000</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>fileRecordingType</pt>
+                    <pd>Recording content type. See <xref keyref="AUDIO_FILE_RECORDING_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>quality</pt>
+                    <pd>Recording quality. See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.
+                        <note>This parameter applies only to AAC files.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>recordingChannel</pt>
+                    <pd>
+                        <note>The actual recorded channel depends on the captured audio:
+                            <ul>
+                                <li>If mono is captured and <codeph>recordingChannel</codeph> is 2, the recorded audio is duplicated mono, not true stereo.</li>
+                                <li>If stereo is captured and <codeph>recordingChannel</codeph> is 1, the recorded audio is mixed down to mono.</li>
+                            </ul><ph>The integration solution also affects the final recorded channels. Contact technical support if stereo recording is required.</ph></note><ph>Number of audio channels in the recording. Supported values:</ph>
+                        <ul>
+                            <li>1: Mono (default).</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>filePath</pt>
+                    <pd>The absolute path of the recording file (including file extension). For example: <xref keyref="recordingPath-example"/>.
+                        <note>Ensure the log file directory exists and is writable.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sampleRate</pt>
+                    <pd>Recording sample rate (Hz). Supports the following values: 16000, (default) 32000, 44100, 48000.
+                        <note>If you set this parameter to 44100 or 48000, Agora recommends recording a WAV file, or an AAC file with <codeph>quality</codeph> set to <codeph>AUDIO_RECORDING_QUALITY_MEDIUM</codeph> or <codeph>AUDIO_RECORDING_QUALITY_HIGH</codeph> for better recording quality.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>codec</pt>
+                    <pd>Whether to encode the audio data:
+                        <ul>
+                            <li><xref keyref="true"/>: Encode the audio data in AAC format.</li>
+                            <li><xref keyref="false"/>: (Default) Do not encode, save the raw recording data directly.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>fileRecordOption</pt>
+                    <pd>Recording content options:
+                        <ul>
+                            <li><codeph>AUDIO_FILE_RECORDING_MIC (1)</codeph>: Record only the local user's audio.</li>
+                            <li><codeph>AUDIO_FILE_RECORDING_PLAYBACK (2)</codeph>: Record only the audio of all remote users.</li>
+                            <li><codeph>AUDIO_FILE_RECORDING_MIXED (3)</codeph>: (Default) Record mixed audio of the local and all remote users.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>quality</pt>
+                    <pd>
+                        <note>This parameter applies to AAC files only.</note><ph>Recording quality level:</ph>
+                        <ul>
+                            <li><codeph>AUDIO_RECORDING_QUALITY_LOW (0)</codeph>: Low quality. For example, with a sample rate of 32000 Hz, a 10-minute AAC file is about 1.2 MB.</li>
+                            <li><codeph>AUDIO_RECORDING_QUALITY_MEDIUM (1)</codeph>: (Default) Medium quality, file size is about 2 MB.</li>
+                            <li><codeph>AUDIO_RECORDING_QUALITY_HIGH (2)</codeph>: High quality, file size is about 3.75 MB.</li>
+                            <li><codeph>AUDIO_RECORDING_QUALITY_ULTRA_HIGH (3)</codeph>: Ultra-high quality, sample rate is 32 kHz, file size is about 7.5 MB after 10 minutes of recording.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>recordingChannel</pt>
+                    <pd>
+                        <note>The actual recorded audio channel depends on the captured audio channel.
+                            <ul>
+                                <li>If the captured audio is mono and <codeph>recordingChannel</codeph> is set to <codeph>2</codeph>, the recorded data will be stereo duplicated from mono, not true stereo.</li>
+                                <li>If the captured audio is stereo and <codeph>recordingChannel</codeph> is set to <codeph>1</codeph>, the recorded data will be mono mixed from stereo.</li>
+                            </ul><ph>The integration scheme also affects the final recorded audio channel. Contact technical support if you need stereo recording.</ph></note><ph>Number of audio channels for recording. Supports the following values:</ph>
+                        <ul>
+                            <li>1: (Default) Mono.</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

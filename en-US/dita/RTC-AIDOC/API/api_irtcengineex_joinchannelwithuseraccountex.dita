@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_joinchannelwithuseraccountex">
+    <title><ph keyref="joinChannelWithUserAccountEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Joins a channel using a user account and token, and sets media options.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="joinChannelWithUserAccountEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int joinChannelWithUserAccountEx(String token, String channelId, String userAccount, ChannelMediaOptions options, IRtcEngineEventHandler eventHandler);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">Before calling this method, if you have not called <xref keyref="registerLocalUserAccount"/> to register a user account, the SDK will automatically create one when you join the channel. Calling <xref keyref="registerLocalUserAccount"/> in advance can shorten the time required to join the channel.
+
+Once a user joins a channel, by default, they subscribe to all other users' audio and video streams in the channel, which incurs usage and billing. If you want to stop subscribing to other users' media streams, you can set the <codeph>options</codeph> parameter or call <codeph>muteRemoteAudio/VideoStream</codeph> or <codeph>muteAllRemoteAudio/VideoStreams</codeph>.</p>
+            <note props="android">
+                <ul>
+                    <li>This method only supports joining one channel at a time.</li>
+                    <li>Users with different App IDs cannot communicate with each other.</li>
+                    <li>Before joining a channel, make sure the App ID used to generate the token is the same as the one passed to the <xref keyref="initialize"/> method; otherwise, joining the channel may fail.</li>
+                    <li>To ensure smooth communication, use the same parameter type to identify users. For example, if one user joins with <codeph>uid</codeph>, others should also use <codeph>uid</codeph>; if using a user account, others should also use a user account. When using Agora Web SDK, ensure user ID parameter types are consistent.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method is applicable to multi-channel scenarios.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">Call this method after calling <xref keyref="initialize"/>.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android">
+            <title>Related Callbacks</title>
+            <p props="android">Local client: <xref keyref="onLocalUserRegistered"/>, <xref keyref="onJoinChannelSuccess"/>, and <xref keyref="onConnectionStateChanged"/> callbacks.
+Remote client: If the user joins the channel in <codeph>COMMUNICATION</codeph> mode or as a broadcaster in <codeph>LIVE_BROADCASTING</codeph> mode, <xref keyref="onUserJoined"/> and <xref keyref="onUserInfoUpdated"/> callbacks are triggered.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>token</pt>
+                    <pd>Token generated on your server for authentication.
+                        <note>
+                            <ul>
+                                <li>(Recommended) If your project has enabled secure mode (authentication using App ID and Token), this parameter is required.</li>
+                                <li>If only test mode (authentication using App ID) is enabled, this parameter is optional. After successfully joining the channel, you will automatically leave after 24 hours.</li>
+                                <li>If you need to join multiple channels or switch between channels, Agora recommends using wildcard tokens so you don’t need to request a new token each time.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channelId</pt>
+                    <pd>Channel name. Under the same App ID, users with the same channel name will enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters (89 total):
+                        <ul>
+                            <li>All lowercase English letters: a to z.</li>
+                            <li>All uppercase English letters: A to Z.</li>
+                            <li>All numeric characters: 0 to 9.</li>
+                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userAccount</pt>
+                    <pd>User account. You need to set and manage user accounts yourself and ensure uniqueness within the same channel. The maximum length of this parameter is 255 bytes and it cannot be empty. Supported characters (89 total):
+                        <ul>
+                            <li>26 lowercase English letters: a to z.</li>
+                            <li>26 uppercase English letters: A to Z.</li>
+                            <li>All numeric characters: 0 to 9.</li>
+                            <li>Space</li>
+                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>Channel media options. See <xref keyref="ChannelMediaOptions"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>eventHandler</pt>
+                    <pd>Callback class for <xref keyref="IRtcEngineEx"/>. See <xref keyref="IRtcEngineEventHandler"/>. You can use the <codeph>eventHandler</codeph> object passed through this parameter to receive callback events from multiple channels.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-2: Invalid parameters. For example, invalid token, <codeph>uid</codeph> not set to an integer, or invalid values in <xref keyref="ChannelMediaOptions"/>. Please pass valid parameters and rejoin the channel.</li>
+                            <li>-3: <xref keyref="IRtcEngine"/> initialization failed. Please reinitialize the <xref keyref="IRtcEngine"/> object.</li>
+                            <li>-7: <xref keyref="IRtcEngine"/> has not been initialized. Please initialize it before calling this method.</li>
+                            <li>-8: Internal state error of <xref keyref="IRtcEngine"/>. A typical reason is calling this method after starting an echo test with <xref keyref="startEchoTest3"/> but without stopping it with <xref keyref="stopEchoTest"/>. Please call <xref keyref="stopEchoTest"/> before calling this method.</li>
+                            <li>-17: Join channel request rejected. A typical reason is the user is already in the channel. It is recommended to confirm the user's presence in the channel via the <xref keyref="onConnectionStateChanged"/> callback. Unless you receive the <codeph>CONNECTION_STATE_DISCONNECTED</codeph> (1) state, do not call this method.</li>
+                            <li>-102: Invalid channel name. Please pass a valid channel name in <codeph>channelId</codeph> and rejoin the channel.</li>
+                            <li>-121: Invalid user ID. Please pass a valid user ID in <codeph>uid</codeph> and rejoin the channel.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

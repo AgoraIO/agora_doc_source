@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startechotest3">
+    <title><ph keyref="startEchoTest3"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts the audio and video call loop test.</ph><ph id="shortdesc" props="android">Starts audio and video device loop test.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startEchoTest3"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startEchoTest(const EchoTestConfiguration&amp; config) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startEchoTest(EchoTestConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You can call this method to perform an audio and video call loop test to check whether the local audio and video devices and the uplink and downlink network are working properly. After the test starts, speak or face the camera, and the audio or video will be played back after about two seconds.
+                <ul>
+                    <li>If the audio plays back correctly, the audio device and network are working properly.</li>
+                    <li>If the video plays back correctly, the video device and network are working properly.</li>
+                </ul>
+            </p>
+            <p props="android">You can call this method to perform an audio and video call loop test to check if the devices and the user's network connection are working properly. After starting the test, the user should speak or face the camera, and the audio or video will be played back after about two seconds.</p>
+            <note props="cpp">
+                <ul>
+                    <li>When calling this method in a channel, make sure no audio or video stream is being published.</li>
+                    <li>After calling this method, you must call <xref keyref="stopEchoTest"/> to end the test. Otherwise, you cannot perform another loop test or join a channel.</li>
+                    <li>In a live broadcast scenario, this method is only applicable to the broadcaster role.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>When calling this method in a channel, make sure no audio or video streams are published.</li>
+                    <li>You must call <xref keyref="stopEchoTest"/> to end the test, otherwise the user cannot perform another loop test or join a channel.</li>
+                    <li>In live broadcast scenarios, this method is only applicable to hosts.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You can call this method before or after joining a channel.</p>
+            <p props="android">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>The configuration for the audio and video call loop test. See <xref keyref="EchoTestConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>Configuration for the audio and video call loop test. See <xref keyref="EchoTestConfiguration"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_registerextension">
+    <title><ph keyref="registerExtension"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Registers an extension.</ph><ph id="shortdesc" props="android">Registers an extension.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerExtension"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int registerExtension(const char* provider, const char* extension, agora::media::MEDIA_SOURCE_TYPE type = agora::media::UNKNOWN_MEDIA_SOURCE) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int registerExtension(String provider, String extension, Constants.MediaSourceType sourceType);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">For external SDK extensions (e.g., from the cloud marketplace or SDK extensions), you need to load them before calling this method. For internal SDK extensions (i.e., those included in the full SDK package), they are automatically loaded and registered after initializing <xref keyref="IRtcEngine"/>.</p>
+            <p props="android">
+                <ul>
+                    <li>For external SDK extensions (e.g., from the cloud marketplace or SDK extensions), you must load them using <xref keyref="addExtension"/> before calling <xref keyref="registerExtension"/>.</li>
+                    <li>For internal SDK extensions (included in the full SDK package), they are automatically loaded and registered after initializing <xref keyref="IRtcEngine"/>.</li>
+                </ul>
+            </p>
+            <note props="cpp">
+                <ul>
+                    <li>If you want to register multiple extensions, call this method multiple times.</li>
+                    <li>The data processing order of different extensions in the SDK is determined by the registration order. The earlier an extension is registered, the earlier it processes data.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>To register multiple extensions, call this method multiple times.</li>
+                    <li>The processing order of different extensions in the SDK is determined by the registration order. Extensions registered earlier process data first.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Agora recommends calling this method after initializing <xref keyref="IRtcEngine"/> and before joining the channel.
+                <ul>
+                    <li>For video extensions (such as beauty effects), call this method after enabling the video module with <xref keyref="enableVideo"/> or <xref keyref="enableLocalVideo"/>.</li>
+                    <li>Before calling this method, you need to call <xref keyref="loadExtensionProvider"/> to load the extension.</li>
+                </ul>
+            </p>
+            <p props="android">Agora recommends calling this method after initializing <xref keyref="IRtcEngine"/> and before joining a channel.
+                <ul>
+                    <li>For video extensions (e.g., beauty effects), call this method after enabling the video module using <xref keyref="enableVideo"/> or <xref keyref="enableLocalVideo"/>.</li>
+                    <li>Before calling this method, you must call <xref keyref="addExtension"/> to load the extension.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>provider</pt>
+                    <pd>The name of the extension provider.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>extension</pt>
+                    <pd>The name of the extension.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>The data source type of the extension. See <xref keyref="MEDIA_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>provider</pt>
+                    <pd>The name of the extension provider.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>extension</pt>
+                    <pd>The name of the extension.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>The data source type of the extension. See <xref keyref="MEDIA_SOURCE_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-3: Extension library not loaded. Agora recommends checking the storage location or name of the dynamic library.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-3: The extension library is not loaded. Check the storage location or name of the dynamic library.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_ontranscodingupdated">
+    <title><ph keyref="onTranscodingUpdated"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback when the RTMP transcoding settings are updated.</ph><ph id="shortdesc" props="rn">Callback when the RTMP transcoding settings are updated.</ph><ph id="shortdesc" props="flutter">Callback when the RTMP transcoding settings are updated.</ph><ph id="shortdesc" props="unity">Callback when the RTMP transcoding settings are updated.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onTranscodingUpdated"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onTranscodingUpdated?(): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onTranscodingUpdated?(): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function()? onTranscodingUpdated;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnTranscodingUpdated()</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">When the live streaming parameters <xref keyref="LiveTranscoding"/> in the <xref keyref="startRtmpStreamWithTranscoding"/> method are updated, the <xref keyref="onTranscodingUpdated"/> callback is triggered and reports the update to the host.</p>
+            <p props="rn">When the <xref keyref="LiveTranscoding"/> parameters in the <xref keyref="startRtmpStreamWithTranscoding"/> method are updated, the <xref keyref="onTranscodingUpdated"/> callback is triggered to notify the host of the update.</p>
+            <p props="flutter">When the <xref keyref="LiveTranscoding"/> parameters in the <xref keyref="startRtmpStreamWithTranscoding"/> method are updated, the <xref keyref="onTranscodingUpdated"/> callback is triggered to notify the host.</p>
+            <p props="unity">The <xref keyref="onTranscodingUpdated"/> callback is triggered and reports update information to the host when the <xref keyref="LiveTranscoding"/> parameters in the <xref keyref="startRtmpStreamWithTranscoding"/> method are updated.</p>
+            <note props="electron">This callback is not triggered the first time you call the <xref keyref="startRtmpStreamWithTranscoding"/> method to set the transcoding parameters <xref keyref="LiveTranscoding"/>.</note>
+            <note props="rn">This callback is not triggered the first time you set the transcoding parameters <xref keyref="LiveTranscoding"/> using the <xref keyref="startRtmpStreamWithTranscoding"/> method.</note>
+            <note props="flutter">This callback is not triggered the first time you call <xref keyref="startRtmpStreamWithTranscoding"/> to set the <xref keyref="LiveTranscoding"/> parameters.</note>
+            <note props="unity">This callback is not triggered when you call <xref keyref="startRtmpStreamWithTranscoding"/> for the first time to set the <xref keyref="LiveTranscoding"/> parameters.</note>
+        </section>
+    </refbody>
+</reference>

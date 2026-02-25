@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_channelmediarelaystate">
+    <title><ph keyref="CHANNEL_MEDIA_RELAY_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Channel media relay state codes.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>RELAY_STATE_IDLE</pt>
+                    <pd>(0): Initial state. After calling <xref keyref="stopChannelMediaRelay"/> successfully, the <xref keyref="onChannelMediaRelayStateChanged"/> callback returns this state.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>RELAY_STATE_CONNECTING</pt>
+                    <pd>(1): SDK is attempting to relay media stream to the destination channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>RELAY_STATE_RUNNING</pt>
+                    <pd>(2): SDK has successfully relayed media stream to the destination channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>RELAY_STATE_FAILURE</pt>
+                    <pd>(3): An error occurred. See <codeph>code</codeph> in the <xref keyref="onChannelMediaRelayStateChanged"/> callback.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

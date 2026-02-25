@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlogfilesize">
+    <title><ph keyref="setLogFileSize"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the size of SDK output log files.</ph><ph id="shortdesc" props="rn">Sets the size of the SDK log output file.</ph><ph id="shortdesc" props="flutter">Sets the size of the SDK log file output.</ph><ph id="shortdesc" props="unity">Sets the size of the SDK output log file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLogFileSize"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setLogFileSize(fileSizeInKBytes: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setLogFileSize(fileSizeInKBytes: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLogFileSize(int fileSizeInKBytes);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLogFileSize(uint fileSizeInKBytes);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. Use the <codeph>logConfig</codeph> parameter in <xref keyref="initialize"/> to set the log file size instead.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. Use the <codeph>logConfig</codeph> parameter in <xref keyref="initialize"/> instead to set the log file size.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. Use the <codeph>logConfig</codeph> parameter in <xref keyref="initialize"/> instead to set the log file size.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. Please use the <codeph>logConfig</codeph> parameter in <xref keyref="initialize"/> to set the log file size.</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">By default, the SDK generates 5 SDK log files and 5 API call log files, as follows:
+                <ul>
+                    <li>SDK log files are named: <codeph>agorasdk.log</codeph>, <codeph>agorasdk.1.log</codeph>, <codeph>agorasdk.2.log</codeph>, <codeph>agorasdk.3.log</codeph>, <codeph>agorasdk.4.log</codeph>.</li>
+                    <li>API call log files are named: <codeph>agoraapi.log</codeph>, <codeph>agoraapi.1.log</codeph>, <codeph>agoraapi.2.log</codeph>, <codeph>agoraapi.3.log</codeph>, <codeph>agoraapi.4.log</codeph>.</li>
+                    <li>Each SDK log file has a default size of 2,048 KB; each API call log file also has a default size of 2,048 KB. All log files are UTF-8 encoded.</li>
+                    <li>The latest logs are always written to <codeph>agorasdk.log</codeph> and <codeph>agoraapi.log</codeph>.</li>
+                    <li>When <codeph>agorasdk.log</codeph> is full, the SDK performs the following operations:
+                        <ol>
+                            <li>Deletes <codeph>agorasdk.4.log</codeph> (if it exists).</li>
+                            <li>Renames <codeph>agorasdk.3.log</codeph> to <codeph>agorasdk.4.log</codeph>.</li>
+                            <li>Renames <codeph>agorasdk.2.log</codeph> to <codeph>agorasdk.3.log</codeph>.</li>
+                            <li>Renames <codeph>agorasdk.1.log</codeph> to <codeph>agorasdk.2.log</codeph>.</li>
+                            <li>Creates a new <codeph>agorasdk.log</codeph> file.</li>
+                        </ol>
+                    </li>
+                    <li>The rotation rule for <codeph>agoraapi.log</codeph> is the same as for <codeph>agorasdk.log</codeph>.</li>
+                </ul>
+            </p>
+            <p props="rn">By default, the SDK generates 5 SDK log files and 5 API call log files, as follows:
+                <ul>
+                    <li>SDK log file names: <codeph>agorasdk.log</codeph>, <codeph>agorasdk.1.log</codeph>, <codeph>agorasdk.2.log</codeph>, <codeph>agorasdk.3.log</codeph>, <codeph>agorasdk.4.log</codeph>.</li>
+                    <li>API call log file names: <codeph>agoraapi.log</codeph>, <codeph>agoraapi.1.log</codeph>, <codeph>agoraapi.2.log</codeph>, <codeph>agoraapi.3.log</codeph>, <codeph>agoraapi.4.log</codeph>.</li>
+                    <li>Each SDK log file has a default size of 2,048 KB; API call log files also default to 2,048 KB. All log files are UTF-8 encoded.</li>
+                    <li>The latest logs are always written to <codeph>agorasdk.log</codeph> and <codeph>agoraapi.log</codeph>.</li>
+                    <li>When <codeph>agorasdk.log</codeph> is full, the SDK performs the following operations in order:
+                        <ol>
+                            <li>Delete the <codeph>agorasdk.4.log</codeph> file (if it exists).</li>
+                            <li>Rename <codeph>agorasdk.3.log</codeph> to <codeph>agorasdk.4.log</codeph>.</li>
+                            <li>Rename <codeph>agorasdk.2.log</codeph> to <codeph>agorasdk.3.log</codeph>.</li>
+                            <li>Rename <codeph>agorasdk.1.log</codeph> to <codeph>agorasdk.2.log</codeph>.</li>
+                            <li>Create a new <codeph>agorasdk.log</codeph> file.</li>
+                        </ol>
+                    </li>
+                    <li>The rollover rules for <codeph>agoraapi.log</codeph> are the same as for <codeph>agorasdk.log</codeph>.</li>
+                </ul>
+            </p>
+            <p props="flutter">By default, the SDK generates 5 SDK log files and 5 API call log files with the following rules:
+                <ul>
+                    <li>SDK log file names: <codeph>agorasdk.log</codeph>, <codeph>agorasdk.1.log</codeph>, <codeph>agorasdk.2.log</codeph>, <codeph>agorasdk.3.log</codeph>, <codeph>agorasdk.4.log</codeph>.</li>
+                    <li>API call log file names: <codeph>agoraapi.log</codeph>, <codeph>agoraapi.1.log</codeph>, <codeph>agoraapi.2.log</codeph>, <codeph>agoraapi.3.log</codeph>, <codeph>agoraapi.4.log</codeph>.</li>
+                    <li>Each SDK log file has a default size of 2,048 KB; API call log files also have a default size of 2,048 KB. All log files are UTF-8 encoded.</li>
+                    <li>The latest logs are always written to <codeph>agorasdk.log</codeph> and <codeph>agoraapi.log</codeph>.</li>
+                    <li>When <codeph>agorasdk.log</codeph> is full, the SDK performs the following operations:
+                        <ol>
+                            <li>Deletes <codeph>agorasdk.4.log</codeph> (if exists).</li>
+                            <li>Renames <codeph>agorasdk.3.log</codeph> to <codeph>agorasdk.4.log</codeph>.</li>
+                            <li>Renames <codeph>agorasdk.2.log</codeph> to <codeph>agorasdk.3.log</codeph>.</li>
+                            <li>Renames <codeph>agorasdk.1.log</codeph> to <codeph>agorasdk.2.log</codeph>.</li>
+                            <li>Creates a new <codeph>agorasdk.log</codeph> file.</li>
+                        </ol>
+                    </li>
+                    <li>The overwrite rule for <codeph>agoraapi.log</codeph> is the same as that of <codeph>agorasdk.log</codeph>.</li>
+                </ul>
+            </p>
+            <p props="unity">By default, the SDK generates 5 SDK log files and 5 API call log files, as follows:
+                <ul>
+                    <li>SDK log file names: <codeph>agorasdk.log</codeph>, <codeph>agorasdk.1.log</codeph>, <codeph>agorasdk.2.log</codeph>, <codeph>agorasdk.3.log</codeph>, <codeph>agorasdk.4.log</codeph>.</li>
+                    <li>API call log file names: <codeph>agoraapi.log</codeph>, <codeph>agoraapi.1.log</codeph>, <codeph>agoraapi.2.log</codeph>, <codeph>agoraapi.3.log</codeph>, <codeph>agoraapi.4.log</codeph>.</li>
+                    <li>Each SDK log file has a default size of 2,048 KB; each API call log file also has a default size of 2,048 KB. All log files are UTF-8 encoded.</li>
+                    <li>The latest logs are always written to <codeph>agorasdk.log</codeph> and <codeph>agoraapi.log</codeph>.</li>
+                    <li>When <codeph>agorasdk.log</codeph> is full, the SDK performs the following operations:
+                        <ol>
+                            <li>Delete the <codeph>agorasdk.4.log</codeph> file (if it exists).</li>
+                            <li>Rename <codeph>agorasdk.3.log</codeph> to <codeph>agorasdk.4.log</codeph>.</li>
+                            <li>Rename <codeph>agorasdk.2.log</codeph> to <codeph>agorasdk.3.log</codeph>.</li>
+                            <li>Rename <codeph>agorasdk.1.log</codeph> to <codeph>agorasdk.2.log</codeph>.</li>
+                            <li>Create a new <codeph>agorasdk.log</codeph> file.</li>
+                        </ol>
+                    </li>
+                    <li>The overwrite rules for <codeph>agoraapi.log</codeph> are the same as for <codeph>agorasdk.log</codeph>.</li>
+                </ul>
+            </p>
+            <note props="electron">This method only sets the size of the <codeph>agorasdk.log</codeph> file and does not affect <codeph>agoraapi.log</codeph>.</note>
+            <note props="rn">This method only sets the size of the <codeph>agorasdk.log</codeph> file and does not affect <codeph>agoraapi.log</codeph>.</note>
+            <note props="flutter">This method only sets the size of the <codeph>agorasdk.log</codeph> file and does not affect <codeph>agoraapi.log</codeph>.</note>
+            <note props="unity">This method only sets the size of the <codeph>agorasdk.log</codeph> file and does not affect <codeph>agoraapi.log</codeph>.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>fileSizeInKBytes</pt>
+                    <pd>The size of a single <codeph>agorasdk.log</codeph> file in KB. Value range: [128,20480]. Default is 2,048 KB. If you set <codeph>fileSizeInKBytes</codeph> to less than 128 KB, the SDK automatically adjusts it to 128 KB. If you set it to more than 20,480 KB, the SDK adjusts it to 20,480 KB.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>fileSizeInKBytes</pt>
+                    <pd>The size of a single <codeph>agorasdk.log</codeph> log file in KB. The valid range is [128,20480], and the default is 2,048 KB. If you set <codeph>fileSizeInKByte</codeph> to less than 128 KB, the SDK automatically adjusts it to 128 KB. If you set it to more than 20,480 KB, the SDK automatically adjusts it to 20,480 KB.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>fileSizeInKBytes</pt>
+                    <pd>The size of a single <codeph>agorasdk.log</codeph> file in KB. The valid range is [128, 20480], and the default value is 2,048 KB. If you set <codeph>fileSizeInKByte</codeph> to less than 128 KB, the SDK automatically adjusts it to 128 KB; if you set it to more than 20,480 KB, the SDK automatically adjusts it to 20,480 KB.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>fileSizeInKBytes</pt>
+                    <pd>Size of a single <codeph>agorasdk.log</codeph> file in KB. The valid range is [128,20480], and the default value is 2,048 KB. If you set <codeph>fileSizeInKByte</codeph> to less than 128 KB, the SDK automatically adjusts it to 128 KB; if you set it to more than 20,480 KB, the SDK automatically adjusts it to 20,480 KB.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

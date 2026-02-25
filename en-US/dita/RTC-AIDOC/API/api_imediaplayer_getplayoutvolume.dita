@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_getplayoutvolume">
+    <title><ph keyref="getPlayoutVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the local playback volume.</ph><ph id="shortdesc" props="android">Gets the local playback volume.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getPlayoutVolume"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getPlayoutVolume(int&amp; volume) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int getPlayoutVolume();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>volume</pt>
+                    <pd>Output parameter. The local playback volume. The range is [0, 100]:
+                        <ul>
+                            <li>0: Muted.</li>
+                            <li>100: (Default) Original volume.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">If the method call succeeds, returns the local playback volume in the range of 0 to 100.
+0 means mute, 100 (default) means original volume.</p>
+        </section>
+    </refbody>
+</reference>

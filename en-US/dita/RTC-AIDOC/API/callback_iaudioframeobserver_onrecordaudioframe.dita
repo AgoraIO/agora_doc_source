@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserver_onrecordaudioframe">
+    <title><ph keyref="onRecordAudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Callback for retrieving the captured audio frame.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRecordAudioFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract boolean onRecordAudioFrame(String channelId, int type, int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer, long renderTimeMs, int avsync_type);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">You can set the audio data format using one of the following methods:
+                <ul>
+                    <li>Method 1: Call <xref keyref="setRecordingAudioFrameParameters"/> to set the audio data format, and then call <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer. The SDK calculates the sampling interval based on the parameters set in the method and triggers this callback accordingly.</li>
+                    <li>Method 2: Call <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer, and set the audio data format in the return value of the <xref keyref="getObservedAudioFramePosition"/> callback. The SDK calculates the sampling interval based on the return value of the <xref keyref="getRecordAudioParams"/> callback and triggers this callback accordingly.</li>
+                </ul>
+            </p>
+            <note props="android">The settings in <xref keyref="setRecordingAudioFrameParameters"/> take precedence over those in <xref keyref="getObservedAudioFramePosition"/>. If you set the audio data format using Method 1, the settings in Method 2 will be ignored.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>channelId</pt>
+                    <pd>Channel ID.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>type</pt>
+                    <pd>Audio frame type.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>samplesPerChannel</pt>
+                    <pd>Number of samples per channel.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>bytesPerSample</pt>
+                    <pd>Number of bytes per audio sample. For example, each PCM audio sample typically takes 16 bits (2 bytes).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channels</pt>
+                    <pd>Number of channels:
+                        <ul>
+                            <li>1: Mono.</li>
+                            <li>2: Stereo. If stereo is used, the data is interleaved.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>samplesPerSec</pt>
+                    <pd>Recording sample rate (Hz).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>buffer</pt>
+                    <pd>Audio buffer. Buffer size = <codeph>samplesPerChannel</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>renderTimeMs</pt>
+                    <pd>Timestamp of the external audio frame (milliseconds). You can use this parameter to synchronize audio and video frames in scenarios such as using external video sources.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>avsync_type</pt>
+                    <pd>Reserved parameter.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li><xref keyref="true"/>: Callback handled successfully.</li>
+                    <li><xref keyref="false"/>: Callback handling failed.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_config">
+    <title><ph keyref="Config"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The RTE configuration class.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class Config {
+  public void setAppId(String appId) throws RteException;
+  public String getAppId() throws RteException;
+  public void setJsonParameter(String jsonParameter) throws RteException;
+  public String getJsonParameter() throws RteException;
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRteConfig : NSObject
+ 
+- (void)setAppId:(NSString * _Nullable)appId error:(AgoraRteError * _Nullable)error;
+- (NSString* _Nullable)appId:( AgoraRteError * _Nullable)error;
+- (void)setJsonParameter:(NSString * _Nullable)jsonParameter error:(AgoraRteError * _Nullable)error;
+- (NSString * _Nullable)jsonParameter:(AgoraRteError * _Nullable)error;
+ 
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">class Config {
+ public:
+ 
+  void SetAppId(const char *app_id, Error *err);
+  const char* GetAppId(Error *err);
+  void SetJsonParameter(const char *json_parameter, Error *err = nullptr);
+  std::string GetJsonParameter(Error *err = nullptr)
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p/>
+        </section>
+                <section id="sub-method">
+                    <title>Method</title>
+                    <parml>
+                    <plentry>
+                        <pt><ph keyref="SetAppId"/></pt>
+                        <pd>Sets an App ID. See <xref keyref="SetAppId"/>.</pd>
+                    </plentry>
+                    <plentry>
+                        <pt><ph keyref="GetAppId"/></pt>
+                        <pd>Gets the App ID you set. See <xref keyref="GetAppId"/>.</pd>
+                    </plentry>
+                        <plentry>
+                        <pt><ph keyref="SetJsonParameter_Config"/></pt>
+                        <pd>Sets the SDK JSON configuration. See <xref keyref="SetJsonParameter_Config"/>.</pd>
+                    </plentry>
+                        <plentry>
+                        <pt><ph keyref="GetJsonParameter_Config"/></pt>
+                        <pd>Get the SDK JSON configuration. See <xref keyref="GetJsonParameter_Config"/>.</pd>
+                    </plentry>
+                    </parml> </section>
+                </refbody>
+</reference>

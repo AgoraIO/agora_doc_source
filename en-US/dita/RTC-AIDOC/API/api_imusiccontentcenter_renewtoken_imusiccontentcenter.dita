@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_renewtoken_imusiccontentcenter">
+    <title><ph keyref="renewToken_IMusicContentCenter"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Updates the Token.</ph><ph id="shortdesc" props="android">Updates the Token.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="renewToken_IMusicContentCenter"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int renewToken(const char* token) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int renewToken(String token);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">When the Token used for authentication is about to expire or has already expired, you can call this method to pass in a newly generated Token.</p>
+            <p props="android">When the Token used for authentication is about to expire or has already expired, you can call this method to pass in a newly generated Token.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>token</pt>
+                    <pd>The new Token.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>token</pt>
+                    <pd>The newly generated Token.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

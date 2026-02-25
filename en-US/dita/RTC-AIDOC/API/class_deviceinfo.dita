@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_deviceinfo">
+    <title><ph keyref="DeviceInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to retrieve audio device information.</ph><ph id="shortdesc" props="android">Indicates whether the audio device supports ultra-low latency capture and playback.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct DeviceInfo {
+  bool isLowLatencyAudioSupported;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class DeviceInfo {
+  public boolean isLowLatencyAudioSupported;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
+            <note props="cpp">This class is only applicable to the Android platform.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>isLowLatencyAudioSupported</pt>
+                    <pd>Whether the audio device supports ultra-low latency capture and playback:
+                        <ul>
+                            <li><xref keyref="true"/>: The device supports ultra-low latency capture and playback.</li>
+                            <li><xref keyref="false"/>: The device does not support ultra-low latency capture and playback.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>isLowLatencyAudioSupported</pt>
+                    <pd>Indicates whether ultra-low latency audio capture and playback is supported:
+                        <ul>
+                            <li><xref keyref="true"/>: The device supports ultra-low latency audio capture and playback.</li>
+                            <li><xref keyref="false"/>: The device does not support ultra-low latency audio capture and playback.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

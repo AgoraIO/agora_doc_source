@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_encryptionconfig">
+    <title><ph keyref="EncryptionConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Configures the built-in encryption mode and key.</ph><ph id="shortdesc" props="rn">Configures the built-in encryption mode and key.</ph><ph id="shortdesc" props="flutter">Configures built-in encryption mode and key.</ph><ph id="shortdesc" props="unity">Configure built-in encryption mode and key.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class EncryptionConfig {
+
+  encryptionMode?: EncryptionMode;
+
+  encryptionKey?: string;
+
+  encryptionKdfSalt?: number[];
+
+  datastreamEncryptionEnabled?: boolean;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class EncryptionConfig {
+
+  encryptionMode?: EncryptionMode;
+
+  encryptionKey?: string;
+
+  encryptionKdfSalt?: number[];
+
+  datastreamEncryptionEnabled?: boolean;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class EncryptionConfig {
+  const EncryptionConfig(
+      {this.encryptionMode,
+      this.encryptionKey,
+      this.encryptionKdfSalt,
+      this.datastreamEncryptionEnabled});
+
+  @JsonKey(name: 'encryptionMode')
+  final EncryptionMode? encryptionMode;
+
+  @JsonKey(name: 'encryptionKey')
+  final String? encryptionKey;
+
+  @JsonKey(name: 'encryptionKdfSalt', ignore: true)
+  final Uint8List? encryptionKdfSalt;
+
+  @JsonKey(name: 'datastreamEncryptionEnabled')
+  final bool? datastreamEncryptionEnabled;
+
+  factory EncryptionConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$EncryptionConfigFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$EncryptionConfigToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class EncryptionConfig
+    {
+        public ENCRYPTION_MODE encryptionMode;
+        public string encryptionKey;
+        public byte[] encryptionKdfSalt;
+        public bool datastreamEncryptionEnabled;
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>encryptionMode</pt>
+                    <pd>Built-in encryption mode. See <xref keyref="ENCRYPTION_MODE"/>. It is recommended to use <codeph>Aes128Gcm2</codeph> or <codeph>Aes256Gcm2</codeph> encryption modes. These modes support salt and offer higher security.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>encryptionKey</pt>
+                    <pd>Built-in encryption key of type string with no length limit. A 32-byte key is recommended.
+                        <note>If this parameter is not specified or set to <xref keyref="NULL"/>, built-in encryption cannot be enabled and the SDK returns error code <codeph>-2</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>encryptionKdfSalt</pt>
+                    <pd>Salt with a length of 32 bytes. It is recommended to generate the salt on the server using OpenSSL.
+                        <note>This parameter is effective only in <codeph>Aes128Gcm2</codeph> or <codeph>Aes256Gcm2</codeph> encryption modes. In this case, ensure the value of this parameter is not all <codeph>0</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>datastreamEncryptionEnabled</pt>
+                    <pd>Whether to enable data stream encryption:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable data stream encryption.</li>
+                            <li><xref keyref="false"/>: (Default) Disable data stream encryption.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encryptionMode</pt>
+                    <pd>Built-in encryption mode. See <xref keyref="ENCRYPTION_MODE"/>. It is recommended to use the <codeph>Aes128Gcm2</codeph> or <codeph>Aes256Gcm2</codeph> encryption modes. These modes support salt and offer better security.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encryptionKey</pt>
+                    <pd>Built-in encryption key, of type string, with no length limit. A 32-byte key is recommended.
+                        <note>If this parameter is not specified or is set to <xref keyref="NULL"/>, built-in encryption cannot be enabled, and the SDK returns error code <codeph>-2</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encryptionKdfSalt</pt>
+                    <pd>Salt, 32 bytes in length. It is recommended to generate the salt on the server side using OpenSSL.
+                        <note>This parameter takes effect only when the encryption mode is <codeph>Aes128Gcm2</codeph> or <codeph>Aes256Gcm2</codeph>. In this case, make sure the value of this parameter is not all <codeph>0</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>datastreamEncryptionEnabled</pt>
+                    <pd>Whether to enable data stream encryption:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable data stream encryption.</li>
+                            <li><xref keyref="false"/>: (default) Disable data stream encryption.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encryptionMode</pt>
+                    <pd>Built-in encryption mode. See <xref keyref="ENCRYPTION_MODE"/>. It is recommended to use <codeph>aes128Gcm2</codeph> or <codeph>aes256Gcm2</codeph> encryption modes. These two modes support salt and offer higher security.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encryptionKey</pt>
+                    <pd>Built-in encryption key, of type <codeph>String</codeph>, with no length limit. It is recommended to use a 32-byte key.
+                        <note>If this parameter is not specified or set to <codeph>NULL</codeph>, built-in encryption cannot be enabled, and the SDK returns error code <codeph>-2</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encryptionKdfSalt</pt>
+                    <pd>Salt, 32 bytes in length. It is recommended to generate the salt on the server side using OpenSSL.
+                        <note>This parameter takes effect only when using <codeph>aes128Gcm2</codeph> or <codeph>aes256Gcm2</codeph> encryption modes. In this case, ensure that the value provided for this parameter is not all <codeph>0</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>datastreamEncryptionEnabled</pt>
+                    <pd>Whether to enable data stream encryption:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable data stream encryption.</li>
+                            <li><xref keyref="false"/>: (Default) Disable data stream encryption.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encryptionMode</pt>
+                    <pd>Built-in encryption mode. See <xref keyref="ENCRYPTION_MODE"/>. It is recommended to use <codeph>AES_128_GCM2</codeph> or <codeph>AES_256_GCM2</codeph> modes, which support salt and offer higher security.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encryptionKey</pt>
+                    <pd>Built-in encryption key, string type, no length limit. It is recommended to use a 32-byte key.
+                        <note>If this parameter is not specified or is set to <codeph>NULL</codeph>, built-in encryption cannot be enabled and the SDK returns error code <codeph>-2</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encryptionKdfSalt</pt>
+                    <pd>Salt, 32 bytes in length. It is recommended to generate the salt on the server using OpenSSL.
+                        <note>This parameter takes effect only when using <codeph>AES_128_GCM2</codeph> or <codeph>AES_256_GCM2</codeph> encryption modes. In this case, ensure the value of this parameter is not all <codeph>0</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>datastreamEncryptionEnabled</pt>
+                    <pd>Whether to enable data stream encryption:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable data stream encryption.</li>
+                            <li><xref keyref="false"/>: (default) Disable data stream encryption.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

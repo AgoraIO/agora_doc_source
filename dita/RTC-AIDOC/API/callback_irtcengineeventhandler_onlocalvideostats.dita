@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onlocalvideostats">
+    <title><ph keyref="onLocalVideoStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">本地视频流统计信息回调。</ph><ph id="shortdesc" props="ios">本地视频流统计信息回调。</ph><ph id="shortdesc" props="android">本地视频流统计信息回调。</ph><ph id="shortdesc" props="mac">本地视频流统计信息回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalVideoStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onLocalVideoStats(VIDEO_SOURCE_TYPE source, const LocalVideoStats&amp; stats)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localVideoStats:(AgoraRtcLocalVideoStats * _Nonnull)stats sourceType:(AgoraVideoSourceType)sourceType NS_SWIFT_NAME(rtcEngine(_:localVideoStats:sourceType:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onLocalVideoStats(Constants.VideoSourceType source, LocalVideoStats stats) {}</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localVideoStats:(AgoraRtcLocalVideoStats * _Nonnull)stats sourceType:(AgoraVideoSourceType)sourceType NS_SWIFT_NAME(rtcEngine(_:localVideoStats:sourceType:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">该回调每两秒触发一次。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>触发时机</title>
+            <p props="cpp">SDK 每两秒触发一次该回调。</p>
+            <p props="ios">该回调每两秒触发一次。</p>
+            <p props="android">该回调每两秒触发一次。</p>
+            <p props="mac">该回调每两秒触发一次。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>source</pt>
+                    <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>stats</pt>
+                    <pd>本地视频流的统计信息。详见 <xref keyref="LocalVideoStats"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>stats</pt>
+                    <pd>本地视频流的统计信息。详见 <xref keyref="LocalVideoStats"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>source</pt>
+                    <pd>视频源类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>stats</pt>
+                    <pd>本地视频流的统计信息，详见 <xref keyref="LocalVideoStats"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>engine</pt>
+                    <pd><xref keyref="IRtcEngine"/> 对象。详见 <xref keyref="IRtcEngine"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>stats</pt>
+                    <pd>本地视频流的统计信息。详见 <xref keyref="LocalVideoStats"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sourceType</pt>
+                    <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

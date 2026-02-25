@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_enumeraterecordingdevices">
+    <title><ph keyref="enumerateRecordingDevices"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enumerates audio recording devices.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enumerateRecordingDevices"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual IAudioDeviceCollection *enumerateRecordingDevices() = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method returns an <xref keyref="IAudioDeviceCollection"/> object that contains all audio recording devices in the system. After using the object, you must call the <xref keyref="release_IAudioDeviceManager"/> method to free the resources.</p>
+            <note props="cpp">This method is only applicable to Windows and macOS platforms.</note>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>The <xref keyref="IAudioDeviceCollection"/> object, if the method call succeeds. See <xref keyref="IAudioDeviceCollection"/>.</li>
+                    <li>An empty pointer , if the method call fails.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

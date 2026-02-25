@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_pullaudioframe">
+    <title><ph keyref="pullAudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">拉取远端音频数据。</ph><ph id="shortdesc" props="rn">拉取远端音频数据。</ph><ph id="shortdesc" props="flutter">拉取远端音频数据。</ph><ph id="shortdesc" props="unity">拉取远端音频数据。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="pullAudioFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract pullAudioFrame(): AudioFrame;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract pullAudioFrame(): AudioFrame;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; pullAudioFrame(AudioFrame frame);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int PullAudioFrame(AudioFrame frame);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">调用该方法后，App 会采取主动拉取的方式获取远端已解码和混音后的音频数据，用于音频播放。</p>
+            <p props="rn">调用该方法后，App 会采取主动拉取的方式获取远端已解码和混音后的音频数据，用于音频播放。</p>
+            <p props="flutter">调用该方法后，App 会采取主动拉取的方式获取远端已解码和混音后的音频数据，用于音频播放。</p>
+            <p props="unity">调用该方法后，App 会采取主动拉取的方式获取远端已解码和混音后的音频数据，用于音频播放。</p>
+            <note props="electron">该方法和 <xref keyref="onPlaybackAudioFrame"/> 回调均可用于获取远端混音后的音频播放数据。在调用 <xref keyref="setExternalAudioSink"/> 开启外部音频渲染后，App 将无法从 <xref keyref="onPlaybackAudioFrame"/> 回调中获得数据。因此，请根据实际的业务需求在该方法和 <xref keyref="onPlaybackAudioFrame"/> 回调之间进行选择。二者的处理机制不同，具体区别如下：
+                <ul>
+                    <li>调用该方法后，App 会主动拉取音频数据。通过设置音频数据，SDK 可以调整缓存，帮助 App 处理延时，从而有效避免音频播放抖动。</li>
+                    <li>注册 <xref keyref="onPlaybackAudioFrame"/> 回调后，SDK 通过该回调将音频数据传输给 App。App 在处理音频帧的延迟时，可能会导致音频播放抖动。</li>
+                </ul><ph>该方法仅用于拉取远端混音后的音频播放数据，如需获取采集的原始音频数据、混音前每条拉流单独的原始音频播放数据等，可以通过调用 <xref keyref="registerAudioFrameObserver"/> 注册相应的回调。</ph></note>
+            <note props="rn">该方法和 <xref keyref="onPlaybackAudioFrame"/> 回调均可用于获取远端混音后的音频播放数据。在调用 <xref keyref="setExternalAudioSink"/> 开启外部音频渲染后，App 将无法从 <xref keyref="onPlaybackAudioFrame"/> 回调中获得数据。因此，请根据实际的业务需求在该方法和 <xref keyref="onPlaybackAudioFrame"/> 回调之间进行选择。二者的处理机制不同，具体区别如下：
+                <ul>
+                    <li>调用该方法后，App 会主动拉取音频数据。通过设置音频数据，SDK 可以调整缓存，帮助 App 处理延时，从而有效避免音频播放抖动。</li>
+                    <li>注册 <xref keyref="onPlaybackAudioFrame"/> 回调后，SDK 通过该回调将音频数据传输给 App。App 在处理音频帧的延迟时，可能会导致音频播放抖动。</li>
+                </ul><ph>该方法仅用于拉取远端混音后的音频播放数据，如需获取采集的原始音频数据、混音前每条拉流单独的原始音频播放数据等，可以通过调用 <xref keyref="registerAudioFrameObserver"/> 注册相应的回调。</ph></note>
+            <note props="flutter">该方法和 <xref keyref="onPlaybackAudioFrame"/> 回调均可用于获取远端混音后的音频播放数据。在调用 <xref keyref="setExternalAudioSink"/> 开启外部音频渲染后，App 将无法从 <xref keyref="onPlaybackAudioFrame"/> 回调中获得数据。因此，请根据实际的业务需求在该方法和 <xref keyref="onPlaybackAudioFrame"/> 回调之间进行选择。二者的处理机制不同，具体区别如下：
+                <ul>
+                    <li>调用该方法后，App 会主动拉取音频数据。通过设置音频数据，SDK 可以调整缓存，帮助 App 处理延时，从而有效避免音频播放抖动。</li>
+                    <li>注册 <xref keyref="onPlaybackAudioFrame"/> 回调后，SDK 通过该回调将音频数据传输给 App。App 在处理音频帧的延迟时，可能会导致音频播放抖动。</li>
+                </ul><ph>该方法仅用于拉取远端混音后的音频播放数据，如需获取采集的原始音频数据、混音前每条拉流单独的原始音频播放数据等，可以通过调用 <xref keyref="registerAudioFrameObserver"/> 注册相应的回调。</ph></note>
+            <note props="unity">该方法和 <xref keyref="onPlaybackAudioFrame"/> 回调均可用于获取远端混音后的音频播放数据。在调用 <xref keyref="setExternalAudioSink"/> 开启外部音频渲染后，App 将无法从 <xref keyref="onPlaybackAudioFrame"/> 回调中获得数据。因此，请根据实际的业务需求在该方法和 <xref keyref="onPlaybackAudioFrame"/> 回调之间进行选择。二者的处理机制不同，具体区别如下：
+                <ul>
+                    <li>调用该方法后，App 会主动拉取音频数据。通过设置音频数据，SDK 可以调整缓存，帮助 App 处理延时，从而有效避免音频播放抖动。</li>
+                    <li>注册 <xref keyref="onPlaybackAudioFrame"/> 回调后，SDK 通过该回调将音频数据传输给 App。App 在处理音频帧的延迟时，可能会导致音频播放抖动。</li>
+                </ul><ph>该方法仅用于拉取远端混音后的音频播放数据，如需获取采集的原始音频数据、混音前每条拉流单独的原始音频播放数据等，可以通过调用 <xref keyref="registerAudioFrameObserver"/> 注册相应的回调。</ph></note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在加入频道后调用。
+调用该方法前，你需要调用 <codeph>setExternalAudioSink(enabled: true)</codeph> 开启并设置外部渲染。</p>
+            <p props="rn">该方法需要在加入频道后调用。
+调用该方法前，你需要调用 <codeph>setExternalAudioSink(enabled: true)</codeph> 开启并设置外部渲染。</p>
+            <p props="flutter">该方法需要在加入频道后调用。
+调用该方法前，你需要调用 <codeph>setExternalAudioSink(enabled: true)</codeph> 开启并设置外部渲染。</p>
+            <p props="unity">该方法需要在加入频道后调用。
+调用该方法前，你需要调用 <codeph>SetExternalAudioSink(enabled: true)</codeph> 开启并设置外部渲染。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="flutter">
+                    <pt>frame</pt>
+                    <pd>指向 <xref keyref="AudioFrame"/> 的指针。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>frame</pt>
+                    <pd>指向 <xref keyref="AudioFrame"/> 的指针。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>方法调用成功，返回一个 <xref keyref="AudioFrame"/> 对象。</li>
+                    <li>方法调用失败，返回错误码。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>方法调用成功，返回一个 <xref keyref="AudioFrame"/> 对象。</li>
+                    <li>方法调用失败，返回错误码。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

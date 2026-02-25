@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_stopchannelmediarelay">
+    <title><ph keyref="stopChannelMediaRelay"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Stops the media stream relay across channels. Once stopped, the broadcaster leaves all destination channels.</ph><ph id="shortdesc" props="rn">Stops the media stream relay across channels. Once stopped, the host leaves all destination channels.</ph><ph id="shortdesc" props="flutter">Stops cross-channel media stream relay. Once stopped, the broadcaster leaves all destination channels.</ph><ph id="shortdesc" props="unity">Stops cross-channel media stream forwarding. Once stopped, the host leaves all destination channels.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="stopChannelMediaRelay"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract stopChannelMediaRelay(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract stopChannelMediaRelay(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopChannelMediaRelay();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StopChannelMediaRelay();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After a successful call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback. If it reports <codeph>RelayStateIdle</codeph> (0) and <codeph>RelayOk</codeph> (0), it indicates that the media stream relay has stopped.</p>
+            <p props="rn">After a successful call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback. If it reports <codeph>RelayStateIdle</codeph> (0) and <codeph>RelayOk</codeph> (0), it indicates that the media stream relay has stopped.</p>
+            <p props="flutter">After the method is successfully called, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback. If it reports <codeph>relayStateIdle</codeph> (0) and <codeph>relayOk</codeph> (0), it indicates that media stream relay has been stopped.</p>
+            <p props="unity">After a successful call to this method, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback. If it reports <codeph>RELAY_STATE_IDLE</codeph> (0) and <codeph>RELAY_OK</codeph> (0), it indicates that media stream forwarding has stopped.</p>
+            <note props="electron">If the method call fails, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback and reports the error code <codeph>RelayErrorServerNoResponse</codeph> (2) or <codeph>RelayErrorServerConnectionLost</codeph> (8). You can call the <xref keyref="leaveChannel2"/> method to leave the channel, and the media stream relay will stop automatically.</note>
+            <note props="rn">If the method call fails, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback and reports error codes <codeph>RelayErrorServerNoResponse</codeph> (2) or <codeph>RelayErrorServerConnectionLost</codeph> (8). You can call the <xref keyref="leaveChannel2"/> method to leave the channel, and the media stream relay will automatically stop.</note>
+            <note props="flutter">If the method call fails, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback and reports the status code <codeph>relayErrorServerNoResponse</codeph> (2) or <codeph>relayErrorServerConnectionLost</codeph> (8). You can call the <xref keyref="leaveChannel2"/> method to leave the channel, and the cross-channel media stream relay will stop automatically.</note>
+            <note props="unity">If the method call fails, the SDK will trigger the <xref keyref="onChannelMediaRelayStateChanged"/> callback and report the status code <codeph>RELAY_ERROR_SERVER_NO_RESPONSE</codeph> (2) or <codeph>RELAY_ERROR_SERVER_CONNECTION_LOST</codeph> (8). You can call the <xref keyref="leaveChannel2"/> method to leave the channel, and cross-channel media stream forwarding will stop automatically.</note>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.
+                        <ul>
+                            <li>-5: The method call is rejected. There is no ongoing media stream relay.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.
+                        <ul>
+                            <li>-5: The method call is rejected. There is no ongoing media stream relay across channels.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                <ul>
+                    <li>&lt; 0: Method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-5: This method call was rejected. There is no ongoing cross-channel media stream relay.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-5: This method call was rejected. No cross-channel media stream forwarding is currently in progress.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

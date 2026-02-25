@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_startaudiodeviceloopbacktest">
+    <title><ph keyref="startAudioDeviceLoopbackTest"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Starts the audio device loopback test.</ph><ph id="shortdesc" props="flutter">Starts the audio device loopback test.</ph><ph id="shortdesc" props="unity">Starts an audio device loopback test.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startAudioDeviceLoopbackTest"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startAudioDeviceLoopbackTest(indicationInterval: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioDeviceLoopbackTest(int indicationInterval);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioDeviceLoopbackTest(int indicationInterval);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method tests whether the audio recording and playback devices are working properly. Once the test starts, the recording device captures local audio and the playback device plays it back. The SDK triggers two <xref keyref="onAudioVolumeIndication"/> callbacks at the specified interval to report the volume levels of the recording device (<codeph>uid</codeph> = 0) and the playback device (<codeph>uid</codeph> = 1).</p>
+            <p props="flutter">This method tests whether the audio recording and playback devices are working properly. Once the test starts, the recording device captures local audio and the playback device plays it back. The SDK triggers two <xref keyref="onAudioVolumeIndication"/> callbacks at the specified interval, reporting the volume information of the recording device (<codeph>uid</codeph> = 0) and the playback device (<codeph>uid</codeph> = 1).</p>
+            <p props="unity">This method tests whether the audio recording and playback devices are working properly. Once the test starts, the recording device captures local audio and plays it back through the playback device. The SDK triggers two <xref keyref="onAudioVolumeIndication"/> callbacks at the specified time interval to report the volume levels of the recording device (<codeph>uid</codeph> = 0) and the playback device (<codeph>uid</codeph> = 1).</p>
+            <note props="electron">
+                <ul>
+                    <li>This method can be called before or after joining a channel.</li>
+                    <li>This method is only available to hosts.</li>
+                    <li>This method only performs local audio device testing and does not involve network connections.</li>
+                    <li>After the test is complete, you must call <xref keyref="stopAudioDeviceLoopbackTest"/> to stop the loopback test.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>(Windows and macOS only)</li>
+                    <li>Can be called before or after joining a channel.</li>
+                    <li>Only supported for the broadcaster role.</li>
+                    <li>This method only tests local audio devices and does not involve network connection.</li>
+                    <li>After the test is complete, you must call <xref keyref="stopAudioDeviceLoopbackTest"/> to stop the loopback test.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method is only available on Windows and macOS.</li>
+                    <li>You can call this method before or after joining a channel.</li>
+                    <li>Only the host role can call this method.</li>
+                    <li>This method only tests local audio devices and does not involve network connections.</li>
+                    <li>After the test is complete, you must call <xref keyref="stopAudioDeviceLoopbackTest"/> to stop the loopback test.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>indicationInterval</pt>
+                    <pd>The interval at which the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback, in milliseconds. It is recommended to set it to greater than 200 ms. Must not be less than 10 ms, otherwise the <xref keyref="onAudioVolumeIndication"/> callback will not be received.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>indicationInterval</pt>
+                    <pd>The time interval (in milliseconds) at which the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback. It is recommended to set it greater than 200 ms. It must not be less than 10 ms, otherwise the <xref keyref="onAudioVolumeIndication"/> callback will not be received.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>indicationInterval</pt>
+                    <pd>The time interval in milliseconds at which the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback. It is recommended to set this to more than 200 ms. If set to less than 10 ms, the <xref keyref="onAudioVolumeIndication"/> callback will not be received.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

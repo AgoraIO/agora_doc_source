@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_geteffectduration">
+    <title><ph keyref="getEffectDuration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the duration of an audio effect file.</ph><ph id="shortdesc" props="android">Gets the duration of an audio effect file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getEffectDuration"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getEffectDuration(const char* filePath) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getEffectDuration(String filePath);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">Call this method after joining a channel.</note>
+            <note props="android">Call this method after joining a channel.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>filePath</pt>
+                    <pd>The path to the audio effect file:
+                        <ul>
+                            <li>Android: The path must include the file name and extension. Supports URL, absolute path, or paths starting with <codeph>/assets/</codeph>. Using an absolute path to access local files may cause permission issues. It is recommended to use a URI, e.g., <codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>.</li>
+                            <li>Windows: The absolute path or URL to the audio effect file (including the file extension), e.g., <xref keyref="filePath-example"/>.</li>
+                            <li>iOS or macOS: The absolute path or URL to the audio effect file (including the file extension), e.g., <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>filePath</pt>
+                    <pd>The path of the audio effect file:
+                        <ul>
+                            <li>Android: The path must include the file name and extension. Supports URL, absolute path, or file path starting with <codeph>/assets/</codeph>. Accessing local files with an absolute path may cause permission issues. It is recommended to use a URI, such as:</li>
+                        </ul><ph><codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>.</ph></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>If the method call succeeds, returns the total duration of the specified audio effect file (milliseconds).</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>On success, returns the total duration (ms) of the specified audio effect file.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

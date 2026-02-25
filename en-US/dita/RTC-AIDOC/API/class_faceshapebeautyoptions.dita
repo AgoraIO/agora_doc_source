@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_faceshapebeautyoptions">
+    <title><ph keyref="FaceShapeBeautyOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set beauty style effect parameters.</ph><ph id="shortdesc" props="android">Used to set beauty styles.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct FaceShapeBeautyOptions {
+  FACE_SHAPE_BEAUTY_STYLE shapeStyle;
+  int styleIntensity;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class FaceShapeBeautyOptions {
+  public static final int FACE_SHAPE_BEAUTY_STYLE_FEMALE = 0;
+  public static final int FACE_SHAPE_BEAUTY_STYLE_MALE = 1;
+  public static final int FACE_SHAPE_BEAUTY_STYLE_NATURAL = 2;
+  public int shapeStyle;
+  public int styleIntensity;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Added since v4.4.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>shapeStyle</pt>
+                    <pd>Beauty style effect option. See <xref keyref="FACE_SHAPE_BEAUTY_STYLE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>styleIntensity</pt>
+                    <pd>Intensity of the beauty style effect, range [0.0, 1.0]. Default is 0.0, meaning no effect. The higher the value, the more obvious the effect.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>FACE_SHAPE_BEAUTY_STYLE_FEMALE</pt>
+                    <pd>0: (Default) Female beauty style.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>FACE_SHAPE_BEAUTY_STYLE_MALE</pt>
+                    <pd>1: Male beauty style.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>FACE_SHAPE_BEAUTY_STYLE_NATURAL</pt>
+                    <pd>2: Natural style, makes minimal adjustments to facial features.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>shapeStyle</pt>
+                    <pd>Beauty style options:
+                        <ul>
+                            <li><codeph>FACE_SHAPE_BEAUTY_STYLE_FEMALE</codeph> (0): (Default) Female style.</li>
+                            <li><codeph>FACE_SHAPE_BEAUTY_STYLE_MALE</codeph> (1): Male style.</li>
+                            <li><codeph>FACE_SHAPE_BEAUTY_STYLE_NATURAL</codeph> (2): Natural style, makes minimal adjustments to facial features.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>styleIntensity</pt>
+                    <pd>Intensity of the beauty style. Value range: [0.0, 1.0].
+                        <ul>
+                            <li>Default is 0.0, meaning no beauty effect.</li>
+                            <li>The larger the value, the more obvious the beauty effect.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

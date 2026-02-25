@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_videomoduleposition">
+    <title><ph keyref="VIDEO_MODULE_POSITION"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Position of video frames in the video observer.</ph><ph id="shortdesc" props="android">Position of the video frame in the video observer.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>POSITION_POST_CAPTURER</pt>
+                    <pd>(1): Position after local video capture and preprocessing, corresponding to the <xref keyref="onCaptureVideoFrame"/> callback. Video at this position has applied pre-processing effects, which can be verified by enabling beauty effects, virtual background, or watermark.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>POSITION_PRE_RENDERER</pt>
+                    <pd>(2): Position before rendering, corresponding to the video data in the <xref keyref="onRenderVideoFrame"/> callback.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>POSITION_PRE_ENCODER</pt>
+                    <pd>(4): Position before encoding, corresponding to the video data in the <xref keyref="onPreEncodeVideoFrame"/> callback. Video at this position has applied both pre-processing and pre-encoding effects.
+                        <ul>
+                            <li>To verify pre-processing effects, you can enable beauty effects, virtual background, or watermark.</li>
+                            <li>To verify pre-encoding effects, you can set a low frame rate (e.g., 5 fps).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>POSITION_POST_CAPTURER_ORIGIN</pt>
+                    <pd>(8): Position after local video capture and before preprocessing. Video at this position has not applied pre-processing effects and can be verified by enabling beauty effects, virtual background, or watermark.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>VIDEO_MODULE_POSITION_POST_CAPTURER</pt>
+                    <pd>(1): The position of the locally captured video data after preprocessing, corresponding to the <xref keyref="onCaptureVideoFrame"/> callback. The video at this position has applied video preprocessing effects, which can be verified by enabling beauty effects, virtual background, or watermark.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>VIDEO_MODULE_POSITION_PRE_RENDERER</pt>
+                    <pd>(2): The position before rendering, corresponding to the video data in the <xref keyref="onRenderVideoFrame"/> callback.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>VIDEO_MODULE_POSITION_PRE_ENCODER</pt>
+                    <pd>(4): The position before encoding, corresponding to the video data in the <xref keyref="onPreEncodeVideoFrame"/> callback. The video at this position has applied video preprocessing and pre-encoding effects.
+                        <ul>
+                            <li>To verify video preprocessing effects, you can enable beauty effects, virtual background, or watermark.</li>
+                            <li>To verify pre-encoding effects, you can set a lower frame rate (e.g., 5 fps).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>VIDEO_MODULE_POSITION_POST_CAPTURER_ORIGIN</pt>
+                    <pd>(8): The position after local video capture and before preprocessing. The video at this position has not applied preprocessing effects, which can be verified by enabling beauty effects, virtual background, or watermark.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

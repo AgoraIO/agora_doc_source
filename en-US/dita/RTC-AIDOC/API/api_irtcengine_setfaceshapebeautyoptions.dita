@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setfaceshapebeautyoptions">
+    <title><ph keyref="setFaceShapeBeautyOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets face shaping options and specifies the media source.</ph><ph id="shortdesc" props="android">Sets face shaping effects and specifies the media source to apply.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setFaceShapeBeautyOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setFaceShapeBeautyOptions(bool enabled, const FaceShapeBeautyOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setFaceShapeBeautyOptions(boolean enabled, FaceShapeBeautyOptions options, Constants.MediaSourceType sourceType);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You can call this method to adjust multiple facial features at once using preset parameters, achieving effects such as face slimming, eye enlargement, and nose slimming, and also adjust the overall intensity of the face shaping effect.</p>
+            <p props="android">This method allows you to adjust multiple facial areas at once using preset parameters to achieve subtle face shaping effects such as slimming the face, enlarging the eyes, and slimming the nose. It also supports adjusting the overall intensity of the face shaping effect. This method is similar to <xref keyref="setFaceShapeBeautyOptions2"/>, with the difference that it supports specifying the media source to apply the face shaping effects.</p>
+            <note props="cpp">This method is only applicable to Android 4.4 or later.
+This method depends on the beauty effect dynamic library <xref keyref="clearvision"/>. If the library is deleted, this feature cannot be enabled.
+This feature requires high device performance. When calling this method, the SDK automatically detects the device's capability.</note>
+            <note props="android">
+                <ul>
+                    <li>This method is only applicable to Android 4.4 or later.</li>
+                    <li>This method depends on the beauty effect dynamic library <xref keyref="clearvision"/>. If the library is deleted, the feature cannot be used properly.</li>
+                    <li>This feature has high performance requirements for the device. When calling this method, the SDK automatically detects the capabilities of the current device.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after calling <xref keyref="enableVideo"/>.</p>
+            <p props="android">Call this method after calling <xref keyref="enableVideo"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable face shaping effect:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable face shaping.</li>
+                            <li><xref keyref="false"/>: (Default) Disable face shaping.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>options</pt>
+                    <pd>Face shaping style options. See <xref keyref="FaceShapeBeautyOptions"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>The media source type to apply the filter effect to. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+This parameter only supports the following two settings:
+                        <ul>
+                            <li>If using the camera to capture local video, use the default value <codeph>PRIMARY_CAMERA_SOURCE</codeph>.</li>
+                            <li>If using a custom video source, set this parameter to <codeph>CUSTOM_VIDEO_SOURCE</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable face shaping effects:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable face shaping effects.</li>
+                            <li><xref keyref="false"/>: (Default) Disable face shaping effects.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>Face shaping style options. See <xref keyref="FaceShapeBeautyOptions"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>The type of media source to which the face shaping effects are applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>This parameter only supports the following two settings:
+                            <ul>
+                                <li>When using the camera to capture local video, use the default value <codeph>PRIMARY_CAMERA_SOURCE</codeph>.</li>
+                                <li>When using a custom video source, set it to <codeph>CUSTOM_VIDEO_SOURCE</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-4: The current device does not support this feature. Possible reasons include:
+                                <ul>
+                                    <li>The current device does not meet the beauty effect requirements. Agora recommends using a high-performance device.</li>
+                                    <li>The device version is lower than Android 4.4 and does not support this feature. Agora recommends changing the device or upgrading the OS.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.
+                        <ul>
+                            <li>-4: The current device does not support this feature. Possible reasons include:
+                                <ul>
+                                    <li>The current device does not meet the performance requirements for beauty effects. It is recommended to use a high-performance device.</li>
+                                    <li>The current device system version is lower than Android 4.4. It is recommended to change the device or upgrade the operating system.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

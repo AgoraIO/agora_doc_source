@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imetadataobserver_onreadytosendmetadata">
+    <title><ph keyref="onReadyToSendMetadata"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the SDK is ready to send metadata.</ph><ph id="shortdesc" props="android">Callback triggered when the SDK is ready to send metadata.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onReadyToSendMetadata"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool onReadyToSendMetadata(Metadata &amp;metadata, VIDEO_SOURCE_TYPE source_type) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract byte[] onReadyToSendMetadata(long timeStampMs, int sourceType)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">Make sure the size of the metadata does not exceed the value set in the <xref keyref="getMaxMetadataSize"/> callback.</note>
+            <note props="android">Make sure the size of the metadata does not exceed the value set in the <xref keyref="getMaxMetadataSize"/> callback.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">Triggered when the SDK is ready to send metadata.</p>
+            <p props="android">This callback is triggered when the SDK is ready to send metadata.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>metadata</pt>
+                    <pd>Metadata you want to send. See <xref keyref="Metadata"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>source_type</pt>
+                    <pd>Type of video data. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>timeStampMs</pt>
+                    <pd>Timestamp.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>Video data type. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>: Send this video frame.</li>
+                    <li><xref keyref="false"/>: Do not send this video frame.</li>
+                </ul>
+            </p>
+            <p props="android">If the method call succeeds, returns the metadata to be sent, in byte array format.</p>
+        </section>
+    </refbody>
+</reference>

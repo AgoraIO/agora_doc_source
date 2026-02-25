@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onproxyconnected">
+    <title><ph keyref="onProxyConnected"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Proxy connection status callback.</ph><ph id="shortdesc" props="android">Callback for proxy connection status.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onProxyConnected"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onProxyConnected(const char* channel, uid_t uid, PROXY_TYPE proxyType, const char* localProxyIp, int elapsed)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onProxyConnected(String channel, int uid, int proxyType, String localProxyIp, int elapsed)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp"><xref keyref="onProxyConnected"/> is used to monitor the SDK's connection status to the proxy. When the user calls <xref keyref="setCloudProxy"/> and successfully joins a channel, the SDK triggers this callback to report the user ID, proxy type, and time elapsed (ms) from calling <codeph>joinChannel</codeph> to the callback.</p>
+            <p props="android">After the user calls <xref keyref="setCloudProxy"/> and successfully joins the channel, the SDK triggers this callback to report the user ID, the type of connected proxy, and the elapsed time (in milliseconds) from calling <codeph>joinChannel</codeph> to triggering this callback.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered after the user calls <xref keyref="setCloudProxy"/> and successfully joins the channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>channel</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>proxyType</pt>
+                    <pd>Type of proxy connected. See <xref keyref="PROXY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>localProxyIp</pt>
+                    <pd>Reserved parameter, not currently used.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (ms) from calling <codeph>joinChannel</codeph> to this callback being triggered.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channel</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>proxyType</pt>
+                    <pd>Type of connected proxy:
+                        <ul>
+                            <li><codeph>PROXY_TYPE_NONE_PROXY</codeph> (0): Reserved parameter.</li>
+                            <li><codeph>PROXY_TYPE_UDP_CLOUD_PROXY</codeph> (1): UDP cloud proxy, i.e., forced UDP cloud proxy mode. In this mode, the SDK always transmits data via UDP.</li>
+                            <li><codeph>PROXY_TYPE_TCP_CLOUD_PROXY</codeph> (2): TCP (encrypted) cloud proxy, i.e., forced TCP cloud proxy mode. In this mode, the SDK always transmits data via TCP/TLS 443.</li>
+                            <li><codeph>PROXY_TYPE_LOCAL_PROXY</codeph> (3): Reserved parameter.</li>
+                            <li><codeph>PROXY_TYPE_TCP_AUTO_FALLBACK</codeph> (4): Auto mode. In this mode, the SDK tries to connect to SD-RTN™ directly, and falls back to TCP/TLS 443 if it fails.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>localProxyIp</pt>
+                    <pd>Reserved parameter.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>elapsed</pt>
+                    <pd>Elapsed time (in milliseconds) from calling <codeph>joinChannel</codeph> to triggering this callback.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

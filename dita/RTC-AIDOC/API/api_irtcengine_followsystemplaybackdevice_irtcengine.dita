@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_followsystemplaybackdevice_irtcengine">
+    <title><ph keyref="followSystemPlaybackDevice_IRtcEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="mac">设置 SDK 使用的音频播放设备是否跟随系统默认音频播放设备。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="followSystemPlaybackDevice_IRtcEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="mac" outputclass="language-objectivec">- (int)followSystemPlaybackDevice:(BOOL)enable NS_SWIFT_NAME(followSystemPlaybackDevice(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="mac">当系统默认音频播放设备发生变化时，SDK 会根据你的设置自动切换音频播放设备。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="mac">
+                    <pt>enable</pt>
+                    <pd>是否跟随系统默认音频播放设备：
+                        <ul>
+                            <li><xref keyref="true"/>：跟随系统默认音频播放设备。当系统默认音频播放设备发生变化时，SDK 会立即切换音频播放设备。</li>
+                            <li><xref keyref="false"/>：不跟随系统默认音频播放设备。仅当当前使用的音频播放设备断开连接时，SDK 才会切换到系统默认音频播放设备。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="mac">
+            <title>返回值</title>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

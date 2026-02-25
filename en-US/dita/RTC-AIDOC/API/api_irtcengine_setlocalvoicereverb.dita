@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalvoicereverb">
+    <title><ph keyref="setLocalVoiceReverb"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the reverb effect of the local voice.</ph><ph id="shortdesc" props="android">Sets the reverb effect of the local voice.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalVoiceReverb"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalVoiceReverb(AUDIO_REVERB_TYPE reverbKey, int value) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setLocalVoiceReverb(Constants.AUDIO_REVERB_TYPE reverbKey, int value);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You can also use the more user-friendly method <xref keyref="setAudioEffectPreset"/> to directly apply preset reverb effects such as Pop, R&amp;B, and KTV.</p>
+            <p props="android">You can use the easier method <xref keyref="setAudioEffectPreset"/> to achieve preset reverb effects such as Pop, R&amp;B, and KTV.</p>
+            <note props="android">You can call this method before or after joining a channel.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Timing</title>
+            <p props="cpp">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>reverbKey</pt>
+                    <pd>Reverb key. See <xref keyref="AUDIO_REVERB_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>value</pt>
+                    <pd>Value corresponding to the reverb key.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reverbKey</pt>
+                    <pd>Reverb key. See <xref keyref="AUDIO_REVERB_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>value</pt>
+                    <pd>Value of the reverb key.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

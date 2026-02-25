@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ivideodevicemanager_numberofcapabilities">
+    <title><ph keyref="numberOfCapabilities"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets the number of video formats supported by the specified video capture device.</ph><ph id="shortdesc" props="flutter">Gets the number of video formats supported by the specified video capturing device.</ph><ph id="shortdesc" props="unity">Gets the number of video formats supported by the specified video capture device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="numberOfCapabilities"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract numberOfCapabilities(deviceIdUTF8: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; numberOfCapabilities(String deviceIdUTF8);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int NumberOfCapabilities(string deviceIdUTF8);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">A video capture device may support multiple video formats, each supporting different combinations of frame width, frame height, and frame rate.
+You can call this method to get the number of video formats supported by the specified video capture device, and then call <xref keyref="getCapability"/> to get the specific frame information under a given format.</p>
+            <p props="flutter">A video capturing device may support multiple video formats, each with different combinations of frame width, frame height, and frame rate.
+You can call this method to get how many video formats the specified video capturing device supports, and then call <xref keyref="getCapability"/> to get detailed frame information for a specific video format.</p>
+            <p props="unity">A video capture device may support multiple video formats, each with different combinations of frame width, frame height, and frame rate.
+You can call this method to get how many video formats are supported by the specified video capture device, and then call <xref keyref="getCapability"/> to get detailed video frame information for each format.</p>
+            <note props="flutter">This method is only applicable to Windows and macOS.</note>
+            <note props="unity">(Windows and macOS only)</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>deviceIdUTF8</pt>
+                    <pd>The ID of the video capture device.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceIdUTF8</pt>
+                    <pd>The ID of the video capturing device.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceIdUTF8</pt>
+                    <pd>ID of the video capture device.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>&gt; 0: The method call succeeds. Returns the number of video formats supported by the device. For example, if the specified camera supports 10 different video formats, the return value is 10.</li>
+                    <li>≤ 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                <ul>
+                    <li>≤ 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>&gt; 0: Success. Returns the number of video formats supported by the device. For example, if the specified camera supports 10 different formats, the return value is 10.</li>
+                    <li>≤ 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

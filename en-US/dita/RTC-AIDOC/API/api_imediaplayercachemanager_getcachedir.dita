@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayercachemanager_getcachedir">
+    <title><ph keyref="getCacheDir"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the storage path for media files to be cached.</ph><ph id="shortdesc" props="android">Gets the storage path of cached media files.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCacheDir"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getCacheDir(char* path, int length) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">String getCacheDir();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">If you do not call <xref keyref="setCacheDir"/> to set the storage path for media files to be cached before calling this method, it returns the default storage path used by the SDK.</p>
+            <p props="android">If <xref keyref="setCacheDir"/> has not been called before this method, it returns the default storage path used by the SDK.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>path</pt>
+                    <pd>An output parameter. The storage path for media files to be cached.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>length</pt>
+                    <pd>The maximum length of the <codeph>path</codeph> string for the cache file storage path.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See <xref keyref="MEDIA_PLAYER_REASON"/>.</li>
+                </ul>
+            </p>
+            <p props="android">If the method call succeeds, returns the storage path of cached media files.
+If the method call fails, returns an empty string.</p>
+        </section>
+    </refbody>
+</reference>

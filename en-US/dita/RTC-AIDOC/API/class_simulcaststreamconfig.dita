@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_simulcaststreamconfig">
+    <title><ph keyref="SimulcastStreamConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the low-quality video stream.</ph><ph id="shortdesc" props="android">Used to configure the video low stream in different quality layers.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct SimulcastStreamConfig {
+ VideoDimensions dimensions;
+ int kBitrate;
+ int framerate;
+ bool operator==(const SimulcastStreamConfig&amp; rhs) const {
+ return dimensions == rhs.dimensions &amp;&amp; kBitrate == rhs.kBitrate &amp;&amp; framerate == rhs.framerate;
+ }
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class SimulcastStreamConfig {
+ public VideoEncoderConfiguration.VideoDimensions dimensions;
+ public int bitrate;
+ public int framerate;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
+            <p props="android">Used to set encoding parameters including resolution, bitrate, and frame rate.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>dimensions</pt>
+                    <pd>Video dimensions. Default is 50% of the high-quality stream. See <xref keyref="VideoDimensions"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kBitrate</pt>
+                    <pd>Video bitrate (Kbps). Default is -1. You do not need to set this parameter; the SDK automatically matches the optimal bitrate based on the video resolution and frame rate you set.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>framerate</pt>
+                    <pd>Local video frame rate (fps). Default is 5.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>dimensions</pt>
+                    <pd>Video resolution. The default value is 50% of the resolution of the high-quality video stream. See VideoDimensions.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>bitrate</pt>
+                    <pd>Video bitrate (Kbps). The default value is -1. You do not need to set this parameter manually. The SDK automatically matches the most appropriate bitrate based on the video resolution and frame rate you set.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>framerate</pt>
+                    <pd>Frame rate (fps) of the local video. The default value is 5.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

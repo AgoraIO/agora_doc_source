@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_enumeraterecordingdevices">
+    <title><ph keyref="enumerateRecordingDevices"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets the list of all audio recording devices in the system.</ph><ph id="shortdesc" props="flutter">Gets the list of all audio recording devices in the system.</ph><ph id="shortdesc" props="unity">Gets the list of all audio recording devices in the system.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enumerateRecordingDevices"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enumerateRecordingDevices(): AudioDeviceInfo[];</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">List&lt;AudioDeviceInfo&gt; enumerateRecordingDevices();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">abstract DeviceInfo[] EnumerateRecordingDevices();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="flutter">This method is applicable to Windows and macOS only.</note>
+            <note props="unity">(Windows and macOS only)</note>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>If the method call succeeds, returns an array of <xref keyref="AudioDeviceInfo"/>, containing the device ID and device name of all audio recording devices.</li>
+                    <li>If the method call fails: returns an empty list.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>If the method call succeeds, returns an array of <xref keyref="AudioDeviceInfo"/> containing the device ID and device name of all audio recording devices.</li>
+                    <li>If the method call fails: returns an empty list.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>If the method call succeeds, returns a <xref keyref="VideoDeviceInfo"/> array containing the device ID and device name of all audio recording devices.</li>
+                    <li>If the method call fails: <codeph><ph keyref="NULL"/></codeph>.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

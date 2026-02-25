@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_startmediarenderingtracingex">
+    <title><ph keyref="startMediaRenderingTracingEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Starts video frame rendering tracing.</ph><ph id="shortdesc" props="rn">Starts video frame rendering tracing.</ph><ph id="shortdesc" props="flutter">Starts video frame rendering tracing.</ph><ph id="shortdesc" props="unity">Starts video frame rendering tracing.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startMediaRenderingTracingEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startMediaRenderingTracingEx(connection: RtcConnection): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startMediaRenderingTracingEx(connection: RtcConnection): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startMediaRenderingTracingEx(RtcConnection connection);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartMediaRenderingTracingEx(RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After this method is successfully called, the SDK uses the time of this call as the starting point and reports video frame rendering information via the <xref keyref="onVideoRenderingTracingResult"/> callback.</p>
+            <p props="rn">After this method is successfully called, the SDK uses the time of the call as the starting point and reports video frame rendering information through the <xref keyref="onVideoRenderingTracingResult"/> callback.</p>
+            <p props="flutter">After this method is successfully called, the SDK uses the time of the call as the starting point and reports information related to video frame rendering through the <xref keyref="onVideoRenderingTracingResult"/> callback.</p>
+            <p props="unity">After this method is successfully called, the SDK uses the time of this call as the starting point and reports video frame rendering information through the <xref keyref="onVideoRenderingTracingResult"/> callback.</p>
+            <note props="electron">
+                <ul>
+                    <li>If you do not call this method, the SDK starts tracing video rendering events automatically using the time of the <xref keyref="joinChannel2"/> call as the starting point. You can call this method at an appropriate time based on your business scenario to customize the tracing.</li>
+                    <li>After leaving the current channel, the SDK automatically resets the time to the next <xref keyref="joinChannel2"/> call.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>If you do not call this method, the SDK uses the time of calling <xref keyref="joinChannel2"/> to join the channel as the default starting point and automatically starts tracing video rendering events. You can call this method at an appropriate time based on your business scenario to customize the tracing point.</li>
+                    <li>After leaving the current channel, the SDK automatically resets the tracing point to the next time you join a channel.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>If you do not call this method, the SDK uses the time of calling <xref keyref="joinChannel2"/> to join the channel as the starting point to begin tracing video rendering events automatically. You can call this method at an appropriate time based on your actual business scenario to customize the tracing.</li>
+                    <li>After leaving the current channel, the SDK automatically resets the starting point to the time of the next channel join.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>If you do not call this method, the SDK uses the time of calling <xref keyref="joinChannel2"/> to join the channel as the default starting point and automatically begins tracing video rendering events. You can call this method at an appropriate time based on your business scenario to customize the tracing point.</li>
+                    <li>After leaving the current channel, the SDK automatically resets the tracing point to the time of the next channel join.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>Agora recommends using this method together with UI elements in your app (such as buttons or sliders) to measure the time to first frame rendering from the user's perspective. For example, call this method when the user clicks the Join Channel button, and then use the <codeph>onVideoRenderingTracingResult</codeph> callback to obtain the duration of each stage in the video rendering process, allowing you to optimize each stage accordingly.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_loadextensionprovider">
+    <title><ph keyref="loadExtensionProvider"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Loads an extension.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="loadExtensionProvider"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int loadExtensionProvider(const char* path, bool unload_after_use = false) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method loads external SDK extensions (e.g., from the cloud marketplace or SDK extensions) into the SDK.</p>
+            <note props="cpp">If you need to load multiple extensions, call this method multiple times. Only applicable to Windows and Android platforms.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Timing</title>
+            <p props="cpp">Make sure to initialize <xref keyref="IRtcEngine"/> before calling this method.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>path</pt>
+                    <pd>The path and name of the extension library. For example: <codeph>/library/libagora_segmentation_extension.dll</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>unload_after_use</pt>
+                    <pd>Whether to unload the extension when it is no longer used:
+                        <ul>
+                            <li><xref keyref="true"/>: Unload the extension when <xref keyref="IRtcEngine"/> is destroyed.</li>
+                            <li><xref keyref="false"/>: (Recommended) Do not unload the extension until the process terminates.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

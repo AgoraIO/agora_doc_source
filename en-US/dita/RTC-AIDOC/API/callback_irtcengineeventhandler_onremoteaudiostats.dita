@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onremoteaudiostats">
+    <title><ph keyref="onRemoteAudioStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for remote audio stream statistics.</ph><ph id="shortdesc" props="android">Callback that reports transport-layer statistics of each remote audio stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteAudioStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteAudioStats(const RemoteAudioStats&amp; stats)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onRemoteAudioStats(RemoteAudioStats stats) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback is triggered every two seconds to report transport-layer statistics for each remote user sending an audio stream. If there are multiple remote users in the channel, the SDK triggers this callback separately for each user.</p>
+            <p props="android">This callback is triggered every two seconds. If there are multiple remote users in the channel, the SDK triggers this callback for each user.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>stats</pt>
+                    <pd>Statistics of the remote audio stream. See <xref keyref="RemoteAudioStats"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>stats</pt>
+                    <pd>Statistics of the remote audio stream. See <xref keyref="RemoteAudioStats"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

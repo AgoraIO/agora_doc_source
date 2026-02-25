@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudiodevicevolumechanged">
+    <title><ph keyref="onAudioDeviceVolumeChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the audio device or app volume changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioDeviceVolumeChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioDeviceVolumeChanged(MEDIA_DEVICE_TYPE deviceType, int volume, bool muted)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">This callback applies to Windows and macOS only.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>deviceType</pt>
+                    <pd>Type of device. See <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>volume</pt>
+                    <pd>Volume value, range [0, 255].</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>muted</pt>
+                    <pd>Whether the audio device is muted:
+                        <ul>
+                            <li><xref keyref="true"/>: The audio device is muted.</li>
+                            <li><xref keyref="false"/>: The audio device is not muted.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

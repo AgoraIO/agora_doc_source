@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onrejoinchannelsuccess">
+    <title><ph keyref="onRejoinChannelSuccess"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onRejoinChannelSuccess"/> callback.</ph><ph id="shortdesc" props="android">Callback triggered when a user rejoins a channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRejoinChannelSuccess"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onRejoinChannelSuccess(const char* channel, uid_t uid, int elapsed)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onRejoinChannelSuccess(String channel, int uid, int elapsed)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">When the user is disconnected from the server due to network issues, the SDK automatically attempts to reconnect and triggers this callback upon success.</p>
+            <p props="android">This callback is triggered when the user gets disconnected from the server due to network issues and the SDK automatically attempts and succeeds in reconnecting.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">This callback is triggered when the SDK automatically reconnects after the user is disconnected from the server due to network issues.</p>
+            <p props="android">This callback is triggered when the user gets disconnected from the server due to network issues and the SDK automatically attempts and succeeds in reconnecting.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>channel</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>User ID of the user who rejoined the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (ms) from calling <codeph>joinChannel</codeph> to the callback being triggered.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channel</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID of the user who rejoined the channel.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (in milliseconds) from the local user calling <codeph>joinChannel</codeph> to the SDK triggering this callback.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

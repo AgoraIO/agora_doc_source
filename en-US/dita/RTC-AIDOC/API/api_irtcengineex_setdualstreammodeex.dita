@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_setdualstreammodeex">
+    <title><ph keyref="setDualStreamModeEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the video stream mode with multiple quality levels on the sender side.</ph><ph id="shortdesc" props="android">Sets the video stream mode on the sender side to control whether to send the low-quality video stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDualStreamModeEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setDualStreamModeEx(SIMULCAST_STREAM_MODE mode, const SimulcastStreamConfig&amp; streamConfig, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setDualStreamModeEx(Constants.SimulcastStreamMode mode, SimulcastStreamConfig streamConfig, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">By default, the SDK enables the adaptive mode (<codeph>AUTO_SIMULCAST_STREAM</codeph>) for low-quality video streams on the sender side, meaning the sender does not proactively send low-quality video streams. Receivers with the host role can request low-quality streams by calling <xref keyref="setRemoteVideoStreamTypeEx"/>, and the sender will start sending them upon receiving the request.
+
+If you want to change this behavior, call this method and set <codeph>mode</codeph> to <codeph>DISABLE_SIMULCAST_STREAM</codeph> (never send low-quality streams) or <codeph>ENABLE_SIMULCAST_STREAM</codeph> (always send low-quality streams).
+
+To revert to the default behavior after changing it, call this method again and set <codeph>mode</codeph> to <codeph>AUTO_SIMULCAST_STREAM</codeph>.</p>
+            <p props="android">By default, the SDK enables adaptive low-quality video stream mode (<codeph>AUTO_SIMULCAST_STREAM</codeph>) on the sender side. Receivers with the broadcaster role can request the low-quality video stream by calling <codeph>setRemoteVideoStreamTypeEx</codeph>, and the sender will automatically start sending it upon receiving the request.
+                <ul>
+                    <li>If you want to change this behavior, call this method and set <codeph>mode</codeph> to <codeph>DISABLE_SIMULCAST_STREAM</codeph> (never send low-quality video stream) or <codeph>ENABLE_SIMULCAST_STREAM</codeph> (always send low-quality video stream).</li>
+                    <li>To restore the default behavior, call this method again and set <codeph>mode</codeph> to <codeph>AUTO_SIMULCAST_STREAM</codeph>.</li>
+                </ul>
+            </p>
+            <note props="cpp">The differences between this method and <xref keyref="enableDualStreamModeEx"/> are as follows:
+                <ul>
+                    <li>Calling this method with <codeph>mode</codeph> set to <codeph>DISABLE_SIMULCAST_STREAM</codeph> is equivalent to calling <codeph>enableDualStreamModeEx(false)</codeph>.</li>
+                    <li>Calling this method with <codeph>mode</codeph> set to <codeph>ENABLE_SIMULCAST_STREAM</codeph> is equivalent to calling <codeph>enableDualStreamModeEx(true)</codeph>.</li>
+                    <li>Both methods can be called before or after joining a channel. If both are called, the latter takes precedence.</li>
+                </ul>
+            </note>
+            <note props="android">The difference between this method and <xref keyref="enableDualStreamModeEx"/> is as follows:
+                <ul>
+                    <li>Setting <codeph>mode</codeph> to <codeph>DISABLE_SIMULCAST_STREAM</codeph> is equivalent to calling <codeph>enableDualStreamModeEx(false)</codeph>.</li>
+                    <li>Setting <codeph>mode</codeph> to <codeph>ENABLE_SIMULCAST_STREAM</codeph> is equivalent to calling <codeph>enableDualStreamModeEx(true)</codeph>.</li>
+                    <li>Both methods can be called before or after joining a channel. If both are called, the later call takes precedence.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method is applicable in multi-channel scenarios.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mode</pt>
+                    <pd>The sending mode for video streams. See <xref keyref="SIMULCAST_STREAM_MODE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>streamConfig</pt>
+                    <pd>Configuration for the low-quality stream. See <xref keyref="SimulcastStreamConfig"/>.
+                        <note>When <codeph>mode</codeph> is set to <codeph>DISABLE_SIMULCAST_STREAM</codeph>, this parameter has no effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mode</pt>
+                    <pd>Video stream sending mode. See <xref keyref="SIMULCAST_STREAM_MODE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>streamConfig</pt>
+                    <pd>Configuration for the low-quality video stream. See <xref keyref="SimulcastStreamConfig"/>.
+                        <note>This parameter is not effective when <codeph>mode</codeph> is set to <codeph>DISABLE_SIMULCAST_STREAM</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

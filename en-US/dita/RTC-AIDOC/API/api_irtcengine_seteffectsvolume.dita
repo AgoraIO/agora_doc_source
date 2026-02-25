@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_seteffectsvolume">
+    <title><ph keyref="setEffectsVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the playback volume of sound effects.</ph><ph id="shortdesc" props="android">Sets the playback volume of audio effects.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setEffectsVolume"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setEffectsVolume(int volume) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setEffectsVolume(double volume);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">You must call this method after calling <codeph>playEffect</codeph>.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after calling the <xref keyref="playEffect3"/> method.</p>
+            <p props="android">You must call this method after calling <codeph>playEffect</codeph>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>volume</pt>
+                    <pd>Playback volume. Range: [0, 100]. The default value is 100, which represents the original volume.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>volume</pt>
+                    <pd>Playback volume. The range is [0, 100]. (Default: 100, representing original volume.)</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

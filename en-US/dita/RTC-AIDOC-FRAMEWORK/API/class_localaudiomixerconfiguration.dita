@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_localaudiomixerconfiguration">
+    <title><ph keyref="LocalAudioMixerConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Local audio mixing configuration.</ph><ph id="shortdesc" props="rn">Local audio mixing configuration.</ph><ph id="shortdesc" props="flutter">Local audio mixing configuration.</ph><ph id="shortdesc" props="unity">Local audio mixing configuration.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class LocalAudioMixerConfiguration {
+  streamCount?: number;
+  audioInputStreams?: MixedAudioStream[];
+  syncWithLocalMic?: boolean;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class LocalAudioMixerConfiguration {
+  streamCount?: number;
+  audioInputStreams?: MixedAudioStream[];
+  syncWithLocalMic?: boolean;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class LocalAudioMixerConfiguration {
+  const LocalAudioMixerConfiguration(
+      {this.streamCount, this.audioInputStreams, this.syncWithLocalMic});
+
+  @JsonKey(name: 'streamCount')
+  final int? streamCount;
+
+  @JsonKey(name: 'audioInputStreams')
+  final List&lt;MixedAudioStream&gt;? audioInputStreams;
+
+  @JsonKey(name: 'syncWithLocalMic')
+  final bool? syncWithLocalMic;
+
+  factory LocalAudioMixerConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$LocalAudioMixerConfigurationFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalAudioMixerConfigurationToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class LocalAudioMixerConfiguration
+{
+    public uint streamCount;
+    public MixedAudioStream[] audioInputStreams;
+    public bool syncWithLocalMic
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>streamCount</pt>
+                    <pd>Number of audio streams to be mixed locally.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioInputStreams</pt>
+                    <pd>Audio sources to be mixed locally. See <xref keyref="MixedAudioStream"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>syncWithLocalMic</pt>
+                    <pd>Whether the mixed audio stream uses the timestamp of audio frames captured by the local microphone:
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Use the timestamp of audio frames captured by the local mic. Set this value if you want all locally captured audio streams to stay synchronized.</li>
+                            <li><xref keyref="false"/>: Do not use the local mic timestamp. The SDK uses the timestamp when the mixed audio frame is constructed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>streamCount</pt>
+                    <pd>Number of audio streams to be mixed locally.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioInputStreams</pt>
+                    <pd>Audio sources to be mixed locally. See <xref keyref="MixedAudioStream"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>syncWithLocalMic</pt>
+                    <pd>Whether the mixed audio stream uses the timestamp of audio frames captured by the local microphone:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Uses the timestamp of audio frames captured by the local microphone. Set this value if you want all locally captured audio streams to stay synchronized.</li>
+                            <li><xref keyref="false"/>: Does not use the timestamp of audio frames captured by the local microphone. The SDK uses the timestamp when the mixed audio frame is constructed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamCount</pt>
+                    <pd>Number of audio streams to be mixed locally.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioInputStreams</pt>
+                    <pd>Audio sources to be mixed locally. See <codeph>MixedAudioStream</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>syncWithLocalMic</pt>
+                    <pd>Whether the mixed audio stream uses timestamps from the local microphone audio frames:
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Uses timestamps from the local microphone audio frames. Set this value if you want all locally captured audio streams to stay synchronized.</li>
+                            <li><xref keyref="false"/>: Does not use timestamps from the local microphone audio frames. The SDK uses the timestamp when the mixed audio frame is constructed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>streamCount</pt>
+                    <pd>Number of audio streams to be mixed locally.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioInputStreams</pt>
+                    <pd>Audio sources to be mixed locally. See <codeph>MixedAudioStream</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>syncWithLocalMic</pt>
+                    <pd>Whether the mixed audio stream uses the timestamp of audio frames captured by the local microphone:
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Uses the timestamp of audio frames captured by the local microphone. Set this value if you want all locally captured audio streams to stay synchronized.</li>
+                            <li><xref keyref="false"/>: Does not use the timestamp of audio frames captured by the local microphone. The SDK uses the timestamp when the mixed audio frame is constructed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

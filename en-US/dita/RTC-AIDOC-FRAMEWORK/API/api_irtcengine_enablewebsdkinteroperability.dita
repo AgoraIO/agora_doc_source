@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablewebsdkinteroperability">
+    <title><ph keyref="enableWebSdkInteroperability"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Enables interoperability with the Web SDK (applicable only in live broadcast scenarios).</ph><ph id="shortdesc" props="rn">Enable interoperability with the Web SDK (live broadcast only).</ph><ph id="shortdesc" props="flutter">Enable interoperability with Web SDK (applicable only in live broadcast scenarios).</ph><ph id="shortdesc" props="unity">Enables interoperability with the Web SDK (only applicable in live broadcast scenarios).</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableWebSdkInteroperability"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableWebSdkInteroperability(enabled: boolean): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableWebSdkInteroperability(enabled: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableWebSdkInteroperability(bool enabled);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableWebSdkInteroperability(bool enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is obsolete. The SDK automatically enables interoperability with the Web SDK. You do not need to call this method.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. The SDK automatically enables interoperability with the Web SDK, so you do not need to call this method.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. The SDK automatically enables interoperability with the Web SDK, so you do not need to call this method.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. The SDK automatically enables interoperability with the Web SDK, so you do not need to call this method.</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">This method enables or disables interoperability with the Web SDK. If there are users joining the channel via the Web SDK, make sure to call this method; otherwise, Web users will see a black screen when viewing the Native stream.
+This method is only applicable in live broadcast scenarios. In communication scenarios, interoperability is enabled by default.</p>
+            <p props="rn">This method enables or disables interoperability with the Web SDK. If there are users joining the channel via the Web SDK, make sure to call this method. Otherwise, Web users may see a black screen from the Native side.
+This method is applicable only in live broadcast scenarios. In communication scenarios, interoperability is enabled by default.</p>
+            <p props="flutter">This method enables or disables interoperability with the Web SDK. If users join the channel via Web SDK, make sure to call this method; otherwise, Web users may see a black screen when viewing the Native side.
+This method is only applicable in live broadcast scenarios. In communication scenarios, interoperability is enabled by default.</p>
+            <p props="unity">This method enables or disables interoperability with the Web SDK. If a user joins the channel using the Web SDK, make sure to call this method; otherwise, the Web user will see a black screen for the Native user's video.
+This method is only applicable in live broadcast scenarios. In communication scenarios, interoperability is enabled by default.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable interoperability with the Web SDK:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable interoperability.</li>
+                            <li><xref keyref="false"/>: (Default) Disable interoperability.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable interoperability with the Web SDK:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable interoperability.</li>
+                            <li><xref keyref="false"/>: (default) Disable interoperability.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable interoperability with the Web SDK:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable interoperability.</li>
+                            <li><xref keyref="false"/>: (default) Disable interoperability.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable interoperability with the Web SDK:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable interoperability.</li>
+                            <li><xref keyref="false"/>: (Default) Disable interoperability.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

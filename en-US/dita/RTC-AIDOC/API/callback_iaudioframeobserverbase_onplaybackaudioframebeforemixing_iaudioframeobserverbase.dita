@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserverbase_onplaybackaudioframebeforemixing_iaudioframeobserverbase">
+    <title><ph keyref="onPlaybackAudioFrameBeforeMixing_IAudioFrameObserverBase"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for retrieving the audio frame of a subscribed remote user before mixing.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlaybackAudioFrameBeforeMixing_IAudioFrameObserverBase"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool onPlaybackAudioFrameBeforeMixing(const char* channelId, base::user_id_t userId, AudioFrame&amp; audioFrame)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>channelId</pt>
+                    <pd>Channel ID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>userId</pt>
+                    <pd>User ID of the subscribed remote user.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioFrame</pt>
+                    <pd>An output parameter. Raw audio data. See <xref keyref="AudioFrame"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>: Callback processed successfully.</li>
+                    <li><xref keyref="false"/>: Callback processing failed.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

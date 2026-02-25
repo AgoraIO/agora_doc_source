@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setaudiodualmonomode">
+    <title><ph keyref="setAudioDualMonoMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the channel mode of the current audio file.</ph><ph id="shortdesc" props="android">Sets the channel mode of the current audio file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAudioDualMonoMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioDualMonoMode(agora::media::base::AUDIO_DUAL_MONO_MODE mode) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int setAudioDualMonoMode(int mode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">In stereo music files, the left and right channels can store different audio data. You can set the channel mode to original, left channel, right channel, or mixed channel mode as needed. For example, in a KTV scenario, the left channel of a music file stores accompaniment, and the right channel stores vocals. If you only want to hear the accompaniment, you can call this method to set the channel mode to left channel; if you want to hear both accompaniment and vocals, you can set the channel mode to mixed channel.</p>
+            <p props="android">In stereo audio files, the left and right channels can store different audio data. You can set the channel mode to original, left, right, or mixed channel mode as needed. For example, in a KTV scenario, the left channel stores accompaniment and the right channel stores vocals. If you only want to hear the accompaniment, set the channel mode to left; if you want to hear both, set it to mixed channel mode.</p>
+            <note props="cpp">
+                <ul>
+                    <li>Call the <xref keyref="open"/> method before calling this method.</li>
+                    <li>This method is only applicable to stereo audio files.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>Call this method after calling the <codeph>open</codeph> method.</li>
+                    <li>This method applies only to stereo audio files.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mode</pt>
+                    <pd>Channel mode. See <xref keyref="AUDIO_DUAL_MONO_MODE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mode</pt>
+                    <pd>Channel mode:
+                        <ul>
+                            <li><codeph>AUDIO_DUAL_MONO_STEREO</codeph> (0): Original mode.</li>
+                            <li><codeph>AUDIO_DUAL_MONO_L</codeph> (1): Left channel mode. Replaces the right channel with the left channel audio; you can only hear the left channel.</li>
+                            <li><codeph>AUDIO_DUAL_MONO_R</codeph> (2): Right channel mode. Replaces the left channel with the right channel audio; you can only hear the right channel.</li>
+                            <li><codeph>AUDIO_DUAL_MONO_MIX</codeph> (3): Mixed channel mode. Mixes the left and right channel audio; you can hear both channels.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_querycamerafocallengthcapability">
+    <title><ph keyref="queryCameraFocalLengthCapability"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Queries the focal length capabilities supported by the camera.</ph><ph id="shortdesc" props="flutter">Queries the focal length capabilities supported by the camera.</ph><ph id="shortdesc" props="unity">Queries the focal length capabilities supported by the camera.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="queryCameraFocalLengthCapability"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract queryCameraFocalLengthCapability(): {
+    focalLengthInfos: FocalLengthInfo[];
+    size: number;
+  };</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;FocalLengthInfo&gt;&gt; queryCameraFocalLengthCapability();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int QueryCameraFocalLengthCapability(ref FocalLengthInfo[] focalLengthInfos, ref int size);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">To enable wide-angle or ultra-wide-angle camera modes, it is recommended to call this method first to check whether the device supports the corresponding focal length capabilities. Then, based on the query result, call <xref keyref="setCameraCapturerConfiguration"/> to adjust the camera's focal length configuration for optimal capture performance.</p>
+            <p props="flutter">To enable wide-angle or ultra-wide-angle camera modes, it is recommended to call this method first to check whether the device supports the corresponding focal length capabilities. Then, based on the result, call <xref keyref="setCameraCapturerConfiguration"/> to adjust the camera's focal length configuration to achieve the best capturing effect.</p>
+            <p props="unity">To enable wide-angle or ultra-wide-angle camera modes, it is recommended to call this method first to check whether the device supports the corresponding focal length capabilities. Then, based on the result, call <xref keyref="setCameraCapturerConfiguration"/> to adjust the focal length configuration for optimal camera capture performance.</p>
+            <note props="flutter">This method is only applicable to Android and iOS.</note>
+            <note props="unity">This method is only applicable to Android and iOS.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>focalLengthInfos</pt>
+                    <pd>Output parameter. After execution, returns an array of <xref keyref="FocalLengthInfo"/> objects containing the camera focal length information.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>size</pt>
+                    <pd>Output parameter. After execution, returns the number of focal length entries found.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">Returns an object with the following properties:
+                <ul>
+                    <li><codeph>focalLengthInfos</codeph>: An array of <xref keyref="FocalLengthInfo"/> objects that include the camera's direction and focal length type.</li>
+                    <li><codeph>size</codeph>: The number of focal length entries actually returned.</li>
+                </ul>
+            </p>
+            <p props="flutter">Returns an array of <xref keyref="FocalLengthInfo"/> objects, which contain the camera's orientation and focal length type.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_videoapplicationscenariotype">
+    <title><ph keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Video application scenario types.</ph><ph id="shortdesc" props="android">Video application scenario type.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>APPLICATION_SCENARIO_GENERAL</pt>
+                    <pd>(0): Default general scenario.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>APPLICATION_SCENARIO_MEETING</pt>
+                    <pd>
+                        <note>If you call <codeph>setDualStreamMode(SIMULCAST_STREAM_MODE mode, const SimulcastStreamConfig&amp; streamConfig)</codeph> and set it to not send the low-quality video stream (<codeph>DISABLE_SIMULCAST_STREAM</codeph>), the dynamic adjustment of the low-quality stream in meeting scenarios will not take effect.</note><ph>(1): Meeting scenario. Suitable for meetings. The SDK automatically enables the following strategies:</ph>
+                        <ul>
+                            <li>In scenarios requiring high bitrate for the low stream, the SDK enables various anti-network-congestion techniques to improve low-quality stream performance and ensure smooth reception on the subscriber side;</li>
+                            <li>The SDK monitors the number of subscribers to the high stream in real time and dynamically adjusts the configuration:
+                                <ul>
+                                    <li>If no one subscribes, it automatically reduces the bitrate and frame rate to save uplink bandwidth;</li>
+                                    <li>If someone subscribes, it restores to the <xref keyref="VideoEncoderConfiguration"/> set in the most recent call to <xref keyref="setVideoEncoderConfiguration"/>. If not set, the following defaults are used:
+                                        <ul>
+                                            <li>Resolution: 1280 × 720 for Windows and macOS; 960 × 540 for Android and iOS;</li>
+                                            <li>Frame rate: 15 fps;</li>
+                                            <li>Bitrate: 1600 Kbps for Windows and macOS; 1000 Kbps for Android and iOS.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>The SDK also monitors the number of subscribers to the low stream and dynamically enables or disables it based on the subscription status:
+                                <ul>
+                                    <li>If no one subscribes, it is automatically disabled to save uplink bandwidth;</li>
+                                    <li>If someone subscribes, it is enabled and restored to the <xref keyref="SimulcastStreamConfig"/> set in the most recent call to <xref keyref="setDualStreamMode2"/>. If not set, the following defaults are used: resolution 480 × 272, frame rate 15 fps, bitrate 500 Kbps.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>APPLICATION_SCENARIO_1V1</pt>
+                    <pd>(2): 1-on-1 video call scenario. Suitable for one-on-one live streaming. To meet the needs of low latency and high video quality, the SDK optimizes strategies to improve video quality, first frame rendering speed, latency performance on mid- and low-end devices, and smoothness under poor network conditions.
+                        <note>This enum value applies only to broadcaster-to-broadcaster scenarios.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>APPLICATION_SCENARIO_LIVESHOW</pt>
+                    <pd>(3): Live show scenario. Suitable for show-type scenarios, emphasizing fast rendering and high image quality. The SDK performs multiple performance optimizations, including automatically enabling audio and video frame accelerated rendering to minimize first frame delay (no need to call <xref keyref="enableInstantMediaRendering"/>), and enabling B-frame encoding to improve image quality and bandwidth efficiency. Even under poor network conditions or on low-end devices, it provides better video quality and playback smoothness.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>APPLICATION_SCENARIO_GENERAL</pt>
+                    <pd>(0): Default general scenario.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>APPLICATION_SCENARIO_MEETING</pt>
+                    <pd>
+                        <note>If you call <codeph>setDualStreamMode(Constants.SimulcastStreamMode mode, SimulcastStreamConfig streamConfig)</codeph> and set it to never send the low video stream (<codeph>DISABLE_SIMULCAST_STREAM</codeph>), the dynamic adjustment of the low video stream in the meeting scenario will not take effect.</note><ph>(1): Suitable for meeting scenarios. The SDK automatically enables the following strategies:</ph>
+                        <ul>
+                            <li>In meeting scenarios where the video low stream requires high bitrate, the SDK enables multiple network congestion handling techniques to improve low stream performance and ensure smooth reception on the subscriber side;</li>
+                            <li>Real-time monitoring of the number of subscribers to the high video stream, and dynamically adjusts configuration:
+                                <ul>
+                                    <li>If no one subscribes to the high video stream, the SDK automatically reduces its bitrate and frame rate to save uplink bandwidth;</li>
+                                    <li>If someone subscribes to the high video stream, the SDK resets it to the <xref keyref="VideoEncoderConfiguration"/> set by the most recent call to <xref keyref="setVideoEncoderConfiguration"/>, or uses the following default values if not set: resolution 960 × 540, frame rate 15 fps, bitrate 1000 Kbps;</li>
+                                </ul>
+                            </li>
+                            <li>Real-time monitoring of the number of subscribers to the low video stream, and dynamically enables or disables the stream:
+                                <ul>
+                                    <li>If no one subscribes to the low video stream, the SDK automatically disables the stream to save uplink bandwidth;</li>
+                                    <li>If someone subscribes to the low video stream, the SDK enables the stream and resets it to the <xref keyref="SimulcastStreamConfig"/> set by the most recent call to <codeph>setDualStreamMode(Constants.SimulcastStreamMode mode, SimulcastStreamConfig streamConfig)</codeph>, or uses the following default values if not set: resolution 480 × 272, frame rate 15 fps, bitrate 500 Kbps.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>APPLICATION_SCENARIO_1V1</pt>
+                    <pd>(2): Suitable for one-on-one live streaming scenarios. To meet the requirements of low latency and high-quality video, the SDK optimizes strategies to improve performance in video quality, first frame rendering, latency on mid-to-low-end devices, and smoothness under weak network conditions.
+                        <note>This enum value only applies to broadcaster-to-broadcaster scenarios.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>APPLICATION_SCENARIO_LIVESHOW</pt>
+                    <pd>(3): Suitable for live show scenarios. In this scenario, fast rendering and high image quality are critical. The SDK performs multiple optimizations, including automatically enabling audio and video frame accelerated rendering to minimize first frame delay (no need to call <xref keyref="enableInstantMediaRendering"/>), and enabling B-frame encoding to improve image quality and bandwidth efficiency. Even under poor network conditions or on low-end devices, it delivers higher video quality and smoother playback experience.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

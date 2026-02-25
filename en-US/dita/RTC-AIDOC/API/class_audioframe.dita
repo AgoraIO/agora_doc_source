@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audioframe">
+    <title><ph keyref="AudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes raw audio frame data.</ph><ph id="shortdesc" props="android">Raw audio data.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct AudioFrame {
+AUDIO_FRAME_TYPE type;
+int samplesPerChannel;
+agora::rtc::BYTES_PER_SAMPLE bytesPerSample;
+int channels;
+int samplesPerSec;
+void* buffer;
+int64_t renderTimeMs;
+int avsync_type;
+int64_t presentationMs;
+int audioTrackNumber;
+uint32_t rtpTimestamp;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class AudioFrame {
+  public ByteBuffer buffer;
+  public int sampleRataHz;
+  public int bytesPerSample;
+  public int channelNums;
+  public int samplesPerChannel;
+  public long timestamp;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>Type of the audio frame. See <xref keyref="AUDIO_FRAME_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>samplesPerChannel</pt>
+                    <pd>Number of samples per channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>bytesPerSample</pt>
+                    <pd>Number of bytes per sample. For PCM, typically 16 bits (2 bytes). See <codeph>BYTES_PER_SAMPLE</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>channels</pt>
+                    <pd>Number of audio channels (interleaved format for stereo).
+                        <ul>
+                            <li>1: Mono.</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>samplesPerSec</pt>
+                    <pd>Sampling rate per channel (samples per second).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>buffer</pt>
+                    <pd>Output parameter representing the data buffer of the audio frame. When using stereo channels, the data is in interleaved format. Buffer size is calculated as: samples × channels × bytesPerSample.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>renderTimeMs</pt>
+                    <pd>Timestamp (in milliseconds) of the external audio frame. You can use this timestamp to restore the capture order and synchronize with video frames in video scenarios, including when using custom video sources.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>avsync_type</pt>
+                    <pd>Reserved parameter for future use.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>presentationMs</pt>
+                    <pd>PTS timestamp of the audio frame, used to indicate the original PTS time of the frame and synchronize with video frames using this timestamp.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioTrackNumber</pt>
+                    <pd>Audio track number.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rtpTimestamp</pt>
+                    <pd>RTP timestamp of the first sample in the audio frame.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>buffer</pt>
+                    <pd>The data buffer of the audio frame. When the audio frame uses stereo channels, the data buffer is interleaved. The buffer size is calculated as: <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sampleRataHz</pt>
+                    <pd>The sampling rate per channel in the audio frame (in Hz).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>bytesPerSample</pt>
+                    <pd>The number of bytes per sample. For PCM data, it is typically 16 bits (2 bytes).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channelNums</pt>
+                    <pd>The number of audio channels (interleaved for stereo).
+                        <ul>
+                            <li>1: Mono.</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>samplesPerChannel</pt>
+                    <pd>The number of samples per channel in the audio frame.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>timestamp</pt>
+                    <pd>The timestamp of the audio frame (in milliseconds).</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

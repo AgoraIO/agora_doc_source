@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_searchmusic">
+    <title><ph keyref="searchMusic"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Searches for music resources.</ph><ph id="shortdesc" props="android">Searches for music resources.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="searchMusic"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int searchMusic(agora::util::AString&amp; requestId, const char* keyWord, int32_t page, int32_t pageSize, const char* jsonOption = nullptr) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public String searchMusic(String keyword, int page, int pageSize)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">After calling this method, the SDK triggers the <xref keyref="onMusicCollectionResult"/> callback and returns the list of retrieved music resources.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After this method is successfully called, the SDK triggers the <xref keyref="onMusicCollectionResult"/> callback to report the list of retrieved music resources.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>requestId</pt>
+                    <pd>The request ID, used to uniquely identify the request.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>keyWord</pt>
+                    <pd>Search keyword. Supports searching by song name or artist name.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>page</pt>
+                    <pd>The page number of the music resource list to retrieve.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>pageSize</pt>
+                    <pd>The maximum number of music resources returned per page, with a maximum value of 50.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>jsonOption</pt>
+                    <pd>Extended JSON field, default is <xref keyref="NULL"/>. You can use this field to filter the desired music resources. Currently supported filters:
+                        <ul>
+                            <li><codeph>pitchType</codeph>: Whether scoring is supported:
+                                <ul>
+                                    <li><codeph>1</codeph>: Scorable music.</li>
+                                    <li><codeph>2</codeph>: Non-scorable music.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>needHighPart</codeph>: Whether chorus segments are needed:
+                                <ul>
+                                    <li><xref keyref="true"/>: Chorus segments required.</li>
+                                    <li><xref keyref="false"/>: Chorus segments not required.</li>
+                                </ul>
+                            </li>
+                        </ul><ph>Examples: <codeph>{"pitchType":1}</codeph>, <codeph>{"needHighPart":true}</codeph>.</ph></pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>keyword</pt>
+                    <pd>Search keyword. Supports searching by song title or artist name.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>page</pt>
+                    <pd>The page number of the music resource list to retrieve.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>pageSize</pt>
+                    <pd>The maximum number of music resources returned per page. The maximum value is 50.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>On success, returns the unique identifier <codeph>requestId</codeph> for the request.</li>
+                    <li>On failure, returns an empty string.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

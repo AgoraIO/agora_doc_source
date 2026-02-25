@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setvideoscenario">
+    <title><ph keyref="setVideoScenario"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the video application scenario.</ph><ph id="shortdesc" props="rn">Sets the video application scenario.</ph><ph id="shortdesc" props="flutter">Sets the video application scenario.</ph><ph id="shortdesc" props="unity">Sets the video application scenario.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setVideoScenario"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setVideoScenario(scenarioType: VideoApplicationScenarioType): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setVideoScenario(scenarioType: VideoApplicationScenarioType): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setVideoScenario(VideoApplicationScenarioType scenarioType);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetVideoScenario(VIDEO_APPLICATION_SCENARIO_TYPE scenarioType);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After successfully calling this method to set the video application scenario, the SDK enables best practice strategies based on the specified scenario and automatically adjusts key performance indicators to optimize video experience quality.</p>
+            <p props="rn">After successfully calling this method to set the video application scenario, the SDK applies best practice strategies based on the specified scenario, automatically adjusting key performance indicators to optimize video experience quality.</p>
+            <p props="flutter">After successfully calling this method to set the video application scenario, the SDK enables best practice strategies based on the specified scenario, automatically adjusting key performance indicators to optimize video experience quality.</p>
+            <p props="unity">After successfully setting the video application scenario using this method, the SDK enables best practice strategies based on the specified scenario, automatically adjusting key performance indicators to optimize video experience quality.</p>
+            <note props="electron">You must call this method before joining a channel.</note>
+            <note props="rn">This method must be called before joining a channel.</note>
+            <note props="flutter">This method must be called before joining a channel.</note>
+            <note props="unity">This method must be called before joining a channel.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>scenarioType</pt>
+                    <pd>The video application scenario. See <xref keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/>.
+<codeph>ApplicationScenarioMeeting</codeph> (1) is suitable for meeting scenarios. If you have called <xref keyref="setDualStreamMode2"/> to set the low stream to never send (<codeph>DisableSimulcastStream</codeph>), the dynamic switching of the low stream is not effective in meeting scenarios.
+This enum value only applies to broadcaster vs broadcaster scenarios. The SDK enables the following strategies for this scenario:
+                        <ul>
+                            <li>For meeting scenarios with higher requirements for low stream bitrate, multiple anti-weak network techniques are automatically enabled to improve the low stream's resistance to poor network conditions and ensure smooth reception of multiple streams.</li>
+                            <li>Monitors the number of subscribers to the high stream in real time and dynamically adjusts the high stream configuration based on the number of subscribers:
+                                <ul>
+                                    <li>If no one subscribes to the high stream, its bitrate and frame rate are automatically reduced to save upstream bandwidth and consumption.</li>
+                                    <li>If someone subscribes to the high stream, it resets to the <xref keyref="VideoEncoderConfiguration"/> set by the most recent call to <xref keyref="setVideoEncoderConfiguration"/>. If no configuration was set previously, the following values are used:
+                                        <ul>
+                                            <li>Video resolution: 1280 × 720</li>
+                                            <li>Frame rate: 15 fps</li>
+                                            <li>Bitrate: 1600 Kbps</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Monitors the number of subscribers to the low stream in real time and dynamically enables or disables the low stream:
+                                <ul>
+                                    <li>If no one subscribes to the low stream, it is automatically disabled to save upstream bandwidth and consumption.</li>
+                                    <li>If someone subscribes to the low stream, it is enabled and reset to the <xref keyref="SimulcastStreamConfig"/> set by the most recent call to <xref keyref="setDualStreamMode2"/>. If no configuration was set previously, the following values are used:
+                                        <ul>
+                                            <li>Video resolution: 480 × 272</li>
+                                            <li>Frame rate: 15 fps</li>
+                                            <li>Bitrate: 500 Kbps</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul><ph><codeph>ApplicationScenario1v1</codeph> (2) is suitable for [1v1 video call](https://doc.shengwang.cn/doc/one-to-one-live/android/rtm/overview/product-overview) scenarios. The SDK optimizes strategies for this scenario to meet the requirements of low latency and high video quality, improving performance in terms of image quality, first frame rendering, latency on mid-to-low-end devices, and smoothness under poor network conditions.</ph><ph><codeph>ApplicationScenarioLiveshow</codeph> (3) is suitable for [showroom live streaming](https://doc.shengwang.cn/doc/showroom/android/overview/product-overview) scenarios. The SDK optimizes strategies for this scenario to meet the high demands on first frame rendering time and image clarity. For example, it enables audio and video frame accelerated rendering by default to improve first frame rendering experience, eliminating the need to call <xref keyref="enableInstantMediaRendering"/> separately. It also enables B-frames by default to ensure high image quality and transmission efficiency. Additionally, it enhances video quality and smoothness under poor network conditions and on low-end devices.</ph></pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>scenarioType</pt>
+                    <pd>Video application scenario. See <xref keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/>.
+<codeph>ApplicationScenarioMeeting</codeph> (1) is suitable for meeting scenarios. If the user has called <xref keyref="setDualStreamMode2"/> to set the low stream to always not send (<codeph>DisableSimulcastStream</codeph>), the meeting scenario has no effect on dynamic switching of the low stream.
+This enum value only applies to broadcaster vs broadcaster scenarios. The SDK enables the following strategies for this scenario:
+                        <ul>
+                            <li>For high bitrate requirements of low streams in meeting scenarios, multiple weak network resistance technologies are automatically enabled to improve the low stream's resistance and ensure smoothness when subscribing to multiple streams.</li>
+                            <li>Real-time monitoring of the number of subscribers to the high stream, dynamically adjusting high stream configuration:
+                                <ul>
+                                    <li>When no one subscribes to the high stream, bitrate and frame rate are automatically reduced to save upstream bandwidth and consumption.</li>
+                                    <li>When someone subscribes to the high stream, it resets to the <xref keyref="VideoEncoderConfiguration"/> set by the user's most recent call to <xref keyref="setVideoEncoderConfiguration"/>. If not previously set, the following values are used:
+                                        <ul>
+                                            <li>Resolution: 960 × 540</li>
+                                            <li>Frame rate: 15 fps</li>
+                                            <li>Bitrate: 1000 Kbps</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Real-time monitoring of the number of subscribers to the low stream, dynamically enabling or disabling the low stream:
+                                <ul>
+                                    <li>When no one subscribes to the low stream, it is automatically disabled to save upstream bandwidth and consumption.</li>
+                                    <li>When someone subscribes to the low stream, it is enabled and reset to the <xref keyref="SimulcastStreamConfig"/> set by the user's most recent call to <xref keyref="setDualStreamMode2"/>. If not previously set, the following values are used:
+                                        <ul>
+                                            <li>Resolution: 480 × 272</li>
+                                            <li>Frame rate: 15 fps</li>
+                                            <li>Bitrate: 500 Kbps</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul><ph><codeph>ApplicationScenario1v1</codeph> (2) is suitable for [1v1 video call](https://doc.shengwang.cn/doc/one-to-one-live/android/rtm/overview/product-overview) scenarios. The SDK optimizes strategies for low latency and high video quality, improving performance in image quality, first frame rendering, latency on mid-to-low-end devices, and smoothness under weak networks.</ph><ph><codeph>ApplicationScenarioLiveshow</codeph> (3) is suitable for [showroom live streaming](https://doc.shengwang.cn/doc/showroom/android/overview/product-overview) scenarios. For this scenario's high requirements on first frame rendering time and image clarity, the SDK applies optimizations such as enabling audio/video frame accelerated rendering by default to enhance first frame experience (no need to call <xref keyref="enableInstantMediaRendering"/>), and enabling B-frames by default to ensure high image quality and transmission efficiency. It also enhances video quality and smoothness under weak networks and on low-end devices.</ph></pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>scenarioType</pt>
+                    <pd>Video application scenario. See <xref keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/>.
+<codeph>applicationScenarioMeeting</codeph> (1) is for meeting scenarios. If you have called <xref keyref="setDualStreamMode2"/> to set the low stream to always off (<codeph>disableSimulcastStream</codeph>), the dynamic switching of the low stream does not take effect in meeting scenarios.
+This enum value applies only to broadcaster vs. broadcaster scenarios. The SDK enables the following strategies for this scenario:
+                        <ul>
+                            <li>For meeting scenarios that require higher bitrate for the low stream, multiple anti-weak network technologies are automatically enabled to enhance the low stream's resistance to poor networks and ensure smoothness when multiple streams are subscribed.</li>
+                            <li>Real-time monitoring of the number of subscribers to the high stream on the receiving end, and dynamically adjusting the high stream configuration accordingly:
+                                <ul>
+                                    <li>When no one subscribes to the high stream, the bitrate and frame rate of the high stream are automatically reduced to save uplink bandwidth and consumption.</li>
+                                    <li>When someone subscribes to the high stream, the high stream is reset to the <xref keyref="VideoEncoderConfiguration"/> set in the most recent call to <xref keyref="setVideoEncoderConfiguration"/>. If no configuration was previously set, the following values are used:
+                                        <ul>
+                                            <li>Video resolution: 1280 × 720 for desktop; 960 × 540 for mobile</li>
+                                            <li>Frame rate: 15 fps</li>
+                                            <li>Bitrate: 1600 Kbps for desktop; 1000 Kbps for mobile</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Real-time monitoring of the number of subscribers to the low stream on the receiving end, and dynamically enabling or disabling the low stream:
+                                <ul>
+                                    <li>When no one subscribes to the low stream, the low stream is automatically disabled to save uplink bandwidth and consumption.</li>
+                                    <li>When someone subscribes to the low stream, it is enabled and reset to the <xref keyref="SimulcastStreamConfig"/> set in the most recent call to <xref keyref="setDualStreamMode2"/>. If no configuration was previously set, the following values are used:
+                                        <ul>
+                                            <li>Video resolution: 480 × 272</li>
+                                            <li>Frame rate: 15 fps</li>
+                                            <li>Bitrate: 500 Kbps</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul><ph><codeph>applicationScenario1v1</codeph> (2) is for [1v1 video call](https://doc.shengwang.cn/doc/one-to-one-live/android/rtm/overview/product-overview) scenarios. The SDK optimizes strategies for low latency and high-quality experience in this scenario, improving performance such as image quality, first frame rendering time, latency on mid- to low-end devices, and smoothness under poor network conditions.</ph><ph><codeph>applicationScenarioLiveshow</codeph> (3) is for [showroom live streaming](https://doc.shengwang.cn/doc/showroom/android/overview/product-overview) scenarios. The SDK optimizes strategies for fast first frame rendering and high image clarity, such as enabling audio/video frame accelerated rendering by default to improve first frame experience (no need to call <xref keyref="enableInstantMediaRendering"/> separately), and enabling B-frames by default to ensure high image quality and transmission efficiency. It also enhances image quality and smoothness under poor network and low-end device conditions.</ph></pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>scenarioType</pt>
+                    <pd>Video application scenario. See <xref keyref="VIDEO_APPLICATION_SCENARIO_TYPE"/>.
+<codeph>APPLICATION_SCENARIO_MEETING</codeph> (1) is suitable for meeting scenarios. If the user has called <xref keyref="setDualStreamMode2"/> to set the low stream to never send (<codeph>DISABLE_SIMULCAST_STREAM</codeph>), the meeting scenario does not support dynamic switching of the low stream.
+This enum value is only applicable to broadcaster vs broadcaster scenarios. The SDK enables the following strategies for this scenario:
+                        <ul>
+                            <li>For meetings with high bitrate requirements for the low stream, multiple weak network resistance technologies are automatically enabled to enhance the low stream's resistance and ensure smoothness when subscribing to multiple streams.</li>
+                            <li>Real-time monitoring of the number of subscribers to the high stream, dynamically adjusting the high stream configuration:
+                                <ul>
+                                    <li>When no one subscribes to the high stream, the bitrate and frame rate of the high stream are automatically reduced to save uplink bandwidth and consumption.</li>
+                                    <li>When someone subscribes to the high stream, it resets to the <xref keyref="VideoEncoderConfiguration"/> from the most recent <xref keyref="setVideoEncoderConfiguration"/> call. If no configuration was previously set, the following defaults are used:
+                                        <ul>
+                                            <li>Video resolution: 1280 × 720 for desktop; 960 × 540 for mobile</li>
+                                            <li>Frame rate: 15 fps</li>
+                                            <li>Bitrate: 1600 Kbps for desktop; 1000 Kbps for mobile</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Real-time monitoring of the number of subscribers to the low stream, dynamically enabling or disabling the low stream:
+                                <ul>
+                                    <li>When no one subscribes to the low stream, it is automatically disabled to save uplink bandwidth and consumption.</li>
+                                    <li>When someone subscribes to the low stream, it is enabled and reset to the <xref keyref="SimulcastStreamConfig"/> from the most recent <xref keyref="setDualStreamMode2"/> call. If no configuration was previously set, the following defaults are used:
+                                        <ul>
+                                            <li>Video resolution: 480 × 272</li>
+                                            <li>Frame rate: 15 fps</li>
+                                            <li>Bitrate: 500 Kbps</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul><ph><codeph>APPLICATION_SCENARIO_1V1</codeph> (2) is suitable for [1v1 video call](https://doc.shengwang.cn/doc/one-to-one-live/android/rtm/overview/product-overview) scenarios. The SDK optimizes strategies for low latency and high-quality experience, improving video quality, first frame rendering, latency on mid- and low-end devices, and smoothness under weak networks.</ph><ph><codeph>APPLICATION_SCENARIO_LIVESHOW</codeph> (3) is suitable for [showroom live streaming](https://doc.shengwang.cn/doc/showroom/android/overview/product-overview) scenarios. For this scenario's high demands on first frame rendering time and image clarity, the SDK optimizes strategies such as enabling audio and video frame accelerated rendering by default to improve first frame experience, removing the need to call <xref keyref="enableInstantMediaRendering"/>, and enabling B-frames by default to ensure high image quality and transmission efficiency. It also enhances video quality and smoothness under weak networks and on low-end devices.</ph></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-1: General error (not specifically classified).</li>
+                            <li>-4: Setting the video application scenario is not supported. This may occur if the audio SDK is currently in use.</li>
+                            <li>-7: <xref keyref="IRtcEngine"/> object is not initialized. You need to successfully initialize the <xref keyref="IRtcEngine"/> object before calling this method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-1: General error (not specifically categorized).</li>
+                            <li>-4: Setting video scenario is not supported. Possible reason: using an audio-only SDK.</li>
+                            <li>-7: <xref keyref="IRtcEngine"/> object is not initialized. You need to initialize the <xref keyref="IRtcEngine"/> object successfully before calling this method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Method call succeeded.</li>
+                    <li>&lt; 0: Method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-1: General error (not specifically categorized).</li>
+                            <li>-4: Setting the video scenario is not supported. This may be because the current SDK is audio-only.</li>
+                            <li>-7: The <xref keyref="IRtcEngine"/> object has not been initialized. You must initialize the <xref keyref="IRtcEngine"/> object successfully before calling this method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

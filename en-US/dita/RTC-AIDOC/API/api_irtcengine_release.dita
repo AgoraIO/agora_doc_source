@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_release">
+    <title><ph keyref="release"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Releases the <xref keyref="IRtcEngine"/> instance.</ph><ph id="shortdesc" props="android">Releases the <xref keyref="IRtcEngine"/> instance.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="release"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">AGORA_CPP_API static void release(RtcEngineReleaseCallback callback = nullptr);</codeblock>
+                <codeblock props="android" outputclass="language-java">public static synchronized void destroy()</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method releases all resources occupied by the Agora SDK. It is suitable for scenarios where users occasionally make voice or video calls. When the user is no longer in a call, resources can be released for other operations. After calling this method successfully, you can no longer use any methods or callbacks in the SDK. To use real-time communication again, you must call <xref keyref="createAgoraRtcEngine"/> and <xref keyref="initialize"/> to create a new <xref keyref="IRtcEngine"/> instance.</p>
+            <p props="android">This method releases all resources occupied by the Agora SDK. After the method is successfully called, you can no longer use any methods or callbacks in the SDK. To use real-time communication again, you must call <xref keyref="initialize"/> to create a new <xref keyref="IRtcEngine"/> instance.</p>
+            <note props="cpp">It is not recommended to call <xref keyref="release"/> within any SDK callback. Otherwise, the SDK must wait for the callback to return before releasing resources, which may cause a deadlock.</note>
+            <note props="android">Do not call this method inside any SDK callback. Otherwise, the SDK must wait for the callback to return before releasing resources, which may cause a deadlock.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>callback</pt>
+                    <pd>Pointer to the callback function used to set the engine destruction mode. See <xref keyref="RtcEngineReleaseCallback"/>.
+                        <ul>
+                            <li>Non-<codeph>nullptr</codeph>: asynchronous engine destruction. This method returns immediately, and the engine resources may not be fully released yet. The SDK triggers <xref keyref="RtcEngineReleaseCallback"/> after the engine is destroyed.</li>
+                            <li><codeph>nullptr</codeph>: synchronous engine destruction. This method returns only after the engine resources are fully released.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

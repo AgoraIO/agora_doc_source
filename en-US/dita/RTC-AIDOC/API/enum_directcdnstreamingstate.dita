@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_directcdnstreamingstate">
+    <title><ph keyref="DIRECT_CDN_STREAMING_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Current CDN streaming state.</ph><ph id="shortdesc" props="android">Current CDN streaming state.</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>DIRECT_CDN_STREAMING_STATE_IDLE</pt>
+                    <pd>(0): Initial state before CDN streaming starts.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>DIRECT_CDN_STREAMING_STATE_RUNNING</pt>
+                    <pd>(1): Streaming to CDN. The SDK returns this value when <xref keyref="startDirectCdnStreaming"/> is called.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>DIRECT_CDN_STREAMING_STATE_STOPPED</pt>
+                    <pd>(2): Stopped streaming to CDN. The SDK returns this value when <xref keyref="stopDirectCdnStreaming"/> is called.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>DIRECT_CDN_STREAMING_STATE_FAILED</pt>
+                    <pd>(3): Failed to stream to CDN. You can get the error information from the <xref keyref="onDirectCdnStreamingStateChanged"/> callback to troubleshoot and restart streaming.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>DIRECT_CDN_STREAMING_STATE_RECOVERING</pt>
+                    <pd>(4): Trying to reconnect Agora server to CDN. The SDK retries up to 10 times; if unsuccessful, the state changes to <codeph>DIRECT_CDN_STREAMING_STATE_FAILED</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>IDLE</pt>
+                    <pd>(0): Initial state before CDN streaming starts.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>RUNNING</pt>
+                    <pd>(1): Currently streaming to CDN. The SDK returns this value when <xref keyref="startDirectCdnStreaming"/> is called.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STOPPED</pt>
+                    <pd>(2): Stopped streaming to CDN. The SDK returns this value when <xref keyref="stopDirectCdnStreaming"/> is called.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>FAILED</pt>
+                    <pd>(3): Failed to stream to CDN. You can troubleshoot the issue based on the information returned in the <xref keyref="onDirectCdnStreamingStateChanged"/> callback and try streaming again.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>RECOVERING</pt>
+                    <pd>(4): Attempting to reconnect the Agora server to the CDN. The SDK tries to reconnect up to 10 times. If reconnection fails, the streaming state changes to <codeph>FAILED</codeph>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

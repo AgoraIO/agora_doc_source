@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_rteplayerstate">
+    <title><ph keyref="RtePlayerState"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Player state.</ph><ph id="shortdesc" props="android">State of the media player.</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>kRtePlayerStateIdle</pt>
+                    <pd>(0): Idle state.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerStateOpening</pt>
+                    <pd>(1): Opening URL resource. This state is entered after calling <xref keyref="OpenWithUrl"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerStateOpenCompleted</pt>
+                    <pd>(2): URL resource opened successfully. This state is entered after <xref keyref="OpenWithUrl"/> successfully opens the resource.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerStatePlaying</pt>
+                    <pd>(3): Playing.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerStatePaused</pt>
+                    <pd>(4): Playback paused. This state is entered after successfully calling <xref keyref="Pause_Player"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerStatePlaybackCompleted</pt>
+                    <pd>(5): Playback completed.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerStateStopped</pt>
+                    <pd>(6): Playback stopped. This state is entered after successfully calling <xref keyref="Stop_Player"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>kRtePlayerStateFailed</pt>
+                    <pd>(7): Failed state. Entered when an internal error occurs. After receiving this state, please call <xref keyref="Stop_Player"/> first, then call <xref keyref="OpenWithUrl"/> to reopen the resource.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>IDLE</pt>
+                    <pd>(0): Idle state.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>OPENING</pt>
+                    <pd>(1): Opening the URL resource. This state is returned after calling <xref keyref="OpenWithUrl"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>OPEN_COMPLETED</pt>
+                    <pd>(2): URL resource successfully opened. This state is returned after <xref keyref="OpenWithUrl"/> successfully opens the resource.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>PLAYING</pt>
+                    <pd>(3): Playing.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>PAUSED</pt>
+                    <pd>(4): Playback paused. This state is returned after successfully calling <xref keyref="Pause_Player"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>PLAYBACK_COMPLETED</pt>
+                    <pd>(5): Playback completed.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STOPPED</pt>
+                    <pd>(6): Playback stopped. This state is returned after successfully calling <xref keyref="Stop_Player"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>FAILED</pt>
+                    <pd>(7): Playback failed. This state is returned when an internal error occurs. After receiving this state, you need to call <xref keyref="Stop_Player"/> and then <xref keyref="OpenWithUrl"/> to reopen the resource.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

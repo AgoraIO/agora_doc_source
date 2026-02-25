@@ -1,0 +1,794 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_livetranscoding">
+    <title><ph keyref="LiveTranscoding"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Transcoding properties for RTMP streaming.</ph><ph id="shortdesc" props="rn">Transcoding properties for CDN streaming.</ph><ph id="shortdesc" props="flutter">Transcoding properties for CDN live streaming.</ph><ph id="shortdesc" props="unity">Transcoding properties for RTMP streaming.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class LiveTranscoding {
+
+  width?: number;
+
+  height?: number;
+
+  videoBitrate?: number;
+
+  videoFramerate?: number;
+
+  lowLatency?: boolean;
+
+  videoGop?: number;
+
+  videoCodecProfile?: VideoCodecProfileType;
+
+  backgroundColor?: number;
+
+  videoCodecType?: VideoCodecTypeForStream;
+
+  userCount?: number;
+
+  transcodingUsers?: TranscodingUser[];
+
+  transcodingExtraInfo?: string;
+
+  metadata?: string;
+
+  watermark?: RtcImage[];
+
+  watermarkCount?: number;
+
+  backgroundImage?: RtcImage[];
+
+  backgroundImageCount?: number;
+
+  audioSampleRate?: AudioSampleRateType;
+
+  audioBitrate?: number;
+
+  audioChannels?: number;
+
+  audioCodecProfile?: AudioCodecProfileType;
+
+  advancedFeatures?: LiveStreamAdvancedFeature[];
+
+  advancedFeatureCount?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class LiveTranscoding {
+
+  width?: number;
+
+  height?: number;
+
+  videoBitrate?: number;
+
+  videoFramerate?: number;
+
+  lowLatency?: boolean;
+
+  videoGop?: number;
+
+  videoCodecProfile?: VideoCodecProfileType;
+
+  backgroundColor?: number;
+
+  videoCodecType?: VideoCodecTypeForStream;
+
+  userCount?: number;
+
+  transcodingUsers?: TranscodingUser[];
+
+  transcodingExtraInfo?: string;
+
+  metadata?: string;
+
+  watermark?: RtcImage[];
+
+  watermarkCount?: number;
+
+  backgroundImage?: RtcImage[];
+
+  backgroundImageCount?: number;
+
+  audioSampleRate?: AudioSampleRateType;
+
+  audioBitrate?: number;
+
+  audioChannels?: number;
+
+  audioCodecProfile?: AudioCodecProfileType;
+
+  advancedFeatures?: LiveStreamAdvancedFeature[];
+
+  advancedFeatureCount?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
+  const LiveTranscoding(
+      {this.width,
+      this.height,
+      this.videoBitrate,
+      this.videoFramerate,
+      this.lowLatency,
+      this.videoGop,
+      this.videoCodecProfile,
+      this.backgroundColor,
+      this.videoCodecType,
+      this.userCount,
+      this.transcodingUsers,
+      this.transcodingExtraInfo,
+      this.metadata,
+      this.watermark,
+      this.watermarkCount,
+      this.backgroundImage,
+      this.backgroundImageCount,
+      this.audioSampleRate,
+      this.audioBitrate,
+      this.audioChannels,
+      this.audioCodecProfile,
+      this.advancedFeatures,
+      this.advancedFeatureCount});
+
+  @JsonKey(name: 'width')
+  final int? width;
+
+  @JsonKey(name: 'height')
+  final int? height;
+
+  @JsonKey(name: 'videoBitrate')
+  final int? videoBitrate;
+
+  @JsonKey(name: 'videoFramerate')
+  final int? videoFramerate;
+
+  @JsonKey(name: 'lowLatency')
+  final bool? lowLatency;
+
+  @JsonKey(name: 'videoGop')
+  final int? videoGop;
+
+  @JsonKey(name: 'videoCodecProfile')
+  final VideoCodecProfileType? videoCodecProfile;
+
+  @JsonKey(name: 'backgroundColor')
+  final int? backgroundColor;
+
+  @JsonKey(name: 'videoCodecType')
+  final VideoCodecTypeForStream? videoCodecType;
+
+  @JsonKey(name: 'userCount')
+  final int? userCount;
+
+  @JsonKey(name: 'transcodingUsers')
+  final List&lt;TranscodingUser&gt;? transcodingUsers;
+
+  @JsonKey(name: 'transcodingExtraInfo')
+  final String? transcodingExtraInfo;
+
+  @JsonKey(name: 'metadata')
+  final String? metadata;
+
+  @JsonKey(name: 'watermark')
+  final List&lt;RtcImage&gt;? watermark;
+
+  @JsonKey(name: 'watermarkCount')
+  final int? watermarkCount;
+
+  @JsonKey(name: 'backgroundImage')
+  final List&lt;RtcImage&gt;? backgroundImage;
+
+  @JsonKey(name: 'backgroundImageCount')
+  final int? backgroundImageCount;
+
+  @JsonKey(name: 'audioSampleRate')
+  final AudioSampleRateType? audioSampleRate;
+
+  @JsonKey(name: 'audioBitrate')
+  final int? audioBitrate;
+
+  @JsonKey(name: 'audioChannels')
+  final int? audioChannels;
+
+  @JsonKey(name: 'audioCodecProfile')
+  final AudioCodecProfileType? audioCodecProfile;
+
+  @JsonKey(name: 'advancedFeatures')
+  final List&lt;LiveStreamAdvancedFeature&gt;? advancedFeatures;
+
+  @JsonKey(name: 'advancedFeatureCount')
+  final int? advancedFeatureCount;
+
+  factory LiveTranscoding.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$LiveTranscodingFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LiveTranscodingToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class LiveTranscoding
+    {
+        public LiveTranscoding()
+        {
+            width = 360;
+            height = 640;
+            videoBitrate = 400;
+            videoFramerate = 15;
+            lowLatency = false;
+            videoGop = 30;
+            videoCodecProfile = VIDEO_CODEC_PROFILE_TYPE.VIDEO_CODEC_PROFILE_HIGH;
+            backgroundColor = 0x000000;
+            videoCodecType = VIDEO_CODEC_TYPE_FOR_STREAM.VIDEO_CODEC_H264_FOR_STREAM;
+            userCount = 0;
+            transcodingUsers = new TranscodingUser[0];
+            transcodingExtraInfo = null;
+            metadata = null;
+            watermark = new RtcImage[0];
+            watermarkCount = 0;
+            backgroundImage = new RtcImage[0];
+            backgroundImageCount = 0;
+            audioSampleRate = AUDIO_SAMPLE_RATE_TYPE.AUDIO_SAMPLE_RATE_48000;
+            audioBitrate = 48;
+            audioChannels = 1;
+            audioCodecProfile = AUDIO_CODEC_PROFILE_TYPE.AUDIO_CODEC_PROFILE_LC_AAC;
+            advancedFeatures = new LiveStreamAdvancedFeature[0];
+            advancedFeatureCount = 0;
+        }
+
+        public LiveTranscoding(int width, int height, int videoBitrate, int videoFramerate, bool lowLatency,
+            int videoGop, VIDEO_CODEC_PROFILE_TYPE videoCodecProfile, uint backgroundColor,
+            VIDEO_CODEC_TYPE_FOR_STREAM videoCodecType, uint userCount, TranscodingUser[] transcodingUsers,
+            string transcodingExtraInfo, string metadata, RtcImage[] watermark, uint watermarkCount,
+            RtcImage[] backgroundImage, uint backgroundImageCount,
+            AUDIO_SAMPLE_RATE_TYPE audioSampleRate, int audioBitrate, int audioChannels,
+            AUDIO_CODEC_PROFILE_TYPE audioCodecProfile, LiveStreamAdvancedFeature[] advancedFeatures, uint advancedFeatureCount)
+        {
+            this.width = width;
+            this.height = height;
+            this.videoBitrate = videoBitrate;
+            this.videoFramerate = videoFramerate;
+            this.lowLatency = lowLatency;
+            this.videoGop = videoGop;
+            this.videoCodecProfile = videoCodecProfile;
+            this.backgroundColor = backgroundColor;
+            this.videoCodecType = videoCodecType;
+            this.userCount = userCount;
+            this.transcodingUsers = transcodingUsers;
+            this.transcodingExtraInfo = transcodingExtraInfo;
+            this.metadata = metadata;
+            this.watermark = watermark;
+            this.watermarkCount = watermarkCount;
+            this.backgroundImage = backgroundImage;
+            this.backgroundImageCount = backgroundImageCount;
+            this.audioSampleRate = audioSampleRate;
+            this.audioBitrate = audioBitrate;
+            this.audioChannels = audioChannels;
+            this.audioCodecProfile = audioCodecProfile;
+            this.advancedFeatures = advancedFeatures;
+            this.advancedFeatureCount = advancedFeatureCount;
+        }
+        public int width { set; get; }
+        public int height { set; get; }
+        public int videoBitrate { set; get; }
+        public int videoFramerate { set; get; }
+        public bool lowLatency { set; get; }
+        public int videoGop { set; get; }
+        public VIDEO_CODEC_PROFILE_TYPE videoCodecProfile { set; get; }
+        public uint backgroundColor { set; get; }
+        public VIDEO_CODEC_TYPE_FOR_STREAM videoCodecType { set; get; }
+        public uint userCount { set; get; }
+        public TranscodingUser[] transcodingUsers { set; get; }
+        public string transcodingExtraInfo { set; get; }
+        public string metadata { set; get; }
+        public RtcImage[] watermark { set; get; }
+        public uint watermarkCount { set; get; }
+        public RtcImage[] backgroundImage { set; get; }
+        public uint backgroundImageCount { set; get; }
+        public AUDIO_SAMPLE_RATE_TYPE audioSampleRate { set; get; }
+        public int audioBitrate { set; get; }
+        public int audioChannels { set; get; }
+        public AUDIO_CODEC_PROFILE_TYPE audioCodecProfile { set; get; }
+        public LiveStreamAdvancedFeature[] advancedFeatures { set; get; }
+        public uint advancedFeatureCount { set; get; }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>Total width of the video stream, in pixels. Default is 360.
+                        <ul>
+                            <li>If streaming video, the value range of <codeph>width</codeph> is [64,1920]. If the value is less than 64, the Agora server automatically sets it to 64; if greater than 1920, it is set to 1920.</li>
+                            <li>If streaming audio only, set both <codeph>width</codeph> and <codeph>height</codeph> to 0.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>Total height of the video stream, in pixels. Default is 640.
+                        <ul>
+                            <li>If streaming video, the value range of <codeph>height</codeph> is [64,1080]. If the value is less than 64, the Agora server automatically sets it to 64; if greater than 1080, it is set to 1080.</li>
+                            <li>If streaming audio only, set both <codeph>width</codeph> and <codeph>height</codeph> to 0.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoBitrate</pt>
+                    <pd>Video encoding bitrate in Kbps. This parameter does not need to be set. Keep the default value <codeph>STANDARD_BITRATE</codeph>, and the SDK automatically matches the optimal bitrate based on the resolution and frame rate you set. For the relationship between resolution and frame rate, see [Video Profile](https://doc.shengwang.cn/doc/rtc/electron/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoFramerate</pt>
+                    <pd>Frame rate of the output video for RTMP streaming. Value range is (0,30], in fps. Default is 15 fps.
+                        <note>The Agora server adjusts frame rates higher than 30 fps to 30 fps.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>lowLatency</pt>
+                    <pd>
+                        <note>Deprecated. Not recommended.</note><ph>Low latency mode</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Low latency, quality not guaranteed.</li>
+                            <li><xref keyref="false"/>: (default) High latency, quality guaranteed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoGop</pt>
+                    <pd>GOP (Group of Pictures) of the output video for RTMP streaming, in frames. Default is 30.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoCodecProfile</pt>
+                    <pd>Codec profile of the output video for RTMP streaming. Can be set to 66, 77, or 100. See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>.
+                        <note>If you set this parameter to a value other than the above, the Agora server adjusts it to the default value.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoCodecType</pt>
+                    <pd>Codec type of the output video for RTMP streaming. See <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>transcodingUsers</pt>
+                    <pd>Manages users involved in video mixing for RTMP streaming. Supports up to 17 users simultaneously. See <xref keyref="TranscodingUser"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>transcodingExtraInfo</pt>
+                    <pd>Reserved parameter: custom information sent to the RTMP client, used to populate SEI frames in H264/H265 video. Max length: 4096 bytes. For details about SEI, see [SEI Frame FAQ](https://doc.shengwang.cn/faq/quality-issues/sei).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>backgroundColor</pt>
+                    <pd>Background color of the output video for RTMP streaming. Represented as a hexadecimal RGB integer without the # sign. For example, 0xFFB6C1 represents light pink. Default is 0x000000 (black).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>userCount</pt>
+                    <pd>Number of users in the video mixing. Default is 0. Value range: [0,17].</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>metadata</pt>
+                    <pd>Metadata sent to the CDN client.
+                        <note>Deprecated. Not recommended.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>watermark</pt>
+                    <pd>Watermark on the live video. Image format must be PNG. See <xref keyref="RtcImage"/>.
+You can add one watermark or multiple using an array. This parameter is used with <codeph>watermarkCount</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>backgroundImage</pt>
+                    <pd>Background image on the live video. Image format must be PNG. See <xref keyref="RtcImage"/>.
+You can add one background image or multiple using an array. This parameter is used with <codeph>backgroundImageCount</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioSampleRate</pt>
+                    <pd>Audio sample rate (Hz) of the output media stream for RTMP streaming. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioBitrate</pt>
+                    <pd>Bitrate of the output audio for RTMP streaming. Unit: Kbps. Default is 48. Maximum is 128.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioChannels</pt>
+                    <pd>Number of audio channels in the output audio for RTMP streaming. Default is 1. Value must be an integer in [1,5]. Recommended values are 1 or 2. Values 3, 4, and 5 require special player support:
+                        <ul>
+                            <li>1: (default) Mono</li>
+                            <li>2: Stereo</li>
+                            <li>3: Three channels</li>
+                            <li>4: Four channels</li>
+                            <li>5: Five channels</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioCodecProfile</pt>
+                    <pd>Codec profile of the output audio for RTMP streaming. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>watermarkCount</pt>
+                    <pd>Number of watermarks on the live video. The total number of watermarks and background images must be ≥ 0 and ≤ 10. Used with <codeph>watermark</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>backgroundImageCount</pt>
+                    <pd>Number of background images on the live video. The total number of watermarks and background images must be ≥ 0 and ≤ 10. Used with <codeph>backgroundImage</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>advancedFeatures</pt>
+                    <pd>Advanced features for transcoding and streaming. See <xref keyref="LiveStreamAdvancedFeature"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>advancedFeatureCount</pt>
+                    <pd>Number of enabled advanced features. Default is 0.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>width</pt>
+                    <pd>Total width of the video stream in pixels, default is 360.
+                        <ul>
+                            <li>For video streams, the value range is [64,1920]. Values below 64 will be adjusted to 64, and values above 1920 will be adjusted to 1920 by the Agora server.</li>
+                            <li>For audio-only streams, set both <codeph>width</codeph> and <codeph>height</codeph> to 0.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>Total height of the video stream in pixels, default is 640.
+                        <ul>
+                            <li>For video streams, the value range is [64,1080]. Values below 64 will be adjusted to 64, and values above 1080 will be adjusted to 1080 by the Agora server.</li>
+                            <li>For audio-only streams, set both <codeph>width</codeph> and <codeph>height</codeph> to 0.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoBitrate</pt>
+                    <pd>Video encoding bitrate in Kbps. You do not need to set this parameter. Keep the default value <codeph>STANDARD_BITRATE</codeph>, and the SDK will automatically match the optimal bitrate based on the video resolution and frame rate you set. For the relationship between resolution and frame rate, see [Video Profile](https://doc.shengwang.cn/doc/rtc/rn/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoFramerate</pt>
+                    <pd>Frame rate of the output video for CDN streaming. The range is (0,30], in fps. Default is 15 fps.
+                        <note>The Agora server will adjust any value above 30 fps to 30 fps.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lowLatency</pt>
+                    <pd>
+                        <note>Deprecated, not recommended.</note><ph>Low latency mode</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Low latency, no guarantee on video quality.</li>
+                            <li><xref keyref="false"/>: (default) High latency, guaranteed video quality.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoGop</pt>
+                    <pd>GOP (Group of Pictures) of the output video for CDN streaming, in frames. Default is 30.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoCodecProfile</pt>
+                    <pd>Codec profile of the output video for CDN streaming. Can be set to 66, 77, or 100. See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>.
+                        <note>If you set this parameter to other values, the Agora server will adjust it to the default value.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoCodecType</pt>
+                    <pd>Codec type of the output video for CDN streaming. See <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>transcodingUsers</pt>
+                    <pd>Manages users participating in video mixing for CDN streaming. Supports up to 17 users simultaneously. See <xref keyref="TranscodingUser"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>transcodingExtraInfo</pt>
+                    <pd>Reserved parameter: custom information sent to the CDN client, used to fill SEI frames in H264/H265 video. Length limit: 4096 bytes. For more about SEI, see [SEI Frame Issues](https://doc.shengwang.cn/faq/quality-issues/sei).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>backgroundColor</pt>
+                    <pd>Background color of the output video for CDN streaming, specified as a hexadecimal RGB integer without the # symbol, e.g., 0xFFB6C1 for light pink. Default is 0x000000 (black).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>userCount</pt>
+                    <pd>Number of users in the video mixing layout. Default is 0. Value range: [0,17].</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>metadata</pt>
+                    <pd>Metadata sent to the CDN client.
+                        <note>Deprecated, not recommended.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>watermark</pt>
+                    <pd>Watermark on the live video. The image format must be PNG. See <xref keyref="RtcImage"/>.
+You can add one watermark or use an array to add multiple watermarks. This parameter works with <codeph>watermarkCount</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>backgroundImage</pt>
+                    <pd>Background image on the live video. The image format must be PNG. See <xref keyref="RtcImage"/>.
+You can add one background image or use an array to add multiple background images. This parameter works with <codeph>backgroundImageCount</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioSampleRate</pt>
+                    <pd>Audio sample rate (Hz) of the output media stream for CDN streaming. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioBitrate</pt>
+                    <pd>Bitrate of the output audio for CDN streaming, in Kbps. Default is 48, maximum is 128.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioChannels</pt>
+                    <pd>Number of audio channels in the output audio for CDN streaming. Default is 1. Value range: integer from [1,5]. Recommended values are 1 or 2. Values 3, 4, and 5 require special player support:
+                        <ul>
+                            <li>1: (default) Mono</li>
+                            <li>2: Stereo</li>
+                            <li>3: Three channels</li>
+                            <li>4: Four channels</li>
+                            <li>5: Five channels</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioCodecProfile</pt>
+                    <pd>Codec profile of the output audio for CDN streaming. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>watermarkCount</pt>
+                    <pd>Number of watermarks on the live video. The total number of watermarks and background images must be between 0 and 10. This parameter works with <codeph>watermark</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>backgroundImageCount</pt>
+                    <pd>Number of background images on the live video. The total number of watermarks and background images must be between 0 and 10. This parameter works with <codeph>backgroundImage</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>advancedFeatures</pt>
+                    <pd>Advanced features for live transcoding. See <xref keyref="LiveStreamAdvancedFeature"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>advancedFeatureCount</pt>
+                    <pd>Number of enabled advanced features. Default is 0.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>Total width of the video stream in pixels. Default is 360.
+                        <ul>
+                            <li>For video streams, the value range is [64,1920]. If the value is less than 64, it is automatically adjusted to 64 by the Agora server; if it is greater than 1920, it is adjusted to 1920.</li>
+                            <li>For audio-only streams, set both <codeph>width</codeph> and <codeph>height</codeph> to 0.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>Total height of the video stream in pixels. Default is 640.
+                        <ul>
+                            <li>For video streams, the value range is [64,1080]. If the value is less than 64, it is automatically adjusted to 64 by the Agora server; if it is greater than 1080, it is adjusted to 1080.</li>
+                            <li>For audio-only streams, set both <codeph>width</codeph> and <codeph>height</codeph> to 0.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoBitrate</pt>
+                    <pd>Video encoding bitrate in Kbps. You do not need to set this parameter. Keep the default value <codeph>standardBitrate</codeph>. The SDK automatically matches the most appropriate bitrate based on the video resolution and frame rate you set. For the mapping between resolution and frame rate, see [Video Profile](https://doc.shengwang.cn/doc/rtc/flutter/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoFramerate</pt>
+                    <pd>Frame rate of the output video for CDN live streaming. Value range is (0,30], in fps. Default is 15 fps.
+                        <note>The Agora server adjusts any value above 30 fps to 30 fps.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lowLatency</pt>
+                    <pd>
+                        <note>Deprecated. Not recommended.</note><ph>Low latency mode</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Low latency, video quality not guaranteed.</li>
+                            <li><xref keyref="false"/>: (Default) High latency, video quality guaranteed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoGop</pt>
+                    <pd>GOP (Group of Pictures) of the output video for CDN live streaming, in frames. Default is 30.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoCodecProfile</pt>
+                    <pd>Encoding profile of the output video for CDN live streaming. Can be set to 66, 77, or 100. See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>.
+                        <note>If you set this parameter to other values, the Agora server adjusts it to the default value.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoCodecType</pt>
+                    <pd>Codec type of the output video for CDN live streaming. See <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>transcodingUsers</pt>
+                    <pd>Users participating in video mixing for CDN live streaming. Supports up to 17 users simultaneously. See <xref keyref="TranscodingUser"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>transcodingExtraInfo</pt>
+                    <pd>Reserved parameter: Custom information sent to the CDN streaming client, used to populate SEI frames in H264/H265 video. Length limit: 4096 bytes. For details on SEI, see [SEI Frame Related Issues](https://doc.shengwang.cn/faq/quality-issues/sei).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>backgroundColor</pt>
+                    <pd>Background color of the output video for CDN live streaming, in hexadecimal RGB integer format without the # sign. For example, 0xFFB6C1 represents light pink. Default is 0x000000 (black).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>userCount</pt>
+                    <pd>Number of users in the video mix. Default is 0. Value range is [0,17].</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>metadata</pt>
+                    <pd>Metadata sent to the CDN client.
+                        <note>Deprecated. Not recommended.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>watermark</pt>
+                    <pd>Watermark on the live video. The image format must be PNG. See <xref keyref="RtcImage"/>.
+You can add one watermark or use an array to add multiple watermarks.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>backgroundImage</pt>
+                    <pd>Background image on the live video. The image format must be PNG. See <xref keyref="RtcImage"/>.
+You can add one background image or use an array to add multiple background images. This parameter is used together with <codeph>backgroundImageCount</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioSampleRate</pt>
+                    <pd>Audio sample rate (Hz) of the output media stream for CDN streaming. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioBitrate</pt>
+                    <pd>Bitrate of the output audio for CDN live streaming, in Kbps. Default is 48, maximum is 128.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioChannels</pt>
+                    <pd>Number of audio channels in the output audio for CDN live streaming. Default is 1. Acceptable integer values are [1,5]. Recommended values are 1 or 2. Values 3, 4, and 5 require special player support:
+                        <ul>
+                            <li>1: (Default) Mono</li>
+                            <li>2: Stereo</li>
+                            <li>3: Three channels</li>
+                            <li>4: Four channels</li>
+                            <li>5: Five channels</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioCodecProfile</pt>
+                    <pd>Audio codec profile of the output audio for CDN live streaming. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>watermarkCount</pt>
+                    <pd>Number of watermarks on the live video. The total number of watermarks and background images must be between 0 and 10. This parameter is used together with <codeph>watermark</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>backgroundImageCount</pt>
+                    <pd>Number of background images on the live video. The total number of watermarks and background images must be between 0 and 10. This parameter is used together with <codeph>backgroundImage</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>advancedFeatures</pt>
+                    <pd>Advanced features for transcoding and streaming. See <xref keyref="LiveStreamAdvancedFeature"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>advancedFeatureCount</pt>
+                    <pd>Number of enabled advanced features. Default is 0.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>The total width of the video stream, in pixels. Default is 360.
+                        <ul>
+                            <li>For video streams, the value range is [64,1920]. If the value is less than 64, the Agora server adjusts it to 64; if greater than 1920, it adjusts to 1920.</li>
+                            <li>For audio-only streams, set both <codeph>width</codeph> and <codeph>height</codeph> to 0.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>The total height of the video stream, in pixels. Default is 640.
+                        <ul>
+                            <li>For video streams, the value range is [64,1080]. If the value is less than 64, the Agora server adjusts it to 64; if greater than 1080, it adjusts to 1080.</li>
+                            <li>For audio-only streams, set both <codeph>width</codeph> and <codeph>height</codeph> to 0.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoBitrate</pt>
+                    <pd>Video encoding bitrate in Kbps. See <xref keyref="BITRATE"/>. You don't need to set this parameter; keep the default <xref keyref="STANDARD_BITRATE"/>. The SDK automatically matches the optimal bitrate based on your video resolution and frame rate. For more on resolution and frame rate, see [Video Profile](https://doc.shengwang.cn/doc/rtc/unity/basic-features/video-profile#%E8%A7%86%E9%A2%91%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoFramerate</pt>
+                    <pd>Frame rate of the output video for RTMP streaming. Range is (0,30], in fps. Default is 15 fps.
+                        <note>The Agora server adjusts any frame rate above 30 fps to 30 fps.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lowLatency</pt>
+                    <pd>
+                        <note>Deprecated. Not recommended for use.</note><ph>Low-latency mode</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Low latency, lower video quality.</li>
+                            <li><xref keyref="false"/>: (Default) Higher latency, better video quality.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoGop</pt>
+                    <pd>GOP (Group of Pictures) of the output video for RTMP streaming, in frames. Default is 30.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoCodecProfile</pt>
+                    <pd>Codec profile of the output video for RTMP streaming. Can be set to 66, 77, or 100. See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>.
+                        <note>If you set this to another value, the Agora server resets it to the default.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoCodecType</pt>
+                    <pd>Codec type of the output video for RTMP streaming. See <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>transcodingUsers</pt>
+                    <pd>Manages the users participating in the video mixing for RTMP streaming. Supports up to 17 users. See <xref keyref="TranscodingUser"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>transcodingExtraInfo</pt>
+                    <pd>Reserved parameter: Custom information sent to the RTMP client, used to populate SEI frames in H264/H265 video. Max length: 4096 bytes. For more details on SEI, see [SEI Frame Issues](https://doc.shengwang.cn/faq/quality-issues/sei).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>backgroundColor</pt>
+                    <pd>Background color of the output video for RTMP streaming, represented as a hexadecimal RGB integer without the # symbol. For example, 0xFFB6C1 is light pink. Default is 0x000000 (black).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>userCount</pt>
+                    <pd>Number of users participating in the video mixing. Default is 0. Range: [0,17].</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>metadata</pt>
+                    <pd>Metadata sent to CDN clients.
+                        <note>Deprecated. Not recommended for use.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>watermark</pt>
+                    <pd>Watermark(s) on the live video. PNG format is required. See <xref keyref="RtcImage"/>.
+You can add one watermark or use an array to add multiple. Use this parameter together with <codeph>watermarkCount</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>backgroundImage</pt>
+                    <pd>Background image(s) on the live video. PNG format is required. See <xref keyref="RtcImage"/>.
+You can add one background image or use an array to add multiple. Use this parameter together with <codeph>backgroundImageCount</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioSampleRate</pt>
+                    <pd>Audio sample rate (Hz) of the output media stream for RTMP streaming. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioBitrate</pt>
+                    <pd>Bitrate of the output audio for RTMP streaming, in Kbps. Default is 48, maximum is 128.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioChannels</pt>
+                    <pd>Number of audio channels in the output audio for RTMP streaming. Default is 1. Valid values are integers in [1,5]. Recommended values are 1 or 2. Values 3, 4, and 5 require special player support:
+                        <ul>
+                            <li>1: (Default) Mono</li>
+                            <li>2: Stereo</li>
+                            <li>3: Three channels</li>
+                            <li>4: Four channels</li>
+                            <li>5: Five channels</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioCodecProfile</pt>
+                    <pd>Codec profile of the output audio for RTMP streaming. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>watermarkCount</pt>
+                    <pd>Number of watermarks on the live video. The total number of watermarks and background images must be between 0 and 10. Use this parameter together with <codeph>watermark</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>backgroundImageCount</pt>
+                    <pd>Number of background images on the live video. The total number of watermarks and background images must be between 0 and 10. Use this parameter together with <codeph>backgroundImage</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>advancedFeatures</pt>
+                    <pd>Advanced features for transcoding and streaming. See <xref keyref="LiveStreamAdvancedFeature"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>advancedFeatureCount</pt>
+                    <pd>Number of enabled advanced features. Default is 0.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

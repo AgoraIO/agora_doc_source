@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_selectmultiaudiotrack">
+    <title><ph keyref="selectMultiAudioTrack"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Selects the audio track for local playback and publishing to the channel.</ph><ph id="shortdesc" props="android">Selects the audio tracks to play locally and to publish to the channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="selectMultiAudioTrack"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int selectMultiAudioTrack(int playoutTrackIndex, int publishTrackIndex) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int selectMultiAudioTrack(int playoutTrackIndex, int publishTrackIndex);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Before calling this method, you need to open the media file using <xref keyref="openWithMediaSource"/> and set <codeph>enableMultiAudioTrack</codeph> to <xref keyref="true"/> in <xref keyref="MediaSource"/>.</p>
+            <p props="android">Before calling this method, you need to open the media file using <xref keyref="openWithMediaSource"/> and set <codeph>enableMultiAudioTrack</codeph> to <xref keyref="true"/> in <xref keyref="MediaSource"/>.</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method is suitable for scenarios such as KTV: the host can choose to play the original vocal track locally while publishing the accompaniment track to the channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>playoutTrackIndex</pt>
+                    <pd>The index of the audio track for local playback. Can be obtained via <xref keyref="getStreamInfo"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishTrackIndex</pt>
+                    <pd>The index of the audio track to publish to the channel. Can be obtained via <xref keyref="getStreamInfo"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>playoutTrackIndex</pt>
+                    <pd>The index of the audio track for local playback. You can obtain this index via <xref keyref="getStreamInfo"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishTrackIndex</pt>
+                    <pd>The index of the audio track to publish to the channel. You can obtain this index via <xref keyref="getStreamInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

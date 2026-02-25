@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_getcallidex">
+    <title><ph keyref="getCallIdEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets the call ID using the connection ID.</ph><ph id="shortdesc" props="rn">Get the call ID using the connection ID.</ph><ph id="shortdesc" props="flutter">Gets the call ID using the connection ID.</ph><ph id="shortdesc" props="unity">Gets the call ID using the connection ID.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCallIdEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getCallIdEx(connection: RtcConnection): string;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getCallIdEx(connection: RtcConnection): string;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; getCallIdEx(RtcConnection connection);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetCallIdEx(ref string callId, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Each time the client joins a channel, a corresponding <codeph>callId</codeph> is generated to identify the call session. You can call this method to get the <codeph>callId</codeph> and then pass it to methods such as <xref keyref="rate"/> and <xref keyref="complain"/>.</p>
+            <p props="rn">Each time the client joins a channel, a corresponding <codeph>callId</codeph> is generated to identify the call session. You can call this method to obtain the <codeph>callId</codeph> parameter, then pass it to methods like <xref keyref="rate"/> and <xref keyref="complain"/>.</p>
+            <p props="flutter">Each time the client joins a channel, a corresponding <codeph>callId</codeph> is generated to identify the current call. You can call this method to get the <codeph>callId</codeph> parameter, and then pass it in when calling methods such as <xref keyref="rate"/> and <xref keyref="complain"/>.</p>
+            <p props="unity">Each time the client joins a channel, it generates a corresponding <codeph>callId</codeph> to identify the current call. You can call this method to get the <codeph>callId</codeph> parameter, and then pass it in when calling methods such as <xref keyref="rate"/> and <xref keyref="complain"/>.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called after joining a channel.</p>
+            <p props="rn">This method must be called after joining a channel.</p>
+            <p props="flutter">This method must be called after joining a channel.</p>
+            <p props="unity">You need to call this method after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>callId</pt>
+                    <pd>An output parameter. The current call ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

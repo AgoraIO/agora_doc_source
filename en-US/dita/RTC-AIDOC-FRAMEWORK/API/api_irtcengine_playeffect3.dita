@@ -1,0 +1,312 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_playeffect3">
+    <title><ph keyref="playEffect3"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Plays the specified local or online audio effect file.</ph><ph id="shortdesc" props="rn">Plays the specified local or online audio effect file.</ph><ph id="shortdesc" props="flutter">Plays the specified local or online audio effect file.</ph><ph id="shortdesc" props="unity">Plays the specified local or online audio effect.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="playEffect3"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract playEffect(
+    soundId: number,
+    filePath: string,
+    loopCount: number,
+    pitch: number,
+    pan: number,
+    gain: number,
+    publish?: boolean,
+    startPos?: number
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract playEffect(
+    soundId: number,
+    filePath: string,
+    loopCount: number,
+    pitch: number,
+    pan: number,
+    gain: number,
+    publish?: boolean,
+    startPos?: number
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; playEffect(
+    {required int soundId,
+    required String filePath,
+    required int loopCount,
+    required double pitch,
+    required double pan,
+    required int gain,
+    bool publish = false,
+    int startPos = 0});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int PlayEffect(int soundId, string filePath, int loopCount, double pitch, double pan, int gain, bool publish = false, int startPos = 0);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">You can call this method multiple times with different <codeph>soundID</codeph> and <codeph>filePath</codeph> to play multiple audio effects simultaneously. For optimal user experience, it is recommended to play no more than 3 audio effects at the same time.</p>
+            <p props="rn">You can call this method multiple times with different <codeph>soundID</codeph> and <codeph>filePath</codeph> to play multiple audio effect files simultaneously. For optimal user experience, it is recommended not to play more than 3 audio effects at the same time.</p>
+            <p props="flutter">You can call this method multiple times with different <codeph>soundID</codeph> and <codeph>filePath</codeph> to play multiple audio effect files simultaneously. For optimal user experience, it is recommended to play no more than 3 audio effect files at the same time.</p>
+            <p props="unity">You can call this method multiple times with different <codeph>soundID</codeph> and <codeph>filePath</codeph> values to play multiple audio effects simultaneously. For optimal user experience, it is recommended not to play more than 3 audio effects at the same time.</p>
+            <note props="electron">If you need to play online audio effect files, Agora recommends caching the online files to the local device first, then calling <xref keyref="preloadEffect"/> to preload them into memory before calling this method for playback. Otherwise, playback failures or no sound may occur due to timeout or failure in loading online files.</note>
+            <note props="rn">If you need to play online audio effect files, Agora recommends caching them to the local device first, preloading them into memory using <xref keyref="preloadEffect"/>, and then calling this method to play them. Otherwise, playback may fail or be silent due to timeout or failure in loading the online file.</note>
+            <note props="flutter">If you need to play an online audio effect file, Agora recommends caching the file to the local device first, then calling <xref keyref="preloadEffect"/> to preload the cached file into memory, and finally calling this method to play the effect. Otherwise, playback failure or no sound may occur due to timeout or failure in loading the online file.</note>
+            <note props="unity">If you need to play an online audio effect, Agora recommends caching the online file to the local device, preloading it into memory using <xref keyref="preloadEffect"/>, and then calling this method to play it. Otherwise, playback may fail or be silent due to loading timeouts or failures.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method can be called before or after joining a channel.</p>
+            <p props="rn">This method can be called before or after joining a channel.</p>
+            <p props="flutter">This method can be called before or after joining a channel.</p>
+            <p props="unity">This method can be called before or after joining a channel.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Related Callbacks</title>
+            <p props="electron">After the audio effect file finishes playing, the SDK triggers the <xref keyref="onAudioEffectFinished"/> callback.</p>
+            <p props="rn">After the audio effect finishes playing, the SDK triggers the <xref keyref="onAudioEffectFinished"/> callback.</p>
+            <p props="flutter">After the audio effect file finishes playing, the SDK triggers the <xref keyref="onAudioEffectFinished"/> callback.</p>
+            <p props="unity">After the audio effect finishes playing, the SDK triggers the <xref keyref="onAudioEffectFinished"/> callback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>soundId</pt>
+                    <pd>The ID of the audio effect. Each audio effect has a unique ID.
+                        <note>If you have preloaded the effect using <xref keyref="preloadEffect"/>, make sure this parameter matches the <codeph>soundId</codeph> used in <xref keyref="preloadEffect"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>filePath</pt>
+                    <pd>The path of the audio file to play. Supports URLs of online files and absolute file paths, including the file name and extension. Supported formats include MP3, AAC, M4A, MP4, WAV, 3GP, etc.
+                        <note>If you have preloaded the effect using <xref keyref="preloadEffect"/>, make sure this parameter matches the <codeph>filePath</codeph> used in <xref keyref="preloadEffect"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>loopCount</pt>
+                    <pd>The number of times to loop the audio effect.
+                        <ul>
+                            <li>≥ 0: Number of loops. For example, 1 means play twice in total.</li>
+                            <li>-1: Infinite loop.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>pitch</pt>
+                    <pd>The pitch of the audio effect. Range: [0.5,2.0]. Default is 1.0, which is the original pitch. The smaller the value, the lower the pitch.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>pan</pt>
+                    <pd>The spatial position of the audio effect. Range: [-1.0,1.0], for example:
+                        <ul>
+                            <li>-1.0: Audio appears on the left</li>
+                            <li>0.0: Audio appears in the center</li>
+                            <li>1.0: Audio appears on the right</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>gain</pt>
+                    <pd>The volume of the audio effect. Range: [0.0,100.0]. Default is 100.0, which is the original volume. The smaller the value, the lower the volume.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publish</pt>
+                    <pd>Whether to publish the audio effect to remote users:
+                        <ul>
+                            <li><xref keyref="true"/>: Publishes the audio effect. Both local and remote users can hear it.</li>
+                            <li><xref keyref="false"/>: Does not publish the audio effect. Only local users can hear it.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>startPos</pt>
+                    <pd>The playback position of the audio effect file in milliseconds.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>soundId</pt>
+                    <pd>The ID of the audio effect. Each audio effect has a unique ID.
+                        <note>If you have preloaded the audio effect using <xref keyref="preloadEffect"/>, make sure this parameter matches the <codeph>soundId</codeph> set in <xref keyref="preloadEffect"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>filePath</pt>
+                    <pd>The path of the file to play. Supports URL of online files and absolute path of local files. Must include the file name and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV, 3GP, etc.
+                        <note>If you have preloaded the audio effect using <xref keyref="preloadEffect"/>, make sure this parameter matches the <codeph>filePath</codeph> set in <xref keyref="preloadEffect"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>loopCount</pt>
+                    <pd>The number of times the audio effect loops.
+                        <ul>
+                            <li>≥ 0: Number of loops. For example, 1 means loop once, i.e., play twice in total.</li>
+                            <li>-1: Loop indefinitely.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>pitch</pt>
+                    <pd>The pitch of the audio effect. The range is [0.5,2.0]. The default value is 1.0, which represents the original pitch. The smaller the value, the lower the pitch.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>pan</pt>
+                    <pd>The spatial position of the audio effect. The range is [-1.0,1.0], for example:
+                        <ul>
+                            <li>-1.0: The audio effect appears on the left</li>
+                            <li>0.0: The audio effect appears in the center</li>
+                            <li>1.0: The audio effect appears on the right</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>gain</pt>
+                    <pd>The volume of the audio effect. The range is [0.0,100.0]. The default value is 100.0, which represents the original volume. The smaller the value, the lower the volume.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publish</pt>
+                    <pd>Whether to publish the audio effect to remote users:
+                        <ul>
+                            <li><xref keyref="true"/>: Publishes the audio effect to remote users. Both local and remote users can hear it.</li>
+                            <li><xref keyref="false"/>: Does not publish the audio effect to remote users. Only local users can hear it.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>startPos</pt>
+                    <pd>The playback position of the audio effect file in milliseconds.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>soundId</pt>
+                    <pd>ID of the audio effect. Each audio effect has a unique ID.
+                        <note>If you have loaded the audio effect into memory using <xref keyref="preloadEffect"/>, make sure this parameter matches the <codeph>soundId</codeph> set in <xref keyref="preloadEffect"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>filePath</pt>
+                    <pd>Path of the file to be played. Supports URL of online files or absolute path of local files. Must include file name and extension. Supported formats include MP3, AAC, M4A, MP4, WAV, 3GP, etc.
+                        <note>If you have loaded the audio effect into memory using <xref keyref="preloadEffect"/>, make sure this parameter matches the <codeph>filePath</codeph> set in <xref keyref="preloadEffect"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>loopCount</pt>
+                    <pd>Number of times the audio effect is looped.
+                        <ul>
+                            <li>≥ 0: Number of loops. For example, 1 means loop once, i.e., played twice in total.</li>
+                            <li>-1: Loops indefinitely.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pitch</pt>
+                    <pd>Pitch of the audio effect. Value range is [0.5,2.0]. Default is 1.0, which represents the original pitch. The smaller the value, the lower the pitch.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pan</pt>
+                    <pd>Spatial position of the audio effect. Value range is [-1.0,1.0], for example:
+                        <ul>
+                            <li>-1.0: Audio effect appears on the left</li>
+                            <li>0.0: Audio effect appears in the center</li>
+                            <li>1.0: Audio effect appears on the right</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>gain</pt>
+                    <pd>Volume of the audio effect. Value range is [0.0,100.0]. Default is 100.0, which represents the original volume. The smaller the value, the lower the volume.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publish</pt>
+                    <pd>Whether to publish the audio effect to remote users:
+                        <ul>
+                            <li><xref keyref="true"/>: Publishes the audio effect to remote users. Both local and remote users can hear it.</li>
+                            <li><xref keyref="false"/>: Does not publish the audio effect to remote users. Only local users can hear it.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>startPos</pt>
+                    <pd>Playback position of the audio effect file in milliseconds.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>soundId</pt>
+                    <pd>The ID of the audio effect. Each audio effect has a unique ID.
+                        <note>If you have loaded the audio effect into memory using <xref keyref="preloadEffect"/>, ensure this parameter matches the <codeph>soundId</codeph> set in <xref keyref="preloadEffect"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>The file path to play. Supports online URLs and absolute paths to local files, including the file name and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV, 3GP, etc.
+                        <note>If you have loaded the audio effect into memory using <xref keyref="preloadEffect"/>, ensure this parameter matches the <codeph>filePath</codeph> set in <xref keyref="preloadEffect"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>loopCount</pt>
+                    <pd>The number of times the audio effect loops.
+                        <ul>
+                            <li>≥ 0: Number of loops. For example, 1 means loop once, i.e., play twice in total.</li>
+                            <li>-1: Loop indefinitely.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>pitch</pt>
+                    <pd>The pitch of the audio effect. The range is [0.5,2.0]. Default is 1.0, which represents the original pitch. The smaller the value, the lower the pitch.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>pan</pt>
+                    <pd>The spatial position of the audio effect. The range is [-1.0,1.0], for example:
+                        <ul>
+                            <li>-1.0: Audio appears on the left</li>
+                            <li>0.0: Audio appears in the center</li>
+                            <li>1.0: Audio appears on the right</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>gain</pt>
+                    <pd>The volume of the audio effect. The range is [0.0,100.0]. Default is 100.0, which represents the original volume. The smaller the value, the lower the volume.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publish</pt>
+                    <pd>Whether to publish the audio effect to remote users:
+                        <ul>
+                            <li><xref keyref="true"/>: Publishes the audio effect to remote users. Both local and remote users can hear it.</li>
+                            <li><xref keyref="false"/>: Does not publish the audio effect to remote users. Only the local user can hear it.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>startPos</pt>
+                    <pd>The playback position of the audio effect in milliseconds.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                <ul>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

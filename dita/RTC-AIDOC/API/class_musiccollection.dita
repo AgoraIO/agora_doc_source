@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_musiccollection">
+    <title><ph keyref="MusicCollection"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于获取音乐资源列表的详细信息。</ph><ph id="shortdesc" props="ios">音乐资源列表的详细信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">class MusicCollection : public RefCountInterface {
+public:
+protected:
+    virtual ~MusicCollection() = default;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusicCollection : NSObject
+@property(nonatomic, assign) NSInteger count;
+@property(nonatomic, assign) NSInteger total;
+@property(nonatomic, assign) NSInteger page;
+@property(nonatomic, assign) NSInteger pageSize;
+@property(nonatomic, strong) NSArray&lt;AgoraMusic *&gt;* musicList;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="ios">
+            <p props="ios">用于描述当前请求中的音乐资源列表信息，包括资源数量、分页信息和当前页的音乐资源详情。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="ios">
+            <title>属性</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>count</pt>
+                    <pd>当前请求中音乐资源列表的音乐项数量。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>total</pt>
+                    <pd>音乐资源列表中的音乐资源总数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>page</pt>
+                    <pd>当前页码，默认从 1 开始。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>pageSize</pt>
+                    <pd>当前音乐资源列表的总页数。最大值为 50。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>musicList</pt>
+                    <pd>当前页音乐资源的详细信息，详见 <xref keyref="Music"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

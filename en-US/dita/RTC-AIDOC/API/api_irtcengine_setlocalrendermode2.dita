@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalrendermode2">
+    <title><ph keyref="setLocalRenderMode2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Updates the display mode of the local video view.</ph><ph id="shortdesc" props="android">Updates the display mode of the local video view.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalRenderMode2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalRenderMode(media::base::RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setLocalRenderMode(int renderMode, int mirrorMode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You can call this method after initializing the local video view to update its render mode and mirror mode. This method only affects the video view seen by the local user and does not affect the published video.</p>
+            <p props="android">This method only affects what the local user sees and does not affect the publication of the local video.</p>
+            <note props="cpp"><codeph>setLocalRenderMode</codeph> only takes effect for the primary camera (<codeph>PRIMARY_CAMERA_SOURCE</codeph>). For scenarios using custom video capture or other video sources, use <xref keyref="setupLocalVideo"/> instead.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">
+                <ul>
+                    <li>Make sure to call <xref keyref="setupLocalVideo"/> to initialize the local video view before calling this method.</li>
+                    <li>During a call, you can call this method multiple times to update the display mode of the local video view.</li>
+                </ul>
+            </p>
+            <p props="android">Make sure to call <xref keyref="setupLocalVideo"/> to initialize the local video view before calling this method. During a call, you can call this method multiple times as needed to update the display mode of the local video view.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>renderMode</pt>
+                    <pd>The display mode of the local video view. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mirrorMode</pt>
+                    <pd>The mirror mode of the local video view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.
+                        <note>When using the front camera, the SDK enables mirror mode by default; when using the rear camera, mirror mode is disabled by default.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>renderMode</pt>
+                    <pd>Display mode of the local video:
+                        <ul>
+                            <li><codeph>RENDER_MODE_HIDDEN</codeph> (1): Hidden mode. Scales the video proportionally until it fills the view boundaries (may be cropped). One edge of the video may be cut off.</li>
+                            <li><codeph>RENDER_MODE_FIT</codeph> (2): Fit mode. Scales the video proportionally until one side fits the view. The remaining area due to aspect ratio mismatch is filled with black.</li>
+                            <li><codeph>RENDER_MODE_ADAPTIVE</codeph> (3): Adaptive mode (deprecated and not recommended).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mirrorMode</pt>
+                    <pd>
+                        <note>If you use the front camera, the SDK enables mirror mode by default; if you use the rear camera, the SDK disables mirror mode by default.</note><ph>Mirror mode of the local user's video:</ph>
+                        <ul>
+                            <li><codeph>VIDEO_MIRROR_MODE_AUTO</codeph> (0): SDK automatically decides whether to enable mirror mode.</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_ENABLED</codeph> (1): Enables mirror mode for the local view.</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_DISABLED</codeph> (2): Disables mirror mode for the local view.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

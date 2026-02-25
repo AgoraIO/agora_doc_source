@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_advancedconfiginfo">
+    <title><ph keyref="AdvancedConfigInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Advanced options for Local Access Point.</ph><ph id="shortdesc" props="rn">Advanced options for Local Access Point.</ph><ph id="shortdesc" props="flutter">Advanced options for Local Access Point.</ph><ph id="shortdesc" props="unity">Advanced options for Local Access Point.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class AdvancedConfigInfo {
+  logUploadServer?: LogUploadServerInfo;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class AdvancedConfigInfo {
+  logUploadServer?: LogUploadServerInfo;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class AdvancedConfigInfo {
+  const AdvancedConfigInfo({this.logUploadServer});
+
+  @JsonKey(name: 'logUploadServer')
+  final LogUploadServerInfo? logUploadServer;
+
+  factory AdvancedConfigInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$AdvancedConfigInfoFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$AdvancedConfigInfoToJson(this);
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>logUploadServer</pt>
+                    <pd>Custom log upload server. By default, the SDK uploads logs to the Agora log server. You can use this parameter to change the log upload server. See <xref keyref="LogUploadServerInfo"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>logUploadServer</pt>
+                    <pd>Custom log upload server. By default, the SDK uploads logs to the Agora log server. You can use this parameter to modify the log upload server. See <xref keyref="LogUploadServerInfo"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>logUploadServer</pt>
+                    <pd>Custom log upload server. By default, the SDK uploads logs to the Agora log server. You can use this parameter to change the log upload server. See <xref keyref="LogUploadServerInfo"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>logUploadServer</pt>
+                    <pd>Custom log upload server. By default, the SDK uploads logs to the Agora log server. You can modify the log upload server using this parameter. See <xref keyref="LogUploadServerInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

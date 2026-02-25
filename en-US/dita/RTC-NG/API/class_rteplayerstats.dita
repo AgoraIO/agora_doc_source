@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rteplayerstats">
+    <title><ph keyref="RtePlayerStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The statistics of the media resource.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class PlayerStats {
+  public int videoDecodeFrameRate()
+  public int videoRenderFrameRate()
+  public int videoBitrate()
+  public int audioBitrate()
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtePlayerStats : NSObject
+
+- (instancetype _Nonnull)init;
+- (int)videoDecodeFrameRate;
+- (int)videoRenderFrameRate;
+- (int)videoBitrate;
+- (int)audioBitrate;
+
+@end</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">typedef struct RtePlayerStats {
+    int video_decode_frame_rate;
+    int video_render_frame_rate;
+    int video_bitrate;
+    int audio_bitrate;
+} RtePlayerStats;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p/>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt props="android apple">videoDecodeFrameRate</pt>
+                <pt props="cpp">video_decode_frame_rate</pt>
+                <pd>The video decoding frame rate (fps).</pd>
+            </plentry>
+            <plentry>
+                <pt props="android apple">videoRenderFrameRate</pt>
+                <pt props="cpp">video_render_frame_rate</pt>
+                <pd>The video rendering frame rate (fps).</pd>
+            </plentry>
+             <plentry>
+                <pt props="android apple">videoBitrate</pt>
+                <pt props="cpp">video_bitrate</pt>
+                <pd>The bitrate (Kbps) of the video.</pd>
+            </plentry>
+            <plentry>
+                <pt props="android apple">audioBitrate</pt>
+                <pt props="cpp">audio_bitrate</pt>
+                <pd>The bitrate of the audio (Kbps).</pd>
+            </plentry>
+            </parml> </section>
+                </refbody>
+</reference>

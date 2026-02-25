@@ -1,0 +1,268 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_multipathstats">
+    <title><ph keyref="MultipathStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">用于汇总多路径传输中各网络路径的统计数据。</ph><ph id="shortdesc" props="rn">用于汇总多路径传输中各网络路径的统计数据。</ph><ph id="shortdesc" props="flutter">用于汇总多路径传输中各网络路径的统计数据。</ph><ph id="shortdesc" props="unity">用于汇总多路径传输中各网络路径的统计数据。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class MultipathStats {
+lanTxBytes?: number;
+lanRxBytes?: number;
+wifiTxBytes?: number;
+wifiRxBytes?: number;
+mobileTxBytes?: number;
+mobileRxBytes?: number;
+activePathNum?: number;
+pathStats?: PathStats[];
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class MultipathStats {
+lanTxBytes?: number;
+lanRxBytes?: number;
+wifiTxBytes?: number;
+wifiRxBytes?: number;
+mobileTxBytes?: number;
+mobileRxBytes?: number;
+activePathNum?: number;
+pathStats?: PathStats[];
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class MultipathStats implements AgoraSerializable {
+  const MultipathStats(
+      {this.lanTxBytes,
+      this.lanRxBytes,
+      this.wifiTxBytes,
+      this.wifiRxBytes,
+      this.mobileTxBytes,
+      this.mobileRxBytes,
+      this.activePathNum,
+      this.pathStats});
+
+  @JsonKey(name: 'lanTxBytes')
+  final int? lanTxBytes;
+
+  @JsonKey(name: 'lanRxBytes')
+  final int? lanRxBytes;
+
+  @JsonKey(name: 'wifiTxBytes')
+  final int? wifiTxBytes;
+
+  @JsonKey(name: 'wifiRxBytes')
+  final int? wifiRxBytes;
+
+  @JsonKey(name: 'mobileTxBytes')
+  final int? mobileTxBytes;
+
+  @JsonKey(name: 'mobileRxBytes')
+  final int? mobileRxBytes;
+
+  @JsonKey(name: 'activePathNum')
+  final int? activePathNum;
+
+  @JsonKey(name: 'pathStats')
+  final List&lt;PathStats&gt;? pathStats;
+
+  factory MultipathStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$MultipathStatsFromJson(json);
+
+  @override
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$MultipathStatsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">    public class MultipathStats
+    {
+        public uint lanTxBytes;
+
+        public uint lanRxBytes;
+
+        public uint wifiTxBytes;
+
+        public uint wifiRxBytes;
+
+        public uint mobileTxBytes;
+
+        public uint mobileRxBytes;
+
+        public int activePathNum;
+
+        public PathStats[] pathStats;
+
+        public MultipathStats()
+        {
+            this.lanTxBytes = 0;
+            this.lanRxBytes = 0;
+            this.wifiTxBytes = 0;
+            this.wifiRxBytes = 0;
+            this.mobileTxBytes = 0;
+            this.mobileRxBytes = 0;
+            this.activePathNum = 0;
+            this.pathStats = null;
+        }
+
+        public MultipathStats(uint lanTxBytes, uint lanRxBytes, uint wifiTxBytes, uint wifiRxBytes, uint mobileTxBytes, uint mobileRxBytes, int activePathNum, PathStats[] pathStats)
+        {
+            this.lanTxBytes = lanTxBytes;
+            this.lanRxBytes = lanRxBytes;
+            this.wifiTxBytes = wifiTxBytes;
+            this.wifiRxBytes = wifiRxBytes;
+            this.mobileTxBytes = mobileTxBytes;
+            this.mobileRxBytes = mobileRxBytes;
+            this.activePathNum = activePathNum;
+            this.pathStats = pathStats;
+        }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>lanTxBytes</pt>
+                    <pd>通过 LAN 路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>lanRxBytes</pt>
+                    <pd>通过 LAN 路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>wifiTxBytes</pt>
+                    <pd>通过 Wi-Fi 路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>wifiRxBytes</pt>
+                    <pd>通过 Wi-Fi 路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>mobileTxBytes</pt>
+                    <pd>通过移动网络路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>mobileRxBytes</pt>
+                    <pd>通过移动网络路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>activePathNum</pt>
+                    <pd>当前活跃的传输路径数量。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>pathStats</pt>
+                    <pd>每个活跃传输路径的统计信息数组。详见 <xref keyref="PathStats"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lanTxBytes</pt>
+                    <pd>通过 LAN 路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lanRxBytes</pt>
+                    <pd>通过 LAN 路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>wifiTxBytes</pt>
+                    <pd>通过 Wi-Fi 路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>wifiRxBytes</pt>
+                    <pd>通过 Wi-Fi 路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mobileTxBytes</pt>
+                    <pd>通过移动网络路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mobileRxBytes</pt>
+                    <pd>通过移动网络路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>activePathNum</pt>
+                    <pd>当前活跃的传输路径数量。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>pathStats</pt>
+                    <pd>每个活跃传输路径的统计信息数组。详见 <xref keyref="PathStats"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lanTxBytes</pt>
+                    <pd>通过 LAN 路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lanRxBytes</pt>
+                    <pd>通过 LAN 路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>wifiTxBytes</pt>
+                    <pd>通过 Wi-Fi 路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>wifiRxBytes</pt>
+                    <pd>通过 Wi-Fi 路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mobileTxBytes</pt>
+                    <pd>通过移动网络路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mobileRxBytes</pt>
+                    <pd>通过移动网络路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>activePathNum</pt>
+                    <pd>当前活跃的传输路径数量。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pathStats</pt>
+                    <pd>每个活跃传输路径的统计信息数组。详见 <xref keyref="PathStats"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lanTxBytes</pt>
+                    <pd>通过 LAN 路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lanRxBytes</pt>
+                    <pd>通过 LAN 路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>wifiTxBytes</pt>
+                    <pd>通过 Wi-Fi 路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>wifiRxBytes</pt>
+                    <pd>通过 Wi-Fi 路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mobileTxBytes</pt>
+                    <pd>通过移动网络路径发送的字节总数。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mobileRxBytes</pt>
+                    <pd>通过移动网络路径接收的字节总数。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>activePathNum</pt>
+                    <pd>当前活跃的传输路径数量。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>pathStats</pt>
+                    <pd>每个活跃传输路径的统计信息数组。详见 <xref keyref="PathStats"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

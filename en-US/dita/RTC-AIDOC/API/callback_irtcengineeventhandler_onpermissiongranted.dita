@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onpermissiongranted">
+    <title><ph keyref="onPermissionGranted"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when a permission is granted.</ph><ph id="shortdesc" props="android"><xref keyref="onPermissionGranted"/> callback. Used to report granted permissions.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPermissionGranted"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onPermissionGranted(agora::rtc::PERMISSION_TYPE permissionType) {}</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onPermissionGranted(int permission)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>permissionType</pt>
+                    <pd>Permission type. See <xref keyref="PERMISSION_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>permission</pt>
+                    <pd>Permission type, including:
+                        <ul>
+                            <li><codeph>RECORD_AUDIO</codeph>: Microphone permission.</li>
+                            <li><codeph>CAMERA</codeph>: Camera permission.</li>
+                            <li><codeph>SCREEN_CAPTURE</codeph>: Screen capture permission.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

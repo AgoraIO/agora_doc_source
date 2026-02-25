@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_addvideowatermarkex">
+    <title><ph keyref="addVideoWatermarkEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Adds a watermark image to the local video.</ph><ph id="shortdesc" props="android">Adds a watermark image to the local video.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addVideoWatermarkEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int addVideoWatermarkEx(const char* watermarkUrl, const WatermarkOptions&amp; options, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int addVideoWatermarkEx(String watermarkUrl, WatermarkOptions options, RtcConnection connection)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.0. Use <codeph>addVideoWatermarkEx(const WatermarkConfig&amp; config, const RtcConnection&amp; connection)</codeph> instead.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.0. Use <xref keyref="addVideoWatermarkEx1"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">This method adds a PNG format watermark image to the local video during a live broadcast. Once added, all viewers in the channel (including CDN viewers) and capture devices can see and capture the image. The Agora SDK supports only one watermark image per live video stream. A newly added image replaces the previous one.
+The position of the watermark image depends on the settings in the <xref keyref="setVideoEncoderConfigurationEx"/> method:
+                <ul>
+                    <li>If the orientation mode (<xref keyref="ORIENTATION_MODE"/>) of the encoded video is fixed landscape or adaptive landscape, the watermark is displayed in landscape mode.</li>
+                    <li>If the orientation mode is fixed portrait or adaptive portrait, the watermark is displayed in portrait mode.</li>
+                    <li>When setting the watermark position, the area must be smaller than the video dimensions set in <xref keyref="setVideoEncoderConfigurationEx"/>, otherwise the watermark image will be cropped.</li>
+                </ul>
+            </p>
+            <p props="android">This method adds a PNG watermark image to the local video during a live broadcast. After the watermark is added, all audience members in the channel (including CDN viewers) and capture devices can see and capture the image. The Agora SDK only supports adding one watermark image to a live video stream. A new image replaces the previous one.
+The coordinates of the watermark image depend on the settings in the <xref keyref="setVideoEncoderConfigurationEx"/> method:
+                <ul>
+                    <li>If the orientation mode (<xref keyref="ORIENTATION_MODE"/>) of the encoded video is fixed landscape or adaptive landscape, the watermark uses landscape orientation.</li>
+                    <li>If the orientation mode is fixed portrait or adaptive portrait, the watermark uses portrait orientation.</li>
+                    <li>When setting the watermark position, the region must be smaller than the dimensions set in the <xref keyref="setVideoEncoderConfigurationEx"/> method, otherwise the image will be cropped.</li>
+                </ul>
+            </p>
+            <note props="cpp">
+                <ul>
+                    <li>Make sure to call <xref keyref="enableVideo"/> before calling this method.</li>
+                    <li>This method only supports PNG format watermark images. Supported PNG pixel formats include RGBA, RGB, Palette, Gray, and Alpha_gray.</li>
+                    <li>If the PNG image size does not match the settings of this method, the image will be cropped or scaled to fit.</li>
+                    <li>If you have enabled local video preview using <codeph>startPreview</codeph>, you can set whether the watermark is visible in the preview via the <codeph>visibleInPreview</codeph> member.</li>
+                    <li>If mirror mode is enabled for the local video, the watermark will also be mirrored. To avoid the watermark being mirrored, Agora recommends not using mirror mode and watermarking simultaneously. You can also implement the watermark feature at the application level.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>Make sure to call the <xref keyref="enableVideo"/> method before calling this method.</li>
+                    <li>This method only supports PNG format watermark images. Supported PNG pixel formats include RGBA, RGB, Palette, Gray, and Alpha_gray.</li>
+                    <li>If the size of the PNG image does not match the settings in this method, the image will be cropped or scaled to fit.</li>
+                    <li>If you have enabled local video preview using the <codeph>startPreview</codeph> method, you can use the <codeph>visibleInPreview</codeph> member to set whether the watermark is visible in the preview.</li>
+                    <li>If local video mirroring is enabled, the watermark will also be mirrored. To avoid mirroring the watermark, Agora recommends not using mirroring and watermark features simultaneously. You can implement the watermark feature at the application level.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method applies to multi-channel scenarios.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>watermarkUrl</pt>
+                    <pd>The local file path of the watermark image to be added. Supports both absolute and relative local paths.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>options</pt>
+                    <pd>Settings for the watermark image. See <xref keyref="WatermarkOptions"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>watermarkUrl</pt>
+                    <pd>The local file path of the watermark image to be added. Supports absolute or relative local paths.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>Settings for the watermark image. See <xref keyref="WatermarkOptions"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

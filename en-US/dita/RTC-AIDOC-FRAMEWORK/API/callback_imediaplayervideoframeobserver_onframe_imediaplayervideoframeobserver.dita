@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayervideoframeobserver_onframe_imediaplayervideoframeobserver">
+    <title><ph keyref="onFrame_IMediaPlayerVideoFrameObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback triggered when a video frame is received.</ph><ph id="shortdesc" props="rn">Callback when a video frame is received.</ph><ph id="shortdesc" props="flutter">Callback when a video frame is received.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onFrame_IMediaPlayerVideoFrameObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onFrame?(frame: VideoFrame): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onFrame?(frame: VideoFrame): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(VideoFrame frame)? onFrame;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After registering the video observer, this callback is triggered each time a video frame is received to report video frame information.
+It is recommended to implement this callback using the C++ API.</p>
+            <p props="rn">After registering the video observer, this callback is triggered every time a video frame is received to report video frame information.
+You are advised to implement this callback using the C++ API.</p>
+            <p props="flutter">After registering the video observer, this callback is triggered every time a video frame is received, reporting video frame information.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>frame</pt>
+                    <pd>Video frame information. See <xref keyref="VideoFrame"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>frame</pt>
+                    <pd>Video frame information. See <xref keyref="VideoFrame"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>frame</pt>
+                    <pd>Video frame information. See <xref keyref="VideoFrame"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

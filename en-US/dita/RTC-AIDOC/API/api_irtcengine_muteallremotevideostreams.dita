@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_muteallremotevideostreams">
+    <title><ph keyref="muteAllRemoteVideoStreams"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Stops or resumes receiving all remote users' video streams.</ph><ph id="shortdesc" props="android">Stops or resumes subscribing to all remote users' video streams.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="muteAllRemoteVideoStreams"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int muteAllRemoteVideoStreams(bool mute) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int muteAllRemoteVideoStreams(boolean muted);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method takes effect for all remote users who have joined or will join the channel via <codeph>joinChannel</codeph>, and is equivalent to <codeph>autoSubscribeVideo</codeph> in <xref keyref="ChannelMediaOptions"/>. Make sure to call this method after joining a channel.</p>
+            <p props="android">Call this method after joining a channel. After calling this method, the local user stops or resumes subscribing to all remote users' video streams, including those who join the channel later.</p>
+            <note props="cpp">If you call <codeph>muteAllRemoteVideoStreams(true)</codeph> after joining a channel, the local user stops receiving all users' video streams in the channel, including those who join after the method is called.</note>
+            <note props="android">If you call <xref keyref="enableVideo"/> or <xref keyref="disableVideo"/> after calling this method, the last call takes effect. By default, the SDK automatically subscribes to all remote users' video streams when you join a channel. You can set <codeph>autoSubscribeVideo</codeph> to <xref keyref="false"/> in <xref keyref="ChannelMediaOptions"/> when calling <codeph>joinChannel</codeph> to cancel subscribing to all users' video streams upon joining.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">Call this method after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mute</pt>
+                    <pd>Whether to stop receiving all remote video streams:
+                        <ul>
+                            <li><xref keyref="true"/>: Stop receiving all remote video streams.</li>
+                            <li><xref keyref="false"/>: Resume receiving all remote video streams.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>muted</pt>
+                    <pd>Whether to stop subscribing to all remote users' video streams.
+                        <note>
+                            <ul>
+                                <li><xref keyref="true"/>: Stop subscribing to all remote users' video streams.</li>
+                                <li><xref keyref="false"/>: (Default) Subscribe to all remote users' video streams.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

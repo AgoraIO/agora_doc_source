@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_followsystemloopbackdevice">
+    <title><ph keyref="followSystemLoopbackDevice"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets whether the loopback device follows the system default playback device.</ph><ph id="shortdesc" props="flutter">Sets whether the loopback recording device follows the system default playback device.</ph><ph id="shortdesc" props="unity">Sets whether the loopback capture device follows the system default playback device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="followSystemLoopbackDevice"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract followSystemLoopbackDevice(enable: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; followSystemLoopbackDevice(bool enable);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int FollowSystemLoopbackDevice(bool enable);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method is applicable only to Windows and macOS.</p>
+            <p props="flutter">This method is applicable to Windows and macOS only.</p>
+            <p props="unity">This method is only applicable to Windows and macOS.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enable</pt>
+                    <pd>Whether to follow the system default playback device:
+                        <ul>
+                            <li><xref keyref="true"/>: Follow. When the system default playback device changes, the SDK immediately switches the loopback device.</li>
+                            <li><xref keyref="false"/>: Do not follow. The SDK switches to the system default playback device only when the current loopback device is removed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enable</pt>
+                    <pd>Whether to follow the system default playback device:
+                        <ul>
+                            <li><xref keyref="true"/>: Follow. When the system default playback device changes, the SDK immediately switches the loopback recording device.</li>
+                            <li><xref keyref="false"/>: Do not follow. The SDK switches to the system default playback device only when the current loopback recording device is removed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enable</pt>
+                    <pd>Whether to follow the system default playback device:
+                        <ul>
+                            <li><xref keyref="true"/>: Follow. When the system default playback device changes, the SDK immediately switches the loopback capture device accordingly.</li>
+                            <li><xref keyref="false"/>: Do not follow. The SDK switches to the system default playback device only when the current loopback capture device is removed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

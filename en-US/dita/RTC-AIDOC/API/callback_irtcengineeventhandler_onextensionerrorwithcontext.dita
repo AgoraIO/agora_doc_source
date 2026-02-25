@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onextensionerrorwithcontext">
+    <title><ph keyref="onExtensionErrorWithContext"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the extension encounters a runtime error.</ph><ph id="shortdesc" props="android">Callback triggered when an error occurs during extension runtime.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onExtensionErrorWithContext"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onExtensionErrorWithContext(const ExtensionContext &amp;context, int error, const char* message)</codeblock>
+                <codeblock props="android" outputclass="language-java">default void onErrorWithContext(ExtensionContext extContext, int error, String message)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback is triggered when the extension fails to enable or encounters a runtime error, returning the error code and reason.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the extension fails to start or an error occurs during runtime.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>context</pt>
+                    <pd>Context information of the extension. See <xref keyref="ExtensionContext"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>error</pt>
+                    <pd>Error code. See the extension provider's documentation.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>message</pt>
+                    <pd>Error reason. See the extension provider's documentation.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>extContext</pt>
+                    <pd>Context information of the extension. See <xref keyref="ExtensionContext"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>error</pt>
+                    <pd>Error code.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>message</pt>
+                    <pd>Error reason.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

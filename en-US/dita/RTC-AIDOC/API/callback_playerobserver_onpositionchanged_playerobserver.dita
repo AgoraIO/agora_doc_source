@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_playerobserver_onpositionchanged_playerobserver">
+    <title><ph keyref="onPositionChanged_PlayerObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for playback progress changes.</ph><ph id="shortdesc" props="android">Callback for playback progress changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPositionChanged_PlayerObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onPositionChanged(uint64_t curr_time, uint64_t utc_time) {}</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onPositionChanged(long curr_time, long utc_time)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">This callback is triggered once per second during media playback.</p>
+            <p props="android">This callback is triggered once per second during media playback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>curr_time</pt>
+                    <pd>Current playback progress, in milliseconds.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>utc_time</pt>
+                    <pd>Current NTP (Network Time Protocol) time, in milliseconds.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>curr_time</pt>
+                    <pd>The current playback progress, in milliseconds.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>utc_time</pt>
+                    <pd>The current NTP (Network Time Protocol) time, in milliseconds.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

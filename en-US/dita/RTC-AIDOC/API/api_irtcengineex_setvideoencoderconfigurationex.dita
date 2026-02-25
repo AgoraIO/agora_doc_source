@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_setvideoencoderconfigurationex">
+    <title><ph keyref="setVideoEncoderConfigurationEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the encoder configuration for the local video.</ph><ph id="shortdesc" props="android">Sets the encoder configuration for the local video.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setVideoEncoderConfigurationEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setVideoEncoderConfigurationEx(const VideoEncoderConfiguration&amp; config, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setVideoEncoderConfigurationEx(VideoEncoderConfiguration config, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Each configuration profile corresponds to a set of video parameters, including resolution, frame rate, and bitrate. The <codeph>config</codeph> parameter represents the maximum values under ideal network conditions. If the video engine cannot render the video using the specified <codeph>config</codeph> due to unstable network conditions, it will attempt to use lower parameters from the list until a suitable configuration is found.</p>
+            <p props="android"><xref keyref="setVideoEncoderConfigurationEx"/> sets the encoder configuration for the local video. Each configuration corresponds to a set of video parameters, including resolution, frame rate, and bitrate.</p>
+            <note props="android">The <codeph>config</codeph> parameter represents the upper limits under ideal network conditions. If the video engine cannot render video using the specified <codeph>config</codeph> due to unstable network conditions, it will try lower configurations in the list until a suitable one is found.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method applies to multi-channel scenarios.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after calling <xref keyref="joinChannelEx"/>.</p>
+            <p props="android">Call this method after <xref keyref="joinChannelEx"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>Video encoder configuration. See <xref keyref="VideoEncoderConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>Video encoder configuration. See <xref keyref="VideoEncoderConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,413 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_connectionchangedreasontype">
+    <title><ph keyref="CONNECTION_CHANGED_REASON_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">The reason for a change in network connection state.</ph><ph id="shortdesc" props="rn">The reason for the change in network connection state.</ph><ph id="shortdesc" props="flutter">Reason for changes in network connection state.</ph><ph id="shortdesc" props="unity">Reason for network connection state change.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>ConnectionChangedConnecting</pt>
+                    <pd>0: Connecting to the network.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedJoinSuccess</pt>
+                    <pd>1: Successfully joined the channel.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedInterrupted</pt>
+                    <pd>2: Network connection interrupted.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedBannedByServer</pt>
+                    <pd>3: Network connection is banned by the server. For example, this status is returned when the user is kicked out of the channel.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedJoinFailed</pt>
+                    <pd>4: Failed to join the channel. If the SDK fails to join the channel after trying for 20 minutes, this status is returned and the SDK stops attempting to reconnect. Prompt the user to switch networks and try joining the channel again.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedLeaveChannel</pt>
+                    <pd>5: Left the channel.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedInvalidAppId</pt>
+                    <pd>6: The App ID is invalid. Use a valid App ID to rejoin the channel and ensure the App ID matches the one generated in the Agora Console.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedInvalidChannelName</pt>
+                    <pd>7: The channel name is invalid. Use a valid channel name to rejoin the channel. A valid channel name is a string within 64 bytes. The supported character set includes 89 characters:</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedInvalidToken</pt>
+                    <pd>8: The Token is invalid. Possible reasons include:
+                        <ul>
+                            <li>Your project has App Certificate enabled but you did not use a Token to join the channel.</li>
+                            <li>The user ID specified when calling <xref keyref="joinChannel2"/> does not match the one used to generate the Token.</li>
+                            <li>The Token used to join the channel does not match the generated Token.</li>
+                        </ul><ph>Ensure that:</ph>
+                        <ul>
+                            <li>You use a Token to join the channel if App Certificate is enabled.</li>
+                            <li>The user ID used to generate the Token matches the one used to join the channel.</li>
+                            <li>The Token used to join the channel matches the generated Token.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedTokenExpired</pt>
+                    <pd>9: The current Token has expired. Generate a new Token on your server and rejoin the channel with the new Token.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedRejectedByServer</pt>
+                    <pd>10: This user is banned by the server. Possible reasons include:
+                        <ul>
+                            <li>The user has already joined the channel and calls the join channel API again, such as <xref keyref="joinChannel2"/>. Stop calling this method.</li>
+                            <li>The user tries to join a channel during a call test. Wait until the test ends before joining the channel.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedSettingProxyServer</pt>
+                    <pd>11: The SDK is attempting to reconnect due to proxy server settings.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedRenewToken</pt>
+                    <pd>12: The network connection state changed due to a Token renewal.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedClientIpAddressChanged</pt>
+                    <pd>13: The client IP address has changed. If this status code is received multiple times, prompt the user to switch networks and try rejoining the channel.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedKeepAliveTimeout</pt>
+                    <pd>14: The connection between the SDK and the server timed out. The SDK enters automatic reconnection mode.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedRejoinSuccess</pt>
+                    <pd>15: Successfully rejoined the channel.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedLost</pt>
+                    <pd>16: The SDK lost connection with the server.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedEchoTest</pt>
+                    <pd>17: The connection state changed due to an echo test.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedClientIpAddressChangedByUser</pt>
+                    <pd>18: The local IP address was changed by the user.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedSameUidLogin</pt>
+                    <pd>19: The same UID joined the same channel from a different device.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ConnectionChangedTooManyBroadcasters</pt>
+                    <pd>20: The number of broadcasters in the channel has reached the limit.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedConnecting</pt>
+                    <pd>0: Connecting to the network.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedJoinSuccess</pt>
+                    <pd>1: Successfully joined the channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedInterrupted</pt>
+                    <pd>2: Network connection interrupted.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedBannedByServer</pt>
+                    <pd>3: Network connection is banned by the server. For example, this status is returned when the user is kicked out of the channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedJoinFailed</pt>
+                    <pd>4: Failed to join the channel. If the SDK fails to join the channel after trying for 20 minutes, this status is returned and the SDK stops trying to reconnect. Prompt the user to switch networks and try joining the channel again.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedLeaveChannel</pt>
+                    <pd>5: Left the channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedInvalidAppId</pt>
+                    <pd>6: Invalid App ID. Use a valid App ID to rejoin the channel and ensure the App ID matches the one generated in the Agora Console.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedInvalidChannelName</pt>
+                    <pd>7: Invalid channel name. Use a valid channel name to rejoin the channel. A valid channel name is a string within 64 bytes. The supported character set includes 89 characters:</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedInvalidToken</pt>
+                    <pd>8: Invalid Token. Possible reasons:
+                        <ul>
+                            <li>Your project has App Certificate enabled, but you joined the channel without using a Token.</li>
+                            <li>The user ID specified in <xref keyref="joinChannel2"/> does not match the one used to generate the Token.</li>
+                            <li>The generated Token does not match the one used to join the channel.</li>
+                        </ul><ph>Ensure that:</ph>
+                        <ul>
+                            <li>When App Certificate is enabled, use a Token to join the channel.</li>
+                            <li>The user ID used to generate the Token matches the one used to join the channel.</li>
+                            <li>The generated Token matches the one used to join the channel.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedTokenExpired</pt>
+                    <pd>9: The current Token has expired. Generate a new Token on your server and use it to rejoin the channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedRejectedByServer</pt>
+                    <pd>10: This user is banned by the server. Possible reasons:
+                        <ul>
+                            <li>The user has already joined the channel and calls the join channel API again, such as <xref keyref="joinChannel2"/>, which returns this status. Stop calling this method.</li>
+                            <li>The user tries to join a channel during a call test. Wait until the call test ends before joining the channel.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedSettingProxyServer</pt>
+                    <pd>11: SDK attempts to reconnect due to proxy server settings.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedRenewToken</pt>
+                    <pd>12: Network connection state changed due to Token renewal.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedClientIpAddressChanged</pt>
+                    <pd>13: Client IP address changed. If this status code is received multiple times, prompt the user to switch networks and try rejoining the channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedKeepAliveTimeout</pt>
+                    <pd>14: Connection keep-alive timeout between SDK and server, entering auto-reconnect state.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedRejoinSuccess</pt>
+                    <pd>15: Successfully rejoined the channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedLost</pt>
+                    <pd>16: SDK lost connection with the server.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedEchoTest</pt>
+                    <pd>17: Connection state changed due to echo test.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedClientIpAddressChangedByUser</pt>
+                    <pd>18: Local IP address changed by the user.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedSameUidLogin</pt>
+                    <pd>19: The same UID joined the same channel from different devices.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ConnectionChangedTooManyBroadcasters</pt>
+                    <pd>20: The number of broadcasters in the channel has reached the limit.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedConnecting</pt>
+                    <pd>0: Connecting to the network.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedJoinSuccess</pt>
+                    <pd>1: Successfully joined the channel.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedInterrupted</pt>
+                    <pd>2: Network connection interrupted.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedBannedByServer</pt>
+                    <pd>3: Network connection is banned by the server. For example, this status is returned when a user is kicked out of the channel.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedJoinFailed</pt>
+                    <pd>4: Failed to join the channel. If the SDK fails to join the channel after trying for 20 minutes, this status is returned and it stops trying to reconnect. Prompt the user to switch networks and try joining the channel again.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedLeaveChannel</pt>
+                    <pd>5: Left the channel.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedInvalidAppId</pt>
+                    <pd>6: Invalid App ID. Use a valid App ID to rejoin the channel and ensure the App ID matches the one generated in the Agora Console.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedInvalidChannelName</pt>
+                    <pd>7: Invalid channel name. Use a valid channel name to rejoin the channel. A valid channel name is a string within 64 bytes. The supported character set includes 89 characters:</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedInvalidToken</pt>
+                    <pd>8: Invalid Token. Possible reasons include:
+                        <ul>
+                            <li>Your project has enabled App Certificate, but you joined the channel without using a Token.</li>
+                            <li>The user ID specified when calling <xref keyref="joinChannel2"/> does not match the one used when generating the Token.</li>
+                            <li>The Token used to join the channel is different from the one generated.</li>
+                        </ul><ph>Ensure that:</ph>
+                        <ul>
+                            <li>When your project has enabled App Certificate, use a Token to join the channel.</li>
+                            <li>The user ID specified when generating the Token matches the one used to join the channel.</li>
+                            <li>The Token used to join the channel matches the one generated.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedTokenExpired</pt>
+                    <pd>9: The current Token has expired. Generate a new Token on your server and use it to rejoin the channel.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedRejectedByServer</pt>
+                    <pd>10: This user is banned by the server. Possible reasons include:
+                        <ul>
+                            <li>The user has already joined the channel and calls the join API again, such as <xref keyref="joinChannel2"/>, which returns this status. Stop calling the method.</li>
+                            <li>The user tries to join a channel during a call test. Wait until the test ends before joining the channel.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedSettingProxyServer</pt>
+                    <pd>11: SDK attempts to reconnect due to proxy server settings.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedRenewToken</pt>
+                    <pd>12: Network connection state changed due to Token renewal.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedClientIpAddressChanged</pt>
+                    <pd>13: Client IP address changed. If this status occurs multiple times, prompt the user to switch networks and try rejoining the channel.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedKeepAliveTimeout</pt>
+                    <pd>14: Keep-alive timeout between SDK and server, entering auto-reconnect state.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedRejoinSuccess</pt>
+                    <pd>15: Successfully rejoined the channel.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedLost</pt>
+                    <pd>16: SDK lost connection with the server.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedEchoTest</pt>
+                    <pd>17: Connection state changed due to echo test.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedClientIpAddressChangedByUser</pt>
+                    <pd>18: Local IP address changed by user.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedSameUidLogin</pt>
+                    <pd>19: Joined the same channel from different devices using the same UID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connectionChangedTooManyBroadcasters</pt>
+                    <pd>20: The number of broadcasters in the channel has reached the limit.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_CONNECTING</pt>
+                    <pd>0: Establishing network connection.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_JOIN_SUCCESS</pt>
+                    <pd>1: Successfully joined the channel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_INTERRUPTED</pt>
+                    <pd>2: Network connection interrupted.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_BANNED_BY_SERVER</pt>
+                    <pd>3: Network connection is banned by the server. For example, this status is returned when the user is kicked out of the channel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_JOIN_FAILED</pt>
+                    <pd>4: Failed to join the channel. If the SDK fails to join the channel after trying for 20 minutes, this status is returned and it stops attempting to reconnect. Prompt the user to switch networks and try joining the channel again.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_LEAVE_CHANNEL</pt>
+                    <pd>5: Left the channel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_INVALID_APP_ID</pt>
+                    <pd>6: Invalid App ID. Use a valid App ID to rejoin the channel and ensure the App ID matches the one generated in the Agora Console.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_INVALID_CHANNEL_NAME</pt>
+                    <pd>7: Invalid channel name. Use a valid channel name to rejoin the channel. A valid channel name is a string within 64 bytes. The supported character set includes 89 characters:</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_INVALID_TOKEN</pt>
+                    <pd>8: Invalid Token. Possible reasons:
+                        <ul>
+                            <li>Your project has App Certificate enabled but you joined the channel without using a Token.</li>
+                            <li>The user ID specified in <xref keyref="joinChannel2"/> does not match the one used to generate the Token.</li>
+                            <li>The generated Token does not match the one used to join the channel.</li>
+                        </ul><ph>Ensure that:</ph>
+                        <ul>
+                            <li>When App Certificate is enabled, use Token to join the channel.</li>
+                            <li>The user ID used to generate the Token matches the one used to join the channel.</li>
+                            <li>The generated Token matches the one used to join the channel.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_TOKEN_EXPIRED</pt>
+                    <pd>9: The current Token has expired. Generate a new Token on your server and use it to rejoin the channel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_REJECTED_BY_SERVER</pt>
+                    <pd>10: This user is banned by the server. Possible reasons:
+                        <ul>
+                            <li>The user already joined the channel and calls the join channel API again, such as <xref keyref="joinChannel2"/>. Stop calling this method.</li>
+                            <li>The user tries to join the channel during a call test. Wait until the test ends before joining the channel.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_SETTING_PROXY_SERVER</pt>
+                    <pd>11: SDK attempts to reconnect due to proxy server settings.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_RENEW_TOKEN</pt>
+                    <pd>12: Network connection status changed due to Token renewal.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED</pt>
+                    <pd>13: Client IP address changed. If this status is received multiple times, prompt the user to switch networks and try joining the channel again.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT</pt>
+                    <pd>14: Keep-alive timeout between SDK and server, entering auto-reconnect state.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_REJOIN_SUCCESS</pt>
+                    <pd>15: Successfully rejoined the channel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_LOST</pt>
+                    <pd>16: SDK lost connection with the server.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_ECHO_TEST</pt>
+                    <pd>17: Connection state changed due to echo test.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED_BY_USER</pt>
+                    <pd>18: Local IP address changed by user.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_SAME_UID_LOGIN</pt>
+                    <pd>19: The same UID joined the same channel from a different device.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CONNECTION_CHANGED_TOO_MANY_BROADCASTERS</pt>
+                    <pd>20: The number of broadcasters in the channel has reached the limit.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

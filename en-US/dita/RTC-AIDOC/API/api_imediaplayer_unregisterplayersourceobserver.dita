@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_unregisterplayersourceobserver">
+    <title><ph keyref="unregisterPlayerSourceObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Releases the media player observer.</ph><ph id="shortdesc" props="android">Releases the media player observer.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="unregisterPlayerSourceObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int unregisterPlayerSourceObserver(IMediaPlayerSourceObserver* observer) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int unRegisterPlayerObserver(IMediaPlayerObserver playerObserver);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>observer</pt>
+                    <pd>The media player observer used to listen for events during playback. See <xref keyref="IMediaPlayerSourceObserver"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>playerObserver</pt>
+                    <pd>Media player observer used to monitor playback events. See <xref keyref="IMediaPlayerSourceObserver"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

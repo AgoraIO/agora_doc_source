@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_muteallremoteaudiostreams">
+    <title><ph keyref="muteAllRemoteAudioStreams"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Stops or resumes subscribing to all remote users' audio streams.</ph><ph id="shortdesc" props="rn">Stops or resumes subscribing to all remote users' audio streams.</ph><ph id="shortdesc" props="flutter">Stops or resumes subscribing to all remote users' audio streams.</ph><ph id="shortdesc" props="unity">Stops or resumes subscribing to all remote users' audio streams.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="muteAllRemoteAudioStreams"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract muteAllRemoteAudioStreams(mute: boolean): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract muteAllRemoteAudioStreams(mute: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteAllRemoteAudioStreams(bool mute);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int MuteAllRemoteAudioStreams(bool mute);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After this method is successfully called, the local user stops or resumes subscribing to all remote users' audio streams, including the streams of users who join the channel after this method is called.</p>
+            <p props="rn">After successfully calling this method, the local user stops or resumes subscribing to all remote users' audio streams, including those who join the channel after the method is called.</p>
+            <p props="flutter">After this method is called successfully, the local user stops or resumes subscribing to all remote users' audio streams, including streams from users who join the channel after this method is called.</p>
+            <p props="unity">After successfully calling this method, the local user stops or resumes subscribing to all remote users' audio streams, including those who join the channel after this method is called.</p>
+            <note props="electron">By default, the SDK subscribes to all remote users' audio streams when joining a channel. To change this behavior, set <codeph>autoSubscribeAudio</codeph> to <xref keyref="false"/> when calling <xref keyref="joinChannel2"/> to join the channel. This disables subscription to all users' audio streams upon joining.
+If you call <xref keyref="enableAudio"/> or <xref keyref="disableAudio"/> after this method, the latter takes effect.</note>
+            <note props="rn">By default, the SDK subscribes to all remote users' audio streams upon joining the channel. To change this behavior, set <codeph>autoSubscribeAudio</codeph> to <xref keyref="false"/> when calling <xref keyref="joinChannel2"/>.
+If <xref keyref="enableAudio"/> or <xref keyref="disableAudio"/> is called after this method, the latter will take effect.</note>
+            <note props="flutter">By default, the SDK subscribes to all remote users' audio streams when joining a channel. To change this behavior, you can set <codeph>autoSubscribeAudio</codeph> to <xref keyref="false"/> when calling <xref keyref="joinChannel2"/>, so that no audio streams are subscribed to upon joining.
+If you call <xref keyref="enableAudio"/> or <xref keyref="disableAudio"/> after this method, the later call takes effect.</note>
+            <note props="unity">By default, the SDK subscribes to all remote users' audio streams when joining a channel. To change this behavior, you can set <codeph>autoSubscribeAudio</codeph> to <xref keyref="false"/> when calling <xref keyref="joinChannel2"/> to join the channel, which disables audio stream subscription at join time.
+If you call <xref keyref="enableAudio"/> or <xref keyref="disableAudio"/> after this method, the latter call takes effect.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called after joining a channel.</p>
+            <p props="rn">This method must be called after joining a channel.</p>
+            <p props="flutter">You must call this method after joining a channel.</p>
+            <p props="unity">This method must be called after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>mute</pt>
+                    <pd>Whether to stop subscribing to all remote users' audio streams:
+                        <ul>
+                            <li><xref keyref="true"/>: Stop subscribing to all remote users' audio streams.</li>
+                            <li><xref keyref="false"/>: (Default) Subscribe to all remote users' audio streams.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mute</pt>
+                    <pd>Whether to stop subscribing to all remote users' audio streams:
+                        <ul>
+                            <li><xref keyref="true"/>: Stop subscribing to all remote users' audio streams.</li>
+                            <li><xref keyref="false"/>: (Default) Subscribe to all remote users' audio streams.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mute</pt>
+                    <pd>Whether to stop subscribing to all remote users' audio streams:
+                        <ul>
+                            <li><xref keyref="true"/>: Stop subscribing to all remote users' audio streams.</li>
+                            <li><xref keyref="false"/>: (Default) Subscribe to all remote users' audio streams.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mute</pt>
+                    <pd>Whether to stop subscribing to all remote users' audio streams:
+                        <ul>
+                            <li><xref keyref="true"/>: Stop subscribing to all remote users' audio streams.</li>
+                            <li><xref keyref="false"/>: (Default) Subscribe to all remote users' audio streams.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

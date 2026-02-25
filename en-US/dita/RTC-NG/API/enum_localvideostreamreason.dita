@@ -46,28 +46,28 @@
                     <pd props="ios cpp unreal bp rn unity flutter"><ph>7:</ph><ph props="cpp unreal bp rn flutter unity"> (iOS only) </ph><ph>The current app window is running in Slide Over, Split View, or Picture in Picture mode, and another app is occupying the camera. Prompt the user that the app cannot capture video properly when it is running in Slide Over, Split View, or Picture in Picture mode and another app is occupying the camera.</ph></pd>
                     <pd props="cs">7: Reserved.</pd>
                 </plentry>
-            <plentry props="android cpp unreal bp unity electron flutter rn cs">
+            <plentry props="android hmos cpp unreal bp unity electron flutter rn cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_NOT_FOUND"/></pt>
                 <pd>8: Fails to find a local video capture device. Remind the user to check whether the camera is connected to the device properly or the camera is working properly, and then to rejoin the channel.</pd>
             </plentry>
             <plentry props="cpp unreal bp mac unity electron flutter cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_DISCONNECTED"/></pt>
-                <pd props="mac cpp unreal bp electron unity flutter"><ph>9:</ph><ph props="cpp unreal bp unity electron flutter"> (macOS only)</ph><ph> The video capture device currently in use is disconnected (such as being unplugged).</ph></pd>
+                <pd props="mac cpp unreal bp electron unity flutter"><ph>9:</ph><ph props="cpp unreal bp unity flutter"> (macOS and Windows only) </ph><ph>The video capture device currently in use is disconnected (such as being unplugged).</ph></pd>
                 <pd props="cs">9: Reserved.</pd>
             </plentry>
             <plentry props="mac cpp unreal bp unity electron flutter cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_INVALID_ID"/></pt>
-                <pd><ph>10:</ph><ph props="cpp unreal bp flutter unity electron"> (macOS and Windows only)</ph><ph> The SDK cannot find the video device in the video device list. Check whether the ID of the video device is valid.</ph></pd>
+                <pd><ph>10:</ph><ph props="cpp unreal bp flutter unity"> (macOS and Windows only)</ph><ph> The SDK cannot find the video device in the video device list. Check whether the ID of the video device is valid.</ph></pd>
             </plentry>
             <plentry props="cpp unreal bp mac flutter unity electron cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_MINIMIZED"/></pt>
-                <pd props="cpp unreal bp mac flutter unity electron"><ph>11:</ph><ph props="cpp unreal bp flutter unity electron"> (macOS and Windows only)</ph><ph> The shared window is minimized when you call the <xref keyref="startScreenCaptureByWindowId"/> method to share a window. The SDK cannot share a minimized window. Please prompt the user to unminimize the shared window.</ph></pd>
+                <pd props="cpp unreal bp mac flutter unity electron"><ph>11:</ph><ph props="cpp unreal bp flutter unity"> (macOS and Windows only)</ph><ph> The shared window is minimized when you call the <xref keyref="startScreenCaptureByWindowId"/> method to share a window. The SDK cannot share a minimized window. Please prompt the user to unminimize the shared window.</ph></pd>
                 <pd props="cs">11: Reserved.</pd>
             </plentry>
             <plentry props="cpp unreal bp mac flutter unity electron cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_CLOSED"/></pt>
                 <pd>
-                    <p><ph>12:</ph><ph props="cpp unreal bp flutter unity electron"> (macOS and Windows only)</ph><ph> The error code indicates that a window shared by the window ID has been closed or a full-screen window shared by the window ID has exited full-screen mode. After exiting full-screen mode, remote users cannot see the shared window. To prevent remote users from seeing a black screen, Agora recommends that you immediately stop screen sharing.</ph></p>
+                    <p><ph>12:</ph><ph props="cpp unreal bp flutter unity"> (macOS and Windows only)</ph><ph> The error code indicates that a window shared by the window ID has been closed or a full-screen window shared by the window ID has exited full-screen mode. After exiting full-screen mode, remote users cannot see the shared window. To prevent remote users from seeing a black screen, Agora recommends that you immediately stop screen sharing.</ph></p>
                     <p>Common scenarios reporting this error code:<ul>
                     <li>The local user closes the shared window.</li>
                     <li>The local user shows some slides in full-screen mode first, and then shares the windows of the slides. After the user exits full-screen mode, the SDK reports this error code.</li>
@@ -96,7 +96,7 @@
             </plentry>
             <plentry props="cpp unreal bp flutter unity electron">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_FAILURE"/></pt>
-                <pd>21: (Windows only) The screen has not captured any data available for window sharing.</pd>
+                <pd>21: (Windows and Android only) The currently captured window has no data.</pd>
             </plentry>
                 <plentry props="cpp unreal bp flutter unity electron">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_NO_PERMISSION"/></pt>
@@ -104,7 +104,7 @@
                 </plentry>
                 <plentry props="cpp unreal bp flutter unity electron">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_AUTO_FALLBACK"/></pt>
-                    <pd>24: (Windows only) An unexpected error occurred during screen sharing (possibly due to window blocking failure), resulting in decreased performance, but the screen sharing process itself was not affected.</pd>
+                    <pd>24: (Windows only) An unexpected error occurred during screen sharing (possibly due to window blocking failure), resulting in decreased performance, but the screen sharing process itself was not affected.<note type="attention">During screen sharing, if blocking a specific window fails due to device driver issues, the SDK will report this event and automatically fall back to sharing the entire screen. If your use case requires masking specific windows to protect privacy, we recommend listening for this event and implementing additional privacy protection mechanisms when it is triggered.</note></pd>
                 </plentry>
                 <plentry props="cpp unreal bp flutter unity electron">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_WINDOW_HIDDEN"/></pt>
@@ -128,7 +128,19 @@
                 </plentry>
                 <plentry props="cpp mac flutter unreal bp unity electron">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED"/></pt>
-                    <pd>30: <ph props="cpp flutter unreal bp unity">(Windows and macOS only)</ph>The displayer used for screen capture is disconnected.</pd>
+                    <pd>30: <ph props="cpp flutter unreal bp unity">(Windows and macOS only)</ph>The displayer used for screen capture is disconnected. The current screen sharing has been paused. Prompt the user to restart the screen sharing.</pd>
+                </plentry>
+                <plentry props="hmos">
+                    <pt><ph keyref="SCREEN_CAPTURE_STOPPED_BY_USER"/></pt>
+                    <pd>31: User has stopped screen sharing.</pd>
+                </plentry>
+                <plentry props="hmos">
+                    <pt><ph keyref="SCREEN_CAPTURE_INTERRUPTED_BY_OTHER"/></pt>
+                    <pd>32: The screen sharing process has been interrupted by another screen sharing process.</pd>
+                </plentry>
+                <plentry props="hmos">
+                    <pt><ph keyref="SCREEN_CAPTURE_STOPPED_BY_CALL"/></pt>
+                    <pd>33: The screen sharing process was interrupted by a system call.</pd>
                 </plentry>
                 <plentry props="cpp unreal bp unity electron flutter cs">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_REASON_DEVICE_SYSTEM_PRESSURE"/></pt>

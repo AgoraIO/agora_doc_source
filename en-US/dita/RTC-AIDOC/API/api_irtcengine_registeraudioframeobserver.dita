@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_registeraudioframeobserver">
+    <title><ph keyref="registerAudioFrameObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Registers an audio frame observer.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerAudioFrameObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int registerAudioFrameObserver(IAudioFrameObserver observer);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">After calling this method to register an audio frame observer, the SDK triggers the <xref keyref="onMixedAudioFrame"/>, <xref keyref="onRecordAudioFrame"/>, <xref keyref="onPlaybackAudioFrame"/>, <xref keyref="onPlaybackAudioFrameBeforeMixing"/>, or <xref keyref="onEarMonitoringAudioFrame"/> callback.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">Call this method before joining a channel.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android">
+            <title>Related Callbacks</title>
+            <p props="android">Related callbacks: <xref keyref="onMixedAudioFrame"/>, <xref keyref="onRecordAudioFrame"/>, <xref keyref="onPlaybackAudioFrame"/>, <xref keyref="onPlaybackAudioFrameBeforeMixing"/>, <xref keyref="onEarMonitoringAudioFrame"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>observer</pt>
+                    <pd>The audio frame observer instance. See <xref keyref="IAudioFrameObserver"/>. Set to <codeph>null</codeph> to release the instance. It is recommended to call this method after receiving the <xref keyref="onLeaveChannel"/> callback to release the audio frame observer.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

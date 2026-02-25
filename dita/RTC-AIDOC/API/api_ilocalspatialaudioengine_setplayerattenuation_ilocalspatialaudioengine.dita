@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ilocalspatialaudioengine_setplayerattenuation_ilocalspatialaudioengine">
+    <title><ph keyref="setPlayerAttenuation_ILocalSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置媒体播放器的声音衰减属性。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlayerAttenuation_ILocalSpatialAudioEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setPlayerAttenuation(int playerId, double attenuation, bool forceSet) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>playerId</pt>
+                    <pd>媒体播放器的 ID。你可以通过调用 <xref keyref="getMediaPlayerId"/> 获取设备 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>attenuation</pt>
+                    <pd>远端用户或媒体播放器的声音衰减系数，取值范围为 [0, 1]。具体取值说明如下：
+                        <ul>
+                            <li>0：广播模式，音量和音色不会随距离衰减，本地用户听到的音量和音色不会随距离变化。</li>
+                            <li>(0, 0.5)：弱衰减模式，音量和音色在传播过程中仅有轻微衰减，声音传播距离比真实环境更远。</li>
+                            <li>0.5：（默认）模拟真实环境中的音量衰减效果，等效于未设置 <codeph>speaker_attenuation</codeph> 参数。</li>
+                            <li>(0.5, 1]：强衰减模式，音量和音色在传播过程中快速衰减。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>forceSet</pt>
+                    <pd>是否强制设置媒体播放器的声音衰减效果：
+                        <ul>
+                            <li><xref keyref="true"/>：强制使用 <codeph>attenuation</codeph> 设置媒体播放器的衰减效果，此时 <xref keyref="SpatialAudioZone"/> 中通过 <codeph>audioAttenuation</codeph> 设置的隔音区衰减系数对媒体播放器无效。</li>
+                            <li><xref keyref="false"/>：不强制使用 <codeph>attenuation</codeph> 设置媒体播放器的声音衰减效果，具体如下：
+                                <ul>
+                                    <li>如果声源和收听者分别位于隔音区内外，声音衰减效果由 <xref keyref="SpatialAudioZone"/> 中的 <codeph>audioAttenuation</codeph> 决定。</li>
+                                    <li>如果声源和收听者位于同一隔音区内或同一隔音区外，声音衰减效果由本方法中的 <codeph>attenuation</codeph> 决定。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setuplocalvideo">
+    <title><ph keyref="setupLocalVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Initializes the local video view.</ph><ph id="shortdesc" props="android">Initializes the local video view.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setupLocalVideo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setupLocalVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setupLocalVideo(VideoCanvas local);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method initializes the view for the local video stream on the local device. It only affects what the local user sees and does not affect the publishing of the local video. You can call this method to bind the local video stream to a specified video view (<codeph>view</codeph>) and set the rendering and mirror modes for that view.
+The binding remains effective after leaving the channel. To stop rendering or unbind the local video from the view, set <codeph>view</codeph> to <xref keyref="NULL"/>.
+In real-time interaction scenarios, if you want to preview multiple views from different perspectives locally, you can call this method multiple times and set different positions for each <codeph>view</codeph>. For example, after setting the video source to the camera, configure two <codeph>view</codeph>s with <codeph>position</codeph> set to <codeph>POSITION_POST_CAPTURER_ORIGIN</codeph> and <codeph>POSITION_POST_CAPTURER</codeph> respectively to preview both the original unprocessed frame and the preprocessed frame (with beauty, virtual background, watermark, etc.).</p>
+            <p props="android">You can call this method to bind the local video stream to a video view (<codeph>view</codeph>) and set the rendering and mirror modes. The binding remains valid after leaving the channel. To stop rendering or unbind the local video from the view, set <codeph>view</codeph> to <codeph>null</codeph>.
+
+In real-time interaction scenarios, if you need to display multiple preview views simultaneously in the local video preview, with each view at a different observation position in the video pipeline, you can call this method multiple times with different <codeph>view</codeph> instances and set different observation positions for each. For example, after setting the video source to the camera, configure two <codeph>view</codeph>s with <codeph>position</codeph> set to <codeph>VIDEO_MODULE_POSITION_POST_CAPTURER_ORIGIN</codeph> and <codeph>VIDEO_MODULE_POSITION_POST_CAPTURER</codeph>, respectively, to simultaneously preview the raw unprocessed video frame and the video frame after applying beautification, virtual background, watermark, etc.</p>
+            <note props="cpp">If you only need to update the rendering or mirror mode of the local video view during a call, use <codeph>setLocalRenderMode</codeph> instead.</note>
+            <note props="android">To update only the rendering or mirror mode of the local video view during a call, call <codeph>setLocalRenderMode</codeph>.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>After initialization, call this method to set up local video before joining a channel. In real-time interaction scenarios, if you want to preview multiple views from different perspectives locally, you can call this method multiple times with different <codeph>view</codeph> and positions.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You can call this method before or after joining a channel.</p>
+            <p props="android">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>canvas</pt>
+                    <pd>Local video view and related settings. See <xref keyref="VideoCanvas"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>local</pt>
+                    <pd>Local video view and related settings. See <xref keyref="VideoCanvas"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_addhandler">
+    <title><ph keyref="addHandler"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Adds an event handler.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addHandler"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public void addHandler(IRtcEngineEventHandler handler)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">The SDK uses <xref keyref="IRtcEngineEventHandler"/> to send callbacks to the app. You can override methods in this class to receive callbacks. All methods in this class have default (empty) implementations, so you only need to override the ones you need.
+Avoid performing time-consuming operations or calling potentially blocking APIs such as <xref keyref="sendStreamMessage"/> in the callback, or the SDK may not function properly.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>handler</pt>
+                    <pd>The callback event handler to add. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

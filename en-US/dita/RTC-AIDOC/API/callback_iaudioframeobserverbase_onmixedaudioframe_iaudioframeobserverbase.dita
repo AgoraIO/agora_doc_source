@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserverbase_onmixedaudioframe_iaudioframeobserverbase">
+    <title><ph keyref="onMixedAudioFrame_IAudioFrameObserverBase"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for mixed capture and playback audio frame.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onMixedAudioFrame_IAudioFrameObserverBase"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool onMixedAudioFrame(const char* channelId, AudioFrame&amp; audioFrame) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">To ensure the format of the mixed capture and playback audio frame meets expectations, Agora recommends setting the audio data format using one of the following two methods:
+                <ul>
+                    <li>Method 1: Call <xref keyref="setMixedAudioFrameParameters"/> to set the audio data format, and then call <xref keyref="registerAudioFrameObserver_IMediaEngine"/> to register the audio frame observer object. The SDK calculates the sampling interval based on the set parameters and triggers this callback at that interval.</li>
+                    <li>Method 2: After calling <xref keyref="registerAudioFrameObserver_IMediaEngine"/> to register the audio frame observer object, set the audio data format in the return value of the <xref keyref="getObservedAudioFramePosition_IAudioFrameObserverBase"/> callback. The SDK calculates the sampling interval based on the return value of the <xref keyref="getMixedAudioParams_IAudioFrameObserverBase"/> callback and triggers this callback at that interval.</li>
+                </ul><ph>Method 1 takes precedence over Method 2. If you use Method 1 to set the audio data format, the settings in Method 2 are ignored.</ph></p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>channelId</pt>
+                    <pd>Channel ID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioFrame</pt>
+                    <pd>An output parameter. Raw audio data. See <xref keyref="AudioFrame"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li><xref keyref="true"/>: Callback processed successfully.</li>
+                    <li><xref keyref="false"/>: Callback processing failed.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

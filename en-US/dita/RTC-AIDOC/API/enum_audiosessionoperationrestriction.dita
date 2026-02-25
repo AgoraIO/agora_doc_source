@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_audiosessionoperationrestriction">
+    <title><ph keyref="AUDIO_SESSION_OPERATION_RESTRICTION"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">SDK's permission to operate on the audio session.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>AUDIO_SESSION_OPERATION_RESTRICTION_NONE</pt>
+                    <pd>(0): No restriction. The SDK can modify the audio session.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_SESSION_OPERATION_RESTRICTION_SET_CATEGORY</pt>
+                    <pd>(1): The SDK cannot change the audio session category.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_SESSION_OPERATION_RESTRICTION_CONFIGURE_SESSION</pt>
+                    <pd>(2): The SDK cannot change the audio session's category, mode, or <codeph>categoryOptions</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_SESSION_OPERATION_RESTRICTION_DEACTIVATE_SESSION</pt>
+                    <pd>(4): When the user leaves the channel, the SDK keeps the audio session active, e.g., for background audio playback.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_SESSION_OPERATION_RESTRICTION_ALL</pt>
+                    <pd>(128): Completely restricts the SDK from operating on the audio session. The SDK cannot modify the audio session.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

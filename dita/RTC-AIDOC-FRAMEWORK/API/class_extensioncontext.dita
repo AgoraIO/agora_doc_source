@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_extensioncontext">
+    <title><ph keyref="ExtensionContext"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">插件上下文信息。</ph><ph id="shortdesc" props="rn">插件上下文信息。</ph><ph id="shortdesc" props="flutter">插件上下文信息。</ph><ph id="shortdesc" props="unity">插件上下文信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class ExtensionContext {
+
+  isValid?: boolean;
+
+  uid?: number;
+
+  providerName?: string;
+
+  extensionName?: string;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class ExtensionContext {
+
+  isValid?: boolean;
+
+  uid?: number;
+
+  providerName?: string;
+
+  extensionName?: string;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class ExtensionContext {
+  const ExtensionContext(
+      {this.isValid, this.uid, this.providerName, this.extensionName});
+
+  @JsonKey(name: 'isValid')
+  final bool? isValid;
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+
+  @JsonKey(name: 'providerName')
+  final String? providerName;
+
+  @JsonKey(name: 'extensionName')
+  final String? extensionName;
+
+  factory ExtensionContext.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ExtensionContextFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ExtensionContextToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class ExtensionContext
+    {
+        public bool isValid;
+        public uint uid;
+        public string providerName;
+        public string extensionName;
+
+        public ExtensionContext()
+        {
+            this.isValid = false;
+            this.uid = 0;
+            this.providerName = "";
+            this.extensionName = "";
+        }
+
+        public ExtensionContext(bool isValid, uint uid, string providerName, string extensionName)
+        {
+            this.isValid = isValid;
+            this.uid = uid;
+            this.providerName = providerName;
+            this.extensionName = extensionName;
+        }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>isValid</pt>
+                    <pd><xref keyref="ExtensionContext"/> 中报告的 <codeph>uid</codeph> 是否有效：
+                        <ul>
+                            <li><xref keyref="true"/>：<codeph>uid</codeph> 有效。</li>
+                            <li><xref keyref="false"/>：<codeph>uid</codeph> 无效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>用户 ID。0 代表本地用户，大于 0 代表远端用户。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>providerName</pt>
+                    <pd>提供插件的服务商名称。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>extensionName</pt>
+                    <pd>插件的名称。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>isValid</pt>
+                    <pd><xref keyref="ExtensionContext"/> 中报告的 <codeph>uid</codeph> 是否有效：
+                        <ul>
+                            <li><xref keyref="true"/>：<codeph>uid</codeph> 有效。</li>
+                            <li><xref keyref="false"/>：<codeph>uid</codeph> 无效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>用户 ID。0 代表本地用户，大于 0 代表远端用户。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>providerName</pt>
+                    <pd>提供插件的服务商名称。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>extensionName</pt>
+                    <pd>插件的名称。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>isValid</pt>
+                    <pd><xref keyref="ExtensionContext"/> 中报告的 <codeph>uid</codeph> 是否有效：
+                        <ul>
+                            <li><xref keyref="true"/>：<codeph>uid</codeph> 有效。</li>
+                            <li><xref keyref="false"/>：<codeph>uid</codeph> 无效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>用户 ID。0 代表本地用户，大于 0 代表远端用户。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>providerName</pt>
+                    <pd>提供插件的服务商名称。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>extensionName</pt>
+                    <pd>插件的名称。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>isValid</pt>
+                    <pd><xref keyref="ExtensionContext"/> 中报告的 <codeph>uid</codeph> 是否有效：
+                        <ul>
+                            <li><xref keyref="true"/>：<codeph>uid</codeph> 有效。</li>
+                            <li><xref keyref="false"/>：<codeph>uid</codeph> 无效。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>用户 ID。0 代表本地用户，大于 0 代表远端用户。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>providerName</pt>
+                    <pd>提供插件的服务商名称。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>extensionName</pt>
+                    <pd>插件的名称。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

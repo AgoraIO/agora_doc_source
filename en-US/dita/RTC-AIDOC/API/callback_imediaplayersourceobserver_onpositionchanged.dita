@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onpositionchanged">
+    <title><ph keyref="onPositionChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback when playback progress changes.</ph><ph id="shortdesc" props="android">Playback progress callback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPositionChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onPositionChanged(int64_t positionMs, int64_t timestampMs) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">void onPositionChanged(long positionMs, long timestampMs)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback is triggered every two seconds during media playback to report the current playback progress.</p>
+            <p props="android">This callback is used to report the playback progress of the media file.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered every two seconds during media file playback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>positionMs</pt>
+                    <pd>The playback position of the media file in milliseconds.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>timestampMs</pt>
+                    <pd>The NTP timestamp corresponding to the current playback progress, in milliseconds.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>positionMs</pt>
+                    <pd>Playback position of the media file in milliseconds.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>timestampMs</pt>
+                    <pd>NTP timestamp corresponding to the current playback progress, in milliseconds.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

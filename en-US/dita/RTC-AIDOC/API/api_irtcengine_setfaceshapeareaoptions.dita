@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setfaceshapeareaoptions">
+    <title><ph keyref="setFaceShapeAreaOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets beauty effect options for facial areas and specifies the media source.</ph><ph id="shortdesc" props="android">Sets beauty effect options for face areas and specifies the media source.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setFaceShapeAreaOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setFaceShapeAreaOptions(const FaceShapeAreaOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setFaceShapeAreaOptions(FaceShapeAreaOptions options, Constants.MediaSourceType sourceType);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">If the preset beauty effect via <xref keyref="setFaceShapeBeautyOptions"/> does not meet your expectations, you can use this method to set beauty options for specific facial areas and fine-tune each part to achieve more refined results.</p>
+            <p props="android">If the preset beauty effects set by the <codeph>setFaceShapeBeautyOptions</codeph> method do not meet expectations, you can use this method to set beauty area options and fine-tune each part of the face for more refined beauty effects. This method is similar to <xref keyref="setFaceShapeAreaOptions2"/>, but it supports specifying the media source to which the beauty effect is applied.</p>
+            <note props="cpp">
+                <ul>
+                    <li>This method is only supported on Android 4.4 or later.</li>
+                    <li>This method depends on the beauty effect dynamic library <xref keyref="clearvision"/>. If the library is deleted, the feature cannot be enabled.</li>
+                    <li>This feature requires high device performance. The SDK automatically detects device capabilities when this method is called.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>This method is only supported on Android 4.4 or later.</li>
+                    <li>This method depends on the beauty effect dynamic library <xref keyref="clearvision"/>. If the library is deleted, the feature cannot be enabled.</li>
+                    <li>This feature requires high device performance. The SDK will automatically detect the device capability when this method is called.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after <xref keyref="setFaceShapeBeautyOptions"/>.</p>
+            <p props="android">Call this method after calling <codeph>setFaceShapeBeautyOptions</codeph>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>options</pt>
+                    <pd>Facial enhancement areas. See <xref keyref="FaceShapeAreaOptions"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>The media source type. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>This parameter only supports the following two settings:
+                            <ul>
+                                <li>If using the camera to capture local video, use the default value <codeph>PRIMARY_CAMERA_SOURCE</codeph>.</li>
+                                <li>If using a custom video source, set this parameter to <codeph>CUSTOM_VIDEO_SOURCE</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>Face enhancement area. See <xref keyref="FaceShapeAreaOptions"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>Media source type for applying filter effects. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, this parameter only supports the following two settings:
+                            <ul>
+                                <li>If using the camera to capture local video, use the default value <codeph>PRIMARY_CAMERA_SOURCE</codeph>.</li>
+                                <li>If using a custom video source, set this parameter to <codeph>CUSTOM_VIDEO_SOURCE</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-4: The current device does not support this feature. Possible reasons include:
+                                <ul>
+                                    <li>The device does not meet the performance requirements for beauty effects. Agora recommends using a high-performance device.</li>
+                                    <li>The device runs Android version lower than 4.4, which is not supported. Agora recommends changing the device or upgrading the OS.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-4: The current device does not support this feature. Possible reasons include:
+                                <ul>
+                                    <li>The device does not meet the requirements for beauty effects. It is recommended to use a high-performance device.</li>
+                                    <li>The device version is lower than Android 4.4 and does not support this feature. It is recommended to upgrade the OS or change the device.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

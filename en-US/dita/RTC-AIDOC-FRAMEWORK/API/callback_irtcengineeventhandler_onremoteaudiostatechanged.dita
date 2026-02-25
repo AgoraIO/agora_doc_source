@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onremoteaudiostatechanged">
+    <title><ph keyref="onRemoteAudioStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Occurs when the remote audio stream state changes.</ph><ph id="shortdesc" props="rn">Occurs when the state of the remote audio stream changes.</ph><ph id="shortdesc" props="flutter">Callback when the remote audio stream state changes.</ph><ph id="shortdesc" props="unity">Callback when the remote audio stream state changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteAudioStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onRemoteAudioStateChanged?(
+    connection: RtcConnection,
+    remoteUid: number,
+    state: RemoteAudioState,
+    reason: RemoteAudioStateReason,
+    elapsed: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onRemoteAudioStateChanged?(
+    connection: RtcConnection,
+    remoteUid: number,
+    state: RemoteAudioState,
+    reason: RemoteAudioStateReason,
+    elapsed: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(
+      RtcConnection connection,
+      int remoteUid,
+      RemoteAudioState state,
+      RemoteAudioStateReason reason,
+      int elapsed)? onRemoteAudioStateChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStateChanged(RtcConnection connection, uint remoteUid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">The SDK triggers this callback to report the current remote audio stream state when the audio state of a remote user (in a communication scenario) or host (in a live streaming scenario) changes.</p>
+            <p props="rn">Occurs when the audio state of a remote user (in the Communication profile) or host (in the Live Broadcast profile) changes. The SDK reports the current state of the remote audio stream to the local user through this callback.</p>
+            <p props="flutter">When the audio state of a remote user (in communication) or host (in live streaming) changes, the SDK triggers this callback to report the current remote audio stream state to the local user.</p>
+            <p props="unity">When the audio state of a remote user (in a communication scenario) or host (in a live streaming scenario) changes, the SDK triggers this callback to report the current remote audio stream state to the local user.</p>
+            <note props="electron">When the number of users (in a communication scenario) or hosts (in a live streaming scenario) in the channel exceeds 32, this callback may be inaccurate.</note>
+            <note props="rn">This callback may be inaccurate when the number of users (in the Communication profile) or hosts (in the Live Broadcast profile) in the channel exceeds 32.</note>
+            <note props="flutter">When there are more than 32 users (in communication) or hosts (in live streaming) in the channel, this callback may be inaccurate.</note>
+            <note props="unity">When there are more than 32 users (in a communication scenario) or hosts (in a live streaming scenario) in the channel, this callback may be inaccurate.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteUid</pt>
+                    <pd>User ID of the remote user whose audio state changed.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>state</pt>
+                    <pd>Remote audio stream state. See <xref keyref="REMOTE_AUDIO_STATE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>reason</pt>
+                    <pd>Reason for the remote audio stream state change. See <xref keyref="REMOTE_AUDIO_STATE_REASON"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (ms) from the local user calling <xref keyref="joinChannel2"/> to the occurrence of this event.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteUid</pt>
+                    <pd>The ID of the remote user whose audio state has changed.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>state</pt>
+                    <pd>The state of the remote audio stream. See <xref keyref="REMOTE_AUDIO_STATE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>reason</pt>
+                    <pd>The reason for the remote audio state change. See <xref keyref="REMOTE_AUDIO_STATE_REASON"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>elapsed</pt>
+                    <pd>The time elapsed (ms) from the local user calling <xref keyref="joinChannel2"/> until this event occurs.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteUid</pt>
+                    <pd>User ID of the remote user whose audio state changed.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>state</pt>
+                    <pd>Remote audio stream state. See <xref keyref="REMOTE_AUDIO_STATE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>reason</pt>
+                    <pd>Specific reason for the remote audio stream state change. See <xref keyref="REMOTE_AUDIO_STATE_REASON"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (in milliseconds) from the local user calling the <xref keyref="joinChannel2"/> method to the occurrence of this event.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteUid</pt>
+                    <pd>ID of the remote user whose audio state changed.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>state</pt>
+                    <pd>Remote audio stream state. See <xref keyref="REMOTE_AUDIO_STATE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>reason</pt>
+                    <pd>Specific reason for the remote audio stream state change. See <xref keyref="REMOTE_AUDIO_STATE_REASON"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (in ms) from the local user calling <xref keyref="joinChannel2"/> to the occurrence of this event.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

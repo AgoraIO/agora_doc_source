@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setremotevoiceposition">
+    <title><ph keyref="setRemoteVoicePosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the position and volume of a remote user's voice on the horizontal plane.</ph><ph id="shortdesc" props="android">Sets the spatial position and volume of a remote user's voice.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteVoicePosition"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteVoicePosition(uid_t uid, double pan, double gain) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setRemoteVoicePosition(int uid, double pan, double gain);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method sets the 2D position and volume of a remote user to help you hear and identify the user's location more clearly. By differentiating between left and right audio channels, you can perceive the direction of the remote user in real time, creating a sense of spatial presence. This method is suitable for large-scale multiplayer online games, such as battle royale games.</p>
+            <p props="android">This method sets the spatial position and volume of a remote user's voice by adjusting the balance between the left and right audio channels. This helps the local user identify the position of the remote user and creates a sense of space. This method is suitable for large-scale multiplayer online games, such as battle royale games.</p>
+            <note props="cpp">
+                <ul>
+                    <li>To make this method take effect, call <xref keyref="enableSoundPositionIndication"/> before joining the channel to enable stereo panning for remote users.</li>
+                    <li>For optimal voice positioning, Agora recommends using wired headphones.</li>
+                    <li>Call this method after joining the channel.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>To make this method take effect, call <xref keyref="enableSoundPositionIndication"/> before joining a channel to enable stereo sound positioning for remote users.</li>
+                    <li>For optimal voice positioning, it is recommended to use wired headphones.</li>
+                    <li>Call this method after joining a channel.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>pan</pt>
+                    <pd>The voice position of the remote user. The range is [-1.0, 1.0]:
+                        <ul>
+                            <li>0.0: (Default) The remote voice comes from the front.</li>
+                            <li>-1.0: The remote voice comes from the left.</li>
+                            <li>1.0: The remote voice comes from the right.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>gain</pt>
+                    <pd>The volume of the remote user. The range is [0.0, 100.0]. The default value is 100.0, which means the original volume of the remote user. The smaller the value, the lower the volume.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>The ID of the remote user.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>pan</pt>
+                    <pd>The spatial position of the remote user's voice. The range is from -1.0 to 1.0:
+                        <ul>
+                            <li>0.0: (Default) The remote voice comes from the front.</li>
+                            <li>-1.0: The remote voice comes from the left.</li>
+                            <li>1.0: The remote voice comes from the right.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>gain</pt>
+                    <pd>The volume of the remote user. The range is from 0.0 to 100.0. The default value is 100.0 (original volume of the remote user). The smaller the value, the lower the volume.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

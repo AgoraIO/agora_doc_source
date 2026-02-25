@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enabledualstreammode3">
+    <title><ph keyref="enableDualStreamMode3"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Enables or disables dual-stream mode on the sender and sets the low-quality video stream.</ph><ph id="shortdesc" props="rn">Enables or disables the dual-stream mode and sets the low-quality video stream on the sender side.</ph><ph id="shortdesc" props="flutter">Enables or disables dual-stream mode on the sending end and configures the low-quality stream.</ph><ph id="shortdesc" props="unity">Enables or disables dual-stream mode on the sender and sets the low-quality video stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableDualStreamMode3"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableDualStreamMode(
+    enabled: boolean,
+    streamConfig?: SimulcastStreamConfig
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableDualStreamMode(
+    enabled: boolean,
+    streamConfig?: SimulcastStreamConfig
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableDualStreamMode(
+      {required bool enabled, SimulcastStreamConfig? streamConfig});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableDualStreamMode(bool enabled, SimulcastStreamConfig streamConfig);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Deprecated since v4.2.0. Use <xref keyref="setDualStreamMode2"/> instead.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Deprecated since v4.2.0. Use <xref keyref="setDualStreamMode2"/> instead.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Deprecated since v4.2.0. Use <xref keyref="setDualStreamMode2"/> instead.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Deprecated since v4.2.0. Use <xref keyref="setDualStreamMode2"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">You can call this method on the sending side to enable or disable dual-stream mode. Dual-stream refers to high-quality and low-quality video streams:
+                <ul>
+                    <li>High-quality stream: High resolution and high frame rate video stream.</li>
+                    <li>Low-quality stream: Low resolution and low frame rate video stream.</li>
+                </ul><ph>After enabling dual-stream mode, you can call <xref keyref="setRemoteVideoStreamType"/> on the receiving side to choose whether to receive the high-quality or low-quality video stream.</ph></p>
+            <p props="rn">You can call this method on the sender side to enable or disable dual-stream mode. Dual-stream refers to high-quality and low-quality video streams:
+                <ul>
+                    <li>High-quality stream: High resolution and high frame rate video stream.</li>
+                    <li>Low-quality stream: Low resolution and low frame rate video stream.</li>
+                </ul><ph>After enabling dual-stream mode, you can call <xref keyref="setRemoteVideoStreamType"/> on the receiver side to choose to receive either the high-quality or low-quality video stream.</ph></p>
+            <p props="flutter">You can call this method on the sending end to enable or disable dual-stream mode. Dual-stream refers to high-quality and low-quality video streams:
+                <ul>
+                    <li>High-quality stream: High resolution and high frame rate video stream.</li>
+                    <li>Low-quality stream: Low resolution and low frame rate video stream.</li>
+                </ul><ph>After enabling dual-stream mode, you can call <xref keyref="setRemoteVideoStreamType"/> on the receiving end to choose whether to receive the high-quality or low-quality stream.</ph></p>
+            <p props="unity">You can call this method on the sender to enable or disable dual-stream mode. Dual-stream refers to high-quality and low-quality video streams:
+                <ul>
+                    <li>High-quality stream: High resolution and high frame rate video stream.</li>
+                    <li>Low-quality stream: Low resolution and low frame rate video stream.</li>
+                </ul><ph>After enabling dual-stream mode, you can call <xref keyref="setRemoteVideoStreamType"/> on the receiver to choose to receive the high-quality or low-quality video stream.</ph></p>
+            <note props="electron">
+                <ul>
+                    <li>This method applies to all types of streams sent by the sender, including but not limited to camera-captured video streams, screen sharing streams, and custom captured video streams.</li>
+                    <li>To enable dual-stream in multi-channel scenarios, call the <xref keyref="enableDualStreamModeEx"/> method.</li>
+                    <li>This method can be called before or after joining a channel.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>This method applies to all types of streams sent by the sender, including but not limited to camera-captured video, screen sharing, and custom video streams.</li>
+                    <li>To enable dual-stream mode in multi-channel scenarios, call <xref keyref="enableDualStreamModeEx"/>.</li>
+                    <li>This method can be called before or after joining a channel.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method applies to all types of streams sent by the sender, including but not limited to camera-captured video, screen sharing, and custom-captured video.</li>
+                    <li>To enable dual-stream mode in multi-channel scenarios, call <xref keyref="enableDualStreamModeEx"/>.</li>
+                    <li>This method can be called before or after joining a channel.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method applies to all types of streams sent by the sender, including but not limited to camera-captured video streams, screen sharing streams, and custom captured video streams.</li>
+                    <li>To enable video dual-stream in multi-channel scenarios, call the <xref keyref="enableDualStreamModeEx"/> method.</li>
+                    <li>This method can be called before or after joining a channel.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable dual-stream mode:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable dual-stream mode.</li>
+                            <li><xref keyref="false"/>: (Default) Disable dual-stream mode.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>streamConfig</pt>
+                    <pd>Configuration of the low-quality video stream. See <xref keyref="SimulcastStreamConfig"/>.
+                        <note>If <codeph>mode</codeph> is set to <codeph>DisableSimulcastStream</codeph>, then <codeph>streamConfig</codeph> will not take effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable dual-stream mode:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable dual-stream mode.</li>
+                            <li><xref keyref="false"/>: (Default) Disable dual-stream mode.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>streamConfig</pt>
+                    <pd>Configuration for the low-quality video stream. See <xref keyref="SimulcastStreamConfig"/>.
+                        <note>When <codeph>mode</codeph> is set to <codeph>DisableSimulcastStream</codeph>, setting <codeph>streamConfig</codeph> has no effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable dual-stream mode:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable dual-stream mode.</li>
+                            <li><xref keyref="false"/>: (Default) Disable dual-stream mode.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamConfig</pt>
+                    <pd>Configuration for the low-quality stream. See <xref keyref="SimulcastStreamConfig"/>.
+                        <note>When <codeph>mode</codeph> is set to <codeph>disableSimulcastStream</codeph>, setting <codeph>streamConfig</codeph> has no effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable dual-stream mode:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable dual-stream mode.</li>
+                            <li><xref keyref="false"/>: (Default) Disable dual-stream mode.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>streamConfig</pt>
+                    <pd>Configuration of the low-quality video stream. See <xref keyref="SimulcastStreamConfig"/>.
+                        <note>When <codeph>mode</codeph> is set to <codeph>DISABLE_SIMULCAST_STREAM</codeph>, setting <codeph>streamConfig</codeph> has no effect.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

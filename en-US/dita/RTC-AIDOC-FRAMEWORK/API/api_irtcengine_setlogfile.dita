@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlogfile">
+    <title><ph keyref="setLogFile"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the log file.</ph><ph id="shortdesc" props="rn">Sets the log file.</ph><ph id="shortdesc" props="flutter">Sets the log file.</ph><ph id="shortdesc" props="unity">Sets the log file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLogFile"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setLogFile(filePath: string): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setLogFile(filePath: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLogFile(String filePath);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLogFile(string filePath);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. Set the log file path using the <codeph>context</codeph> parameter when calling <xref keyref="initialize"/>.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. Please set the log file path via the <codeph>context</codeph> parameter when calling <xref keyref="initialize"/>.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. Set the log file path via the <codeph>context</codeph> parameter when calling <xref keyref="initialize"/>.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. Please set the log file path via the <codeph>context</codeph> parameter when calling <xref keyref="initialize"/>.</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">Sets the output log file for the SDK. All logs generated during SDK runtime will be written to this file.</p>
+            <p props="rn">Sets the SDK's output log file. All logs generated during SDK runtime will be written to this file.</p>
+            <p props="flutter">Sets the output log file of the SDK. All logs generated during SDK runtime will be written to this file.</p>
+            <p props="unity">Sets the output log file for the SDK. All logs generated during SDK runtime will be written to this file.</p>
+            <note props="electron">The app must ensure the specified directory exists and is writable.</note>
+            <note props="rn">The app must ensure that the specified directory exists and is writable.</note>
+            <note props="flutter">The app must ensure that the specified directory exists and is writable.</note>
+            <note props="unity">The app must ensure that the specified directory exists and is writable.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called immediately after <xref keyref="initialize"/>, otherwise the logs may be incomplete.</p>
+            <p props="rn">This method must be called immediately after <xref keyref="initialize"/>, otherwise the log output may be incomplete.</p>
+            <p props="flutter">You need to call this method immediately after <xref keyref="initialize"/>, otherwise the output logs may be incomplete.</p>
+            <p props="unity">This method must be called immediately after <xref keyref="initialize"/>, otherwise the output logs may be incomplete.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>filePath</pt>
+                    <pd>The full path of the log file. The log file is encoded in UTF-8.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>filePath</pt>
+                    <pd>Full path of the log file. The log file is UTF-8 encoded.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>filePath</pt>
+                    <pd>The full path of the log file. The log file is encoded in UTF-8.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>Full path of the log file. The log file is UTF-8 encoded.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

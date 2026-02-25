@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getversion">
+    <title><ph keyref="getVersion"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the SDK version number.</ph><ph id="shortdesc" props="android">Gets the SDK version.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getVersion"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual const char* getVersion(int* build) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public static String getSdkVersion()</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>build</pt>
+                    <pd>Output parameter that represents the build index of the SDK.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>On success, returns the SDK version string.</li>
+                    <li>On failure, returns an empty string.</li>
+                </ul>
+            </p>
+            <p props="android">If the method call succeeds, returns the SDK version string.
+If the method call fails, returns an empty string.</p>
+        </section>
+    </refbody>
+</reference>

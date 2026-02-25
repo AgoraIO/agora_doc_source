@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onstreammessage">
+    <title><ph keyref="onStreamMessage"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onStreamMessage"/> callback: Triggered when a remote user sends a data stream.</ph><ph id="shortdesc" props="android">Callback when a remote user sends a data stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onStreamMessage"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onStreamMessage(uid_t uid, int streamId, const char* data, size_t length, uint64_t sentTs)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onStreamMessage(int uid, int streamId, byte[] data)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback is triggered when the local user receives a data stream sent by a remote user using <xref keyref="sendStreamMessage"/>.</p>
+            <note props="cpp">If you need a more comprehensive solution for low latency, high concurrency, and scalable real-time messaging and state synchronization, consider using Real-time Messaging.</note>
+            <note props="android">If you need a more comprehensive real-time messaging and state synchronization solution with low latency, high concurrency, and scalability, we recommend using Agora's Real-time Messaging.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the local user receives a data stream message sent by a remote user via <xref keyref="sendStreamMessage"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>The ID of the remote user who sent the data stream.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>streamId</pt>
+                    <pd>The ID of the received data stream.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>data</pt>
+                    <pd>The content of the received data.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>length</pt>
+                    <pd>The length of the received data in bytes.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sentTs</pt>
+                    <pd>The timestamp when the data stream was sent.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>The remote user ID who sent the message.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>streamId</pt>
+                    <pd>The stream ID of the received message.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>data</pt>
+                    <pd>The received data content.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

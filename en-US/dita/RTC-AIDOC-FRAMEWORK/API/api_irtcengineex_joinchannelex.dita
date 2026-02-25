@@ -1,0 +1,237 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_joinchannelex">
+    <title><ph keyref="joinChannelEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Joins a channel.</ph><ph id="shortdesc" props="rn">Joins a channel.</ph><ph id="shortdesc" props="flutter">Joins a channel.</ph><ph id="shortdesc" props="unity">Joins a channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="joinChannelEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract joinChannelEx(
+    token: string,
+    connection: RtcConnection,
+    options: ChannelMediaOptions
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract joinChannelEx(
+    token: string,
+    connection: RtcConnection,
+    options: ChannelMediaOptions
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannelEx(
+    {required String token,
+    required RtcConnection connection,
+    required ChannelMediaOptions options});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelEx(string token, RtcConnection connection, ChannelMediaOptions options);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Call this method to join multiple channels simultaneously. If you want to join the same channel on different devices, make sure the user IDs used on different devices are different.</p>
+            <p props="rn">Call this method to join multiple channels simultaneously. If you want to join the same channel on different devices, make sure the user IDs used on each device are different.</p>
+            <p props="flutter">Call this method to join multiple channels simultaneously. If you want to join the same channel on different devices, make sure the user IDs used on each device are different.</p>
+            <p props="unity">Call this method to join multiple channels simultaneously. If you want to join the same channel on different devices, make sure each device uses a different user ID.</p>
+            <note props="electron">If you are already in a channel, you cannot join the same channel again with the same user ID.
+Before joining a channel, make sure the App ID used to generate the Token is the same as the one used to initialize the engine with the <xref keyref="initialize"/> method. Otherwise, joining the channel with the Token will fail.</note>
+            <note props="rn">If you are already in a channel, you cannot use the same user ID to join the same channel again.
+Before joining a channel, make sure the App ID used to generate the Token is the same as the one used in the <xref keyref="initialize"/> method to initialize the engine, otherwise joining the channel with the Token will fail.</note>
+            <note props="flutter">If you are already in a channel, you cannot join the same channel again with the same user ID.
+Before joining a channel, ensure that the App ID used to generate the Token is the same as the one used in the <xref keyref="initialize"/> method. Otherwise, joining the channel using the Token will fail.</note>
+            <note props="unity">If you are already in a channel, you cannot join the same channel again with the same user ID.
+Before joining a channel, make sure the App ID used to generate the Token is the same as the one used to initialize the engine with the <xref keyref="initialize"/> method; otherwise, joining the channel with the Token will fail.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method is suitable for multi-channel scenarios.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Call this method after <xref keyref="initialize"/>.
+In multi-camera capture scenarios, call <xref keyref="startPreview2"/> after this method and set <codeph>sourceType</codeph> to <codeph>VideoSourceCameraSecondary</codeph> to ensure the second camera captures properly.</p>
+            <p props="rn">You must call this method after <xref keyref="initialize"/>.
+In multi-camera capture scenarios, you must call <xref keyref="startPreview2"/> after this method and set <codeph>sourceType</codeph> to <codeph>VideoSourceCameraSecondary</codeph> to ensure proper capture from the second camera.</p>
+            <p props="flutter">Call this method after <xref keyref="initialize"/>.
+In multi-camera capture scenarios, you need to call <xref keyref="startPreview2"/> after this method and set <codeph>sourceType</codeph> to <codeph>videoSourceCameraSecondary</codeph> to ensure proper capture from the second camera.</p>
+            <p props="unity">This method must be called after <xref keyref="initialize"/>.
+In multi-camera capture scenarios, you need to call <xref keyref="startPreview2"/> after this method and set <codeph>sourceType</codeph> to <codeph>VIDEO_SOURCE_CAMERA_SECONDARY</codeph> to ensure the second camera captures properly.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Related Callbacks</title>
+            <p props="electron">After successfully calling this method to join a channel, the following callbacks are triggered:
+                <ul>
+                    <li>Locally: <xref keyref="onJoinChannelSuccess"/> and <xref keyref="onConnectionStateChanged"/>.</li>
+                    <li>For communication users and live broadcast hosts: <xref keyref="onUserJoined"/> is triggered remotely when they join the channel.</li>
+                </ul><ph>If the network condition is poor, the client may lose connection with the Agora server. In this case, the SDK automatically attempts to reconnect. Upon successful reconnection, the <xref keyref="onRejoinChannelSuccess"/> callback is triggered locally.</ph></p>
+            <p props="rn">After successfully calling this method to join a channel, the following callbacks are triggered:
+                <ul>
+                    <li>Locally: <xref keyref="onJoinChannelSuccess"/> and <xref keyref="onConnectionStateChanged"/> callbacks.</li>
+                    <li>Remotely: In the communication profile and for hosts in the live streaming profile, the <xref keyref="onUserJoined"/> callback is triggered when they join the channel.</li>
+                </ul><ph>If the network condition is poor, the client may lose connection to the Agora server. In this case, the SDK will automatically try to reconnect. Upon successful reconnection, the <xref keyref="onRejoinChannelSuccess"/> callback is triggered locally.</ph></p>
+            <p props="flutter">After successfully calling this method to join a channel, the following callbacks are triggered:
+                <ul>
+                    <li>Locally: <xref keyref="onJoinChannelSuccess"/> and <xref keyref="onConnectionStateChanged"/>.</li>
+                    <li>Remotely: In communication scenarios and for hosts in live streaming scenarios, <xref keyref="onUserJoined"/> is triggered.</li>
+                </ul><ph>If the network connection is poor and the client loses connection with the Agora server, the SDK automatically attempts to reconnect. Upon successful reconnection, the <xref keyref="onRejoinChannelSuccess"/> callback is triggered locally.</ph></p>
+            <p props="unity">After successfully calling this method to join a channel, the following callbacks are triggered:
+                <ul>
+                    <li>Locally: <xref keyref="onJoinChannelSuccess"/> and <xref keyref="onConnectionStateChanged"/> callbacks.</li>
+                    <li>In communication scenarios and for broadcasters in live streaming scenarios, the remote side triggers the <xref keyref="onUserJoined"/> callback after joining the channel.</li>
+                </ul><ph>In poor network conditions, the client may lose connection with the Agora server. The SDK will automatically attempt to reconnect. Upon successful reconnection, the <xref keyref="onRejoinChannelSuccess"/> callback is triggered locally.</ph></p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>token</pt>
+                    <pd>A dynamic key generated on the server for authentication. See [Token Authentication](https://doc.shengwang.cn/doc/rtc/electron/basic-features/token-authentication).
+                        <note>
+                            <ul>
+                                <li>(Recommended) If your project enables security mode (i.e., using APP ID + Token for authentication), this parameter is required.</li>
+                                <li>If your project only enables debug mode (i.e., using APP ID for authentication), you can join a channel without providing a Token. You will automatically leave the channel 24 hours after joining.</li>
+                                <li>If you need to join multiple channels simultaneously or switch channels frequently, Agora recommends using a wildcard Token to avoid requesting a new Token from the server each time. See [Using Wildcard Token](https://doc.shengwang.cn/doc/rtc/electron/best-practice/wildcard-token).</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>options</pt>
+                    <pd>Channel media options. See <xref keyref="ChannelMediaOptions"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>token</pt>
+                    <pd>A dynamic key generated on your server for authentication. See [Use Token Authentication](https://doc.shengwang.cn/doc/rtc/rn/basic-features/token-authentication).
+                        <note>
+                            <ul>
+                                <li>(Recommended) If your project enables the security mode, i.e., uses APP ID + Token for authentication, this parameter is required.</li>
+                                <li>If your project only enables debug mode, i.e., uses only the APP ID for authentication, you can join the channel without a Token. The user will automatically leave the channel 24 hours after successfully joining.</li>
+                                <li>If you need to join multiple channels simultaneously or switch channels frequently, Agora recommends using a wildcard Token to avoid requesting a new Token from the server each time. See [Use Wildcard Token](https://doc.shengwang.cn/doc/rtc/rn/best-practice/wildcard-token).</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>options</pt>
+                    <pd>Channel media options. See <xref keyref="ChannelMediaOptions"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>token</pt>
+                    <pd>The dynamic key generated on your server for authentication. See [Token Authentication](https://doc.shengwang.cn/doc/rtc/flutter/basic-features/token-authentication).
+                        <note>
+                            <ul>
+                                <li>(Recommended) If your project enables security mode (i.e., uses APP ID + Token for authentication), this parameter is required.</li>
+                                <li>If your project only enables debug mode (i.e., uses APP ID for authentication), you can join a channel without providing a Token. You will automatically leave the channel after 24 hours.</li>
+                                <li>If you need to join multiple channels at once or frequently switch between channels, Agora recommends using a wildcard Token to avoid requesting a new Token from your server for each new channel. See [Wildcard Token](https://doc.shengwang.cn/doc/rtc/flutter/best-practice/wildcard-token).</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>options</pt>
+                    <pd>Channel media options. See <xref keyref="ChannelMediaOptions"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>token</pt>
+                    <pd>A dynamic key generated on your server for authentication. See [Token Authentication](https://doc.shengwang.cn/doc/rtc/unity/basic-features/token-authentication).
+                        <note>
+                            <ul>
+                                <li>(Recommended) If your project has enabled secure mode (i.e., using APP ID + Token for authentication), this parameter is required.</li>
+                                <li>If your project is in debug mode only (i.e., using APP ID for authentication), you can join the channel without providing a Token. The user will automatically leave the channel after 24 hours.</li>
+                                <li>If you need to join multiple channels simultaneously or switch channels frequently, Agora recommends using a wildcard Token to avoid requesting a new Token from your server each time you join a new channel. See [Using Wildcard Token](https://doc.shengwang.cn/doc/rtc/unity/best-practice/wildcard-token).</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>options</pt>
+                    <pd>Channel media configuration options. See <xref keyref="ChannelMediaOptions"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.
+                        <ul>
+                            <li>-2: Invalid parameters. For example, invalid Token, <codeph>uid</codeph> is not an integer, or <xref keyref="ChannelMediaOptions"/> contains invalid values. Provide valid parameters and rejoin the channel.</li>
+                            <li>-3: <xref keyref="IRtcEngine"/> initialization failed. Reinitialize the <xref keyref="IRtcEngine"/> object.</li>
+                            <li>-7: <xref keyref="IRtcEngine"/> is not initialized. Initialize the <xref keyref="IRtcEngine"/> object before calling this method.</li>
+                            <li>-8: Internal state error in <xref keyref="IRtcEngine"/>. Possible cause: <xref keyref="startEchoTest3"/> was called to start echo test but <xref keyref="stopEchoTest"/> was not called before joining the channel. Call <xref keyref="stopEchoTest"/> before this method.</li>
+                            <li>-17: Join channel rejected. Possible cause: the user is already in the channel. Use <xref keyref="onConnectionStateChanged"/> to check the connection state. Do not call this method again unless you receive <codeph>ConnectionStateDisconnected</codeph>(1).</li>
+                            <li>-102: Invalid channel name. Provide a valid <codeph>channelId</codeph> and rejoin the channel.</li>
+                            <li>-121: Invalid user ID. Provide a valid <codeph>uid</codeph> and rejoin the channel.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter. For example, an invalid Token is used, <codeph>uid</codeph> is not an integer, or a <xref keyref="ChannelMediaOptions"/> member is invalid. You need to provide valid parameters and rejoin the channel.</li>
+                            <li>-3: <xref keyref="IRtcEngine"/> object initialization failed. You need to reinitialize the <xref keyref="IRtcEngine"/> object.</li>
+                            <li>-7: <xref keyref="IRtcEngine"/> object is not initialized. You must initialize the <xref keyref="IRtcEngine"/> object before calling this method.</li>
+                            <li>-8: Internal state error of the <xref keyref="IRtcEngine"/> object. Possible reason: <xref keyref="startEchoTest3"/> was called to start an echo test, but <xref keyref="stopEchoTest"/> was not called before calling this method. You must call <xref keyref="stopEchoTest"/> before this method.</li>
+                            <li>-17: Join channel request is rejected. Possible reason: the user is already in the channel. Use the <xref keyref="onConnectionStateChanged"/> callback to check if the user is in the channel. Do not call this method again unless you receive the <codeph>ConnectionStateDisconnected</codeph>(1) state.</li>
+                            <li>-102: Invalid channel name. You must provide a valid channel name in <codeph>channelId</codeph> and rejoin the channel.</li>
+                            <li>-121: Invalid user ID. You must provide a valid user ID in <codeph>uid</codeph> and rejoin the channel.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when it fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                <ul>
+                    <li>&lt; 0: Method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameters. For example, an invalid Token, <codeph>uid</codeph> is not an integer, or <xref keyref="ChannelMediaOptions"/> contains invalid values. Provide valid parameters and rejoin the channel.</li>
+                            <li>-3: <xref keyref="IRtcEngine"/> initialization failed. Reinitialize the <xref keyref="IRtcEngine"/> object.</li>
+                            <li>-7: <xref keyref="IRtcEngine"/> not initialized. Initialize the <xref keyref="IRtcEngine"/> object before calling this method.</li>
+                            <li>-8: Internal state error in <xref keyref="IRtcEngine"/>. Possible cause: <xref keyref="startEchoTest3"/> was called but <xref keyref="stopEchoTest"/> was not called before joining the channel. Call <xref keyref="stopEchoTest"/> before this method.</li>
+                            <li>-17: Join channel rejected. Possible cause: user is already in the channel. Use <xref keyref="onConnectionStateChanged"/> to check if the user is in the channel. Do not call this method again unless you receive <codeph>connectionStateDisconnected</codeph>(1).</li>
+                            <li>-102: Invalid channel name. Provide a valid <codeph>channelId</codeph> and rejoin the channel.</li>
+                            <li>-121: Invalid user ID. Provide a valid <codeph>uid</codeph> and rejoin the channel.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting advice.
+                        <ul>
+                            <li>-2: Invalid parameters. For example, using an invalid Token, <codeph>uid</codeph> not set as an integer, or invalid values in <xref keyref="ChannelMediaOptions"/>. You need to provide valid parameters and rejoin the channel.</li>
+                            <li>-3: <xref keyref="IRtcEngine"/> initialization failed. You need to reinitialize the <xref keyref="IRtcEngine"/> object.</li>
+                            <li>-7: <xref keyref="IRtcEngine"/> is not initialized. You must successfully initialize <xref keyref="IRtcEngine"/> before calling this method.</li>
+                            <li>-8: Internal state error in <xref keyref="IRtcEngine"/>. Possible cause: calling this method to join a channel after <xref keyref="startEchoTest3"/> without calling <xref keyref="stopEchoTest"/>. You need to call <xref keyref="stopEchoTest"/> before this method.</li>
+                            <li>-17: This method call was rejected. Possible cause: the user is already in the channel. Use the <xref keyref="onConnectionStateChanged"/> callback to check the connection state. Do not call this method again unless you receive <codeph>CONNECTION_STATE_DISCONNECTED</codeph> (1).</li>
+                            <li>-102: Invalid channel name. You need to provide a valid <codeph>channelId</codeph> and rejoin the channel.</li>
+                            <li>-121: Invalid user ID. You need to provide a valid <codeph>uid</codeph> and rejoin the channel.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

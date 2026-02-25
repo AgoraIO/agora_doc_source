@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_videosurface_setforuser">
+    <title><ph keyref="setForUser"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">设置本地/远端视频显示。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setForUser"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public void SetForUser(uint uid = 0, string channelId = "",
+            VIDEO_SOURCE_TYPE source_type = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY)
+        {
+            Uid = uid;
+            ChannelId = channelId;
+            SourceType = source_type;
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="unity">
+                <ul>
+                    <li>确保在主线程中调用此方法。</li>
+                    <li>确保在绑定 VideoSurface.cs 前调用此方法。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>远端用户的 ID，通过 <xref keyref="onUserJoined"/> 获得。默认值为 0，表示可以看到本地视频。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelId</pt>
+                    <pd>频道 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>source_type</pt>
+                    <pd>视频流类型，详见<xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

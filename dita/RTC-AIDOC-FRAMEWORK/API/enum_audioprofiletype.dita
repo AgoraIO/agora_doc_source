@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_audioprofiletype">
+    <title><ph keyref="AUDIO_PROFILE_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">音频编码属性。</ph><ph id="shortdesc" props="rn">音频编码属性。</ph><ph id="shortdesc" props="flutter">音频编码属性。</ph><ph id="shortdesc" props="unity">音频编码属性。</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>AudioProfileDefault</pt>
+                    <pd>0: 默认值。
+                        <ul>
+                            <li>直播场景下：48 kHz 采样率，音乐编码，单声道，编码码率最大值为 64 Kbps。</li>
+                            <li>通信场景下：
+                                <ul>
+                                    <li>Windows 平台：16 kHz 采样率，语音编码，单声道，编码码率最大值为 16 Kbps。</li>
+                                    <li>macOS 平台：32 kHz 采样率，语音编码，单声道，编码码率最大值为 18 Kbps。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioProfileSpeechStandard</pt>
+                    <pd>1: 指定 32 kHz 采样率，语音编码，单声道，编码码率最大值为 18 Kbps。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioProfileMusicStandard</pt>
+                    <pd>2: 指定 48 kHz 采样率，音乐编码，单声道，编码码率最大值为 64 Kbps。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioProfileMusicStandardStereo</pt>
+                    <pd>3: 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 80 Kbps。
+如需实现立体声，你还需要调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <xref keyref="AdvancedAudioOptions"/> 中设置 <codeph>audioProcessingChannels</codeph> 为 <codeph>AudioProcessingStereo</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioProfileMusicHighQuality</pt>
+                    <pd>4: 指定 48 kHz 采样率，音乐编码，单声道，编码码率最大值为 96 Kbps。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioProfileMusicHighQualityStereo</pt>
+                    <pd>5: 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 128 Kbps。
+如需实现立体声，你还需要调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <xref keyref="AdvancedAudioOptions"/> 中设置 <codeph>audioProcessingChannels</codeph> 为 <codeph>AudioProcessingStereo</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioProfileIot</pt>
+                    <pd>6: 指定 16 kHz 采样率，语音编码，单声道，应用回声消除算法 AEC。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>AudioProfileNum</pt>
+                    <pd>枚举值边界。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProfileDefault</pt>
+                    <pd>0: 默认值。
+                        <ul>
+                            <li>直播场景下：48 kHz 采样率，音乐编码，单声道，编码码率最大值为 64 Kbps。</li>
+                            <li>通信场景下：32 kHz 采样率，语音编码，单声道，编码码率最大值为 18 Kbps。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProfileSpeechStandard</pt>
+                    <pd>1: 指定 32 kHz 采样率，语音编码，单声道，编码码率最大值为 18 Kbps。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProfileMusicStandard</pt>
+                    <pd>2: 指定 48 kHz 采样率，音乐编码，单声道，编码码率最大值为 64 Kbps。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProfileMusicStandardStereo</pt>
+                    <pd>3: 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 80 Kbps。
+如需实现立体声，你还需要调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <xref keyref="AdvancedAudioOptions"/> 中设置 <codeph>audioProcessingChannels</codeph> 为 <codeph>AudioProcessingStereo</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProfileMusicHighQuality</pt>
+                    <pd>4: 指定 48 kHz 采样率，音乐编码，单声道，编码码率最大值为 96 Kbps。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProfileMusicHighQualityStereo</pt>
+                    <pd>5: 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 128 Kbps。
+如需实现立体声，你还需要调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <xref keyref="AdvancedAudioOptions"/> 中设置 <codeph>audioProcessingChannels</codeph> 为 <codeph>AudioProcessingStereo</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProfileIot</pt>
+                    <pd>6: 指定 16 kHz 采样率，语音编码，单声道，应用回声消除算法 AEC。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>AudioProfileNum</pt>
+                    <pd>枚举值边界。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProfileDefault</pt>
+                    <pd>0: 默认值。
+                        <ul>
+                            <li>直播场景下：48 kHz 采样率，音乐编码，单声道，编码码率最大值为 64 Kbps。</li>
+                            <li>通信场景下：
+                                <ul>
+                                    <li>Windows 平台：16 kHz 采样率，语音编码，单声道，编码码率最大值为 16 Kbps。</li>
+                                    <li>Android、macOS、iOS 平台：32 kHz 采样率，语音编码，单声道，编码码率最大值为 18 Kbps。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProfileSpeechStandard</pt>
+                    <pd>1: 指定 32 kHz 采样率，语音编码，单声道，编码码率最大值为 18 Kbps。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProfileMusicStandard</pt>
+                    <pd>2: 指定 48 kHz 采样率，音乐编码，单声道，编码码率最大值为 64 Kbps。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProfileMusicStandardStereo</pt>
+                    <pd>3: 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 80 Kbps。
+如需实现立体声，你还需要调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <xref keyref="AdvancedAudioOptions"/> 中设置 <codeph>audioProcessingChannels</codeph> 为 <codeph>audioProcessingStereo</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProfileMusicHighQuality</pt>
+                    <pd>4: 指定 48 kHz 采样率，音乐编码，单声道，编码码率最大值为 96 Kbps。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProfileMusicHighQualityStereo</pt>
+                    <pd>5: 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 128 Kbps。
+如需实现立体声，你还需要调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <xref keyref="AdvancedAudioOptions"/> 中设置 <codeph>audioProcessingChannels</codeph> 为 <codeph>audioProcessingStereo</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProfileIot</pt>
+                    <pd>6: 指定 16 kHz 采样率，语音编码，单声道，应用回声消除算法 AEC。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioProfileNum</pt>
+                    <pd>枚举值边界。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROFILE_DEFAULT</pt>
+                    <pd>0: 默认值。
+                        <ul>
+                            <li>直播场景下：48 kHz 采样率，音乐编码，单声道，编码码率最大值为 64 Kbps。</li>
+                            <li>通信场景下：
+                                <ul>
+                                    <li>Windows 平台：16 kHz 采样率，语音编码，单声道，编码码率最大值为 16 Kbps。</li>
+                                    <li>Android、macOS、iOS 平台：32 kHz 采样率，语音编码，单声道，编码码率最大值为 18 Kbps。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROFILE_SPEECH_STANDARD</pt>
+                    <pd>1: 指定 32 kHz 采样率，语音编码，单声道，编码码率最大值为 18 Kbps。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROFILE_MUSIC_STANDARD</pt>
+                    <pd>2: 指定 48 kHz 采样率，音乐编码，单声道，编码码率最大值为 64 Kbps。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROFILE_MUSIC_STANDARD_STEREO</pt>
+                    <pd>3: 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 80 Kbps。
+如需实现立体声，你还需要调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <xref keyref="AdvancedAudioOptions"/> 中设置 <codeph>audioProcessingChannels</codeph> 为 <codeph>AUDIO_PROCESSING_STEREO</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROFILE_MUSIC_HIGH_QUALITY</pt>
+                    <pd>4: 指定 48 kHz 采样率，音乐编码，单声道，编码码率最大值为 96 Kbps。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</pt>
+                    <pd>5: 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 128 Kbps。
+如需实现立体声，你还需要调用 <xref keyref="setAdvancedAudioOptions"/> 并在 <xref keyref="AdvancedAudioOptions"/> 中设置 <codeph>audioProcessingChannels</codeph> 为 <codeph>AUDIO_PROCESSING_STEREO</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROFILE_IOT</pt>
+                    <pd>6: 指定 16 kHz 采样率，语音编码，单声道，应用回声消除算法 AEC。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>AUDIO_PROFILE_NUM</pt>
+                    <pd>枚举值边界。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

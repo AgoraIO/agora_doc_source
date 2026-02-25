@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onactivespeaker">
+    <title><ph keyref="onActiveSpeaker"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback when the most active remote speaker is detected.</ph><ph id="shortdesc" props="rn">Occurs when the most active remote speaker is detected.</ph><ph id="shortdesc" props="flutter">Callback when the most active remote speaker is detected.</ph><ph id="shortdesc" props="unity">Occurs when the most active remote speaker is detected.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onActiveSpeaker"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onActiveSpeaker?(connection: RtcConnection, uid: number): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onActiveSpeaker?(connection: RtcConnection, uid: number): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int uid)? onActiveSpeaker;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnActiveSpeaker(RtcConnection connection, uint uid) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After successfully calling <xref keyref="enableAudioVolumeIndication"/>, the SDK continuously monitors the remote user with the highest volume and counts how many times this user is identified as the loudest. The remote user with the highest count during a period is considered the most active speaker.
+When there are two or more users in the channel and there is an active remote speaker, the SDK triggers this callback and reports the <codeph>uid</codeph> of the most active remote user.
+                <ul>
+                    <li>If the most active remote speaker remains the same, the SDK does not trigger the <xref keyref="onActiveSpeaker"/> callback again.</li>
+                    <li>If the most active remote speaker changes, the SDK triggers this callback again and reports the <codeph>uid</codeph> of the new most active remote user.</li>
+                </ul>
+            </p>
+            <p props="rn">After successfully calling <xref keyref="enableAudioVolumeIndication"/>, the SDK continuously monitors the remote user with the highest volume and counts the number of times the user is identified as the loudest. The remote user with the highest count during a given period is considered the most active speaker.
+When there are two or more users in the channel and there is an active remote user, the SDK triggers this callback and reports the <codeph>uid</codeph> of the most active remote speaker.
+                <ul>
+                    <li>If the most active speaker remains the same, the SDK does not trigger the <xref keyref="onActiveSpeaker"/> callback again.</li>
+                    <li>If the most active speaker changes, the SDK triggers this callback again and reports the new <codeph>uid</codeph>.</li>
+                </ul>
+            </p>
+            <p props="flutter">After successfully calling <xref keyref="enableAudioVolumeIndication"/>, the SDK continuously monitors the remote user with the highest volume and counts how often the user is detected as having the highest volume. The remote user with the highest count during the current period is considered the most active speaker.
+When there are two or more users in the channel and a remote active speaker exists, the SDK triggers this callback and reports the <codeph>uid</codeph> of the most active remote speaker.
+                <ul>
+                    <li>If the most active speaker remains the same, the SDK does not trigger <xref keyref="onActiveSpeaker"/> again.</li>
+                    <li>If the most active speaker changes, the SDK triggers the callback again and reports the new <codeph>uid</codeph>.</li>
+                </ul>
+            </p>
+            <p props="unity">After successfully calling <xref keyref="enableAudioVolumeIndication"/>, the SDK continuously monitors the remote user with the highest volume and counts the number of times the user is identified as the loudest. The remote user with the highest count during a given period is considered the most active speaker.
+When there are two or more users in the channel and there is an active remote speaker, the SDK triggers this callback and reports the <codeph>uid</codeph> of the most active remote speaker.
+                <ul>
+                    <li>If the most active remote speaker remains the same, the SDK does not trigger the <xref keyref="onActiveSpeaker"/> callback again.</li>
+                    <li>If the most active remote speaker changes, the SDK triggers this callback again and reports the <codeph>uid</codeph> of the new most active remote speaker.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>The ID of the most active remote speaker.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>The ID of the most active remote speaker.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>ID of the most active remote speaker.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>The ID of the most active remote speaker.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

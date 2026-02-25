@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setextensionproperty">
+    <title><ph keyref="setExtensionProperty"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the properties of an extension.</ph><ph id="shortdesc" props="android">Sets the properties of an extension component.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExtensionProperty"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setExtensionProperty(const char* provider, const char* extension, const ExtensionInfo&amp; extensionInfo, const char* key, const char* value) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setExtensionProperty(String provider, String extension, String key, String value);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">After enabling the extension component, you can call this method to set its properties.</p>
+            <note props="android">To set properties for multiple extension components, call this method multiple times.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">Call this method after calling <xref keyref="enableExtension"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>provider</pt>
+                    <pd>The name of the extension provider, for example, <codeph>agora.io</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>extension</pt>
+                    <pd>The name of the extension, for example, <codeph>agora.beauty</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>extensionInfo</pt>
+                    <pd>Extension information. See <codeph>ExtensionInfo</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>key</pt>
+                    <pd>The key of the extension property.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>value</pt>
+                    <pd>The value corresponding to the key of the extension property, in JSON format.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>provider</pt>
+                    <pd>The name of the extension component provider.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>extension</pt>
+                    <pd>The name of the extension component.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>key</pt>
+                    <pd>The key of the extension component property.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>value</pt>
+                    <pd>The value corresponding to the extension component property key.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

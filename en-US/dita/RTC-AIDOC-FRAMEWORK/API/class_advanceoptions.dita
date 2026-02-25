@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_advanceoptions">
+    <title><ph keyref="AdvanceOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Advanced options for video encoding.</ph><ph id="shortdesc" props="rn">Advanced options for video encoding.</ph><ph id="shortdesc" props="flutter">Advanced options for video encoding.</ph><ph id="shortdesc" props="unity">Advanced options for video encoding.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class AdvanceOptions {
+  encodingPreference?: EncodingPreference;
+  compressionPreference?: CompressionPreference;
+  encodeAlpha?: boolean;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class AdvanceOptions {
+  encodingPreference?: EncodingPreference;
+  compressionPreference?: CompressionPreference;
+  encodeAlpha?: boolean;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class AdvanceOptions {
+  const AdvanceOptions(
+      {this.encodingPreference, this.compressionPreference, this.encodeAlpha});
+
+  @JsonKey(name: 'encodingPreference')
+  final EncodingPreference? encodingPreference;
+
+  @JsonKey(name: 'compressionPreference')
+  final CompressionPreference? compressionPreference;
+
+  @JsonKey(name: 'encodeAlpha')
+  final bool? encodeAlpha;
+
+  factory AdvanceOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$AdvanceOptionsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$AdvanceOptionsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class AdvanceOptions
+    {
+        public ENCODING_PREFERENCE encodingPreference;
+        public COMPRESSION_PREFERENCE compressionPreference;
+        public bool encodeAlpha;
+
+        public AdvanceOptions()
+        {
+            this.encodingPreference = ENCODING_PREFERENCE.PREFER_AUTO;
+            this.compressionPreference = COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY;
+            this.encodeAlpha = false;
+        }
+
+        public AdvanceOptions(ENCODING_PREFERENCE encoding_preference, COMPRESSION_PREFERENCE compression_preference, bool encode_alpha)
+        {
+            this.encodingPreference = encoding_preference;
+            this.compressionPreference = compression_preference;
+            this.encodeAlpha = encode_alpha;
+        }
+
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>encodingPreference</pt>
+                    <pd>Video encoder preference. See <xref keyref="ENCODING_PREFERENCE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>compressionPreference</pt>
+                    <pd>Compression preference for video encoding. See <xref keyref="COMPRESSION_PREFERENCE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>encodeAlpha</pt>
+                    <pd>When the video frame contains Alpha channel data, sets whether to encode and send the Alpha data to the remote end:
+                        <ul>
+                            <li><xref keyref="true"/>: Encode and send Alpha data.</li>
+                            <li><xref keyref="false"/>: (Default) Do not encode and send Alpha data.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encodingPreference</pt>
+                    <pd>Video encoder preference. See <xref keyref="ENCODING_PREFERENCE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>compressionPreference</pt>
+                    <pd>Compression preference for video encoding. See <xref keyref="COMPRESSION_PREFERENCE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encodeAlpha</pt>
+                    <pd>When the video frame contains alpha channel data, specifies whether to encode and send the alpha data to the remote end:
+                        <ul>
+                            <li><xref keyref="true"/>: Encode and send alpha data.</li>
+                            <li><xref keyref="false"/>: (Default) Do not encode or send alpha data.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encodingPreference</pt>
+                    <pd>Video encoder preference. See <xref keyref="ENCODING_PREFERENCE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>compressionPreference</pt>
+                    <pd>Compression preference for video encoding. See <xref keyref="COMPRESSION_PREFERENCE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encodeAlpha</pt>
+                    <pd>When the video frame contains Alpha channel data, sets whether to encode and send the Alpha data to the remote end:
+                        <ul>
+                            <li><xref keyref="true"/>: Encode and send the Alpha data.</li>
+                            <li><xref keyref="false"/>: (Default) Do not encode and send the Alpha data.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encodingPreference</pt>
+                    <pd>Video encoder preference. See <xref keyref="ENCODING_PREFERENCE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>compressionPreference</pt>
+                    <pd>Compression preference for video encoding. See <xref keyref="COMPRESSION_PREFERENCE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encodeAlpha</pt>
+                    <pd>When the video frame contains Alpha channel data, sets whether to encode and send the Alpha data to the remote end:
+                        <ul>
+                            <li><xref keyref="true"/>: Encode and send Alpha data.</li>
+                            <li><xref keyref="false"/>: (Default) Do not encode and send Alpha data.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

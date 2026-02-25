@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getfaceshapeareaoptions2">
+    <title><ph keyref="getFaceShapeAreaOptions2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Retrieves the current settings options for the beauty effect area.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getFaceShapeAreaOptions2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract FaceShapeAreaOptions getFaceShapeAreaOptions(int shapeArea);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">You can call this method to get the current settings options for the beauty effect and refresh the UI menu based on the returned result.</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>When users open the beauty area and reshaping intensity menus in the app, you can call this method to get the current beauty effect options, then refresh the menu in the UI and update the interface accordingly.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">Call this method after calling <xref keyref="enableVideo"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>shapeArea</pt>
+                    <pd>Beauty enhancement area.
+                        <ul>
+                            <li><codeph>FACE_SHAPE_AREA_NONE</codeph> (-1): (Default) Invalid area, no beauty effect applied.</li>
+                            <li><codeph>FACE_SHAPE_AREA_HEADSCALE</codeph> (100): Head, used to create a smaller head effect. Adjustment range: [0, 100]. The larger the value, the smaller the head. Default: 100.</li>
+                            <li><codeph>FACE_SHAPE_AREA_FOREHEAD</codeph> (101): Forehead, used to adjust hairline height. Adjustment range: [-100, 100]. Positive values raise the hairline, negative values lower it. The larger the absolute value, the more obvious the effect. Default: 50.</li>
+                            <li><codeph>FACE_SHAPE_AREA_FACECONTOUR</codeph> (102): Face contour, used to slim the face. Adjustment range: [0, 100]. The larger the value, the more obvious the slimming effect. Default: 10.</li>
+                            <li><codeph>FACE_SHAPE_AREA_FACELENGTH</codeph> (103): Face length, used to elongate the face. Adjustment range: [-100, 100]. Positive values elongate, negative values shorten. Larger absolute values yield more obvious effects. Default: 0.</li>
+                            <li><codeph>FACE_SHAPE_AREA_FACEWIDTH</codeph> (104): Face width, used to narrow the face. Adjustment range: [0, 100]. The larger the value, the narrower the face. Default: 10.</li>
+                            <li><codeph>FACE_SHAPE_AREA_CHEEKBONE</codeph> (105): Cheekbones, used to adjust cheekbone width. Adjustment range: [0, 100]. The larger the value, the narrower the cheekbones. Default: 43.</li>
+                            <li><codeph>FACE_SHAPE_AREA_CHEEK</codeph> (106): Cheeks, used to adjust cheek width. Adjustment range: [0, 100]. The larger the value, the narrower the cheeks. Default: 50.</li>
+                            <li><codeph>FACE_SHAPE_AREA_CHIN</codeph> (108): Chin, used to adjust chin length. Adjustment range: [-100, 100]. Positive values elongate, negative values shorten. Larger absolute values yield more obvious effects. Default: -20.</li>
+                            <li><codeph>FACE_SHAPE_AREA_EYESCALE</codeph> (200): Eyes, used to enlarge eyes. Adjustment range: [0, 100]. The larger the value, the bigger the eyes. Default: 50.</li>
+                            <li><codeph>FACE_SHAPE_AREA_EYEDISTANCE</codeph> (201): Eye distance adjustment. Adjustment range: [-100, 100]. Negative values indicate opposite direction. Larger absolute values yield more obvious effects. Default: 0.</li>
+                            <li><codeph>FACE_SHAPE_AREA_EYEPOSITION</codeph> (202): Eye position adjustment. Adjustment range: [-100, 100]. Negative values indicate opposite direction. Larger absolute values yield more obvious effects. Default: 0.</li>
+                            <li><codeph>FACE_SHAPE_AREA_LOWEREYELID</codeph> (203): Lower eyelid adjustment. Adjustment range: [0, 100]. The larger the value, the more obvious the effect. Default: 0.</li>
+                            <li><codeph>FACE_SHAPE_AREA_EYEPUPILS</codeph> (204): Pupil size adjustment. Adjustment range: [0, 100]. The larger the value, the more obvious the effect. Default: 0.</li>
+                            <li><codeph>FACE_SHAPE_AREA_EYEINNERCORNER</codeph> (205): Inner eye corner adjustment. Adjustment range: [0, 100]. The larger the value, the more obvious the effect. Default: 0.</li>
+                            <li><codeph>FACE_SHAPE_AREA_EYEOUTERCORNER</codeph> (206): Outer eye corner adjustment. Adjustment range: [0, 100]. The larger the value, the more obvious the effect. Default: 0.</li>
+                            <li><codeph>FACE_SHAPE_AREA_NOSELENGTH</codeph> (300): Nose length, used to elongate the nose. Adjustment range: [-100, 100]. Positive values elongate, negative values shorten. Larger absolute values yield more obvious effects. Default: -10.</li>
+                            <li><codeph>FACE_SHAPE_AREA_NOSEWIDTH</codeph> (301): Nose width, used to slim the nose. Adjustment range: [-100, 100]. Positive values widen, negative values narrow. Larger absolute values yield more obvious effects. Default: 72.</li>
+                            <li><codeph>FACE_SHAPE_AREA_NOSEWING</codeph> (302): Nostril adjustment. Adjustment range: [0, 100]. The larger the value, the more obvious the effect. Default: 0.</li>
+                            <li><codeph>FACE_SHAPE_AREA_NOSEROOT</codeph> (303): Nose root adjustment. Adjustment range: [0, 100]. The larger the value, the more obvious the effect. Default: 0.</li>
+                            <li><codeph>FACE_SHAPE_AREA_NOSEBRIDGE</codeph> (304): Nose bridge adjustment. Adjustment range: [0, 100]. The larger the value, the more obvious the effect. Default: 0.</li>
+                            <li><codeph>FACE_SHAPE_AREA_NOSETIP</codeph> (305): Nose tip adjustment. Adjustment range: [0, 100]. The larger the value, the more obvious the effect. Default: 0.</li>
+                            <li><codeph>FACE_SHAPE_AREA_NOSEGENERAL</codeph> (306): Overall nose adjustment. Adjustment range: [0, 100]. The larger the value, the more obvious the effect. Default: 0.</li>
+                            <li><codeph>FACE_SHAPE_AREA_MOUTHSCALE</codeph> (400): Mouth, used to enlarge the mouth. Adjustment range: [0, 100]. The larger the value, the bigger the mouth. Default: 50.</li>
+                            <li><codeph>FACE_SHAPE_AREA_MOUTHPOSITION</codeph> (401): Mouth position adjustment. Adjustment range: [-100, 100]. Negative values indicate opposite direction. Larger absolute values yield more obvious effects. Default: 0.</li>
+                            <li><codeph>FACE_SHAPE_AREA_MOUTHSMILE</codeph> (402): Smile adjustment. Adjustment range: [0, 100]. The larger the value, the more obvious the effect. Default: 0.</li>
+                            <li><codeph>FACE_SHAPE_AREA_MOUTHLIP</codeph> (403): Lip shape adjustment. Adjustment range: [0, 100]. The larger the value, the more obvious the effect. Default: 0.</li>
+                            <li><codeph>FACE_SHAPE_AREA_EYEBROWPOSITION</codeph> (500): Eyebrow position adjustment. Adjustment range: [-100, 100]. Negative values indicate opposite direction. Larger absolute values yield more obvious effects. Default: 0.</li>
+                            <li><codeph>FACE_SHAPE_AREA_EYEBROWTHICKNESS</codeph> (501): Eyebrow thickness adjustment. Adjustment range: [0, 100]. The larger the value, the more obvious the effect. Default: 0.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>If the method call succeeds, returns a <xref keyref="FaceShapeAreaOptions"/> instance.</li>
+                    <li>If the method call fails, returns <codeph>null</codeph>.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

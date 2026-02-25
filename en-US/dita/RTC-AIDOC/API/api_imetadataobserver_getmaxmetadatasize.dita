@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imetadataobserver_getmaxmetadatasize">
+    <title><ph keyref="getMaxMetadataSize"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the SDK requests the maximum size of metadata.</ph><ph id="shortdesc" props="android">Callback triggered when the SDK requests the maximum metadata size.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getMaxMetadataSize"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getMaxMetadataSize() { return DEFAULT_METADATA_SIZE_IN_BYTE; }</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getMaxMetadataSize()</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After successfully registering by calling <xref keyref="registerMediaMetadataObserver"/>, the SDK triggers this callback every time it sends a video frame. You need to specify the maximum size of the metadata in the return value of this callback.</p>
+            <p props="android">After successfully registering by calling <xref keyref="registerMediaMetadataObserver"/>, the SDK triggers this callback for every video frame sent. You need to specify the maximum size of the metadata in the return value of this callback.</p>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">If the method call succeeds, returns the maximum size in bytes of the metadata <codeph>buffer</codeph> you want to use. The maximum value is 1024 bytes.</p>
+            <p props="android">If the method call succeeds, returns the maximum size (in bytes) of the metadata <codeph>buffer</codeph> you want to use. The maximum value is 1024 bytes. Make sure to set the return value.</p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audioencodedframeobserverconfig">
+    <title><ph keyref="AudioEncodedFrameObserverConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure settings for encoded audio observer.</ph><ph id="shortdesc" props="android">Used to configure the encoded audio observer.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct AudioEncodedFrameObserverConfig {
+  AUDIO_ENCODED_FRAME_OBSERVER_POSITION postionType;
+  AUDIO_ENCODING_TYPE encodingType;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class AudioEncodedFrameObserverConfig {
+  public int postionType;
+  public int encodingType;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>postionType</pt>
+                    <pd>Audio configuration. See <xref keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>encodingType</pt>
+                    <pd>Audio encoding type. See <xref keyref="AUDIO_ENCODING_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>postionType</pt>
+                    <pd>The capture position of the audio observer:
+                        <ul>
+                            <li><codeph>AUDIO_ENCODED_FRAME_OBSERVER_POSITION_MIC</codeph> (1): Captures only the local user's audio.</li>
+                            <li><codeph>AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK</codeph> (2): Captures only the audio of all remote users.</li>
+                            <li><codeph>AUDIO_ENCODED_FRAME_OBSERVER_POSITION_MIXED</codeph> (3): Captures the mixed audio of the local and all remote users.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>encodingType</pt>
+                    <pd>Audio encoding type:
+                        <ul>
+                            <li><codeph>AUDIO_ENCODING_TYPE_AAC_16000_LOW</codeph>: AAC format, 16000 Hz sample rate, low quality. About 1.2 MB for 10 minutes of encoded audio.</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_AAC_16000_MEDIUM</codeph>: AAC format, 16000 Hz sample rate, medium quality. About 2 MB for 10 minutes of encoded audio.</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_AAC_32000_LOW</codeph>: AAC format, 32000 Hz sample rate, low quality. About 1.2 MB for 10 minutes of encoded audio.</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_AAC_32000_MEDIUM</codeph>: AAC format, 32000 Hz sample rate, medium quality. About 2 MB for 10 minutes of encoded audio.</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_AAC_32000_HIGH</codeph>: AAC format, 32000 Hz sample rate, high quality. About 3.5 MB for 10 minutes of encoded audio.</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_AAC_48000_MEDIUM</codeph>: AAC format, 48000 Hz sample rate, medium quality. About 2 MB for 10 minutes of encoded audio.</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_AAC_48000_HIGH</codeph>: AAC format, 48000 Hz sample rate, high quality. About 3.5 MB for 10 minutes of encoded audio.</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_OPUS_16000_LOW</codeph>: OPUS format, 16000 Hz sample rate, low quality. About 2 MB for 10 minutes of encoded audio.</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_OPUS_16000_MEDIUM</codeph>: OPUS format, 16000 Hz sample rate, medium quality. About 2 MB for 10 minutes of encoded audio.</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_OPUS_48000_MEDIUM</codeph>: OPUS format, 48000 Hz sample rate, medium quality. About 2 MB for 10 minutes of encoded audio.</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_OPUS_48000_HIGH</codeph>: OPUS format, 48000 Hz sample rate, high quality. About 3.5 MB for 10 minutes of encoded audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

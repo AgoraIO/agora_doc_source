@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_idirectcdnstreamingeventhandler_ondirectcdnstreamingstatechanged">
+    <title><ph keyref="onDirectCdnStreamingStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for CDN streaming state changes.</ph><ph id="shortdesc" props="android">Callback for changes in CDN streaming state.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onDirectCdnStreamingStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onDirectCdnStreamingStateChanged(DIRECT_CDN_STREAMING_STATE state, DIRECT_CDN_STREAMING_REASON reason, const char* message)</codeblock>
+                <codeblock props="android" outputclass="language-java">void onDirectCdnStreamingStateChanged(DirectCdnStreamingState state, DirectCdnStreamingReason reason, String message)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">When the host streams directly to the CDN and the streaming state changes, the SDK triggers this callback to report the new streaming state, error code, and related information.</p>
+            <p props="android">When the host pushes streams directly to the CDN and the streaming state changes, the SDK triggers this callback to report the updated streaming state, error codes, and other information. You can refer to this callback for troubleshooting.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the streaming state changes during the process of pushing streams directly to the CDN by the host.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>Current CDN streaming state. See <xref keyref="DIRECT_CDN_STREAMING_STATE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>Reason for the CDN streaming state change. See <xref keyref="DIRECT_CDN_STREAMING_REASON"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>message</pt>
+                    <pd>Additional information about the streaming state change.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>Current CDN streaming state. See <xref keyref="DIRECT_CDN_STREAMING_STATE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>Reason for the change in CDN streaming state. See <xref keyref="DIRECT_CDN_STREAMING_REASON"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>message</pt>
+                    <pd>Description of the streaming state change.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

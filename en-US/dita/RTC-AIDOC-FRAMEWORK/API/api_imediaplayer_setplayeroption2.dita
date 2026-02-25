@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setplayeroption2">
+    <title><ph keyref="setPlayerOption2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets media player options.</ph><ph id="shortdesc" props="rn">Sets media player options.</ph><ph id="shortdesc" props="flutter">Sets media player options.</ph><ph id="shortdesc" props="unity">Sets media player options.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlayerOption2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setPlayerOptionInString(key: string, value: string): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setPlayerOptionInString(key: string, value: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setPlayerOptionInString(
+    {required String key, required String value});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetPlayerOption(string key, string value);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">The media player allows you to set options using <codeph>key</codeph> and <codeph>value</codeph>.
+The difference between this method and <xref keyref="setPlayerOption"/> is that the <codeph>value</codeph> in this method is of type String, while in <xref keyref="setPlayerOption"/>, the <codeph>value</codeph> is of type Int. These two methods cannot be used interchangeably.</p>
+            <p props="rn">The media player allows you to set options using <codeph>key</codeph> and <codeph>value</codeph>.
+The difference between this method and <xref keyref="setPlayerOption"/> is that this method uses a String type for <codeph>value</codeph>, while <xref keyref="setPlayerOption"/> uses an Int type. The two cannot be used interchangeably.</p>
+            <p props="flutter">The media player supports setting options using <codeph>key</codeph> and <codeph>value</codeph>.
+The difference between this method and <xref keyref="setPlayerOption"/> is that this method uses a String type for <codeph>value</codeph>, while <xref keyref="setPlayerOption"/> uses an Int type. The two cannot be mixed.</p>
+            <p props="unity">The media player supports setting options via <codeph>key</codeph> and <codeph>value</codeph>.
+The difference between this method and <xref keyref="setPlayerOption"/> is that the <codeph>value</codeph> in this method is of type String, while in <xref keyref="setPlayerOption"/> it is of type Int. The two are not interchangeable.</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>Scenarios where technical preview or customized features are needed. In general, you don't need to call this method; the default media player option settings are sufficient.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called before <xref keyref="open"/> or <xref keyref="openWithMediaSource"/>.</p>
+            <p props="rn">This method must be called before <xref keyref="open"/> or <xref keyref="openWithMediaSource"/>.</p>
+            <p props="flutter">This method must be called before <xref keyref="open"/> or <xref keyref="openWithMediaSource"/>.</p>
+            <p props="unity">This method must be called before <xref keyref="open"/> or <xref keyref="openWithMediaSource"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>key</pt>
+                    <pd>The key value.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>value</pt>
+                    <pd>The value.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>key</pt>
+                    <pd>Key value.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>value</pt>
+                    <pd>Value.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>key</pt>
+                    <pd>Key value.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>value</pt>
+                    <pd>Value.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>key</pt>
+                    <pd>Key value.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>value</pt>
+                    <pd>Value.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

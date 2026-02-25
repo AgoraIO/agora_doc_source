@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ibasespatialaudioengine_mutelocalaudiostream_ibasespatialaudioengine">
+    <title><ph keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Stops or resumes publishing the local audio stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int muteLocalAudioStream(boolean mute);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="android">The <xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/> method does not affect any ongoing audio recording because it does not disable the audio capturing device.
+Call this method after calling <codeph>joinChannel</codeph>.
+When using spatial audio, if you need to set whether to stop publishing the local audio stream, Agora recommends calling this method instead of the method with the same name under <xref keyref="IRtcEngine"/>.
+After this method is successfully called, the <xref keyref="onUserMuteAudio"/> and <xref keyref="onRemoteAudioStateChanged"/> callbacks are triggered on the remote client.</note>
+        </section>
+        <section id="related" deliveryTarget="details" props="android">
+            <title>Related Callbacks</title>
+            <p props="android">After this method is successfully called, the <xref keyref="onUserMuteAudio"/> and <xref keyref="onRemoteAudioStateChanged"/> callbacks are triggered on the remote client.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>mute</pt>
+                    <pd>Whether to stop publishing the local audio stream:
+                        <ul>
+                            <li><xref keyref="true"/>: Stop publishing the local audio stream.</li>
+                            <li><xref keyref="false"/>: Publish the local audio stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_loguploadserverinfo">
+    <title><ph keyref="LogUploadServerInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the log server information.</ph><ph id="shortdesc" props="android">Log server configuration information.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct LogUploadServerInfo {
+  const char* serverDomain;
+  const char* serverPath;
+  int serverPort;
+  bool serverHttps;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class LogUploadServerInfo {
+    public String serverDomain = null;
+    public String serverPath = null;
+    public int serverPort = 0;
+    public boolean serverHttps = true;
+  };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>serverDomain</pt>
+                    <pd>Domain name of the log server.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>serverPath</pt>
+                    <pd>Storage path of the log on the server.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>serverPort</pt>
+                    <pd>Port number of the log server.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>serverHttps</pt>
+                    <pd>Whether the log server uses HTTPS protocol:
+                        <ul>
+                            <li><xref keyref="true"/>: Use HTTPS protocol.</li>
+                            <li><xref keyref="false"/>: Use HTTP protocol.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>serverDomain</pt>
+                    <pd>Domain name of the log server.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>serverPath</pt>
+                    <pd>Storage path of logs on the server.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>serverPort</pt>
+                    <pd>Port number of the log server.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>serverHttps</pt>
+                    <pd>Whether the log server uses the HTTPS protocol:
+                        <ul>
+                            <li><xref keyref="true"/>: Uses HTTPS protocol.</li>
+                            <li><xref keyref="false"/>: Uses HTTP protocol.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

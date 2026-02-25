@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudiospectrumobserver_onlocalaudiospectrum">
+    <title><ph keyref="onLocalAudioSpectrum"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">获取本地音频频谱。</ph><ph id="shortdesc" props="rn">获取本地音频频谱。</ph><ph id="shortdesc" props="flutter">获取本地音频频谱。</ph><ph id="shortdesc" props="unity">获取本地音频频谱。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalAudioSpectrum"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onLocalAudioSpectrum?(data: AudioSpectrumData): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onLocalAudioSpectrum?(data: AudioSpectrumData): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(AudioSpectrumData data)? onLocalAudioSpectrum;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnLocalAudioSpectrum(AudioSpectrumData data)
+        {
+            return true;
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">成功调用 <xref keyref="registerAudioSpectrumObserver"/> 实现 <xref keyref="IAudioSpectrumObserver"/> 中的 <xref keyref="onLocalAudioSpectrum"/> 回调并调用 <xref keyref="enableAudioSpectrumMonitor"/> 开启音频频谱监测后，SDK 会按照你设置的时间间隔触发该回调，报告编码前的本地音频数据的频谱。</p>
+            <p props="rn">成功调用 <xref keyref="registerAudioSpectrumObserver"/> 实现 <xref keyref="IAudioSpectrumObserver"/> 中的 <xref keyref="onLocalAudioSpectrum"/> 回调并调用 <xref keyref="enableAudioSpectrumMonitor"/> 开启音频频谱监测后，SDK 会按照你设置的时间间隔触发该回调，报告编码前的本地音频数据的频谱。</p>
+            <p props="flutter">成功调用 <xref keyref="registerAudioSpectrumObserver"/> 实现 <xref keyref="IAudioSpectrumObserver"/> 中的 <xref keyref="onLocalAudioSpectrum"/> 回调并调用 <xref keyref="enableAudioSpectrumMonitor"/> 开启音频频谱监测后，SDK 会按照你设置的时间间隔触发该回调，报告编码前的本地音频数据的频谱。</p>
+            <p props="unity">成功调用 <xref keyref="registerAudioSpectrumObserver"/> 实现 <xref keyref="IAudioSpectrumObserver"/> 中的 <xref keyref="onLocalAudioSpectrum"/> 回调并调用 <xref keyref="enableAudioSpectrumMonitor"/> 开启音频频谱监测后，SDK 会按照你设置的时间间隔触发该回调，报告编码前的本地音频数据的频谱。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>data</pt>
+                    <pd>本地用户的音频频谱数据。详见 <xref keyref="AudioSpectrumData"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>data</pt>
+                    <pd>本地用户的音频频谱数据。详见 <xref keyref="AudioSpectrumData"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>data</pt>
+                    <pd>本地用户的音频频谱数据。详见 <xref keyref="AudioSpectrumData"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>data</pt>
+                    <pd>本地用户的音频频谱数据。详见 <xref keyref="AudioSpectrumData"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>返回值</title>
+            <p props="unity">是否接收频谱数据：
+                <ul>
+                    <li><xref keyref="true"/>: 接收。</li>
+                    <li><xref keyref="false"/>: 不接收。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

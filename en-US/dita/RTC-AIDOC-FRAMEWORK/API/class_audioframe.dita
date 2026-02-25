@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audioframe">
+    <title><ph keyref="AudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Raw audio data.</ph><ph id="shortdesc" props="rn">Raw audio data.</ph><ph id="shortdesc" props="flutter">Raw audio data.</ph><ph id="shortdesc" props="unity">Raw audio data.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class AudioFrame {
+  type?: AudioFrameType;
+  samplesPerChannel?: number;
+  bytesPerSample?: BytesPerSample;
+  channels?: number;
+  samplesPerSec?: number;
+  buffer?: Uint8Array;
+  renderTimeMs?: number;
+  avsync_type?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class AudioFrame {
+  type?: AudioFrameType;
+  samplesPerChannel?: number;
+  bytesPerSample?: BytesPerSample;
+  channels?: number;
+  samplesPerSec?: number;
+  buffer?: Uint8Array;
+  renderTimeMs?: number;
+  avsync_type?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class AudioFrame {
+  const AudioFrame(
+      {this.type,
+      this.samplesPerChannel,
+      this.bytesPerSample,
+      this.channels,
+      this.samplesPerSec,
+      this.buffer,
+      this.renderTimeMs,
+      this.avsyncType});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class AudioFrame
+    {
+        public AudioFrame()
+        {
+            type = AUDIO_FRAME_TYPE.FRAME_TYPE_PCM16;
+            samplesPerChannel = 0;
+            bytesPerSample = BYTES_PER_SAMPLE.TWO_BYTES_PER_SAMPLE;
+            channels = 0;
+            samplesPerSec = 0;
+            RawBuffer = new byte[0];
+            renderTimeMs = 0;
+            avsync_type = 0;
+        }
+
+        public AudioFrame(AUDIO_FRAME_TYPE type, int samplesPerChannel, BYTES_PER_SAMPLE bytesPerSample, int channels, int samplesPerSec,
+            byte[] buffer, long renderTimeMs, int avsync_type)
+        {
+            this.type = type;
+            this.samplesPerChannel = samplesPerChannel;
+            this.bytesPerSample = bytesPerSample;
+            this.channels = channels;
+            this.samplesPerSec = samplesPerSec;
+            this.RawBuffer = buffer;
+            this.renderTimeMs = renderTimeMs;
+            this.avsync_type = avsync_type;
+        }
+
+        public AUDIO_FRAME_TYPE type { set; get; }
+        public int samplesPerChannel { set; get; }
+        public BYTES_PER_SAMPLE bytesPerSample { set; get; }
+        public int channels { set; get; }
+        public int samplesPerSec { set; get; }
+        public byte[] RawBuffer { set; get; }
+        public long renderTimeMs { set; get; }
+        public int avsync_type { set; get; }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>Audio frame type. See <xref keyref="AUDIO_FRAME_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>samplesPerChannel</pt>
+                    <pd>Number of samples per channel.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>bytesPerSample</pt>
+                    <pd>Number of bytes per sample. For PCM, 16-bit (2 bytes) is typically used.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channels</pt>
+                    <pd>Number of channels (if stereo, the data is interleaved).
+                        <ul>
+                            <li>1: Mono</li>
+                            <li>2: Stereo</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>samplesPerSec</pt>
+                    <pd>Number of samples per second per channel.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>buffer</pt>
+                    <pd>Audio data buffer (if stereo, the data is interleaved).
+Buffer data size <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>renderTimeMs</pt>
+                    <pd>Render timestamp of the external audio frame.
+You can use this timestamp to restore the order of audio frames; in scenarios with video (including those using external video sources), this parameter can be used to achieve audio-video synchronization.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>avsync_type</pt>
+                    <pd>Reserved parameter.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>Audio frame type. See <xref keyref="AUDIO_FRAME_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>samplesPerChannel</pt>
+                    <pd>Number of samples per channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>bytesPerSample</pt>
+                    <pd>Number of bytes per sample. For PCM, typically 16 bits, i.e., 2 bytes.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channels</pt>
+                    <pd>Number of channels (for stereo, data is interleaved).
+                        <ul>
+                            <li>1: Mono</li>
+                            <li>2: Stereo</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>samplesPerSec</pt>
+                    <pd>Number of samples per second per channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>buffer</pt>
+                    <pd>Audio data buffer (for stereo, data is interleaved).
+Buffer size <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>renderTimeMs</pt>
+                    <pd>Render timestamp of the external audio frame.
+You can use this timestamp to restore the order of audio frames; in scenarios with video (including those using external video sources), this parameter can be used to achieve audio-video synchronization.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>avsync_type</pt>
+                    <pd>Reserved parameter.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>Audio frame type. See <xref keyref="AUDIO_FRAME_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>samplesPerChannel</pt>
+                    <pd>Number of samples per channel.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>bytesPerSample</pt>
+                    <pd>Number of bytes per sample. For PCM, typically 16 bits, i.e., two bytes.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channels</pt>
+                    <pd>Number of channels (data is interleaved if stereo).
+                        <ul>
+                            <li>1: Mono</li>
+                            <li>2: Stereo</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>samplesPerSec</pt>
+                    <pd>Number of samples per second per channel.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>buffer</pt>
+                    <pd>Audio data buffer (data is interleaved if stereo).
+Buffer size <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>renderTimeMs</pt>
+                    <pd>Render timestamp of the external audio frame.
+You can use this timestamp to restore the audio frame order; in scenarios with video (including external video source), this parameter can be used to achieve audio-video synchronization.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>avsyncType</pt>
+                    <pd>Reserved parameter.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>Audio frame type. See <xref keyref="AUDIO_FRAME_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>samplesPerChannel</pt>
+                    <pd>Number of samples per channel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>bytesPerSample</pt>
+                    <pd>Number of bytes per sample. For PCM, typically 16 bits, i.e., two bytes.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channels</pt>
+                    <pd>Number of channels (for stereo, data is interleaved).
+                        <ul>
+                            <li>1: Mono</li>
+                            <li>2: Stereo</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>samplesPerSec</pt>
+                    <pd>Number of samples per second per channel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RawBuffer</pt>
+                    <pd>Audio data buffer (for stereo, data is interleaved).
+Buffer size <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>renderTimeMs</pt>
+                    <pd>Render timestamp of the external audio frame.
+You can use this timestamp to restore the order of audio frames. In scenarios with video (including those using external video sources), this parameter can be used to achieve audio-video synchronization.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>avsync_type</pt>
+                    <pd>Reserved parameter.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_watermarkconfig">
+    <title><ph keyref="WatermarkConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Configures watermark information.</ph><ph id="shortdesc" props="android">Used to configure watermark-related information.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct WatermarkConfig {
+  const char* id;
+  WATERMARK_SOURCE_TYPE type;
+  union {
+    WatermarkBuffer buffer;
+    WatermarkTimestamp timestamp;
+    WatermarkLiteral literal;
+    const char* imageUrl;
+  };
+  WatermarkOptions options;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class WatermarkConfig {
+  public static final int WATERMARK_TYPE_IMAGE = 0;
+  public static final int WATERMARK_TYPE_BUFFER = 1;
+  public String id;
+  public int type;
+  public WatermarkBuffer buffer = new WatermarkBuffer();
+  public String imageUrl;
+  public WatermarkOptions options = new WatermarkOptions();
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>id</pt>
+                    <pd>Unique identifier of the watermark. It is recommended to use a UUID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>Watermark type. See <xref keyref="WATERMARK_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>buffer</pt>
+                    <pd>Watermark buffer. See <xref keyref="WatermarkBuffer"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>timestamp</pt>
+                    <pd>Timestamp of the watermark.
+                        <note>Supported only on Linux platform.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>literal</pt>
+                    <pd>Text content of the watermark.
+                        <note>Supported only on Linux platform.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>imageUrl</pt>
+                    <pd>URL of the watermark image file. Default is <xref keyref="NULL"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>options</pt>
+                    <pd>Watermark configuration options. See <xref keyref="WatermarkOptions"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>WATERMARK_TYPE_IMAGE</pt>
+                    <pd>Specifies the watermark type as image.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>WATERMARK_TYPE_BUFFER</pt>
+                    <pd>Specifies the watermark type as memory buffer.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>id</pt>
+                    <pd>The unique identifier of the watermark, usually generated using UUID.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>type</pt>
+                    <pd>The watermark type:
+                        <ul>
+                            <li><codeph>WATERMARK_TYPE_IMAGE</codeph>: Image type.</li>
+                            <li><codeph>WATERMARK_TYPE_BUFFER</codeph>: Buffer type.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>buffer</pt>
+                    <pd>The buffer containing watermark image data. See <xref keyref="WatermarkBuffer"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>imageUrl</pt>
+                    <pd>The URL used to load the watermark image.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>Options that define the position and size of the watermark. See <xref keyref="WatermarkOptions"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

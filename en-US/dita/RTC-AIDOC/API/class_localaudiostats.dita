@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_localaudiostats">
+    <title><ph keyref="LocalAudioStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Struct for local audio statistics.</ph><ph id="shortdesc" props="android"><xref keyref="LocalAudioStats"/> provides statistics of the local audio.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct LocalAudioStats {
+  int numChannels;
+  int sentSampleRate;
+  int sentBitrate;
+  int internalCodec;
+  unsigned short txPacketLossRate;
+  int audioDeviceDelay;
+  int audioPlayoutDelay;
+  int earMonitorDelay;
+  int aecEstimatedDelay;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class LocalAudioStats {
+  public int numChannels;
+  public int sentSampleRate;
+  public int sentBitrate;
+  public int internalCodec;
+  public int txPacketLossRate;
+  public int audioDeviceDelay;
+  public int audioPlayoutDelay;
+  public int earMonitorDelay;
+  public int aecEstimatedDelay;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>numChannels</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sentSampleRate</pt>
+                    <pd>The sample rate (Hz) of the local user's audio stream.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sentBitrate</pt>
+                    <pd>The average bitrate (Kbps) of the local user's audio stream.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>internalCodec</pt>
+                    <pd>The internal payload codec used.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txPacketLossRate</pt>
+                    <pd>Audio packet loss rate (%) from the local client to the Agora server before applying anti-packet-loss strategies.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioDeviceDelay</pt>
+                    <pd>Delay (ms) of the audio device module when playing or recording audio.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioPlayoutDelay</pt>
+                    <pd>Playback delay of the device in milliseconds.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>earMonitorDelay</pt>
+                    <pd>Ear monitoring delay in milliseconds, i.e., the delay from microphone input to headphone output.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>aecEstimatedDelay</pt>
+                    <pd>Estimated delay (ms) by the Acoustic Echo Cancellation (AEC) module, i.e., the signal delay from local audio playback to local capture.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>numChannels</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sentSampleRate</pt>
+                    <pd>Sample rate (Hz) of the audio stream sent by the local user.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sentBitrate</pt>
+                    <pd>Average bitrate (Kbps) of the audio stream sent by the local user.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>internalCodec</pt>
+                    <pd>Payload codec used internally.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txPacketLossRate</pt>
+                    <pd>Audio packet loss rate (%) from the local client to the Agora server before applying anti-packet-loss strategies.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioDeviceDelay</pt>
+                    <pd>Delay (ms) of the audio device module when playing or capturing audio.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioPlayoutDelay</pt>
+                    <pd>Delay (ms) in audio playback on the device.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>earMonitorDelay</pt>
+                    <pd>Ear monitoring delay in milliseconds, referring to the delay from microphone input to headphone output.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>aecEstimatedDelay</pt>
+                    <pd>Estimated delay (ms) by the Acoustic Echo Cancellation (AEC) module, referring to the signal delay from local audio playback to local audio capture.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onnetworkquality">
+    <title><ph keyref="onNetworkQuality"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reports the last-mile network quality of each user in the channel.</ph><ph id="shortdesc" props="android"><xref keyref="onNetworkQuality"/> callback. Reports the Last-mile network quality of each user in the channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onNetworkQuality"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onNetworkQuality(uid_t uid, int txQuality, int rxQuality)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onNetworkQuality(int uid, int txQuality, int rxQuality)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback reports the last-mile network condition of each user in the channel. Last-mile refers to the connection between the local device and the Agora edge server. The SDK triggers this callback every two seconds. If there are multiple users in the channel, the SDK triggers this callback multiple times. This callback reflects network quality by sending and receiving broadcast packets within the channel. To avoid broadcast storms and excessive data transmission, this callback reports the network quality of up to 4 remote users simultaneously by default.</p>
+            <p props="android">This callback reflects network quality by sending and receiving broadcast packets within the channel. Too many broadcast packets may cause a broadcast storm. To prevent excessive data transmission in the channel, this callback reports at most 4 remote users' network quality by default.</p>
+            <note props="cpp"><codeph>txQuality</codeph> is <codeph>UNKNOWN</codeph> when the user is not sending a stream; <codeph>rxQuality</codeph> is <codeph>UNKNOWN</codeph> when the user is not receiving a stream.</note>
+            <note props="android"><codeph>txQuality</codeph> is <codeph>UNKNOWN</codeph> when the user does not send a stream; <codeph>rxQuality</codeph> is <codeph>UNKNOWN</codeph> when the user does not receive a stream.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered every two seconds.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>User ID. Specifies the user whose network quality is being reported. A value of 0 indicates the local user.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>txQuality</pt>
+                    <pd>User's uplink network quality rating, evaluated based on uplink transmission bitrate, packet loss rate, average round-trip time (RTT), and jitter. This rating helps determine if the current uplink can support the selected video encoder configuration. For example, a 1000 Kbps uplink may support a 640 × 480 resolution at 15 fps but may not support resolutions higher than 1280 × 720. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxQuality</pt>
+                    <pd>User's downlink network quality rating, evaluated based on downlink packet loss rate, average RTT, and jitter. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID identifying the user whose network quality is reported.
+                        <ul>
+                            <li>0: Indicates the local user.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>txQuality</pt>
+                    <pd>User's uplink network quality rating, evaluated based on transmission bitrate, packet loss rate, average round-trip time (RTT), and jitter:
+                        <ul>
+                            <li><codeph>QUALITY_UNKNOWN</codeph> (0): Unknown quality.</li>
+                            <li><codeph>QUALITY_EXCELLENT</codeph> (1): Excellent quality.</li>
+                            <li><codeph>QUALITY_GOOD</codeph> (2): Appears excellent but slightly lower bitrate.</li>
+                            <li><codeph>QUALITY_POOR</codeph> (3): Slight stutter in communication.</li>
+                            <li><codeph>QUALITY_BAD</codeph> (4): Unable to communicate smoothly.</li>
+                            <li><codeph>QUALITY_VBAD</codeph> (5): Very poor quality, almost unable to communicate.</li>
+                            <li><codeph>QUALITY_DOWN</codeph> (6): Network disconnected, unable to communicate.</li>
+                            <li><codeph>QUALITY_DETECTING</codeph> (8): Performing Last-mile probe test.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxQuality</pt>
+                    <pd>User's downlink network quality rating, evaluated based on packet loss rate, average round-trip time (RTT), and jitter:
+                        <ul>
+                            <li><codeph>QUALITY_UNKNOWN</codeph> (0): Unknown quality.</li>
+                            <li><codeph>QUALITY_EXCELLENT</codeph> (1): Excellent quality.</li>
+                            <li><codeph>QUALITY_GOOD</codeph> (2): Appears excellent but slightly lower bitrate.</li>
+                            <li><codeph>QUALITY_POOR</codeph> (3): Slight stutter in communication.</li>
+                            <li><codeph>QUALITY_BAD</codeph> (4): Unable to communicate smoothly.</li>
+                            <li><codeph>QUALITY_VBAD</codeph> (5): Very poor quality, almost unable to communicate.</li>
+                            <li><codeph>QUALITY_DOWN</codeph> (6): Network disconnected, unable to communicate.</li>
+                            <li><codeph>QUALITY_DETECTING</codeph> (8): Performing Last-mile probe test.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

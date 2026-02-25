@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setdirectcdnstreamingaudioconfiguration">
+    <title><ph keyref="setDirectCdnStreamingAudioConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the audio configuration for audio streams directly pushed to the CDN by the host.</ph><ph id="shortdesc" props="android">Sets the audio configuration for direct CDN streaming by the host.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDirectCdnStreamingAudioConfiguration"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setDirectCdnStreamingAudioConfiguration(AUDIO_PROFILE_TYPE profile) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setDirectCdnStreamingAudioConfiguration(int profile)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">When you set <codeph>publishMicrophoneTrack</codeph> or <codeph>publishCustomAudioTrack</codeph> to <xref keyref="true"/> in <xref keyref="DirectCdnStreamingMediaOptions"/>, you can call this method to configure the audio profile.</p>
+            <p props="android">When you set <codeph>publishMicrophoneTrack</codeph> or <codeph>publishCustomAudioTrack</codeph> to <xref keyref="true"/> in <xref keyref="DirectCdnStreamingMediaOptions"/>, you can call this method to set the audio configuration.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>profile</pt>
+                    <pd>Audio profile, including sample rate, bitrate, encoding mode, and number of channels. See <xref keyref="AUDIO_PROFILE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>profile</pt>
+                    <pd>Audio configuration including sample rate, bitrate, codec mode, and number of channels:
+                        <ul>
+                            <li><codeph>DEFAULT</codeph> (0): Default configuration.
+                                <ul>
+                                    <li>Live interactive: 48 kHz sample rate, music codec, mono, max 64 Kbps.</li>
+                                    <li>Communication: 32 kHz sample rate, speech codec, mono, max 18 Kbps.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>SPEECH_STANDARD</codeph> (1): 32 kHz sample rate, speech codec, mono, max 18 Kbps.</li>
+                            <li><codeph>MUSIC_STANDARD</codeph> (2): 48 kHz sample rate, music codec, mono, max 64 Kbps.</li>
+                            <li><codeph>MUSIC_STANDARD_STEREO</codeph> (3): 48 kHz sample rate, music codec, stereo, max 80 Kbps.</li>
+                            <li><codeph>MUSIC_HIGH_QUALITY</codeph> (4): 48 kHz sample rate, music codec, mono, max 96 Kbps.</li>
+                            <li><codeph>MUSIC_HIGH_QUALITY_STEREO</codeph> (5): 48 kHz sample rate, music codec, stereo, max 128 Kbps.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

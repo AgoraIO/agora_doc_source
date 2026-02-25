@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_takesnapshotex">
+    <title><ph keyref="takeSnapshotEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Takes a snapshot of the specified user's video stream using the connection ID.</ph><ph id="shortdesc" props="android">Takes a snapshot of the video stream using the connection ID.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="takeSnapshotEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int takeSnapshotEx(const RtcConnection&amp; connection, uid_t uid, const char* filePath) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int takeSnapshotEx(RtcConnection connection, int uid, String filePath);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method is asynchronous. When you call it, the SDK has not completed the snapshot operation. When used for local video snapshots, it captures the video stream specified in <xref keyref="ChannelMediaOptions"/>. If the user's video has been pre-processed (e.g., watermarks or beautification), the snapshot result includes these effects.</p>
+            <note props="android"><codeph>takeSnapshotEx</codeph> is an asynchronous call. The SDK does not complete the snapshot immediately. When used for local video, it captures the video stream specified in <xref keyref="ChannelMediaOptions"/>. If preprocessing (e.g., watermark, beautification) is applied, the snapshot includes those effects.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>Applicable in multi-channel scenarios.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after calling <xref keyref="joinChannelEx"/>.</p>
+            <p props="android">Call this method after calling <xref keyref="joinChannelEx"/>.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After this method is successfully called, the SDK triggers the <xref keyref="onSnapshotTaken"/> callback to report whether the snapshot is successful and provide detailed information.</p>
+            <p props="android">After a successful call, the SDK triggers the <xref keyref="onSnapshotTaken"/> callback to report the result and details of the snapshot.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>User ID. To capture the local user's video, set <codeph>uid</codeph> to 0.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>filePath</pt>
+                    <pd>
+                        <note>Make sure the specified path exists and is writable.</note><ph>Local path of the snapshot (including file extension). For example:</ph>
+                        <ul>
+                            <li>Windows: <xref keyref="imagePath-example"/></li>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                            <li>macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID. To capture the local user's video, set <codeph>uid</codeph> to 0.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>filePath</pt>
+                    <pd>
+                        <note>Ensure the specified path exists and is writable.</note><ph>Local path of the snapshot (including file extension). For example:</ph>
+                        <ul>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

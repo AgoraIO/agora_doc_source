@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onuserenablevideo">
+    <title><ph keyref="onUserEnableVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when a remote user enables or disables the video module.</ph><ph id="shortdesc" props="android">Callback when a remote user enables or disables the video module.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserEnableVideo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onUserEnableVideo(uid_t uid, bool enabled)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onUserEnableVideo(int uid, boolean enabled)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Once the video module is disabled, the user can only make voice calls and cannot send or receive any video.</p>
+            <p props="android">This callback is triggered when a remote user calls <xref keyref="enableVideo"/> or <xref keyref="disableVideo"/>. After disabling the video module, the user can only make voice calls and cannot send or receive any video.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">This callback is triggered when the remote user calls <xref keyref="enableVideo"/> or <xref keyref="disableVideo"/>.</p>
+            <p props="android">This callback is triggered when a remote user enables or disables the video module.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>The remote user ID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether the video module is enabled:
+                        <ul>
+                            <li><xref keyref="true"/>: The video module is enabled.</li>
+                            <li><xref keyref="false"/>: The video module is disabled.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether the video module is enabled:
+                        <ul>
+                            <li><xref keyref="true"/>: Video module is enabled.</li>
+                            <li><xref keyref="false"/>: Video module is disabled.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

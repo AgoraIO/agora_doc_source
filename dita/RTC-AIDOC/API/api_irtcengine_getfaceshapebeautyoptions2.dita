@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getfaceshapebeautyoptions2">
+    <title><ph keyref="getFaceShapeBeautyOptions2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">获取当前的美颜特效设置。</ph><ph id="shortdesc" props="android">获取当前的美颜特效设置。</ph><ph id="shortdesc" props="mac">获取当前的美颜特效设置。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getFaceShapeBeautyOptions2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (AgoraFaceShapeBeautyOptions * _Nullable)getFaceShapeBeautyOptions NS_SWIFT_NAME(getFaceShapeBeautyOptions());</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract FaceShapeBeautyOptions getFaceShapeBeautyOptions();</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (AgoraFaceShapeBeautyOptions * _Nullable)getFaceShapeBeautyOptions NS_SWIFT_NAME(getFaceShapeBeautyOptions());</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>当用户在应用中打开美型和风格强度菜单时，可以调用此方法获取当前的美颜特效设置，然后根据结果刷新用户界面中的菜单，并更新 UI。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android ios mac">
+            <title>调用时机</title>
+            <p props="ios">在调用 <xref keyref="enableVideo"/> 方法之后调用该方法。</p>
+            <p props="android">在调用 <xref keyref="enableVideo"/> 之后调用此方法。</p>
+            <p props="mac">在调用 <xref keyref="enableVideo"/> 方法之后调用该方法。</p>
+        </section>
+        <section id="return_values" props="android ios mac">
+            <title>返回值</title>
+            <p props="ios">
+                <ul>
+                    <li>方法调用成功，返回 <xref keyref="FaceShapeBeautyOptions"/> 对象。</li>
+                    <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功，返回 <xref keyref="FaceShapeBeautyOptions"/> 实例。</li>
+                    <li>方法调用失败，返回 <codeph>null</codeph>。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>方法调用成功，返回 <xref keyref="FaceShapeBeautyOptions"/> 对象。</li>
+                    <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

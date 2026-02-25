@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setclientrole1">
+    <title><ph keyref="setClientRole1"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Sets the user role.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setClientRole1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetClientRole(CLIENT_ROLE_TYPE role);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">By default, the SDK sets the user role to audience. You can call this method to set the user role to broadcaster. The user role (<codeph>role</codeph>) determines the permissions at the SDK level, including whether the user can publish streams.</p>
+            <note props="unity">When calling this method outside the channel and setting the user role to <codeph>BROADCASTER</codeph>, the local <xref keyref="onClientRoleChanged"/> callback is not triggered.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="unity">
+            <title>Timing</title>
+            <p props="unity">This method can be called before or after joining a channel.
+If you call this method before joining the channel to set the user role to broadcaster and call <xref keyref="setEnable"/> to enable video rendering, local video preview will automatically start upon joining the channel.
+If you call this method after joining the channel to switch user roles and the call succeeds, the SDK automatically calls <xref keyref="muteLocalAudioStream"/> and <xref keyref="muteLocalVideoStream"/> to update the publishing state of audio and video streams.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="unity">
+            <title>Related Callbacks</title>
+            <p props="unity">If you successfully call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:
+                <ul>
+                    <li>The local <xref keyref="onClientRoleChanged"/> callback. This callback is also triggered when you call this method before joining the channel and set <codeph>role</codeph> to <codeph>AUDIENCE</codeph>.</li>
+                    <li>The remote <xref keyref="onUserJoined"/> or <xref keyref="onUserOffline"/> callback.</li>
+                </ul><ph>If the method call to switch user role fails after joining the channel, the SDK triggers <xref keyref="onClientRoleChangeFailed"/> to report the reason for the failure and the current user role.</ph></p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>role</pt>
+                    <pd>The user role. See <xref keyref="CLIENT_ROLE_TYPE"/>.
+                        <note>Users with the audience role cannot publish audio or video streams in the channel. To publish streams in a live streaming scenario, ensure the user role is switched to broadcaster.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-1: General error (not specifically categorized).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-7: The SDK is not initialized.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

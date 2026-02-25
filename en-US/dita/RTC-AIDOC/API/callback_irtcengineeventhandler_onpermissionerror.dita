@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onpermissionerror">
+    <title><ph keyref="onPermissionError"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reports when the SDK fails to obtain device permissions.</ph><ph id="shortdesc" props="android">Callback triggered when device permission acquisition fails.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPermissionError"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onPermissionError(PERMISSION_TYPE permissionType)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onPermissionError(int permission)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback is triggered when the SDK fails to obtain device permissions, and it reports the type of permission that could not be obtained.</p>
+            <p props="android">This callback is triggered when the SDK fails to obtain device permissions and is used to report the type of permission that could not be obtained.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the SDK fails to obtain device permissions.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>permissionType</pt>
+                    <pd>The type of device permission. See <xref keyref="PERMISSION_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>permission</pt>
+                    <pd>Type of device permission:
+                        <ul>
+                            <li><codeph>RECORD_AUDIO</codeph> (0): Permission for audio capture devices.</li>
+                            <li><codeph>CAMERA</codeph> (1): Permission for the camera.</li>
+                            <li><codeph>SCREEN_CAPTURE</codeph> (2): Permission for screen sharing.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

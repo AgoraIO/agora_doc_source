@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_streamsubscribestate">
+    <title><ph keyref="STREAM_SUBSCRIBE_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">订阅状态。</ph><ph id="shortdesc" props="ios">订阅状态。</ph><ph id="shortdesc" props="mac">订阅状态。</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>SUB_STATE_IDLE</pt>
+                    <pd>（0）：加入频道后的初始订阅状态。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>SUB_STATE_NO_SUBSCRIBED</pt>
+                    <pd>（1）：订阅远端流失败。可能的原因包括：
+                        <ul>
+                            <li>远端用户：
+                                <ul>
+                                    <li>调用 <codeph>muteLocalAudioStream(true)</codeph> 或 <codeph>muteLocalVideoStream(true)</codeph> 停止发送本地媒体流。</li>
+                                    <li>调用 <xref keyref="disableAudio"/> 或 <xref keyref="disableVideo"/> 禁用本地音频或视频模块。</li>
+                                    <li>调用 <codeph>enableLocalAudio(false)</codeph> 或 <codeph>enableLocalVideo(false)</codeph> 禁用本地音视频采集。</li>
+                                    <li>角色为观众。</li>
+                                </ul>
+                            </li>
+                            <li>本地用户：
+                                <ul>
+                                    <li>调用 <codeph>muteRemoteAudioStream(true)</codeph> 或 <codeph>muteAllRemoteAudioStreams(true)</codeph> 停止接收远端音频流。</li>
+                                    <li>调用 <codeph>muteRemoteVideoStream(true)</codeph> 或 <codeph>muteAllRemoteVideoStreams(true)</codeph> 停止接收远端视频流。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>SUB_STATE_SUBSCRIBING</pt>
+                    <pd>（2）：正在订阅远端流。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>SUB_STATE_SUBSCRIBED</pt>
+                    <pd>（3）：已成功接收远端流。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraStreamSubscribeStateIdle</pt>
+                    <pd>（0）：加入频道后的初始订阅状态。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraStreamSubscribeStateNoSubscribed</pt>
+                    <pd>（1）：订阅远端流失败。可能的原因包括：
+                        <ul>
+                            <li>远端用户：
+                                <ul>
+                                    <li>调用 <xref keyref="muteLocalAudioStream"/>（YES）或 <xref keyref="muteLocalVideoStream"/>（YES）停止发送本地媒体流。</li>
+                                    <li>调用 <xref keyref="disableAudio"/> 或 <xref keyref="disableVideo"/> 禁用本地音频或视频模块。</li>
+                                    <li>调用 <xref keyref="enableLocalAudio"/>（NO）或 <xref keyref="enableLocalVideo"/>（NO）禁用本地音频或视频采集。</li>
+                                    <li>角色为观众。</li>
+                                </ul>
+                            </li>
+                            <li>本地用户：
+                                <ul>
+                                    <li>调用 <xref keyref="muteRemoteAudioStream"/>（YES）或 <xref keyref="muteAllRemoteAudioStreams"/>（YES）停止接收远端音频流。</li>
+                                    <li>调用 <xref keyref="muteRemoteVideoStream"/>（YES）或 <xref keyref="muteAllRemoteVideoStreams"/>（YES）停止接收远端视频流。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraStreamSubscribeStateSubscribing</pt>
+                    <pd>（2）：正在订阅远端流。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraStreamSubscribeStateSubscribed</pt>
+                    <pd>（3）：已成功接收远端流。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraStreamSubscribeStateIdle</pt>
+                    <pd>（0）：加入频道后的初始订阅状态。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraStreamSubscribeStateNoSubscribed</pt>
+                    <pd>（1）：订阅远端流失败。可能的原因包括：
+                        <ul>
+                            <li>远端用户：
+                                <ul>
+                                    <li>调用 <xref keyref="muteLocalAudioStream"/>（YES）或 <xref keyref="muteLocalVideoStream"/>（YES）停止发送本地媒体流。</li>
+                                    <li>调用 <xref keyref="disableAudio"/> 或 <xref keyref="disableVideo"/> 禁用本地音频或视频模块。</li>
+                                    <li>调用 <xref keyref="enableLocalAudio"/>（NO）或 <xref keyref="enableLocalVideo"/>（NO）禁用本地音频或视频采集。</li>
+                                    <li>角色为观众。</li>
+                                </ul>
+                            </li>
+                            <li>本地用户：
+                                <ul>
+                                    <li>调用 <xref keyref="muteRemoteAudioStream"/>（YES）或 <xref keyref="muteAllRemoteAudioStreams"/>（YES）停止接收远端音频流。</li>
+                                    <li>调用 <xref keyref="muteRemoteVideoStream"/>（YES）或 <xref keyref="muteAllRemoteVideoStreams"/>（YES）停止接收远端视频流。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraStreamSubscribeStateSubscribing</pt>
+                    <pd>（2）：正在订阅远端流。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraStreamSubscribeStateSubscribed</pt>
+                    <pd>（3）：已成功接收远端流。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

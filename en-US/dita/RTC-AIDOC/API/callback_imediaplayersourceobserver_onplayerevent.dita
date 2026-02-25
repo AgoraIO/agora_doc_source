@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onplayerevent">
+    <title><ph keyref="onPlayerEvent"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Player event callback.</ph><ph id="shortdesc" props="android">Player event callback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlayerEvent"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT eventCode, int64_t elapsedTime, const char* message) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">void onPlayerEvent(Constants.MediaPlayerEvent eventCode, long elapsedTime, String message)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling the <xref keyref="seek"/> method, the SDK triggers this callback to report the result of the <xref keyref="seek"/> operation.</p>
+            <p props="android">After calling the <xref keyref="Seek"/> method, the SDK triggers this callback to report the operation result.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>eventCode</pt>
+                    <pd>Player event. See <xref keyref="MEDIA_PLAYER_EVENT"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>elapsedTime</pt>
+                    <pd>The time when the event occurred, in milliseconds.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>message</pt>
+                    <pd>Information related to the event.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>eventCode</pt>
+                    <pd>Player event. See <xref keyref="MEDIA_PLAYER_EVENT"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>elapsedTime</pt>
+                    <pd>Time when the event occurred, in milliseconds.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>message</pt>
+                    <pd>Additional information about the event.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

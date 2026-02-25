@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audiopcmframe">
+    <title><ph keyref="AudioPcmFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Information of external PCM format audio frame.</ph><ph id="shortdesc" props="rn">Information of external PCM format audio frame.</ph><ph id="shortdesc" props="flutter">Information of external PCM format audio frame.</ph><ph id="shortdesc" props="unity">Information about external PCM format audio frames.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class AudioPcmFrame {
+  capture_timestamp?: number;
+  samples_per_channel_?: number;
+  sample_rate_hz_?: number;
+  num_channels_?: number;
+  bytes_per_sample?: BytesPerSample;
+  data_?: number[];
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class AudioPcmFrame {
+  capture_timestamp?: number;
+  samples_per_channel_?: number;
+  sample_rate_hz_?: number;
+  num_channels_?: number;
+  bytes_per_sample?: BytesPerSample;
+  data_?: number[];
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class AudioPcmFrame {
+  const AudioPcmFrame(
+      {this.captureTimestamp,
+      this.samplesPerChannel,
+      this.sampleRateHz,
+      this.numChannels,
+      this.bytesPerSample,
+      this.data});
+
+  @JsonKey(name: 'capture_timestamp')
+  final int? captureTimestamp;
+
+  @JsonKey(name: 'samples_per_channel_')
+  final int? samplesPerChannel;
+
+  @JsonKey(name: 'sample_rate_hz_')
+  final int? sampleRateHz;
+
+  @JsonKey(name: 'num_channels_')
+  final int? numChannels;
+
+  @JsonKey(name: 'bytes_per_sample')
+  final BytesPerSample? bytesPerSample;
+
+  @JsonKey(name: 'data_')
+  final List&lt;int&gt;? data;
+
+  factory AudioPcmFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$AudioPcmFrameFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioPcmFrameToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public struct AudioPcmFrame {
+        public UInt32 capture_timestamp;
+        public UInt64 samples_per_channel_;
+        public int sample_rate_hz_;
+        public UInt64 num_channels_;
+        public BYTES_PER_SAMPLE bytes_per_sample;
+        public Int16[] data_;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>capture_timestamp</pt>
+                    <pd>Timestamp of the audio frame (ms).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>samples_per_channel_</pt>
+                    <pd>Number of samples per channel.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sample_rate_hz_</pt>
+                    <pd>Audio sampling rate (Hz).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>num_channels_</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>bytes_per_sample</pt>
+                    <pd>Number of bytes per audio sample.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>data_</pt>
+                    <pd>Audio frame data.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>capture_timestamp</pt>
+                    <pd>Timestamp of the audio frame (ms).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>samples_per_channel_</pt>
+                    <pd>Number of samples per channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sample_rate_hz_</pt>
+                    <pd>Audio sampling rate (Hz).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>num_channels_</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>bytes_per_sample</pt>
+                    <pd>Number of bytes per audio sample.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>data_</pt>
+                    <pd>Audio frame data.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureTimestamp</pt>
+                    <pd>Timestamp (ms) of the audio frame.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>samplesPerChannel</pt>
+                    <pd>Number of samples per channel.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sampleRateHz</pt>
+                    <pd>Audio sample rate (Hz).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>numChannels</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>bytesPerSample</pt>
+                    <pd>Number of bytes per audio sample.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>data</pt>
+                    <pd>Audio frame data.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>capture_timestamp</pt>
+                    <pd>Timestamp of the audio frame (ms).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>samples_per_channel_</pt>
+                    <pd>Number of samples per channel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sample_rate_hz_</pt>
+                    <pd>Audio sampling rate (Hz).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>num_channels_</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>bytes_per_sample</pt>
+                    <pd>Number of bytes in the audio data.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>data_</pt>
+                    <pd>Audio frame data.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

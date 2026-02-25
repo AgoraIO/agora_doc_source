@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ivideodevicemanager_getcapability">
+    <title><ph keyref="getCapability"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Retrieves frame information of the video capture device under the specified video format.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCapability"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getCapability(const char* deviceIdUTF8, const uint32_t deviceCapabilityNumber, VideoFormat&amp; capability) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling <xref keyref="numberOfCapabilities"/> to get the number of video formats supported by the video capture device, you can call this method to get the video frame information corresponding to the specified index.</p>
+            <note props="cpp">This method is only applicable on Windows and macOS platforms.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>deviceIdUTF8</pt>
+                    <pd>ID of the video capture device.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>deviceCapabilityNumber</pt>
+                    <pd>Index of the video format. If the return value of <xref keyref="numberOfCapabilities"/> is i, the value range of this parameter is [0, i).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>capability</pt>
+                    <pd>An output parameter. Detailed information of the specified video format, including width (px), height (px), and frame rate (fps). See <xref keyref="VideoFormat"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

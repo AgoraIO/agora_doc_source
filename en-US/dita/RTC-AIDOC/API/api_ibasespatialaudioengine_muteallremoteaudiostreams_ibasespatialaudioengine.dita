@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ibasespatialaudioengine_muteallremoteaudiostreams_ibasespatialaudioengine">
+    <title><ph keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Stops or resumes subscribing to all remote users’ audio streams.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int muteAllRemoteAudioStreams(boolean mute);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">After calling this method, the local user will stop or resume subscribing to all remote users’ audio streams, including users who join the channel later.</p>
+            <note props="android">
+                <ul>
+                    <li>Call this method after calling <codeph>joinChannel</codeph>.</li>
+                    <li>When using spatial audio, if you need to set whether to stop subscribing to all remote users’ audio streams, Agora recommends using this method instead of the method with the same name under <xref keyref="IRtcEngine"/>.</li>
+                    <li>After calling this method, you need to call <xref keyref="updateSelfPosition"/> and <xref keyref="updateRemotePosition"/> to update the spatial positions of the local and remote users, otherwise the settings of this method will not take effect.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>mute</pt>
+                    <pd>Whether to stop subscribing to all remote users’ audio streams:
+                        <ul>
+                            <li><xref keyref="true"/>: Stop subscribing to all remote users’ audio streams.</li>
+                            <li><xref keyref="false"/>: Subscribe to all remote users’ audio streams.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

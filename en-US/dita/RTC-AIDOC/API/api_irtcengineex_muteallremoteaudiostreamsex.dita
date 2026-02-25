@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_muteallremoteaudiostreamsex">
+    <title><ph keyref="muteAllRemoteAudioStreamsEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Stops or resumes subscribing to all remote users' audio streams.</ph><ph id="shortdesc" props="android">Stops or resumes subscribing to all remote users' audio streams.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="muteAllRemoteAudioStreamsEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int muteAllRemoteAudioStreamsEx(bool mute, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int muteAllRemoteAudioStreamsEx(boolean muted, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After you call this method, the local user stops or resumes subscribing to all remote users' audio streams, including those who join the channel after this method is called.</p>
+            <note props="cpp">Call this method after joining a channel. If you want to avoid subscribing to remote users' audio streams before joining a channel, set <codeph>autoSubscribeAudio</codeph> to <xref keyref="false"/> in <xref keyref="ChannelMediaOptions"/> when calling <codeph>joinChannel</codeph>.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method applies to multi-channel scenarios.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">
+                <ul>
+                    <li>Call this method after joining a channel.</li>
+                    <li>If you want to not subscribe to remote users' audio streams before joining a channel, set <codeph>autoSubscribeAudio</codeph> to <xref keyref="false"/> in <xref keyref="ChannelMediaOptions"/> when calling <codeph>joinChannel</codeph>.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mute</pt>
+                    <pd>Whether to stop subscribing to all remote users' audio streams:
+                        <ul>
+                            <li><xref keyref="true"/>: Stop subscribing to all remote users' audio streams.</li>
+                            <li><xref keyref="false"/>: (Default) Subscribe to all remote users' audio streams.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>muted</pt>
+                    <pd>Whether to stop subscribing to all remote users' audio streams:
+                        <ul>
+                            <li><xref keyref="true"/>: Stop subscribing to all remote users' audio streams.</li>
+                            <li><xref keyref="false"/>: (Default) Subscribe to all remote users' audio streams.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_iscameraautoexposurefacemodesupported">
+    <title><ph keyref="isCameraAutoExposureFaceModeSupported"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Checks whether the device supports auto exposure.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="isCameraAutoExposureFaceModeSupported"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool isCameraAutoExposureFaceModeSupported() = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp"><xref keyref="isCameraAutoExposureFaceModeSupported"/> applies to iOS only. You must call this method after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</note>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp"><xref keyref="true"/>: The device supports auto exposure.
+<xref keyref="false"/>: The device does not support auto exposure.</p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setdirectcdnstreamingaudioconfiguration">
+    <title><ph keyref="setDirectCdnStreamingAudioConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the audio encoding properties when the host streams directly to the CDN.</ph><ph id="shortdesc" props="rn">Sets the audio encoding profile for direct CDN streaming from the host.</ph><ph id="shortdesc" props="flutter">Sets the audio encoding configuration when the host pushes the stream directly to the CDN.</ph><ph id="shortdesc" props="unity">Sets the audio encoding configuration for pushing streams directly to the CDN from the host.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDirectCdnStreamingAudioConfiguration"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setDirectCdnStreamingAudioConfiguration(
+    profile: AudioProfileType
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setDirectCdnStreamingAudioConfiguration(
+    profile: AudioProfileType
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDirectCdnStreamingAudioConfiguration(
+      AudioProfileType profile);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetDirectCdnStreamingAudioConfiguration(AUDIO_PROFILE_TYPE profile);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.2.</dd>
+                </dlentry>
+            </dl>
+            <p props="rn">This method is only effective for audio collected from the microphone or custom audio sources, i.e., when <codeph>publishMicrophoneTrack</codeph> or <codeph>publishCustomAudioTrack</codeph> is set to <xref keyref="true"/> in <xref keyref="DirectCdnStreamingMediaOptions"/>.</p>
+            <p props="flutter">This method only takes effect for audio captured by the microphone or custom audio sources, that is, when <codeph>publishMicrophoneTrack</codeph> or <codeph>publishCustomAudioTrack</codeph> is set to <xref keyref="true"/> in <xref keyref="DirectCdnStreamingMediaOptions"/>.</p>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

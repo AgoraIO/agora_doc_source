@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_setexternalvideosource_imediaengine">
+    <title><ph keyref="setExternalVideoSource_IMediaEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Configures an external video source.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalVideoSource_IMediaEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setExternalVideoSource(bool enabled, bool useTexture, EXTERNAL_VIDEO_SOURCE_TYPE sourceType = VIDEO_FRAME, rtc::SenderOptions encodedVideoOption = rtc::SenderOptions()) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After enabling the external video source by calling this method, you can call <xref keyref="pushVideoFrame_IMediaEngine"/> to push external video data to the SDK.</p>
+            <note props="cpp">Switching video sources dynamically is not supported in the channel. To switch from an external to an internal video source, you must leave the channel, call this method to disable the external video source, and then rejoin the channel.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method before joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to use an external video source:
+                        <ul>
+                            <li><xref keyref="true"/>: Use an external video source, and the SDK will prepare to receive external video frames.</li>
+                            <li><xref keyref="false"/>: (Default) Do not use an external video source.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>useTexture</pt>
+                    <pd>Whether to use Texture format for external video frames:
+                        <ul>
+                            <li><xref keyref="true"/>: Use Texture format.</li>
+                            <li><xref keyref="false"/>: (Default) Do not use Texture format.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sourceType</pt>
+                    <pd>Type of external video frame, whether it is encoded. See <xref keyref="EXTERNAL_VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>encodedVideoOption</pt>
+                    <pd>Video encoding options. Required only when <codeph>sourceType</codeph> is <codeph>ENCODED_VIDEO_FRAME</codeph>.
+                        <note>Contact technical support to configure this parameter.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

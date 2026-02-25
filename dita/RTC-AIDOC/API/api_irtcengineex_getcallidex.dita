@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_getcallidex">
+    <title><ph keyref="getCallIdEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取与连接 ID 对应的通话 ID。</ph><ph id="shortdesc" props="ios">获取与连接 ID 对应的通话 ID。</ph><ph id="shortdesc" props="android">获取与连接 ID 对应的通话 ID。</ph><ph id="shortdesc" props="mac">获取与连接 ID 对应的通话 ID。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCallIdEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getCallIdEx(agora::util::AString&amp; callId, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (NSString * _Nullable)getCallIdEx:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(getCallIdEx(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract String getCallIdEx(RtcConnection connection);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (NSString * _Nullable)getCallIdEx:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(getCallIdEx(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">当用户在客户端加入频道时，SDK 会生成一个用于标识该通话的 <codeph>callId</codeph>。你可以调用该方法获取 <codeph>callId</codeph>，并在调用如 <xref keyref="rate"/> 和 <xref keyref="complain"/> 等方法时传入该值。</p>
+            <p props="ios">当你在客户端加入频道时，SDK 会生成一个用于标识该通话的 <codeph>callId</codeph>。你可以调用该方法获取 <codeph>callId</codeph>，并在调用如 <xref keyref="rate"/> 和 <xref keyref="complain"/> 等方法时传入该 <codeph>callId</codeph>。</p>
+            <p props="android">你可以调用该方法获取 <codeph>callId</codeph>，并在调用 <xref keyref="rate"/> 和 <xref keyref="complain"/> 等方法时传入该 ID。</p>
+            <p props="mac">当你在客户端加入频道时，SDK 会生成一个用于标识该通话的 <codeph>callId</codeph>。你可以调用该方法获取 <codeph>callId</codeph>，并在调用如 <xref keyref="rate"/> 和 <xref keyref="complain"/> 等方法时传入该 <codeph>callId</codeph>。</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>该方法适用于多频道场景。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">请在加入频道后调用该方法。</p>
+            <p props="ios">在加入频道后调用此方法。</p>
+            <p props="android">请在加入频道后调用此方法。</p>
+            <p props="mac">在加入频道后调用此方法。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>callId</pt>
+                    <pd>输出参数，当前通话的 <codeph>callId</codeph>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>connection</pt>
+                    <pd>连接信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>方法调用成功时，返回用于标识客户端通话的 <codeph>callId</codeph> 字符串。</li>
+                    <li>方法调用失败时，返回空字符串。</li>
+                </ul>
+            </p>
+            <p props="android">方法调用成功时，返回通话 ID。
+方法调用失败，返回空字符串。</p>
+            <p props="mac">
+                <ul>
+                    <li>方法调用成功时，返回用于标识客户端通话的 <codeph>callId</codeph> 字符串。</li>
+                    <li>方法调用失败时，返回空字符串。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

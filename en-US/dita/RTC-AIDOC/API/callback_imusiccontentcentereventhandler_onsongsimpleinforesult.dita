@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imusiccontentcentereventhandler_onsongsimpleinforesult">
+    <title><ph keyref="onSongSimpleInfoResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for retrieving detailed information about a music resource.</ph><ph id="shortdesc" props="android">Callback for retrieving detailed music resource information.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onSongSimpleInfoResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onSongSimpleInfoResult(const char* requestId, int64_t songCode, const char* simpleInfo, MusicContentCenterStateReason reason) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">void onSongSimpleInfoResult(String requestId, long songCode, String simpleInfo, int reason);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling <xref keyref="getSongSimpleInfo"/>, the SDK triggers this callback.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">Triggered after calling <xref keyref="getSongSimpleInfo"/>.</p>
+            <p props="android">This callback is triggered after calling <xref keyref="getSongSimpleInfo"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>requestId</pt>
+                    <pd>The request ID, used to identify this request uniquely.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>songCode</pt>
+                    <pd>The ID of the music resource, used to identify the music.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>simpleInfo</pt>
+                    <pd>Information about the music resource, including:
+                        <ul>
+                            <li>Start and end time (in milliseconds) of the chorus segment.</li>
+                            <li>Download link for the chorus lyrics.</li>
+                            <li>Duration (in milliseconds) of the chorus segment.</li>
+                            <li>Song name.</li>
+                            <li>Artist name.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>Request status code. See <xref keyref="MusicContentCenterStateReason"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>requestId</pt>
+                    <pd>Request ID, used to uniquely identify this request.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>songCode</pt>
+                    <pd>The identifier of the music resource.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>simpleInfo</pt>
+                    <pd>Information related to the music resource, including:
+                        <ul>
+                            <li>Start and end time (in milliseconds) of the chorus segment.</li>
+                            <li>Download URL of the chorus lyrics.</li>
+                            <li>Duration of the chorus segment (in milliseconds).</li>
+                            <li>Song title.</li>
+                            <li>Artist name.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>Request status code from Music Content Center:
+                        <ul>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_OK</codeph> (0): Request successful.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_ERROR</codeph> (1): General error, no specific reason.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_GATEWAY</codeph> (2): Gateway error. Possible reasons include:
+                                <ul>
+                                    <li>The current temporary token has expired. Please generate a new token.</li>
+                                    <li>The provided token is invalid. Please ensure you are using an RTM token.</li>
+                                    <li>Network error. Please check your network connection.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_PERMISSION_AND_RESOURCE</codeph> (3): Permission error or music resource not found. Please ensure your project has enabled Music Content Center access. Contact technical support if needed.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_INTERNAL_DATA_PARSE</codeph> (4): Internal data parsing error. Please contact technical support.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_LOADING</codeph> (5): Error occurred while loading music resource. Please contact technical support.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_DECRYPTION</codeph> (6): Error occurred while decrypting music resource. Please contact technical support.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_HTTP_INTERNAL</codeph> (7): Internal HTTP error. Please try again later.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

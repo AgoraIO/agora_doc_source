@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onfirstlocalvideoframe">
+    <title><ph keyref="onFirstLocalVideoFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the first local video frame is displayed in the local view.</ph><ph id="shortdesc" props="android">Callback triggered when the first local video frame is displayed in the local view.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onFirstLocalVideoFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstLocalVideoFrame(VIDEO_SOURCE_TYPE source, int width, int height, int elapsed)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onFirstLocalVideoFrame(Constants.VideoSourceType source, int width, int height, int elapsed)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">Triggered when the first local video frame is displayed in the local view.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>source</pt>
+                    <pd>Video source type. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>width</pt>
+                    <pd>Width of the first local video frame in pixels.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>Height of the first local video frame in pixels.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (ms) from calling <codeph>joinChannel</codeph> to this callback. If <codeph>startPreview</codeph> was called before joining the channel, this is the time from <codeph>startPreview</codeph> to this event.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>source</pt>
+                    <pd>Video source type. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>width</pt>
+                    <pd>Width of the first local video frame in pixels.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>Height of the first local video frame in pixels.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (in milliseconds) from the local user calling <codeph>joinChannel</codeph> to the triggering of this callback. If <codeph>startPreview</codeph> was called before joining the channel, this parameter indicates the time from calling <codeph>startPreview</codeph> to the event trigger.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

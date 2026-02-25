@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablecameracenterstage">
+    <title><ph keyref="enableCameraCenterStage"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables Center Stage.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableCameraCenterStage"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableCameraCenterStage(bool enabled) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">By default, Center Stage is disabled. You need to call this method to enable it. To disable the feature, call this method again and set <codeph>enabled</codeph> to <xref keyref="false"/>.</p>
+            <note props="cpp">This method is only applicable to iOS and macOS platforms.
+Due to the high performance requirements of this feature, it is recommended to use it on the following or higher-end devices:
+                <ul>
+                    <li>iPad:
+                        <ul>
+                            <li>12.9-inch iPad Pro (5th generation)</li>
+                            <li>11-inch iPad Pro (3rd generation)</li>
+                            <li>iPad (9th generation)</li>
+                            <li>iPad mini (6th generation)</li>
+                            <li>iPad Air (5th generation)</li>
+                        </ul>
+                    </li>
+                    <li>2020 M1 chip 13-inch MacBook Pro + iPhone 11 (using iPhone as an external camera for MacBook)</li>
+                </ul><ph>Agora recommends calling <xref keyref="isCameraCenterStageSupported"/> before enabling this feature to check whether the current device supports Center Stage.</ph></note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>Center Stage is applicable to scenarios such as online meetings, performances, and online education. The host can use this feature to ensure they always remain centered in the frame, regardless of movement, for better presentation.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Timing</title>
+            <p props="cpp">You must call this method after the camera is successfully enabled, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable Center Stage:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable Center Stage.</li>
+                            <li><xref keyref="false"/>: Disable Center Stage.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudioframeobserverbase_getobservedaudioframeposition_iaudioframeobserverbase">
+    <title><ph keyref="getObservedAudioFramePosition_IAudioFrameObserverBase"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the audio data observation position.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getObservedAudioFramePosition_IAudioFrameObserverBase"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getObservedAudioFramePosition() = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After successfully registering the audio data observer, the SDK calls this callback at each specific audio frame processing node to determine whether to trigger the following callbacks:
+                <ul>
+                    <li><xref keyref="onRecordAudioFrame_IAudioFrameObserverBase"/></li>
+                    <li><xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/></li>
+                    <li><xref keyref="onPlaybackAudioFrameBeforeMixing_IAudioFrameObserverBase"/></li>
+                    <li><xref keyref="onMixedAudioFrame_IAudioFrameObserverBase"/></li>
+                    <li><xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/></li>
+                </ul><ph>You can configure one or more observation positions based on your actual scenario by modifying the return value of <xref keyref="getObservedAudioFramePosition_IAudioFrameObserverBase"/>.</ph><ph>To observe multiple positions simultaneously, use the bitwise OR operator (|). To conserve system resources, it is recommended to set only the necessary observation positions.</ph></p>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">A bitmask used to set the observation position. The values are as follows:
+                <ul>
+                    <li><codeph>AUDIO_FRAME_POSITION_PLAYBACK</codeph> (0x0001): Observe the playback audio after mixing all remote users. Corresponding callback: <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/>.</li>
+                    <li><codeph>AUDIO_FRAME_POSITION_RECORD</codeph> (0x0002): Observe the audio captured by the local user. Corresponding callback: <xref keyref="onRecordAudioFrame_IAudioFrameObserverBase"/>.</li>
+                    <li><codeph>AUDIO_FRAME_POSITION_MIXED</codeph> (0x0004): Observe the playback audio after mixing the local user and all remote users. Corresponding callback: <xref keyref="onMixedAudioFrame_IAudioFrameObserverBase"/>.</li>
+                    <li><codeph>AUDIO_FRAME_POSITION_BEFORE_MIXING</codeph> (0x0008): Observe the audio of a single remote user before mixing. Corresponding callback: <xref keyref="onPlaybackAudioFrameBeforeMixing_IAudioFrameObserverBase"/>.</li>
+                    <li><codeph>AUDIO_FRAME_POSITION_EAR_MONITORING</codeph> (0x0010): Observe the local user's ear monitoring audio. Corresponding callback: <xref keyref="onEarMonitoringAudioFrame_IAudioFrameObserverBase"/>.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

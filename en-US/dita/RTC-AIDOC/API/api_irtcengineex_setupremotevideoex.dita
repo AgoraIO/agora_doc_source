@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_setupremotevideoex">
+    <title><ph keyref="setupRemoteVideoEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Initializes the video view of a remote user.</ph><ph id="shortdesc" props="android">Initializes the video view of a remote user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setupRemoteVideoEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setupRemoteVideoEx(const VideoCanvas&amp; canvas, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setupRemoteVideoEx(VideoCanvas remote, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method initializes the view for the remote video stream on the local device and only affects what you see locally. You can use this method to bind the remote video stream to a specified view and set the rendering and mirror modes for that view.
+
+You need to set the remote user's ID using <xref keyref="VideoCanvas"/> before the remote user joins the channel. If you haven't obtained the remote user's ID, you can set it after receiving the <xref keyref="onUserJoined"/> callback.
+
+If video recording is enabled, the recording service joins the channel as a virtual client, and other clients will also receive the <xref keyref="onUserJoined"/> callback. Do not bind this virtual client to a view, as it does not send any video stream.
+
+To unbind the remote user from the view, set the <codeph>view</codeph> parameter to <xref keyref="NULL"/>. After the remote user leaves the channel, the SDK automatically unbinds the view.</p>
+            <p props="android">You can call this method to bind a remote video stream to a video view and set the rendering and mirror modes of the video view. This method only affects the video view seen by the local user.
+The app must specify the remote user ID using <xref keyref="VideoCanvas"/> before the remote user joins the channel.
+If the app has not yet obtained the remote user ID, you can set it after receiving the <xref keyref="onUserJoined"/> callback.
+If video recording is enabled, the recording service will join the channel as a virtual client, and other clients will also receive the <xref keyref="onUserJoined"/> callback. Do not bind the virtual client to a view in the app, as it does not send any video stream.
+To unbind a remote user from the view, set the <codeph>view</codeph> parameter to <codeph>null</codeph>.
+After the remote user leaves the channel, the SDK automatically unbinds it.</p>
+            <note props="cpp">To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderModeEx"/> method.</note>
+            <note props="android">To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderModeEx"/> method.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method applies to multi-channel scenarios.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>canvas</pt>
+                    <pd>Settings for the remote video view. See <xref keyref="VideoCanvas"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>remote</pt>
+                    <pd>Settings of the remote video view. See <xref keyref="VideoCanvas"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlogfilesize">
+    <title><ph keyref="setLogFileSize"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the log file size.</ph><ph id="shortdesc" props="android">Sets the size of the SDK log file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLogFileSize"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setLogFileSize(unsigned int fileSizeInKBytes) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setLogFileSize(long fileSizeInKBytes);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use the <codeph>logConfig</codeph> parameter in <xref keyref="initialize"/> to set the log file size instead.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Set the log file size using the <codeph>logConfig</codeph> parameter in <xref keyref="initialize"/>.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">By default, the SDK generates five SDK log files and five API call log files, as follows:
+                <ul>
+                    <li>SDK log files: <codeph>agorasdk.log</codeph>, <codeph>agorasdk.1.log</codeph>, <codeph>agorasdk.2.log</codeph>, <codeph>agorasdk.3.log</codeph>, and <codeph>agorasdk.4.log</codeph>.</li>
+                    <li>API call log files: <codeph>agoraapi.log</codeph>, <codeph>agoraapi.1.log</codeph>, <codeph>agoraapi.2.log</codeph>, <codeph>agoraapi.3.log</codeph>, and <codeph>agoraapi.4.log</codeph>.</li>
+                    <li>Each log file has a default size of 2,048 KB and uses UTF-8 encoding.</li>
+                    <li>The SDK writes the latest logs to <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph>.</li>
+                    <li>When <codeph>agorasdk.log</codeph> is full, the SDK handles the log files in the following order:
+                        <ol>
+                            <li>Delete <codeph>agorasdk.4.log</codeph> (if it exists).</li>
+                            <li>Rename <codeph>agorasdk.3.log</codeph> to <codeph>agorasdk.4.log</codeph>.</li>
+                            <li>Rename <codeph>agorasdk.2.log</codeph> to <codeph>agorasdk.3.log</codeph>.</li>
+                            <li>Rename <codeph>agorasdk.1.log</codeph> to <codeph>agorasdk.2.log</codeph>.</li>
+                            <li>Create a new <codeph>agorasdk.log</codeph> file.</li>
+                        </ol>
+                    </li>
+                    <li>The rotation rule for <codeph>agoraapi.log</codeph> is the same as for <codeph>agorasdk.log</codeph>.</li>
+                </ul>
+            </p>
+            <p props="android">By default, the SDK generates five SDK log files and five API call log files, as follows:
+                <ul>
+                    <li>SDK log files: <codeph>agorasdk.log</codeph>, <codeph>agorasdk.1.log</codeph>, <codeph>agorasdk.2.log</codeph>, <codeph>agorasdk.3.log</codeph>, and <codeph>agorasdk.4.log</codeph>.</li>
+                    <li>API call log files: <codeph>agoraapi.log</codeph>, <codeph>agoraapi.1.log</codeph>, <codeph>agoraapi.2.log</codeph>, <codeph>agoraapi.3.log</codeph>, and <codeph>agoraapi.4.log</codeph>.</li>
+                    <li>Each log file is 2,048 KB by default and uses UTF-8 encoding.</li>
+                    <li>The SDK writes the latest logs to <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph>.</li>
+                    <li>When <codeph>agorasdk.log</codeph> is full, the SDK handles the files in the following order:
+                        <ol>
+                            <li>Deletes <codeph>agorasdk.4.log</codeph> (if it exists).</li>
+                            <li>Renames <codeph>agorasdk.3.log</codeph> to <codeph>agorasdk.4.log</codeph>.</li>
+                            <li>Renames <codeph>agorasdk.2.log</codeph> to <codeph>agorasdk.3.log</codeph>.</li>
+                            <li>Renames <codeph>agorasdk.1.log</codeph> to <codeph>agorasdk.2.log</codeph>.</li>
+                            <li>Creates a new <codeph>agorasdk.log</codeph> file.</li>
+                        </ol>
+                    </li>
+                    <li>The rotation rules for <codeph>agoraapi.log</codeph> are the same as for <codeph>agorasdk.log</codeph>.</li>
+                </ul>
+            </p>
+            <note props="cpp">This method only sets the size of the <codeph>agorasdk.log</codeph> file and does not affect the <codeph>agoraapi.log</codeph> file.</note>
+            <note props="android"><xref keyref="setLogFileSize"/> only sets the size of the <codeph>agorasdk.log</codeph> file and does not affect <codeph>agoraapi.log</codeph>.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>fileSizeInKBytes</pt>
+                    <pd>The size of the <codeph>agorasdk.log</codeph> file in KB. The valid range is [128, 20480]. The default value is 2,048 KB. If the value is less than 128 KB, the SDK automatically adjusts it to 128 KB; if the value is greater than 20,480 KB, the SDK adjusts it to 20,480 KB.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>fileSizeInKBytes</pt>
+                    <pd>The size of the <codeph>agorasdk.log</codeph> file in KB. Range: [128, 20480], default is 2,048 KB.
+                        <ul>
+                            <li>If the value is less than 128 KB, the SDK automatically adjusts it to 128 KB.</li>
+                            <li>If the value is greater than 20,480 KB, the SDK automatically adjusts it to 20,480 KB.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

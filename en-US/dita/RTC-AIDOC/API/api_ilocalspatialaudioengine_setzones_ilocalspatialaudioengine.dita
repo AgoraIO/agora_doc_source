@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ilocalspatialaudioengine_setzones_ilocalspatialaudioengine">
+    <title><ph keyref="setZones_ILocalSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets sound insulation zones.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setZones_ILocalSpatialAudioEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setZones(const SpatialAudioZone *zones, unsigned int zoneCount) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">In virtual interactive scenarios, you can use this method to set sound insulation zones and their audio attenuation coefficients. When the sound source (user or media player) and receiver are inside and outside the zone respectively, it simulates real-world sound attenuation caused by buildings:
+                <ul>
+                    <li>When the sound source and receiver are inside and outside the zone respectively, attenuation is determined by the coefficient in <xref keyref="SpatialAudioZone"/>.</li>
+                    <li>When the user or media player is inside the same zone, it is not affected by <xref keyref="SpatialAudioZone"/>. Attenuation is determined by the <codeph>attenuation</codeph> parameter in <xref keyref="setPlayerAttenuation_ILocalSpatialAudioEngine"/> or <xref keyref="setRemoteAudioAttenuation"/>. If neither method is called, the SDK uses a default attenuation coefficient of 0.5.</li>
+                    <li>When the sound source and receiver are in two different zones, the receiver cannot hear the sound source.</li>
+                </ul>
+            </p>
+            <note props="cpp">If this method is called multiple times, the last set of zones takes effect.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>zones</pt>
+                    <pd>Sound insulation zone settings. Set to <xref keyref="NULL"/> to clear all zones. See <xref keyref="SpatialAudioZone"/> for details.
+                        <note>On Windows, make sure the number of elements in the <codeph>zones</codeph> array equals the value of <codeph>zoneCount</codeph>, otherwise it may cause a crash.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>zoneCount</pt>
+                    <pd>Number of sound insulation zones.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

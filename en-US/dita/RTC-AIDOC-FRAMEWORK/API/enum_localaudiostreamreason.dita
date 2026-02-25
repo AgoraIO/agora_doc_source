@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_localaudiostreamreason">
+    <title><ph keyref="LOCAL_AUDIO_STREAM_REASON"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Reason for local audio state change.</ph><ph id="shortdesc" props="rn">Reason for local audio state change.</ph><ph id="shortdesc" props="flutter">Reasons for local audio state change.</ph><ph id="shortdesc" props="unity">Reason for local audio state change.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>LocalAudioStreamReasonOk</pt>
+                    <pd>0: Local audio state is normal.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>LocalAudioStreamReasonFailure</pt>
+                    <pd>1: The reason for the local audio failure is unclear. It is recommended to prompt the user to try rejoining the channel.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>LocalAudioStreamReasonDeviceNoPermission</pt>
+                    <pd>2: No permission to start the local audio capture device. Prompt the user to enable permissions.
+                        <note>Deprecated: This enumeration is deprecated. Use <xref keyref="onPermissionError"/> callback with <codeph>RecordAudio</codeph> instead.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>LocalAudioStreamReasonRecordFailure</pt>
+                    <pd>4: Local audio capture failed.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>LocalAudioStreamReasonEncodeFailure</pt>
+                    <pd>5: Local audio encoding failed.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>LocalAudioStreamReasonNoRecordingDevice</pt>
+                    <pd>6: No local audio capture device. Prompt the user to check in the device control panel whether the microphone is properly connected and functioning.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>LocalAudioStreamReasonNoPlayoutDevice</pt>
+                    <pd>7: No local audio playback device. Prompt the user to check in the device control panel whether the speaker is properly connected and functioning.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>LocalAudioStreamReasonRecordInvalidId</pt>
+                    <pd>9: (Windows only) The ID of the local audio capture device is invalid. Prompt the user to check the audio capture device ID.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>LocalAudioStreamReasonPlayoutInvalidId</pt>
+                    <pd>10: (Windows only) The ID of the local audio playback device is invalid. Prompt the user to check the audio playback device ID.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>LocalAudioStreamReasonOk</pt>
+                    <pd>0: Local audio state is normal.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>LocalAudioStreamReasonFailure</pt>
+                    <pd>1: The cause of the local audio error is unclear. It is recommended to prompt the user to try rejoining the channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>LocalAudioStreamReasonDeviceNoPermission</pt>
+                    <pd>2: No permission to start the local audio capture device. Prompt the user to enable the permission.
+                        <note>Deprecated: This enumeration is deprecated. Use the <xref keyref="onPermissionError"/> callback with <codeph>RecordAudio</codeph> instead.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>LocalAudioStreamReasonDeviceBusy</pt>
+                    <pd>3: The local audio capture device is already in use. Prompt the user to check whether the microphone is occupied by another app. Local audio capture will automatically resume about 5 seconds after the microphone becomes idle. You can also try rejoining the channel after the microphone is idle.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>LocalAudioStreamReasonRecordFailure</pt>
+                    <pd>4: Local audio capture failed.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>LocalAudioStreamReasonEncodeFailure</pt>
+                    <pd>5: Local audio encoding failed.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>LocalAudioStreamReasonInterrupted</pt>
+                    <pd>8: Local audio capture was interrupted by system phone call, voice assistant, or alarm. To resume local audio capture, ask the user to end the call, voice assistant, or alarm.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>localAudioStreamReasonOk</pt>
+                    <pd>0: Local audio is working properly.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>localAudioStreamReasonFailure</pt>
+                    <pd>1: Unknown reason for local audio failure. Suggest prompting the user to try rejoining the channel.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>localAudioStreamReasonDeviceNoPermission</pt>
+                    <pd>2: No permission to start local audio capture device. Prompt the user to grant permission.
+                        <note>Deprecated: This enum is deprecated. Use <codeph>recordAudio</codeph> in the <xref keyref="onPermissionError"/> callback instead.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>localAudioStreamReasonDeviceBusy</pt>
+                    <pd>3: (Android and iOS only) Local audio capture device is in use. Prompt the user to check if the microphone is occupied by another app. Local audio capture will automatically resume about 5 seconds after the microphone becomes idle, or you can try rejoining the channel after it becomes idle.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>localAudioStreamReasonRecordFailure</pt>
+                    <pd>4: Local audio capture failed.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>localAudioStreamReasonEncodeFailure</pt>
+                    <pd>5: Local audio encoding failed.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>localAudioStreamReasonNoRecordingDevice</pt>
+                    <pd>6: (Windows and macOS only) No local audio capture device. Prompt the user to check in the control panel whether the microphone is properly connected and working.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>localAudioStreamReasonNoPlayoutDevice</pt>
+                    <pd>7: (Windows and macOS only) No local audio playback device. Prompt the user to check in the control panel whether the speaker is properly connected and working.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>localAudioStreamReasonInterrupted</pt>
+                    <pd>8: (Android and iOS only) Local audio capture was interrupted by system call, smart assistant, or alarm. To resume local audio capture, ask the user to end the call, assistant, or alarm.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>localAudioStreamReasonRecordInvalidId</pt>
+                    <pd>9: (Windows only) Invalid ID for local audio capture device. Prompt the user to check the audio capture device ID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>localAudioStreamReasonPlayoutInvalidId</pt>
+                    <pd>10: (Windows only) Invalid ID for local audio playback device. Prompt the user to check the audio playback device ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_OK</pt>
+                    <pd>0: Local audio state is normal.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_FAILURE</pt>
+                    <pd>1: Local audio error with unknown reason. Suggest prompting the user to rejoin the channel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_DEVICE_NO_PERMISSION</pt>
+                    <pd>2: No permission to start local audio capture device. Prompt the user to grant permission.
+                        <note>Deprecated: This enum is obsolete. Use <xref keyref="onPermissionError"/> callback with <codeph>RECORD_AUDIO</codeph> instead.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_DEVICE_BUSY</pt>
+                    <pd>3: (Android and iOS only) Local audio capture device is in use. Prompt the user to check if the microphone is occupied by another app. Local audio capture will automatically resume after the microphone is idle for about 5 seconds, or you can try rejoining the channel after it becomes idle.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_RECORD_FAILURE</pt>
+                    <pd>4: Failed to capture local audio.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_ENCODE_FAILURE</pt>
+                    <pd>5: Failed to encode local audio.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_NO_RECORDING_DEVICE</pt>
+                    <pd>6: (Windows and macOS only) No local audio capture device. Prompt the user to check if the microphone is properly connected and working in the device control panel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_NO_PLAYOUT_DEVICE</pt>
+                    <pd>7: (Windows and macOS only) No local audio playback device. Prompt the user to check if the speaker is properly connected and working in the device control panel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_INTERRUPTED</pt>
+                    <pd>8: (Android and iOS only) Local audio capture was interrupted by incoming calls, voice assistants, or alarms. To resume local audio capture, ask the user to end the call, assistant, or alarm.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_RECORD_INVALID_ID</pt>
+                    <pd>9: (Windows only) Invalid ID of the local audio capture device. Prompt the user to check the audio capture device ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>LOCAL_AUDIO_STREAM_REASON_PLAYOUT_INVALID_ID</pt>
+                    <pd>10: (Windows only) Invalid ID of the local audio playback device. Prompt the user to check the audio playback device ID.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

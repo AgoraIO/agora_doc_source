@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_playerconfig_setabrsubscriptionlayer">
+    <title><ph keyref="SetAbrSubscriptionLayer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the video quality layer of the subscribed media stream.</ph><ph id="shortdesc" props="android">Sets the video quality level of the subscribed media stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SetAbrSubscriptionLayer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">void SetAbrSubscriptionLayer(AbrSubscriptionLayer abr_subscription_layer, Error *err = nullptr)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void setAbrSubscriptionLayer(Constants.AbrSubscriptionLayer subscriptionLayer) throws RteException</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">You can switch between different video quality layers based on the actual network conditions, with each layer corresponding to a different resolution. By default, after calling this method, the subscriber can only switch between high and low quality, i.e., <codeph>kRteAbrSubscriptionHigh</codeph> and <codeph>kRteAbrSubscriptionLow</codeph>. If you require more control over video resolution switching, you can contact technical support to enable the ABR (Adaptive Bitrate) feature. Once enabled, you can customize the resolution for each video quality layer, and the subscriber can switch between all quality layers as needed.</p>
+            <p props="android">You can switch between different video quality levels in the subscribed video stream based on actual network conditions. If you need more advanced control over video resolution switching, contact technical support to enable the ABR (Adaptive Bitrate) feature. Once enabled, you can customize the resolution for each video quality level, allowing viewers to switch among all levels of multi-quality video streams as needed.</p>
+            <note props="cpp">If the ABR feature is not enabled when calling this method, the subscribed video quality layer can only be <codeph>kRteAbrSubscriptionHigh</codeph> or <codeph>kRteAbrSubscriptionLow</codeph>.</note>
+            <note props="android">If the ABR feature is not enabled, you can only subscribe to <codeph>HIGH</codeph> or <codeph>LOW</codeph> video quality levels.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In unstable network environments, the subscriber can select an appropriate video quality layer based on the actual network conditions to ensure a smooth viewing experience.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">This method must be called before calling <codeph>SetConfigs</codeph>.</p>
+            <p props="android">This method must be called before calling <codeph>setConfigs</codeph>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>abr_subscription_layer</pt>
+                    <pd>The video quality layer to subscribe to. See <xref keyref="RteAbrSubscriptionLayer"/>. When customizing the resolution from <codeph>kRteAbrSubscriptionLayer1</codeph> to <codeph>kRteAbrSubscriptionLayer6</codeph>, refer to the table below or set according to actual needs:
+
+Note: When customizing resolutions, ensure the video quality layers are sorted by resolution from high to low; when resolutions are the same, sort by frame rate from high to low.
+                        <simpletable>
+                            <sthead>
+                                <stentry>Video Quality Layer</stentry>
+                                <stentry>Resolution</stentry>
+                            </sthead>
+                            <strow>
+                                <stentry><codeph>kRteAbrSubscriptionLayer1</codeph></stentry>
+                                <stentry>2160p (4K)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph>kRteAbrSubscriptionLayer2</codeph></stentry>
+                                <stentry>1440p (2K)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph>kRteAbrSubscriptionLayer3</codeph></stentry>
+                                <stentry>1080p (HD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph>kRteAbrSubscriptionLayer4</codeph></stentry>
+                                <stentry>720p (HD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph>kRteAbrSubscriptionLayer5</codeph></stentry>
+                                <stentry>540p (SD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph>kRteAbrSubscriptionLayer6</codeph></stentry>
+                                <stentry>480p (SD)</stentry>
+                            </strow>
+                        </simpletable>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>Output parameter. Status or error information. See <xref keyref="Error"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>subscriptionLayer</pt>
+                    <pd>The video quality level to subscribe to. See <xref keyref="RteAbrSubscriptionLayer"/>. When customizing resolutions for <codeph>LAYER1</codeph> to <codeph>LAYER6</codeph>, you can refer to the table below or configure based on actual needs:
+Note: When customizing resolutions, you must sort the video quality levels (Layers) from high to low resolution. If the resolutions are the same, sort by frame rate from high to low.
+                        <simpletable>
+                            <sthead>
+                                <stentry>Video Quality Level</stentry>
+                                <stentry>Resolution</stentry>
+                            </sthead>
+                            <strow>
+                                <stentry><codeph>LAYER1</codeph></stentry>
+                                <stentry>2160p (4K)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph>LAYER2</codeph></stentry>
+                                <stentry>1440p (2K)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph>LAYER3</codeph></stentry>
+                                <stentry>1080p (HD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph>LAYER4</codeph></stentry>
+                                <stentry>720p (HD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph>LAYER5</codeph></stentry>
+                                <stentry>540p (SD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph>LAYER6</codeph></stentry>
+                                <stentry>480p (SD)</stentry>
+                            </strow>
+                        </simpletable>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="exception" props="android">
+            <title>Exceptions</title>
+            <p props="android">If the method call fails, the SDK throws an <xref keyref="RteException"/> containing the corresponding error message. You need to catch and handle the exception.</p>
+        </section>
+    </refbody>
+</reference>

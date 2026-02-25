@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_setloopbackdevice">
+    <title><ph keyref="setLoopbackDevice"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">指定声卡采集设备。</ph><ph id="shortdesc" props="flutter">指定声卡采集设备。</ph><ph id="shortdesc" props="unity">指定声卡采集设备。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLoopbackDevice"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setLoopbackDevice(deviceId: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLoopbackDevice(String deviceId);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLoopbackDevice(string deviceId);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">SDK 默认采用当前的播放设备作为声卡采集设备，如果想要指定其他音频设备作为声卡采集设备，则调用该方法并设置 <codeph>deviceId</codeph> 为你想要指定的声卡采集设备。
+该方法可以更改当前的音频采集设备，但不改变系统默认的音频采集设备。假设系统默认的音频采集设备是麦克风 1，你在加入频道前调用该方法设置当前的音频路由为声卡 1，如果在此时进行设备检测，SDK 会对声卡 1 做设备检测。检测结束后，当你加入频道时 SDK 依然会选择使用系统默认的音频采集设备，即麦克风 1。</p>
+            <p props="flutter">SDK 默认采用当前的播放设备作为声卡采集设备，如果想要指定其他音频设备作为声卡采集设备，则调用该方法并设置 <codeph>deviceId</codeph> 为你想要指定的声卡采集设备。
+该方法可以更改当前的音频采集设备，但不改变系统默认的音频采集设备。假设系统默认的音频采集设备是麦克风 1，你在加入频道前调用该方法设置当前的音频路由为声卡 1，如果在此时进行设备检测，SDK 会对声卡 1 做设备检测。检测结束后，当你加入频道时 SDK 依然会选择使用系统默认的音频采集设备，即麦克风 1。</p>
+            <p props="unity">SDK 默认采用当前的播放设备作为声卡采集设备，如果想要指定其他音频设备作为声卡采集设备，则调用该方法并设置 <codeph>deviceId</codeph> 为你想要指定的声卡采集设备。
+该方法可以更改当前的音频采集设备，但不改变系统默认的音频采集设备。假设系统默认的音频采集设备是麦克风 1，你在加入频道前调用该方法设置当前的音频路由为声卡 1，如果在此时进行设备检测，SDK 会对声卡 1 做设备检测。检测结束后，当你加入频道时 SDK 依然会选择使用系统默认的音频采集设备，即麦克风 1。</p>
+            <note props="electron">该方法仅适用于 Windows 和 macOS。
+该方法适用的场景如下：
+使用 App A 播放音乐，通过蓝牙耳机播放；同时使用 App B 进行视频会议，通过扬声器播放。
+                <ul>
+                    <li>如果设置声卡采集设备为蓝牙耳机，则 SDK 会将 App A 中的音乐发布到远端。</li>
+                    <li>如果设置声卡采集设备设置为扬声器，则 SDK 不会将 App A 中的音乐发布到远端。</li>
+                    <li>如果设置声卡采集设备为蓝牙耳机后，又改用有线耳机播放 App A 中的音乐，则需要重新调用该方法，设置声卡采集设备为有线耳机，则 SDK 会继续将 App A 中的音乐发布到远端。</li>
+                </ul>
+            </note>
+            <note props="flutter">该方法仅适用于 Windows 和 macOS。
+该方法适用的场景如下：
+使用 App A 播放音乐，通过蓝牙耳机播放；同时使用 App B 进行视频会议，通过扬声器播放。
+                <ul>
+                    <li>如果设置声卡采集设备为蓝牙耳机，则 SDK 会将 App A 中的音乐发布到远端。</li>
+                    <li>如果设置声卡采集设备设置为扬声器，则 SDK 不会将 App A 中的音乐发布到远端。</li>
+                    <li>如果设置声卡采集设备为蓝牙耳机后，又改用有线耳机播放 App A 中的音乐，则需要重新调用该方法，设置声卡采集设备为有线耳机，则 SDK 会继续将 App A 中的音乐发布到远端。</li>
+                </ul>
+            </note>
+            <note props="unity">该方法仅适用于 Windows 和 macOS。
+该方法适用的场景如下：
+使用 App A 播放音乐，通过蓝牙耳机播放；同时使用 App B 进行视频会议，通过扬声器播放。
+                <ul>
+                    <li>如果设置声卡采集设备为蓝牙耳机，则 SDK 会将 App A 中的音乐发布到远端。</li>
+                    <li>如果设置声卡采集设备设置为扬声器，则 SDK 不会将 App A 中的音乐发布到远端。</li>
+                    <li>如果设置声卡采集设备为蓝牙耳机后，又改用有线耳机播放 App A 中的音乐，则需要重新调用该方法，设置声卡采集设备为有线耳机，则 SDK 会继续将 App A 中的音乐发布到远端。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>deviceId</pt>
+                    <pd>指定 SDK 的声卡采集设备。由 <xref keyref="enumeratePlaybackDevices"/> 获取。插拔设备不会影响 <codeph>deviceId</codeph>。
+最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceId</pt>
+                    <pd>指定 SDK 的声卡采集设备。由 <xref keyref="enumeratePlaybackDevices"/> 获取。插拔设备不会影响 <codeph>deviceId</codeph>。
+最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceId</pt>
+                    <pd>指定 SDK 的声卡采集设备。由 <xref keyref="enumeratePlaybackDevices"/> 获取。插拔设备不会影响 <codeph>deviceId</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

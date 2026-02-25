@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setplaybackspeed">
+    <title><ph keyref="setPlaybackSpeed"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置当前音频文件的播放速度。</ph><ph id="shortdesc" props="ios">设置当前音频文件的播放速度。</ph><ph id="shortdesc" props="android">设置当前音频文件的播放速度。</ph><ph id="shortdesc" props="mac">设置当前音频文件的播放速度。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlaybackSpeed"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setPlaybackSpeed(int speed) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setPlaybackSpeed:(int)speed NS_SWIFT_NAME(setPlaybackSpeed(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">int setPlaybackSpeed(int speed);</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)setPlaybackSpeed:(int)speed NS_SWIFT_NAME(setPlaybackSpeed(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">调用该方法前，需要先调用 <xref keyref="open"/> 方法。</p>
+            <p props="ios">调用该方法前，需要先调用 <xref keyref="open"/> 方法。</p>
+            <p props="android">调用该方法前，需要先调用 <codeph>open</codeph> 方法。</p>
+            <p props="mac">调用该方法前，需要先调用 <xref keyref="open"/> 方法。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>speed</pt>
+                    <pd>播放速度。建议设置为 30 到 400 之间的值，定义如下：
+                        <ul>
+                            <li>30：原始速度的 0.3 倍。</li>
+                            <li>100：原始速度。</li>
+                            <li>400：原始速度的 4 倍。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>speed</pt>
+                    <pd>播放速度。声网建议将该参数设置为 30 到 400 之间的整数，具体含义如下：
+                        <ul>
+                            <li>30：原始速度的 0.3 倍。</li>
+                            <li>100：原始速度。</li>
+                            <li>400：原始速度的 4 倍。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>speed</pt>
+                    <pd>播放速度。建议设置为 30 到 400 之间的值，具体如下：
+                        <ul>
+                            <li>30：原始速度的 0.3 倍。</li>
+                            <li>100：原始速度。</li>
+                            <li>400：原始速度的 4 倍。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>speed</pt>
+                    <pd>播放速度。声网建议将该参数设置为 30 到 400 之间的整数，具体含义如下：
+                        <ul>
+                            <li>30：原始速度的 0.3 倍。</li>
+                            <li>100：原始速度。</li>
+                            <li>400：原始速度的 4 倍。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

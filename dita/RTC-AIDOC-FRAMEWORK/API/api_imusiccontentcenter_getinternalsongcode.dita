@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_getinternalsongcode">
+    <title><ph keyref="getInternalSongCode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">创建音乐资源的副歌片段编号。</ph><ph id="shortdesc" props="rn">创建音乐资源的副歌片段编号。</ph><ph id="shortdesc" props="flutter">创建音乐资源的副歌片段编号。</ph><ph id="shortdesc" props="unity">创建音乐资源的副歌片段编号。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getInternalSongCode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getInternalSongCode(songCode: number, jsonOption: string): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getInternalSongCode(songCode: number, jsonOption: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getInternalSongCode(
+      {required int songCode, required String jsonOption});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetInternalSongCode(Int64 songCode, string jsonOption, ref Int64 internalSongCode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>当你需要播放某一音乐资源的副歌片段前，你需要调用此方法，通过 <codeph>jsonOption</codeph> 参数和该音乐资源的 <codeph>songCode</codeph> 来为该音乐资源的副歌片段创建一个编号，作为该资源的唯一标识。当你获取到该片段的编号后，在你调用相应方法打开、预加载、移除该资源时，将该内部歌曲编号传入 <codeph>songCode</codeph> 参数。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>songCode</pt>
+                    <pd>音乐资源编号，用于标识音乐资源。你可以通过调用 <xref keyref="getMusicCollectionByMusicChartId"/> 或 <xref keyref="searchMusic"/> 方法来获取音乐资源，并通过由此触发的 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源的编号（<codeph>songCode</codeph>）。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>jsonOption</pt>
+                    <pd>
+                        <note>声网会根据你在 <codeph>sceneType</codeph> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 [计费说明](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <codeph>sceneType</codeph> 的值。</note><ph>扩展 JSON 字段，默认为 null。目前支持传入下列值：</ph>
+                        <ul>
+                            <li>sceneType：场景类型。1：直播场景，在线 K 歌房和背景音乐播放；2：直播场景，背景音乐播放；3：（默认）声动语聊场景，在线 K 歌房；4：声动语聊场景，背景音乐播放；5：VR 场景，在线 K 歌房和背景音乐播放。示例：<codeph>{"sceneType":1}</codeph>。</li>
+                            <li>highPart：副歌片段的索引，从 <xref keyref="onMusicCollectionResult"/> 回调中获取，索引从 0 开始。示例：<codeph>{"format": {"highpart": 0}}</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>songCode</pt>
+                    <pd>音乐资源编号，用于标识音乐资源。你可以通过调用 <xref keyref="getMusicCollectionByMusicChartId"/> 或 <xref keyref="searchMusic"/> 方法来获取音乐资源，并通过由此触发的 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源的编号（<codeph>songCode</codeph>）。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>jsonOption</pt>
+                    <pd>
+                        <note>声网会根据你在 <codeph>sceneType</codeph> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 [计费说明](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <codeph>sceneType</codeph> 的值。</note><ph>扩展 JSON 字段，默认为 null。目前支持传入下列值：</ph>
+                        <ul>
+                            <li>sceneType：场景类型。1：直播场景，在线 K 歌房和背景音乐播放；2：直播场景，背景音乐播放；3：（默认）声动语聊场景，在线 K 歌房；4：声动语聊场景，背景音乐播放；5：VR 场景，在线 K 歌房和背景音乐播放。示例：<codeph>{"sceneType":1}</codeph>。</li>
+                            <li>highPart：副歌片段的索引，从 <xref keyref="onMusicCollectionResult"/> 回调中获取，索引从 0 开始。示例：<codeph>{"format": {"highpart": 0}}</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>songCode</pt>
+                    <pd>音乐资源编号，用于标识音乐资源。你可以通过调用 <xref keyref="getMusicCollectionByMusicChartId"/> 或 <xref keyref="searchMusic"/> 方法来获取音乐资源，并通过由此触发的 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源的编号（<codeph>songCode</codeph>）。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>jsonOption</pt>
+                    <pd>
+                        <note>声网会根据你在 <codeph>sceneType</codeph> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 [计费说明](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <codeph>sceneType</codeph> 的值。</note><ph>扩展 JSON 字段，默认为 <codeph><ph keyref="NULL"/></codeph>。目前支持传入下列值：</ph>
+                        <ul>
+                            <li>sceneType：场景类型。1：直播场景，在线 K 歌房和背景音乐播放；2：直播场景，背景音乐播放；3：（默认）声动语聊场景，在线 K 歌房；4：声动语聊场景，背景音乐播放；5：VR 场景，在线 K 歌房和背景音乐播放。示例：<codeph>{"sceneType":1}</codeph>。</li>
+                            <li>highPart：副歌片段的索引，从 <xref keyref="onMusicCollectionResult"/> 回调中获取，索引从 0 开始。示例：<codeph>{"format": {"highpart": 0}}</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>songCode</pt>
+                    <pd>音乐资源编号，用于标识音乐资源。你可以通过调用 <xref keyref="getMusicCollectionByMusicChartId"/> 或 <xref keyref="searchMusic"/> 方法来获取音乐资源，并通过由此触发的 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源的编号（<codeph>songCode</codeph>）。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>jsonOption</pt>
+                    <pd>
+                        <note>声网会根据你在 <codeph>sceneType</codeph> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 [计费说明](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <codeph>sceneType</codeph> 的值。</note><ph>扩展 JSON 字段，默认为 <codeph><ph keyref="NULL"/></codeph>。目前支持传入下列值：</ph>
+                        <ul>
+                            <li>sceneType：场景类型。1：直播场景，在线 K 歌房和背景音乐播放；2：直播场景，背景音乐播放；3：（默认）声动语聊场景，在线 K 歌房；4：声动语聊场景，背景音乐播放；5：VR 场景，在线 K 歌房和背景音乐播放。示例：<codeph>{"sceneType":1}</codeph>。</li>
+                            <li>highPart：副歌片段的索引，从 <codeph>onMusicCollectionResult</codeph> 回调中获取，索引从 0 开始。示例：<codeph>{"format": {"highpart": 0}}</codeph>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>internalSongCode</pt>
+                    <pd>输出参数，音乐资源的内部歌曲编号。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>方法调用成功，返回创建的音乐资源内部编号。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>方法调用成功，返回创建的音乐资源内部编号。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>方法调用成功，返回创建的音乐资源内部编号。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

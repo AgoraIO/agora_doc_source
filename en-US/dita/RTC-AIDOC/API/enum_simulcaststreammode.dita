@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_simulcaststreammode">
+    <title><ph keyref="SIMULCAST_STREAM_MODE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Mode for sending multi-quality video streams.</ph><ph id="shortdesc" props="android">Sets the mode for sending video streams of different quality layers.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>AUTO_SIMULCAST_STREAM</pt>
+                    <pd>(-1): By default, the low-quality video stream is not sent until a subscription request is received from the remote end; after receiving the request, the low-quality stream is automatically sent.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>DISABLE_SIMULCAST_STREAM</pt>
+                    <pd>(0): Never send the low-quality video stream.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ENABLE_SIMULCAST_STREAM</pt>
+                    <pd>(1): Always send the low-quality video stream.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>AUTO_SIMULCAST_STREAM</pt>
+                    <pd>(-1): By default, video low stream is not sent, and starts sending automatically upon receiving a subscription request from the receiver.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>DISABLE_SIMULCAST_STREAM</pt>
+                    <pd>(0): Never sends video low stream.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>ENABLE_SIMULCAST_STREAM</pt>
+                    <pd>(1): Always sends video low stream.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

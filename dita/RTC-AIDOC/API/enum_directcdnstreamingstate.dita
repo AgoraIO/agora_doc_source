@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_directcdnstreamingstate">
+    <title><ph keyref="DIRECT_CDN_STREAMING_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">当前 CDN 推流状态。</ph><ph id="shortdesc" props="ios">当前的 CDN 推流状态。</ph><ph id="shortdesc" props="android">当前 CDN 推流状态。</ph><ph id="shortdesc" props="mac">当前的 CDN 推流状态。</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>废弃</dt>
+                    <dd>自 v4.6.0 版本废弃。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>废弃</dt>
+                    <dd>自 v4.6.0 版本废弃。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>废弃</dt>
+                    <dd>自 v4.6.0 版本废弃。</dd>
+                </dlentry>
+                <dlentry props="mac">
+                    <dt>废弃</dt>
+                    <dd>自 v4.6.0 版本废弃。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>枚举值</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>DIRECT_CDN_STREAMING_STATE_IDLE</pt>
+                    <pd>（0）：CDN 推流开始前的初始状态。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>DIRECT_CDN_STREAMING_STATE_RUNNING</pt>
+                    <pd>（1）：正在向 CDN 推流。调用 <xref keyref="startDirectCdnStreaming"/> 方法时，SDK 返回该值。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>DIRECT_CDN_STREAMING_STATE_STOPPED</pt>
+                    <pd>（2）：已停止向 CDN 推流。调用 <xref keyref="stopDirectCdnStreaming"/> 方法时，SDK 返回该值。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>DIRECT_CDN_STREAMING_STATE_FAILED</pt>
+                    <pd>（3）：向 CDN 推流失败。你可以通过 <xref keyref="onDirectCdnStreamingStateChanged"/> 回调获取的错误信息排查问题后重新推流。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>DIRECT_CDN_STREAMING_STATE_RECOVERING</pt>
+                    <pd>（4）：正在尝试将声网服务器重新连接到 CDN。SDK 最多尝试重连 10 次；若连接未恢复，推流状态将变为 <codeph>DIRECT_CDN_STREAMING_STATE_FAILED</codeph>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraDirectCdnStreamingStateIdle</pt>
+                    <pd>（0）：推流开始前的初始状态。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraDirectCdnStreamingStateRunning</pt>
+                    <pd>（1）：正在向 CDN 推流。调用 <xref keyref="startDirectCdnStreaming"/> 方法后，SDK 返回该值。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraDirectCdnStreamingStateStopped</pt>
+                    <pd>（2）：已停止向 CDN 推流。调用 <xref keyref="stopDirectCdnStreaming"/> 方法后，SDK 返回该值。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraDirectCdnStreamingStateFailed</pt>
+                    <pd>（3）：推流失败。可通过 <xref keyref="onDirectCdnStreamingStateChanged"/> 回调获取失败信息并重新推流。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraDirectCdnStreamingStateRecovering</pt>
+                    <pd>（4）：正在尝试将声网服务器重新连接到 CDN。SDK 最多重连 10 次，若仍未恢复，状态将变为 <codeph>AgoraDirectCdnStreamingStateFailed</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>IDLE</pt>
+                    <pd>（0）：CDN 推流开始前的初始状态。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>RUNNING</pt>
+                    <pd>（1）：正在向 CDN 推流。调用 <xref keyref="startDirectCdnStreaming"/> 方法时，SDK 返回该值。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STOPPED</pt>
+                    <pd>（2）：已停止向 CDN 推流。调用 <xref keyref="stopDirectCdnStreaming"/> 方法时，SDK 返回该值。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>FAILED</pt>
+                    <pd>（3）：向 CDN 推流失败。你可以根据 <xref keyref="onDirectCdnStreamingStateChanged"/> 回调返回的信息排查问题后重新推流。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>RECOVERING</pt>
+                    <pd>（4）：正在尝试将声网服务器重新连接到 CDN。SDK 最多尝试重连 10 次，若仍未恢复连接，推流状态将变为 <codeph>FAILED</codeph>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraDirectCdnStreamingStateIdle</pt>
+                    <pd>（0）：推流开始前的初始状态。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraDirectCdnStreamingStateRunning</pt>
+                    <pd>（1）：正在向 CDN 推流。调用 <xref keyref="startDirectCdnStreaming"/> 方法后，SDK 返回该值。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraDirectCdnStreamingStateStopped</pt>
+                    <pd>（2）：已停止向 CDN 推流。调用 <xref keyref="stopDirectCdnStreaming"/> 方法后，SDK 返回该值。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraDirectCdnStreamingStateFailed</pt>
+                    <pd>（3）：推流失败。可通过 <xref keyref="onDirectCdnStreamingStateChanged"/> 回调获取失败信息并重新推流。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraDirectCdnStreamingStateRecovering</pt>
+                    <pd>（4）：正在尝试将声网服务器重新连接到 CDN。SDK 最多重连 10 次，若仍未恢复，状态将变为 <codeph>AgoraDirectCdnStreamingStateFailed</codeph>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

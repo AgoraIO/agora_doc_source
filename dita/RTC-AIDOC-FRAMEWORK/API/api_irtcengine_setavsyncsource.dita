@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setavsyncsource">
+    <title><ph keyref="setAVSyncSource"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置发流端音画同步。</ph><ph id="shortdesc" props="rn">设置发流端音画同步。</ph><ph id="shortdesc" props="flutter">设置发流端音画同步。</ph><ph id="shortdesc" props="unity">设置发流端音画同步。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAVSyncSource"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setAVSyncSource(channelId: string, uid: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setAVSyncSource(channelId: string, uid: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAVSyncSource({required String channelId, required int uid});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetAVSyncSource(string channelId, uint uid);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">同一用户可能使用两个设备分别发送音频流和视频流，为保证接收端听到和看到的音频和视频的时间同步性，你可以在视频发送端调用该方法，并传入音频发送端的频道名、用户 ID。 SDK 会以发送的音频流的时间戳为基准进行自动调节发送的视频流，以保证即使在两个发送端的上行网络情况不一致（如分别使用 Wi-Fi 和 4G 网络）的情况下，也能让接收到的音视频具有时间同步性。</p>
+            <p props="rn">同一用户可能使用两个设备分别发送音频流和视频流，为保证接收端听到和看到的音频和视频的时间同步性，你可以在视频发送端调用该方法，并传入音频发送端的频道名、用户 ID。 SDK 会以发送的音频流的时间戳为基准进行自动调节发送的视频流，以保证即使在两个发送端的上行网络情况不一致（如分别使用 Wi-Fi 和 4G 网络）的情况下，也能让接收到的音视频具有时间同步性。</p>
+            <p props="flutter">同一用户可能使用两个设备分别发送音频流和视频流，为保证接收端听到和看到的音频和视频的时间同步性，你可以在视频发送端调用该方法，并传入音频发送端的频道名、用户 ID。 SDK 会以发送的音频流的时间戳为基准进行自动调节发送的视频流，以保证即使在两个发送端的上行网络情况不一致（如分别使用 Wi-Fi 和 4G 网络）的情况下，也能让接收到的音视频具有时间同步性。</p>
+            <p props="unity">同一用户可能使用两个设备分别发送音频流和视频流，为保证接收端听到和看到的音频和视频的时间同步性，你可以在视频发送端调用该方法，并传入音频发送端的频道名、用户 ID。 SDK 会以发送的音频流的时间戳为基准进行自动调节发送的视频流，以保证即使在两个发送端的上行网络情况不一致（如分别使用 Wi-Fi 和 4G 网络）的情况下，也能让接收到的音视频具有时间同步性。</p>
+            <note props="electron">建议你在加入频道前调用该方法。</note>
+            <note props="rn">建议你在加入频道前调用该方法。</note>
+            <note props="flutter">建议你在加入频道前调用该方法。</note>
+            <note props="unity">建议你在加入频道前调用该方法。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>channelId</pt>
+                    <pd>标识音频发送端所在频道的频道名。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>音频发送端的用户 ID。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channelId</pt>
+                    <pd>标识音频发送端所在频道的频道名。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>音频发送端的用户 ID。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channelId</pt>
+                    <pd>标识音频发送端所在频道的频道名。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>音频发送端的用户 ID。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelId</pt>
+                    <pd>标识音频发送端所在频道的频道名。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>音频发送端的用户 ID。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onconnectionstatechanged">
+    <title><ph keyref="onConnectionStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the network connection state changes.</ph><ph id="shortdesc" props="android">Callback for network connection state changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onConnectionStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onConnectionStateChanged(CONNECTION_STATE_TYPE state, CONNECTION_CHANGED_REASON_TYPE reason)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onConnectionStateChanged(int state, int reason)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v2.3.2.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">This callback is triggered when the network connection state changes, reporting the current connection state and the reason for the change.</p>
+            <p props="android">The SDK triggers this callback when the network connection state changes and reports the current connection state and the reason for the change.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the network connection state changes.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>The current connection state. See <xref keyref="CONNECTION_STATE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>The reason for the connection state change. See <xref keyref="CONNECTION_CHANGED_REASON_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>Current connection state:
+                        <ul>
+                            <li><codeph>CONNECTION_STATE_DISCONNECTED</codeph> (1): The SDK is disconnected from the Agora edge server.</li>
+                            <li><codeph>CONNECTION_STATE_CONNECTING</codeph> (2): The SDK is connecting to the Agora edge server.</li>
+                            <li><codeph>CONNECTION_STATE_CONNECTED</codeph> (3): The SDK is connected to the Agora edge server.</li>
+                            <li><codeph>CONNECTION_STATE_RECONNECTING</codeph> (4): The SDK is reconnecting to the Agora edge server.</li>
+                            <li><codeph>CONNECTION_STATE_FAILED</codeph> (5): The SDK failed to connect to the Agora edge server.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>Reason for the connection state change:
+                        <ul>
+                            <li><codeph>CONNECTION_CHANGED_CONNECTING</codeph> (0): The SDK is connecting to the Agora edge server.</li>
+                            <li><codeph>CONNECTION_CHANGED_JOIN_SUCCESS</codeph> (1): The SDK successfully joined the channel.</li>
+                            <li><codeph>CONNECTION_CHANGED_INTERRUPTED</codeph> (2): The connection between the SDK and the Agora edge server was interrupted.</li>
+                            <li><codeph>CONNECTION_CHANGED_BANNED_BY_SERVER</codeph> (3): The connection was banned by the Agora server, for example, when a user is kicked from the channel.</li>
+                            <li><codeph>CONNECTION_CHANGED_JOIN_FAILED</codeph> (4): The SDK failed to join the channel. If it fails to join the channel for more than 20 minutes, the SDK stops reconnecting and returns this error code. You need to prompt the user to try switching networks and rejoining the channel.</li>
+                            <li><codeph>CONNECTION_CHANGED_LEAVE_CHANNEL</codeph> (5): The SDK has left the channel.</li>
+                            <li><codeph>CONNECTION_CHANGED_INVALID_APP_ID</codeph> (6): Invalid App ID. You need to use a valid App ID to rejoin the channel and ensure the App ID matches the one generated in the Agora Console.</li>
+                            <li><codeph>CONNECTION_CHANGED_INVALID_CHANNEL_NAME</codeph> (7): Invalid channel name. Please use a valid channel name to rejoin the channel. A valid channel name is a string no longer than 64 bytes and supports the following characters:
+                                <ul>
+                                    <li>All lowercase letters: a to z.</li>
+                                    <li>All uppercase letters: A to Z.</li>
+                                    <li>All numeric digits: 0 to 9.</li>
+                                    <li>Special characters: <codeph>!</codeph>, <codeph>#</codeph>, <codeph>$</codeph>, <codeph>%</codeph>, <codeph>&amp;</codeph>, <codeph>(</codeph>, <codeph>)</codeph>, <codeph>+</codeph>, <codeph>-</codeph>, <codeph>:</codeph>, <codeph>;</codeph>, <codeph>&lt;</codeph>, <codeph>=</codeph>, <codeph>.</codeph>, <codeph>&gt;</codeph>, <codeph>?</codeph>, <codeph>@</codeph>, <codeph>[</codeph>, <codeph>]</codeph>, <codeph>^</codeph>, <codeph>_</codeph>, <codeph>{</codeph>, <codeph>}</codeph>, <codeph>|</codeph>, <codeph>~</codeph>, <codeph>,</codeph>.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>CONNECTION_CHANGED_INVALID_TOKEN</codeph> (8): Invalid Token. Possible reasons include:
+                                <ul>
+                                    <li>App Certificate is enabled in the Agora Console, but no Token is provided when joining the channel.</li>
+                                    <li>The <codeph>uid</codeph> specified in <codeph>joinChannel</codeph> differs from the <codeph>uid</codeph> used to generate the Token.</li>
+                                    <li>The Token used does not match the generated Token.</li>
+                                </ul>
+                            </li>
+                        </ul><ph>  Ensure that:</ph>
+                        <ul>
+                            <li>If App Certificate is enabled, a Token must be provided when joining the channel.</li>
+                            <li>The user ID specified when generating the Token matches the one used to join the channel.</li>
+                            <li>The Token used matches the generated Token.</li>
+                        </ul>
+                        <ul>
+                            <li><codeph>CONNECTION_CHANGED_TOKEN_EXPIRED</codeph> (9): The current Token has expired. You need to generate a new Token on your server and rejoin the channel with it.</li>
+                            <li><codeph>CONNECTION_CHANGED_REJECTED_BY_SERVER</codeph> (10): The user was banned by the server.</li>
+                            <li><codeph>CONNECTION_CHANGED_SETTING_PROXY_SERVER</codeph> (11): After setting a proxy server, the SDK tries to reconnect.</li>
+                            <li><codeph>CONNECTION_CHANGED_RENEW_TOKEN</codeph> (12): The connection state changed due to a Token update.</li>
+                            <li><codeph>CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED</codeph> (13): The client IP address changed. If this error code is received multiple times, prompt the user to switch networks and rejoin the channel.</li>
+                            <li><codeph>CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT</codeph> (14): The keep-alive connection between the SDK and the Agora edge server timed out. The SDK will try to reconnect automatically.</li>
+                            <li><codeph>CONNECTION_CHANGED_REJOIN_SUCCESS</codeph> (15): The SDK successfully rejoined the channel.</li>
+                            <li><codeph>CONNECTION_CHANGED_LOST</codeph> (16): The connection between the SDK and the server was lost.</li>
+                            <li><codeph>CONNECTION_CHANGED_ECHO_TEST</codeph> (17): The connection state changed due to an echo test.</li>
+                            <li><codeph>CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED_BY_USER</codeph> (18): The local IP address was changed by the user.</li>
+                            <li><codeph>CONNECTION_CHANGED_SAME_UID_LOGIN</codeph> (19): The same <codeph>uid</codeph> joined the same channel from different devices. Note: Joining the same RTC channel with the same <codeph>uid</codeph> is undefined behavior, and Agora does not guarantee this error code will always be triggered in such cases.</li>
+                            <li><codeph>CONNECTION_CHANGED_TOO_MANY_BROADCASTERS</codeph> (20): The number of hosts in the channel has reached the limit.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

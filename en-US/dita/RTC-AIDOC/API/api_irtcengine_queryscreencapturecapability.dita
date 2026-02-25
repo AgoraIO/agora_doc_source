@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_queryscreencapturecapability">
+    <title><ph keyref="queryScreenCaptureCapability"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Queries the maximum frame rate supported by the device during screen sharing.</ph><ph id="shortdesc" props="android">Queries the maximum supported frame rate for screen sharing on the device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="queryScreenCaptureCapability"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int queryScreenCaptureCapability() = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int queryScreenCaptureCapability();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.2.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Added since v4.2.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">To ensure optimal performance during screen sharing, especially when enabling high frame rates like 60 fps, it is recommended that you call this method before sharing to query the maximum frame rate supported by the device. If the device does not support high frame rates, you can lower the frame rate of the screen sharing stream accordingly to avoid affecting the quality.</p>
+            <p props="android">To ensure optimal screen sharing performance, especially when enabling high frame rates such as 60 fps, Agora recommends that you use this method to query the maximum supported frame rate before sharing. If the device does not support such high frame rates, you can adjust the screen sharing stream's frame rate accordingly to avoid affecting the sharing quality.</p>
+            <note props="cpp">This method is only available on Android and iOS platforms.</note>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>On success, returns the maximum supported frame rate. See <xref keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY"/>.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: The device supports up to 15 fps.</li>
+                    <li>1: The device supports up to 30 fps.</li>
+                    <li>2: The device supports up to 60 fps.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

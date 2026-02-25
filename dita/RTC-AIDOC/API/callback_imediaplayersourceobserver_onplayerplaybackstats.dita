@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onplayerplaybackstats">
+    <title><ph keyref="onPlayerPlaybackStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">播放中的媒体文件的统计信息回调。</ph><ph id="shortdesc" props="ios">播放媒体文件的统计信息回调。</ph><ph id="shortdesc" props="android">报告正在播放的媒体文件的统计信息回调。</ph><ph id="shortdesc" props="mac">播放媒体文件的统计信息回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlayerPlaybackStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerPlaybackStats(const media::base::PlayerPlaybackStats&amp; stats)</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull)playerKit playbackStats:(AgoraMediaPlayerPlaybackStats *_Nonnull)info NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:playbackStats:));</codeblock>
+                <codeblock props="android" outputclass="language-java">void onPlayerPlaybackStats(PlayerPlaybackStats stats)</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull)playerKit playbackStats:(AgoraMediaPlayerPlaybackStats *_Nonnull)info NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:playbackStats:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">该回调每秒触发一次，用于报告播放中的媒体文件的统计信息。</p>
+            <p props="android">该回调在媒体文件播放过程中每秒触发一次。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android ios mac">
+            <title>触发时机</title>
+            <p props="ios">该回调每秒触发一次，用于报告正在播放的媒体文件的统计信息。</p>
+            <p props="android">该回调在媒体文件播放过程中每秒触发一次。</p>
+            <p props="mac">该回调每秒触发一次，用于报告正在播放的媒体文件的统计信息。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>stats</pt>
+                    <pd>媒体文件的统计信息。详见 <xref keyref="PlayerPlaybackStats"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>playerKit</pt>
+                    <pd>播放器实例。详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>info</pt>
+                    <pd>媒体文件的统计信息。详见 <xref keyref="PlayerPlaybackStats"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>stats</pt>
+                    <pd>媒体文件的统计信息。详见 <xref keyref="PlayerPlaybackStats"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>playerKit</pt>
+                    <pd>播放器实例。详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>info</pt>
+                    <pd>媒体文件的统计信息。详见 <xref keyref="PlayerPlaybackStats"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

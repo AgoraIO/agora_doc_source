@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_channelmediarelayconfiguration">
+    <title><ph keyref="ChannelMediaRelayConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置跨频道媒体流转发。</ph><ph id="shortdesc" props="ios">配置跨频道媒体流转发。</ph><ph id="shortdesc" props="android">用于配置跨频道媒体流转发。</ph><ph id="shortdesc" props="mac">配置跨频道媒体流转发。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
+  ChannelMediaInfo* srcInfo;
+  ChannelMediaInfo* destInfos;
+  int destCount;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayConfiguration: NSObject
+@property (strong, nonatomic, readonly) NSDictionary&lt;NSString *, AgoraChannelMediaRelayInfo *&gt; *_Nullable destinationInfos;
+@property (strong, nonatomic) AgoraChannelMediaRelayInfo *_Nonnull sourceInfo;
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class ChannelMediaRelayConfiguration {
+  private ChannelMediaInfo srcInfo = null;
+  private Map&lt;String, ChannelMediaInfo&gt; destInfos = null;
+}</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayConfiguration: NSObject
+@property (strong, nonatomic, readonly) NSDictionary&lt;NSString *, AgoraChannelMediaRelayInfo *&gt; *_Nullable destinationInfos;
+@property (strong, nonatomic) AgoraChannelMediaRelayInfo *_Nonnull sourceInfo;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>srcInfo</pt>
+                    <pd>源频道的信息，详见 <xref keyref="ChannelMediaInfo"/>。该结构体包含以下成员：
+                        <ul>
+                            <li><codeph>channelName</codeph>：源频道的名称。默认值为 <xref keyref="NULL"/>，表示 SDK 使用当前频道的名称。</li>
+                            <li><codeph>token</codeph>：用于加入源频道的 Token，由 <codeph>channelName</codeph> 和 <codeph>uid</codeph> 生成。
+                                <ul>
+                                    <li>如果你未启用 App Certificate，请将该参数设置为默认值 <xref keyref="NULL"/>，表示 SDK 使用 App ID。</li>
+                                    <li>如果你已启用 App Certificate，必须使用由 <codeph>channelName</codeph> 和 <codeph>uid</codeph> 生成的 Token，且 <codeph>uid</codeph> 必须设置为 0。</li>
+                                </ul>
+                            </li>
+                            <li><codeph>uid</codeph>：用于标识源频道中转发流的唯一用户 ID。建议保持默认值 0 不变。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>destInfos</pt>
+                    <pd>
+                        <note>如果任一目标频道的 Token 过期，整个媒体流转发将停止。建议你为所有目标频道设置相同的 Token 过期时间。</note><ph>目标频道的信息，详见 <xref keyref="ChannelMediaInfo"/>。该结构体包含以下成员：</ph>
+                        <ul>
+                            <li><codeph>channelName</codeph>：目标频道的名称。</li>
+                            <li><codeph>token</codeph>：用于加入目标频道的 Token，由 <codeph>channelName</codeph> 和 <codeph>uid</codeph> 生成。
+                                <ul>
+                                    <li>如果你未启用 App Certificate，请将该参数设置为默认值 <xref keyref="NULL"/>，表示 SDK 使用 App ID。</li>
+                                    <li>如果你已启用 App Certificate，必须使用由 <codeph>channelName</codeph> 和 <codeph>uid</codeph> 生成的 Token。</li>
+                                </ul>
+                            </li>
+                            <li><codeph>uid</codeph>：用于标识目标频道中转发流的唯一用户 ID，取值范围为 0 到 (2^32 - 1)。为避免用户 ID 冲突，该 ID 必须不同于目标频道中其他用户的 ID。默认值为 0，表示 SDK 会生成一个随机 UID。详见 <xref keyref="ChannelMediaInfo"/>。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>destCount</pt>
+                    <pd>目标频道的数量。默认值为 0，取值范围为 0 到 6。请确保该参数的值与 <codeph>destInfos</codeph> 中定义的 <xref keyref="ChannelMediaInfo"/> 结构体数量一致。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>destinationInfos</pt>
+                    <pd>
+                        <note>如果任一目标频道的 Token 过期，整个媒体流转发将停止。建议为所有目标频道设置相同的 Token 过期时间。</note><ph>目标频道信息。包含以下成员：</ph>
+                        <ul>
+                            <li><codeph>channelName</codeph>：目标频道的名称。</li>
+                            <li><codeph>token</codeph>：加入目标频道所需的 Token。该 Token 是使用你在 <codeph>destinationInfos</codeph> 中设置的 <codeph>channelName</codeph> 和 <codeph>uid</codeph> 生成的。
+                                <ul>
+                                    <li>如果未启用 App 证书，将该参数设置为 <xref keyref="NULL"/>，表示 SDK 使用 App ID。</li>
+                                    <li>如果启用了 App 证书，必须使用基于 <codeph>channelName</codeph> 和 <codeph>uid</codeph> 生成的 Token。</li>
+                                </ul>
+                            </li>
+                            <li><codeph>uid</codeph>：用于标识目标频道中转发流的唯一用户 ID，取值范围为 0 到 (2^32 - 1)。为避免用户 ID 冲突，该 ID 必须与目标频道中其他用户的 ID 不同。默认值为 0，表示 SDK 自动生成随机 UID。</li>
+                        </ul><ph>详见 <xref keyref="ChannelMediaInfo"/>。</ph></pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sourceInfo</pt>
+                    <pd>源频道信息。包含以下成员：
+                        <ul>
+                            <li><codeph>channelName</codeph>：源频道的名称。默认值为 <xref keyref="NULL"/>，表示 SDK 使用当前频道名称。</li>
+                            <li><codeph>token</codeph>：加入源频道所需的 Token。该 Token 是使用你在 <codeph>sourceInfo</codeph> 中设置的 <codeph>channelName</codeph> 和 <codeph>uid</codeph> 生成的。
+                                <ul>
+                                    <li>如果未启用 App 证书，将该参数设置为 <xref keyref="NULL"/>，表示 SDK 使用 App ID。</li>
+                                    <li>如果启用了 App 证书，必须使用基于 <codeph>channelName</codeph> 和 <codeph>uid</codeph> 生成的 Token，且 <codeph>uid</codeph> 必须设置为 0。</li>
+                                </ul>
+                            </li>
+                            <li><codeph>uid</codeph>：用于标识源频道中转发流的唯一用户 ID。建议保持默认值 0 不变。</li>
+                        </ul><ph>详见 <xref keyref="ChannelMediaInfo"/>。</ph></pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>srcInfo</pt>
+                    <pd>源频道的媒体信息。详见 <xref keyref="ChannelMediaInfo"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>destInfos</pt>
+                    <pd>目标频道的媒体信息集合，键为频道名，值为对应的媒体信息。详见 <xref keyref="ChannelMediaInfo"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>destinationInfos</pt>
+                    <pd>
+                        <note>如果任一目标频道的 Token 过期，整个媒体流转发将停止。建议为所有目标频道设置相同的 Token 过期时间。</note><ph>目标频道信息。包含以下成员：</ph>
+                        <ul>
+                            <li><codeph>channelName</codeph>：目标频道的名称。</li>
+                            <li><codeph>token</codeph>：加入目标频道所需的 Token。该 Token 是使用你在 <codeph>destinationInfos</codeph> 中设置的 <codeph>channelName</codeph> 和 <codeph>uid</codeph> 生成的。
+                                <ul>
+                                    <li>如果未启用 App 证书，将该参数设置为 <xref keyref="NULL"/>，表示 SDK 使用 App ID。</li>
+                                    <li>如果启用了 App 证书，必须使用基于 <codeph>channelName</codeph> 和 <codeph>uid</codeph> 生成的 Token。</li>
+                                </ul>
+                            </li>
+                            <li><codeph>uid</codeph>：用于标识目标频道中转发流的唯一用户 ID，取值范围为 0 到 (2^32 - 1)。为避免用户 ID 冲突，该 ID 必须与目标频道中其他用户的 ID 不同。默认值为 0，表示 SDK 自动生成随机 UID。</li>
+                        </ul><ph>详见 <xref keyref="ChannelMediaInfo"/>。</ph></pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sourceInfo</pt>
+                    <pd>源频道信息。包含以下成员：
+                        <ul>
+                            <li><codeph>channelName</codeph>：源频道的名称。默认值为 <xref keyref="NULL"/>，表示 SDK 使用当前频道名称。</li>
+                            <li><codeph>token</codeph>：加入源频道所需的 Token。该 Token 是使用你在 <codeph>sourceInfo</codeph> 中设置的 <codeph>channelName</codeph> 和 <codeph>uid</codeph> 生成的。
+                                <ul>
+                                    <li>如果未启用 App 证书，将该参数设置为 <xref keyref="NULL"/>，表示 SDK 使用 App ID。</li>
+                                    <li>如果启用了 App 证书，必须使用基于 <codeph>channelName</codeph> 和 <codeph>uid</codeph> 生成的 Token，且 <codeph>uid</codeph> 必须设置为 0。</li>
+                                </ul>
+                            </li>
+                            <li><codeph>uid</codeph>：用于标识源频道中转发流的唯一用户 ID。建议保持默认值 0 不变。</li>
+                        </ul><ph>详见 <xref keyref="ChannelMediaInfo"/>。</ph></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

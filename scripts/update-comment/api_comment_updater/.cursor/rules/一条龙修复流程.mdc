@@ -1,0 +1,93 @@
+---
+description: 当用户说"一条龙修复"时，必须严格按照本规则执行
+alwaysApply: false
+---
+# API注释更新工具一条龙修复流程规则
+
+## 🎯 核心流程约定
+
+当用户说"一条龙修复"时，必须严格按照以下流程执行：
+
+### 📋 **标准一条龙修复流程**
+
+1. **🧪 使用测试模式进行测试**
+   ```bash
+   # 对于Java/Android平台
+   python -m src.main test --action inject --platform android-ng
+   
+   # 对于C++平台  
+   python -m src.main test --action inject --platform cpp-ng
+   ```
+
+2. **📊 观察输出日志和实际文件内容**
+   - 检查控制台输出的成功/失败统计
+   - 检查 `tests/src/test.java` 或 `tests/src/test.h` 的实际内容
+   - 分析是否符合预期
+
+3. **🔍 分析问题**
+   - 如果发现问题，分析根本原因
+   - 查看相关代码逻辑
+
+4. **🔧 修复问题**
+   - 实施修复方案
+   - 确保修复逻辑正确
+
+5. **🔄 重置测试文件进行重测**
+   ```bash
+   # 重置Java测试文件
+   cp "tests/src_copy/test copy.java" tests/src/test.java
+   
+   # 重置C++测试文件  
+   cp "tests/src_copy/test copy.h" tests/src/test.h
+   ```
+
+6. **♻️ 重复测试直至符合预期**
+   - 重新执行步骤1-5
+   - 直到所有功能正常工作
+
+### 🔄 **Java平台特殊规则**
+
+Java平台的一条龙修复需要额外遵循：
+
+1. **📚 对比C++逻辑**
+   - 分析问题时，同步查看C++的相关逻辑
+   - 判断是否因为没有同步C++导致的问题
+   - 确认是C++本身逻辑问题还是Java未同步
+
+2. **🛡️ 公用部分影响检查**
+   - 如果修复涉及多平台公用部分（如 `comment_normalizer.py`、`file_utils.py` 等）
+   - 必须运行C++回归测试确保不影响C++功能
+   ```bash
+   python tests/run_cpp_regression.py
+   ```
+
+
+## 📝 **约定记录**
+
+### **已确认的技术约定**
+1. **注释格式统一**: Java和C++使用相同的 `normalized_data.get("comments", [])` 格式
+2. **写入成功判断**: 使用 `write_file_content()` + `return True` 模式，异常由try-catch处理
+3. **搜索文件范围**: 继承 `BaseLocator._get_search_files()` 方法，不要重写
+4. **测试环境隔离**: 使用专门的测试配置，不影响生产配置
+
+### **性能和质量标准**
+- API注入成功率: 100%
+- 类注入成功率: 100%  
+- 枚举注入成功率: 100%
+- C++回归测试: 必须全部通过
+
+## 🎯 **成功标准**
+
+一条龙修复被认为成功的标准：
+
+1. **✅ 测试模式输出**: `API X/X, 类 Y/Y, 枚举 Z/Z` 全部成功
+2. **✅ 实际文件内容**: 注释正确注入到目标位置
+3. **✅ C++兼容性**: 回归测试全部通过（如适用）
+4. **✅ 日志无错误**: 没有ERROR级别的日志输出
+
+---
+
+**版本**: v1.0  
+**创建时间**: 2025-09-17  
+**适用项目**: API注释更新工具 (api_comment_updater)  
+**状态**: 生效中 ✅

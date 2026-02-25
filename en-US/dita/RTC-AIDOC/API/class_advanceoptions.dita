@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_advanceoptions">
+    <title><ph keyref="AdvanceOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure advanced options for video encoding.</ph><ph id="shortdesc" props="android">Used to configure advanced options for video encoding.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct AdvanceOptions {
+  ENCODING_PREFERENCE encodingPreference;
+  COMPRESSION_PREFERENCE compressionPreference;
+  bool encodeAlpha;
+  bool operator==(const AdvanceOptions&amp; rhs) const {
+    return encodingPreference == rhs.encodingPreference &amp;&amp; 
+           compressionPreference == rhs.compressionPreference &amp;&amp;
+           encodeAlpha == rhs.encodeAlpha;
+  }
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">static public class AdvanceOptions {
+    public ENCODING_PREFERENCE encodingPreference;
+    public COMPRESSION_PREFERENCE compressionPreference;
+    public boolean encodeAlpha;
+  }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>encodingPreference</pt>
+                    <pd>Video encoder preference setting. See <xref keyref="ENCODING_PREFERENCE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>compressionPreference</pt>
+                    <pd>Compression preference setting for video encoding. See <xref keyref="COMPRESSION_PREFERENCE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>encodeAlpha</pt>
+                    <pd>Whether to encode and send Alpha data in the video frame:
+                        <ul>
+                            <li><xref keyref="true"/>: Encode and send Alpha data.</li>
+                            <li><xref keyref="false"/>: (default) Do not encode or send Alpha data.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>encodingPreference</pt>
+                    <pd>Video encoder priority setting. See <xref keyref="ENCODING_PREFERENCE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>compressionPreference</pt>
+                    <pd>Compression preference setting for video encoding. See <xref keyref="COMPRESSION_PREFERENCE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>encodeAlpha</pt>
+                    <pd>Whether to encode and send alpha data in the video frame to the remote:
+                        <ul>
+                            <li><xref keyref="true"/>: Encode and send alpha data.</li>
+                            <li><xref keyref="false"/> (default): Do not encode or send alpha data.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

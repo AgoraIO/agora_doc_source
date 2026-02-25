@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_playerobserver_onaudiovolumeindication_playerobserver">
+    <title><ph keyref="onAudioVolumeIndication_PlayerObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onAudioVolumeIndication_PlayerObserver"/> callback. Triggered when the player volume changes.</ph><ph id="shortdesc" props="android">Callback for player volume changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioVolumeIndication_PlayerObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioVolumeIndication(int32_t volume) {}</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onAudioVolumeIndication(int volume)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">When the player volume changes, the SDK triggers this callback.</p>
+            <p props="android">This callback is triggered when the player volume changes.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>volume</pt>
+                    <pd>Current volume of the player, ranging from [0, 225].</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>volume</pt>
+                    <pd>The current volume of the player, ranging from [0, 225].</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

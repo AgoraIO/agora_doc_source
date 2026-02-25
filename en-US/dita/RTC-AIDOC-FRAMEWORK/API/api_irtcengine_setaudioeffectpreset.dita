@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setaudioeffectpreset">
+    <title><ph keyref="setAudioEffectPreset"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the SDK's preset voice effects.</ph><ph id="shortdesc" props="rn">Sets the SDK's preset voice effects.</ph><ph id="shortdesc" props="flutter">Sets the SDK preset voice effect.</ph><ph id="shortdesc" props="unity">Sets SDK preset voice effects.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAudioEffectPreset"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setAudioEffectPreset(preset: AudioEffectPreset): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setAudioEffectPreset(preset: AudioEffectPreset): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioEffectPreset(AudioEffectPreset preset);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioEffectPreset(AUDIO_EFFECT_PRESET preset);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Call this method to set the SDK's preset voice effects for the local user who is sending the stream. This does not change the gender characteristics of the original voice. Once the effect is set, all users in the channel can hear it.</p>
+            <p props="rn">Call this method to set the SDK's preset voice effects for the local user who is sending the stream. This does not change the gender characteristics of the original voice. After setting the effect, all users in the channel can hear it.</p>
+            <p props="flutter">You can call this method to set the SDK preset voice effect for the local user who is sending the stream, without changing the gender characteristics of the original voice. After setting the effect, all users in the channel can hear it.</p>
+            <p props="unity">Call this method to set SDK preset voice effects for local sending users without altering the gender characteristics of the original voice. Once set, all users in the channel can hear the effect.</p>
+            <note props="electron">
+                <ul>
+                    <li>Do not set the <codeph>profile</codeph> parameter in <xref keyref="setAudioProfile"/> to <codeph>AudioProfileSpeechStandard</codeph>(1) or <codeph>AudioProfileIot</codeph>(6), otherwise this method will not take effect.</li>
+                    <li>If you call <xref keyref="setAudioEffectPreset"/> and set an enum value other than <codeph>RoomAcoustics3dVoice</codeph> or <codeph>PitchCorrection</codeph>, do not call <xref keyref="setAudioEffectParameters"/>, or the effect set by <xref keyref="setAudioEffectPreset"/> will be overridden.</li>
+                    <li>After calling <xref keyref="setAudioEffectPreset"/>, it is not recommended to call the following methods, or the effect set by <xref keyref="setAudioEffectPreset"/> will be overridden:
+                        <ul>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>This method depends on the voice beautifier dynamic library <codeph>libagora_audio_beauty_extension.dll</codeph>. If this library is deleted, the feature cannot be enabled properly.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>Do not set the <codeph>profile</codeph> parameter of <xref keyref="setAudioProfile"/> to <codeph>AudioProfileSpeechStandard</codeph>(1) or <codeph>AudioProfileIot</codeph>(6), otherwise this method will not take effect.</li>
+                    <li>If you call <xref keyref="setAudioEffectPreset"/> and set an enum other than <codeph>RoomAcoustics3dVoice</codeph> or <codeph>PitchCorrection</codeph>, do not call <xref keyref="setAudioEffectParameters"/>, or the effect set by <xref keyref="setAudioEffectPreset"/> will be overridden.</li>
+                    <li>After calling <xref keyref="setAudioEffectPreset"/>, it is not recommended to call the following methods, or the effect set by <xref keyref="setAudioEffectPreset"/> will be overridden:
+                        <ul>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>This method depends on the beautifier dynamic library <codeph>libagora_audio_beauty_extension.dll</codeph>. Deleting this library will cause the feature to fail to start properly.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>Do not set the <codeph>profile</codeph> parameter of <xref keyref="setAudioProfile"/> to <codeph>audioProfileSpeechStandard</codeph>(1) or <codeph>audioProfileIot</codeph>(6), otherwise this method will not take effect.</li>
+                    <li>If you call <xref keyref="setAudioEffectPreset"/> and set an enum other than <codeph>roomAcoustics3dVoice</codeph> or <codeph>pitchCorrection</codeph>, do not call <xref keyref="setAudioEffectParameters"/>, otherwise the effect set by <xref keyref="setAudioEffectPreset"/> will be overridden.</li>
+                    <li>After calling <xref keyref="setAudioEffectPreset"/>, it is not recommended to call the following methods, otherwise the effect set by <xref keyref="setAudioEffectPreset"/> will be overridden:
+                        <ul>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>This method depends on the voice beautifier dynamic library <codeph>libagora_audio_beauty_extension.dll</codeph>. Deleting this library will cause the feature to not function properly.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>Do not set the <codeph>profile</codeph> parameter of <xref keyref="setAudioProfile2"/> to <codeph>AUDIO_PROFILE_SPEECH_STANDARD</codeph>(1) or <codeph>AUDIO_PROFILE_IOT</codeph>(6), otherwise this method will not take effect.</li>
+                    <li>If you call <xref keyref="setAudioEffectPreset"/> with an enum other than <codeph>ROOM_ACOUSTICS_3D_VOICE</codeph> or <codeph>PITCH_CORRECTION</codeph>, do not call <xref keyref="setAudioEffectParameters"/>, or the effect set by <xref keyref="setAudioEffectPreset"/> will be overridden.</li>
+                    <li>After calling <xref keyref="setAudioEffectPreset"/>, do not call the following methods, or the effect set by <xref keyref="setAudioEffectPreset"/> will be overridden:
+                        <ul>
+                            <li><xref keyref="setVoiceBeautifierPreset"/></li>
+                            <li><xref keyref="setLocalVoicePitch"/></li>
+                            <li><xref keyref="setLocalVoiceEqualization"/></li>
+                            <li><xref keyref="setLocalVoiceReverb"/></li>
+                            <li><xref keyref="setVoiceBeautifierParameters"/></li>
+                            <li><xref keyref="setVoiceConversionPreset"/></li>
+                        </ul>
+                    </li>
+                    <li>This method depends on the voice beautifier dynamic library <codeph>libagora_audio_beauty_extension.dll</codeph>. If the library is removed, the feature cannot be enabled properly.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Can be called before or after joining a channel.
+To achieve better voice effects, it is recommended to perform the following before calling this method:
+                <ul>
+                    <li>Call <xref keyref="setAudioScenario"/> to set the audio scenario to high quality, i.e., <codeph>AudioScenarioGameStreaming</codeph>(3).</li>
+                    <li>Call <xref keyref="setAudioProfile"/> to set <codeph>profile</codeph> to <codeph>AudioProfileMusicHighQuality</codeph>(4) or <codeph>AudioProfileMusicHighQualityStereo</codeph>(5).</li>
+                </ul>
+            </p>
+            <p props="rn">Can be called before or after joining a channel.
+To achieve better voice effects, it is recommended to perform the following operations before calling this method:
+                <ul>
+                    <li>Call <xref keyref="setAudioScenario"/> to set the audio scenario to high-quality mode, i.e., <codeph>AudioScenarioGameStreaming</codeph>(3).</li>
+                    <li>Call <xref keyref="setAudioProfile"/> to set the <codeph>profile</codeph> to <codeph>AudioProfileMusicHighQuality</codeph>(4) or <codeph>AudioProfileMusicHighQualityStereo</codeph>(5).</li>
+                </ul>
+            </p>
+            <p props="flutter">Can be called before and after joining a channel.
+To achieve better voice effects, it is recommended that you perform the following operations before calling this method:
+                <ul>
+                    <li>Call <xref keyref="setAudioScenario"/> to set the audio scenario to high-quality, i.e., <codeph>audioScenarioGameStreaming</codeph>(3).</li>
+                    <li>Call <xref keyref="setAudioProfile"/> to set the <codeph>profile</codeph> to <codeph>audioProfileMusicHighQuality</codeph>(4) or <codeph>audioProfileMusicHighQualityStereo</codeph>(5).</li>
+                </ul>
+            </p>
+            <p props="unity">Can be called before or after joining a channel.
+To achieve better voice effects, it is recommended to do the following before calling this method:
+                <ul>
+                    <li>Call <xref keyref="setAudioScenario"/> to set the audio scenario to high-quality, i.e., <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph>(3).</li>
+                    <li>Call <xref keyref="setAudioProfile2"/> and set <codeph>profile</codeph> to <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY</codeph>(4) or <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</codeph>(5).</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>preset</pt>
+                    <pd>The preset audio effect option. See <xref keyref="AUDIO_EFFECT_PRESET"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>preset</pt>
+                    <pd>Preset audio effect option. See <xref keyref="AUDIO_EFFECT_PRESET"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>preset</pt>
+                    <pd>Preset effect options. See <xref keyref="AUDIO_EFFECT_PRESET"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>preset</pt>
+                    <pd>Preset effect options. See <xref keyref="AUDIO_EFFECT_PRESET"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

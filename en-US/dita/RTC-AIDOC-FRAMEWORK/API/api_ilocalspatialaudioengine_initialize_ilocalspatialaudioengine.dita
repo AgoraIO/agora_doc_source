@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ilocalspatialaudioengine_initialize_ilocalspatialaudioengine">
+    <title><ph keyref="initialize_ILocalSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Initializes <xref keyref="ILocalSpatialAudioEngine"/>.</ph><ph id="shortdesc" props="rn">Initializes <xref keyref="ILocalSpatialAudioEngine"/>.</ph><ph id="shortdesc" props="flutter">Initializes the <xref keyref="ILocalSpatialAudioEngine"/>.</ph><ph id="shortdesc" props="unity">Initializes <xref keyref="ILocalSpatialAudioEngine"/>.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="initialize_ILocalSpatialAudioEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract initialize(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract initialize(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; initialize();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int Initialize();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">
+                <ul>
+                    <li>You need to call this method to initialize <xref keyref="ILocalSpatialAudioEngine"/> before calling any other methods in the <xref keyref="ILocalSpatialAudioEngine"/> class.</li>
+                    <li>The SDK supports only one <xref keyref="ILocalSpatialAudioEngine"/> instance per app.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>You need to call this method to initialize <xref keyref="ILocalSpatialAudioEngine"/> before calling other methods of the <xref keyref="ILocalSpatialAudioEngine"/> class.</li>
+                    <li>The SDK only supports creating one instance of <xref keyref="ILocalSpatialAudioEngine"/> per app.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>You must call this method to initialize the <xref keyref="ILocalSpatialAudioEngine"/> before calling other methods of the <xref keyref="ILocalSpatialAudioEngine"/> class.</li>
+                    <li>The SDK supports only one <xref keyref="ILocalSpatialAudioEngine"/> instance per app.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>You must call this method to initialize <xref keyref="ILocalSpatialAudioEngine"/> before calling any other method of the <xref keyref="ILocalSpatialAudioEngine"/> class.</li>
+                    <li>The SDK supports creating only one <xref keyref="ILocalSpatialAudioEngine"/> instance per app.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when it fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

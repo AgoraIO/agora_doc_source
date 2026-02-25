@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ilocalspatialaudioengine_setdistanceunit_ilocalspatialaudioengine">
+    <title><ph keyref="setDistanceUnit_ILocalSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置游戏引擎中每个单位距离对应的米数。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDistanceUnit_ILocalSpatialAudioEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setDistanceUnit(float unit) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">在声网的空间音效算法中，距离以米为单位进行测量，而游戏引擎中的距离单位是自定义的。SDK 默认将游戏引擎中的每个单位距离转换为 1 米。你可以调用 <xref keyref="setDistanceUnit_ILocalSpatialAudioEngine"/> 方法，将游戏引擎中的单位距离转换为指定的米数。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>unit</pt>
+                    <pd>游戏引擎中每个单位距离对应的米数。该参数的值必须大于 0.00，默认值为 1.00。例如，将 <codeph>unit</codeph> 设置为 2.00 表示游戏引擎中每个单位距离等于 2 米。值越大，当远端用户远离本地用户时，本地用户听到的声音衰减得越快。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

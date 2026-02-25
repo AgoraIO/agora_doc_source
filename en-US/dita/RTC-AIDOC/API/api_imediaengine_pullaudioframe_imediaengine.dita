@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_pullaudioframe_imediaengine">
+    <title><ph keyref="pullAudioFrame_IMediaEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Pulls mixed remote audio data.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="pullAudioFrame_IMediaEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int pullAudioFrame(IAudioFrameObserverBase::AudioFrame* frame) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling this method, the app pulls decoded and mixed audio data for playback. Call this method after joining a channel. Before calling this method, call <xref keyref="setExternalAudioSink_IMediaEngine"/> to enable and configure external audio rendering.</p>
+            <note props="cpp">Both <xref keyref="pullAudioFrame_IMediaEngine"/> and the <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> callback can be used to get mixed remote audio data. After enabling external audio rendering (by calling <xref keyref="setExternalAudioSink_IMediaEngine"/>), the app will no longer receive data from the <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> callback. Choose the appropriate method based on your actual business needs. Differences:
+                <ul>
+                    <li>After calling <xref keyref="pullAudioFrame_IMediaEngine"/>, the app automatically pulls audio data from the SDK. By configuring audio data parameters, the SDK adjusts the frame buffer to help the app handle latency and avoid audio jitter.</li>
+                    <li>After registering the <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> callback, the SDK sends audio data to the app via callback. If there is delay in audio frame processing, audio jitter may occur.</li>
+                </ul><ph>This method is only used to obtain mixed remote audio data. If you need data from other audio processing stages such as capture or playback, register the corresponding callbacks via <xref keyref="registerAudioFrameObserver_IMediaEngine"/>.</ph></note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>frame</pt>
+                    <pd>Output parameter, a pointer to <xref keyref="AudioFrame"/>. See <xref keyref="AudioFrame"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

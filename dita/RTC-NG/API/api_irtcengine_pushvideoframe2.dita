@@ -20,15 +20,16 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-           <codeblock props="flutter" outputclass="language-dart"/> 
+           <codeblock props="flutter" outputclass="language-dart"/>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <dl outputclass="deprecated" props="android">
+            <dl outputclass="deprecated" props="android apple">
                 <dlentry>
                     <dt>弃用：</dt>
-                    <dd>如果你需要推送 I422 格式的视频帧，请使用该方法。其他情况下，请改用 <xref keyref="pushVideoFrame4"/>。</dd>
+                    <dd props="android">如果你需要推送 I422 格式的视频帧，请使用该方法。其他情况下，请改用 <xref keyref="pushVideoFrame4"/>。</dd>
+                    <dd props="apple">该方法已废弃，请该用 <xref keyref="pushVideoFrame"/>。</dd>
                 </dlentry>
             </dl>
             <p id="desc">调用 <xref keyref="setExternalVideoSource"/> 方法，设置 <parmname>enabled</parmname> 参数为 <codeph><ph keyref="true"/></codeph>、<parmname>encodedFrame</parmname> 参数为 <codeph><ph keyref="false"/></codeph> 后，你可以调用本方法将未编码的外部视频帧推送到 SDK。</p>

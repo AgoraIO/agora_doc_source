@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setextensionproviderproperty">
+    <title><ph keyref="setExtensionProviderProperty"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置插件服务商的属性。</ph><ph id="shortdesc" props="rn">设置插件服务商的属性。</ph><ph id="shortdesc" props="flutter">设置插件服务商的属性。</ph><ph id="shortdesc" props="unity">设置插件服务商的属性。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExtensionProviderProperty"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setExtensionProviderProperty(
+    provider: string,
+    key: string,
+    value: string
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setExtensionProviderProperty(
+    provider: string,
+    key: string,
+    value: string
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setExtensionProviderProperty(
+    {required String provider, required String key, required String value});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetExtensionProviderProperty(string provider, string key, string value);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">你可以调用该方法设置插件服务商的属性，并根据服务商的类型初始化相关参数。</p>
+            <p props="rn">你可以调用该方法设置插件服务商的属性，并根据服务商的类型初始化相关参数。</p>
+            <p props="flutter">你可以调用该方法设置插件服务商的属性，并根据服务商的类型初始化相关参数。</p>
+            <p props="unity">你可以调用该方法设置插件服务商的属性，并根据服务商的类型初始化相关参数。</p>
+            <note props="electron">如果要设置多个插件服务商的属性，需要多次调用该方法。</note>
+            <note props="rn">如果要设置多个插件服务商的属性，需要多次调用该方法。</note>
+            <note props="flutter">如果要设置多个插件服务商的属性，需要多次调用该方法。</note>
+            <note props="unity">如果要设置多个插件服务商的属性，需要多次调用该方法。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">请在调用 <xref keyref="registerExtension"/> 之后、<xref keyref="enableExtension"/> 之前调用该方法。</p>
+            <p props="rn">请在调用 <xref keyref="registerExtension"/> 之后、<xref keyref="enableExtension"/> 之前调用该方法。</p>
+            <p props="flutter">请在调用 <xref keyref="registerExtension"/> 之后、<xref keyref="enableExtension"/> 之前调用该方法。</p>
+            <p props="unity">请在调用 <xref keyref="registerExtension"/> 之后、<xref keyref="enableExtension"/> 之前调用该方法。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>provider</pt>
+                    <pd>提供插件的服务商名称。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>key</pt>
+                    <pd>插件属性的 Key。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>value</pt>
+                    <pd>插件属性 Key 对应的值。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>provider</pt>
+                    <pd>提供插件的服务商名称。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>key</pt>
+                    <pd>插件属性的 Key。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>value</pt>
+                    <pd>插件属性 Key 对应的值。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>provider</pt>
+                    <pd>提供插件的服务商名称。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>key</pt>
+                    <pd>插件属性的 Key。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>value</pt>
+                    <pd>插件属性 Key 对应的值。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>provider</pt>
+                    <pd>提供插件的服务商名称。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>key</pt>
+                    <pd>插件属性的 Key。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>value</pt>
+                    <pd>插件属性 Key 对应的值。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

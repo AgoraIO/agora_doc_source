@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_playerconfig_setabrfallbacklayer">
+    <title><ph keyref="SetAbrFallbackLayer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the fallback option for the subscribed video stream.</ph><ph id="shortdesc" props="android">Sets the fallback option for the subscribed remote video stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SetAbrFallbackLayer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">void SetAbrFallbackLayer(AbrFallbackLayer abr_fallback_layer, Error *err = nullptr)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void setAbrFallbackLayer(Constants.AbrFallbackLayer fallbackLayer) throws RteException</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">When the network condition is poor, the SDK will downgrade the video stream resolution to the specified fallback quality layer to ensure continuous playback. Different quality layers correspond to different resolutions and bitrates. The SDK continuously monitors the network condition and automatically restores the video stream to the subscribed quality layer when the network recovers.
+By default, fallback is only supported to <codeph>kRteAbrFallbackLow</codeph> or <codeph>kRteAbrFallbackAudioOnly</codeph>. For a more flexible video experience, you can contact technical support to enable the ABR feature. Once enabled, fallback to all quality layers is supported, and you can customize the resolution of each layer.</p>
+            <p props="android">When the network condition is poor, the SDK downgrades the resolution of the subscribed remote video stream to the specified video quality layer. Each quality layer corresponds to a specific resolution and bitrate. Once the network recovers, the SDK restores the video stream to the original quality layer.</p>
+            <note props="cpp">If the ABR feature is not enabled when calling this method, the fallback quality layer of the video stream can only be <codeph>kRteAbrFallbackLow</codeph> or <codeph>kRteAbrFallbackAudioOnly</codeph>.</note>
+            <note props="android">If the ABR feature is not enabled, the fallback quality layer of the video stream can only be set to <codeph>LOW</codeph> or <codeph>AUDIO_ONLY</codeph>.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In general scenarios, you can call this method and set the fallback quality layer to <codeph>kRteAbrFallbackLow</codeph> or <codeph>kRteAbrFallbackAudioOnly</codeph>. When the network is poor, the SDK will fall back to a lower quality video stream or audio-only stream.
+If you require higher resolution for fallback video streams, you can contact technical support to enable the ABR feature. Once enabled, you can customize the resolution of each layer. The SDK will use the resolution of the lowest quality layer you specify as the lower bound and dynamically adjust the resolution within that range based on network conditions.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">This method must be called before calling <codeph>SetConfigs</codeph>.</p>
+            <p props="android">This method must be called before calling <codeph>setConfigs</codeph>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>abr_fallback_layer</pt>
+                    <pd>The fallback quality layer of the video stream. See <xref keyref="RteAbrFallbackLayer"/>. When customizing the resolution from <codeph>kRteAbrFallbackLayer1</codeph> to <codeph>kRteAbrFallbackLayer6</codeph>, refer to the table below:
+                        <note>When customizing resolutions, be sure to sort the video quality layers by resolution from high to low; when resolutions are the same, sort by frame rate from high to low.</note>
+                        <simpletable>
+                            <sthead>
+                                <stentry>Video Quality Layer</stentry>
+                                <stentry>Resolution</stentry>
+                            </sthead>
+                            <strow>
+                                <stentry><codeph>kRteAbrSubscriptionLayer1</codeph></stentry>
+                                <stentry>2160p (4K)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph>kRteAbrSubscriptionLayer2</codeph></stentry>
+                                <stentry>1440p (2K)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph>kRteAbrSubscriptionLayer3</codeph></stentry>
+                                <stentry>1080p (HD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph>kRteAbrSubscriptionLayer4</codeph></stentry>
+                                <stentry>720p (HD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph>kRteAbrSubscriptionLayer5</codeph></stentry>
+                                <stentry>540p (SD)</stentry>
+                            </strow>
+                            <strow>
+                                <stentry><codeph>kRteAbrSubscriptionLayer6</codeph></stentry>
+                                <stentry>480p (SD)</stentry>
+                            </strow>
+                        </simpletable>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>Status or error information. See <xref keyref="Error"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>fallbackLayer</pt>
+                    <pd>The fallback quality layer of the video stream. See <xref keyref="RteAbrFallbackLayer"/>.
+                        <note>When customizing resolutions, ensure that the video quality layers are sorted from high to low resolution. If the resolutions are the same, sort by frame rate from high to low.
+                            <simpletable>
+                                <sthead>
+                                    <stentry>Video Quality Layer</stentry>
+                                    <stentry>Resolution</stentry>
+                                </sthead>
+                                <strow>
+                                    <stentry><codeph>LAYER1</codeph></stentry>
+                                    <stentry>2160p (4K)</stentry>
+                                </strow>
+                                <strow>
+                                    <stentry><codeph>LAYER2</codeph></stentry>
+                                    <stentry>1440p (2K)</stentry>
+                                </strow>
+                                <strow>
+                                    <stentry><codeph>LAYER3</codeph></stentry>
+                                    <stentry>1080p (HD)</stentry>
+                                </strow>
+                                <strow>
+                                    <stentry><codeph>LAYER4</codeph></stentry>
+                                    <stentry>720p (HD)</stentry>
+                                </strow>
+                                <strow>
+                                    <stentry><codeph>LAYER5</codeph></stentry>
+                                    <stentry>540p (SD)</stentry>
+                                </strow>
+                                <strow>
+                                    <stentry><codeph>LAYER6</codeph></stentry>
+                                    <stentry>480p (SD)</stentry>
+                                </strow>
+                            </simpletable>
+                        </note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="exception" props="android">
+            <title>Exceptions</title>
+            <p props="android">If the call fails, the SDK throws an exception and returns the corresponding error message. You need to catch and handle the exception.</p>
+        </section>
+    </refbody>
+</reference>

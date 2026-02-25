@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudiovolumeindication">
+    <title><ph keyref="onAudioVolumeIndication"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onAudioVolumeIndication"/> callback.</ph><ph id="shortdesc" props="android">Callback that reports user volume information.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioVolumeIndication"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers, unsigned int speakerNumber, int totalVolume)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onAudioVolumeIndication(AudioVolumeInfo[] speakers, int totalVolume)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">By default, this callback is disabled. You can enable it by calling <xref keyref="enableAudioVolumeIndication"/>. Once enabled, when users in the channel send audio streams, the SDK triggers this callback at the interval set in <xref keyref="enableAudioVolumeIndication"/>. The SDK triggers two separate <xref keyref="onAudioVolumeIndication"/> callbacks: one for the local user sending audio and one for up to three remote users with the highest instantaneous volume.</p>
+            <p props="android">By default, this callback is disabled. You can enable it by calling the <xref keyref="enableAudioVolumeIndication"/> method. Once enabled, when a user sends an audio stream in the channel, the SDK triggers this callback at the interval set in <xref keyref="enableAudioVolumeIndication"/>. The SDK triggers two independent <xref keyref="onAudioVolumeIndication"/> callbacks to report the volume information of the local user sending audio and up to three remote users with the highest instantaneous volume.</p>
+            <note props="cpp">After enabling this callback, even if the local user mutes audio using <xref keyref="muteLocalAudioStream"/>, the SDK still reports the local user's volume. If a remote user is among the top three in volume but stops publishing audio for more than 20 seconds, the callback no longer includes that user. If all remote users stop publishing audio for more than 20 seconds, the SDK stops triggering remote user volume callbacks.</note>
+            <note props="android">After enabling this callback, the SDK continues to report the local user's volume even if <xref keyref="muteLocalAudioStream"/> is called to mute the local user.
+                <ul>
+                    <li>If a remote user's volume ranks in the top three but the user stops sending audio for more than 20 seconds, this callback will no longer include that user.</li>
+                    <li>If all remote users stop sending audio for more than 20 seconds, the SDK stops triggering the remote user volume callback.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">Triggered when audio volume indication is enabled and users are sending audio streams.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>speakers</pt>
+                    <pd>Volume information of users. See <xref keyref="AudioVolumeInfo"/>. If the <codeph>speakers</codeph> array is empty, it means there are no remote users or no users are sending audio streams.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>speakerNumber</pt>
+                    <pd>Total number of users.
+                        <ul>
+                            <li>In the local user's callback, if the local user is sending audio, <codeph>speakerNumber</codeph> is 1.</li>
+                            <li>In the remote users' callback, <codeph>speakerNumber</codeph> ranges from 0 to 3. If there are three or more remote users sending audio, <codeph>speakerNumber</codeph> is 3.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>totalVolume</pt>
+                    <pd>Volume of the speaker, ranging from 0 to 255.
+                        <ul>
+                            <li>In the local user's callback, <codeph>totalVolume</codeph> is the local user's volume.</li>
+                            <li>In the remote users' callback, <codeph>totalVolume</codeph> is the sum of the volumes of up to three remote users with the highest instantaneous volume. If <codeph>startAudioMixing</codeph> is called, this value is the mixed audio volume.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>speakers</pt>
+                    <pd>Volume information of users. If this array is empty, it means there are no remote users in the channel or remote users are not sending audio. See <xref keyref="AudioVolumeInfo"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>totalVolume</pt>
+                    <pd>Speaker volume, range [0, 255].
+                        <ul>
+                            <li>For local user callback, <codeph>totalVolume</codeph> is the volume of the local user sending audio.</li>
+                            <li>For remote user callback, <codeph>totalVolume</codeph> is the sum of volumes of up to three remote users with the highest instantaneous volume.</li>
+                            <li>If <codeph>startAudioMixing</codeph> is called, <codeph>totalVolume</codeph> is the mixed volume.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

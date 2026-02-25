@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setremotedefaultvideostreamtype2">
+    <title><ph keyref="setRemoteDefaultVideoStreamType2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Sets the default video stream type to subscribe to.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteDefaultVideoStreamType2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int setRemoteDefaultVideoStreamType(int streamType)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use <xref keyref="setRemoteDefaultVideoStreamType"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="android">Depending on the sender's default behavior and the settings when calling <codeph>setDualStreamMode</codeph>, the scenarios for calling this method on the receiver side are as follows:
+                <ul>
+                    <li>By default, the SDK enables the adaptive low-stream mode (<codeph>AUTO_SIMULCAST_STREAM</codeph>) on the sender side, meaning only the high-quality video stream is sent. Only receivers with the broadcaster role can call this method to request the low-quality video stream. Once the sender receives the request, it automatically starts sending the low-quality stream. At this point, all users in the channel can call this method to switch to subscribing to the low-quality stream.</li>
+                    <li>If the sender calls <codeph>setDualStreamMode</codeph> and sets <codeph>mode</codeph> to <codeph>DISABLE_SIMULCAST_STREAM</codeph> (never send low-quality stream), then calling this method has no effect.</li>
+                    <li>If the sender calls <codeph>setDualStreamMode</codeph> and sets <codeph>mode</codeph> to <codeph>ENABLE_SIMULCAST_STREAM</codeph> (always send low-quality stream), then both broadcaster and audience roles on the receiver side can call this method to switch to subscribing to the low-quality stream.</li>
+                </ul><ph>The SDK dynamically adjusts the resolution of the corresponding video stream based on the size of the video window to save bandwidth and computing resources. The default aspect ratio of the low-quality stream is the same as that of the high-quality stream. The system automatically allocates the resolution, frame rate, and bitrate of the low-quality stream based on the current aspect ratio of the high-quality stream.</ph></p>
+            <note props="android">If you call both this method and <codeph>setRemoteVideoStreamType</codeph>, the settings in <codeph>setRemoteVideoStreamType</codeph> take precedence.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">Call this method before joining a channel. The SDK does not support changing the default subscribed video stream type after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>streamType</pt>
+                    <pd>The default video stream type to subscribe to:
+                        <ul>
+                            <li><codeph>VIDEO_STREAM_HIGH</codeph> (0): High-quality video stream, i.e., high resolution and high bitrate.</li>
+                            <li><codeph>VIDEO_STREAM_LOW</codeph> (1): Low-quality video stream, i.e., low resolution and low bitrate.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

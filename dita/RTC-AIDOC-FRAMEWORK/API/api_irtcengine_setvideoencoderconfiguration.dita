@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setvideoencoderconfiguration">
+    <title><ph keyref="setVideoEncoderConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置视频编码属性。</ph><ph id="shortdesc" props="rn">设置视频编码属性。</ph><ph id="shortdesc" props="flutter">设置视频编码属性。</ph><ph id="shortdesc" props="unity">设置视频编码属性。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setVideoEncoderConfiguration"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setVideoEncoderConfiguration(
+    config: VideoEncoderConfiguration
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setVideoEncoderConfiguration(
+    config: VideoEncoderConfiguration
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setVideoEncoderConfiguration(VideoEncoderConfiguration config);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetVideoEncoderConfiguration(VideoEncoderConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">设置本地视频的编码属性。每一种视频编码属性对应一系列视频相关参数设置，包含分辨率、帧率和码率。</p>
+            <p props="rn">设置本地视频的编码属性。每一种视频编码属性对应一系列视频相关参数设置，包含分辨率、帧率和码率。</p>
+            <p props="flutter">设置本地视频的编码属性。每一种视频编码属性对应一系列视频相关参数设置，包含分辨率、帧率和码率。</p>
+            <p props="unity">设置本地视频的编码属性。每一种视频编码属性对应一系列视频相关参数设置，包含分辨率、帧率和码率。</p>
+            <note props="electron">
+                <ul>
+                    <li>该方法的 <codeph>config</codeph> 参数设置是在理想网络状态下能达到的最大值。如果网络状态不好，视频引擎便不能使用该 <codeph>config</codeph> 渲染本地视频，它会自动降低到一个合适的视频参数设置。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>该方法的 <codeph>config</codeph> 参数设置是在理想网络状态下能达到的最大值。如果网络状态不好，视频引擎便不能使用该 <codeph>config</codeph> 渲染本地视频，它会自动降低到一个合适的视频参数设置。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法的 <codeph>config</codeph> 参数设置是在理想网络状态下能达到的最大值。如果网络状态不好，视频引擎便不能使用该 <codeph>config</codeph> 渲染本地视频，它会自动降低到一个合适的视频参数设置。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法的 <codeph>config</codeph> 参数设置是在理想网络状态下能达到的最大值。如果网络状态不好，视频引擎便不能使用该 <codeph>config</codeph> 渲染本地视频，它会自动降低到一个合适的视频参数设置。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法在加入频道前后都能调用。如果用户在加入频道后不需要重新设置视频编码属性，则建议在 <xref keyref="enableVideo"/> 前调用该方法，可以加快首帧出图的时间。</p>
+            <p props="rn">该方法只能在加入频道前调用。建议在 <xref keyref="enableVideo"/> 前调用该方法，可以加快首帧出图的时间。</p>
+            <p props="flutter">该方法在加入频道前后都能调用。如果用户在加入频道后不需要重新设置视频编码属性，则建议在 <xref keyref="enableVideo"/> 前调用该方法，可以加快首帧出图的时间。</p>
+            <p props="unity">该方法在加入频道前后都能调用。如果用户在加入频道后不需要重新设置视频编码属性，则建议在 <xref keyref="enableVideo"/> 前调用该方法，可以加快首帧出图的时间。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>视频编码参数配置。详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>config</pt>
+                    <pd>视频编码参数配置。详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>视频编码参数配置。详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>视频编码参数配置。详见 <xref keyref="VideoEncoderConfiguration"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

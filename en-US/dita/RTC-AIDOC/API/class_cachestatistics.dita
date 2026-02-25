@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_cachestatistics">
+    <title><ph keyref="CacheStatistics"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to collect statistics of cached media files.</ph><ph id="shortdesc" props="android">Used to collect statistics of cached media files.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct CacheStatistics {
+  int64_t fileSize;
+  int64_t cacheSize;
+  int64_t downloadSize;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class CacheStatistics {
+  private long fileSize;
+  private long cacheSize;
+  private long downloadSize;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>fileSize</pt>
+                    <pd>Size of the currently playing media file, in bytes.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cacheSize</pt>
+                    <pd>Expected size of the cached media file, in bytes.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>downloadSize</pt>
+                    <pd>Size of the downloaded media file, in bytes.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>fileSize</pt>
+                    <pd>Size of the media file being played, in bytes.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cacheSize</pt>
+                    <pd>Size of the media file to be cached, in bytes.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>downloadSize</pt>
+                    <pd>Size of the media file already downloaded, in bytes.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

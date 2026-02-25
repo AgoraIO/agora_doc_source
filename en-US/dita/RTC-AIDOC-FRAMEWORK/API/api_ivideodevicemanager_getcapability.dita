@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ivideodevicemanager_getcapability">
+    <title><ph keyref="getCapability"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets the detailed video frame information of the video capture device under the specified video format.</ph><ph id="shortdesc" props="flutter">Gets detailed video frame information for a video capture device under a specified video format.</ph><ph id="shortdesc" props="unity">Gets detailed video frame information for the specified video format of the video capture device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCapability"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getCapability(
+    deviceIdUTF8: string,
+    deviceCapabilityNumber: number
+  ): VideoFormat;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;VideoFormat&gt; getCapability(
+      {required String deviceIdUTF8, required int deviceCapabilityNumber});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetCapability(string deviceIdUTF8, uint deviceCapabilityNumber, out VideoFormat capability);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After calling <xref keyref="numberOfCapabilities"/> to get the number of supported video formats of the video capture device, you can call this method to get the detailed video frame information supported by the specified index.</p>
+            <p props="flutter">After calling <xref keyref="numberOfCapabilities"/> to get the number of supported video formats for a video capture device, you can call this method to get detailed video frame information for the specified index.</p>
+            <p props="unity">After calling <xref keyref="numberOfCapabilities"/> to get the number of video formats supported by the video capture device, you can call this method to get the specific video frame information for the specified index.</p>
+            <note props="flutter">This method is only applicable to Windows and macOS.</note>
+            <note props="unity">This method is applicable to Windows and macOS only.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>deviceIdUTF8</pt>
+                    <pd>The ID of the video capture device.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>deviceCapabilityNumber</pt>
+                    <pd>The index of the video format. If the return value of <xref keyref="numberOfCapabilities"/> is i, the valid range for this parameter is [0, i).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceIdUTF8</pt>
+                    <pd>The ID of the video capture device.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceCapabilityNumber</pt>
+                    <pd>The index of the video format. If the return value of <xref keyref="numberOfCapabilities"/> is i, then the valid range for this parameter is [0, i).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceIdUTF8</pt>
+                    <pd>The ID of the video capture device.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceCapabilityNumber</pt>
+                    <pd>The index of the video format. If the return value of <xref keyref="numberOfCapabilities"/> is i, then the value range of this parameter is [0, i).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>capability</pt>
+                    <pd>Output parameter. Indicates the specific information of the specified video format, including width (px), height (px), and frame rate (fps). See <xref keyref="VideoFormat"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">Detailed information of the specified video format, including width (px), height (px), and frame rate (fps). See <xref keyref="VideoFormat"/>.</p>
+            <p props="flutter">Detailed information of the specified video format, including width (px), height (px), and frame rate (fps). See <xref keyref="VideoFormat"/>.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

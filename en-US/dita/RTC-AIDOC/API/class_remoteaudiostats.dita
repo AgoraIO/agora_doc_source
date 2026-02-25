@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_remoteaudiostats">
+    <title><ph keyref="RemoteAudioStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes the audio statistics of a remote user.</ph><ph id="shortdesc" props="android">Obtains audio statistics of remote users.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct RemoteAudioStats
+{
+  uid_t uid;
+  int quality;
+  int networkTransportDelay;
+  int jitterBufferDelay;
+  int audioLossRate;
+  int numChannels;
+  int receivedSampleRate;
+  int receivedBitrate;
+  int totalFrozenTime;
+  int frozenRate;
+  int mosValue;
+  uint32_t frozenRateByCustomPlcCount;
+  uint32_t plcCount;
+  uint32_t frozenCntByCustom;
+  uint32_t frozenTimeByCustom;
+  int totalActiveTime;
+  int publishDuration;
+  int qoeQuality;
+  int qualityChangedReason;
+  unsigned int rxAudioBytes;
+  int e2eDelay;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class RemoteAudioStats {
+    public int uid;
+    public int quality;
+    public int networkTransportDelay;
+    public int jitterBufferDelay;
+    public int audioLossRate;
+    public int numChannels;
+    public int receivedSampleRate;
+    public int receivedBitrate;
+    public int totalFrozenTime;
+    public int frozenRate;
+    public int mosValue;
+    public int frozenRateByCustomPlcCount;
+    public int plcCount;
+    public int frozenCntByCustom;
+    public int frozenTimeByCustom;
+    public long totalActiveTime;
+    public long publishDuration;
+    public int qoeQuality;
+    public int qualityChangedReason;
+    public int rxAudioBytes;
+    public int e2eDelay;
+  }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
+            <p props="android">Used to report audio statistics after the remote user joins the channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>The user ID of the remote user.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>quality</pt>
+                    <pd>Audio stream quality. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>networkTransportDelay</pt>
+                    <pd>Network transport delay from sender to receiver (ms).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>jitterBufferDelay</pt>
+                    <pd>Network delay from the audio receiver to the jitter buffer (ms).
+                        <note>This parameter is not effective when the receiver is an audience member and <codeph>audienceLatencyLevel</codeph> in <xref keyref="ClientRoleOptions"/> is set to 1.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioLossRate</pt>
+                    <pd>Audio frame loss rate (%) of the remote stream during the reporting interval.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>numChannels</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>receivedSampleRate</pt>
+                    <pd>Sampling rate of the received audio stream during the reporting interval.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>receivedBitrate</pt>
+                    <pd>Average bitrate (Kbps) of the received audio stream during the reporting interval.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>totalFrozenTime</pt>
+                    <pd>Total duration (ms) of audio freeze after the remote user joins the channel. Audio is considered frozen when the audio frame loss rate reaches 4%.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>frozenRate</pt>
+                    <pd>Percentage (%) of total audio freeze duration relative to the total available time of the audio. Audio is considered available if the remote user neither stops sending audio nor disables the audio module after joining the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mosValue</pt>
+                    <pd>Audio quality of the remote stream during the reporting interval, measured by Agora’s real-time audio MOS (Mean Opinion Score) algorithm. The value ranges from [0, 500], which corresponds to a MOS score from 0 to 5 when divided by 100. Higher scores indicate better audio quality. Subjective quality perception based on MOS:
+                        <ul>
+                            <li>&gt; 4: Excellent audio quality, clear and smooth.</li>
+                            <li>3.5–4: Good audio quality, occasional artifacts but still clear.</li>
+                            <li>3–3.5: Fair audio quality, occasional stutters, requires attention to understand.</li>
+                            <li>2.5–3: Poor audio quality, frequent stutters, hard to follow.</li>
+                            <li>2–2.5: Very poor audio quality, occasional noise, some semantic loss, hard to communicate.</li>
+                            <li>&lt; 2: Extremely poor audio quality, frequent noise, significant semantic loss, communication impossible.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>frozenRateByCustomPlcCount</pt>
+                    <pd>A freeze is considered to occur when packet loss concealment (PLC) happens N times consecutively; freeze count = (n_plc - n) / m.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>plcCount</pt>
+                    <pd>Number of times audio packet loss concealment (PLC) occurred.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>totalActiveTime</pt>
+                    <pd>Total active time (ms) from the start of the call until the remote user callback. Active time refers to the total time the remote user is not muted.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishDuration</pt>
+                    <pd>Total duration (ms) of the remote audio stream.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>qoeQuality</pt>
+                    <pd>Quality of experience (QoE) when the local user receives the remote audio stream. See <xref keyref="EXPERIENCE_QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>qualityChangedReason</pt>
+                    <pd>Reason for poor QoE when the local user receives the remote audio stream. See <xref keyref="EXPERIENCE_POOR_REASON"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxAudioBytes</pt>
+                    <pd>Total number of received audio bytes (bytes), including FEC bytes, represented as an aggregate value.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>e2eDelay</pt>
+                    <pd>End-to-end audio delay (ms), from the time the remote user captures the audio to when the local user plays it.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID of the remote user.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>quality</pt>
+                    <pd>Quality of the audio stream sent by the remote user.
+                        <ul>
+                            <li><codeph>0</codeph>: Unknown quality.</li>
+                            <li><codeph>1</codeph>: Excellent.</li>
+                            <li><codeph>2</codeph>: Good network with slightly lower bitrate than excellent.</li>
+                            <li><codeph>3</codeph>: Slightly impaired communication.</li>
+                            <li><codeph>4</codeph>: Communication is not smooth.</li>
+                            <li><codeph>5</codeph>: Difficult communication.</li>
+                            <li><codeph>6</codeph>: Network disconnected, unable to communicate.</li>
+                            <li><codeph>8</codeph>: Last-mile network probe in progress.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>networkTransportDelay</pt>
+                    <pd>Network transport delay (ms) from sender to receiver.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>jitterBufferDelay</pt>
+                    <pd>Network delay (ms) from audio receiver to jitter buffer.
+                        <note>This parameter is invalid when the receiver is an audience member and <codeph>audienceLatencyLevel</codeph> in <xref keyref="ClientRoleOptions"/> is set to 1.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioLossRate</pt>
+                    <pd>Audio frame loss rate (%) of the remote audio stream during the reporting period.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>numChannels</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>receivedSampleRate</pt>
+                    <pd>Sample rate of the received audio stream during the reporting period.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>receivedBitrate</pt>
+                    <pd>Average bitrate (Kbps) of the received audio stream during the reporting period.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>totalFrozenTime</pt>
+                    <pd>Total duration (ms) of audio freezes after the remote user joins the channel. During a call, an audio freeze is defined when the audio frame loss rate reaches 4%.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>frozenRate</pt>
+                    <pd>Percentage (%) of total freeze time over available audio time. Audio is considered available when the remote user joins the channel, continues sending audio streams, and the audio module is not disabled.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mosValue</pt>
+                    <pd>Quality of the remote audio stream during the reporting period, based on Agora's real-time audio MOS (Mean Opinion Score) evaluation method.
+Value range: [0, 500], divide by 100 to get MOS score between 0 and 5. Higher values indicate better quality.
+MOS score and subjective listening experience:
+                        <ul>
+                            <li>&gt; 4: Excellent quality, clear and smooth.</li>
+                            <li>3.5 to 4: Good quality, slightly perceptible damage but clear.</li>
+                            <li>3 to 3.5: Fair, occasional stuttering, requires attention to listen.</li>
+                            <li>2.5 to 3: Poor, intermittent audio, hard to understand.</li>
+                            <li>2 to 2.5: Very poor, occasional noise and continuous frame loss, difficult communication.</li>
+                            <li>&lt; 2: Extremely poor, continuous noise, heavy frame loss, communication nearly impossible.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>frozenRateByCustomPlcCount</pt>
+                    <pd>A freeze is defined when N consecutive audio packet loss concealments (PLC) occur. Freeze count = (n_plc - n) / m.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>plcCount</pt>
+                    <pd>Number of audio packet loss concealments (PLC).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>totalActiveTime</pt>
+                    <pd>Total active time (ms) from the start of the call to the remote user callback. Active time refers to the cumulative time the remote user is not muted.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishDuration</pt>
+                    <pd>Total duration (ms) of the remote audio stream.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>qoeQuality</pt>
+                    <pd>Quality of Experience (QoE) when the local user receives the remote audio stream.
+                        <ul>
+                            <li><codeph>0</codeph>: Good experience.</li>
+                            <li><codeph>1</codeph>: Poor experience.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>qualityChangedReason</pt>
+                    <pd>Reason for poor experience when the local user receives the remote audio stream.
+                        <ul>
+                            <li><codeph>0</codeph>: None, good experience.</li>
+                            <li><codeph>1</codeph>: Poor network quality of the remote user.</li>
+                            <li><codeph>2</codeph>: Poor network quality of the local user.</li>
+                            <li><codeph>4</codeph>: Poor signal of local Wi-Fi or cellular network.</li>
+                            <li><codeph>8</codeph>: Simultaneous use of Wi-Fi and Bluetooth on the local device causes signal interference, affecting audio transmission quality.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxAudioBytes</pt>
+                    <pd>Total bytes of audio received before network processing (bytes), cumulative value.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>e2eDelay</pt>
+                    <pd>End-to-end audio delay (ms), from the remote user's audio capture to the local user's audio playback.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

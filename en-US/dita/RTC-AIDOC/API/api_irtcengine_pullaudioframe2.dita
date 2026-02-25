@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_pullaudioframe2">
+    <title><ph keyref="pullAudioFrame2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Pulls remote audio data.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="pullAudioFrame2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int pullPlaybackAudioFrame(ByteBuffer data, int lengthInByte);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">Before calling this method, you need to call <xref keyref="setExternalAudioSink"/> and set <codeph>enabled</codeph> to <xref keyref="true"/> to enable and configure external audio playback. After calling this method successfully, the app pulls decoded and mixed audio data for playback.</p>
+            <note props="android">
+                <ul>
+                    <li>This method must be called after joining a channel.</li>
+                    <li>Differences from <xref keyref="onPlaybackAudioFrame"/>:
+                        <ul>
+                            <li><xref keyref="onPlaybackAudioFrame"/>: The SDK pushes audio data to the app. Processing delay may cause jitter.</li>
+                            <li><codeph>pullPlaybackAudioFrame</codeph>: The app pulls remote audio data. The SDK adjusts the frame buffer to avoid jitter in external playback.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>data</pt>
+                    <pd>Receives the pulled remote audio data. See <codeph>ByteBuffer</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lengthInByte</pt>
+                    <pd>Byte length of the remote audio data. This depends on audio duration, and the <codeph>sampleRate</codeph> and <codeph>channels</codeph> set in <xref keyref="setExternalAudioSink"/>.
+
+<codeph>lengthInByte</codeph> = <codeph>sampleRate</codeph> / 1000 × 2 × <codeph>channels</codeph> × duration (ms).</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

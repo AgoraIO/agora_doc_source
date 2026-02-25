@@ -1,0 +1,596 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startscreencapturebywindowid">
+    <title><ph keyref="startScreenCaptureByWindowId"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Starts capturing the video stream of a specified window.</ph><ph id="shortdesc" props="flutter">Starts capturing the video stream of a specified window.</ph><ph id="shortdesc" props="unity">Starts capturing the video stream of the specified window.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startScreenCaptureByWindowId"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureByWindowId(
+    windowId: any,
+    regionRect: Rectangle,
+    captureParams: ScreenCaptureParameters
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCaptureByWindowId(
+    {required int windowId,
+    required Rectangle regionRect,
+    required ScreenCaptureParameters captureParams});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCaptureByWindowId(long windowId, Rectangle regionRect, ScreenCaptureParameters captureParams);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Shares a window or a portion of the window. You need to specify the window ID you want to share in this method.
+This method supports sharing Universal Windows Platform (UWP) application windows. Agora has tested mainstream UWP applications using the latest SDK. The results are as follows:
+                <simpletable>
+                    <sthead>
+                        <stentry>OS Version</stentry>
+                        <stentry>Application</stentry>
+                        <stentry>Compatible Version</stentry>
+                        <stentry>Supported</stentry>
+                    </sthead>
+                    <strow>
+                        <stentry>Windows 10</stentry>
+                        <stentry>Chrome</stentry>
+                        <stentry>76.0.3809.100</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Word</stentry>
+                        <stentry>18.1903.1152.0</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Excel</stentry>
+                        <stentry>18.1903.1152.0</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office PPT</stentry>
+                        <stentry>18.1903.1152.0</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Word</stentry>
+                        <stentry>11.1.0.9145</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Excel</stentry>
+                        <stentry>11.1.0.9145</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS PPT</stentry>
+                        <stentry>11.1.0.9145</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Built-in Media Player</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry>Windows 8</stentry>
+                        <stentry>Chrome</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Word</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Excel</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office PPT</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Word</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Excel</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS PPT</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Built-in Media Player</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry>Windows 7</stentry>
+                        <stentry>Chrome</stentry>
+                        <stentry>73.0.3683.103</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Word</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Excel</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office PPT</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Word</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Excel</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS PPT</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Built-in Media Player</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                </simpletable>
+            </p>
+            <p props="flutter">Shares a window or a specific region of the window. You need to specify the window ID to be shared in this method.
+This method supports sharing Universal Windows Platform (UWP) application windows. Agora has tested mainstream UWP applications using the latest SDK, with the following results:
+                <simpletable>
+                    <sthead>
+                        <stentry>OS Version</stentry>
+                        <stentry>Application</stentry>
+                        <stentry>Compatible Version</stentry>
+                        <stentry>Supported</stentry>
+                    </sthead>
+                    <strow>
+                        <stentry>Windows 10</stentry>
+                        <stentry>Chrome</stentry>
+                        <stentry>76.0.3809.100</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Word</stentry>
+                        <stentry>18.1903.1152.0</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Excel</stentry>
+                        <stentry>18.1903.1152.0</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office PPT</stentry>
+                        <stentry>18.1903.1152.0</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Word</stentry>
+                        <stentry>11.1.0.9145</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Excel</stentry>
+                        <stentry>11.1.0.9145</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS PPT</stentry>
+                        <stentry>11.1.0.9145</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Built-in Media Player</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry>Windows 8</stentry>
+                        <stentry>Chrome</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Word</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Excel</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office PPT</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Word</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Excel</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS PPT</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Built-in Media Player</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry>Windows 7</stentry>
+                        <stentry>Chrome</stentry>
+                        <stentry>73.0.3683.103</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Word</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Excel</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office PPT</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Word</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Excel</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS PPT</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Built-in Media Player</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                </simpletable>
+            </p>
+            <p props="unity">Shares a window or a portion of it. You need to specify the window ID to be shared in this method.
+This method supports sharing Universal Windows Platform (UWP) application windows. Agora has tested mainstream UWP applications using the latest SDK, with the following results:
+                <simpletable>
+                    <sthead>
+                        <stentry>OS Version</stentry>
+                        <stentry>Application</stentry>
+                        <stentry>Compatible Version</stentry>
+                        <stentry>Supported</stentry>
+                    </sthead>
+                    <strow>
+                        <stentry>Windows 10</stentry>
+                        <stentry>Chrome</stentry>
+                        <stentry>76.0.3809.100</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Word</stentry>
+                        <stentry>18.1903.1152.0</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Excel</stentry>
+                        <stentry>18.1903.1152.0</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office PPT</stentry>
+                        <stentry>18.1903.1152.0</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Word</stentry>
+                        <stentry>11.1.0.9145</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Excel</stentry>
+                        <stentry>11.1.0.9145</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS PPT</stentry>
+                        <stentry>11.1.0.9145</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Built-in Media Player</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry>Windows 8</stentry>
+                        <stentry>Chrome</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Word</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Excel</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office PPT</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Word</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Excel</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS PPT</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Built-in Media Player</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry>Windows 7</stentry>
+                        <stentry>Chrome</stentry>
+                        <stentry>73.0.3683.103</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Word</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office Excel</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Office PPT</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Word</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS Excel</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>WPS PPT</stentry>
+                        <stentry>11.1.0.9098</stentry>
+                        <stentry>Yes</stentry>
+                    </strow>
+                    <strow>
+                        <stentry></stentry>
+                        <stentry>Built-in Media Player</stentry>
+                        <stentry>All versions</stentry>
+                        <stentry>No</stentry>
+                    </strow>
+                </simpletable>
+            </p>
+            <note props="electron">This method is only applicable to macOS and Windows platforms.
+The SDK's window sharing feature relies on WGC (Windows Graphics Capture) or GDI (Graphics Device Interface). WGC cannot disable mouse capture on systems earlier than Windows 10 version 2004. Therefore, when sharing a window on such systems, <codeph>captureMouseCursor(false)</codeph> may not take effect. See <xref keyref="ScreenCaptureParameters"/>.</note>
+            <note props="flutter">This method is only applicable to macOS and Windows.
+The SDK's window sharing feature depends on WGC (Windows Graphics Capture) or GDI (Graphics Device Interface). On systems earlier than Windows 10 2004, WGC cannot disable mouse capture. Therefore, when sharing windows on such systems, <codeph>captureMouseCursor(false)</codeph> may not work as expected. See <xref keyref="ScreenCaptureParameters"/>.</note>
+            <note props="unity">This method is only applicable to macOS and Windows platforms.
+The SDK's window sharing feature relies on WGC (Windows Graphics Capture) or GDI (Graphics Device Interface). On systems earlier than Windows 10 2004, WGC cannot disable mouse capture, so when sharing a window on such systems, <codeph>captureMouseCursor(false)</codeph> may not take effect. See <xref keyref="ScreenCaptureParameters"/>.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In screen sharing scenarios, you need to call this method to start capturing the screen video stream. For implementation details, see [Screen Sharing](https://doc.shengwang.cn/doc/rtc/electron/basic-features/screen-share).</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter unity">
+            <title>Timing</title>
+            <p props="electron">This method can be called either before or after joining a channel. The differences are as follows:
+                <ul>
+                    <li>If you call this method before joining a channel, then call <xref keyref="joinChannel2"/> to join the channel and set <codeph>publishScreenTrack</codeph> or <codeph>publishSecondaryScreenTrack</codeph> to <xref keyref="true"/>, screen sharing starts.</li>
+                    <li>If you call this method after joining a channel, then call <xref keyref="updateChannelMediaOptions"/> to update the channel media options and set <codeph>publishScreenTrack</codeph> or <codeph>publishSecondaryScreenTrack</codeph> to <xref keyref="true"/>, screen sharing starts.</li>
+                </ul>
+            </p>
+            <p props="flutter">This method can be called before or after joining a channel, with the following differences:
+                <ul>
+                    <li>If you call this method before joining a channel, then call <xref keyref="joinChannel2"/> to join the channel and set <codeph>publishScreenTrack</codeph> or <codeph>publishSecondaryScreenTrack</codeph> to <xref keyref="true"/>, screen sharing will start.</li>
+                    <li>If you call this method after joining a channel, then call <xref keyref="updateChannelMediaOptions"/> to update the channel media options and set <codeph>publishScreenTrack</codeph> or <codeph>publishSecondaryScreenTrack</codeph> to <xref keyref="true"/>, screen sharing will start.</li>
+                </ul>
+            </p>
+            <p props="unity">This method can be called before or after joining a channel, with the following differences:
+                <ul>
+                    <li>If you call this method before joining a channel, then call <xref keyref="joinChannel2"/> and set <codeph>publishScreenTrack</codeph> or <codeph>publishSecondaryScreenTrack</codeph> to <xref keyref="true"/>, screen sharing starts.</li>
+                    <li>If you call this method after joining a channel, then call <xref keyref="updateChannelMediaOptions"/> and set <codeph>publishScreenTrack</codeph> or <codeph>publishSecondaryScreenTrack</codeph> to <xref keyref="true"/>, screen sharing starts.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>windowId</pt>
+                    <pd>Specifies the ID of the window to be shared.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>regionRect</pt>
+                    <pd>(Optional) Specifies the position of the region to be shared relative to the entire screen. If not specified, the entire screen is shared. See <xref keyref="Rectangle"/>. If the shared region exceeds the window boundaries, only the content within the window is shared; if width or height is 0, the entire window is shared.
+                        <note>Electron for UnionTech OS SDK currently does not support this parameter.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>captureParams</pt>
+                    <pd>Configuration parameters for screen sharing. The default resolution is 1920 x 1080, i.e., 2,073,600 pixels. This pixel count is used for billing purposes. See <xref keyref="ScreenCaptureParameters"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>windowId</pt>
+                    <pd>Specifies the ID of the window to be shared.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>regionRect</pt>
+                    <pd>(Optional) Specifies the position of the region to be shared relative to the entire screen. If not set, the entire screen is shared. See <xref keyref="Rectangle"/>. If the specified region exceeds the window boundary, only the content within the window is shared. If width or height is 0, the entire window is shared.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureParams</pt>
+                    <pd>Configuration parameters for screen sharing. The default resolution is 1920 x 1080, i.e., 2,073,600 pixels. This pixel count is used for billing. See <xref keyref="ScreenCaptureParameters"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>windowId</pt>
+                    <pd>Specifies the ID of the window to be shared.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>regionRect</pt>
+                    <pd>(Optional) Specifies the position of the region to be shared relative to the entire screen. If not set, the entire screen is shared. See <xref keyref="Rectangle"/>. If the specified region exceeds the window boundaries, only the content within the window is shared; if the width or height is 0, the entire window is shared.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureParams</pt>
+                    <pd>Configuration parameters for screen sharing. The default resolution is 1920 x 1080, i.e., 2,073,600 pixels. This pixel count is used for billing. See <xref keyref="ScreenCaptureParameters"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-8: Invalid screen sharing state. This may occur if you are already sharing another screen or window. Try calling <xref keyref="stopScreenCapture"/> to stop the current sharing, then restart screen sharing.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: The input parameter is invalid.</li>
+                            <li>-8: The screen sharing state is invalid. This may occur if you are already sharing another screen or window. Try calling <xref keyref="stopScreenCapture"/> to stop the current sharing and then restart screen sharing.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

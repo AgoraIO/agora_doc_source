@@ -17,7 +17,7 @@
             <codeblock props="hmos" outputclass="language-arkts">public abstract createDataStream(config: DataStreamConfig): number;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)createDataStream:(NSInteger * _Nonnull)streamId
                   config:(AgoraDataStreamConfig * _Nonnull)config;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int createDataStream(int* streamId, DataStreamConfig&amp; config) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int createDataStream(int* streamId, const DataStreamConfig&amp; config) = 0;</codeblock>
             <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IRtcEngine&quot;)
 	int CreateDataStream(int&amp; streamId, const FDataStreamConfig&amp; config);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract createDataStream(config: DataStreamConfig): number;</codeblock>
@@ -27,7 +27,8 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="native unreal unity cs">Compared to <xref keyref="createDataStream1" />, this method does not guarantee the reliability of data transmission. If a data packet is not received five seconds after it was sent, the SDK directly discards the data.</p>
+            <p props="android cpp apple unreal unity cs">Compared to <xref keyref="createDataStream1" />, this method does not guarantee the reliability of data transmission. If a data packet is not received five seconds after it was sent, the SDK directly discards the data.</p>
+            <note type="attention" id="note" props="android apple cpp unity flutter">If you need a more comprehensive solution for low-latency, high-concurrency, and scalable real-time messaging and status synchronization, it is recommended to use <xref keyref="rtm2"/>.</note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>

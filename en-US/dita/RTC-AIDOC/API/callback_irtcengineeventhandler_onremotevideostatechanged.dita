@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onremotevideostatechanged">
+    <title><ph keyref="onRemoteVideoStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for remote video state changes.</ph><ph id="shortdesc" props="android">Callback when the remote video state changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteVideoStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason, int elapsed)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onRemoteVideoStateChanged(int uid, int state, int reason, int elapsed)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">This callback does not work properly when the number of users (in communication channels) or hosts (in live broadcast channels) exceeds 32.</note>
+            <note props="android">This callback may not work properly when the number of users (in a communication channel) or hosts (in a live broadcasting channel) exceeds 32.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">Triggered when the remote video stream state changes.</p>
+            <p props="android">This callback is triggered when the state of the remote video changes.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>Remote user ID whose video state changed.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>Remote video state. See <xref keyref="REMOTE_VIDEO_STATE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>Reason for the remote video state change. See <xref keyref="REMOTE_VIDEO_STATE_REASON"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (ms) from calling <codeph>joinChannel</codeph> to this callback.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>The user ID of the remote user whose video state has changed.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>The state of the remote video:
+                        <ul>
+                            <li><codeph>REMOTE_VIDEO_STATE_STOPPED</codeph> (0): The remote video is in the initial state. This state is reported under <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED</codeph> (3), <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED</codeph> (5), or <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE</codeph> (7).</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_STARTING</codeph> (1): The first frame of the remote video packet is received.</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_DECODING</codeph> (2): The remote video stream is decoded and playing normally. This state is reported under <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY</codeph> (2), <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED</codeph> (4), <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED</codeph> (6), or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY</codeph> (9).</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_FROZEN</codeph> (3): The remote video is frozen. This state is reported under <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION</codeph> (1) or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK</codeph> (8).</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_FAILED</codeph> (4): The remote video fails to start. This state is reported by the SDK under <codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL</codeph> (0).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>The reason for the remote video state change:
+                        <ul>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL</codeph> (0): Internal reason.</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION</codeph> (1): Network congestion.</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY</codeph> (2): Network recovery.</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED</codeph> (3): The local user stops receiving the remote video stream or disables the video module.</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED</codeph> (4): The local user resumes receiving the remote video stream or enables the video module.</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED</codeph> (5): The remote user stops sending the video stream or disables the video module.</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED</codeph> (6): The remote user resumes sending the video stream or enables the video module.</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE</codeph> (7): The remote user leaves the channel.</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK</codeph> (8): The remote media stream switches to audio-only due to poor network conditions.</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY</codeph> (9): The remote media stream switches back to video after the network condition improves.</li>
+                            <li><codeph>REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT</codeph> (13): The local video decoder does not support decoding the remote video stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>elapsed</pt>
+                    <pd>Time (ms) from the local user calling <codeph>joinChannel</codeph> to the SDK triggering this callback.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

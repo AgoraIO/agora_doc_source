@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setextensionproperty">
+    <title><ph keyref="setExtensionProperty"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置插件的属性。</ph><ph id="shortdesc" props="rn">设置插件的属性。</ph><ph id="shortdesc" props="flutter">设置插件的属性。</ph><ph id="shortdesc" props="unity">设置插件的属性。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExtensionProperty"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setExtensionProperty(
+    provider: string,
+    extension: string,
+    key: string,
+    value: string,
+    type?: MediaSourceType
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setExtensionProperty(
+    provider: string,
+    extension: string,
+    key: string,
+    value: string,
+    type?: MediaSourceType
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setExtensionProperty(
+    {required String provider,
+    required String extension,
+    required String key,
+    required String value,
+    MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetExtensionProperty(string provider, string extension, string key, string value, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.UNKNOWN_MEDIA_SOURCE);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">开启插件后，你可以调用该方法设置插件的属性。</p>
+            <p props="rn">开启插件后，你可以调用该方法设置插件的属性。</p>
+            <p props="flutter">开启插件后，你可以调用该方法设置插件的属性。</p>
+            <p props="unity">开启插件后，你可以调用该方法设置插件的属性。</p>
+            <note props="electron">如果要设置多个插件的属性，需要多次调用该方法。</note>
+            <note props="rn">如果要设置多个插件的属性，需要多次调用该方法。</note>
+            <note props="flutter">如果要设置多个插件的属性，需要多次调用该方法。</note>
+            <note props="unity">如果要设置多个插件的属性，需要多次调用该方法。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">请在调用 <xref keyref="enableExtension"/> 开启插件后调用该方法。</p>
+            <p props="rn">请在调用 <xref keyref="enableExtension"/> 开启插件后调用该方法。</p>
+            <p props="flutter">请在调用 <xref keyref="enableExtension"/> 开启插件后调用该方法。</p>
+            <p props="unity">请在调用 <xref keyref="enableExtension"/> 开启插件后调用该方法。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>相关回调</title>
+            <p props="electron">调用该方法后，可能会触发插件事件回调 <xref keyref="onExtensionEventWithContext"/>，具体触发逻辑与插件本身相关。</p>
+            <p props="rn">调用该方法后，可能会触发插件事件回调 <xref keyref="onExtensionEventWithContext"/>，具体触发逻辑与插件本身相关。</p>
+            <p props="flutter">调用该方法后，可能会触发插件事件回调 <xref keyref="onExtensionEventWithContext"/>，具体触发逻辑与插件本身相关。</p>
+            <p props="unity">调用该方法后，可能会触发插件事件回调 <xref keyref="onExtensionEventWithContext"/>，具体触发逻辑与插件本身相关。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>provider</pt>
+                    <pd>提供插件的服务商名称。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>extension</pt>
+                    <pd>插件的名称。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>key</pt>
+                    <pd>插件属性的 Key。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>value</pt>
+                    <pd>插件属性 Key 对应的值。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>插件的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>provider</pt>
+                    <pd>提供插件的服务商名称。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>extension</pt>
+                    <pd>插件的名称。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>key</pt>
+                    <pd>插件属性的 Key。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>value</pt>
+                    <pd>插件属性 Key 对应的值。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>插件的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>provider</pt>
+                    <pd>提供插件的服务商名称。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>extension</pt>
+                    <pd>插件的名称。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>key</pt>
+                    <pd>插件属性的 Key。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>value</pt>
+                    <pd>插件属性 Key 对应的值。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>插件的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>provider</pt>
+                    <pd>提供插件的服务商名称。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>extension</pt>
+                    <pd>插件的名称。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>key</pt>
+                    <pd>插件属性的 Key。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>value</pt>
+                    <pd>插件属性 Key 对应的值。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>插件的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

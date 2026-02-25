@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onlocalvideostatechanged">
+    <title><ph keyref="onLocalVideoStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">本地视频状态发生改变回调。</ph><ph id="shortdesc" props="rn">本地视频状态发生改变回调。</ph><ph id="shortdesc" props="flutter">本地视频状态发生改变回调。</ph><ph id="shortdesc" props="unity">本地视频状态发生改变回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalVideoStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onLocalVideoStateChanged?(
+    source: VideoSourceType,
+    state: LocalVideoStreamState,
+    reason: LocalVideoStreamReason
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onLocalVideoStateChanged?(
+    source: VideoSourceType,
+    state: LocalVideoStreamState,
+    reason: LocalVideoStreamReason
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(VideoSourceType source, LocalVideoStreamState state,
+    LocalVideoStreamReason reason)? onLocalVideoStateChanged;;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoStateChanged(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_REASON reason)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">本地视频的状态发生改变时，SDK 会触发该回调，报告当前的本地视频状态以及状态改变的原因。</p>
+            <p props="rn">本地视频的状态发生改变时，SDK 会触发该回调，报告当前的本地视频状态以及状态改变的原因。</p>
+            <p props="flutter">本地视频的状态发生改变时，SDK 会触发该回调，报告当前的本地视频状态以及状态改变的原因。</p>
+            <p props="unity">本地视频的状态发生改变时，SDK 会触发该回调，报告当前的本地视频状态以及状态改变的原因。</p>
+            <note props="electron">
+                <ul>
+                    <li>帧重复检测仅针对分辨率大于 200 × 200、帧率大于等于 10 fps、码率小于 20 Kbps 的视频帧。</li>
+                    <li>如果视频采集出现异常，正常情况下可以通过该回调的 <codeph>reason</codeph> 参数来排查问题。但在部分设备上，采集出现问题时（如卡死） Android 系统不会抛出任何错误回调，因此 SDK 无法报告本地视频状态改变的原因，此时你可以通过下列方式来判断采集是否无帧：该回调报告 <codeph>state</codeph> 为 <codeph>LocalVideoStreamStateCapturing</codeph> 或 <codeph>LocalVideoStreamStateEncoding</codeph>，且 <xref keyref="onLocalVideoStats"/> 回调的 <codeph>captureFrameRate</codeph> 为 0。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>帧重复检测仅针对分辨率大于 200 × 200、帧率大于等于 10 fps、码率小于 20 Kbps 的视频帧。</li>
+                    <li>如果视频采集出现异常，正常情况下可以通过该回调的 <codeph>reason</codeph> 参数来排查问题。但在部分设备上，采集出现问题时（如卡死） Android 系统不会抛出任何错误回调，因此 SDK 无法报告本地视频状态改变的原因，此时你可以通过下列方式来判断采集是否无帧：该回调报告 <codeph>state</codeph> 为 <codeph>LocalVideoStreamStateCapturing</codeph> 或 <codeph>LocalVideoStreamStateEncoding</codeph>，且 <xref keyref="onLocalVideoStats"/> 回调的 <codeph>captureFrameRate</codeph> 为 0。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>帧重复检测仅针对分辨率大于 200 × 200、帧率大于等于 10 fps、码率小于 20 Kbps 的视频帧。</li>
+                    <li>如果视频采集出现异常，正常情况下可以通过该回调的 <codeph>reason</codeph> 参数来排查问题。但在部分设备上，采集出现问题时（如卡死） Android 系统不会抛出任何错误回调，因此 SDK 无法报告本地视频状态改变的原因，此时你可以通过下列方式来判断采集是否无帧：该回调报告 <codeph>state</codeph> 为 <codeph>localVideoStreamStateCapturing</codeph> 或 <codeph>localVideoStreamStateEncoding</codeph>，且 <xref keyref="onLocalVideoStats"/> 回调的 <codeph>captureFrameRate</codeph> 为 0。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>帧重复检测仅针对分辨率大于 200 × 200、帧率大于等于 10 fps、码率小于 20 Kbps 的视频帧。</li>
+                    <li>如果视频采集出现异常，正常情况下可以通过该回调的 <codeph>reason</codeph> 参数来排查问题。但在部分设备上，采集出现问题时（如卡死） Android 系统不会抛出任何错误回调，因此 SDK 无法报告本地视频状态改变的原因，此时你可以通过下列方式来判断采集是否无帧：该回调报告 <codeph>state</codeph> 为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> 或 <codeph>LOCAL_VIDEO_STREAM_STATE_ENCODING</codeph>，且 <xref keyref="onLocalVideoStats"/> 回调的 <codeph>captureFrameRate</codeph> 为 0。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>触发时机</title>
+            <p props="electron">
+                <ul>
+                    <li>SDK 会在如下情况触发该回调，且 <codeph>state</codeph> 为 LocalVideoStreamStateFailed，<codeph>reason</codeph> 为 <codeph>LocalVideoStreamReasonCaptureFailure</codeph>：
+                        <ul>
+                            <li>应用退到后台，系统回收摄像头。</li>
+                            <li>摄像头正常启动，但连续 4 秒都没有输出采集的视频。</li>
+                        </ul>
+                    </li>
+                    <li>当摄像头输出采集的视频帧时，如果 SDK 检测到连续 15 个重复的视频帧，会触发该回调，且 <codeph>state</codeph> 为 <codeph>LocalVideoStreamStateCapturing</codeph>，<codeph>reason</codeph> 为 <codeph>LocalVideoStreamReasonCaptureFailure</codeph>。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>SDK 会在如下情况触发该回调，且 <codeph>state</codeph> 为 LocalVideoStreamStateFailed，<codeph>reason</codeph> 为 <codeph>LocalVideoStreamReasonCaptureFailure</codeph>：
+                        <ul>
+                            <li>应用退到后台，系统回收摄像头。</li>
+                            <li>Android 9 及以上版本，App 切后台一段时间后，系统会收回相机权限。</li>
+                            <li>Android 6 及以上版本，如果相机被第三方应用占用一段时间后释放，则 SDK 会触发该回调，并报告 <xref keyref="onLocalVideoStateChanged"/>(<codeph>LocalVideoStreamStateCapturing，LocalVideoStreamReasonOk</codeph>) 回调。</li>
+                            <li>摄像头正常启动，但连续 4 秒都没有输出采集的视频。</li>
+                        </ul>
+                    </li>
+                    <li>当摄像头输出采集的视频帧时，如果 SDK 检测到连续 15 个重复的视频帧，会触发该回调，且 <codeph>state</codeph> 为 <codeph>LocalVideoStreamStateCapturing</codeph>，<codeph>reason</codeph> 为 <codeph>LocalVideoStreamReasonCaptureFailure</codeph>。</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>SDK 会在如下情况触发该回调，且 <codeph>state</codeph> 为 localVideoStreamStateFailed，<codeph>reason</codeph> 为 <codeph>localVideoStreamReasonCaptureFailure</codeph>：
+                        <ul>
+                            <li>应用退到后台，系统回收摄像头。</li>
+                            <li>Android 9 及以上版本，App 切后台一段时间后，系统会收回相机权限。</li>
+                            <li>Android 6 及以上版本，如果相机被第三方应用占用一段时间后释放，则 SDK 会触发该回调，并报告 <xref keyref="onLocalVideoStateChanged"/>(<codeph>localVideoStreamStateCapturing，localVideoStreamReasonOk</codeph>) 回调。</li>
+                            <li>摄像头正常启动，但连续 4 秒都没有输出采集的视频。</li>
+                        </ul>
+                    </li>
+                    <li>当摄像头输出采集的视频帧时，如果 SDK 检测到连续 15 个重复的视频帧，会触发该回调，且 <codeph>state</codeph> 为 <codeph>localVideoStreamStateCapturing</codeph>，<codeph>reason</codeph> 为 <codeph>localVideoStreamReasonCaptureFailure</codeph>。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>SDK 会在如下情况触发该回调，且 <codeph>state</codeph> 为 LOCAL_VIDEO_STREAM_STATE_FAILED，<codeph>reason</codeph> 为 <codeph>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE</codeph>：
+                        <ul>
+                            <li>应用退到后台，系统回收摄像头。</li>
+                            <li>Android 9 及以上版本，App 切后台一段时间后，系统会收回相机权限。</li>
+                            <li>Android 6 及以上版本，如果相机被第三方应用占用一段时间后释放，则 SDK 会触发该回调，并报告 <xref keyref="onLocalVideoStateChanged"/>(<codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING，LOCAL_VIDEO_STREAM_REASON_OK</codeph>) 回调。</li>
+                            <li>摄像头正常启动，但连续 4 秒都没有输出采集的视频。</li>
+                        </ul>
+                    </li>
+                    <li>当摄像头输出采集的视频帧时，如果 SDK 检测到连续 15 个重复的视频帧，会触发该回调，且 <codeph>state</codeph> 为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>，<codeph>reason</codeph> 为 <codeph>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE</codeph>。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>source</pt>
+                    <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>state</pt>
+                    <pd>本地视频状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>reason</pt>
+                    <pd>本地视频状态改变原因，详见 <xref keyref="LOCAL_VIDEO_STREAM_REASON"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>source</pt>
+                    <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>state</pt>
+                    <pd>本地视频状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>reason</pt>
+                    <pd>本地视频状态改变原因，详见 <xref keyref="LOCAL_VIDEO_STREAM_REASON"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>source</pt>
+                    <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>state</pt>
+                    <pd>本地视频状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>reason</pt>
+                    <pd>本地视频状态改变原因，详见 <xref keyref="LOCAL_VIDEO_STREAM_REASON"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>source</pt>
+                    <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>state</pt>
+                    <pd>本地视频状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>reason</pt>
+                    <pd>本地视频状态改变原因，详见 <xref keyref="LOCAL_VIDEO_STREAM_REASON"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_getinternalsongcode">
+    <title><ph keyref="getInternalSongCode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Creates an internal song code for the chorus segment of a music resource.</ph><ph id="shortdesc" props="android">Creates an internal identifier for a music resource's chorus segment.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getInternalSongCode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getInternalSongCode(int64_t songCode, const char* jsonOption, int64_t&amp; internalSongCode) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract long getInternalSongCode(long songCode, String jsonOption);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Before playing the chorus segment of a music resource, you need to call this method with the parameters <codeph>jsonOption</codeph> and the music resource's <codeph>songCode</codeph> to create an internal song code for the chorus segment. This code serves as the unique identifier for the resource. After obtaining this code, pass it as the <codeph>songCode</codeph> parameter when calling methods to open, preload, or remove the resource.</p>
+            <p props="android">Before playing the chorus segment of a music resource, you need to call this method to create an internal identifier for the chorus segment using the <codeph>songCode</codeph> and <codeph>jsonOption</codeph> parameters. This identifier serves as the unique reference for the resource. When calling related methods to open, preload, or remove the resource, pass this identifier as the <codeph>songCode</codeph> parameter.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>songCode</pt>
+                    <pd>The song code of the music resource, used to identify the resource. You can obtain it by calling <xref keyref="getMusicCollectionByMusicChartId"/> or <xref keyref="searchMusic"/>, and retrieve the code from the <xref keyref="onMusicCollectionResult"/> callback triggered by these methods.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>jsonOption</pt>
+                    <pd>Extended JSON field, default is <xref keyref="NULL"/>. Currently supports the following fields:
+                        <ul>
+                            <li>sceneType: Scene type. 1: Live streaming scene, online karaoke room and background music playback; 2: Live streaming scene, background music playback; 3: (default) Voice chat scene, online karaoke room; 4: Voice chat scene, background music playback; 5: VR scene, online karaoke room and background music playback. Example code: <codeph>{"sceneType":1}</codeph>.</li>
+                            <li>highPart: Index of the chorus segment, obtained from the <xref keyref="onMusicCollectionResult"/> callback, index starts from 0. Example code: <codeph>{"format": {"highpart": 0}}</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>internalSongCode</pt>
+                    <pd>Output parameter, the internal song code of the music resource.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>songCode</pt>
+                    <pd>The identifier of the music resource. You can obtain it by calling <codeph>getMusicCollectionByMusicChartId</codeph> or <codeph>searchMusic</codeph>, and retrieve the <codeph>songCode</codeph> from the <xref keyref="onMusicCollectionResult"/> callback triggered by these methods.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>jsonOption</pt>
+                    <pd>
+                        <note><codeph>sceneType</codeph> affects the billing method. Different channel scenes have different billing standards. See the billing documentation for details. To switch channel scenes, you must call this method again with a new <codeph>sceneType</codeph> value.</note><ph>Extended JSON field, default is <codeph>null</codeph>. Currently supports the following fields:</ph>
+                        <ul>
+                            <li>sceneType: Scene type. 1: Live scene, online karaoke room and background music playback; 2: Live scene, background music playback; 3: (default) Voice chat scene, online karaoke room; 4: Voice chat scene, background music playback; 5: VR scene, online karaoke room and background music playback. Example: <codeph>{"sceneType":1}</codeph>.</li>
+                            <li>highPart: Index of the chorus segment, obtained from the <xref keyref="onMusicCollectionResult"/> callback, starting from index 0. Example: <codeph>{"format": {"highpart": 0}}</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See error codes and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>If the method call succeeds, returns the created internal identifier of the music resource.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

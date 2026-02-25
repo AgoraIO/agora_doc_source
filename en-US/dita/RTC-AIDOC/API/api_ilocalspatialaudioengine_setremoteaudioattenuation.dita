@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ilocalspatialaudioengine_setremoteaudioattenuation">
+    <title><ph keyref="setRemoteAudioAttenuation"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the audio attenuation effect for a specified user.</ph><ph id="shortdesc" props="android">Sets the audio attenuation effect for a specified user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteAudioAttenuation"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteAudioAttenuation(uid_t uid, double attenuation, bool forceSet) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setRemoteAudioAttenuation(int uid, double attenuation, boolean forceSet);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>User ID. This parameter must be the same as the user ID passed in when the user joined the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>attenuation</pt>
+                    <pd>Audio attenuation coefficient for the user, value range: [0,1]. The meanings of the values are as follows:
+                        <ul>
+                            <li>0: Broadcast mode. Volume and timbre do not attenuate with distance. The local user hears consistent volume and timbre regardless of distance.</li>
+                            <li>(0, 0.5): Weak attenuation mode. Volume and timbre attenuate slightly during propagation. Sound travels farther than in real environments.</li>
+                            <li>0.5: (Default) Simulates real-world audio attenuation. Equivalent to not setting the <codeph>speaker_attenuation</codeph> parameter.</li>
+                            <li>(0.5, 1]: Strong attenuation mode. Volume and timbre attenuate rapidly during propagation.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>forceSet</pt>
+                    <pd>Whether to forcibly apply the audio attenuation effect for the user:
+                        <ul>
+                            <li><xref keyref="true"/>: Force the use of <codeph>attenuation</codeph> to set the user's audio attenuation. The <codeph>audioAttenuation</codeph> setting in <xref keyref="SpatialAudioZone"/> will not apply to this user.</li>
+                            <li><xref keyref="false"/>: Do not forcibly use <codeph>attenuation</codeph> to set the user's audio attenuation. Details are as follows:
+                                <ul>
+                                    <li>If the sound source and receiver are inside and outside the zone respectively, the attenuation is determined by the <codeph>audioAttenuation</codeph> in <xref keyref="SpatialAudioZone"/>.</li>
+                                    <li>If the sound source and receiver are in the same zone or both outside, the attenuation is determined by the <codeph>attenuation</codeph> in this method.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID. This parameter must be the same as the user ID passed in when the user joined the channel.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>attenuation</pt>
+                    <pd>Audio attenuation coefficient for the user, range [0, 1]. Value details:
+                        <ul>
+                            <li>0: Broadcast mode. Volume and tone do not attenuate with distance. The local user hears consistent volume and tone regardless of distance.</li>
+                            <li>(0, 0.5): Weak attenuation mode. Volume and tone attenuate slightly during transmission. Sound travels farther than in real environments.</li>
+                            <li>0.5: (Default) Simulates real-world volume attenuation. Equivalent to not setting the <codeph>speaker_attenuation</codeph> parameter.</li>
+                            <li>(0.5, 1]: Strong attenuation mode. Volume and tone attenuate quickly during transmission.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>forceSet</pt>
+                    <pd>Whether to forcefully apply the user's audio attenuation effect:
+                        <ul>
+                            <li><xref keyref="true"/>: Forcefully apply the <codeph>attenuation</codeph> setting. The <codeph>audioAttenuation</codeph> value set in <xref keyref="SpatialAudioZone"/> becomes ineffective for this user.</li>
+                            <li><xref keyref="false"/>: Do not forcefully apply the <codeph>attenuation</codeph> setting. Behavior:
+                                <ul>
+                                    <li>If the source and receiver are inside and outside the zone respectively, the attenuation is determined by <codeph>audioAttenuation</codeph> in <xref keyref="SpatialAudioZone"/>.</li>
+                                    <li>If both are inside or both are outside the same zone, the attenuation is determined by the <codeph>attenuation</codeph> value in this method.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

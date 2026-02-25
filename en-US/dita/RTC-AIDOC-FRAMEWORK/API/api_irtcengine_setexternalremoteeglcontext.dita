@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setexternalremoteeglcontext">
+    <title><ph keyref="setExternalRemoteEglContext"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Sets the EGL context for rendering remote video streams.</ph><ph id="shortdesc" props="flutter">Sets the EGL context for rendering remote video streams.</ph><ph id="shortdesc" props="unity">Sets the EGL context for rendering remote video streams.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalRemoteEglContext"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract setExternalRemoteEglContext(eglContext: any): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setExternalRemoteEglContext(int eglContext);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalRemoteEglContext(IntPtr eglContext);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">By setting this method, developers can replace the SDK's default remote EGL context, facilitating unified EGL context management.
+When the engine is destroyed, the SDK automatically releases the EGL context.</p>
+            <p props="flutter">By setting this method, developers can replace the SDK's default internal remote EGL context to facilitate unified EGL context management.
+When the engine is destroyed, the SDK automatically releases the EGL context.</p>
+            <p props="unity">By calling this method, developers can replace the SDK's default internal remote EGL context, making it easier to manage a unified EGL context.
+When the engine is destroyed, the SDK automatically releases the EGL context.</p>
+            <note props="rn">(Android only)</note>
+            <note props="flutter">This method is for Android only.</note>
+            <note props="unity">This method is only applicable to Android.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method is applicable in scenarios where remote video rendering is done using video data in Texture format.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>Timing</title>
+            <p props="rn">This method must be called before joining a channel.</p>
+            <p props="flutter">This method must be called before joining the channel.</p>
+            <p props="unity">You need to call this method before joining the channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>eglContext</pt>
+                    <pd>The EGL context object used for rendering remote video streams.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>eglContext</pt>
+                    <pd>The EGL context object used for rendering remote video streams.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>eglContext</pt>
+                    <pd>The EGL context object used for rendering remote video streams.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

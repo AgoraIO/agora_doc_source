@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videoencoderconfiguration">
+    <title><ph keyref="VideoEncoderConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure video encoding parameters.</ph><ph id="shortdesc" props="android">Used to set parameters for the video encoder.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct VideoEncoderConfiguration {
+  VIDEO_CODEC_TYPE codecType;
+  VideoDimensions dimensions;
+  int frameRate;
+  int bitrate;
+  int minBitrate;
+  ORIENTATION_MODE orientationMode;
+  DEGRADATION_PREFERENCE degradationPreference;
+  VIDEO_MIRROR_MODE_TYPE mirrorMode;
+  AdvanceOptions advanceOptions;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class VideoEncoderConfiguration {
+  public final static VideoDimensions VD_120x120 = new VideoDimensions(120, 120);
+  public final static VideoDimensions VD_160x120 = new VideoDimensions(160, 120);
+  public final static VideoDimensions VD_180x180 = new VideoDimensions(180, 180);
+  public final static VideoDimensions VD_240x180 = new VideoDimensions(240, 180);
+  public final static VideoDimensions VD_320x180 = new VideoDimensions(320, 180);
+  public final static VideoDimensions VD_240x240 = new VideoDimensions(240, 240);
+  public final static VideoDimensions VD_320x240 = new VideoDimensions(320, 240);
+  public final static VideoDimensions VD_424x240 = new VideoDimensions(424, 240);
+  public final static VideoDimensions VD_360x360 = new VideoDimensions(360, 360);
+  public final static VideoDimensions VD_480x360 = new VideoDimensions(480, 360);
+  public final static VideoDimensions VD_640x360 = new VideoDimensions(640, 360);
+  public final static VideoDimensions VD_480x480 = new VideoDimensions(480, 480);
+  public final static VideoDimensions VD_640x480 = new VideoDimensions(640, 480);
+  public final static VideoDimensions VD_840x480 = new VideoDimensions(840, 480);
+  public final static VideoDimensions VD_960x540 = new VideoDimensions(960, 540);
+  public final static VideoDimensions VD_960x720 = new VideoDimensions(960, 720);
+  public final static VideoDimensions VD_1280x720 = new VideoDimensions(1280, 720);
+  public final static VideoDimensions VD_1920x1080 = new VideoDimensions(1920, 1080);
+  public final static VideoDimensions VD_2540x1440 = new VideoDimensions(2540, 1440);
+  public final static VideoDimensions VD_3840x2160 = new VideoDimensions(3840, 2160);
+  public static final int STANDARD_BITRATE = 0;
+  public static final int COMPATIBLE_BITRATE = -1;
+  public static final int DEFAULT_MIN_BITRATE = -1;
+  public static final int DEFAULT_MIN_FRAMERATE = -1;
+  public static final int DEFAULT_MIN_BITRATE_EQUAL_TO_TARGET_BITRATE = -2;
+  public VideoDimensions dimensions;
+  public int frameRate;
+  public int minFrameRate;
+  public int bitrate;
+  public int minBitrate;
+  public ORIENTATION_MODE orientationMode;
+  public DEGRADATION_PREFERENCE degradationPrefer;
+  public MIRROR_MODE_TYPE mirrorMode;
+  public AdvanceOptions advanceOptions;
+  public VIDEO_CODEC_TYPE codecType;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
+            <p props="android">You can customize the resolution or choose from preset resolutions. Supports setting different encoding bitrates and frame rates to adapt to different channel scenarios. You can also specify video encoding orientation, mirror mode, and encoder priority strategy.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>codecType</pt>
+                    <pd>Codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>dimensions</pt>
+                    <pd>Dimensions of the encoded video (in pixels). This parameter measures video encoding quality in the format width × height. Default is 960 × 540. You can set a custom value. See <xref keyref="VideoDimensions"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>frameRate</pt>
+                    <pd>Frame rate (fps) of the encoded video. Default is 15.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>bitrate</pt>
+                    <pd>Bitrate (Kbps) of the encoded video. You do not need to set this parameter; keep the default value <xref keyref="STANDARD_BITRATE"/>. The SDK automatically matches the optimal bitrate based on the video resolution and frame rate you set.
+                        <ul>
+                            <li><xref keyref="STANDARD_BITRATE"/> (0): Recommended standard bitrate mode.</li>
+                            <li><xref keyref="COMPATIBLE_BITRATE"/> (-1): Adaptive bitrate mode, generally not recommended.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>minBitrate</pt>
+                    <pd>Minimum bitrate (Kbps) of the encoded video. The SDK automatically adjusts the encoding bitrate to adapt to network conditions. Using a value higher than the default forces the video encoder to output high-quality images, which may result in more packet loss and affect video smoothness.
+                        <note>This parameter is only applicable in the interactive live streaming scenario.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>orientationMode</pt>
+                    <pd>Orientation mode of the encoded video. See <xref keyref="ORIENTATION_MODE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>degradationPreference</pt>
+                    <pd>Video encoding degradation preference under limited bandwidth. See <xref keyref="DEGRADATION_PREFERENCE"/>.
+                        <note>When this parameter is set to <codeph>MAINTAIN_FRAMERATE</codeph> (1) or <codeph>MAINTAIN_BALANCED</codeph> (2), <codeph>orientationMode</codeph> must also be set to <codeph>ORIENTATION_MODE_ADAPTIVE</codeph> (0), otherwise this setting does not take effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mirrorMode</pt>
+                    <pd>Mirror mode when publishing the local video stream. Affects only what remote users see. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.
+                        <note>By default, video is not mirrored.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>advanceOptions</pt>
+                    <pd>Advanced options for video encoding. See <xref keyref="AdvanceOptions"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>dimensions</pt>
+                    <pd>
+                        <note>Whether 720p or higher resolutions are supported depends on device performance. If the device cannot support 720p, the frame rate may be lower than the set value. Default is 960 × 540.</note><ph>Video resolution. You can customize it or choose from the following list:</ph>
+                        <ul>
+                            <li><codeph>VD_120x120</codeph>: 120 × 120</li>
+                            <li><codeph>VD_160x120</codeph>: 160 × 120</li>
+                            <li><codeph>VD_180x180</codeph>: 180 × 180</li>
+                            <li><codeph>VD_240x180</codeph>: 240 × 180</li>
+                            <li><codeph>VD_320x180</codeph>: 320 × 180</li>
+                            <li><codeph>VD_240x240</codeph>: 240 × 240</li>
+                            <li><codeph>VD_320x240</codeph>: 320 × 240</li>
+                            <li><codeph>VD_424x240</codeph>: 424 × 240</li>
+                            <li><codeph>VD_360x360</codeph>: 360 × 360</li>
+                            <li><codeph>VD_480x360</codeph>: 480 × 360</li>
+                            <li><codeph>VD_640x360</codeph>: 640 × 360</li>
+                            <li><codeph>VD_480x480</codeph>: 480 × 480</li>
+                            <li><codeph>VD_640x480</codeph>: 640 × 480</li>
+                            <li><codeph>VD_840x480</codeph>: 840 × 480</li>
+                            <li><codeph>VD_960x540</codeph>: 960 × 540</li>
+                            <li><codeph>VD_960x720</codeph>: 960 × 720</li>
+                            <li><codeph>VD_1280x720</codeph>: 1280 × 720</li>
+                            <li><codeph>VD_1920x1080</codeph>: 1920 × 1080</li>
+                            <li><codeph>VD_2540x1440</codeph>: 2540 × 1440</li>
+                            <li><codeph>VD_3840x2160</codeph>: 3840 × 2160.</li>
+                        </ul><ph>See <xref keyref="VideoDimensions"/>.</ph></pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>frameRate</pt>
+                    <pd>Frame rate (fps) for encoding video frames. Default is 15. See <xref keyref="FRAME_RATE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>minFrameRate</pt>
+                    <pd>(Reserved parameter) Minimum video encoding frame rate (fps). Default is <codeph>DEFAULT_MIN_FRAMERATE(-1)</codeph>, which means the SDK uses the lowest encoding frame rate.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>bitrate</pt>
+                    <pd>Video encoding bitrate (Kbps). You don’t need to manually set this parameter; keep the default value <xref keyref="STANDARD_BITRATE"/>. The SDK will automatically match the most appropriate bitrate based on the set resolution and frame rate.
+                        <ul>
+                            <li><codeph>STANDARD_BITRATE (0)</codeph>: Recommended standard bitrate mode.</li>
+                            <li><codeph>COMPATIBLE_BITRATE (-1)</codeph>: Adaptive bitrate mode. Generally not recommended.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>minBitrate</pt>
+                    <pd>Minimum encoding bitrate (Kbps). The SDK automatically adjusts the encoding bitrate to adapt to network conditions. Setting a value higher than the default may force the encoder to output high-quality images, but may result in higher packet loss and affect transmission smoothness.
+                        <note>This parameter applies only to the interactive live streaming scenario.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>orientationMode</pt>
+                    <pd>Orientation mode for video encoding. See <xref keyref="ORIENTATION_MODE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>degradationPrefer</pt>
+                    <pd>Video encoding degradation preference when bandwidth is limited. See <xref keyref="DEGRADATION_PREFERENCE"/>.
+                        <note>When this parameter is set to <codeph>MAINTAIN_FRAMERATE (1)</codeph> or <codeph>MAINTAIN_BALANCED (2)</codeph>, <codeph>orientationMode</codeph> must also be set to <codeph>ORIENTATION_MODE_ADAPTIVE (0)</codeph>, otherwise the setting is invalid.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mirrorMode</pt>
+                    <pd>
+                        <note>By default, the video has no mirror effect.</note><ph>Sets the mirror mode when publishing the local video stream. Only affects what remote users see:</ph>
+                        <ul>
+                            <li><codeph>VIDEO_MIRROR_MODE_AUTO (0)</codeph>: SDK decides whether to enable mirror mode. Default is disabled.</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_ENABLED (1)</codeph>: Enable remote mirror.</li>
+                            <li><codeph>VIDEO_MIRROR_MODE_DISABLED (2)</codeph>: Disable remote mirror.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>advanceOptions</pt>
+                    <pd>Advanced options for video encoding. See <xref keyref="AdvanceOptions"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>codecType</pt>
+                    <pd>Codec type for the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

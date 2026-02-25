@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_preloadsrc">
+    <title><ph keyref="preloadSrc"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Preloads media resources.</ph><ph id="shortdesc" props="android">Preloads a media resource.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="preloadSrc"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int preloadSrc(const char* src, int64_t startPos) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int preloadSrc(String src, long startPos);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You can call this method to preload media resources into the playlist. If you need to preload multiple media resources, call this method multiple times. After calling this method, if the <xref keyref="onPreloadEvent"/> callback reports the <codeph>PLAYER_PRELOAD_EVENT_COMPLETE</codeph> event, the preload is successful; if it reports the <codeph>PLAYER_PRELOAD_EVENT_ERROR</codeph> event, the preload failed. After a successful preload, if you want to play the media resource, call <xref keyref="playPreloadedSrc"/>; if you want to clear the playlist, call <xref keyref="stop"/>.</p>
+            <p props="android">After calling this method, if you receive the <codeph>PLAYER_PRELOAD_EVENT_COMPLETE</codeph> event in the <xref keyref="onPreloadEvent"/> callback, the preload is successful; if you receive the <codeph>PLAYER_PRELOAD_EVENT_ERROR</codeph> event, the preload failed. After a successful preload, call <xref keyref="playPreloadedSrc"/> to play the media resource. To clear the playlist, call <codeph>stop()</codeph>.</p>
+            <note props="cpp">
+                <ul>
+                    <li>Before calling this method, make sure you have successfully opened the media resource using <xref keyref="open"/> or <xref keyref="openWithMediaSource"/>.</li>
+                    <li>Agora does not support preloading duplicate media resources into the playlist. However, you can preload a currently playing media resource again into the playlist.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>Before calling this method, make sure you have successfully called <codeph>open</codeph> or <xref keyref="openWithMediaSource"/> to open the media resource.</li>
+                    <li>Agora does not support preloading the same media resource multiple times into the playlist. However, you can preload a currently playing media resource again into the playlist.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>src</pt>
+                    <pd>The URL of the media resource.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>startPos</pt>
+                    <pd>The position (in milliseconds) where playback starts after the media resource is preloaded into the playlist.
+                        <note>When preloading live streams, set this parameter to 0.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>src</pt>
+                    <pd>URL of the media resource.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>startPos</pt>
+                    <pd>The playback start position (in milliseconds) after the media resource is preloaded into the playlist. Set this parameter to 0 when preloading live streams.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

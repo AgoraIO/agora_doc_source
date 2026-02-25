@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_advanceoptions">
+    <title><ph keyref="AdvanceOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">视频编码的高级选项。</ph><ph id="shortdesc" props="rn">视频编码的高级选项。</ph><ph id="shortdesc" props="flutter">视频编码的高级选项。</ph><ph id="shortdesc" props="unity">视频编码的高级选项。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class AdvanceOptions {
+  encodingPreference?: EncodingPreference;
+  compressionPreference?: CompressionPreference;
+  encodeAlpha?: boolean;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class AdvanceOptions {
+  encodingPreference?: EncodingPreference;
+  compressionPreference?: CompressionPreference;
+  encodeAlpha?: boolean;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class AdvanceOptions {
+  const AdvanceOptions(
+      {this.encodingPreference, this.compressionPreference, this.encodeAlpha});
+
+  @JsonKey(name: 'encodingPreference')
+  final EncodingPreference? encodingPreference;
+
+  @JsonKey(name: 'compressionPreference')
+  final CompressionPreference? compressionPreference;
+
+  @JsonKey(name: 'encodeAlpha')
+  final bool? encodeAlpha;
+
+  factory AdvanceOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$AdvanceOptionsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$AdvanceOptionsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class AdvanceOptions
+    {
+        public ENCODING_PREFERENCE encodingPreference;
+        public COMPRESSION_PREFERENCE compressionPreference;
+        public bool encodeAlpha;
+
+        public AdvanceOptions()
+        {
+            this.encodingPreference = ENCODING_PREFERENCE.PREFER_AUTO;
+            this.compressionPreference = COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY;
+            this.encodeAlpha = false;
+        }
+
+        public AdvanceOptions(ENCODING_PREFERENCE encoding_preference, COMPRESSION_PREFERENCE compression_preference, bool encode_alpha)
+        {
+            this.encodingPreference = encoding_preference;
+            this.compressionPreference = compression_preference;
+            this.encodeAlpha = encode_alpha;
+        }
+
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>属性</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>encodingPreference</pt>
+                    <pd>视频编码器偏好。详见 <xref keyref="ENCODING_PREFERENCE"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>compressionPreference</pt>
+                    <pd>视频编码的压缩偏好。详见 <xref keyref="COMPRESSION_PREFERENCE"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>encodeAlpha</pt>
+                    <pd>当视频帧包含 Alpha 通道数据时，设置是否将 Alpha 数据编码并发送至远端：
+                        <ul>
+                            <li><xref keyref="true"/>：对 Alpha 数据进行编码发送。</li>
+                            <li><xref keyref="false"/>：（默认）不对 Alpha 数据进行编码发送。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encodingPreference</pt>
+                    <pd>视频编码器偏好。详见 <xref keyref="ENCODING_PREFERENCE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>compressionPreference</pt>
+                    <pd>视频编码的压缩偏好。详见 <xref keyref="COMPRESSION_PREFERENCE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encodeAlpha</pt>
+                    <pd>当视频帧包含 Alpha 通道数据时，设置是否将 Alpha 数据编码并发送至远端：
+                        <ul>
+                            <li><xref keyref="true"/>：对 Alpha 数据进行编码发送。</li>
+                            <li><xref keyref="false"/>：（默认）不对 Alpha 数据进行编码发送。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encodingPreference</pt>
+                    <pd>视频编码器偏好。详见 <xref keyref="ENCODING_PREFERENCE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>compressionPreference</pt>
+                    <pd>视频编码的压缩偏好。详见 <xref keyref="COMPRESSION_PREFERENCE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encodeAlpha</pt>
+                    <pd>当视频帧包含 Alpha 通道数据时，设置是否将 Alpha 数据编码并发送至远端：
+                        <ul>
+                            <li><xref keyref="true"/>：对 Alpha 数据进行编码发送。</li>
+                            <li><xref keyref="false"/>：（默认）不对 Alpha 数据进行编码发送。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encodingPreference</pt>
+                    <pd>视频编码器偏好。详见 <xref keyref="ENCODING_PREFERENCE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>compressionPreference</pt>
+                    <pd>视频编码的压缩偏好。详见 <xref keyref="COMPRESSION_PREFERENCE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encodeAlpha</pt>
+                    <pd>当视频帧包含 Alpha 通道数据时，设置是否将 Alpha 数据编码并发送至远端：
+                        <ul>
+                            <li><xref keyref="true"/>：对 Alpha 数据进行编码发送。</li>
+                            <li><xref keyref="false"/>：（默认）不对 Alpha 数据进行编码发送。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

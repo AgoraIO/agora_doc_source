@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayercachemanager_removeoldcache">
+    <title><ph keyref="removeOldCache"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">删除最少使用的缓存媒体文件。</ph><ph id="shortdesc" props="ios">删除最少使用的缓存媒体文件。</ph><ph id="shortdesc" props="android">删除最少使用的缓存媒体文件。</ph><ph id="shortdesc" props="mac">删除最少使用的缓存媒体文件。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="removeOldCache"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int removeOldCache() = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)removeOldCache NS_SWIFT_NAME(removeOldCache());</codeblock>
+                <codeblock props="android" outputclass="language-java">int removeOldCache();</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)removeOldCache NS_SWIFT_NAME(removeOldCache());</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">当缓存文件存储空间即将达到上限时，你可以调用该方法，SDK 会删除最少使用的缓存媒体文件。</p>
+            <p props="ios">当缓存文件的存储空间即将达到上限时，你可以调用该方法删除一个缓存媒体文件。SDK 会删除最少使用的缓存媒体文件。</p>
+            <p props="android">你可以在缓存文件的存储空间即将达到上限时调用该方法。调用该方法后，SDK 会删除最少使用的缓存媒体文件。</p>
+            <p props="mac">当缓存文件的存储空间即将达到上限时，你可以调用该方法删除一个缓存媒体文件。SDK 会删除最少使用的缓存媒体文件。</p>
+            <note props="cpp"><xref keyref="removeOldCache"/> 不会删除当前正在播放的缓存媒体文件。</note>
+            <note props="ios"><xref keyref="removeOldCache"/> 当前不会删除正在播放的缓存媒体文件。</note>
+            <note props="android"><xref keyref="removeOldCache"/> 不会删除当前正在播放的缓存媒体文件。</note>
+            <note props="mac"><xref keyref="removeOldCache"/> 当前不会删除正在播放的缓存媒体文件。</note>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败，详见 <xref keyref="MEDIA_PLAYER_REASON"/>。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

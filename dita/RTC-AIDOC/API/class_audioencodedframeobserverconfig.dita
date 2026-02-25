@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audioencodedframeobserverconfig">
+    <title><ph keyref="AudioEncodedFrameObserverConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置编码音频观察者的设置。</ph><ph id="shortdesc" props="ios">设置编码音频的观察者配置。</ph><ph id="shortdesc" props="android">用于配置编码音频的监听器。</ph><ph id="shortdesc" props="mac">设置编码音频的观察者配置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct AudioEncodedFrameObserverConfig {
+  AUDIO_ENCODED_FRAME_OBSERVER_POSITION postionType;
+  AUDIO_ENCODING_TYPE encodingType;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioEncodedFrameDelegateConfig: NSObject
+@property (assign, nonatomic) AgoraAudioEncodedFrameDelegatePosition postionType;
+@property (assign, nonatomic) AgoraAudioEncodingType encodingType;
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class AudioEncodedFrameObserverConfig {
+  public int postionType;
+  public int encodingType;
+}</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioEncodedFrameDelegateConfig: NSObject
+@property (assign, nonatomic) AgoraAudioEncodedFrameDelegatePosition postionType;
+@property (assign, nonatomic) AgoraAudioEncodingType encodingType;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>postionType</pt>
+                    <pd>音频配置。详见 <xref keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>encodingType</pt>
+                    <pd>音频编码类型。详见 <xref keyref="AUDIO_ENCODING_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>postionType</pt>
+                    <pd>音频观察者的位置。详见 <xref keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>encodingType</pt>
+                    <pd>音频编码类型。详见 <xref keyref="AUDIO_ENCODING_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>postionType</pt>
+                    <pd>音频监听器的采集位置：
+                        <ul>
+                            <li><codeph>AUDIO_ENCODED_FRAME_OBSERVER_POSITION_MIC</codeph>（1）：仅采集本地用户的音频。</li>
+                            <li><codeph>AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK</codeph>（2）：仅采集所有远端用户的音频。</li>
+                            <li><codeph>AUDIO_ENCODED_FRAME_OBSERVER_POSITION_MIXED</codeph>（3）：采集本地和所有远端用户的混音音频。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>encodingType</pt>
+                    <pd>音频编码类型：
+                        <ul>
+                            <li><codeph>AUDIO_ENCODING_TYPE_AAC_16000_LOW</codeph>：AAC 编码格式，16000 Hz 采样率，低质量。编码后 10 分钟音频约为 1.2 MB。</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_AAC_16000_MEDIUM</codeph>：AAC 编码格式，16000 Hz 采样率，中等质量。编码后 10 分钟音频约为 2 MB。</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_AAC_32000_LOW</codeph>：AAC 编码格式，32000 Hz 采样率，低质量。编码后 10 分钟音频约为 1.2 MB。</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_AAC_32000_MEDIUM</codeph>：AAC 编码格式，32000 Hz 采样率，中等质量。编码后 10 分钟音频约为 2 MB。</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_AAC_32000_HIGH</codeph>：AAC 编码格式，32000 Hz 采样率，高质量。编码后 10 分钟音频约为 3.5 MB。</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_AAC_48000_MEDIUM</codeph>：AAC 编码格式，48000 Hz 采样率，中等质量。编码后 10 分钟音频约为 2 MB。</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_AAC_48000_HIGH</codeph>：AAC 编码格式，48000 Hz 采样率，高质量。编码后 10 分钟音频约为 3.5 MB。</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_OPUS_16000_LOW</codeph>：OPUS 编码格式，16000 Hz 采样率，低质量。编码后 10 分钟音频约为 2 MB。</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_OPUS_16000_MEDIUM</codeph>：OPUS 编码格式，16000 Hz 采样率，中等质量。编码后 10 分钟音频约为 2 MB。</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_OPUS_48000_MEDIUM</codeph>：OPUS 编码格式，48000 Hz 采样率，中等质量。编码后 10 分钟音频约为 2 MB。</li>
+                            <li><codeph>AUDIO_ENCODING_TYPE_OPUS_48000_HIGH</codeph>：OPUS 编码格式，48000 Hz 采样率，高质量。编码后 10 分钟音频约为 3.5 MB。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>postionType</pt>
+                    <pd>音频观察者的位置。详见 <xref keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>encodingType</pt>
+                    <pd>音频编码类型。详见 <xref keyref="AUDIO_ENCODING_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

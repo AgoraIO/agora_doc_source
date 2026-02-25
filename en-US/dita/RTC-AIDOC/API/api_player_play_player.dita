@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_player_play_player">
+    <title><ph keyref="Play_Player"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Plays a URL resource.</ph><ph id="shortdesc" props="android">Plays a URL resource.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="Play_Player"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">bool Play(Error *err = nullptr)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void play() throws RteException</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Added since version v4.4.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="android">If you have disabled autoplay, you can call this method to start playback after successfully opening an online media stream using <xref keyref="OpenWithUrl"/>.</p>
+            <note props="cpp">This method currently only supports URLs that start with <codeph>rte://</codeph>.</note>
+            <note props="android">This method currently supports only URLs prefixed with <codeph>rte://</codeph>.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after receiving the <xref keyref="onStateChanged"/> callback reporting the state as <codeph>kRtePlayerStateOpenCompleted</codeph>.</p>
+            <p props="android">Call this method only after receiving the <xref keyref="onStateChanged"/> callback with status <codeph>OPEN_COMPLETED</codeph>.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android">
+            <title>Related Callbacks</title>
+            <p props="android">After successfully calling this method, the <xref keyref="onStateChanged"/> callback is triggered to report the player status.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>err</pt>
+                    <pd>Output parameter, status or error information. See <xref keyref="Error"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="exception" props="android">
+            <title>Exceptions</title>
+            <p props="android">When the method call fails, the SDK throws an <xref keyref="RteException"/> containing the corresponding error information. You need to catch and handle the exception.</p>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">Indicates whether playback is successful:
+                <ul>
+                    <li><xref keyref="true"/>: Playback succeeded.</li>
+                    <li><xref keyref="false"/>: Playback failed.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

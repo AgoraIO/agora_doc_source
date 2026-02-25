@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_musiccacheinfo">
+    <title><ph keyref="MusicCacheInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes information about cached music resources.</ph><ph id="shortdesc" props="android">Describes information about cached music resources.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct MusicCacheInfo {
+    int64_t songCode;
+    MUSIC_CACHE_STATUS_TYPE status;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class MusicCacheInfo {
+  public long songCode;
+  public int status;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>songCode</pt>
+                    <pd>ID of the music resource, used to identify the resource.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>status</pt>
+                    <pd>Cache status of the music resource. See <xref keyref="MUSIC_CACHE_STATUS_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>songCode</pt>
+                    <pd>The identifier of the music resource, used to identify the music resource.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>status</pt>
+                    <pd>The cache status of the music resource:
+                        <ul>
+                            <li><codeph>MUSIC_CACHE_STATUS_TYPE_CACHED</codeph> (0): The music resource is cached.</li>
+                            <li><codeph>MUSIC_CACHE_STATUS_TYPE_CACHING</codeph> (1): The music resource is being cached.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

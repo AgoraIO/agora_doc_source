@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onusermutevideo">
+    <title><ph keyref="onUserMuteVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for changes in remote video publishing state.</ph><ph id="shortdesc" props="android">Callback when the remote video state changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserMuteVideo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onUserMuteVideo(uid_t uid, bool muted)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onUserMuteVideo(int uid, boolean muted)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback is triggered when the remote user calls <xref keyref="muteLocalVideoStream"/> to stop or resume publishing the video stream. The SDK reports the remote user's video publishing state to the local user.</p>
+            <p props="android">When a remote user calls <xref keyref="muteLocalVideoStream"/>, the SDK triggers this callback to report the remote user's video stream state to the local user.</p>
+            <note props="cpp">This callback may be inaccurate when the number of users (in communication scenario) or hosts (in live broadcast scenario) in the channel exceeds 32.</note>
+            <note props="android">When the number of users in a communication scenario or hosts in an ultra-low latency live streaming scenario exceeds 32, this callback may be inaccurate.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when a remote user calls <xref keyref="muteLocalVideoStream"/> to stop or resume publishing video streams.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>The user ID of the remote user.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>muted</pt>
+                    <pd>Whether the remote user stops publishing the video stream:
+                        <ul>
+                            <li><xref keyref="true"/>: The remote user stops publishing the video stream.</li>
+                            <li><xref keyref="false"/>: The remote user resumes publishing the video stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>muted</pt>
+                    <pd>Whether the remote user stops publishing video streams:
+                        <ul>
+                            <li><xref keyref="true"/>: The remote user stops publishing video streams.</li>
+                            <li><xref keyref="false"/>: The remote user resumes publishing video streams.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

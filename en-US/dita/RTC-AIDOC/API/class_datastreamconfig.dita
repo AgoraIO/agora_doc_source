@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_datastreamconfig">
+    <title><ph keyref="DataStreamConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Struct used to configure data stream behavior.</ph><ph id="shortdesc" props="android">Used to configure synchronization and ordering behavior of data streams.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct DataStreamConfig {
+  bool syncWithAudio;
+  bool ordered;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class DataStreamConfig {
+  public boolean syncWithAudio = false;
+  public boolean ordered = false;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
+            <p props="cpp">The following table shows the SDK behavior under different parameter combinations:
+                <simpletable>
+                    <sthead>
+                        <stentry><codeph>syncWithAudio</codeph></stentry>
+                        <stentry><codeph>ordered</codeph></stentry>
+                        <stentry>SDK Behavior</stentry>
+                    </sthead>
+                    <strow>
+                        <stentry><xref keyref="false"/></stentry>
+                        <stentry><xref keyref="false"/></stentry>
+                        <stentry>The SDK immediately triggers the <xref keyref="onStreamMessage"/> callback when the receiver receives the data packet.</stentry>
+                    </strow>
+                    <strow>
+                        <stentry><xref keyref="true"/></stentry>
+                        <stentry><xref keyref="false"/></stentry>
+                        <stentry>If the data packet delay is within the audio delay range, the SDK triggers the <xref keyref="onStreamMessage"/> callback when the synchronized audio packet is played; if the delay exceeds the audio delay, the SDK triggers the callback immediately upon receiving the data packet.</stentry>
+                    </strow>
+                    <strow>
+                        <stentry><xref keyref="false"/></stentry>
+                        <stentry><xref keyref="true"/></stentry>
+                        <stentry>If the data packet delay is less than 5 seconds, the SDK performs order correction; if the delay exceeds 5 seconds, the SDK discards the packet.</stentry>
+                    </strow>
+                    <strow>
+                        <stentry><xref keyref="true"/></stentry>
+                        <stentry><xref keyref="true"/></stentry>
+                        <stentry>If the data packet delay is within the audio delay range, the SDK performs order correction; if the delay exceeds the audio delay, the SDK discards the packet.</stentry>
+                    </strow>
+                </simpletable>
+            </p>
+            <p props="android">The following table shows the SDK behavior under different parameter combinations:
+                <simpletable>
+                    <sthead>
+                        <stentry><codeph>syncWithAudio</codeph></stentry>
+                        <stentry><codeph>ordered</codeph></stentry>
+                        <stentry>SDK Behavior</stentry>
+                    </sthead>
+                    <strow>
+                        <stentry><xref keyref="false"/></stentry>
+                        <stentry><xref keyref="false"/></stentry>
+                        <stentry>The SDK immediately triggers the <xref keyref="onStreamMessage"/> callback when the data packet is received.</stentry>
+                    </strow>
+                    <strow>
+                        <stentry><xref keyref="true"/></stentry>
+                        <stentry><xref keyref="false"/></stentry>
+                        <stentry>If the data packet delay is within the audio delay range, the SDK triggers the callback when the synchronized audio is played; otherwise, it triggers the callback immediately.</stentry>
+                    </strow>
+                    <strow>
+                        <stentry><xref keyref="false"/></stentry>
+                        <stentry><xref keyref="true"/></stentry>
+                        <stentry>If the data packet delay is less than 5 seconds, the SDK reorders it; otherwise, the packet is discarded.</stentry>
+                    </strow>
+                    <strow>
+                        <stentry><xref keyref="true"/></stentry>
+                        <stentry><xref keyref="true"/></stentry>
+                        <stentry>If the data packet delay is within the audio delay range, the SDK reorders it; otherwise, the packet is discarded.</stentry>
+                    </strow>
+                </simpletable>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>syncWithAudio</pt>
+                    <pd>Whether to synchronize the data packet with the published audio packet.
+                        <ul>
+                            <li><xref keyref="true"/>: Synchronize with audio packets, suitable for scenarios such as lyrics synchronization.</li>
+                            <li><xref keyref="false"/>: Do not synchronize with audio packets, suitable for scenarios where data packets need to arrive at the receiver immediately.</li>
+                        </ul><ph>When set to sync, if the data packet delay is within the audio delay range, the SDK triggers the <xref keyref="onStreamMessage"/> callback when the corresponding audio is played.</ph></pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>ordered</pt>
+                    <pd>Whether to ensure that the receiver receives data in the order sent.
+                        <ul>
+                            <li><xref keyref="true"/>: Ensure that the receiver receives data in the order sent.</li>
+                            <li><xref keyref="false"/>: Do not ensure the order of data reception.</li>
+                        </ul><ph>If you want the receiver to receive data packets immediately, do not set this parameter to <xref keyref="true"/>.</ph></pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>syncWithAudio</pt>
+                    <pd>Whether to synchronize the data packet with the published audio packet.
+                        <ul>
+                            <li><xref keyref="true"/>: Synchronize data packets with audio packets, suitable for special scenarios such as lyric synchronization.</li>
+                            <li><xref keyref="false"/>: Do not synchronize data packets with audio packets, suitable for scenarios that require immediate delivery of data packets to the receiver.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>ordered</pt>
+                    <pd>Whether to ensure the receiver receives data in the sending order.
+                        <ul>
+                            <li><xref keyref="true"/>: The receiver receives data in the sending order.</li>
+                            <li><xref keyref="false"/>: Receiving order is not guaranteed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

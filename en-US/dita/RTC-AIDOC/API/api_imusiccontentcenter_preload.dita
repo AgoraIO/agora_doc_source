@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_preload">
+    <title><ph keyref="preload"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Preloads music resources.</ph><ph id="shortdesc" props="android">Preloads music resources.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="preload"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int preload(int64_t songCode, const char* jsonOption) __deprecated = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int preload(long songCode, String jsonOption)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Please use the <xref keyref="preload2"/> method instead.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use <xref keyref="preload2"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">You can call this method to preload music resources you want to play. After this method is successfully called, the SDK triggers the <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> callback to report preload events. Before calling this method, you need to call <codeph>getMusicCollectionWithMusicChartId</codeph> or <xref keyref="searchMusic"/> to obtain the target music resource and get the song code <codeph>songCode</codeph> from the <xref keyref="onMusicCollectionResult"/> callback.</p>
+            <p props="android">After a successful call, the SDK triggers the <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> callback to report preload events. Before calling this method, you need to call <codeph>getMusicCollectionByMusicChartId</codeph> or <codeph>searchMusic</codeph> to obtain music resources and get the resource identifier (<codeph>songCode</codeph>) from the <xref keyref="onMusicCollectionResult"/> callback.</p>
+            <note props="cpp">Before destroying the <xref keyref="IRtcEngine"/> object, make sure to call the <xref keyref="release_IMusicContentCenter"/> method only after receiving the <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> callback.</note>
+            <note props="android">Before destroying the <xref keyref="IRtcEngine"/> object, make sure to call the <xref keyref="destroy1"/> method after receiving the <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> callback.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>songCode</pt>
+                    <pd>The song code used to identify the music resource.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>jsonOption</pt>
+                    <pd>Extended JSON field. Agora charges based on the application scenario you pass in the <codeph>sceneType</codeph> field. Different scenarios have different billing standards:
+                        <ul>
+                            <li>1: Live streaming scenario: Online karaoke room and background music playback.</li>
+                            <li>2: Live streaming scenario: Background music playback.</li>
+                            <li>3: (Default) Voice chat scenario: Online karaoke room.</li>
+                            <li>4: Voice chat scenario: Background music playback.</li>
+                            <li>5: VR scenario: Online karaoke room and background music playback.</li>
+                        </ul><ph>If you need to switch to another scenario, call this method again and pass the new <codeph>sceneType</codeph> value in this field.</ph><ph>Example: <codeph>{"sceneType":1}</codeph>.</ph></pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>songCode</pt>
+                    <pd>The identifier of the music resource.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>jsonOption</pt>
+                    <pd>Extended JSON field. Agora charges based on the <codeph>sceneType</codeph> you set in this field. Different scenes have different billing standards. See the billing documentation.
+                        <ul>
+                            <li>1: Live scene: Online karaoke room and background music playback.</li>
+                            <li>2: Live scene: Background music playback.</li>
+                            <li>3: (Default) Voice chat scene: Online karaoke room.</li>
+                            <li>4: Voice chat scene: Background music playback.</li>
+                            <li>5: VR scene: Online karaoke room and background music playback.</li>
+                        </ul><ph>If you need to switch to another scene, you must call this method again and pass a new <codeph>sceneType</codeph> value in this field.</ph><ph>Example: <codeph>{"sceneType":1}</codeph>.</ph></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

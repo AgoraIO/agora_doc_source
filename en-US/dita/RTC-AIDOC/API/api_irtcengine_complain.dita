@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_complain">
+    <title><ph keyref="complain"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Allows users to report call quality issues after the call ends.</ph><ph id="shortdesc" props="android">Allows you to report call quality issues after the call ends.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="complain"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int complain(const char* callId, const char* description) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int complain(String callId, String description);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Call this method after the user leaves the channel.</p>
+            <p props="android">Call this method after the user leaves the channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>callId</pt>
+                    <pd>The call ID of the current call. You can obtain it by calling <xref keyref="getCallId"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>description</pt>
+                    <pd>(Optional) Description of the call. The string length should be less than 800 bytes.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>callId</pt>
+                    <pd>The Call ID of the current call. You can obtain it by calling <xref keyref="getCallId"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>description</pt>
+                    <pd>(Optional) Description of the call. The string length should be less than 800 bytes.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-1: General error (no specific reason).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-7: This method is called before <xref keyref="IRtcEngine"/> is initialized.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-1: General error (unknown reason).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-7: Called before <xref keyref="IRtcEngine"/> is initialized.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_remotevideostats">
+    <title><ph keyref="RemoteVideoStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Provides statistics of the remote video stream.</ph><ph id="shortdesc" props="android">Statistics of the remote video stream.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct RemoteVideoStats {
+  uid_t uid;
+  int delay __deprecated;
+  int e2eDelay;
+  int width;
+  int height;
+  int receivedBitrate;
+  int decoderInputFrameRate;
+  int decoderOutputFrameRate;
+  int rendererOutputFrameRate;
+  int frameLossRate;
+  int packetLossRate;
+  VIDEO_STREAM_TYPE rxStreamType;
+  int totalFrozenTime;
+  int frozenRate;
+  int avSyncTimeMs;
+  int totalActiveTime;
+  int publishDuration;
+  int mosValue;
+  unsigned int rxVideoBytes;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class RemoteVideoStats {
+    public int uid;
+    public int delay;
+    public int e2eDelay;
+    public int width;
+    public int height;
+    public int receivedBitrate;
+    public int decoderOutputFrameRate;
+    public int rendererOutputFrameRate;
+    public int frameLossRate;
+    public int packetLossRate;
+    public int rxStreamType;
+    public int totalFrozenTime;
+    public int frozenRate;
+    public int avSyncTimeMs;
+    public long totalActiveTime;
+    public long publishDuration;
+    public int mosValue;
+    public int rxVideoBytes;
+  }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>User ID of the remote user sending the video stream.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>delay</pt>
+                    <pd>Video delay (ms).
+                        <note>@deprecated In audio-video sync scenarios, you can use <codeph>networkTransportDelay</codeph> and <codeph>jitterBufferDelay</codeph> from <xref keyref="RemoteAudioStats"/> to get video delay data.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>e2eDelay</pt>
+                    <pd>End-to-end video delay (ms), from the time the remote user captures the video to when the local user receives and renders it.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>width</pt>
+                    <pd>Video width (pixels).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>Video height (pixels).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>receivedBitrate</pt>
+                    <pd>Bitrate (Kbps) of the received remote video since the last report.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>decoderInputFrameRate</pt>
+                    <pd>Input frame rate (fps) for decoding the remote video.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>decoderOutputFrameRate</pt>
+                    <pd>Output frame rate (fps) after decoding the remote video.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>Output frame rate (fps) of the rendered remote video.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>frameLossRate</pt>
+                    <pd>Frame loss rate (%) of the remote video.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>packetLossRate</pt>
+                    <pd>Packet loss rate (%) of the remote video after applying anti-packet-loss techniques.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxStreamType</pt>
+                    <pd>Video stream type. See <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>totalFrozenTime</pt>
+                    <pd>Total duration (ms) of video freeze after the remote user joins the channel. In video calls with frame rates no lower than 5 fps, if the interval between two renderable video frames exceeds 500 ms, it is considered a video freeze.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>frozenRate</pt>
+                    <pd>Percentage (%) of video freeze duration relative to the total available video time. Video is considered available if the remote user has not stopped sending video or disabled the video module after joining the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>avSyncTimeMs</pt>
+                    <pd>Time (ms) that audio leads video.
+                        <note>If this value is negative, it means audio lags behind video.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>totalActiveTime</pt>
+                    <pd>Total active time (ms) of the video. Video is considered available if the remote user or host has not stopped sending video or disabled the video module after joining the channel.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishDuration</pt>
+                    <pd>Total duration (ms) of the remote video stream.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mosValue</pt>
+                    <pd>Video quality score of the remote stream during the reporting interval, calculated using Agora’s real-time video MOS (Mean Opinion Score) algorithm. The value ranges from [0, 500]. Divide by 100 to get the MOS score, ranging from 0 to 5. Higher scores indicate better video quality.
+                        <note>For texture video data, this parameter always returns 0.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rxVideoBytes</pt>
+                    <pd>Total number of received video bytes (bytes), including FEC bytes, aggregated.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID of the remote user sending the video stream.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>delay</pt>
+                    <pd>This field is deprecated. In audio-video sync scenarios, you can get video delay data through <codeph>networkTransportDelay</codeph> and <codeph>jitterBufferDelay</codeph> in <xref keyref="RemoteAudioStats"/>. Video delay (ms).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>e2eDelay</pt>
+                    <pd>End-to-end video delay (ms), which is the time from video capture by the remote user to video rendering by the local user.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>width</pt>
+                    <pd>Video width (pixels).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>Video height (pixels).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>receivedBitrate</pt>
+                    <pd>Bitrate (Kbps) of the remote video received since the last statistics update.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>decoderOutputFrameRate</pt>
+                    <pd>Frame rate (fps) of the decoded remote video.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>Frame rate (fps) of the rendered remote video.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>frameLossRate</pt>
+                    <pd>Frame loss rate (%) of the remote video.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>packetLossRate</pt>
+                    <pd>Packet loss rate (%) of the remote video after applying anti-packet-loss techniques.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxStreamType</pt>
+                    <pd>Video stream type:
+                        <ul>
+                            <li><codeph>0</codeph>: High-quality stream, i.e., high-resolution high-bitrate video stream.</li>
+                            <li><codeph>1</codeph>: Low-quality stream, i.e., low-resolution low-bitrate video stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>totalFrozenTime</pt>
+                    <pd>Total duration (ms) of remote video stalling after the remote user joins the channel. Video is considered stalled when the frame rate is not lower than 5 fps and the interval between two renderable frames exceeds 500 ms.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>frozenRate</pt>
+                    <pd>Percentage (%) of total stalling time over the total available video time. As long as the remote user continues sending video after joining the channel and does not disable video, the video is considered available.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>avSyncTimeMs</pt>
+                    <pd>Time (ms) that audio leads video.
+                        <note>If this value is negative, audio lags behind video.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>totalActiveTime</pt>
+                    <pd>Total available duration (ms) of the video. As long as the remote user or host continues sending video after joining the channel and does not disable the video module, the video is considered available.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>publishDuration</pt>
+                    <pd>Total duration (ms) of the remote video stream.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mosValue</pt>
+                    <pd>Quality of the remote video stream during the reporting interval. This value is calculated using Agora's real-time video MOS (Mean Opinion Score) method, ranging from [0, 500]. Divide by 100 to get the MOS score (0 to 5), where a higher score indicates better quality.
+                        <note>For texture video data, this parameter always returns 0.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rxVideoBytes</pt>
+                    <pd>Total number of video bytes received (bytes).</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

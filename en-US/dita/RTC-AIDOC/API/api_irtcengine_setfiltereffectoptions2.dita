@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setfiltereffectoptions2">
+    <title><ph keyref="setFilterEffectOptions2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Sets filter effect options.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setFilterEffectOptions2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int setFilterEffectOptions(boolean enabled, FilterEffectOptions options);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Added since v4.4.1.</dd>
+                </dlentry>
+            </dl>
+            <note props="android">This method is only applicable to Android 5.0 or later. It depends on the beauty effect dynamic library <xref keyref="clearvision"/>. If this library is removed, the feature cannot be enabled properly. This feature requires high device performance. When calling this method, the SDK automatically detects the device's capabilities.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">Call this method after calling <xref keyref="enableVideo"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable filter effects:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable.</li>
+                            <li><xref keyref="false"/>: (Default) Disable.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>Filter effect options. See <xref keyref="FilterEffectOptions"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

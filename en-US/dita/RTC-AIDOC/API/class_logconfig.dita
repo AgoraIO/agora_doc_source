@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_logconfig">
+    <title><ph keyref="LogConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the log file of the Agora SDK.</ph><ph id="shortdesc" props="android">Used to configure the Agora SDK log files.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct LogConfig {
+  const char* filePath;
+  uint32_t fileSizeInKB;
+  LOG_LEVEL level;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class LogConfig {
+    public String filePath;
+    public int fileSizeInKB;
+    public int level = Constants.LogLevel.getValue(Constants.LogLevel.LOG_LEVEL_INFO);
+  }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>filePath</pt>
+                    <pd>Full path of the log file. Agora recommends using the default log directory. If you need to change the default directory, make sure the specified directory exists and is writable. The default log directories are:
+                        <ul>
+                            <li>Android: /storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log</li>
+                            <li>iOS: App Sandbox/Library/caches/agorasdk.log</li>
+                            <li>macOS:
+                                <ul>
+                                    <li>With Sandbox enabled: App Sandbox/Library/Logs/agorasdk.log, e.g., /Users/&lt;username&gt;/Library/Containers/&lt;AppBundleIdentifier&gt;/Data/Library/Logs/agorasdk.log</li>
+                                    <li>Without Sandbox: ~/Library/Logs/agorasdk.log</li>
+                                </ul>
+                            </li>
+                            <li>Windows: C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\agorasdk.log</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>fileSizeInKB</pt>
+                    <pd>Size of the <codeph>agorasdk.log</codeph> file in KB. The value range is [128, 20480], and the default is 2048 KB. If the value is less than 128 KB, the SDK automatically adjusts it to 128 KB; if greater than 20480 KB, it adjusts to 20480 KB.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>level</pt>
+                    <pd>Log output level. See <xref keyref="LOG_LEVEL"/>. For example, if set to <codeph>WARN</codeph>, the SDK outputs logs at <codeph>FATAL</codeph>, <codeph>ERROR</codeph>, and <codeph>WARN</codeph> levels.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>filePath</pt>
+                    <pd>Full path of the log file. Agora recommends using the default log directory. If you need to change the default directory, ensure that the specified directory exists and has write permissions. The default path is /storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>fileSizeInKB</pt>
+                    <pd>Size of the <codeph>agorasdk.log</codeph> file in KB. The valid range is [128, 20480], and the default value is 2048.
+                        <ul>
+                            <li>If the set value is less than 128, the SDK automatically adjusts it to 128.</li>
+                            <li>If the set value is greater than 20480, the SDK automatically adjusts it to 20480.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>level</pt>
+                    <pd>Log output level of the SDK log file. See <xref keyref="LOG_LEVEL"/>.
+                        <ul>
+                            <li>When set to <codeph>WARN</codeph>, the SDK outputs logs of levels <codeph>FATAL</codeph>, <codeph>ERROR</codeph>, and <codeph>WARN</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

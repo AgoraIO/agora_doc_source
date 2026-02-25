@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_audioprofiletype">
+    <title><ph keyref="AUDIO_PROFILE_TYPE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Audio profile type.</ph><ph id="shortdesc" props="android">Audio profile type.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>AUDIO_PROFILE_DEFAULT</pt>
+                    <pd>(0): Default audio profile.
+                        <ul>
+                            <li>Interactive live streaming: 48 kHz sample rate, music codec, mono, max bitrate 64 Kbps.</li>
+                            <li>Communication:
+                                <ul>
+                                    <li>Windows: 16 kHz sample rate, audio codec, mono, max bitrate 16 Kbps.</li>
+                                    <li>Android/macOS/iOS: 32 kHz sample rate, audio codec, mono, max bitrate 18 Kbps.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_PROFILE_SPEECH_STANDARD</pt>
+                    <pd>(1): 32 kHz sample rate, audio codec, mono, max bitrate 18 Kbps.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_PROFILE_MUSIC_STANDARD</pt>
+                    <pd>(2): 48 kHz sample rate, music codec, mono, max bitrate 64 Kbps.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_PROFILE_MUSIC_STANDARD_STEREO</pt>
+                    <pd>(3): 48 kHz sample rate, music codec, stereo, max bitrate 80 Kbps. To enable stereo audio, call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> to <codeph>AUDIO_PROCESSING_STEREO</codeph> in <xref keyref="AdvancedAudioOptions"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_PROFILE_MUSIC_HIGH_QUALITY</pt>
+                    <pd>(4): 48 kHz sample rate, music codec, mono, max bitrate 96 Kbps.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</pt>
+                    <pd>(5): 48 kHz sample rate, music codec, stereo, max bitrate 128 Kbps. To enable stereo audio, call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> to <codeph>AUDIO_PROCESSING_STEREO</codeph> in <xref keyref="AdvancedAudioOptions"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_PROFILE_IOT</pt>
+                    <pd>(6): 16 kHz sample rate, audio codec, mono, with echo cancellation (AEC) enabled.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>AUDIO_PROFILE_NUM</pt>
+                    <pd>(7): Enum boundary value.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>DEFAULT</pt>
+                    <pd>(0): Default audio profile. In live interactive scenes, the sample rate is 48 kHz, music encoding, mono channel, and bitrate up to 64 Kbps; in communication scenes, the sample rate is 32 kHz, voice encoding, mono channel, and bitrate up to 18 Kbps.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SPEECH_STANDARD</pt>
+                    <pd>(1): Sample rate 32 kHz, voice encoding, mono channel, bitrate up to 18 Kbps.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MUSIC_STANDARD</pt>
+                    <pd>(2): Sample rate 48 kHz, music encoding, mono channel, bitrate up to 64 Kbps.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MUSIC_STANDARD_STEREO</pt>
+                    <pd>(3): Sample rate 48 kHz, music encoding, stereo, bitrate up to 80 Kbps. To achieve stereo effect, you also need to call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> to <codeph>AGORA_AUDIO_STEREO_PROCESSING</codeph> in <xref keyref="AdvancedAudioOptions"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MUSIC_HIGH_QUALITY</pt>
+                    <pd>(4): Sample rate 48 kHz, music encoding, mono channel, bitrate up to 96 Kbps.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>MUSIC_HIGH_QUALITY_STEREO</pt>
+                    <pd>(5): Sample rate 48 kHz, music encoding, stereo, bitrate up to 128 Kbps. To achieve stereo effect, you also need to call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> to <codeph>AGORA_AUDIO_STEREO_PROCESSING</codeph> in <xref keyref="AdvancedAudioOptions"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

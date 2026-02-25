@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getaudiomixingcurrentposition">
+    <title><ph keyref="getAudioMixingCurrentPosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the current playback progress (ms) of the audio mixing.</ph><ph id="shortdesc" props="android">Gets the current playback position of the audio mixing (milliseconds).</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getAudioMixingCurrentPosition"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getAudioMixingCurrentPosition() = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getAudioMixingCurrentPosition();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">
+                <ul>
+                    <li>You need to call this method after calling <codeph>startAudioMixing</codeph> and receiving the <xref keyref="onAudioMixingStateChanged"/> (<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>) callback.</li>
+                    <li>If you need to call <xref keyref="getAudioMixingCurrentPosition"/> multiple times, ensure the interval between two calls is greater than 500 ms.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>You need to call this method after calling <codeph>startAudioMixing</codeph> and receiving the <xref keyref="onAudioMixingStateChanged"/> (<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>) callback.</li>
+                    <li>If you need to call <xref keyref="getAudioMixingCurrentPosition"/> multiple times, ensure the interval between calls is greater than 500 milliseconds.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>≥ 0: Success. Returns the current playback progress (ms) of the audio mixing. A return value of 0 indicates the music file has not started playing yet.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>On success, returns the current playback position of the audio mixing (milliseconds). 0 means the music file has not started playing.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

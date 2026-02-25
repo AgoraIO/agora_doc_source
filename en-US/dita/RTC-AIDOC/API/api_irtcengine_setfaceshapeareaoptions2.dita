@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setfaceshapeareaoptions2">
+    <title><ph keyref="setFaceShapeAreaOptions2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Sets the face area options for beauty enhancement.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setFaceShapeAreaOptions2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int setFaceShapeAreaOptions(FaceShapeAreaOptions options);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">You can call this method to set the face area options and fine-tune each part of the face for more refined beauty effects.</p>
+            <note props="android">
+                <ul>
+                    <li>This method is only supported on Android 4.4 or later.</li>
+                    <li>This method depends on the beauty effect dynamic library <xref keyref="clearvision"/>. If the library is deleted, the feature cannot be enabled.</li>
+                    <li>This feature requires high device performance. The SDK will automatically detect the device capability when this method is called.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">Call this method after calling the <codeph>setFaceShapeBeautyOptions</codeph> method.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>Face enhancement area options. See <xref keyref="FaceShapeAreaOptions"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-4: The current device does not support this feature. Possible reasons include:
+                                <ul>
+                                    <li>The device does not meet the requirements for beauty effects. It is recommended to use a high-performance device.</li>
+                                    <li>The device version is lower than Android 4.4 and does not support this feature. It is recommended to upgrade the OS or change the device.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

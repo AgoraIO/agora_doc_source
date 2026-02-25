@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_config">
+    <title><ph keyref="Config"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the <codeph>RTE</codeph> object.</ph><ph id="shortdesc" props="android">Configuration class for the <codeph>RTE</codeph> object.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">class Config {
+ public:
+    RteConfigSetAppId(&amp;c_rte_config, str.get_underlying_impl(), err != nullptr ? err-&gt;get_underlying_impl() : nullptr);
+    RteConfigSetLogFolder(&amp;c_rte_config, str.get_underlying_impl(), err != nullptr ? err-&gt;get_underlying_impl() : nullptr);
+    RteConfigSetCloudProxy(&amp;c_rte_config, str.get_underlying_impl(), err != nullptr ? err-&gt;get_underlying_impl() : nullptr);
+    RteConfigSetJsonParameter(&amp;c_rte_config, str.get_underlying_impl(), err != nullptr ? err-&gt;get_underlying_impl() : nullptr);
+
+ private:
+  ::RteConfig* get_underlying_impl() { return &amp;c_rte_config; }
+
+ private:
+  friend class Rte;
+  ::RteConfig c_rte_config;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class Config {
+  private long mNativeHandle = 0;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>RteConfigSetAppId</pt>
+                    <pd>Sets the App ID to identify the application.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>RteConfigSetLogFolder</pt>
+                    <pd>Sets the directory for storing log files.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>RteConfigSetCloudProxy</pt>
+                    <pd>Sets the cloud proxy address.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>RteConfigSetJsonParameter</pt>
+                    <pd>Sets custom parameters in JSON format.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

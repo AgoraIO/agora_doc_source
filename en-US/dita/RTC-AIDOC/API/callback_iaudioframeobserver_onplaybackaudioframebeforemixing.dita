@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserver_onplaybackaudioframebeforemixing">
+    <title><ph keyref="onPlaybackAudioFrameBeforeMixing"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Callback for retrieving audio frames of subscribed remote users before audio mixing.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlaybackAudioFrameBeforeMixing"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract boolean onPlaybackAudioFrameBeforeMixing(String channelId, int uid, int type, int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer, long renderTimeMs, int avsync_type, int rtpTimestamp, long presentationMs);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered after retrieving the remote user's audio frame and before mixing.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>channelId</pt>
+                    <pd>Channel ID.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID of the subscribed remote user.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>type</pt>
+                    <pd>Audio frame type.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>samplesPerChannel</pt>
+                    <pd>Number of samples per channel.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>bytesPerSample</pt>
+                    <pd>Number of bytes per audio sample. For example, each PCM audio sample typically occupies 16 bits (2 bytes).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channels</pt>
+                    <pd>Number of channels:
+                        <ul>
+                            <li>1: Mono.</li>
+                            <li>2: Stereo. Stereo data is interleaved.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>samplesPerSec</pt>
+                    <pd>Recording sample rate (Hz).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>buffer</pt>
+                    <pd>Audio buffer. Buffer size = <codeph>samplesPerChannel</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>renderTimeMs</pt>
+                    <pd>Timestamp of the external audio frame (milliseconds). You can use this parameter to synchronize audio and video in scenarios such as using custom video sources.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>avsync_type</pt>
+                    <pd>Reserved parameter.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rtpTimestamp</pt>
+                    <pd>RTP timestamp.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>presentationMs</pt>
+                    <pd>Presentation timestamp (milliseconds).</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li><xref keyref="true"/>: Processing succeeded.</li>
+                    <li><xref keyref="false"/>: Processing failed.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

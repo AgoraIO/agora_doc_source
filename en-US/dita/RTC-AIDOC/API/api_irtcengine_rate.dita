@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_rate">
+    <title><ph keyref="rate"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Allows users to rate the call after it ends.</ph><ph id="shortdesc" props="android">Allows users to rate the call after it ends.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="rate"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int rate(const char* callId, int rating, const char* description) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int rate(String callId, int rating, String description);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">Make sure to call this method after leaving the channel.</note>
+            <note props="android">Make sure to call this method after leaving the channel.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>callId</pt>
+                    <pd>The ID of the current call. You can obtain it by calling <xref keyref="getCallId"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rating</pt>
+                    <pd>Rating value, ranging from 1 (lowest) to 5 (highest).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>description</pt>
+                    <pd>(Optional) Description of the call. The string length should be less than 800 bytes.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>callId</pt>
+                    <pd>The ID of the current call. You can obtain it by calling <xref keyref="getCallId"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rating</pt>
+                    <pd>Rating value, ranging from 1 (lowest) to 5 (highest).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>description</pt>
+                    <pd>(Optional) Description of the call. The string length should be less than 800 bytes.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-1: General error (no specific reason).</li>
+                            <li>-2: Invalid parameter.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-1: General error.</li>
+                            <li>-2: Invalid parameter.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_updatescreencaptureregion1">
+    <title><ph keyref="updateScreenCaptureRegion1"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Updates the screen capture region.</ph><ph id="shortdesc" props="rn">Updates the screen capture region.</ph><ph id="shortdesc" props="flutter">Updates the region for screen capture.</ph><ph id="shortdesc" props="unity">Updates the region for screen capture.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updateScreenCaptureRegion1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract updateScreenCaptureRegion(regionRect: Rectangle): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract updateScreenCaptureRegion(regionRect: Rectangle): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCaptureRegion(Rectangle regionRect);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateScreenCaptureRegion(Rectangle regionRect);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">Call this method after starting screen or window sharing.</note>
+            <note props="rn">Call this method after screen sharing or window sharing is enabled.</note>
+            <note props="flutter">Call this method after screen or window sharing is enabled.</note>
+            <note props="unity">Call this method after starting screen or window sharing.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>regionRect</pt>
+                    <pd>The position of the region to be shared relative to the entire screen or window. If not specified, the entire screen or window is shared. See <xref keyref="Rectangle"/>. If the shared region exceeds the screen or window boundaries, only the content within the screen or window is shared; if width or height is set to 0, the entire screen or window is shared.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>regionRect</pt>
+                    <pd>The position of the region to be shared relative to the entire screen or window. If not specified, the entire screen or window is shared. See <xref keyref="Rectangle"/>. If the set region exceeds the screen or window boundary, only the content within the screen or window is shared; if width or height is set to 0, the entire screen or window is shared.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>regionRect</pt>
+                    <pd>The position of the region to be shared relative to the entire screen or window. If not set, the entire screen or window is shared. See <xref keyref="Rectangle"/>. If the specified region exceeds the screen or window boundaries, only the content within the screen or window is shared; if width or height is set to 0, the entire screen or window is shared.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-8: Invalid screen sharing state. This may occur if you are already sharing another screen or window. Try calling <xref keyref="stopScreenCapture"/> to stop the current sharing, then restart screen sharing.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: The parameter passed in is invalid.</li>
+                            <li>-8: The screen sharing state is invalid. This may be because you are already sharing another screen or window. Try calling <xref keyref="stopScreenCapture"/> to stop the current sharing and start screen sharing again.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: The input parameter is invalid.</li>
+                            <li>-8: The screen sharing state is invalid. This may occur if you are already sharing another screen or window. Try calling <xref keyref="stopScreenCapture"/> to stop the current sharing and then restart screen sharing.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

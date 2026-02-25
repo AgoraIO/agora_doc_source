@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_pullaudioframe">
+    <title><ph keyref="pullAudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Pulls mixed remote audio data for playback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="pullAudioFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int pullPlaybackAudioFrame(byte[] data, int lengthInByte);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">Before calling this method, call <xref keyref="setExternalAudioSink"/> and set <codeph>enabled</codeph> to <xref keyref="true"/> to enable external audio rendering.</p>
+            <note props="android"><codeph>pullPlaybackAudioFrame</codeph> and <xref keyref="onPlaybackAudioFrame"/> can both be used to obtain mixed remote audio data. After enabling external audio rendering (by calling <xref keyref="setExternalAudioSink"/>), you can no longer get data from <xref keyref="onPlaybackAudioFrame"/>. Choose <codeph>pullPlaybackAudioFrame</codeph> or <xref keyref="onPlaybackAudioFrame"/> based on your actual needs. Differences:
+                <ul>
+                    <li><codeph>pullPlaybackAudioFrame</codeph>: The app pulls audio data from the SDK. The SDK adjusts the frame buffer to help handle latency and avoid audio jitter.</li>
+                    <li><xref keyref="onPlaybackAudioFrame"/>: The SDK pushes audio data to the app via callback. If there is delay in processing, it may cause jitter.</li>
+                </ul><ph>This method is only for pulling mixed remote audio data. To get data from other stages like capture or playback, use <xref keyref="registerAudioFrameObserver"/> to register related callbacks.</ph></note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">You need to call this method after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="android">
+                    <pt>data</pt>
+                    <pd>Output parameter. The remote audio data to pull.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lengthInByte</pt>
+                    <pd>Data length in bytes. This depends on audio duration, and the <codeph>sampleRate</codeph> and <codeph>channels</codeph> set in <xref keyref="setExternalAudioSink"/>. Formula: <codeph>lengthInByte</codeph> = <codeph>sampleRate</codeph> / 1000 × 2 × <codeph>channels</codeph> × duration (ms).</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android">
+            <title>Return Values</title>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

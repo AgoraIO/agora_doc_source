@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediarecorder_startrecording">
+    <title><ph keyref="startRecording"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts recording audio and video streams.</ph><ph id="shortdesc" props="android">Starts recording audio and video streams.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startRecording"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startRecording(const media::MediaRecorderConfiguration&amp; config) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public int startRecording(MediaRecorderConfiguration config)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.0.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">This method starts recording audio and video streams, supporting simultaneous recording of local and remote users' audio and video streams.
+Before calling this method, make sure:
+                <ul>
+                    <li>You have created a recorder instance using <xref keyref="createMediaRecorder"/>.</li>
+                    <li>You have registered a recorder observer using <xref keyref="setMediaRecorderObserver"/> to listen for recording callbacks.</li>
+                    <li>You have joined a channel.</li>
+                </ul><ph>This method supports recording the following content:</ph>
+                <ul>
+                    <li>Microphone audio captured in AAC encoding format.</li>
+                    <li>Camera video captured in H.264 or H.265 encoding format.</li>
+                </ul><ph>After recording starts:</ph>
+                <ul>
+                    <li>If the video resolution changes during recording, the SDK stops the recording.</li>
+                    <li>If the audio sampling rate or number of channels changes, the SDK continues recording and generates an MP4 file.</li>
+                </ul><ph>A recording file is generated only when recordable audio or video streams are detected. If there are no recordable streams, or if the stream is interrupted for more than 5 seconds during recording, the SDK stops recording and triggers the <xref keyref="onRecorderStateChanged"/> (<codeph>RECORDER_STATE_ERROR</codeph>, <codeph>RECORDER_REASON_NO_STREAM</codeph>) callback.</ph></p>
+            <p props="android">This method starts recording audio and video streams. The Agora SDK supports recording both local and remote user streams.
+Before calling this method, make sure that:
+                <ul>
+                    <li>You have created the media recorder object using <xref keyref="createMediaRecorder"/>.</li>
+                    <li>You have registered the media recorder observer using <xref keyref="setMediaRecorderObserver"/> to listen for recording-related callbacks.</li>
+                    <li>You have joined a channel.</li>
+                </ul><ph>This method supports recording the following data:</ph>
+                <ul>
+                    <li>Audio captured by the microphone, in AAC format.</li>
+                    <li>Video captured by the camera, in H.264 or H.265 format.</li>
+                </ul><ph>If the video resolution changes after recording starts, the SDK stops recording. If the audio sample rate or channel count changes, the SDK continues recording and generates an MP4 file.</ph><ph>A recording file is generated only when a recordable audio or video stream is detected. If no recordable stream is detected, or if the stream is interrupted for more than 5 seconds during recording, the SDK stops recording and triggers the <xref keyref="onRecorderStateChanged"/> (<codeph>RECORDER_STATE_ERROR</codeph>, <codeph>RECORDER_REASON_NO_STREAM</codeph>) callback.</ph></p>
+            <note props="cpp">
+                <ul>
+                    <li>If you want to record local audio and video streams, make sure to set the local user's role to <codeph>broadcaster</codeph> before starting the recording.</li>
+                    <li>If you want to record remote audio and video streams, make sure to subscribe to the remote user's stream before starting the recording.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>To record local audio and video streams, make sure the local user role is set to broadcaster before starting the recording.</li>
+                    <li>To record remote user streams, make sure to subscribe to the remote user's audio and video streams before starting the recording.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>Audio and video stream recording configuration. See <xref keyref="MediaRecorderConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>Configuration for recording audio and video streams. See <xref keyref="MediaRecorderConfiguration"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-2: Invalid parameter. Please ensure:
+                                <ul>
+                                    <li>The specified recording file path is correct and writable.</li>
+                                    <li>The specified recording file format is correct.</li>
+                                    <li>The maximum recording duration is set correctly.</li>
+                                </ul>
+                            </li>
+                            <li>-4: The current state of <xref keyref="IRtcEngine"/> does not support this operation. This may be due to an ongoing recording or a recording that has stopped due to an error.</li>
+                            <li>-7: <xref keyref="IRtcEngine"/> is not initialized when this method is called. Please ensure the <xref keyref="IMediaRecorder"/> object is created before calling this method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-2: Invalid parameter. Make sure that:
+                                <ul>
+                                    <li>The specified path for saving the recording file is correct and writable.</li>
+                                    <li>The specified recording file format is correct.</li>
+                                    <li>The maximum recording duration is set correctly.</li>
+                                </ul>
+                            </li>
+                            <li>-4: The current <xref keyref="IRtcEngine"/> state does not support this operation. This may be because recording is already in progress or has stopped due to an error.</li>
+                            <li>-7: This method is called before initializing <xref keyref="IRtcEngine"/>. Make sure to create the <xref keyref="IMediaRecorder"/> object before calling this method.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

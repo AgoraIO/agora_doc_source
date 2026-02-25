@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_rteplayerinfo_streamcount">
+    <title><ph keyref="StreamCount"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the number of streams in the current playback source.</ph><ph id="shortdesc" props="android">Gets the number of streams in the current playback source.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="StreamCount"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">size_t StreamCount() const</codeblock>
+                <codeblock props="android" outputclass="language-java">public int streamCount()</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.5.1.</dd>
+                </dlentry>
+            </dl>
+            <p props="android">This method is only valid when opening a non-RTE URL.</p>
+            <note props="cpp">The <xref keyref="StreamCount"/> method is effective when opening non-<codeph>RTE</codeph> URLs.</note>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">If the method call succeeds, returns the number of streams in the current playback source.</p>
+            <p props="android">When the method call succeeds, returns the number of streams.</p>
+        </section>
+    </refbody>
+</reference>

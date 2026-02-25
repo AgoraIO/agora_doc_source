@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_createagorartcengineex">
+    <title><ph keyref="createAgoraRtcEngineEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="flutter">Creates a <xref keyref="IRtcEngineEx"/> object.</ph><ph id="shortdesc" props="unity">Creates an <xref keyref="IRtcEngineEx"/> object.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createAgoraRtcEngineEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="flutter" outputclass="language-dart">RtcEngineEx createAgoraRtcEngineEx() {
+  return impl.RtcEngineImpl.create();
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public static IRtcEngineEx CreateAgoraRtcEngineEx()
+        {
+            return (IRtcEngineEx)(instance ?? (instance = new RtcEngine(IntPtr.Zero)));
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="flutter">Currently, RTC v6.x SDK only supports creating one <xref keyref="IRtcEngineEx"/> object per App.</p>
+            <p props="unity">Currently, RTC v4.x SDK supports creating only one <xref keyref="IRtcEngineEx"/> object per App.</p>
+        </section>
+        <section id="return_values" props="flutter unity">
+            <title>Return Values</title>
+            <p props="flutter"><xref keyref="IRtcEngineEx"/> object.</p>
+            <p props="unity"><xref keyref="IRtcEngineEx"/> object.</p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalrendermode2">
+    <title><ph keyref="setLocalRenderMode2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">更新本地视图显示模式。</ph><ph id="shortdesc" props="rn">更新本地视图显示模式。</ph><ph id="shortdesc" props="flutter">更新本地视图显示模式。</ph><ph id="shortdesc" props="unity">更新本地视图显示模式。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalRenderMode2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setLocalRenderMode(
+    renderMode: RenderModeType,
+    mirrorMode?: VideoMirrorModeType
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setLocalRenderMode(
+    renderMode: RenderModeType,
+    mirrorMode?: VideoMirrorModeType
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalRenderMode(
+    {required RenderModeType renderMode,
+    VideoMirrorModeType mirrorMode =
+        VideoMirrorModeType.videoMirrorModeAuto});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">初始化本地用户视图后，你可以调用该方法更新本地用户视图的渲染和镜像模式。该方法只影响本地用户看到的视频画面，不影响本地视频的发布。</p>
+            <p props="rn">初始化本地用户视图后，你可以调用该方法更新本地用户视图的渲染和镜像模式。该方法只影响本地用户看到的视频画面，不影响本地视频的发布。</p>
+            <p props="flutter">初始化本地用户视图后，你可以调用该方法更新本地用户视图的渲染和镜像模式。该方法只影响本地用户看到的视频画面，不影响本地视频的发布。</p>
+            <p props="unity">初始化本地用户视图后，你可以调用该方法更新本地用户视图的渲染和镜像模式。该方法只影响本地用户看到的视频画面，不影响本地视频的发布。</p>
+            <note props="electron">该方法仅对第一个摄像头 <codeph>(PrimaryCameraSource)</codeph> 生效。在自定义视频采集或使用其他类型视频源的场景下，你需要使用 <xref keyref="setupLocalVideo"/> 方法替代该方法。</note>
+            <note props="flutter">该方法仅对第一个摄像头 <codeph>(primaryCameraSource)</codeph> 生效。在自定义视频采集或使用其他类型视频源的场景下，你需要使用 <xref keyref="setupLocalVideo"/> 方法替代该方法。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">
+                <ul>
+                    <li>请在调用 <xref keyref="setupLocalVideo"/> 方法初始化本地视图后，调用该方法。</li>
+                    <li>你可以在通话中多次调用该方法，多次更新本地用户视图的显示模式。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>你可以在通话中多次调用该方法，多次更新本地用户视图的显示模式。</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>请在调用 <xref keyref="setupLocalVideo"/> 方法初始化本地视图后，调用该方法。</li>
+                    <li>你可以在通话中多次调用该方法，多次更新本地用户视图的显示模式。</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>请在调用 <xref keyref="setupLocalVideo"/> 方法初始化本地视图后，调用该方法。</li>
+                    <li>你可以在通话中多次调用该方法，多次更新本地用户视图的显示模式。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>renderMode</pt>
+                    <pd>本地视图显示模式。详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>mirrorMode</pt>
+                    <pd>本地视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>如果你使用前置摄像头，默认启动本地用户视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>renderMode</pt>
+                    <pd>本地视图显示模式。详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mirrorMode</pt>
+                    <pd>本地视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>如果你使用前置摄像头，默认启动本地用户视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>renderMode</pt>
+                    <pd>本地视图显示模式。详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mirrorMode</pt>
+                    <pd>本地视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>如果你使用前置摄像头，默认启动本地用户视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>renderMode</pt>
+                    <pd>本地视图显示模式。详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mirrorMode</pt>
+                    <pd>本地视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
+                        <note>该参数仅对 SDK 自渲染生效，如果你想要设置视图镜像，可以将 GameObject 的 scaleX 设为 <codeph>-1</codeph> 或 <codeph>+1</codeph>。
+如果你使用前置摄像头，默认启动本地用户视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

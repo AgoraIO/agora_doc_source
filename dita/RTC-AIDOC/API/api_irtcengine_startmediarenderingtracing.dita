@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startmediarenderingtracing">
+    <title><ph keyref="startMediaRenderingTracing"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">启用视频帧渲染过程的追踪功能。</ph><ph id="shortdesc" props="ios">启用视频帧渲染过程的追踪功能。</ph><ph id="shortdesc" props="android">启用视频帧渲染过程的追踪。</ph><ph id="shortdesc" props="mac">启用视频帧渲染过程的追踪功能。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startMediaRenderingTracing"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startMediaRenderingTracing() = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)startMediaRenderingTracing NS_SWIFT_NAME(startMediaRenderingTracing());</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startMediaRenderingTracing();</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)startMediaRenderingTracing NS_SWIFT_NAME(startMediaRenderingTracing());</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>自从</dt>
+                    <dd>自 v4.1.1 版本新增。</dd>
+                </dlentry>
+                <dlentry props="ios">
+                    <dt>自从</dt>
+                    <dd>自 v4.1.1 版本新增。</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>自从</dt>
+                    <dd>自 v4.1.1 版本新增。</dd>
+                </dlentry>
+                <dlentry props="mac">
+                    <dt>自从</dt>
+                    <dd>自 v4.1.1 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">从成功调用该方法开始，SDK 会追踪频道中视频帧的渲染状态，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告相关信息。</p>
+            <p props="ios">从成功调用该方法开始，SDK 会追踪频道中视频帧的渲染状态，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告相关事件信息。</p>
+            <p props="android">从成功调用该方法开始，SDK 会追踪频道中视频帧的渲染状态，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调上报相关事件信息。</p>
+            <p props="mac">从成功调用该方法开始，SDK 会追踪频道中视频帧的渲染状态，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告相关事件信息。</p>
+            <note props="cpp">
+                <ul>
+                    <li>如果你未调用该方法，SDK 会从调用 <codeph>joinChannel</codeph> 加入频道时开始追踪视频帧的渲染事件。你可以根据实际应用场景在合适的时间调用该方法，以设置追踪视频渲染事件的起始位置。</li>
+                    <li>本地用户离开当前频道后，SDK 会自动从你再次加入频道时开始追踪视频渲染事件。</li>
+                </ul>
+            </note>
+            <note props="ios">
+                <ul>
+                    <li>如果你未调用该方法，SDK 会从调用 <xref keyref="joinChannel2"/> 加入频道开始追踪视频帧的渲染事件。你可以根据实际应用场景在合适的时机调用该方法，以设置追踪视频渲染事件的起始位置。</li>
+                    <li>本地用户离开当前频道后，SDK 会自动从你加入频道的时刻开始追踪视频渲染事件。</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>如果你未调用该方法，SDK 会从调用 <codeph>joinChannel</codeph> 加入频道开始追踪视频帧的渲染事件。</li>
+                    <li>本地用户离开当前频道后，SDK 会自动从再次加入频道开始追踪视频渲染事件。</li>
+                </ul>
+            </note>
+            <note props="mac">
+                <ul>
+                    <li>如果你未调用该方法，SDK 会从调用 <xref keyref="joinChannel2"/> 加入频道开始追踪视频帧的渲染事件。你可以根据实际应用场景在合适的时机调用该方法，以设置追踪视频渲染事件的起始位置。</li>
+                    <li>本地用户离开当前频道后，SDK 会自动从你加入频道的时刻开始追踪视频渲染事件。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>你可以结合应用中的 UI 设置（如按钮、滑块）调用该方法，以提升用户体验。例如，在用户点击“加入频道”按钮时调用该方法，然后通过 <xref keyref="onVideoRenderingTracingResult"/> 回调获取视频帧渲染过程所耗费的时间，从而优化相关指标。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android">
+            <title>相关回调</title>
+            <p props="android">该方法调用后会触发 <xref keyref="onVideoRenderingTracingResult"/> 回调。</p>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-7：在初始化 <xref keyref="IRtcEngine"/> 之前调用了该方法。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-7：在初始化 <xref keyref="IRtcEngine"/> 之前调用该方法。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-7：在 <xref keyref="IRtcEngine"/> 初始化之前调用该方法。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-7：在初始化 <xref keyref="IRtcEngine"/> 之前调用该方法。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

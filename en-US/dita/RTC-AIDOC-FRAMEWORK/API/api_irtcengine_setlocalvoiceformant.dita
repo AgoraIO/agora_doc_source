@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalvoiceformant">
+    <title><ph keyref="setLocalVoiceFormant"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the formant ratio to change the voice timbre.</ph><ph id="shortdesc" props="rn">Sets the formant ratio to change the voice timbre.</ph><ph id="shortdesc" props="flutter">Sets the formant ratio to change the voice timbre.</ph><ph id="shortdesc" props="unity">Sets the formant ratio to change the voice timbre.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalVoiceFormant"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setLocalVoiceFormant(formantRatio: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setLocalVoiceFormant(formantRatio: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalVoiceFormant(double formantRatio);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalVoiceFormant(double formantRatio);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Formant ratio is a parameter that affects the timbre of the voice. A smaller value results in a deeper voice, while a larger value results in a sharper voice. Once set, all users in the channel can hear the effect. If you want to change both timbre and pitch, it is recommended to use this method together with <xref keyref="setLocalVoicePitch"/>.</p>
+            <p props="rn">Formant ratio is a parameter that affects the timbre of the voice. A smaller value results in a deeper voice, while a larger value results in a sharper voice. After setting the formant ratio, all users in the channel can hear the effect. If you want to change both timbre and pitch, Agora recommends using it together with <xref keyref="setLocalVoicePitch"/>.</p>
+            <p props="flutter">Formant ratio is a parameter that affects the timbre of the voice. The smaller the formant ratio, the deeper the voice; the larger the value, the sharper the voice. After setting the formant ratio, all users in the channel can hear the effect. If you want to change both timbre and pitch, Agora recommends using it together with <xref keyref="setLocalVoicePitch"/>.</p>
+            <p props="unity">The formant ratio is a parameter that affects the timbre of the voice. A smaller value results in a deeper sound, while a larger value results in a sharper sound. After setting the formant ratio, all users in the channel can hear the effect. If you want to change both the timbre and pitch, Agora recommends using <xref keyref="setLocalVoicePitch"/> together.</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In scenarios like voice live streaming, voice chat rooms, and karaoke rooms, you can call this method to set the local voice's formant ratio to change the timbre.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Can be called before or after joining a channel.</p>
+            <p props="rn">Can be called before or after joining a channel.</p>
+            <p props="flutter">Can be called before and after joining a channel.</p>
+            <p props="unity">Can be called before and after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>formantRatio</pt>
+                    <pd>Formant ratio. The range is [-1.0, 1.0]. Default is 0.0, which means no change to the original timbre.
+                        <note>Recommended range is [-0.4, 0.6]. Effects may be suboptimal outside this range.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>formantRatio</pt>
+                    <pd>Formant ratio. The value range is [-1.0, 1.0]. The default is 0.0, which means no change to the original timbre.
+                        <note>Agora recommends a value range of [-0.4, 0.6]. Effects outside this range may sound suboptimal.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>formantRatio</pt>
+                    <pd>Formant ratio. The range is [-1.0, 1.0]. The default value is 0.0, meaning the original timbre is not changed.
+                        <note>Agora recommends using values in the range [-0.4, 0.6]. Effects outside this range may not sound ideal.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>formantRatio</pt>
+                    <pd>Formant ratio, value range [-1.0, 1.0]. Default is 0.0, which means no change to the original timbre.
+                        <note>Agora recommends using values in the range [-0.4, 0.6]. Values outside this range may result in poor audio quality.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

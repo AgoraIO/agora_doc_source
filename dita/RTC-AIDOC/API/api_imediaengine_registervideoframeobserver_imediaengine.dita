@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_registervideoframeobserver_imediaengine">
+    <title><ph keyref="registerVideoFrameObserver_IMediaEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">注册原始视频帧观察器对象。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerVideoFrameObserver_IMediaEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int registerVideoFrameObserver(IVideoFrameObserver* observer) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">通过此方法注册自定义的 <xref keyref="IVideoFrameObserver"/> 实例，可以观察原始视频帧（如 YUV 或 RGBA 格式）。注册成功后，每当接收到视频帧时，SDK 会触发相应的回调。你可以在虚拟背景、美颜特效等视频预处理场景中使用这些原始视频数据。</p>
+            <note props="cpp">处理回调中返回的视频数据时，请注意 <codeph>width</codeph> 和 <codeph>height</codeph> 参数可能会发生变化，具体情况如下：
+                <ul>
+                    <li>当网络状况恶化时，视频分辨率会逐步降低。</li>
+                    <li>当用户调整视频配置文件时，回调中返回的视频分辨率也会随之变化。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>调用时机</title>
+            <p props="cpp">在加入频道前调用此方法。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>observer</pt>
+                    <pd>观察器实例。若要释放该实例，请将该值设为 <xref keyref="NULL"/>。详见 <xref keyref="IVideoFrameObserver"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

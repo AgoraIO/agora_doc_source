@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablewebsdkinteroperability">
+    <title><ph keyref="enableWebSdkInteroperability"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables interoperability with the Agora Web SDK (for Live Streaming only).</ph><ph id="shortdesc" props="android">Enables or disables interoperability with Agora Web SDK, only applicable in Live Broadcast Low Latency mode.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableWebSdkInteroperability"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableWebSdkInteroperability(bool enabled) __deprecated = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableWebSdkInteroperability(boolean enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. The SDK automatically enables interoperability with the Web SDK. No need to call this method.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. The SDK automatically enables interoperability with the Web SDK, so you do not need to call this method.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">You can call this method to enable or disable interoperability with the Agora Web SDK. If there are Web SDK users in the channel, you must call this method; otherwise, the video of Native users will appear black on the web. This method only applies to Live Streaming. In Voice Call, interoperability is enabled by default.</p>
+            <p props="android">If there are Web SDK users in the channel, you must call this method; otherwise, Native users' video will appear black on the web. This method is only applicable in Live Broadcast Low Latency mode. In the voice call scenario, interoperability is enabled by default.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable interoperability:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable interoperability.</li>
+                            <li><xref keyref="false"/>: (default) Disable interoperability.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable interoperability:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable interoperability.</li>
+                            <li><xref keyref="false"/>: (default) Disable interoperability.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_stopcameracapture">
+    <title><ph keyref="stopCameraCapture"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Stops video capture.</ph><ph id="shortdesc" props="android">Stops camera capture.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="stopCameraCapture"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int stopCameraCapture(VIDEO_SOURCE_TYPE sourceType) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int stopCameraCapture(Constants.VideoSourceType sourceType);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling <xref keyref="startCameraCapture"/> to start capturing video from one or more cameras, you can call this method and set the <codeph>sourceType</codeph> parameter to stop video capture from the specified camera.</p>
+            <p props="android">You can call <xref keyref="stopCameraCapture"/> and set the <codeph>sourceType</codeph> parameter to stop video capture from the specified camera.</p>
+            <note props="cpp">If you are using local video mixing, calling this method may interrupt the local video mixing.
+On iOS, if you want to disable multi-camera capture, you must call <xref keyref="enableMultiCamera"/> and set <codeph>enabled</codeph> to <xref keyref="false"/> after calling this method.</note>
+            <note props="android">If you are using local video composition, calling this method may interrupt the composition.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>sourceType</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>The type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

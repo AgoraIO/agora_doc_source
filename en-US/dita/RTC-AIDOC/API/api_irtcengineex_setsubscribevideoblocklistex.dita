@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_setsubscribevideoblocklistex">
+    <title><ph keyref="setSubscribeVideoBlocklistEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the list of user IDs whose video streams you do not want to subscribe to.</ph><ph id="shortdesc" props="android">Sets the blocklist for video stream subscription.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setSubscribeVideoBlocklistEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setSubscribeVideoBlocklistEx(uid_t* uidList, int uidNumber, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setSubscribeVideoBlocklistEx(int[] uidList, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">
+                <ul>
+                    <li>You can call this method before or after joining a channel.</li>
+                    <li>The blocklist is not affected by the <xref keyref="muteRemoteVideoStream"/>, <xref keyref="muteAllRemoteVideoStreams"/>, or <codeph>autoSubscribeAudio</codeph> settings in <xref keyref="ChannelMediaOptions"/>.</li>
+                    <li>Once the blocklist is set, it remains effective even if you leave and rejoin the channel.</li>
+                    <li>If a user is added to both the allowlist and blocklist, only the blocklist takes effect.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>You can call this method before or after joining a channel.</li>
+                    <li>The blocklist setting is not affected by <xref keyref="muteRemoteVideoStream"/>, <xref keyref="muteAllRemoteVideoStreams"/>, or the <codeph>autoSubscribeVideo</codeph> setting in <xref keyref="ChannelMediaOptions"/>.</li>
+                    <li>Once the blocklist is set, it remains effective even if you leave and rejoin the channel.</li>
+                    <li>If a user is added to both the allowlist and blocklist, only the blocklist takes effect.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method applies to multi-channel scenarios.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uidList</pt>
+                    <pd>The list of user IDs whose video streams you do not want to subscribe to. To remove a user from the blocklist, call <xref keyref="setSubscribeVideoBlocklist"/> to update the list and include only the user IDs you still want to block.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uidNumber</pt>
+                    <pd>The number of user IDs in the list.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uidList</pt>
+                    <pd>The list of remote user IDs whose video streams you do not want to subscribe to. To unsubscribe from a user's video stream, add the user's ID to this list. To remove a user from the blocklist, call the <xref keyref="setSubscribeVideoBlocklist"/> method to update the list, including only the user IDs you do not want to subscribe to.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

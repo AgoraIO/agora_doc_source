@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudiopublishstatechanged">
+    <title><ph keyref="onAudioPublishStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the audio publishing state changes.</ph><ph id="shortdesc" props="android">Callback for audio publish state change.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioPublishStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioPublishStateChanged(const char* channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onAudioPublishStateChanged(String channel, int oldState, int newState, int elapseSinceLastState)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the audio publish state changes.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>channel</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>oldState</pt>
+                    <pd>Previous audio publishing state. See <xref keyref="STREAM_PUBLISH_STATE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>newState</pt>
+                    <pd>Current audio publishing state. See <xref keyref="STREAM_PUBLISH_STATE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>elapseSinceLastState</pt>
+                    <pd>Time elapsed from the previous state to the current state (ms).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channel</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>oldState</pt>
+                    <pd>Previous audio publish state:
+                        <ul>
+                            <li><codeph>PUB_STATE_IDLE</codeph> (0): Initial publish state after joining the channel.</li>
+                            <li><codeph>PUB_STATE_NO_PUBLISHED</codeph> (1): Failed to publish the local stream.</li>
+                            <li><codeph>PUB_STATE_PUBLISHING</codeph> (2): Publishing the local stream.</li>
+                            <li><codeph>PUB_STATE_PUBLISHED</codeph> (3): Successfully published the local stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>newState</pt>
+                    <pd>Current audio publish state:
+                        <ul>
+                            <li><codeph>PUB_STATE_IDLE</codeph> (0): Initial publish state after joining the channel.</li>
+                            <li><codeph>PUB_STATE_NO_PUBLISHED</codeph> (1): Failed to publish the local stream.</li>
+                            <li><codeph>PUB_STATE_PUBLISHING</codeph> (2): Publishing the local stream.</li>
+                            <li><codeph>PUB_STATE_PUBLISHED</codeph> (3): Successfully published the local stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>elapseSinceLastState</pt>
+                    <pd>Time elapsed (ms) from the previous state to the current state.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_queryscreencapturecapability">
+    <title><ph keyref="queryScreenCaptureCapability"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Queries the maximum frame rate supported by the device for screen sharing.</ph><ph id="shortdesc" props="flutter">Queries the maximum frame rate supported by the device during screen sharing.</ph><ph id="shortdesc" props="unity">Queries the maximum supported frame rate for screen sharing on the device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="queryScreenCaptureCapability"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract queryScreenCaptureCapability(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; queryScreenCaptureCapability();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int QueryScreenCaptureCapability();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In screen sharing scenarios, if you want to enable high frame rates (e.g., 60 fps) but are unsure whether the device supports it, you can call this method to query the maximum frame rate supported by the device. If high frame rates are not supported, you can lower the frame rate of the screen sharing stream accordingly to ensure the expected sharing experience.</p>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">
+                <ul>
+                    <li>If the method call succeeds, returns the maximum frame rate supported by the device. See <xref keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY"/>.</li>
+                    <li>&lt;0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>If the method call succeeds, returns the maximum frame rate supported by the device. See <xref keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY"/>.</li>
+                    <li>&lt;0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>On success, returns the maximum supported frame rate. See <xref keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY"/>.</li>
+                    <li>&lt;0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

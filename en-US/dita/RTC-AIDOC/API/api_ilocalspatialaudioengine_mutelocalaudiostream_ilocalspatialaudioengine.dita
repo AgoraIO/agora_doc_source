@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ilocalspatialaudioengine_mutelocalaudiostream_ilocalspatialaudioengine">
+    <title><ph keyref="muteLocalAudioStream_ILocalSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Stops or resumes publishing the local audio stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="muteLocalAudioStream_ILocalSpatialAudioEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int muteLocalAudioStream(bool mute) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">This method does not affect any ongoing audio recording, as it does not disable the audio capturing device.
+You should call this method after calling the <codeph>joinChannel</codeph> method.
+When using spatial audio, if you need to control whether to stop publishing the local audio stream, it is recommended to call this method instead of the method with the same name under <xref keyref="IRtcEngine"/>.</note>
+        </section>
+        <section id="related" deliveryTarget="details" props="cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After this method is successfully called, the remote side triggers the <xref keyref="onUserMuteAudio"/> and <xref keyref="onRemoteAudioStateChanged"/> callbacks.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mute</pt>
+                    <pd>Whether to stop publishing the local audio stream:
+                        <ul>
+                            <li><xref keyref="true"/>: Stop publishing the local audio stream.</li>
+                            <li><xref keyref="false"/>: Publish the local audio stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

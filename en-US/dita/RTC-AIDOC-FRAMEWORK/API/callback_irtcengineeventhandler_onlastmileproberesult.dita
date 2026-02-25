@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onlastmileproberesult">
+    <title><ph keyref="onLastmileProbeResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Reports the last-mile network probe result before a call.</ph><ph id="shortdesc" props="rn">Callback for the last mile uplink and downlink quality probe result before a call.</ph><ph id="shortdesc" props="flutter">Callback for the last mile uplink and downlink network quality probe report before the call.</ph><ph id="shortdesc" props="unity">Callback for the last mile network probe result before a call.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLastmileProbeResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onLastmileProbeResult?(result: LastmileProbeResult): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onLastmileProbeResult?(result: LastmileProbeResult): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(LastmileProbeResult result)? onLastmileProbeResult;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnLastmileProbeResult(LastmileProbeResult result)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After calling <xref keyref="startLastmileProbeTest"/>, the SDK returns this callback within approximately 30 seconds.</p>
+            <p props="rn">After calling <xref keyref="startLastmileProbeTest"/>, the SDK returns this callback within approximately 30 seconds.</p>
+            <p props="flutter">After calling <xref keyref="startLastmileProbeTest"/>, the SDK returns this callback within about 30 seconds.</p>
+            <p props="unity">After calling <xref keyref="startLastmileProbeTest"/>, the SDK returns this callback within approximately 30 seconds.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>result</pt>
+                    <pd>Result of the last-mile uplink and downlink network probe. See <xref keyref="LastmileProbeResult"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>result</pt>
+                    <pd>Last mile uplink and downlink quality probe result. See <xref keyref="LastmileProbeResult"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>result</pt>
+                    <pd>Uplink and downlink last mile quality probe result. See <xref keyref="LastmileProbeResult"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>result</pt>
+                    <pd>Last mile probe result for uplink and downlink. See <xref keyref="LastmileProbeResult"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

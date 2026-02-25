@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ilocalspatialaudioengine_initialize_ilocalspatialaudioengine">
+    <title><ph keyref="initialize_ILocalSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Initializes <xref keyref="ILocalSpatialAudioEngine"/>.</ph><ph id="shortdesc" props="android">Initializes the <xref keyref="ILocalSpatialAudioEngine"/>.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="initialize_ILocalSpatialAudioEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int initialize(const LocalSpatialAudioConfig&amp; config) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int initialize(LocalSpatialAudioConfig config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Before calling other methods of <xref keyref="ILocalSpatialAudioEngine"/>, you must first call <xref keyref="queryInterface"/> to get the interface instance and initialize <xref keyref="ILocalSpatialAudioEngine"/> through this method. Each app supports creating only one <xref keyref="ILocalSpatialAudioEngine"/> instance.</p>
+            <note props="android">
+                <ul>
+                    <li>Call this method after calling the <xref keyref="create_ILocalSpatialAudioEngine"/> method.</li>
+                    <li>You must call <xref keyref="initialize_ILocalSpatialAudioEngine"/> to initialize <xref keyref="ILocalSpatialAudioEngine"/> before using any other method of <xref keyref="ILocalSpatialAudioEngine"/>.</li>
+                    <li>Each app supports only one <xref keyref="ILocalSpatialAudioEngine"/> instance.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>The configuration of <xref keyref="ILocalSpatialAudioEngine"/>. See <xref keyref="LocalSpatialAudioConfig"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>Configuration for <xref keyref="ILocalSpatialAudioEngine"/>. See <xref keyref="LocalSpatialAudioConfig"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

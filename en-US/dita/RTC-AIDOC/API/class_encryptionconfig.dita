@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_encryptionconfig">
+    <title><ph keyref="EncryptionConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure built-in encryption parameters.</ph><ph id="shortdesc" props="android">Used to configure built-in encryption.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct EncryptionConfig {
+  ENCRYPTION_MODE encryptionMode;
+  const char* encryptionKey;
+  uint8_t encryptionKdfSalt[32];
+  bool datastreamEncryptionEnabled;
+  const char* getEncryptionString() const;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class EncryptionConfig {
+  public EncryptionMode encryptionMode;
+  public String encryptionKey;
+  public final byte[] encryptionKdfSalt = new byte[32];
+  public boolean datastreamEncryptionEnabled;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>encryptionMode</pt>
+                    <pd>Built-in encryption mode. See <xref keyref="ENCRYPTION_MODE"/>. Agora recommends using <codeph>AES_128_GCM2</codeph> or <codeph>AES_256_GCM2</codeph>, which support encryption salt for enhanced security.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>encryptionKey</pt>
+                    <pd>Encryption key in string format, with no length limit. Agora recommends using a 32-byte key.
+                        <note>If the encryption key is not set or is set to <xref keyref="NULL"/>, built-in encryption cannot be used, and the SDK will return <codeph>-2</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>encryptionKdfSalt</pt>
+                    <pd>Salt used for encryption, 32 bytes in length.
+                        <note>This parameter takes effect only in <codeph>AES_128_GCM2</codeph> or <codeph>AES_256_GCM2</codeph> encryption modes. In this case, make sure this parameter is not <codeph>0</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>datastreamEncryptionEnabled</pt>
+                    <pd>Whether to enable data stream encryption:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable data stream encryption.</li>
+                            <li><xref keyref="false"/>: (Default) Disable data stream encryption.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>encryptionMode</pt>
+                    <pd>Built-in encryption mode. Agora recommends using <codeph>AES_128_GCM2</codeph> or <codeph>AES_256_GCM2</codeph>, which support encryption salt to enhance security. See <xref keyref="ENCRYPTION_MODE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>encryptionKey</pt>
+                    <pd>Encryption key as a string with no length limit. Agora recommends using a 32-byte key.
+                        <note>If the encryption key is not set or set to <codeph>null</codeph>, built-in encryption cannot be used, and the SDK returns <codeph>-2</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>encryptionKdfSalt</pt>
+                    <pd>Salt used for encryption, 32 bytes in length. Agora recommends generating this salt on the server side using OpenSSL. See Media Stream Encryption.
+                        <note>This parameter is only effective when using <codeph>AES_128_GCM2</codeph> or <codeph>AES_256_GCM2</codeph>. In this case, ensure the value is not 0.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>datastreamEncryptionEnabled</pt>
+                    <pd>Whether to enable data stream encryption:
+                        <ul>
+                            <li><xref keyref="true"/>: Enables data stream encryption.</li>
+                            <li><xref keyref="false"/>: (default) Does not enable data stream encryption.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

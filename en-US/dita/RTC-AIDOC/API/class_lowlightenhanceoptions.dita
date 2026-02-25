@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_lowlightenhanceoptions">
+    <title><ph keyref="LowlightEnhanceOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure low-light enhancement options.</ph><ph id="shortdesc" props="android">Used to configure low-light enhancement functionality.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct LowlightEnhanceOptions {
+  LOW_LIGHT_ENHANCE_MODE mode;
+  LOW_LIGHT_ENHANCE_LEVEL level;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class LowLightEnhanceOptions {
+  public static final int LOW_LIGHT_ENHANCE_AUTO = 0;
+  public static final int LOW_LIGHT_ENHANCE_MANUAL = 1;
+  public static final int LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY = 0;
+  public static final int LOW_LIGHT_ENHANCE_LEVEL_FAST = 1;
+  public int lowlightEnhanceMode;
+  public int lowlightEnhanceLevel;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Added since v3.6.2.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>mode</pt>
+                    <pd>Low-light enhancement mode. See <xref keyref="LOW_LIGHT_ENHANCE_MODE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>level</pt>
+                    <pd>Low-light enhancement level. See <xref keyref="LOW_LIGHT_ENHANCE_LEVEL"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LOW_LIGHT_ENHANCE_AUTO</pt>
+                    <pd><codeph>0</codeph>: (Default) Auto mode. The SDK automatically enables or disables low-light enhancement based on ambient lighting to compensate brightness or prevent overexposure.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LOW_LIGHT_ENHANCE_MANUAL</pt>
+                    <pd><codeph>1</codeph>: Manual mode. You need to manually enable or disable low-light enhancement.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY</pt>
+                    <pd><codeph>0</codeph>: (Default) Prioritize video quality during low-light enhancement. Processes brightness, detail, and noise with moderate performance cost and processing speed. Best overall quality.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>LOW_LIGHT_ENHANCE_LEVEL_FAST</pt>
+                    <pd><codeph>1</codeph>: Prioritize performance during low-light enhancement. Processes brightness and detail with faster processing speed.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lowlightEnhanceMode</pt>
+                    <pd>Working mode of low-light enhancement.
+                        <ul>
+                            <li><codeph>LOW_LIGHT_ENHANCE_AUTO (0)</codeph>: (Default) Auto mode. The SDK automatically enables or disables low-light enhancement based on ambient lighting.</li>
+                            <li><codeph>LOW_LIGHT_ENHANCE_MANUAL (1)</codeph>: Manual mode. You need to manually enable or disable low-light enhancement.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lowlightEnhanceLevel</pt>
+                    <pd>Strength level of low-light enhancement.
+                        <ul>
+                            <li><codeph>LOW_LIGHT_ENHANCE_LEVEL_HIGH_QUALITY (0)</codeph>: (Default) Prioritize video quality during low-light enhancement. Processes brightness, detail, and noise with moderate performance cost and speed. Best overall quality.</li>
+                            <li><codeph>LOW_LIGHT_ENHANCE_LEVEL_FAST (1)</codeph>: Prioritize performance. Processes brightness and detail with faster processing speed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

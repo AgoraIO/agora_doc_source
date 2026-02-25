@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onplayerplaybackstats">
+    <title><ph keyref="onPlayerPlaybackStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for statistics of the media file being played.</ph><ph id="shortdesc" props="android">Callback reporting statistics of the playing media file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlayerPlaybackStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerPlaybackStats(const media::base::PlayerPlaybackStats&amp; stats)</codeblock>
+                <codeblock props="android" outputclass="language-java">void onPlayerPlaybackStats(PlayerPlaybackStats stats)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback is triggered once per second to report statistics of the media file being played.</p>
+            <p props="android">This callback is triggered every second during media file playback.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered every second during media file playback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>stats</pt>
+                    <pd>Statistics of the media file. See <xref keyref="PlayerPlaybackStats"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>stats</pt>
+                    <pd>Statistics of the media file. See <xref keyref="PlayerPlaybackStats"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onfacepositionchanged">
+    <title><ph keyref="onFacePositionChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Reports local face detection results.</ph><ph id="shortdesc" props="flutter">Reports local face detection results.</ph><ph id="shortdesc" props="unity">Reports the result of local face detection.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onFacePositionChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">onFacePositionChanged?(
+    imageWidth: number,
+    imageHeight: number,
+    vecRectangle: Rectangle,
+    vecDistance: number,
+    numFaces: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(int imageWidth, int imageHeight, Rectangle vecRectangle,
+      int vecDistance, int numFaces)? onFacePositionChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle, int[] vecDistance, int numFaces) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">After calling <codeph>enableFaceDetection(true)</codeph> to enable local face detection, you can use this callback to get the following face detection information in real time:
+                <ul>
+                    <li>Size of the captured image</li>
+                    <li>Position of the face in the view</li>
+                    <li>Distance of the face from the device screen</li>
+                </ul><ph>The distance of the face from the screen is estimated by the SDK based on the image size and face position in the view.</ph></p>
+            <p props="flutter">After calling <codeph>enableFaceDetection(true)</codeph> to enable local face detection, you can use this callback to get the following face detection information in real time:
+                <ul>
+                    <li>Size of the image captured by the camera</li>
+                    <li>Position of the face in the view</li>
+                    <li>Distance of the face from the device screen</li>
+                </ul><ph>The distance of the face from the screen is estimated by the SDK based on the image size and face position in the view.</ph></p>
+            <p props="unity">After calling <codeph>EnableFaceDetection(true)</codeph> to enable local face detection, you can use this callback to get the following face detection information in real time:
+                <ul>
+                    <li>The size of the image captured by the camera</li>
+                    <li>The position of the face in the view</li>
+                    <li>The distance between the face and the device screen</li>
+                </ul><ph>The distance between the face and the device screen is estimated by the SDK based on the size of the captured image and the position of the face in the view.</ph></p>
+            <note props="rn">
+                <ul>
+                    <li>When the face in front of the camera disappears, this callback is triggered immediately; when no face is detected, the callback frequency is reduced to save power.</li>
+                    <li>This callback is not triggered when the face is too close to the screen.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This callback is only available on Android and iOS platforms.</li>
+                    <li>When the face in front of the camera disappears, this callback is triggered immediately. When no face is detected, the callback frequency is reduced to save device power.</li>
+                    <li>When the face is too close to the screen, the SDK does not trigger this callback.</li>
+                    <li>On Android, the <codeph>distance</codeph> value has some error margin. Do not use it for precise calculations.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This callback is only applicable to Android and iOS platforms.</li>
+                    <li>When the face in front of the camera disappears, this callback is triggered immediately; when no face is detected, the callback frequency is reduced to save device power.</li>
+                    <li>When the face is too close to the device screen, the SDK does not trigger this callback.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>imageWidth</pt>
+                    <pd>Width (px) of the captured image.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>imageHeight</pt>
+                    <pd>Height (px) of the captured image.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>vecRectangle</pt>
+                    <pd>Detected face information. See <xref keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>vecDistance</pt>
+                    <pd>Distance between the face and the device screen (cm).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>numFaces</pt>
+                    <pd>Number of faces detected. If 0, no face is detected.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>imageWidth</pt>
+                    <pd>Width of the image captured by the camera (px).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>imageHeight</pt>
+                    <pd>Height of the image captured by the camera (px).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>vecRectangle</pt>
+                    <pd>Detected face information. See <xref keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>vecDistance</pt>
+                    <pd>Distance between the face and the device screen (cm).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>numFaces</pt>
+                    <pd>Number of faces detected. If 0, no face is detected.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>imageWidth</pt>
+                    <pd>Width (px) of the image captured by the camera.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>imageHeight</pt>
+                    <pd>Height (px) of the image captured by the camera.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>vecRectangle</pt>
+                    <pd>Detected face information. See <xref keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>vecDistance</pt>
+                    <pd>Distance (cm) between the face and the device screen.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>numFaces</pt>
+                    <pd>Number of faces detected. If 0, no face is detected.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

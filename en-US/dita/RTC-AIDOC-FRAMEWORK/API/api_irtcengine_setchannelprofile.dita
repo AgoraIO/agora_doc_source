@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setchannelprofile">
+    <title><ph keyref="setChannelProfile"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the channel profile.</ph><ph id="shortdesc" props="rn">Sets the channel profile.</ph><ph id="shortdesc" props="flutter">Sets the channel profile.</ph><ph id="shortdesc" props="unity">Sets the channel profile.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setChannelProfile"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setChannelProfile(profile: ChannelProfileType): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setChannelProfile(profile: ChannelProfileType): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setChannelProfile(ChannelProfileType profile);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetChannelProfile(CHANNEL_PROFILE_TYPE profile);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">You can call this method to set the channel profile. The SDK applies different optimization strategies based on the profile. For example, in the live streaming profile, the SDK prioritizes video quality. The default channel profile after SDK initialization is live streaming.</p>
+            <p props="rn">You can call this method to set the channel profile. The SDK uses different optimization strategies for different scenarios. For example, in the live streaming scenario, it prioritizes video quality. The default channel profile after SDK initialization is live streaming.</p>
+            <p props="flutter">You can call this method to set the channel profile. The SDK adopts different optimization strategies for different use cases, such as prioritizing video quality in live streaming scenarios. The default channel profile after SDK initialization is live streaming.</p>
+            <p props="unity">You can call this method to set the channel profile. The SDK applies different optimization strategies for different scenarios. For example, in live streaming, the SDK prioritizes video quality. The default channel profile after SDK initialization is live streaming.</p>
+            <note props="electron">To ensure the quality of real-time audio and video, all users in the same channel must use the same channel profile.</note>
+            <note props="rn">Under different channel profiles, the SDK uses different default audio routes. See the description in <xref keyref="setDefaultAudioRouteToSpeakerphone"/>.
+To ensure real-time audio and video quality, all users in the same channel must use the same channel profile.</note>
+            <note props="flutter">To ensure real-time audio and video quality, all users in the same channel must use the same channel profile.</note>
+            <note props="unity">To ensure real-time audio and video quality, users in the same channel must use the same channel profile.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called before joining a channel.</p>
+            <p props="rn">You must call this method before joining a channel.</p>
+            <p props="flutter">This method must be called before joining a channel.</p>
+            <p props="unity">This method must be called before joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>profile</pt>
+                    <pd>The channel profile. See <xref keyref="CHANNEL_PROFILE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>profile</pt>
+                    <pd>The channel profile. See <xref keyref="CHANNEL_PROFILE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>profile</pt>
+                    <pd>Channel profile. See <xref keyref="CHANNEL_PROFILE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>profile</pt>
+                    <pd>The channel profile. See <xref keyref="CHANNEL_PROFILE_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.
+                        <ul>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-7: The SDK is not initialized.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-7: The SDK is not initialized.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                <ul>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-7: SDK not initialized.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-7: The SDK is not initialized.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

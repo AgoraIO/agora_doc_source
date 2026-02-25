@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_colorenhanceoptions">
+    <title><ph keyref="ColorEnhanceOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Color enhancement configuration options.</ph><ph id="shortdesc" props="android">Used to configure color enhancement effects.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ColorEnhanceOptions {
+  float strengthLevel;
+  float skinProtectLevel;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class ColorEnhanceOptions {
+  public float strengthLevel;
+  public float skinProtectLevel;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Added since v4.0.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Added since v3.6.2.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>strengthLevel</pt>
+                    <pd>Color enhancement level. Range [0.0, 1.0].
+                        <ul>
+                            <li><codeph>0.0</codeph>: Default, no color enhancement.</li>
+                            <li>The higher the value, the stronger the color enhancement.</li>
+                        </ul><ph>Default is <codeph>0.5</codeph>.</ph></pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>skinProtectLevel</pt>
+                    <pd>Skin tone protection level. Range [0.0, 1.0].
+                        <ul>
+                            <li><codeph>0.0</codeph>: Disable skin tone protection.</li>
+                            <li>The higher the value, the stronger the protection.</li>
+                        </ul><ph>Default is <codeph>1.0</codeph>.</ph>
+                        <ul>
+                            <li>When the color enhancement level is high, facial skin tones may be distorted. It is recommended to set an appropriate skin protection level.</li>
+                            <li>When the skin protection level is high, the color enhancement effect may be slightly reduced.</li>
+                        </ul><ph>To achieve the best result, adjust <codeph>strengthLevel</codeph> and <codeph>skinProtectLevel</codeph> based on actual needs.</ph></pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>strengthLevel</pt>
+                    <pd>Strength level of color enhancement. Value range: [0.0, 1.0].
+                        <ul>
+                            <li><codeph>0.0</codeph>: Default. No color enhancement is applied to the video.</li>
+                            <li>The higher the value, the stronger the color enhancement effect.</li>
+                        </ul><ph>Default is <codeph>0.5</codeph>.</ph></pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>skinProtectLevel</pt>
+                    <pd>Strength level of skin tone protection. Value range: [0.0, 1.0].
+                        <ul>
+                            <li><codeph>0.0</codeph>: Skin tone protection is disabled.</li>
+                            <li>The higher the value, the stronger the skin tone protection effect.</li>
+                        </ul><ph>Default is <codeph>1.0</codeph>.</ph>
+                        <ul>
+                            <li>When color enhancement strength is high, skin tones may appear distorted. It is recommended to set an appropriate skin protection level.</li>
+                            <li>Higher skin protection levels may slightly reduce the color enhancement effect.</li>
+                        </ul><ph>To achieve the best result, you are advised to adjust <codeph>strengthLevel</codeph> and <codeph>skinProtectLevel</codeph> based on actual needs.</ph></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

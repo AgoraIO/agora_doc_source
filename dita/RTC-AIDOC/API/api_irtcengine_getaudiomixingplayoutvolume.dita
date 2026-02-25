@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getaudiomixingplayoutvolume">
+    <title><ph keyref="getAudioMixingPlayoutVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取本地播放的混音音量。</ph><ph id="shortdesc" props="ios">获取本地播放的混音音量。</ph><ph id="shortdesc" props="android">获取本地播放的混音音量。</ph><ph id="shortdesc" props="mac">获取本地播放的混音音量。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getAudioMixingPlayoutVolume"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getAudioMixingPlayoutVolume() = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)getAudioMixingPlayoutVolume NS_SWIFT_NAME(getAudioMixingPlayoutVolume());</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int getAudioMixingPlayoutVolume();</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)getAudioMixingPlayoutVolume NS_SWIFT_NAME(getAudioMixingPlayoutVolume());</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">你可以调用该方法获取混音音频文件的本地播放音量，有助于排查与音量相关的问题。</p>
+            <p props="ios">你可以调用此方法获取混音音频文件的本地播放音量，有助于排查与音量相关的问题。</p>
+            <p props="android">你可以调用该方法获取混音音频文件的本地播放音量，有助于排查与音量相关的问题。</p>
+            <p props="mac">你可以调用此方法获取混音音频文件的本地播放音量，有助于排查与音量相关的问题。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios mac">
+            <title>调用时机</title>
+            <p props="cpp">请在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用此方法。</p>
+            <p props="ios">请在调用 <xref keyref="startAudioMixing2"/> 方法并收到 <codeph>audioMixingStateChanged</codeph> 回调（状态为 <codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用此方法。</p>
+            <p props="android">在调用 <codeph>startAudioMixing</codeph> 并收到 <xref keyref="onAudioMixingStateChanged"/>（<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>）回调后调用此方法。</p>
+            <p props="mac">请在调用 <xref keyref="startAudioMixing2"/> 方法并收到 <codeph>audioMixingStateChanged</codeph> 回调（状态为 <codeph>AgoraAudioMixingStateTypePlaying</codeph>）后调用此方法。</p>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>方法调用成功，返回混音音量，取值范围为 [0, 100]。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>方法调用成功，返回混音音量，取值范围为 [0, 100]。</li>
+                    <li>方法调用失败，返回小于 0 的错误码。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

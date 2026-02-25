@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_getstreaminfo">
+    <title><ph keyref="getStreamInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets detailed information about a media stream.</ph><ph id="shortdesc" props="android">Gets detailed information about a media stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getStreamInfo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getStreamInfo(int64_t index, media::base::PlayerStreamInfo* info) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">MediaStreamInfo getStreamInfo(int index);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">After calling <xref keyref="getStreamCount"/>, call this method to get detailed information about the media stream at the specified index.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after calling the <xref keyref="getStreamCount"/> method.</p>
+            <p props="android">Call after invoking the <xref keyref="getStreamCount"/> method.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>index</pt>
+                    <pd>Index of the media stream. This parameter must be less than the <codeph>count</codeph> value returned by <xref keyref="getStreamCount"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>info</pt>
+                    <pd>Output parameter, detailed information about the media stream. See <xref keyref="PlayerStreamInfo"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>index</pt>
+                    <pd>The index of the media stream. This parameter must be less than the return value of <xref keyref="getStreamCount"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>If the method call succeeds, returns a <xref keyref="PlayerStreamInfo"/> object.</li>
+                    <li>If the method call fails, returns <codeph>null</codeph>.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

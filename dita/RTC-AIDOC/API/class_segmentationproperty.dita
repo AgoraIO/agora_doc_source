@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_segmentationproperty">
+    <title><ph keyref="SegmentationProperty"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于设置背景图像处理的相关属性。</ph><ph id="shortdesc" props="ios">背景图像处理属性。</ph><ph id="shortdesc" props="android">用于设置背景图像处理相关的属性。</ph><ph id="shortdesc" props="mac">背景图像处理属性。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct SegmentationProperty {
+  SEG_MODEL_TYPE modelType;
+  float greenCapacity;
+  SCREEN_COLOR_TYPE screenColorType;
+};</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSegmentationProperty: NSObject
+@property(nonatomic, assign) SegModelType modelType;
+@property(nonatomic, assign) float greenCapacity;
+@property(nonatomic, assign) ScreenColorType screenColorType;
+@end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class SegmentationProperty {
+  public static final int SEG_MODEL_AI = 1;
+  public static final int SEG_MODEL_GREEN = 2;
+  public static final int SCREEN_COLOR_AUTO = 0;
+  public static final int SCREEN_COLOR_GREEN = 1;
+  public static final int SCREEN_COLOR_BLUE = 2;
+  public int modelType;
+  public float greenCapacity;
+  public int screenColorType;
+}</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSegmentationProperty: NSObject
+@property(nonatomic, assign) SegModelType modelType;
+@property(nonatomic, assign) float greenCapacity;
+@property(nonatomic, assign) ScreenColorType screenColorType;
+@end</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>modelType</pt>
+                    <pd>用于背景处理的算法类型。详见 <xref keyref="SEG_MODEL_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>greenCapacity</pt>
+                    <pd>识别图像中背景颜色的精度范围。取值范围为 [0,1]，默认值为 0.5。值越大，可识别的纯色色调范围越广。当该参数值过大时，人物边缘和人物区域内的纯色也可能被检测到。声网建议根据实际效果动态调整该参数的值。
+                        <note>仅当 <codeph>modelType</codeph> 设置为 <codeph>SEG_MODEL_GREEN</codeph> 时该参数才生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>screenColorType</pt>
+                    <pd>屏幕颜色类型。详见 <xref keyref="SCREEN_COLOR_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>modelType</pt>
+                    <pd>用于背景处理的算法类型。详见 <xref keyref="SEG_MODEL_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>greenCapacity</pt>
+                    <pd>识别图像中背景纯色的精度范围。取值范围为 [0,1]，默认值为 0.5。值越大，可识别的纯色色阶范围越广。当该值过大时，可能会将人物边缘或人物区域内的纯色误识别为背景。声网建议你根据实际效果动态调整该参数的值。
+                        <note>仅当 <codeph>modelType</codeph> 设置为 <codeph>SegModelAgoraGreen</codeph> 时该参数才生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>screenColorType</pt>
+                    <pd>屏幕颜色类型。详见 <xref keyref="SCREEN_COLOR_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SEG_MODEL_AI</pt>
+                    <pd>（1）：（默认）AI 分割算法。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SEG_MODEL_GREEN</pt>
+                    <pd>（2）：绿幕分割算法。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SCREEN_COLOR_AUTO</pt>
+                    <pd>（0）：（默认）自动识别屏幕颜色。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SCREEN_COLOR_GREEN</pt>
+                    <pd>（1）：绿色。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>SCREEN_COLOR_BLUE</pt>
+                    <pd>（2）：蓝色。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>modelType</pt>
+                    <pd>用于背景处理的算法类型。
+                        <ul>
+                            <li><codeph>SEG_MODEL_AI</codeph>（1）：（默认）使用适用于所有场景的算法。</li>
+                            <li><codeph>SEG_MODEL_GREEN</codeph>（2）：使用专为绿幕背景场景设计的算法。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>greenCapacity</pt>
+                    <pd>识别图像中背景颜色的准确度范围。取值范围为 [0, 1]，默认值为 0.5。值越大，可识别的纯色色阶范围越宽。当该值过大时，人物边缘和人物区域中的纯色部分也可能被识别为背景。
+                        <note>仅当 <codeph>modelType</codeph> 设为 <codeph>SEG_MODEL_GREEN</codeph> 时该参数生效。声网建议你根据实际效果动态调整该参数值。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>screenColorType</pt>
+                    <pd>屏幕颜色类型：
+                        <ul>
+                            <li><codeph>SCREEN_COLOR_AUTO</codeph>（0）：SDK 自动选择屏幕颜色。</li>
+                            <li><codeph>SCREEN_COLOR_GREEN</codeph>（1）：绿色。</li>
+                            <li><codeph>SCREEN_COLOR_BLUE</codeph>（2）：蓝色。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>modelType</pt>
+                    <pd>用于背景处理的算法类型。详见 <xref keyref="SEG_MODEL_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>greenCapacity</pt>
+                    <pd>识别图像中背景纯色的精度范围。取值范围为 [0,1]，默认值为 0.5。值越大，可识别的纯色色阶范围越广。当该值过大时，可能会将人物边缘或人物区域内的纯色误识别为背景。声网建议你根据实际效果动态调整该参数的值。
+                        <note>仅当 <codeph>modelType</codeph> 设置为 <codeph>SegModelAgoraGreen</codeph> 时该参数才生效。</note>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>screenColorType</pt>
+                    <pd>屏幕颜色类型。详见 <xref keyref="SCREEN_COLOR_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

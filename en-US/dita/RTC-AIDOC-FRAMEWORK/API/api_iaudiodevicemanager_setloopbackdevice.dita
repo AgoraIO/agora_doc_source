@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_setloopbackdevice">
+    <title><ph keyref="setLoopbackDevice"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Specifies the loopback capture device.</ph><ph id="shortdesc" props="flutter">Specifies the sound card capture device.</ph><ph id="shortdesc" props="unity">Specifies the loopback device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLoopbackDevice"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setLoopbackDevice(deviceId: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLoopbackDevice(String deviceId);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLoopbackDevice(string deviceId);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">By default, the SDK uses the current playback device as the loopback capture device. To specify another audio device as the loopback capture device, call this method and set <codeph>deviceId</codeph> to the desired device.
+This method changes the current recording device but does not change the system default recording device. For example, if the system default recording device is Microphone 1, and you call this method before joining a channel to set the current audio route to Sound Card 1, the SDK will test Sound Card 1 during device testing. After testing, when you join the channel, the SDK will still use the system default recording device, i.e., Microphone 1.</p>
+            <p props="flutter">By default, the SDK uses the current playback device as the sound card capture device. To specify another audio device as the sound card capture device, call this method and set <codeph>deviceId</codeph> to the desired device.
+This method changes the current recording device but does not change the system default recording device. For example, if the system default recording device is Microphone 1, and you call this method to set the current audio route to Sound Card 1 before joining a channel, the SDK will test Sound Card 1 during device testing. After testing, when you join the channel, the SDK will still use the system default recording device, i.e., Microphone 1.</p>
+            <p props="unity">By default, the SDK uses the current playback device as the loopback device. To specify another audio device as the loopback device, call this method and set <codeph>deviceId</codeph> to the desired loopback device.
+This method changes the current recording device used by the SDK but does not change the system default recording device. For example, if the system default recording device is Microphone 1, and you call this method before joining a channel to set the current audio route to Soundcard 1, the SDK performs device testing on Soundcard 1. After testing, when you join a channel, the SDK still uses the system default recording device, which is Microphone 1.</p>
+            <note props="electron">(Windows and macOS only)
+Applicable scenarios:
+App A plays music through a Bluetooth headset; App B conducts a video conference through a speaker.
+                <ul>
+                    <li>If the loopback capture device is set to the Bluetooth headset, the SDK will publish the music from App A to the remote end.</li>
+                    <li>If the loopback capture device is set to the speaker, the SDK will not publish the music from App A to the remote end.</li>
+                    <li>If you switch from Bluetooth headset to wired headset for App A after setting the loopback device to Bluetooth headset, you need to call this method again to set the loopback device to the wired headset. The SDK will then continue to publish the music from App A to the remote end.</li>
+                </ul>
+            </note>
+            <note props="flutter">This method is applicable to Windows and macOS only.
+Applicable scenarios:
+App A plays music through Bluetooth headset; App B conducts a video conference through speaker.
+                <ul>
+                    <li>If the sound card capture device is set to the Bluetooth headset, the SDK will publish the music from App A to the remote end.</li>
+                    <li>If the sound card capture device is set to the speaker, the SDK will not publish the music from App A.</li>
+                    <li>If you switch from Bluetooth headset to wired headset for App A after setting the sound card capture device to Bluetooth headset, you need to call this method again to set the sound card capture device to wired headset, so that the SDK continues publishing App A's music to the remote end.</li>
+                </ul>
+            </note>
+            <note props="unity">This method applies to Windows and macOS only.
+Applicable scenario:
+App A plays music through a Bluetooth headset; App B is used for video conferencing through a speaker.
+                <ul>
+                    <li>If the loopback device is set to the Bluetooth headset, the SDK publishes the music from App A to the remote end.</li>
+                    <li>If the loopback device is set to the speaker, the SDK does not publish the music from App A to the remote end.</li>
+                    <li>If you switch from Bluetooth headset to wired headset for App A after setting the loopback device to Bluetooth headset, you need to call this method again to set the loopback device to the wired headset. The SDK will then continue to publish the music from App A to the remote end.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>deviceId</pt>
+                    <pd>Specifies the loopback capture device for the SDK. Obtained via <xref keyref="enumeratePlaybackDevices"/>. Plugging/unplugging devices does not affect <codeph>deviceId</codeph>.
+Maximum length: <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceId</pt>
+                    <pd>Specifies the SDK's sound card capture device. Obtained via <xref keyref="enumeratePlaybackDevices"/>. Plugging or unplugging devices does not affect <codeph>deviceId</codeph>.
+Maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceId</pt>
+                    <pd>Specifies the loopback device used by the SDK. Obtained via <xref keyref="enumeratePlaybackDevices"/>. Plugging or unplugging devices does not affect <codeph>deviceId</codeph>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

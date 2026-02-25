@@ -1,0 +1,116 @@
+{
+  "platform": "cpp-ng",
+  "generated_at": "2025-09-15T10:00:00.000000Z",
+  "api": [
+    {
+      "name": "adjustUserPlaybackSignalVolume",
+      "signature": "virtual int adjustUserPlaybackSignalVolume(uid_t uid, int volume) = 0",
+      "parent_class": "IRtcEngine",
+      "file": "api_irtcengine.html",
+      "comment": [
+        "/**",
+        " * @brief Adjusts the playback signal volume of a specified remote user.",
+        " *",
+        " * @details",
+        " * You can call this method to adjust the playback volume of a specified remote user. To adjust the",
+        " * playback volume of different remote users, call the method as many times, once for each remote",
+        " * user.",
+        " * Call timing: Call this method after joining a channel.",
+        " *",
+        " * @param uid The user ID of the remote user.",
+        " * @param volume The volume of the user. The value range is [0,400].",
+        " * - 0: Mute.",
+        " * - 100: (Default) The original volume.",
+        " * - 400: Four times the original volume (amplifying the audio signals by four times).",
+        " *",
+        " * @return",
+        " * - 0: Success.",
+        " * - < 0: Failure.",
+        " */"
+      ]
+    }
+  ],
+  "class": [
+    {
+      "name": "ScreenAudioParameters",
+      "signature": "struct ScreenAudioParameters {\nint sampleRate = 16000;\nint channels = 2;\nint captureSignalVolume = 100;\n};",
+      "file": "class_screenaudioparameters.html",
+      "class_comment": [
+        {
+          "type": "desc",
+          "comment": [
+            "/**",
+            " * @brief The audio configuration for the shared screen stream.",
+            " *",
+            " * @details",
+            " * Only available where `captureAudio` is `true`.",
+            " *",
+            " */"
+          ]
+        },
+        {
+          "type": "attribute",
+          "value": "sampleRate",
+          "comment": [
+            "/**",
+            " * Audio sample rate (Hz). The default value is 16000.",
+            " */"
+          ]
+        },
+        {
+          "type": "attribute",
+          "value": "channels",
+          "comment": [
+            "/**",
+            " * The number of audio channels. The default value is 2, which means stereo.",
+            " */"
+          ]
+        },
+        {
+          "type": "attribute",
+          "value": "captureSignalVolume",
+          "comment": [
+            "/**",
+            " * The volume of the captured system audio. The value range is [0, 100]. The default value is 100.",
+            " */"
+          ]
+        }
+      ]
+    }
+  ],
+  "enum": [
+    {
+      "name": "AUDIENCE_LATENCY_LEVEL_TYPE",
+      "file": "enum_audiencelatencyleveltype.html",
+      "enum_comment": [
+        {
+          "type": "desc",
+          "comment": [
+            "/**",
+            " * @brief The latency level of an audience member in interactive live streaming. This enum takes",
+            " * effect only when the user role is set to CLIENT_ROLE_AUDIENCE .",
+            " */"
+          ]
+        },
+        {
+          "type": "enumerator",
+          "value": "AUDIENCE_LATENCY_LEVEL_LOW_LATENCY",
+          "comment": [
+            "/**",
+            " * 1: Low latency.",
+            " */"
+          ]
+        },
+        {
+          "type": "enumerator",
+          "value": "AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY",
+          "comment": [
+            "/**",
+            " * 2: (Default) Ultra low latency.",
+            " */"
+          ]
+        }
+      ]
+    }
+  ]
+}

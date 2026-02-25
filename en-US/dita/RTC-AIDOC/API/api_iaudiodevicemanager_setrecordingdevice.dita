@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_setrecordingdevice">
+    <title><ph keyref="setRecordingDevice"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the audio recording device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRecordingDevice"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setRecordingDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You can call this method to change the currently used audio route, but it does not change the default audio route. For example, if the default audio route is the microphone, calling this method before joining a channel to set the audio route to a Bluetooth headset and starting a device test will cause the SDK to perform the test on the Bluetooth headset. After the test is completed and the channel is joined, the SDK will still use the microphone for audio capture.</p>
+            <note props="cpp">This method is applicable to Windows and macOS only.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>deviceId</pt>
+                    <pd>The ID of the audio recording device. You can get the device ID by calling <xref keyref="enumerateRecordingDevices"/>. Connecting or disconnecting audio devices does not change the value of <codeph>deviceId</codeph>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,371 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videorenderingtracinginfo">
+    <title><ph keyref="VideoRenderingTracingInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Metrics during video frame rendering.</ph><ph id="shortdesc" props="rn">Metric information during the video frame rendering process.</ph><ph id="shortdesc" props="flutter">Metric information during video frame rendering.</ph><ph id="shortdesc" props="unity">Metrics during the video frame rendering process.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class VideoRenderingTracingInfo {
+  elapsedTime?: number;
+  start2JoinChannel?: number;
+  join2JoinSuccess?: number;
+  joinSuccess2RemoteJoined?: number;
+  remoteJoined2SetView?: number;
+  remoteJoined2UnmuteVideo?: number;
+  remoteJoined2PacketReceived?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class VideoRenderingTracingInfo {
+  elapsedTime?: number;
+  start2JoinChannel?: number;
+  join2JoinSuccess?: number;
+  joinSuccess2RemoteJoined?: number;
+  remoteJoined2SetView?: number;
+  remoteJoined2UnmuteVideo?: number;
+  remoteJoined2PacketReceived?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class VideoRenderingTracingInfo {
+  const VideoRenderingTracingInfo(
+      {this.elapsedTime,
+      this.start2JoinChannel,
+      this.join2JoinSuccess,
+      this.joinSuccess2RemoteJoined,
+      this.remoteJoined2SetView,
+      this.remoteJoined2UnmuteVideo,
+      this.remoteJoined2PacketReceived});
+
+  @JsonKey(name: 'elapsedTime')
+  final int? elapsedTime;
+
+  @JsonKey(name: 'start2JoinChannel')
+  final int? start2JoinChannel;
+
+  @JsonKey(name: 'join2JoinSuccess')
+  final int? join2JoinSuccess;
+
+  @JsonKey(name: 'joinSuccess2RemoteJoined')
+  final int? joinSuccess2RemoteJoined;
+
+  @JsonKey(name: 'remoteJoined2SetView')
+  final int? remoteJoined2SetView;
+
+  @JsonKey(name: 'remoteJoined2UnmuteVideo')
+  final int? remoteJoined2UnmuteVideo;
+
+  @JsonKey(name: 'remoteJoined2PacketReceived')
+  final int? remoteJoined2PacketReceived;
+
+  factory VideoRenderingTracingInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$VideoRenderingTracingInfoFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoRenderingTracingInfoToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class VideoRenderingTracingInfo
+    {
+
+        public int elapsedTime;
+        public int start2JoinChannel;
+        public int join2JoinSuccess;
+        public int joinSuccess2RemoteJoined;
+        public int remoteJoined2SetView;
+        public int remoteJoined2UnmuteVideo;
+        public int remoteJoined2PacketReceived;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>elapsedTime</pt>
+                    <pd>Time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to triggering the <xref keyref="onVideoRenderingTracingResult"/> callback. It is recommended to call <xref keyref="startMediaRenderingTracing"/> before joining the channel.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>start2JoinChannel</pt>
+                    <pd>Time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to calling <xref keyref="joinChannel2"/>. A negative value indicates that <xref keyref="startMediaRenderingTracing"/> was called after <xref keyref="joinChannel2"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>join2JoinSuccess</pt>
+                    <pd>Time interval (ms) from calling <codeph>joinChannel1</codeph> or <xref keyref="joinChannel2"/> to successfully joining the channel.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>joinSuccess2RemoteJoined</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after the remote user has joined, this value is 0 and has no reference value.</li>
+                                <li>To improve the remote user's rendering speed, it is recommended that the remote user joins the channel first, followed by the local user, to reduce this value.</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> before successfully joining the channel, this is the time interval (ms) from the local user joining the channel to the remote user joining.</li>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after joining the channel, this is the time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to the remote user joining.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteJoined2SetView</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after setting the remote view, this value is 0 and has no reference value.</li>
+                                <li>To improve the remote user's rendering speed, it is recommended to set the remote view before the remote user joins, or immediately after the remote user joins, to reduce this value.</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this is the time interval (ms) from the remote user joining to the local user setting the remote view.</li>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after the remote user joins, this is the time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to setting the remote view.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteJoined2UnmuteVideo</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If <xref keyref="startMediaRenderingTracing"/> is called after subscribing to the remote video stream, this value is 0 and has no reference value.</li>
+                                <li>To improve the remote user's rendering speed, it is recommended to subscribe to the remote video stream immediately after the remote user joins, to reduce this value.</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this is the time interval (ms) from the remote user joining to subscribing to the remote video stream.</li>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after the remote user joins, this is the time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to subscribing to the remote video stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteJoined2PacketReceived</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If <xref keyref="startMediaRenderingTracing"/> is called after receiving the remote video stream, this value is 0 and has no reference value.</li>
+                                <li>To improve the remote user's rendering speed, it is recommended that the remote user publishes the video stream immediately after joining the channel, and the local user subscribes to the remote video stream immediately, to reduce this value.</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this is the time interval (ms) from the remote user joining to the local user receiving the first remote data packet.</li>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after the remote user joins, this is the time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to receiving the first remote data packet.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>elapsedTime</pt>
+                    <pd>Time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to triggering the <xref keyref="onVideoRenderingTracingResult"/> callback. It is recommended to call <xref keyref="startMediaRenderingTracing"/> before joining the channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>start2JoinChannel</pt>
+                    <pd>Time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to calling <xref keyref="joinChannel2"/>. A negative value indicates <xref keyref="startMediaRenderingTracing"/> was called after <xref keyref="joinChannel2"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>join2JoinSuccess</pt>
+                    <pd>Time interval (ms) from calling <codeph>joinChannel1</codeph> or <xref keyref="joinChannel2"/> to successfully joining the channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>joinSuccess2RemoteJoined</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If <xref keyref="startMediaRenderingTracing"/> is called after the remote user joins the channel, this value is 0 and has no reference value.</li>
+                                <li>To improve the rendering speed of the remote user, it is recommended that the local user joins the channel after the remote user, to reduce this value.</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>If <xref keyref="startMediaRenderingTracing"/> is called before the local user joins the channel, this value is the time interval (ms) from the local user successfully joining the channel to the remote user joining.</li>
+                            <li>If <xref keyref="startMediaRenderingTracing"/> is called after the local user joins the channel, this value is the time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to the remote user joining.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteJoined2SetView</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If <xref keyref="startMediaRenderingTracing"/> is called after setting the remote view, this value is 0 and has no reference value.</li>
+                                <li>To improve the rendering speed of the remote user, it is recommended to set the remote view before the remote user joins the channel, or immediately after the remote user joins, to reduce this value.</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>If <xref keyref="startMediaRenderingTracing"/> is called before the remote user joins the channel, this value is the time interval (ms) from the remote user joining to the local user setting the remote view.</li>
+                            <li>If <xref keyref="startMediaRenderingTracing"/> is called after the remote user joins the channel, this value is the time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to setting the remote view.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteJoined2UnmuteVideo</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If <xref keyref="startMediaRenderingTracing"/> is called after subscribing to the remote video stream, this value is 0 and has no reference value.</li>
+                                <li>To improve the rendering speed of the remote user, it is recommended to subscribe to the remote video stream immediately after the remote user joins the channel, to reduce this value.</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>If <xref keyref="startMediaRenderingTracing"/> is called before the remote user joins the channel, this value is the time interval (ms) from the remote user joining to subscribing to the remote video stream.</li>
+                            <li>If <xref keyref="startMediaRenderingTracing"/> is called after the remote user joins the channel, this value is the time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to subscribing to the remote video stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteJoined2PacketReceived</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If <xref keyref="startMediaRenderingTracing"/> is called after receiving the remote video stream, this value is 0 and has no reference value.</li>
+                                <li>To improve the rendering speed of the remote user, it is recommended that the remote user publishes the video stream immediately after joining the channel, and the local user subscribes to the remote stream immediately, to reduce this value.</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>If <xref keyref="startMediaRenderingTracing"/> is called before the remote user joins the channel, this value is the time interval (ms) from the remote user joining to the local user receiving the first remote data packet.</li>
+                            <li>If <xref keyref="startMediaRenderingTracing"/> is called after the remote user joins the channel, this value is the time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to receiving the first remote data packet.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>elapsedTime</pt>
+                    <pd>The time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to triggering the <xref keyref="onVideoRenderingTracingResult"/> callback. It is recommended to call <xref keyref="startMediaRenderingTracing"/> before joining the channel.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>start2JoinChannel</pt>
+                    <pd>The time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to calling <xref keyref="joinChannel2"/>. A negative value indicates that <xref keyref="startMediaRenderingTracing"/> was called after <xref keyref="joinChannel2"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>join2JoinSuccess</pt>
+                    <pd>The time interval (ms) from calling <codeph>joinChannel1</codeph> or <xref keyref="joinChannel2"/> to successfully joining the channel.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>joinSuccess2RemoteJoined</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after the remote user has joined the channel, this value is 0 and has no reference value.</li>
+                                <li>To improve the speed of remote user video display, it is recommended that the local user joins the channel after the remote user has joined to reduce this value.</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> before successfully joining the channel, this is the time interval (ms) from the local user successfully joining the channel to the remote user joining the channel.</li>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after successfully joining the channel, this is the time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to the remote user joining the channel.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteJoined2SetView</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after setting the remote view, this value is 0 and has no reference value.</li>
+                                <li>To improve the speed of remote user video display, it is recommended to set the remote view before the remote user joins the channel, or immediately after the remote user joins, to reduce this value.</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this is the time interval (ms) from the remote user joining the channel to the local user setting the remote view.</li>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this is the time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to setting the remote view.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteJoined2UnmuteVideo</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If <xref keyref="startMediaRenderingTracing"/> is called after subscribing to the remote video stream, this value is 0 and has no reference value.</li>
+                                <li>To improve the speed of remote user video display, it is recommended that the local user subscribes to the remote video stream immediately after the remote user joins the channel to reduce this value.</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this is the time interval (ms) from the remote user joining the channel to subscribing to the remote video stream.</li>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this is the time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to subscribing to the remote video stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteJoined2PacketReceived</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If <xref keyref="startMediaRenderingTracing"/> is called after receiving the remote video stream, this value is 0 and has no reference value.</li>
+                                <li>To improve the speed of remote user video display, it is recommended that the remote user publishes the video stream immediately after joining the channel and the local user subscribes to the remote video stream immediately to reduce this value.</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this is the time interval (ms) from the remote user joining the channel to the local user receiving the first remote data packet.</li>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this is the time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to receiving the first remote data packet.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>elapsedTime</pt>
+                    <pd>The time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to triggering the <xref keyref="onVideoRenderingTracingResult"/> callback. It is recommended to call <xref keyref="startMediaRenderingTracing"/> before joining the channel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>start2JoinChannel</pt>
+                    <pd>The time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to calling <xref keyref="joinChannel1"/> or <xref keyref="joinChannel2"/>. A negative value indicates that <xref keyref="startMediaRenderingTracing"/> was called after <xref keyref="joinChannel2"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>join2JoinSuccess</pt>
+                    <pd>The time interval (ms) from calling <xref keyref="joinChannel1"/> or <xref keyref="joinChannel2"/> to successfully joining the channel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>joinSuccess2RemoteJoined</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after the remote user has already joined the channel, this value is 0 and has no reference value.</li>
+                                <li>To improve the rendering speed of the remote user, it is recommended that the local user join the channel after the remote user has joined, to reduce this value.</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> before successfully joining the channel, this value is the time interval (ms) from the local user successfully joining the channel to the remote user joining the channel.</li>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after successfully joining the channel, this value is the time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to the remote user joining the channel.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteJoined2SetView</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after setting the remote view, this value is 0 and has no reference value.</li>
+                                <li>To improve the rendering speed of the remote user, it is recommended to set the remote view before the remote user joins the channel, or immediately after the remote user joins the channel, to reduce this value.</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval (ms) from the remote user joining the channel to the local user setting the remote view.</li>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to setting the remote view.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteJoined2UnmuteVideo</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If <xref keyref="startMediaRenderingTracing"/> is called after subscribing to the remote video stream, this value is 0 and has no reference value.</li>
+                                <li>To improve the rendering speed of the remote user, it is recommended that the local user subscribe to the remote video stream immediately after the remote user joins the channel, to reduce this value.</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval (ms) from the remote user joining the channel to subscribing to the remote video stream.</li>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to subscribing to the remote video stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteJoined2PacketReceived</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>If <xref keyref="startMediaRenderingTracing"/> is called after receiving the remote video stream, this value is 0 and has no reference value.</li>
+                                <li>To improve the rendering speed of the remote user, it is recommended that the remote user publish the video stream immediately after joining the channel, and the local user subscribe to the remote video stream immediately, to reduce this value.</li>
+                            </ul>
+                        </note>
+                        <ul>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval (ms) from the remote user joining the channel to the local user receiving the first remote data packet.</li>
+                            <li>If the local user calls <xref keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval (ms) from calling <xref keyref="startMediaRenderingTracing"/> to receiving the first remote data packet.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

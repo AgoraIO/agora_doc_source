@@ -63,11 +63,17 @@
             <plentry id="token">
                 <pt>token</pt>
                 <pd>在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token"/>。
-                <p>Token 过期后，根据预加载频道的数量，你可以通过不同方式来传入用于预加载频道的新 Token：
-                <ul><li>预加载一个频道时：调用此方法来传入新的 Token。</li>
-                <li>预加载多个频道时：<ul><li>如果你使用了通配的 Token，调用 <xref keyref="updatePreloadChannelToken"/> 来更新所有预加载频道的 Token。
-                <note type="note" id="uid">生成通配 Token 时，用户 ID 不得设为 0。详见 <xref keyref="wildcard-token"/>。</note></li>
-                <li>如果你使用了不同的 Token：调用此方法并传入你的用户 ID、对应的频道名和更新后的 Token。</li></ul></li></ul></p>
+                    <p>Token 过期后，根据预加载频道的数量，你可以通过不同方式来传入用于预加载频道的新 Token：
+                        <ul>
+                            <li>预加载一个频道时：调用此方法来传入新的 Token。</li>
+                            <li>预加载多个频道时：
+                                <ul>
+                                    <li>如果你使用了通配的 Token，调用 <xref keyref="updatePreloadChannelToken"/> 来更新所有预加载频道的 Token。生成通配 Token 时，用户 ID 不得设为 0。详见 <xref keyref="wildcard-token"/>。</li>
+                                    <li>如果你使用了不同的 Token：调用此方法并传入你的用户 ID、对应的频道名和更新后的 Token。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p>
                 </pd>
             </plentry>
             <plentry id="channel">
@@ -83,9 +89,13 @@
                     <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
                     </ul></p></pd>
             </plentry>
-            <plentry conkeyref="joinChannel1/uid">
+            <plentry conkeyref="joinChannel1/uid" props="apple cpp hmos unreal cs unity electron rn flutter bp">
                 <pt></pt>
                 <pd></pd>
+            </plentry>
+            <plentry props="android">
+              <pt>optionalUid</pt>
+              <pd>用户 ID。该参数用于标识用户进行实时音视频互动的频道，你需要自行设置和管理用户 ID，并确保同一频道内的用户 ID 唯一。该参数为 32 位有符号整数，取值范围为：-2<sup>31</sup> 到 2<sup>31</sup>-1。如果不指定（即设为 0），SDK 会自动分配一个，并在 <apiname keyref="onJoinChannelSuccess" /> 回调中返回， 应用层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

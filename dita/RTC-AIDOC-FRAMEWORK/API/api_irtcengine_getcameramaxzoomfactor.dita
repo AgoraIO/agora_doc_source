@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getcameramaxzoomfactor">
+    <title><ph keyref="getCameraMaxZoomFactor"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">获取摄像头支持的最大放大倍率。</ph><ph id="shortdesc" props="flutter">获取摄像头支持的最大放大倍率。</ph><ph id="shortdesc" props="unity">获取摄像头支持的最大放大倍率。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCameraMaxZoomFactor"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract getCameraMaxZoomFactor(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;double&gt; getCameraMaxZoomFactor();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract float GetCameraMaxZoomFactor();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="rn">
+                <ul>
+                    <li>该方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>LocalVideoStreamStateCapturing</codeph> (1) 之后调用。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法仅适用于 Android 和 iOS。</li>
+                    <li>该方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>localVideoStreamStateCapturing</codeph> (1) 之后调用。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法仅适用于 Android 和 iOS。</li>
+                    <li>该方法必须在 SDK 触发 <xref keyref="onLocalVideoStateChanged"/> 回调，返回本地视频状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1) 之后调用。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>返回值</title>
+            <p props="rn">设备摄像头支持的最大放大倍率。</p>
+            <p props="flutter">设备摄像头支持的最大放大倍率。</p>
+            <p props="unity">设备摄像头支持的最大放大倍率。</p>
+        </section>
+    </refbody>
+</reference>

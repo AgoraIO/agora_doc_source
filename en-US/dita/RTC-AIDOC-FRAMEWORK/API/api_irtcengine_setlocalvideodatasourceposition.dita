@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setlocalvideodatasourceposition">
+    <title><ph keyref="setLocalVideoDataSourcePosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Sets the observation position of the local video frame.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLocalVideoDataSourcePosition"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalVideoDataSourcePosition(VIDEO_MODULE_POSITION position);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="unity">This method only supports observing local video data rendered through <xref keyref="VideoSurface"/> and its subclasses.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="unity">
+            <title>Timing</title>
+            <p props="unity">This method must be called before creating the first <xref keyref="VideoSurface"/> view.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>position</pt>
+                    <pd>Observation position of the video frame. See <xref keyref="VIDEO_MODULE_POSITION"/>.
+                        <note>
+                            <ul>
+                                <li>Currently, this method only supports setting the observation position to POSITION_POST_CAPTURER or POSITION_PRE_ENCODER.</li>
+                                <li>Video frames obtained at POSITION_POST_CAPTURER are uncropped and have higher frame rates, while frames at POSITION_PRE_ENCODER are cropped before sending and have frame rates less than or equal to the camera capture rate.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

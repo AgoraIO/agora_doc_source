@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onpreloadevent">
+    <title><ph keyref="onPreloadEvent"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for preloading media resource events.</ph><ph id="shortdesc" props="android">Preload media resource event callback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPreloadEvent"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onPreloadEvent(const char* src, media::base::PLAYER_PRELOAD_EVENT event) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">void onPreloadEvent(String src, Constants.MediaPlayerPreloadEvent event)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">This callback is used to report events that occur during media resource preloading.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>src</pt>
+                    <pd>URL of the media resource.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>event</pt>
+                    <pd>Event triggered when preloading media resources, see <xref keyref="PLAYER_PRELOAD_EVENT"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>src</pt>
+                    <pd>URL of the media resource.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>event</pt>
+                    <pd>Event that occurred during media resource preloading. See <xref keyref="PLAYER_PRELOAD_EVENT"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_snapshotconfig">
+    <title><ph keyref="SnapshotConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Struct used to configure video screenshots.</ph><ph id="shortdesc" props="android">Used to configure snapshot functionality.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct SnapshotConfig {
+  const char* filePath;
+  media::base::VIDEO_MODULE_POSITION position;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class SnapshotConfig {
+  public String filePath = null;
+  public Constants.VideoModulePosition position = Constants.VideoModulePosition.VIDEO_MODULE_POSITION_PRE_ENCODER;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>filePath</pt>
+                    <pd>
+                        <note>Make sure the specified path exists and is writable.</note><ph>Local path of the screenshot (including file extension). For example:</ph>
+                        <ul>
+                            <li>Windows: <xref keyref="imagePath-example"/></li>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                            <li>macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>position</pt>
+                    <pd>Position of the video frame in the video processing pipeline where the screenshot is taken. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>filePath</pt>
+                    <pd>Local path of the snapshot file (including file extension). For example: Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph>.
+                        <note>Make sure the specified path exists and has write permissions.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>position</pt>
+                    <pd>The position of the video frame to snapshot in the video processing pipeline. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

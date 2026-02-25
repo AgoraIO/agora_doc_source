@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablevideo">
+    <title><ph keyref="enableVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">启用视频模块。</ph><ph id="shortdesc" props="rn">启用视频模块。</ph><ph id="shortdesc" props="flutter">启用视频模块。</ph><ph id="shortdesc" props="unity">启用视频模块。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableVideo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableVideo(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableVideo(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableVideo();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableVideo();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">视频模块默认为关闭状态，需要调用该方法启用。如果后续需要关闭视频模块，需调用 <xref keyref="disableVideo"/> 方法。</p>
+            <p props="rn">视频模块默认为关闭状态，需要调用该方法启用。如果后续需要关闭视频模块，需调用 <xref keyref="disableVideo"/> 方法。</p>
+            <p props="flutter">视频模块默认为关闭状态，需要调用该方法启用。如果后续需要关闭视频模块，需调用 <xref keyref="disableVideo"/> 方法。</p>
+            <p props="unity">视频模块默认为关闭状态，需要调用该方法启用。如果后续需要关闭视频模块，需调用 <xref keyref="disableVideo"/> 方法。</p>
+            <note props="electron">
+                <ul>
+                    <li>该方法设置的是内部引擎为启用状态，在离开频道后仍然有效。</li>
+                    <li>调用该方法会重置整个引擎，响应时间较慢。你可以根据实际需求用以下方法来独立控制视频模块的某一项功能：
+                        <ul>
+                            <li><xref keyref="enableLocalVideo"/>: 是否启动摄像头采集并创建本地视频流。</li>
+                            <li><xref keyref="muteLocalVideoStream"/>: 是否发布本地视频流。</li>
+                            <li><xref keyref="muteRemoteVideoStream"/>: 是否接收并播放远端视频流。</li>
+                            <li><xref keyref="muteAllRemoteVideoStreams"/>: 是否接收并播放所有远端视频流。</li>
+                        </ul>
+                    </li>
+                    <li>在频道内调用该方法时，会重置 <xref keyref="enableLocalVideo"/>、<xref keyref="muteRemoteVideoStream"/> 和 <xref keyref="muteAllRemoteVideoStreams"/> 的设置，需谨慎使用。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>该方法设置的是内部引擎为启用状态，在离开频道后仍然有效。</li>
+                    <li>调用该方法会重置整个引擎，响应时间较慢。你可以根据实际需求用以下方法来独立控制视频模块的某一项功能：
+                        <ul>
+                            <li><xref keyref="enableLocalVideo"/>: 是否启动摄像头采集并创建本地视频流。</li>
+                            <li><xref keyref="muteLocalVideoStream"/>: 是否发布本地视频流。</li>
+                            <li><xref keyref="muteRemoteVideoStream"/>: 是否接收并播放远端视频流。</li>
+                            <li><xref keyref="muteAllRemoteVideoStreams"/>: 是否接收并播放所有远端视频流。</li>
+                        </ul>
+                    </li>
+                    <li>在频道内调用该方法时，会重置 <xref keyref="enableLocalVideo"/>、<xref keyref="muteRemoteVideoStream"/> 和 <xref keyref="muteAllRemoteVideoStreams"/> 的设置，需谨慎使用。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法设置的是内部引擎为启用状态，在离开频道后仍然有效。</li>
+                    <li>调用该方法会重置整个引擎，响应时间较慢。你可以根据实际需求用以下方法来独立控制视频模块的某一项功能：
+                        <ul>
+                            <li><xref keyref="enableLocalVideo"/>: 是否启动摄像头采集并创建本地视频流。</li>
+                            <li><xref keyref="muteLocalVideoStream"/>: 是否发布本地视频流。</li>
+                            <li><xref keyref="muteRemoteVideoStream"/>: 是否接收并播放远端视频流。</li>
+                            <li><xref keyref="muteAllRemoteVideoStreams"/>: 是否接收并播放所有远端视频流。</li>
+                        </ul>
+                    </li>
+                    <li>在频道内调用该方法时，会重置 <xref keyref="enableLocalVideo"/>、<xref keyref="muteRemoteVideoStream"/> 和 <xref keyref="muteAllRemoteVideoStreams"/> 的设置，需谨慎使用。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法设置的是内部引擎为启用状态，在离开频道后仍然有效。</li>
+                    <li>调用该方法会重置整个引擎，响应时间较慢。你可以根据实际需求用以下方法来独立控制视频模块的某一项功能：
+                        <ul>
+                            <li><xref keyref="enableLocalVideo"/>: 是否启动摄像头采集并创建本地视频流。</li>
+                            <li><xref keyref="muteLocalVideoStream"/>: 是否发布本地视频流。</li>
+                            <li><xref keyref="muteRemoteVideoStream"/>: 是否接收并播放远端视频流。</li>
+                            <li><xref keyref="muteAllRemoteVideoStreams"/>: 是否接收并播放所有远端视频流。</li>
+                        </ul>
+                    </li>
+                    <li>在频道内调用该方法时，会重置 <xref keyref="enableLocalVideo"/>、<xref keyref="muteRemoteVideoStream"/> 和 <xref keyref="muteAllRemoteVideoStreams"/> 的设置，需谨慎使用。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法可以在加入频道前或者频道内调用：
+                <ul>
+                    <li>如果在加入频道前调用，则开启视频模块。</li>
+                    <li>如果在纯音频通话中调用，则音频通话将自动切换为视频通话。</li>
+                </ul>
+            </p>
+            <p props="rn">该方法可以在加入频道前或者频道内调用：
+                <ul>
+                    <li>如果在加入频道前调用，则开启视频模块。</li>
+                    <li>如果在纯音频通话中调用，则音频通话将自动切换为视频通话。</li>
+                </ul>
+            </p>
+            <p props="flutter">该方法可以在加入频道前或者频道内调用：
+                <ul>
+                    <li>如果在加入频道前调用，则开启视频模块。</li>
+                    <li>如果在纯音频通话中调用，则音频通话将自动切换为视频通话。</li>
+                </ul>
+            </p>
+            <p props="unity">该方法可以在加入频道前或者频道内调用：
+                <ul>
+                    <li>如果在加入频道前调用，则开启视频模块。</li>
+                    <li>如果在纯音频通话中调用，则音频通话将自动切换为视频通话。</li>
+                </ul>
+            </p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>相关回调</title>
+            <p props="electron">成功调用该方法后，远端会触发 <xref keyref="onRemoteVideoStateChanged"/> 回调。</p>
+            <p props="rn">成功调用该方法后，远端会触发 <xref keyref="onRemoteVideoStateChanged"/> 回调。</p>
+            <p props="flutter">成功调用该方法后，远端会触发 <xref keyref="onRemoteVideoStateChanged"/> 回调。</p>
+            <p props="unity">成功调用该方法后，远端会触发 <xref keyref="onRemoteVideoStateChanged"/> 回调。</p>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

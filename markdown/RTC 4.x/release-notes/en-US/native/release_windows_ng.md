@@ -1,3 +1,305 @@
+# v4.6.0
+
+v4.6.0 was released on August  xx, 2025.
+
+**Attention:**
+
+- Starting from version 4.5.0, both RTC SDK and Signaling (version 2.2.0 and above) include the `libaosl.dll` library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the `libaosl.dll` to avoid conflicts.
+- 4.6.0 RTC SDK `libaosl.dll` library version is 1.3.0. You can find out the version information of the library by checking the properties of the `libaosl.dll` file.
+
+## Compatibility changes
+
+This version enhances the implementation of certain features, involving SDK behavior changes, API deprecations, and deletions. To ensure your app functions correctly, you need to update your code after upgrading to this version.
+
+For details on deprecated and deleted APIs in each version, see the [API Sunset Notice](#link).
+
+1. **Deprecation of direct CDN streaming APIs**
+
+   This version deprecates the APIs related to direct CDN streaming, which will be removed in a future release. We recommend using Media Push instead.
+
+   - `setDirectCdnStreamingAudioConfiguration`
+   - `setDirectCdnStreamingVideoConfiguration`
+   - `startDirectCdnStreaming`
+   - `stopDirectCdnStreaming`
+   - `updateDirectCdnStreamingMediaOptions`
+   - `DirectCdnStreamingMediaOptions`
+   - `DirectCdnStreamingStats`
+   - `DIRECT_CDN_STREAMING_STATE`
+   - `DIRECT_CDN_STREAMING_REASON`
+
+2. **Deprecation of virtual metronome APIs**
+
+   This version deprecates the APIs for the virtual metronome feature, which will be removed in a future release.
+
+   - `startRhythmPlayer`
+   - `configRhythmPlayer`
+   - `onRhythmPlayerStateChanged`
+
+3. **Deprecation of watermark APIs**
+
+   This version deprecates the old watermark APIs. We recommend using the new watermark APIs introduced in this version.
+
+   - `addVideoWatermark [2/3]`
+   - `addVideoWatermarkEx [1/2]`
+
+4. **Deletion of redundant APIs**
+
+   This version removes the following redundant APIs and parameters:
+
+   - `setLocalPublishFallbackOption`
+   - `onLocalPublishFallbackToAudioOnly`
+   - `onDownlinkNetworkInfoUpdated`
+   - `onWlAccStats`
+   - `WlAccStats`
+   - `onWlAccMessage`
+   - `WLACC_MESSAGE_REASON`
+   - `WLACC_SUGGEST_ACTION`
+   - `enableWirelessAccelerate`
+
+5. **Changes to Int UID and String UID mapping**
+
+   - Before v4.6.0: If you used `registerLocalUserAccount` to register a string UID (e.g., "aa") and obtain an int UID (e.g., 123), when you later joined a channel using this int UID, the SDK automatically mapped it to the original string UID ("aa").
+   - From v4.6.0: The SDK no longer automatically maps an int UID to the original string UID used for registration. If you have called `registerLocalUserAccount` to get an int UID but need to join the channel with the original string UID, call `joinChannelWithUserAccount` directly with the string UID. After upgrading, check and adjust your app logic to ensure users join the channel with the expected identity.
+
+
+## New features
+
+1. **Adaptive Video Publishing (Beta)**
+
+   This version supports sending multiple video streams with different resolutions from the same video source, with support for multi-channel scenarios. You can configure video streams of different resolutions (up to four layers: one high-resolution main stream and three lower-resolution streams) and flexibly control stream publishing by setting options like resolution, bitrate, and whether to automatically disable multiple streams when uplink network or device performance is poor. Subscribers can choose which video stream to receive based on their needs. This feature is ideal for scenarios with multiple terminals and varying network conditions, such as conferences, large classes, and interactive live streaming, as it significantly improves the viewing experience under poor network conditions.
+
+2. **Multipath network transmission**
+
+   This version introduces a multipath transmission feature for devices that support multiple network interfaces (such as 5G, Wi-Fi, and LAN). It effectively reduces or eliminates experience degradation caused by poor network conditions, making it suitable for real-time audio and video communication scenarios that demand high transmission stability, such as in-vehicle systems, IoT, trains, and highways. You can enable multipath transmission by setting `enableMultipath` in `ChannelMediaOptions` to `true`. Two transmission modes are supported (`MultipathMode`):
+
+   - Dynamic mode: The SDK dynamically selects the optimal path for transmission based on network conditions. This mode is suitable for scenarios sensitive to data consumption but with high experience requirements, such as meetings and educational settings. Additionally, you can specify a preferred network path type (such as Wi-Fi or cellular) using `preferMultipathType`. If not set, all path types have the same default weight.
+   - Duplicate mode: Data is transmitted simultaneously over all available network paths (such as LAN, Wi-Fi, and cellular) to enhance anti-packet loss and stability. This mode eliminates the impact of poor network conditions and is suitable for scenarios that are not sensitive to data consumption but have extreme experience requirements, such as outdoor broadcasting and parallel control.
+
+    > Duplicate transmission mode incurs additional costs. If you need to enable this feature, please contact [technical support](mailto:support@agora.io).
+
+   Uplink and downlink transmission can be configured separately using `uplinkMultipathMode` and `downlinkMultipathMode` in `ChannelMediaOptions`. When enabled, the SDK reports real-time transmission statistics for each path through the `onMultipathStats` callback, including the data consumption of each path, which allows you to monitor and optimize network performance.
+
+3. **Video quality scoring**
+
+   This version adds the `mosValue` member to `RemoteVideoStats`, which reports the quality score of the received remote video stream. The score ranges from 1 to 5, where 5 indicates excellent video quality with a clear image and no artifacts, and 1 indicates extremely poor video quality with severe blurring. You can use this parameter to monitor the subjective quality of remote video streams in real-time, which helps in dynamically adjusting video parameters for quality monitoring and alerting. To enable this feature, please contact [technical support](mailto:support@agora.io).
+
+4. **Support for adding multiple watermarks**
+
+   This version deprecates the `addVideoWatermark [2/3]` and `addVideoWatermarkEx [1/2]` methods and introduces `addVideoWatermark [3/3]` and `addVideoWatermarkEx [2/2]`. These new methods allow you to add multiple watermarks to a video using a watermark ID and to set their layering order. To remove a specific watermark, you can call the `removeVideoWatermark` method.
+
+5. **Asynchronous engine destruction**
+
+   Starting from this version, the `release` method adds a `callback` parameter, supporting both synchronous and asynchronous engine destruction. When destroying the engine asynchronously, the SDK triggers the `RtcEngineReleaseCallback` callback.
+
+6. **Token renewal result callback**
+
+   This version introduces the `onRenewTokenResult` callback and the `RENEW_TOKEN_ERROR_CODE` error code. After calling the `renewToken` method to update a Token, the SDK notifies the result of the update through the `onRenewTokenResult` callback and provides a detailed error code via `RENEW_TOKEN_ERROR_CODE`. This allows developers to handle Token renewal failures promptly within the callback.
+
+7. **Advanced Beauty (Beta)**
+
+   This version introduces a brand-new advanced beauty feature, delivering a powerful yet easy-to-use beautification solution. Key capabilities include:
+
+   - **Precision Beauty Effects:**
+     - Face Shaping: Supports independent fine-tuning of 29 facial areas (e.g., slimming face, enlarging eyes, narrowing nose) or one-click natural effects via presets.
+     - Style Makeup: Offers rich effects including eyeshadow, colored contacts, eyeliner, eyebrow shaping, lipstick, blush, under-eye highlights, and facial contouring.
+     - Skin Enhancement: Includes professional skin optimizations like teeth whitening, nasolabial fold removal, dark circle reduction, and eye brightening.
+
+   - **Unified and Simple API**: Manage all beauty, makeup, and filter functions through three core nodes   – `BEAUTY`, `STYLE_MAKEUP`, and `FILTER` – using `IVideoEffectObject` for unified parameter setup and lifecycle control.
+
+   - **Ready-to-Use Presets**: Integrates multiple out-of-the-box style templates (e.g., "Natural Beauty," "Senior Makeup," "Cool White Filter") for instant polished results.
+
+   - **Dynamic Parameter Control**: Enables real-time reading/modifying of granular parameters (e.g., smoothing strength, lipstick type) via key-value pairs, with support for saving custom configurations and resetting defaults.
+
+   - **Local Resource Guarantee**: All beauty resources (effects, filters, makeup) are packaged as local bundle files, ensuring stability and reliability.
+
+8. **Other new features**
+
+   - Adds the `setPlaybackAudioFrameBeforeMixingParameters [2/2]` method to set the format of the audio frames returned in the `onPlaybackAudioFrameBeforeMixing` callback, including sample rate, number of channels, and the number of samples per callback. After calling this method, the SDK returns the raw audio data before mixing according to the set parameters.
+   - Adds the `preloadEffectEx` method to preload a specified audio effect file into a specific channel. It supports both local and online audio files, enabling faster playback later and is suitable for multi-channel scenarios.
+   - Adds the `playEffectEx` method to play an audio effect file in a specified channel. It supports setting parameters such as loop count, pitch, spatial position, volume, whether to publish to the channel, and the starting playback position to meet diverse audio effect needs.
+   - The local screenshot upload feature now supports setting the video observation position for screenshots via the new `position` member in `ContentInspectModule`. This enables capturing and uploading screenshots from either the raw video data or the video stream before or after effects processing.
+   - To improve the accuracy and stability of portrait segmentation when using a green or blue screen for the virtual background feature, this version adds the `screenColorType` member to `SegmentationProperty`. This member allows specifying the background screen color as green, blue, or auto-detected.
+
+## Improvements
+
+This version introduces the following improvements:
+
+- Optimizes permission requests on Windows 11 24H2 and later versions to avoid unnecessarily acquiring location information.
+- Adds support for g711 and g722 audio codecs when interoperating with the Web SDK, further improving cross-platform audio playback compatibility and clarity.
+- Improves video clarity in screen sharing scenarios involving documents.
+
+## Bug fixes
+
+This version fixed the following issues:
+
+- When playing an online audio effect, calling `seek` to set a new playback position caused the audio file to restart from the beginning.
+- Occasional echoes occurred in media volume mode when a broadcaster published a microphone audio stream while simultaneously playing an audio effect with `playEffect3` and a music file with `startAudioMixing [2/2]`.
+- The SDK crashed on Windows when handling file paths containing Chinese characters due to an encoding conversion error.
+- In scenarios where a user joined a channel with `joinChannelEx`, started a media relay, unpublished, left the channel, rejoined, and then started the relay again, the `ChannelMediaRelayStateChanged` callback occasionally reported `state` as `RELAY_STATE_FAILURE` and `code` as `RELAY_ERROR_SERVER_ERROR_RESPONSE`.
+- Receivers occasionally heard echoes when the sender shared their screen and audio from certain laptop models with power-saving mode enabled.
+- In online education scenarios, the teacher's local view of multiple students' video and audio was occasionally out of sync.
+
+## v4.5.2
+
+v4.5.2 was released on April xx, 2025.
+
+**Attention:**
+
+- Starting from version 4.5.0, both RTC SDK and Signaling (version 2.2.0 and above) include the `libaosl.dll` library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the `libaosl.dll` to avoid conflicts.
+- 4.5.2 RTC SDK `libaosl.dll` library version is 1.2.13. You can find out the version information of the library by checking the properties of the `libaosl.dll` file.
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- When playing a multi-track media file, noise can be heard after calling the `setAudioPitch` method to adjust the audio pitch.
+- The host called the `createCustomAudioTrack` method to create custom audio track and set `trackType` to `AUDIO_TRACK_DIRECT`, called the ```pushAudioFrame` to push custom audio frames into a channel and then called `playEffect` to play audio effects, audience members in the channel would hear noise.
+- Apps integrated with the SDK occasionally encountered UI lag caused by main thread blocking during audio and video interactions.
+- The local preview of the shared screen flickered after calling the `startScreenCapture [2/2]` to start screen sharing and set `enableHighLight` in `ScreenCaptureParameters` to `true` through the `config` parameter to outline the shared window, and then placed the window on the top layer and maximizing it.
+- Calling `startScreenCaptureByDisplayId` to share the video stream of specified screen and specifying the windows to be blocked through `excludeWindowList` in `ScreenCaptureParameters`, occasionally some windows fail to be blocked.
+- The application occasionally crashed after sharing the video stream of the external screen and disconnecting the external screen connection.
+- Calling `openWithMediaSource` and set `isLiveSource` in the `source` parameter to `true` to play a video stream, the playback failed.
+- When the sender transmits multi-channel encoded audio, the receiver occasionally experienced noise.
+- In scenarios where the App integrates a media player, when the open function is called twice to open different media resources consecutively, the second call to open unexpectedly resulted in the `onPlayerInfoUpdated [1/2]` callback returning information for the first media resource.
+- After calling `enableAudioVolumeIndication` to enable user volume indication, the `onAudioVolumeIndication` callback returned a local user volume of 0 for both local streaming users and remote users.
+- In scenarios of audio and video communication and screen sharing using a 21:9 display (ultrawide screen), setting a high resolution such as 3840x2160 resulted in the screen sharing image being cropped in both local preview and on the receiver's display.
+- When the App called `enableVideoImageSource` to enable the video image source feature, the sending side occasionally succeeded in streaming, but `onVideoPublishStateChanged` did not return the expected.
+- In multi-channel scenarios, if the App called `setupRemoteVideoEx` to initialize the remote user's view before successfully calling `joinChannelEx`, the display of the first frame of the remote user's view occasionally experienced significant delay.
+
+## v4.5.1
+
+v4.5.1 was released on March 3, 2025.
+
+**Attention:**
+
+- As of v4.5.0, both Video SDK and Signaling SDK (v2.2.0 and above) include the `libaosl.dll` library. If you manually integrate Video SDK via CDN and also use Signaling SDK, delete the earlier version of the `libaosl.dll` library to avoid conflicts.
+- The `libaosl.dll` library version in Video SDK v4.5.1 is xxx. You can check the version by viewing the `libaosl.dll` file properties.
+
+#### New features
+
+**AI conversation scenario**
+
+This version adds the `AUDIO_SCENARIO_AI_CLIENT` audio scenario specifically designed for interacting with the conversational AI agent created by [Conversational AI Engine](https://docs.agora.io/en/conversational-ai/overview/product-overview). This scenario optimizes the audio transmission algorithm based on the characteristics of AI agent voice generation, ensuring stable voice data transmission in weak network environments (for example, 80% packet loss rate), and ensuring the continuity and reliability of the conversation, adapting to a variety of complex network conditions.
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- When joining two or more channels simultaneously, and calling the `takeSnapshotEx [1/2]` method to take screenshots of the local video streams in each channel consecutively, the screenshot of the first channel failed.
+- When using the `pause` method to pause playback, then calling `seek` to move to a specified position, and finally calling `play` to continue playback, the Media Player resumed from the position where it was paused, not the new specified position.
+- When using the Media Player, the file path of the media resource returned by the `getPlaySrc` did not change after calling the `switchSrc` method to switch to a new media resource.
+- In the interactive live streaming scenario, after joining a channel to watch live streams using `string` user id, the audience members occasionally saw that the audio was not synchronized with the video.
+- Plugins sometimes did not work when using AI noise suppression and AI echo cancellation plugins at the same time.
+
+## v4.5.0
+
+This version was released on November x, 2024.
+
+#### Compatibility changes
+
+This version includes optimizations to some features, including changes to SDK behavior, API renaming and deletion. To ensure normal operation of the project, update the code in the app after upgrading to this release.
+
+**Attention:**
+
+As of v4.5.0, both RTC SDK and RTM SDK (v2.2.0 and above) include the `aosl.dll` library. If you manually integrate RTC SDK via CDN and also use RTM SDK, delete the lower version of the `aosl.dll` library to avoid conflicts. The `aosl.dll` library version in RTC SDK v4.5.0 is 1.2.13. You can check the version by viewing the `aosl.dll` file properties.
+
+1. **Member Parameter Type Changes**
+
+   To enhance the adaptability of various frameworks to the Native SDK, this version has made the following modifications to some API members or parameters:
+
+   | API                             | Members/Parameters                                         | Change                                                       |
+   | ------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
+   | `startScreenCaptureByDisplayId` | **displayId**                                              | Changed from uint32_t to int64_t                             |
+   | `startScreenCaptureByWindowId`  | **windowId**                                               | Changed from view_t to int64_t                               |
+   | `ScreenCaptureConfiguration`    | <ul><li>**displayId**</li><li>**windowId**</li></ul>       | <ul><li>**displayId**: Changed from uint32_t to int64_t</li><li>**windowId**: Changed from view_t to int64_t</li></ul> |
+   | `ScreenCaptureSourceInfo`       | <ul><li>**sourceDisplayId**</li><li>**sourceId**</li></ul> | <ul><li>**sourceDisplayId**： Changed from view_t to int64_t</li><li>**sourceId**：Default value changed from `nullptr` to 0</li></ul> |
+
+2. **Changes in strong video denoising implementation**
+
+   This version adjusts the implementation of strong video denoising. The `VIDEO_DENOISER_LEVEL` removes `VIDEO_DENOISER_LEVEL_STRENGTH`. Instead, after enabling video denoising by calling `setVideoDenoiserOptions`, you can call the `setBeautyEffectOptions` method to enable the beauty skin smoothing feature. Using both together will achieve better video denoising effects. For strong denoising, it is recommended to set the skin smoothing parameters as detailed in `setVideoDenoiserOptions`.
+
+   Additionally, due to this adjustment, to achieve the best low-light enhancement effect with a focus on image quality, you need to enable video denoising first and use specific settings as detailed in `setLowlightEnhanceOptions`.
+
+3. **Changes in camera plug and unplug status**
+
+   In previous versions, when the camera was unplugged and replugged, the `onVideoDeviceStateChanged` callback would report the device status as `MEDIA_DEVICE_STATE_ACTIVE`(1) (device in use). Starting from this version, after the camera is replugged, the device status will change to `MEDIA_DEVICE_STATE_IDLE`(0) (device ready).
+
+4. **Changes in video encoding preferences**
+
+   To enhance the user’s video interaction experience, this version optimizes the default preferences for video encoding:
+
+   - In the `COMPRESSION_PREFERENCE` enumeration class, a new `PREFER_COMPRESSION_AUTO` (-1) enumeration is added, replacing the original `PREFER_QUALITY` (1) as the default value. In this mode, the SDK will automatically choose between `PREFER_LOW_LATENCY` or `PREFER_QUALITY` based on your video scene settings to achieve the best user experience.
+   - In the `DEGRADATION_PREFERENCE` enumeration class, a new `MAINTAIN_AUTO` (-1) enumeration is added, replacing the original `MAINTAIN_QUALITY` (1) as the default value. In this mode, the SDK will automatically choose between `MAINTAIN_FRAMERATE`, `MAINTAIN_BALANCED`, or `MAINTAIN_RESOLUTION` based on your video scene settings to achieve the optimal overall quality experience (QoE).
+
+#### New features
+
+1. **Live show scenario**
+
+   This version adds the `APPLICATION_SCENARIO_LIVESHOW`(3) (Live Show) enumeration to the `VIDEO_APPLICATION_SCENARIO_TYPE`. You can call `setVideoScenario` to set the video business scenario to showroom. To meet the high requirements for first frame rendering time and image quality in this scenario, the SDK has optimized strategies to significantly improve the first frame rendering experience and image quality, while enhancing the image quality in weak network environments and on low-end devices.
+
+2. **Maximum frame rate for video rendering**
+
+   This version adds the `setLocalRenderTargetFps` and `setRemoteRenderTargetFps` methods, which support setting the maximum frame rate for video rendering locally and remotely. The actual frame rate for video rendering by the SDK will be as close to this value as possible.
+
+   In scenarios where the frame rate requirement for video rendering is not high (e.g., screen sharing, online education) or when the remote end uses mid-to-low-end devices, you can use this set of methods to limit the video rendering frame rate, thereby reducing CPU consumption and improving system performance.
+
+3. **Watching live streaming through URLs**
+
+   As of this version, audience members can directly open a specific URL to play the real-time media stream through `OpenWithUrl`, instead of joining a channel and subscribing to the streams of hosts, which greatly simplifies the API calls for the audience end to watch a live stream.
+
+4. **Filter effects**
+
+   This version introduces the `setFilterEffectOptions` method. You can pass a cube map file (.cube) in the `config` parameter to achieve custom filter effects such as whitening, vivid, cool, black and white, etc. Additionally, the SDK provides a built-in `built_in_whiten_filter.cube` file for quickly achieving a whitening filter effect.
+
+5. **Local audio mixing**
+
+   This version introduces the local audio mixing feature. You can call the `startLocalAudioMixer` method to mix the audio streams from the local microphone, media player, sound card, and remote audio streams into a single audio stream, which can then be published to the channel. When you no longer need audio mixing, you can call the `stopLocalAudioMixer` method to stop local audio mixing. During the mixing process, you can call the `updateLocalAudioMixerConfiguration` method to update the configuration of the audio streams being mixed.
+
+   Example use cases for this feature include:
+
+   - By utilizing the local video mixing feature, the associated audio streams of the mixed video streams can be simultaneously captured and published.
+   - In live streaming scenarios, users can receive audio streams within the channel, mix multiple audio streams locally, and then forward the mixed audio stream to other channels.
+   - In educational scenarios, teachers can mix the audio from interactions with students locally and then forward the mixed audio stream to other channels.
+
+6. **Color space settings**
+
+   This version adds the **colorSpace** parameter to `VideoFrame` and `ExternalVideoFrame`. You can use this parameter to set the color space properties of the video frame. By default, the color space uses Full Range and BT.709 standard configuration. You can flexibly adjust according to your own capture or rendering needs, further enhancing the customization capabilities of video processing.
+
+7. **Others**
+
+   - `onLocalVideoStateChanged` callback adds the `LOCAL_VIDEO_STREAM_REASON_DEVICE_DISCONNECTED` enumeration, indicating that the currently used video capture device has been disconnected (e.g., unplugged).
+   - `MEDIA_DEVICE_STATE_TYPE` adds the `MEDIA_DEVICE_STATE_PLUGGED_IN` enumeration, indicating that the device has been plugged in.
+
+#### Improvements
+
+1. **Virtual background algorithm optimization**
+
+   This version upgrades the virtual background algorithm, making the segmentation between the portrait and the background more accurate. There is no background exposure, the body contour of the portrait is complete, and the detail recognition of fingers is significantly improved. Additionally, the edges between the portrait and the background are more stable, reducing edge jumping and flickering in continuous video frames.
+
+2. **Snapshot at specified video observation points**
+
+   This version introduces the `takeSnapshot [2/2]` and `takeSnapshotEx [2/2]` methods. You can use the `config` parameter when calling these methods to take snapshots at specified video observation points, such as before encoding, after encoding, or before rendering, to achieve more flexible snapshot effects.
+
+3. **Custom audio capture improvements**
+
+   This version adds the `enableAudioProcessing` member parameter to `AudioTrackConfig`, which is used to control whether to enable 3A audio processing for custom audio capture tracks of the `AUDIO_TRACK_DIRECT` type. The default value of this parameter is `false`, meaning that audio processing is not enabled. Users can enable it as needed, enhancing the flexibility of custom audio processing.
+
+4. **Other Improvements**
+
+   - Optimizes the logic for calling `queryDeviceScore` to obtain device score levels, improving the accuracy of the score results.
+   - Supports using virtual cameras in YV12 format as video capture devices.
+   - When calling `switchSrc` to switch between live streams or on-demand streams of different resolutions, smooth and seamless switching can be achieved. An automatic retry mechanism has been added in case of switching failures. The SDK will automatically retry 3 times after a failure. If it still fails, the `onPlayerEvent` callback will report the `PLAYER_EVENT_SWITCH_ERROR` event, indicating an error occurred during media resource switching.
+   - When calling `setPlaybackSpeed` to set the playback speed of an audio file, the minimum supported speed is 0.3x.
+
+#### Bug fixes
+
+This version fixes the following issues:
+
+- When calling `startScreenCaptureByWindowId` to share the screen, the window capture area specified by `regionRect` was inaccurate, resulting in incorrect width and height of the screen sharing window seen by the receiving end.
+- Occasional errors of not finding system files during audio and video interaction on Windows 7 systems.
+- When calling `followSystemRecordingDevice` or `followSystemPlaybackDevice` to set the audio capture or playback device used by the SDK to not follow the system default audio playback device, the local audio state callback `onLocalAudioStateChanged` is not triggered when the audio device is removed, which is not as expected.
+- Calling `startAudioMixing [1/2]` and then immediately calling `pauseAudioMixing` to pause the music file playback does not take effect.
+
 ## v4.4.0
 
 This version was released on July x, 2024.
@@ -23,7 +325,7 @@ This version includes optimizations to some features, including changes to SDK b
    - `texture_slice_index` is renamed to `textureSliceIndex`.
    - `metadata_buffer` is renamed to `metadataBuffer`.
    - `metadata_size` is renamed to `metadataSize`.
-   
+
 
 #### New features
 
@@ -40,7 +342,7 @@ This version includes optimizations to some features, including changes to SDK b
 2. **Voice AI tuner**
 
    This version introduces the voice AI tuner feature, which can enhance the sound quality and tone, similar to a physical sound card. You can enable the voice AI tuner feature by calling the `enableVoiceAITuner` method and passing in the sound effect types supported in the `VOICE_AI_TUNER_TYPE` enum to achieve effects like deep voice, cute voice, husky singing voice, etc.
-   
+
 3. **1v1 video call scenario**
 
    This version adds `APPLICATION_SCENARIO_1V1` (1v1 video call) in `VIDEO_APPLICATION_SCENARIO_TYPE`. You can call `setVideoScenario` to set the video application scenario to 1v1 video call, the SDK optimizes performance to achieve low latency and high video quality, enhancing image quality, first frame rendering, latency on mid-to-low-end devices, and smoothness under poor network conditions.
@@ -64,7 +366,7 @@ This version includes optimizations to some features, including changes to SDK b
    This version also includes the following improvements:
 
    - Optimizes transmission strategy: calling `enableInstantMediaRendering` no longer impacts the security of the transmission link.
-   - The `LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED` enumerator is added in `onLocalVideoStateChanged` callback, indicating that the display used for screen capture has been disconnected. 
+   - The `LOCAL_VIDEO_STREAM_REASON_SCREEN_CAPTURE_DISPLAY_DISCONNECTED` enumerator is added in `onLocalVideoStateChanged` callback, indicating that the display used for screen capture has been disconnected.
    - Improves echo cancellation for screen sharing scenarios.
    - Adds the `channelId` parameter to `Metadata`, which is used to get the channel name from which the metadata is sent.
    - Deprecates redundant enumeration values `CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT` and `CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED` in `CLIENT_ROLE_CHANGE_FAILED_REASON`.
@@ -86,7 +388,7 @@ This version fixed the following issues:
 - The app occasionally crashed when remote users left the channel.
 - The screen occasionally flickered on the receiver's side when sharing a PPT window using [startScreenCaptureByWindowId](API/api_irtcengine_startscreencapturebywindowid.html) and playing PPT animations.
 - The window border did not retain its original size after exiting the presentation and then maximizing the PPT window when sharing a WPS PPT window on Windows 7 using [startScreenCaptureByWindowId](API/api_irtcengine_startscreencapturebywindowid.html) and setting `enableHighLight` in [ScreenCaptureParameters](API/class_screencaptureparameters.html) to `true`.
-- The specified window could not be brought to the foreground if it was covered by other windows when sharing a window using [startScreenCaptureByWindowId](API/api_irtcengine_startscreencapturebywindowid.html) and setting `windowFocus` and `enableHighLight` in [ScreenCaptureParameters](API/class_screencaptureparameters.html) to `true`. 
+- The specified window could not be brought to the foreground if it was covered by other windows when sharing a window using [startScreenCaptureByWindowId](API/api_irtcengine_startscreencapturebywindowid.html) and setting `windowFocus` and `enableHighLight` in [ScreenCaptureParameters](API/class_screencaptureparameters.html) to `true`.
 - Clicking on the desktop widget caused the outlined part to flicker when sharing and highlighting a window on a Windows 7 device.
 
 ## v4.3.1
@@ -158,7 +460,7 @@ This version fixed the following issues:
 - When a user plugged and unplugged a Bluetooth or wired headset once, the audio state change callback [`onAudioDeviceStateChanged`](/api-ref/rtc/windows/API/toc_audio_device#callback_irtcengineeventhandler_onaudiodevicestatechanged) was triggered multiple times.
 - During interactions, when a local user set the system default playback device to speakers using [`setDevice`](/api-ref/rtc/windows/API/toc_audio_device#api_iaudiodevicecollection_setdevice), there was no sound from the remote end.
 - When sharing an Excel document window, remote users occasionally saw a green screen.
-- On devices using Intel graphics cards, occasionally there was a performance regression when publishing a small video stream. 
+- On devices using Intel graphics cards, occasionally there was a performance regression when publishing a small video stream.
 - When the network conditions of the sender deteriorated (for example, in poor network environments), the receiver occasionally experienced a decrease in video smoothness and an increase in lag.
 
 #### API Changes

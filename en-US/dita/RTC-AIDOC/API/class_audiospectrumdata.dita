@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audiospectrumdata">
+    <title><ph keyref="AudioSpectrumData"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Represents audio spectrum data.</ph><ph id="shortdesc" props="android">Used to obtain audio spectrum data.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct AudioSpectrumData {
+  const float* audioSpectrumData;
+  int dataLength;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class AudioSpectrumInfo {
+  private float[] audioSpectrumData;
+  private int dataLength;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>audioSpectrumData</pt>
+                    <pd>Audio spectrum data. Agora divides the audio frequency into 256 bands and reports the energy value of each band through this parameter. Each energy value ranges from [-300, 1], in dBFS.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>dataLength</pt>
+                    <pd>The length of the audio spectrum data is 256.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioSpectrumData</pt>
+                    <pd>Audio spectrum data. Agora divides the audio frequency into 256 frequency bands and reports the energy value of each band through this parameter. Each energy value ranges from [-300, 1], in dBFS.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>dataLength</pt>
+                    <pd>Length of the audio spectrum data, fixed at 256.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

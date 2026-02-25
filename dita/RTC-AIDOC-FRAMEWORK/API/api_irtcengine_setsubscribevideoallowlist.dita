@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setsubscribevideoallowlist">
+    <title><ph keyref="setSubscribeVideoAllowlist"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置视频订阅白名单。</ph><ph id="shortdesc" props="rn">设置视频订阅白名单。</ph><ph id="shortdesc" props="flutter">设置视频订阅白名单。</ph><ph id="shortdesc" props="unity">设置视频订阅白名单。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setSubscribeVideoAllowlist"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setSubscribeVideoAllowlist(
+    uidList: number[],
+    uidNumber: number
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setSubscribeVideoAllowlist(
+    uidList: number[],
+    uidNumber: number
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setSubscribeVideoAllowlist(
+      {required List&lt;int&gt; uidList, required int uidNumber});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetSubscribeVideoAllowlist(uint[] uidList, int uidNumber);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">你可以调用该方法指定想要订阅的视频流。</p>
+            <p props="rn">你可以调用该方法指定想要订阅的视频流。</p>
+            <p props="flutter">你可以调用该方法指定想要订阅的视频流。</p>
+            <p props="unity">你可以调用该方法指定想要订阅的视频流。</p>
+            <note props="electron">
+                <ul>
+                    <li>该方法在加入频道前后均可调用。</li>
+                    <li>视频订阅白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 以及 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeVideo</codeph> 的影响。</li>
+                    <li>设置订阅白名单后，如果离开当前频道后再重新加入频道，白名单依然生效。</li>
+                    <li>如果某个用户同时在音频订阅黑名单和白名单中，仅订阅黑名单生效。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>该方法在加入频道前后均可调用。</li>
+                    <li>视频订阅白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 以及 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeVideo</codeph> 的影响。</li>
+                    <li>设置订阅白名单后，如果离开当前频道后再重新加入频道，白名单依然生效。</li>
+                    <li>如果某个用户同时在音频订阅黑名单和白名单中，仅订阅黑名单生效。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法在加入频道前后均可调用。</li>
+                    <li>视频订阅白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 以及 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeVideo</codeph> 的影响。</li>
+                    <li>设置订阅白名单后，如果离开当前频道后再重新加入频道，白名单依然生效。</li>
+                    <li>如果某个用户同时在音频订阅黑名单和白名单中，仅订阅黑名单生效。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法在加入频道前后均可调用。</li>
+                    <li>视频订阅白名单不受 <xref keyref="muteRemoteVideoStream"/>、<xref keyref="muteAllRemoteVideoStreams"/> 以及 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>autoSubscribeVideo</codeph> 的影响。</li>
+                    <li>设置订阅白名单后，如果离开当前频道后再重新加入频道，白名单依然生效。</li>
+                    <li>如果某个用户同时在音频订阅黑名单和白名单中，仅订阅黑名单生效。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uidList</pt>
+                    <pd>视频订阅白名单的用户 ID 列表。
+如果你想指定仅订阅某一发流用户的视频流，将该用户的 ID 加入此列表中。如果你想要将某一用户从订阅白名单中移除，需要重新调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新音频订阅白名单的用户 ID 列表，使其不包含你想移除的用户的 <codeph>uid</codeph>。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uidNumber</pt>
+                    <pd>白名单用户 ID 列表中的用户数量。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uidList</pt>
+                    <pd>视频订阅白名单的用户 ID 列表。
+如果你想指定仅订阅某一发流用户的视频流，将该用户的 ID 加入此列表中。如果你想要将某一用户从订阅白名单中移除，需要重新调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新音频订阅白名单的用户 ID 列表，使其不包含你想移除的用户的 <codeph>uid</codeph>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uidNumber</pt>
+                    <pd>白名单用户 ID 列表中的用户数量。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uidList</pt>
+                    <pd>视频订阅白名单的用户 ID 列表。
+如果你想指定仅订阅某一发流用户的视频流，将该用户的 ID 加入此列表中。如果你想要将某一用户从订阅白名单中移除，需要重新调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新音频订阅白名单的用户 ID 列表，使其不包含你想移除的用户的 <codeph>uid</codeph>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uidNumber</pt>
+                    <pd>白名单用户 ID 列表中的用户数量。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uidList</pt>
+                    <pd>视频订阅白名单的用户 ID 列表。
+如果你想指定仅订阅某一发流用户的视频流，将该用户的 ID 加入此列表中。如果你想要将某一用户从订阅白名单中移除，需要重新调用 <xref keyref="setSubscribeVideoAllowlist"/> 方法更新音频订阅白名单的用户 ID 列表，使其不包含你想移除的用户的 <codeph>uid</codeph>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uidNumber</pt>
+                    <pd>白名单用户 ID 列表中的用户数量。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

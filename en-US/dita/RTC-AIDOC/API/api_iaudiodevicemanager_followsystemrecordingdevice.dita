@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_followsystemrecordingdevice">
+    <title><ph keyref="followSystemRecordingDevice"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets whether the SDK follows the system default audio recording device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="followSystemRecordingDevice"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int followSystemRecordingDevice(bool enable) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">This method is only applicable to Windows and macOS platforms.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enable</pt>
+                    <pd>Whether to follow the system default audio recording device:
+                        <ul>
+                            <li><xref keyref="true"/>: Follow the system default audio recording device. When the system default device changes, the SDK immediately switches.</li>
+                            <li><xref keyref="false"/>: Do not follow the system default audio recording device. The SDK only switches to the system default device when the current one is disconnected.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

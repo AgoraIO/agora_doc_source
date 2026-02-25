@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getfaceshapeareaoptions">
+    <title><ph keyref="getFaceShapeAreaOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets options for facial area enhancement.</ph><ph id="shortdesc" props="rn">Gets face shaping area options.</ph><ph id="shortdesc" props="flutter">Gets face shaping area options.</ph><ph id="shortdesc" props="unity">Gets the face shaping area options.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getFaceShapeAreaOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getFaceShapeAreaOptions(
+    shapeArea: FaceShapeArea,
+    type?: MediaSourceType
+  ): FaceShapeAreaOptions;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getFaceShapeAreaOptions(
+    shapeArea: FaceShapeArea,
+    type?: MediaSourceType
+  ): FaceShapeAreaOptions;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;FaceShapeAreaOptions&gt; getFaceShapeAreaOptions(
+      {required FaceShapeArea shapeArea,
+      MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetFaceShapeAreaOptions(FACE_SHAPE_AREA shapeArea, ref FaceShapeAreaOptions options, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Call this method to get the current parameter settings for the facial area enhancement.</p>
+            <p props="rn">Call this method to get the current parameter settings of a face shaping area.</p>
+            <p props="flutter">Call this method to get the current parameter settings of the face shaping area.</p>
+            <p props="unity">Call this method to get the current parameter settings for the face shaping area.</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>When users open the facial area and intensity adjustment menu in the app, you can call this method to get the current options and update the UI accordingly.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Call this method after <xref keyref="enableVideo"/>.</p>
+            <p props="rn">Call this method after <xref keyref="enableVideo"/>.</p>
+            <p props="flutter">Call this method after <xref keyref="enableVideo"/>.</p>
+            <p props="unity">Call this method after <xref keyref="enableVideo"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>shapeArea</pt>
+                    <pd>Facial area. See <xref keyref="FACE_SHAPE_AREA"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>The media source type to apply the effect to. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>This method only supports the following two settings:
+                            <ul>
+                                <li>When using the camera to capture local video, keep the default value <codeph>PrimaryCameraSource</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>CustomVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>shapeArea</pt>
+                    <pd>The face shaping area. See <xref keyref="FACE_SHAPE_AREA"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>The media source type to apply the effect to. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>This method only supports the following two settings:
+                            <ul>
+                                <li>For local video captured by the camera, keep the default value <codeph>PrimaryCameraSource</codeph>.</li>
+                                <li>For custom captured video, set this parameter to <codeph>CustomVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>shapeArea</pt>
+                    <pd>The face shaping area. See <xref keyref="FACE_SHAPE_AREA"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>The media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, this parameter only supports the following two settings:
+                            <ul>
+                                <li>When using the camera to capture local video, keep the default value <codeph>primaryCameraSource</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>customVideoSource</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>shapeArea</pt>
+                    <pd>Face shaping area. See <xref keyref="FACE_SHAPE_AREA"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>options</pt>
+                    <pd>Face shaping area options. See <xref keyref="FaceShapeAreaOptions"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>The media source type to which the effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.
+                        <note>In this method, this parameter only supports the following two settings:
+                            <ul>
+                                <li>When using the camera to capture local video, keep the default value <codeph>PRIMARY_CAMERA_SOURCE</codeph>.</li>
+                                <li>To use custom captured video, set this parameter to <codeph>CUSTOM_VIDEO_SOURCE</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>The <xref keyref="FaceShapeAreaOptions"/> object, if the method call succeeds.</li>
+                    <li><xref keyref="NULL"/>, if the method call fails.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>If the method call succeeds, returns a <xref keyref="FaceShapeAreaOptions"/> object.</li>
+                    <li>If the method call fails, returns null.</li>
+                </ul>
+            </p>
+            <p props="flutter">If the method call succeeds, returns a <xref keyref="FaceShapeAreaOptions"/> object; if it fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

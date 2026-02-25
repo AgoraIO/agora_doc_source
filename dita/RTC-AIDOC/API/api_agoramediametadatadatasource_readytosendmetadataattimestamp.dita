@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_agoramediametadatadatasource_readytosendmetadataattimestamp">
+    <title><ph keyref="readyToSendMetadataAtTimestamp"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">当 SDK 准备好发送元数据时触发回调。</ph><ph id="shortdesc" props="mac">当 SDK 准备好发送元数据时触发回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="readyToSendMetadataAtTimestamp"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="ios" outputclass="language-objectivec">- (NSData * _Nullable)readyToSendMetadataAtTimestamp:(NSTimeInterval)timestamp sourceType:(AgoraVideoSourceType)sourceType NS_SWIFT_NAME(readyToSendMetadata(atTimestamp:sourceType:));</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (NSData * _Nullable)readyToSendMetadataAtTimestamp:(NSTimeInterval)timestamp sourceType:(AgoraVideoSourceType)sourceType NS_SWIFT_NAME(readyToSendMetadata(atTimestamp:sourceType:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">该回调在 SDK 准备好发送元数据时触发。</p>
+            <p props="mac">该回调在 SDK 准备好发送元数据时触发。</p>
+            <note props="ios">请确保元数据的大小不超过 <xref keyref="metadataMaxSize"/> 回调中设置的值。</note>
+            <note props="mac">请确保元数据的大小不超过 <xref keyref="metadataMaxSize"/> 回调中设置的值。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="ios mac">
+            <title>调用时机</title>
+            <p props="ios">当 SDK 准备好发送元数据时触发。</p>
+            <p props="mac">当 SDK 准备好发送元数据时触发。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="ios">
+                    <pt>timestamp</pt>
+                    <pd>时间戳。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>sourceType</pt>
+                    <pd>视频数据类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>timestamp</pt>
+                    <pd>时间戳。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>sourceType</pt>
+                    <pd>视频数据类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="ios mac">
+            <title>返回值</title>
+            <p props="ios">你希望发送的元数据，格式为 <codeph>NSData</codeph>，包含以下参数：
+                <ul>
+                    <li><codeph>uid</codeph>：发送元数据的远端用户 ID。</li>
+                    <li><codeph>size</codeph>：元数据的大小。</li>
+                    <li><codeph>buffer</codeph>：元数据内容。</li>
+                    <li><codeph>timeStampMs</codeph>：发送元数据时的 NTP 时间戳（毫秒）。</li>
+                </ul>
+            </p>
+            <p props="mac">你希望发送的元数据，格式为 <codeph>NSData</codeph>，包含以下参数：
+                <ul>
+                    <li><codeph>uid</codeph>：发送元数据的远端用户 ID。</li>
+                    <li><codeph>size</codeph>：元数据的大小。</li>
+                    <li><codeph>buffer</codeph>：元数据内容。</li>
+                    <li><codeph>timeStampMs</codeph>：发送元数据时的 NTP 时间戳（毫秒）。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

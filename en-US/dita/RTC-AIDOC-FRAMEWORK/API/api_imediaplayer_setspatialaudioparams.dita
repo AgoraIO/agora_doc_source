@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setspatialaudioparams">
+    <title><ph keyref="setSpatialAudioParams"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Enables or disables spatial audio for the media player.</ph><ph id="shortdesc" props="rn">Enables or disables spatial audio for the media player.</ph><ph id="shortdesc" props="flutter">Enables or disables spatial audio for the media player.</ph><ph id="shortdesc" props="unity">Enables or disables spatial audio for the media player.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setSpatialAudioParams"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setSpatialAudioParams(params: SpatialAudioParams): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setSpatialAudioParams(params: SpatialAudioParams): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setSpatialAudioParams(SpatialAudioParams params);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetSpatialAudioParams(SpatialAudioParams spatial_audio_params);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After successfully setting the spatial audio parameters for the media player, the SDK enables spatial audio for the media player, allowing the local user to hear the media content with a sense of spatiality.
+To disable spatial audio for the media player, set the <codeph>params</codeph> parameter to null.</p>
+            <p props="rn">After successfully setting the spatial audio parameters for the media player, the SDK enables spatial audio for the media player, allowing the local user to hear spatial audio effects from the media resource.
+To disable spatial audio for the media player, set the <codeph>params</codeph> parameter to null.</p>
+            <p props="flutter">After successfully setting the spatial audio parameters of the media player, the SDK enables spatial audio for the media player, allowing the local user to perceive spatial sound from media resources.
+To disable spatial audio for the media player, you need to set the <codeph>params</codeph> parameter to null.</p>
+            <p props="unity">After successfully setting the spatial audio parameters for the media player, the SDK enables spatial audio for the media player, allowing the local user to perceive spatial effects from the media source.
+To disable spatial audio for the media player, you need to set the <codeph>params</codeph> parameter to null.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="flutter">
+                    <pt>params</pt>
+                    <pd>Spatial audio parameters for the media player. See <xref keyref="SpatialAudioParams"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>spatial_audio_params</pt>
+                    <pd>Spatial audio parameters for the media player. See <xref keyref="SpatialAudioParams"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when it fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

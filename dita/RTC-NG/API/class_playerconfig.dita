@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_playerconfig">
+    <title><ph keyref="PlayerConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">该类提供播放器设置的相关方法。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class PlayerConfig {
+  public void setAutoPlay(boolean autoPlay) throws RteException;
+  public boolean getAutoPlay() throws RteException;
+  public void setAbrSubscriptionLayer(Constants.AbrSubscriptionLayer subscriptionLayer) throws RteException;
+  public Constants.AbrSubscriptionLayer getAbrSubscriptionLayer() throws RteException;
+  public void setAbrFallbackLayer(Constants.AbrFallbackLayer fallbackLayer) throws RteException;
+  public Constants.AbrFallbackLayer getAbrFallbackLayer() throws RteException;
+}</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRtePlayerConfig : NSObject
+- (void)setAutoPlay:(BOOL)autoPlay error:(AgoraRteError * _Nullable)error;
+- (BOOL)autoPlay:(AgoraRteError * _Nullable)error;
+- (void)setAbrSubscriptionLayer:(AgoraRteAbrSubscriptionLayer)layer error:(AgoraRteError * _Nullable)error;
+- (AgoraRteAbrSubscriptionLayer)abrSubscriptionLayer:(AgoraRteError * _Nullable)error;
+- (void)setAbrFallbackLayer:(AgoraRteAbrFallbackLayer)layer error:(AgoraRteError * _Nullable)error;
+- (AgoraRteAbrFallbackLayer)abrFallbackLayer:(AgoraRteError * _Nullable)error;
+@end</codeblock>
+           <codeblock props="cpp unreal" outputclass="language-cpp">class PlayerConfig {
+ public:
+  void SetAutoPlay(bool auto_play, Error *err = nullptr);
+  bool GetAutoPlay(Error *err = nullptr);
+  void SetAbrSubscriptionLayer(AbrSubscriptionLayer abr_subscription_layer, Error *err = nullptr);
+  AbrSubscriptionLayer GetAbrSubscriptionLayer(Error *err = nullptr);
+  void SetAbrFallbackLayer(AbrFallbackLayer abr_fallback_layer, Error *err = nullptr);
+  AbrFallbackLayer GetAbrFallbackLayer(Error *err = nullptr);
+};</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+            <p/>
+        </section>
+                <section id="sub-method">
+                    <title>方法</title>
+                    <parml>
+                    <plentry>
+                        <pt><ph keyref="SetAutoPlay"/></pt>
+                        <pd>设置是否自动播放。详见 <xref keyref="SetAutoPlay"/>。</pd>
+                    </plentry>
+                        <plentry>
+                        <pt><ph keyref="GetAutoPlay"/></pt>
+                        <pd>获取自动播放设置。详见 <xref keyref="GetAutoPlay"/>。</pd>
+                    </plentry>
+                        <plentry props="cn">
+                        <pt><ph keyref="SetAbrSubscriptionLayer"/></pt>
+                        <pd>设置订阅的媒体流的质量层级。详见 <xref keyref="SetAbrSubscriptionLayer"/>。</pd>
+                    </plentry>
+                        <plentry props="cn">
+                        <pt><ph keyref="GetAbrSubscriptionLayer"/></pt>
+                        <pd>获取所订阅的视频流的质量层级。详见 <xref keyref="GetAbrSubscriptionLayer"/>。</pd>
+                    </plentry>
+                        <plentry props="cn">
+                        <pt><ph keyref="SetAbrFallbackLayer"/></pt>
+                        <pd>设置订阅的视频流的回退选项。详见 <xref keyref="SetAbrFallbackLayer"/>。</pd>
+                    </plentry>
+                     <plentry props="cn">
+                        <pt><ph keyref="GetAbrFallbackLayer"/></pt>
+                        <pd>获取设置的视频流回退选项。详见 <xref keyref="GetAbrFallbackLayer"/>。</pd>
+                    </plentry>
+                    </parml> </section>
+                </refbody>
+</reference>

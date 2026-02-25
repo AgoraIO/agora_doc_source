@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_getstreaminfo">
+    <title><ph keyref="getStreamInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets media stream information by the index of the media stream.</ph><ph id="shortdesc" props="rn">Retrieves media stream information by stream index.</ph><ph id="shortdesc" props="flutter">Gets media stream information by stream index.</ph><ph id="shortdesc" props="unity">Gets media stream information by index.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getStreamInfo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getStreamInfo(index: number): PlayerStreamInfo;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getStreamInfo(index: number): PlayerStreamInfo;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;PlayerStreamInfo&gt; getStreamInfo(int index);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetStreamInfo(Int64 index, ref PlayerStreamInfo info);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">You need to call this method after <xref keyref="getStreamCount"/>.</p>
+            <p props="rn">You need to call this method after <xref keyref="getStreamCount"/>.</p>
+            <p props="flutter">You need to call this method after <xref keyref="getStreamCount"/>.</p>
+            <p props="unity">You need to call this method after <xref keyref="getStreamCount"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>index</pt>
+                    <pd>The index of the media stream. The value must be less than the return value of <xref keyref="getStreamCount"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>index</pt>
+                    <pd>The media stream index. The value must be less than the return value of <xref keyref="getStreamCount"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>index</pt>
+                    <pd>Media stream index. The value must be less than the return value of <xref keyref="getStreamCount"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>index</pt>
+                    <pd>Media stream index. This parameter must be less than the <codeph>count</codeph> parameter returned by <xref keyref="getStreamCount"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>info</pt>
+                    <pd>Output parameter. All information of the media stream. See <xref keyref="PlayerStreamInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>If the method call succeeds, returns the media stream information. See <xref keyref="PlayerStreamInfo"/>.</li>
+                    <li>If the method call fails, returns <xref keyref="NULL"/>.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>If the method call succeeds, returns the media stream information. See <xref keyref="PlayerStreamInfo"/>.</li>
+                    <li>If the method call fails, returns <xref keyref="NULL"/>.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>If the method call succeeds, returns the media stream information. See <xref keyref="PlayerStreamInfo"/>.</li>
+                    <li>If the method call fails, returns <codeph>NULL</codeph>.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

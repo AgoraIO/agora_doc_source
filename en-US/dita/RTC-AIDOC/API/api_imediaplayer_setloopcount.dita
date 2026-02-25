@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setloopcount">
+    <title><ph keyref="setLoopCount"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the number of times the audio effect loops.</ph><ph id="shortdesc" props="android">Sets the number of times the audio effect is looped.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setLoopCount"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setLoopCount(int loopCount) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int setLoopCount(int loopCount);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Call this method to set the number of times the audio effect loops. After all loops complete, the SDK triggers the <xref keyref="onPlayerSourceStateChanged"/> callback and reports the playback state as <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph>.</p>
+            <note props="android">After looping playback completes, the SDK triggers the <xref keyref="onPlayerSourceStateChanged"/> callback and reports the playback state as <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph>.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>loopCount</pt>
+                    <pd>The number of times the audio effect loops:
+                        <ul>
+                            <li>≥ 0: The number of times to play. For example, 0 means no loop, play once only; 1 means loop once, play twice in total.</li>
+                            <li>-1: Loop the audio file infinitely.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>loopCount</pt>
+                    <pd>The number of times the audio effect is looped:
+                        <ul>
+                            <li>≥ 0: Number of times to play. For example, 0 means no looping, play once only; 1 means loop once, play twice in total.</li>
+                            <li>-1: Loop the audio file infinitely.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

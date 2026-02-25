@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudiomixingstatechanged">
+    <title><ph keyref="onAudioMixingStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for music file playback state changes.</ph><ph id="shortdesc" props="android">Callback for changes in music file playback state.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioMixingStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onAudioMixingStateChanged(int state, int reason)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback is triggered when the playback state of the music file changes and reports the current playback state and error code.</p>
+            <p props="android">This callback reports the current playback state and error code of the music file.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the playback state of the music file changes.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>The playback state of the music file. See <xref keyref="AUDIO_MIXING_STATE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>The reason or error code for the playback state change. See <xref keyref="AUDIO_MIXING_REASON_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>The playback state of the music file:
+                        <ul>
+                            <li><codeph>AUDIO_MIXING_STATE_PLAYING</codeph> (710): The music file is playing.</li>
+                            <li><codeph>AUDIO_MIXING_STATE_PAUSED</codeph> (711): The music file is paused.</li>
+                            <li><codeph>AUDIO_MIXING_STATE_STOPPED</codeph> (713): The music file is stopped.</li>
+                            <li><codeph>AUDIO_MIXING_STATE_FAILED</codeph> (714): An error occurred while playing the music file. The SDK returns the specific reason via the <codeph>reason</codeph> parameter.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>Error code:
+                        <ul>
+                            <li><codeph>AUDIO_MIXING_REASON_OK</codeph> (0): No error.</li>
+                            <li><codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph> (701): The SDK cannot open the music file.</li>
+                            <li><codeph>AUDIO_MIXING_REASON_TOO_FREQUENT_CALL</codeph> (702): The SDK is opening the music file too frequently.</li>
+                            <li><codeph>AUDIO_MIXING_REASON_INTERRUPTED_EOF</codeph> (703): The music file playback is interrupted.</li>
+                            <li><codeph>AUDIO_MIXING_REASON_ONE_LOOP_COMPLETED</codeph> (721): One loop of the music file playback is completed.</li>
+                            <li><codeph>AUDIO_MIXING_REASON_ALL_LOOPS_COMPLETED</codeph> (723): All loops of the music file playback are completed.</li>
+                            <li><codeph>AUDIO_MIXING_REASON_STOPPED_BY_USER</codeph> (724): The music file playback is stopped by calling <xref keyref="stopAudioMixing"/>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

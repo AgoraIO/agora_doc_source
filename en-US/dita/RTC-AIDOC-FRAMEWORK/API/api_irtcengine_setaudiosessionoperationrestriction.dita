@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setaudiosessionoperationrestriction">
+    <title><ph keyref="setAudioSessionOperationRestriction"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Sets the SDK’s operation permissions on the Audio Session.</ph><ph id="shortdesc" props="flutter">Sets the SDK's permission to operate the Audio Session.</ph><ph id="shortdesc" props="unity">Sets the SDK's operation permissions for the Audio Session.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAudioSessionOperationRestriction"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract setAudioSessionOperationRestriction(
+    restriction: AudioSessionOperationRestriction
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioSessionOperationRestriction(
+      AudioSessionOperationRestriction restriction);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioSessionOperationRestriction(AUDIO_SESSION_OPERATION_RESTRICTION restriction);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">By default, both the SDK and the app have permission to operate the Audio Session. If you want only the app to operate the Audio Session, you can call this method to restrict the SDK’s permission.
+You can call this method before or after joining a channel. Once this method is called to restrict the SDK’s operation permission, the restriction takes effect when the SDK attempts to change the Audio Session.</p>
+            <p props="flutter">By default, both the SDK and the App have permission to operate the Audio Session. If you only want the App to operate the Audio Session, you can call this method to restrict the SDK's permission.
+This method can be called before or after joining a channel. Once called, the restriction takes effect when the SDK needs to modify the Audio Session.</p>
+            <p props="unity">By default, both the SDK and the app have permissions to operate the Audio Session. If you only want the app to operate the Audio Session, you can call this method to restrict the SDK's permissions.
+You can call this method before or after joining a channel. Once called, the restriction takes effect when the SDK needs to change the Audio Session.</p>
+            <note props="rn">
+                <ul>
+                    <li>This method applies only to the iOS platform.</li>
+                    <li>This method does not restrict the app’s permission to operate the Audio Session.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method is applicable to iOS only.</li>
+                    <li>This method does not restrict the App's permission to operate the Audio Session.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method is only applicable on iOS.</li>
+                    <li>This method does not restrict the app's permission to operate the Audio Session.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>restriction</pt>
+                    <pd>The SDK’s operation permission on the Audio Session. See <xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION"/>. This parameter is a bit mask, and each bit corresponds to a permission.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>restriction</pt>
+                    <pd>SDK's permission to operate the Audio Session. See <xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION"/>. This parameter is a bit mask, where each bit corresponds to a permission.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>restriction</pt>
+                    <pd>The SDK's operation permissions for the Audio Session. See <xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION"/>. This parameter is a bit mask, with each bit representing a permission.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

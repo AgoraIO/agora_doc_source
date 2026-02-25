@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onvideorenderingtracingresult">
+    <title><ph keyref="onVideoRenderingTracingResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for video frame rendering events.</ph><ph id="shortdesc" props="android">Callback for video frame rendering events.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onVideoRenderingTracingResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onVideoRenderingTracingResult(uid_t uid, MEDIA_TRACE_EVENT currentEvent, VideoRenderingTracingInfo tracingInfo)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onVideoRenderingTracingResult(int uid, Constants.MEDIA_TRACE_EVENT currentEvent, VideoRenderingTracingInfo tracingInfo)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling <xref keyref="startMediaRenderingTracing"/> or joining a channel, the SDK triggers this callback to report video frame rendering events and various metrics during rendering. You can optimize these metrics to improve the rendering efficiency of the first video frame.</p>
+            <p props="android">After calling the <xref keyref="startMediaRenderingTracing"/> method or joining the channel, the SDK triggers this callback to report video frame rendering events and various metrics during rendering. You can optimize these metrics to improve the efficiency of the first frame rendering.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">Triggered after calling <xref keyref="startMediaRenderingTracing"/> or joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>The user ID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>currentEvent</pt>
+                    <pd>The current video frame rendering event. See <xref keyref="MEDIA_TRACE_EVENT"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>tracingInfo</pt>
+                    <pd>Metrics during the video frame rendering process. See <xref keyref="VideoRenderingTracingInfo"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>currentEvent</pt>
+                    <pd>Current video frame rendering event. See <xref keyref="MEDIA_TRACE_EVENT"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>tracingInfo</pt>
+                    <pd>Various metrics during video frame rendering. See <xref keyref="VideoRenderingTracingInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

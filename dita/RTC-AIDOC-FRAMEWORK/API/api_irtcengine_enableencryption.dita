@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enableencryption">
+    <title><ph keyref="enableEncryption"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">开启或关闭内置加密。</ph><ph id="shortdesc" props="rn">开启或关闭内置加密。</ph><ph id="shortdesc" props="flutter">开启或关闭内置加密。</ph><ph id="shortdesc" props="unity">开启或关闭内置加密。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableEncryption"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableEncryption(enabled: boolean, config: EncryptionConfig): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableEncryption(enabled: boolean, config: EncryptionConfig): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableEncryption(
+    {required bool enabled, required EncryptionConfig config});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableEncryption(bool enabled, EncryptionConfig config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">用户离开频道后，SDK 会自动关闭加密。如需重新开启加密，你需要在用户再次加入频道前调用该方法。</p>
+            <p props="rn">用户离开频道后，SDK 会自动关闭加密。如需重新开启加密，你需要在用户再次加入频道前调用该方法。</p>
+            <p props="flutter">用户离开频道后，SDK 会自动关闭加密。如需重新开启加密，你需要在用户再次加入频道前调用该方法。</p>
+            <p props="unity">用户离开频道后，SDK 会自动关闭加密。如需重新开启加密，你需要在用户再次加入频道前调用该方法。</p>
+            <note props="electron">
+                <ul>
+                    <li>同一频道内的所有用户在调用该方法时，必须设置相同的加密模式和密钥。</li>
+                    <li>如果开启了内置加密，则不能使用旁路推流功能。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>同一频道内的所有用户在调用该方法时，必须设置相同的加密模式和密钥。</li>
+                    <li>如果开启了内置加密，则不能使用旁路推流功能。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>同一频道内的所有用户在调用该方法时，必须设置相同的加密模式和密钥。</li>
+                    <li>如果开启了内置加密，则不能使用旁路推流功能。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>同一频道内的所有用户在调用该方法时，必须设置相同的加密模式和密钥。</li>
+                    <li>如果开启了内置加密，则不能使用旁路推流功能。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>适用场景</title>
+            <p>对安全要求较高的场景。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>调用时机</title>
+            <p props="electron">该方法需要在加入频道前调用。</p>
+            <p props="rn">该方法需要在加入频道前调用。</p>
+            <p props="flutter">该方法需要在加入频道前调用。</p>
+            <p props="unity">该方法需要在加入频道前调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>是否开启内置加密：
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: 开启内置加密。</li>
+                            <li><codeph><ph keyref="false"/></codeph>:（默认）关闭内置加密。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>配置内置加密模式和密钥。详见 <xref keyref="EncryptionConfig"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>是否开启内置加密：
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: 开启内置加密。</li>
+                            <li><codeph><ph keyref="false"/></codeph>:（默认）关闭内置加密。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>config</pt>
+                    <pd>配置内置加密模式和密钥。详见 <xref keyref="EncryptionConfig"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>是否开启内置加密：
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: 开启内置加密。</li>
+                            <li><codeph><ph keyref="false"/></codeph>:（默认）关闭内置加密。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>配置内置加密模式和密钥。详见 <xref keyref="EncryptionConfig"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>是否开启内置加密：
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: 开启内置加密。</li>
+                            <li><codeph><ph keyref="false"/></codeph>:（默认）关闭内置加密。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>配置内置加密模式和密钥。详见 <xref keyref="EncryptionConfig"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败
+                        <ul>
+                            <li>-2: 调用了无效的参数。需重新指定参数。</li>
+                            <li>-4: 设置的加密模式不正确或加载外部加密库失败。需检查枚举值是否正确或重新加载外部加密库。</li>
+                            <li>-7: SDK 尚未初始化。需在调用 API 之前已创建 <xref keyref="IRtcEngine"/> 对象并完成初始化。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败
+                        <ul>
+                            <li>-2: 调用了无效的参数。需重新指定参数。</li>
+                            <li>-4: 设置的加密模式不正确或加载外部加密库失败。需检查枚举值是否正确或重新加载外部加密库。</li>
+                            <li>-7: SDK 尚未初始化。需在调用 API 之前已创建 <xref keyref="IRtcEngine"/> 对象并完成初始化。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败
+                        <ul>
+                            <li>-2: 调用了无效的参数。需重新指定参数。</li>
+                            <li>-4: 设置的加密模式不正确或加载外部加密库失败。需检查枚举值是否正确或重新加载外部加密库。</li>
+                            <li>-7: SDK 尚未初始化。需在调用 API 之前已创建 <xref keyref="IRtcEngine"/> 对象并完成初始化。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

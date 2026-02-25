@@ -1,0 +1,270 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_livetranscoding">
+    <title><ph keyref="LiveTranscoding"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the transcoding parameters for media streaming.</ph><ph id="shortdesc" props="android">Used to configure transcoding parameters for media streaming.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct LiveTranscoding {
+  int width;
+  int height;
+  int videoBitrate;
+  int videoFramerate;
+  bool lowLatency;
+  int videoGop;
+  VIDEO_CODEC_PROFILE_TYPE videoCodecProfile;
+  unsigned int backgroundColor;
+  VIDEO_CODEC_TYPE_FOR_STREAM videoCodecType;
+  unsigned int userCount;
+  TranscodingUser* transcodingUsers;
+  const char* transcodingExtraInfo;
+  const char* metadata;
+  RtcImage* watermark;
+  unsigned int watermarkCount;
+  RtcImage* backgroundImage;
+  unsigned int backgroundImageCount;
+  AUDIO_SAMPLE_RATE_TYPE audioSampleRate;
+  int audioBitrate;
+  int audioChannels;
+  AUDIO_CODEC_PROFILE_TYPE audioCodecProfile;
+  LiveStreamAdvancedFeature* advancedFeatures;
+  unsigned int advancedFeatureCount;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class LiveTranscoding {
+  public int width;
+  public int height;
+  public int videoBitrate;
+  public int videoFramerate;
+  @Deprecated public boolean lowLatency;
+  public int videoGop;
+  private ArrayList&lt;AgoraImage&gt; watermarkList;
+  private ArrayList&lt;AgoraImage&gt; backgroundImageList;
+  public AudioSampleRateType audioSampleRate;
+  public int audioBitrate;
+  public int audioChannels;
+  public AudioCodecProfileType audioCodecProfile;
+  public VideoCodecProfileType videoCodecProfile;
+  public VideoCodecType videoCodecType;
+  @Deprecated public int userCount;
+  @Deprecated public int backgroundColor;
+  public String userConfigExtraInfo;
+  @Deprecated public String metadata;
+  private Map&lt;Integer, TranscodingUser&gt; transcodingUsers;
+  private Map&lt;String, Boolean&gt; advancedFeatures;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>width</pt>
+                    <pd>Video width in pixels. Default is 360.
+                        <ul>
+                            <li>When pushing video streams to CDN, the valid range for <codeph>width</codeph> is [64,1920]. If less than 64, it is adjusted to 64; if greater than 1920, it is adjusted to 1920.</li>
+                            <li>When pushing audio streams to CDN, set both <codeph>width</codeph> and <codeph>height</codeph> to 0.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>Video height in pixels. Default is 640.
+                        <ul>
+                            <li>When pushing video streams to CDN, the valid range for <codeph>height</codeph> is [64,1080]. If less than 64, it is adjusted to 64; if greater than 1080, it is adjusted to 1080.</li>
+                            <li>When pushing audio streams to CDN, set both <codeph>width</codeph> and <codeph>height</codeph> to 0.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoBitrate</pt>
+                    <pd>Video encoding bitrate (Kbps). You do not need to set this parameter. Keep the default value <xref keyref="STANDARD_BITRATE"/>. The SDK automatically matches the optimal bitrate based on the video resolution and frame rate. See <codeph>Video profile</codeph> for details.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoFramerate</pt>
+                    <pd>Frame rate (fps) of the output video stream for media streaming. Default is 15. Range is (0,30].
+                        <note>Values greater than 30 are automatically adjusted to 30 by the Agora server.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>lowLatency</pt>
+                    <pd>Deprecated.
+Latency mode:
+                        <ul>
+                            <li><xref keyref="true"/>: Low latency but quality not guaranteed.</li>
+                            <li><xref keyref="false"/>: (Default) High latency but guaranteed quality.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoGop</pt>
+                    <pd>GOP (Group of Pictures) frame rate for the streamed video, in fps. Default is 30.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoCodecProfile</pt>
+                    <pd>Video encoder profile type for media streaming. Can be set to 66, 77, or 100 (default). See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>.
+                        <note>If set to other values, Agora automatically adjusts to the default value.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>backgroundColor</pt>
+                    <pd>RGB hexadecimal value of the background color, value only, without prefix #. For example, 0xFFB6C1 represents light pink. Default is 0x000000 (black).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoCodecType</pt>
+                    <pd>Video encoder type used for media streaming. See <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>userCount</pt>
+                    <pd>Number of users in the media stream. Range is [0,17].</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>transcodingUsers</pt>
+                    <pd>User layout configuration in the media stream. Supports up to 17 transcoding users. See <xref keyref="TranscodingUser"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>transcodingExtraInfo</pt>
+                    <pd>Reserved parameter. Used to send user-defined information in the SEI of H.264/H.265 video streams to CDN clients. Maximum length is 4096 bytes.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>metadata</pt>
+                    <pd>Deprecated. Not recommended. Metadata sent to CDN clients.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>watermark</pt>
+                    <pd>Watermark in the live video. The image must be in PNG format. You can add one watermark or use an array to add multiple watermarks. This parameter works with <codeph>watermarkCount</codeph>. See <xref keyref="RtcImage"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>watermarkCount</pt>
+                    <pd>Number of watermarks in the live video. The total number of watermarks and background images must be between 0 and 10. This parameter works with <codeph>watermark</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>backgroundImage</pt>
+                    <pd>Background image in the live video. The image must be in PNG format. You can add one background image or use an array to add multiple background images. This parameter works with <codeph>backgroundImageCount</codeph>. See <xref keyref="RtcImage"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>backgroundImageCount</pt>
+                    <pd>Number of background images in the live video. The total number of watermarks and background images must be between 0 and 10. This parameter works with <codeph>backgroundImage</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioSampleRate</pt>
+                    <pd>Audio sample rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioBitrate</pt>
+                    <pd>Audio bitrate (Kbps) of the media stream. Default is 48. Maximum is 128.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioChannels</pt>
+                    <pd>Number of audio channels in the media stream.
+                        <ul>
+                            <li>1: (Default) Mono.</li>
+                            <li>2: Stereo.</li>
+                            <li>3: Three channels.</li>
+                            <li>4: Four channels.</li>
+                            <li>5: Five channels.</li>
+                        </ul><ph>Agora recommends using 1 or 2. Using 3, 4, or 5 requires special player support.</ph></pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioCodecProfile</pt>
+                    <pd>Audio codec profile type for media streaming. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>advancedFeatures</pt>
+                    <pd>Advanced features for transcoded media streaming. See <xref keyref="LiveStreamAdvancedFeature"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>advancedFeatureCount</pt>
+                    <pd>Number of enabled advanced features. Default is 0.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>width</pt>
+                    <pd>Video width in pixels. Default is 360.
+                        <ul>
+                            <li>When pushing video streams to the CDN, the valid range for <codeph>width</codeph> is [64,1920]. If the value is less than 64, Agora server automatically adjusts it to 64; if greater than 1920, it is adjusted to 1920.</li>
+                            <li>When pushing audio streams to the CDN, set both <codeph>width</codeph> and <codeph>height</codeph> to 0.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>Video height in pixels. Default is 640.
+                        <ul>
+                            <li>When pushing video streams to the CDN, the valid range for <codeph>height</codeph> is [64,1080]. If the value is less than 64, Agora server automatically adjusts it to 64; if greater than 1080, it is adjusted to 1080.</li>
+                            <li>When pushing audio streams to the CDN, set both <codeph>width</codeph> and <codeph>height</codeph> to 0.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoBitrate</pt>
+                    <pd>Video encoding bitrate (Kbps). You do not need to set this parameter; just keep the default value <xref keyref="STANDARD_BITRATE"/>. The SDK automatically matches the most suitable bitrate based on the configured video resolution and frame rate. See <codeph>Video profile</codeph> for details on resolution and frame rate mappings.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoFramerate</pt>
+                    <pd>Frame rate (fps) of the video output for media streaming. Default is 15. Valid range is (0,30].
+                        <note>Values greater than 30 are adjusted to 30 by the Agora server.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lowLatency</pt>
+                    <pd>Latency mode:
+                        <ul>
+                            <li><xref keyref="true"/>: Low latency mode, but video quality is not guaranteed.</li>
+                            <li><xref keyref="false"/>: Default. High latency but better video quality.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoGop</pt>
+                    <pd>GOP (Group of Pictures) setting for video frames in media streaming, in frames. Default is 30.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioSampleRate</pt>
+                    <pd>Audio sample rate (Hz) of the media output stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioBitrate</pt>
+                    <pd>Audio encoding bitrate of the output stream in Kbps. Default is 48, maximum is 128.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioChannels</pt>
+                    <pd>Number of audio channels used in media streaming. Agora recommends using 1 (mono) or 2 (stereo). If you choose 3, 4, or 5, specific player support is required.
+                        <ul>
+                            <li>1: Default. Mono.</li>
+                            <li>2: Stereo.</li>
+                            <li>3: Three channels.</li>
+                            <li>4: Four channels.</li>
+                            <li>5: Five channels.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>audioCodecProfile</pt>
+                    <pd>Audio codec profile type used in media streaming. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoCodecProfile</pt>
+                    <pd>Video codec profile type used in media streaming. Can be set to 66, 77, or the default 100. See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>.
+                        <note>If set to other values, Agora automatically uses the default value.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoCodecType</pt>
+                    <pd>Video codec type used in media streaming. See <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userCount</pt>
+                    <pd>Number of users in media streaming. Valid range is [0,17].</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userConfigExtraInfo</pt>
+                    <pd>Reserved field. Used to send user-defined information to the CDN playback client as SEI in the H.264/H.265 video stream. Maximum byte length is 4096.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>metadata</pt>
+                    <pd>Metadata content sent to the CDN client.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

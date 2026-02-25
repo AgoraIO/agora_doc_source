@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_ontranscodedstreamlayoutinfo">
+    <title><ph keyref="onTranscodedStreamLayoutInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Triggered when the local user receives a mixed video stream with video layout information.</ph><ph id="shortdesc" props="android">Callback for receiving a mixed video stream with layout information.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onTranscodedStreamLayoutInfo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onTranscodedStreamLayoutInfo(uid_t uid, int width, int height, int layoutCount,const VideoLayout* layoutlist)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onTranscodedStreamLayoutInfo(int uid, VideoLayoutInfo info) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">When you first receive the mixed video from the video mixing server, or when the layout information of the mixed stream changes, the SDK triggers this callback to report the layout information of each sub-video stream in the mixed video.</p>
+            <p props="android">When the local user receives a mixed video stream sent by the video mixing server for the first time, or when the layout information of the stream changes, the SDK triggers this callback to report the layout information of each sub-video stream in the mixed stream.</p>
+            <note props="cpp">This callback applies to Android and iOS platforms only.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">Triggered when the local user first receives the mixed video from the video mixing server, or when the layout information of the mixed stream changes.</p>
+            <p props="android">This callback is triggered when the local user receives a mixed video stream for the first time, or when the layout information of the stream changes.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>User ID of the publisher of the mixed video stream.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>width</pt>
+                    <pd>Width of the mixed video (in pixels).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>Height of the mixed video (in pixels).</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>layoutCount</pt>
+                    <pd>Number of layout information entries in the mixed video.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>layoutlist</pt>
+                    <pd>Array of layout information for sub-video streams. See <xref keyref="VideoLayout"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID that published the mixed video stream.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>info</pt>
+                    <pd>Layout information of sub-video streams. See <xref keyref="VideoLayoutInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

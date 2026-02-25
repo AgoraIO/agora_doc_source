@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onrhythmplayerstatechanged">
+    <title><ph keyref="onRhythmPlayerStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the virtual metronome state changes.</ph><ph id="shortdesc" props="android">Callback for changes in virtual metronome state.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRhythmPlayerStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onRhythmPlayerStateChanged(RHYTHM_PLAYER_STATE_TYPE state, RHYTHM_PLAYER_REASON reason)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onRhythmPlayerStateChanged(int state, int reason)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">This callback reports the current state of the virtual metronome, indicating the status of the local audio stream, and helps you troubleshoot audio issues.</p>
+            <p props="android">This callback reports the current state of the virtual metronome, indicating the state of the local audio stream and helping you troubleshoot audio issues.</p>
+            <note props="cpp">(Android and iOS only)</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">Occurs when the virtual metronome state changes.</p>
+            <p props="android">This callback is triggered when the state of the virtual metronome changes.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>state</pt>
+                    <pd>The current state of the virtual metronome. See <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>Error code and message related to the virtual metronome. See <xref keyref="RHYTHM_PLAYER_REASON"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>state</pt>
+                    <pd>The current state of the virtual metronome:
+                        <ul>
+                            <li><codeph>RHYTHM_PLAYER_STATE_IDLE</codeph> (810): The virtual metronome is not enabled or has been disabled.</li>
+                            <li><codeph>RHYTHM_PLAYER_STATE_OPENING</codeph> (811): Opening the rhythm file.</li>
+                            <li><codeph>RHYTHM_PLAYER_STATE_DECODING</codeph> (812): Decoding the rhythm file.</li>
+                            <li><codeph>RHYTHM_PLAYER_STATE_PLAYING</codeph> (813): The rhythm file is playing.</li>
+                            <li><codeph>RHYTHM_PLAYER_STATE_FAILED</codeph> (814): Failed to start the virtual metronome. You can use the returned error code to troubleshoot or try restarting the virtual metronome.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>Error codes and messages for the virtual metronome:
+                        <ul>
+                            <li><codeph>RHYTHM_PLAYER_REASON_OK</codeph> (0): The rhythm file is playing normally.</li>
+                            <li><codeph>RHYTHM_PLAYER_REASON_FAILED</codeph> (1): General error, unspecified reason.</li>
+                            <li><codeph>RHYTHM_PLAYER_REASON_CAN_NOT_OPEN</codeph> (801): Error occurred while opening the rhythm file.</li>
+                            <li><codeph>RHYTHM_PLAYER_REASON_CAN_NOT_PLAY</codeph> (802): Error occurred while playing the rhythm file.</li>
+                            <li><codeph>RHYTHM_PLAYER_REASON_FILE_OVER_DURATION_LIMIT</codeph> (803): The duration of the rhythm audio file exceeds the limit. The maximum is 1.2 seconds.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

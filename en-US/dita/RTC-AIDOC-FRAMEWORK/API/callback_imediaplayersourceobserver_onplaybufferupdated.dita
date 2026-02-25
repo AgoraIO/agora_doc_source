@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onplaybufferupdated">
+    <title><ph keyref="onPlayBufferUpdated"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Reports the playable duration of the current buffer.</ph><ph id="shortdesc" props="rn">Reports the playable duration of the current buffered data.</ph><ph id="shortdesc" props="flutter">Reports the playable duration of buffered data.</ph><ph id="shortdesc" props="unity">Reports the duration the current buffered data can support playback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlayBufferUpdated"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onPlayBufferUpdated?(playCachedBuffer: number): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onPlayBufferUpdated?(playCachedBuffer: number): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(int playCachedBuffer)? onPlayBufferUpdated;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayBufferUpdated(Int64 playCachedBuffer) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">While playing online media resources, the SDK triggers this callback every second to report the duration that the current buffered data can support for playback.
+                <ul>
+                    <li>If the buffered duration is less than the threshold (default is 0), it returns <codeph>PlayerEventBufferLow</codeph> (6).</li>
+                    <li>If the buffered duration is greater than the threshold (default is 0), it returns <codeph>PlayerEventBufferRecover</codeph> (7).</li>
+                </ul>
+            </p>
+            <p props="rn">While playing online media resources, the SDK triggers this callback every second to report the duration that the current buffered data can support for playback.
+                <ul>
+                    <li>When the playable duration of the buffered data is less than the threshold (default is 0), <codeph>PlayerEventBufferLow</codeph> (6) is returned.</li>
+                    <li>When the playable duration is greater than the threshold (default is 0), <codeph>PlayerEventBufferRecover</codeph> (7) is returned.</li>
+                </ul>
+            </p>
+            <p props="flutter">While playing online media resources, the SDK triggers this callback every second to report the duration that the current buffered data can support.
+                <ul>
+                    <li>If the buffered duration is less than the threshold (default is 0), <codeph>playerEventBufferLow</codeph> (6) is returned.</li>
+                    <li>If the buffered duration is greater than the threshold (default is 0), <codeph>playerEventBufferRecover</codeph> (7) is returned.</li>
+                </ul>
+            </p>
+            <p props="unity">During online media playback, the SDK triggers this callback every second to report the playback duration supported by the current buffered data.
+                <ul>
+                    <li>When the buffered playback duration is less than the threshold (default is 0), <codeph>PLAYER_EVENT_BUFFER_LOW</codeph> (6) is returned.</li>
+                    <li>When the buffered playback duration exceeds the threshold (default is 0), <codeph>PLAYER_EVENT_BUFFER_RECOVER</codeph> (7) is returned.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>playCachedBuffer</pt>
+                    <pd>The duration (ms) that the current buffered data can support for playback.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>playCachedBuffer</pt>
+                    <pd>The duration (in milliseconds) that the current buffered data can support for playback.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>playCachedBuffer</pt>
+                    <pd>The duration (in milliseconds) that the current buffered data can support playback.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>playCachedBuffer</pt>
+                    <pd>Playback duration supported by the current buffered data (milliseconds).</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_channelmediarelaystate">
+    <title><ph keyref="CHANNEL_MEDIA_RELAY_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">State codes for cross-channel media stream relay.</ph><ph id="shortdesc" props="rn">State codes for channel media relay.</ph><ph id="shortdesc" props="flutter">State codes for media stream relay across channels.</ph><ph id="shortdesc" props="unity">Status codes for cross-channel media stream relay.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>RelayStateIdle</pt>
+                    <pd>0: Initial state. After successfully calling <xref keyref="stopChannelMediaRelay"/> to stop the relay, <xref keyref="onChannelMediaRelayStateChanged"/> will return this state.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RelayStateConnecting</pt>
+                    <pd>1: SDK is attempting cross-channel relay.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RelayStateRunning</pt>
+                    <pd>2: The broadcaster from the source channel has successfully joined the destination channel.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RelayStateFailure</pt>
+                    <pd>3: An error occurred. See the <codeph>code</codeph> parameter in <xref keyref="onChannelMediaRelayStateChanged"/> for details.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RelayStateIdle</pt>
+                    <pd>0: Idle state. After successfully calling <xref keyref="stopChannelMediaRelay"/> to stop the relay, <xref keyref="onChannelMediaRelayStateChanged"/> will report this state.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RelayStateConnecting</pt>
+                    <pd>1: SDK is attempting to relay across channels.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RelayStateRunning</pt>
+                    <pd>2: The host in the source channel has successfully joined the destination channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RelayStateFailure</pt>
+                    <pd>3: An error occurred. See the <codeph>code</codeph> parameter in <xref keyref="onChannelMediaRelayStateChanged"/> for details.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>relayStateIdle</pt>
+                    <pd>0: Initial state. After successfully calling <xref keyref="stopChannelMediaRelay"/> to stop media stream relay across channels, <xref keyref="onChannelMediaRelayStateChanged"/> will return this state.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>relayStateConnecting</pt>
+                    <pd>1: SDK is attempting cross-channel connection.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>relayStateRunning</pt>
+                    <pd>2: Broadcaster in the source channel has successfully joined the destination channel.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>relayStateFailure</pt>
+                    <pd>3: An error occurred. See the <codeph>code</codeph> parameter in <xref keyref="onChannelMediaRelayStateChanged"/> for error details.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RELAY_STATE_IDLE</pt>
+                    <pd>0: Initial state. After successfully calling <xref keyref="stopChannelMediaRelay"/> to stop the relay, <xref keyref="onChannelMediaRelayStateChanged"/> will callback this state.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RELAY_STATE_CONNECTING</pt>
+                    <pd>1: SDK is attempting cross-channel connection.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RELAY_STATE_RUNNING</pt>
+                    <pd>2: The broadcaster in the source channel has successfully joined the destination channel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RELAY_STATE_FAILURE</pt>
+                    <pd>3: An error occurred. See the <codeph>code</codeph> parameter in <xref keyref="onChannelMediaRelayStateChanged"/> for error details.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

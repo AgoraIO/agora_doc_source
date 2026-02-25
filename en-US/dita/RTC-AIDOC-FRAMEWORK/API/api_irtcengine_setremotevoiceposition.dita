@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setremotevoiceposition">
+    <title><ph keyref="setRemoteVoicePosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the 2D position of a remote user's voice, that is, the horizontal position.</ph><ph id="shortdesc" props="rn">Sets the 2D position of a remote user's voice, i.e., horizontal position.</ph><ph id="shortdesc" props="flutter">Sets the 2D position of a remote user's voice on the horizontal plane.</ph><ph id="shortdesc" props="unity">Sets the 2D position of a remote user's voice, i.e., horizontal plane position.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteVoicePosition"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setRemoteVoicePosition(
+    uid: number,
+    pan: number,
+    gain: number
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setRemoteVoicePosition(
+    uid: number,
+    pan: number,
+    gain: number
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteVoicePosition(
+    {required int uid, required double pan, required double gain});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteVoicePosition(uint uid, double pan, double gain);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Sets the 2D position and volume of a remote user's voice to help the local user determine the direction of the sound.
+By calling this method to set the position where the remote user's voice appears, the difference in sound between the left and right channels creates a sense of direction, allowing the user to determine the remote user's real-time position. In multiplayer online games, such as battle royale games, this method can effectively enhance the directional perception of game characters and simulate realistic scenarios.</p>
+            <p props="rn">Sets the 2D position and volume of a remote user's voice to help the local user locate the sound source.
+By calling this method, you can set the position where the remote user's voice appears. The difference between the left and right channels creates a sense of direction, allowing the user to determine the real-time position of the remote user. In multiplayer online games such as battle royale, this method can effectively enhance the sense of direction of game characters and simulate a real environment.</p>
+            <p props="flutter">Sets the 2D position and volume of a remote user's voice to help the local user determine the direction of the sound.
+By calling this API to set the position of the remote user's voice, the difference between the left and right audio channels creates a sense of direction, allowing you to determine the real-time position of the remote user. In multiplayer online games, such as battle royale games, this method can effectively enhance the spatial awareness of game characters and simulate real-world scenarios.</p>
+            <p props="unity">Sets the 2D position and volume of a remote user's voice to help the local user perceive directionality.
+By calling this API to set the position of a remote user's voice, the difference between the left and right audio channels creates a sense of direction, allowing the user to determine the real-time position of the remote user. In multiplayer online games, such as battle royale games, this method can effectively enhance the spatial awareness of game characters and simulate real scenarios.</p>
+            <note props="electron">
+                <ul>
+                    <li>To use this method, you must call <xref keyref="enableSoundPositionIndication"/> before joining the channel to enable stereo sound for remote users.</li>
+                    <li>For the best listening experience, it is recommended to use wired headphones when using this method.</li>
+                    <li>This method must be called after joining the channel.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>Before using this method, you must call <xref keyref="enableSoundPositionIndication"/> before joining the channel to enable stereo sound for remote users.</li>
+                    <li>For the best audio experience, it is recommended to use wired headphones when using this method.</li>
+                    <li>This method must be called after joining a channel.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>You must call <xref keyref="enableSoundPositionIndication"/> to enable remote voice stereo before joining the channel.</li>
+                    <li>For the best audio experience, it is recommended to use wired headphones when using this method.</li>
+                    <li>This method must be called after joining the channel.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>Before using this method, call <xref keyref="enableSoundPositionIndication"/> to enable stereo sound for remote users.</li>
+                    <li>For the best listening experience, it is recommended to use wired headphones when using this method.</li>
+                    <li>This method must be called after joining a channel.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>The ID of the remote user</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>pan</pt>
+                    <pd>Sets the 2D position of the remote user's voice. The range is [-1.0, 1.0]:
+                        <ul>
+                            <li>(Default) 0.0: The sound appears in the center.</li>
+                            <li>-1.0: The sound appears on the left.</li>
+                            <li>1.0: The sound appears on the right.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>gain</pt>
+                    <pd>Sets the volume of the remote user's voice. The range is [0.0, 100.0], and the default is 100.0, which represents the user's original volume. The smaller the value, the lower the volume.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>The ID of the remote user</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>pan</pt>
+                    <pd>Sets the 2D position of the remote user's voice. The range is [-1.0, 1.0]:
+                        <ul>
+                            <li>(Default) 0.0: Voice appears in the center.</li>
+                            <li>-1.0: Voice appears on the left.</li>
+                            <li>1.0: Voice appears on the right.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>gain</pt>
+                    <pd>Sets the volume of the remote user's voice. The range is [0.0, 100.0], with a default of 100.0, representing the original volume. The smaller the value, the lower the volume.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>The ID of the remote user.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>pan</pt>
+                    <pd>Sets the 2D position of the remote user's voice. The range is [-1.0, 1.0]:
+                        <ul>
+                            <li>(Default) 0.0: Voice appears in front.</li>
+                            <li>-1.0: Voice appears on the left.</li>
+                            <li>1.0: Voice appears on the right.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>gain</pt>
+                    <pd>Sets the volume of the remote user's voice. The range is [0.0, 100.0], with a default value of 100.0, representing the original volume of the user. The smaller the value, the lower the volume.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>The ID of the remote user</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>pan</pt>
+                    <pd>Sets the 2D position of the remote user's voice. Range: [-1.0, 1.0]:
+                        <ul>
+                            <li>(Default) 0.0: Voice appears in front.</li>
+                            <li>-1.0: Voice appears on the left.</li>
+                            <li>1.0: Voice appears on the right.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>gain</pt>
+                    <pd>Sets the volume of the remote user's voice. Range: [0.0, 100.0], default is 100.0, indicating the user's original volume. The smaller the value, the lower the volume.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when it fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onlocaluserregistered">
+    <title><ph keyref="onLocalUserRegistered"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onLocalUserRegistered"/> callback. Triggered when the local user registers a User Account.</ph><ph id="shortdesc" props="android">Callback triggered when the local user registers a User Account.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalUserRegistered"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onLocalUserRegistered(uid_t uid, const char* userAccount)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onLocalUserRegistered(int uid, String userAccount)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Added since v2.8.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">After the local user successfully calls <xref keyref="registerLocalUserAccount"/> to register a User Account, or calls <codeph>joinChannelWithUserAccount</codeph> to join a channel, the SDK triggers this callback and returns the local user's user ID and User Account.</p>
+            <p props="android">When the local user successfully calls <xref keyref="registerLocalUserAccount"/> to register a User Account or calls <codeph>joinChannelWithUserAccount</codeph> to join a channel, the SDK triggers this callback and returns the local user's user ID and User Account.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Trigger Timing</title>
+            <p props="android">This callback is triggered when the local user successfully registers a User Account or joins a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>The user ID of the local user.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>userAccount</pt>
+                    <pd>The User Account of the local user.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID of the local user.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>userAccount</pt>
+                    <pd>User Account of the local user.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

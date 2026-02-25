@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_ontranscodedstreamlayoutinfo">
+    <title><ph keyref="onTranscodedStreamLayoutInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Callback for received mixed video stream with layout information.</ph><ph id="shortdesc" props="flutter">Callback for received mixed stream with layout information.</ph><ph id="shortdesc" props="unity">Occurs when a mixed video stream with layout information is received.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onTranscodedStreamLayoutInfo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">onTranscodedStreamLayoutInfo?(
+    connection: RtcConnection,
+    uid: number,
+    width: number,
+    height: number,
+    layoutCount: number,
+    layoutlist: VideoLayout[]
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(
+    RtcConnection connection,
+    int uid,
+    int width,
+    int height,
+    int layoutCount,
+    List&lt;VideoLayout&gt; layoutlist)? onTranscodedStreamLayoutInfo;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnTranscodedStreamLayoutInfo(RtcConnection connection, uint uid, int width, int height, int layoutCount, VideoLayout[] layoutlist)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">When the mixed video stream is received from the mixing server for the first time, or when the layout information of the mixed stream changes, the SDK triggers this callback to report the layout information of each sub-stream in the mixed video stream.</p>
+            <p props="flutter">When the local client first receives a mixed video stream from the mixing server, or when the layout information of the mixed stream changes, the SDK triggers this callback to report the layout information of each sub-video stream in the mixed stream.</p>
+            <p props="unity">This callback is triggered when the local client receives a mixed video stream from the mixing server for the first time, or when the layout information of the mixed stream changes. The SDK reports the layout information of each sub-stream in the mixed video stream.</p>
+            <note props="flutter">This callback is applicable only to Android and iOS.</note>
+            <note props="unity">This callback is only applicable to Android and iOS.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>User ID of the publisher of the mixed video stream.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>width</pt>
+                    <pd>Width (px) of the mixed video stream.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>Height (px) of the mixed video stream.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>layoutCount</pt>
+                    <pd>Number of layout entries in the mixed video stream.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>layoutlist</pt>
+                    <pd>Detailed layout information of a mixed video stream. See <xref keyref="VideoLayout"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>User ID of the mixed video stream publisher.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>Width (px) of the mixed video stream.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>Height (px) of the mixed video stream.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>layoutCount</pt>
+                    <pd>Number of layout information entries in the mixed video stream.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>layoutlist</pt>
+                    <pd>Detailed layout information of a mixed video stream. See <xref keyref="VideoLayout"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>User ID of the publisher of the mixed video stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>Width (px) of the mixed video stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>Height (px) of the mixed video stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>layoutCount</pt>
+                    <pd>Number of layout entries in the mixed video stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>layoutlist</pt>
+                    <pd>Detailed layout information of a mixed video stream. See <xref keyref="VideoLayout"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

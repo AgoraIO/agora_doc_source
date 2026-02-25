@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setdirectcdnstreamingvideoconfiguration">
+    <title><ph keyref="setDirectCdnStreamingVideoConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the video properties for streams directly pushed to the CDN by the host.</ph><ph id="shortdesc" props="android">Sets the video property configuration for direct CDN streaming by the host.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDirectCdnStreamingVideoConfiguration"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setDirectCdnStreamingVideoConfiguration(const VideoEncoderConfiguration&amp; config) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setDirectCdnStreamingVideoConfiguration(VideoEncoderConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">This method only affects video streams captured from the camera, screen, or custom video source. When you set <codeph>publishCameraTrack</codeph> or <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/> in <xref keyref="DirectCdnStreamingMediaOptions"/>, you can call this method to configure the video properties.
+
+If the local camera does not support the specified video resolution, the SDK automatically adjusts it to the closest supported resolution while maintaining the aspect ratio. You can get the actual video resolution through the <xref keyref="onDirectCdnStreamingStats"/> callback.</p>
+            <p props="android">This method only affects video streams captured by the camera, screen, or custom video source. That is, when you set <codeph>publishCameraTrack</codeph> or <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/> in <xref keyref="DirectCdnStreamingMediaOptions"/>, you can call this method to set the video property configuration.
+
+If the local camera does not support the resolution you set, the SDK automatically adjusts it to the closest resolution for capture, encoding, or streaming while maintaining the aspect ratio of your setting. You can get the actual resolution of the video stream through the <xref keyref="onDirectCdnStreamingStats"/> callback.</p>
+            <note props="cpp">During CDN live streaming, only <codeph>ORIENTATION_MODE_FIXED_LANDSCAPE</codeph> or <codeph>ORIENTATION_MODE_FIXED_PORTRAIT</codeph> is supported for <xref keyref="ORIENTATION_MODE"/>.</note>
+            <note props="android">During CDN live streaming, Agora only supports setting <xref keyref="ORIENTATION_MODE"/> to <codeph>ORIENTATION_MODE_FIXED_LANDSCAPE</codeph> or <codeph>ORIENTATION_MODE_FIXED_PORTRAIT</codeph>.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>config</pt>
+                    <pd>Video properties. See <xref keyref="VideoEncoderConfiguration"/>.
+                        <note>During CDN live streaming, only <codeph>ORIENTATION_MODE_FIXED_LANDSCAPE</codeph> or <codeph>ORIENTATION_MODE_FIXED_PORTRAIT</codeph> is supported for <xref keyref="ORIENTATION_MODE"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>config</pt>
+                    <pd>Video property configuration. See <xref keyref="VideoEncoderConfiguration"/>.
+                        <note>During CDN live streaming, Agora only supports setting <xref keyref="ORIENTATION_MODE"/> to <codeph>ORIENTATION_MODE_FIXED_LANDSCAPE</codeph> or <codeph>ORIENTATION_MODE_FIXED_PORTRAIT</codeph>.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

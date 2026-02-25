@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_channelmediarelayerror">
+    <title><ph keyref="CHANNEL_MEDIA_RELAY_ERROR"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Error codes for cross-channel media stream relay.</ph><ph id="shortdesc" props="rn">Error codes for channel media relay failures.</ph><ph id="shortdesc" props="flutter">Error codes for media stream relay across channels.</ph><ph id="shortdesc" props="unity">Error codes for cross-channel media stream relay failures.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>RelayOk</pt>
+                    <pd>0: Everything is working properly.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RelayErrorServerErrorResponse</pt>
+                    <pd>1: Server returned an error.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RelayErrorServerNoResponse</pt>
+                    <pd>2: No response from the server.
+This error may be caused by poor network conditions. If this error occurs when initiating cross-channel media relay, you can try again later; if it occurs during the relay process, you can call the <xref keyref="leaveChannel2"/> method to leave the channel.
+It may also be due to the current App ID not having cross-channel media relay enabled. You can [contact technical support](https://ticket.shengwang.cn/) to request enabling this feature.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RelayErrorNoResourceAvailable</pt>
+                    <pd>3: The SDK cannot access the service, possibly due to limited server resources.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RelayErrorFailedJoinSrc</pt>
+                    <pd>4: Failed to initiate cross-channel media stream relay request.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RelayErrorFailedJoinDest</pt>
+                    <pd>5: Failed to accept cross-channel media stream relay request.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RelayErrorFailedPacketReceivedFromSrc</pt>
+                    <pd>6: Server failed to receive cross-channel media stream.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RelayErrorFailedPacketSentToDest</pt>
+                    <pd>7: Server failed to send cross-channel media stream.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RelayErrorServerConnectionLost</pt>
+                    <pd>8: SDK disconnected from the server due to poor network quality. You can call the <xref keyref="leaveChannel2"/> method to leave the current channel.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RelayErrorInternalError</pt>
+                    <pd>9: Internal server error.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RelayErrorSrcTokenExpired</pt>
+                    <pd>10: The token for the source channel has expired.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RelayErrorDestTokenExpired</pt>
+                    <pd>11: The token for the destination channel has expired.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RelayOk</pt>
+                    <pd>0: Everything works fine.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RelayErrorServerErrorResponse</pt>
+                    <pd>1: Server response error.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RelayErrorServerNoResponse</pt>
+                    <pd>2: No response from the server.
+This error may be caused by poor network conditions. If this error is reported when initiating channel media relay, you can retry later; if it occurs during the relay process, you can call the <xref keyref="leaveChannel2"/> method to leave the channel.
+This error may also occur if the current App ID has not enabled the channel media relay feature. You can [contact technical support](https://ticket.shengwang.cn/) to request enabling channel media relay.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RelayErrorNoResourceAvailable</pt>
+                    <pd>3: SDK fails to get the service, possibly due to limited server resources.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RelayErrorFailedJoinSrc</pt>
+                    <pd>4: Failed to initiate channel media relay request.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RelayErrorFailedJoinDest</pt>
+                    <pd>5: Failed to accept channel media relay request.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RelayErrorFailedPacketReceivedFromSrc</pt>
+                    <pd>6: Server fails to receive media stream from the source channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RelayErrorFailedPacketSentToDest</pt>
+                    <pd>7: Server fails to send media stream to the destination channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RelayErrorServerConnectionLost</pt>
+                    <pd>8: SDK loses connection with the server due to poor network quality. You can call the <xref keyref="leaveChannel2"/> method to leave the current channel.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RelayErrorInternalError</pt>
+                    <pd>9: Internal server error.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RelayErrorSrcTokenExpired</pt>
+                    <pd>10: The token of the source channel has expired.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RelayErrorDestTokenExpired</pt>
+                    <pd>11: The token of the destination channel has expired.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>relayOk</pt>
+                    <pd>0: Everything works fine.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>relayErrorServerErrorResponse</pt>
+                    <pd>1: Server error response.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>relayErrorServerNoResponse</pt>
+                    <pd>2: No response from the server.
+This error may be caused by poor network conditions. If this error is reported when initiating cross-channel media relay, you can try again later; if reported during the relay process, you can call the <xref keyref="leaveChannel2"/> method to leave the channel.
+This error may also occur if the current App ID has not enabled cross-channel media relay. You can [contact technical support](https://ticket.shengwang.cn/) to apply for enabling it.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>relayErrorNoResourceAvailable</pt>
+                    <pd>3: SDK failed to get the service, possibly due to limited server resources.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>relayErrorFailedJoinSrc</pt>
+                    <pd>4: Failed to initiate media stream relay across channels.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>relayErrorFailedJoinDest</pt>
+                    <pd>5: Failed to accept media stream relay across channels.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>relayErrorFailedPacketReceivedFromSrc</pt>
+                    <pd>6: Server failed to receive media stream relay across channels.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>relayErrorFailedPacketSentToDest</pt>
+                    <pd>7: Server failed to send media stream relay across channels.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>relayErrorServerConnectionLost</pt>
+                    <pd>8: SDK disconnected from the server due to poor network quality. You can call the <xref keyref="leaveChannel2"/> method to leave the current channel.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>relayErrorInternalError</pt>
+                    <pd>9: Internal server error.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>relayErrorSrcTokenExpired</pt>
+                    <pd>10: Token of the source channel has expired.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>relayErrorDestTokenExpired</pt>
+                    <pd>11: Token of the destination channel has expired.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RELAY_OK</pt>
+                    <pd>0: Everything works fine.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RELAY_ERROR_SERVER_ERROR_RESPONSE</pt>
+                    <pd>1: Server returned an error.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RELAY_ERROR_SERVER_NO_RESPONSE</pt>
+                    <pd>2: No response from server.
+This error may be caused by poor network conditions. If this error is reported when initiating cross-channel media relay, you can try again later; if it occurs during the relay, you can call the <xref keyref="leaveChannel2"/> method to leave the channel.
+It may also be caused by the current App ID not having cross-channel relay enabled. You can [contact technical support](https://ticket.shengwang.cn/) to request enabling it.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RELAY_ERROR_NO_RESOURCE_AVAILABLE</pt>
+                    <pd>3: SDK cannot acquire the service, possibly due to limited server resources.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RELAY_ERROR_FAILED_JOIN_SRC</pt>
+                    <pd>4: Failed to initiate cross-channel media stream relay request.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RELAY_ERROR_FAILED_JOIN_DEST</pt>
+                    <pd>5: Failed to accept cross-channel media stream relay request.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RELAY_ERROR_FAILED_PACKET_RECEIVED_FROM_SRC</pt>
+                    <pd>6: Server failed to receive cross-channel media stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RELAY_ERROR_FAILED_PACKET_SENT_TO_DEST</pt>
+                    <pd>7: Server failed to send cross-channel media stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RELAY_ERROR_SERVER_CONNECTION_LOST</pt>
+                    <pd>8: SDK disconnected from the server due to poor network quality. You can call the <xref keyref="leaveChannel2"/> method to leave the current channel.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RELAY_ERROR_INTERNAL_ERROR</pt>
+                    <pd>9: Internal server error.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RELAY_ERROR_SRC_TOKEN_EXPIRED</pt>
+                    <pd>10: The token for the source channel has expired.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RELAY_ERROR_DEST_TOKEN_EXPIRED</pt>
+                    <pd>11: The token for the destination channel has expired.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

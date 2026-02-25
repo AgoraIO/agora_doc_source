@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setplaybackaudioframebeforemixingparameters">
+    <title><ph keyref="setPlaybackAudioFrameBeforeMixingParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">设置混音前的原始音频播放数据格式。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlaybackAudioFrameBeforeMixingParameters"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetPlaybackAudioFrameBeforeMixingParameters(int sampleRate, int channel);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">SDK 会根据该采样间隔触发 <xref keyref="onPlaybackAudioFrameBeforeMixing"/> 回调。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="unity">
+            <title>调用时机</title>
+            <p props="unity">该方法需要在加入频道前调用。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>sampleRate</pt>
+                    <pd>音频数据的采样率 (Hz)，可设置为 8000、 16000、 32000、44100 或 48000。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channel</pt>
+                    <pd>音频数据的声道数，可设置为 1 或 2:
+                        <ul>
+                            <li>1: 单声道。</li>
+                            <li>2: 双声道。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>返回值</title>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

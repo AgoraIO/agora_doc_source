@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setplayeroption">
+    <title><ph keyref="setPlayerOption"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets media player options.</ph><ph id="shortdesc" props="android">Sets media player options.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlayerOption"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setPlayerOption(const char* key, int value) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int setPlayerOption(String key, int value);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This method sets media player options using <codeph>key</codeph> and <codeph>value</codeph>. Unlike <codeph>setPlayerOption(const char* key, const char* value)</codeph>, the <codeph>value</codeph> parameter of this method is of type <codeph>int</codeph>, while the latter is <codeph>const char*</codeph>. These two methods cannot be used simultaneously. In general, you do not need to call this method and can use the default options provided by the media player.</p>
+            <p props="android">This method sets media player options via <codeph>key</codeph> and <codeph>value</codeph>. Unlike <xref keyref="setPlayerOption2"/>, the <codeph>value</codeph> parameter in this method is of type <codeph>int</codeph>, whereas in <xref keyref="setPlayerOption2"/> it is of type <codeph>String</codeph>. These two methods cannot be used simultaneously. In general, you do not need to call this method and can use the default options provided by the media player.</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>Applicable to scenarios requiring technical preview or custom features.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method before calling <xref keyref="open"/> or <xref keyref="openWithMediaSource"/>.</p>
+            <p props="android">Call this method before calling the <codeph>open</codeph> or <xref keyref="openWithMediaSource"/> method.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>key</pt>
+                    <pd>The key of the option.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>value</pt>
+                    <pd>The value of the option.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>key</pt>
+                    <pd>The key of the option.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>value</pt>
+                    <pd>The value of the option.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

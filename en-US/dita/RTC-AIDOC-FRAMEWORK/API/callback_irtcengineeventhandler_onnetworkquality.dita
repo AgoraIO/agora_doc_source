@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onnetworkquality">
+    <title><ph keyref="onNetworkQuality"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Reports the last-mile network quality of each user during a call.</ph><ph id="shortdesc" props="rn">Callback for the last mile uplink and downlink network quality report of each user during a call.</ph><ph id="shortdesc" props="flutter">Callback for the last mile uplink and downlink network quality report for each user during the call.</ph><ph id="shortdesc" props="unity">Callback for uplink and downlink last mile network quality of each user during a call.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onNetworkQuality"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onNetworkQuality?(
+    connection: RtcConnection,
+    remoteUid: number,
+    txQuality: QualityType,
+    rxQuality: QualityType
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onNetworkQuality?(
+    connection: RtcConnection,
+    remoteUid: number,
+    txQuality: QualityType,
+    rxQuality: QualityType
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid,
+      QualityType txQuality, QualityType rxQuality)? onNetworkQuality;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnNetworkQuality(RtcConnection connection, uint remoteUid, int txQuality, int rxQuality) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This callback describes the last-mile network status of each user during a call. Last mile refers to the network status between the device and the Agora edge server.
+This callback is triggered every 2 seconds. If there are multiple remote users, it is triggered multiple times every 2 seconds.
+The callback reports network quality using broadcast packets within the channel. Excessive broadcast packets may cause a broadcast storm. To prevent this from causing a large amount of data transmission in the channel, this callback by default supports reporting the network quality of up to 4 remote hosts simultaneously.</p>
+            <p props="rn">This callback describes the last mile network status of each user during a call, where the last mile refers to the network status from the device to the Agora edge server.
+This callback is triggered every 2 seconds. If there are multiple remote users, it will be triggered multiple times every 2 seconds.
+This callback reports network quality through broadcast packets in the channel. Excessive broadcast packets may cause a broadcast storm. To prevent a broadcast storm from causing large data transmission in the channel, this callback supports reporting the network quality of up to 4 remote hosts simultaneously by default.</p>
+            <p props="flutter">This callback describes the last mile network status of each user during the call. The last mile refers to the network status from the device to the Agora edge server.
+This callback is triggered every 2 seconds. If there are multiple remote users, it is triggered multiple times every 2 seconds.
+This callback reports network quality via broadcast packets within the channel. Excessive broadcast packets may cause a broadcast storm. To avoid excessive data transmission due to broadcast storms, this callback supports reporting the network quality of up to 4 remote hosts simultaneously by default.</p>
+            <p props="unity">This callback reports the last mile network status of each user during a call. The last mile refers to the network connection between the device and the Agora edge server.
+This callback is triggered every 2 seconds. If there are multiple remote users, it is triggered multiple times every 2 seconds.
+The callback reports network quality via broadcast packets within the channel. Excessive broadcast packets may cause a broadcast storm. To prevent this, the callback supports reporting network quality for up to 4 remote hosts simultaneously by default.</p>
+            <note props="electron">When the user is not sending streams, <codeph>txQuality</codeph> is <codeph>Unknown</codeph>; when not receiving streams, <codeph>rxQuality</codeph> is <codeph>Unknown</codeph>.</note>
+            <note props="rn">When the user does not send streams, <codeph>txQuality</codeph> is <codeph>Unknown</codeph>; when the user does not receive streams, <codeph>rxQuality</codeph> is <codeph>Unknown</codeph>.</note>
+            <note props="flutter">If the user is not sending streams, <codeph>txQuality</codeph> is <codeph>Unknown</codeph>; if the user is not receiving streams, <codeph>rxQuality</codeph> is <codeph>Unknown</codeph>.</note>
+            <note props="unity">When the user is not sending streams, <codeph>txQuality</codeph> is <codeph>UNKNOWN</codeph>; when not receiving streams, <codeph>rxQuality</codeph> is <codeph>UNKNOWN</codeph>.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteUid</pt>
+                    <pd>User ID. Indicates the network quality reported for the user with this ID. If <codeph>uid</codeph> is 0, the local user's network quality is reported.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>txQuality</pt>
+                    <pd>Uplink network quality of the user, calculated based on sending bitrate, uplink packet loss rate, average round-trip time, and network jitter. This value reflects the current uplink network quality and helps determine whether the current video encoding settings are supported. For example, if the uplink bitrate is 1000 Kbps, it can support 640 × 480 resolution at 15 fps in live broadcast scenarios, but may struggle to support 1280 × 720 resolution. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rxQuality</pt>
+                    <pd>Downlink network quality of the user, calculated based on downlink packet loss rate, average round-trip time, and network jitter. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteUid</pt>
+                    <pd>User ID. Indicates the network quality of the user with this ID reported by the callback. If the <codeph>uid</codeph> is 0, it returns the network quality of the local user.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>txQuality</pt>
+                    <pd>The user's uplink network quality, calculated based on the sending bitrate, uplink packet loss rate, average round-trip time, and network jitter. This value represents the current uplink network quality and helps determine whether the current video encoding settings can be supported. For example, if the uplink bitrate is 1000 Kbps, it can support a resolution of 640 × 480 and frame rate of 15 fps in a live broadcast scenario, but may struggle to support 1280 × 720 resolution.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rxQuality</pt>
+                    <pd>The user's downlink network quality, calculated based on the downlink packet loss rate, average round-trip time, and network jitter.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteUid</pt>
+                    <pd>User ID. Indicates the network quality report for the user with this ID. If the uid is 0, it reports the local user's network quality.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>txQuality</pt>
+                    <pd>The user's uplink network quality, calculated based on the sending bitrate, uplink packet loss rate, average round-trip time, and network jitter. This value represents the current uplink network quality and helps determine whether the current video encoding settings are sustainable. For example, if the uplink bitrate is 1000 Kbps, it can support 640 × 480 resolution at 15 fps in a live broadcast scenario, but may struggle to support 1280 × 720 resolution. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rxQuality</pt>
+                    <pd>The user's downlink network quality, calculated based on the downlink packet loss rate, average round-trip time, and network jitter. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteUid</pt>
+                    <pd>User ID. Indicates the network quality report is for the user with this ID. If <codeph>uid</codeph> is 0, the report is for the local user.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>txQuality</pt>
+                    <pd>Uplink network quality of the user, calculated based on sending bitrate, uplink packet loss rate, average RTT, and network jitter. This value reflects the current uplink quality and helps determine if the current video encoding settings are supported. For example, with an uplink bitrate of 1000 Kbps, 640 × 480 resolution at 15 fps is supported in live broadcast scenarios, but 1280 × 720 resolution may not be. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rxQuality</pt>
+                    <pd>Downlink network quality of the user, calculated based on downlink packet loss rate, average RTT, and network jitter. See <xref keyref="QUALITY_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onvideodevicestatechanged">
+    <title><ph keyref="onVideoDeviceStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">视频设备状态变化回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onVideoDeviceStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onVideoDeviceStateChanged(const char* deviceId, int deviceType, int deviceState)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">该回调用于报告系统视频设备的状态变化，例如设备被拔出或移除。在 Windows 设备上，如果使用外接摄像头进行视频采集，当外接摄像头被拔出时，视频功能将被禁用。</p>
+            <note props="cpp">该回调仅适用于 Windows 和 macOS 平台。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>deviceId</pt>
+                    <pd>设备 ID。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>deviceType</pt>
+                    <pd>媒体设备类型，详见 <xref keyref="MEDIA_DEVICE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>deviceState</pt>
+                    <pd>媒体设备状态，详见 <xref keyref="MEDIA_DEVICE_STATE_TYPE"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

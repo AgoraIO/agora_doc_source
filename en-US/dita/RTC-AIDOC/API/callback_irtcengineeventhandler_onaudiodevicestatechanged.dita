@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudiodevicestatechanged">
+    <title><ph keyref="onAudioDeviceStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback when the audio device state changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioDeviceStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioDeviceStateChanged(const char* deviceId, int deviceType, int deviceState)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback notifies when the state of an audio device changes, for example, when a headset is unplugged from the device.</p>
+            <note props="cpp">This method is available on Windows and macOS only.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>deviceId</pt>
+                    <pd>Device ID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>deviceType</pt>
+                    <pd>Device type. See <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>deviceState</pt>
+                    <pd>Device state. See <xref keyref="MEDIA_DEVICE_STATE_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

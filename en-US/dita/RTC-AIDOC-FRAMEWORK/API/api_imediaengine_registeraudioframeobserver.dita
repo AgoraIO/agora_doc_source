@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_registeraudioframeobserver">
+    <title><ph keyref="registerAudioFrameObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Registers an audio frame observer object.</ph><ph id="shortdesc" props="rn">Registers an audio frame observer.</ph><ph id="shortdesc" props="flutter">Registers an audio observer object.</ph><ph id="shortdesc" props="unity">Registers an audio frame observer object.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerAudioFrameObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract registerAudioFrameObserver(observer: IAudioFrameObserver): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract registerAudioFrameObserver(observer: IAudioFrameObserver): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">void registerAudioFrameObserver(AudioFrameObserver observer);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int RegisterAudioFrameObserver(IAudioFrameObserver audioFrameObserver, AUDIO_FRAME_POSITION position, OBSERVER_MODE mode = OBSERVER_MODE.INTPTR);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method registers an audio frame observer object, i.e., registers callbacks. You need to call this method to register callbacks if you want the SDK to trigger the <xref keyref="onMixedAudioFrame"/>, <xref keyref="onRecordAudioFrame"/>, <xref keyref="onPlaybackAudioFrame"/>, <xref keyref="onPlaybackAudioFrameBeforeMixing"/>, and <xref keyref="onEarMonitoringAudioFrame"/> callbacks.</p>
+            <p props="rn">This method registers an audio frame observer, i.e., registers callbacks. You need to call this method to register callbacks when the SDK needs to trigger <xref keyref="onMixedAudioFrame"/>, <xref keyref="onRecordAudioFrame"/>, <xref keyref="onPlaybackAudioFrame"/>, <xref keyref="onPlaybackAudioFrameBeforeMixing"/>, and <xref keyref="onEarMonitoringAudioFrame"/>.</p>
+            <p props="flutter">This method registers an audio observer object, i.e., registers callbacks. When you need the SDK to trigger <xref keyref="onMixedAudioFrame"/>, <xref keyref="onRecordAudioFrame"/>, <xref keyref="onPlaybackAudioFrame"/>, <xref keyref="onPlaybackAudioFrameBeforeMixing"/>, and <xref keyref="onEarMonitoringAudioFrame"/> callbacks, you need to call this method to register the callbacks.</p>
+            <p props="unity">This method registers an audio frame observer object, i.e., registers callbacks. You need to call this method to register the callbacks if you want the SDK to trigger the <xref keyref="onMixedAudioFrame"/>, <xref keyref="onRecordAudioFrame"/>, <xref keyref="onPlaybackAudioFrame"/>, <xref keyref="onPlaybackAudioFrameBeforeMixing"/>, and <xref keyref="onEarMonitoringAudioFrame"/> callbacks.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called before joining a channel.</p>
+            <p props="rn">This method must be called before joining a channel.</p>
+            <p props="flutter">This method must be called before joining a channel.</p>
+            <p props="unity">You need to call this method before joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>observer</pt>
+                    <pd>Instance of the interface object. See <xref keyref="IAudioFrameObserver"/>. It is recommended to call this after receiving <xref keyref="onLeaveChannel"/> to release the audio frame observer object.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>observer</pt>
+                    <pd>Instance of the interface object. See <xref keyref="IAudioFrameObserver"/>. It is recommended to call this after receiving <xref keyref="onLeaveChannel"/> to release the audio frame observer.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>observer</pt>
+                    <pd>Instance of the interface object. See <xref keyref="IAudioFrameObserver"/>. It is recommended to call this after receiving <xref keyref="onLeaveChannel"/> to release the audio observer object.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioFrameObserver</pt>
+                    <pd>Instance of the interface object. See <xref keyref="IAudioFrameObserver"/>. Passing NULL means unregistering. It is recommended to call this method after receiving <xref keyref="onLeaveChannel"/> to release the audio frame observer object.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mode</pt>
+                    <pd>Audio data callback mode. See <xref keyref="OBSERVER_MODE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>position</pt>
+                    <pd>Audio observation position.
+                        <ul>
+                            <li>AUDIO_FRAME_POSITION_PLAYBACK (0x0001): Observes the playback audio after mixing from all remote users. Corresponds to the <xref keyref="onPlaybackAudioFrame"/> callback.</li>
+                            <li>AUDIO_FRAME_POSITION_RECORD (0x0002): Observes the captured audio of the local user. Corresponds to the <xref keyref="onRecordAudioFrame"/> callback.</li>
+                            <li>AUDIO_FRAME_POSITION_MIXED (0x0004): Observes the audio after mixing from the local and all remote users. Corresponds to the <xref keyref="onMixedAudioFrame"/> callback.</li>
+                            <li>AUDIO_FRAME_POSITION_BEFORE_MIXING (0x0008): Observes the audio of a single remote user before mixing. Corresponds to the <xref keyref="onPlaybackAudioFrameBeforeMixing"/> callback.</li>
+                            <li>AUDIO_FRAME_POSITION_EAR_MONITORING (0x0010): Observes the ear monitoring audio of a single local user. Corresponds to the <xref keyref="onEarMonitoringAudioFrame"/> callback.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and suggested solutions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

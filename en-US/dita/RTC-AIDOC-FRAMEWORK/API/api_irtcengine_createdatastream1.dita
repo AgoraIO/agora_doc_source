@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_createdatastream1">
+    <title><ph keyref="createDataStream1"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Creates a data stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createDataStream1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int CreateDataStream(ref int streamId, bool reliable, bool ordered);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">You can call this method to create a data stream and improve the reliability and ordering of data transmission.</p>
+            <note props="unity">If you need a more comprehensive low-latency, high-concurrency, and scalable real-time messaging and state synchronization solution, we recommend using [Real-time Messaging](https://doc.shengwang.cn/doc/rtm2/unity/landing-page).
+During the lifecycle of <xref keyref="IRtcEngine"/>, each user can create up to 5 data streams. Data streams are destroyed when leaving the channel and must be recreated if needed.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="unity">
+            <title>Timing</title>
+            <p props="unity">This method can be called before or after joining the channel.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="unity">
+            <title>Related Callbacks</title>
+            <p props="unity">After setting <codeph>reliable</codeph> to <xref keyref="true"/>, if the receiver does not receive the data sent by the sender within 5 seconds, the <xref keyref="onStreamMessageError"/> callback is triggered with the corresponding error information.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>streamId</pt>
+                    <pd>An output parameter. ID of the created data stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>reliable</pt>
+                    <pd>
+                        <note>Make sure to set both <codeph>reliable</codeph> and <codeph>ordered</codeph> to <xref keyref="true"/> or both to <xref keyref="false"/>.</note><ph>Whether to ensure data reliability, i.e., whether the receiver must receive the data within 5 seconds after it is sent:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: The receiver will receive the data within 5 seconds, otherwise the <xref keyref="onStreamMessageError"/> callback is triggered with the corresponding error information.</li>
+                            <li><xref keyref="false"/>: The receiver is not guaranteed to receive the data, and no error is reported even if the data is lost.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>ordered</pt>
+                    <pd>Whether to ensure data ordering, i.e., whether the receiver must receive data in the order sent:
+                        <ul>
+                            <li><xref keyref="true"/>: The receiver receives data packets in the order sent by the sender.</li>
+                            <li><xref keyref="false"/>: The receiver is not guaranteed to receive data packets in the order sent by the sender.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li>0: Data stream created successfully.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

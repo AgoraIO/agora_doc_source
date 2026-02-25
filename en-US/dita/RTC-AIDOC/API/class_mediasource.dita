@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_mediasource">
+    <title><ph keyref="MediaSource"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the media file to be played and the playback scenario.</ph><ph id="shortdesc" props="android">Used to configure the media file to be played and the playback scenario.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct MediaSource {
+  const char* url;
+  const char* uri;
+  int64_t startPos;
+  bool autoPlay;
+  bool enableCache;
+  bool enableMultiAudioTrack;
+  Optional&lt;bool&gt; isAgoraSource;
+  Optional&lt;bool&gt; isLiveSource;
+  IMediaPlayerCustomDataProvider* provider;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class MediaPlayerSource {
+  String url;
+  String uri;
+  long startPos;
+  boolean autoPlay;
+  boolean enableCache;
+  boolean enableMultiAudioTrack;
+  Boolean isAgoraSource;
+  Boolean isLiveSource;
+  IMediaPlayerCustomDataProvider provider;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>url</pt>
+                    <pd>URL of the media file to be played.
+                        <note>If opening a regular media resource, pass <codeph>url</codeph>. If opening a custom media resource, pass <codeph>provider</codeph>. Agora recommends not passing both parameters in a single call, otherwise the call may fail.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uri</pt>
+                    <pd>URI (Uniform Resource Identifier) of the media file.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>startPos</pt>
+                    <pd>Start position of playback (in milliseconds). Default is 0.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>autoPlay</pt>
+                    <pd>
+                        <note>If auto play is disabled, you need to call the <xref keyref="play"/> method after opening the media file.</note><ph>Whether to automatically play after opening the media file:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Automatically play.</li>
+                            <li><xref keyref="false"/>: Do not automatically play.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enableCache</pt>
+                    <pd>
+                        <note>Agora only supports caching of on-demand audio and video streams that are not transmitted via HLS protocol. To enable caching, pass <codeph>uri</codeph>; otherwise, caching is based on the media file's <codeph>url</codeph>. Once enabled, the media player will cache part of the media file locally during playback, allowing playback even without a network connection. Cache statistics are updated every second after playback. See <xref keyref="CacheStatistics"/>.</note><ph>Whether to enable caching when playing media files:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Enable caching.</li>
+                            <li><xref keyref="false"/>: (default) Do not enable caching.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enableMultiAudioTrack</pt>
+                    <pd>
+                        <note>If you need to set different audio tracks for local playback and publishing to the channel, set this parameter to <xref keyref="true"/>, then call the <xref keyref="selectMultiAudioTrack"/> method to select the track.</note><ph>Whether to allow selecting different audio tracks when playing the media file:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Allow selecting different audio tracks.</li>
+                            <li><xref keyref="false"/>: (default) Do not allow selecting different audio tracks.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>isAgoraSource</pt>
+                    <pd>
+                        <note>If you need to open a live stream or on-demand video distributed via Agora's ultra-low latency live streaming service, pass the media resource URL to <codeph>url</codeph> and set <codeph>isAgoraSource</codeph> to <xref keyref="true"/>; otherwise, you do not need to set this parameter.</note><ph>Whether the media resource to be opened is a live stream or on-demand video distributed via Agora's ultra-low latency live streaming service:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: The media resource is distributed via Agora's ultra-low latency live streaming service.</li>
+                            <li><xref keyref="false"/>: (default) The media resource is not distributed via Agora's ultra-low latency live streaming service.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>isLiveSource</pt>
+                    <pd>
+                        <note>If the media resource to be opened is a live stream, Agora recommends setting this parameter to <xref keyref="true"/> to speed up live stream loading. If the media resource is not a live stream but <codeph>isLiveSource</codeph> is set to <xref keyref="true"/>, loading speed will not be improved.</note><ph>Whether the media resource to be opened is a live stream:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: The media resource is a live stream.</li>
+                            <li><xref keyref="false"/>: (default) The media resource is not a live stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>provider</pt>
+                    <pd>Callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider"/>.
+                        <note>If opening a custom media resource, pass <codeph>provider</codeph>. If opening a regular media resource, pass <codeph>url</codeph>. Agora recommends not passing both <codeph>url</codeph> and <codeph>provider</codeph> in a single call, otherwise the call may fail.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>url</pt>
+                    <pd>The URL of the media file to be played.
+                        <note>If opening a regular media resource, pass in the value of <codeph>url</codeph>; if opening a custom media resource, pass in the value of <codeph>provider</codeph>. Agora recommends not passing values for both parameters in a single call, as it may cause the call to fail.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uri</pt>
+                    <pd>The URI (Uniform Resource Identifier) of the media file.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>startPos</pt>
+                    <pd>The position (in milliseconds) from which to start playback. Default is 0.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>autoPlay</pt>
+                    <pd>
+                        <note>If auto play is disabled, you need to manually call the <xref keyref="Play_Player"/> method after opening the media file.</note><ph>Whether to automatically play the media file after it is opened:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Automatically plays.</li>
+                            <li><xref keyref="false"/>: Does not automatically play.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enableCache</pt>
+                    <pd>
+                        <note>Agora only supports caching on-demand audio and video streams that are not transmitted via the HLS protocol. To enable caching, assign a value to <codeph>uri</codeph>; otherwise, caching is based on <codeph>url</codeph> by default. When this feature is enabled, the Media Player caches the portion of the audio and video file being played to the local device, allowing playback without a network connection. Cache statistics are updated once per second after playback starts. See <xref keyref="CacheStatistics"/> for details.</note><ph>Whether to cache the media file during playback:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Enable caching.</li>
+                            <li><xref keyref="false"/>: (default) Disable caching.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enableMultiAudioTrack</pt>
+                    <pd>
+                        <note>If you need to set different audio tracks for local playback and publishing to the channel, set this parameter to <xref keyref="true"/>, and then call the <xref keyref="selectMultiAudioTrack"/> method to select the audio track.</note><ph>Whether to allow selecting different audio tracks when playing media resources:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Allows selecting different audio tracks.</li>
+                            <li><xref keyref="false"/>: (default) Does not allow selecting different audio tracks.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>isAgoraSource</pt>
+                    <pd>
+                        <note>If you need to play a live or on-demand video distributed via the Ultra Low Latency Live service, pass the media resource's URL to <codeph>url</codeph>, and set <codeph>isAgoraSource</codeph> to <xref keyref="true"/>; otherwise, you do not need to set this parameter.</note><ph>Whether the media resource is a live or on-demand video distributed via the Media Broadcast service:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Yes.</li>
+                            <li><xref keyref="false"/>: (default) No.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>isLiveSource</pt>
+                    <pd>
+                        <note>If opening a live stream, Agora recommends setting this parameter to <xref keyref="true"/> to enable faster loading of the live stream. If the media resource is not a live stream but <codeph>isLiveSource=true</codeph> is set, it will not improve loading speed.</note><ph>Whether the media resource is a live stream:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: It is a live stream.</li>
+                            <li><xref keyref="false"/>: (default) It is not a live stream.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>provider</pt>
+                    <pd>Callback for providing data of custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider"/>.
+                        <note>If opening a custom media resource, pass in the value of <codeph>provider</codeph>; if opening a regular media resource, pass in the value of <codeph>url</codeph>. Agora recommends not passing values for both <codeph>url</codeph> and <codeph>provider</codeph> in a single call, as it may cause the call to fail.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

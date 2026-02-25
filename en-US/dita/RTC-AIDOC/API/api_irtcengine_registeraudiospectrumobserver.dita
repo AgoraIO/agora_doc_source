@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_registeraudiospectrumobserver">
+    <title><ph keyref="registerAudioSpectrumObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Registers an audio spectrum observer.</ph><ph id="shortdesc" props="android">Registers an audio spectrum observer.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerAudioSpectrumObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int registerAudioSpectrumObserver(agora::media::IAudioSpectrumObserver * observer) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int registerAudioSpectrumObserver(IAudioSpectrumObserver observer);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After successfully registering the audio spectrum observer and calling <xref keyref="enableAudioSpectrumMonitor"/>, the SDK triggers the callbacks implemented in <xref keyref="IAudioSpectrumObserver"/> at the set interval.</p>
+            <p props="android">After successfully registering the audio spectrum observer and calling <xref keyref="enableAudioSpectrumMonitor"/> to enable audio spectrum monitoring, the SDK triggers the callbacks you implement in <xref keyref="IAudioSpectrumObserver"/> based on the configured interval.</p>
+            <note props="cpp">You can call this method before or after joining a channel.</note>
+            <note props="android">You can call this method before or after joining a channel.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>observer</pt>
+                    <pd>The audio spectrum observer. See <xref keyref="IAudioSpectrumObserver"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>observer</pt>
+                    <pd>The audio spectrum observer. See <xref keyref="IAudioSpectrumObserver"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

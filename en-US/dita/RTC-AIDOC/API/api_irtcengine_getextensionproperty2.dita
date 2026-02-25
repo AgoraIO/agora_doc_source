@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getextensionproperty2">
+    <title><ph keyref="getExtensionProperty2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the properties of an extension.</ph><ph id="shortdesc" props="android">Gets detailed information of an extension component.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getExtensionProperty2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int getExtensionProperty(const char* provider, const char* extension, const ExtensionInfo&amp; extensionInfo, const char* key, char* value, int buf_len) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract String getExtensionProperty(String provider, String extension, String key, Constants.MediaSourceType sourceType);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details" props="android">
+            <title>Timing</title>
+            <p props="android">You can call this method before or after joining the channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>provider</pt>
+                    <pd>The name of the extension provider, for example, agora.io.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>extension</pt>
+                    <pd>The name of the extension, for example, <codeph>agora.beauty</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>extensionInfo</pt>
+                    <pd>Extension information. See <codeph>ExtensionInfo</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>key</pt>
+                    <pd>The key of the extension property.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>value</pt>
+                    <pd>Output parameter. The value corresponding to the extension property key.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>buf_len</pt>
+                    <pd>The maximum length of the extension property value (in JSON string format).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>provider</pt>
+                    <pd>The name of the extension component provider.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>extension</pt>
+                    <pd>The name of the extension component.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>key</pt>
+                    <pd>The key of the extension component.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>The source type of the extension component. See <xref keyref="MEDIA_SOURCE_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>On success, returns the information of the extension component.</li>
+                    <li>On failure, returns an empty string.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

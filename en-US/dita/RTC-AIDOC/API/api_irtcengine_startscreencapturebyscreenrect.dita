@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startscreencapturebyscreenrect">
+    <title><ph keyref="startScreenCaptureByScreenRect"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Captures the entire screen or a portion of it by specifying a screen region.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startScreenCaptureByScreenRect"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByScreenRect(const Rectangle&amp; screenRect, const Rectangle&amp; regionRect, const ScreenCaptureParameters&amp; captureParams) __deprecated = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.5.0. Use <xref keyref="startScreenCaptureByDisplayId"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">You can use this method to share the entire screen or a portion of it by specifying the screen region. You can call this method either before or after joining a channel:
+                <ul>
+                    <li>Call this method before joining the channel, then call <codeph>joinChannel</codeph> and set <codeph>publishScreenTrack</codeph> or <codeph>publishSecondaryScreenTrack</codeph> to <xref keyref="true"/> to start screen sharing.</li>
+                    <li>Call this method after joining the channel, then call <xref keyref="updateChannelMediaOptions"/> and set <codeph>publishScreenTrack</codeph> or <codeph>publishSecondaryScreenTrack</codeph> to <xref keyref="true"/> to start screen sharing.</li>
+                </ul>
+            </p>
+            <note props="cpp">This method is only applicable to Windows.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>screenRect</pt>
+                    <pd>The screen's position relative to the virtual screen. See <xref keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>regionRect</pt>
+                    <pd>(Optional) The region's position relative to the screen. See <xref keyref="Rectangle"/>. If this parameter is not set, the SDK shares the entire screen. If the specified region exceeds screen bounds, only the visible part is shared. If width or height is set to 0, the entire screen is shared.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>captureParams</pt>
+                    <pd>Encoding parameters for screen sharing. Default resolution is 1920 × 1080 (2,073,600 pixels). Agora calculates costs based on this parameter. See <xref keyref="ScreenCaptureParameters"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-8: Invalid screen sharing state. This may occur if you are already sharing another screen or window. Call <codeph>stopScreenCapture</codeph> to stop the current sharing and try again.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

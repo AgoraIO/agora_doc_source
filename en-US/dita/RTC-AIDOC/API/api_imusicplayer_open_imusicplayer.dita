@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusicplayer_open_imusicplayer">
+    <title><ph keyref="open_IMusicPlayer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Opens a music resource using the song code.</ph><ph id="shortdesc" props="android">Opens a music resource using the resource ID.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="open_IMusicPlayer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int open(int64_t songCode, int64_t startPos = 0) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int open(long songCode, long startPos);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Before calling this method, make sure the music resource to be played is already loaded. You can call <xref keyref="isPreloaded"/> to check whether the resource is preloaded, or listen for the <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> callback.
+After calling this method, the SDK triggers the <xref keyref="onPlayerSourceStateChanged"/> callback. Once you receive the <codeph>PLAYER_STATE_OPEN_COMPLETED</codeph> playback state, you can call the <xref keyref="play"/> method to play the media file.</p>
+            <p props="android">After calling this method, the <xref keyref="onPlayerSourceStateChanged"/> callback is triggered. When you receive the <codeph>OPEN_COMPLETED</codeph> state, you can call the <xref keyref="Play_Player"/> method to play the media file.</p>
+            <note props="cpp">If the music resource to be opened is protected by Digital Rights Management (DRM), you must use this method to open it. For resources not protected by DRM, you can choose to use this method or the <xref keyref="open_IMusicPlayer"/> method to open them.</note>
+            <note props="android">If the music resource to be opened is protected by digital rights management, you must use this method. For music resources not protected by digital rights management, you can use this method or the <codeph>open</codeph> method with parameters <codeph>String url, long startPos</codeph>.</note>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After this method is successfully called, the SDK triggers the <xref keyref="onPlayerSourceStateChanged"/> callback to report playback status.</p>
+            <p props="android">After calling this method, the <xref keyref="onPlayerSourceStateChanged"/> callback is triggered.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>songCode</pt>
+                    <pd>The song code of the music resource, used to identify the music.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>startPos</pt>
+                    <pd>The start position for playback, in milliseconds. The default value is 0.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>songCode</pt>
+                    <pd>The resource ID of the music resource, used to identify the music.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>startPos</pt>
+                    <pd>The starting playback position in milliseconds. (Default is 0)</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onremoteaudiostats">
+    <title><ph keyref="onRemoteAudioStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Reports the statistics of the remote audio stream during a call.</ph><ph id="shortdesc" props="rn">Reports the statistics of the audio stream sent by each remote user during a call.</ph><ph id="shortdesc" props="flutter">Callback with statistics of the remote audio stream during a call.</ph><ph id="shortdesc" props="unity">Callback for statistics of the remote audio stream during a call.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteAudioStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onRemoteAudioStats?(connection: RtcConnection, stats: RemoteAudioStats): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onRemoteAudioStats?(connection: RtcConnection, stats: RemoteAudioStats): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, RemoteAudioStats stats)?
+      onRemoteAudioStats;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStats(RtcConnection connection, RemoteAudioStats stats) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">The SDK triggers this callback every 2 seconds for each remote user/host sending an audio stream. If multiple remote users/hosts are sending audio streams, this callback is triggered multiple times every 2 seconds.</p>
+            <p props="rn">This callback is triggered every 2 seconds for each remote user/host who is sending an audio stream. If multiple remote users/hosts are sending audio streams, this callback is triggered multiple times every 2 seconds.</p>
+            <p props="flutter">This callback is triggered every 2 seconds for each remote user/host who is sending an audio stream. If multiple remote users/hosts are sending audio streams, this callback is triggered multiple times every 2 seconds.</p>
+            <p props="unity">This callback is triggered every 2 seconds for each remote user/host sending an audio stream. If multiple remote users/hosts are sending audio streams, this callback is triggered multiple times every 2 seconds.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>stats</pt>
+                    <pd>Received remote audio statistics. See <xref keyref="RemoteAudioStats"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>stats</pt>
+                    <pd>The statistics of the received remote audio stream. See <xref keyref="RemoteAudioStats"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>stats</pt>
+                    <pd>Received remote audio statistics. See <xref keyref="RemoteAudioStats"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>stats</pt>
+                    <pd>Received remote audio statistics. See <xref keyref="RemoteAudioStats"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

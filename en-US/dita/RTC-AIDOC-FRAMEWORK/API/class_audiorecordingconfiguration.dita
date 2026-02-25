@@ -1,0 +1,321 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audiorecordingconfiguration">
+    <title><ph keyref="AudioRecordingConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Recording configuration.</ph><ph id="shortdesc" props="rn">Recording configuration.</ph><ph id="shortdesc" props="flutter">Recording configuration.</ph><ph id="shortdesc" props="unity">Recording configuration.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class AudioRecordingConfiguration {
+
+  filePath?: string;
+
+  encode?: boolean;
+
+  sampleRate?: number;
+
+  fileRecordingType?: AudioFileRecordingType;
+
+  quality?: AudioRecordingQualityType;
+
+  recordingChannel?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class AudioRecordingConfiguration {
+
+  filePath?: string;
+
+  encode?: boolean;
+
+  sampleRate?: number;
+
+  fileRecordingType?: AudioFileRecordingType;
+
+  quality?: AudioRecordingQualityType;
+
+  recordingChannel?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class AudioRecordingConfiguration {
+  const AudioRecordingConfiguration(
+      {this.filePath,
+      this.encode,
+      this.sampleRate,
+      this.fileRecordingType,
+      this.quality,
+      this.recordingChannel});
+
+  @JsonKey(name: 'filePath')
+  final String? filePath;
+
+  @JsonKey(name: 'encode')
+  final bool? encode;
+
+  @JsonKey(name: 'sampleRate')
+  final int? sampleRate;
+
+  @JsonKey(name: 'fileRecordingType')
+  final AudioFileRecordingType? fileRecordingType;
+
+  @JsonKey(name: 'quality')
+  final AudioRecordingQualityType? quality;
+
+  @JsonKey(name: 'recordingChannel')
+  final int? recordingChannel;
+
+  factory AudioRecordingConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$AudioRecordingConfigurationFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioRecordingConfigurationToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class AudioRecordingConfiguration
+    {
+        public AudioRecordingConfiguration()
+        {
+            filePath = "";
+            encode = false;
+            sampleRate = 32000;
+            fileRecordingType = AUDIO_FILE_RECORDING_TYPE.AUDIO_FILE_RECORDING_MIXED;
+            quality = AUDIO_RECORDING_QUALITY_TYPE.AUDIO_RECORDING_QUALITY_LOW;
+            recordingChannel = 1;
+        }
+
+        public AudioRecordingConfiguration(string file_path, int sample_rate, AUDIO_RECORDING_QUALITY_TYPE quality_type, int channel)
+        {
+            this.filePath = file_path;
+            this.encode = false;
+            this.sampleRate = sample_rate;
+            this.fileRecordingType = AUDIO_FILE_RECORDING_TYPE.AUDIO_FILE_RECORDING_MIXED;
+            this.quality = quality_type;
+            recordingChannel = channel;
+        }
+
+        public AudioRecordingConfiguration(string file_path, bool enc, int sample_rate,
+                                        AUDIO_FILE_RECORDING_TYPE type, AUDIO_RECORDING_QUALITY_TYPE quality_type, int channel)
+        {
+            this.filePath = file_path;
+            this.encode = enc;
+            this.sampleRate = sample_rate;
+            this.fileRecordingType = type;
+            this.quality = quality_type;
+            this.recordingChannel = channel;
+        }
+
+        public string filePath { set; get; }
+        public bool encode { set; get; }
+        public int sampleRate { set; get; }
+        public AUDIO_FILE_RECORDING_TYPE fileRecordingType { set; get; }
+        public AUDIO_RECORDING_QUALITY_TYPE quality { set; get; }
+        public int recordingChannel { set; get; }
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>filePath</pt>
+                    <pd>Absolute path to save the recording file locally, including file name and extension. For example: <codeph>C:\music\audio.aac</codeph>.
+                        <note>Make sure the specified path exists and is writable.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>encode</pt>
+                    <pd>Whether to encode the audio data:
+                        <ul>
+                            <li><xref keyref="true"/>: Encode the audio data using AAC.</li>
+                            <li><xref keyref="false"/>: (default) Do not encode, save the raw recorded audio data.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sampleRate</pt>
+                    <pd>
+                        <note>If you set this parameter to 44100 or 48000, to ensure recording quality, it is recommended to record in WAV format or AAC files with <codeph>quality</codeph> set to AudioRecordingQualityMedium or AudioRecordingQualityHigh.</note><ph>Recording sample rate (Hz).</ph>
+                        <ul>
+                            <li>16000</li>
+                            <li>32000 (default)</li>
+                            <li>44100</li>
+                            <li>48000</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>fileRecordingType</pt>
+                    <pd>Recording content. See <xref keyref="AUDIO_FILE_RECORDING_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>quality</pt>
+                    <pd>Recording quality. See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.
+                        <note>This parameter applies to AAC files only.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>recordingChannel</pt>
+                    <pd>
+                        <note>The actual recorded audio channel depends on the captured audio channel:
+                            <ul>
+                                <li>If the captured audio is mono and <codeph>recordingChannel</codeph> is set to <codeph>2</codeph>, the recorded audio will be stereo with duplicated mono data, not true stereo.</li>
+                                <li>If the captured audio is stereo and <codeph>recordingChannel</codeph> is set to <codeph>1</codeph>, the recorded audio will be mono with mixed stereo data.</li>
+                            </ul><ph>                            Additionally, the integration scheme may affect the final recorded audio channel. If you want to record stereo, please [contact technical support](https://ticket.shengwang.cn/) for assistance.</ph></note><ph>Audio channel for recording. Supported values:</ph>
+                        <ul>
+                            <li>1: (default) Mono.</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>filePath</pt>
+                    <pd>The absolute path where the recording file is saved locally, including the file name and format. For example: <codeph>C:\music\audio.aac</codeph>.
+                        <note>Make sure the specified path exists and is writable.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encode</pt>
+                    <pd>Specifies whether to encode the audio data:
+                        <ul>
+                            <li><xref keyref="true"/>: Encode the audio data using AAC.</li>
+                            <li><xref keyref="false"/>: (Default) Do not encode the audio data, save the raw recorded audio data.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sampleRate</pt>
+                    <pd>
+                        <note>If you set this parameter to 44100 or 48000, to ensure recording quality, it is recommended to record WAV files or AAC files with <codeph>quality</codeph> set to AudioRecordingQualityMedium or AudioRecordingQualityHigh.</note><ph>Recording sample rate (Hz).</ph>
+                        <ul>
+                            <li>16000</li>
+                            <li>32000 (Default)</li>
+                            <li>44100</li>
+                            <li>48000</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>fileRecordingType</pt>
+                    <pd>Recording content. See <xref keyref="AUDIO_FILE_RECORDING_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>quality</pt>
+                    <pd>Recording quality. See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.
+                        <note>This parameter applies to AAC files only.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>recordingChannel</pt>
+                    <pd>
+                        <note>The actual recorded audio channel depends on the captured audio channel:
+                            <ul>
+                                <li>If the captured audio is mono and <codeph>recordingChannel</codeph> is set to <codeph>2</codeph>, the recorded audio will be stereo copied from mono data, not true stereo.</li>
+                                <li>If the captured audio is stereo and <codeph>recordingChannel</codeph> is set to <codeph>1</codeph>, the recorded audio will be mono mixed from stereo data.</li>
+                            </ul><ph>                            In addition, the integration solution may also affect the final recorded audio channel. If you want to record stereo, please [contact technical support](https://ticket.shengwang.cn/) for assistance.</ph></note><ph>Audio recording channel. The following values are supported:</ph>
+                        <ul>
+                            <li>1: (Default) Mono.</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>filePath</pt>
+                    <pd>The absolute path where the recording file is saved locally. Must include the file name and extension. For example: <codeph>C:\music\audio.aac</codeph>.
+                        <note>Make sure the specified path exists and is writable.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encode</pt>
+                    <pd>Specifies whether to encode the audio data:
+                        <ul>
+                            <li><xref keyref="true"/>: Encode the audio data using AAC.</li>
+                            <li><xref keyref="false"/>: (Default) Do not encode the audio data; save the raw recorded audio data directly.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sampleRate</pt>
+                    <pd>
+                        <note>If you set this parameter to 44100 or 48000, to ensure recording quality, it is recommended to record in WAV format or use AAC files with <codeph>quality</codeph> set to audioRecordingQualityMedium or audioRecordingQualityHigh.</note><ph>Recording sample rate (Hz).</ph>
+                        <ul>
+                            <li>16000</li>
+                            <li>32000 (default)</li>
+                            <li>44100</li>
+                            <li>48000</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>fileRecordingType</pt>
+                    <pd>Recording content. See <xref keyref="AUDIO_FILE_RECORDING_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>quality</pt>
+                    <pd>Recording quality. See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.
+                        <note>This parameter applies only to AAC files.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>recordingChannel</pt>
+                    <pd>
+                        <note>The actual recorded audio channel depends on the captured audio channel:
+                            <ul>
+                                <li>If the captured audio is mono and <codeph>recordingChannel</codeph> is set to <codeph>2</codeph>, the recorded audio will be stereo with duplicated mono data, not true stereo.</li>
+                                <li>If the captured audio is stereo and <codeph>recordingChannel</codeph> is set to <codeph>1</codeph>, the recorded audio will be mono with mixed stereo data.</li>
+                            </ul><ph>                            In addition, the integration scheme may affect the final recorded audio channel. If you want to record <codeph><ph keyref="true"/></codeph> stereo, please [contact technical support](https://ticket.shengwang.cn/) for assistance.</ph></note><ph>Number of audio channels to record. Supported values:</ph>
+                        <ul>
+                            <li>1: (Default) Mono.</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>The absolute path where the recording file is saved locally. Must include the file name and extension. For example: <codeph>C:\music\audio.aac</codeph>.
+                        <note>Make sure the path you specify exists and is writable.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encode</pt>
+                    <pd>Specifies whether to encode the audio data:
+                        <ul>
+                            <li><xref keyref="true"/>: Encode the audio data using AAC.</li>
+                            <li><xref keyref="false"/>: (Default) Do not encode the audio data. Save the raw recorded audio data directly.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sampleRate</pt>
+                    <pd>
+                        <note>If you set this parameter to 44100 or 48000, to ensure recording quality, we recommend recording a WAV file or an AAC file with <codeph>quality</codeph> set to <codeph>AUDIO_RECORDING_QUALITY_MEDIUM</codeph> or <codeph>AUDIO_RECORDING_QUALITY_HIGH</codeph>.</note><ph>Recording sample rate (Hz).</ph>
+                        <ul>
+                            <li>16000</li>
+                            <li>32000 (Default)</li>
+                            <li>44100</li>
+                            <li>48000</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>fileRecordingType</pt>
+                    <pd>Recording content. See <xref keyref="AUDIO_FILE_RECORDING_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>quality</pt>
+                    <pd>Recording quality. See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.
+                        <note>This parameter applies to AAC files only.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>recordingChannel</pt>
+                    <pd>
+                        <note>The actual recorded audio channel depends on the captured audio channel:
+                            <ul>
+                                <li>If the captured audio is mono and <codeph>recordingChannel</codeph> is set to <codeph>2</codeph>, the recorded audio is stereo created by duplicating the mono data, not true stereo.</li>
+                                <li>If the captured audio is stereo and <codeph>recordingChannel</codeph> is set to <codeph>1</codeph>, the recorded audio is mono created by mixing the stereo data.</li>
+                            </ul><ph>                            In addition, the integration solution may affect the final recorded audio channel. If you want to record <codeph><ph keyref="true"/></codeph> stereo, please [contact technical support](https://ticket.shengwang.cn/) for assistance.</ph></note><ph>Audio channel for recording. The following values are supported:</ph>
+                        <ul>
+                            <li>1: (Default) Mono.</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_streamfallbackoptions">
+    <title><ph keyref="STREAM_FALLBACK_OPTIONS"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Options for audio/video stream fallback when the network is poor.</ph><ph id="shortdesc" props="android">Audio and video stream fallback options under poor network conditions.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>STREAM_FALLBACK_OPTION_DISABLED</pt>
+                    <pd>(0): No fallback for audio/video stream; audio/video quality is not guaranteed.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW</pt>
+                    <pd>(1): Receive only low-quality (low resolution, low bitrate) video stream.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>STREAM_FALLBACK_OPTION_AUDIO_ONLY</pt>
+                    <pd>(2): When the network is poor, prioritize receiving the low-quality video stream; if the network is too poor to display video, fallback to audio-only.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_1</pt>
+                    <pd>(3): When the network is poor, if the receiver calls <xref keyref="setRemoteSubscribeFallbackOption"/> and layered video streams exist, receive the <codeph>VIDEO_STREAM_LAYER_1</codeph> stream. The fallback lower limit is determined by <codeph>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_X</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_2</pt>
+                    <pd>(4): When the network is poor, if the receiver calls <xref keyref="setRemoteSubscribeFallbackOption"/> and layered video streams exist, receive the <codeph>VIDEO_STREAM_LAYER_2</codeph> stream. The fallback lower limit is determined by <codeph>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_X</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_3</pt>
+                    <pd>(5): When the network is poor, if the receiver calls <xref keyref="setRemoteSubscribeFallbackOption"/> and layered video streams exist, receive the <codeph>VIDEO_STREAM_LAYER_3</codeph> stream. The fallback lower limit is determined by <codeph>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_X</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_4</pt>
+                    <pd>(6): When the network is poor, if the receiver calls <xref keyref="setRemoteSubscribeFallbackOption"/> and layered video streams exist, receive the <codeph>VIDEO_STREAM_LAYER_4</codeph> stream. The fallback lower limit is determined by <codeph>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_X</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_5</pt>
+                    <pd>(7): When the network is poor, if the receiver calls <xref keyref="setRemoteSubscribeFallbackOption"/> and layered video streams exist, receive the <codeph>VIDEO_STREAM_LAYER_5</codeph> stream. The fallback lower limit is determined by <codeph>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_X</codeph>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_6</pt>
+                    <pd>(8): When the network is poor, if the receiver calls <xref keyref="setRemoteSubscribeFallbackOption"/> and layered video streams exist, receive the <codeph>VIDEO_STREAM_LAYER_6</codeph> stream. The fallback lower limit is determined by <codeph>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_X</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STREAM_FALLBACK_OPTION_DISABLED</pt>
+                    <pd>(0): No fallback handling for audio and video streams, audio and video quality is not guaranteed.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW</pt>
+                    <pd>(1): Only receive low-quality (low resolution, low bitrate) video stream.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STREAM_FALLBACK_OPTION_AUDIO_ONLY</pt>
+                    <pd>(2): When the network is poor, prioritize receiving the video low stream; if the network is extremely poor and video cannot be displayed, fall back to audio-only stream.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_1</pt>
+                    <pd>(3): When the network is poor and multi-quality video streams are available, receive video stream from <codeph>VIDEO_STREAM_LAYER_1</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_2</pt>
+                    <pd>(4): When the network is poor and multi-quality video streams are available, receive video stream from <codeph>VIDEO_STREAM_LAYER_2</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_3</pt>
+                    <pd>(5): When the network is poor and multi-quality video streams are available, receive video stream from <codeph>VIDEO_STREAM_LAYER_3</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_4</pt>
+                    <pd>(6): When the network is poor and multi-quality video streams are available, receive video stream from <codeph>VIDEO_STREAM_LAYER_4</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_5</pt>
+                    <pd>(7): When the network is poor and multi-quality video streams are available, receive video stream from <codeph>VIDEO_STREAM_LAYER_5</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_6</pt>
+                    <pd>(8): When the network is poor and multi-quality video streams are available, receive video stream from <codeph>VIDEO_STREAM_LAYER_6</codeph>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_cameracapturerconfiguration">
+    <title><ph keyref="CameraCapturerConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Configures camera capture preferences.</ph><ph id="shortdesc" props="android">Used to set camera capture preferences.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct CameraCapturerConfiguration {
+#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS) || defined(__OHOS__)
+  Optional&lt;CAMERA_DIRECTION&gt; cameraDirection;
+  Optional&lt;CAMERA_FOCAL_LENGTH_TYPE&gt; cameraFocalLengthType;
+#else
+  Optional&lt;const char *&gt; deviceId;
+#endif
+#if defined(__ANDROID__)
+  Optional&lt;const char *&gt; cameraId;
+#endif
+  Optional&lt;bool&gt; followEncodeDimensionRatio;
+  VideoFormat format;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class CameraCapturerConfiguration {
+  public CAMERA_DIRECTION cameraDirection = null;
+  public String cameraId = null;
+  public CAMERA_FOCAL_LENGTH_TYPE cameraFocalLengthType = null;
+  public CaptureFormat captureFormat;
+  public Boolean followEncodeDimensionRatio = null;
+}</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>cameraDirection</pt>
+                    <pd>(Optional) Camera direction. See <xref keyref="CAMERA_DIRECTION"/>.
+                        <note>(Android and iOS only)</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cameraFocalLengthType</pt>
+                    <pd>(Optional) Camera focal length type. See <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>.
+                        <note>(Android and iOS only)
+                            <ul>
+                                <li>When setting the camera focal length type, only specifying the camera via <codeph>cameraDirection</codeph> is supported; specifying via <codeph>cameraId</codeph> is not supported.</li>
+                                <li>For iOS devices with multi-lens rear cameras (e.g., dual: wide and ultra-wide, or triple: wide, ultra-wide, and telephoto), you can achieve ultra-wide angle video capture in the following ways:
+                                    <ul>
+                                        <li>Method 1: Set this parameter to <codeph>CAMERA_FOCAL_LENGTH_ULTRA_WIDE</codeph> (2) (ultra-wide lens).</li>
+                                        <li>Method 2: Set this parameter to <codeph>CAMERA_FOCAL_LENGTH_DEFAULT</codeph> (0) (standard lens), then call <xref keyref="setCameraZoomFactor"/> to set the camera zoom factor to a value less than 1.0, with a minimum of 0.5.</li>
+                                    </ul>
+                                </li>
+                            </ul><ph>  The difference between the two methods is that Method 1 provides a fixed ultra-wide size, while Method 2 allows dynamic adjustment of the zoom factor.</ph></note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>deviceId</pt>
+                    <pd>Camera ID, with a maximum length of <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.
+                        <note>(Windows and macOS only)</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cameraId</pt>
+                    <pd>(Optional) Camera ID.
+                        <note>(Android only)
+                            <ul>
+                                <li>This parameter is mutually exclusive with <codeph>cameraDirection</codeph>; only one can be used.</li>
+                                <li>Using <codeph>cameraDirection</codeph> is simpler, as you only need to specify the camera direction (front or rear), and the SDK will retrieve and confirm the actual camera ID using Android native APIs.</li>
+                                <li>Using <codeph>cameraId</codeph> allows for more precise camera selection, suitable for multi-camera devices where <codeph>cameraDirection</codeph> cannot identify or access all cameras. In such cases, it is recommended to specify the target camera directly using <codeph>cameraId</codeph>.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>followEncodeDimensionRatio</pt>
+                    <pd>(Optional) Whether to follow the video aspect ratio set in <xref keyref="setVideoEncoderConfiguration"/>:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Follow the configured video aspect ratio. The SDK crops the captured video according to the configured aspect ratio and updates the local preview and video frames in <xref keyref="onCaptureVideoFrame"/> and <xref keyref="onPreEncodeVideoFrame"/> accordingly.</li>
+                            <li><xref keyref="false"/>: Do not follow the configured video aspect ratio. The SDK does not change the aspect ratio of the captured video frames.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>format</pt>
+                    <pd>(Optional) Format of the video frame. See <xref keyref="VideoFormat"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cameraDirection</pt>
+                    <pd>(Optional) Camera direction. See <xref keyref="CAMERA_DIRECTION"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cameraId</pt>
+                    <pd>(Optional) Camera ID. Default is the ID of the front camera. You can get the camera ID using the native Android API.
+                        <note>This parameter is mutually exclusive with <codeph>cameraDirection</codeph> for selecting the camera. You can choose either based on your needs.
+                            <ul>
+                                <li>Using <codeph>cameraDirection</codeph> is more convenient. You only need to specify the camera direction (front or rear), without explicitly specifying the camera ID; the SDK will retrieve and confirm the actual camera ID using the native Android API.</li>
+                                <li>Using <codeph>cameraId</codeph> allows more precise targeting of a specific camera. On devices with multiple cameras, if <codeph>cameraDirection</codeph> cannot identify or access all cameras, it is recommended to use <codeph>cameraId</codeph> to explicitly specify the desired camera ID.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cameraFocalLengthType</pt>
+                    <pd>(Optional) Camera focal length type. See <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>.
+                        <note>To set the camera focal length type, only <codeph>cameraDirection</codeph> is supported; <codeph>cameraId</codeph> is not supported.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>captureFormat</pt>
+                    <pd>(Optional) Format of the video frame. See <xref keyref="VideoFormat"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>followEncodeDimensionRatio</pt>
+                    <pd>(Optional) Whether to follow the aspect ratio set in <xref keyref="setVideoEncoderConfiguration"/>.
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Follow the configured video aspect ratio. The SDK crops the captured video based on the configured aspect ratio, and synchronously modifies the local preview, as well as the video frames in <xref keyref="onCaptureVideoFrame"/> and <xref keyref="onPreEncodeVideoFrame"/>.</li>
+                            <li><xref keyref="false"/>: Do not follow the configured video aspect ratio. The SDK does not modify the captured video frame aspect ratio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

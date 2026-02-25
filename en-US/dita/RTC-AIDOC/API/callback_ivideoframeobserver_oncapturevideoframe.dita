@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_ivideoframeobserver_oncapturevideoframe">
+    <title><ph keyref="onCaptureVideoFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for locally captured video frames.</ph><ph id="shortdesc" props="android">Callback triggered when a video frame is captured by the local device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onCaptureVideoFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual bool onCaptureVideoFrame(agora::rtc::VIDEO_SOURCE_TYPE sourceType, VideoFrame&amp; videoFrame) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">@CalledByNative boolean onCaptureVideoFrame(int sourceType, VideoFrame videoFrame);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">This callback is used to obtain raw video data captured by the local device for preprocessing. You can directly modify <codeph>videoFrame</codeph> in this callback and return <xref keyref="true"/> to send the modified video data to the SDK. To pass the preprocessed video data to the SDK, you must call <xref keyref="getVideoFrameProcessMode"/> to set the video processing mode to read-write (<codeph>PROCESS_MODE_READ_WRITE</codeph>).</p>
+            <p props="android">You can use this callback to obtain the raw video data captured by the local device and preprocess it as needed. After preprocessing, you can directly modify the <codeph>videoFrame</codeph> in this callback and return <xref keyref="true"/> to send the modified video data to the SDK. If you want to send the preprocessed video data to the SDK, you must first call <xref keyref="getVideoFrameProcessMode"/> to set the video processing mode to read-write (<codeph>PROCESS_MODE_READ_WRITE</codeph>).</p>
+            <note props="cpp">
+                <ul>
+                    <li>If the video data type is RGBA, the SDK does not support processing data with an alpha channel.</li>
+                    <li>It is recommended to ensure that the modified parameters in <codeph>videoFrame</codeph> match the actual data in the video frame buffer, otherwise rotation, stretching, or other abnormalities may occur in local preview or remote display.</li>
+                    <li>The default video format returned by this callback is YUV420. If you need another format, you can set the preferred format in the <xref keyref="getVideoFormatPreference"/> callback.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>If the obtained video data type is RGBA, the SDK does not support processing alpha channel data.</li>
+                    <li>It is recommended to ensure that the modified parameters in <codeph>videoFrame</codeph> match the actual video frame in the buffer. Otherwise, issues such as abnormal rotation or stretching may occur in local preview and remote video display.</li>
+                    <li>The default video format obtained through this callback may be <codeph>I420Buffer</codeph> or <codeph>TextureBuffer</codeph>. The texture format of <codeph>TextureBuffer</codeph> may be <codeph>OES</codeph> or <codeph>RGB</codeph>. If you need other video formats, you can set the desired data format in the return value of the <xref keyref="getVideoFormatPreference"/> callback.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">Triggered each time the SDK captures a video frame after successfully registering the video data observer.</p>
+            <p props="android">This callback is triggered each time the SDK captures a video frame after successfully registering the video data observer.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>sourceType</pt>
+                    <pd>Video source type. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>videoFrame</pt>
+                    <pd>Output parameter representing the video frame. See <xref keyref="VideoFrame"/>.
+                        <note>The default video frame data format obtained through this callback is as follows:
+                            <ul>
+                                <li>Android: I420 or RGB (<codeph>GLES20.GL_TEXTURE_2D</codeph>)</li>
+                                <li>iOS: I420 or <codeph>CVPixelBufferRef</codeph></li>
+                                <li>macOS: I420 or <codeph>CVPixelBufferRef</codeph></li>
+                                <li>Windows: YUV420</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>sourceType</pt>
+                    <pd>Video source type, including camera, screen, or media player. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>videoFrame</pt>
+                    <pd>Video frame.
+                        <note>The default format of the video frame data obtained through this callback is as follows:
+                            <ul>
+                                <li>Android: I420 or RGB (<codeph>GLES20.GL_TEXTURE_2D</codeph>)</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>When the video processing mode is <codeph>PROCESS_MODE_READ_ONLY</codeph>:
+                        <ul>
+                            <li><xref keyref="true"/>: Retain for further use.</li>
+                            <li><xref keyref="false"/>: Retain for further use.</li>
+                        </ul>
+                    </li>
+                    <li>When the video processing mode is <codeph>PROCESS_MODE_READ_WRITE</codeph>:
+                        <ul>
+                            <li><xref keyref="true"/>: Instructs the SDK to accept the video frame.</li>
+                            <li><xref keyref="false"/>: Instructs the SDK to discard the video frame.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>When the video processing mode is <codeph>PROCESS_MODE_READ_ONLY</codeph>:
+                        <ul>
+                            <li><xref keyref="true"/>: Retain for subsequent use.</li>
+                            <li><xref keyref="false"/>: Retain for subsequent use.</li>
+                        </ul>
+                    </li>
+                    <li>When the video processing mode is <codeph>PROCESS_MODE_READ_WRITE</codeph>:
+                        <ul>
+                            <li><xref keyref="true"/>: The SDK accepts the video frame.</li>
+                            <li><xref keyref="false"/>: The SDK discards the video frame.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

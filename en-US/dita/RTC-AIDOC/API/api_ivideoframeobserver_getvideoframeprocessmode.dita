@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ivideoframeobserver_getvideoframeprocessmode">
+    <title><ph keyref="getVideoFrameProcessMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="getVideoFrameProcessMode"/> callback. Triggered each time the SDK receives a video frame to set the video frame processing mode.</ph><ph id="shortdesc" props="android"><xref keyref="getVideoFrameProcessMode"/> callback. Triggered each time the SDK receives a video frame, prompting you to set the processing mode.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getVideoFrameProcessMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual VIDEO_FRAME_PROCESS_MODE getVideoFrameProcessMode() { return PROCESS_MODE_READ_ONLY; }</codeblock>
+                <codeblock props="android" outputclass="language-java">@CalledByNative int getVideoFrameProcessMode();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After successfully registering the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set your preferred processing mode through the return value of this callback.</p>
+            <p props="android">After successfully registering a video frame observer, the SDK triggers the <xref keyref="getVideoFrameProcessMode"/> callback each time it receives a video frame. You need to set the preferred processing mode in the return value of this callback.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Timing</title>
+            <p props="cpp">Triggered each time the SDK receives a video frame.</p>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">When the method call succeeds, returns a <xref keyref="VIDEO_FRAME_PROCESS_MODE"/> enum value indicating the video frame processing mode you set. See <xref keyref="VIDEO_FRAME_PROCESS_MODE"/>.</p>
+            <p props="android">Video frame processing mode:
+                <ul>
+                    <li><codeph>PROCESS_MODE_READ_ONLY</codeph> (0): (default) Read-only.</li>
+                    <li><codeph>PROCESS_MODE_READ_WRITE</codeph> (1): Read and write.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

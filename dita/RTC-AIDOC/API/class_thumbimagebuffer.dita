@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_thumbimagebuffer">
+    <title><ph keyref="ThumbImageBuffer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于设置缩略图或图标的图像内容。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ThumbImageBuffer {
+  const char* buffer;
+  unsigned int length;
+  unsigned int width;
+  unsigned int height;
+};</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
+            <p props="cpp">可在 <xref keyref="ScreenCaptureSourceInfo"/> 中设置。</p>
+            <note props="cpp">默认图像格式为 ARGB。如果需要使用其他格式，你需要自行转换图像。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>属性</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>buffer</pt>
+                    <pd>缩略图或图标的图像缓冲区。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>length</pt>
+                    <pd>图像缓冲区的长度，单位为字节。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>width</pt>
+                    <pd>缩略图或图标的实际宽度（单位：像素）。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>缩略图或图标的实际高度（单位：像素）。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

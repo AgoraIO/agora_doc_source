@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imusiccontentcentereventhandler_onmusiccollectionresult">
+    <title><ph keyref="onMusicCollectionResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for retrieving the music resource list.</ph><ph id="shortdesc" props="android">Callback for retrieving the music resource list.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onMusicCollectionResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onMusicCollectionResult(const char* requestId, agora_refptr&lt;MusicCollection&gt; result, MusicContentCenterStateReason reason) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">void onMusicCollectionResult(String requestId, int page, int pageSize, int total, Music[] list, int reason)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">When calling <xref keyref="getMusicCollectionByMusicChartId"/> to retrieve the music resource list of a chart, or calling <xref keyref="searchMusic"/> to search for music resources, the SDK triggers this callback and returns detailed information of the music resource list.</p>
+            <p props="android">This callback is triggered when calling <codeph>getMusicCollectionByMusicChartId</codeph> or <codeph>searchMusic</codeph>.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">Triggered after calling <xref keyref="getMusicCollectionByMusicChartId"/> or <xref keyref="searchMusic"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>requestId</pt>
+                    <pd>Request ID, used to identify the uniqueness of this request.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>result</pt>
+                    <pd>Detailed information of the music resource list. See <xref keyref="MusicCollection"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>reason</pt>
+                    <pd>Request status code. See <xref keyref="MusicContentCenterStateReason"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>requestId</pt>
+                    <pd>Request ID, used to uniquely identify the request.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>page</pt>
+                    <pd>Current page number, starting from 1.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>pageSize</pt>
+                    <pd>Maximum number of music resources returned per page, up to 50.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>total</pt>
+                    <pd>Total number of resources in the music resource list.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>list</pt>
+                    <pd>Detailed information of the music resource list. See <xref keyref="Music"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>reason</pt>
+                    <pd>Request status code from Agora Music Content Center:
+                        <ul>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_OK (0)</codeph>: Request successful.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_ERROR (1)</codeph>: General error, no specific attribution.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_GATEWAY (2)</codeph>: Gateway error. Possible reasons include:
+                                <ul>
+                                    <li>The current temporary token has expired. Please regenerate the temporary token.</li>
+                                    <li>The provided temporary token is invalid. Please ensure you are using an RTM token.</li>
+                                    <li>Network error. Please check your network connection.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_PERMISSION_AND_RESOURCE (3)</codeph>: Permission error or music resource not found. Please ensure your project has enabled access to Agora Music Content Center. If you have questions, contact technical support.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_INTERNAL_DATA_PARSE (4)</codeph>: Internal data parsing error. Please contact technical support.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_LOADING (5)</codeph>: Error occurred while loading music resource. Please contact technical support.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_MUSIC_DECRYPTION (6)</codeph>: Error occurred while decrypting music resource. Please contact technical support.</li>
+                            <li><codeph>MUSIC_CONTENT_CENTER_STATE_REASON_HTTP_INTERNAL (7)</codeph>: Internal HTTP error. Please try again later.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

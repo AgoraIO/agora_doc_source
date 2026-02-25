@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_playerobserver_onplayerinfoupdated_playerobserver">
+    <title><ph keyref="onPlayerInfoUpdated_PlayerObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when player or media stream information changes.</ph><ph id="shortdesc" props="android">Callback for player and media stream information changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlayerInfoUpdated_PlayerObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerInfoUpdated(const PlayerInfo *info) {}</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onPlayerInfoUpdated(PlayerInfo info)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">If you need to obtain player and media stream information, you must first call <xref keyref="RegisterObserver_Player"/> to register a player observer object. You can also directly call <xref keyref="GetInfo"/> to retrieve the information.</p>
+            <p props="android">You can call <xref keyref="RegisterObserver_Player"/> to register a player observer object to get player and media stream information, or directly call the <xref keyref="GetInfo"/> method to retrieve the information.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">When the player or media stream information changes, the SDK triggers this callback.</p>
+            <p props="android">This callback is triggered when player and media stream information changes.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>info</pt>
+                    <pd>Information about the player and media stream. See <xref keyref="RtePlayerInfo"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>info</pt>
+                    <pd>Information about the player and media stream. See <xref keyref="RtePlayerInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

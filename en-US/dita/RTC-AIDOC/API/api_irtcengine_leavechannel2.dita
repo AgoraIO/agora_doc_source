@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_leavechannel2">
+    <title><ph keyref="leaveChannel2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets channel options and leaves the channel.</ph><ph id="shortdesc" props="android">Sets channel options and leaves the channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="leaveChannel2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int leaveChannel(const LeaveChannelOptions&amp; options) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int leaveChannel(LeaveChannelOptions options);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After calling this method, the SDK stops audio and video interaction, leaves the current channel, and releases all resources related to the session. If you joined multiple channels using <xref keyref="joinChannelEx"/>, calling this method leaves all the channels you joined.</p>
+            <p props="android">After calling this method, the SDK stops all audio and video interactions, leaves the current channel, and releases all session-related resources. If you joined multiple channels using <xref keyref="joinChannelEx"/>, calling this method leaves all the channels you joined.</p>
+            <note props="cpp">If you call <xref keyref="release"/> immediately after this method, the SDK does not trigger the <xref keyref="onLeaveChannel"/> callback. This is an asynchronous method. When the method returns, it does not mean the user has left the channel.</note>
+            <note props="android">If you call <xref keyref="destroy1"/> immediately after this method, the SDK does not trigger the <xref keyref="onLeaveChannel"/> callback. This method is asynchronous. When it returns, it does not necessarily mean the user has left the channel.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method after joining the channel.</p>
+            <p props="android">Call this method after joining a channel.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After this method is successfully called, the SDK triggers the following callbacks:
+                <ul>
+                    <li>Local client: Triggers the <xref keyref="onLeaveChannel"/> callback.</li>
+                    <li>Remote client: Triggers the <xref keyref="onUserOffline"/> callback when the remote host leaves the channel.</li>
+                </ul>
+            </p>
+            <p props="android">After this method is successfully called, the following callbacks are triggered:
+                <ul>
+                    <li>Local client instance: Triggers the <xref keyref="onLeaveChannel"/> callback.</li>
+                    <li>Remote client instance: When the remote host leaves the channel, the <xref keyref="onUserOffline"/> callback is triggered.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>options</pt>
+                    <pd>Options for leaving the channel. See <xref keyref="LeaveChannelOptions"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>options</pt>
+                    <pd>Options for leaving the channel. See <xref keyref="LeaveChannelOptions"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

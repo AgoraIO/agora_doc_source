@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_idirectcdnstreamingeventhandler_ondirectcdnstreamingstats">
+    <title><ph keyref="onDirectCdnStreamingStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for reporting CDN streaming statistics.</ph><ph id="shortdesc" props="android">Callback for reporting CDN streaming statistics.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onDirectCdnStreamingStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onDirectCdnStreamingStats(const DirectCdnStreamingStats&amp; stats)</codeblock>
+                <codeblock props="android" outputclass="language-java">void onDirectCdnStreamingStats(DirectCdnStreamingStats stats)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">When the host pushes media streams directly to the CDN, the SDK triggers this callback once per second.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">When the host pushes media streams directly to the CDN, the SDK triggers this callback once per second.</p>
+            <p props="android">This callback is triggered once per second when the host pushes media streams directly to the CDN.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>stats</pt>
+                    <pd>Current CDN streaming statistics. See <xref keyref="DirectCdnStreamingStats"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>stats</pt>
+                    <pd>Current CDN streaming statistics. See <xref keyref="DirectCdnStreamingStats"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

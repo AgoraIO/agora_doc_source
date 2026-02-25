@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setdefaultaudioroutetospeakerphone">
+    <title><ph keyref="setDefaultAudioRouteToSpeakerphone"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">设置默认音频播放路由。</ph><ph id="shortdesc" props="ios">设置默认音频播放路由。</ph><ph id="shortdesc" props="android">设置默认音频播放路由。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDefaultAudioRouteToSpeakerphone"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)setDefaultAudioRouteToSpeakerphone:(BOOL)defaultToSpeaker NS_SWIFT_NAME(setDefaultAudioRouteToSpeakerphone(_:));</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setDefaultAudioRoutetoSpeakerphone(boolean defaultToSpeaker);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">大多数手机有两个音频路由：顶部的听筒和底部的扬声器。听筒音量较低，扬声器音量较高。你可以通过该方法设置在未连接外部音频设备时，默认使用听筒或扬声器播放音频。
+不同场景下系统的默认音频路由如下：
+                <ul>
+                    <li>语音通话：听筒。</li>
+                    <li>音频直播：扬声器。</li>
+                    <li>视频通话：扬声器。</li>
+                    <li>视频直播：扬声器。</li>
+                </ul>
+            </p>
+            <p props="ios">大多数手机有两个音频路由：顶部的听筒和底部的扬声器。听筒音量较低，扬声器音量较高。你可以通过该方法设置在未连接外部音频设备时，音频是通过听筒还是扬声器播放。
+在不同场景下，系统的默认音频路由如下：
+                <ul>
+                    <li>语音通话：听筒。</li>
+                    <li>音频直播：扬声器。</li>
+                    <li>视频通话：扬声器。</li>
+                    <li>视频直播：扬声器。</li>
+                </ul><ph>你可以调用该方法更改默认音频路由。</ph></p>
+            <p props="android">大多数手机有两个音频路由：顶部的听筒和底部的扬声器。你可以通过调用该方法设置默认音频路由，在未连接外部音频设备时决定音频是通过听筒还是扬声器播放。
+在不同场景下，系统的默认音频路由如下：
+                <ul>
+                    <li>语音通话：听筒。</li>
+                    <li>音频直播：扬声器。</li>
+                    <li>视频通话：扬声器。</li>
+                    <li>视频直播：扬声器。</li>
+                </ul>
+            </p>
+            <note props="cpp">该方法仅适用于 Android 和 iOS 平台。</note>
+            <note props="ios">调用此方法设置默认音频路由后，系统的实际音频路由会随着外部音频设备（有线耳机或蓝牙耳机）的连接而变化。</note>
+            <note props="android">调用该方法设置默认音频路由后，系统的实际音频路由会根据外部音频设备（如有线耳机或蓝牙耳机）的连接情况自动切换。</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp ios">
+            <title>调用时机</title>
+            <p props="cpp">在加入频道前调用此方法。如果需要在加入频道后更改音频路由，请调用 <xref keyref="setEnableSpeakerphone"/>。</p>
+            <p props="ios">该方法需要在加入频道前调用。</p>
+            <p props="android">请在加入频道前调用该方法。如果需要在加入频道后更改音频路由，请调用 <xref keyref="setEnableSpeakerphone"/>。</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="cpp">
+            <title>相关回调</title>
+            <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onAudioRoutingChanged"/> 回调报告当前的音频路由。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>defaultToSpeaker</pt>
+                    <pd>是否将扬声器设置为默认音频路由：
+                        <ul>
+                            <li><xref keyref="true"/>：将扬声器设置为默认音频路由。</li>
+                            <li><xref keyref="false"/>：将听筒设置为默认音频路由。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>defaultToSpeaker</pt>
+                    <pd>是否将扬声器设置为默认音频路由：
+                        <ul>
+                            <li><xref keyref="true"/>：将扬声器设置为默认音频路由。</li>
+                            <li><xref keyref="false"/>：将听筒设置为默认音频路由。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>defaultToSpeaker</pt>
+                    <pd>是否将扬声器设置为默认音频路由：
+                        <ul>
+                            <li><xref keyref="true"/>：将扬声器设置为默认音频路由。</li>
+                            <li><xref keyref="false"/>：将听筒设置为默认音频路由。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp ios">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0：方法调用成功。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

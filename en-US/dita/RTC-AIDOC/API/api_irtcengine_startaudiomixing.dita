@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startaudiomixing">
+    <title><ph keyref="startAudioMixing"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts playing a music file.</ph><ph id="shortdesc" props="android">Starts playing a music file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startAudioMixing"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioMixing(const char* filePath, bool loopback, int cycle) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int startAudioMixing(String filePath, boolean loopback, int cycle);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use <codeph>startAudioMixing(const char* filePath, bool loopback, int cycle, int startPos)</codeph> instead.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>This method is deprecated. Use <xref keyref="startAudioMixing2"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">If the local music file does not exist, the SDK does not support the file format, or the music file URL is not accessible, the SDK returns <codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph>.</p>
+            <p props="android">This method supports playing URI files that start with <codeph>content://</codeph>. For supported audio file formats, see the formats supported by the Agora RTC SDK. If the local music file does not exist, the SDK does not support the file format, or the music file URL is inaccessible, the SDK reports <codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph>.</p>
+            <note props="cpp">
+                <ul>
+                    <li>If you use this method to play short sound effect files, playback may fail. It is recommended to use <xref keyref="playEffect3"/> for such files.</li>
+                    <li>If you need to call this method multiple times, ensure that the interval between calls is greater than 500 ms.</li>
+                    <li>On Android, note the following:
+                        <ul>
+                            <li>Before using this method, make sure the Android device version is v4.2 or higher and the API level is v16 or higher.</li>
+                            <li>If you need to play online music files, avoid using redirected URLs. Some Android devices may not be able to open redirected URLs.</li>
+                            <li>If you call this method on an emulator, ensure the music file is located in the <codeph>/sdcard/</codeph> directory and is in MP3 format.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>If you use this method to play short sound effect files, playback may fail. It is recommended to use <codeph>playEffect</codeph> for such files.</li>
+                    <li>If you need to call this method multiple times, ensure that the interval between each call is greater than 500 ms.</li>
+                    <li>On Android, note the following:
+                        <ul>
+                            <li>The Android device must be version v4.2 or later, and the API version must be v16 or later.</li>
+                            <li>If you need to play online music files, it is not recommended to use redirected URLs. Some Android devices may not be able to open redirected URLs.</li>
+                            <li>If you call this method on an emulator, ensure that the music file is located in the <codeph>/sdcard/</codeph> directory and is in MP3 format.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You can call this method before or after joining a channel.</p>
+            <p props="android">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After successfully calling this method, the SDK triggers the <xref keyref="onAudioMixingStateChanged"/> (<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>) callback. When the audio mixing file finishes playing, the SDK triggers the <xref keyref="onAudioMixingStateChanged"/> (<codeph>AUDIO_MIXING_STATE_STOPPED</codeph>) callback on the local client.</p>
+            <p props="android">After successfully calling this method, the <xref keyref="onAudioMixingStateChanged"/> (<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>) callback is triggered. When the audio mixing file finishes playing, the SDK triggers the <xref keyref="onAudioMixingStateChanged"/> (<codeph>AUDIO_MIXING_STATE_STOPPED</codeph>) callback on the local client.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>filePath</pt>
+                    <pd>File path. Supports both URL and absolute path of local files, including the file name and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP.
+                        <note>If you have preloaded the sound effect file into memory using <xref keyref="preloadEffect"/>, make sure this parameter matches the <codeph>filePath</codeph> parameter in <xref keyref="preloadEffect"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>loopback</pt>
+                    <pd>Whether to play the music file only on the local client:
+                        <ul>
+                            <li><xref keyref="true"/>: Play locally only; only the local user hears the music.</li>
+                            <li><xref keyref="false"/>: Publish the music to remote; both remote and local users hear the music.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cycle</pt>
+                    <pd>Number of times the music file is played:
+                        <ul>
+                            <li>&gt;0: Play the specified number of times. For example, 1 means play once.</li>
+                            <li>-1: Loop indefinitely.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>filePath</pt>
+                    <pd>
+                        <note>If you have preloaded the sound effect into memory using <codeph>preloadEffect</codeph>, make sure the value of this parameter is the same as the <codeph>filePath</codeph> parameter in <codeph>preloadEffect</codeph>.</note><ph>The file path. Supports the following types:</ph>
+                        <ul>
+                            <li>URI addresses that start with <codeph>content://</codeph></li>
+                            <li>Paths that start with <codeph>/assets/</codeph></li>
+                            <li>URLs</li>
+                            <li>Absolute path of local files, including the file name and extension</li>
+                        </ul><ph>Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP.</ph></pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>loopback</pt>
+                    <pd>Whether to play the music file only on the local client:
+                        <ul>
+                            <li><xref keyref="true"/>: Local playback only. Only the local user can hear the music.</li>
+                            <li><xref keyref="false"/>: Publish to remote. Remote users can also hear the music.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cycle</pt>
+                    <pd>The number of times the music file is played:
+                        <ul>
+                            <li>&gt; 0: Play the specified number of times. For example, 1 means play once.</li>
+                            <li>-1: Play in an infinite loop.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-1: General error (no specific reason).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-3: SDK not ready:
+                                <ul>
+                                    <li>Audio module not enabled.</li>
+                                    <li>Program not completed.</li>
+                                    <li><xref keyref="IRtcEngine"/> initialization failed. Please reinitialize <xref keyref="IRtcEngine"/>.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-1: A general error occurs (no specific reason).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-3: SDK not ready:
+                                <ul>
+                                    <li>The audio module is not enabled.</li>
+                                    <li>The process is not completed.</li>
+                                    <li><xref keyref="IRtcEngine"/> initialization failed. Please reinitialize <xref keyref="IRtcEngine"/>.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

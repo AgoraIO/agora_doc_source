@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ibasespatialaudioengine_mutelocalaudiostream_ibasespatialaudioengine">
+    <title><ph keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">取消或恢复发布本地音频流。</ph><ph id="shortdesc" props="rn">取消或恢复发布本地音频流。</ph><ph id="shortdesc" props="flutter">取消或恢复发布本地音频流。</ph><ph id="shortdesc" props="unity">取消或恢复发布本地音频流。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract muteLocalAudioStream(mute: boolean): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract muteLocalAudioStream(mute: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteLocalAudioStream(bool mute);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int MuteLocalAudioStream(bool mute);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">
+                <ul>
+                    <li>该方法不影响音频采集状态，因为没有禁用音频采集设备。</li>
+                    <li>该方法需要在 <codeph>joinChannel1</codeph> 或 <xref keyref="joinChannel2"/> 后调用。</li>
+                    <li>在使用空间音频时，如需设置是否发布本地音频流，建议调用该方法替代 <xref keyref="IRtcEngine"/> 的 <xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/> 方法。</li>
+                    <li>成功调用该方法后，远端会触发 <xref keyref="onUserMuteAudio"/> 回调和 <xref keyref="onRemoteAudioStateChanged"/> 回调。</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>该方法不影响音频采集状态，因为没有禁用音频采集设备。</li>
+                    <li>该方法需要在 <codeph>joinChannel1</codeph> 或 <xref keyref="joinChannel2"/> 后调用。</li>
+                    <li>在使用空间音频时，如需设置是否发布本地音频流，建议调用该方法替代 <xref keyref="IRtcEngine"/> 的 <xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/> 方法。</li>
+                    <li>成功调用该方法后，远端会触发 <xref keyref="onUserMuteAudio"/> 回调和 <xref keyref="onRemoteAudioStateChanged"/> 回调。</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>该方法不影响音频采集状态，因为没有禁用音频采集设备。</li>
+                    <li>该方法需要在 <codeph>joinChannel1</codeph> 或 <xref keyref="joinChannel2"/> 后调用。</li>
+                    <li>在使用空间音频时，如需设置是否发布本地音频流，建议调用该方法替代 <xref keyref="IRtcEngine"/> 的 <xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/> 方法。</li>
+                    <li>成功调用该方法后，远端会触发 <xref keyref="onUserMuteAudio"/> 回调和 <xref keyref="onRemoteAudioStateChanged"/> 回调。</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>该方法不影响音频采集状态，因为没有禁用音频采集设备。</li>
+                    <li>该方法需要在 <xref keyref="joinChannel1"/> 或 <xref keyref="joinChannel2"/> 后调用。</li>
+                    <li>在使用空间音频时，如需设置是否发布本地音频流，建议调用该方法替代 <xref keyref="IRtcEngine"/> 的 <xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/> 方法。</li>
+                    <li>成功调用该方法后，远端会触发 <xref keyref="onUserMuteAudio"/> 回调和 <xref keyref="onRemoteAudioStateChanged"/> 回调。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>mute</pt>
+                    <pd>是否取消发布本地音频流。
+                        <ul>
+                            <li><xref keyref="true"/>: 取消发布本地音频流。</li>
+                            <li><xref keyref="false"/>: 发布本地音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mute</pt>
+                    <pd>是否取消发布本地音频流。
+                        <ul>
+                            <li><xref keyref="true"/>: 取消发布本地音频流。</li>
+                            <li><xref keyref="false"/>: 发布本地音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mute</pt>
+                    <pd>是否取消发布本地音频流。
+                        <ul>
+                            <li><xref keyref="true"/>: 取消发布本地音频流。</li>
+                            <li><xref keyref="false"/>: 发布本地音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mute</pt>
+                    <pd>是否取消发布本地音频流。
+                        <ul>
+                            <li><xref keyref="true"/>: 取消发布本地音频流。</li>
+                            <li><xref keyref="false"/>: 发布本地音频流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

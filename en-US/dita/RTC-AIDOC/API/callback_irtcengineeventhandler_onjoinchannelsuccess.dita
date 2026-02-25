@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onjoinchannelsuccess">
+    <title><ph keyref="onJoinChannelSuccess"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback when the local user successfully joins a channel.</ph><ph id="shortdesc" props="android">Callback triggered when a remote user successfully joins a channel.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onJoinChannelSuccess"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onJoinChannelSuccess(const char* channel, uid_t uid, int elapsed)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onJoinChannelSuccess(String channel, int uid, int elapsed)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">This callback is triggered when you call <codeph>joinChannel</codeph>, <codeph>joinChannelWithUserAccount</codeph>, <xref keyref="joinChannelEx"/>, or <xref keyref="joinChannelWithUserAccountEx_IRtcEngine"/> to join a channel.</p>
+            <p props="android">This callback is triggered when you call <codeph>joinChannel</codeph>, <codeph>joinChannelWithUserAccount</codeph>, <xref keyref="joinChannelEx"/>, or <xref keyref="joinChannelWithUserAccountEx"/> to join a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>channel</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>User ID of the local user.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (ms) from calling <codeph>joinChannel</codeph>, <codeph>joinChannelWithUserAccount</codeph>, <xref keyref="joinChannelEx"/>, or <xref keyref="joinChannelWithUserAccountEx_IRtcEngine"/> to the callback being triggered.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>channel</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>User ID of the user who joined the channel.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (in milliseconds) from the local user calling <codeph>joinChannel</codeph> to the SDK triggering this callback.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

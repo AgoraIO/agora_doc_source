@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ivideoeffectobject_addorupdatevideoeffect">
+    <title><ph keyref="addOrUpdateVideoEffect"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Adds or updates the effect for the specified video effect node and template.</ph><ph id="shortdesc" props="rn">Adds or updates the effect of the specified video effect node and template.</ph><ph id="shortdesc" props="flutter">Adds or updates the effect for the specified video effect node and template.</ph><ph id="shortdesc" props="unity">Adds or updates the effect for the specified video effect node and template.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addOrUpdateVideoEffect"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract addOrUpdateVideoEffect(nodeId: number, templateName: string): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract addOrUpdateVideoEffect(nodeId: number, templateName: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; addOrUpdateVideoEffect(
+      {required int nodeId, required String templateName});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int AddOrUpdateVideoEffect(uint nodeId, string templateName);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Since</dt>
+                    <dd>Added since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.2.</dd>
+                </dlentry>
+            </dl>
+            <note props="electron">Priority rules:
+                <ul>
+                    <li>Style makeup nodes take precedence over filter effect nodes.</li>
+                    <li>To apply filter effects, you must first remove the style makeup effect node.</li>
+                </ul>
+            </note>
+            <note props="rn">Priority rules:
+                <ul>
+                    <li>Style makeup nodes take precedence over filter effect nodes.</li>
+                    <li>To apply filter effects, you must first remove the style makeup effect node.</li>
+                </ul>
+            </note>
+            <note props="flutter">Priority rules:
+                <ul>
+                    <li>Style makeup nodes take precedence over filter effect nodes.</li>
+                    <li>To apply filter effects, you must first remove the style makeup effect node.</li>
+                </ul>
+            </note>
+            <note props="unity">Priority rules:
+                <ul>
+                    <li>Style makeup nodes take precedence over filter effect nodes.</li>
+                    <li>To apply filter effects, you must first remove the style makeup effect node.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>nodeId</pt>
+                    <pd>The unique identifier or combination of identifiers for the video effect node. See <xref keyref="VIDEO_EFFECT_NODE_ID"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>templateName</pt>
+                    <pd>Name of the effect template. If set to <codeph>NULL</codeph> or an empty string, the SDK loads the default configuration from the resource package.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>nodeId</pt>
+                    <pd>The unique identifier or combination of identifiers of the video effect node. See <xref keyref="VIDEO_EFFECT_NODE_ID"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>templateName</pt>
+                    <pd>The name of the effect template. If set to <codeph>NULL</codeph> or an empty string, the SDK loads the default configuration from the resource package.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>nodeId</pt>
+                    <pd>The unique identifier or combination of identifiers for the video effect node. See <xref keyref="VIDEO_EFFECT_NODE_ID"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>templateName</pt>
+                    <pd>Name of the effect template. If set to <codeph>NULL</codeph> or an empty string, the SDK loads the default configuration from the resource package.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>nodeId</pt>
+                    <pd>Unique identifier or combination of identifiers for the video effect node. See <xref keyref="VIDEO_EFFECT_NODE_ID"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>templateName</pt>
+                    <pd>Name of the effect template. If set to <codeph>NULL</codeph> or an empty string, the SDK loads the default configuration from the resource package.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call fails.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

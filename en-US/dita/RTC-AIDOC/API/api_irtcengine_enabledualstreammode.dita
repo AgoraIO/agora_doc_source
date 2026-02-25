@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enabledualstreammode">
+    <title><ph keyref="enableDualStreamMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables dual-stream mode on the sender side.</ph><ph id="shortdesc" props="android">Enables or disables dual-stream mode at the sender.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableDualStreamMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int enableDualStreamMode(bool enabled) __deprecated = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int enableDualStreamMode(boolean enabled)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="cpp">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.2.0. Use <codeph>setDualStreamMode</codeph> instead.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.2.0. Use <codeph>setDualStreamMode</codeph> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="cpp">Dual-stream mode consists of a high-quality (high bitrate, high resolution) and a low-quality (low bitrate, low resolution) video stream.
+After enabling dual-stream mode, you can call <xref keyref="setRemoteVideoStreamType"/> to select the high or low-quality stream on the receiver side.</p>
+            <p props="android">After enabling dual-stream mode, you can call the <codeph>setRemoteVideoStreamType</codeph> method to choose to receive either the high-quality or low-quality video stream on the subscriber's side.
+Dual-stream consists of the following two types of video streams:
+                <ul>
+                    <li>High-quality stream: High bitrate, high resolution.</li>
+                    <li>Low-quality stream: Low bitrate, low resolution.</li>
+                </ul>
+            </p>
+            <note props="cpp">
+                <ul>
+                    <li>This method applies to all types of video streams on the sender side, including but not limited to camera capture, screen sharing, and custom video streams.</li>
+                    <li>To enable dual-stream mode in multi-channel scenarios, use <xref keyref="enableDualStreamModeEx"/>.</li>
+                    <li>You can call this method before or after joining a channel.</li>
+                </ul>
+            </note>
+            <note props="android">
+                <ul>
+                    <li>This method applies to all types of video streams on the sender side, including but not limited to camera-captured video, screen sharing, and custom captured video streams.</li>
+                    <li>If you need to enable dual-stream mode in a multi-channel scenario, you can call the <xref keyref="enableDualStreamModeEx"/> method.</li>
+                    <li>You can call this method either before or after joining a channel.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable dual-stream mode:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable dual-stream mode.</li>
+                            <li><xref keyref="false"/>: (default) Disable dual-stream mode.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable dual-stream mode:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable dual-stream mode.</li>
+                            <li><xref keyref="false"/>: (Default) Disable dual-stream mode.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

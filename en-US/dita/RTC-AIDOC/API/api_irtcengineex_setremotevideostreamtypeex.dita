@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_setremotevideostreamtypeex">
+    <title><ph keyref="setRemoteVideoStreamTypeEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the type of video stream to subscribe to.</ph><ph id="shortdesc" props="android">Sets the type of video stream to subscribe to.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteVideoStreamTypeEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteVideoStreamTypeEx(uid_t uid, VIDEO_STREAM_TYPE streamType, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int setRemoteVideoStreamTypeEx(int uid, Constants.VideoStreamType streamType, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Depending on the sender's default behavior and the settings when calling <xref keyref="setDualStreamModeEx"/>, the receiver can call this method in the following scenarios:
+                <ul>
+                    <li>By default, the SDK enables video low stream adaptive mode (<codeph>AUTO_SIMULCAST_STREAM</codeph>) on the sender, meaning only high stream is sent. In this case, only receivers with broadcaster role can call this method to request low stream. Once the sender receives the request, it automatically starts sending low stream. Then, all users in the channel can call this method to switch to low stream subscription mode.</li>
+                    <li>If the sender calls <codeph>setDualStreamMode</codeph> and sets <codeph>mode</codeph> to <codeph>DISABLE_SIMULCAST_STREAM</codeph> (never send low stream), this method call is invalid.</li>
+                    <li>If the sender calls <codeph>setDualStreamMode</codeph> and sets <codeph>mode</codeph> to <codeph>ENABLE_SIMULCAST_STREAM</codeph> (always send low stream), both broadcaster and audience roles on the receiver can call this method to switch to low stream subscription mode.</li>
+                </ul><ph>The SDK dynamically adjusts the video stream size based on the video window size to save bandwidth and computing resources. The default aspect ratio of the low stream is the same as the high stream. The system automatically allocates resolution, frame rate, and bitrate for the low stream based on the aspect ratio of the high stream.</ph></p>
+            <p props="android">Depending on the sender's default behavior and the settings when calling <xref keyref="setDualStreamModeEx"/>, the receiving end uses this method in the following scenarios:
+                <ul>
+                    <li>By default, the SDK enables adaptive small video stream mode (<codeph>AUTO_SIMULCAST_STREAM</codeph>) on the sender, which sends only the high-quality video stream. In this case, only receivers with the Host role can call this method to request the small video stream. Once the sender receives the request, it automatically starts sending the small video stream. At this point, all users in the channel can call this method to switch to the small stream subscription mode.</li>
+                    <li>If the sender calls <codeph>setDualStreamMode</codeph> and sets <codeph>mode</codeph> to <codeph>DISABLE_SIMULCAST_STREAM</codeph> (never send small video stream), calling this method has no effect.</li>
+                    <li>If the sender calls <codeph>setDualStreamMode</codeph> and sets <codeph>mode</codeph> to <codeph>ENABLE_SIMULCAST_STREAM</codeph> (always send small video stream), both Host and Audience roles on the receiving end can call this method to switch to the small stream subscription mode.</li>
+                </ul><ph>The SDK dynamically adjusts the resolution of the video stream based on the size of the video window to save bandwidth and computing resources. The default aspect ratio of the small video stream is the same as the large video stream. The system automatically allocates the resolution, frame rate, and bitrate of the small video stream based on the current aspect ratio of the large video stream.</ph></p>
+            <note props="cpp">If the sender has called <xref keyref="setDualStreamModeEx"/> and set <codeph>mode</codeph> to <codeph>DISABLE_SIMULCAST_STREAM</codeph>, this method call is invalid. You should call <xref keyref="setDualStreamModeEx"/> again on the sender and adjust the settings.</note>
+            <note props="android">If the sender has already called <xref keyref="setDualStreamModeEx"/> and set <codeph>mode</codeph> to <codeph>DISABLE_SIMULCAST_STREAM</codeph>, calling this method has no effect. You need to call <xref keyref="setDualStreamModeEx"/> again on the sender and adjust the settings.</note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method applies to multi-channel scenarios.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>uid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>streamType</pt>
+                    <pd>Video stream type. See <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>streamType</pt>
+                    <pd>Video stream type. See <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

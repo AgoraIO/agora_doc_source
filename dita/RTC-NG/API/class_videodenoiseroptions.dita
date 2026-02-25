@@ -50,32 +50,21 @@
 };
 </codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
-struct FVideoDenoiserOptions
+struct FUABT_VideoDenoiserOptions
 {
 	GENERATED_BODY()
+
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoDenoiserOptions&quot;)
-	EVIDEO_DENOISER_MODE mode = EVIDEO_DENOISER_MODE::VIDEO_DENOISER_AUTO;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoDenoiserOptions&quot;)
-	EVIDEO_DENOISER_LEVEL level = EVIDEO_DENOISER_LEVEL::VIDEO_DENOISER_LEVEL_HIGH_QUALITY;
-	FVideoDenoiserOptions(){}
-	FVideoDenoiserOptions(const agora::rtc::VideoDenoiserOptions &amp; AgoraData){
-		mode = static_cast&lt;EVIDEO_DENOISER_MODE&gt;(AgoraData.mode);
-		level = static_cast&lt;EVIDEO_DENOISER_LEVEL&gt;(AgoraData.level);
-	}
-	agora::rtc::VideoDenoiserOptions CreateAgoraData() const {
-		agora::rtc::VideoDenoiserOptions AgoraData;
-		AgoraData.mode = static_cast&lt;agora::rtc::VideoDenoiserOptions::VIDEO_DENOISER_MODE&gt;(mode);
-		AgoraData.level = static_cast&lt;agora::rtc::VideoDenoiserOptions::VIDEO_DENOISER_LEVEL&gt;(level);
-		return AgoraData;
-	}
-	void FreeAgoraData(agora::rtc::VideoDenoiserOptions&amp; AgoraData) const {
-	}
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_VIDEO_DENOISER_MODE mode = EUABT_VIDEO_DENOISER_MODE::VIDEO_DENOISER_AUTO;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	EUABT_VIDEO_DENOISER_LEVEL  level = EUABT_VIDEO_DENOISER_LEVEL ::VIDEO_DENOISER_LEVEL_HIGH_QUALITY;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoDenoiserOptions {
-  
+
   mode?: VideoDenoiserMode;
-  
+
   level?: VideoDenoiserLevel;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class VideoDenoiserOptions
@@ -96,9 +85,9 @@ public:
         }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoDenoiserOptions {
-  
+
   mode?: VideoDenoiserMode;
-  
+
   level?: VideoDenoiserLevel;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class VideoDenoiserOptions {
@@ -110,28 +99,29 @@ public:
   @JsonKey(name: 'level')
   final VideoDenoiserLevel? level;
 
-  factory VideoDenoiserOptions.fromJson(Map&amp;lt;String, dynamic> json) =>
+  factory VideoDenoiserOptions.fromJson(Map&lt;String, dynamic> json) =>
       _$VideoDenoiserOptionsFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$VideoDenoiserOptionsToJson(this);
-}</codeblock>            
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
             <plentry>
-                <pt>level</pt>
+                <pt props="cpp apple unity rn electron flutter cs bp unreal">level</pt>
+                <pt props="android hmos">denoiserLevel</pt>
                 <pd><ph>视频降噪等级。</ph><ph props="apple cpp unreal bp">详见 <xref keyref="VIDEO_DENOISER_LEVEL" />。</ph>
                   <ul props="android hmos">
                     <li><ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" />(0):（默认）优先画质的暗光增强，会处理视频图像的亮度、细节、噪声，消耗的性能适中，处理速度适中，综合画质最优。</li>
                     <li><ph keyref="VIDEO_DENOISER_LEVEL_FAST" />(1)：优先性能的视频降噪。是在性能消耗和视频降噪效果中侧重于节省性能的等级。性能消耗较少，视频降噪速度较快。为避免处理后的视频有明显的拖影效果，建议你在摄像头固定的情况下使用该设置。</li>
-                    <li><ph keyref="VIDEO_DENOISER_LEVEL_STRENGTH" />(2)：强效的视频降噪。是在性能消耗和视频降噪效果中侧重于视频降噪效果的等级。性能消耗较多，视频降噪速度较慢，视频降噪效果较好。如果 <parmname keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY" /> 不能满足你的视频降噪需求，你可以使用该设置。</li>
                   </ul>
                 </pd>
             </plentry>
             <plentry>
-                <pt>mode</pt>
+                <pt props="cpp apple unity rn electron flutter cs bp unreal">mode</pt>
+                <pt props="android hmos">denoiserMode</pt>
                 <pd><ph>视频降噪模式。</ph><ph props="apple cpp unreal bp">详见 <xref keyref="VIDEO_DENOISER_MODE" />。</ph>
                   <ul props="android hmos">
                     <li><ph keyref="VIDEO_DENOISER_AUTO" />(0):（默认）自动模式。SDK 会根据环境光亮度自动开启或关闭视频降噪功能。</li>

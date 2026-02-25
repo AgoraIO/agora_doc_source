@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_setexternalaudiosink_imediaengine">
+    <title><ph keyref="setExternalAudioSink_IMediaEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the external audio renderer.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalAudioSink_IMediaEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setExternalAudioSink(bool enabled, int sampleRate, int channels) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After enabling the external audio renderer, you can call <xref keyref="pullAudioFrame_IMediaEngine"/> to pull remote audio frames, process them, and play them using custom audio effects. This is suitable for scenarios where external audio playback is needed.</p>
+            <note props="cpp">After enabling the external audio renderer, the app will not receive any audio data from the <xref keyref="onPlaybackAudioFrame_IAudioFrameObserverBase"/> callback.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="cpp">
+            <title>Timing</title>
+            <p props="cpp">Call this method before joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the external audio renderer:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable.</li>
+                            <li><xref keyref="false"/>: (Default) Disable.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>sampleRate</pt>
+                    <pd>Sample rate (Hz) of the external audio renderer. Can be 16000, 32000, 44100, or 48000.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>channels</pt>
+                    <pd>Number of channels for the external audio renderer:
+                        <ul>
+                            <li>1: Mono.</li>
+                            <li>2: Stereo.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

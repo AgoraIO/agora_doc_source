@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_setrecordingdevicevolume">
+    <title><ph keyref="setRecordingDeviceVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">设置音频采集设备音量。</ph><ph id="shortdesc" props="flutter">设置音频采集设备音量。</ph><ph id="shortdesc" props="unity">设置音频采集设备音量。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRecordingDeviceVolume"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setRecordingDeviceVolume(volume: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRecordingDeviceVolume(int volume);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRecordingDeviceVolume(int volume);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">该方法仅适用于 Windows 和 macOS。</p>
+            <p props="flutter">该方法仅适用于 Windows 和 macOS。</p>
+            <p props="unity">该方法仅适用于 Windows 和 macOS。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>volume</pt>
+                    <pd>音频采集设备音量。取值范围 [0,255]。0 代表无声，255 代表最大音量。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>volume</pt>
+                    <pd>音频采集设备音量。取值范围 [0,255]。0 代表无声，255 代表最大音量。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>volume</pt>
+                    <pd>音频采集设备音量。取值范围 [0,255]。0 代表无声，255 代表最大音量。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

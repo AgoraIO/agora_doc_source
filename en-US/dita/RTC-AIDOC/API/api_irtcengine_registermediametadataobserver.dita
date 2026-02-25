@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_registermediametadataobserver">
+    <title><ph keyref="registerMediaMetadataObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Registers a metadata observer.</ph><ph id="shortdesc" props="android">Registers a metadata observer.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerMediaMetadataObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int registerMediaMetadataObserver(IMetadataObserver observer, int type);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">You need to implement the <xref keyref="IMetadataObserver"/> class and specify the metadata type in this method. This method supports adding synchronized metadata to video streams for richer interactive live streaming scenarios, such as sending shopping links, digital coupons, and online quizzes. After a successful call, the SDK triggers the <xref keyref="getMaxMetadataSize"/> callback.</p>
+            <p props="android">You need to implement the <xref keyref="IMetadataObserver"/> class and specify the metadata type in this method. This method allows you to add synchronized metadata to the video stream, enabling richer interactive live streaming scenarios such as sending shopping links, digital coupons, and online quizzes. After successfully calling this method, the SDK triggers the <xref keyref="getMaxMetadataSize"/> callback.</p>
+            <note props="cpp">Call this method before <codeph>joinChannel</codeph>.</note>
+            <note props="android">Call this method before calling <codeph>joinChannel</codeph>.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>observer</pt>
+                    <pd>The metadata observer. See <xref keyref="IMetadataObserver"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>The metadata type. See <xref keyref="METADATA_TYPE"/>. Currently, the SDK only supports <codeph>VIDEO_METADATA</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>observer</pt>
+                    <pd>The metadata observer. See <xref keyref="IMetadataObserver"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>type</pt>
+                    <pd>The metadata type. The current SDK only supports the following type:
+                        <ul>
+                            <li><codeph>VIDEO_METADATA</codeph>: Video metadata.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ilocalspatialaudioengine_setplayerattenuation_ilocalspatialaudioengine">
+    <title><ph keyref="setPlayerAttenuation_ILocalSpatialAudioEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the audio attenuation properties for the media player.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlayerAttenuation_ILocalSpatialAudioEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int setPlayerAttenuation(int playerId, double attenuation, bool forceSet) = 0;</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>playerId</pt>
+                    <pd>ID of the media player. You can get the device ID by calling <xref keyref="getMediaPlayerId"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>attenuation</pt>
+                    <pd>Audio attenuation coefficient for the remote user or media player, value range: [0, 1]. Value descriptions:
+                        <ul>
+                            <li>0: Broadcast mode. Volume and timbre do not attenuate with distance. The local user hears consistent volume and timbre regardless of distance.</li>
+                            <li>(0, 0.5): Weak attenuation mode. Volume and timbre attenuate slightly during propagation. Sound travels farther than in real environments.</li>
+                            <li>0.5: (Default) Simulates real-world audio attenuation. Equivalent to not setting the <codeph>speaker_attenuation</codeph> parameter.</li>
+                            <li>(0.5, 1]: Strong attenuation mode. Volume and timbre attenuate rapidly during propagation.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>forceSet</pt>
+                    <pd>Whether to forcibly apply the audio attenuation effect for the media player:
+                        <ul>
+                            <li><xref keyref="true"/>: Force the use of <codeph>attenuation</codeph> to set the media player's attenuation. The <codeph>audioAttenuation</codeph> setting in <xref keyref="SpatialAudioZone"/> will not apply to the media player.</li>
+                            <li><xref keyref="false"/>: Do not forcibly use <codeph>attenuation</codeph> to set the media player's audio attenuation. Details are as follows:
+                                <ul>
+                                    <li>If the sound source and listener are inside and outside the zone respectively, attenuation is determined by the <codeph>audioAttenuation</codeph> in <xref keyref="SpatialAudioZone"/>.</li>
+                                    <li>If the sound source and listener are in the same zone or both outside, attenuation is determined by the <codeph>attenuation</codeph> in this method.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

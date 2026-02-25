@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onplayerevent">
+    <title><ph keyref="onPlayerEvent"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">播放器事件回调。</ph><ph id="shortdesc" props="ios">上报播放器事件。</ph><ph id="shortdesc" props="android">播放器事件回调。</ph><ph id="shortdesc" props="mac">上报播放器事件。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlayerEvent"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT eventCode, int64_t elapsedTime, const char* message) = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull)playerKit
+              didOccurEvent:(AgoraMediaPlayerEvent)eventCode
+                elapsedTime:(NSInteger)elapsedTime
+                    message:(NSString *_Nullable)message NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:didOccur:elapsedTime:message:));</codeblock>
+                <codeblock props="android" outputclass="language-java">void onPlayerEvent(Constants.MediaPlayerEvent eventCode, long elapsedTime, String message)</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull)playerKit
+              didOccurEvent:(AgoraMediaPlayerEvent)eventCode
+                elapsedTime:(NSInteger)elapsedTime
+                    message:(NSString *_Nullable)message NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:didOccur:elapsedTime:message:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">调用 <xref keyref="seek"/> 方法后，SDK 会触发该回调报告 <xref keyref="seek"/> 操作的结果。</p>
+            <p props="ios">调用 <xref keyref="seek"/> 方法后，SDK 会触发该回调，上报跳转播放位置操作的结果。</p>
+            <p props="android">调用 <xref keyref="Seek"/> 方法后，SDK 会触发该回调报告操作结果。</p>
+            <p props="mac">调用 <xref keyref="seek"/> 方法后，SDK 会触发该回调，上报跳转播放位置操作的结果。</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="ios mac">
+            <title>触发时机</title>
+            <p props="ios">该回调在你调用 <xref keyref="seek"/> 方法后触发，用于上报跳转播放位置操作的结果。</p>
+            <p props="mac">该回调在你调用 <xref keyref="seek"/> 方法后触发，用于上报跳转播放位置操作的结果。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>eventCode</pt>
+                    <pd>播放器事件，详见 <xref keyref="MEDIA_PLAYER_EVENT"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>elapsedTime</pt>
+                    <pd>事件发生的时间，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>message</pt>
+                    <pd>事件的相关信息。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>playerKit</pt>
+                    <pd>播放器实例。详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>eventCode</pt>
+                    <pd>播放器事件类型。详见 <xref keyref="MEDIA_PLAYER_EVENT"/>。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>elapsedTime</pt>
+                    <pd>事件发生的时间，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>message</pt>
+                    <pd>事件的相关信息。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>eventCode</pt>
+                    <pd>播放器事件，详见 <xref keyref="MEDIA_PLAYER_EVENT"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>elapsedTime</pt>
+                    <pd>事件发生的时间，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>message</pt>
+                    <pd>关于该事件的补充信息。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>playerKit</pt>
+                    <pd>播放器实例。详见 <xref keyref="IMediaPlayer"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>eventCode</pt>
+                    <pd>播放器事件类型。详见 <xref keyref="MEDIA_PLAYER_EVENT"/>。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>elapsedTime</pt>
+                    <pd>事件发生的时间，单位为毫秒。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>message</pt>
+                    <pd>事件的相关信息。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

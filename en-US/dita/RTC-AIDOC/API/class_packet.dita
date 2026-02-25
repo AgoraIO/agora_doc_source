@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_packet">
+    <title><ph keyref="Packet"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure a <xref keyref="Packet"/> instance.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct Packet {
+  const unsigned char* buffer;
+  unsigned int size;
+};</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>buffer</pt>
+                    <pd>The buffer address for sending or receiving data.
+                        <note>Agora recommends setting <codeph>buffer</codeph> to a value greater than 2048 bytes. Otherwise, you may encounter undefined behavior (such as crashes).</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>size</pt>
+                    <pd>The size of the buffer for sending or receiving data.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_pauseallchannelmediarelayex">
+    <title><ph keyref="pauseAllChannelMediaRelayEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">暂停向所有目标频道转发媒体流。</ph><ph id="shortdesc" props="rn">暂停向所有目标频道转发媒体流。</ph><ph id="shortdesc" props="flutter">暂停向所有目标频道转发媒体流。</ph><ph id="shortdesc" props="unity">暂停向所有目标频道转发媒体流。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="pauseAllChannelMediaRelayEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract pauseAllChannelMediaRelayEx(connection: RtcConnection): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract pauseAllChannelMediaRelayEx(connection: RtcConnection): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; pauseAllChannelMediaRelayEx(RtcConnection connection);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int PauseAllChannelMediaRelayEx(RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">开始跨频道转发媒体流后，如果你需要暂停向所有频道转发媒体流，可以调用该方法；暂停后，如果要恢复跨频道媒体流转发，可以调用 <xref keyref="resumeAllChannelMediaRelay"/> 方法。</p>
+            <p props="rn">开始跨频道转发媒体流后，如果你需要暂停向所有频道转发媒体流，可以调用该方法；暂停后，如果要恢复跨频道媒体流转发，可以调用 <xref keyref="resumeAllChannelMediaRelay"/> 方法。</p>
+            <p props="flutter">开始跨频道转发媒体流后，如果你需要暂停向所有频道转发媒体流，可以调用该方法；暂停后，如果要恢复跨频道媒体流转发，可以调用 <xref keyref="resumeAllChannelMediaRelay"/> 方法。</p>
+            <p props="unity">开始跨频道转发媒体流后，如果你需要暂停向所有频道转发媒体流，可以调用该方法；暂停后，如果要恢复跨频道媒体流转发，可以调用 <xref keyref="resumeAllChannelMediaRelay"/> 方法。</p>
+            <note props="electron">该方法需要在调用 <xref keyref="startOrUpdateChannelMediaRelayEx"/> 开始跨频道媒体流转发后调用。</note>
+            <note props="rn">该方法需要在调用 <xref keyref="startOrUpdateChannelMediaRelayEx"/> 开始跨频道媒体流转发后调用。</note>
+            <note props="flutter">该方法需要在调用 <xref keyref="startOrUpdateChannelMediaRelayEx"/> 开始跨频道媒体流转发后调用。</note>
+            <note props="unity">该方法需要在调用 <xref keyref="startOrUpdateChannelMediaRelayEx"/> 开始跨频道媒体流转发后调用。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>参数</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>返回值</title>
+            <p props="electron">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/electron/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-5: 方法调用被拒绝。当前没有正在进行的跨频道媒体流转发。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/rn/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-5: 方法调用被拒绝。当前没有正在进行的跨频道媒体流转发。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/flutter/error-code)了解详情和解决建议。</p>
+            <p props="unity">
+                <ul>
+                    <li>0: 方法调用成功。</li>
+                    <li>&lt; 0: 方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/unity/error-code)了解详情和解决建议。
+                        <ul>
+                            <li>-5: 方法调用被拒绝。当前没有正在进行的跨频道媒体流转发。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

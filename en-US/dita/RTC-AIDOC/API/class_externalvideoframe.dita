@@ -1,0 +1,294 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_externalvideoframe">
+    <title><ph keyref="ExternalVideoFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Represents an external video frame.</ph><ph id="shortdesc" props="android">Used to describe external video frames.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct ExternalVideoFrame {
+  VIDEO_BUFFER_TYPE type;
+  VIDEO_PIXEL_FORMAT format;
+  void* buffer;
+  int stride;
+  int height;
+  int cropLeft;
+  int cropTop;
+  int cropRight;
+  int cropBottom;
+  int rotation;
+  long long timestamp;
+  void* eglContext;
+  EGL_CONTEXT_TYPE eglType;
+  int textureId;
+  long long fenceObject;
+  float matrix[16];
+  uint8_t* metadataBuffer;
+  int metadataSize;
+  uint8_t* alphaBuffer;
+  bool fillAlphaBuffer;
+  ALPHA_STITCH_MODE alphaStitchMode;
+  void *d3d11Texture2d;
+  int textureSliceIndex;
+  Hdr10MetadataInfo hdr10MetadataInfo;
+  ColorSpace colorSpace;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public class AgoraVideoFrame {
+  public static final int FORMAT_NONE = -1;
+  public static final int FORMAT_TEXTURE_2D = 10;
+  public static final int FORMAT_TEXTURE_OES = 11;
+  public static final int FORMAT_I420 = 1;
+  public static final int FORMAT_BGRA = 2;
+  public static final int FORMAT_NV21 = 3;
+  public static final int FORMAT_RGBA = 4;
+  public static final int FORMAT_I422 = 16;
+  public static final int BUFFER_TYPE_NONE = -1;
+  public static final int BUFFER_TYPE_BUFFER = 1;
+  public static final int BUFFER_TYPE_ARRAY = 2;
+  public static final int BUFFER_TYPE_TEXTURE = 3;
+  public int format;
+  public long timeStamp;
+  public int stride;
+  public int height;
+  public int textureID;
+  public boolean syncMode;
+  public float[] transform;
+  public javax.microedition.khronos.egl.EGLContext eglContext10;
+  public android.opengl.EGLContext eglContext14;
+  public byte[] buf;
+  public int cropLeft;
+  public int cropTop;
+  public int cropRight;
+  public int cropBottom;
+  public int rotation;
+  public AlphaStitchMode alphaStitchMode;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
+            <note props="android">
+                <ol>
+                    <li>The unit of <codeph>stride</codeph> is pixels, not bytes.</li>
+                    <li>Frame width and height can be derived as follows:
+                        <ul>
+                            <li>Cropped width: <codeph>croppedWidth = strideInPixels - cropLeft - cropRight</codeph></li>
+                            <li>Cropped height: <codeph>croppedHeight = height - cropTop - cropBottom</codeph></li>
+                        </ul>
+                    </li>
+                    <li>About cropping:
+                        <ul>
+                            <li>If the buffer contains redundant data, cropping can be used to remove it. For example, if the frame size is 360 × 640 but the buffer <codeph>stride</codeph> is 368, the extra 8 pixels are padding. In this case, set: <codeph>stride = 368</codeph>, <codeph>height = 640</codeph>, <codeph>cropRight = 8</codeph>, and other <codeph>cropXXX</codeph> values default to 0.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>type</pt>
+                    <pd>Video type. See <xref keyref="VIDEO_BUFFER_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>format</pt>
+                    <pd>Pixel format. See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>buffer</pt>
+                    <pd>Video frame buffer.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>stride</pt>
+                    <pd>Stride of the input video frame in pixels, not bytes. For texture data, this is the width of the texture.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>Height of the input video frame.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cropLeft</pt>
+                    <pd>Number of pixels to crop from the left. Default is 0.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cropTop</pt>
+                    <pd>Number of pixels to crop from the top. Default is 0.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cropRight</pt>
+                    <pd>Number of pixels to crop from the right. Default is 0.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>cropBottom</pt>
+                    <pd>Number of pixels to crop from the bottom. Default is 0.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>rotation</pt>
+                    <pd>Clockwise rotation angle of the video frame. Can be 0, 90, 180, or 270. Default is 0.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>timestamp</pt>
+                    <pd>Timestamp (in milliseconds) of the input video frame. Incorrect timestamps may cause frame loss or A/V sync issues.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>eglContext</pt>
+                    <pd>(Texture only)
+                        <ul>
+                            <li>When using the OpenGL interface defined by Khronos (javax.microedition.khronos.egl.*), set this field to <codeph>eglContext</codeph>.</li>
+                            <li>When using the OpenGL interface defined by Android (android.opengl.*), also set this field to <codeph>eglContext</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>eglType</pt>
+                    <pd>(Texture only) Type of texture context.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>textureId</pt>
+                    <pd>(Texture only) Texture ID of the video frame.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>fenceObject</pt>
+                    <pd>(Texture only) Fence object associated with the <codeph>textureId</codeph> parameter, indicating the synchronization status of the texture data. Default is 0.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>matrix</pt>
+                    <pd>(Texture only) Input 4×4 transformation matrix. A typical value is the identity matrix.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>metadataBuffer</pt>
+                    <pd>(Texture only) MetaData buffer. Default is <xref keyref="NULL"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>metadataSize</pt>
+                    <pd>(Texture only) MetaData size. Default is 0.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>alphaBuffer</pt>
+                    <pd>Output parameter, Alpha channel data generated by the portrait segmentation algorithm. The data matches the size of the video frame. Each pixel value ranges from [0, 255], where 0 indicates background and 255 indicates foreground (portrait). By setting this parameter, you can render the video background as transparent, solid color, image, video, etc.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>fillAlphaBuffer</pt>
+                    <pd>
+                        <note>For BGRA or RGBA format video data, you can set Alpha channel data by either:
+                            <ul>
+                                <li>Setting this parameter to <xref keyref="true"/> for automatic extraction.</li>
+                                <li>Manually setting it via the <codeph>alphaBuffer</codeph> parameter.</li>
+                            </ul>
+                        </note><ph>(BGRA or RGBA only) Whether to extract Alpha channel data from the video frame and automatically fill <codeph>alphaBuffer</codeph>:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Extract and fill Alpha channel data.</li>
+                            <li><xref keyref="false"/>: Do not extract or fill Alpha channel data.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>alphaStitchMode</pt>
+                    <pd>When the video frame contains Alpha channel data, indicates the relative position of <codeph>alphaBuffer</codeph> to the video frame. See <xref keyref="ALPHA_STITCH_MODE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>d3d11Texture2d</pt>
+                    <pd>(Windows Texture only) Pointer to an <codeph>ID3D11Texture2D</codeph> object used by the video frame.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>textureSliceIndex</pt>
+                    <pd>(Windows Texture only) Index of the texture object used by the video frame in the <codeph>ID3D11Texture2D</codeph> array.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>hdr10MetadataInfo</pt>
+                    <pd>Metadata information of HDR video data.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>colorSpace</pt>
+                    <pd>Color space attributes of the video frame. Defaults to Full Range and BT.709 standard configuration. See [<codeph>VideoColorSpace</codeph>](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>format</pt>
+                    <pd>Format of the video data:
+                        <ul>
+                            <li>10: <codeph>TEXTURE_2D</codeph></li>
+                            <li>11: <codeph>TEXTURE_OES</codeph>, usually used for camera-captured data</li>
+                            <li>1: <codeph>I420</codeph></li>
+                            <li>3: <codeph>NV21</codeph></li>
+                            <li>4: <codeph>RGBA</codeph></li>
+                            <li>16: <codeph>I422</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>timeStamp</pt>
+                    <pd>Timestamp of the video frame in milliseconds. Incorrect settings may cause frame loss or A/V sync issues.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>stride</pt>
+                    <pd>Row stride of the video frame in pixels. For texture-type video data, this indicates the texture width.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>height</pt>
+                    <pd>Height of the video frame.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>textureID</pt>
+                    <pd>Texture ID. Only applicable to texture-format video data.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>syncMode</pt>
+                    <pd>Whether to enable sync mode. Only applicable to texture-format video data:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable sync mode. The SDK waits for texture processing to complete.</li>
+                            <li><xref keyref="false"/>: Disable sync mode.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>transform</pt>
+                    <pd>Additional transform parameters for texture frames. Only applicable to texture-format video data.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>eglContext10</pt>
+                    <pd>EGLContext10. Only applicable to texture-format video data.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>eglContext14</pt>
+                    <pd>EGLContext14. Only applicable to texture-format video data. See <codeph>EGLContext</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>buf</pt>
+                    <pd>Data buffer of the video frame.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cropLeft</pt>
+                    <pd>Number of pixels to crop from the left. Default is 0.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cropTop</pt>
+                    <pd>Number of pixels to crop from the top. Default is 0.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cropRight</pt>
+                    <pd>Number of pixels to crop from the right. Default is 0.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>cropBottom</pt>
+                    <pd>Number of pixels to crop from the bottom. Default is 0.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rotation</pt>
+                    <pd>Clockwise rotation angle. Can be 0, 90, 180, or 270. Default is 0.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>alphaStitchMode</pt>
+                    <pd>When the video frame contains alpha channel data, indicates the relative position of <codeph>alphaBuffer</codeph> to the video frame. See <codeph>AlphaStitchMode</codeph>:
+                        <ul>
+                            <li><codeph>ALPHA_NO_STITCH (0)</codeph>: Default. Only the video frame is included. <codeph>alphaBuffer</codeph> is not stitched.</li>
+                            <li><codeph>ALPHA_STITCH_UP (1)</codeph>: <codeph>alphaBuffer</codeph> is above the video frame.</li>
+                            <li><codeph>ALPHA_STITCH_BELOW (2)</codeph>: <codeph>alphaBuffer</codeph> is below the video frame.</li>
+                            <li><codeph>ALPHA_STITCH_LEFT (3)</codeph>: <codeph>alphaBuffer</codeph> is to the left of the video frame.</li>
+                            <li><codeph>ALPHA_STITCH_RIGHT (4)</codeph>: <codeph>alphaBuffer</codeph> is to the right of the video frame.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onclientrolechanged">
+    <title><ph keyref="onClientRoleChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the user role or audience latency level changes.</ph><ph id="shortdesc" props="android">Callback triggered when the user role or audience latency level changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onClientRoleChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole, const ClientRoleOptions&amp; newRoleOptions)</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onClientRoleChanged(int oldRole, int newRole, ClientRoleOptions newRoleOptions)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="cpp">This callback is not triggered if you call <codeph>setClientRole</codeph> before joining the channel and set the user role to <codeph>BROADCASTER</codeph>.</note>
+            <note props="android">This callback is not triggered if you call <xref keyref="setClientRole1"/> or <xref keyref="setClientRole2"/> before joining the channel and set the user role to broadcaster.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">This callback is triggered in any of the following cases:
+                <ul>
+                    <li>After joining the channel, calling <codeph>setClientRole</codeph> to set the user role or audience latency level;</li>
+                    <li>Before joining the channel, calling <codeph>setClientRole</codeph> and setting the user role to <codeph>AUDIENCE</codeph>.</li>
+                </ul>
+            </p>
+            <p props="android">This callback is triggered in either of the following scenarios:
+                <ul>
+                    <li>After joining a channel, you call <xref keyref="setClientRole1"/> or <xref keyref="setClientRole2"/> to set the user role or audience latency level;</li>
+                    <li>Before joining a channel, you call <xref keyref="setClientRole1"/> or <xref keyref="setClientRole2"/> and set the user role to audience.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>oldRole</pt>
+                    <pd>The user role before the change. See <xref keyref="CLIENT_ROLE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>newRole</pt>
+                    <pd>The user role after the change. See <xref keyref="CLIENT_ROLE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>newRoleOptions</pt>
+                    <pd>The role options after the change. See <xref keyref="ClientRoleOptions"/>.
+                        <note>Introduced since v4.1.0.</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>oldRole</pt>
+                    <pd>The user's role before the change:
+                        <ul>
+                            <li><codeph>CLIENT_ROLE_BROADCASTER</codeph> (1): Broadcaster.</li>
+                            <li><codeph>CLIENT_ROLE_AUDIENCE</codeph> (2): Audience.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>newRole</pt>
+                    <pd>The user's role after the change:
+                        <ul>
+                            <li><codeph>CLIENT_ROLE_BROADCASTER</codeph> (1): Broadcaster.</li>
+                            <li><codeph>CLIENT_ROLE_AUDIENCE</codeph> (2): Audience.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>newRoleOptions</pt>
+                    <pd>The role options after the change. See <xref keyref="ClientRoleOptions"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

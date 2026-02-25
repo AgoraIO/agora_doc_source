@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onrequesttoken">
+    <title><ph keyref="onRequestToken"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the Token expires.</ph><ph id="shortdesc" props="android">Token expiration callback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRequestToken"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual void onRequestToken() {}</codeblock>
+                <codeblock props="android" outputclass="language-java">public void onRequestToken() {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">After receiving this callback, you need to generate a new Token on your Token server and update it using one of the following methods:
+                <ul>
+                    <li>Single-channel scenario:
+                        <ul>
+                            <li>Call <xref keyref="renewToken"/> with the new Token.</li>
+                            <li>Call <codeph>leaveChannel</codeph> to leave the current channel, then call <codeph>joinChannel</codeph> with the new Token.</li>
+                        </ul>
+                    </li>
+                    <li>Multi-channel scenario: Call <xref keyref="updateChannelMediaOptionsEx"/> with the new Token.</li>
+                </ul>
+            </p>
+            <p props="android">This callback is triggered when the token expires. When you receive this callback, you need to generate a new token on your token server and update the token using one of the following methods:
+                <ul>
+                    <li>Single-channel scenario:
+                        <ul>
+                            <li>Call <xref keyref="renewToken"/> to update the token.</li>
+                            <li>Call <codeph>leaveChannel</codeph> to leave the current channel, then pass the new token when calling <codeph>joinChannel</codeph> to rejoin the channel.</li>
+                        </ul>
+                    </li>
+                    <li>Multi-channel scenario: Call <xref keyref="updateChannelMediaOptionsEx"/> with the new token.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Trigger Timing</title>
+            <p props="cpp">This callback is triggered when the Token expires.</p>
+            <p props="android">This callback is triggered when the token expires.</p>
+        </section>
+    </refbody>
+</reference>

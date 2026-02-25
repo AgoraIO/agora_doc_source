@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setexternalmediaprojection">
+    <title><ph keyref="setExternalMediaProjection"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Configures <codeph>MediaProjection</codeph> outside of the SDK to capture screen video streams.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalMediaProjection"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setExternalMediaProjection(MediaProjection mediaProjection);</codeblock>
+            <codeblock props="hmos" outputclass="language-arkts"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setExternalMediaProjection(void* mediaProjection) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetExternalMediaProjection(IntPtr mediaProjection);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setExternalMediaProjection(mediaProjection: any): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setExternalMediaProjection(int mediaProjection);</codeblock> </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl>
+             <note type="attention" props="cpp unreal unity rn flutter">This method is for Android only.</note>
+            <p>After successfully calling this method, the external <codeph>MediaProjection</codeph> you set will replace the <codeph>MediaProjection</codeph> requested by the SDK to capture the screen video stream.</p>
+            <p>When the screen sharing is stopped or <xref keyref="IRtcEngine"/> is destroyed, the SDK will automatically release the MediaProjection.</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Applicable scenarios</title>
+            <p>If you are able to apply for <codeph>MediaProjection</codeph>, you can directly use your <codeph>MediaProjection</codeph> instead of the one applied for by the SDK. The following lists two applicable scenarios:<codeph></codeph><ul>
+                <li>On custom system devices, it can avoid system pop-ups (such as requiring user permission to capture the screen) and directly start capturing the screen video stream.</li>
+                <li>In a screen sharing process that involves one or more sub-processes, it can help avoid errors that might occur when creating objects within these sub-processes, which could otherwise lead to failures in screen capturing.</li>
+            </ul></p>
+        </section>
+        <section id="timing" deliveryTarget="details">
+            <title>Call timing</title>
+            <p>Call this method after <xref keyref="startScreenCapture"/>.</p>
+        </section>
+        <section id="restriction" deliveryTarget="details">
+            <title>Restrictions</title>
+            <p>Before calling this method, you must first apply for <codeph>MediaProjection</codeph> permission.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>mediaProjection</pt>
+                <pd>An <xref keyref="mediaprojection-link"/> object used to capture screen video streams.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <ul props="native unreal bp electron unity rn cs">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul> </section>
+        </refbody>
+</reference>

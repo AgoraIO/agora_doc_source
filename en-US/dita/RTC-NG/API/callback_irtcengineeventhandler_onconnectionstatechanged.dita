@@ -15,9 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onConnectionStateChanged(int state, int reason) {}</codeblock>
             <codeblock props="hmos" outputclass="language-arkts">onConnectionStateChanged ? : ( state: Constants.ConnectionState, reason: Constants.ConnectionChangedReason ) =&gt; void</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-                    connectionStateChanged:(AgoraConnectionState)state
-                    reason:(AgoraConnectionChangedReason)reason;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine connectionChangedToState:(AgoraConnectionState)state reason:(AgoraConnectionChangedReason)reason NS_SWIFT_NAME(rtcEngine(_:connectionChangedTo:reason:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onConnectionStateChanged(CONNECTION_STATE_TYPE state, CONNECTION_CHANGED_REASON_TYPE reason) {
      (void)state;
      (void)reason;
@@ -56,20 +54,20 @@
             <plentry id="state">
                 <pt>state</pt>
                 <pd>
-                    <p id="connectionstate">The current connection state. <ph props="ios mac cpp unreal bp unity flutter electron rn cs">See <xref keyref="CONNECTION_STATE_TYPE" />.</ph></p>
-                    <ul props="android hmos">
+                    <p id="connectionstate">The current connection state. <ph props="hmos ios mac cpp unreal bp unity flutter electron rn cs">See <xref keyref="CONNECTION_STATE_TYPE" />.</ph></p>
+                    <ul props="android">
                     <li><ph keyref="CONNECTION_STATE_DISCONNECTED" />(1): The SDK is disconnected from Agora's edge server.</li>
                     <li><ph keyref="CONNECTION_STATE_CONNECTING" />(2): The SDK is connecting to Agora's edge server.</li>
                     <li><ph keyref="CONNECTION_STATE_CONNECTED" />(3): The SDK is connected to Agora's edge server.</li>
-                    <li><ph keyref="CONNECTION_STATE_RECONNECTING" />(4): The SDK keeps reconnecting to the Agora edge server.</li>
+                    <li><ph keyref="CONNECTION_STATE_RECONNECTING" />(4): The SDK tries to reconnect to the Agora edge server.</li>
                     <li><ph keyref="CONNECTION_STATE_FAILED" />(5): The SDK fails to connect to Agora's edge server.</li>
                     </ul> </pd>
             </plentry>
             <plentry id="reason">
                 <pt>reason</pt>
                 <pd>
-                    <p props="ios mac cpp unreal bp unity flutter electron rn cs">The reason for a connection state change. See <xref keyref="CONNECTION_CHANGED_REASON_TYPE" />.</p>
-                    <p props="android hmos">
+                    <p props="hmos ios mac cpp unreal bp unity flutter electron rn cs">The reason for a connection state change. See <xref keyref="CONNECTION_CHANGED_REASON_TYPE" />.</p>
+                    <p props="android">
                     <ul>
                     <li><ph keyref="CONNECTION_CHANGED_CONNECTING" />(0): The SDK is connecting to Agora's edge server.</li>
                     <li><ph keyref="CONNECTION_CHANGED_JOIN_SUCCESS" />(1): The SDK has joined the channel successfully.</li>
@@ -96,7 +94,9 @@
                     <li><ph keyref="CONNECTION_CHANGED_LOST" />(16): The connection between the SDK and the server is lost.</li>
                     <li><ph keyref="CONNECTION_CHANGED_ECHO_TEST" />(17): The connection state changes due to the echo test.</li>
                     <li><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED_BY_USER" />(18): The local IP address was changed by the user.</li>
-                    <li><ph keyref="CONNECTION_CHANGED_SAME_UID_LOGIN" />(19): The user joined the same channel from different devices with the same UID.</li>
+                    <li><ph keyref="CONNECTION_CHANGED_SAME_UID_LOGIN" />(19): The user joined the same channel from different devices with the same UID.<p>
+                        <note type="caution">Joining the same RTC channel with the same UID is an undefined behavior. Agora does not guarantee that <codeph>reason</codeph> 19 is always triggered under the same circumstance.</note>
+                    </p></li>
                     <li><ph keyref="CONNECTION_CHANGED_TOO_MANY_BROADCASTERS" />(20): The number of hosts in the channel has reached the upper limit.</li>
                     </ul> </p>
                 </pd>

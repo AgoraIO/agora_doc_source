@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_seek">
+    <title><ph keyref="seek"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Jumps to a new playback position.</ph><ph id="shortdesc" props="android">Jumps to a new playback position.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="seek"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int seek(int64_t newPos) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">int seek(long newPos);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">If you call <xref keyref="seek"/> after playback is complete (i.e., after receiving the <xref keyref="onPlayerSourceStateChanged"/> callback reporting the playback state as <codeph>PLAYER_STATE_PLAYBACK_COMPLETED</codeph> or <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph>), the SDK restarts playback from the specified position and triggers the <xref keyref="onPlayerSourceStateChanged"/> callback reporting the playback state as <codeph>PLAYER_STATE_PLAYING</codeph>.
+If you call <xref keyref="seek"/> while playback is paused, after a successful call, the SDK jumps to the specified position. To resume playback, call <xref keyref="resume"/> or <xref keyref="play"/>.</p>
+            <p props="android">If you call <xref keyref="seek"/> after playback is completed (i.e., after receiving the <xref keyref="onPlayerSourceStateChanged"/> callback with state <codeph>PLAYER_STATE_PLAYBACK_COMPLETED</codeph> or <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph>), the SDK starts playback from the specified position and triggers the <xref keyref="onPlayerSourceStateChanged"/> callback with state <codeph>PLAYER_STATE_PLAYING</codeph>.
+If you call <xref keyref="seek"/> while playback is paused, the SDK jumps to the specified position after a successful call. To resume playback, call <xref keyref="resume"/> or <xref keyref="play"/>.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="android cpp">
+            <title>Timing</title>
+            <p props="cpp">You can call this method either before or after joining a channel.</p>
+            <p props="android">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="android cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After this method is called successfully, the SDK triggers the <xref keyref="onPlayerEvent"/> callback to report the result of jumping to the new playback position.</p>
+            <p props="android">After successfully calling this method, you will receive the <xref keyref="onPlayerEvent"/> callback reporting the result of the seek operation.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>newPos</pt>
+                    <pd>The new playback position in milliseconds.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>newPos</pt>
+                    <pd>The new playback position in milliseconds.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

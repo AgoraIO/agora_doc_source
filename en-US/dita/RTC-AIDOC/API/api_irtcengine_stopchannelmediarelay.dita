@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_stopchannelmediarelay">
+    <title><ph keyref="stopChannelMediaRelay"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Stops the media stream relay across channels.</ph><ph id="shortdesc" props="android">Stops media stream relay across channels.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="stopChannelMediaRelay"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int stopChannelMediaRelay() = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int stopChannelMediaRelay();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">Call this method to stop the media stream relay across channels. Once the relay stops, the host leaves all destination channels.</p>
+            <p props="android">After calling this method, the broadcaster leaves all destination channels.</p>
+            <note props="cpp">If the method call fails, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback and returns the error code <codeph>RELAY_ERROR_SERVER_NO_RESPONSE</codeph> (2) or <codeph>RELAY_ERROR_SERVER_CONNECTION_LOST</codeph> (8). You can also call the <codeph>leaveChannel</codeph> method to leave the channel, and the media stream relay will automatically stop.</note>
+            <note props="android">If the method call fails, the SDK reports the error code <codeph>RELAY_ERROR_SERVER_NO_RESPONSE</codeph> (2) or <codeph>RELAY_ERROR_SERVER_CONNECTION_LOST</codeph> (8) through the <xref keyref="onChannelMediaRelayStateChanged"/> callback. You can also call the <codeph>leaveChannel</codeph> method to leave the channel, and the media stream relay will automatically stop.</note>
+        </section>
+        <section id="related" deliveryTarget="details" props="cpp">
+            <title>Related Callbacks</title>
+            <p props="cpp">After this method is successfully called, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback to report the state of the media stream relay.</p>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-5: The call is rejected. There is no ongoing media stream relay across channels.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-5: The call is rejected. No media stream relay is currently running.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

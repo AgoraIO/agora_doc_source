@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_loadextensionprovider">
+    <title><ph keyref="loadExtensionProvider"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Loads an extension.</ph><ph id="shortdesc" props="rn">Loads a plugin.</ph><ph id="shortdesc" props="flutter">Loads an extension.</ph><ph id="shortdesc" props="unity">Loads an extension.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="loadExtensionProvider"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract loadExtensionProvider(
+    path: string,
+    unloadAfterUse?: boolean
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract loadExtensionProvider(
+    path: string,
+    unloadAfterUse?: boolean
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; loadExtensionProvider(
+      {required String path, bool unloadAfterUse = false});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int LoadExtensionProvider(string path, bool unload_after_use = false);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method adds external SDK extensions (such as Marketplace extensions and SDK extension plugins) to the SDK.</p>
+            <p props="rn">This method adds external SDK plugins (such as marketplace plugins and SDK extension plugins) to the SDK.</p>
+            <p props="flutter">This method adds external SDK extensions (such as marketplace or SDK extension plugins) into the SDK.</p>
+            <p props="unity">This method adds external SDK extensions (such as Marketplace extensions and SDK extension plugins) to the SDK.</p>
+            <note props="electron">To load multiple extensions, call this method multiple times.
+This method is only supported on Windows.</note>
+            <note props="rn">To load multiple plugins, call this method multiple times.
+This method is for Android only.</note>
+            <note props="flutter">To load multiple extensions, call this method multiple times.
+This method is available only on Windows and Android.</note>
+            <note props="unity">To load multiple extensions, call this method multiple times.
+This method applies to Windows and Android only.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Call this method immediately after initializing <xref keyref="IRtcEngine"/>.</p>
+            <p props="rn">Call this method immediately after initializing <xref keyref="IRtcEngine"/>.</p>
+            <p props="flutter">Call this method immediately after initializing <xref keyref="IRtcEngine"/>.</p>
+            <p props="unity">Call this method immediately after initializing <xref keyref="IRtcEngine"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>path</pt>
+                    <pd>Path and name of the extension dynamic library. For example: <codeph>/library/libagora_segmentation_extension.dll</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>unloadAfterUse</pt>
+                    <pd>Whether to automatically unload the extension after use:
+                        <ul>
+                            <li><xref keyref="true"/>: Automatically unloads the extension when <xref keyref="IRtcEngine"/> is destroyed.</li>
+                            <li><xref keyref="false"/>: Does not automatically unload the extension until the process exits (recommended).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>path</pt>
+                    <pd>The path and name of the plugin dynamic library. For example: <codeph>/library/libagora_segmentation_extension.dll</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>unloadAfterUse</pt>
+                    <pd>Whether to automatically unload the plugin after use:
+                        <ul>
+                            <li><xref keyref="true"/>: Automatically unloads the plugin when <xref keyref="IRtcEngine"/> is destroyed.</li>
+                            <li><xref keyref="false"/>: Does not automatically unload the plugin until the process exits (recommended).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>path</pt>
+                    <pd>The path and name of the extension dynamic library. For example: <codeph>/library/libagora_segmentation_extension.dll</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>unloadAfterUse</pt>
+                    <pd>Whether to automatically unload the extension after use:
+                        <ul>
+                            <li><xref keyref="true"/>: Automatically unloads the extension when <xref keyref="IRtcEngine"/> is destroyed.</li>
+                            <li><xref keyref="false"/>: Does not automatically unload the extension until the process exits (recommended).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>path</pt>
+                    <pd>The path and name of the extension dynamic library. For example: <codeph>/library/libagora_segmentation_extension.dll</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>unload_after_use</pt>
+                    <pd>Whether to automatically unload the extension after use:
+                        <ul>
+                            <li><xref keyref="true"/>: Automatically unloads the extension when <xref keyref="IRtcEngine"/> is destroyed.</li>
+                            <li><xref keyref="false"/>: Does not automatically unload the extension until the process exits (recommended).</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getscreencapturesources">
+    <title><ph keyref="getScreenCaptureSources"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">获取可共享的屏幕和窗口列表。</ph><ph id="shortdesc" props="mac">获取可共享的屏幕和窗口列表。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getScreenCaptureSources"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual IScreenCaptureSourceList* getScreenCaptureSources(const SIZE&amp; thumbSize, const SIZE&amp; iconSize, const bool includeScreen) = 0;</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (NSArray&lt;AgoraScreenCaptureSourceInfo*&gt;* _Nullable)getScreenCaptureSourcesWithThumbSize:(NSSize)thumbSize iconSize:(NSSize)iconSize includeScreen:(BOOL)includeScreen NS_SWIFT_NAME(getScreenCaptureSources(withThumbSize:iconSize:includeScreen:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">你可以在共享屏幕或窗口前调用该方法，获取可共享的屏幕和窗口列表。用户可通过列表中的缩略图轻松选择要共享的屏幕或窗口。该列表还包含窗口 ID 和屏幕 ID 等信息，你可以使用这些信息调用 <xref keyref="startScreenCaptureByWindowId"/> 或 <xref keyref="startScreenCaptureByDisplayId"/> 开始共享。</p>
+            <p props="mac">你可以在共享屏幕或窗口前调用该方法，以获取可共享的屏幕和窗口列表。用户可以通过列表中的缩略图轻松选择要共享的特定屏幕或窗口。该列表还包含窗口 ID 和屏幕 ID 等信息，你可以使用这些信息调用 <codeph>startScreenCaptureByWindowId</codeph> 或 <codeph>startScreenCaptureByDisplayId</codeph> 开始共享。</p>
+            <note props="cpp">该方法仅适用于 macOS 和 Windows 平台。</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp mac">
+            <title>参数</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>thumbSize</pt>
+                    <pd>屏幕或窗口缩略图的目标尺寸（宽度和高度，单位为像素）。SDK 会缩放原始图像，使图像最长边的长度与目标尺寸一致，同时不扭曲原始图像。例如，若原始图像为 400 × 300，<codeph>thumbSize</codeph> 为 100 × 100，则缩略图的实际尺寸为 100 × 75。如果目标尺寸大于原始尺寸，则缩略图为原始图像，SDK 不进行缩放。详见 [<codeph>SIZE</codeph>](https://learn.microsoft.com/en-us/windows/win32/api/windef/ns-windef-size)。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>iconSize</pt>
+                    <pd>应用程序图标的目标尺寸（宽度和高度，单位为像素）。SDK 会缩放原始图像，使图像最长边的长度与目标尺寸一致，同时不扭曲原始图像。例如，若原始图像为 400 × 300，<codeph>iconSize</codeph> 为 100 × 100，则图标的实际尺寸为 100 × 75。如果目标尺寸大于原始尺寸，则图标为原始图像，SDK 不进行缩放。详见 [<codeph>SIZE</codeph>](https://learn.microsoft.com/en-us/windows/win32/api/windef/ns-windef-size)。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>includeScreen</pt>
+                    <pd>是否返回屏幕信息：
+                        <ul>
+                            <li><xref keyref="true"/>：返回屏幕和窗口信息。</li>
+                            <li><xref keyref="false"/>：仅返回窗口信息。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>thumbSize</pt>
+                    <pd>屏幕或窗口缩略图的目标尺寸（宽度和高度，单位为像素）。SDK 会对原始图像进行缩放，使图像最长边的长度与目标尺寸一致，同时不扭曲原始图像。例如，若原始图像为 400 × 300，<codeph>thumbSize</codeph> 为 100 × 100，则缩略图的实际尺寸为 100 × 75。如果目标尺寸大于原始尺寸，则缩略图为原始图像，SDK 不进行缩放。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>iconSize</pt>
+                    <pd>应用程序图标的目标尺寸（宽度和高度，单位为像素）。SDK 会对原始图像进行缩放，使图像最长边的长度与目标尺寸一致，同时不扭曲原始图像。例如，若原始图像为 400 × 300，<codeph>iconSize</codeph> 为 100 × 100，则图标的实际尺寸为 100 × 75。如果目标尺寸大于原始尺寸，则图标为原始图像，SDK 不进行缩放。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>includeScreen</pt>
+                    <pd>是否返回屏幕信息：
+                        <ul>
+                            <li><xref keyref="true"/>：返回屏幕和窗口信息。</li>
+                            <li><xref keyref="false"/>：仅返回窗口信息。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="cpp mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>方法调用成功，返回 <xref keyref="IScreenCaptureSourceList"/> 实例，详见 <xref keyref="IScreenCaptureSourceList"/>。</li>
+                    <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>方法调用成功，返回 <xref keyref="ScreenCaptureSourceInfo"/> 对象数组，详见 <xref keyref="ScreenCaptureSourceInfo"/>。</li>
+                    <li>方法调用失败，返回 <xref keyref="NULL"/>。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

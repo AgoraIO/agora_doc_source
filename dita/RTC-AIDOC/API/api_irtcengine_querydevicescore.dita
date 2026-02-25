@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_querydevicescore">
+    <title><ph keyref="queryDeviceScore"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">查询设备评分。</ph><ph id="shortdesc" props="ios">查询设备评分。</ph><ph id="shortdesc" props="android">查询设备评分。</ph><ph id="shortdesc" props="mac">查询设备评分。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="queryDeviceScore"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int queryDeviceScore() = 0;</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)queryDeviceScore NS_SWIFT_NAME(queryDeviceScore());</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int queryDeviceScore();</codeblock>
+                <codeblock props="mac" outputclass="language-objectivec">- (int)queryDeviceScore NS_SWIFT_NAME(queryDeviceScore());</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">在高清或超高清的视频场景中，可以调用该方法查询设备评分。如果返回的评分较低（例如低于 60），建议降低视频分辨率，以避免影响视频体验。不同业务场景对设备评分的最低要求不同，具体建议请[联系技术支持](https://ticket.shengwang.cn/)。</p>
+            <p props="ios">在高清或超高清的视频场景中，你可以先调用该方法查询设备评分。如果返回的评分较低（例如低于 60），你需要降低视频分辨率，以避免影响视频体验。不同业务场景对设备评分的最低要求不同。具体评分建议请[联系技术支持](https://ticket.shengwang.cn/)。</p>
+            <p props="android">你可以调用该方法查询设备评分。如果返回的评分较低（例如低于 60），你需要降低视频分辨率，以避免影响视频体验。不同业务场景对设备评分的最低要求不同，具体评分建议请[联系技术支持](https://ticket.shengwang.cn/)。</p>
+            <p props="mac">在高清或超高清的视频场景中，你可以先调用该方法查询设备评分。如果返回的评分较低（例如低于 60），你需要降低视频分辨率，以避免影响视频体验。不同业务场景对设备评分的最低要求不同。具体评分建议请[联系技术支持](https://ticket.shengwang.cn/)。</p>
+        </section>
+        <section id="return_values" props="android cpp ios mac">
+            <title>返回值</title>
+            <p props="cpp">
+                <ul>
+                    <li>方法调用成功，返回当前设备评分，范围为 [0, 100]，数值越大表示设备性能越强。大多数设备评分在 60 到 100 之间。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/windows/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="ios">
+                <ul>
+                    <li>&gt; 0：方法调用成功，返回当前设备的评分，范围为 [0,100]，数值越大表示设备性能越强。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/ios/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>&gt; 0：方法调用成功，返回当前设备评分，范围为 [0, 100]，数值越大表示设备性能越强。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/android/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+            <p props="mac">
+                <ul>
+                    <li>&gt; 0：方法调用成功，返回当前设备的评分，范围为 [0,100]，数值越大表示设备性能越强。</li>
+                    <li>&lt; 0：方法调用失败。详见[错误码](https://doc.shengwang.cn/api-ref/rtc/macos/error-code)了解详情和解决建议。</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

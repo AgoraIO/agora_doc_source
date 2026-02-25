@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_multipathstats">
+    <title><ph keyref="MultipathStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Aggregates statistics of each network path in multipath transmission.</ph><ph id="shortdesc" props="android">Used to aggregate statistics of each network path in multipath transmission.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">struct MultipathStats {
+  uint32_t lanTxBytes;
+  uint32_t lanRxBytes;
+  uint32_t wifiTxBytes;
+  uint32_t wifiRxBytes;
+  uint32_t mobileTxBytes;
+  uint32_t mobileRxBytes;
+  int activePathNum;
+  const PathStats* pathStats;
+};</codeblock>
+                <codeblock props="android" outputclass="language-java">public static class MultipathStats {
+  public int lanTxBytes;
+  public int lanRxBytes;
+  public int wifiTxBytes;
+  public int wifiRxBytes;
+  public int mobileTxBytes;
+  public int mobileRxBytes;
+  public int activePathNum;
+  public PathStats[] pathStats;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
+            <dl outputclass="since">
+                <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
+                <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Properties</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>lanTxBytes</pt>
+                    <pd>Total bytes sent through the LAN path.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>lanRxBytes</pt>
+                    <pd>Total bytes received through the LAN path.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>wifiTxBytes</pt>
+                    <pd>Total bytes sent through the Wi-Fi path.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>wifiRxBytes</pt>
+                    <pd>Total bytes received through the Wi-Fi path.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mobileTxBytes</pt>
+                    <pd>Total bytes sent through the mobile network path.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mobileRxBytes</pt>
+                    <pd>Total bytes received through the mobile network path.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>activePathNum</pt>
+                    <pd>Number of currently active transmission paths.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>pathStats</pt>
+                    <pd>Array of statistics for each active transmission path. See <xref keyref="PathStats"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lanTxBytes</pt>
+                    <pd>Total number of bytes sent over the LAN.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>lanRxBytes</pt>
+                    <pd>Total number of bytes received over the LAN.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>wifiTxBytes</pt>
+                    <pd>Total number of bytes sent over Wi-Fi.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>wifiRxBytes</pt>
+                    <pd>Total number of bytes received over Wi-Fi.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mobileTxBytes</pt>
+                    <pd>Total number of bytes sent over the mobile network.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>mobileRxBytes</pt>
+                    <pd>Total number of bytes received over the mobile network.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>activePathNum</pt>
+                    <pd>The number of currently active transmission paths.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>pathStats</pt>
+                    <pd>An array of statistics for each active transmission path. See <xref keyref="PathStats"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

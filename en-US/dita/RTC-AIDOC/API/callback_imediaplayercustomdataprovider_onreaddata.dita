@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayercustomdataprovider_onreaddata">
+    <title><ph keyref="onReadData"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the SDK reads media resource data.</ph><ph id="shortdesc" props="android">Callback triggered when the SDK reads media resource data.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onReadData"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="cpp" outputclass="language-cpp">virtual int onReadData(unsigned char *buffer, int bufferSize) = 0;</codeblock>
+                <codeblock props="android" outputclass="language-java">@CalledByNative int onReadData(ByteBuffer buffer, int bufferSize);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="cpp">When you call the <xref keyref="openWithMediaSource"/> method to open a media resource, the SDK triggers this callback and requests you to provide a buffer for the media resource data.</p>
+            <p props="android">When you call the <xref keyref="openWithMediaSource"/> method to open a media resource, the SDK triggers this callback and requests you to provide the buffer for the media resource data.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="cpp">
+                    <pt>buffer</pt>
+                    <pd>Output parameter indicating the data buffer (in bytes). You need to write data of size <codeph>bufferSize</codeph> requested by the SDK into this buffer.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>bufferSize</pt>
+                    <pd>Length of the data buffer (in bytes).</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>buffer</pt>
+                    <pd>Data buffer. You need to write <codeph>bufferSize</codeph> bytes of data requested by the SDK into this buffer. See <codeph>ByteBuffer</codeph>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>bufferSize</pt>
+                    <pd>Length of the data buffer in bytes.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="android cpp">
+            <title>Return Values</title>
+            <p props="cpp">
+                <ul>
+                    <li>If the data is read successfully, returns the actual number of bytes read.</li>
+                    <li>If the read fails, returns 0.</li>
+                </ul>
+            </p>
+            <p props="android">
+                <ul>
+                    <li>When data is read successfully, returns the actual number of bytes read.</li>
+                    <li>When data read fails, returns 0.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

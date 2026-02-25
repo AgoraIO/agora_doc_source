@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_getrecordingdeviceinfo2">
+    <title><ph keyref="getRecordingDeviceInfo2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Retrieves information about the audio recording device and its type.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getRecordingDeviceInfo2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetRecordingDeviceInfo(ref string deviceId, ref string deviceName, ref string deviceTypeName);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">(macOS only)</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>deviceId</pt>
+                    <pd>Output parameter. The device ID of the playback device.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceName</pt>
+                    <pd>Output parameter. The device name of the playback device.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceTypeName</pt>
+                    <pd>Output parameter. The type of the audio recording device, such as built-in, USB, HDMI, etc.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>
