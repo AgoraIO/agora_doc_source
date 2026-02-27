@@ -88,18 +88,30 @@ def extract_api_key_from_filename(filename):
         return '_'.join(parts[2:])
     return name
 
-def filter_by_name_groups(file_list, name_groups, platform):
+def filter_by_name_groups(file_list, name_groups, platform, filename_to_keys=None):
     """
     Filter file list based on name_groups mappings
     Keep only files where:
     1. The API key exists in name_groups["api"]
     2. The key has a mapping for the specific platform
+    
+    Args:
+        file_list: List of DITA filenames
+        name_groups: Dictionary containing name_groups mappings
+        platform: Platform tag (e.g., 'electron', 'flutter')
+        filename_to_keys: Optional mapping from filename to keydef keys from ditamap
     """
     api_mappings = name_groups.get('api', {})
     filtered_list = []
     
     for filename in file_list:
-        api_key = extract_api_key_from_filename(filename)
+        # Use keydef keys from ditamap if available (exact case match), otherwise fall back to filename extraction
+        if filename_to_keys and filename in filename_to_keys:
+            api_key = filename_to_keys[filename]
+        else:
+            # Fallback to extracting from filename (for backward compatibility)
+            api_key = extract_api_key_from_filename(filename)
+            localLogger.debug(f"Using extracted key from filename for {filename}: {api_key}")
         
         # Check if key exists and has platform mapping
         if api_key in api_mappings:
@@ -191,9 +203,14 @@ def main():
 
     dita_file_root = dita_file_tree.getroot()
     rust_topicref_list = []
+    # Build a mapping from filename to keydef keys for accurate key matching
+    filename_to_keys = {}
     for topicref in dita_file_root.iter("keydef"):
         if topicref.get("href") is not None:
             path_new = path.basename(topicref.get("href"))
+            keys_attr = topicref.get("keys")
+            if keys_attr:
+                filename_to_keys[path_new] = keys_attr.strip()
             localLogger.debug(path_new)
             rust_topicref_list.append(path_new)
 
@@ -208,7 +225,7 @@ def main():
         localLogger.info(f"Filtering APIs using name_groups file: {name_groups_file}")
         name_groups = load_name_groups(name_groups_file)
         original_count = len(rust_topicref_list)
-        rust_topicref_list = filter_by_name_groups(rust_topicref_list, name_groups, platform_tag)
+        rust_topicref_list = filter_by_name_groups(rust_topicref_list, name_groups, platform_tag, filename_to_keys)
         filtered_count = len(rust_topicref_list)
         localLogger.info(f"Filtered {original_count} APIs down to {filtered_count} APIs (removed {original_count - filtered_count})")
 
