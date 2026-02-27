@@ -56,6 +56,11 @@ parser.add_argument(
     "--remove_sdk_type", help="DEPRECATED: Use platform_tag and --old_sdk. Your remove SDK type: sdk or sdk-ng",
     action="store", required=False
 )
+parser.add_argument(
+    "--name_groups_file", 
+    help="Path to name_groups JSON file for filtering APIs (optional)",
+    action="store", required=False
+)
 args = vars(parser.parse_args())
 
 localLogger = logging
@@ -63,6 +68,51 @@ localLogger = logging
 # rust_full_path
 # cpp_full_path
 # Other types of full path
+
+def load_name_groups(file_path):
+    """Load name_groups JSON file"""
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def extract_api_key_from_filename(filename):
+    """
+    Extract API key from DITA filename
+    Example: api_irtcengine_initialize.dita -> initialize
+    """
+    # Remove .dita extension and api_ prefix
+    name = filename.replace('.dita', '')
+    # Handle patterns like api_irtcengine_xxx or api_imusiccontentcenter_xxx
+    parts = name.split('_')
+    if len(parts) >= 3 and parts[0] == 'api':
+        # Return everything after the class name
+        return '_'.join(parts[2:])
+    return name
+
+def filter_by_name_groups(file_list, name_groups, platform):
+    """
+    Filter file list based on name_groups mappings
+    Keep only files where:
+    1. The API key exists in name_groups["api"]
+    2. The key has a mapping for the specific platform
+    """
+    api_mappings = name_groups.get('api', {})
+    filtered_list = []
+    
+    for filename in file_list:
+        api_key = extract_api_key_from_filename(filename)
+        
+        # Check if key exists and has platform mapping
+        if api_key in api_mappings:
+            platform_mapping = api_mappings[api_key]
+            if platform in platform_mapping:
+                filtered_list.append(filename)
+                localLogger.debug(f"Keeping {filename} (key: {api_key})")
+            else:
+                localLogger.debug(f"Filtering out {filename} (no {platform} mapping)")
+        else:
+            localLogger.debug(f"Filtering out {filename} (key {api_key} not in name_groups)")
+    
+    return filtered_list
 
 def main():
     # Required tags
@@ -148,6 +198,19 @@ def main():
             rust_topicref_list.append(path_new)
 
     logLines(localLogger.debug, "Topic ref list", rust_topicref_list)
+
+    # Filter API list based on name_groups file if provided
+    name_groups_file = args['name_groups_file']
+    if name_groups_file:
+        # Resolve relative path if needed
+        if not path.isabs(name_groups_file):
+            name_groups_file = path.join(path.dirname(__file__), name_groups_file)
+        localLogger.info(f"Filtering APIs using name_groups file: {name_groups_file}")
+        name_groups = load_name_groups(name_groups_file)
+        original_count = len(rust_topicref_list)
+        rust_topicref_list = filter_by_name_groups(rust_topicref_list, name_groups, platform_tag)
+        filtered_count = len(rust_topicref_list)
+        localLogger.info(f"Filtered {original_count} APIs down to {filtered_count} APIs (removed {original_count - filtered_count})")
 
     json_hide_id_list = []
     # Collect the hide API which mark props="hide" or "cn" in <topichead> or <keydef>

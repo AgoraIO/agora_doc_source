@@ -23,8 +23,23 @@ jobs:
             matrix:
                 platform: [flutter, ios, macos, electron, unity, rn]
                 language: [en, cn]
+                version: [default]
+                include:
+                    # Add full version for framework platforms with English
+                    - platform: electron
+                      language: en
+                      version: full
+                    - platform: rn
+                      language: en
+                      version: full
+                    - platform: flutter
+                      language: en
+                      version: full
+                    - platform: unity
+                      language: en
+                      version: full
         runs-on: ubuntu-latest
-        name: ${{matrix.platform}} (${{matrix.language}})
+        name: ${{matrix.platform}} (${{matrix.language}})${{matrix.version == 'full' && ' [full]' || ''}}
         steps:
             - uses: actions/checkout@v3
             - name: Set up python 3.8
@@ -36,7 +51,13 @@ jobs:
               run: |
                   # Set language and filename
                   echo "language=${{matrix.language}}" >> $GITHUB_OUTPUT
-                  echo "filename=${{matrix.platform}}_${{matrix.language}}_ng.json" >> $GITHUB_OUTPUT
+                  
+                  # Set filename with version suffix for full version
+                  if [[ "${{matrix.version}}" == "full" ]]; then
+                    echo "filename=${{matrix.platform}}_${{matrix.language}}_ng_full.json" >> $GITHUB_OUTPUT
+                  else
+                    echo "filename=${{matrix.platform}}_${{matrix.language}}_ng.json" >> $GITHUB_OUTPUT
+                  fi
                   
                   # Set working directory based on platform and language
                   if [[ "${{matrix.platform}}" == "flutter" || "${{matrix.platform}}" == "electron" || "${{matrix.platform}}" == "unity" || "${{matrix.platform}}" == "rn" ]]; then
@@ -54,6 +75,21 @@ jobs:
                       echo "working_dir=dita/RTC-AIDOC" >> $GITHUB_OUTPUT
                     fi
                   fi
+                  
+                  # Set name_groups_file path for framework platforms with English
+                  if [[ "${{matrix.platform}}" == "flutter" || "${{matrix.platform}}" == "electron" || "${{matrix.platform}}" == "unity" || "${{matrix.platform}}" == "rn" ]]; then
+                    if [[ "${{matrix.language}}" == "en" ]]; then
+                      if [[ "${{matrix.version}}" == "full" ]]; then
+                        echo "name_groups_file=config/name_groups_framework_full.json" >> $GITHUB_OUTPUT
+                      else
+                        echo "name_groups_file=config/name_groups_framework.json" >> $GITHUB_OUTPUT
+                      fi
+                    else
+                      echo "name_groups_file=" >> $GITHUB_OUTPUT
+                    fi
+                  else
+                    echo "name_groups_file=" >> $GITHUB_OUTPUT
+                  fi
             - name: Get branch name
               id: branch-name
               uses: tj-actions/branch-names@v7
@@ -64,23 +100,33 @@ jobs:
                   if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
             - name: Run ${{steps.matrix_vars.outputs.language}} JSON creation
               run: |
-                  python xml2json/xml2json.py --working_dir ${{steps.matrix_vars.outputs.working_dir}} --platform_tag ${{matrix.platform}}\
-                    --json_file ${{steps.matrix_vars.outputs.filename}}\
-                    --language ${{steps.matrix_vars.outputs.language}}
+                  cd xml2json
+                  if [[ -n "${{steps.matrix_vars.outputs.name_groups_file}}" ]]; then
+                    python xml2json.py --working_dir ../${{steps.matrix_vars.outputs.working_dir}} --platform_tag ${{matrix.platform}}\
+                      --json_file ${{steps.matrix_vars.outputs.filename}}\
+                      --language ${{steps.matrix_vars.outputs.language}}\
+                      --name_groups_file ${{steps.matrix_vars.outputs.name_groups_file}}
+                  else
+                    python xml2json.py --working_dir ../${{steps.matrix_vars.outputs.working_dir}} --platform_tag ${{matrix.platform}}\
+                      --json_file ${{steps.matrix_vars.outputs.filename}}\
+                      --language ${{steps.matrix_vars.outputs.language}}
+                  fi
             - name: Validate and Order JSON File
-              run: jq 'sort_by(.'id')' "${{steps.matrix_vars.outputs.filename}}" > "${{steps.matrix_vars.outputs.filename}}.tmp" && mv "${{steps.matrix_vars.outputs.filename}}.tmp" "${{steps.matrix_vars.outputs.filename}}"
+              run: |
+                  cd xml2json
+                  jq 'sort_by(.'id')' "${{steps.matrix_vars.outputs.filename}}" > "${{steps.matrix_vars.outputs.filename}}.tmp" && mv "${{steps.matrix_vars.outputs.filename}}.tmp" "${{steps.matrix_vars.outputs.filename}}"
             - name: Upload ${{matrix.platform}} ${{steps.matrix_vars.outputs.language}} Artifact
               uses: actions/upload-artifact@v4
               with:
-                  name: ${{matrix.platform}}_ng_json_template_${{steps.matrix_vars.outputs.language}}.json
-                  path: ${{steps.matrix_vars.outputs.filename}}
+                  name: ${{matrix.platform}}_ng_json_template_${{steps.matrix_vars.outputs.language}}${{matrix.version == 'full' && '_full' || ''}}.json
+                  path: xml2json/${{steps.matrix_vars.outputs.filename}}
             - name: Upload ${{matrix.platform}} NG ${{steps.matrix_vars.outputs.language}} JSON to release
               if: github.ref_name == github.event.repository.default_branch && (github.event_name != 'workflow_dispatch' || github.event.inputs.skip_release != 'true')
               uses: svenstaro/upload-release-action@2.6.0
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
-                  file: ${{steps.matrix_vars.outputs.filename}}
-                  asset_name: ${{matrix.platform}}_ng_json_template_${{steps.matrix_vars.outputs.language}}.json
+                  file: xml2json/${{steps.matrix_vars.outputs.filename}}
+                  asset_name: ${{matrix.platform}}_ng_json_template_${{steps.matrix_vars.outputs.language}}${{matrix.version == 'full' && '_full' || ''}}.json
                   tag: ${{steps.branch-name.outputs.current_branch}}-build
                   release_name: Release ${{steps.branch-name.outputs.current_branch}}-build
                   overwrite: true
