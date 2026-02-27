@@ -1,0 +1,350 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_mediarecorderconfiguration">
+    <title><ph keyref="MediaRecorderConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Audio and video stream recording configuration.</ph><ph id="shortdesc" props="rn">Configuration for audio and video stream recording.</ph><ph id="shortdesc" props="flutter">Audio and video stream recording configuration.</ph><ph id="shortdesc" props="unity">Configuration for audio and video stream recording.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class MediaRecorderConfiguration {
+  storagePath?: string;
+  containerFormat?: MediaRecorderContainerFormat;
+  streamType?: MediaRecorderStreamType;
+  maxDurationMs?: number;
+  recorderInfoUpdateInterval?: number;
+  width?: number;
+  height?: number;
+  fps?: number;
+  sample_rate?: number;
+  channel_num?: number;
+  videoSourceType?: VideoSourceType;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class MediaRecorderConfiguration {
+  storagePath?: string;
+  containerFormat?: MediaRecorderContainerFormat;
+  streamType?: MediaRecorderStreamType;
+  maxDurationMs?: number;
+  recorderInfoUpdateInterval?: number;
+  width?: number;
+  height?: number;
+  fps?: number;
+  sample_rate?: number;
+  channel_num?: number;
+  videoSourceType?: VideoSourceType;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class MediaRecorderConfiguration {
+
+  const MediaRecorderConfiguration(
+      {this.storagePath,
+      this.containerFormat,
+      this.streamType,
+      this.maxDurationMs,
+      this.recorderInfoUpdateInterval,
+      this.width,
+      this.height,
+      this.fps,
+      this.sampleRate,
+      this.channelNum,
+      this.videoSourceType});
+
+  @JsonKey(name: 'storagePath')
+  final String? storagePath;
+
+  @JsonKey(name: 'containerFormat')
+  final MediaRecorderContainerFormat? containerFormat;
+
+  @JsonKey(name: 'streamType')
+  final MediaRecorderStreamType? streamType;
+
+  @JsonKey(name: 'maxDurationMs')
+  final int? maxDurationMs;
+
+  @JsonKey(name: 'recorderInfoUpdateInterval')
+  final int? recorderInfoUpdateInterval;
+
+  @JsonKey(name: 'width')
+  final int? width;
+
+  @JsonKey(name: 'height')
+  final int? height;
+
+  @JsonKey(name: 'fps')
+  final int? fps;
+
+  @JsonKey(name: 'sample_rate')
+  final int? sampleRate;
+
+  @JsonKey(name: 'channel_num')
+  final int? channelNum;
+
+  @JsonKey(name: 'videoSourceType')
+  final VideoSourceType? videoSourceType;
+
+  factory MediaRecorderConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$MediaRecorderConfigurationFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$MediaRecorderConfigurationToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public struct MediaRecorderConfiguration {
+        public string storagePath;
+        public MediaRecorderContainerFormat containerFormat;
+        public MediaRecorderStreamType streamType;
+        public int maxDurationMs;
+        public int recorderInfoUpdateInterval;
+        public int width;
+        public int height;
+        public int fps;
+        public int sample_rate;
+        public int channel_num;
+        public VIDEO_SOURCE_TYPE videoSourceType;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>storagePath</pt>
+                    <pd>
+                        <note>Make sure the specified path exists and is writable.</note><ph>Absolute path to save the recorded file locally, including file name and format. For example:</ph>
+                        <ul>
+                            <li>Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.mp4</codeph></li>
+                            <li>macOS: <codeph>/Library/Logs/example.mp4</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>containerFormat</pt>
+                    <pd>Format of the recorded file. See <xref keyref="MediaRecorderContainerFormat"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>streamType</pt>
+                    <pd>Content to be recorded. See <xref keyref="MediaRecorderStreamType"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>maxDurationMs</pt>
+                    <pd>Maximum recording duration in milliseconds. Default is 120000.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>recorderInfoUpdateInterval</pt>
+                    <pd>Interval for updating recording information, in milliseconds. Range: [1000,10000]. The SDK triggers the <xref keyref="onRecorderInfoUpdated"/> callback based on this value to report updated recording information.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>Width (px) of the recorded video. The maximum value of width × height should not exceed 3840 × 2160.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to Preview.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>Height (px) of the recorded video. The maximum value of width × height should not exceed 3840 × 2160.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to Preview.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>fps</pt>
+                    <pd>Frame rate of the recorded video. Maximum value is 30, e.g., 5, 10, 15, 24, 30.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to Preview.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sample_rate</pt>
+                    <pd>Sampling rate (Hz) of the recorded audio. Can be set to 16000, 32000, 44100, or 48000.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to Preview.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channel_num</pt>
+                    <pd>Number of audio channels:
+                        <ul>
+                            <li>1: Mono</li>
+                            <li>2: Stereo</li>
+                        </ul><ph>This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to Preview.</ph></pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoSourceType</pt>
+                    <pd>Type of the video source for recording. See <xref keyref="VIDEO_SOURCE_TYPE"/>.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to Preview.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>storagePath</pt>
+                    <pd>
+                        <note>Make sure the specified path exists and is writable.</note><ph>The absolute local path where the recorded file is saved, including the file name and format. For example:</ph>
+                        <ul>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.mp4</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>containerFormat</pt>
+                    <pd>The format of the recorded file. See <xref keyref="MediaRecorderContainerFormat"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>streamType</pt>
+                    <pd>The content to be recorded. See <xref keyref="MediaRecorderStreamType"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>maxDurationMs</pt>
+                    <pd>Maximum recording duration in milliseconds. Default is 120000.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>recorderInfoUpdateInterval</pt>
+                    <pd>Interval for updating recording information, in milliseconds, ranging from [1000,10000]. The SDK triggers the <xref keyref="onRecorderInfoUpdated"/> callback based on this setting to report updated recording information.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>width</pt>
+                    <pd>Width (px) of the recorded video. The maximum value for width × height must not exceed 3840 × 2160.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to Preview.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>Height (px) of the recorded video. The maximum value for width × height must not exceed 3840 × 2160.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to Preview.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>fps</pt>
+                    <pd>Frame rate of the recorded video. The maximum is 30, e.g., 5, 10, 15, 24, 30.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to Preview.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sample_rate</pt>
+                    <pd>Sampling rate (Hz) of the recorded audio. Can be set to 16000, 32000, 44100, or 48000.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to Preview.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channel_num</pt>
+                    <pd>Number of audio channels:
+                        <ul>
+                            <li>1: Mono</li>
+                            <li>2: Stereo</li>
+                        </ul><ph>This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to Preview.</ph></pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoSourceType</pt>
+                    <pd>Type of the video source to be recorded. See <xref keyref="VIDEO_SOURCE_TYPE"/>.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to Preview.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>storagePath</pt>
+                    <pd>
+                        <note>Make sure the specified path exists and is writable.</note><ph>Absolute path to save the recorded file locally, including file name and format. For example:</ph>
+                        <ul>
+                            <li>Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.mp4</codeph></li>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
+                            <li>macOS: <codeph>/Library/Logs/example.mp4</codeph></li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.mp4</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>containerFormat</pt>
+                    <pd>Format of the recorded file. See <xref keyref="MediaRecorderContainerFormat"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamType</pt>
+                    <pd>Content to be recorded. See <xref keyref="MediaRecorderStreamType"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>maxDurationMs</pt>
+                    <pd>Maximum recording duration in milliseconds. Default is 120000.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>recorderInfoUpdateInterval</pt>
+                    <pd>Interval for updating recording info, in milliseconds. Range: [1000,10000]. The SDK triggers the <xref keyref="onRecorderInfoUpdated"/> callback based on this value to report updated recording info.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>width</pt>
+                    <pd>Width (px) of the recorded video. The maximum value of width × height should not exceed 3840 × 2160.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to preview.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>Height (px) of the recorded video. The maximum value of width × height should not exceed 3840 × 2160.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to preview.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>fps</pt>
+                    <pd>Frame rate of the recorded video. Maximum value is 30, e.g., 5, 10, 15, 24, 30, etc.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to preview.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sampleRate</pt>
+                    <pd>Sampling rate (Hz) of the recorded audio. Can be set to 16000, 32000, 44100, or 48000.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to preview.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channelNum</pt>
+                    <pd>Number of audio channels:
+                        <ul>
+                            <li>1: Mono</li>
+                            <li>2: Stereo</li>
+                        </ul><ph>This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to preview.</ph></pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoSourceType</pt>
+                    <pd>Type of video source for recording. See <xref keyref="VIDEO_SOURCE_TYPE"/>.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to preview.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>storagePath</pt>
+                    <pd>
+                        <note>Make sure the specified path exists and is writable.</note><ph>The absolute path where the recorded file is saved locally, including the file name and format. For example:</ph>
+                        <ul>
+                            <li>Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.mp4</codeph></li>
+                            <li>iOS: <codeph>/App Sandbox/Library/Caches/example.mp4</codeph></li>
+                            <li>macOS: <codeph>/Library/Logs/example.mp4</codeph></li>
+                            <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.mp4</codeph></li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>containerFormat</pt>
+                    <pd>Format of the recorded file. See <xref keyref="MediaRecorderContainerFormat"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>streamType</pt>
+                    <pd>Content to be recorded. See <xref keyref="MediaRecorderStreamType"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>maxDurationMs</pt>
+                    <pd>Maximum recording duration in milliseconds. Default is 120000.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>recorderInfoUpdateInterval</pt>
+                    <pd>Interval for recording information updates in milliseconds, range [1000,10000]. The SDK triggers the <xref keyref="onRecorderInfoUpdated"/> callback based on this value to report updated recording information.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>width</pt>
+                    <pd>Width (px) of the recorded video. The maximum value of width × height should not exceed 3840 × 2160.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to PREVIEW.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>Height (px) of the recorded video. The maximum value of width × height should not exceed 3840 × 2160.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to PREVIEW.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>fps</pt>
+                    <pd>Frame rate of the recorded video. Maximum is 30, e.g., 5, 10, 15, 24, 30.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to PREVIEW.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sample_rate</pt>
+                    <pd>Sampling rate (Hz) of the recorded audio. Can be set to 16000, 32000, 44100, or 48000.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to PREVIEW.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channel_num</pt>
+                    <pd>Number of audio channels:
+                        <ul>
+                            <li>1: Mono</li>
+                            <li>2: Stereo</li>
+                        </ul><ph>This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to PREVIEW.</ph></pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoSourceType</pt>
+                    <pd>Type of video source to be recorded. See <xref keyref="VIDEO_SOURCE_TYPE"/>.
+This parameter is required only when calling <xref keyref="createMediaRecorder"/> and setting <codeph>type</codeph> in <xref keyref="RecorderStreamInfo"/> to PREVIEW.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

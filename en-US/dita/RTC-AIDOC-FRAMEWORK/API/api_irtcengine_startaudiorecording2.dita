@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startaudiorecording2">
+    <title><ph keyref="startAudioRecording2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Starts client-side recording and sets the recording sample rate.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startAudioRecording2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioRecording(string filePath, int sampleRate, AUDIO_RECORDING_QUALITY_TYPE quality);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">The SDK supports client-side recording during a call. After calling this method, you can record the audio of all users in the channel and get a recording file containing all users' voices. The recording file supports the following formats only:
+                <ul>
+                    <li>.wav: Large file size with high audio fidelity.</li>
+                    <li>.aac: Small file size with lower audio fidelity.</li>
+                </ul>
+            </p>
+            <note props="unity">
+                <ul>
+                    <li>Make sure the path you specify in this method exists and is writable.</li>
+                    <li>This method must be called after <xref keyref="joinChannel2"/>. If recording is ongoing when <xref keyref="leaveChannel2"/> is called, the recording will automatically stop.</li>
+                    <li>To ensure recording quality, when <codeph>sampleRate</codeph> is set to 44.1 kHz or 48 kHz, it is recommended to set <codeph>quality</codeph> to <codeph>AUDIO_RECORDING_QUALITY_MEDIUM</codeph> or <codeph>AUDIO_RECORDING_QUALITY_HIGH</codeph>.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>The absolute path where the recording file is saved locally, including the file name and format. For example: <codeph>C:\music\audio.aac</codeph>.
+                        <note>Make sure the specified path exists and is writable.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sampleRate</pt>
+                    <pd>Recording sample rate (Hz). You can set it to:
+                        <ul>
+                            <li>16000</li>
+                            <li>32000 (default)</li>
+                            <li>44100</li>
+                            <li>48000</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>quality</pt>
+                    <pd>Recording quality. See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

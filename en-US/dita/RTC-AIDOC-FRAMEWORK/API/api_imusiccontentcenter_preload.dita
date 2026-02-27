@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_preload">
+    <title><ph keyref="preload"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Preloads a music resource.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="preload"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int Preload(Int64 songCode, string jsonOption = "");</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is obsolete. Use <xref keyref="preload2"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="unity">You can call this method to preload the music resource you want to play. After the method is successfully called, the SDK triggers the <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> callback to report the preload event.
+Before calling this method to preload a music resource, you need to call the <xref keyref="getMusicCollectionByMusicChartId"/> or <xref keyref="searchMusic"/> method to get the music resource you want to play, and obtain the music resource code (<codeph>songCode</codeph>) through the triggered <xref keyref="onMusicCollectionResult"/> callback.</p>
+            <note props="unity">To destroy the <xref keyref="IRtcEngine"/> object, call the <xref keyref="dispose_IMediaPlayer"/> method after receiving the <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> callback.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>songCode</pt>
+                    <pd>The code of the music resource, used to identify the music resource.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>jsonOption</pt>
+                    <pd>Extended JSON field.
+Agora charges based on the application scenario you pass in the <codeph>sceneType</codeph> field. Different scenarios correspond to different rates. You can refer to the [Billing Description](https://doc.shengwang.cn/doc/online-ktv/android/online-ktv-sdk/overview/billing) for detailed billing information.
+                        <ul>
+                            <li>1: Live scenario: Karaoke and background music playback.</li>
+                            <li>2: Live scenario: Background music playback.</li>
+                            <li>3: (Default) Voice chat scenario: Karaoke.</li>
+                            <li>4: Voice chat scenario: Background music playback.</li>
+                            <li>5: VR scenario: Karaoke and background music playback.</li>
+                        </ul><ph>To switch to a different scenario, you need to call this method again and pass the <codeph>sceneType</codeph> value in this field.</ph><ph>Example: <codeph>{"sceneType":1}</codeph></ph></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

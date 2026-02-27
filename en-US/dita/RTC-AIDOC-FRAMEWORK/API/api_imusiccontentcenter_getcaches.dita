@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_getcaches">
+    <title><ph keyref="getCaches"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets information about the cached music resources.</ph><ph id="shortdesc" props="rn">Gets information about cached music resources.</ph><ph id="shortdesc" props="flutter">Retrieves information about cached music resources.</ph><ph id="shortdesc" props="unity">Retrieves information about cached music resources.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCaches"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getCaches(): { cacheInfo: MusicCacheInfo[]; cacheInfoSize: number };</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getCaches(): { cacheInfo: MusicCacheInfo[]; cacheInfoSize: number };</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;List&lt;MusicCacheInfo&gt;&gt; getCaches(int cacheInfoSize);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetCaches(ref MusicCacheInfo[] cacheInfo, ref Int32 cacheInfoSize);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Before calling this method, you must pre-allocate memory to store information about cached music resources. If you need to set the number of music resources to cache, you can configure it through the <codeph>configuration</codeph> of <xref keyref="initialize_IMusicContentCenter"/>.
+When you no longer need the cached music resources, release the memory in time to prevent memory leaks.</p>
+            <p props="rn">Before calling this method, you need to allocate a certain amount of memory in advance to store information about cached music resources. If you need to set the number of music resources that can be cached, you can configure it through the <codeph>configuration</codeph> of <xref keyref="initialize_IMusicContentCenter"/>.
+When you no longer need the cached music resources, you should release the memory in time to avoid memory leaks.</p>
+            <p props="flutter">Before calling this method, you need to pre-allocate a certain amount of memory space to store information about cached music resources. If you want to set the number of music resources that can be cached, you can configure it through the <codeph>configuration</codeph> of <xref keyref="initialize_IMusicContentCenter"/>.
+When you no longer need the cached music resources, you should release the memory in time to prevent memory leaks.</p>
+            <p props="unity">Before calling this method, you need to pre-allocate a certain amount of memory to store information about cached music resources. If you want to set the number of cacheable music resources, you can configure it via the <codeph>configuration</codeph> in <xref keyref="initialize_IMusicContentCenter"/>.
+When you no longer need the cached music resources, you should release the memory in time to prevent memory leaks.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="flutter">
+                    <pt>cacheInfoSize</pt>
+                    <pd>Specifies the length of the list of cached music resources to retrieve.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cacheInfo</pt>
+                    <pd>An output parameter. A pointer to the memory buffer used to store cached music resource information.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cacheInfoSize</pt>
+                    <pd>Input and output parameter.
+                        <ul>
+                            <li>Input: The length of the <codeph>cacheInfo</codeph> array, i.e., the number of <xref keyref="MusicCacheInfo"/> structures you allocated.</li>
+                            <li>Output: The number of <xref keyref="MusicCacheInfo"/> structures returned after the method execution.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">If the method call succeeds, returns an object containing the following properties:
+                <ul>
+                    <li><codeph>cacheInfo</codeph>: Array of music cache information.</li>
+                    <li><codeph>cacheInfoSize</codeph>: Length of the music cache information array.</li>
+                </ul>
+            </p>
+            <p props="rn">If the method call succeeds, returns an object with the following properties:
+                <ul>
+                    <li><codeph>cacheInfo</codeph>: Array of music cache information.</li>
+                    <li><codeph>cacheInfoSize</codeph>: Length of the music cache information array.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>A list of <xref keyref="MusicCacheInfo"/> objects, if the method call succeeds.</li>
+                    <li>If the method call fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

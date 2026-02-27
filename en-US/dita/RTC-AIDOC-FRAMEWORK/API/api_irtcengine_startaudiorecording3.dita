@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startaudiorecording3">
+    <title><ph keyref="startAudioRecording3"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Starts client-side audio recording with configuration.</ph><ph id="shortdesc" props="rn">Starts client-side audio recording and configures recording settings.</ph><ph id="shortdesc" props="flutter">Starts client-side audio recording and configures the recording settings.</ph><ph id="shortdesc" props="unity">Starts client-side recording with configuration.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startAudioRecording3"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startAudioRecording(config: AudioRecordingConfiguration): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startAudioRecording(config: AudioRecordingConfiguration): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioRecording(AudioRecordingConfiguration config);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioRecording(AudioRecordingConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">The SDK supports recording audio on the client during a call. After calling this method, you can record the audio of users in the channel and obtain an audio file. The recording file supports the following formats only:
+                <ul>
+                    <li>WAV: Higher audio fidelity, larger file size. For example, a 10-minute recording at 32000 Hz sampling rate is about 73 MB.</li>
+                    <li>AAC: Lower audio fidelity, smaller file size. For example, a 10-minute recording at 32000 Hz sampling rate and <codeph>AudioRecordingQualityMedium</codeph> quality is about 2 MB.</li>
+                </ul><ph>Recording stops automatically when the user leaves the channel.</ph></p>
+            <p props="rn">The SDK supports recording audio on the client during a call. After calling this method, you can record the audio of users in the channel and obtain a recording file. The recording file supports the following formats:
+                <ul>
+                    <li>WAV: Higher audio fidelity, larger file size. For example, a 10-minute recording with a sample rate of 32000 Hz is approximately 73 MB.</li>
+                    <li>AAC: Lower audio fidelity, smaller file size. For example, a 10-minute recording with a sample rate of 32000 Hz and <codeph>AudioRecordingQualityMedium</codeph> quality is approximately 2 MB.</li>
+                </ul><ph>The recording automatically stops when the user leaves the channel.</ph></p>
+            <p props="flutter">The SDK supports client-side audio recording during a call. After calling this method, you can record the audio of users in the channel and obtain a recording file. The recording file only supports the following formats:
+                <ul>
+                    <li>WAV: Higher audio fidelity and larger file size. For example, at a sample rate of 32000 Hz, a 10-minute recording is approximately 73 MB.</li>
+                    <li>AAC: Lower audio fidelity and smaller file size. For example, at a sample rate of 32000 Hz and recording quality set to <codeph>audioRecordingQualityMedium</codeph>, a 10-minute recording is approximately 2 MB.</li>
+                </ul><ph>The recording automatically stops when the user leaves the channel.</ph></p>
+            <p props="unity">The SDK supports client-side recording during a call. After calling this method, you can record the audio of users in the channel and get a recording file. The recording file supports the following formats only:
+                <ul>
+                    <li>WAV: High audio fidelity, large file size. For example, a file with 32000 Hz sample rate and 10 minutes duration is about 73 MB.</li>
+                    <li>AAC: Lower audio fidelity, smaller file size. For example, a file with 32000 Hz sample rate and <codeph>AUDIO_RECORDING_QUALITY_MEDIUM</codeph> quality and 10 minutes duration is about 2 MB.</li>
+                </ul><ph>Recording automatically stops when the user leaves the channel.</ph></p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">You must call this method after joining a channel.</p>
+            <p props="rn">You need to call this method after joining a channel.</p>
+            <p props="flutter">You must call this method after joining a channel.</p>
+            <p props="unity">This method must be called after joining the channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>Recording configuration. See <xref keyref="AudioRecordingConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>config</pt>
+                    <pd>Recording configuration. See <xref keyref="AudioRecordingConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>Recording configuration. See <xref keyref="AudioRecordingConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>Recording configuration. See <xref keyref="AudioRecordingConfiguration"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when it fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>
