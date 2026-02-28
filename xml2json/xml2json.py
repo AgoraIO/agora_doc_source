@@ -92,37 +92,70 @@ def filter_by_name_groups(file_list, name_groups, platform, filename_to_keys=Non
     """
     Filter file list based on name_groups mappings
     Keep only files where:
-    1. The API key exists in name_groups["api"]
+    1. The key exists in name_groups["api"], name_groups["struct"], or name_groups["enum"]
     2. The key has a mapping for the specific platform
     
     Args:
         file_list: List of DITA filenames
-        name_groups: Dictionary containing name_groups mappings
+        name_groups: Dictionary containing name_groups mappings with "api", "struct", and "enum" keys
         platform: Platform tag (e.g., 'electron', 'flutter')
         filename_to_keys: Optional mapping from filename to keydef keys from ditamap
     """
     api_mappings = name_groups.get('api', {})
+    struct_mappings = name_groups.get('struct', {})
+    enum_mappings = name_groups.get('enum', {})
     filtered_list = []
     
     for filename in file_list:
+        # Determine file type based on filename prefix
+        file_type = None
+        if filename.startswith('api_'):
+            file_type = 'api'
+            mappings = api_mappings
+        elif filename.startswith('class_'):
+            file_type = 'struct'
+            mappings = struct_mappings
+        elif filename.startswith('enum_'):
+            file_type = 'enum'
+            mappings = enum_mappings
+        else:
+            # Unknown file type, skip filtering (keep it)
+            localLogger.debug(f"Unknown file type for {filename}, keeping it")
+            filtered_list.append(filename)
+            continue
+        
         # Use keydef keys from ditamap if available (exact case match), otherwise fall back to filename extraction
         if filename_to_keys and filename in filename_to_keys:
-            api_key = filename_to_keys[filename]
+            key = filename_to_keys[filename]
         else:
             # Fallback to extracting from filename (for backward compatibility)
-            api_key = extract_api_key_from_filename(filename)
-            localLogger.debug(f"Using extracted key from filename for {filename}: {api_key}")
+            if file_type == 'api':
+                key = extract_api_key_from_filename(filename)
+            else:
+                # For class and enum, extract key from filename
+                # class_irtcengine.dita -> IRtcEngine
+                # enum_alphastitchmode.dita -> ALPHA_STITCH_MODE
+                name = filename.replace('.dita', '')
+                if file_type == 'struct':
+                    # class_irtcengine -> IRtcEngine (convert to PascalCase)
+                    parts = name.replace('class_', '').split('_')
+                    key = ''.join(word.capitalize() for word in parts)
+                else:  # enum
+                    # enum_alphastitchmode -> ALPHA_STITCH_MODE (convert to UPPER_SNAKE_CASE)
+                    parts = name.replace('enum_', '').split('_')
+                    key = '_'.join(parts).upper()
+            localLogger.debug(f"Using extracted key from filename for {filename}: {key}")
         
         # Check if key exists and has platform mapping
-        if api_key in api_mappings:
-            platform_mapping = api_mappings[api_key]
+        if key in mappings:
+            platform_mapping = mappings[key]
             if platform in platform_mapping:
                 filtered_list.append(filename)
-                localLogger.debug(f"Keeping {filename} (key: {api_key})")
+                localLogger.debug(f"Keeping {filename} (type: {file_type}, key: {key})")
             else:
-                localLogger.debug(f"Filtering out {filename} (no {platform} mapping)")
+                localLogger.debug(f"Filtering out {filename} (no {platform} mapping for {file_type} key {key})")
         else:
-            localLogger.debug(f"Filtering out {filename} (key {api_key} not in name_groups)")
+            localLogger.debug(f"Filtering out {filename} ({file_type} key {key} not in name_groups)")
     
     return filtered_list
 
@@ -216,18 +249,22 @@ def main():
 
     logLines(localLogger.debug, "Topic ref list", rust_topicref_list)
 
-    # Filter API list based on name_groups file if provided
+    # Filter file list (APIs, structs, enums) based on name_groups file if provided
     name_groups_file = args['name_groups_file']
     if name_groups_file:
         # Resolve relative path if needed
         if not path.isabs(name_groups_file):
             name_groups_file = path.join(path.dirname(__file__), name_groups_file)
-        localLogger.info(f"Filtering APIs using name_groups file: {name_groups_file}")
+        localLogger.info(f"Filtering files using name_groups file: {name_groups_file}")
         name_groups = load_name_groups(name_groups_file)
         original_count = len(rust_topicref_list)
         rust_topicref_list = filter_by_name_groups(rust_topicref_list, name_groups, platform_tag, filename_to_keys)
         filtered_count = len(rust_topicref_list)
-        localLogger.info(f"Filtered {original_count} APIs down to {filtered_count} APIs (removed {original_count - filtered_count})")
+        # Count by type for better logging
+        api_count = len([f for f in rust_topicref_list if f.startswith('api_')])
+        struct_count = len([f for f in rust_topicref_list if f.startswith('class_')])
+        enum_count = len([f for f in rust_topicref_list if f.startswith('enum_')])
+        localLogger.info(f"Filtered {original_count} files down to {filtered_count} files (removed {original_count - filtered_count}): {api_count} APIs, {struct_count} structs, {enum_count} enums")
 
     json_hide_id_list = []
     # Collect the hide API which mark props="hide" or "cn" in <topichead> or <keydef>
