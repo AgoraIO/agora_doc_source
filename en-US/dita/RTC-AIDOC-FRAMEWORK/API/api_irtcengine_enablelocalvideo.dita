@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablelocalvideo">
+    <title><ph keyref="enableLocalVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Enables or disables local video capture.</ph><ph id="shortdesc" props="rn">Enables or disables local video capture.</ph><ph id="shortdesc" props="flutter">Enables or disables local video capture.</ph><ph id="shortdesc" props="unity">Enables or disables local video capture.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableLocalVideo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableLocalVideo(enabled: boolean): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableLocalVideo(enabled: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableLocalVideo(bool enabled);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableLocalVideo(bool enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method disables or re-enables local video capture without affecting the reception of remote video.
+After calling <xref keyref="enableVideo"/>, local video capture is enabled by default.
+If you call <codeph>enableLocalVideo(false)</codeph> in a channel to disable local video capture, it also stops publishing the video stream in the channel. To re-enable it, call <codeph>enableLocalVideo(true)</codeph>, then call <xref keyref="updateChannelMediaOptions"/> and set the <codeph>options</codeph> parameter to publish the locally captured video stream to the channel.
+After successfully disabling or enabling local video capture, the remote user receives the <xref keyref="onRemoteVideoStateChanged"/> callback.</p>
+            <p props="rn">This method disables or re-enables local video capture without affecting the reception of remote video.
+After calling <xref keyref="enableVideo"/>, local video capture is enabled by default.
+If you call <codeph>enableLocalVideo(false)</codeph> in a channel, it stops local video capture and also stops publishing the video stream in the channel. To re-enable it, call <codeph>enableLocalVideo(true)</codeph>, then call <xref keyref="updateChannelMediaOptions"/> and set the <codeph>options</codeph> parameter to publish the locally captured video stream to the channel.
+After successfully enabling or disabling local video capture, the remote side triggers the <xref keyref="onRemoteVideoStateChanged"/> callback.</p>
+            <p props="flutter">This method disables or re-enables local video capture and does not affect receiving remote video.
+After calling <xref keyref="enableVideo"/>, local video capture is enabled by default.
+If you call <codeph>enableLocalVideo(false)</codeph> in a channel to disable local video capture, it also stops publishing the video stream in the channel. To re-enable, call <codeph>enableLocalVideo(true)</codeph>, then call <xref keyref="updateChannelMediaOptions"/> and set the <codeph>options</codeph> parameter to publish the captured video stream to the channel.
+After successfully enabling or disabling local video capture, the remote side receives the <xref keyref="onRemoteVideoStateChanged"/> callback.</p>
+            <p props="unity">This method disables or re-enables local video capture without affecting the reception of remote video.
+After calling <xref keyref="enableVideo"/>, local video capture is enabled by default.
+If you call <codeph>EnableLocalVideo(false)</codeph> in the channel to disable local video capture, it also stops publishing the video stream in the channel. To re-enable it, call <codeph>EnableLocalVideo(true)</codeph>, then call <xref keyref="updateChannelMediaOptions"/> and set the <codeph>options</codeph> parameter to publish the locally captured video stream to the channel.
+After successfully enabling or disabling local video capture, the remote side triggers the <xref keyref="onRemoteVideoStateChanged"/> callback.</p>
+            <note props="electron">
+                <ul>
+                    <li>This method can be called before or after joining a channel, but settings made before joining take effect only after joining.</li>
+                    <li>This method sets the internal engine to an enabled state and remains effective after leaving the channel.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>This method can be called before or after joining a channel, but the settings take effect only after joining the channel.</li>
+                    <li>This method sets the internal engine to the enabled state and remains effective after leaving the channel.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method can be called before or after joining a channel. However, settings made before joining only take effect after joining.</li>
+                    <li>This method sets the internal engine to an enabled state and remains effective after leaving the channel.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method can be called before or after joining a channel, but settings made before joining only take effect after joining.</li>
+                    <li>This method sets the internal engine to an enabled state and remains effective after leaving the channel.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable local video capture.
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Enables local video capture.</li>
+                            <li><xref keyref="false"/>: Disables local video capture. After disabling, the remote user will not receive the local user's video stream; however, the local user can still receive the remote user's video stream. When set to <xref keyref="false"/>, this method does not require a local camera.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable local video capture.
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Enables local video capture.</li>
+                            <li><xref keyref="false"/>: Disables local video capture. After disabling, remote users will not receive the local user's video stream, but the local user can still receive remote video streams. When set to <xref keyref="false"/>, this method does not require a local camera.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable local video capture.
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Enable local video capture.</li>
+                            <li><xref keyref="false"/>: Disable local video capture. After disabling, the remote user cannot receive the local video stream, but the local user can still receive the remote video stream. When set to <xref keyref="false"/>, this method does not require a local camera.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable local video capture.
+                        <ul>
+                            <li><xref keyref="true"/>: (default) Enable local video capture.</li>
+                            <li><xref keyref="false"/>: Disable local video capture. After disabling, the remote user will not receive the local user's video stream; however, the local user can still receive the remote user's video stream. When set to <xref keyref="false"/>, this method does not require the local device to have a camera.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting tips.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Method call succeeded.</li>
+                    <li>&lt; 0: Method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

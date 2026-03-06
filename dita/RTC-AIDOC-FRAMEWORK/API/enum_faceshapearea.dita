@@ -2,26 +2,510 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_faceshapearea">
     <title><ph keyref="FACE_SHAPE_AREA"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="electron">用于设置需要调整的具体美型区域。</ph><ph id="shortdesc" props="rn">用于设置需要调整的具体美型区域。</ph><ph id="shortdesc" props="flutter">用于设置需要调整的具体美型区域。</ph><ph id="shortdesc" props="unity">用于设置需要调整的具体美型区域。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">选择需要调整的具体美型区域。</ph><ph id="shortdesc" props="rn">选择需要调整的具体美型区域。</ph><ph id="shortdesc" props="flutter">选择需要调整的具体美型区域。</ph><ph id="shortdesc" props="unity">选择需要调整的具体美型区域。</ph></shortdesc>
     <refbody>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <dl outputclass="since">
+                <dlentry props="electron">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>自从</dt>
+                    <dd>自 v4.4.0 版本新增。</dd>
+                </dlentry>
+            </dl>
+        </section>
         <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
             <title>枚举值</title>
             <parml>
                 <plentry props="electron">
                     <pt>FaceShapeAreaNone</pt>
-                    <pd>-1: （默认）无效部位，美型效果不生效。</pd>
+                    <pd>（-1）：默认值，表示无效区域，美型效果不生效。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaHeadscale</pt>
+                    <pd>（100）：头部区域，用于实现小头效果。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaForehead</pt>
+                    <pd>（101）：额头区域，用于调整发际线高度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaFacecontour</pt>
+                    <pd>（102）：脸部轮廓区域，用于实现瘦脸效果。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaFacelength</pt>
+                    <pd>（103）：脸部长度区域，用于拉长脸部。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaFacewidth</pt>
+                    <pd>（104）：脸部宽度区域，用于实现窄脸效果。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaCheekbone</pt>
+                    <pd>（105）：颧骨区域，用于调整颧骨宽度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaCheek</pt>
+                    <pd>（106）：面颊区域，用于调整面颊宽度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaMandible</pt>
+                    <pd>（107）：下颌骨区域，用于调整下颌骨宽度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaChin</pt>
+                    <pd>（108）：下巴区域，用于调整下巴长度。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaEyescale</pt>
+                    <pd>（200）：眼睛区域，用于实现大眼效果。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaEyedistance</pt>
+                    <pd>（201）：眼距区域，用于调整两眼间距。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaEyeposition</pt>
+                    <pd>（202）：眼睛位置区域，用于调整眼睛整体位置。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaLowereyelid</pt>
+                    <pd>（203）：下眼睑区域，用于调整下眼睑形态。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaEyepupils</pt>
+                    <pd>（204）：瞳孔区域，用于调整瞳孔大小。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaEyeinnercorner</pt>
+                    <pd>（205）：内眼角区域，用于调整内眼角形态。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaEyeoutercorner</pt>
+                    <pd>（206）：外眼角区域，用于调整外眼角形态。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaNoselength</pt>
+                    <pd>（300）：鼻子长度区域，用于拉长鼻子。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaNosewidth</pt>
+                    <pd>（301）：鼻子宽度区域，用于实现瘦鼻效果。取值范围为 [0, 100]，默认值为 0。数值越大，瘦鼻效果越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaNosewing</pt>
+                    <pd>（302）：鼻翼区域，用于调整鼻翼宽度。取值范围为 [0, 100]，默认值为 10。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaNoseroot</pt>
+                    <pd>（303）：鼻根区域，用于调整鼻根高度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaNosebridge</pt>
+                    <pd>（304）：鼻梁区域，用于调整鼻梁高度。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaNosetip</pt>
+                    <pd>（305）：鼻尖区域，用于调整鼻尖形态。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaNosegeneral</pt>
+                    <pd>（306）：整体鼻子区域，用于统一调整鼻部形态。取值范围为 [-100, 100]，默认值为 50。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaMouthscale</pt>
+                    <pd>（400）：嘴巴区域，用于实现大嘴效果。取值范围为 [-100, 100]，默认值为 20。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaMouthposition</pt>
+                    <pd>（401）：嘴巴位置区域，用于调整嘴巴整体位置。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaMouthsmile</pt>
+                    <pd>（402）：嘴角微笑区域，用于调整嘴角上扬程度。取值范围为 [0, 1]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaMouthlip</pt>
+                    <pd>（403）：唇形区域，用于调整唇部形态。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaEyebrowposition</pt>
+                    <pd>（500）：眉毛位置区域，用于调整眉毛整体位置。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>FaceShapeAreaEyebrowthickness</pt>
+                    <pd>（501）：眉毛粗细区域，用于调整眉毛粗细。取值范围为 [-100, 100]，默认值为 0。数值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="rn">
                     <pt>FaceShapeAreaNone</pt>
-                    <pd>-1: （默认）无效部位，美型效果不生效。</pd>
+                    <pd>（-1）：默认值，表示无效区域，美型效果不生效。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaHeadscale</pt>
+                    <pd>（100）：头部区域，用于实现小头效果。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaForehead</pt>
+                    <pd>（101）：额头区域，用于调整发际线高度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaFacecontour</pt>
+                    <pd>（102）：脸部轮廓区域，用于实现瘦脸效果。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaFacelength</pt>
+                    <pd>（103）：脸部长度区域，用于拉长脸部。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaFacewidth</pt>
+                    <pd>（104）：脸部宽度区域，用于实现窄脸效果。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaCheekbone</pt>
+                    <pd>（105）：颧骨区域，用于调整颧骨宽度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaCheek</pt>
+                    <pd>（106）：面颊区域，用于调整面颊宽度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaMandible</pt>
+                    <pd>（107）：下颌骨区域，用于调整下颌骨宽度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaChin</pt>
+                    <pd>（108）：下巴区域，用于调整下巴长度。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaEyescale</pt>
+                    <pd>（200）：眼睛区域，用于实现大眼效果。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaEyedistance</pt>
+                    <pd>（201）：眼距区域，用于调整两眼间距。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaEyeposition</pt>
+                    <pd>（202）：眼睛位置区域，用于调整眼睛整体位置。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaLowereyelid</pt>
+                    <pd>（203）：下眼睑区域，用于调整下眼睑形态。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaEyepupils</pt>
+                    <pd>（204）：瞳孔区域，用于调整瞳孔大小。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaEyeinnercorner</pt>
+                    <pd>（205）：内眼角区域，用于调整内眼角形态。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaEyeoutercorner</pt>
+                    <pd>（206）：外眼角区域，用于调整外眼角形态。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaNoselength</pt>
+                    <pd>（300）：鼻子长度区域，用于拉长鼻子。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaNosewidth</pt>
+                    <pd>（301）：鼻子宽度区域，用于实现瘦鼻效果。取值范围为 [0, 100]，默认值为 0。数值越大，瘦鼻效果越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaNosewing</pt>
+                    <pd>（302）：鼻翼区域，用于调整鼻翼宽度。取值范围为 [0, 100]，默认值为 10。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaNoseroot</pt>
+                    <pd>（303）：鼻根区域，用于调整鼻根高度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaNosebridge</pt>
+                    <pd>（304）：鼻梁区域，用于调整鼻梁高度。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaNosetip</pt>
+                    <pd>（305）：鼻尖区域，用于调整鼻尖形态。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaNosegeneral</pt>
+                    <pd>（306）：整体鼻子区域，用于统一调整鼻部形态。取值范围为 [-100, 100]，默认值为 50。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaMouthscale</pt>
+                    <pd>（400）：嘴巴区域，用于实现大嘴效果。取值范围为 [-100, 100]，默认值为 20。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaMouthposition</pt>
+                    <pd>（401）：嘴巴位置区域，用于调整嘴巴整体位置。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaMouthsmile</pt>
+                    <pd>（402）：嘴角微笑区域，用于调整嘴角上扬程度。取值范围为 [0, 1]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaMouthlip</pt>
+                    <pd>（403）：唇形区域，用于调整唇部形态。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaEyebrowposition</pt>
+                    <pd>（500）：眉毛位置区域，用于调整眉毛整体位置。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>FaceShapeAreaEyebrowthickness</pt>
+                    <pd>（501）：眉毛粗细区域，用于调整眉毛粗细。取值范围为 [-100, 100]，默认值为 0。数值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>faceShapeAreaNone</pt>
-                    <pd>-1: （默认）无效部位，美型效果不生效。</pd>
+                    <pd>（-1）：默认值，表示无效区域，美型效果不生效。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaHeadscale</pt>
+                    <pd>（100）：头部区域，用于实现小头效果。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaForehead</pt>
+                    <pd>（101）：额头区域，用于调整发际线高度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaFacecontour</pt>
+                    <pd>（102）：脸部轮廓区域，用于实现瘦脸效果。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaFacelength</pt>
+                    <pd>（103）：脸部长度区域，用于拉长脸部。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaFacewidth</pt>
+                    <pd>（104）：脸部宽度区域，用于实现窄脸效果。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaCheekbone</pt>
+                    <pd>（105）：颧骨区域，用于调整颧骨宽度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaCheek</pt>
+                    <pd>（106）：面颊区域，用于调整面颊宽度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaMandible</pt>
+                    <pd>（107）：下颌骨区域，用于调整下颌骨宽度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaChin</pt>
+                    <pd>（108）：下巴区域，用于调整下巴长度。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaEyescale</pt>
+                    <pd>（200）：眼睛区域，用于实现大眼效果。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaEyedistance</pt>
+                    <pd>（201）：眼距区域，用于调整两眼间距。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaEyeposition</pt>
+                    <pd>（202）：眼睛位置区域，用于调整眼睛整体位置。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaLowereyelid</pt>
+                    <pd>（203）：下眼睑区域，用于调整下眼睑形态。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaEyepupils</pt>
+                    <pd>（204）：瞳孔区域，用于调整瞳孔大小。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaEyeinnercorner</pt>
+                    <pd>（205）：内眼角区域，用于调整内眼角形态。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaEyeoutercorner</pt>
+                    <pd>（206）：外眼角区域，用于调整外眼角形态。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaNoselength</pt>
+                    <pd>（300）：鼻子长度区域，用于拉长鼻子。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaNosewidth</pt>
+                    <pd>（301）：鼻子宽度区域，用于实现瘦鼻效果。取值范围为 [0, 100]，默认值为 0。数值越大，瘦鼻效果越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaNosewing</pt>
+                    <pd>（302）：鼻翼区域，用于调整鼻翼宽度。取值范围为 [0, 100]，默认值为 10。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaNoseroot</pt>
+                    <pd>（303）：鼻根区域，用于调整鼻根高度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaNosebridge</pt>
+                    <pd>（304）：鼻梁区域，用于调整鼻梁高度。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaNosetip</pt>
+                    <pd>（305）：鼻尖区域，用于调整鼻尖形态。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaNosegeneral</pt>
+                    <pd>（306）：整体鼻子区域，用于统一调整鼻部形态。取值范围为 [-100, 100]，默认值为 50。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaMouthscale</pt>
+                    <pd>（400）：嘴巴区域，用于实现大嘴效果。取值范围为 [-100, 100]，默认值为 20。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaMouthposition</pt>
+                    <pd>（401）：嘴巴位置区域，用于调整嘴巴整体位置。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaMouthsmile</pt>
+                    <pd>（402）：嘴角微笑区域，用于调整嘴角上扬程度。取值范围为 [0, 1]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaMouthlip</pt>
+                    <pd>（403）：唇形区域，用于调整唇部形态。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaEyebrowposition</pt>
+                    <pd>（500）：眉毛位置区域，用于调整眉毛整体位置。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>faceShapeAreaEyebrowthickness</pt>
+                    <pd>（501）：眉毛粗细区域，用于调整眉毛粗细。取值范围为 [-100, 100]，默认值为 0。数值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>FACE_SHAPE_AREA_NONE</pt>
-                    <pd>-1: （默认）无效部位，美型效果不生效。</pd>
+                    <pd>（-1）：默认值，表示无效区域，美型效果不生效。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_HEADSCALE</pt>
+                    <pd>（100）：头部区域，用于实现小头效果。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_FOREHEAD</pt>
+                    <pd>（101）：额头区域，用于调整发际线高度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_FACECONTOUR</pt>
+                    <pd>（102）：脸部轮廓区域，用于实现瘦脸效果。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_FACELENGTH</pt>
+                    <pd>（103）：脸部长度区域，用于拉长脸部。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_FACEWIDTH</pt>
+                    <pd>（104）：脸部宽度区域，用于实现窄脸效果。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_CHEEKBONE</pt>
+                    <pd>（105）：颧骨区域，用于调整颧骨宽度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_CHEEK</pt>
+                    <pd>（106）：面颊区域，用于调整面颊宽度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_MANDIBLE</pt>
+                    <pd>（107）：下颌骨区域，用于调整下颌骨宽度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_CHIN</pt>
+                    <pd>（108）：下巴区域，用于调整下巴长度。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_EYESCALE</pt>
+                    <pd>（200）：眼睛区域，用于实现大眼效果。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_EYEDISTANCE</pt>
+                    <pd>（201）：眼距区域，用于调整两眼间距。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_EYEPOSITION</pt>
+                    <pd>（202）：眼睛位置区域，用于调整眼睛整体位置。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_LOWEREYELID</pt>
+                    <pd>（203）：下眼睑区域，用于调整下眼睑形态。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_EYEPUPILS</pt>
+                    <pd>（204）：瞳孔区域，用于调整瞳孔大小。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_EYEINNERCORNER</pt>
+                    <pd>（205）：内眼角区域，用于调整内眼角形态。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_EYEOUTERCORNER</pt>
+                    <pd>（206）：外眼角区域，用于调整外眼角形态。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_NOSELENGTH</pt>
+                    <pd>（300）：鼻子长度区域，用于拉长鼻子。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_NOSEWIDTH</pt>
+                    <pd>（301）：鼻子宽度区域，用于实现瘦鼻效果。取值范围为 [0, 100]，默认值为 0。数值越大，瘦鼻效果越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_NOSEWING</pt>
+                    <pd>（302）：鼻翼区域，用于调整鼻翼宽度。取值范围为 [0, 100]，默认值为 10。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_NOSEROOT</pt>
+                    <pd>（303）：鼻根区域，用于调整鼻根高度。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_NOSEBRIDGE</pt>
+                    <pd>（304）：鼻梁区域，用于调整鼻梁高度。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_NOSETIP</pt>
+                    <pd>（305）：鼻尖区域，用于调整鼻尖形态。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_NOSEGENERAL</pt>
+                    <pd>（306）：整体鼻子区域，用于统一调整鼻部形态。取值范围为 [-100, 100]，默认值为 50。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_MOUTHSCALE</pt>
+                    <pd>（400）：嘴巴区域，用于实现大嘴效果。取值范围为 [-100, 100]，默认值为 20。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_MOUTHPOSITION</pt>
+                    <pd>（401）：嘴巴位置区域，用于调整嘴巴整体位置。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_MOUTHSMILE</pt>
+                    <pd>（402）：嘴角微笑区域，用于调整嘴角上扬程度。取值范围为 [0, 1]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_MOUTHLIP</pt>
+                    <pd>（403）：唇形区域，用于调整唇部形态。取值范围为 [0, 100]，默认值为 0。数值越大，调整越明显。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_EYEBROWPOSITION</pt>
+                    <pd>（500）：眉毛位置区域，用于调整眉毛整体位置。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>FACE_SHAPE_AREA_EYEBROWTHICKNESS</pt>
+                    <pd>（501）：眉毛粗细区域，用于调整眉毛粗细。取值范围为 [-100, 100]，默认值为 0。数值越大，调整越明显。</pd>
                 </plentry>
             </parml>
         </section>

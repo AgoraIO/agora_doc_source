@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_setplaybackdevicevolume">
+    <title><ph keyref="setPlaybackDeviceVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the playback device volume.</ph><ph id="shortdesc" props="flutter">Sets the playback device volume.</ph><ph id="shortdesc" props="unity">Sets the playback device volume.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlaybackDeviceVolume"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setPlaybackDeviceVolume(volume: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setPlaybackDeviceVolume(int volume);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetPlaybackDeviceVolume(int volume);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">(Windows only)</note>
+            <note props="flutter">(Windows only)</note>
+            <note props="unity">This method applies to Windows only.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>volume</pt>
+                    <pd>Volume of the playback device. The value range is [0,255].</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>volume</pt>
+                    <pd>Playback device volume. Value range: [0,255].</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>volume</pt>
+                    <pd>Playback device volume. Value range: [0,255].</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

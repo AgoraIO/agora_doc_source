@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_pullaudioframe">
+    <title><ph keyref="pullAudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Pulls remote audio data.</ph><ph id="shortdesc" props="rn">Pulls remote audio data.</ph><ph id="shortdesc" props="flutter">Pulls remote audio data.</ph><ph id="shortdesc" props="unity">Pulls remote audio data.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="pullAudioFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract pullAudioFrame(): AudioFrame;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract pullAudioFrame(): AudioFrame;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; pullAudioFrame(AudioFrame frame);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int PullAudioFrame(AudioFrame frame);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After calling this method, the app actively pulls the decoded and mixed remote audio data for audio playback.</p>
+            <p props="rn">After calling this method, the app actively pulls the decoded and mixed remote audio data for playback.</p>
+            <p props="flutter">After calling this method, the app actively pulls the decoded and mixed remote audio data for playback.</p>
+            <p props="unity">After calling this method, the app actively pulls the decoded and mixed remote audio data for playback.</p>
+            <note props="electron">This method and the <xref keyref="onPlaybackAudioFrame"/> callback can both be used to obtain the mixed remote audio playback data. After calling <xref keyref="setExternalAudioSink"/> to enable external audio rendering, the app will no longer receive data from the <xref keyref="onPlaybackAudioFrame"/> callback. Therefore, choose between this method and the <xref keyref="onPlaybackAudioFrame"/> callback based on your actual business needs. The two have different handling mechanisms. The differences are as follows:
+                <ul>
+                    <li>After calling this method, the app actively pulls audio data. By setting the audio data, the SDK can adjust the buffer to help the app handle latency, effectively avoiding audio playback jitter.</li>
+                    <li>After registering the <xref keyref="onPlaybackAudioFrame"/> callback, the SDK delivers audio data to the app through the callback. When the app handles audio frame latency, it may cause audio playback jitter.</li>
+                </ul><ph>This method is only used to pull mixed remote audio playback data. To obtain the original captured audio data, or the original playback data of each stream before mixing, call <xref keyref="registerAudioFrameObserver"/> to register the corresponding callback.</ph></note>
+            <note props="rn">This method and the <xref keyref="onPlaybackAudioFrame"/> callback can both be used to obtain remote mixed audio playback data. After enabling external audio rendering by calling <xref keyref="setExternalAudioSink"/>, the app will no longer receive data from the <xref keyref="onPlaybackAudioFrame"/> callback. Therefore, choose between this method and the <xref keyref="onPlaybackAudioFrame"/> callback based on your actual business needs. The two have different processing mechanisms, detailed as follows:
+                <ul>
+                    <li>After calling this method, the app actively pulls audio data. By setting the audio data, the SDK can adjust the buffer to help the app handle latency, effectively avoiding audio playback jitter.</li>
+                    <li>After registering the <xref keyref="onPlaybackAudioFrame"/> callback, the SDK pushes audio data to the app through the callback. When the app handles audio frame latency, it may cause audio playback jitter.</li>
+                </ul><ph>This method is only used to pull remote mixed audio playback data. To obtain raw captured audio data or raw audio playback data of each individual stream before mixing, you can register the corresponding callback by calling <xref keyref="registerAudioFrameObserver"/>.</ph></note>
+            <note props="flutter">This method and the <xref keyref="onPlaybackAudioFrame"/> callback can both be used to get the mixed remote audio playback data. After calling <xref keyref="setExternalAudioSink"/> to enable external audio rendering, the app can no longer get data from the <xref keyref="onPlaybackAudioFrame"/> callback. Therefore, choose between this method and the <xref keyref="onPlaybackAudioFrame"/> callback based on your actual business needs. The processing mechanisms differ, with the following distinctions:
+                <ul>
+                    <li>After calling this method, the app actively pulls the audio data. By setting the audio data, the SDK can adjust the buffer to help the app handle latency and effectively avoid audio playback jitter.</li>
+                    <li>After registering the <xref keyref="onPlaybackAudioFrame"/> callback, the SDK pushes the audio data to the app through the callback. When handling audio frame latency, the app may cause audio playback jitter.</li>
+                </ul><ph>This method is only used to pull the mixed remote audio playback data. To obtain the captured raw audio data or the raw audio playback data of each stream before mixing, you can register the corresponding callback by calling <xref keyref="registerAudioFrameObserver"/>.</ph></note>
+            <note props="unity">This method and the <xref keyref="onPlaybackAudioFrame"/> callback can both be used to obtain the mixed remote audio playback data. After enabling external audio rendering using <xref keyref="setExternalAudioSink"/>, the app will no longer receive data from the <xref keyref="onPlaybackAudioFrame"/> callback. Therefore, choose between this method and the <xref keyref="onPlaybackAudioFrame"/> callback based on your actual business needs. They differ in processing mechanisms as follows:
+                <ul>
+                    <li>After calling this method, the app actively pulls audio data. By setting audio data, the SDK can adjust the buffer to help the app handle latency and effectively avoid audio playback jitter.</li>
+                    <li>After registering the <xref keyref="onPlaybackAudioFrame"/> callback, the SDK pushes audio data to the app through the callback. When the app processes audio frame latency, it may cause audio playback jitter.</li>
+                </ul><ph>This method is only used to pull mixed remote audio playback data. To obtain raw captured audio data, or raw playback data of each stream before mixing, you can register the corresponding callback by calling <xref keyref="registerAudioFrameObserver"/>.</ph></note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called after joining a channel.
+Before calling this method, you need to call <codeph>setExternalAudioSink(enabled: true)</codeph> to enable and set external rendering.</p>
+            <p props="rn">You need to call this method after joining a channel.
+Before calling this method, you need to call <codeph>setExternalAudioSink(enabled: true)</codeph> to enable and configure external rendering.</p>
+            <p props="flutter">This method must be called after joining a channel.
+Before calling this method, you need to call <codeph>setExternalAudioSink(enabled: true)</codeph> to enable and set external rendering.</p>
+            <p props="unity">This method must be called after joining a channel.
+Before calling this method, you need to call <codeph>SetExternalAudioSink(enabled: true)</codeph> to enable and configure external rendering.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="flutter">
+                    <pt>frame</pt>
+                    <pd>Pointer to <xref keyref="AudioFrame"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>frame</pt>
+                    <pd>Pointer to <xref keyref="AudioFrame"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>If the method call succeeds, returns an <xref keyref="AudioFrame"/> object.</li>
+                    <li>If the method call fails, returns an error code.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>On success, returns an <xref keyref="AudioFrame"/> object.</li>
+                    <li>On failure, returns an error code.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

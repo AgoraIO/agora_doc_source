@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onstreammessage">
+    <title><ph keyref="onStreamMessage"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback when receiving a data stream message from a remote user.</ph><ph id="shortdesc" props="rn">Callback when receiving a data stream message from a remote user.</ph><ph id="shortdesc" props="flutter">Occurs when a stream message is received from a remote user.</ph><ph id="shortdesc" props="unity">Occurs when a stream message is received from a remote user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onStreamMessage"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onStreamMessage?(
+    connection: RtcConnection,
+    remoteUid: number,
+    streamId: number,
+    data: Uint8Array,
+    length: number,
+    sentTs: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onStreamMessage?(
+    connection: RtcConnection,
+    remoteUid: number,
+    streamId: number,
+    data: Uint8Array,
+    length: number,
+    sentTs: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int streamId,
+      Uint8List data, int length, int sentTs)? onStreamMessage;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamMessage(RtcConnection connection, uint remoteUid, int streamId, byte[] data, ulong length, ulong sentTs) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This callback indicates that the local user has received a data stream message sent by the remote user using the <xref keyref="sendStreamMessage"/> method.</p>
+            <p props="rn">This callback indicates that the local user has received a stream message sent by a remote user using the <xref keyref="sendStreamMessage"/> method.</p>
+            <p props="flutter">This callback indicates that the local user has received a stream message sent by a remote user using the <xref keyref="sendStreamMessage"/> method.</p>
+            <p props="unity">This callback indicates that the local user has received a stream message sent by a remote user using the <xref keyref="sendStreamMessage"/> method.</p>
+            <note props="flutter">If you need a more comprehensive solution for low-latency, high-concurrency, and scalable real-time messaging and state synchronization, we recommend using [Real-time Messaging](https://doc.shengwang.cn/doc/rtm2/flutter/landing-page).</note>
+            <note props="unity">If you need a more comprehensive, low-latency, high-concurrency, and scalable real-time messaging and state synchronization solution, we recommend using [Real-time Messaging](https://doc.shengwang.cn/doc/rtm2/unity/landing-page).</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteUid</pt>
+                    <pd>User ID of the sender.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>streamId</pt>
+                    <pd>Stream ID of the received message.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>data</pt>
+                    <pd>The received data.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>length</pt>
+                    <pd>Length of the data in bytes.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sentTs</pt>
+                    <pd>Timestamp when the data stream was sent.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteUid</pt>
+                    <pd>User ID of the sender.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>streamId</pt>
+                    <pd>Stream ID of the received message.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>data</pt>
+                    <pd>Received data.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>length</pt>
+                    <pd>Length of the data in bytes.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sentTs</pt>
+                    <pd>Timestamp when the data stream was sent.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteUid</pt>
+                    <pd>The ID of the user who sent the message.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamId</pt>
+                    <pd>The stream ID of the received message.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>data</pt>
+                    <pd>The received data.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>length</pt>
+                    <pd>The length of the data in bytes.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sentTs</pt>
+                    <pd>The timestamp when the data stream was sent.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteUid</pt>
+                    <pd>The user ID of the sender.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>streamId</pt>
+                    <pd>The stream ID of the received message.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>data</pt>
+                    <pd>The received data.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>length</pt>
+                    <pd>The length of the data in bytes.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sentTs</pt>
+                    <pd>The timestamp when the data stream was sent.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startaudiomixing">
+    <title><ph keyref="startAudioMixing"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Starts playing a music file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startAudioMixing"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioMixing(string filePath, bool loopback, int cycle);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">For supported audio file formats, see [What audio formats does the RTC SDK support for playback](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format). If the local music file does not exist, the file format is not supported, or the online music file URL is inaccessible, the SDK reports AUDIO_MIXING_REASON_CAN_NOT_OPEN.</p>
+            <note props="unity">
+                <ul>
+                    <li>Using this method to play short sound effect files may result in playback failure. To play sound effects, use <xref keyref="playEffect3"/> instead.</li>
+                    <li>If you need to call this method multiple times, ensure the interval between calls is greater than 500 ms.</li>
+                    <li>When calling this method on Android, note the following:
+                        <ul>
+                            <li>Ensure the device runs Android 4.2 or above, with API Level not lower than 16.</li>
+                            <li>If playing an online music file, avoid using redirect URLs. Redirects may not work on some devices.</li>
+                            <li>If calling this method on an emulator, ensure the music file is located under <codeph>/sdcard/</codeph> and is in MP3 format.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="unity">
+            <title>Timing</title>
+            <p props="unity">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="unity">
+            <title>Related Callbacks</title>
+            <p props="unity">After successfully calling this method to play a music file, the local client triggers the <xref keyref="onAudioMixingStateChanged"/>(<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>) callback. When playback ends, it triggers the <xref keyref="onAudioMixingStateChanged"/>(<codeph>AUDIO_MIXING_STATE_STOPPED</codeph>) callback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>The path to the file to play. Supports URLs for online files and absolute paths for local files, including the file name and extension. Supported formats include MP3, AAC, M4A, MP4, WAV, 3GP, etc.
+                        <note>If you have preloaded the sound effect into memory using <xref keyref="preloadEffect"/>, ensure this parameter matches the <codeph>filePath</codeph> specified in <xref keyref="preloadEffect"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>loopback</pt>
+                    <pd>Whether to play the music file locally only:
+                        <ul>
+                            <li><xref keyref="true"/>: Play locally only. Only the local user hears the music.</li>
+                            <li><xref keyref="false"/>: Publish the music to remote users. Both local and remote users hear the music.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cycle</pt>
+                    <pd>The number of times to play the music file.
+                        <ul>
+                            <li>&gt; 0: Number of times to play. For example, 1 means play once.</li>
+                            <li>-1: Loop playback indefinitely.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure:
+                        <ul>
+                            <li>-1: General error (unspecified).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-3: SDK not ready:
+                                <ul>
+                                    <li>Check if the audio module is enabled.</li>
+                                    <li>Check the integrity of the assembly.</li>
+                                    <li><xref keyref="IRtcEngine"/> initialization failed. Reinitialize <xref keyref="IRtcEngine"/>.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

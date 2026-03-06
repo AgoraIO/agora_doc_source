@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onstreammessageerror">
+    <title><ph keyref="onStreamMessageError"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback when an error occurs in receiving a data stream message from a remote user.</ph><ph id="shortdesc" props="rn">Callback when an error occurs while receiving a data stream message from a remote user.</ph><ph id="shortdesc" props="flutter">Occurs when an error occurs in receiving a stream message from a remote user.</ph><ph id="shortdesc" props="unity">Occurs when a stream message from a remote user fails to be received.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onStreamMessageError"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onStreamMessageError?(
+    connection: RtcConnection,
+    remoteUid: number,
+    streamId: number,
+    code: ErrorCodeType,
+    missed: number,
+    cached: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onStreamMessageError?(
+    connection: RtcConnection,
+    remoteUid: number,
+    streamId: number,
+    code: ErrorCodeType,
+    missed: number,
+    cached: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int streamId,
+      ErrorCodeType code, int missed, int cached)? onStreamMessageError;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamMessageError(RtcConnection connection, uint remoteUid, int streamId, int code, int missed, int cached) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This callback indicates that the local user failed to receive the data stream message sent by the remote user using the <xref keyref="sendStreamMessage"/> method.</p>
+            <p props="rn">This callback indicates that the local user failed to receive a stream message sent by a remote user using the <xref keyref="sendStreamMessage"/> method.</p>
+            <p props="flutter">This callback indicates that the local user failed to receive a stream message sent by a remote user using the <xref keyref="sendStreamMessage"/> method.</p>
+            <p props="unity">This callback indicates that the local user failed to receive a stream message sent by a remote user using the <xref keyref="sendStreamMessage"/> method.</p>
+            <note props="flutter">If you need a more comprehensive solution for low-latency, high-concurrency, and scalable real-time messaging and state synchronization, we recommend using [Real-time Messaging](https://doc.shengwang.cn/doc/rtm2/flutter/landing-page).</note>
+            <note props="unity">If you need a more comprehensive, low-latency, high-concurrency, and scalable real-time messaging and state synchronization solution, we recommend using [Real-time Messaging](https://doc.shengwang.cn/doc/rtm2/unity/landing-page).</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>User ID of the sender.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>streamId</pt>
+                    <pd>Stream ID of the received message.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>code</pt>
+                    <pd>Error code. See <xref keyref="ERROR_CODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>missed</pt>
+                    <pd>Number of missed messages.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>cached</pt>
+                    <pd>Number of cached messages after data stream interruption.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteUid</pt>
+                    <pd>User ID of the sender.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>streamId</pt>
+                    <pd>Stream ID of the received message.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>code</pt>
+                    <pd>Error code. See <xref keyref="ERROR_CODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>missed</pt>
+                    <pd>Number of missed messages.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cached</pt>
+                    <pd>Number of messages cached after the data stream was interrupted.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteUid</pt>
+                    <pd>The ID of the user who sent the message.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamId</pt>
+                    <pd>The stream ID of the received message.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>code</pt>
+                    <pd>The error code. See <xref keyref="ERROR_CODE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>missed</pt>
+                    <pd>The number of lost messages.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cached</pt>
+                    <pd>The number of messages cached after the data stream was interrupted.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteUid</pt>
+                    <pd>The user ID of the sender.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>streamId</pt>
+                    <pd>The stream ID of the received message.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>code</pt>
+                    <pd>The error code. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>missed</pt>
+                    <pd>The number of lost messages.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cached</pt>
+                    <pd>The number of messages cached after the data stream was interrupted.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

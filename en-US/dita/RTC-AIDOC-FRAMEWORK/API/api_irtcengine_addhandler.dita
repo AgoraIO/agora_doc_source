@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_addhandler">
+    <title><ph keyref="addHandler"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Adds a primary callback event.</ph><ph id="shortdesc" props="rn">Adds a primary callback event.</ph><ph id="shortdesc" props="flutter">Adds the main callback event.</ph><ph id="shortdesc" props="unity">Adds the main callback event.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addHandler"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract registerEventHandler(eventHandler: IRtcEngineEventHandler): boolean;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract registerEventHandler(eventHandler: IRtcEngineEventHandler): boolean;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">void registerEventHandler(RtcEngineEventHandler eventHandler);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int InitEventHandler(IRtcEngineEventHandler engineEventHandler);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">The interface class <xref keyref="IRtcEngineEventHandler"/> is used by the SDK to send callback event notifications to the app. The app receives SDK event notifications by inheriting methods of this interface class.
+All methods in the interface class have default (empty) implementations. The app can inherit only the events it cares about as needed. In the callback methods, the app should not perform time-consuming operations or call APIs that may block (such as <xref keyref="sendStreamMessage"/>),
+as this may affect the SDK's operation.</p>
+            <p props="rn">The interface class <xref keyref="IRtcEngineEventHandler"/> is used by the SDK to send callback event notifications to the app. The app obtains SDK event notifications by inheriting the methods of this interface class.
+All methods of the interface class have default (empty) implementations. The app can inherit only the events it cares about as needed. In the callback methods, the app should not perform time-consuming operations or call APIs that may cause blocking (such as <xref keyref="sendStreamMessage"/>),
+otherwise it may affect the operation of the SDK.</p>
+            <p props="flutter">The interface class <xref keyref="IRtcEngineEventHandler"/> is used by the SDK to send callback event notifications to the App. The App receives SDK event notifications by inheriting methods from this interface class.
+All methods in the interface class have default (empty) implementations. The App can choose to inherit only the events it cares about.
+In callback methods, the App should not perform time-consuming tasks or call APIs that may block (e.g., <xref keyref="sendStreamMessage"/>), otherwise it may affect the operation of the SDK.</p>
+            <p props="unity">The interface class <xref keyref="IRtcEngineEventHandler"/> is used by the SDK to send callback event notifications to the App. The App receives SDK event notifications by inheriting methods of this interface class.
+All methods of the interface class have default (empty) implementations. The App can choose to inherit only the events it cares about. In the callback methods, the App should not perform time-consuming operations or call APIs that may cause blocking (such as <xref keyref="sendStreamMessage"/>),
+as this may affect the operation of the SDK.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>eventHandler</pt>
+                    <pd>The callback event to be added. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>eventHandler</pt>
+                    <pd>The callback event to be added. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>eventHandler</pt>
+                    <pd>The callback event to be added. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>engineEventHandler</pt>
+                    <pd>The callback event to be added. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li><xref keyref="true"/>: Method call succeeds.</li>
+                    <li><xref keyref="false"/>: Method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li><xref keyref="true"/>: The method call succeeds.</li>
+                    <li><xref keyref="false"/>: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">No return value if the method call succeeds; if the method call fails, an <xref keyref="AgoraRtcException"/> is thrown, which you need to catch and handle. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

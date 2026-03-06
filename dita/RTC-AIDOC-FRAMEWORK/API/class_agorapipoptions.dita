@@ -1,0 +1,303 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_agorapipoptions">
+    <title><ph keyref="AgoraPipOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">声网画中画模式的配置选项。</ph><ph id="shortdesc" props="flutter">声网画中画模式的配置选项。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">export class AgoraPipOptions {
+  autoEnterEnabled?: boolean;
+  aspectRatioX?: number;
+  aspectRatioY?: number;
+  sourceRectHintLeft?: number;
+  sourceRectHintTop?: number;
+  sourceRectHintRight?: number;
+  sourceRectHintBottom?: number;
+  seamlessResizeEnabled?: boolean;
+  useExternalStateMonitor?: boolean;
+  externalStateMonitorInterval?: number;
+  videoStreams?: RtcRendererViewProps[];
+  contentViewLayout?: AgoraPipContentViewLayout;
+  sourceContentView?: number;
+  contentView?: number;
+  preferredContentWidth?: number;
+  preferredContentHeight?: number;
+  controlStyle?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class AgoraPipOptions {
+  final bool? autoEnterEnabled;
+  final int? aspectRatioX;
+  final int? aspectRatioY;
+  final int? sourceRectHintLeft;
+  final int? sourceRectHintTop;
+  final int? sourceRectHintRight;
+  final int? sourceRectHintBottom;
+  final bool? seamlessResizeEnabled;
+  final bool? useExternalStateMonitor;
+  final int? externalStateMonitorInterval;
+  final int? sourceContentView;
+  int? contentView;
+  final List&lt;AgoraPipVideoStream&gt;? videoStreams;
+  final AgoraPipContentViewLayout? contentViewLayout;
+  final int? preferredContentWidth;
+  final int? preferredContentHeight;
+  final int? controlStyle;
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="flutter rn">
+            <dl outputclass="since">
+                <dlentry props="rn">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>自从</dt>
+                    <dd>自 v4.6.2 版本新增。</dd>
+                </dlentry>
+            </dl>
+            <p props="rn">该类提供平台特定的选项来配置 Android 和 iOS 平台的画中画行为。</p>
+            <p props="flutter">该类提供平台特定的选项来配置 Android 和 iOS 平台的画中画行为。</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn">
+            <title>属性</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>autoEnterEnabled</pt>
+                    <pd>是否自动进入画中画模式。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>aspectRatioX</pt>
+                    <pd>画中画窗口的水平宽高比。
+
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>aspectRatioY</pt>
+                    <pd>画中画窗口的垂直宽高比。
+
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceRectHintLeft</pt>
+                    <pd>源矩形提示的左坐标。
+
+用于指定画中画窗口的初始位置。
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceRectHintTop</pt>
+                    <pd>源矩形提示的上坐标。
+
+用于指定画中画窗口的初始位置。
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceRectHintRight</pt>
+                    <pd>源矩形提示的右坐标。
+
+用于指定画中画窗口的初始位置。
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceRectHintBottom</pt>
+                    <pd>源矩形提示的下坐标。
+
+用于指定画中画窗口的初始位置。
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>seamlessResizeEnabled</pt>
+                    <pd>是否启用画中画窗口的无缝调整大小。
+
+启用后，画中画窗口将平滑调整大小。
+默认为 <codeph><ph keyref="false"/></codeph>。
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>useExternalStateMonitor</pt>
+                    <pd>是否使用外部状态监控。
+
+启用后，创建专用线程来监控画中画窗口状态。使用 externalStateMonitorInterval 配置监控频率。
+默认为 <codeph><ph keyref="true"/></codeph>。
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>externalStateMonitorInterval</pt>
+                    <pd>外部状态监控的间隔，单位为毫秒。
+
+仅在 useExternalStateMonitor 为 <codeph><ph keyref="true"/></codeph> 时生效。
+默认为 100ms。
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoStreams</pt>
+                    <pd>视频转码配置。
+
+仅在 contentView 设置为 0 时生效。当用户让 SDK 管理视图时，所有视频流将放置在画中画窗口的根视图中。
+仅适用于 iOS 平台。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>contentViewLayout</pt>
+                    <pd>画中画视频流的布局配置。
+
+仅在 contentView 设置为 0 时生效。
+仅适用于 iOS 平台。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceContentView</pt>
+                    <pd>sourceContentView 确定画中画动画的源帧和恢复目标。传递 0 以使用应用的根视图。为了获得最佳动画效果，请将此设置为包含视频内容的视图。系统使用此视图进行画中画进入/退出动画，并在返回应用或停止画中画时作为恢复目标。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>contentView</pt>
+                    <pd>contentView 确定将在画中画窗口中显示哪个视图。如果传递 0，画中画控制器将自动管理并显示所有视频流。如果传递特定的视图 ID，你需要负责管理画中画窗口中显示的内容。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>preferredContentWidth</pt>
+                    <pd>画中画内容的首选宽度。
+
+仅适用于 iOS 平台。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>preferredContentHeight</pt>
+                    <pd>画中画内容的首选高度。
+
+仅适用于 iOS 平台。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>controlStyle</pt>
+                    <pd>画中画窗口的控制样式。
+可用样式：
+                        <ul>
+                            <li>0：显示所有系统控件（默认）</li>
+                            <li>1：隐藏前进和后退按钮</li>
+                            <li>2：隐藏播放/暂停按钮和进度条（推荐）</li>
+                            <li>3：隐藏所有系统控件，包括关闭和恢复按钮</li>
+                        </ul><ph>仅适用于 iOS 平台。</ph></pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>autoEnterEnabled</pt>
+                    <pd>是否自动进入画中画模式。
+
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>aspectRatioX</pt>
+                    <pd>画中画窗口的水平宽高比。
+
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>aspectRatioY</pt>
+                    <pd>画中画窗口的垂直宽高比。
+
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceRectHintLeft</pt>
+                    <pd>源矩形提示的左坐标。
+
+用于指定画中画窗口的初始位置。
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceRectHintTop</pt>
+                    <pd>源矩形提示的上坐标。
+
+用于指定画中画窗口的初始位置。
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceRectHintRight</pt>
+                    <pd>源矩形提示的右坐标。
+
+用于指定画中画窗口的初始位置。
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceRectHintBottom</pt>
+                    <pd>源矩形提示的下坐标。
+
+用于指定画中画窗口的初始位置。
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>seamlessResizeEnabled</pt>
+                    <pd>是否启用画中画窗口的无缝调整大小。
+
+启用后，画中画窗口将平滑调整大小。
+默认为 <codeph><ph keyref="false"/></codeph>。
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>useExternalStateMonitor</pt>
+                    <pd>是否使用外部状态监控。
+
+启用后，创建专用线程来监控画中画窗口状态。使用 externalStateMonitorInterval 配置监控频率。
+默认为 <codeph><ph keyref="false"/></codeph>。
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>externalStateMonitorInterval</pt>
+                    <pd>外部状态监控的间隔，单位为毫秒。
+
+仅在 useExternalStateMonitor 为 <codeph><ph keyref="true"/></codeph> 时生效。
+默认为 100ms。
+仅适用于 Android 平台。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceContentView</pt>
+                    <pd>源内容视图标识符。
+
+设置为 0 以使用根视图作为源。
+仅适用于 iOS 平台。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>contentView</pt>
+                    <pd>用于视频渲染的内容视图标识符。
+
+设置为 0 以让 SDK 管理视图。当设置为 0 时，必须通过 videoStreams 提供视频源。
+仅适用于 iOS 平台。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoStreams</pt>
+                    <pd>视频转码配置。
+
+仅在 contentView 设置为 0 时生效。当用户让 SDK 管理视图时，所有视频流将放置在画中画窗口的根视图中。
+仅适用于 iOS 平台。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>contentViewLayout</pt>
+                    <pd>画中画视频流的布局配置。
+
+仅在 contentView 设置为 0 时生效。
+仅适用于 iOS 平台。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>preferredContentWidth</pt>
+                    <pd>画中画内容的首选宽度。
+
+仅适用于 iOS 平台。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>preferredContentHeight</pt>
+                    <pd>画中画内容的首选高度。
+
+仅适用于 iOS 平台。</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>controlStyle</pt>
+                    <pd>画中画窗口的控制样式。
+可用样式：
+                        <ul>
+                            <li>0：显示所有系统控件（默认）</li>
+                            <li>1：隐藏前进和后退按钮</li>
+                            <li>2：隐藏播放/暂停按钮和进度条（推荐）</li>
+                            <li>3：隐藏所有系统控件，包括关闭和恢复按钮</li>
+                        </ul><ph>仅适用于 iOS 平台。</ph></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

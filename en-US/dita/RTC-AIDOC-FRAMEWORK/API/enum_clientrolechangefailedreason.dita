@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_clientrolechangefailedreason">
+    <title><ph keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Reasons for user role switch failure.</ph><ph id="shortdesc" props="rn">Reasons for client role change failure.</ph><ph id="shortdesc" props="flutter">Reason for failing to switch user roles.</ph><ph id="shortdesc" props="unity">Reasons for user role switch failure.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>ClientRoleChangeFailedTooManyBroadcasters</pt>
+                    <pd>1: The number of broadcasters in the channel has reached the limit.
+                        <note>This enum is only reported when the 128-user feature is enabled. The broadcaster limit depends on the configuration when enabling the 128-user feature.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ClientRoleChangeFailedNotAuthorized</pt>
+                    <pd>2: Request was rejected by the server. It is recommended to prompt the user to try switching roles again.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ClientRoleChangeFailedRequestTimeOut</pt>
+                    <pd>3: Request timed out. It is recommended to prompt the user to check their network connection and try switching roles again.
+                        <note>Deprecated: This enum value is deprecated since v4.4.0 and is not recommended for use.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ClientRoleChangeFailedConnectionFailed</pt>
+                    <pd>4: Network connection lost. You can troubleshoot the specific cause based on the <codeph>reason</codeph> reported by <xref keyref="onConnectionStateChanged"/>.
+                        <note>Deprecated: This enum value is deprecated since v4.4.0 and is not recommended for use.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ClientRoleChangeFailedTooManyBroadcasters</pt>
+                    <pd>1: The number of broadcasters in the channel has reached the limit.
+                        <note>This enum is reported only when the 128-user feature is enabled. The limit depends on the actual configuration when enabling the 128-user feature.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ClientRoleChangeFailedNotAuthorized</pt>
+                    <pd>2: The request is rejected by the server. Prompt the user to retry changing the role.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ClientRoleChangeFailedRequestTimeOut</pt>
+                    <pd>3: Request timed out. Prompt the user to check the network connection and retry.
+                        <note>Deprecated: This enum value is deprecated since v4.4.0 and not recommended for use.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ClientRoleChangeFailedConnectionFailed</pt>
+                    <pd>4: Network connection failed. You can troubleshoot the cause based on the <codeph>reason</codeph> reported in <xref keyref="onConnectionStateChanged"/>.
+                        <note>Deprecated: This enum value is deprecated since v4.4.0 and not recommended for use.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>clientRoleChangeFailedTooManyBroadcasters</pt>
+                    <pd>1: The number of broadcasters in the channel has reached the limit.
+                        <note>This enum is only reported when the 128-user feature is enabled. The broadcaster limit depends on the actual number configured when enabling the 128-user feature.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>clientRoleChangeFailedNotAuthorized</pt>
+                    <pd>2: The request is rejected by the server. It is recommended to prompt the user to try switching roles again.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>clientRoleChangeFailedRequestTimeOut</pt>
+                    <pd>3: The request timed out. It is recommended to prompt the user to check the network connection and try switching roles again.
+                        <note>Deprecated: This enum value is deprecated as of v4.4.0 and is not recommended for use.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>clientRoleChangeFailedConnectionFailed</pt>
+                    <pd>4: Network connection lost. You can troubleshoot the specific cause of the network failure based on the <codeph>reason</codeph> reported by <xref keyref="onConnectionStateChanged"/>.
+                        <note>Deprecated: This enum value is deprecated as of v4.4.0 and is not recommended for use.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CLIENT_ROLE_CHANGE_FAILED_TOO_MANY_BROADCASTERS</pt>
+                    <pd>1: The number of broadcasters in the channel has reached the limit.
+                        <note>This enum is only reported when the 128-user feature is enabled. The limit depends on the actual configuration when enabling the feature.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CLIENT_ROLE_CHANGE_FAILED_NOT_AUTHORIZED</pt>
+                    <pd>2: Request was rejected by the server. It is recommended to prompt the user to try switching roles again.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT</pt>
+                    <pd>3: Request timed out. It is recommended to prompt the user to check the network connection and try switching roles again.
+                        <note>Deprecated: This enum value is deprecated since v4.4.0 and is not recommended for use.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED</pt>
+                    <pd>4: Network connection lost. You can troubleshoot the specific reason based on the <codeph>reason</codeph> reported by <xref keyref="onConnectionStateChanged"/>.
+                        <note>Deprecated: This enum value is deprecated since v4.4.0 and is not recommended for use.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

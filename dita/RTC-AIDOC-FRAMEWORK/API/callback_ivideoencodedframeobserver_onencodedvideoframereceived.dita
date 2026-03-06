@@ -14,20 +14,22 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="electron" outputclass="language-typescript">onEncodedVideoFrameReceived?(
+    channelId: string,
     uid: number,
     imageBuffer: Uint8Array,
     length: number,
     videoEncodedFrameInfo: EncodedVideoFrameInfo
   ): void;</codeblock>
                 <codeblock props="rn" outputclass="language-typescript">onEncodedVideoFrameReceived?(
+    channelId: string,
     uid: number,
     imageBuffer: Uint8Array,
     length: number,
     videoEncodedFrameInfo: EncodedVideoFrameInfo
   ): void;</codeblock>
-                <codeblock props="flutter" outputclass="language-dart">final void Function(int uid, Uint8List imageBuffer, int length,
+                <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, int uid, Uint8List imageBuffer, int length,
       EncodedVideoFrameInfo videoEncodedFrameInfo)? onEncodedVideoFrameReceived;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEncodedVideoFrameReceived(uint uid, IntPtr imageBufferPtr, UInt64 length, EncodedVideoFrameInfo videoEncodedFrameInfo)
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEncodedVideoFrameReceived(string channelId, uint uid, IntPtr imageBufferPtr, UInt64 length, EncodedVideoFrameInfo videoEncodedFrameInfo)
         {
             return true;
         }</codeblock>
@@ -43,6 +45,10 @@
             <title>参数</title>
             <parml>
                 <plentry props="electron">
+                    <pt>channelId</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="electron">
                     <pt>uid</pt>
                     <pd>远端用户 ID。</pd>
                 </plentry>
@@ -59,6 +65,10 @@
                     <pd>编码后的视频帧信息，详见 <xref keyref="EncodedVideoFrameInfo"/>。</pd>
                 </plentry>
                 <plentry props="rn">
+                    <pt>channelId</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="rn">
                     <pt>uid</pt>
                     <pd>远端用户 ID。</pd>
                 </plentry>
@@ -75,6 +85,10 @@
                     <pd>编码后的视频帧信息，详见 <xref keyref="EncodedVideoFrameInfo"/>。</pd>
                 </plentry>
                 <plentry props="flutter">
+                    <pt>channelId</pt>
+                    <pd>频道名。</pd>
+                </plentry>
+                <plentry props="flutter">
                     <pt>uid</pt>
                     <pd>远端用户 ID。</pd>
                 </plentry>
@@ -89,6 +103,10 @@
                 <plentry props="flutter">
                     <pt>videoEncodedFrameInfo</pt>
                     <pd>编码后的视频帧信息，详见 <xref keyref="EncodedVideoFrameInfo"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelId</pt>
+                    <pd>频道名。</pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>uid</pt>

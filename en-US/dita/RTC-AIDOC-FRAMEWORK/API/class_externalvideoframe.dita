@@ -1,0 +1,617 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_externalvideoframe">
+    <title><ph keyref="ExternalVideoFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">External video frame.</ph><ph id="shortdesc" props="rn">External video frame.</ph><ph id="shortdesc" props="flutter">External video frame.</ph><ph id="shortdesc" props="unity">External video frame.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class ExternalVideoFrame {
+  type?: VideoBufferType;
+  format?: VideoPixelFormat;
+  buffer?: Uint8Array;
+  stride?: number;
+  height?: number;
+  cropLeft?: number;
+  cropTop?: number;
+  cropRight?: number;
+  cropBottom?: number;
+  rotation?: number;
+  timestamp?: number;
+  eglType?: EglContextType;
+  textureId?: number;
+  matrix?: number[];
+  metadataBuffer?: Uint8Array;
+  metadataSize?: number;
+  alphaBuffer?: Uint8Array;
+  fillAlphaBuffer?: boolean;
+  alphaStitchMode?: AlphaStitchMode;
+  d3d11Texture2d?: any;
+  textureSliceIndex?: number;
+  colorSpace?: ColorSpace;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class ExternalVideoFrame {
+  type?: VideoBufferType;
+  format?: VideoPixelFormat;
+  buffer?: Uint8Array;
+  stride?: number;
+  height?: number;
+  cropLeft?: number;
+  cropTop?: number;
+  cropRight?: number;
+  cropBottom?: number;
+  rotation?: number;
+  timestamp?: number;
+  eglType?: EglContextType;
+  textureId?: number;
+  matrix?: number[];
+  metadataBuffer?: Uint8Array;
+  metadataSize?: number;
+  alphaBuffer?: Uint8Array;
+  fillAlphaBuffer?: boolean;
+  alphaStitchMode?: AlphaStitchMode;
+  colorSpace?: ColorSpace;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class ExternalVideoFrame {
+  const ExternalVideoFrame(
+      {this.type,
+      this.format,
+      this.buffer,
+      this.stride,
+      this.height,
+      this.cropLeft,
+      this.cropTop,
+      this.cropRight,
+      this.cropBottom,
+      this.rotation,
+      this.timestamp,
+      this.eglType,
+      this.textureId,
+      this.matrix,
+      this.metadataBuffer,
+      this.metadataSize,
+      this.alphaBuffer,
+      this.fillAlphaBuffer,
+      this.alphaStitchMode,
+      this.d3d11Texture2d,
+      this.textureSliceIndex,
+      this.colorSpace});
+
+  @JsonKey(name: 'type')
+  final VideoBufferType? type;
+
+  @JsonKey(name: 'format')
+  final VideoPixelFormat? format;
+
+  @JsonKey(name: 'buffer', ignore: true)
+  final Uint8List? buffer;
+
+  @JsonKey(name: 'stride')
+  final int? stride;
+
+  @JsonKey(name: 'height')
+  final int? height;
+
+  @JsonKey(name: 'cropLeft')
+  final int? cropLeft;
+
+  @JsonKey(name: 'cropTop')
+  final int? cropTop;
+
+  @JsonKey(name: 'cropRight')
+  final int? cropRight;
+
+  @JsonKey(name: 'cropBottom')
+  final int? cropBottom;
+
+  @JsonKey(name: 'rotation')
+  final int? rotation;
+
+  @JsonKey(name: 'timestamp')
+  final int? timestamp;
+
+  @JsonKey(name: 'eglType')
+  final EglContextType? eglType;
+
+  @JsonKey(name: 'textureId')
+  final int? textureId;
+
+  @JsonKey(name: 'matrix')
+  final List&lt;double&gt;? matrix;
+
+  @JsonKey(name: 'metadataBuffer', ignore: true)
+  final Uint8List? metadataBuffer;
+
+  @JsonKey(name: 'metadataSize')
+  final int? metadataSize;
+
+  @JsonKey(name: 'alphaBuffer', ignore: true)
+  final Uint8List? alphaBuffer;
+
+  @JsonKey(name: 'fillAlphaBuffer')
+  final bool? fillAlphaBuffer;
+
+  @JsonKey(name: 'alphaStitchMode')
+  final AlphaStitchMode? alphaStitchMode;
+
+  @JsonKey(name: 'd3d11Texture2d', readValue: readIntPtr)
+  final int? d3d11Texture2d;
+
+  @JsonKey(name: 'textureSliceIndex')
+  final int? textureSliceIndex;
+
+  @JsonKey(name: 'colorSpace')
+  final ColorSpace? colorSpace;
+
+  factory ExternalVideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ExternalVideoFrameFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ExternalVideoFrameToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class ExternalVideoFrame
+    {
+        public VIDEO_BUFFER_TYPE type;
+        public VIDEO_PIXEL_FORMAT format;
+        public byte[] buffer;
+        public int stride;
+        public int height;
+        public int cropLeft;
+        public int cropTop;
+        public int cropRight;
+        public int cropBottom;
+        public int rotation;
+        public long timestamp;
+        public byte[] eglContext;
+        public EGL_CONTEXT_TYPE eglType;
+        public int textureId;
+        public byte[] metadataBuffer;
+        public int metadataSize;
+        public byte[] alphaBuffer;
+        public bool fillAlphaBuffer;
+        public ALPHA_STITCH_MODE alphaStitchMode;
+        public IntPtr d3d11Texture2d;
+        public int textureSliceIndex;
+        public ColorSpace colorSpace;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>type</pt>
+                    <pd>Video type. See <xref keyref="VIDEO_BUFFER_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>format</pt>
+                    <pd>Pixel format. See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>buffer</pt>
+                    <pd>Video buffer.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>stride</pt>
+                    <pd>Stride of the input video frame in pixels (not bytes). For Texture, this value refers to the width of the Texture.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>Height of the input video frame.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>eglContext</pt>
+                    <pd>This parameter applies only to video data in Texture format.
+                        <ul>
+                            <li>When using the OpenGL interface defined by Khronos (javax.microedition.khronos.egl.*), set <codeph>eglContext</codeph> to this field.</li>
+                            <li>When using the OpenGL interface defined by Android (android.opengl.*), set <codeph>eglContext</codeph> to this field.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>eglType</pt>
+                    <pd>This parameter applies only to video data in Texture format. Refers to the Texture ID of the video frame.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>textureId</pt>
+                    <pd>This parameter applies only to video data in Texture format. Refers to an input 4x4 transformation matrix, typically an identity matrix.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>matrix</pt>
+                    <pd>This parameter applies only to video data in Texture format. Refers to an input 4x4 transformation matrix, typically an identity matrix.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>metadataBuffer</pt>
+                    <pd>This parameter applies only to video data in Texture format. Refers to the metadata buffer. Default value is <codeph>NULL</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>metadataSize</pt>
+                    <pd>This parameter applies only to video data in Texture format. Refers to the size of the metadata. Default value is <codeph>0</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>d3d11Texture2d</pt>
+                    <pd>This parameter applies only to video data in Windows Texture format. Refers to a pointer to an object of type <codeph>ID3D11Texture2D</codeph> used by the video frame.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>alphaBuffer</pt>
+                    <pd>Alpha channel data output by portrait segmentation algorithm. This data matches the size of the video frame, with pixel values ranging from [0,255], where 0 indicates background and 255 indicates foreground (portrait).
+You can use this parameter to render the video background into various effects such as transparent, solid color, image, video, etc.
+                        <note>In custom video rendering scenarios, ensure that both the input video frame and <codeph>alphaBuffer</codeph> are of Full Range type; other types may cause incorrect rendering of alpha data.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>fillAlphaBuffer</pt>
+                    <pd>
+                        <note>For video data in BGRA or RGBA format, you can set the alpha channel data in either of the following ways:
+                            <ul>
+                                <li>Automatically fill by setting this parameter to <xref keyref="true"/>.</li>
+                                <li>Set via the <codeph>alphaBuffer</codeph> parameter.</li>
+                            </ul>
+                        </note><ph>This parameter applies only to video data in BGRA or RGBA format. Specifies whether to extract the alpha channel data from the video frame and automatically fill it into <codeph>alphaBuffer</codeph>:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Extract and fill alpha channel data.</li>
+                            <li><xref keyref="false"/>: (Default) Do not extract and fill alpha channel data.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>alphaStitchMode</pt>
+                    <pd>When the video frame contains alpha channel data, sets the relative position of <codeph>alphaBuffer</codeph> and the video frame. See <xref keyref="ALPHA_STITCH_MODE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>textureSliceIndex</pt>
+                    <pd>This parameter applies only to video data in Windows Texture format. Refers to the index of the <codeph>ID3D11Texture2D</codeph> texture object used by the video frame in the <codeph>ID3D11Texture2D</codeph> array.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>cropLeft</pt>
+                    <pd>This parameter applies only to raw video data.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>cropTop</pt>
+                    <pd>This parameter applies only to raw video data.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>cropRight</pt>
+                    <pd>This parameter applies only to raw video data.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>cropBottom</pt>
+                    <pd>This parameter applies only to raw video data.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rotation</pt>
+                    <pd>Field related to raw data. Specifies whether to rotate the input video group clockwise. Available values: 0, 90, 180, 270. Default is 0.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>timestamp</pt>
+                    <pd>Timestamp of the input video frame in milliseconds. Incorrect timestamps may cause frame drops or audio-video desynchronization.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>colorSpace</pt>
+                    <pd>Color space properties of the video frame. By default, Full Range and BT.709 standard configurations are applied. You can customize the settings based on your requirements for custom capture and rendering. See [VideoColorSpace](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>type</pt>
+                    <pd>Video type. See <xref keyref="VIDEO_BUFFER_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>format</pt>
+                    <pd>Pixel format. See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>buffer</pt>
+                    <pd>Video buffer.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>stride</pt>
+                    <pd>Stride of the input video frame, in pixels (not bytes). For Texture, this value indicates the width of the Texture.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>height</pt>
+                    <pd>Height of the input video frame.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>eglContext</pt>
+                    <pd>This parameter applies only to video data in Texture format.
+                        <ul>
+                            <li>When using the Khronos-defined OpenGL interface (<codeph>javax.microedition.khronos.egl.*</codeph>), set <codeph>eglContext</codeph> to this field.</li>
+                            <li>When using the Android-defined OpenGL interface (<codeph>android.opengl.*</codeph>), set <codeph>eglContext</codeph> to this field.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>eglType</pt>
+                    <pd>This parameter applies only to video data in Texture format. Indicates the Texture ID of the video frame.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>textureId</pt>
+                    <pd>This parameter applies only to video data in Texture format. A 4x4 transformation matrix input, typically an identity matrix.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>matrix</pt>
+                    <pd>This parameter applies only to video data in Texture format. A 4x4 transformation matrix input, typically an identity matrix.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>metadataBuffer</pt>
+                    <pd>This parameter applies only to video data in Texture format. Indicates the data buffer of MetaData. Default value is <codeph>NULL</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>metadataSize</pt>
+                    <pd>This parameter applies only to video data in Texture format. Indicates the size of MetaData. Default value is <codeph>0</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>alphaBuffer</pt>
+                    <pd>Alpha channel data output by the portrait segmentation algorithm. This data matches the size of the video frame. Each pixel value ranges from [0,255], where 0 represents background and 255 represents foreground (portrait).
+You can use this parameter to render the video background with various effects, such as transparency, solid color, image, or video.
+                        <note>In custom video rendering scenarios, ensure that both the input video frame and <codeph>alphaBuffer</codeph> are of Full Range type; other types may result in abnormal Alpha data rendering.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>fillAlphaBuffer</pt>
+                    <pd>
+                        <note>For video data in BGRA or RGBA format, you can choose either of the following methods to set the Alpha channel data:
+                            <ul>
+                                <li>Automatically fill by setting this parameter to <xref keyref="true"/>.</li>
+                                <li>Set via the <codeph>alphaBuffer</codeph> parameter.</li>
+                            </ul>
+                        </note><ph>This parameter applies only to video data in BGRA or RGBA format. Specifies whether to extract the Alpha channel data from the video frame and automatically fill it into <codeph>alphaBuffer</codeph>:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Extract and fill the Alpha channel data.</li>
+                            <li><xref keyref="false"/>: (default) Do not extract or fill the Alpha channel data.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>alphaStitchMode</pt>
+                    <pd>When the video frame contains Alpha channel data, sets the relative position of <codeph>alphaBuffer</codeph> and the video frame. See <xref keyref="ALPHA_STITCH_MODE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cropLeft</pt>
+                    <pd>This parameter applies only to raw video data.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cropTop</pt>
+                    <pd>This parameter applies only to raw video data.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cropRight</pt>
+                    <pd>This parameter applies only to raw video data.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cropBottom</pt>
+                    <pd>This parameter applies only to raw video data.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rotation</pt>
+                    <pd>Field related to raw data. Specifies whether to rotate the input video group clockwise. Options: 0, 90, 180, 270. Default is 0.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>timestamp</pt>
+                    <pd>Timestamp of the input video frame, in milliseconds. Incorrect timestamps may result in frame drops or audio-video desynchronization.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>colorSpace</pt>
+                    <pd>Color space properties of the video frame. By default, Full Range and BT.709 standard configurations are applied. You can customize settings based on business requirements such as custom capture or rendering. See [VideoColorSpace](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>type</pt>
+                    <pd>Video type. See <xref keyref="VIDEO_BUFFER_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>format</pt>
+                    <pd>Pixel format. See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>buffer</pt>
+                    <pd>Video buffer.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>stride</pt>
+                    <pd>Stride of the input video frame, in pixels (not bytes). For Texture, this refers to the width of the Texture.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>height</pt>
+                    <pd>Height of the input video frame.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>eglContext</pt>
+                    <pd>This parameter only applies to video data in Texture format.
+                        <ul>
+                            <li>When using the OpenGL interface defined by Khronos (javax.microedition.khronos.egl.*), you need to assign <codeph>eglContext</codeph> to this field.</li>
+                            <li>When using the OpenGL interface defined by Android (android.opengl.*), you need to assign <codeph>eglContext</codeph> to this field.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>eglType</pt>
+                    <pd>This parameter only applies to video data in Texture format. Refers to the Texture ID of the video frame.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>textureId</pt>
+                    <pd>This parameter only applies to video data in Texture format. It is a 4x4 input transformation matrix, typically an identity matrix.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>matrix</pt>
+                    <pd>This parameter only applies to video data in Texture format. It is a 4x4 input transformation matrix, typically an identity matrix.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>metadataBuffer</pt>
+                    <pd>This parameter only applies to video data in Texture format. Refers to the data buffer of MetaData, default value is <codeph>NULL</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>metadataSize</pt>
+                    <pd>This parameter only applies to video data in Texture format. Refers to the size of MetaData, default value is <codeph>0</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>d3d11Texture2d</pt>
+                    <pd>This parameter only applies to video data in Windows Texture format. Represents a pointer to an object of type <codeph>ID3D11Texture2D</codeph>, which is used by the video frame.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>alphaBuffer</pt>
+                    <pd>Alpha channel data output by portrait segmentation algorithm. This data matches the size of the video frame. Each pixel value ranges from [0,255], where 0 represents background and 255 represents foreground (portrait).
+You can use this parameter to render the video background with various effects, such as transparency, solid color, image, video, etc.
+                        <note>In custom video rendering scenarios, make sure both the input video frame and <codeph>alphaBuffer</codeph> are of Full Range type; other types may cause incorrect rendering of alpha data.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>fillAlphaBuffer</pt>
+                    <pd>
+                        <note>For video data in BGRA or RGBA format, you can choose either method to set the alpha channel data:
+                            <ul>
+                                <li>Automatically fill by setting this parameter to <xref keyref="true"/>.</li>
+                                <li>Set via the <codeph>alphaBuffer</codeph> parameter.</li>
+                            </ul>
+                        </note><ph>This parameter only applies to video data in BGRA or RGBA format. Sets whether to extract the alpha channel data from the video frame and automatically fill it into <codeph>alphaBuffer</codeph>:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Extract and fill alpha channel data.</li>
+                            <li><xref keyref="false"/>: (default) Do not extract or fill alpha channel data.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>alphaStitchMode</pt>
+                    <pd>When the video frame contains alpha channel data, sets the relative position of <codeph>alphaBuffer</codeph> to the video frame. See <xref keyref="ALPHA_STITCH_MODE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>textureSliceIndex</pt>
+                    <pd>This parameter only applies to video data in Windows Texture format. Indicates the index of the <codeph>ID3D11Texture2D</codeph> texture object used by the video frame in the <codeph>ID3D11Texture2D</codeph> array.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cropLeft</pt>
+                    <pd>This parameter only applies to raw video data.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cropTop</pt>
+                    <pd>This parameter only applies to raw video data.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cropRight</pt>
+                    <pd>This parameter only applies to raw video data.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cropBottom</pt>
+                    <pd>This parameter only applies to raw video data.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rotation</pt>
+                    <pd>Field related to raw data. Specifies whether to rotate the input video frame clockwise. Options are 0, 90, 180, 270. Default is 0.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>timestamp</pt>
+                    <pd>Timestamp of the input video frame, in milliseconds. Incorrect timestamps may cause frame drops or audio-video desynchronization.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>colorSpace</pt>
+                    <pd>Color space property of the video frame. By default, Full Range and BT.709 standard configuration is applied. You can customize the setting based on your custom capture or rendering requirements. See [VideoColorSpace](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>type</pt>
+                    <pd>Video type. See <xref keyref="VIDEO_BUFFER_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>format</pt>
+                    <pd>Pixel format. See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>buffer</pt>
+                    <pd>Video buffer.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>stride</pt>
+                    <pd>Stride of the input video frame, in pixels (not bytes). For Texture, this refers to the width of the Texture.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>height</pt>
+                    <pd>Height of the input video frame.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>eglContext</pt>
+                    <pd>(Texture only)
+                        <ul>
+                            <li>When using the Khronos-defined OpenGL interface (javax.microedition.khronos.egl.*), set <codeph>eglContext</codeph> to this field.</li>
+                            <li>When using the Android-defined OpenGL interface (android.opengl.*), set <codeph>eglContext</codeph> to this field.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>eglType</pt>
+                    <pd>(Texture only) Type of the Texture ID for the video frame.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>textureId</pt>
+                    <pd>(Texture only) A 4x4 transformation matrix input, typically an identity matrix.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>metadataBuffer</pt>
+                    <pd>(Texture only) Metadata buffer. Default is <codeph>NULL</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>metadataSize</pt>
+                    <pd>(Texture only) Size of the metadata. Default is <codeph>0</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>d3d11Texture2d</pt>
+                    <pd>(Windows Texture only) A pointer to an <codeph>ID3D11Texture2D</codeph> object used by the video frame.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>alphaBuffer</pt>
+                    <pd>Alpha channel data output by portrait segmentation algorithm. The data matches the video frame size, with pixel values ranging from [0,255], where 0 represents background and 255 represents foreground (portrait).
+You can use this parameter to render the video background with various effects, such as transparency, solid color, image, or video.
+                        <note>In custom video rendering scenarios, ensure that both the video frame and <codeph>alphaBuffer</codeph> are Full Range. Other types may cause abnormal Alpha rendering.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>fillAlphaBuffer</pt>
+                    <pd>
+                        <note>For BGRA or RGBA video data, you can set Alpha channel data using either of the following:
+                            <ul>
+                                <li>Automatically fill by setting this parameter to <xref keyref="true"/>.</li>
+                                <li>Set via the <codeph>alphaBuffer</codeph> parameter.</li>
+                            </ul>
+                        </note><ph>(BGRA or RGBA only) Whether to extract the Alpha channel data from the video frame and automatically fill it into <codeph>alphaBuffer</codeph>:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Extract and fill Alpha channel data.</li>
+                            <li><xref keyref="false"/>: (default) Do not extract or fill Alpha channel data.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>alphaStitchMode</pt>
+                    <pd>When the video frame contains Alpha channel data, sets the relative position of <codeph>alphaBuffer</codeph> and the video frame. See <xref keyref="ALPHA_STITCH_MODE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>textureSliceIndex</pt>
+                    <pd>(Windows Texture only) Index of the <codeph>ID3D11Texture2D</codeph> texture object used by the video frame in the <codeph>ID3D11Texture2D</codeph> array.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cropLeft</pt>
+                    <pd>(Raw video only)</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cropTop</pt>
+                    <pd>(Raw video only)</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cropRight</pt>
+                    <pd>(Raw video only)</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cropBottom</pt>
+                    <pd>(Raw video only)</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rotation</pt>
+                    <pd>Raw data field. Specifies clockwise rotation of the input video group. Options: 0, 90, 180, 270. Default is 0.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>timestamp</pt>
+                    <pd>Timestamp of the input video frame in milliseconds. Incorrect timestamps may cause frame drops or AV sync issues.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>colorSpace</pt>
+                    <pd>Color space property of the video frame. By default, Full Range and BT.709 configurations are applied. You can customize this based on custom capture or rendering needs. See [VideoColorSpace](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace).</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

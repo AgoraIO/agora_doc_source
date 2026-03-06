@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_selectaudiotrack_imediaplayer">
+    <title><ph keyref="selectAudioTrack_IMediaPlayer"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Specifies the audio track to play in the current audio file.</ph><ph id="shortdesc" props="rn">Specifies the audio track to play for the current audio file.</ph><ph id="shortdesc" props="flutter">Specifies the audio track for the current audio file.</ph><ph id="shortdesc" props="unity">Specifies the audio track to play in the current audio file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="selectAudioTrack_IMediaPlayer"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract selectAudioTrack(index: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract selectAudioTrack(index: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; selectAudioTrack(int index);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SelectAudioTrack(int index);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After obtaining the audio track index of the audio file, you can call this method to specify any track for playback. If different tracks in a multi-track file contain songs in different languages, you can call this method to set the playback language.</p>
+            <p props="rn">After obtaining the audio track index of the audio file, you can call this method to specify any track for playback. For example, if different tracks in a multi-track file store songs in different languages, you can call this method to set the playback language.</p>
+            <p props="flutter">After obtaining the audio track index of the audio file, you can call this method to select any track for playback. If different tracks in a multi-track file contain songs in different languages, you can call this method to set the playback language.</p>
+            <p props="unity">After obtaining the audio track index of the audio file, you can call this method to specify any track for playback. If different tracks of a multi-track file contain songs in different languages, you can use this method to set the playback language.</p>
+            <note props="electron">You need to call this method after calling <xref keyref="getStreamInfo"/> to obtain the audio stream index.</note>
+            <note props="rn">You need to call this method after calling <xref keyref="getStreamInfo"/> to obtain the audio stream index.</note>
+            <note props="flutter">You need to call this method after calling <xref keyref="getStreamInfo"/> to get the audio stream index.</note>
+            <note props="unity">You need to call this method after calling <xref keyref="getStreamInfo"/> to get the audio stream index.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>index</pt>
+                    <pd>The index of the audio track.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>index</pt>
+                    <pd>The index of the audio track.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>index</pt>
+                    <pd>Index of the audio track.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>index</pt>
+                    <pd>The index of the audio track.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Code](https://doc.shengwang.cn/api-ref/rtc/rn/error-code) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

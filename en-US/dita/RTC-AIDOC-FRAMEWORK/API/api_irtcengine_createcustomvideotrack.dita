@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_createcustomvideotrack">
+    <title><ph keyref="createCustomVideoTrack"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Creates a custom video track.</ph><ph id="shortdesc" props="rn">Creates a custom video track.</ph><ph id="shortdesc" props="flutter">Creates a custom video track.</ph><ph id="shortdesc" props="unity">Creates a custom video track.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createCustomVideoTrack"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract createCustomVideoTrack(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract createCustomVideoTrack(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; createCustomVideoTrack();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract video_track_id_t CreateCustomVideoTrack();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">When you need to publish a custom captured video in the channel, follow these steps:
+                <ol>
+                    <li>Call this method to create a video track and get the video track ID.</li>
+                    <li>When calling <xref keyref="joinChannel2"/> to join the channel, set <codeph>customVideoTrackId</codeph> in <xref keyref="ChannelMediaOptions"/> to the video track ID you want to publish, and set <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/>.</li>
+                    <li>Call <xref keyref="pushVideoFrame"/> and specify <codeph>videoTrackId</codeph> as the video track ID from step 2 to publish the corresponding custom video source in the channel.</li>
+                </ol>
+            </p>
+            <p props="rn">When you need to publish a custom captured video in the channel, refer to the following steps:
+                <ol>
+                    <li>Call this method to create a video track and obtain the video track ID.</li>
+                    <li>When calling <xref keyref="joinChannel2"/> to join the channel, set <codeph>customVideoTrackId</codeph> in <xref keyref="ChannelMediaOptions"/> to the video track ID you want to publish, and set <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/>.</li>
+                    <li>Call <xref keyref="pushVideoFrame"/> and specify <codeph>videoTrackId</codeph> as the video track ID specified in step 2 to publish the corresponding custom video source in the channel.</li>
+                </ol>
+            </p>
+            <p props="flutter">When you need to publish custom captured video in a channel, follow these steps:
+                <ol>
+                    <li>Call this method to create a video track and get the video track ID.</li>
+                    <li>When calling <xref keyref="joinChannel2"/> to join a channel, set <codeph>customVideoTrackId</codeph> in <xref keyref="ChannelMediaOptions"/> to the video track ID you want to publish and set <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/>.</li>
+                    <li>Call <xref keyref="pushVideoFrame"/> and specify <codeph>videoTrackId</codeph> as the video track ID from step 2 to publish the corresponding custom video source in the channel.</li>
+                </ol>
+            </p>
+            <p props="unity">When you need to publish a custom captured video in the channel, refer to the following steps:
+                <ol>
+                    <li>Call this method to create a video track and get the video track ID.</li>
+                    <li>When calling <xref keyref="joinChannel2"/> to join the channel, set <codeph>customVideoTrackId</codeph> in <xref keyref="ChannelMediaOptions"/> to the video track ID you want to publish, and set <codeph>publishCustomVideoTrack</codeph> to <xref keyref="true"/>.</li>
+                    <li>Call <xref keyref="pushVideoFrame"/> and specify <codeph>videoTrackId</codeph> as the video track ID set in step 2 to publish the corresponding custom video source in the channel.</li>
+                </ol>
+            </p>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>If the method call succeeds, returns the video track ID as the unique identifier for the video track.</li>
+                    <li>If the method call fails, returns 0xffffffff. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>If the method call succeeds, returns the video track ID as the unique identifier of the video track.</li>
+                    <li>If the method call fails, returns 0xffffffff. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>If the method call succeeds, returns the video track ID as the unique identifier of the video track.</li>
+                    <li>If the method call fails, returns 0xffffffff. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>The video track ID, if the method call succeeds.</li>
+                    <li>0xffffffff, if the method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

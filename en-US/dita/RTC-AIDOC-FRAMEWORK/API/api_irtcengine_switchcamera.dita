@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_switchcamera">
+    <title><ph keyref="switchCamera"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Switches between front and rear cameras.</ph><ph id="shortdesc" props="flutter">Switches between front and rear cameras.</ph><ph id="shortdesc" props="unity">Switches between front and rear cameras.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="switchCamera"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract switchCamera(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; switchCamera();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SwitchCamera();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="rn">You can call this method during the app's runtime to dynamically switch between cameras based on the actual availability, without restarting the video stream or reconfiguring the video source.</p>
+            <p props="flutter">You can call this method during app runtime to dynamically switch cameras based on the actual availability of cameras, without restarting the video stream or reconfiguring the video source.</p>
+            <p props="unity">You can call this method during app runtime to dynamically switch cameras based on the actual availability without restarting the video stream or reconfiguring the video source.</p>
+            <note props="rn">This method only switches the camera for the first video stream captured by the camera, that is, the video source set to <codeph>VideoSourceCamera</codeph> (0) when calling <xref keyref="startCameraCapture"/>.</note>
+            <note props="flutter">This method is applicable only to Android and iOS.
+This method only switches the camera for the first video stream captured by the camera, that is, the video source set to <codeph>videoSourceCamera</codeph> (0) when calling <xref keyref="startCameraCapture"/>.</note>
+            <note props="unity">This method is applicable to Android and iOS only.
+This method only switches the camera for the first video stream captured by the camera, i.e., the video source set to <codeph>VIDEO_SOURCE_CAMERA</codeph> (0) when calling <xref keyref="startCameraCapture"/>.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>Timing</title>
+            <p props="rn">You must call this method after the camera is successfully turned on, that is, when the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LocalVideoStreamStateCapturing</codeph> (1).</p>
+            <p props="flutter">You must call this method after the camera is successfully started, that is, when the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>localVideoStreamStateCapturing</codeph> (1).</p>
+            <p props="unity">You must call this method after the camera is successfully started, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</p>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

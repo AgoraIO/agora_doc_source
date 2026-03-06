@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_datastreamconfig">
+    <title><ph keyref="DataStreamConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Data stream settings.</ph><ph id="shortdesc" props="rn">Data stream settings.</ph><ph id="shortdesc" props="flutter">Data stream settings.</ph><ph id="shortdesc" props="unity">Data stream settings.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class DataStreamConfig {
+  
+  syncWithAudio?: boolean;
+  
+  ordered?: boolean;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class DataStreamConfig {
+  
+  syncWithAudio?: boolean;
+  
+  ordered?: boolean;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class DataStreamConfig {
+  const DataStreamConfig({this.syncWithAudio, this.ordered});
+
+  @JsonKey(name: 'syncWithAudio')
+  final bool? syncWithAudio;
+  @JsonKey(name: 'ordered')
+  final bool? ordered;
+  factory DataStreamConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$DataStreamConfigFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$DataStreamConfigToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class DataStreamConfig
+    {
+        public bool syncWithAudio;
+        public bool ordered;
+    }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="electron flutter rn unity">
+            <p props="electron">The table below shows the SDK behavior under different parameter settings:
+<codeph>syncWithAudio</codeph>
+<codeph>ordered</codeph>
+SDK behavior
+<xref keyref="false"/>
+<xref keyref="false"/>
+The SDK immediately triggers the <xref keyref="onStreamMessage"/> callback when the receiver receives the data packet.
+<xref keyref="true"/>
+<xref keyref="false"/>
+If the data packet delay is within the audio delay range, the SDK triggers the <xref keyref="onStreamMessage"/> callback synchronized with the audio packet during audio playback. If the data packet delay exceeds the audio delay, the SDK immediately triggers the <xref keyref="onStreamMessage"/> callback upon receiving the packet; this may cause desynchronization between audio and data packets.
+<xref keyref="false"/>
+<xref keyref="true"/>
+If the data packet delay is within 5 seconds, the SDK corrects the packet disorder. If the delay exceeds 5 seconds, the SDK discards the packet.
+<xref keyref="true"/>
+<xref keyref="true"/>
+If the data packet delay is within the audio delay range, the SDK corrects the packet disorder. If the delay exceeds the audio delay, the SDK discards the packet.</p>
+            <p props="rn">The table below shows the SDK behavior under different parameter settings:
+<codeph>syncWithAudio</codeph>
+<codeph>ordered</codeph>
+SDK Behavior
+<xref keyref="false"/>
+<xref keyref="false"/>
+The SDK immediately triggers the <xref keyref="onStreamMessage"/> callback upon receiving the data packet.
+<xref keyref="true"/>
+<xref keyref="false"/>
+If the data packet delay is within the audio delay range, the SDK triggers the <xref keyref="onStreamMessage"/> callback synchronized with the audio packet during playback. If the delay exceeds the audio delay, the SDK triggers the callback immediately upon receiving the packet, which may cause desynchronization between audio and data packets.
+<xref keyref="false"/>
+<xref keyref="true"/>
+If the data packet delay is within 5 seconds, the SDK corrects the packet disorder. If the delay exceeds 5 seconds, the SDK discards the packet.
+<xref keyref="true"/>
+<xref keyref="true"/>
+If the data packet delay is within the audio delay range, the SDK corrects the packet disorder. If the delay exceeds the audio delay, the SDK discards the packet.</p>
+            <p props="flutter">The table below shows the SDK behavior under different parameter settings:
+<codeph>syncWithAudio</codeph>
+<codeph>ordered</codeph>
+SDK Behavior
+<xref keyref="false"/>
+<xref keyref="false"/>
+The SDK immediately triggers the <xref keyref="onStreamMessage"/> callback upon receiving a data packet.
+<xref keyref="true"/>
+<xref keyref="false"/>
+If the data packet delay is within the audio delay range, the SDK triggers the <xref keyref="onStreamMessage"/> callback synchronized with the audio packet during audio playback. If the delay exceeds the audio delay, the SDK triggers the callback immediately upon receiving the data packet, which may cause desynchronization between audio and data packets.
+<xref keyref="false"/>
+<xref keyref="true"/>
+If the data packet delay is within 5 seconds, the SDK corrects the packet disorder. If the delay exceeds 5 seconds, the SDK discards the packet.
+<xref keyref="true"/>
+<xref keyref="true"/>
+If the data packet delay is within the audio delay range, the SDK corrects the packet disorder. If the delay exceeds the audio delay, the SDK discards the packet.</p>
+            <p props="unity">The table below shows the SDK behavior for different parameter settings:
+<codeph>syncWithAudio</codeph>
+<codeph>ordered</codeph>
+SDK Behavior
+<xref keyref="false"/>
+<xref keyref="false"/>
+The SDK immediately triggers the <xref keyref="onStreamMessage"/> callback upon receiving the data packet.
+<xref keyref="true"/>
+<xref keyref="false"/>
+If the data packet delay is within the audio delay range, the SDK triggers the <xref keyref="onStreamMessage"/> callback synchronized with the audio packet during playback. If the delay exceeds the audio delay, the SDK triggers the callback immediately upon receiving the data packet; this may cause desynchronization between audio and data packets.
+<xref keyref="false"/>
+<xref keyref="true"/>
+If the data packet delay is within 5 seconds, the SDK corrects the out-of-order issue. If the delay exceeds 5 seconds, the SDK discards the data packet.
+<xref keyref="true"/>
+<xref keyref="true"/>
+If the data packet delay is within the audio delay range, the SDK corrects the out-of-order issue. If the delay exceeds the audio delay, the SDK discards the data packet.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>syncWithAudio</pt>
+                    <pd>Whether to synchronize with the locally sent audio stream.
+                        <ul>
+                            <li><xref keyref="true"/>: The data stream is synchronized with the audio stream. This setting is suitable for special scenarios such as lyrics synchronization.</li>
+                            <li><xref keyref="false"/>: The data stream is not synchronized with the audio stream. This setting is suitable for scenarios where data packets need to reach the receiver immediately.</li>
+                        </ul><ph>When data stream is synchronized with the audio stream, if the data packet delay is within the audio delay range, the SDK triggers the <xref keyref="onStreamMessage"/> callback synchronized with the audio packet during audio playback.</ph></pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>ordered</pt>
+                    <pd>Whether to ensure that the received data is in the order it was sent.
+                        <ul>
+                            <li><xref keyref="true"/>: Ensures that the SDK outputs data packets in the order sent by the sender.</li>
+                            <li><xref keyref="false"/>: Does not ensure that the SDK outputs data packets in the order sent by the sender.</li>
+                        </ul><ph>If data packets need to reach the receiver immediately, do not set this parameter to <xref keyref="true"/>.</ph></pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>syncWithAudio</pt>
+                    <pd>Whether to synchronize with the locally sent audio stream.
+                        <ul>
+                            <li><xref keyref="true"/>: Synchronize the data stream with the audio stream. This setting is suitable for special scenarios such as lyrics synchronization.</li>
+                            <li><xref keyref="false"/>: Do not synchronize the data stream with the audio stream. This setting is suitable for scenarios where data packets need to reach the receiver immediately.</li>
+                        </ul><ph>When synchronized with the audio stream, if the data packet delay is within the audio delay range, the SDK triggers the <xref keyref="onStreamMessage"/> callback synchronized with the audio packet during playback.</ph></pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>ordered</pt>
+                    <pd>Whether to ensure the received data is in the same order as sent.
+                        <ul>
+                            <li><xref keyref="true"/>: Ensures the SDK outputs data packets in the order sent by the sender.</li>
+                            <li><xref keyref="false"/>: Does not ensure the SDK outputs data packets in the order sent by the sender.</li>
+                        </ul><ph>If data packets need to reach the receiver immediately, do not set this parameter to <xref keyref="true"/>.</ph></pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>syncWithAudio</pt>
+                    <pd>Whether to synchronize with the locally sent audio stream.
+                        <ul>
+                            <li><xref keyref="true"/>: The data stream is synchronized with the audio stream. Suitable for scenarios like lyrics synchronization.</li>
+                            <li><xref keyref="false"/>: The data stream is not synchronized with the audio stream. Suitable for scenarios where data packets need to reach the receiver immediately.</li>
+                        </ul><ph>When synchronization is enabled, if the data packet delay is within the audio delay range, the SDK triggers the <xref keyref="onStreamMessage"/> callback synchronized with the audio packet during audio playback.</ph></pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>ordered</pt>
+                    <pd>Whether to ensure the received data is in the same order as sent.
+                        <ul>
+                            <li><xref keyref="true"/>: Ensures the SDK outputs data packets in the same order as sent.</li>
+                            <li><xref keyref="false"/>: Does not ensure the SDK outputs data packets in the same order as sent.</li>
+                        </ul><ph>Do not set this parameter to <xref keyref="true"/> if you require data packets to reach the receiver immediately.</ph></pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>syncWithAudio</pt>
+                    <pd>Whether to synchronize with the locally sent audio stream.
+                        <ul>
+                            <li><xref keyref="true"/>: The data stream is synchronized with the audio stream. This setting is suitable for special scenarios such as lyrics synchronization.</li>
+                            <li><xref keyref="false"/>: The data stream is not synchronized with the audio stream. This setting is suitable for scenarios where data packets need to reach the receiver immediately.</li>
+                        </ul><ph>When synchronization is enabled, if the data packet delay is within the audio delay range, the SDK triggers the <xref keyref="onStreamMessage"/> callback synchronized with the audio packet during playback.</ph></pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>ordered</pt>
+                    <pd>Whether to ensure that received data is in the same order as sent.
+                        <ul>
+                            <li><xref keyref="true"/>: The SDK outputs data packets in the same order as sent by the sender.</li>
+                            <li><xref keyref="false"/>: The SDK does not guarantee the order of data packets.</li>
+                        </ul><ph>When data packets need to reach the receiver immediately, this parameter should not be set to <xref keyref="true"/>.</ph></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

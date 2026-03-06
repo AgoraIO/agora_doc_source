@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablecustomaudiolocalplayback">
+    <title><ph keyref="enableCustomAudioLocalPlayback"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets whether to play external audio sources locally.</ph><ph id="shortdesc" props="rn">Sets whether to play external audio sources locally.</ph><ph id="shortdesc" props="flutter">Sets whether to play the external audio source locally.</ph><ph id="shortdesc" props="unity">Sets whether to play the external audio source locally.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableCustomAudioLocalPlayback"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableCustomAudioLocalPlayback(
+    trackId: number,
+    enabled: boolean
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableCustomAudioLocalPlayback(
+    trackId: number,
+    enabled: boolean
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableCustomAudioLocalPlayback(
+      {required int trackId, required bool enabled});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableCustomAudioLocalPlayback(uint trackId, bool enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After calling this method to enable local playback of externally captured audio sources, you can call this method again and set <codeph>enabled</codeph> to <xref keyref="false"/> to stop local playback.
+You can call <xref keyref="adjustCustomAudioPlayoutVolume"/> to adjust the local playback volume of the custom audio capture track.</p>
+            <p props="rn">After calling this method to enable local playback of externally captured audio sources, you can call this method again and set <codeph>enabled</codeph> to <xref keyref="false"/> to stop local playback.
+You can call <xref keyref="adjustCustomAudioPlayoutVolume"/> to adjust the local playback volume of the custom audio capture track.</p>
+            <p props="flutter">After calling this method to enable local playback of the externally captured audio source, to stop local playback, you can call this method again and set <codeph>enabled</codeph> to <xref keyref="false"/>.
+You can call <xref keyref="adjustCustomAudioPlayoutVolume"/> to adjust the local playback volume of the custom audio track.</p>
+            <p props="unity">After calling this method to enable local playback of the externally captured audio source, you can call it again and set <codeph>enabled</codeph> to <xref keyref="false"/> to stop local playback.
+You can call <xref keyref="adjustCustomAudioPlayoutVolume"/> to adjust the playback volume of the custom audio capture track locally.</p>
+            <note props="electron">Before calling this method, make sure you have called the <xref keyref="createCustomAudioTrack"/> method to create a custom audio capture track.</note>
+            <note props="rn">Before calling this method, make sure you have already called the <xref keyref="createCustomAudioTrack"/> method to create a custom audio capture track.</note>
+            <note props="flutter">Before calling this method, make sure you have already called <xref keyref="createCustomAudioTrack"/> to create a custom audio track.</note>
+            <note props="unity">Before calling this method, make sure you have already called the <xref keyref="createCustomAudioTrack"/> method to create a custom audio capture track.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>trackId</pt>
+                    <pd>Audio track ID. Set this parameter to the custom audio track ID returned by the <xref keyref="createCustomAudioTrack"/> method.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>Whether to play the external audio source locally:
+                        <ul>
+                            <li><xref keyref="true"/>: Play locally.</li>
+                            <li><xref keyref="false"/>: (Default) Do not play locally.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>trackId</pt>
+                    <pd>Audio track ID. Set this parameter to the custom audio track ID returned by the <xref keyref="createCustomAudioTrack"/> method.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>Whether to play the external audio source locally:
+                        <ul>
+                            <li><xref keyref="true"/>: Play locally.</li>
+                            <li><xref keyref="false"/>: (Default) Do not play locally.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>trackId</pt>
+                    <pd>Audio track ID. Set this parameter to the custom audio track ID returned by the <xref keyref="createCustomAudioTrack"/> method.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Whether to play the external audio source locally:
+                        <ul>
+                            <li><xref keyref="true"/>: Play locally.</li>
+                            <li><xref keyref="false"/>: (Default) Do not play locally.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>trackId</pt>
+                    <pd>The audio track ID. Set this parameter to the custom audio track ID returned by the <xref keyref="createCustomAudioTrack"/> method.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether to play the external audio source locally:
+                        <ul>
+                            <li><xref keyref="true"/>: Play locally.</li>
+                            <li><xref keyref="false"/>: (Default) Do not play locally.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getnetworktype">
+    <title><ph keyref="getNetworkType"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets the local network connection type.</ph><ph id="shortdesc" props="rn">Gets the local network connection type.</ph><ph id="shortdesc" props="flutter">Gets the local network connection type.</ph><ph id="shortdesc" props="unity">Gets the local network connection type.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getNetworkType"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getNetworkType(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getNetworkType(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getNetworkType();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetNetworkType();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">You can call this method at any time to get the current network type.</p>
+            <p props="rn">You can call this method at any time to get the current network type in use.</p>
+            <p props="flutter">You can call this method at any time to get the current network type in use.</p>
+            <p props="unity">You can call this method at any time to get the current network type in use.</p>
+            <note props="electron">This method can be called before or after joining a channel.</note>
+            <note props="rn">This method can be called before and after joining a channel.</note>
+            <note props="flutter">This method can be called before or after joining a channel.</note>
+            <note props="unity">This method can be called before or after joining a channel.</note>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>≥ 0: Success. Returns the local network connection type.
+                        <ul>
+                            <li>0: Network disconnected.</li>
+                            <li>1: LAN.</li>
+                            <li>2: Wi-Fi (including hotspot).</li>
+                            <li>3: 2G mobile network.</li>
+                            <li>4: 3G mobile network.</li>
+                            <li>5: 4G mobile network.</li>
+                            <li>6: 5G mobile network.</li>
+                        </ul>
+                    </li>
+                    <li>&lt; 0: Failure. Returns an error code.
+                        <ul>
+                            <li>-1: Unknown network type.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>≥ 0: Success. Returns the local network connection type.
+                        <ul>
+                            <li>0: Network disconnected.</li>
+                            <li>1: LAN.</li>
+                            <li>2: Wi-Fi (including hotspot).</li>
+                            <li>3: 2G mobile network.</li>
+                            <li>4: 3G mobile network.</li>
+                            <li>5: 4G mobile network.</li>
+                            <li>6: 5G mobile network.</li>
+                        </ul>
+                    </li>
+                    <li>&lt; 0: Failure. Returns an error code.
+                        <ul>
+                            <li>-1: Unknown network connection type.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>≥ 0: The method call succeeds and returns the local network connection type.
+                        <ul>
+                            <li>0: Network disconnected.</li>
+                            <li>1: Network type is LAN.</li>
+                            <li>2: Network type is Wi-Fi (including hotspot).</li>
+                            <li>3: Network type is 2G mobile network.</li>
+                            <li>4: Network type is 3G mobile network.</li>
+                            <li>5: Network type is 4G mobile network.</li>
+                            <li>6: Network type is 5G mobile network.</li>
+                        </ul>
+                    </li>
+                    <li>&lt; 0: The method call fails and returns an error code.
+                        <ul>
+                            <li>-1: Unknown network connection type.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>≥ 0: Success. Returns the local network connection type.
+                        <ul>
+                            <li>0: Network disconnected.</li>
+                            <li>1: Network type is LAN.</li>
+                            <li>2: Network type is Wi-Fi (including hotspot).</li>
+                            <li>3: Network type is 2G mobile network.</li>
+                            <li>4: Network type is 3G mobile network.</li>
+                            <li>5: Network type is 4G mobile network.</li>
+                            <li>6: Network type is 5G mobile network.</li>
+                        </ul>
+                    </li>
+                    <li>&lt; 0: Failure. Returns an error code.
+                        <ul>
+                            <li>-1: Unknown network connection type.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

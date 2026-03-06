@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_setexternalaudiosource2">
+    <title><ph keyref="setExternalAudioSource2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets external audio capture parameters.</ph><ph id="shortdesc" props="rn">Sets external audio capture parameters.</ph><ph id="shortdesc" props="flutter">Sets the external audio source parameters.</ph><ph id="shortdesc" props="unity">Sets the external audio capture parameters.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExternalAudioSource2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setExternalAudioSource(
+    enabled: boolean,
+    sampleRate: number,
+    channels: number,
+    localPlayback?: boolean,
+    publish?: boolean
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setExternalAudioSource(
+    enabled: boolean,
+    sampleRate: number,
+    channels: number,
+    localPlayback?: boolean,
+    publish?: boolean
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setExternalAudioSource(
+    {required bool enabled,
+    required int sampleRate,
+    required int channels,
+    bool localPlayback = false,
+    bool publish = true});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalAudioSource(bool enabled, int sampleRate, int channels, bool localPlayback = false, bool publish = true);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. Use <xref keyref="createCustomAudioTrack"/> instead.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is obsolete. Use <xref keyref="createCustomAudioTrack"/> instead.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. Use <xref keyref="createCustomAudioTrack"/> instead.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. Use <xref keyref="createCustomAudioTrack"/> instead.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called before joining a channel.</p>
+            <p props="rn">You need to call this method before joining a channel.</p>
+            <p props="flutter">This method must be called before joining a channel.</p>
+            <p props="unity">This method must be called before joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the use of external audio sources:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable external audio source.</li>
+                            <li><xref keyref="false"/>: (Default) Disable external audio source.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sampleRate</pt>
+                    <pd>Sampling rate (Hz) of the external audio source. Can be set to <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000</codeph>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>channels</pt>
+                    <pd>Number of channels of the external audio source. Can be set to <codeph>1</codeph> (mono) or <codeph>2</codeph> (stereo).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>localPlayback</pt>
+                    <pd>Whether to play the external audio source locally:
+                        <ul>
+                            <li><xref keyref="true"/>: Play locally.</li>
+                            <li><xref keyref="false"/>: (Default) Do not play locally.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publish</pt>
+                    <pd>Whether to publish the audio to the remote end:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Publish to remote.</li>
+                            <li><xref keyref="false"/>: Do not publish to remote.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the use of external audio sources:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable external audio source.</li>
+                            <li><xref keyref="false"/>: (Default) Disable external audio source.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sampleRate</pt>
+                    <pd>Sampling rate (Hz) of the external audio source. Can be set to <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channels</pt>
+                    <pd>Number of channels of the external audio source. Can be set to <codeph>1</codeph> (mono) or <codeph>2</codeph> (stereo).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>localPlayback</pt>
+                    <pd>Whether to play the external audio source locally:
+                        <ul>
+                            <li><xref keyref="true"/>: Play locally.</li>
+                            <li><xref keyref="false"/>: (Default) Do not play locally.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publish</pt>
+                    <pd>Whether to publish the audio to the remote end:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Publish to remote.</li>
+                            <li><xref keyref="false"/>: Do not publish to remote.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the external audio source:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable the external audio source.</li>
+                            <li><xref keyref="false"/>: (Default) Disable the external audio source.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sampleRate</pt>
+                    <pd>The sample rate (Hz) of the external audio source. You can set it to <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channels</pt>
+                    <pd>The number of channels of the external audio source. You can set it to <codeph>1</codeph> (mono) or <codeph>2</codeph> (stereo).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>localPlayback</pt>
+                    <pd>Whether to play the external audio source locally:
+                        <ul>
+                            <li><xref keyref="true"/>: Play locally.</li>
+                            <li><xref keyref="false"/>: (Default) Do not play locally.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publish</pt>
+                    <pd>Whether to publish the audio to the remote:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Publish to the remote.</li>
+                            <li><xref keyref="false"/>: Do not publish to the remote.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the use of an external audio source:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable external audio source.</li>
+                            <li><xref keyref="false"/>: (Default) Disable external audio source.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sampleRate</pt>
+                    <pd>The sample rate (Hz) of the external audio source. Can be set to <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channels</pt>
+                    <pd>The number of channels of the external audio source. Can be set to <codeph>1</codeph> (mono) or <codeph>2</codeph> (stereo).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>localPlayback</pt>
+                    <pd>Whether to play the external audio source locally:
+                        <ul>
+                            <li><xref keyref="true"/>: Play locally.</li>
+                            <li><xref keyref="false"/>: (Default) Do not play locally.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publish</pt>
+                    <pd>Whether to publish the audio to the remote end:
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Publish to the remote end.</li>
+                            <li><xref keyref="false"/>: Do not publish to the remote end.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                <ul>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

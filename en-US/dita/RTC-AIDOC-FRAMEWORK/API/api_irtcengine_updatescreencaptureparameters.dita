@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_updatescreencaptureparameters">
+    <title><ph keyref="updateScreenCaptureParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Updates the screen capture configuration parameters.</ph><ph id="shortdesc" props="rn">Updates the parameter configuration for screen capture.</ph><ph id="shortdesc" props="flutter">Updates the parameter configuration for screen capture.</ph><ph id="shortdesc" props="unity">Updates the configuration parameters for screen capture.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="updateScreenCaptureParameters"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract updateScreenCaptureParameters(
+    captureParams: ScreenCaptureParameters
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract updateScreenCaptureParameters(
+    captureParams: ScreenCaptureParameters
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCaptureParameters(
+      ScreenCaptureParameters captureParams);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateScreenCaptureParameters(ScreenCaptureParameters captureParams);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">
+                <ul>
+                    <li>Call this method after starting screen or window sharing.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>Call this method after screen sharing or window sharing is enabled.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method is applicable to Windows and macOS only.</li>
+                    <li>Call this method after screen or window sharing is enabled.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method is only applicable to Windows and macOS platforms.</li>
+                    <li>Call this method after starting screen or window sharing.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>captureParams</pt>
+                    <pd>Encoding configuration parameters for screen sharing. See <xref keyref="ScreenCaptureParameters"/>.
+                        <note>The video properties of the screen sharing stream should be set only through this parameter and are unrelated to <xref keyref="setVideoEncoderConfiguration"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>captureParams</pt>
+                    <pd>Encoding parameter configuration for screen sharing. See <xref keyref="ScreenCaptureParameters2"/>.
+                        <note>The video properties of the screen sharing stream only need to be set through this parameter and are not related to <xref keyref="setVideoEncoderConfiguration"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureParams</pt>
+                    <pd>Encoding parameter configuration for screen sharing. See <xref keyref="ScreenCaptureParameters"/>.
+                        <note>The video properties of the screen sharing stream should be set only through this parameter and are not related to <xref keyref="setVideoEncoderConfiguration"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureParams</pt>
+                    <pd>Encoding configuration parameters for screen sharing. See <xref keyref="ScreenCaptureParameters"/>.
+                        <note>The video properties of the screen sharing stream should be set only through this parameter and are unrelated to <xref keyref="setVideoEncoderConfiguration"/>.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-8: Invalid screen sharing state. This may occur if you are already sharing another screen or window. Try calling <xref keyref="stopScreenCapture"/> to stop the current sharing, then restart screen sharing.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: The parameter passed in is invalid.</li>
+                            <li>-8: The screen sharing state is invalid. This may be because you are already sharing another screen or window. Try calling <xref keyref="stopScreenCapture"/> to stop the current sharing and start screen sharing again.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-2: The input parameter is invalid.</li>
+                            <li>-8: The screen sharing state is invalid. This may occur if you are already sharing another screen or window. Try calling <xref keyref="stopScreenCapture"/> to stop the current sharing and then restart screen sharing.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

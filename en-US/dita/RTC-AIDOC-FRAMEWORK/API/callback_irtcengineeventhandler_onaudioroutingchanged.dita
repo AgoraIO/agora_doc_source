@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onaudioroutingchanged">
+    <title><ph keyref="onAudioRoutingChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback triggered when the audio routing changes.</ph><ph id="shortdesc" props="rn">Callback when the audio route changes.</ph><ph id="shortdesc" props="flutter">Callback when the audio routing changes.</ph><ph id="shortdesc" props="unity">Callback when the audio routing changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioRoutingChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onAudioRoutingChanged?(routing: number): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onAudioRoutingChanged?(routing: number): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(int routing)? onAudioRoutingChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioRoutingChanged(int routing) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="electron">This callback is applicable to macOS only.</note>
+            <note props="flutter">This callback is applicable only on Android, iOS, and macOS platforms.</note>
+            <note props="unity">This callback is for Android, iOS, and macOS only.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>routing</pt>
+                    <pd>The current audio routing:
+                        <ul>
+                            <li>-1: Default audio routing.</li>
+                            <li>0: Headset with microphone.</li>
+                            <li>1: Earpiece.</li>
+                            <li>2: Headset without microphone.</li>
+                            <li>3: Built-in speaker.</li>
+                            <li>4: External speaker. (Applicable to iOS and macOS only)</li>
+                            <li>5: Bluetooth headset.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>routing</pt>
+                    <pd>The current audio route:
+                        <ul>
+                            <li>-1: Default audio route.</li>
+                            <li>0: Headset with microphone.</li>
+                            <li>1: Earpiece.</li>
+                            <li>2: Headset without microphone.</li>
+                            <li>3: Built-in speaker.</li>
+                            <li>4: External speaker. (iOS and macOS only)</li>
+                            <li>5: Bluetooth headset.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>routing</pt>
+                    <pd>The current audio route. See <xref keyref="AudioRoute"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>routing</pt>
+                    <pd>The current audio route. See <xref keyref="AudioRoute"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

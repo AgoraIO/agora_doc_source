@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onremoteaudiotransportstats">
+    <title><ph keyref="onRemoteAudioTransportStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Reports the transport statistics of the remote audio stream during a call.</ph><ph id="shortdesc" props="rn">Reports the transport statistics of the audio stream sent by each remote user during a call.</ph><ph id="shortdesc" props="flutter">Reports the statistics of the remote audio stream transmission during a call.</ph><ph id="shortdesc" props="unity">Callback for transport statistics of the remote audio stream during a call.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteAudioTransportStats"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onRemoteAudioTransportStats?(
+    connection: RtcConnection,
+    remoteUid: number,
+    delay: number,
+    lost: number,
+    rxKBitRate: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onRemoteAudioTransportStats?(
+    connection: RtcConnection,
+    remoteUid: number,
+    delay: number,
+    lost: number,
+    rxKBitRate: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, int delay,
+      int lost, int rxKBitRate)? onRemoteAudioTransportStats;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioTransportStats(RtcConnection connection, uint remoteUid, UInt16 delay, UInt16 lost, UInt16 rxKBitRate) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Deprecated:
+Use <xref keyref="onRemoteAudioStats"/> instead.
+This callback reports end-to-end network statistics of the remote user during a call, calculated based on audio packets. It provides objective data such as packet loss and network delay to indicate the current network status. During a call, this callback is triggered every 2 seconds when the user receives audio packets from a remote user/host.</p>
+            <p props="rn">Deprecated:
+Use <xref keyref="onRemoteAudioStats"/> instead.
+This callback reports the end-to-end network statistics of the remote user during a call, calculated based on audio packets. It reflects the current network status using objective data such as packet loss and network delay. During a call, when a user receives audio packets sent by a remote user/host, this callback is triggered every 2 seconds.</p>
+            <p props="flutter">Deprecated:
+Use <xref keyref="onRemoteAudioStats"/> instead.
+This callback reports end-to-end network statistics of the remote user during a call. It calculates metrics based on audio packets and objectively reflects the current network status using data such as packet loss and network delay. During a call, when a user receives audio packets sent by a remote user/host, this callback is triggered every 2 seconds.</p>
+            <p props="unity">Deprecated:
+Use <xref keyref="onRemoteAudioStats"/> instead.
+This callback describes end-to-end network statistics for a remote user during a call, calculated based on audio packets. It uses objective data such as packet loss and network delay to reflect the current network status. During a call, when the user receives audio packets from a remote user/host, this callback is triggered every 2 seconds.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteUid</pt>
+                    <pd>User ID indicating which user/host the audio packet belongs to.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>delay</pt>
+                    <pd>Delay (ms) from the sender to the receiver for the audio packet.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>lost</pt>
+                    <pd>Packet loss rate (%) from the sender to the receiver for the audio packet.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rxKBitrate</pt>
+                    <pd>Received bitrate (Kbps) of the remote audio packet.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteUid</pt>
+                    <pd>The user ID that identifies which user/host's audio packet it is.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>delay</pt>
+                    <pd>The delay (ms) from the sender to the receiver of the audio packet.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>lost</pt>
+                    <pd>The packet loss rate (%) from sender to receiver of the audio packet.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rxKBitrate</pt>
+                    <pd>The received bitrate (Kbps) of the remote audio packet.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteUid</pt>
+                    <pd>The user ID specifying which user/host the audio packet belongs to.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>delay</pt>
+                    <pd>The delay (ms) from the sender to the receiver for the audio packet.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>lost</pt>
+                    <pd>The packet loss rate (%) from the sender to the receiver for the audio packet.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rxKBitrate</pt>
+                    <pd>The received bitrate (Kbps) of the remote audio packet.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteUid</pt>
+                    <pd>User ID indicating which user/host the audio packet belongs to.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>delay</pt>
+                    <pd>Delay (ms) from the sender to the receiver for audio packets.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>lost</pt>
+                    <pd>Packet loss rate (%) from the sender to the receiver for audio packets.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rxKBitrate</pt>
+                    <pd>Received bitrate (Kbps) of the remote audio packets.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_isspeakerphoneenabled">
+    <title><ph keyref="isSpeakerphoneEnabled"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Checks whether the speakerphone is enabled.</ph><ph id="shortdesc" props="flutter">Checks whether the speakerphone is enabled.</ph><ph id="shortdesc" props="unity">Checks whether the speakerphone is enabled.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="isSpeakerphoneEnabled"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract isSpeakerphoneEnabled(): boolean;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;bool&gt; isSpeakerphoneEnabled();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract bool IsSpeakerphoneEnabled();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="flutter">This method is applicable only on Android and iOS.</note>
+            <note props="unity">This method is for Android and iOS only.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="flutter rn unity">
+            <title>Timing</title>
+            <p props="rn">This method can be called before or after joining a channel.</p>
+            <p props="flutter">This method can be called before or after joining a channel.</p>
+            <p props="unity">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">
+                <ul>
+                    <li><xref keyref="true"/>: The speakerphone is enabled, and audio is routed to the speaker.</li>
+                    <li><xref keyref="false"/>: The speakerphone is not enabled, and audio is routed to a non-speaker device (earpiece, headset, etc.).</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li><xref keyref="true"/>: The speakerphone is enabled, and audio is routed to the speaker.</li>
+                    <li><xref keyref="false"/>: The speakerphone is not enabled, and audio is routed to a non-speaker device (earpiece, headset, etc.).</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li><xref keyref="true"/>: The speakerphone is enabled, and audio is routed to the speaker.</li>
+                    <li><xref keyref="false"/>: The speakerphone is not enabled, and audio is routed to a non-speaker device (earpiece, headset, etc.).</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

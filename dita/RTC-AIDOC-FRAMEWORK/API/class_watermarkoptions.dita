@@ -17,6 +17,8 @@
   watermarkRatio?: WatermarkRatio;
 
   mode?: WatermarkFitMode;
+
+  zOrder?: number;
 }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript">export class WatermarkOptions {
 
@@ -29,6 +31,8 @@
   watermarkRatio?: WatermarkRatio;
 
   mode?: WatermarkFitMode;
+
+  zOrder?: number;
 }</codeblock>
                 <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class WatermarkOptions {
@@ -37,7 +41,7 @@ class WatermarkOptions {
       this.positionInLandscapeMode,
       this.positionInPortraitMode,
       this.watermarkRatio,
-      this.mode});
+      this.mode, this.zOrder});
 
   @JsonKey(name: 'visibleInPreview')
   final bool? visibleInPreview;
@@ -53,6 +57,9 @@ class WatermarkOptions {
 
   @JsonKey(name: 'mode')
   final WatermarkFitMode? mode;
+
+  @JsonKey(name: 'zOrder')
+  final int? zOrder;
 
   factory WatermarkOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$WatermarkOptionsFromJson(json);
@@ -84,6 +91,7 @@ class WatermarkOptions {
         public Rectangle positionInPortraitMode { set; get; }
         public WatermarkRatio watermarkRatio { set; get; }
         public WATERMARK_FIT_MODE mode { set; get; }
+        public int zOrder { set; get; }
     }</codeblock>
             </p>
         </section>
@@ -121,6 +129,10 @@ class WatermarkOptions {
                     <pt>mode</pt>
                     <pd>水印的适配模式。详见 <xref keyref="WATERMARK_FIT_MODE"/>。</pd>
                 </plentry>
+                <plentry props="electron">
+                    <pt>zOrder</pt>
+                    <pd>水印图像的图层顺序，默认值为 0。</pd>
+                </plentry>
                 <plentry props="rn">
                     <pt>visibleInPreview</pt>
                     <pd>水印是否在本地预览视图中可见：
@@ -145,6 +157,10 @@ class WatermarkOptions {
                 <plentry props="rn">
                     <pt>mode</pt>
                     <pd>水印的适配模式。详见 <xref keyref="WATERMARK_FIT_MODE"/>。</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>zOrder</pt>
+                    <pd>水印图像的图层顺序，默认值为 0。</pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>visibleInPreview</pt>
@@ -171,6 +187,10 @@ class WatermarkOptions {
                     <pt>mode</pt>
                     <pd>水印的适配模式。详见 <xref keyref="WATERMARK_FIT_MODE"/>。</pd>
                 </plentry>
+                <plentry props="flutter">
+                    <pt>zOrder</pt>
+                    <pd>水印图像的图层顺序，默认值为 0。</pd>
+                </plentry>
                 <plentry props="unity">
                     <pt>visibleInPreview</pt>
                     <pd>水印是否在本地预览视图中可见：
@@ -195,6 +215,10 @@ class WatermarkOptions {
                 <plentry props="unity">
                     <pt>mode</pt>
                     <pd>水印的适配模式。详见 <xref keyref="WATERMARK_FIT_MODE"/>。</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>zOrder</pt>
+                    <pd>水印图像的图层顺序，默认值为 0。</pd>
                 </plentry>
             </parml>
         </section>

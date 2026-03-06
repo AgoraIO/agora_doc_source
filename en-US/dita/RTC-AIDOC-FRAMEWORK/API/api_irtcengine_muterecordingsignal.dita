@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_muterecordingsignal">
+    <title><ph keyref="muteRecordingSignal"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Whether to mute the recording signal.</ph><ph id="shortdesc" props="rn">Whether to mute the recording signal.</ph><ph id="shortdesc" props="flutter">Mutes the recording signal.</ph><ph id="shortdesc" props="unity">Mutes or unmutes the recording signal.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="muteRecordingSignal"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract muteRecordingSignal(mute: boolean): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract muteRecordingSignal(mute: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteRecordingSignal(bool mute);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int MuteRecordingSignal(bool mute);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">If you have already called <xref keyref="adjustRecordingSignalVolume"/> to adjust the volume of the audio capture signal, then calling this method and setting it to <xref keyref="true"/> causes the SDK to:
+                <ol>
+                    <li>Record the adjusted volume.</li>
+                    <li>Mute the audio capture signal.</li>
+                </ol><ph>When you call this method again and set it to <xref keyref="false"/>, the recording signal is restored to the volume recorded by the SDK before muting.</ph></p>
+            <p props="rn">If you have already called <xref keyref="adjustRecordingSignalVolume"/> to adjust the volume of the audio capture signal, then calling this method with <xref keyref="true"/> will cause the SDK to:
+                <ol>
+                    <li>Record the adjusted volume.</li>
+                    <li>Mute the audio capture signal.</li>
+                </ol><ph>When you call this method again with <xref keyref="false"/>, the recording signal will be restored to the volume recorded by the SDK before muting.</ph></p>
+            <p props="flutter">If you have already called <xref keyref="adjustRecordingSignalVolume"/> to adjust the volume of the recorded audio signal, calling this method and setting it to <xref keyref="true"/> will cause the SDK to:
+                <ol>
+                    <li>Record the adjusted volume.</li>
+                    <li>Mute the recording signal.</li>
+                </ol><ph>When you call this method again with <xref keyref="false"/>, the recording signal will be restored to the volume recorded by the SDK before muting.</ph></p>
+            <p props="unity">If you have already called <xref keyref="adjustRecordingSignalVolume"/> to adjust the recording signal volume, calling this method with <xref keyref="true"/> will cause the SDK to:
+                <ol>
+                    <li>Record the adjusted volume.</li>
+                    <li>Mute the recording signal.</li>
+                </ol><ph>When you call this method again with <xref keyref="false"/>, the recording signal will be restored to the volume recorded by the SDK before muting.</ph></p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Can be called before or after joining a channel.</p>
+            <p props="rn">Can be called before or after joining the channel.</p>
+            <p props="flutter">Can be called before or after joining a channel.</p>
+            <p props="unity">Can be called before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>mute</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: Mute.</li>
+                            <li><xref keyref="false"/>: (Default) Original volume.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mute</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: Mute.</li>
+                            <li><xref keyref="false"/>: (Default) Original volume.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mute</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: Mute.</li>
+                            <li><xref keyref="false"/>: (default) Original volume.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mute</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: Mute.</li>
+                            <li><xref keyref="false"/>: (Default) Original volume.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

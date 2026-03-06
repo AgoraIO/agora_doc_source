@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setcameratorchon">
+    <title><ph keyref="setCameraTorchOn"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Sets whether to turn on the flashlight.</ph><ph id="shortdesc" props="flutter">Sets whether to turn on the flashlight.</ph><ph id="shortdesc" props="unity">Sets whether to turn on the flashlight.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setCameraTorchOn"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract setCameraTorchOn(isOn: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraTorchOn(bool isOn);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetCameraTorchOn(bool isOn);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="rn">
+                <ul>
+                    <li>You must call this method after <xref keyref="enableVideo"/>. The setting takes effect after the camera is successfully turned on, that is, when the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LocalVideoStreamStateCapturing</codeph> (1).</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method is applicable to Android and iOS only.</li>
+                    <li>You must call this method after <xref keyref="enableVideo"/>. The setting takes effect after the camera is successfully turned on, i.e., after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and the local video state is <codeph>localVideoStreamStateCapturing</codeph> (1).</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method is applicable to Android and iOS only.</li>
+                    <li>You must call this method after <xref keyref="enableVideo"/>. The setting takes effect after the camera is successfully started, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>isOn</pt>
+                    <pd>Whether to turn on the flashlight:
+                        <ul>
+                            <li><xref keyref="true"/>: Turn on the flashlight.</li>
+                            <li><xref keyref="false"/>: (default) Turn off the flashlight.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>isOn</pt>
+                    <pd>Whether to turn on the flashlight:
+                        <ul>
+                            <li><xref keyref="true"/>: Turn on the flashlight.</li>
+                            <li><xref keyref="false"/>: (default) Turn off the flashlight.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>isOn</pt>
+                    <pd>Whether to turn on the flashlight:
+                        <ul>
+                            <li><xref keyref="true"/>: Turn on the flashlight.</li>
+                            <li><xref keyref="false"/>: (default) Turn off the flashlight.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

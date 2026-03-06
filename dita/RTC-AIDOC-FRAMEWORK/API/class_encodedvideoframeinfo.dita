@@ -24,8 +24,6 @@
 
   captureTimeMs?: number;
 
-  uid?: number;
-
   streamType?: VideoStreamType;
 }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript">export class EncodedVideoFrameInfo {
@@ -46,8 +44,6 @@
 
   captureTimeMs?: number;
 
-  uid?: number;
-
   streamType?: VideoStreamType;
 }</codeblock>
                 <codeblock props="flutter" outputclass="language-dart">class EncodedVideoFrameInfo {
@@ -60,7 +56,6 @@
       this.rotation,
       this.trackId,
       this.captureTimeMs,
-      this.uid,
       this.streamType});
 
   @JsonKey(name: 'codecType')
@@ -87,9 +82,6 @@
   @JsonKey(name: 'captureTimeMs')
   final int? captureTimeMs;
 
-  @JsonKey(name: 'uid')
-  final int? uid;
-
   @JsonKey(name: 'streamType')
   final VideoStreamType? streamType;
 
@@ -110,7 +102,6 @@
             rotation = VIDEO_ORIENTATION.VIDEO_ORIENTATION_0;
             trackId = 0;
             captureTimeMs = 0;
-            uid = 0;
             streamType = VIDEO_STREAM_TYPE.VIDEO_STREAM_HIGH;
         }
 
@@ -124,7 +115,6 @@
             rotation = rhs.rotation;
             trackId = rhs.trackId;
             captureTimeMs = rhs.captureTimeMs;
-            uid = rhs.uid;
             streamType = rhs.streamType;
         }
 
@@ -143,8 +133,6 @@
         public int trackId { set; get; }
 
         public int64_t captureTimeMs { set; get; }
-
-        public uint uid { set; get; }
 
         public VIDEO_STREAM_TYPE streamType { set; get; }
     };</codeblock>
@@ -187,10 +175,6 @@
                     <pd>采集外部编码视频帧的 Unix 时间戳 (ms)。</pd>
                 </plentry>
                 <plentry props="electron">
-                    <pt>uid</pt>
-                    <pd>推送外部编码视频帧的用户 ID。</pd>
-                </plentry>
-                <plentry props="electron">
                     <pt>streamType</pt>
                     <pd>视频流类型。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
                 </plentry>
@@ -226,10 +210,6 @@
                 <plentry props="rn">
                     <pt>captureTimeMs</pt>
                     <pd>采集外部编码视频帧的 Unix 时间戳 (ms)。</pd>
-                </plentry>
-                <plentry props="rn">
-                    <pt>uid</pt>
-                    <pd>推送外部编码视频帧的用户 ID。</pd>
                 </plentry>
                 <plentry props="rn">
                     <pt>streamType</pt>
@@ -269,10 +249,6 @@
                     <pd>采集外部编码视频帧的 Unix 时间戳 (ms)。</pd>
                 </plentry>
                 <plentry props="flutter">
-                    <pt>uid</pt>
-                    <pd>推送外部编码视频帧的用户 ID。</pd>
-                </plentry>
-                <plentry props="flutter">
                     <pt>streamType</pt>
                     <pd>视频流类型。详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</pd>
                 </plentry>
@@ -308,10 +284,6 @@
                 <plentry props="unity">
                     <pt>captureTimeMs</pt>
                     <pd>采集外部编码视频帧的 Unix 时间戳 (ms)。</pd>
-                </plentry>
-                <plentry props="unity">
-                    <pt>uid</pt>
-                    <pd>推送外部编码视频帧的用户 ID。</pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>streamType</pt>

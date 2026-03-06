@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_ivideoframeobserver_oncapturevideoframe">
+    <title><ph keyref="onCaptureVideoFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets the video data captured by the local device.</ph><ph id="shortdesc" props="rn">Gets video data captured by the local device.</ph><ph id="shortdesc" props="flutter">Gets the video data captured by the local device.</ph><ph id="shortdesc" props="unity">Obtains video data captured by the local device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onCaptureVideoFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onCaptureVideoFrame?(
+    sourceType: VideoSourceType,
+    videoFrame: VideoFrame
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onCaptureVideoFrame?(
+    sourceType: VideoSourceType,
+    videoFrame: VideoFrame
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(VideoSourceType sourceType, VideoFrame videoFrame)?
+      onCaptureVideoFrame;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnCaptureVideoFrame(VIDEO_SOURCE_TYPE sourceType, VideoFrame videoFrame)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">You can get the raw video data captured by the local device in this callback.</p>
+            <p props="rn">You can obtain the raw video data captured by the local device in the callback.</p>
+            <p props="flutter">You can get the raw video data captured by the local device in the callback.</p>
+            <p props="unity">You can obtain the raw video data captured by the local device in this callback and perform pre-processing as needed. After completing the pre-processing, you can directly modify <codeph>videoFrame</codeph> in this callback and return <xref keyref="true"/> to send the modified video data to the SDK.</p>
+            <note props="electron">
+                <ul>
+                    <li>If the video data format you receive is RGBA, the SDK does not support processing the Alpha channel.</li>
+                    <li>When modifying parameters in <codeph>videoFrame</codeph>, ensure they match the actual video frame data in the buffer. Otherwise, unexpected rotation or distortion may occur in the local preview or remote video.</li>
+                    <li>It is recommended to implement this callback using the C++ API.</li>
+                    <li>Due to framework limitations, this callback does not support sending the processed video data back to the SDK.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>If the video data you obtain is in RGBA format, the SDK does not support processing the Alpha channel value.</li>
+                    <li>When modifying parameters in <codeph>videoFrame</codeph>, ensure the modified parameters match the actual video frame in the buffer. Otherwise, unexpected rotation, distortion, or other issues may occur in the local preview or remote video.</li>
+                    <li>It is recommended to implement this callback using the C++ API.</li>
+                    <li>Due to framework limitations, this callback does not support sending the processed video data back to the SDK.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>If the video data you get is of RGBA type, the SDK does not support processing the Alpha channel.</li>
+                    <li>It is recommended that you ensure the modified parameters in <codeph>videoFrame</codeph> match the actual video frame in the buffer; otherwise, unexpected rotation, distortion, etc., may occur in the local preview or remote video.</li>
+                    <li>Due to framework limitations, this callback does not support sending the processed video data back to the SDK.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>If the video data type you obtain is RGBA, the SDK does not support processing the Alpha channel values.</li>
+                    <li>When modifying parameters in <codeph>videoFrame</codeph>, it is recommended to ensure that the modified parameters match the actual conditions of the video frame in the buffer. Otherwise, unexpected rotation, distortion, or other issues may occur in the local preview or the remote video.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Trigger Timing</title>
+            <p props="electron">After successfully registering the video data observer, this callback is triggered when each video frame is captured by the SDK.</p>
+            <p props="rn">After successfully registering the video data observer, when the SDK captures each video frame.</p>
+            <p props="flutter">Triggered by the SDK when each video frame is captured after successfully registering the video data observer.</p>
+            <p props="unity">Triggered by the SDK when each video frame is captured after successfully registering the video data observer.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>sourceType</pt>
+                    <pd>Type of video source, which may include camera, screen, or media player. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoFrame</pt>
+                    <pd>Video frame data. See <xref keyref="VideoFrame"/>.
+                        <note>The default format of the video frame data obtained through this callback is:
+                            <ul>
+                                <li>macOS: I420</li>
+                                <li>Windows: YUV420</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sourceType</pt>
+                    <pd>Video source type, which can be: camera, screen, or media player. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoFrame</pt>
+                    <pd>Video frame data. See <xref keyref="VideoFrame"/>.
+                        <note>The default format of the video frame data obtained through this callback is:
+                            <ul>
+                                <li>Android: I420</li>
+                                <li>iOS: I420</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sourceType</pt>
+                    <pd>Type of video source, which may include camera, screen, or media player. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoFrame</pt>
+                    <pd>Video frame data. See <xref keyref="VideoFrame"/>.
+                        <note>The default format of the video frame data obtained through this callback is as follows:
+                            <ul>
+                                <li>Android: I420</li>
+                                <li>iOS: I420</li>
+                                <li>macOS: I420</li>
+                                <li>Windows: YUV420</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sourceType</pt>
+                    <pd>Type of video source, which may include: camera, screen, or media player. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoFrame</pt>
+                    <pd>Video frame data. See <xref keyref="VideoFrame"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li><xref keyref="true"/>: Instructs the SDK to receive the video frame.</li>
+                    <li><xref keyref="false"/>: Instructs the SDK to discard the video frame.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

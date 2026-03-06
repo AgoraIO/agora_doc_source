@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startlocalvideotranscoder">
+    <title><ph keyref="startLocalVideoTranscoder"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Starts local video mixing.</ph><ph id="shortdesc" props="rn">Starts local video compositing.</ph><ph id="shortdesc" props="flutter">Starts local video mixing.</ph><ph id="shortdesc" props="unity">Starts local video transcoding.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startLocalVideoTranscoder"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startLocalVideoTranscoder(
+    config: LocalTranscoderConfiguration
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startLocalVideoTranscoder(
+    config: LocalTranscoderConfiguration
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startLocalVideoTranscoder(LocalTranscoderConfiguration config);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartLocalVideoTranscoder(LocalTranscoderConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After calling this method, you can merge multiple video streams into a single stream locally. For example, merge camera-captured video, screen sharing, media player video, remote video, video files, images, etc., into a single stream, and then publish the mixed stream to the channel.</p>
+            <p props="rn">After calling this method, you can merge multiple video streams locally into a single stream. For example, merge video from the camera, screen sharing, media player, remote users, video files, images, etc., into one stream, and then publish the composited stream to the channel.</p>
+            <p props="flutter">After calling this method, you can merge multiple video streams locally into one stream. For example: merge video streams from camera capture, screen sharing, media player, remote video, video files, images, etc., into one stream, and then publish the mixed video stream to the channel.</p>
+            <p props="unity">After calling this method, you can merge multiple video streams into a single stream locally. For example, merge camera-captured video, screen sharing, media player video, remote video, video files, images, etc., into one video stream, and then publish the merged stream to the channel.</p>
+            <note props="electron">
+                <ul>
+                    <li>Local video mixing consumes significant CPU resources. Agora recommends using this feature on high-performance devices.</li>
+                    <li>If you need to mix locally captured video streams, the SDK supports the following combinations:
+                        <ul>
+                            <li>On Windows: up to 4 camera video streams + 4 screen sharing streams.</li>
+                            <li>On macOS: up to 4 camera video streams + 1 screen sharing stream.</li>
+                        </ul>
+                    </li>
+                    <li>When configuring mixing, ensure that the camera video stream capturing the portrait has a higher layer index than the screen sharing stream, otherwise the portrait may be covered and not displayed in the final mixed stream.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>Local compositing consumes significant CPU resources. Agora recommends enabling this feature on high-performance devices.</li>
+                    <li>If you need to composite locally captured video streams, the SDK supports the following combinations:
+                        <ul>
+                            <li>On Android and iOS, up to 2 camera video streams (requires device support for dual cameras or external cameras) + 1 screen sharing stream.</li>
+                        </ul>
+                    </li>
+                    <li>When configuring compositing, ensure that the camera video stream capturing the portrait has a higher layer index than the screen sharing stream. Otherwise, the portrait may be covered and not appear in the final composited stream.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>Local video mixing consumes high CPU resources. Agora recommends enabling this feature on high-performance devices.</li>
+                    <li>If you need to mix locally captured video streams, the SDK supports the following combinations:
+                        <ul>
+                            <li>On Windows, up to 4 camera video streams + 4 screen sharing streams can be mixed.</li>
+                            <li>On macOS, up to 4 camera video streams + 1 screen sharing stream can be mixed.</li>
+                            <li>On Android and iOS, up to 2 camera video streams (requires dual camera support or external camera support) + 1 screen sharing stream can be mixed.</li>
+                        </ul>
+                    </li>
+                    <li>When configuring mixing, ensure that the layer index of the camera video stream capturing the portrait is higher than that of the screen sharing stream, otherwise the portrait will be covered and not appear in the final mixed video stream.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>Local video transcoding consumes high CPU resources. Agora recommends using this feature on high-performance devices.</li>
+                    <li>If you want to transcode locally captured video streams, the SDK supports the following combinations:
+                        <ul>
+                            <li>On Windows: up to 4 camera streams + 4 screen sharing streams.</li>
+                            <li>On macOS: up to 4 camera streams + 1 screen sharing stream.</li>
+                            <li>On Android and iOS: up to 2 camera streams (requires dual camera support or external camera) + 1 screen sharing stream.</li>
+                        </ul>
+                    </li>
+                    <li>When configuring the transcoding layout, ensure that the layer ID of the camera stream capturing the portrait is greater than that of the screen sharing stream. Otherwise, the portrait may be covered and not appear in the final merged stream.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>You can enable local video mixing in scenarios such as remote meetings, live streaming, and online education. This allows users to conveniently view and manage multiple video feeds, and supports features like picture-in-picture.
+Here is a typical scenario for implementing picture-in-picture:
+                <ol>
+                    <li>Call <codeph>enableVirtualBackground</codeph> and set the custom background to <codeph>BackgroundNone</codeph>, i.e., separate the portrait from the background in the camera-captured video.</li>
+                    <li>Call <codeph>startScreenCaptureBySourceType</codeph> to start capturing the screen sharing video stream.</li>
+                    <li>Call this method and set the portrait video source as one of the sources in the local mixing configuration to achieve picture-in-picture in the final mixed video.</li>
+                </ol>
+            </p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">
+                <ul>
+                    <li>If you want to mix locally captured video streams, call this method after <xref keyref="startCameraCapture"/> or <xref keyref="startScreenCapture2"/>.</li>
+                    <li>To publish the mixed video stream to the channel, set <codeph>publishTranscodedVideoTrack</codeph> to <xref keyref="true"/> in <xref keyref="ChannelMediaOptions"/> when calling <xref keyref="joinChannel2"/> or <xref keyref="updateChannelMediaOptions"/>.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>To composite locally captured video streams, call this method after <xref keyref="startCameraCapture"/> or <xref keyref="startScreenCapture"/>.</li>
+                    <li>To publish the composited stream to the channel, set <codeph>publishTranscodedVideoTrack</codeph> to <xref keyref="true"/> in <xref keyref="ChannelMediaOptions"/> when calling <xref keyref="joinChannel2"/> or <xref keyref="updateChannelMediaOptions"/>.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>If you need to mix locally captured video streams, call this method after <xref keyref="startCameraCapture"/> or <xref keyref="startScreenCapture2"/>.</li>
+                    <li>If you want to publish the mixed video stream to the channel, set <codeph>publishTranscodedVideoTrack</codeph> to <xref keyref="true"/> in <xref keyref="ChannelMediaOptions"/> when calling <xref keyref="joinChannel2"/> or <xref keyref="updateChannelMediaOptions"/>.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>To transcode locally captured video streams, call this method after <xref keyref="startCameraCapture"/> or <xref keyref="startScreenCapture2"/>.</li>
+                    <li>To publish the transcoded stream to the channel, set <codeph>publishTranscodedVideoTrack</codeph> to <xref keyref="true"/> in <xref keyref="ChannelMediaOptions"/> when calling <xref keyref="joinChannel2"/> or <xref keyref="updateChannelMediaOptions"/>.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Related Callbacks</title>
+            <p props="electron">If this method call fails, the SDK triggers the <xref keyref="onLocalVideoTranscoderError"/> callback to report the reason for the failure.</p>
+            <p props="rn">If this method fails, the SDK triggers the <xref keyref="onLocalVideoTranscoderError"/> callback to report the reason.</p>
+            <p props="flutter">When this method call fails, the SDK triggers the <xref keyref="onLocalVideoTranscoderError"/> callback to report the reason for the mixing failure.</p>
+            <p props="unity">If this method call fails, the SDK triggers the <xref keyref="onLocalVideoTranscoderError"/> callback to report the reason for the failure.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>Configuration for local video mixing. See <xref keyref="LocalTranscoderConfiguration"/>.
+                        <note>
+                            <ul>
+                                <li>The maximum resolution for each video stream in the local mixing is 4096 × 2160. Exceeding this limit will cause the mixing to fail.</li>
+                                <li>The maximum resolution for the mixed video stream is 4096 × 2160.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>config</pt>
+                    <pd>Local compositing configuration. See <xref keyref="LocalTranscoderConfiguration"/>.
+                        <note>
+                            <ul>
+                                <li>The maximum resolution for each video stream in the compositing is 4096 × 2160. Exceeding this limit will cause the compositing to fail.</li>
+                                <li>The maximum resolution of the composited video stream is 4096 × 2160.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>The configuration for local video mixing. See <xref keyref="LocalTranscoderConfiguration"/>.
+                        <note>
+                            <ul>
+                                <li>The maximum resolution for each video stream involved in local mixing is 4096 × 2160. Exceeding this limit will cause mixing to fail.</li>
+                                <li>The maximum resolution of the mixed video stream is 4096 × 2160.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>Configuration for local video transcoding. See <xref keyref="LocalTranscoderConfiguration"/>.
+                        <note>
+                            <ul>
+                                <li>The maximum resolution for each video stream in the transcoding is 4096 × 2160. Exceeding this limit will cause transcoding to fail.</li>
+                                <li>The maximum resolution of the merged video stream is 4096 × 2160.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setvideoencoderconfiguration">
+    <title><ph keyref="setVideoEncoderConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the video encoding configuration.</ph><ph id="shortdesc" props="rn">Sets video encoding properties.</ph><ph id="shortdesc" props="flutter">Sets the video encoding attributes.</ph><ph id="shortdesc" props="unity">Sets the video encoding properties.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setVideoEncoderConfiguration"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setVideoEncoderConfiguration(
+    config: VideoEncoderConfiguration
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setVideoEncoderConfiguration(
+    config: VideoEncoderConfiguration
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setVideoEncoderConfiguration(VideoEncoderConfiguration config);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetVideoEncoderConfiguration(VideoEncoderConfiguration config);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Sets the encoding configuration for the local video. Each video encoding configuration corresponds to a set of video parameters, including resolution, frame rate, and bitrate.</p>
+            <p props="rn">Sets the encoding properties for local video. Each video encoding configuration corresponds to a series of video-related parameter settings, including resolution, frame rate, and bitrate.</p>
+            <p props="flutter">Sets the encoding attributes for the local video. Each video encoding profile corresponds to a set of video parameters, including resolution, frame rate, and bitrate.</p>
+            <p props="unity">Sets the encoding properties for the local video. Each video encoding configuration corresponds to a set of video-related parameters, including resolution, frame rate, and bitrate.</p>
+            <note props="electron">
+                <ul>
+                    <li>The <codeph>config</codeph> parameter of this method specifies the maximum values achievable under ideal network conditions. If the network condition is poor, the video engine may not use this <codeph>config</codeph> to render the local video and will automatically downgrade to a suitable video parameter configuration.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>The <codeph>config</codeph> parameter of this method sets the maximum values achievable under ideal network conditions. If the network is poor, the video engine will not use this <codeph>config</codeph> to render local video and will automatically downgrade to suitable video parameters.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>The <codeph>config</codeph> parameter of this method defines the maximum values achievable under ideal network conditions. If the network condition is poor, the video engine will not use this <codeph>config</codeph> to render the local video and will automatically downgrade to a more appropriate video configuration.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>The <codeph>config</codeph> parameter of this method specifies the maximum values achievable under ideal network conditions. If the network condition is poor, the video engine may not use this <codeph>config</codeph> to render the local video and will automatically downgrade to a suitable video parameter setting.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method can be called before or after joining a channel. If the user does not need to reset the video encoding configuration after joining the channel, it is recommended to call this method before <xref keyref="enableVideo"/> to speed up the time to the first frame.</p>
+            <p props="rn">This method must be called before joining a channel. It is recommended to call this method before <xref keyref="enableVideo"/> to speed up the time to first frame.</p>
+            <p props="flutter">This method can be called before or after joining a channel. If you do not need to reset the video encoding configuration after joining the channel, it is recommended to call this method before <xref keyref="enableVideo"/> to speed up the time to render the first frame.</p>
+            <p props="unity">This method can be called before or after joining a channel. If the user does not need to reset the video encoding configuration after joining the channel, it is recommended to call this method before <xref keyref="enableVideo"/> to speed up the time to the first frame.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>config</pt>
+                    <pd>Video encoding configuration. See <xref keyref="VideoEncoderConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>config</pt>
+                    <pd>Video encoding parameter configuration. See <xref keyref="VideoEncoderConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>config</pt>
+                    <pd>Video encoding configuration. See <xref keyref="VideoEncoderConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>config</pt>
+                    <pd>Video encoding parameter configuration. See <xref keyref="VideoEncoderConfiguration"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting tips.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Method call succeeded.</li>
+                    <li>&lt; 0: Method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

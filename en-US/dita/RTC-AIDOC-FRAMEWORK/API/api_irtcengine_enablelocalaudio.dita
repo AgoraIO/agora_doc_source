@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablelocalaudio">
+    <title><ph keyref="enableLocalAudio"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Enables or disables local audio capture.</ph><ph id="shortdesc" props="rn">Enables or disables the local audio capture.</ph><ph id="shortdesc" props="flutter">Enables or disables local audio capture.</ph><ph id="shortdesc" props="unity">Enables or disables local audio capture.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableLocalAudio"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableLocalAudio(enabled: boolean): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableLocalAudio(enabled: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableLocalAudio(bool enabled);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableLocalAudio(bool enabled);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">When a user joins a channel, audio is enabled by default. This method can disable or re-enable local audio, i.e., stop or restart local audio capture.
+The difference between this method and <xref keyref="muteLocalAudioStream"/> is:
+                <ul>
+                    <li><xref keyref="enableLocalAudio"/>: Enables or disables local audio capture and processing. After using <xref keyref="enableLocalAudio"/> to disable or enable local capture, there will be a brief interruption when listening to remote playback locally.</li>
+                    <li><xref keyref="muteLocalAudioStream"/>: Stops or resumes sending the local audio stream without affecting the audio capture status.</li>
+                </ul>
+            </p>
+            <p props="rn">When a user joins a channel, the audio function is enabled by default. You can call this method to disable or re-enable the local audio function, that is, to stop or resume local audio capture.
+The difference between this method and <xref keyref="muteLocalAudioStream"/> is:
+                <ul>
+                    <li><xref keyref="enableLocalAudio"/>: Enables or disables local audio capture and processing. When you disable or enable local capture using <xref keyref="enableLocalAudio"/>, there will be a brief interruption in playing remote audio locally.</li>
+                    <li><xref keyref="muteLocalAudioStream"/>: Stops or resumes sending the local audio stream without affecting the state of audio capture.</li>
+                </ul>
+            </p>
+            <p props="flutter">When a user joins a channel, the audio function is enabled by default. This method can disable or re-enable the local audio function, that is, stop or restart local audio capture.
+The difference between this method and <xref keyref="muteLocalAudioStream"/> is:
+                <ul>
+                    <li><xref keyref="enableLocalAudio"/>: Enables or disables local audio capture and processing. Using <xref keyref="enableLocalAudio"/> to disable or enable local capture will cause a brief interruption in hearing remote playback locally.</li>
+                    <li><xref keyref="muteLocalAudioStream"/>: Stops or resumes sending the local audio stream without affecting the capture status.</li>
+                </ul>
+            </p>
+            <p props="unity">When a user joins a channel, audio is enabled by default. This method can disable or re-enable local audio, i.e., stop or restart local audio capture.
+The difference between this method and <xref keyref="muteLocalAudioStream"/> is:
+                <ul>
+                    <li><xref keyref="enableLocalAudio"/>: Enables or disables local audio capture and processing. When you disable or enable local capture using <xref keyref="enableLocalAudio"/>, local playback of remote audio will briefly interrupt.</li>
+                    <li><xref keyref="muteLocalAudioStream"/>: Stops or resumes sending the local audio stream without affecting the capture status.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>This method does not affect receiving and playing remote audio streams. <codeph>enableLocalAudio(false)</codeph> is suitable for scenarios where you only want to receive remote audio without sending locally captured audio.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method can be called before or after joining a channel. Calling it before joining only sets the device state; it takes effect immediately after joining.</p>
+            <p props="rn">You can call this method before or after joining a channel. If you call it before joining, it only sets the device state. It takes effect immediately after joining the channel.</p>
+            <p props="flutter">This method can be called before or after joining a channel. When called before joining, it only sets the device state and takes effect immediately after joining.</p>
+            <p props="unity">Can be called before or after joining a channel. If called before joining, it only sets the device state; it takes effect immediately after joining the channel.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Related Callbacks</title>
+            <p props="electron">After audio is disabled or re-enabled, you will receive the <xref keyref="onLocalAudioStateChanged"/> callback, reporting <codeph>LocalAudioStreamStateStopped</codeph>(0) or <codeph>LocalAudioStreamStateRecording</codeph>(1).</p>
+            <p props="rn">After the audio function is disabled or re-enabled, you will receive the <xref keyref="onLocalAudioStateChanged"/> callback, which reports <codeph>LocalAudioStreamStateStopped</codeph> (0) or <codeph>LocalAudioStreamStateRecording</codeph> (1).</p>
+            <p props="flutter">After the audio function is disabled or re-enabled, the <xref keyref="onLocalAudioStateChanged"/> callback is triggered, reporting <codeph>localAudioStreamStateStopped</codeph>(0) or <codeph>localAudioStreamStateRecording</codeph>(1).</p>
+            <p props="unity">After disabling or re-enabling audio, you will receive the <xref keyref="onLocalAudioStateChanged"/> callback, reporting <codeph>LOCAL_AUDIO_STREAM_STATE_STOPPED</codeph>(0) or <codeph>LOCAL_AUDIO_STREAM_STATE_RECORDING</codeph>(1).</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: Re-enable local audio, i.e., enable local audio capture (default);</li>
+                            <li><xref keyref="false"/>: Disable local audio, i.e., stop local audio capture.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: Re-enables the local audio function, that is, starts local audio capture (default);</li>
+                            <li><xref keyref="false"/>: Disables the local audio function, that is, stops local audio capture.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: Re-enables the local audio function, i.e., enables local audio capture (default);</li>
+                            <li><xref keyref="false"/>: Disables the local audio function, i.e., stops local audio capture.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: Re-enable local audio, i.e., start local audio capture (default);</li>
+                            <li><xref keyref="false"/>: Disable local audio, i.e., stop local audio capture.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

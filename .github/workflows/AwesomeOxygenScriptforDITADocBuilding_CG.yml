@@ -2,14 +2,23 @@
 
 name: Awesome OxygenScript for DITA doc building (CG SDK)
 
+# DISABLED: This workflow has been disabled
 on:
-  push:
-    # branches: [ master, 'release/**' ]
-    branches: [ master ]
+  # push:
+  #   # branches: [ master, 'release/**' ]
+  #   branches: [ master ]
     
-  pull_request:
-    # branches: [ 'release/rtc/3.6.2-all' ]
-    branches: [ master ]
+  # pull_request:
+  #   # branches: [ 'release/rtc/3.6.2-all' ]
+  #   branches: [ master ]
+  
+  # Disabled trigger - will never run
+  workflow_dispatch:
+    inputs:
+      disabled:
+        description: 'This workflow is disabled'
+        required: false
+        default: 'disabled'
 
 jobs:
   build:
@@ -62,25 +71,25 @@ jobs:
           ls
           
     - name: Upload Flutter CG CN doc Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
           path: dita/RTC/out/flutter_cg_cn_doc.zip
           name: flutter_cg_cn_doc.zip
     
     - name: Upload CSharp CG CN doc Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
           path: dita/RTC/out/cs_cg_cn_doc.zip
           name: cs_cg_cn_doc.zip
     
     - name: Upload Flutter CG EN doc Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
           path: en-US/dita/RTC/out/flutter_cg_en_doc.zip
           name: flutter_cg_en_doc.zip
     
     - name: Upload CSharp CG EN doc Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
           path: en-US/dita/RTC/out/cs_cg_en_doc.zip
           name: cs_cg_en_doc.zip

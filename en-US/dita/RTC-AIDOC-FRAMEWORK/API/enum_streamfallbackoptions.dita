@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_streamfallbackoptions">
+    <title><ph keyref="STREAM_FALLBACK_OPTIONS"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Options for handling audio/video stream fallback under poor network conditions.</ph><ph id="shortdesc" props="rn">Options for audio/video stream fallback under poor network conditions.</ph><ph id="shortdesc" props="flutter">Options for audio and video stream fallback under poor network conditions.</ph><ph id="shortdesc" props="unity">Options for handling audio/video stream fallback under poor network conditions.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>StreamFallbackOptionDisabled</pt>
+                    <pd>0: Do not fallback audio/video streams, but the quality of the streams is not guaranteed.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>StreamFallbackOptionVideoStreamLow</pt>
+                    <pd>1: Only receive low-quality video streams (low resolution, low bitrate).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>StreamFallbackOptionAudioOnly</pt>
+                    <pd>2: Under poor network conditions, first try to receive only low-quality video streams; if video cannot be displayed due to severe network issues, fallback to receiving only the subscribed audio stream.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>StreamFallbackOptionDisabled</pt>
+                    <pd>0: No fallback for audio/video streams, but stream quality is not guaranteed.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>StreamFallbackOptionVideoStreamLow</pt>
+                    <pd>1: Only receive the low-quality video stream (low resolution, low bitrate).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>StreamFallbackOptionAudioOnly</pt>
+                    <pd>2: Under poor network conditions, first try to receive only the low-quality video stream; if the video cannot be displayed due to extremely poor network, fall back to receiving only the subscribed audio stream.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamFallbackOptionDisabled</pt>
+                    <pd>0: Do not fallback for audio and video streams, but the quality of the audio and video streams is not guaranteed.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamFallbackOptionVideoStreamLow</pt>
+                    <pd>1: Receive only the low-quality video stream (low resolution and low bitrate).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamFallbackOptionAudioOnly</pt>
+                    <pd>2: When network conditions are poor, try receiving only the low-quality video stream first; if the video cannot be displayed due to poor network, fallback to receiving only the subscribed audio stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>STREAM_FALLBACK_OPTION_DISABLED</pt>
+                    <pd>0: Do not apply fallback to audio/video streams, but the quality of the streams is not guaranteed.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW</pt>
+                    <pd>1: Receive only the low-quality video stream (low resolution, low bitrate).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>STREAM_FALLBACK_OPTION_AUDIO_ONLY</pt>
+                    <pd>2: Under poor network conditions, first attempt to receive only the low-quality video stream; if the network is too poor to display video, fallback to receiving only the subscribed audio stream.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

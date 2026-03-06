@@ -4,6 +4,201 @@
 
 AirPods Pro does not support A2DP protocol in communication audio mode, which may lead to connection failure in that mode.
 
+## v4.6.2
+
+This version was released on March 5, 2026.
+
+#### Upgrade Guide
+
+This version optimizes the implementation of some features, including SDK behavior changes, API deprecations, and deletions. To ensure your project runs normally, you need to update the code in your App after upgrading to this version.
+
+1. ** Deprecation of Direct CDN streaming APIs**
+
+This version deprecates APIs related to the Direct CDN streaming feature, which will be removed in future versions. Please use [server-side transcoding and pushing](https://doc.shengwang.cn/doc/media-push/restful/landing-page) instead.
+
+- `SetDirectCdnStreamingAudioConfiguration`
+- `SetDirectCdnStreamingVideoConfiguration`
+- `StartDirectCdnStreaming`
+- `StopDirectCdnStreaming`
+- `DirectCdnStreamingMediaOptions`
+- `DirectCdnStreamingStats`
+- `DIRECT_CDN_STREAMING_STATE`
+- `DIRECT_CDN_STREAMING_REASON`
+
+2. ** Deprecation of virtual metronome APIs**
+
+This version deprecates APIs related to the virtual metronome feature, which will be removed in future versions.
+
+- `StartRhythmPlayer`
+- `ConfigRhythmPlayer`
+- `OnRhythmPlayerStateChanged`
+
+3. ** Deprecation of watermark APIs**
+
+This version deprecates APIs related to the watermark feature. We recommend using the new watermark APIs introduced in this version.
+
+- `AddVideoWatermark` [2/3]
+- `AddVideoWatermarkEx` [1/2]
+
+4. ** Removal of redundant APIs**
+
+This version removes the following redundant APIs and parameters:
+
+- `SetLocalPublishFallbackOption`
+- `OnLocalPublishFallbackToAudioOnly`
+- `OnDownlinkNetworkInfoUpdated`
+- `OnWlAccStats`
+- `EnableWirelessAccelerate`
+
+5. ** Changes to makeup feature implementation**
+
+Due to the beauty effect refactoring in this version, starting from v4.6.2, calling `SetExtensionProperty` to enable the makeup feature is no longer supported. Use the `STYLE_MAKEUP` node instead.
+
+6. ** Behavior changes in dual-stream mode**
+
+- Before v4.6.2: When the sender enables the adaptive low-stream mode (AUTO_SIMULCAST_STREAM), it does not actively send the low stream. The sender starts sending the low stream only after receiving a request from a receiver with the host role who calls `SetRemoteVideoStreamType` to request the low stream.
+- v4.6.2 and later: When the sender enables the adaptive low-stream mode (AUTO_SIMULCAST_STREAM), it automatically decides whether to send or stop sending the low stream based on the downlink network quality of subscribing users. If you set **mode** to other sending modes or explicitly configure the width, height, bitrate, or frame rate of the low stream, this adaptive feature becomes invalid.
+
+7. ** New domain whitelist**
+
+If you upgrade from a previous version to v4.6.2 and use the domain whitelist feature (`domainLimit` under `RtcEngineConfig` is `true`), add the following domains to the whitelist to ensure smooth communication:
+
+- `*.rtnsvc.com`
+- `*.realtimemesh.com`
+
+8. ** Removal of uid parameter from EncodedVideoFrameInfo struct**
+
+This version removes the `uid` parameter from the `EncodedVideoFrameInfo` struct. You can directly obtain the `uid` information from the `OnEncodedVideoFrameReceived` callback. If you have previously integrated related code, please update your integration logic accordingly.
+
+#### New Features
+
+1. ** Multi-resolution video streams**
+
+This version introduces the Adaptive Bitrate Video Streaming (ABR) feature, which supports sending multiple video streams with different resolutions from the same video source simultaneously and supports multi-channel scenarios. Receivers can automatically or manually subscribe to video streams with target resolutions.
+
+After enabling ABR, you can configure video streams with different resolutions (up to four layers: one main stream with the highest resolution and three other lower-resolution video streams) and set options such as resolution, bitrate, and whether to enable layered streaming fallback to flexibly control stream publishing. After enabling layered streaming fallback, the SDK automatically falls back to lower-resolution video streams in poor network conditions to ensure smooth viewing. Subscribers can select the video streams they want to receive based on actual needs. This feature is suitable for meeting scenarios, large classes, interactive live streaming, and other multi-device, multi-network environments, significantly improving the viewing experience in poor network conditions.
+
+2. ** Multi-path network transmission**
+
+This version introduces the multi-path transmission feature, suitable for devices that support multi-network card transmission (such as 5G, Wi-Fi, LAN). It can effectively reduce or even eliminate the experience degradation caused by poor network conditions, suitable for real-time audio and video communication scenarios in poor network environments or scenarios with high transmission stability requirements, such as vehicles, IoT, trains, highways, and other complex network environments. You can enable multi-path transmission by setting `enableMultipath` to `true` in `ChannelMediaOptions`. Two transmission modes (`MultipathMode`) are supported:
+
+- Dynamic mode (default): Dynamically selects the best path for transmission based on network conditions, suitable for scenarios that are traffic-sensitive and have high experience requirements, such as meetings and education. In dynamic mode, you can specify the preferred network transmission path (such as Wi-Fi or mobile network) through `preferMultipathType`.
+- Full redundancy mode: Data is transmitted simultaneously on all available network paths, suitable for scenarios that are not traffic-sensitive but have extreme experience requirements, such as outdoor broadcasting and parallel control. This mode incurs additional costs. Please [contact technical support](https://ticket.shengwang.cn/) if you need to use it.
+
+Uplink and downlink can also be configured separately through `uplinkMultipathMode` and `downlinkMultipathMode` in `ChannelMediaOptions`. After enabling, the SDK reports transmission statistics for each path in real time through the `onMultipathStats` callback, including the traffic consumption of each transmission path, facilitating developers to monitor and optimize network performance.
+
+3. ** Video quality scoring**
+
+This version adds the `mosValue` member to `RemoteVideoStats`, reporting the quality score of the received remote video stream evaluated by the Agora real-time video MOS (Mean Opinion Score) evaluation system. The score has 5 levels: 5 points indicates excellent video quality with clear images and no noise, and 1 point indicates extremely poor video quality with severely blurred images. You can observe the subjective quality performance of remote video streams in real time through this parameter, facilitating dynamic adjustment of video parameters, optimization of user experience, or use in quality monitoring and alerting scenarios. Please [contact technical support](https://ticket.shengwang.cn/) to enable this feature.
+
+4. ** Support for adding multiple watermarks**
+
+This version deprecates the `AddVideoWatermark` [2/3] and `AddVideoWatermarkEx` [1/2] methods and introduces the `AddVideoWatermarkWithConfig` [3/3] and `AddVideoWatermarkWithConfigEx` [2/2] methods, supporting adding multiple watermarks to videos through watermark IDs and sorting watermarks. If you need to remove a specific watermark, you can call the `RemoveVideoWatermark` method.
+
+5. ** Token renewal result callback**
+
+This version introduces the `onRenewTokenResult` callback and the `RENEW_TOKEN_ERROR_CODE` error code. After calling the `renewToken` method to update the Token, the SDK notifies the result of the Token update through the `onRenewTokenResult` callback and returns detailed error codes through `RENEW_TOKEN_ERROR_CODE`, allowing developers to handle Token update failure scenarios in the callback based on the error codes.
+
+6. ** Android support for sharing a single app**
+
+Starting from Android 14, the system supports users to choose between sharing the entire screen or sharing a single app during screen sharing to improve privacy protection and multitasking capabilities.
+
+This version adapts to this system capability, adding support for sharing a single app on top of supporting sharing the entire screen. At the same time, to facilitate managing related events, this version adds the `OnLocalVideoEvent` callback to report local video events, especially screen sharing related events.
+
+7. ** Android permission granted callback**
+
+To facilitate confirming permission authorization in screen sharing scenarios, this version adds the `OnPermissionGranted` callback. You can use this callback to determine whether the current user granted Camera or Screen permissions.
+
+8. ** Media Player support for obtaining audio buffer delay**
+
+To solve the problem of synchronization between the main singer and accompaniment that may occur in KTV scenarios, this version introduces the `GetAudioBufferDelay` method in the Media Player module to obtain millisecond-level audio buffer delay when playing media files.
+
+9. **Other**
+
+- Added the `SetPlaybackAudioFrameBeforeMixingParameters` method to set the audio frame format returned in the `OnPlaybackAudioFrameBeforeMixing` callback, including sample rate, number of channels, and the number of data samples per callback. After calling this method, the SDK returns the original audio data before mixing according to the set parameters, facilitating developers to perform custom processing or analysis.
+- Added the `PreloadEffectEx` method to preload specified audio effect files to specified channels, supporting local or online audio effect files, facilitating subsequent quick playback, suitable for multi-channel scenarios.
+- Added the `PlayEffectEx` method to play audio effect files in specified channels, supporting setting parameters such as loop count, pitch, spatial position, volume, whether to publish to the channel, and playback start position, meeting rich audio effect playback needs.
+- The local screenshot upload feature supports setting the video observation position for screenshots through the new `position` member in `ContentInspectModule`, enabling screenshots and uploads of original video data or video streams before and after effect processing.
+- To improve the accuracy and stability of portrait segmentation when users use green screen or blue screen to enable virtual background, this version adds the `screenColorType` property to `SegmentationProperty`, supporting specifying the background screen color as green, blue, or automatic recognition.
+
+10. **Advanced Beauty (Beta)**
+
+   This version introduces a brand-new advanced beauty feature, delivering a powerful yet easy-to-use beautification solution. Key capabilities include:
+
+   - **Precision Beauty Effects:**
+     - Face Shaping: Supports independent fine-tuning of 29 facial areas (e.g., slimming face, enlarging eyes, narrowing nose) or one-click natural effects via presets.
+     - Style Makeup: Offers rich effects including eyeshadow, colored contacts, eyeliner, eyebrow shaping, lipstick, blush, under-eye highlights, and facial contouring.
+     - Skin Enhancement: Includes professional skin optimizations like teeth whitening, nasolabial fold removal, dark circle reduction, and eye brightening.
+
+   - **Unified and Simple API**: Manage all beauty, makeup, and filter functions through three core nodes – `BEAUTY`, `STYLE_MAKEUP`, and `FILTER` – using `IVideoEffectObject` for unified parameter setup and lifecycle control.
+
+   - **Ready-to-Use Presets**: Integrates multiple out-of-the-box style templates (e.g., "Natural Beauty," "Senior Makeup," "Cool White Filter") for instant polished results.
+
+   - **Dynamic Parameter Control**: Enables real-time reading/modifying of granular parameters (e.g., smoothing strength, lipstick type) via key-value pairs, with support for saving custom configurations and resetting defaults.
+
+   - **Local Resource Guarantee**: All beauty resources (effects, filters, makeup) are packaged as local bundle files, ensuring stability and reliability.
+
+#### Improvements
+
+1. **Seamless switching support for playEffect**
+
+This version adds support for seamless switching of audio effect files. For the same audio effect file, if you first call `PreloadEffectEx` and then call `PlayEffectEx`, after playback completes or stops through `StopEffect`, the SDK does not close the audio effect file. When calling `PlayEffectEx` again, the SDK directly reuses the loaded file for playback, enabling loop playback and seamless switching. This capability also applies to multi-channel scenarios.
+
+2. **Window exclusion support for second screen**
+
+In versions before 4.6.2, when screen sharing is performed through screen ID (`startScreenCaptureByDisplayId`), configuring window exclusion (`excludeWindowList` in `ScreenCaptureParameters`) was not supported in multi-screen scenarios. To improve the screen sharing experience, this version adds support for this configuration.
+
+At the same time, to facilitate identification of window exclusion status during screen sharing, this version adds a new member to `LOCAL_VIDEO_STREAM_REASON` to report cases where window exclusion fails during screen sharing.
+
+3. **Optimization of onVideoDeviceStateChanged callback timing**
+
+This version optimizes the trigger timing of the `OnVideoDeviceStateChanged` callback. In previous versions, this callback could only be triggered after joining a channel. Starting from 4.6.2, you can receive this callback once after `IRtcEngine` initialization completes, and you can continue to listen to this event after joining a channel.
+
+4. **Improved accuracy of onNetworkQuality**
+
+This version improves the accuracy of network quality assessment in the `OnNetworkQuality` callback, making the callback data closer to users' subjective experience.
+
+5. **Support for 24k sample rate audio frames in onPlaybackAudioFrame**
+
+This version adds support for audio data with a sample rate of **24000 Hz** in `OnPlaybackAudioFrame`. When calling `SetPlaybackAudioFrameParameters` to set the playback audio data format, you can set `sampleRate` to `24000`.
+
+6. **Support for obtaining channel ID in onEncodedVideoFrameReceived callback**
+
+This version adds the `channelId` parameter to the `OnEncodedVideoFrameReceived` callback, making it convenient for you to identify which channel the encoded video data belongs to when obtaining encoded video data.
+
+7. **Other improvements**
+
+- Optimized permission requests on Windows 11 24H2 and later versions to avoid unnecessary location information acquisition.
+- Added support for g711 and g722 audio codecs when interoperating with Web clients, further improving cross-platform audio playback compatibility and clarity.
+- Optimized shared video clarity in screen sharing document scenarios.
+- This version adds error codes `ERR_PCMSEND_FORMAT (200)` and `ERR_PCMSEND_BUFFEROVERFLOW (201)` to report PCM data sending related errors.
+
+#### Bug Fixes
+
+This merged version fixes the following issues:
+
+- When playing multi-track songs with guide vocal enabled, noise appears after calling the `SetAudioPitch` method to adjust the song pitch.
+- When the anchor creates a custom audio capture track by calling `CreateCustomAudioTrack` and sets `trackType` to `AUDIO_TRACK_DIRECT`, pushes self-captured audio to the channel by calling `PushAudioFrame`, and then plays audio effects by calling `PlayEffectEx`, the audience in the channel hears noise in the anchor's audio.
+- Apps integrated with the SDK occasionally experience UI freezing due to main thread blocking during audio and video interaction.
+- When screen sharing is enabled and `enableHighLight` in `ScreenCaptureParameters` is set to `true` to outline the shared window, after placing the shared window on top and maximizing it, the shared screen in the local preview flickers.
+- When calling `StartScreenCaptureByDisplayId` to share the video stream of a specified screen and using `excludeWindowList` in `ScreenCaptureParameters` to specify excluded windows, some windows occasionally fail to be excluded.
+- Applications sharing external screen video streams occasionally crash after disconnecting the external screen.
+- When calling `OpenWithMediaSource` and setting `isLiveSource` to `true` through the `source` parameter to play pure video streams, playback fails.
+- Receivers occasionally hear noise when the sender transmits multi-channel encoded audio.
+- In scenarios where apps integrate media players, when calling `Open` twice to open different media resources, the media player information change callback `OnPlayerInfoUpdated` returns information about the first media resource when opening the second time, which is unexpected.
+- When calling `EnableAudioVolumeIndication` to enable user volume indication for local streaming users and remote user volume information, the local user volume returned by the user volume indication callback `OnAudioVolumeIndication` is 0.
+- When using a 21:9 display (ultrawide screen) for audio and video interaction and screen sharing scenarios, setting high resolution such as 3840*2160, the screen sharing image is cropped in local preview and receiver display.
+- When apps call `EnableVideoImageSource` to enable placeholder streaming, the sender occasionally succeeds in streaming but `OnVideoPublishStateChanged` returns that the current publish state is not `PUB_STATE_PUBLISHED`, which is unexpected.
+- In multi-channel scenarios, when apps call `joinChannelEx` successfully before calling `setupRemoteVideoEx` to initialize remote user views, the first frame image of remote user views occasionally has a large display delay.
+- After calling `Open` to open an online audio effect file, calling `PlayEffectEx` to start playback, when calling `Seek` to specify the playback position, the audio effect file plays from the beginning.
+- In media volume mode, when anchors publish microphone-captured audio streams in the channel while calling `PlayEffectEx` to play audio effect files and calling `StartAudioMixing` [2/2] to play music files, echo occasionally occurs.
+- After calling `JoinChannelEx` to join a channel, then calling `StartOrUpdateChannelMediaRelay` to start cross-channel media relay, after going offline, leaving the channel, and rejoining the channel to start co-hosting, the `OnChannelMediaRelayStateChanged` callback occasionally reports `state` as `RELAY_STATE_FAILURE` and `code` as `RELAY_ERROR_SERVER_ERROR_RESPONSE`.
+- On some laptop models with power-saving mode enabled, when the sender shares screen and audio, receivers occasionally hear echo.
+- In online education scenarios, teachers occasionally see audio and video out of sync for multiple students locally.
+- The second call to the `EnumerateVideoDevices` interface to obtain the device list does not take effect.
+- On Windows 7 devices sharing PPT windows, when PPT runs in full-screen auto-play mode and contains a large number of animations, the screen seen remotely occasionally flickers.
+
+
 ## v4.5.1
 
 v4.5.1 was released on March xx, 2025.

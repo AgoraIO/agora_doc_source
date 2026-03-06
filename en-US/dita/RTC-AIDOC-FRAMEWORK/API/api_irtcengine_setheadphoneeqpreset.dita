@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setheadphoneeqpreset">
+    <title><ph keyref="setHeadphoneEQPreset"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets a preset headphone equalizer effect.</ph><ph id="shortdesc" props="rn">Sets a preset headphone equalizer effect.</ph><ph id="shortdesc" props="flutter">Sets the preset headphone equalizer effect.</ph><ph id="shortdesc" props="unity">Sets a preset headphone equalizer effect.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setHeadphoneEQPreset"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setHeadphoneEQPreset(preset: HeadphoneEqualizerPreset): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setHeadphoneEQPreset(preset: HeadphoneEqualizerPreset): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setHeadphoneEQPreset(HeadphoneEqualizerPreset preset);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetHeadphoneEQPreset(HEADPHONE_EQUALIZER_PRESET preset);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method is mainly used in spatial audio scenarios. You can select a preset headphone equalizer to listen to audio and achieve the desired audio experience.</p>
+            <p props="rn">This method is mainly used in spatial audio scenarios. You can select a preset headphone equalizer to listen to audio and achieve the desired audio experience.</p>
+            <p props="flutter">This method is mainly used in spatial audio scenarios. You can select a preset headphone equalizer to listen to audio and achieve the desired audio experience.</p>
+            <p props="unity">This method is mainly used in spatial audio scenarios. You can select a preset headphone equalizer to listen to audio and achieve the desired audio experience.</p>
+            <note props="electron">If your headphones already have good equalization effects, calling this method may not significantly enhance the experience and may even degrade it.</note>
+            <note props="rn">If the headphones you are using already have good equalization, calling this method may not significantly improve the experience and may even degrade it.</note>
+            <note props="flutter">If your headphones already provide a good equalizing effect, calling this method may not significantly improve the experience and may even degrade it.</note>
+            <note props="unity">If your headphones already have a good equalizer effect, calling this method may not significantly improve the experience and may even degrade it.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>preset</pt>
+                    <pd>Preset headphone equalizer effect. See <xref keyref="HEADPHONE_EQUALIZER_PRESET"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>preset</pt>
+                    <pd>Preset headphone equalizer effect. See <xref keyref="HEADPHONE_EQUALIZER_PRESET"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>preset</pt>
+                    <pd>Preset headphone equalizer effect. See <xref keyref="HEADPHONE_EQUALIZER_PRESET"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>preset</pt>
+                    <pd>Preset headphone equalizer effect. See <xref keyref="HEADPHONE_EQUALIZER_PRESET"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure
+                        <ul>
+                            <li>-1: General error (not specifically classified).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure
+                        <ul>
+                            <li>-1: General error (not specifically classified).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure
+                        <ul>
+                            <li>-1: General error (not specifically categorized).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_iscameracenterstagesupported">
+    <title><ph keyref="isCameraCenterStageSupported"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Checks whether the camera supports Center Stage.</ph><ph id="shortdesc" props="rn">Checks whether the camera supports Center Stage.</ph><ph id="shortdesc" props="flutter">Checks whether the camera supports Center Stage.</ph><ph id="shortdesc" props="unity">Checks whether the camera supports Center Stage.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="isCameraCenterStageSupported"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract isCameraCenterStageSupported(): boolean;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract isCameraCenterStageSupported(): boolean;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;bool&gt; isCameraCenterStageSupported();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract bool IsCameraCenterStageSupported();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Before calling <xref keyref="enableCameraCenterStage"/> to enable the Center Stage feature, it is recommended to call this method to check whether the current device supports it.</p>
+            <p props="rn">Before calling <xref keyref="enableCameraCenterStage"/> to enable the Center Stage feature, you are advised to call this method to check whether the current device supports Center Stage.</p>
+            <p props="flutter">Before calling <xref keyref="enableCameraCenterStage"/> to enable the Center Stage feature, it is recommended to call this method to check whether the current device supports Center Stage.</p>
+            <p props="unity">Before calling <xref keyref="enableCameraCenterStage"/> to enable Center Stage, it is recommended to call this method to check whether the current device supports this feature.</p>
+            <note props="electron">This method is only supported on macOS.</note>
+            <note props="rn">This method is only available on iOS.</note>
+            <note props="flutter">This method is applicable to iOS and macOS only.</note>
+            <note props="unity">This method is only applicable to iOS and macOS.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method must be called after the camera is successfully started, i.e., after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LocalVideoStreamStateCapturing</codeph> (1).</p>
+            <p props="rn">You must call this method after the camera is successfully started, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LocalVideoStreamStateCapturing</codeph> (1).</p>
+            <p props="flutter">You must call this method after the camera is successfully started, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>localVideoStreamStateCapturing</codeph> (1).</p>
+            <p props="unity">This method must be called after the camera is successfully started, i.e., after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</p>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li><xref keyref="true"/>: The current camera supports Center Stage.</li>
+                    <li><xref keyref="false"/>: The current camera does not support Center Stage.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li><xref keyref="true"/>: The current camera supports Center Stage.</li>
+                    <li><xref keyref="false"/>: The current camera does not support Center Stage.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li><xref keyref="true"/>: The current camera supports Center Stage.</li>
+                    <li><xref keyref="false"/>: The current camera does not support Center Stage.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li><xref keyref="true"/>: The current camera supports Center Stage.</li>
+                    <li><xref keyref="false"/>: The current camera does not support Center Stage.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

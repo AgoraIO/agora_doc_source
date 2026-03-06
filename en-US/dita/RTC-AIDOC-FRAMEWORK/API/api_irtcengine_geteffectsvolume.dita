@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_geteffectsvolume">
+    <title><ph keyref="getEffectsVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets the playback volume of audio effect files.</ph><ph id="shortdesc" props="rn">Gets the playback volume of the sound effect file.</ph><ph id="shortdesc" props="flutter">Gets the playback volume of audio effect files.</ph><ph id="shortdesc" props="unity">Gets the playback volume of audio effects.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getEffectsVolume"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getEffectsVolume(): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract getEffectsVolume(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getEffectsVolume();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetEffectsVolume();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">The volume range is 0~100. 100 (default) is the original file volume.</p>
+            <p props="rn">Volume range is 0~100. 100 (default) is the original file volume.</p>
+            <p props="flutter">The volume range is [0,100]. 100 (default) is the original file volume.</p>
+            <p props="unity">The volume range is 0~100. 100 (default) represents the original file volume.</p>
+            <note props="electron">You must call this method after <xref keyref="playEffect3"/>.</note>
+            <note props="rn">You must call this method after <xref keyref="playEffect3"/>.</note>
+            <note props="flutter">You need to call this method after <xref keyref="playEffect3"/>.</note>
+            <note props="unity">You need to call this method after <xref keyref="playEffect3"/>.</note>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>The volume of the audio effect file.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>Volume of the sound effect file.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>The volume of the audio effect file.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>The volume of the audio effect.</li>
+                    <li>&lt; 0: Method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

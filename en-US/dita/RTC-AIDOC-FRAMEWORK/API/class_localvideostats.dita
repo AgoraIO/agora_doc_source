@@ -1,0 +1,648 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_localvideostats">
+    <title><ph keyref="LocalVideoStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Local video stream statistics.</ph><ph id="shortdesc" props="rn">Statistics of the local video stream.</ph><ph id="shortdesc" props="flutter">Statistics of the local video stream.</ph><ph id="shortdesc" props="unity">Statistics of the local video stream.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class LocalVideoStats {
+  
+  uid?: number;
+  
+  sentBitrate?: number;
+  
+  sentFrameRate?: number;
+  
+  captureFrameRate?: number;
+  
+  captureFrameWidth?: number;
+  
+  captureFrameHeight?: number;
+  
+  regulatedCaptureFrameRate?: number;
+  
+  regulatedCaptureFrameWidth?: number;
+  
+  regulatedCaptureFrameHeight?: number;
+  
+  encoderOutputFrameRate?: number;
+  
+  encodedFrameWidth?: number;
+  
+  encodedFrameHeight?: number;
+  
+  rendererOutputFrameRate?: number;
+  
+  targetBitrate?: number;
+  
+  targetFrameRate?: number;
+  
+  qualityAdaptIndication?: QualityAdaptIndication;
+  
+  encodedBitrate?: number;
+  
+  encodedFrameCount?: number;
+  
+  codecType?: VideoCodecType;
+  
+  txPacketLossRate?: number;
+  
+  captureBrightnessLevel?: CaptureBrightnessLevelType;
+
+  hwEncoderAccelerating?: number;
+
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class LocalVideoStats {
+  
+  uid?: number;
+  
+  sentBitrate?: number;
+  
+  sentFrameRate?: number;
+  
+  captureFrameRate?: number;
+  
+  captureFrameWidth?: number;
+  
+  captureFrameHeight?: number;
+  
+  regulatedCaptureFrameRate?: number;
+  
+  regulatedCaptureFrameWidth?: number;
+  
+  regulatedCaptureFrameHeight?: number;
+  
+  encoderOutputFrameRate?: number;
+  
+  encodedFrameWidth?: number;
+  
+  encodedFrameHeight?: number;
+  
+  rendererOutputFrameRate?: number;
+  
+  targetBitrate?: number;
+  
+  targetFrameRate?: number;
+  
+  qualityAdaptIndication?: QualityAdaptIndication;
+  
+  encodedBitrate?: number;
+  
+  encodedFrameCount?: number;
+  
+  codecType?: VideoCodecType;
+  
+  txPacketLossRate?: number;
+  
+  captureBrightnessLevel?: CaptureBrightnessLevelType;
+
+  hwEncoderAccelerating?: number;
+  
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class LocalVideoStats {
+  const LocalVideoStats(
+      {this.uid,
+      this.sentBitrate,
+      this.sentFrameRate,
+      this.captureFrameRate,
+      this.captureFrameWidth,
+      this.captureFrameHeight,
+      this.regulatedCaptureFrameRate,
+      this.regulatedCaptureFrameWidth,
+      this.regulatedCaptureFrameHeight,
+      this.encoderOutputFrameRate,
+      this.encodedFrameWidth,
+      this.encodedFrameHeight,
+      this.rendererOutputFrameRate,
+      this.targetBitrate,
+      this.targetFrameRate,
+      this.qualityAdaptIndication,
+      this.encodedBitrate,
+      this.encodedFrameCount,
+      this.codecType,
+      this.txPacketLossRate,
+      this.captureBrightnessLevel,
+      this.hwEncoderAccelerating});
+
+  @JsonKey(name: 'uid')
+  final int? uid;
+
+  @JsonKey(name: 'sentBitrate')
+  final int? sentBitrate;
+
+  @JsonKey(name: 'sentFrameRate')
+  final int? sentFrameRate;
+
+  @JsonKey(name: 'captureFrameRate')
+  final int? captureFrameRate;
+
+  @JsonKey(name: 'captureFrameWidth')
+  final int? captureFrameWidth;
+
+  @JsonKey(name: 'captureFrameHeight')
+  final int? captureFrameHeight;
+
+  @JsonKey(name: 'regulatedCaptureFrameRate')
+  final int? regulatedCaptureFrameRate;
+
+  @JsonKey(name: 'regulatedCaptureFrameWidth')
+  final int? regulatedCaptureFrameWidth;
+
+  @JsonKey(name: 'regulatedCaptureFrameHeight')
+  final int? regulatedCaptureFrameHeight;
+
+  @JsonKey(name: 'encoderOutputFrameRate')
+  final int? encoderOutputFrameRate;
+
+  @JsonKey(name: 'encodedFrameWidth')
+  final int? encodedFrameWidth;
+
+  @JsonKey(name: 'encodedFrameHeight')
+  final int? encodedFrameHeight;
+
+  @JsonKey(name: 'rendererOutputFrameRate')
+  final int? rendererOutputFrameRate;
+
+  @JsonKey(name: 'targetBitrate')
+  final int? targetBitrate;
+
+  @JsonKey(name: 'targetFrameRate')
+  final int? targetFrameRate;
+
+  @JsonKey(name: 'qualityAdaptIndication')
+  final QualityAdaptIndication? qualityAdaptIndication;
+
+  @JsonKey(name: 'encodedBitrate')
+  final int? encodedBitrate;
+
+  @JsonKey(name: 'encodedFrameCount')
+  final int? encodedFrameCount;
+
+  @JsonKey(name: 'codecType')
+  final VideoCodecType? codecType;
+
+  @JsonKey(name: 'txPacketLossRate')
+  final int? txPacketLossRate;
+
+  @JsonKey(name: 'captureBrightnessLevel')
+  final CaptureBrightnessLevelType? captureBrightnessLevel;
+
+  @JsonKey(name: 'hwEncoderAccelerating')
+  final int? hwEncoderAccelerating;
+
+  factory LocalVideoStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$LocalVideoStatsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalVideoStatsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class LocalVideoStats
+    {
+        public LocalVideoStats()
+        {
+        }
+
+        public uint uid { set; get; }
+        public int sentBitrate { set; get; }
+        public int sentFrameRate { set; get; }
+        public int captureFrameRate { set; get; }
+        public int captureFrameWidth { set; get; }
+        public int captureFrameHeight { set; get; }
+        public int regulatedCaptureFrameRate { set; get; }
+        public int regulatedCaptureFrameWidth { set; get; 
+        public int regulatedCaptureFrameHeight { set; get; }
+        public int encoderOutputFrameRate { set; get; }
+        public int encodedFrameWidth { set; get; }
+        public int encodedFrameHeight { set; get; }
+        public int rendererOutputFrameRate { set; get; }
+        public int targetBitrate { set; get; }
+        public int targetFrameRate { set; get; }
+        public QUALITY_ADAPT_INDICATION qualityAdaptIndication { set; get; }
+        public int encodedBitrate { set; get; }
+        public int encodedFrameCount { set; get; }
+        public VIDEO_CODEC_TYPE codecType { set; get; }
+        public ushort txPacketLossRate { set; get; }
+        public CAPTURE_BRIGHTNESS_LEVEL_TYPE captureBrightnessLevel { set; get; }
+        public int hwEncoderAccelerating { set; get; }
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>User ID of the local user.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sentBitrate</pt>
+                    <pd>Actual sending bitrate (Kbps)
+                        <note>Does not include bitrate for retransmitted video due to packet loss.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sentFrameRate</pt>
+                    <pd>Actual sending frame rate (fps).
+                        <note>Does not include frame rate for retransmitted video due to packet loss.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>captureFrameRate</pt>
+                    <pd>Local video capture frame rate (fps).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>captureFrameWidth</pt>
+                    <pd>Local video capture width (px).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>captureFrameHeight</pt>
+                    <pd>Local video capture height (px).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>regulatedCaptureFrameRate</pt>
+                    <pd>Camera capture frame rate (fps) adjusted by the SDK's built-in video capture adapter (regulator). The regulator adjusts the frame rate based on video encoding configuration.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>regulatedCaptureFrameWidth</pt>
+                    <pd>Camera capture width (px) adjusted by the SDK's built-in video capture adapter (regulator). The regulator adjusts the resolution based on video encoding configuration.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>regulatedCaptureFrameHeight</pt>
+                    <pd>Camera capture height (px) adjusted by the SDK's built-in video capture adapter (regulator). The regulator adjusts the resolution based on video encoding configuration.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>encoderOutputFrameRate</pt>
+                    <pd>Output frame rate of the local video encoder, in fps.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>Output frame rate of the local video renderer, in fps.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>targetBitrate</pt>
+                    <pd>Target encoding bitrate (Kbps) of the current encoder. This value is estimated by the SDK based on current network conditions.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>targetFrameRate</pt>
+                    <pd>Target encoding frame rate (fps) of the current encoder.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>qualityAdaptIndication</pt>
+                    <pd>Adaptation status of local video quality (based on target frame rate and target bitrate) during the statistics interval. See <xref keyref="QUALITY_ADAPT_INDICATION"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>encodedBitrate</pt>
+                    <pd>Video encoding bitrate (Kbps).
+                        <note>Does not include bitrate for retransmitted video due to packet loss.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>encodedFrameHeight</pt>
+                    <pd>Video encoding height (px).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>encodedFrameWidth</pt>
+                    <pd>Video encoding width (px).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>encodedFrameCount</pt>
+                    <pd>Number of video frames sent, cumulative.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>codecType</pt>
+                    <pd>Video codec type. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>txPacketLossRate</pt>
+                    <pd>Video packet loss rate (%) from the local end to the Agora edge server before anti-packet-loss strategies are applied.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>captureFrameRate</pt>
+                    <pd>Local video capture frame rate (fps).</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>captureBrightnessLevel</pt>
+                    <pd>Brightness level of the locally captured video. See <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>hwEncoderAccelerating</pt>
+                    <pd>Local video encoder acceleration type.
+                        <ul>
+                            <li>0: Software encoding, no acceleration.</li>
+                            <li>1: Hardware encoding acceleration.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>The ID of the local user.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sentBitrate</pt>
+                    <pd>Actual sending bitrate (Kbps)
+                        <note>Does not include the bitrate of retransmitted video after packet loss.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sentFrameRate</pt>
+                    <pd>Actual sending frame rate (fps).
+                        <note>Does not include the frame rate of retransmitted video after packet loss.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>captureFrameRate</pt>
+                    <pd>Frame rate of the local video capture (fps).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>captureFrameWidth</pt>
+                    <pd>Width of the local video capture (px).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>captureFrameHeight</pt>
+                    <pd>Height of the local video capture (px).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>regulatedCaptureFrameRate</pt>
+                    <pd>Frame rate (fps) of the video captured by the camera after being adjusted by the SDK's built-in video capture adapter (regulator). The regulator adjusts the camera capture frame rate based on the video encoding configuration.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>regulatedCaptureFrameWidth</pt>
+                    <pd>Width (px) of the video captured by the camera after being adjusted by the SDK's built-in video capture adapter (regulator). The regulator adjusts the camera capture resolution based on the video encoding configuration.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>regulatedCaptureFrameHeight</pt>
+                    <pd>Height (px) of the video captured by the camera after being adjusted by the SDK's built-in video capture adapter (regulator). The regulator adjusts the camera capture resolution based on the video encoding configuration.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encoderOutputFrameRate</pt>
+                    <pd>Output frame rate of the local video encoder in fps.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>Output frame rate of the local video renderer in fps.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>targetBitrate</pt>
+                    <pd>Target encoding bitrate (Kbps) of the current encoder, estimated by the SDK based on the current network conditions.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>targetFrameRate</pt>
+                    <pd>Target encoding frame rate (fps) of the current encoder.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>qualityAdaptIndication</pt>
+                    <pd>Adaptation status of local video quality (based on target frame rate and target bitrate) during the statistics interval. See <xref keyref="QUALITY_ADAPT_INDICATION"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encodedBitrate</pt>
+                    <pd>Video encoding bitrate (Kbps).
+                        <note>Does not include the bitrate of retransmitted video after packet loss.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encodedFrameHeight</pt>
+                    <pd>Height of the encoded video (px).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encodedFrameWidth</pt>
+                    <pd>Width of the encoded video (px).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>encodedFrameCount</pt>
+                    <pd>Number of video frames sent, cumulative value.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>codecType</pt>
+                    <pd>Video codec type. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>txPacketLossRate</pt>
+                    <pd>Video packet loss rate (%) from the local end to the Agora edge server before anti-weak network measures.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>captureFrameRate</pt>
+                    <pd>Frame rate of the local video capture (fps).</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>captureBrightnessLevel</pt>
+                    <pd>Brightness level of the locally captured video. See <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>hwEncoderAccelerating</pt>
+                    <pd>Local video encoding acceleration type.
+                        <ul>
+                            <li>0: Software encoding, no acceleration.</li>
+                            <li>1: Hardware encoding acceleration.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>ID of the local user.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sentBitrate</pt>
+                    <pd>Actual sending bitrate (Kbps)
+                        <note>Excludes bitrate of retransmitted video after packet loss.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sentFrameRate</pt>
+                    <pd>Actual sending frame rate (fps).
+                        <note>Excludes frame rate of retransmitted video after packet loss.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureFrameRate</pt>
+                    <pd>Frame rate of local video capture (fps).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureFrameWidth</pt>
+                    <pd>Width of local video capture (px).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureFrameHeight</pt>
+                    <pd>Height of local video capture (px).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>regulatedCaptureFrameRate</pt>
+                    <pd>Frame rate (fps) of video captured by the camera after adjustment by the SDK's built-in video capture adapter (regulator). The regulator adjusts the camera capture frame rate based on the video encoding configuration.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>regulatedCaptureFrameWidth</pt>
+                    <pd>Width (px) of video captured by the camera after adjustment by the SDK's built-in video capture adapter (regulator). The regulator adjusts the width and height of the camera capture video based on the video encoding configuration.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>regulatedCaptureFrameHeight</pt>
+                    <pd>Height (px) of video captured by the camera after adjustment by the SDK's built-in video capture adapter (regulator). The regulator adjusts the width and height of the camera capture video based on the video encoding configuration.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encoderOutputFrameRate</pt>
+                    <pd>Output frame rate of the local video encoder, in fps.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>Output frame rate of the local video renderer, in fps.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>targetBitrate</pt>
+                    <pd>Target encoding bitrate (Kbps) of the current encoder. This bitrate is estimated by the SDK based on the current network conditions.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>targetFrameRate</pt>
+                    <pd>Target encoding frame rate (fps) of the current encoder.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>qualityAdaptIndication</pt>
+                    <pd>Adaptation status of local video quality (based on target frame rate and target bitrate) during the statistical cycle. See <xref keyref="QUALITY_ADAPT_INDICATION"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encodedBitrate</pt>
+                    <pd>Video encoding bitrate (Kbps).
+                        <note>Excludes bitrate of retransmitted video after packet loss.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encodedFrameHeight</pt>
+                    <pd>Video encoding height (px).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encodedFrameWidth</pt>
+                    <pd>Video encoding width (px).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>encodedFrameCount</pt>
+                    <pd>Number of video frames sent, cumulative value.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>codecType</pt>
+                    <pd>Video codec type. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>txPacketLossRate</pt>
+                    <pd>Video packet loss rate (%) from the local end to the Agora edge server before weak network recovery.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureFrameRate</pt>
+                    <pd>Frame rate of local video capture (fps).</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureBrightnessLevel</pt>
+                    <pd>Brightness level of locally captured video quality. See <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>hwEncoderAccelerating</pt>
+                    <pd>Local video encoding acceleration type.
+                        <ul>
+                            <li>0: Uses software encoding, no acceleration.</li>
+                            <li>1: Uses hardware encoding for acceleration.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>The ID of the local user.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sentBitrate</pt>
+                    <pd>Actual sending bitrate (Kbps)
+                        <note>Excludes bitrate of retransmitted video due to packet loss.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sentFrameRate</pt>
+                    <pd>Actual sending frame rate (fps).
+                        <note>Excludes frame rate of retransmitted video due to packet loss.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureFrameRate</pt>
+                    <pd>Local video capture frame rate (fps).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureFrameWidth</pt>
+                    <pd>Local video capture width (px).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureFrameHeight</pt>
+                    <pd>Local video capture height (px).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>regulatedCaptureFrameRate</pt>
+                    <pd>Camera capture frame rate (fps) adjusted by the SDK's built-in video capture adapter (regulator). The regulator adjusts the camera capture frame rate based on the video encoding configuration.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>regulatedCaptureFrameWidth</pt>
+                    <pd>Camera capture width (px) adjusted by the SDK's built-in video capture adapter (regulator). The regulator adjusts the camera capture resolution based on the video encoding configuration.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>regulatedCaptureFrameHeight</pt>
+                    <pd>Camera capture height (px) adjusted by the SDK's built-in video capture adapter (regulator). The regulator adjusts the camera capture resolution based on the video encoding configuration.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encoderOutputFrameRate</pt>
+                    <pd>Output frame rate of the local video encoder, in fps.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>rendererOutputFrameRate</pt>
+                    <pd>Output frame rate of the local video renderer, in fps.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>targetBitrate</pt>
+                    <pd>Target encoding bitrate (Kbps) of the current encoder. This value is estimated by the SDK based on the current network conditions.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>targetFrameRate</pt>
+                    <pd>Target encoding frame rate (fps) of the current encoder.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>qualityAdaptIndication</pt>
+                    <pd>Adaptation status of local video quality (based on target frame rate and target bitrate) during the statistical period. See <xref keyref="QUALITY_ADAPT_INDICATION"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encodedBitrate</pt>
+                    <pd>Video encoding bitrate (Kbps).
+                        <note>Excludes bitrate of retransmitted video due to packet loss.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encodedFrameHeight</pt>
+                    <pd>Video encoding height (px).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encodedFrameWidth</pt>
+                    <pd>Video encoding width (px).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>encodedFrameCount</pt>
+                    <pd>Number of video frames sent, cumulative value.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>codecType</pt>
+                    <pd>Video codec type. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>txPacketLossRate</pt>
+                    <pd>Video packet loss rate (%) from the local end to the Agora edge server before network resilience.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureFrameRate</pt>
+                    <pd>Local video capture frame rate (fps).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureBrightnessLevel</pt>
+                    <pd>Brightness level of the locally captured video. See <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>hwEncoderAccelerating</pt>
+                    <pd>Local video encoder acceleration type.
+                        <ul>
+                            <li>0: Uses software encoding, no acceleration.</li>
+                            <li>1: Uses hardware encoding for acceleration.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

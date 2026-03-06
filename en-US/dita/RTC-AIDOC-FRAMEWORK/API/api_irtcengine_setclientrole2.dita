@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setclientrole2">
+    <title><ph keyref="setClientRole2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the user role and audience latency level in live streaming.</ph><ph id="shortdesc" props="rn">Sets the user role and audience latency level in a live streaming scenario.</ph><ph id="shortdesc" props="flutter">Sets the user role and audience latency level in live streaming.</ph><ph id="shortdesc" props="unity">Sets the user role and audience latency level in live streaming.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setClientRole2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setClientRole(
+    role: ClientRoleType,
+    options?: ClientRoleOptions
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setClientRole(
+    role: ClientRoleType,
+    options?: ClientRoleOptions
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setClientRole(
+    {required ClientRoleType role, ClientRoleOptions? options});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetClientRole(CLIENT_ROLE_TYPE role, ClientRoleOptions options);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">By default, the SDK sets the user role to audience. You can call this method to set the user role to broadcaster. The user role (<codeph>role</codeph>) determines the user's permissions at the SDK level, such as whether the user can publish streams.</p>
+            <p props="rn">By default, the SDK sets the user role to audience. You can call this method to set the user role to broadcaster. The user role (<codeph>role</codeph>) determines the user's permissions at the SDK level, such as whether they can publish streams.</p>
+            <p props="flutter">By default, the SDK sets the user role to audience. You can call this method to set the user role to broadcaster. The user role (<codeph>role</codeph>) determines the user's privileges at the SDK level, such as whether they can publish streams.</p>
+            <p props="unity">By default, the SDK sets the user role to audience. You can call this method to set the user role to broadcaster. The user role (<codeph>role</codeph>) determines the user's permissions at the SDK level, such as whether the user can publish streams.
+Compared to <xref keyref="setClientRole1"/>, this method also supports setting the audience latency level (<codeph>audienceLatencyLevel</codeph>). <codeph>audienceLatencyLevel</codeph> must be used together with <codeph>role</codeph> to determine the level of service a user can enjoy within their permission scope. For example, for audience users, whether to receive low-latency or ultra-low-latency video streams.
+Different latency levels affect billing. See [Billing Strategy](https://doc.shengwang.cn/doc/rtc/android/billing/billing-strategy#%E6%9E%81%E9%80%9F%E7%9B%B4%E6%92%AD%E8%A7%82%E4%BC%97%E8%B4%B9%E7%94%A8).</p>
+            <note props="electron">When the user role is set to broadcaster, the audience latency level only supports <codeph>AudienceLatencyLevelUltraLowLatency</codeph>.
+If you call this method before joining a channel and set <codeph>role</codeph> to <codeph>BROADCASTER</codeph>, the local user will not receive the <xref keyref="onClientRoleChanged"/> callback.</note>
+            <note props="rn">When the user role is set to broadcaster, the audience latency level only supports <codeph>AudienceLatencyLevelUltraLowLatency</codeph> (ultra-low latency).
+If you call this method before joining the channel and set <codeph>role</codeph> to <codeph>BROADCASTER</codeph>, the local <xref keyref="onClientRoleChanged"/> callback is not triggered.</note>
+            <note props="flutter">When the user role is set to broadcaster, the audience latency level only supports <codeph>audienceLatencyLevelUltraLowLatency</codeph> (ultra-low latency).
+If you call this method before joining a channel and set <codeph>role</codeph> to <codeph>BROADCASTER</codeph>, the local user will not receive the <xref keyref="onClientRoleChanged"/> callback.</note>
+            <note props="unity">When the user role is set to broadcaster, the audience latency level only supports <codeph>AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY</codeph>.
+When calling this method before joining the channel and setting <codeph>role</codeph> to <codeph>BROADCASTER</codeph>, the local <xref keyref="onClientRoleChanged"/> callback is not triggered.</note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method can be called either before or after joining a channel.
+If you call this method to set the user role to broadcaster before joining a channel and set the local video properties using <xref keyref="setupLocalVideo"/>, local video preview starts automatically when the user joins the channel.
+If you call this method to switch the user role after joining a channel, upon success, the SDK automatically calls <xref keyref="muteLocalAudioStream"/> and <xref keyref="muteLocalVideoStream"/> to update the publishing state of audio and video streams.</p>
+            <p props="rn">You can call this method either before or after joining a channel.
+If you call this method after joining the channel to switch user roles and the call succeeds, the SDK automatically calls <xref keyref="muteLocalAudioStream"/> and <xref keyref="muteLocalVideoStream"/> to update the publishing state of audio and video streams.</p>
+            <p props="flutter">This method can be called either before or after joining a channel.
+If you call this method before joining a channel to set the user role to broadcaster and set local video properties using <xref keyref="setupLocalVideo"/>, the local video preview will start automatically when the user joins the channel.
+If you call this method after joining a channel to switch user roles, upon success, the SDK automatically calls <xref keyref="muteLocalAudioStream"/> and <xref keyref="muteLocalVideoStream"/> to update the publishing state of audio and video streams.</p>
+            <p props="unity">This method can be called before or after joining a channel.
+If you call this method before joining the channel to set the user role to broadcaster and call <xref keyref="setEnable"/> to enable video rendering, local video preview will automatically start upon joining the channel.
+If you call this method after joining the channel to switch user roles and the call succeeds, the SDK automatically calls <xref keyref="muteLocalAudioStream"/> and <xref keyref="muteLocalVideoStream"/> to update the publishing state of audio and video streams.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Related Callbacks</title>
+            <p props="electron">If you successfully call this method to switch the user role after joining a channel, the SDK triggers the following callbacks:
+                <ul>
+                    <li>The local user receives the <xref keyref="onClientRoleChanged"/> callback. This callback is also triggered if you call this method before joining a channel and set <codeph>role</codeph> to <codeph>AUDIENCE</codeph>.</li>
+                    <li>Remote users receive the <xref keyref="onUserJoined"/> or <xref keyref="onUserOffline"/> callback.</li>
+                </ul><ph>If the role switch fails after joining the channel, the SDK triggers <xref keyref="onClientRoleChangeFailed"/>, reporting the reason for failure and the current user role.</ph></p>
+            <p props="rn">If you successfully call this method to switch user roles after joining the channel, the SDK triggers the following callbacks:
+                <ul>
+                    <li>The local <xref keyref="onClientRoleChanged"/> callback. This callback is also triggered if you call this method before joining the channel and set <codeph>role</codeph> to <codeph>AUDIENCE</codeph>.</li>
+                    <li>The remote <xref keyref="onUserJoined"/> or <xref keyref="onUserOffline"/> callback.</li>
+                </ul><ph>If the role switch fails after joining the channel, the SDK triggers <xref keyref="onClientRoleChangeFailed"/> to report the reason and current user role.</ph></p>
+            <p props="flutter">If you successfully call this method to switch user roles after joining a channel, the SDK triggers the following callbacks:
+                <ul>
+                    <li>Locally triggers the <xref keyref="onClientRoleChanged"/> callback. This callback is also triggered if you call this method before joining a channel and set <codeph>role</codeph> to <codeph>AUDIENCE</codeph>.</li>
+                    <li>Remotely triggers the <xref keyref="onUserJoined"/> or <xref keyref="onUserOffline"/> callback.</li>
+                </ul><ph>If you fail to switch user roles after joining a channel, the SDK triggers <xref keyref="onClientRoleChangeFailed"/> to report the reason for the failure and the current user role.</ph></p>
+            <p props="unity">If you successfully call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:
+                <ul>
+                    <li>The local <xref keyref="onClientRoleChanged"/> callback. This callback is also triggered when you call this method before joining the channel and set <codeph>role</codeph> to <codeph>AUDIENCE</codeph>.</li>
+                    <li>The remote <xref keyref="onUserJoined"/> or <xref keyref="onUserOffline"/> callback.</li>
+                </ul><ph>If the method call to switch user role fails after joining the channel, the SDK triggers <xref keyref="onClientRoleChangeFailed"/> to report the reason for the failure and the current user role.</ph></p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>role</pt>
+                    <pd>The user role. See <xref keyref="CLIENT_ROLE_TYPE"/>.
+                        <note>Users with the audience role cannot publish audio or video streams in the channel. To publish in live streaming, make sure the user role is switched to broadcaster.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>options</pt>
+                    <pd>Detailed user settings, including user level. See <xref keyref="ClientRoleOptions"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>role</pt>
+                    <pd>The user role. See <xref keyref="CLIENT_ROLE_TYPE"/>.
+                        <note>Users with the audience role cannot publish audio or video streams in the channel. When publishing in a live streaming scenario, ensure the user role is switched to broadcaster.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>options</pt>
+                    <pd>User-specific settings, including user level. See <xref keyref="ClientRoleOptions"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>role</pt>
+                    <pd>User role. See <xref keyref="CLIENT_ROLE_TYPE"/>.
+                        <note>Users with the audience role cannot publish audio or video streams in the channel. When publishing in live streaming, make sure the user role is switched to broadcaster.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>options</pt>
+                    <pd>User-specific settings, including user level. See <xref keyref="ClientRoleOptions"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>role</pt>
+                    <pd>The user role. See <xref keyref="CLIENT_ROLE_TYPE"/>.
+                        <note>Users with the audience role cannot publish audio or video streams in the channel. To publish streams in a live streaming scenario, ensure the user role is switched to broadcaster.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>options</pt>
+                    <pd>User-specific settings, including user level. See <xref keyref="ClientRoleOptions"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.
+                        <ul>
+                            <li>-1: General error (not categorized).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-5: This method call was rejected.</li>
+                            <li>-7: The SDK is not initialized.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-1: General error (not categorized).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-5: The call was rejected.</li>
+                            <li>-7: The SDK is not initialized.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-1: General error (not specifically categorized).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-5: The call was rejected.</li>
+                            <li>-7: The SDK is not initialized.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

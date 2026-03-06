@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_enableaudiovolumeindicationex">
+    <title><ph keyref="enableAudioVolumeIndicationEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Enables audio volume indication.</ph><ph id="shortdesc" props="rn">Enables audio volume indication.</ph><ph id="shortdesc" props="flutter">Enables audio volume indication.</ph><ph id="shortdesc" props="unity">Enables audio volume indication.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableAudioVolumeIndicationEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract enableAudioVolumeIndicationEx(
+    interval: number,
+    smooth: number,
+    reportVad: boolean,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract enableAudioVolumeIndicationEx(
+    interval: number,
+    smooth: number,
+    reportVad: boolean,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableAudioVolumeIndicationEx(
+      {required int interval,
+      required int smooth,
+      required bool reportVad,
+      required RtcConnection connection});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int EnableAudioVolumeIndicationEx(int interval, int smooth, bool reportVad, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method allows the SDK to periodically report to the app the volume information of the local user who is sending streams and the remote users (up to 3) with the highest instantaneous volume.</p>
+            <p props="rn">This method allows the SDK to periodically report the volume information of the local user who is sending audio and up to three remote users with the highest instantaneous volume to the app.</p>
+            <p props="flutter">This method allows the SDK to periodically report volume information of the local user who is sending a stream and up to 3 remote users with the highest instantaneous volume to the app.</p>
+            <p props="unity">This method allows the SDK to periodically report volume information of the local user and up to three remote users with the highest instantaneous volume to the app.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">You need to call this method after <xref keyref="joinChannelEx"/>.</p>
+            <p props="rn">You must call this method after <xref keyref="joinChannelEx"/>.</p>
+            <p props="flutter">You must call this method after <xref keyref="joinChannelEx"/>.</p>
+            <p props="unity">You must call this method after <xref keyref="joinChannelEx"/>.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Related Callbacks</title>
+            <p props="electron">After successfully calling this method and when there are users sending streams in the channel, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback at the set time interval.</p>
+            <p props="rn">After this method is successfully called and there are users sending streams in the channel, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback at the set time interval.</p>
+            <p props="flutter">After successfully calling this method and when there are users sending streams in the channel, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback at the set interval.</p>
+            <p props="unity">After you successfully call this method and there are users publishing streams in the channel, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback at the set time interval.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>interval</pt>
+                    <pd>The time interval for the volume indication:
+                        <ul>
+                            <li>≤ 0: Disables the volume indication feature.</li>
+                            <li>&gt; 0: Returns the interval for volume indication, in milliseconds. It is recommended to set it above 100 ms. Must not be less than 10 ms, otherwise the <xref keyref="onAudioVolumeIndication"/> callback will not be received.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>smooth</pt>
+                    <pd>The smoothing factor that specifies the sensitivity of the volume indication. The range is [0,10], and the recommended value is 3. The larger the value, the more sensitive the fluctuation; the smaller the value, the smoother the fluctuation.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>reportVad</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: Enables the local voice detection feature. When enabled, the <codeph>vad</codeph> parameter in the <xref keyref="onAudioVolumeIndication"/> callback reports whether a human voice is detected locally.</li>
+                            <li><xref keyref="false"/>: (Default) Disables the local voice detection feature. Except in scenarios where the engine automatically performs local voice detection, the <codeph>vad</codeph> parameter in the <xref keyref="onAudioVolumeIndication"/> callback does not report whether a human voice is detected locally.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>interval</pt>
+                    <pd>Sets the time interval between two consecutive volume indications:
+                        <ul>
+                            <li>≤ 0: Disables the volume indication.</li>
+                            <li>&gt; 0: The time interval (ms) between volume indications. We recommend setting it to greater than 100 ms; it must not be less than 10 ms, or you will not receive the <xref keyref="onAudioVolumeIndication"/> callback.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>smooth</pt>
+                    <pd>The smoothing factor that sets the sensitivity of the volume indication. The range is [0,10], and the recommended value is 3. The larger the value, the more sensitive the volume fluctuation; the smaller the value, the smoother the fluctuation.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>reportVad</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: Enables the local voice activity detection. Once enabled, the <codeph>vad</codeph> parameter in the <xref keyref="onAudioVolumeIndication"/> callback indicates whether the local user is speaking.</li>
+                            <li><xref keyref="false"/>: (Default) Disables the local voice activity detection. Unless the engine automatically detects local voice activity, the <codeph>vad</codeph> parameter in the <xref keyref="onAudioVolumeIndication"/> callback does not indicate whether the local user is speaking.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>interval</pt>
+                    <pd>The time interval for volume indication:
+                        <ul>
+                            <li>≤ 0: Disables the volume indication.</li>
+                            <li>&gt; 0: The interval in milliseconds for volume indication. It is recommended to set it greater than 100 ms. Must not be less than 10 ms, otherwise the <xref keyref="onAudioVolumeIndication"/> callback will not be received.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>smooth</pt>
+                    <pd>The smoothing factor that specifies the sensitivity of the volume indication. The range is [0,10], and the recommended value is 3. The larger the value, the more sensitive the fluctuation; the smaller the value, the smoother the fluctuation.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>reportVad</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: Enables local voice activity detection. When enabled, the <codeph>vad</codeph> parameter in the <xref keyref="onAudioVolumeIndication"/> callback reports whether voice is detected locally.</li>
+                            <li><xref keyref="false"/>: (Default) Disables local voice activity detection. Unless the engine automatically detects local voice, the <codeph>vad</codeph> parameter in the <xref keyref="onAudioVolumeIndication"/> callback does not report local voice detection.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>interval</pt>
+                    <pd>Sets the time interval of the volume indication:
+                        <ul>
+                            <li>≤ 0: Disables the volume indication.</li>
+                            <li>&gt; 0: The interval (ms) at which the volume indication is returned. We recommend setting it to greater than 100 ms. The minimum value is 10 ms. If the value is less than 10 ms, you may not receive the <xref keyref="onAudioVolumeIndication"/> callback.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>smooth</pt>
+                    <pd>The smoothing factor that sets the sensitivity of the volume indication. The value range is [0,10], and the recommended value is 3. The greater the value, the more sensitive the indication; the smaller the value, the smoother the indication.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>reportVad</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: Enables the local voice activity detection (VAD). After it is enabled, the <codeph>vad</codeph> parameter in the <xref keyref="onAudioVolumeIndication"/> callback reports whether voice is detected locally.</li>
+                            <li><xref keyref="false"/>: (Default) Disables the local VAD. Except for scenarios where the engine automatically performs local VAD, the <codeph>vad</codeph> parameter in the <xref keyref="onAudioVolumeIndication"/> callback does not report whether voice is detected locally.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                <ul>
+                    <li>&lt; 0: Method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

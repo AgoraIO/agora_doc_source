@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_agorapipcontentviewlayout">
+    <title><ph keyref="AgoraPipContentViewLayout"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Layout configuration for picture-in-picture video streams.</ph><ph id="shortdesc" props="flutter">Layout configuration for picture-in-picture video streams.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">export class AgoraPipContentViewLayout {
+  padding?: number;
+  spacing?: number;
+  row?: number;
+  column?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class AgoraPipContentViewLayout {
+  final int? padding;
+  final int? spacing;
+  final int? row;
+  final int? column;
+  const AgoraPipContentViewLayout({this.padding, this.spacing, this.row, this.column});
+}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="flutter rn">
+            <dl outputclass="since">
+                <dlentry props="rn">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.2.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.2.</dd>
+                </dlentry>
+            </dl>
+            <p props="rn">This class defines how multiple video streams are arranged in a flowing layout, from left to right and top to bottom.</p>
+            <p props="flutter">This class defines the arrangement of multiple video streams in a flowing layout, where video streams are arranged from left to right and top to bottom.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="flutter rn">
+            <title>Properties</title>
+            <parml>
+                <plentry props="rn">
+                    <pt>padding</pt>
+                    <pd>Padding around the entire layout in pixels. Used to create space between the layout edge and video streams. If null, no padding is applied.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>spacing</pt>
+                    <pd>Horizontal and vertical spacing between video streams in pixels. Used to create consistent spacing between adjacent video streams. If null, video streams are placed directly adjacent.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>row</pt>
+                    <pd>Maximum number of rows allowed in the layout. Once the maximum is reached, no new rows are created even if more video streams exist. If null, rows are created as needed to accommodate all streams. Must be greater than 0 or null.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>column</pt>
+                    <pd>Maximum number of video streams per row. Once the maximum is reached, a new row starts. If null, video streams flow to fill the available width. Must be greater than 0 or null.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>padding</pt>
+                    <pd>Padding around the entire layout in pixels. Used to create space between the layout edges and the video streams. If null, no padding is applied.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>spacing</pt>
+                    <pd>Horizontal and vertical spacing between video streams in pixels. Used to create consistent spacing between adjacent video streams. If null, video streams are placed directly next to each other.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>row</pt>
+                    <pd>Maximum number of rows allowed in the layout. Once the maximum number of rows is reached, no new rows are created even if more video streams exist. If null, rows are created as needed to accommodate all video streams. Must be greater than 0 or null.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>column</pt>
+                    <pd>Maximum number of video streams per row. Once the maximum is reached, a new row is started. If null, video streams will flow to fill the available width. Must be greater than 0 or null.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

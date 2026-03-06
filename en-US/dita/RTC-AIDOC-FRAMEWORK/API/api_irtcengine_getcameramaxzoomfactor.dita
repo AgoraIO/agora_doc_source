@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getcameramaxzoomfactor">
+    <title><ph keyref="getCameraMaxZoomFactor"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="rn">Gets the maximum zoom factor supported by the camera.</ph><ph id="shortdesc" props="flutter">Gets the maximum zoom factor supported by the camera.</ph><ph id="shortdesc" props="unity">Gets the maximum zoom factor supported by the camera.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCameraMaxZoomFactor"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript">abstract getCameraMaxZoomFactor(): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;double&gt; getCameraMaxZoomFactor();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract float GetCameraMaxZoomFactor();</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="rn">
+                <ul>
+                    <li>This method must be called after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LocalVideoStreamStateCapturing</codeph> (1).</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method is only applicable to Android and iOS.</li>
+                    <li>Call this method after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>localVideoStreamStateCapturing</codeph> (1).</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method is for Android and iOS only.</li>
+                    <li>You must call this method after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and the local video state is <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</li>
+                </ul>
+            </note>
+        </section>
+        <section id="return_values" props="flutter rn unity">
+            <title>Return Values</title>
+            <p props="rn">The maximum zoom factor supported by the device camera.</p>
+            <p props="flutter">The maximum zoom factor supported by the device camera.</p>
+            <p props="unity">The maximum zoom factor supported by the device camera.</p>
+        </section>
+    </refbody>
+</reference>

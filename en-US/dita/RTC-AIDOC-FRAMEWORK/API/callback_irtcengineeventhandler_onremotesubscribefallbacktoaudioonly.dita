@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onremotesubscribefallbacktoaudioonly">
+    <title><ph keyref="onRemoteSubscribeFallbackToAudioOnly"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback when the subscribed stream falls back to audio-only or recovers to audio-video.</ph><ph id="shortdesc" props="rn">Callback when the subscribed stream falls back to audio-only or recovers to audio and video.</ph><ph id="shortdesc" props="flutter">Callback when the subscribed stream falls back to audio-only or recovers to audio and video.</ph><ph id="shortdesc" props="unity">Callback when the subscribed stream falls back to audio-only or recovers to audio-video.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteSubscribeFallbackToAudioOnly"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onRemoteSubscribeFallbackToAudioOnly?(
+    uid: number,
+    isFallbackOrRecover: boolean
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onRemoteSubscribeFallbackToAudioOnly?(
+    uid: number,
+    isFallbackOrRecover: boolean
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(int uid, bool isFallbackOrRecover)?
+      onRemoteSubscribeFallbackToAudioOnly;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteSubscribeFallbackToAudioOnly(uint uid, bool isFallbackOrRecover)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After you call <xref keyref="setRemoteSubscribeFallbackOption"/> and set <codeph>option</codeph> to <codeph>StreamFallbackOptionAudioOnly</codeph>, this callback is triggered in the following situations:
+                <ul>
+                    <li>The subscribed audio-video stream falls back to audio-only due to poor downlink network conditions</li>
+                    <li>The subscribed audio stream recovers to audio-video as the network improves</li>
+                </ul>
+            </p>
+            <p props="rn">When you call <xref keyref="setRemoteSubscribeFallbackOption"/> and set <codeph>option</codeph> to <codeph>StreamFallbackOptionAudioOnly</codeph>, this callback is triggered in the following situations:
+                <ul>
+                    <li>The downlink network condition is poor, and the subscribed audio and video stream falls back to audio-only.</li>
+                    <li>The downlink network condition improves, and the subscribed audio-only stream recovers to audio and video.</li>
+                </ul>
+            </p>
+            <p props="flutter">After you call <xref keyref="setRemoteSubscribeFallbackOption"/> and set <codeph>option</codeph> to <codeph>streamFallbackOptionAudioOnly</codeph>, this callback is triggered in the following situations:
+                <ul>
+                    <li>When the downlink network condition is poor, the subscribed audio and video stream falls back to audio-only</li>
+                    <li>When the downlink network condition improves, the subscribed audio-only stream recovers to audio and video</li>
+                </ul>
+            </p>
+            <p props="unity">After you call <xref keyref="setRemoteSubscribeFallbackOption"/> and set <codeph>option</codeph> to <codeph>STREAM_FALLBACK_OPTION_AUDIO_ONLY</codeph>, this callback is triggered in the following cases:
+                <ul>
+                    <li>The downlink network condition is poor, and the subscribed audio-video stream falls back to audio-only.</li>
+                    <li>The downlink network condition improves, and the subscribed audio stream recovers to audio-video.</li>
+                </ul>
+            </p>
+            <note props="electron">When the subscribed stream falls back to a lower-quality video stream due to weak network conditions, you can monitor the switch between high and low video streams via the <xref keyref="onRemoteVideoStats"/> callback.</note>
+            <note props="rn">When the subscribed stream falls back to a lower-quality video stream due to poor network conditions, you can monitor the switch between high and low video streams through the <xref keyref="onRemoteVideoStats"/> callback.</note>
+            <note props="flutter">When the subscribed stream falls back to a low-quality video stream due to poor network conditions, you can monitor the switching of remote video stream quality through the <xref keyref="onRemoteVideoStats"/> callback.</note>
+            <note props="unity">When the subscribed stream falls back to a lower-quality video stream due to poor network conditions, you can monitor the switch between remote video streams via the <xref keyref="onRemoteVideoStats"/> callback.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>User ID of the remote user.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>isFallbackOrRecover</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: The subscribed stream has fallen back to audio-only due to poor network conditions.</li>
+                            <li><xref keyref="false"/>: The subscribed stream has recovered to audio-video due to improved network conditions.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>Remote user's user ID.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>isFallbackOrRecover</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: Due to poor network conditions, the subscribed stream has fallen back to audio-only.</li>
+                            <li><xref keyref="false"/>: Due to improved network conditions, the subscribed stream has recovered to audio and video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>User ID of the remote user.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>isFallbackOrRecover</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: Due to poor network conditions, the subscribed stream has fallen back to audio-only.</li>
+                            <li><xref keyref="false"/>: Due to improved network conditions, the subscribed stream has recovered to audio and video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>The user ID of the remote user.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>isFallbackOrRecover</pt>
+                    <pd>
+                        <ul>
+                            <li><xref keyref="true"/>: The subscribed stream has fallen back to audio-only due to poor network conditions.</li>
+                            <li><xref keyref="false"/>: The subscribed stream has recovered to audio-video due to improved network conditions.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

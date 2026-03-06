@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_sendstreammessage">
+    <title><ph keyref="sendStreamMessage"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sends a data stream.</ph><ph id="shortdesc" props="rn">Sends a data stream.</ph><ph id="shortdesc" props="flutter">Sends a data stream.</ph><ph id="shortdesc" props="unity">Sends a data stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="sendStreamMessage"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract sendStreamMessage(streamId: number, data: Uint8Array, length: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract sendStreamMessage(
+  streamId: number,
+  data: Uint8Array,
+  length: number
+): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; sendStreamMessage(
+    {required int streamId, required Uint8List data, required int length});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SendStreamMessage(int streamId, byte[] data, uint length);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After calling <xref keyref="createDataStream2"/>, you can use this method to send data stream messages to all users in the channel.
+The SDK imposes the following restrictions on this method:
+                <ul>
+                    <li>Each client in the channel can have up to 5 data channels simultaneously, and the total sending bitrate shared by all data channels is limited to 30 KB/s.</li>
+                    <li>Each data channel can send up to 60 packets per second, with each packet up to 1 KB in size.</li>
+                </ul><ph>If the method call succeeds, the remote end triggers the <xref keyref="onStreamMessage"/> callback, where the remote user can receive the message; if it fails, the remote end triggers the <xref keyref="onStreamMessageError"/> callback.</ph></p>
+            <p props="rn">After calling <xref keyref="createDataStream2"/>, you can call this method to send data stream messages to all users in the channel.
+The SDK imposes the following restrictions on this method:
+                <ul>
+                    <li>Each client in the channel can have up to 5 data channels simultaneously, and the total sending bitrate of all data channels is limited to 30 KB/s.</li>
+                    <li>Each data channel can send up to 60 packets per second, with a maximum size of 1 KB per packet.</li>
+                </ul><ph>After the method is successfully called, the remote end triggers the <xref keyref="onStreamMessage"/> callback, where the remote user can retrieve the received stream message. If the call fails, the remote end triggers the <xref keyref="onStreamMessageError"/> callback.</ph></p>
+            <p props="flutter">After calling <xref keyref="createDataStream2"/>, you can call this method to send data stream messages to all users in the channel.
+The SDK imposes the following restrictions on this method:
+                <ul>
+                    <li>Each client in the channel can have up to 5 data channels simultaneously, with a total sending bitrate limit of 30 KB/s shared among all channels.</li>
+                    <li>Each data channel can send up to 60 packets per second, with each packet limited to 1 KB.</li>
+                </ul><ph>After this method is successfully called, the remote side triggers the <xref keyref="onStreamMessage"/> callback, through which remote users can receive the stream message. If the call fails, the remote side triggers the <xref keyref="onStreamMessageError"/> callback.</ph></p>
+            <p props="unity">After calling <xref keyref="createDataStream2"/>, you can call this method to send data stream messages to all users in the channel.
+The SDK imposes the following restrictions on this method:
+                <ul>
+                    <li>Each client in the channel can have up to 5 data channels simultaneously, and the total sending bitrate shared by all data channels is limited to 30 KB/s.</li>
+                    <li>Each data channel can send up to 60 packets per second, with each packet up to 1 KB in size.</li>
+                </ul><ph>After the method is successfully called, the remote end triggers the <xref keyref="onStreamMessage"/> callback, where remote users can retrieve the received stream message; if the call fails, the remote end triggers the <xref keyref="onStreamMessageError"/> callback.</ph></p>
+            <note props="electron">
+                <ul>
+                    <li>This method must be called after joining a channel and after calling <xref keyref="createDataStream2"/> to create a data channel.</li>
+                    <li>This method applies to broadcaster users only.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>This method must be called after joining a channel and after creating a data channel using <xref keyref="createDataStream2"/>.</li>
+                    <li>This method applies to broadcaster users only.</li>
+                </ul>
+            </note>
+            <note props="flutter">If you need a more comprehensive solution for low-latency, high-concurrency, and scalable real-time messaging and state synchronization, we recommend using [Real-time Messaging](https://doc.shengwang.cn/doc/rtm2/flutter/landing-page).
+                <ul>
+                    <li>This method must be called after joining the channel and after calling <xref keyref="createDataStream2"/> to create the data channel.</li>
+                    <li>This method is only applicable to broadcaster users.</li>
+                </ul>
+            </note>
+            <note props="unity">If you need a more comprehensive low-latency, high-concurrency, and scalable real-time messaging and state synchronization solution, we recommend using [Real-time Messaging](https://doc.shengwang.cn/doc/rtm2/unity/landing-page).
+                <ul>
+                    <li>This method must be called after joining a channel and after calling <xref keyref="createDataStream2"/> to create the data channel.</li>
+                    <li>This method applies to broadcaster users only.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>streamId</pt>
+                    <pd>Data stream ID. You can get it via <xref keyref="createDataStream2"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>data</pt>
+                    <pd>The data to be sent.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>length</pt>
+                    <pd>Length of the data.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>streamId</pt>
+                    <pd>Data stream ID. Obtained via <xref keyref="createDataStream2"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>data</pt>
+                    <pd>Data to be sent.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>length</pt>
+                    <pd>Length of the data.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>streamId</pt>
+                    <pd>The data stream ID. You can get it through <xref keyref="createDataStream2"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>data</pt>
+                    <pd>The data to be sent.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>length</pt>
+                    <pd>The length of the data.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>streamId</pt>
+                    <pd>Data stream ID. You can obtain it through <xref keyref="createDataStream2"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>data</pt>
+                    <pd>The data to be sent.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>length</pt>
+                    <pd>Length of the data.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

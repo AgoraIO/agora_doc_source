@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ibasespatialaudioengine_setdistanceunit">
+    <title><ph keyref="setDistanceUnit"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the length (in meters) of one unit of distance in the game engine.</ph><ph id="shortdesc" props="rn">Sets the length (in meters) of one unit of distance in the game engine.</ph><ph id="shortdesc" props="flutter">Sets the length (in meters) of one unit of distance in the game engine.</ph><ph id="shortdesc" props="unity">Sets the length (in meters) of one unit of distance in the game engine.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDistanceUnit"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setDistanceUnit(unit: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setDistanceUnit(unit: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDistanceUnit(double unit);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetDistanceUnit(float unit);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">The distance unit in the game engine is custom-defined, while the unit used by Agora's spatial audio algorithm is meters. By default, the SDK converts one game engine unit to one meter. You can call this method to convert one unit of the game engine's distance into the specified number of meters.</p>
+            <p props="rn">The distance unit in the game engine is custom-defined, while the distance unit for the Agora spatial audio algorithm is in meters. By default, the SDK converts one unit of game engine distance to one meter. You can call this method to convert the unit distance in the game engine to a specified number of meters.</p>
+            <p props="flutter">The distance unit in the game engine is defined by the game engine itself, while the distance unit of the Agora spatial audio algorithm is in meters. By default, the SDK converts each unit of game engine distance to one meter. You can call this method to convert one unit of game engine distance to a specified number of meters.</p>
+            <p props="unity">The unit of distance in the game engine is defined by the engine itself, while the unit of distance in the Agora spatial audio algorithm is meters. By default, the SDK converts one unit of game engine distance to one meter. You can call this method to convert the unit distance in the game engine to a specified number of meters.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>unit</pt>
+                    <pd>The number of meters corresponding to one unit of game engine distance. The value must be greater than 0.00. Default is 1.00. For example, if <codeph>unit</codeph> is set to 2.00, it means one unit of game engine distance equals 2 meters.
+The larger the value, the faster the sound fades as the remote user moves away from the local user.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>unit</pt>
+                    <pd>The number of meters corresponding to one unit of game engine distance. The value must be greater than 0.00. Default is 1.00. For example, setting <codeph>unit</codeph> to 2.00 means one unit of game engine distance equals 2 meters.
+The larger the value, the faster the sound fades as the remote user moves away from the local user.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>unit</pt>
+                    <pd>The number of meters corresponding to one unit of game engine distance. The value must be greater than 0.00. The default is 1.00. For example, setting <codeph>unit</codeph> to 2.00 means one unit of game engine distance equals 2 meters.
+The larger the value, the faster the sound attenuation when the remote user moves away from the local user.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>unit</pt>
+                    <pd>The number of meters corresponding to one unit of distance in the game engine. This parameter must be greater than 0.00. The default value is 1.00. For example, setting <codeph>unit</codeph> to 2.00 means that one unit of game engine distance equals 2 meters.
+The larger the value, the faster the sound attenuation when a remote user moves away from the local user.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onfirstremoteaudiodecoded">
+    <title><ph keyref="onFirstRemoteAudioDecoded"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Occurs when the first frame of remote audio is decoded.</ph><ph id="shortdesc" props="rn">Occurs when the first remote audio frame is decoded.</ph><ph id="shortdesc" props="flutter">Callback when the first remote audio frame is decoded.</ph><ph id="shortdesc" props="unity">Occurs when the first remote audio frame is decoded.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onFirstRemoteAudioDecoded"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onFirstRemoteAudioDecoded?(
+    connection: RtcConnection,
+    uid: number,
+    elapsed: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onFirstRemoteAudioDecoded?(
+    connection: RtcConnection,
+    uid: number,
+    elapsed: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int uid, int elapsed)?
+      onFirstRemoteAudioDecoded;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteAudioDecoded(RtcConnection connection, uint uid, int elapsed) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="electron">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
+                </dlentry>
+                <dlentry props="rn">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
+                </dlentry>
+                <dlentry props="flutter">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Please use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
+                </dlentry>
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: Use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="electron">The SDK triggers this callback when:
+                <ul>
+                    <li>The remote user sends audio after joining the channel for the first time.</li>
+                    <li>The remote user sends audio again after going offline. Offline means that no audio packet is received locally within 15 seconds, which may be caused by:
+                        <ul>
+                            <li>The remote user leaves the channel</li>
+                            <li>The remote user drops offline</li>
+                            <li>The remote user calls the <xref keyref="muteLocalAudioStream"/> method to stop sending the audio stream</li>
+                            <li>The remote user calls the <xref keyref="disableAudio"/> method to disable audio</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">The SDK triggers this callback in the following scenarios:
+                <ul>
+                    <li>When the remote user sends audio after joining the channel for the first time.</li>
+                    <li>When the remote user goes offline and then comes back online to send audio. Offline means no audio packet is received locally within 15 seconds, which may be due to:
+                        <ul>
+                            <li>The remote user leaving the channel</li>
+                            <li>The remote user disconnecting</li>
+                            <li>The remote user calling <xref keyref="muteLocalAudioStream"/> to stop sending audio</li>
+                            <li>The remote user calling <xref keyref="disableAudio"/> to disable audio</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">The SDK triggers this callback under the following circumstances:
+                <ul>
+                    <li>When a remote user sends audio after joining the channel for the first time.</li>
+                    <li>When a remote user resumes sending audio after going offline. Offline means no audio packets are received within 15 seconds, which may be caused by:
+                        <ul>
+                            <li>The remote user leaving the channel</li>
+                            <li>The remote user going offline</li>
+                            <li>The remote user calling <xref keyref="muteLocalAudioStream"/> to stop sending audio streams</li>
+                            <li>The remote user calling <xref keyref="disableAudio"/> to disable audio</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="unity">The SDK triggers this callback in the following situations:
+                <ul>
+                    <li>When a remote user sends audio after joining the channel for the first time.</li>
+                    <li>When a remote user goes offline and rejoins to send audio again. Offline means no audio packet is received within 15 seconds, which may be caused by:
+                        <ul>
+                            <li>The remote user leaves the channel</li>
+                            <li>The remote user is disconnected</li>
+                            <li>The remote user calls <xref keyref="muteLocalAudioStream"/> to stop sending audio</li>
+                            <li>The remote user calls <xref keyref="disableAudio"/> to disable audio</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (ms) from the local user calling <xref keyref="joinChannel2"/> to this callback being triggered.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed (ms) from the local user calling <xref keyref="joinChannel2"/> until this callback is triggered.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>elapsed</pt>
+                    <pd>The delay (in milliseconds) from the local user calling <xref keyref="joinChannel2"/> to the triggering of this callback.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>The ID of the remote user.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>elapsed</pt>
+                    <pd>The delay (ms) from the local user calling <xref keyref="joinChannel2"/> to the triggering of this callback.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_selectmultiaudiotrack">
+    <title><ph keyref="selectMultiAudioTrack"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Selects the audio tracks for local playback and remote transmission.</ph><ph id="shortdesc" props="rn">Selects the audio tracks for local playback and remote transmission.</ph><ph id="shortdesc" props="flutter">Selects the audio tracks for local playback and remote publishing.</ph><ph id="shortdesc" props="unity">Selects the audio tracks for local playback and remote sending.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="selectMultiAudioTrack"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract selectMultiAudioTrack(
+    playoutTrackIndex: number,
+    publishTrackIndex: number
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract selectMultiAudioTrack(
+    playoutTrackIndex: number,
+    publishTrackIndex: number
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; selectMultiAudioTrack(
+    {required int playoutTrackIndex, required int publishTrackIndex});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SelectMultiAudioTrack(int playoutTrackIndex, int publishTrackIndex);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">You can call this method to separately set the audio tracks for local playback and remote transmission.
+Before calling this method, you need to open the media file using <xref keyref="openWithMediaSource"/> and set <codeph>enableMultiAudioTrack</codeph> to <xref keyref="true"/> via <xref keyref="MediaSource"/>.</p>
+            <p props="rn">You can call this method to separately set the audio tracks for local playback and remote transmission.
+Before calling this method, you must open the media file using <xref keyref="openWithMediaSource"/> and set <codeph>enableMultiAudioTrack</codeph> to <xref keyref="true"/> via <xref keyref="MediaSource"/>.</p>
+            <p props="flutter">You can call this method to separately set the audio tracks for local playback and for publishing to the remote end.
+Before calling this method, you must open the media file using <xref keyref="openWithMediaSource"/> and set <codeph>enableMultiAudioTrack</codeph> to <xref keyref="true"/> via <xref keyref="MediaSource"/>.</p>
+            <p props="unity">You can call this method to separately set the audio tracks for local playback and for sending to the remote end.
+Before calling this method, you need to open the media file using <xref keyref="openWithMediaSource"/> and set <codeph>enableMultiAudioTrack</codeph> to <xref keyref="true"/> via <xref keyref="MediaSource"/>.</p>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In karaoke scenarios, the host can choose to play one track locally (e.g., instrumental) and send another track (e.g., vocals) to the remote audience to enhance their experience.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>playoutTrackIndex</pt>
+                    <pd>The index of the audio track used for local playback. You can get the index via <xref keyref="getStreamInfo"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>publishTrackIndex</pt>
+                    <pd>The index of the audio track used for remote transmission. You can get the index via <xref keyref="getStreamInfo"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>playoutTrackIndex</pt>
+                    <pd>The index of the audio track for local playback. You can obtain the index value using <xref keyref="getStreamInfo"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>publishTrackIndex</pt>
+                    <pd>The index of the audio track to send to the remote end. You can obtain the index value using <xref keyref="getStreamInfo"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>playoutTrackIndex</pt>
+                    <pd>The index of the audio track used for local playback. You can get the index via <xref keyref="getStreamInfo"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>publishTrackIndex</pt>
+                    <pd>The index of the audio track used for publishing to the remote end. You can get the index via <xref keyref="getStreamInfo"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>playoutTrackIndex</pt>
+                    <pd>The index of the audio track used for local playback. You can get the index via <xref keyref="getStreamInfo"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>publishTrackIndex</pt>
+                    <pd>The index of the audio track sent to the remote end. You can get the index via <xref keyref="getStreamInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly.
+                <ul>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

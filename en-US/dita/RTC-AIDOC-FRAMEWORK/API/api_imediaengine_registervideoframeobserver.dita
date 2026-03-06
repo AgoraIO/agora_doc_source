@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaengine_registervideoframeobserver">
+    <title><ph keyref="registerVideoFrameObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Registers a raw video frame observer object.</ph><ph id="shortdesc" props="rn">Registers a raw video frame observer.</ph><ph id="shortdesc" props="flutter">Registers a raw video frame observer object.</ph><ph id="shortdesc" props="unity">Registers a raw video frame observer object.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerVideoFrameObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract registerVideoFrameObserver(observer: IVideoFrameObserver): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract registerVideoFrameObserver(observer: IVideoFrameObserver): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">void registerVideoFrameObserver(VideoFrameObserver observer);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int RegisterVideoFrameObserver(IVideoFrameObserver videoFrameObserver, VIDEO_OBSERVER_FRAME_TYPE formatPreference, VIDEO_OBSERVER_POSITION position, OBSERVER_MODE mode = OBSERVER_MODE.INTPTR);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">If you want to observe raw video frames (such as YUV or RGBA format), Agora recommends registering an <xref keyref="IVideoFrameObserver"/> class using this method.
+When registering the video observer, you can choose to register callbacks from the <xref keyref="IVideoFrameObserver"/> class as needed. Once registered successfully, the SDK triggers the registered callbacks whenever a video frame is captured.</p>
+            <p props="rn">If you want to observe raw video frames (such as YUV or RGBA format), Agora recommends registering an <xref keyref="IVideoFrameObserver"/> class using this method.
+When registering the video observer via this method, you can choose to register callbacks from the <xref keyref="IVideoFrameObserver"/> class as needed. After successful registration, the SDK triggers the registered callbacks when each video frame is captured.</p>
+            <p props="flutter">If you want to observe raw video frames (such as YUV or RGBA format), Agora recommends that you register a <xref keyref="IVideoFrameObserver"/> class using this method.
+When registering a video frame observer using this method, you can register callbacks in the <xref keyref="IVideoFrameObserver"/> class as needed. After successful registration, the SDK triggers the registered callbacks each time a video frame is captured.</p>
+            <p props="unity">If you want to observe raw video frames (such as YUV or RGBA format), Agora recommends registering an <xref keyref="IVideoFrameObserver"/> class using this method.
+When registering the video observer, you can choose to register the callbacks in the <xref keyref="IVideoFrameObserver"/> class as needed. After successful registration, the SDK triggers the registered callbacks whenever a video frame is captured.</p>
+            <note props="electron">When handling callbacks, you need to consider changes in the <codeph>width</codeph> and <codeph>height</codeph> parameters of the video frame, as the observed video frame may vary due to the following conditions:
+                <ul>
+                    <li>When the network condition is poor, the resolution may drop in steps.</li>
+                    <li>When the user adjusts the resolution manually, the resolution reported in the callback will also change.</li>
+                </ul>
+            </note>
+            <note props="rn">When handling the callback, you need to consider changes in the <codeph>width</codeph> and <codeph>height</codeph> parameters of the video frame, as the observed video frames may vary in the following scenarios:
+                <ul>
+                    <li>Resolution may decrease stepwise when network conditions are poor.</li>
+                    <li>When the user manually adjusts the resolution, the resolution reported in the callback also changes.</li>
+                </ul>
+            </note>
+            <note props="flutter">When handling the callback, you need to consider changes in the <codeph>width</codeph> and <codeph>height</codeph> parameters of the video frame, as the observed video frames may vary due to the following situations:
+                <ul>
+                    <li>When the network condition is poor, the resolution will drop step by step.</li>
+                    <li>When the user manually adjusts the resolution, the resolution reported in the callback will also change.</li>
+                </ul>
+            </note>
+            <note props="unity">When handling callbacks, you need to consider changes in the <codeph>width</codeph> and <codeph>height</codeph> parameters of the video frame, as the observed video frames may vary due to the following reasons:
+                <ul>
+                    <li>When the network condition is poor, the resolution may drop in steps.</li>
+                    <li>When the user manually adjusts the resolution, the resolution reported in the callback will also change.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>After registering a raw video frame observer, you can use the raw video data for various video preprocessing scenarios, such as implementing virtual backgrounds or beauty effects.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Call this method before joining a channel.</p>
+            <p props="rn">This method must be called before joining a channel.</p>
+            <p props="flutter">This method must be called before joining a channel.</p>
+            <p props="unity">This method must be called before joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>observer</pt>
+                    <pd>Instance of the interface object. See <xref keyref="IVideoFrameObserver"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>observer</pt>
+                    <pd>Instance of the interface object. See <xref keyref="IVideoFrameObserver"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>observer</pt>
+                    <pd>Instance of the interface object. See <xref keyref="IVideoFrameObserver"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoFrameObserver</pt>
+                    <pd>Instance of the interface object. See <xref keyref="IVideoFrameObserver"/>. Pass NULL to unregister.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mode</pt>
+                    <pd>Video data callback mode. See <xref keyref="OBSERVER_MODE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>formatPreference</pt>
+                    <pd>Video data type. See <xref keyref="VIDEO_OBSERVER_FRAME_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>position</pt>
+                    <pd>Bit mask of the video observation position. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                <ul>
+                    <li>&lt; 0: Method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

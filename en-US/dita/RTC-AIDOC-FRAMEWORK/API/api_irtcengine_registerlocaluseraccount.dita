@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_registerlocaluseraccount">
+    <title><ph keyref="registerLocalUserAccount"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Registers the local user's <codeph>User Account</codeph>.</ph><ph id="shortdesc" props="rn">Registers the local user's User Account.</ph><ph id="shortdesc" props="flutter">Registers the local user account.</ph><ph id="shortdesc" props="unity">Registers a local user <codeph>userAccount</codeph>.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerLocalUserAccount"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract registerLocalUserAccount(appId: string, userAccount: string): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract registerLocalUserAccount(appId: string, userAccount: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; registerLocalUserAccount(
+    {required String appId, required String userAccount});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int RegisterLocalUserAccount(string appId, string userAccount);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method registers a <codeph>User Account</codeph> for the local user. After successful registration, the <codeph>User Account</codeph> can be used to identify the local user, and the user can use it to join a channel.
+This method is optional. If you want users to join a channel using a <codeph>User Account</codeph>, you can implement it in either of the following ways:
+                <ul>
+                    <li>Call <xref keyref="registerLocalUserAccount"/> to register the account first, then call <xref keyref="joinChannelWithUserAccount2"/> to join the channel, which can reduce the time to enter the channel.</li>
+                    <li>Directly call <xref keyref="joinChannelWithUserAccount2"/> to join the channel.</li>
+                </ul>
+            </p>
+            <p props="rn">This method registers a User Account for the local user. After successful registration, the User Account can be used to identify the local user and join channels.
+This method is optional. If you want users to join channels using a User Account, you can implement it using either of the following approaches:
+                <ul>
+                    <li>Call <xref keyref="registerLocalUserAccount"/> to register the account, then call <xref keyref="joinChannelWithUserAccount2"/> to join the channel. This can reduce the time to join the channel.</li>
+                    <li>Directly call <xref keyref="joinChannelWithUserAccount2"/> to join the channel.</li>
+                </ul>
+            </p>
+            <p props="flutter">This method registers a user account for the local user. After successful registration, the user account can be used to identify the local user, who can then join a channel using it.
+This method is optional. If you want users to join a channel using a user account, you can implement it in either of the following ways:
+                <ul>
+                    <li>Call <xref keyref="registerLocalUserAccount"/> to register the account first, then call <xref keyref="joinChannelWithUserAccount2"/> to join the channel. This can reduce the time to join the channel.</li>
+                    <li>Directly call <xref keyref="joinChannelWithUserAccount2"/> to join the channel.</li>
+                </ul>
+            </p>
+            <p props="unity">This method registers a <codeph>userAccount</codeph> for the local user. Once registered successfully, the <codeph>userAccount</codeph> can be used to identify the local user and join a channel.
+This method is optional. If you want users to join a channel using a <codeph>userAccount</codeph>, you can choose either of the following approaches:
+                <ul>
+                    <li>First call <xref keyref="registerLocalUserAccount"/> to register the account, then call <xref keyref="joinChannelWithUserAccount1"/> or <xref keyref="joinChannelWithUserAccount2"/> to join the channel, which can reduce the time to enter the channel.</li>
+                    <li>Directly call <xref keyref="joinChannelWithUserAccount1"/> or <xref keyref="joinChannelWithUserAccount2"/> to join the channel.</li>
+                </ul>
+            </p>
+            <note props="electron">
+                <ul>
+                    <li>Ensure that the <codeph>userAccount</codeph> set in this method is unique within the channel.</li>
+                    <li>To ensure communication quality, make sure to use the same type of identifier (UID or <codeph>User Account</codeph>) for all users in the channel. If users join the channel via Web SDK, ensure they use the same identifier type.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>Ensure the <codeph>userAccount</codeph> set in this method is unique within the channel.</li>
+                    <li>To ensure communication quality, make sure all users in a channel use the same type of identifier. That is, all users in the same channel must use either UID or User Account. If users join via the Web SDK, ensure they also use the same identifier type.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>Ensure the <codeph>userAccount</codeph> set in this method is unique within the channel.</li>
+                    <li>To ensure communication quality, make sure to use the same type of user identifier within a channel. That is, use either UID or user account consistently within the same channel. If users join the channel via Web SDK, ensure they use the same identifier type.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>Ensure the <codeph>userAccount</codeph> set in this method is unique within the channel.</li>
+                    <li>To ensure communication quality, make sure all users in the same channel use the same type of identifier (either UID or <codeph>userAccount</codeph>). If users join via Web SDK, ensure they use the same type as well.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Related Callbacks</title>
+            <p props="electron">After successfully calling this method, the <xref keyref="onLocalUserRegistered"/> callback will be triggered locally to notify the UID and <codeph>User Account</codeph> of the local user.</p>
+            <p props="rn">After successfully calling this method, the local <xref keyref="onLocalUserRegistered"/> callback is triggered to report the local user's UID and User Account.</p>
+            <p props="flutter">After successfully calling this method, the local <xref keyref="onLocalUserRegistered"/> callback is triggered, reporting the local user's UID and user account.</p>
+            <p props="unity">After successfully calling this method, the local <xref keyref="onLocalUserRegistered"/> callback is triggered to report the UID and <codeph>userAccount</codeph> of the local user.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>appId</pt>
+                    <pd>Your project's App ID registered in the console.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>userAccount</pt>
+                    <pd>User <codeph>User Account</codeph>. This parameter identifies the user in the real-time audio and video interaction channel. You must set and manage the user's <codeph>User Account</codeph> yourself and ensure that each <codeph>User Account</codeph> is unique within the same channel. This parameter is required, must not exceed 255 bytes, and cannot be null. The following character set is supported (a total of 89 characters):
+                        <ul>
+                            <li>26 lowercase English letters a-z</li>
+                            <li>26 uppercase English letters A-Z</li>
+                            <li>10 digits 0-9</li>
+                            <li>space</li>
+                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>appId</pt>
+                    <pd>The App ID of your project registered in the console.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>userAccount</pt>
+                    <pd>The user's User Account. This parameter identifies the user in the real-time audio and video interaction channel. You need to set and manage the User Account yourself and ensure that each user in the same channel has a unique User Account. This parameter is required, must not exceed 255 bytes, and cannot be null. The supported character set includes 89 characters:
+                        <ul>
+                            <li>26 lowercase English letters a-z</li>
+                            <li>26 uppercase English letters A-Z</li>
+                            <li>10 digits 0-9</li>
+                            <li>space</li>
+                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>appId</pt>
+                    <pd>The App ID of your project registered in the console.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>userAccount</pt>
+                    <pd>User account. This parameter identifies the user in the real-time audio and video channel. You need to set and manage the user account yourself and ensure it is unique within the same channel. This parameter is required, must not exceed 255 bytes, and cannot be <codeph><ph keyref="NULL"/></codeph>. Supported character set (89 characters total):
+                        <ul>
+                            <li>26 lowercase letters a-z</li>
+                            <li>26 uppercase letters A-Z</li>
+                            <li>10 digits 0-9</li>
+                            <li>Space</li>
+                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>appId</pt>
+                    <pd>The App ID of your project registered in the console.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>userAccount</pt>
+                    <pd>User <codeph>userAccount</codeph>. This parameter identifies the user in the real-time audio and video interaction channel. You need to set and manage the <codeph>userAccount</codeph> yourself and ensure that each <codeph>userAccount</codeph> in the same channel is unique. This parameter is required, must not exceed 255 bytes, and cannot be NULL. The supported character set (89 characters total) includes:
+                        <ul>
+                            <li>26 lowercase letters a–z</li>
+                            <li>26 uppercase letters A–Z</li>
+                            <li>10 digits 0–9</li>
+                            <li>space</li>
+                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

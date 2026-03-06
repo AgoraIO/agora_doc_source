@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_startorupdatechannelmediarelayex">
+    <title><ph keyref="startOrUpdateChannelMediaRelayEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Starts or updates the media stream relay across channels.</ph><ph id="shortdesc" props="rn">Starts or updates the media stream relay across channels.</ph><ph id="shortdesc" props="flutter">Starts or updates cross-channel media stream relay.</ph><ph id="shortdesc" props="unity">Starts or updates cross-channel media stream forwarding.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startOrUpdateChannelMediaRelayEx"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startOrUpdateChannelMediaRelayEx(
+    configuration: ChannelMediaRelayConfiguration,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startOrUpdateChannelMediaRelayEx(
+    configuration: ChannelMediaRelayConfiguration,
+    connection: RtcConnection
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startOrUpdateChannelMediaRelayEx(
+      {required ChannelMediaRelayConfiguration configuration,
+      required RtcConnection connection});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartOrUpdateChannelMediaRelayEx(ChannelMediaRelayConfiguration configuration, RtcConnection connection);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">The first successful call to this method starts relaying media streams across channels. To relay streams to multiple destination channels or to leave a current relay channel, you can call this method again to add or remove destination channels. This feature supports relaying to up to six destination channels.
+After a successful call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback to report the current relay state. Common states include:
+                <ul>
+                    <li>If the <xref keyref="onChannelMediaRelayStateChanged"/> callback reports <codeph>RelayStateRunning</codeph> (2) and <codeph>RelayOk</codeph> (0), it means the SDK has started relaying media streams between the source and destination channels.</li>
+                    <li>If the callback reports <codeph>RelayStateFailure</codeph> (3), it indicates an error occurred during the media stream relay.</li>
+                </ul>
+            </p>
+            <p props="rn">When you call this method for the first time, it starts to relay media streams across channels. To relay to multiple destination channels or to stop relaying to a specific channel, you can call this method again to add or remove destination channels. This function supports relaying to up to six destination channels.
+After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback to report the current state of the media stream relay across channels. Common states include:
+                <ul>
+                    <li>If <xref keyref="onChannelMediaRelayStateChanged"/> reports <codeph>RelayStateRunning</codeph> (2) and <codeph>RelayOk</codeph> (0), it means the SDK has started relaying media streams between the source and destination channels.</li>
+                    <li>If <xref keyref="onChannelMediaRelayStateChanged"/> reports <codeph>RelayStateFailure</codeph> (3), it means an error occurred during the media stream relay across channels.</li>
+                </ul>
+            </p>
+            <p props="flutter">The first successful call to this method starts the cross-channel media stream relay. To relay the stream to multiple destination channels or exit the current relay channels, you can call this method again to add or remove destination channels. This feature supports relaying media streams to up to 6 destination channels.
+After the method is successfully called, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback to report the current state of the cross-channel media stream relay. Common states include:
+                <ul>
+                    <li>If the <xref keyref="onChannelMediaRelayStateChanged"/> callback reports <codeph>relayStateRunning</codeph> (2) and <codeph>relayOk</codeph> (0), it indicates that the SDK has started relaying media streams between the source and destination channels.</li>
+                    <li>If the <xref keyref="onChannelMediaRelayStateChanged"/> callback reports <codeph>relayStateFailure</codeph> (3), it indicates an exception occurred in the cross-channel media stream relay.</li>
+                </ul>
+            </p>
+            <p props="unity">The first successful call to this method starts forwarding media streams across channels. To forward streams to multiple destination channels or leave a current forwarding channel, you can call this method again to add or remove destination channels. This feature supports forwarding to up to 6 destination channels.
+After a successful call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback to report the current state of cross-channel media stream forwarding. Common states include:
+                <ul>
+                    <li>If the <xref keyref="onChannelMediaRelayStateChanged"/> callback reports <codeph>RELAY_STATE_RUNNING</codeph> (2) and <codeph>RELAY_OK</codeph> (0), it means the SDK has started forwarding media streams between the source and destination channels.</li>
+                    <li>If the callback reports <codeph>RELAY_STATE_FAILURE</codeph> (3), it means an error occurred during cross-channel media stream forwarding.</li>
+                </ul>
+            </p>
+            <note props="electron">
+                <ul>
+                    <li>Call this method after successfully joining a channel.</li>
+                    <li>In a live streaming scenario, only users with the broadcaster role can call this method.</li>
+                    <li>To enable the media stream relay across channels, [contact technical support](https://ticket.shengwang.cn/).</li>
+                    <li>This feature does not support string-type UIDs.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>Call this method after successfully joining a channel.</li>
+                    <li>In a live streaming scenario, only users with the host role can call this method.</li>
+                    <li>To enable media stream relay across channels, [contact technical support](https://ticket.shengwang.cn/).</li>
+                    <li>This function does not support string-type UIDs.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>Call this method after successfully joining a channel.</li>
+                    <li>In a live broadcast scenario, only users with the broadcaster role can call this method.</li>
+                    <li>The cross-channel media stream relay feature requires [contacting technical support](https://ticket.shengwang.cn/) to enable.</li>
+                    <li>This feature does not support String-type UIDs.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>Call this method after successfully joining a channel.</li>
+                    <li>In a live streaming scenario, only users with the host role can call this method.</li>
+                    <li>Cross-channel media stream forwarding requires [contacting technical support](https://ticket.shengwang.cn/) to enable.</li>
+                    <li>This feature does not support String-type UIDs.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>configuration</pt>
+                    <pd>Configuration for media stream relay across channels. See <xref keyref="ChannelMediaRelayConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>configuration</pt>
+                    <pd>The configuration for media stream relay across channels. See <xref keyref="ChannelMediaRelayConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>configuration</pt>
+                    <pd>Configuration for cross-channel media stream relay. See <xref keyref="ChannelMediaRelayConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>configuration</pt>
+                    <pd>Configuration for cross-channel media stream forwarding. See <xref keyref="ChannelMediaRelayConfiguration"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.
+                        <ul>
+                            <li>-1: General error (not categorized).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-8: Internal state error, possibly due to the user not being a broadcaster.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting.
+                        <ul>
+                            <li>-1: General error (not categorized).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-8: Internal state error. Possibly because the user is not a host.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                <ul>
+                    <li>&lt; 0: Method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-1: General error (not specifically classified).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-8: Internal state error. Possibly because the user role is not broadcaster.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.
+                        <ul>
+                            <li>-1: General error (not specifically classified).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-8: Internal state error. Possibly because the user role is not host.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

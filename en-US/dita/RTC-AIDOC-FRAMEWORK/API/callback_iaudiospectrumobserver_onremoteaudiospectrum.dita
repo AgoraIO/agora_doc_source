@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudiospectrumobserver_onremoteaudiospectrum">
+    <title><ph keyref="onRemoteAudioSpectrum"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets the remote audio spectrum.</ph><ph id="shortdesc" props="rn">Receives the remote audio spectrum.</ph><ph id="shortdesc" props="flutter">Gets the remote audio spectrum.</ph><ph id="shortdesc" props="unity">Receives remote audio spectrum.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteAudioSpectrum"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onRemoteAudioSpectrum?(
+    spectrums: UserAudioSpectrumInfo[],
+    spectrumNumber: number
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onRemoteAudioSpectrum?(
+    spectrums: UserAudioSpectrumInfo[],
+    spectrumNumber: number
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(
+        List&lt;UserAudioSpectrumInfo&gt; spectrums, int spectrumNumber)?
+    onRemoteAudioSpectrum;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnRemoteAudioSpectrum(UserAudioSpectrumInfo[] spectrums, uint spectrumNumber)
+        {
+            return true;
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After successfully calling <xref keyref="registerAudioSpectrumObserver"/> to implement the <xref keyref="onRemoteAudioSpectrum"/> callback in <xref keyref="IAudioSpectrumObserver"/> and calling <xref keyref="enableAudioSpectrumMonitor"/> to enable audio spectrum monitoring, the SDK triggers this callback at the interval you set to report the spectrum of received remote audio data.</p>
+            <p props="rn">After successfully calling <xref keyref="registerAudioSpectrumObserver"/>, implementing the <xref keyref="onRemoteAudioSpectrum"/> callback of <xref keyref="IAudioSpectrumObserver"/>, and enabling audio spectrum monitoring via <xref keyref="enableAudioSpectrumMonitor"/>, the SDK triggers this callback at the set interval to report the received remote audio spectrum data.</p>
+            <p props="flutter">After successfully calling <xref keyref="registerAudioSpectrumObserver"/> to implement the <xref keyref="onRemoteAudioSpectrum"/> callback in <xref keyref="IAudioSpectrumObserver"/> and calling <xref keyref="enableAudioSpectrumMonitor"/> to enable audio spectrum monitoring, the SDK triggers this callback at the set time interval to report the spectrum of the received remote audio data.</p>
+            <p props="unity">After successfully calling <xref keyref="registerAudioSpectrumObserver"/>, implementing the <xref keyref="onRemoteAudioSpectrum"/> callback in <xref keyref="IAudioSpectrumObserver"/>, and calling <xref keyref="enableAudioSpectrumMonitor"/> to enable audio spectrum monitoring, the SDK triggers this callback at the interval you set to report the spectrum of received remote audio data.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>spectrums</pt>
+                    <pd>The audio spectrum information of remote users. See <xref keyref="UserAudioSpectrumInfo"/>. The number of elements in the array equals the number of remote users monitored by the SDK. An empty array indicates no remote user audio spectrum is detected.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>spectrumNumber</pt>
+                    <pd>The number of remote users.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>spectrums</pt>
+                    <pd>The audio spectrum information of remote users. See <xref keyref="UserAudioSpectrumInfo"/>. The array size equals the number of remote users detected by the SDK. An empty array indicates no remote audio spectrum was detected.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>spectrumNumber</pt>
+                    <pd>The number of remote users.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>spectrums</pt>
+                    <pd>The audio spectrum information of remote users. See <xref keyref="UserAudioSpectrumInfo"/>. The number of elements in the array equals the number of remote users detected by the SDK. An empty array means no remote audio spectrum is detected.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>spectrumNumber</pt>
+                    <pd>The number of remote users.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>spectrums</pt>
+                    <pd>Audio spectrum information of remote users. See <xref keyref="UserAudioSpectrumInfo"/>. The array size equals the number of remote users detected by the SDK. An empty array indicates no remote user audio spectrum was detected.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>spectrumNumber</pt>
+                    <pd>Number of remote users.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">Whether to receive spectrum data:
+                <ul>
+                    <li><xref keyref="true"/>: Receive.</li>
+                    <li><xref keyref="false"/>: Do not receive.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

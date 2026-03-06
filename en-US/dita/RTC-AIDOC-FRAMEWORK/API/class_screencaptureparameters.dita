@@ -1,0 +1,423 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screencaptureparameters">
+    <title><ph keyref="ScreenCaptureParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Parameter configuration for screen sharing.</ph><ph id="shortdesc" props="flutter">Parameter configuration for screen sharing.</ph><ph id="shortdesc" props="unity">Configuration parameters for screen sharing.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureParameters {
+  dimensions?: VideoDimensions;
+  frameRate?: number;
+  bitrate?: number;
+  captureMouseCursor?: boolean;
+  windowFocus?: boolean;
+  excludeWindowList?: any[];
+  excludeWindowCount?: number;
+  highLightWidth?: number;
+  highLightColor?: number;
+  enableHighLight?: boolean;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureParameters {
+  const ScreenCaptureParameters(
+      {this.dimensions,
+      this.frameRate,
+      this.bitrate,
+      this.captureMouseCursor,
+      this.windowFocus,
+      this.excludeWindowList,
+      this.excludeWindowCount,
+      this.highLightWidth,
+      this.highLightColor,
+      this.enableHighLight});
+
+  @JsonKey(name: 'dimensions')
+  final VideoDimensions? dimensions;
+
+  @JsonKey(name: 'frameRate')
+  final int? frameRate;
+
+  @JsonKey(name: 'bitrate')
+  final int? bitrate;
+
+  @JsonKey(name: 'captureMouseCursor')
+  final bool? captureMouseCursor;
+
+  @JsonKey(name: 'windowFocus')
+  final bool? windowFocus;
+
+  @JsonKey(name: 'excludeWindowList')
+  final List&lt;int&gt;? excludeWindowList;
+
+  @JsonKey(name: 'excludeWindowCount')
+  final int? excludeWindowCount;
+
+  @JsonKey(name: 'highLightWidth')
+  final int? highLightWidth;
+
+  @JsonKey(name: 'highLightColor')
+  final int? highLightColor;
+
+  @JsonKey(name: 'enableHighLight')
+  final bool? enableHighLight;
+
+  factory ScreenCaptureParameters.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ScreenCaptureParametersFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenCaptureParametersToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureParameters
+    {
+        public ScreenCaptureParameters()
+        {
+            dimensions = new VideoDimensions(1920, 1080);
+            frameRate = 5;
+            bitrate = (int)BITRATE.STANDARD_BITRATE;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
+        }
+
+        public ScreenCaptureParameters(ref VideoDimensions d, int f, int b)
+        {
+            dimensions = new VideoDimensions(d.width, d.height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
+        }
+
+        public ScreenCaptureParameters(int width, int height, int f, int b)
+        {
+            dimensions = new VideoDimensions(width, height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
+        }
+
+        public ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs)
+        {
+            dimensions = new VideoDimensions(width, height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = cur;
+            windowFocus = fcs;
+            excludeWindowList = new view_t[0];
+            excludeWindowCount = 0;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
+        }
+
+        public ScreenCaptureParameters(int width, int height, int f, int b, view_t[] ex, int cnt)
+        {
+            dimensions = new VideoDimensions(width, height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = true;
+            windowFocus = false;
+            excludeWindowList = ex;
+            excludeWindowCount = cnt;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
+        }
+
+        public ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs, view_t[] ex, int cnt)
+        {
+            dimensions = new VideoDimensions(width, height);
+            frameRate = f;
+            bitrate = b;
+            captureMouseCursor = cur;
+            windowFocus = fcs;
+            excludeWindowList = ex;
+            excludeWindowCount = cnt;
+            highLightWidth = 0;
+            highLightColor = 0;
+            enableHighLight = false;
+        }
+
+        public VideoDimensions dimensions { set; get; }
+        public int frameRate { set; get; }
+        public int bitrate { set; get; }
+        public bool captureMouseCursor { set; get; }
+        public bool windowFocus { set; get; }
+        public view_t[] excludeWindowList { set; get; }
+        public int excludeWindowCount { set; get; }
+        public int highLightWidth { set; get; }
+        public uint highLightColor { set; get; }
+        public bool enableHighLight { set; get; }
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>dimensions</pt>
+                    <pd>
+                        <note>When setting the encoding resolution in a document sharing scenario (<codeph>ScreenScenarioDocument</codeph>), choose one of the following:
+                            <ul>
+                                <li>For optimal image quality, set the encoding resolution equal to the capture resolution.</li>
+                                <li>To balance image quality, bandwidth, and system performance:</li>
+                            </ul>
+                            <ul>
+                                <li>If the capture resolution is greater than 1920 × 1080, set the encoding resolution no lower than 1920 × 1080.</li>
+                                <li>If the capture resolution is less than 1920 × 1080, set the encoding resolution no lower than 1280 × 720.</li>
+                            </ul>
+                        </note><ph>Video encoding resolution of the screen sharing stream. See <xref keyref="VideoDimensions"/>. Default value is 1920 × 1080, i.e., 2073600 pixels. This pixel value is used for billing.</ph><ph>When the aspect ratio of the shared screen resolution differs from this setting, the SDK encodes based on the following strategy. Assuming <codeph>dimensions</codeph> is set to 1920 × 1080:</ph>
+                        <ul>
+                            <li>If the screen resolution is smaller than <codeph>dimensions</codeph>, such as 1000 × 1000, the SDK encodes at 1000 × 1000.</li>
+                            <li>If the screen resolution is larger than <codeph>dimensions</codeph>, such as 2000 × 1500, the SDK encodes at the maximum resolution within <codeph>dimensions</codeph> that matches the screen's aspect ratio, i.e., 1440 × 1080.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>frameRate</pt>
+                    <pd>On Windows and macOS, indicates the video encoding frame rate of the screen sharing stream. Unit: fps; default is 5. It is recommended not to exceed 15.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>bitrate</pt>
+                    <pd>On Windows and macOS, indicates the video encoding bitrate of the screen sharing stream. Unit: Kbps; default is 0, which means the SDK calculates a reasonable value based on the current shared screen resolution.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>captureMouseCursor</pt>
+                    <pd>
+                        <note>Due to macOS system limitations, setting this parameter to <xref keyref="false"/> has no effect when sharing the screen (no effect when sharing a window).</note><ph>Whether to capture the mouse for screen sharing:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Capture the mouse.</li>
+                            <li><xref keyref="false"/>: Do not capture the mouse.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>windowFocus</pt>
+                    <pd>
+                        <note>Due to macOS system limitations, when setting this member to bring the window to the front, only the main window is brought to the front if the application has multiple windows.</note><ph>When calling <xref keyref="startScreenCaptureByWindowId"/> to share a window, whether to bring the window to the front:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Bring the window to the front.</li>
+                            <li><xref keyref="false"/>: (Default) Do not bring the window to the front.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>excludeWindowList</pt>
+                    <pd>List of IDs of windows to be excluded. When calling <xref keyref="startScreenCaptureByDisplayId"/> to start screen sharing, you can use this parameter to exclude specified windows. You can also dynamically exclude windows by using this parameter when calling <xref keyref="updateScreenCaptureParameters"/> to update screen sharing configuration.
+                        <note>This parameter is not supported in Electron for UnionTech OS SDK.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>enableHighLight</pt>
+                    <pd>
+                        <note>When sharing a partial region of a window or screen, if this parameter is set to <xref keyref="true"/>, the SDK highlights the entire window or screen.</note><ph>Whether to highlight the shared window or screen:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Highlight.</li>
+                            <li><xref keyref="false"/>: (Default) Do not highlight.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>highLightColor</pt>
+                    <pd>
+                        <ul>
+                            <li>On Windows, specifies the ARGB color of the highlight. Default value is 0xFF8CBF26.</li>
+                            <li>On macOS, <codeph>COLOR_CLASS</codeph> refers to <codeph>NSColor</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>highLightWidth</pt>
+                    <pd>Highlight border width (px). Default is 5. Value range: (0,50].
+                        <note>This parameter takes effect only when <codeph>highLighted</codeph> is set to <xref keyref="true"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>excludeWindowCount</pt>
+                    <pd>Number of windows to be excluded.
+                        <note>On Windows, the maximum value of this parameter is 24. If it exceeds this value, the window exclusion feature becomes invalid.
+This parameter is not supported in Electron for Kylin OS SDK.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>dimensions</pt>
+                    <pd>
+                        <note>When setting encoding resolution in a document sharing scenario (<codeph>screenScenarioDocument</codeph>), choose one of the following:
+                            <ul>
+                                <li>For optimal image quality, set the encoding resolution the same as the capture resolution.</li>
+                                <li>For a balance between quality, bandwidth, and performance:</li>
+                            </ul>
+                            <ul>
+                                <li>If capture resolution is greater than 1920 × 1080, set encoding resolution no lower than 1920 × 1080.</li>
+                                <li>If capture resolution is less than 1920 × 1080, set encoding resolution no lower than 1280 × 720.</li>
+                            </ul>
+                        </note><ph>Video encoding resolution of the screen sharing stream. See <xref keyref="VideoDimensions"/>. Default is 1920 × 1080, i.e., 2073600 pixels. This pixel count is used for billing.</ph><ph>If the aspect ratio of the shared screen resolution differs from this setting, the SDK encodes according to the following strategy. Assuming <codeph>dimensions</codeph> is set to 1920 × 1080:</ph>
+                        <ul>
+                            <li>If the screen resolution is smaller than <codeph>dimensions</codeph>, e.g., 1000 × 1000, the SDK encodes at 1000 × 1000.</li>
+                            <li>If the screen resolution is larger than <codeph>dimensions</codeph>, e.g., 2000 × 1500, the SDK encodes at the maximum resolution within <codeph>dimensions</codeph> that matches the screen's aspect ratio (4:3), i.e., 1440 × 1080.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>frameRate</pt>
+                    <pd>Frame rate of the shared video, in fps. Default is 5. It is recommended not to exceed 15.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>bitrate</pt>
+                    <pd>Bitrate of the shared video, in Kbps. Default is 0, meaning the SDK calculates a reasonable value based on the current screen resolution.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>captureMouseCursor</pt>
+                    <pd>
+                        <note>Due to macOS system limitations, setting this parameter to <xref keyref="false"/> has no effect when sharing the screen (no impact when sharing a window).</note><ph>Whether to capture the mouse cursor during screen sharing:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: (Default) Capture mouse.</li>
+                            <li><xref keyref="false"/>: Do not capture mouse.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>windowFocus</pt>
+                    <pd>
+                        <note>Due to macOS system limitations, when setting this member to bring a window to the front, only the main window is brought to the front if the app has multiple windows.</note><ph>When calling <xref keyref="startScreenCaptureByWindowId"/> to share a window, whether to bring the window to the front:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Bring to front.</li>
+                            <li><xref keyref="false"/>: (Default) Do not bring to front.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>excludeWindowList</pt>
+                    <pd>List of window IDs to exclude. When calling <xref keyref="startScreenCaptureByDisplayId"/> to start screen sharing, you can use this parameter to exclude specific windows. You can also dynamically exclude windows by passing this parameter when calling <xref keyref="updateScreenCaptureParameters"/> to update screen sharing configuration.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enableHighLight</pt>
+                    <pd>
+                        <note>When sharing a partial region of a window or screen, if this parameter is set to <xref keyref="true"/>, the SDK highlights the entire window or screen.</note><ph>(macOS and Windows only) Whether to highlight the shared window or screen:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: Highlight.</li>
+                            <li><xref keyref="false"/>: (Default) Do not highlight.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>highLightColor</pt>
+                    <pd>(macOS and Windows only)
+                        <ul>
+                            <li>On Windows, specifies the ARGB color of the highlight. Default is 0xFF8CBF26.</li>
+                            <li>On macOS, <codeph>COLOR_CLASS</codeph> refers to <codeph>NSColor</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>highLightWidth</pt>
+                    <pd>(macOS and Windows only) Width of the highlight border (px). Default is 5. Valid range is (0,50].
+                        <note>This parameter takes effect only when <codeph>highLighted</codeph> is set to <xref keyref="true"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>excludeWindowCount</pt>
+                    <pd>Number of windows to exclude.
+                        <note>On Windows, the maximum value is 24. If exceeded, window exclusion does not take effect.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>dimensions</pt>
+                    <pd>
+                        <note>When setting the encoding resolution in a document sharing scenario (<codeph>SCREEN_SCENARIO_DOCUMENT</codeph>), choose one of the following options:
+                            <ul>
+                                <li>If you want the best image quality, it is recommended to set the encoding resolution equal to the capture resolution.</li>
+                                <li>If you want a balance between image quality, bandwidth, and system performance:</li>
+                            </ul>
+                            <ul>
+                                <li>When the capture resolution is greater than 1920 × 1080, it is recommended that the encoding resolution is no less than 1920 × 1080.</li>
+                                <li>When the capture resolution is less than 1920 × 1080, it is recommended that the encoding resolution is no less than 1280 × 720.</li>
+                            </ul>
+                        </note><ph>The video encoding resolution of the screen sharing stream. See <xref keyref="VideoDimensions"/>. The default value is 1920 × 1080, i.e., 2073600 pixels. This pixel value is used for billing.</ph><ph>When the aspect ratio of the shared screen resolution does not match this setting, the SDK encodes using the following strategy. Suppose <codeph>dimensions</codeph> is set to 1920 × 1080:</ph>
+                        <ul>
+                            <li>If the screen resolution is smaller than <codeph>dimensions</codeph>, e.g., 1000 × 1000, the SDK encodes directly at 1000 × 1000.</li>
+                            <li>If the screen resolution is larger than <codeph>dimensions</codeph>, e.g., 2000 × 1500, the SDK uses the screen resolution's aspect ratio (4:3) to select the maximum resolution within <codeph>dimensions</codeph>, i.e., 1440 × 1080.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>frameRate</pt>
+                    <pd>On Windows and macOS platforms, specifies the video encoding frame rate of the screen sharing stream. Unit: fps; default is 5. It is recommended not to exceed 15.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>bitrate</pt>
+                    <pd>Bitrate of the shared video. On Windows and macOS platforms, specifies the video encoding bitrate of the screen sharing stream. Unit: Kbps; default is 0, which means the SDK calculates a reasonable value based on the current shared screen resolution.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>captureMouseCursor</pt>
+                    <pd>
+                        <note>Due to macOS system limitations, setting this parameter to <xref keyref="false"/> has no effect when sharing the screen (no effect when sharing a window).</note><ph>Whether to capture the mouse for screen sharing:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: (default) capture the mouse.</li>
+                            <li><xref keyref="false"/>: do not capture the mouse.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>windowFocus</pt>
+                    <pd>
+                        <note>Due to macOS system limitations, when setting this member to bring the window to the front, only the main window is brought to the front if the current application has multiple windows.</note><ph>When calling the <xref keyref="startScreenCaptureByWindowId"/> method to share a window, whether to bring the window to the front:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: bring the window to the front.</li>
+                            <li><xref keyref="false"/>: (default) do not bring the window to the front.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>excludeWindowList</pt>
+                    <pd>List of IDs of windows to be excluded. When calling <xref keyref="startScreenCaptureByDisplayId"/> to start screen sharing, you can use this parameter to exclude specific windows. You can also dynamically exclude specific windows by using this parameter when calling <xref keyref="updateScreenCaptureParameters"/> to update the screen sharing configuration.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enableHighLight</pt>
+                    <pd>
+                        <note>When sharing a partial area of a window or screen, if this parameter is set to <xref keyref="true"/>, the SDK highlights the entire window or screen.</note><ph>(Applicable only to macOS and Windows) Whether to highlight the shared window or screen:</ph>
+                        <ul>
+                            <li><xref keyref="true"/>: highlight.</li>
+                            <li><xref keyref="false"/>: (default) do not highlight.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>highLightColor</pt>
+                    <pd>(Applicable only to macOS and Windows)
+                        <ul>
+                            <li>On Windows, specifies the highlight ARGB color. Default is 0xFF8CBF26.</li>
+                            <li>On macOS, <codeph>COLOR_CLASS</codeph> refers to <codeph>NSColor</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>highLightWidth</pt>
+                    <pd>(Applicable only to macOS and Windows) Width of the highlight border (px). Default is 5. Value range is (0,50].
+                        <note>This parameter only takes effect when <codeph>highLighted</codeph> is set to <xref keyref="true"/>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>excludeWindowCount</pt>
+                    <pd>Number of windows to be excluded.
+                        <note>On Windows, the maximum value for this parameter is 24. If it exceeds this value, the window exclusion feature becomes ineffective.</note>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

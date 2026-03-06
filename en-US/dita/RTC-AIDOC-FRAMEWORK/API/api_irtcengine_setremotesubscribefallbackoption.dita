@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setremotesubscribefallbackoption">
+    <title><ph keyref="setRemoteSubscribeFallbackOption"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets fallback options for subscribed audio and video streams under poor network conditions.</ph><ph id="shortdesc" props="rn">Sets the fallback option for subscribed audio and video streams under poor network conditions.</ph><ph id="shortdesc" props="flutter">Sets the fallback option for subscribed audio and video streams under poor network conditions.</ph><ph id="shortdesc" props="unity">Sets the fallback option for subscribed audio and video streams under poor network conditions.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteSubscribeFallbackOption"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setRemoteSubscribeFallbackOption(
+    option: StreamFallbackOptions
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setRemoteSubscribeFallbackOption(
+    option: StreamFallbackOptions
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteSubscribeFallbackOption(StreamFallbackOptions option);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteSubscribeFallbackOption(STREAM_FALLBACK_OPTIONS option);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">Under poor network conditions, the quality of real-time audio and video may degrade. You can call this method and set <codeph>option</codeph> to <codeph>StreamFallbackOptionVideoStreamLow</codeph> or <codeph>StreamFallbackOptionAudioOnly</codeph>. When the downlink network is poor and audio/video quality is severely affected, the SDK will switch the video stream to a lower quality or disable it to ensure audio quality. The SDK continuously monitors network quality and resumes audio/video subscription when the network improves.
+When the subscribed stream falls back to audio-only or recovers to audio and video, the SDK triggers the <xref keyref="onRemoteSubscribeFallbackToAudioOnly"/> callback.</p>
+            <p props="rn">Under poor network conditions, the quality of real-time audio and video may degrade. You can call this method and set <codeph>option</codeph> to <codeph>StreamFallbackOptionVideoStreamLow</codeph> or <codeph>StreamFallbackOptionAudioOnly</codeph>. When the downlink network is weak and audio/video quality is severely affected, the SDK will switch the video stream to a lower stream or disable the video stream to ensure audio quality. The SDK continuously monitors network quality and resumes audio and video subscription when conditions improve.
+When the subscribed stream falls back to audio or recovers to audio and video, the SDK triggers the <xref keyref="onRemoteSubscribeFallbackToAudioOnly"/> callback.</p>
+            <p props="flutter">In poor network conditions, the quality of real-time audio and video communication may degrade. You can call this method and set <codeph>option</codeph> to <codeph>streamFallbackOptionVideoStreamLow</codeph> or <codeph>streamFallbackOptionAudioOnly</codeph>. The SDK will switch the video stream to a lower stream or disable the video stream when the downlink network is poor and audio/video quality is severely affected, to ensure audio quality. The SDK continuously monitors network quality and resumes the audio and video stream subscription when the network improves.
+When the subscription falls back to audio only or recovers to audio and video, the SDK triggers the <xref keyref="onRemoteSubscribeFallbackToAudioOnly"/> callback.</p>
+            <p props="unity">In poor network conditions, the quality of real-time audio and video communication deteriorates. You can call this method and set <codeph>option</codeph> to <codeph>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW</codeph> or <codeph>STREAM_FALLBACK_OPTION_AUDIO_ONLY</codeph>. The SDK will switch the video stream to a lower stream or disable the video stream when the downlink network is poor and the audio/video quality is severely affected, ensuring audio quality. Meanwhile, the SDK continuously monitors network conditions and resumes subscription to audio and video streams when the network improves.
+When the subscribed stream falls back to audio only or recovers from audio to audio and video, the SDK triggers the <xref keyref="onRemoteSubscribeFallbackToAudioOnly"/> callback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>option</pt>
+                    <pd>Fallback options for the subscribed stream. See <xref keyref="STREAM_FALLBACK_OPTIONS"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>option</pt>
+                    <pd>Fallback option for the subscribed stream. See <xref keyref="STREAM_FALLBACK_OPTIONS"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>option</pt>
+                    <pd>Fallback option for the subscribed stream. See <xref keyref="STREAM_FALLBACK_OPTIONS"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>option</pt>
+                    <pd>Fallback option for the subscribed stream. See <xref keyref="STREAM_FALLBACK_OPTIONS"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

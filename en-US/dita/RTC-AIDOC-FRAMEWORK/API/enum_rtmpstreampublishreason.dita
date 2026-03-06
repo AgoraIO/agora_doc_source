@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_rtmpstreampublishreason">
+    <title><ph keyref="RTMP_STREAM_PUBLISH_REASON"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">The reason for RTMP stream state change.</ph><ph id="shortdesc" props="rn">Reason for stream publishing state change.</ph><ph id="shortdesc" props="flutter">The reason for RTMP stream publishing state change.</ph><ph id="shortdesc" props="unity">Reason for stream state change.</ph></shortdesc>
+    <refbody>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Enumerations</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonOk</pt>
+                    <pd>0: Stream published successfully.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonInvalidArgument</pt>
+                    <pd>1: Invalid parameter. Please check whether the input parameters are correct.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonEncryptedStreamNotAllowed</pt>
+                    <pd>2: The stream is encrypted and cannot be published.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonConnectionTimeout</pt>
+                    <pd>3: Stream publishing timed out and failed.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonInternalServerError</pt>
+                    <pd>4: Error occurred on the streaming server.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonRtmpServerError</pt>
+                    <pd>5: Error occurred on the CDN server.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonTooOften</pt>
+                    <pd>6: Stream publishing requests are too frequent.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonReachLimit</pt>
+                    <pd>7: The number of stream URLs for a single broadcaster has reached the limit of 10. Please delete some unused stream URLs before adding new ones.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonNotAuthorized</pt>
+                    <pd>8: The broadcaster is operating on a stream that does not belong to them. For example, updating another broadcaster's stream parameters or stopping another broadcaster's stream. Please check your app logic.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonStreamNotFound</pt>
+                    <pd>9: The server did not find the stream.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonFormatNotSupported</pt>
+                    <pd>10: The stream URL format is incorrect. Please check whether the stream URL format is correct.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonNotBroadcaster</pt>
+                    <pd>11: The user is not a broadcaster and cannot use the stream publishing feature. Please check your app logic.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonTranscodingNoMixStream</pt>
+                    <pd>13: The <xref keyref="updateRtmpTranscoding"/> method was called to update transcoding properties without enabling transcoding. Please check your app logic.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonNetDown</pt>
+                    <pd>14: The broadcaster's network encountered an error.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamPublishReasonInvalidPrivilege</pt>
+                    <pd>16: Your project does not have permission to use the stream publishing service.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>RtmpStreamUnpublishErrorOk</pt>
+                    <pd>100: Stream publishing ended normally. After you stop publishing, the SDK returns this value.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonOk</pt>
+                    <pd>0: Stream published successfully.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonInvalidArgument</pt>
+                    <pd>1: Invalid parameter. Please check whether the input parameters are correct.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonEncryptedStreamNotAllowed</pt>
+                    <pd>2: The stream is encrypted and cannot be published.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonConnectionTimeout</pt>
+                    <pd>3: Stream publishing timed out.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonInternalServerError</pt>
+                    <pd>4: An error occurred on the streaming server.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonRtmpServerError</pt>
+                    <pd>5: An error occurred on the CDN server.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonTooOften</pt>
+                    <pd>6: Stream publishing requests are too frequent.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonReachLimit</pt>
+                    <pd>7: The number of stream URLs for a single host has reached the limit of 10. Please delete some unused stream URLs before adding new ones.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonNotAuthorized</pt>
+                    <pd>8: The host is operating on a stream that does not belong to them, such as updating or stopping another host's stream. Please check your app logic.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonStreamNotFound</pt>
+                    <pd>9: The server did not find the stream.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonFormatNotSupported</pt>
+                    <pd>10: The stream URL format is incorrect. Please verify the format of the stream URL.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonNotBroadcaster</pt>
+                    <pd>11: The user is not a broadcaster and cannot use the streaming feature. Please check your application logic.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonTranscodingNoMixStream</pt>
+                    <pd>13: Called <xref keyref="updateRtmpTranscoding"/> to update transcoding properties without enabling transcoding. Please check your application logic.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonNetDown</pt>
+                    <pd>14: The host's network encountered an error.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamPublishReasonInvalidPrivilege</pt>
+                    <pd>16: Your project does not have permission to use the streaming service.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>RtmpStreamUnpublishErrorOk</pt>
+                    <pd>100: The stream has ended normally. After you stop the stream, the SDK returns this value.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonOk</pt>
+                    <pd>0: Stream published successfully.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonInvalidArgument</pt>
+                    <pd>1: Invalid parameter. Please check whether the input parameters are correct.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonEncryptedStreamNotAllowed</pt>
+                    <pd>2: The stream is encrypted and cannot be published.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonConnectionTimeout</pt>
+                    <pd>3: Publishing timed out and failed.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonInternalServerError</pt>
+                    <pd>4: An error occurred on the streaming server.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonRtmpServerError</pt>
+                    <pd>5: An error occurred on the CDN server.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonTooOften</pt>
+                    <pd>6: Streaming requests are too frequent.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonReachLimit</pt>
+                    <pd>7: The number of streaming URLs for a single broadcaster has reached the limit of 10. Please remove some unused URLs before adding new ones.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonNotAuthorized</pt>
+                    <pd>8: The broadcaster is operating on a stream that does not belong to them. For example, updating or stopping another broadcaster's stream. Please check your app logic.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonStreamNotFound</pt>
+                    <pd>9: The server could not find the stream.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonFormatNotSupported</pt>
+                    <pd>10: The streaming URL format is incorrect. Please check whether the format is valid.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonNotBroadcaster</pt>
+                    <pd>11: The user role is not broadcaster, and the user cannot use the streaming feature. Please check your application logic.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonTranscodingNoMixStream</pt>
+                    <pd>13: The <xref keyref="updateRtmpTranscoding"/> method was called to update transcoding properties when not using transcoding streaming. Please check your application logic.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonNetDown</pt>
+                    <pd>14: The broadcaster's network encountered an error.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamPublishReasonInvalidPrivilege</pt>
+                    <pd>16: Your project does not have permission to use the streaming service.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>rtmpStreamUnpublishReasonOk</pt>
+                    <pd>100: Streaming has ended normally. After you stop streaming, the SDK returns this value.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_OK</pt>
+                    <pd>0: Stream published successfully.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_INVALID_ARGUMENT</pt>
+                    <pd>1: Invalid parameters. Please check whether the input parameters are correct.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_ENCRYPTED_STREAM_NOT_ALLOWED</pt>
+                    <pd>2: The stream is encrypted and cannot be published.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_CONNECTION_TIMEOUT</pt>
+                    <pd>3: Stream publishing timed out and failed.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_INTERNAL_SERVER_ERROR</pt>
+                    <pd>4: An error occurred on the streaming server.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_RTMP_SERVER_ERROR</pt>
+                    <pd>5: An error occurred on the CDN server.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_TOO_OFTEN</pt>
+                    <pd>6: Streaming requests are too frequent.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_REACH_LIMIT</pt>
+                    <pd>7: The number of stream URLs for a single host has reached the limit of 10. Please delete some unused stream URLs before adding new ones.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_NOT_AUTHORIZED</pt>
+                    <pd>8: The host is operating on a stream that does not belong to them. For example, updating another host's stream parameters or stopping another host's stream. Please check your app logic.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_STREAM_NOT_FOUND</pt>
+                    <pd>9: The server could not find the stream.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_FORMAT_NOT_SUPPORTED</pt>
+                    <pd>10: The stream URL format is incorrect. Please check whether the stream URL format is correct.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_NOT_BROADCASTER</pt>
+                    <pd>11: The user role is not a broadcaster and cannot use the streaming function. Please check your application code logic.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_TRANSCODING_NO_MIX_STREAM</pt>
+                    <pd>13: Called the <xref keyref="updateRtmpTranscoding"/> method to update transcoding properties in a non-transcoding stream scenario. Please check your application code logic.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_NET_DOWN</pt>
+                    <pd>14: The host's network encountered an error.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_PUBLISH_REASON_INVALID_PRIVILEGE</pt>
+                    <pd>16: Your project does not have permission to use the streaming service.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>RTMP_STREAM_UNPUBLISH_REASON_OK</pt>
+                    <pd>100: Streaming ended normally. After you stop streaming, the SDK returns this value.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

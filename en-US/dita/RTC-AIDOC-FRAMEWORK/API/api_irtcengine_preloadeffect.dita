@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_preloadeffect">
+    <title><ph keyref="preloadEffect"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Loads the audio effect file into memory.</ph><ph id="shortdesc" props="rn">Loads the audio effect file into memory.</ph><ph id="shortdesc" props="flutter">Loads the audio effect file into memory.</ph><ph id="shortdesc" props="unity">Loads the audio effect into memory.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="preloadEffect"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract preloadEffect(
+    soundId: number,
+    filePath: string,
+    startPos?: number
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract preloadEffect(
+    soundId: number,
+    filePath: string,
+    startPos?: number
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; preloadEffect(
+    {required int soundId, required String filePath, int startPos = 0});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int PreloadEffect(int soundId, string filePath, int startPos = 0);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">To ensure smooth communication, be mindful of the size of the preloaded audio effect files.
+For supported audio formats, see [What audio formats are supported by the RTC SDK](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format).</p>
+            <p props="rn">To ensure smooth communication, pay attention to the size of the audio effect files you preload.
+Supported audio formats for preloading are listed in [Supported Audio Formats](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format).</p>
+            <p props="flutter">To ensure smooth communication, pay attention to the size of the preloaded audio effect file.
+Supported formats for preloading audio files are listed in [What audio formats are supported by the RTC SDK](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format).</p>
+            <p props="unity">To ensure smooth communication, pay attention to the size of the preloaded audio effect file.
+Supported audio formats for preloading can be found in [What audio formats does the RTC SDK support for playback](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format).</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">Agora recommends calling this method before joining a channel.</p>
+            <p props="rn">Agora recommends calling this method before joining a channel.</p>
+            <p props="flutter">Agora recommends calling this method before joining a channel.</p>
+            <p props="unity">Agora recommends calling this method before joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>soundId</pt>
+                    <pd>The ID of the audio effect. Each audio effect has a unique ID.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>filePath</pt>
+                    <pd>File path:
+                        <ul>
+                            <li>Windows: Absolute path or URL of the audio file, including the file name and extension. For example, <codeph>C:\music\audio.mp4</codeph>.</li>
+                            <li>macOS: Absolute path or URL of the audio file, including the file name and extension. For example, <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>startPos</pt>
+                    <pd>The start position for loading the audio effect file, in milliseconds.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>soundId</pt>
+                    <pd>The ID of the audio effect. Each audio effect has a unique ID.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>filePath</pt>
+                    <pd>File path:
+                        <ul>
+                            <li>Android: The file path must include the file name and extension. Supports URL of online files, URI of local files, absolute path, or paths starting with <codeph>/assets/</codeph>. Accessing local files via absolute path may require permissions. It is recommended to use URI to access local files. For example: <codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>.</li>
+                            <li>iOS: The absolute path or URL of the audio file. Must include the file name and extension. For example: <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>startPos</pt>
+                    <pd>The start position for loading the audio effect file, in milliseconds.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>soundId</pt>
+                    <pd>The ID of the audio effect. Each audio effect has a unique ID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>filePath</pt>
+                    <pd>File path:
+                        <ul>
+                            <li>Android: File path including file name and extension. Supports URL of online files, URI of local files, absolute paths, or paths starting with <codeph>/assets/</codeph>. Accessing local files via absolute path may cause permission issues. It is recommended to use URI to access local files. For example, <codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>.</li>
+                            <li>Windows: Absolute path or URL of the audio file, including file name and extension. For example, <codeph>C:\music\audio.mp4</codeph>.</li>
+                            <li>iOS or macOS: Absolute path or URL of the audio file, including file name and extension. For example, <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>startPos</pt>
+                    <pd>The start position for loading the audio effect file, in milliseconds.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>soundId</pt>
+                    <pd>The ID of the audio effect. Each audio effect has a unique ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>File path:
+                        <ul>
+                            <li>Android: File path including file name and extension. Supports online URLs, local file URI, absolute paths, or paths starting with <codeph>/assets/</codeph>. Accessing local files via absolute paths may cause permission issues. It is recommended to use URI, e.g., <codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>.</li>
+                            <li>Windows: Absolute path or URL of the audio file, including file name and extension. For example, <codeph>C:\music\audio.mp4</codeph>.</li>
+                            <li>iOS or macOS: Absolute path or URL of the audio file, including file name and extension. For example, <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>startPos</pt>
+                    <pd>The start position for loading the audio effect, in milliseconds.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Method call succeeds.</li>
+                    <li>&lt; 0: Method call failed. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

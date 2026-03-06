@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onlocalvideostatechanged">
+    <title><ph keyref="onLocalVideoStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Occurs when the local video state changes.</ph><ph id="shortdesc" props="rn">Callback when the local video state changes.</ph><ph id="shortdesc" props="flutter">Callback when the local video state changes.</ph><ph id="shortdesc" props="unity">Callback when the local video state changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalVideoStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onLocalVideoStateChanged?(
+    source: VideoSourceType,
+    state: LocalVideoStreamState,
+    reason: LocalVideoStreamReason
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onLocalVideoStateChanged?(
+    source: VideoSourceType,
+    state: LocalVideoStreamState,
+    reason: LocalVideoStreamReason
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(VideoSourceType source, LocalVideoStreamState state,
+    LocalVideoStreamReason reason)? onLocalVideoStateChanged;;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoStateChanged(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_REASON reason)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">The SDK triggers this callback when the local video state changes, reporting the current state and the reason for the change.</p>
+            <p props="rn">This callback is triggered by the SDK when the state of the local video changes, reporting the current state and the reason for the change.</p>
+            <p props="flutter">The SDK triggers this callback when the local video state changes, reporting the current state and the reason for the change.</p>
+            <p props="unity">This callback is triggered when the local video state changes. The SDK reports the current local video state and the reason for the change.</p>
+            <note props="electron">
+                <ul>
+                    <li>Frame duplication detection only applies to video frames with resolution greater than 200 × 200, frame rate ≥ 10 fps, and bitrate &lt; 20 Kbps.</li>
+                    <li>If an exception occurs during video capture, you can usually troubleshoot it using the <codeph>reason</codeph> parameter in this callback. However, on some devices, when a capture issue occurs (e.g., freeze), Android may not throw any error callback, so the SDK cannot report the reason for the local video state change. In this case, you can determine whether the capture has no frames by checking: this callback reports <codeph>state</codeph> as <codeph>LocalVideoStreamStateCapturing</codeph> or <codeph>LocalVideoStreamStateEncoding</codeph>, and the <codeph>captureFrameRate</codeph> in the <xref keyref="onLocalVideoStats"/> callback is 0.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>Frame duplication detection only applies to video frames with resolution greater than 200 × 200, frame rate ≥ 10 fps, and bitrate less than 20 Kbps.</li>
+                    <li>If an exception occurs during video capture, you can usually troubleshoot the issue using the <codeph>reason</codeph> parameter in this callback. However, on some devices, when capture issues occur (e.g., freezing), Android may not throw any error callbacks, so the SDK cannot report the reason for the local video state change. In this case, you can determine whether there are no captured frames by checking if this callback reports <codeph>state</codeph> as <codeph>LocalVideoStreamStateCapturing</codeph> or <codeph>LocalVideoStreamStateEncoding</codeph>, and the <codeph>captureFrameRate</codeph> in the <xref keyref="onLocalVideoStats"/> callback is 0.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>Frame duplication detection only applies to video frames with resolution greater than 200 × 200, frame rate ≥ 10 fps, and bitrate &lt; 20 Kbps.</li>
+                    <li>If an exception occurs during video capture, in most cases you can troubleshoot it using the <codeph>reason</codeph> parameter in this callback. However, on some devices, when capture issues occur (e.g., freezing), the Android system does not throw any error callbacks, so the SDK cannot report the reason for the local video state change. In this case, you can determine whether no frames are being captured by checking if this callback reports <codeph>state</codeph> as <codeph>localVideoStreamStateCapturing</codeph> or <codeph>localVideoStreamStateEncoding</codeph>, and the <codeph>captureFrameRate</codeph> in the <xref keyref="onLocalVideoStats"/> callback is 0.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>Frame duplication detection applies only to video frames with resolution greater than 200 × 200, frame rate ≥ 10 fps, and bitrate less than 20 Kbps.</li>
+                    <li>If an exception occurs during video capture, normally you can troubleshoot via the <codeph>reason</codeph> parameter in this callback. However, on some devices, when capture issues occur (e.g., freeze), Android may not throw any error callback, so the SDK cannot report the reason for local video state changes. In this case, you can determine whether frames are being captured by checking if this callback reports <codeph>state</codeph> as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> or <codeph>LOCAL_VIDEO_STREAM_STATE_ENCODING</codeph>, and the <codeph>captureFrameRate</codeph> in the <xref keyref="onLocalVideoStats"/> callback is 0.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Trigger Timing</title>
+            <p props="electron">
+                <ul>
+                    <li>The SDK triggers this callback in the following situations, with <codeph>state</codeph> as <codeph>LocalVideoStreamStateFailed</codeph> and <codeph>reason</codeph> as <codeph>LocalVideoStreamReasonCaptureFailure</codeph>:
+                        <ul>
+                            <li>The app goes to the background and the system reclaims the camera.</li>
+                            <li>The camera starts normally, but no captured video is output for 4 consecutive seconds.</li>
+                        </ul>
+                    </li>
+                    <li>When the camera outputs captured video frames, if the SDK detects 15 consecutive duplicate frames, it triggers this callback with <codeph>state</codeph> as <codeph>LocalVideoStreamStateCapturing</codeph> and <codeph>reason</codeph> as <codeph>LocalVideoStreamReasonCaptureFailure</codeph>.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>The SDK triggers this callback with <codeph>state</codeph> as <codeph>LocalVideoStreamStateFailed</codeph> and <codeph>reason</codeph> as <codeph>LocalVideoStreamReasonCaptureFailure</codeph> in the following situations:
+                        <ul>
+                            <li>The app goes to the background and the system reclaims the camera.</li>
+                            <li>On Android 9 and above, when the app stays in the background for a while, the system revokes camera permission.</li>
+                            <li>On Android 6 and above, if the camera is occupied by a third-party app for a while and then released, the SDK triggers this callback and reports <xref keyref="onLocalVideoStateChanged"/>(<codeph>LocalVideoStreamStateCapturing, LocalVideoStreamReasonOk</codeph>).</li>
+                            <li>The camera starts normally, but no captured video is output for 4 consecutive seconds.</li>
+                        </ul>
+                    </li>
+                    <li>When the camera outputs captured video frames, if the SDK detects 15 consecutive duplicate frames, it triggers this callback with <codeph>state</codeph> as <codeph>LocalVideoStreamStateCapturing</codeph> and <codeph>reason</codeph> as <codeph>LocalVideoStreamReasonCaptureFailure</codeph>.</li>
+                </ul>
+            </p>
+            <p props="flutter">
+                <ul>
+                    <li>The SDK triggers this callback with <codeph>state</codeph> as <codeph>localVideoStreamStateFailed</codeph> and <codeph>reason</codeph> as <codeph>localVideoStreamReasonCaptureFailure</codeph> in the following cases:
+                        <ul>
+                            <li>The app moves to the background and the system reclaims the camera.</li>
+                            <li>On Android 9 and above, the system revokes camera permission after the app stays in the background for a while.</li>
+                            <li>On Android 6 and above, if the camera is occupied by a third-party app for a while and then released, the SDK triggers this callback and reports <codeph>onLocalVideoStateChanged(localVideoStreamStateCapturing, localVideoStreamReasonOk)</codeph>.</li>
+                            <li>The camera starts normally, but no video is captured for 4 consecutive seconds.</li>
+                        </ul>
+                    </li>
+                    <li>When the camera outputs video frames, if the SDK detects 15 consecutive duplicate frames, it triggers this callback with <codeph>state</codeph> as <codeph>localVideoStreamStateCapturing</codeph> and <codeph>reason</codeph> as <codeph>localVideoStreamReasonCaptureFailure</codeph>.</li>
+                </ul>
+            </p>
+            <p props="unity">
+                <ul>
+                    <li>The SDK triggers this callback in the following cases with <codeph>state</codeph> as <codeph>LOCAL_VIDEO_STREAM_STATE_FAILED</codeph> and <codeph>reason</codeph> as <codeph>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE</codeph>:
+                        <ul>
+                            <li>The app goes to the background and the system reclaims the camera.</li>
+                            <li>On Android 9 and above, after the app stays in the background for a while, the system revokes camera permissions.</li>
+                            <li>On Android 6 and above, if the camera is occupied by a third-party app for a while and then released, the SDK triggers this callback and reports <xref keyref="onLocalVideoStateChanged"/>(<codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>, <codeph>LOCAL_VIDEO_STREAM_REASON_OK</codeph>).</li>
+                            <li>The camera starts normally but does not output captured video for 4 consecutive seconds.</li>
+                        </ul>
+                    </li>
+                    <li>When the camera outputs captured video frames, if the SDK detects 15 consecutive duplicate frames, it triggers this callback with <codeph>state</codeph> as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> and <codeph>reason</codeph> as <codeph>LOCAL_VIDEO_STREAM_REASON_CAPTURE_FAILURE</codeph>.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>source</pt>
+                    <pd>The type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>state</pt>
+                    <pd>The local video state. See <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>reason</pt>
+                    <pd>The reason for the local video state change. See <xref keyref="LOCAL_VIDEO_STREAM_REASON"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>source</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>state</pt>
+                    <pd>Local video state. See <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>reason</pt>
+                    <pd>Reason for the local video state change. See <xref keyref="LOCAL_VIDEO_STREAM_REASON"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>source</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>state</pt>
+                    <pd>Local video state. See <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>reason</pt>
+                    <pd>Reason for the local video state change. See <xref keyref="LOCAL_VIDEO_STREAM_REASON"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>source</pt>
+                    <pd>Type of video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>state</pt>
+                    <pd>Local video state. See <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>reason</pt>
+                    <pd>Reason for the local video state change. See <xref keyref="LOCAL_VIDEO_STREAM_REASON"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onconnectionlost">
+    <title><ph keyref="onConnectionLost"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Occurs when the network connection is lost and the SDK fails to reconnect to the server within 10 seconds.</ph><ph id="shortdesc" props="rn">Callback when the network connection is lost and the SDK cannot reconnect to the server within 10 seconds.</ph><ph id="shortdesc" props="flutter">Callback when the network connection is lost and the SDK fails to reconnect to the server within 10 seconds.</ph><ph id="shortdesc" props="unity">Callback when the network connection is lost and the SDK fails to reconnect to the server within 10 seconds.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onConnectionLost"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onConnectionLost?(connection: RtcConnection): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onConnectionLost?(connection: RtcConnection): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection)? onConnectionLost;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnConnectionLost(RtcConnection connection) {}</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">After calling <xref keyref="joinChannel2"/>, regardless of whether the channel is joined successfully, if the SDK fails to connect to the server within 10 seconds, this callback is triggered. If the SDK still fails to rejoin the channel within 20 minutes after disconnection, it will stop trying to reconnect.</p>
+            <p props="rn">After calling <xref keyref="joinChannel2"/>, this callback is triggered if the SDK fails to connect to the server within 10 seconds, regardless of whether the channel is joined successfully. If the SDK fails to rejoin the channel within 20 minutes after disconnection, it will stop trying to reconnect.</p>
+            <p props="flutter">After calling <xref keyref="joinChannel2"/>, this callback is triggered if the SDK cannot connect to the server within 10 seconds, regardless of whether the user has joined the channel successfully. If the SDK still fails to rejoin the channel within 20 minutes after disconnection, it stops trying to reconnect.</p>
+            <p props="unity">After calling <xref keyref="joinChannel2"/>, this callback is triggered if the SDK fails to connect to the server within 10 seconds, regardless of whether the channel was successfully joined. If the SDK fails to rejoin the channel within 20 minutes after disconnection, it stops trying to reconnect.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

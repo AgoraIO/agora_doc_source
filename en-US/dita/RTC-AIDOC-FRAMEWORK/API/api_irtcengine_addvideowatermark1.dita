@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_addvideowatermark1">
+    <title><ph keyref="addVideoWatermark1"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Adds a local video watermark.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addVideoWatermark1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int AddVideoWatermark(RtcImage watermark);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <dl outputclass="deprecated">
+                <dlentry props="unity">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated: This method is deprecated. Use <xref keyref="addVideoWatermark3"/> instead.</dd>
+                </dlentry>
+            </dl>
+            <p props="unity">This method adds a PNG image as a watermark to the local published live video stream. Users in the same live channel, CDN audience, and even capture devices can see or capture the watermark image. If you only want to add a watermark in CDN streaming, refer to the usage described in <xref keyref="startRtmpStreamWithTranscoding"/>.</p>
+            <note props="unity">
+                <ul>
+                    <li>The definition of URL differs between local live streaming and CDN streaming. In local live streaming, the URL refers to the absolute/relative local path of the image on the local video; in CDN streaming, the URL refers to the address of the image on the CDN stream.</li>
+                    <li>The source file format of the image to be added must be PNG. If the size of the PNG image differs from the size set in this method, the SDK will crop the PNG image to match the settings.</li>
+                    <li>Only one watermark is supported in the live video stream. Adding a new watermark will replace the previous one.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>watermark</pt>
+                    <pd>The watermark image to be added to the local live stream: <xref keyref="RtcImage"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

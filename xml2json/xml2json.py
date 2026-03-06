@@ -8,6 +8,7 @@ from os import path
 import os
 import logging
 import sys
+import io
 
 import argparse
 
@@ -55,6 +56,11 @@ parser.add_argument(
     "--remove_sdk_type", help="DEPRECATED: Use platform_tag and --old_sdk. Your remove SDK type: sdk or sdk-ng",
     action="store", required=False
 )
+parser.add_argument(
+    "--name_groups_file", 
+    help="Path to name_groups JSON file for filtering APIs (optional)",
+    action="store", required=False
+)
 args = vars(parser.parse_args())
 
 localLogger = logging
@@ -62,6 +68,96 @@ localLogger = logging
 # rust_full_path
 # cpp_full_path
 # Other types of full path
+
+def load_name_groups(file_path):
+    """Load name_groups JSON file"""
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def extract_api_key_from_filename(filename):
+    """
+    Extract API key from DITA filename
+    Example: api_irtcengine_initialize.dita -> initialize
+    """
+    # Remove .dita extension and api_ prefix
+    name = filename.replace('.dita', '')
+    # Handle patterns like api_irtcengine_xxx or api_imusiccontentcenter_xxx
+    parts = name.split('_')
+    if len(parts) >= 3 and parts[0] == 'api':
+        # Return everything after the class name
+        return '_'.join(parts[2:])
+    return name
+
+def filter_by_name_groups(file_list, name_groups, platform, filename_to_keys=None):
+    """
+    Filter file list based on name_groups mappings
+    Keep only files where:
+    1. The key exists in name_groups["api"], name_groups["struct"], or name_groups["enum"]
+    2. The key has a mapping for the specific platform
+    
+    Args:
+        file_list: List of DITA filenames
+        name_groups: Dictionary containing name_groups mappings with "api", "struct", and "enum" keys
+        platform: Platform tag (e.g., 'electron', 'flutter')
+        filename_to_keys: Optional mapping from filename to keydef keys from ditamap
+    """
+    api_mappings = name_groups.get('api', {})
+    struct_mappings = name_groups.get('struct', {})
+    enum_mappings = name_groups.get('enum', {})
+    filtered_list = []
+    
+    for filename in file_list:
+        # Determine file type based on filename prefix
+        file_type = None
+        if filename.startswith('api_'):
+            file_type = 'api'
+            mappings = api_mappings
+        elif filename.startswith('class_'):
+            file_type = 'struct'
+            mappings = struct_mappings
+        elif filename.startswith('enum_'):
+            file_type = 'enum'
+            mappings = enum_mappings
+        else:
+            # Unknown file type, skip filtering (keep it)
+            localLogger.debug(f"Unknown file type for {filename}, keeping it")
+            filtered_list.append(filename)
+            continue
+        
+        # Use keydef keys from ditamap if available (exact case match), otherwise fall back to filename extraction
+        if filename_to_keys and filename in filename_to_keys:
+            key = filename_to_keys[filename]
+        else:
+            # Fallback to extracting from filename (for backward compatibility)
+            if file_type == 'api':
+                key = extract_api_key_from_filename(filename)
+            else:
+                # For class and enum, extract key from filename
+                # class_irtcengine.dita -> IRtcEngine
+                # enum_alphastitchmode.dita -> ALPHA_STITCH_MODE
+                name = filename.replace('.dita', '')
+                if file_type == 'struct':
+                    # class_irtcengine -> IRtcEngine (convert to PascalCase)
+                    parts = name.replace('class_', '').split('_')
+                    key = ''.join(word.capitalize() for word in parts)
+                else:  # enum
+                    # enum_alphastitchmode -> ALPHA_STITCH_MODE (convert to UPPER_SNAKE_CASE)
+                    parts = name.replace('enum_', '').split('_')
+                    key = '_'.join(parts).upper()
+            localLogger.debug(f"Using extracted key from filename for {filename}: {key}")
+        
+        # Check if key exists and has platform mapping
+        if key in mappings:
+            platform_mapping = mappings[key]
+            if platform in platform_mapping:
+                filtered_list.append(filename)
+                localLogger.debug(f"Keeping {filename} (type: {file_type}, key: {key})")
+            else:
+                localLogger.debug(f"Filtering out {filename} (no {platform} mapping for {file_type} key {key})")
+        else:
+            localLogger.debug(f"Filtering out {filename} ({file_type} key {key} not in name_groups)")
+    
+    return filtered_list
 
 def main():
     # Required tags
@@ -140,13 +236,35 @@ def main():
 
     dita_file_root = dita_file_tree.getroot()
     rust_topicref_list = []
+    # Build a mapping from filename to keydef keys for accurate key matching
+    filename_to_keys = {}
     for topicref in dita_file_root.iter("keydef"):
         if topicref.get("href") is not None:
             path_new = path.basename(topicref.get("href"))
+            keys_attr = topicref.get("keys")
+            if keys_attr:
+                filename_to_keys[path_new] = keys_attr.strip()
             localLogger.debug(path_new)
             rust_topicref_list.append(path_new)
 
     logLines(localLogger.debug, "Topic ref list", rust_topicref_list)
+
+    # Filter file list (APIs, structs, enums) based on name_groups file if provided
+    name_groups_file = args['name_groups_file']
+    if name_groups_file:
+        # Resolve relative path if needed
+        if not path.isabs(name_groups_file):
+            name_groups_file = path.join(path.dirname(__file__), name_groups_file)
+        localLogger.info(f"Filtering files using name_groups file: {name_groups_file}")
+        name_groups = load_name_groups(name_groups_file)
+        original_count = len(rust_topicref_list)
+        rust_topicref_list = filter_by_name_groups(rust_topicref_list, name_groups, platform_tag, filename_to_keys)
+        filtered_count = len(rust_topicref_list)
+        # Count by type for better logging
+        api_count = len([f for f in rust_topicref_list if f.startswith('api_')])
+        struct_count = len([f for f in rust_topicref_list if f.startswith('class_')])
+        enum_count = len([f for f in rust_topicref_list if f.startswith('enum_')])
+        localLogger.info(f"Filtered {original_count} files down to {filtered_count} files (removed {original_count - filtered_count}): {api_count} APIs, {struct_count} structs, {enum_count} enums")
 
     json_hide_id_list = []
     # Collect the hide API which mark props="hide" or "cn" in <topichead> or <keydef>
@@ -253,23 +371,32 @@ def combine_text_sections(base_text: str, sections: Generator[str, None, None]) 
 
 def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_type, remove_sdk_type, language, json_hide_id_list):
 
-    text = ""
-
-    with open(file_dir, "r", encoding='utf-8') as f:
-        text= f.read()
-        text = re.sub('>\s+(?=<)', '>', text)
-
-        #text = re.sub('<ph',' <ph', text)
-        #text = re.sub('<apiname',' <apiname', text)
-        #text = re.sub('<codeph',' <codeph', text)
-        #text = re.sub('<parmname',' <parmname', text)  
-
-    with open(file_dir, "w", encoding='utf-8') as f:
-        f.write(text)
-
     localLogger.info("------- Parsing file in " + file_dir + " -------")
-    tree = ET.parse(file_dir)
+    
+    # Parse ditamap once and cache keydef lookup dictionary
+    dita_file_tree = ET.parse(defined_path)
+    dita_file_root = dita_file_tree.getroot()
+    keydef_dict = {}
+    for keydef in dita_file_root.iter("keydef"):
+        keys = keydef.get("keys")
+        if keys:
+            keydef_dict[keys.strip()] = {
+                'href': keydef.get("href"),
+                'text': "".join(keydef.itertext()).strip()
+            }
+    
+    # Parse dita file without modifying the original file
+    # Use StringIO to simulate file reading after whitespace removal for XML parsing
+    with open(file_dir, "r", encoding='utf-8') as f:
+        text = f.read()
+        # Remove whitespace between tags only for parsing, but don't write back to file
+        text_for_parsing = re.sub('>\s+(?=<)', '>', text)
+    
+    tree = ET.parse(io.StringIO(text_for_parsing))
     root = tree.getroot()
+    
+    # Build parent map once
+    parent_map = {c: p for p in tree.iter() for c in p}
 
     # Iterate over all dita files
     #
@@ -293,10 +420,8 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
     # The following one-liner is suggested (updated from the linked-to post to Python 3.8) to create a child-to-parent mapping for a whole tree,
     # using the method xml.etree.ElementTree.Element.iter:
     #
-    # parent_map = {c: p for p in tree.iter() for c in p}
     # Tag filtering 01, there is a second copy ahead
     # When you update this code, remember copy the code to 02!!!!!!!!!!!!!!!!!!!!!!!
-    parent_map = {c: p for p in tree.iter() for c in p}
     for child in root.iter('*'):
         if should_remove(platform_tag, child.get("props"), remove_sdk_type, language):
             logLines(localLogger.debug, "Tag to remove1", child, child.text, child.tag, child.get("id"))
@@ -389,35 +514,27 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
                 else:
                     ref = ""
                 # Assume that a conkeyref contains only two levels
-                dita_file_tree = ET.parse(defined_path)
-                dita_file_root = dita_file_tree.getroot()
+                # Use cached keydef dictionary
                 href_text = ""
-                for keydef in dita_file_root.iter("keydef"):
-                    if keydef.get("keys") == key:
-                        href_text = keydef.get("href")
+                if key in keydef_dict:
+                    href_text = keydef_dict[key]['href'] or ""
                 logLines(localLogger.debug, "href text", href_text)
 
-                final_parent = child
+                # Get the parent from parent_map
+                final_parent = parent_map.get(child, None)
+                if final_parent is None:
+                    localLogger.debug("Could not find parent for child")
+                    continue
 
-                # Get the parent old child
-                for parent in root.iter('*'):
-                    for d in parent.iterfind(child.tag):
-                        if d is child:
-                            localLogger.debug("Found child innit")
-                            final_parent = parent
-
-                if sys.platform == 'darwin' or sys.platform == 'linux':
-                    localLogger.debug("macOS")
-                    if href_text:
-                        dir = path.join(working_dir, href_text.replace("../", ""))
+                # Normalize path handling for all platforms
+                if href_text:
+                    normalized_href = href_text.replace("../", "")
+                    if sys.platform == 'win32':
+                        dir = path.join(working_dir, normalized_href).replace("/", "\\")
                     else:
-                        dir = None
-                elif sys.platform == 'win32':
-                    localLogger.debug("Windows")
-                    if href_text is not None and href_text != "":
-                        dir = path.join(working_dir, href_text.replace("../", "")).replace("/", "\\")
-                    else:
-                        dir = None
+                        dir = path.join(working_dir, normalized_href)
+                else:
+                    dir = None
                 if dir is not None:
                     localLogger.debug(dir)
                     new_dita_file_tree = ET.parse(dir)
@@ -465,63 +582,27 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
     #
     # CPP
     for apiname in root.iter("apiname"):
-        # localLogger.debug(xref.get("keyref"))
-        # For each xref, perform the following operations:
-        # 1. Get the ditamap file per platform
-        # 2. Extract href text from ditamap
-        # 3. Set href text in current dita
-        href_text = ""
         if apiname.get("keyref") is not None:
-            # xref.text = str(xref.get("keyref"))
-            # ET.SubElement(xref, "text")
-            # dita_file_tree = ET.parse(defined_path)
-            dita_file_tree = ET.parse(defined_path)
-            dita_file_root = dita_file_tree.getroot()
-            for keydef in dita_file_root.iter("keydef"):
-                if keydef.get("keys").strip() == apiname.get("keyref").strip():
-                    href_text = "".join(keydef.itertext()).strip()
-                    logLines(localLogger.debug, "apiname text", href_text.strip())
-            apiname.text = href_text.strip()
+            keyref = apiname.get("keyref").strip()
+            href_text = keydef_dict.get(keyref, {}).get('text', '')
+            logLines(localLogger.debug, "apiname text", href_text.strip())
+            apiname.text = href_text
             localLogger.debug(apiname.text)
 
     for apiname in root.iter("parmname"):
-        # localLogger.debug(xref.get("keyref"))
-        # For each xref, perform the following operations:
-        # 1. Get the ditamap file per platform
-        # 2. Extract href text from ditamap
-        # 3. Set href text in current dita
-        href_text = ""
         if apiname.get("keyref") is not None:
-            # xref.text = str(xref.get("keyref"))
-            # ET.SubElement(xref, "text")
-            # dita_file_tree = ET.parse(defined_path)
-            dita_file_tree = ET.parse(defined_path)
-            dita_file_root = dita_file_tree.getroot()
-            for keydef in dita_file_root.iter("keydef"):
-                if keydef.get("keys").strip() == apiname.get("keyref").strip():
-                    href_text = "".join(keydef.itertext()).strip()
+            keyref = apiname.get("keyref").strip()
+            href_text = keydef_dict.get(keyref, {}).get('text', '')
             logLines(localLogger.debug, "parmname text", href_text.strip())
-            apiname.text = href_text.strip()
+            apiname.text = href_text
             localLogger.debug(apiname.text)
 
     for pt in root.iter("ph"):
-        # localLogger.debug(xref.get("keyref"))
-        # For each xref, perform the following operations:
-        # 1. Get the ditamap file per platform
-        # 2. Extract href text from ditamap
-        # 3. Set href text in current dita
-        href_text = ""
         if pt.get("keyref") is not None:
-            # xref.text = str(xref.get("keyref"))
-            # ET.SubElement(xref, "text")
-            # dita_file_tree = ET.parse(defined_path)
-            dita_file_tree = ET.parse(defined_path)
-            dita_file_root = dita_file_tree.getroot()
-            for keydef in dita_file_root.iter("keydef"):
-                if keydef.get("keys").strip() == pt.get("keyref").strip():
-                    href_text = "".join(keydef.itertext()).strip()
+            keyref = pt.get("keyref").strip()
+            href_text = keydef_dict.get(keyref, {}).get('text', '')
             logLines(localLogger.debug, "pt text", href_text.strip())
-            pt.text = href_text.strip()
+            pt.text = href_text
             localLogger.debug(pt.text)
 
     # Android
@@ -541,25 +622,11 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
 
     # xref with keyref
     for xref in root.iter("xref"):
-        # localLogger.debug(xref.get("keyref"))
-        # For each xref, perform the following operations:
-        # 1. Get the ditamap file per platform
-        # 2. Extract href text from ditamap
-        # 3. Set href text in current dita
-        href_text = ""
         if xref.get("keyref") is not None:
-            # TODO: Change xref keyref bits
-            # xref.text = str(xref.get("keyref"))
-            # ET.SubElement(xref, "text")
-            # dita_file_tree = ET.parse(defined_path)
-            dita_file_tree = ET.parse(defined_path)
-            dita_file_root = dita_file_tree.getroot()
-            for keydef in dita_file_root.iter("keydef"):
-                if keydef.get("keys") == xref.get("keyref"):
-                    # TODO: At the right map level, fetch href
-                    # keydef.get("href") -> "../API/api_imediaplayercachemanager_getmaxcachefilesize.dita"
-                    # open that file, find matching codeblock text for obj-c
-                    xref.text = "".join(text.strip() for text in keydef.itertext())
+            keyref = xref.get("keyref")
+            href_text = keydef_dict.get(keyref, {}).get('text', '')
+            if href_text:
+                xref.text = href_text
 
         # xref with href
         # Example:
@@ -587,15 +654,8 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
                         ph_tag_key = ph_tag.get("keyref")
                         logLines(localLogger.debug, "WWW PH Tag KEY WWW", ph_tag_key)
 
-                        dita_file_tree = ET.parse(defined_path)
-                        dita_file_root = dita_file_tree.getroot()
-                        href_text += ''.join(
-                            text
-                            for keydef in dita_file_root.iter("keydef")
-                            if keydef.get("keys") == ph_tag_key
-                            for text in keydef.itertext()
-                            if text
-                        )
+                        if ph_tag_key and ph_tag_key in keydef_dict:
+                            href_text += keydef_dict[ph_tag_key]['text']
                         break
 
                 xref.text = href_text
@@ -615,15 +675,16 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
                 dita_file_root = dita_file_tree.getroot()
 
                 title = dita_file_root.find("./title/ph")
-                if title.text is not None:
-                    title_text = title.text
-                elif title.get("keyref") is not None:
-                    # dita_file_tree = ET.parse(defined_path)
-                    dita_file_tree = ET.parse(defined_path)
-                    dita_file_root = dita_file_tree.getroot()
-                    for keydef in dita_file_root.iter("keydef"):
-                        if keydef.get("keys").strip() == title.get("keyref").strip():
-                            title_text = "".join(keydef.itertext())
+                if title is not None:
+                    if title.text is not None:
+                        title_text = title.text
+                    elif title.get("keyref") is not None:
+                        keyref = title.get("keyref").strip()
+                        title_text = keydef_dict.get(keyref, {}).get('text', '')
+                    else:
+                        title_text = ""
+                else:
+                    title_text = ""
                 xref.text = title_text.strip()
 
 
@@ -636,20 +697,28 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
             # dita_file_root = dita_file_tree.getroot()
 
     # Tag filtering 2
-    # Do tag filtering, 5 times
+    # Do tag filtering, 5 times (reuse parent_map built earlier)
     filter = 5
     while filter > 0:
-        parent_map = {c: p for p in tree.iter() for c in p}
-        for child in root.iter('*'):
-            if should_remove(platform_tag, child.get("props"), remove_sdk_type, language):
+        # Rebuild parent_map only if tree structure changed
+        if filter == 5:
+            parent_map = {c: p for p in tree.iter() for c in p}
+        else:
+            # Rebuild parent_map after removals
+            parent_map = {c: p for p in tree.iter() for c in p}
+        for child in list(root.iter('*')):  # Use list() to avoid modification during iteration
+            if child in parent_map and should_remove(platform_tag, child.get("props"), remove_sdk_type, language):
                 logLines(localLogger.debug, "Tag to remove 3", child, child.text, child.tag, child.get("props"))
                 if child.tail and child.tail.strip():
                     preserved_tail = child.tail
                     # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
                     child.clear()
                     child.tail = preserved_tail
-                else:
-                    parent_map[child].remove(child)
+                elif child in parent_map:
+                    try:
+                        parent_map[child].remove(child)
+                    except (ValueError, KeyError):
+                        pass  # Element already removed
         filter -= 1
 
     # Adds newlines at the start of smaller 'li' sections
@@ -670,6 +739,16 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
     # Get API ID
     api_id = root.attrib
     api_id = api_id.get("id")
+    
+    # Clean up duplicate parent class in id if present
+    if api_id:
+        id_parts = api_id.split("_")
+        if len(id_parts) == 4 and id_parts[1] == id_parts[3]:
+            # Remove the duplicate parent class (fourth segment)
+            original_id = api_id
+            api_id = "_".join(id_parts[:3])
+            localLogger.debug(f"Cleaned duplicate parent class from id: {original_id} -> {api_id}")
+    
     logLines(localLogger.debug, "App ID", api_id)
 
     # Get API name

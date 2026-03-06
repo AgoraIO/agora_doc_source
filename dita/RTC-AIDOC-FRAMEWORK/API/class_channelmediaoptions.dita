@@ -69,6 +69,14 @@
   customVideoTrackId?: number;
 
   isAudioFilterable?: boolean;
+
+  enableMultipath?: boolean;
+
+  uplinkMultipathMode?: MultipathMode;
+
+  downlinkMultipathMode?: MultipathMode;
+
+  preferMultipathType?: MultipathType;
 }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript">export class ChannelMediaOptions {
 
@@ -135,6 +143,14 @@
   customVideoTrackId?: number;
 
   isAudioFilterable?: boolean;
+
+  enableMultipath?: boolean;
+
+  uplinkMultipathMode?: MultipathMode;
+
+  downlinkMultipathMode?: MultipathMode;
+
+  preferMultipathType?: MultipathType;
 }</codeblock>
                 <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class ChannelMediaOptions {
@@ -281,6 +297,14 @@ class ChannelMediaOptions {
 
   @JsonKey(name: 'isAudioFilterable')
   final bool? isAudioFilterable;
+  @JsonKey(name: 'enableMultipath')
+  final bool? enableMultipath;
+  @JsonKey(name: 'uplinkMultipathMode')
+  final MultipathMode? uplinkMultipathMode;
+  @JsonKey(name: 'downlinkMultipathMode')
+  final MultipathMode? downlinkMultipathMode;
+  @JsonKey(name: 'preferMultipathType')
+  final MultipathType? preferMultipathType;
 
   @JsonKey(name: 'parameters')
   final String? parameters;
@@ -323,7 +347,11 @@ class ChannelMediaOptions {
         public Optional&lt;bool&gt; publishRhythmPlayerTrack = new Optional&lt;bool&gt;();
         public Optional&lt;bool&gt; isInteractiveAudience = new Optional&lt;bool&gt;();
         public Optional&lt;video_track_id_t&gt; customVideoTrackId = new Optional&lt;video_track_id_t&gt;();
-        public Optional&lt;bool&gt; isAudioFilterable = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; isAudioFilterable;
+        public Optional&lt;bool&gt; enableMultipath;
+        public Optional&lt;MultipathMode&gt; uplinkMultipathMode;
+        public Optional&lt;MultipathMode&gt; downlinkMultipathMode;
+        public Optional&lt;MultipathType&gt; preferMultipathType = new Optional&lt;bool&gt;();
 
    }</codeblock>
             </p>
@@ -638,6 +666,41 @@ class ChannelMediaOptions {
                         </ul>
                     </pd>
                 </plentry>
+                <plentry props="electron">
+                    <pt>enableMultipath</pt>
+                    <pd>
+                        <note>权限和系统要求：
+                            <ul>
+                                <li>Android：Android 7.0 或更高版本（API 级别 24 或更高），需要 ACCESS_NETWORK_STATE 和 CHANGE_NETWORK_STATE 权限。</li>
+                                <li>iOS：iOS 12.0 或更高版本。</li>
+                                <li>macOS：10.14 或更高版本。</li>
+                                <li>Windows：Windows Vista 或更高版本。</li>
+                            </ul>
+                        </note><ph>是否启用多路径传输：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：启用多路径传输。</li>
+                            <li><xref keyref="false"/>：禁用多路径传输。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uplinkMultipathMode</pt>
+                    <pd>上行传输模式。详见 <xref keyref="MultipathMode"/>。
+                        <note>使用该参数时，请确保已将 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>downlinkMultipathMode</pt>
+                    <pd>下行传输模式。详见 <xref keyref="MultipathMode"/>。
+                        <note>使用该参数时，请确保已将 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>preferMultipathType</pt>
+                    <pd>首选的传输路径类型。详见 <xref keyref="MultipathType"/>。
+                        <note>使用该参数时，请确保已将 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
+                </plentry>
                 <plentry props="rn">
                     <pt>publishCameraTrack</pt>
                     <pd>设置是否发布摄像头采集的视频：
@@ -888,6 +951,41 @@ class ChannelMediaOptions {
                             <li><xref keyref="true"/>：参与音强选流。如未开启音强选流功能，该参数不会生效。</li>
                             <li><xref keyref="false"/>：不参与音强选流。</li>
                         </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enableMultipath</pt>
+                    <pd>
+                        <note>权限和系统要求：
+                            <ul>
+                                <li>Android：Android 7.0 或更高版本（API 级别 24 或更高），需要 ACCESS_NETWORK_STATE 和 CHANGE_NETWORK_STATE 权限。</li>
+                                <li>iOS：iOS 12.0 或更高版本。</li>
+                                <li>macOS：10.14 或更高版本。</li>
+                                <li>Windows：Windows Vista 或更高版本。</li>
+                            </ul>
+                        </note><ph>是否启用多路径传输：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：启用多路径传输。</li>
+                            <li><xref keyref="false"/>：禁用多路径传输。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uplinkMultipathMode</pt>
+                    <pd>上行传输模式。详见 <xref keyref="MultipathMode"/>。
+                        <note>使用该参数时，请确保已将 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>downlinkMultipathMode</pt>
+                    <pd>下行传输模式。详见 <xref keyref="MultipathMode"/>。
+                        <note>使用该参数时，请确保已将 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>preferMultipathType</pt>
+                    <pd>首选的传输路径类型。详见 <xref keyref="MultipathType"/>。
+                        <note>使用该参数时，请确保已将 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
                     </pd>
                 </plentry>
                 <plentry props="flutter">
@@ -1174,6 +1272,41 @@ class ChannelMediaOptions {
                         </ul>
                     </pd>
                 </plentry>
+                <plentry props="flutter">
+                    <pt>enableMultipath</pt>
+                    <pd>
+                        <note>权限和系统要求：
+                            <ul>
+                                <li>Android：Android 7.0 或更高版本（API 级别 24 或更高），需要 ACCESS_NETWORK_STATE 和 CHANGE_NETWORK_STATE 权限。</li>
+                                <li>iOS：iOS 12.0 或更高版本。</li>
+                                <li>macOS：10.14 或更高版本。</li>
+                                <li>Windows：Windows Vista 或更高版本。</li>
+                            </ul>
+                        </note><ph>是否启用多路径传输：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：启用多路径传输。</li>
+                            <li><xref keyref="false"/>：禁用多路径传输。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uplinkMultipathMode</pt>
+                    <pd>上行传输模式。详见 <xref keyref="MultipathMode"/>。
+                        <note>使用该参数时，请确保已将 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>downlinkMultipathMode</pt>
+                    <pd>下行传输模式。详见 <xref keyref="MultipathMode"/>。
+                        <note>使用该参数时，请确保已将 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>preferMultipathType</pt>
+                    <pd>首选的传输路径类型。详见 <xref keyref="MultipathType"/>。
+                        <note>使用该参数时，请确保已将 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
+                </plentry>
                 <plentry props="unity">
                     <pt>publishCameraTrack</pt>
                     <pd>设置是否发布摄像头采集的视频：
@@ -1458,6 +1591,41 @@ class ChannelMediaOptions {
                             <li><xref keyref="true"/>：参与音强选流。如未开启音强选流功能，该参数不会生效。</li>
                             <li><xref keyref="false"/>：不参与音强选流。</li>
                         </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enableMultipath</pt>
+                    <pd>
+                        <note>权限和系统要求：
+                            <ul>
+                                <li>Android：Android 7.0 或更高版本（API 级别 24 或更高），需要 ACCESS_NETWORK_STATE 和 CHANGE_NETWORK_STATE 权限。</li>
+                                <li>iOS：iOS 12.0 或更高版本。</li>
+                                <li>macOS：10.14 或更高版本。</li>
+                                <li>Windows：Windows Vista 或更高版本。</li>
+                            </ul>
+                        </note><ph>是否启用多路径传输：</ph>
+                        <ul>
+                            <li><xref keyref="true"/>：启用多路径传输。</li>
+                            <li><xref keyref="false"/>：禁用多路径传输。</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uplinkMultipathMode</pt>
+                    <pd>上行传输模式。详见 <xref keyref="MultipathMode"/>。
+                        <note>使用该参数时，请确保已将 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>downlinkMultipathMode</pt>
+                    <pd>下行传输模式。详见 <xref keyref="MultipathMode"/>。
+                        <note>使用该参数时，请确保已将 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>preferMultipathType</pt>
+                    <pd>首选的传输路径类型。详见 <xref keyref="MultipathType"/>。
+                        <note>使用该参数时，请确保已将 <codeph>enableMultipath</codeph> 设置为 <xref keyref="true"/>。</note>
                     </pd>
                 </plentry>
             </parml>

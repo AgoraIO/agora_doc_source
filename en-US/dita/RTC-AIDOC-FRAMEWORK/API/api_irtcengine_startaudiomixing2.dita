@@ -1,0 +1,291 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startaudiomixing2">
+    <title><ph keyref="startAudioMixing2"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Starts playing a music file.</ph><ph id="shortdesc" props="rn">Starts playing a music file.</ph><ph id="shortdesc" props="flutter">Starts playing a music file.</ph><ph id="shortdesc" props="unity">Starts playing a music file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startAudioMixing2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract startAudioMixing(
+    filePath: string,
+    loopback: boolean,
+    cycle: number,
+    startPos?: number
+  ): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract startAudioMixing(
+    filePath: string,
+    loopback: boolean,
+    cycle: number,
+    startPos?: number
+  ): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioMixing(
+      {required String filePath,
+      required bool loopback,
+      required int cycle,
+      int startPos = 0});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioMixing(string filePath, bool loopback, int cycle, int startPos);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">For supported audio file formats, see [What audio file formats does RTC SDK support](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format). If the local music file does not exist, the file format is not supported, or the online music file URL is inaccessible, the SDK reports <codeph>AudioMixingReasonCanNotOpen</codeph>.</p>
+            <p props="rn">For supported audio file formats, see [What audio formats does the RTC SDK support](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format). If the local music file does not exist, the file format is not supported, or the online music file URL is inaccessible, the SDK reports <codeph>AudioMixingReasonCanNotOpen</codeph>.</p>
+            <p props="flutter">See [Supported audio file formats](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format) for the audio formats supported by this method. If the local music file does not exist, the file format is not supported, or the online music file URL cannot be accessed, the SDK reports <codeph>audioMixingReasonCanNotOpen</codeph>.</p>
+            <p props="unity">For supported audio file formats, see [Which audio file formats does the RTC SDK support](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format). If the local music file does not exist, the file format is not supported, or the online music file URL is inaccessible, the SDK reports <codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph>.</p>
+            <note props="electron">
+                <ul>
+                    <li>Using this method to play short sound effect files may result in playback failure. To play sound effects, use <xref keyref="playEffect3"/>.</li>
+                    <li>If you need to call this method multiple times, ensure that the interval between calls is greater than 500 ms.</li>
+                </ul>
+            </note>
+            <note props="rn">
+                <ul>
+                    <li>Using this method to play short sound effect files may result in failure. If you need to play sound effects, use <xref keyref="playEffect3"/> instead.</li>
+                    <li>If you need to call this method multiple times, make sure the interval between calls is greater than 500 ms.</li>
+                    <li>When calling this method on Android, note the following:
+                        <ul>
+                            <li>Make sure to use a device running Android 4.2 or later with API Level 16 or higher.</li>
+                            <li>If playing an online music file, avoid using a redirect URL. Redirect URLs may not open on some devices.</li>
+                            <li>If calling this method on an emulator, ensure the music file is located in the <codeph>/sdcard/</codeph> directory and is in MP3 format.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>Using this method to play short sound effects may cause playback failure. To play sound effects, use <xref keyref="playEffect3"/> instead.</li>
+                    <li>If you need to call this method multiple times, make sure the interval between calls is more than 500 ms.</li>
+                    <li>When calling this method on Android, note the following:
+                        <ul>
+                            <li>Make sure to use a device with Android 4.2 or above and API level no lower than 16.</li>
+                            <li>If playing online music files, avoid using redirect URLs. Redirect URLs may not work on some devices.</li>
+                            <li>If calling this method on an emulator, make sure the music file is under the <codeph>/sdcard/</codeph> directory and in MP3 format.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>Using this method to play short sound effect files may result in playback failure. To play sound effects, use <xref keyref="playEffect3"/> instead.</li>
+                    <li>If you need to call this method multiple times, ensure that the interval between calls is greater than 500 ms.</li>
+                    <li>When calling this method on Android, note the following:
+                        <ul>
+                            <li>Ensure that the device runs Android 4.2 or later, and the API Level is at least 16.</li>
+                            <li>If playing an online music file, avoid using a redirect URL. Redirect URLs may not work on some devices.</li>
+                            <li>If calling this method on an emulator, ensure the music file is located in the <codeph>/sdcard/</codeph> directory and is in MP3 format.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method can be called either before or after joining a channel.</p>
+            <p props="rn">You can call this method before or after joining a channel.</p>
+            <p props="flutter">This method can be called before or after joining a channel.</p>
+            <p props="unity">You can call this method before or after joining a channel.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Related Callbacks</title>
+            <p props="electron">After successfully calling this method to play a music file, the local client triggers the <xref keyref="onAudioMixingStateChanged"/>(<codeph>AudioMixingStatePlaying</codeph>) callback. When playback ends, the local client triggers the <xref keyref="onAudioMixingStateChanged"/>(<codeph>AudioMixingStateStopped</codeph>) callback.</p>
+            <p props="rn">After successfully calling this method to play a music file, the local client triggers the <xref keyref="onAudioMixingStateChanged"/>(<codeph>AudioMixingStatePlaying</codeph>) callback. When playback ends, the local client triggers the <xref keyref="onAudioMixingStateChanged"/>(<codeph>AudioMixingStateStopped</codeph>) callback.</p>
+            <p props="flutter">After successfully calling this method to play a music file, the local client triggers the <xref keyref="onAudioMixingStateChanged"/>(<codeph>audioMixingStatePlaying</codeph>) callback. When playback ends, the local client triggers the <xref keyref="onAudioMixingStateChanged"/>(<codeph>audioMixingStateStopped</codeph>) callback.</p>
+            <p props="unity">After successfully calling this method to play a music file, the local user receives the <xref keyref="onAudioMixingStateChanged"/>(<codeph>AUDIO_MIXING_STATE_PLAYING</codeph>) callback. When playback ends, the local user receives the <xref keyref="onAudioMixingStateChanged"/>(<codeph>AUDIO_MIXING_STATE_STOPPED</codeph>) callback.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>filePath</pt>
+                    <pd>File path:
+                        <ul>
+                            <li>Windows: The absolute path or URL of the audio file, including the file name and extension. For example: <codeph>C:\music\audio.mp4</codeph>.</li>
+                            <li>macOS: The absolute path or URL of the audio file, including the file name and extension. For example: <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>loopback</pt>
+                    <pd>Whether to play the music file only locally:
+                        <ul>
+                            <li><xref keyref="true"/>: Play only locally. Only the local user can hear the music.</li>
+                            <li><xref keyref="false"/>: Publish the music file to remote users. Both local and remote users can hear the music.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>cycle</pt>
+                    <pd>Number of times to play the music file.
+                        <ul>
+                            <li>&gt; 0: Number of times to play. For example, 1 means play once.</li>
+                            <li>-1: Play in an infinite loop.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>startPos</pt>
+                    <pd>The playback position of the music file in milliseconds.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>filePath</pt>
+                    <pd>File path:
+                        <ul>
+                            <li>Android: File path, must include the file name and extension. Supports URL addresses for online files, URI addresses for local files, absolute paths, or paths starting with <codeph>/assets/</codeph>. Accessing local files via absolute path may cause permission issues. Using URI addresses is recommended. For example: <codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>.</li>
+                            <li>iOS: Absolute path or URL of the audio file, must include the file name and extension. For example: <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>loopback</pt>
+                    <pd>Whether to play the music file only locally:
+                        <ul>
+                            <li><xref keyref="true"/>: Play the music file locally only. Only the local user can hear the music.</li>
+                            <li><xref keyref="false"/>: Publish the locally played music file to remote users. Both local and remote users can hear the music.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>cycle</pt>
+                    <pd>Number of times to play the music file.
+                        <ul>
+                            <li>&gt; 0: Number of times to play. For example, 1 means play once.</li>
+                            <li>-1: Play in an infinite loop.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>startPos</pt>
+                    <pd>Playback position of the music file in milliseconds.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>filePath</pt>
+                    <pd>File path:
+                        <ul>
+                            <li>Android: File path, must include the file name and extension. Supports URL of online files, URI of local files, absolute paths, or paths starting with <codeph>/assets/</codeph>. Accessing local files via absolute path may cause permission issues. It is recommended to use URI. For example: <codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>.</li>
+                            <li>Windows: Absolute path or URL to the audio file, must include the file name and extension. For example: <codeph>C:\music\audio.mp4</codeph>.</li>
+                            <li>iOS or macOS: Absolute path or URL to the audio file, must include the file name and extension. For example: <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>loopback</pt>
+                    <pd>Whether to play the music file locally only:
+                        <ul>
+                            <li><xref keyref="true"/>: Play the music file locally only. Only the local user can hear the music.</li>
+                            <li><xref keyref="false"/>: Publish the locally played music file to remote users. Both local and remote users can hear the music.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>cycle</pt>
+                    <pd>Number of times to play the music file.
+                        <ul>
+                            <li>&gt; 0: Number of times to play. For example, 1 means play once.</li>
+                            <li>-1: Play in an infinite loop.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>startPos</pt>
+                    <pd>The playback position of the music file, in milliseconds.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>filePath</pt>
+                    <pd>File path:
+                        <ul>
+                            <li>Android: File path, including the file name and extension. Supports URL of online files, URI of local files, absolute path, or path starting with <codeph>/assets/</codeph>. Accessing local files via absolute path may cause permission issues. It is recommended to use URI to access local files. For example: <codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph>.</li>
+                            <li>Windows: Absolute path or URL of the audio file, including the file name and extension. For example: <codeph>C:\music\audio.mp4</codeph>.</li>
+                            <li>iOS or macOS: Absolute path or URL of the audio file, including the file name and extension. For example: <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>loopback</pt>
+                    <pd>Whether to play the music file only locally:
+                        <ul>
+                            <li><xref keyref="true"/>: Plays the music file locally only. Only the local user can hear the music.</li>
+                            <li><xref keyref="false"/>: Publishes the music file to remote users. Both local and remote users can hear the music.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>cycle</pt>
+                    <pd>Number of times the music file is played.
+                        <ul>
+                            <li>&gt; 0: Number of times to play. For example, 1 means play once.</li>
+                            <li>-1: Play in an infinite loop.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>startPos</pt>
+                    <pd>The playback position of the music file, in milliseconds.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure:
+                        <ul>
+                            <li>-1: General error (not specifically categorized).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-3: SDK not ready:
+                                <ul>
+                                    <li>Check whether the audio module is enabled.</li>
+                                    <li>Check the integrity of the assembly.</li>
+                                    <li><xref keyref="IRtcEngine"/> initialization failed. Please reinitialize <xref keyref="IRtcEngine"/>.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure:
+                        <ul>
+                            <li>-1: General error (uncategorized).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-3: SDK not ready:
+                                <ul>
+                                    <li>Check if the audio module is enabled.</li>
+                                    <li>Check the integrity of the assembly.</li>
+                                    <li><xref keyref="IRtcEngine"/> initialization failed. Please reinitialize <xref keyref="IRtcEngine"/>.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure:
+                        <ul>
+                            <li>-1: General error (not specifically classified).</li>
+                            <li>-2: Invalid parameter.</li>
+                            <li>-3: SDK not ready:
+                                <ul>
+                                    <li>Check if the audio module is enabled.</li>
+                                    <li>Check the integrity of the assembly.</li>
+                                    <li><xref keyref="IRtcEngine"/> failed to initialize. Reinitialize <xref keyref="IRtcEngine"/>.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

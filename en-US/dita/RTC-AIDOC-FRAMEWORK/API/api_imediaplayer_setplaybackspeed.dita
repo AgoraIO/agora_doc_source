@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setplaybackspeed">
+    <title><ph keyref="setPlaybackSpeed"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets the playback speed of the current audio file.</ph><ph id="shortdesc" props="rn">Sets the playback speed of the current audio file.</ph><ph id="shortdesc" props="flutter">Sets the playback speed of the current audio file.</ph><ph id="shortdesc" props="unity">Sets the playback speed of the current audio file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlaybackSpeed"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setPlaybackSpeed(speed: number): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setPlaybackSpeed(speed: number): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setPlaybackSpeed(int speed);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetPlaybackSpeed(int speed);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">You need to call this method after <xref keyref="open"/>.</p>
+            <p props="rn">You need to call this method after <xref keyref="open"/>.</p>
+            <p props="flutter">You need to call this method after <xref keyref="open"/>.</p>
+            <p props="unity">You need to call this method after <xref keyref="open"/>.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>speed</pt>
+                    <pd>Playback speed. Recommended range is [30,400], where:
+                        <ul>
+                            <li>30: 0.3x speed.</li>
+                            <li>100: Original speed.</li>
+                            <li>400: 4x speed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>speed</pt>
+                    <pd>Playback speed. The recommended range is [30, 400], where:
+                        <ul>
+                            <li>30: 0.3x speed.</li>
+                            <li>100: Normal speed.</li>
+                            <li>400: 4x speed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>speed</pt>
+                    <pd>Playback speed. Recommended range is [30, 400], where:
+                        <ul>
+                            <li>30: 0.3x speed.</li>
+                            <li>100: original speed.</li>
+                            <li>400: 4x speed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>speed</pt>
+                    <pd>Playback speed. Recommended range is [30,400], where:
+                        <ul>
+                            <li>30: 0.3x speed.</li>
+                            <li>100: Original speed.</li>
+                            <li>400: 4x speed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Code](https://doc.shengwang.cn/api-ref/rtc/rn/error-code) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

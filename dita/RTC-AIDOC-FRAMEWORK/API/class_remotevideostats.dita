@@ -39,6 +39,7 @@
   totalActiveTime?: number;
 
   publishDuration?: number;
+  mosValue?: number;
 }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript">export class RemoteVideoStats {
 
@@ -74,6 +75,7 @@
 
   publishDuration?: number;
 
+  mosValue?: number;
 }</codeblock>
                 <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class RemoteVideoStats {
@@ -174,6 +176,7 @@ class RemoteVideoStats {
         public int avSyncTimeMs;
         public int totalActiveTime;
         public int publishDuration;
+        public int mosValue;
     };</codeblock>
             </p>
         </section>
@@ -249,6 +252,19 @@ class RemoteVideoStats {
                         <note>如果为负值，则代表音频落后于视频。</note>
                     </pd>
                 </plentry>
+                <plentry props="electron">
+                    <pt>mosValue</pt>
+                    <pd>在统计周期内远端音频流的质量。该质量由声网实时音频 MOS（主观意见评分）测量方法确定。返回值范围为 [0, 500]，除以 100 后为 MOS 分数，范围为 0 到 5，分数越高表示音频质量越好。声网实时音频 MOS 评分对应的主观音质感受如下：
+                        <ul>
+                            <li>大于 4 分，音频质量佳，清晰流畅。</li>
+                            <li>3.5 - 4 分，音频质量较好，偶有音质损伤，但依然清晰。</li>
+                            <li>3 - 3.5 分，音频质量一般，偶有卡顿，不是非常流畅，需要一点注意力才能听清。</li>
+                            <li>2.5 - 3 分，音频质量较差，卡顿频繁，需要集中精力才能听清。</li>
+                            <li>2 - 2.5 分，音频质量很差，偶有杂音，部分语义丢失，难以交流。</li>
+                            <li>小于 2 分，音频质量非常差，杂音频现，大量语义丢失，完全无法交流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
                 <plentry props="rn">
                     <pt>uid</pt>
                     <pd>用户 ID，指定是哪个用户的视频流。</pd>
@@ -318,6 +334,19 @@ class RemoteVideoStats {
                         <note>如果为负值，则代表音频落后于视频。</note>
                     </pd>
                 </plentry>
+                <plentry props="rn">
+                    <pt>mosValue</pt>
+                    <pd>在统计周期内远端音频流的质量。该质量由声网实时音频 MOS（主观意见评分）测量方法确定。返回值范围为 [0, 500]，除以 100 后为 MOS 分数，范围为 0 到 5，分数越高表示音频质量越好。声网实时音频 MOS 评分对应的主观音质感受如下：
+                        <ul>
+                            <li>大于 4 分，音频质量佳，清晰流畅。</li>
+                            <li>3.5 - 4 分，音频质量较好，偶有音质损伤，但依然清晰。</li>
+                            <li>3 - 3.5 分，音频质量一般，偶有卡顿，不是非常流畅，需要一点注意力才能听清。</li>
+                            <li>2.5 - 3 分，音频质量较差，卡顿频繁，需要集中精力才能听清。</li>
+                            <li>2 - 2.5 分，音频质量很差，偶有杂音，部分语义丢失，难以交流。</li>
+                            <li>小于 2 分，音频质量非常差，杂音频现，大量语义丢失，完全无法交流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
                 <plentry props="flutter">
                     <pt>uid</pt>
                     <pd>用户 ID，指定是哪个用户的视频流。</pd>
@@ -387,6 +416,19 @@ class RemoteVideoStats {
                         <note>如果为负值，则代表音频落后于视频。</note>
                     </pd>
                 </plentry>
+                <plentry props="flutter">
+                    <pt>mosValue</pt>
+                    <pd>在统计周期内远端音频流的质量。该质量由声网实时音频 MOS（主观意见评分）测量方法确定。返回值范围为 [0, 500]，除以 100 后为 MOS 分数，范围为 0 到 5，分数越高表示音频质量越好。声网实时音频 MOS 评分对应的主观音质感受如下：
+                        <ul>
+                            <li>大于 4 分，音频质量佳，清晰流畅。</li>
+                            <li>3.5 - 4 分，音频质量较好，偶有音质损伤，但依然清晰。</li>
+                            <li>3 - 3.5 分，音频质量一般，偶有卡顿，不是非常流畅，需要一点注意力才能听清。</li>
+                            <li>2.5 - 3 分，音频质量较差，卡顿频繁，需要集中精力才能听清。</li>
+                            <li>2 - 2.5 分，音频质量很差，偶有杂音，部分语义丢失，难以交流。</li>
+                            <li>小于 2 分，音频质量非常差，杂音频现，大量语义丢失，完全无法交流。</li>
+                        </ul>
+                    </pd>
+                </plentry>
                 <plentry props="unity">
                     <pt>uid</pt>
                     <pd>用户 ID，指定是哪个用户的视频流。</pd>
@@ -454,6 +496,19 @@ class RemoteVideoStats {
                     <pt>avSyncTimeMs</pt>
                     <pd>音频超前视频的时间 (ms)。
                         <note>如果为负值，则代表音频落后于视频。</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mosValue</pt>
+                    <pd>在统计周期内远端音频流的质量。该质量由声网实时音频 MOS（主观意见评分）测量方法确定。返回值范围为 [0, 500]，除以 100 后为 MOS 分数，范围为 0 到 5，分数越高表示音频质量越好。声网实时音频 MOS 评分对应的主观音质感受如下：
+                        <ul>
+                            <li>大于 4 分，音频质量佳，清晰流畅。</li>
+                            <li>3.5 - 4 分，音频质量较好，偶有音质损伤，但依然清晰。</li>
+                            <li>3 - 3.5 分，音频质量一般，偶有卡顿，不是非常流畅，需要一点注意力才能听清。</li>
+                            <li>2.5 - 3 分，音频质量较差，卡顿频繁，需要集中精力才能听清。</li>
+                            <li>2 - 2.5 分，音频质量很差，偶有杂音，部分语义丢失，难以交流。</li>
+                            <li>小于 2 分，音频质量非常差，杂音频现，大量语义丢失，完全无法交流。</li>
+                        </ul>
                     </pd>
                 </plentry>
             </parml>

@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_segmentationproperty">
+    <title><ph keyref="SegmentationProperty"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Processing properties for background images.</ph><ph id="shortdesc" props="rn">Background image processing properties.</ph><ph id="shortdesc" props="flutter">Processing properties for background images.</ph><ph id="shortdesc" props="unity">Processing properties for background images.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class SegmentationProperty {
+
+  modelType?: SegModelType;
+
+  greenCapacity?: number;
+
+ screenColorType?: ScreenColorType;}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class SegmentationProperty {
+
+  modelType?: SegModelType;
+
+  greenCapacity?: number;
+
+ screenColorType?: ScreenColorType;}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class SegmentationProperty implements AgoraSerializable {
+  const SegmentationProperty(
+      {this.modelType, this.greenCapacity, this.screenColorType});
+
+  @JsonKey(name: 'modelType')
+  final SegModelType? modelType;
+
+  @JsonKey(name: 'greenCapacity')
+  final double? greenCapacity;
+
+  @JsonKey(name: 'screenColorType')
+  final ScreenColorType? screenColorType;
+
+  factory SegmentationProperty.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$SegmentationPropertyFromJson(json);
+
+  @override
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$SegmentationPropertyToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class SegmentationProperty
+    {
+        public SEG_MODEL_TYPE modelType;
+
+        public float greenCapacity;
+
+        public SCREEN_COLOR_TYPE screenColorType;
+
+        public SegmentationProperty()
+        {
+            this.modelType = SEG_MODEL_TYPE.SEG_MODEL_AI;
+            this.greenCapacity = 0.5f;
+            this.screenColorType = SCREEN_COLOR_TYPE.SCREEN_COLOR_AUTO;
+        }
+
+        public SegmentationProperty(SEG_MODEL_TYPE modelType, float greenCapacity, SCREEN_COLOR_TYPE screenColorType)
+        {
+            this.modelType = modelType;
+            this.greenCapacity = greenCapacity;
+            this.screenColorType = screenColorType;
+        }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>modelType</pt>
+                    <pd>Algorithm used for background processing. See <xref keyref="SEG_MODEL_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>greenCapacity</pt>
+                    <pd>Accuracy range for identifying background colors in the image. Value range: [0,1], default is 0.5. The higher the value, the wider the range of solid colors that can be identified. If the value is too high, solid colors at the edge or within the portrait may also be identified. It is recommended to adjust this value dynamically based on actual effects.
+                        <note>This parameter takes effect only when <codeph>modelType</codeph> is set to <codeph>SegModelGreen</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>screenColorType</pt>
+                    <pd>Screen color type. See <xref keyref="SCREEN_COLOR_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>modelType</pt>
+                    <pd>The algorithm used for background processing. See <xref keyref="SEG_MODEL_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>greenCapacity</pt>
+                    <pd>The precision range for recognizing background colors in the image. Value range is [0,1], default is 0.5. A higher value indicates a wider range of recognizable solid colors. If the value is too high, edges of the portrait and solid colors within the portrait may also be recognized. It is recommended to adjust this value dynamically based on actual effects.
+                        <note>This parameter takes effect only when <codeph>modelType</codeph> is set to <codeph>SegModelGreen</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>screenColorType</pt>
+                    <pd>Type of screen color. See <xref keyref="SCREEN_COLOR_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>modelType</pt>
+                    <pd>Algorithm used for background processing. See <xref keyref="SEG_MODEL_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>greenCapacity</pt>
+                    <pd>Precision range for recognizing background color in the image. Value range is [0,1], default is 0.5. A larger value means a wider range of solid colors can be recognized. If the value is too large, solid colors within the portrait area or along its edges may also be recognized. You are advised to adjust this parameter dynamically based on the actual effect.
+                        <note>This parameter takes effect only when <codeph>modelType</codeph> is set to <codeph>segModelGreen</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>screenColorType</pt>
+                    <pd>Type of screen color. See <xref keyref="SCREEN_COLOR_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>modelType</pt>
+                    <pd>Algorithm used for background processing. See <xref keyref="SEG_MODEL_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>greenCapacity</pt>
+                    <pd>Accuracy range for recognizing background colors in the image. Value range is [0,1], default is 0.5. A larger value indicates a wider range of solid colors can be recognized. If the value is too large, solid colors at the edge or within the portrait may also be recognized. It is recommended to adjust this value dynamically based on actual results.
+                        <note>This parameter takes effect only when <codeph>modelType</codeph> is set to <codeph>SEG_MODEL_GREEN</codeph>.</note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>screenColorType</pt>
+                    <pd>Screen color type. See <xref keyref="SCREEN_COLOR_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

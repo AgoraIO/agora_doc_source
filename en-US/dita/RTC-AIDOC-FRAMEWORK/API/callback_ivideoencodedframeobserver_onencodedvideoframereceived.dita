@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_ivideoencodedframeobserver_onencodedvideoframereceived">
+    <title><ph keyref="onEncodedVideoFrameReceived"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Reports that a remote encoded video frame has been received.</ph><ph id="shortdesc" props="rn">Reports that the receiver has received a remote encoded video frame.</ph><ph id="shortdesc" props="flutter">Reports that the receiver has received a remote encoded video frame.</ph><ph id="shortdesc" props="unity">Reports that the receiver has received an encoded video frame sent by a remote user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onEncodedVideoFrameReceived"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onEncodedVideoFrameReceived?(
+    channelId: string,
+    uid: number,
+    imageBuffer: Uint8Array,
+    length: number,
+    videoEncodedFrameInfo: EncodedVideoFrameInfo
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onEncodedVideoFrameReceived?(
+    channelId: string,
+    uid: number,
+    imageBuffer: Uint8Array,
+    length: number,
+    videoEncodedFrameInfo: EncodedVideoFrameInfo
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, int uid, Uint8List imageBuffer, int length,
+      EncodedVideoFrameInfo videoEncodedFrameInfo)? onEncodedVideoFrameReceived;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEncodedVideoFrameReceived(string channelId, uint uid, IntPtr imageBufferPtr, UInt64 length, EncodedVideoFrameInfo videoEncodedFrameInfo)
+        {
+            return true;
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">When you call <xref keyref="setRemoteVideoSubscriptionOptions"/> and set <codeph>encodedFrameOnly</codeph> to <xref keyref="true"/>, the SDK triggers this callback locally to report the received encoded video frame information.</p>
+            <p props="rn">When you call the <xref keyref="setRemoteVideoSubscriptionOptions"/> method and set <codeph>encodedFrameOnly</codeph> to <xref keyref="true"/>, the SDK triggers this callback locally to report the received encoded video frame information.</p>
+            <p props="flutter">When you call the <xref keyref="setRemoteVideoSubscriptionOptions"/> method and set <codeph>encodedFrameOnly</codeph> to <xref keyref="true"/>, the SDK triggers this callback locally to report the received encoded video frame information.</p>
+            <p props="unity">When you call the <xref keyref="setRemoteVideoSubscriptionOptions"/> method and set <codeph>encodedFrameOnly</codeph> to <xref keyref="true"/>, the SDK triggers this callback locally to report the received encoded video frame information.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>channelId</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>imageBuffer</pt>
+                    <pd>Video image buffer.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>length</pt>
+                    <pd>Length of the video image data.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>videoEncodedFrameInfo</pt>
+                    <pd>Encoded video frame information. See <xref keyref="EncodedVideoFrameInfo"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>channelId</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>imageBuffer</pt>
+                    <pd>Video image buffer.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>length</pt>
+                    <pd>Data length of the video image.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>videoEncodedFrameInfo</pt>
+                    <pd>Information about the encoded video frame. See <xref keyref="EncodedVideoFrameInfo"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>channelId</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>imageBuffer</pt>
+                    <pd>Video frame buffer.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>length</pt>
+                    <pd>Data length of the video frame.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>videoEncodedFrameInfo</pt>
+                    <pd>Information about the encoded video frame. See <xref keyref="EncodedVideoFrameInfo"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>channelId</pt>
+                    <pd>Channel name.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>uid</pt>
+                    <pd>Remote user ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>imageBufferPtr</pt>
+                    <pd>Video image buffer.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>length</pt>
+                    <pd>Data length of the video image.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>videoEncodedFrameInfo</pt>
+                    <pd>Encoded video frame information. See <xref keyref="EncodedVideoFrameInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">No actual meaning.</p>
+        </section>
+    </refbody>
+</reference>

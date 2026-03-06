@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_setrecordingdevice">
+    <title><ph keyref="setRecordingDevice"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Specifies the audio recording device.</ph><ph id="shortdesc" props="flutter">Specifies the audio recording device.</ph><ph id="shortdesc" props="unity">Specifies the recording device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRecordingDevice"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setRecordingDevice(deviceId: string): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRecordingDevice(String deviceId);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRecordingDevice(string deviceId);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method changes the current audio recording device without changing the system default audio recording device. Suppose the system default audio recording device is Microphone 1. If you call this method before joining a channel and set the current audio route to Bluetooth Headset 1, the SDK will test Bluetooth Headset 1 during device testing. After testing, when you join a channel, the SDK still uses the system default audio recording device, i.e., Microphone 1.</p>
+            <p props="flutter">This method allows you to change the current audio recording device without changing the system default audio recording device. Suppose the system default recording device is Microphone 1. If you call this method before joining a channel to set the current audio route to Bluetooth Headset 1, the SDK will test Bluetooth Headset 1 during device testing. After the test, when you join a channel, the SDK will still use the system default recording device, i.e., Microphone 1.</p>
+            <p props="unity">This method changes the current recording device used by the SDK but does not change the system default recording device. For example, if the system default recording device is Microphone 1, and you call this method before joining a channel to set the current audio route to Bluetooth Headset 1, the SDK performs device testing on Bluetooth Headset 1. After testing, when you join a channel, the SDK still uses the system default recording device, which is Microphone 1.</p>
+            <note props="flutter">(Windows and macOS only)</note>
+            <note props="unity">This method applies to Windows and macOS only.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>deviceId</pt>
+                    <pd>The Device ID of the audio recording device. You can get it through <xref keyref="enumerateRecordingDevices"/>. Plugging or unplugging the device does not affect the <codeph>deviceId</codeph>.
+Maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>deviceId</pt>
+                    <pd>The Device ID of the audio recording device. You can get it through <xref keyref="enumerateRecordingDevices"/>. Plugging or unplugging the device does not affect the <codeph>deviceId</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>deviceId</pt>
+                    <pd>Device ID of the recording device. You can obtain it via <xref keyref="enumerateRecordingDevices"/>. Plugging or unplugging devices does not affect <codeph>deviceId</codeph>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

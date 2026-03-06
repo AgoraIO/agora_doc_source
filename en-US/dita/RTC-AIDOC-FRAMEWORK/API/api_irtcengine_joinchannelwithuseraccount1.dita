@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_joinchannelwithuseraccount1">
+    <title><ph keyref="joinChannelWithUserAccount1"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="unity">Joins a channel using a User Account and Token.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="joinChannelWithUserAccount1"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelWithUserAccount(string token, string channelId, string userAccount);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="unity">Before calling this method, if you have not called <xref keyref="registerLocalUserAccount"/> to register a User Account, the SDK will automatically create one for you when you call this method to join a channel. Calling <xref keyref="registerLocalUserAccount"/> before joining can reduce the time required to enter the channel.
+After successfully joining a channel, the user subscribes to all other users' audio and video streams by default, which incurs usage and affects billing. If you want to unsubscribe, you can do so by calling the corresponding mute methods.</p>
+            <note props="unity">To ensure communication quality, use the same type of identifier (UID or User Account) for all users in a channel. If users join via the Web SDK, make sure they use the same identifier type.
+                <ul>
+                    <li>This method only supports joining one channel at a time.</li>
+                    <li>Apps with different App IDs cannot communicate with each other.</li>
+                    <li>Before joining a channel, make sure the App ID used to generate the Token is the same as the one used to initialize the engine with the <xref keyref="initialize"/> method; otherwise, joining the channel with the Token will fail.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="timing" deliveryTarget="details" props="unity">
+            <title>Timing</title>
+            <p props="unity">This method must be called after <xref keyref="initialize"/>.</p>
+        </section>
+        <section id="related" deliveryTarget="details" props="unity">
+            <title>Related Callbacks</title>
+            <p props="unity">After successfully joining a channel, the following callbacks are triggered:
+                <ul>
+                    <li>Locally: <xref keyref="onLocalUserRegistered"/>, <xref keyref="onJoinChannelSuccess"/>, and <xref keyref="onConnectionStateChanged"/> callbacks.</li>
+                    <li>Remotely: In communication scenarios and for broadcasters in live streaming scenarios, the remote side triggers the <xref keyref="onUserJoined"/> and <xref keyref="onUserInfoUpdated"/> callbacks respectively.</li>
+                </ul>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>token</pt>
+                    <pd>A dynamic key generated on your server for authentication. See [Token Authentication](https://doc.shengwang.cn/doc/rtc/unity/basic-features/token-authentication).
+                        <note>
+                            <ul>
+                                <li>(Recommended) If your project has enabled secure mode (i.e., using APP ID + Token for authentication), this parameter is required.</li>
+                                <li>If your project is in debug mode only (i.e., using APP ID for authentication), you can join the channel without providing a Token. The user will automatically leave the channel after 24 hours.</li>
+                                <li>If you need to join multiple channels simultaneously or switch channels frequently, Agora recommends using a wildcard Token to avoid requesting a new Token from your server each time you join a new channel. See [Using Wildcard Token](https://doc.shengwang.cn/doc/rtc/unity/best-practice/wildcard-token).</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>userAccount</pt>
+                    <pd>User Account. This parameter identifies the user in the real-time audio and video interaction channel. You must set and manage the User Account yourself and ensure that each User Account is unique within the same channel. This parameter is required, must not exceed 255 bytes, and cannot be <codeph><ph keyref="NULL"/></codeph>. Supported character set (89 characters total):
+                        <ul>
+                            <li>26 lowercase English letters a-z</li>
+                            <li>26 uppercase English letters A-Z</li>
+                            <li>10 digits 0-9</li>
+                            <li>Space</li>
+                            <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and troubleshooting advice.
+                        <ul>
+                            <li>-2: Invalid parameters. For example, using an invalid Token, <codeph>uid</codeph> not set as an integer, or invalid values in <xref keyref="ChannelMediaOptions"/>. You need to provide valid parameters and rejoin the channel.</li>
+                            <li>-3: <xref keyref="IRtcEngine"/> initialization failed. You need to reinitialize the <xref keyref="IRtcEngine"/> object.</li>
+                            <li>-7: <xref keyref="IRtcEngine"/> is not initialized. You must successfully initialize <xref keyref="IRtcEngine"/> before calling this method.</li>
+                            <li>-8: Internal state error in <xref keyref="IRtcEngine"/>. Possible cause: calling this method to join a channel after <xref keyref="startEchoTest3"/> without calling <xref keyref="stopEchoTest"/>. You need to call <xref keyref="stopEchoTest"/> before this method.</li>
+                            <li>-17: This method call was rejected. Possible cause: the user is already in the channel. Use the <xref keyref="onConnectionStateChanged"/> callback to check the connection state. Do not call this method again unless you receive <codeph>CONNECTION_STATE_DISCONNECTED</codeph> (1).</li>
+                            <li>-102: Invalid channel name. You need to provide a valid <codeph>channelId</codeph> and rejoin the channel.</li>
+                            <li>-121: Invalid user ID. You need to provide a valid <codeph>uid</codeph> and rejoin the channel.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_followsystemrecordingdevice">
+    <title><ph keyref="followSystemRecordingDevice"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Sets whether the SDK's recording device follows the system default recording device.</ph><ph id="shortdesc" props="flutter">Sets whether the audio recording device used by the SDK follows the system default recording device.</ph><ph id="shortdesc" props="unity">Sets whether the audio recording device used by the SDK follows the system default audio recording device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="followSystemRecordingDevice"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract followSystemRecordingDevice(enable: boolean): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; followSystemRecordingDevice(bool enable);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int FollowSystemRecordingDevice(bool enable);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <note props="flutter">This method is applicable to Windows and macOS only.</note>
+            <note props="unity">(Windows and macOS only)</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enable</pt>
+                    <pd>Whether to follow the system default recording device:
+                        <ul>
+                            <li><xref keyref="true"/>: Follow. When the system default recording device changes, the SDK immediately switches the recording device.</li>
+                            <li><xref keyref="false"/>: Do not follow. The SDK switches to the system default recording device only when the current recording device is removed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enable</pt>
+                    <pd>Whether to follow the system default audio recording device:
+                        <ul>
+                            <li><xref keyref="true"/>: Follow. When the system default recording device changes, the SDK immediately switches the recording device.</li>
+                            <li><xref keyref="false"/>: Do not follow. The SDK switches to the system default recording device only when the current recording device is removed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enable</pt>
+                    <pd>Whether to follow the system default audio recording device:
+                        <ul>
+                            <li><xref keyref="true"/>: Follow. When the system default audio recording device changes, the SDK immediately switches to it.</li>
+                            <li><xref keyref="false"/>: Do not follow. The SDK switches to the system default audio recording device only when the current device used by the SDK is removed.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

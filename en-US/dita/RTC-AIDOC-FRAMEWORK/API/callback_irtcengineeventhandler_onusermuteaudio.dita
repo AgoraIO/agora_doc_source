@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onusermuteaudio">
+    <title><ph keyref="onUserMuteAudio"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Callback when a remote user (in communication) or host (in live streaming) stops or resumes sending audio streams.</ph><ph id="shortdesc" props="rn">Occurs when a remote user (in the Communication profile) or host (in the Live Broadcast profile) stops or resumes sending audio streams.</ph><ph id="shortdesc" props="flutter">Occurs when a remote user (in communication) or host (in live streaming) stops or resumes sending audio stream.</ph><ph id="shortdesc" props="unity">Callback when a remote user (in a communication scenario) or host (in a live streaming scenario) stops or resumes sending audio stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserMuteAudio"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onUserMuteAudio?(
+    connection: RtcConnection,
+    remoteUid: number,
+    muted: boolean
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onUserMuteAudio?(
+    connection: RtcConnection,
+    remoteUid: number,
+    muted: boolean
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, bool muted)?
+      onUserMuteAudio;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserMuteAudio(RtcConnection connection, uint remoteUid, bool muted) { }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This callback is triggered when the remote user calls the <xref keyref="muteLocalAudioStream"/> method to disable or enable audio sending.</p>
+            <p props="rn">This callback is triggered when a remote user calls <xref keyref="muteLocalAudioStream"/> to stop or resume sending audio.</p>
+            <p props="flutter">This callback is triggered when a remote user calls the <xref keyref="muteLocalAudioStream"/> method to disable or enable audio sending.</p>
+            <p props="unity">This callback is triggered when the remote user calls the <xref keyref="muteLocalAudioStream"/> method to disable or enable audio sending.</p>
+            <note props="electron">When the number of users (in communication) or hosts (in live streaming) in the channel exceeds 32, this callback may be inaccurate.</note>
+            <note props="rn">This callback may be inaccurate when the number of users (in the Communication profile) or hosts (in the Live Broadcast profile) in the channel exceeds 32.</note>
+            <note props="flutter">When the number of users (in communication) or hosts (in live streaming) in the channel exceeds 32, this callback may be inaccurate.</note>
+            <note props="unity">When there are more than 32 users (in a communication scenario) or hosts (in a live streaming scenario) in the channel, this callback may be inaccurate.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>remoteUid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>muted</pt>
+                    <pd>Whether the user is muted:
+                        <ul>
+                            <li><xref keyref="true"/>: The user has muted the audio.</li>
+                            <li><xref keyref="false"/>: The user has unmuted the audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>remoteUid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>muted</pt>
+                    <pd>Whether the user is muted:
+                        <ul>
+                            <li><xref keyref="true"/>: The user has muted the audio.</li>
+                            <li><xref keyref="false"/>: The user has unmuted the audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>remoteUid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>muted</pt>
+                    <pd>Whether the user is muted:
+                        <ul>
+                            <li><xref keyref="true"/>: The user has muted the audio.</li>
+                            <li><xref keyref="false"/>: The user has unmuted the audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>remoteUid</pt>
+                    <pd>User ID.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>muted</pt>
+                    <pd>Whether the user is muted:
+                        <ul>
+                            <li><xref keyref="true"/>: The user has muted the audio.</li>
+                            <li><xref keyref="false"/>: The user has unmuted the audio.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

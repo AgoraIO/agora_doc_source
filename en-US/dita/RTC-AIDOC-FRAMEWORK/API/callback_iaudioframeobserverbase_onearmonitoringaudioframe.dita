@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserverbase_onearmonitoringaudioframe">
+    <title><ph keyref="onEarMonitoringAudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Receives the raw audio data for ear monitoring.</ph><ph id="shortdesc" props="rn">Receives the raw audio data of the ear monitoring.</ph><ph id="shortdesc" props="flutter">Receives the raw audio data for ear monitoring.</ph><ph id="shortdesc" props="unity">Gets the raw audio data for ear monitoring.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onEarMonitoringAudioFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onEarMonitoringAudioFrame?(audioFrame: AudioFrame): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onEarMonitoringAudioFrame?(audioFrame: AudioFrame): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(AudioFrame audioFrame)? onEarMonitoringAudioFrame;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEarMonitoringAudioFrame(AudioFrame audioFrame)
+        {
+            return true;
+        }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">To ensure the ear monitoring audio data format meets expectations, you can set it as follows: Call <xref keyref="setEarMonitoringAudioFrameParameters"/> to set the audio format, then call <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer. The SDK calculates the sampling interval based on the parameters in this method and triggers the <xref keyref="onEarMonitoringAudioFrame"/> callback accordingly.</p>
+            <p props="rn">To ensure the ear monitoring audio data format meets expectations, you can configure it using the following methods: Call <xref keyref="setEarMonitoringAudioFrameParameters"/> to set the audio format, and then call <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer. The SDK calculates the sampling interval based on the parameters of this method and triggers the <xref keyref="onEarMonitoringAudioFrame"/> callback accordingly.</p>
+            <p props="flutter">To ensure the audio data format for ear monitoring meets expectations, you can set the format using the following methods: Call <xref keyref="setEarMonitoringAudioFrameParameters"/> to set the audio data format, then call <xref keyref="registerAudioFrameObserver"/> to register the audio observer object. The SDK calculates the sampling interval based on the parameters in this method and triggers the <xref keyref="onEarMonitoringAudioFrame"/> callback accordingly.</p>
+            <p props="unity">To ensure the ear monitoring audio data format meets expectations, you can call <xref keyref="setEarMonitoringAudioFrameParameters"/> to set the audio format, then call <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer. The SDK calculates the sampling interval using the parameters in this method and triggers the <xref keyref="onEarMonitoringAudioFrame"/> callback accordingly.</p>
+            <note props="flutter">
+                <ul>
+                    <li>Due to framework limitations, this callback does not support sending the processed audio data back to the SDK.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>audioFrame</pt>
+                    <pd>The raw audio data. See <xref keyref="AudioFrame"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioFrame</pt>
+                    <pd>The raw audio data. See <xref keyref="AudioFrame"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioFrame</pt>
+                    <pd>The raw audio data. See <xref keyref="AudioFrame"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioFrame</pt>
+                    <pd>The raw audio data. See <xref keyref="AudioFrame"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="unity">
+            <title>Return Values</title>
+            <p props="unity">No practical meaning.</p>
+        </section>
+    </refbody>
+</reference>

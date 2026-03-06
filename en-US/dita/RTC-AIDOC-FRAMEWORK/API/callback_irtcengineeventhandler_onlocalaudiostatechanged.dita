@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onlocalaudiostatechanged">
+    <title><ph keyref="onLocalAudioStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Occurs when the local audio state changes.</ph><ph id="shortdesc" props="rn">Occurs when the local audio state changes.</ph><ph id="shortdesc" props="flutter">Callback when the local audio state changes.</ph><ph id="shortdesc" props="unity">Callback when the local audio state changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalAudioStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">onLocalAudioStateChanged?(
+    connection: RtcConnection,
+    state: LocalAudioStreamState,
+    reason: LocalAudioStreamReason
+  ): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onLocalAudioStateChanged?(
+    connection: RtcConnection,
+    state: LocalAudioStreamState,
+    reason: LocalAudioStreamReason
+  ): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, LocalAudioStreamState state,
+    LocalAudioStreamReason reason)? onLocalAudioStateChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalAudioStateChanged(RtcConnection connection, LOCAL_AUDIO_STREAM_STATE state, LOCAL_AUDIO_STREAM_REASON reason)</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">The SDK triggers this callback to report the current local audio state when it changes, including the microphone capture state and audio encoding state. When a local audio issue occurs, this callback helps you understand the current state and the reason for the issue, facilitating troubleshooting.</p>
+            <p props="rn">This callback is triggered when the local audio state changes, including changes in microphone capture and audio encoding. When local audio experiences issues, this callback helps you understand the current audio state and the cause of the issue, making it easier to troubleshoot.</p>
+            <p props="flutter">When the local audio state changes (including microphone capture and audio encoding states), the SDK triggers this callback to report the current local audio state. This callback helps you diagnose issues by providing the current state and reason when a local audio failure occurs.</p>
+            <p props="unity">When the state of the local audio (including microphone capture and audio encoding) changes, the SDK triggers this callback to report the current local audio state. When a local audio issue occurs, this callback helps you understand the current audio state and the reason for the issue, making it easier to troubleshoot.</p>
+            <note props="electron">When the state is <codeph>LocalAudioStreamStateFailed</codeph> (3), you can check the returned error information in the <codeph>error</codeph> parameter.</note>
+            <note props="rn">When the state is <codeph>LocalAudioStreamStateFailed</codeph> (3), you can check the error information in the <codeph>error</codeph> parameter.</note>
+            <note props="flutter">When the state is <codeph>localAudioStreamStateFailed</codeph> (3), you can check the returned error information in the <codeph>error</codeph> parameter.</note>
+            <note props="unity">When the state is <codeph>LOCAL_AUDIO_STREAM_STATE_FAILED</codeph> (3), you can check the returned error information in the <codeph>error</codeph> parameter.</note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>state</pt>
+                    <pd>Current local audio state. See <xref keyref="LOCAL_AUDIO_STREAM_STATE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>reason</pt>
+                    <pd>Reason for the local audio state change. See <xref keyref="LOCAL_AUDIO_STREAM_REASON"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>state</pt>
+                    <pd>Current local audio state. See <xref keyref="LOCAL_AUDIO_STREAM_STATE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>reason</pt>
+                    <pd>Reason for the local audio state change. See <xref keyref="LOCAL_AUDIO_STREAM_REASON"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>state</pt>
+                    <pd>Current local audio state. See <xref keyref="LOCAL_AUDIO_STREAM_STATE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>reason</pt>
+                    <pd>Reason for the local audio state change. See <xref keyref="LOCAL_AUDIO_STREAM_REASON"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>connection</pt>
+                    <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>state</pt>
+                    <pd>Current local audio state. See <xref keyref="LOCAL_AUDIO_STREAM_STATE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>reason</pt>
+                    <pd>Reason for the local audio state change. See <xref keyref="LOCAL_AUDIO_STREAM_REASON"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

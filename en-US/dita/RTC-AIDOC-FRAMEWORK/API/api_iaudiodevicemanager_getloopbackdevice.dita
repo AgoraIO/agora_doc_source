@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_getloopbackdevice">
+    <title><ph keyref="getLoopbackDevice"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Gets the current loopback device.</ph><ph id="shortdesc" props="flutter">Gets the current sound card capture device.</ph><ph id="shortdesc" props="unity">Gets the current loopback capture device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getLoopbackDevice"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract getLoopbackDevice(): string;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; getLoopbackDevice();</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetLoopbackDevice(ref string deviceId);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">This method is applicable only to Windows and macOS.</p>
+            <p props="flutter">This method is applicable to Windows and macOS only.</p>
+            <p props="unity">This method is for Windows and macOS only.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="unity">
+                    <pt>deviceId</pt>
+                    <pd>Output parameter. The ID of the current loopback capture device.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter unity">
+            <title>Return Values</title>
+            <p props="electron">The ID of the current loopback device.</p>
+            <p props="flutter">The ID of the current sound card capture device.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

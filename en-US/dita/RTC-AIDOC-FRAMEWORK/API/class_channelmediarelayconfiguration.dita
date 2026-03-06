@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_channelmediarelayconfiguration">
+    <title><ph keyref="ChannelMediaRelayConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Cross-channel media stream relay configuration.</ph><ph id="shortdesc" props="rn">Cross-channel media relay configuration information.</ph><ph id="shortdesc" props="flutter">Configuration information for media stream relay across channels.</ph><ph id="shortdesc" props="unity">Configuration information for media stream relay across channels.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class ChannelMediaRelayConfiguration {
+  
+  srcInfo?: ChannelMediaInfo;
+  
+  destInfos?: ChannelMediaInfo[];
+  
+  destCount?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class ChannelMediaRelayConfiguration {
+  
+  srcInfo?: ChannelMediaInfo;
+  
+  destInfos?: ChannelMediaInfo[];
+  
+  destCount?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class ChannelMediaRelayConfiguration {
+    const ChannelMediaRelayConfiguration(
+        {this.srcInfo, this.destInfos, this.destCount});
+
+    @JsonKey(name: 'srcInfo')
+    final ChannelMediaInfo? srcInfo;
+    @JsonKey(name: 'destInfos')
+    final List&lt;ChannelMediaInfo&gt;? destInfos;
+    @JsonKey(name: 'destCount')
+    final int? destCount;
+    factory ChannelMediaRelayConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+        _$ChannelMediaRelayConfigurationFromJson(json);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaRelayConfigurationToJson(this);
+  }</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaRelayConfiguration
+    {
+        public ChannelMediaRelayConfiguration()
+        {
+            srcInfo = null;
+            destInfos = new ChannelMediaInfo[0];
+            destCount = 0;
+        }
+
+        public ChannelMediaRelayConfiguration(ChannelMediaInfo srcInfo, ChannelMediaInfo[] destInfos, int destCount)
+        {
+            this.srcInfo = srcInfo;
+            this.destInfos = destInfos ?? new ChannelMediaInfo[0];
+            this.destCount = destCount;
+        }
+        public ChannelMediaInfo srcInfo { set; get; }
+        public ChannelMediaInfo[] destInfos { set; get; }
+        public int destCount { set; get; }
+    }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>srcInfo</pt>
+                    <pd>Source channel information <xref keyref="ChannelMediaInfo"/>, including the following members:
+                        <ul>
+                            <li><codeph>channelName</codeph>: Name of the source channel. The default value is <xref keyref="NULL"/>, which means the SDK populates the current channel name.</li>
+                            <li><codeph>token</codeph>: The <codeph>token</codeph> used to join the source channel. It is generated based on the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>srcInfo</codeph>.
+                                <ul>
+                                    <li>If App Certificate is not enabled, you can set this parameter to the default value <xref keyref="NULL"/>, indicating the SDK uses the App ID.</li>
+                                    <li>If App Certificate is enabled, you must provide a <codeph>token</codeph> generated using <codeph>channelName</codeph> and <codeph>uid</codeph>, and the <codeph>uid</codeph> must be 0.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>uid</codeph>: The UID identifying the media stream to be relayed in the source channel. The default value is 0. Do not modify it.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>destInfos</pt>
+                    <pd>
+                        <note>If the token of any destination channel expires, all cross-channel relays will stop. Therefore, it is recommended that you set the same expiration duration for all destination channel tokens.</note><ph>Destination channel information <xref keyref="ChannelMediaInfo"/>, including the following members:</ph>
+                        <ul>
+                            <li><codeph>channelName</codeph>: Name of the destination channel.</li>
+                            <li><codeph>token</codeph>: The <codeph>token</codeph> used to join the destination channel. It is generated based on the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>destInfos</codeph>.
+                                <ul>
+                                    <li>If App Certificate is not enabled, you can set this parameter to the default value <xref keyref="NULL"/>, indicating the SDK uses the App ID.</li>
+                                    <li>If App Certificate is enabled, you must provide a <codeph>token</codeph> generated using <codeph>channelName</codeph> and <codeph>uid</codeph>.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>uid</codeph>: The UID identifying the media stream to be relayed in the destination channel. The value range is [0, 2^32 - 1]. Ensure it is different from all UIDs in the destination channel. The default value is 0, which means the SDK randomly assigns a UID.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>destCount</pt>
+                    <pd>Number of destination channels. The default value is 0. Value range: [0,6]. This parameter should match the number of <xref keyref="ChannelMediaInfo"/> objects defined in <codeph>destInfos</codeph>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>srcInfo</pt>
+                    <pd>Source channel information <xref keyref="ChannelMediaInfo"/>, including the following members:
+                        <ul>
+                            <li><codeph>channelName</codeph>: Name of the source channel. The default value is <xref keyref="NULL"/>, which means the SDK fills in the current channel name.</li>
+                            <li><codeph>token</codeph>: The <codeph>token</codeph> used to join the source channel. It is generated based on the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>srcInfo</codeph>.
+                                <ul>
+                                    <li>If App Certificate is not enabled, you can set this parameter to the default value <xref keyref="NULL"/>, which means the SDK fills in the App ID.</li>
+                                    <li>If App Certificate is enabled, you must provide a <codeph>token</codeph> generated using the <codeph>channelName</codeph> and <codeph>uid</codeph>, and the <codeph>uid</codeph> must be 0.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>uid</codeph>: The UID that identifies the media stream being relayed in the source channel. The default value is 0. Do not modify it.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>destInfos</pt>
+                    <pd>
+                        <note>Since token expiration in any destination channel will cause all cross-channel streaming to stop, it is recommended that you set the same expiration duration for tokens in all destination channels.</note><ph>Destination channel information <xref keyref="ChannelMediaInfo"/>, including the following members:</ph>
+                        <ul>
+                            <li><codeph>channelName</codeph>: Name of the destination channel.</li>
+                            <li><codeph>token</codeph>: The <codeph>token</codeph> used to join the destination channel. It is generated based on the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>destInfos</codeph>.
+                                <ul>
+                                    <li>If App Certificate is not enabled, you can set this parameter to the default value <xref keyref="NULL"/>, which means the SDK fills in the App ID.</li>
+                                    <li>If App Certificate is enabled, you must provide a <codeph>token</codeph> generated using the <codeph>channelName</codeph> and <codeph>uid</codeph>.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>uid</codeph>: The UID that identifies the media stream being relayed in the destination channel. The value range is [0, 2^32-1]. Make sure it is different from all UIDs in the destination channel. The default value is 0, which means the SDK randomly assigns a UID.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>destCount</pt>
+                    <pd>Number of destination channels. The default value is 0. Value range is [0,6]. This parameter should match the number of <xref keyref="ChannelMediaInfo"/> objects defined in <codeph>destInfos</codeph>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>srcInfo</pt>
+                    <pd>Source channel information <xref keyref="ChannelMediaInfo"/>, which includes the following members:
+                        <ul>
+                            <li><codeph>channelName</codeph>: Name of the source channel. Default is <codeph>NULL</codeph>, which means the SDK fills in the current channel name.</li>
+                            <li><codeph>token</codeph>: The <codeph>token</codeph> used to join the source channel. It is generated based on the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>srcInfo</codeph>.
+                                <ul>
+                                    <li>If App Certificate is not enabled, you can set this parameter to the default value <codeph>NULL</codeph>, which means the SDK fills in the App ID.</li>
+                                    <li>If App Certificate is enabled, you must provide a <codeph>token</codeph> generated using the <codeph>channelName</codeph> and <codeph>uid</codeph>, and the <codeph>uid</codeph> must be 0.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>uid</codeph>: The UID that identifies the media stream being relayed in the source channel. Default is 0. Do not modify.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>destInfos</pt>
+                    <pd>
+                        <note>If the token for any destination channel expires, all cross-channel relays will stop. Therefore, it is recommended that you set the same expiration duration for the tokens of all destination channels.</note><ph>Destination channel information <xref keyref="ChannelMediaInfo"/>, which includes the following members:</ph>
+                        <ul>
+                            <li><codeph>channelName</codeph>: Name of the destination channel.</li>
+                            <li><codeph>token</codeph>: The <codeph>token</codeph> used to join the destination channel. It is generated based on the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>destInfos</codeph>.
+                                <ul>
+                                    <li>If App Certificate is not enabled, you can set this parameter to the default value <codeph>NULL</codeph>, which means the SDK fills in the App ID.</li>
+                                    <li>If App Certificate is enabled, you must provide a <codeph>token</codeph> generated using the <codeph>channelName</codeph> and <codeph>uid</codeph>.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>uid</codeph>: The UID that identifies the media stream being relayed in the destination channel. The value range is 0 to (2^32 - 1). Ensure it is different from all UIDs in the destination channel. Default is 0, which means the SDK assigns a UID randomly.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>destCount</pt>
+                    <pd>Number of destination channels. Default is 0. Value range is [0,6]. This parameter should match the number of <xref keyref="ChannelMediaInfo"/> objects defined in <codeph>destInfos</codeph>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>srcInfo</pt>
+                    <pd>Source channel information <xref keyref="ChannelMediaInfo"/>, includes the following members:
+                        <ul>
+                            <li><codeph>channelName</codeph>: Name of the source channel. Default is <codeph>NULL</codeph>, which means the SDK fills in the current channel name.</li>
+                            <li><codeph>token</codeph>: The <codeph>token</codeph> used to join the source channel. It is generated based on the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>srcInfo</codeph>.
+                                <ul>
+                                    <li>If App Certificate is not enabled, you can set this parameter to the default value <codeph>NULL</codeph>, which means the SDK fills in the App ID.</li>
+                                    <li>If App Certificate is enabled, you must provide a <codeph>token</codeph> generated using <codeph>channelName</codeph> and <codeph>uid</codeph>, and the <codeph>uid</codeph> must be 0.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>uid</codeph>: UID identifying the media stream being relayed in the source channel. Default is 0. Do not modify.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>destInfos</pt>
+                    <pd>
+                        <note>Because the expiration of the token in any target channel will cause all cross-channel streaming to stop, it is recommended that you set the same expiration duration for the tokens in all target channels.</note><ph>Target channel information <xref keyref="ChannelMediaInfo"/>, includes the following members:</ph>
+                        <ul>
+                            <li><codeph>channelName</codeph>: Name of the target channel.</li>
+                            <li><codeph>token</codeph>: The <codeph>token</codeph> used to join the target channel. It is generated based on the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>destInfos</codeph>.
+                                <ul>
+                                    <li>If App Certificate is not enabled, you can set this parameter to the default value <codeph>NULL</codeph>, which means the SDK fills in the App ID.</li>
+                                    <li>If App Certificate is enabled, you must provide a <codeph>token</codeph> generated using <codeph>channelName</codeph> and <codeph>uid</codeph>.</li>
+                                </ul>
+                            </li>
+                            <li><codeph>uid</codeph>: UID identifying the media stream being relayed in the target channel. The value range is [0, 2^32 - 1]. Make sure it is different from all UIDs in the target channel. Default is 0, which means the SDK assigns a UID randomly.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>destCount</pt>
+                    <pd>Number of target channels. Default is 0. Value range is [0,6]. This parameter should match the number of <xref keyref="ChannelMediaInfo"/> objects you define in <codeph>destInfos</codeph>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

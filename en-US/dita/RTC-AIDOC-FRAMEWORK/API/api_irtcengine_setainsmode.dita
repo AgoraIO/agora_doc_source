@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setainsmode">
+    <title><ph keyref="setAINSMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Enables or disables AI noise reduction and sets the noise reduction mode.</ph><ph id="shortdesc" props="rn">Enables or disables AI noise reduction and sets the noise reduction mode.</ph><ph id="shortdesc" props="flutter">Enables or disables AI noise reduction and sets the noise reduction mode.</ph><ph id="shortdesc" props="unity">Enables or disables the AI noise reduction feature and sets the noise reduction mode.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAINSMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">abstract setAINSMode(enabled: boolean, mode: AudioAinsMode): number;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">abstract setAINSMode(enabled: boolean, mode: AudioAinsMode): number;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAINSMode(
+      {required bool enabled, required AudioAinsMode mode});</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetAINSMode(bool enabled, AUDIO_AINS_MODE mode);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="electron">You can call this method to enable AI noise reduction. This feature intelligently detects and reduces various steady and non-steady background noises while preserving voice quality, making speech clearer.
+Steady noise refers to noise with the same frequency at any point in time. Common examples include:
+                <ul>
+                    <li>TV noise</li>
+                    <li>Air conditioner noise</li>
+                    <li>Factory machinery noise</li>
+                </ul><ph>Non-steady noise refers to noise that changes rapidly over time. Common examples include:</ph>
+                <ul>
+                    <li>Thunder</li>
+                    <li>Explosions</li>
+                    <li>Cracking sounds</li>
+                </ul>
+            </p>
+            <p props="rn">You can call this method to enable AI noise reduction. This feature intelligently detects and reduces various steady-state and non-steady-state background noises while ensuring voice quality, making the voice clearer.
+Steady-state noise refers to noise with the same frequency at any point in time. Common steady-state noises include:
+                <ul>
+                    <li>TV noise</li>
+                    <li>Air conditioner noise</li>
+                    <li>Factory machinery noise, etc.</li>
+                </ul><ph>Non-steady-state noise refers to noise that changes rapidly over time. Common non-steady-state noises include:</ph>
+                <ul>
+                    <li>Thunder</li>
+                    <li>Explosions</li>
+                    <li>Cracking sounds, etc.</li>
+                </ul>
+            </p>
+            <p props="flutter">You can call this method to enable the AI noise reduction feature. This feature intelligently detects and reduces various stationary and non-stationary background noises while maintaining voice quality, making human voices clearer.
+Stationary noise refers to noise with consistent frequency over time, such as:
+                <ul>
+                    <li>TV noise</li>
+                    <li>Air conditioner noise</li>
+                    <li>Factory machine noise</li>
+                </ul><ph>Non-stationary noise refers to noise that changes rapidly over time, such as:</ph>
+                <ul>
+                    <li>Thunder</li>
+                    <li>Explosions</li>
+                    <li>Cracking sounds</li>
+                </ul>
+            </p>
+            <p props="unity">You can call this method to enable the AI noise reduction feature. This feature intelligently detects and reduces various steady-state and non-steady-state noises in the surrounding environment while ensuring voice quality, making the voice clearer.
+Steady-state noise refers to noise with the same frequency at any point in time. Common steady-state noises include:
+                <ul>
+                    <li>TV noise</li>
+                    <li>Air conditioner noise</li>
+                    <li>Factory machine noise</li>
+                </ul><ph>Non-steady-state noise refers to noise that changes rapidly over time. Common non-steady-state noises include:</ph>
+                <ul>
+                    <li>Thunder</li>
+                    <li>Explosion sounds</li>
+                    <li>Cracking sounds</li>
+                </ul>
+            </p>
+            <note props="rn">
+                <ul>
+                    <li>This method depends on the AI noise reduction dynamic library. Removing the dynamic library will cause the feature to fail. For the name of the AI noise reduction dynamic library, see [Plugin List](https://doc.shengwang.cn/doc/rtc/rn/best-practice/reduce-app-size#%E6%8F%92%E4%BB%B6%E5%88%97%E8%A1%A8).</li>
+                    <li>Currently, it is not recommended to enable this feature on devices running Android 6.0 or below.</li>
+                </ul>
+            </note>
+            <note props="flutter">
+                <ul>
+                    <li>This method depends on the AI noise reduction dynamic library. Deleting this library will prevent the feature from working properly. For the name of the AI noise reduction library, see [Plugin List](https://doc.shengwang.cn/doc/rtc/flutter/best-practice/reduce-app-size#%E6%8F%92%E4%BB%B6%E5%88%97%E8%A1%A8).</li>
+                    <li>Currently, it is not recommended to enable this feature on devices running Android 6.0 or lower.</li>
+                </ul>
+            </note>
+            <note props="unity">
+                <ul>
+                    <li>This method depends on the AI noise reduction dynamic library. If the library is removed, the feature cannot be enabled properly. See [Plugin List](https://doc.shengwang.cn/doc/rtc/unity/best-practice/reduce-app-size#%E6%8F%92%E4%BB%B6%E5%88%97%E8%A1%A8) for the library name.</li>
+                    <li>It is currently not recommended to enable this feature on devices running Android 6.0 or lower.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario" deliveryTarget="details">
+            <title>Scenario</title>
+            <p>In scenarios such as voice chat, online education, and online meetings, if the surrounding environment is noisy, the AI noise reduction feature can identify and reduce both steady and non-steady noises while preserving voice quality, thereby improving audio quality and user experience.</p>
+        </section>
+        <section id="timing" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Timing</title>
+            <p props="electron">This method can be called before or after joining a channel.</p>
+            <p props="rn">This method can be called before or after joining the channel.</p>
+            <p props="flutter">This method can be called before or after joining a channel.</p>
+            <p props="unity">This method can be called before or after joining a channel.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable AI noise reduction:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable AI noise reduction.</li>
+                            <li><xref keyref="false"/>: (Default) Disable AI noise reduction.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>mode</pt>
+                    <pd>Noise reduction mode. See <xref keyref="AUDIO_AINS_MODE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable AI noise reduction:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable AI noise reduction.</li>
+                            <li><xref keyref="false"/>: (Default) Disable AI noise reduction.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>mode</pt>
+                    <pd>Noise reduction mode. See <xref keyref="AUDIO_AINS_MODE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable AI noise reduction:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable AI noise reduction.</li>
+                            <li><xref keyref="false"/>: (default) Disable AI noise reduction.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>mode</pt>
+                    <pd>Noise reduction mode. See <xref keyref="AUDIO_AINS_MODE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>enabled</pt>
+                    <pd>Whether to enable the AI noise reduction feature:
+                        <ul>
+                            <li><xref keyref="true"/>: Enable the AI noise reduction feature.</li>
+                            <li><xref keyref="false"/>: (Default) Disable the AI noise reduction feature.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>mode</pt>
+                    <pd>Noise reduction mode. See <xref keyref="AUDIO_AINS_MODE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="electron flutter rn unity">
+            <title>Return Values</title>
+            <p props="electron">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="rn">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown. You need to catch the exception and handle it accordingly. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</p>
+            <p props="unity">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See [Error Codes](https://docs.agora.io/en/video-calling/troubleshooting/error-codes) for details and resolution suggestions.</li>
+                </ul>
+            </p>
+        </section>
+    </refbody>
+</reference>

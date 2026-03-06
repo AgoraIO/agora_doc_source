@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_localaudiostats">
+    <title><ph keyref="LocalAudioStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Local audio statistics.</ph><ph id="shortdesc" props="rn">Local audio statistics.</ph><ph id="shortdesc" props="flutter">Local audio statistics.</ph><ph id="shortdesc" props="unity">Local audio statistics.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class LocalAudioStats {
+
+  numChannels?: number;
+
+  sentSampleRate?: number;
+
+  sentBitrate?: number;
+
+  internalCodec?: number;
+
+  txPacketLossRate?: number;
+
+  audioDeviceDelay?: number;
+
+  earMonitorDelay?: number;
+  
+  aecEstimatedDelay?: number;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class LocalAudioStats {
+
+  numChannels?: number;
+
+  sentSampleRate?: number;
+
+  sentBitrate?: number;
+
+  internalCodec?: number;
+
+  txPacketLossRate?: number;
+
+  audioDeviceDelay?: number;
+
+  earMonitorDelay?: number;
+  
+  aecEstimatedDelay?: number;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class LocalAudioStats {
+  const LocalAudioStats(
+      {this.numChannels,
+      this.sentSampleRate,
+      this.sentBitrate,
+      this.internalCodec,
+      this.txPacketLossRate,
+      this.audioDeviceDelay,
+      this.audioPlayoutDelay,
+      this.earMonitorDelay,
+      this.aecEstimatedDelay});
+
+  @JsonKey(name: 'numChannels')
+  final int? numChannels;
+
+  @JsonKey(name: 'sentSampleRate')
+  final int? sentSampleRate;
+
+  @JsonKey(name: 'sentBitrate')
+  final int? sentBitrate;
+
+  @JsonKey(name: 'internalCodec')
+  final int? internalCodec;
+
+  @JsonKey(name: 'txPacketLossRate')
+  final int? txPacketLossRate;
+
+  @JsonKey(name: 'audioDeviceDelay')
+  final int? audioDeviceDelay;
+
+  @JsonKey(name: 'audioPlayoutDelay')
+  final int? audioPlayoutDelay;
+
+  @JsonKey(name: 'earMonitorDelay')
+  final int? earMonitorDelay;
+
+  @JsonKey(name: 'aecEstimatedDelay')
+  final int? aecEstimatedDelay;
+
+  factory LocalAudioStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$LocalAudioStatsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalAudioStatsToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class LocalAudioStats
+                {
+                    public int numChannels;
+                    public int sentSampleRate;
+                    public int sentBitrate
+                    public int internalCodec;
+                    public ushort txPacketLossRate;
+                    public int audioDeviceDelay;
+                    public int audioPlayoutDelay
+                    public int earMonitorDelay
+                    public int aecEstimatedDelay;
+                }</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>numChannels</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sentSampleRate</pt>
+                    <pd>Sampling rate of the sent local audio, in Hz.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>sentBitrate</pt>
+                    <pd>Average bitrate of the sent local audio, in Kbps.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>txPacketLossRate</pt>
+                    <pd>Packet loss rate (%) from the local end to the Agora edge server before anti-packet-loss strategies are applied.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>internalCodec</pt>
+                    <pd>Internal payload type.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>audioDeviceDelay</pt>
+                    <pd>Delay of the audio device module during playback or recording, in ms.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>earMonitorDelay</pt>
+                    <pd>Ear monitoring delay (ms), i.e., the delay from microphone input to headphone output.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>aecEstimatedDelay</pt>
+                    <pd>Acoustic Echo Cancellation (AEC) delay (ms), i.e., the delay between audio playback locally and the signal captured locally as estimated by the AEC module.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>numChannels</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sentSampleRate</pt>
+                    <pd>Sampling rate of the sent local audio, in Hz.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>sentBitrate</pt>
+                    <pd>Average bitrate of the sent local audio, in Kbps.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>txPacketLossRate</pt>
+                    <pd>Packet loss rate (%) from the local end to the Agora edge server before network resilience.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>internalCodec</pt>
+                    <pd>Internal payload type.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>audioDeviceDelay</pt>
+                    <pd>Delay (ms) of the audio device module during audio playback or recording.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>earMonitorDelay</pt>
+                    <pd>Ear monitoring delay (ms), i.e., the delay from microphone input to headphone output.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>aecEstimatedDelay</pt>
+                    <pd>Echo cancellation delay (ms), i.e., the delay estimated by the Acoustic Echo Cancellation (AEC) module between audio playback and the signal captured locally.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>numChannels</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sentSampleRate</pt>
+                    <pd>Sampling rate of the sent local audio, in Hz.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>sentBitrate</pt>
+                    <pd>Average bitrate of the sent local audio, in Kbps.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>txPacketLossRate</pt>
+                    <pd>Packet loss rate (%) from the local end to the Agora edge server before network resilience is applied.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>internalCodec</pt>
+                    <pd>Internal payload type.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>audioDeviceDelay</pt>
+                    <pd>Delay (ms) of the audio device module during audio playback or recording.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>earMonitorDelay</pt>
+                    <pd>Ear monitor delay (ms), i.e., the delay from microphone input to headphone output.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>aecEstimatedDelay</pt>
+                    <pd>Acoustic Echo Cancellation (AEC) delay (ms), i.e., the delay estimated by the AEC module between audio playback and the signal captured locally.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>numChannels</pt>
+                    <pd>Number of audio channels.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sentSampleRate</pt>
+                    <pd>Sampling rate of the sent local audio, in Hz.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>sentBitrate</pt>
+                    <pd>Average bitrate of the sent local audio, in Kbps.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>txPacketLossRate</pt>
+                    <pd>Packet loss rate (%) from the local end to the Agora edge server before network resilience.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>internalCodec</pt>
+                    <pd>Internal payload type.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>audioDeviceDelay</pt>
+                    <pd>Delay of the audio device module during audio playback or recording (ms).</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>earMonitorDelay</pt>
+                    <pd>Ear monitoring delay (ms), i.e., the delay from microphone input to headphone output.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>aecEstimatedDelay</pt>
+                    <pd>Acoustic Echo Cancellation (AEC) delay (ms), i.e., the delay between the audio played locally and the signal captured again locally as estimated by the AEC module.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

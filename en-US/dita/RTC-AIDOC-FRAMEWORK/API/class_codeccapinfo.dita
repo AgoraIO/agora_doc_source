@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_codeccapinfo">
+    <title><ph keyref="CodecCapInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="electron">Codec capability information supported by the SDK.</ph><ph id="shortdesc" props="rn">Information about codec capabilities supported by the SDK.</ph><ph id="shortdesc" props="flutter">Information about codec capabilities supported by the SDK.</ph><ph id="shortdesc" props="unity">Information about codec capabilities supported by the SDK.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="electron" outputclass="language-typescript">export class CodecCapInfo {
+  codecType?: VideoCodecType;
+  codecCapMask?: number;
+  codecLevels?: CodecCapLevels;
+}</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">export class CodecCapInfo {
+  codecType?: VideoCodecType;
+  codecCapMask?: number;
+  codecLevels?: CodecCapLevels;
+}</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class CodecCapInfo {
+  const CodecCapInfo({this.codecType, this.codecCapMask, this.codecLevels});
+
+  @JsonKey(name: 'codecType')
+  final VideoCodecType? codecType;
+
+  @JsonKey(name: 'codecCapMask')
+  final int? codecCapMask;
+
+  @JsonKey(name: 'codecLevels')
+  final CodecCapLevels? codecLevels;
+
+  factory CodecCapInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$CodecCapInfoFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$CodecCapInfoToJson(this);
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class CodecCapInfo
+    {
+        public VIDEO_CODEC_TYPE codecType;
+
+        public int codecCapMask;
+
+        public CodecCapLevels codecLevels;
+    };</codeblock>
+            </p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="electron flutter rn unity">
+            <title>Properties</title>
+            <parml>
+                <plentry props="electron">
+                    <pt>codecType</pt>
+                    <pd>Video codec type. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>codecCapMask</pt>
+                    <pd>Bit mask of codec capabilities supported by the SDK. See <xref keyref="CODEC_CAP_MASK"/>.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>codecLevels</pt>
+                    <pd>Codec capability levels supported by the SDK. See <xref keyref="CodecCapLevels"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>codecType</pt>
+                    <pd>Video codec type. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="rn">
+                    <pt>codecCapMask</pt>
+                    <pd>Bit mask of codec types supported by the SDK. See <xref keyref="CODEC_CAP_MASK"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>codecType</pt>
+                    <pd>Video codec type. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>codecCapMask</pt>
+                    <pd>Bit mask of codec types supported by the SDK. See <xref keyref="CODEC_CAP_MASK"/>.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>codecLevels</pt>
+                    <pd>Codec capability levels supported by the SDK. See <xref keyref="CodecCapLevels"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>codecType</pt>
+                    <pd>Video codec type. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>codecCapMask</pt>
+                    <pd>Bit mask of codec types supported by the SDK. See <xref keyref="CODEC_CAP_MASK"/>.</pd>
+                </plentry>
+                <plentry props="unity">
+                    <pt>codecLevels</pt>
+                    <pd>Codec capability levels supported by the SDK. See <xref keyref="CodecCapLevels"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
