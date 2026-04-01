@@ -13,10 +13,10 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="electron" outputclass="language-typescript">onPositionChanged?(positionMs: number): void;</codeblock>
-                <codeblock props="rn" outputclass="language-typescript">onPositionChanged?(positionMs: number): void;</codeblock>
-                <codeblock props="flutter" outputclass="language-dart">final void Function(int position)? onPositionChanged;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnPositionChanged(Int64 position_ms) { }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">onPositionChanged?(positionMs: number, timestampMs: number): void;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript">onPositionChanged?(positionMs: number, timestampMs: number): void;</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">final void Function(int positionMs, int timestampMs)? onPositionChanged;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnPositionChanged(long positionMs, long timestampMs)</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -34,7 +34,9 @@
                 </plentry>
                 <plentry props="electron">
                     <pt>timestampMs</pt>
-                    <pd>当前播放进度的 NTP 时间戳，单位为 ms。</pd>
+                    <pd>当前播放进度的 NTP 时间戳，单位为 ms。
+                        <note>该参数仅在频道内生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="rn">
                     <pt>positionMs</pt>
@@ -42,7 +44,9 @@
                 </plentry>
                 <plentry props="rn">
                     <pt>timestampMs</pt>
-                    <pd>当前播放进度的 NTP 时间戳，单位为 ms。</pd>
+                    <pd>当前播放进度的 NTP 时间戳，单位为 ms。
+                        <note>该参数仅在频道内生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="flutter">
                     <pt>positionMs</pt>
@@ -50,7 +54,9 @@
                 </plentry>
                 <plentry props="flutter">
                     <pt>timestampMs</pt>
-                    <pd>当前播放进度的 NTP 时间戳，单位为 ms。</pd>
+                    <pd>当前播放进度的 NTP 时间戳，单位为 ms。
+                        <note>该参数仅在频道内生效。</note>
+                    </pd>
                 </plentry>
                 <plentry props="unity">
                     <pt>position_ms</pt>
@@ -58,7 +64,9 @@
                 </plentry>
                 <plentry props="unity">
                     <pt>timestampMs</pt>
-                    <pd>当前播放进度的 NTP 时间戳，单位为 ms。</pd>
+                    <pd>当前播放进度的 NTP 时间戳，单位为 ms。
+                        <note>该参数仅在频道内生效。</note>
+                    </pd>
                 </plentry>
             </parml>
         </section>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediaoptions">
     <title><ph keyref="ChannelMediaOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure channel media options.</ph><ph id="shortdesc" props="android">Configures media publishing and subscription options in the channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set channel media options.</ph><ph id="shortdesc" props="android">Configures media publishing and subscription options in the channel.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -97,9 +97,9 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
-            <p props="cpp">Agora supports publishing multiple audio streams and one video stream simultaneously in the same <xref keyref="RtcConnection"/>. For example, you can set <codeph>publishMicrophoneTrack</codeph>, <codeph>publishCustomAudioTrack</codeph>, and <codeph>publishMediaPlayerAudioTrack</codeph> to <xref keyref="true"/> at the same time, but only one among <codeph>publishCameraTrack</codeph>, <codeph>publishScreenCaptureVideo</codeph>, <codeph>publishScreenTrack</codeph>, <codeph>publishCustomVideoTrack</codeph>, or <codeph>publishEncodedVideoTrack</codeph> can be set to <xref keyref="true"/>.</p>
+            <p props="cpp">Supports publishing multiple audio streams and one video stream simultaneously within the same <xref keyref="RtcConnection"/>. For example, you can set <codeph>publishMicrophoneTrack</codeph>, <codeph>publishCustomAudioTrack</codeph>, and <codeph>publishMediaPlayerAudioTrack</codeph> to <xref keyref="true"/> at the same time, but only one of <codeph>publishCameraTrack</codeph>, <codeph>publishScreenCaptureVideo</codeph>, <codeph>publishScreenTrack</codeph>, <codeph>publishCustomVideoTrack</codeph>, or <codeph>publishEncodedVideoTrack</codeph> can be set to <xref keyref="true"/>.</p>
             <p props="android">Supports publishing multiple audio streams and one video stream simultaneously within the same <xref keyref="RtcConnection"/>. For example, you can enable <codeph>publishMicrophoneTrack</codeph>, <codeph>publishCustomAudioTrack</codeph>, and <codeph>publishMediaPlayerAudioTrack</codeph> at the same time, but only one of <codeph>publishCameraTrack</codeph>, <codeph>publishScreenCaptureVideo</codeph>, <codeph>publishCustomVideoTrack</codeph>, and <codeph>publishEncodedVideoTrack</codeph> can be set to <xref keyref="true"/>.</p>
-            <note props="cpp">Agora recommends that you configure the member parameter values based on your business scenario. Otherwise, the SDK will automatically assign values to the member parameters.</note>
+            <note props="cpp">Agora recommends that you set the member parameters based on your business scenario; otherwise, the SDK will automatically assign default values to the member parameters.</note>
             <note props="android">It is recommended that you set the values of each member parameter according to your business scenario; otherwise, the SDK will assign default values automatically.</note>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp">
@@ -126,7 +126,7 @@
                 <plentry props="cpp">
                     <pt>publishThirdCameraTrack</pt>
                     <pd>
-                        <note>This parameter is only applicable to Android, Windows, and macOS platforms.</note><ph>Whether to publish the video captured by the third camera:</ph>
+                        <note>This parameter applies only to Android, Windows, and macOS platforms.</note><ph>Whether to publish the video captured by the third camera:</ph>
                         <ul>
                             <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the third camera.</li>
                             <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the third camera.</li>
@@ -136,7 +136,7 @@
                 <plentry props="cpp">
                     <pt>publishFourthCameraTrack</pt>
                     <pd>
-                        <note>This parameter is only applicable to Android, Windows, and macOS platforms.</note><ph>Whether to publish the video captured by the fourth camera:</ph>
+                        <note>This parameter applies only to Android, Windows, and macOS platforms.</note><ph>Whether to publish the video captured by the fourth camera:</ph>
                         <ul>
                             <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the fourth camera.</li>
                             <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the fourth camera.</li>
@@ -155,64 +155,277 @@
                 <plentry props="cpp">
                     <pt>publishScreenCaptureVideo</pt>
                     <pd>
-                        <note>This parameter is only applicable to Android and iOS platforms.</note><ph>Whether to publish the video captured from screen:</ph>
+                        <note>This parameter applies only to Android and iOS platforms.</note><ph>Whether to publish the video captured by the screen:</ph>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from screen.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from screen.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the screen.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the screen.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishScreenTrack</pt>
                     <pd>
-                        <note>This parameter is only applicable to Windows and macOS platforms.</note><ph>Whether to publish the video captured from screen:</ph>
+                        <note>This parameter applies only to Windows and macOS platforms.</note><ph>Whether to publish the video captured by the screen:</ph>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from screen.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from screen.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the screen.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the screen.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishSecondaryScreenTrack</pt>
-                    <pd>Whether to publish the video captured from the second screen:
+                    <pd>Whether to publish the video captured by the second screen:
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the second screen.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the second screen.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the second screen.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the second screen.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishThirdScreenTrack</pt>
                     <pd>
-                        <note>This parameter is only applicable to Windows and macOS platforms.</note><ph>Whether to publish the video captured from the third screen:</ph>
+                        <note>This parameter applies only to Windows and macOS platforms.</note><ph>Whether to publish the video captured by the third screen:</ph>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the third screen.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the third screen.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the third screen.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the third screen.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishFourthScreenTrack</pt>
                     <pd>
-                        <note>This parameter is only applicable to Windows and macOS platforms.</note><ph>Whether to publish the video captured from the fourth screen:</ph>
+                        <note>This parameter applies only to Windows and macOS platforms.</note><ph>Whether to publish the video captured by the fourth screen:</ph>
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the fourth screen.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the fourth screen.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the fourth screen.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the fourth screen.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishCustomAudioTrack</pt>
-                    <pd>Whether to publish the audio captured from a custom audio source:
+                    <pd>Whether to publish the audio captured by a custom audio source:
                         <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the audio captured from a custom audio source.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the audio captured from a custom audio source.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the audio captured by a custom audio source.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the audio captured by a custom audio source.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>publishCustomAudioTrackId</pt>
-                    <pd>The ID of the custom audio track to be published. Default is 0. You can get the custom audio track ID via <xref keyref="createCustomAudioTrack_IMediaEngine"/>.</pd>
+                    <pd>The ID of the custom audio track to be published. The default value is 0. You can get the custom audio track ID through <xref keyref="createCustomAudioTrack_IMediaEngine"/>.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishCustomVideoTrack</pt>
+                    <pd>Whether to publish the video captured by a custom video source:
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by a custom video source.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by a custom video source.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishEncodedVideoTrack</pt>
+                    <pd>Whether to publish the encoded video:
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the encoded video.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the encoded video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishMediaPlayerAudioTrack</pt>
+                    <pd>Whether to publish the audio of the media player:
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the audio of the media player.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the audio of the media player.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishMediaPlayerVideoTrack</pt>
+                    <pd>Whether to publish the video of the media player:
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the video of the media player.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the video of the media player.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishTranscodedVideoTrack</pt>
+                    <pd>
+                        <note>Since v4.2.0, the parameter name is corrected from <codeph>publishTrancodedVideoTrack</codeph> to <codeph>publishTranscodedVideoTrack</codeph>.</note><ph>Whether to publish the local transcoded video:</ph>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the local transcoded video.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the local transcoded video.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishMixedAudioTrack</pt>
+                    <pd>Whether to publish the audio mixing track:
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the audio mixing track.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the audio mixing track.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishLipSyncTrack</pt>
+                    <pd>Whether to publish the video track processed by the voice-driven extension:
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the video track processed by the voice-driven extension.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the video track processed by the voice-driven extension.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>autoSubscribeAudio</pt>
+                    <pd>When a user joins a channel, whether to automatically subscribe to all remote audio streams:
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Subscribe to all remote audio streams.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not automatically subscribe to any remote audio streams.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>autoSubscribeVideo</pt>
+                    <pd>When a user joins a channel, whether to automatically subscribe to all remote video streams:
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Subscribe to all remote video streams.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not automatically subscribe to any remote video streams.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enableAudioRecordingOrPlayout</pt>
+                    <pd>
+                        <note>If you need to publish the audio stream captured by the microphone, make sure this parameter is set to <codeph><ph keyref="true"/></codeph>.</note><ph>Whether to enable audio recording or playout:</ph>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Enable audio recording or playout.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not enable audio recording or playout.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishMediaPlayerId</pt>
+                    <pd>The ID of the media player to be published. The default value is 0.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>clientRoleType</pt>
+                    <pd>User role. See CLIENT_ROLE_TYPE.
+                        <note>If you set the user role to audience, you cannot publish audio and video streams in the channel. If you want to publish media streams in a live broadcast, make sure to set the user role to host.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audienceLatencyLevel</pt>
+                    <pd>Latency level of the audience in interactive live streaming. See AUDIENCE_LATENCY_LEVEL_TYPE.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>defaultVideoStreamType</pt>
+                    <pd>Default video stream type. See VIDEO_STREAM_TYPE.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>channelProfile</pt>
+                    <pd>Channel scenario. See CHANNEL_PROFILE_TYPE.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>audioDelayMs</pt>
+                    <pd>The delay of sending audio frames (in milliseconds). You can use this parameter to set the delay of the audio frames to be sent to ensure audio-video synchronization. To turn off the delay, set this value to 0.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mediaPlayerAudioDelayMs</pt>
+                    <pd>The delay of sending media player audio frames (in milliseconds). Used to explicitly control audio-video synchronization. To turn off the delay, set this value to 0.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>token</pt>
+                    <pd>(Optional) The Token for authentication generated on your server.
+                        <note>
+                            <ul>
+                                <li>This parameter takes effect only when calling <xref keyref="updateChannelMediaOptions"/> or <xref keyref="updateChannelMediaOptionsEx"/>.</li>
+                                <li>Make sure the App ID, channel name, and user name used to generate the Token are the same as those used in the <xref keyref="initialize"/> method to initialize the RTC engine and in the <codeph>joinChannel</codeph> and <xref keyref="joinChannelEx"/> methods to join a channel.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enableBuiltInMediaEncryption</pt>
+                    <pd>
+                        <note>This parameter is ignored when calling <xref keyref="updateChannelMediaOptions"/>.</note><ph>Whether to enable media packet encryption:</ph>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Enable.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: (Default) Do not enable.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishRhythmPlayerTrack</pt>
+                    <pd>Whether to publish the sound of the metronome to remote users:
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the processed audio frames, both local and remote users can hear the metronome.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the sound of the metronome, only the local user can hear the metronome.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>isInteractiveAudience</pt>
+                    <pd>
+                        <note>
+                            <ul>
+                                <li>This parameter applies only to co-hosting live streaming scenarios. Co-hosts need to call the <xref keyref="joinChannelEx"/> method to join the channel of another host as an audience and set <codeph>isInteractiveAudience</codeph> to true.</li>
+                                <li>This parameter takes effect only when the user role is <codeph>CLIENT_ROLE_AUDIENCE</codeph>.</li>
+                            </ul>
+                        </note><ph>Whether to enable interactive mode:</ph>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Enable interactive mode.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not enable interactive mode.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>customVideoTrackId</pt>
+                    <pd>The video track ID returned by the <xref keyref="createCustomVideoTrack"/> method. The default value is 0.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>isAudioFilterable</pt>
+                    <pd>
+                        <note>To enable this feature, please contact technical support.</note><ph>Whether the published audio stream is filtered based on the volume algorithm:</ph>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: The audio stream is filtered. If the audio stream filter is not enabled, this setting does not take effect.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: The audio stream is not filtered.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>enableMultipath</pt>
+                    <pd>
+                        <note>Permissions and system requirements:
+                            <ul>
+                                <li>Android: Android 7.0 or higher (API level 24 or higher), requires ACCESS_NETWORK_STATE and CHANGE_NETWORK_STATE permissions.</li>
+                                <li>iOS: iOS 12.0 or higher.</li>
+                                <li>macOS: 10.14 or higher.</li>
+                                <li>Windows: Windows Vista or higher.</li>
+                            </ul>
+                        </note><ph>Whether to enable multipath transmission:</ph>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Enable multipath transmission.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Disable multipath transmission.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>preferMultipathType</pt>
+                    <pd>Preferred transmission path type. See MultipathType.
+                        <note>When using this parameter, make sure <codeph>enableMultipath</codeph> is set to true.</note>
+                    </pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>publishScreenCaptureAudio</pt>
+                    <pd>Whether to publish the audio track of the screen capturer:
+                        <ul>
+                            <li><xref keyref="true"/>: Publish the audio of the screen capturer.</li>
+                            <li><xref keyref="false"/>: (Default) Do not publish the audio track of the screen capturer.</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>publishCameraTrack</pt>
@@ -501,18 +714,6 @@ This parameter is only effective when the user role is CLIENT_ROLE_AUDIENCE.</no
                             <li><xref keyref="true"/>: Enable multipath transmission.</li>
                             <li><xref keyref="false"/>: Disable multipath transmission.</li>
                         </ul>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>uplinkMultipathMode</pt>
-                    <pd>Uplink transmission mode. See <xref keyref="MultipathMode"/>.
-                        <note>To use this parameter, ensure <codeph>enableMultipath</codeph> is set to <xref keyref="true"/>.</note>
-                    </pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>downlinkMultipathMode</pt>
-                    <pd>Downlink transmission mode. See <xref keyref="MultipathMode"/>.
-                        <note>To use this parameter, ensure <codeph>enableMultipath</codeph> is set to <xref keyref="true"/>.</note>
                     </pd>
                 </plentry>
                 <plentry props="android">

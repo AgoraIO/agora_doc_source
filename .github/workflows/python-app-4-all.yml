@@ -1,6 +1,9 @@
 # GitHub CI build pipeline
 name: All 4.x Doc JSON Files
 
+env:
+    FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
     push:
         branches:
@@ -41,9 +44,9 @@ jobs:
         runs-on: ubuntu-latest
         name: ${{matrix.platform}} (${{matrix.language}})${{matrix.version == 'full' && ' [full]' || ''}}
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - name: Set up python 3.8
-              uses: actions/setup-python@v4
+              uses: actions/setup-python@v5
               with:
                   python-version: "3.8"
             - name: Set Language and Working Directory
