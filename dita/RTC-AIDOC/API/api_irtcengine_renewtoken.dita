@@ -20,34 +20,30 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onRenewTokenResult"/> 回调。Token 在一段时间后会过期，届时 SDK 将无法与服务器建立连接。声网建议你在以下任一情况下，在你的服务器上生成新的 Token，并调用该方法进行更新：
+            <p props="cpp">成功调用该方法后，SDK 会触发 <xref keyref="onRenewTokenResult"/> 回调。在单频道场景下，你可以在以下情况下调用该方法更新 Token：
                 <ul>
                     <li>收到 <xref keyref="onTokenPrivilegeWillExpire"/> 回调，提示 Token 即将过期。</li>
-                    <li>收到 <xref keyref="onRequestToken"/> 回调，提示 Token 已过期。</li>
-                    <li>收到 <xref keyref="onConnectionStateChanged"/> 回调，报告 <codeph>CONNECTION_CHANGED_TOKEN_EXPIRED</codeph>（9）。</li>
+                    <li>Token 已过期时，SDK 会触发 <xref keyref="onRequestToken"/> 回调，并在 <xref keyref="onConnectionStateChanged"/> 回调中报告 <codeph>CONNECTION_CHANGED_TOKEN_EXPIRED</codeph>（9）。</li>
                 </ul>
             </p>
             <p props="ios">该方法用于更新 Token。调用该方法成功后，SDK 会触发 <xref keyref="onRenewTokenResult"/> 回调。
-你可以在以下任一情况下调用该方法更新 Token：
+在单频道场景下，你可以在以下情况下调用该方法更新 Token：
                 <ul>
                     <li>收到 <xref keyref="onTokenPrivilegeWillExpire"/> 回调，提示 Token 即将过期。</li>
-                    <li>收到 <xref keyref="onRequestToken"/> 回调，提示 Token 已过期。</li>
-                    <li>收到 <xref keyref="onConnectionStateChanged"/> 回调，且 <codeph>reason</codeph> 为 <codeph>AgoraConnectionChangedReasonTokenExpired</codeph>（9）。</li>
+                    <li>Token 已过期时，SDK 会触发 <xref keyref="onRequestToken"/> 回调，并在 <xref keyref="onConnectionStateChanged"/> 回调中将 <codeph>reason</codeph> 报告为 <codeph>AgoraConnectionChangedReasonTokenExpired</codeph>（9）。</li>
                 </ul>
             </p>
-            <p props="android">调用该方法更新 Token。调用成功后，SDK 会触发 <xref keyref="onRenewTokenResult"/> 回调。Token 会在一段时间后过期，届时 SDK 将无法与服务器建立连接。声网建议在以下任一情况下，在你的服务器上生成新的 Token，并调用该方法进行更新：
+            <p props="android">成功调用该方法后，SDK 会触发 <xref keyref="onRenewTokenResult"/> 回调。在单频道场景下，你可以在以下情况下调用该方法更新 Token：
                 <ul>
                     <li>收到 <xref keyref="onTokenPrivilegeWillExpire"/> 回调，提示 Token 即将过期。</li>
-                    <li>收到 <xref keyref="onRequestToken"/> 回调，提示 Token 已过期。</li>
-                    <li>收到 <xref keyref="onConnectionStateChanged"/> 回调，状态为 <codeph>CONNECTION_CHANGED_TOKEN_EXPIRED</codeph>（9）。</li>
+                    <li>Token 已过期时，SDK 会触发 <xref keyref="onRequestToken"/> 回调，并在 <xref keyref="onConnectionStateChanged"/> 回调中报告 <codeph>CONNECTION_CHANGED_TOKEN_EXPIRED</codeph>（9）。</li>
                 </ul>
             </p>
             <p props="mac">该方法用于更新 Token。调用该方法成功后，SDK 会触发 <xref keyref="onRenewTokenResult"/> 回调。
-你可以在以下任一情况下调用该方法更新 Token：
+在单频道场景下，你可以在以下情况下调用该方法更新 Token：
                 <ul>
                     <li>收到 <xref keyref="onTokenPrivilegeWillExpire"/> 回调，提示 Token 即将过期。</li>
-                    <li>收到 <xref keyref="onRequestToken"/> 回调，提示 Token 已过期。</li>
-                    <li>收到 <xref keyref="onConnectionStateChanged"/> 回调，且 <codeph>reason</codeph> 为 <codeph>AgoraConnectionChangedReasonTokenExpired</codeph>（9）。</li>
+                    <li>Token 已过期时，SDK 会触发 <xref keyref="onRequestToken"/> 回调，并在 <xref keyref="onConnectionStateChanged"/> 回调中将 <codeph>reason</codeph> 报告为 <codeph>AgoraConnectionChangedReasonTokenExpired</codeph>（9）。</li>
                 </ul>
             </p>
         </section>
