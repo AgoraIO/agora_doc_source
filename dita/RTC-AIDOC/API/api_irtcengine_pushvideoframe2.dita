@@ -36,6 +36,7 @@
             <p props="ios">调用 <xref keyref="setExternalVideoSource"/> 方法，并将 <codeph>enabled</codeph> 参数设置为 <xref keyref="true"/>，<codeph>encodedFrame</codeph> 参数设置为 <xref keyref="false"/> 后，可以调用该方法将外部原始视频帧推送到 SDK。</p>
             <p props="android">调用 <xref keyref="setExternalVideoSource"/> 方法并将 <codeph>enabled</codeph> 参数设置为 <xref keyref="true"/>，<codeph>encodedFrame</codeph> 参数设置为 <xref keyref="false"/> 后，可以使用该方法将外部原始视频帧推送至 SDK。你可以调用该方法或 <codeph>pushExternalVideoFrame</codeph> 推送视频帧。</p>
             <p props="mac">调用 <xref keyref="setExternalVideoSource"/> 方法，并将 <codeph>enabled</codeph> 参数设置为 <xref keyref="true"/>，<codeph>encodedFrame</codeph> 参数设置为 <xref keyref="false"/> 后，可以调用该方法将外部原始视频帧推送到 SDK。</p>
+            <note props="android">在 Android 自采集场景中，声网推荐优先使用 <codeph>io.agora.base.VideoFrame</codeph> 配合 <codeph>pushExternalVideoFrameById(VideoFrame frame, int videoTrackId)</codeph> 推送视频帧。<xref keyref="VideoFrame"/> 支持通过统一的 <codeph>Buffer</codeph> 抽象封装 <codeph>I420</codeph>、<codeph>NV21</codeph>、<codeph>NV12</codeph> 和 Texture 等数据，适合新接入场景；<xref keyref="ExternalVideoFrame"/> 更适合兼容现有基于字节数组的推帧实现。</note>
         </section>
         <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>参数</title>
@@ -46,7 +47,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>frame</pt>
-                    <pd>要推送的视频帧。</pd>
+                    <pd>要推送的视频帧。详见 <xref keyref="VideoFrame"/>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>frame</pt>
