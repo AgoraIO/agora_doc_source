@@ -26,12 +26,14 @@
                     <li>调用 <xref keyref="pushVideoFrame"/> 方法，并将 <codeph>videoTrackId</codeph> 指定为第 2 步中设置的视频轨道 ID，即可在频道中发布相应的自定义视频源。</li>
                 </ol>
             </p>
-            <p props="android">要发布自定义视频源，请按照以下步骤操作：
+            <p props="android">在 Android 自采集场景中，声网推荐优先使用 <codeph>io.agora.base.VideoFrame</codeph> 配合 <codeph>pushExternalVideoFrameById(VideoFrame frame, int videoTrackId)</codeph> 推送视频帧。<xref keyref="VideoFrame"/> 支持通过统一的 <codeph>Buffer</codeph> 抽象封装 <codeph>I420</codeph>、<codeph>NV21</codeph>、<codeph>NV12</codeph> 和 Texture 等数据，适合新接入场景。
+如果你只需向当前频道发布一路自采集视频，推荐在加入频道前调用 <xref keyref="setExternalVideoSource"/> 启用外部视频源，并在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>、将 <codeph>customVideoTrackId</codeph> 设置为 <codeph>0</codeph>。此场景下，SDK 会自动创建默认自定义视频轨道，你无需先调用 <xref keyref="createCustomVideoTrack"/>。
+如果你需要发布多路自采集视频，或者需要在多个频道中分别发布不同的自采集视频流，请按照以下步骤操作：
                 <ol>
                     <li>调用 <xref keyref="createCustomVideoTrack"/> 创建视频轨道并获取视频轨道 ID。</li>
                     <li>调用 <codeph>joinChannel</codeph> 加入频道。在 <xref keyref="ChannelMediaOptions"/> 中，将 <codeph>customVideoTrackId</codeph> 设置为要发布的视频轨道 ID，并将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>。</li>
                     <li>调用 <codeph>pushExternalVideoFrameById</codeph>，并将 <codeph>videoTrackId</codeph> 设置为第 2 步中设置的视频轨道 ID，即可在频道中发布对应的自定义视频源。</li>
-                </ol><ph>你可以通过调用 <codeph>pushExternalVideoFrameById</codeph> 或调用 <codeph>pushExternalVideoFrameById</codeph>（参数为 <xref keyref="ExternalVideoFrame"/>）推送视频帧。</ph></p>
+                </ol><ph>如果你的现有采集模块已经基于 <xref keyref="ExternalVideoFrame"/> 封装，仍可继续调用 <codeph>pushExternalVideoFrameById(AgoraVideoFrame frame, int videoTrackId)</codeph>；但该重载不支持 Texture 数据，且可扩展能力弱于 <xref keyref="VideoFrame"/>。</ph><ph>你可以通过调用 <codeph>pushExternalVideoFrameById</codeph> 或调用 <codeph>pushExternalVideoFrameById</codeph>（参数为 <xref keyref="ExternalVideoFrame"/>）推送视频帧。</ph></p>
             <p props="mac">要发布自定义视频源，请按照以下步骤操作：
                 <ol>
                     <li>调用 <xref keyref="createCustomVideoTrack"/> 创建视频轨道并获取视频轨道 ID。</li>
@@ -64,7 +66,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>frame</pt>
-                    <pd>要推送的视频帧。</pd>
+                    <pd>要推送的视频帧。详见 <xref keyref="VideoFrame"/>。</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>videoTrackId</pt>

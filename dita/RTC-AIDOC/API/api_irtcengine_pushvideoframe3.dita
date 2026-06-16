@@ -17,12 +17,14 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="android">要发布自定义视频源，请按照以下步骤操作：
+            <p props="android">如果你的现有采集模块已经基于 <xref keyref="ExternalVideoFrame"/> 封装，可继续调用该重载推送视频帧。
+如果你只需向当前频道发布一路自采集视频，推荐在加入频道前调用 <xref keyref="setExternalVideoSource"/> 启用外部视频源，并在 <xref keyref="ChannelMediaOptions"/> 中将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>、将 <codeph>customVideoTrackId</codeph> 设置为 <codeph>0</codeph>。此场景下，SDK 会自动创建默认自定义视频轨道，你无需先调用 <xref keyref="createCustomVideoTrack"/>。
+如果你需要发布多路自采集视频，或者需要在多个频道中分别发布不同的自采集视频流，请按照以下步骤操作：
                 <ol>
                     <li>调用 <xref keyref="createCustomVideoTrack"/> 创建视频轨道并获取视频轨道 ID。</li>
                     <li>调用 <codeph>joinChannel</codeph> 加入频道。在 <xref keyref="ChannelMediaOptions"/> 中，将 <codeph>customVideoTrackId</codeph> 设置为要发布的视频轨道 ID，并将 <codeph>publishCustomVideoTrack</codeph> 设置为 <xref keyref="true"/>。</li>
                     <li>调用 <codeph>pushExternalVideoFrameById</codeph>，并将 <codeph>videoTrackId</codeph> 设置为步骤 2 中设置的视频轨道 ID，即可在频道中发布对应的自定义视频源。</li>
-                </ol><ph>你可以通过调用 <codeph>pushExternalVideoFrameById</codeph> 或调用 <codeph>pushExternalVideoFrame</codeph> 推送视频帧。</ph></p>
+                </ol><ph><xref keyref="ExternalVideoFrame"/> 更适合兼容现有基于字节数组的推帧实现；如果你是新接入场景，声网更推荐使用 <codeph>pushExternalVideoFrameById(VideoFrame frame, int videoTrackId)</codeph> 重载，因为它支持 Texture 数据，且可通过统一的 <codeph>Buffer</codeph> 抽象封装更多格式。</ph><ph>你可以通过调用 <codeph>pushExternalVideoFrameById</codeph> 或调用 <codeph>pushExternalVideoFrame</codeph> 推送视频帧。</ph></p>
             <note props="android">如果你只需向频道中推送一个自定义视频源，可以直接调用 <xref keyref="setExternalVideoSource"/> 方法，SDK 会自动创建一个 <codeph>videoTrackId</codeph> 为 0 的视频轨道。
 警告：调用 <codeph>pushExternalVideoFrameById</codeph> 后，即使你停止向 SDK 推送外部视频帧，自定义视频流仍会被计入视频时长并产生费用。声网建议你根据实际情况采取适当措施以避免此类视频计费：
                 <ul>

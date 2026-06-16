@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoframe">
     <title><ph keyref="VideoFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置视频帧。</ph><ph id="shortdesc" props="ios">视频帧的配置信息。</ph><ph id="shortdesc" props="mac">视频帧的配置信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">用于配置视频帧。</ph><ph id="shortdesc" props="ios">视频帧的配置信息。</ph><ph id="shortdesc" props="android">用于封装要推送或处理的视频帧。</ph><ph id="shortdesc" props="mac">视频帧的配置信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -50,6 +50,42 @@
 @property(nonatomic, strong) NSDictionary *_Nonnull metaInfo;
 @property(nonatomic, strong) AgoraColorSpace* _Nullable colorSpace;
 @end</codeblock>
+                <codeblock props="android" outputclass="language-java">public class VideoFrame implements RefCounted {
+  public interface Buffer extends RefCounted {
+    int getWidth();
+    int getHeight();
+    I420Buffer toI420();
+    I010Buffer toI010();
+    Buffer cropAndScale(
+        int cropX, int cropY, int cropWidth, int cropHeight, int scaleWidth, int scaleHeight);
+    Buffer mirror(int frameRotation);
+    Buffer rotate(int frameRotation);
+    Buffer transform(int cropX, int cropY, int cropWidth, int cropHeight, int scaleWidth,
+        int scaleHeight, int frameRotation);
+  }
+
+  public interface TextureBuffer extends Buffer {
+    enum Type {
+      OES,
+      RGB
+    }
+
+    Type getType();
+    int getTextureId();
+    Matrix getTransformMatrix();
+    EglBase.Context getEglBaseContext();
+    float[] getTransformMatrixArray();
+    long getFenceObject();
+  }
+
+  public VideoFrame(Buffer buffer, int rotation, long timestampNs);
+  public Buffer getBuffer();
+  public int getRotation();
+  public long getTimestampNs();
+  public int getRotatedWidth();
+  public int getRotatedHeight();
+  public ColorSpace getColorSpace();
+}</codeblock>
                 <codeblock props="mac" outputclass="language-objectivec">@interface AgoraOutputVideoFrame : NSObject
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, assign) int width;
@@ -71,12 +107,15 @@
 @end</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp ios mac">
             <p props="cpp">注意，缓冲区是指向指针的指针。该接口无法修改缓冲区的指针，但可以修改缓冲区的内容。</p>
             <p props="ios">缓冲区提供的是指针的指针。该接口无法修改缓冲区的指针，但可以修改缓冲区的内容。</p>
+            <p props="android">在 Android 自采集场景中，声网推荐优先使用 <codeph>io.agora.base.VideoFrame</codeph> 配合 <codeph>pushExternalVideoFrameById(VideoFrame frame, int videoTrackId)</codeph> 推送视频帧。该类型通过统一的 <codeph>Buffer</codeph> 抽象封装不同的视频缓冲区，适合封装 <codeph>I420</codeph>、<codeph>NV21</codeph>、<codeph>NV12</codeph> 以及 Texture 等数据。</p>
             <p props="mac">缓冲区提供的是指针的指针。该接口无法修改缓冲区的指针，但可以修改缓冲区的内容。</p>
+            <note props="android"><xref keyref="VideoFrame"/> 的时间戳字段为 <codeph>timestampNs</codeph>，单位为纳秒；若你使用 <xref keyref="getCurrentMonotonicTimeInMs"/> 获取 SDK 当前单调时间，需要先将毫秒转换为纳秒再传入。
+如果你的现有实现已经基于 <xref keyref="ExternalVideoFrame"/> 封装，仍可继续使用；但对于 Android 新接入场景，推荐优先使用 <xref keyref="VideoFrame"/>，因为它支持 Texture 数据，也能通过统一的 <codeph>Buffer</codeph> 抽象承载更多格式。</note>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>属性</title>
             <parml>
                 <plentry props="cpp">
@@ -248,6 +287,34 @@
                 <plentry props="ios">
                     <pt>colorSpace</pt>
                     <pd>视频帧的色彩空间配置，默认采用 Full Range 和 BT.709 标准。详见 [<codeph>VideoColorSpace</codeph>](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace)。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>type</pt>
+                    <pd>像素格式。详见 <codeph>VIDEO_PIXEL_FORMAT</codeph>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>buffer</pt>
+                    <pd>视频帧缓冲区。构造 <xref keyref="VideoFrame"/> 时需要传入实现了 <codeph>VideoFrame.Buffer</codeph> 的对象。常见实现包括 <codeph>JavaI420Buffer</codeph>、<codeph>NV21Buffer</codeph>、<codeph>NV12Buffer</codeph> 和 <codeph>TextureBuffer</codeph>。
+                        <note>该参数不可为空，否则会发生异常。相关方法包括 <codeph>getRotatedWidth</codeph>、<codeph>getRotatedHeight</codeph>、<codeph>replaceBuffer</codeph>、<codeph>retain</codeph> 和 <codeph>release</codeph>。</note>
+                    </pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>TextureBuffer</pt>
+                    <pd>Texture 类型的视频缓冲区抽象。可获取纹理类型 <codeph>Type</codeph>、纹理 ID、transform matrix、EGL context 和 fence object。若你需要推送 Texture 数据，推荐使用 <xref keyref="VideoFrame"/> 而非 <xref keyref="ExternalVideoFrame"/>。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>rotation</pt>
+                    <pd>视频帧在渲染前的顺时针旋转角度。支持 0、90、180 和 270 度。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>timestampNs</pt>
+                    <pd>视频帧的时间戳，单位为纳秒。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>colorSpace</pt>
+                    <pd>视频帧的色彩空间属性，默认采用 Full Range 和 BT.709 标准配置。你可以根据自定义采集或自定义渲染的业务需求进行设置。
+                        <note>相关方法包括 <codeph>getColorSpace</codeph> 和 <codeph>setColorSpace</codeph>。</note>
+                    </pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>type</pt>
