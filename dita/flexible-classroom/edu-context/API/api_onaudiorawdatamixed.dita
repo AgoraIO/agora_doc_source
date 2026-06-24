@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onaudiorawdatamixed">
+    <title><ph keyref="onAudioRawDataMixed"/></title>
+    <shortdesc id="short"><ph id="shortdesc">收到远端多路音频流，在将多路音频流合为一路音频流前抛出的音频数据。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioRawDataMixed"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin">fun onAudioRawDataMixed(data: FcrAudioRawData)</codeblock>
+                <codeblock props="ios mac" outputclass="language-swift">FrcAudioRawData onAudioRawDataMixed(FrcAudioRawData data)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="detailed-desc"><note>SDK 只能抛出单声道数据，采样率可通过 <xref keyref="setAudioRawDataConfig"/> 控制。</note></section>
+        <section id="parameters"><title>参数</title>
+            <parml>
+                <plentry>
+                    <pt>data</pt>
+                    <pd>音频数据，详见 <xref keyref="FcrAudioRawData"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p>音频数据，详见 <xref keyref="FcrAudioRawData"/>。</p>
+        </section>
+    </refbody>
+</reference>

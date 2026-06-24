@@ -101,7 +101,7 @@ UI 组件列表：
 
    在这个文件中，你可以通过点击预览时图中对应的内容，定位到对应的属性，来修改导航栏的高度，标题，背景色，文字等。例如，你想要修改导航栏的文字，就可以点击预览视图中的 `myclassroom`，定位到 `<androidx.appcompat.widget.AppCompatTextView`，修改 `tools:text="myclassroom"` 即可。
 
-   ![image-20230324180224104](images/image-20230324180224104.png)
+   ![image-20230324180224104](../images/image-20230324180224104.png)
 
 ### 新增自定义 UI 组件
 
