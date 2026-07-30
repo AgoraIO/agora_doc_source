@@ -27,12 +27,12 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p id="desc1">The SDK triggers this callback if the token expires.</p>
-            <p id="renew">When receiving this callback, you need to generate a new token on your token server and you can renew your token through one of the following ways:<ul>
+            <p id="renew">When receiving this callback, generate a new token on your token server and update it based on the scenario:<ul>
                    <li>In scenarios involving one channel:<ul>
-                            <li>Call <xref keyref="renewToken"/> to pass in the new token.</li>
-                            <li>Call <xref keyref="leaveChannel2"/> to leave the current channel and then pass in the new token when you call <xref keyref="joinChannel2" /> to join a channel.</li>
+                            <li>Call <xref keyref="renewToken"/> to pass in the new token without leaving the channel.</li>
+                            <li>If your app needs to leave and rejoin the channel, you can alternatively call <xref keyref="leaveChannel2"/> to leave the channel and pass in the new token when calling <xref keyref="joinChannel2" />.</li>
                         </ul></li>
-                   <li>In scenarios involving mutiple channels: Call <xref keyref="updateChannelMediaOptionsEx"/> to pass in the new token.</li>
+                   <li>In scenarios involving multiple channels, call <xref keyref="updateChannelMediaOptionsEx"/> to pass in the new token.</li>
                    </ul></p>
         </section>
         <section id="restriction" deliveryTarget="details">
