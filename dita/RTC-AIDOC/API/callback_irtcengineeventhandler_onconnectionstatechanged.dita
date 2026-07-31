@@ -68,7 +68,12 @@
                             <li><codeph>CONNECTION_STATE_CONNECTING</codeph> (2)：SDK 正在连接声网边缘服务器。</li>
                             <li><codeph>CONNECTION_STATE_CONNECTED</codeph> (3)：SDK 已连接到声网边缘服务器。</li>
                             <li><codeph>CONNECTION_STATE_RECONNECTING</codeph> (4)：SDK 尝试重新连接声网边缘服务器。</li>
-                            <li><codeph>CONNECTION_STATE_FAILED</codeph> (5)：SDK 连接声网边缘服务器失败。</li>
+                            <li><codeph>CONNECTION_STATE_FAILED</codeph> (5)：SDK 无法连接声网边缘服务器或加入频道，并停止重连。用户被服务端踢出、Token 失效或鉴权失败时，回调报告的 <codeph>reason</codeph> 可能不同，但进入该状态后的恢复流程一致：
+                                <ul>
+                                    <li><codeph>joinChannel</codeph> 场景：先调用 <codeph>leaveChannel</codeph>，等待 <xref keyref="onConnectionStateChanged"/> 回调报告 <codeph>CONNECTION_STATE_DISCONNECTED</codeph> (1)，再使用有效的新 Token 调用 <codeph>joinChannel</codeph>。如果未先离开频道，<codeph>joinChannel</codeph> 会返回 -17（<codeph>ERR_JOIN_CHANNEL_REJECTED</codeph>）。</li>
+                                    <li><xref keyref="joinChannelEx"/> 场景：针对对应的 <xref keyref="RtcConnection"/> 调用 <codeph>leaveChannelEx</codeph>，等待该连接的 <xref keyref="onConnectionStateChanged"/> 回调报告 <codeph>CONNECTION_STATE_DISCONNECTED</codeph> (1)，再使用有效的新 Token 调用 <xref keyref="joinChannelEx"/>。如需只清理该连接，请使用 <codeph>leaveChannelEx</codeph>；调用 <codeph>leaveChannel</codeph> 会离开当前加入的所有频道。</li>
+                                </ul>
+                            </li>
                         </ul>
                     </pd>
                 </plentry>
@@ -96,15 +101,15 @@
                                     <li>项目在声网控制台启用了 App Certificate，但加入频道时未传入 Token。</li>
                                     <li>调用 <codeph>joinChannel</codeph> 加入频道时指定的 <codeph>uid</codeph> 与生成 Token 时传入的 <codeph>uid</codeph> 不一致。</li>
                                     <li>使用的 Token 与生成的 Token 不一致。</li>
+                                    <li>请确保：
+                                        <ul>
+                                            <li>项目启用 App Certificate 时，加入频道必须传入 Token。</li>
+                                            <li>生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致。</li>
+                                            <li>使用的 Token 与生成的 Token 一致。</li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
-                        </ul><ph>  请确保：</ph>
-                        <ul>
-                            <li>项目启用 App Certificate 时，加入频道必须传入 Token。</li>
-                            <li>生成 Token 时指定的用户 ID 与加入频道时使用的用户 ID 一致。</li>
-                            <li>使用的 Token 与生成的 Token 一致。</li>
-                        </ul>
-                        <ul>
                             <li><codeph>CONNECTION_CHANGED_TOKEN_EXPIRED</codeph> (9)：当前使用的 Token 已过期。你需要在服务器上生成新的 Token，并使用新 Token 重新加入频道。</li>
                             <li><codeph>CONNECTION_CHANGED_REJECTED_BY_SERVER</codeph> (10)：用户被服务器禁止。</li>
                             <li><codeph>CONNECTION_CHANGED_SETTING_PROXY_SERVER</codeph> (11)：设置代理服务器后，SDK 尝试重新连接。</li>
