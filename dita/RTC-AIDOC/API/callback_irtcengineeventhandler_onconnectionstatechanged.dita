@@ -84,7 +84,7 @@
                             <li><codeph>CONNECTION_CHANGED_CONNECTING</codeph> (0)：SDK 正在连接声网边缘服务器。</li>
                             <li><codeph>CONNECTION_CHANGED_JOIN_SUCCESS</codeph> (1)：SDK 成功加入频道。</li>
                             <li><codeph>CONNECTION_CHANGED_INTERRUPTED</codeph> (2)：SDK 与声网边缘服务器之间的连接中断。</li>
-                            <li><codeph>CONNECTION_CHANGED_BANNED_BY_SERVER</codeph> (3)：连接被声网服务器禁止，例如用户被踢出频道时会返回该错误码。</li>
+                            <li><codeph>CONNECTION_CHANGED_BANNED_BY_SERVER</codeph> (3)：连接被声网服务器禁止，例如用户被踢出频道时会返回该错误码。如果用户因被踢出频道收到该错误码，重新加入频道前需先调用 <codeph>leaveChannel</codeph> 离开当前频道，再调用 <codeph>joinChannel</codeph> 或 <xref keyref="joinChannelEx"/>；否则 SDK 会返回错误码 -17。</li>
                             <li><codeph>CONNECTION_CHANGED_JOIN_FAILED</codeph> (4)：SDK 加入频道失败。若超过 20 分钟未能加入频道，SDK 会停止重连并返回该错误码。你需要提示用户尝试切换网络并重新加入频道。</li>
                             <li><codeph>CONNECTION_CHANGED_LEAVE_CHANNEL</codeph> (5)：SDK 已离开频道。</li>
                             <li><codeph>CONNECTION_CHANGED_INVALID_APP_ID</codeph> (6)：无效的 App ID。你需要使用有效的 App ID 重新加入频道，并确保该 App ID 与声网控制台中生成的一致。</li>
