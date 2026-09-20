@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcamerazoomfactor">
     <title><ph keyref="setCameraZoomFactor"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the camera zoom factor.</ph><ph id="shortdesc" props="android">Sets the camera zoom factor.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the camera zoom factor.</ph><ph id="shortdesc" props="android">Sets the camera zoom factor.</ph><ph id="shortdesc" props="ios mac">Sets the camera zoom factor.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,9 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setCameraZoomFactor(float factor) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int setCameraZoomFactor(float factor);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (CGFloat)setCameraZoomFactor:(CGFloat)zoomFactor;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (CGFloat)setCameraZoomFactor:(CGFloat)zoomFactor NS_SWIFT_NAME(setCameraZoomFactor(_:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">For iOS devices with multiple rear cameras, such as dual (wide and ultra-wide) or triple (wide, ultra-wide, and telephoto) cameras, you can first call <xref keyref="setCameraCapturerConfiguration"/> and set <codeph>cameraFocalLengthType</codeph> to <codeph>CAMERA_FOCAL_LENGTH_DEFAULT</codeph> (0) (standard lens), then set the zoom factor to a value less than 1.0 to achieve ultra-wide-angle video capture.</p>
@@ -26,8 +28,13 @@
                 </ul>
             </note>
             <note props="android">You must call this method after calling <xref keyref="enableVideo"/>. This setting takes effect after the camera is successfully started, i.e., after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</note>
-        </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <p props="ios mac">For iOS devices equipped with multi-lens rear cameras, such as those featuring dual-camera (wide-angle and ultra-wide-angle) or triple-camera (wide-angle, ultra-wide-angle, and telephoto), you can call <xref keyref="setCameraCapturerConfiguration"/> first to set the <parmname>cameraFocalLengthType</parmname> as <apiname keyref="CAMERA_FOCAL_LENGTH_DEFAULT"/> (0) (standard lens). Then, adjust the camera zoom factor to a value less than 1.0. This configuration allows you to capture video with an ultra-wide-angle perspective.</p>
+            <note type="attention" props="ios mac">
+            <ul>
+            <li props="cpp unreal bp unity flutter cs">This method is for Android and iOS only.</li>
+            <li conkeyref="setCameraExposureFactor/sequence"/>
+            </ul></note> </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -40,9 +47,15 @@
                     <pt>factor</pt>
                     <pd>Camera zoom factor. You can call <xref keyref="getCameraMaxZoomFactor"/> to get the maximum zoom factor supported by the device.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt props="android hmos cpp framework">factor</pt>
+                <pt props="ios mac">zoomFactor</pt>
+                <pd props="apple cpp framework">Camera zoom factor. For devices that do not support ultra-wide-angle, the value ranges from 1.0 to the maximum zoom factor; for devices that support ultra-wide-angle, the value ranges from 0.5 to the maximum zoom factor. You can get the maximum zoom factor supported by the device by calling the <xref keyref="getCameraMaxZoomFactor"/> method.</pd>
+                <pd props="android hmos">Camera zoom factor. You can get the maximum zoom factor supported by the device by calling the <xref keyref="getCameraMaxZoomFactor"/> method.</pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -56,6 +69,9 @@
                     <li>If the method call fails, returns a value less than 0.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li props="native unreal bp unity rn electron cs">The camera zoom <parmname>factor</parmname> value, if successful.</li>
+            <li>&lt; 0: if the method if failed.</li>
+            </ul> </section>
     </refbody>
 </reference>

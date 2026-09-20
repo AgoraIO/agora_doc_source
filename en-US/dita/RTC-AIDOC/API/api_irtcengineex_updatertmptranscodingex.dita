@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_updatertmptranscodingex">
     <title><ph keyref="updateRtmpTranscodingEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Updates the transcoding configuration for RTMP streaming.</ph><ph id="shortdesc" props="android">Updates the transcoding configuration for CDN streaming.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Updates the transcoding configuration for RTMP streaming.</ph><ph id="shortdesc" props="android">Updates the transcoding configuration for CDN streaming.</ph><ph id="shortdesc" props="ios mac">Updates the transcoding configuration.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,6 +15,8 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int updateRtmpTranscodingEx(const LiveTranscoding&amp; transcoding, const RtcConnection&amp; connection) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int updateRtmpTranscodingEx(LiveTranscoding transcoding, RtcConnection connection);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)updateRtmpTranscodingEx:(AgoraLiveTranscoding* _Nullable)transcoding
+                    connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(updateRtmpTranscodingEx(_:connection:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -22,12 +24,14 @@
 After starting to push media streams to the CDN using transcoding, you can dynamically update the transcoding configuration based on the actual scenario. After the configuration is updated, the SDK triggers the <xref keyref="onTranscodingUpdated"/> callback.</p>
             <p props="android">Agora recommends using the more comprehensive server-side streaming service. See [Implement Server-side CDN Streaming](https://doc.shengwang.cn/doc/media-push/restful/landing-page).
 After starting CDN streaming with transcoding, you can dynamically update the configuration as needed. After the update, the SDK triggers the <xref keyref="onTranscodingUpdated"/> callback.</p>
+        <p props="ios mac">Agora recommends that you use the server-side Media Push function. For details, see <xref keyref="cdn-streaming-restful">Use RESTful API</xref>.</p>
+            <p props="ios mac">After you start pushing media streams to CDN with transcoding, you can dynamically update the transcoding configuration according to the scenario. The SDK triggers the <xref keyref="onTranscodingUpdated"/> callback after the transcoding configuration is updated.</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
             <p>This method applies to multi-channel scenarios.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -46,9 +50,17 @@ After starting CDN streaming with transcoding, you can dynamically update the co
                     <pt>connection</pt>
                     <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
                 </plentry>
+            <plentry conkeyref="startRtmpStreamWithTranscoding/transcoding" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="joinChannelEx/connection" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -62,6 +74,9 @@ After starting CDN streaming with transcoding, you can dynamically update the co
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

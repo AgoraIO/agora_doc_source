@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_srcinfo">
     <title><ph keyref="SrcInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to obtain video bitrate information of the currently playing media resource.</ph><ph id="shortdesc" props="android">Used to obtain the video bitrate information of the currently playing media resource.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to obtain video bitrate information of the currently playing media resource.</ph><ph id="shortdesc" props="android">Used to obtain the video bitrate information of the currently playing media resource.</ph><ph id="shortdesc" props="ios mac">Information about the video bitrate of the media resource being played.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -14,9 +14,13 @@
   private int bitrateInKbps;
   private String name;
 }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaPlayerSrcInfo : NSObject
+@property(assign, nonatomic) int bitrateInKbps;
+@property(copy, nonatomic) NSString *_Nullable name;
+@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -35,7 +39,15 @@
                     <pt>name</pt>
                     <pd>The name of the media resource.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>bitrateInKbps</pt>
+                <pd>The video bitrate (Kbps) of the media resource being played.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>name</pt>
+                <pd>The name of the media resource.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="detailed_desc"/></refbody>
 </reference>

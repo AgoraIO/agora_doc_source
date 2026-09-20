@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videosubscriptionoptions">
     <title><ph keyref="VideoSubscriptionOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure video subscription options.</ph><ph id="shortdesc" props="android">Used to configure video subscription options.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure video subscription options.</ph><ph id="shortdesc" props="android">Used to configure video subscription options.</ph><ph id="shortdesc" props="ios mac">Video subscription options.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -18,9 +18,15 @@
   private REMOTE_VIDEO_STREAM_TYPE streamType;
   private Boolean encodedFrameOnly;
 }</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoSubscriptionOptions: NSObject
+
+@property (nonatomic, assign) AgoraVideoStreamType type;
+@property (nonatomic, assign) BOOL encodedFrameOnly;
+
+@end</codeblock>
+      </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -49,7 +55,19 @@
                         </ul>
                     </pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt props="android hmos">streamType</pt>
+                <pt props="ios mac cpp framework">type</pt>
+                <pd>The video stream type that you want to subscribe to. The default value is <ph keyref="VIDEO_STREAM_HIGH"/>, indicating that the high-quality video streams are subscribed. See <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>encodedFrameOnly</pt>
+                <pd>Whether to subscribe to encoded video frames only:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Subscribe to the encoded video data (structured data) only; the SDK does not decode or render raw video data.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Subscribe to both raw video data and encoded video data.</li>
+                    </ul></pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="detailed_desc"/></refbody>
 </reference>

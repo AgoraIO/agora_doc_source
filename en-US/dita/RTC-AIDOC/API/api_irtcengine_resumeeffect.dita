@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_resumeeffect">
     <title><ph keyref="resumeEffect"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Resumes playback of the specified audio effect.</ph><ph id="shortdesc" props="android">Resumes playback of the specified audio effect.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Resumes playback of the specified audio effect.</ph><ph id="shortdesc" props="android">Resumes playback of the specified audio effect.</ph><ph id="shortdesc" props="ios mac">Resumes playing a specified audio effect.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,10 +15,13 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int resumeEffect(int soundId) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int resumeEffect(int soundId);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)resumeEffect:(int)soundId;
+</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)resumeEffect:(int)soundId NS_SWIFT_NAME(resumeEffect(_:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -29,9 +32,13 @@
                     <pt>soundId</pt>
                     <pd>The ID of the audio effect. Each audio effect file has a unique ID.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>soundId</pt>
+                <pd conkeyref="preloadEffect/soundId"/>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -45,6 +52,9 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

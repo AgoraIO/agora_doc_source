@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_queryscreencapturecapability">
     <title><ph keyref="queryScreenCaptureCapability"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Queries the maximum frame rate supported by the device during screen sharing.</ph><ph id="shortdesc" props="android">Queries the maximum supported frame rate for screen sharing on the device.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Queries the maximum frame rate supported by the device during screen sharing.</ph><ph id="shortdesc" props="android">Queries the maximum supported frame rate for screen sharing on the device.</ph><ph id="shortdesc" props="ios mac">Queries the highest frame rate supported by the device during screen sharing.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int queryScreenCaptureCapability() = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int queryScreenCaptureCapability();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraScreenCaptureFrameRateCapability)queryScreenCaptureCapability NS_SWIFT_NAME(queryScreenCaptureCapability());</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -27,12 +28,17 @@
                     <dt>Since</dt>
                     <dd>Added since v4.2.0.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.2.0</dd>
+            </dlentry>
             </dl>
             <p props="cpp">To ensure optimal performance during screen sharing, especially when enabling high frame rates like 60 fps, it is recommended that you call this method before sharing to query the maximum frame rate supported by the device. If the device does not support high frame rates, you can lower the frame rate of the screen sharing stream accordingly to avoid affecting the quality.</p>
             <p props="android">To ensure optimal screen sharing performance, especially when enabling high frame rates such as 60 fps, Agora recommends that you use this method to query the maximum supported frame rate before sharing. If the device does not support such high frame rates, you can adjust the screen sharing stream's frame rate accordingly to avoid affecting the sharing quality.</p>
             <note props="cpp">This method is only available on Android and iOS platforms.</note>
+        <p props="ios mac"/>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -48,6 +54,8 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac"><li>The highest frame rate supported by the device, if the method is called successfully. See <apiname keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY"/>.</li>
+                <li>If the call fails, returns <apiname keyref="NULL"/>.</li></ul>
+                </section>
     </refbody>
 </reference>

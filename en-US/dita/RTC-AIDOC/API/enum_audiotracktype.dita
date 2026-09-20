@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_audiotracktype">
     <title><ph keyref="AUDIO_TRACK_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Audio track type.</ph><ph id="shortdesc" props="android">Audio track type.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Audio track type.</ph><ph id="shortdesc" props="android">Audio track type.</ph><ph id="shortdesc" props="ios mac">The type of the audio track.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -31,7 +31,17 @@
                         <note>If this parameter is set to <codeph>AUDIO_TRACK_DIRECT</codeph>, you must set <codeph>publishMicrophoneTrack</codeph> in <xref keyref="ChannelMediaOptions"/> to <xref keyref="false"/> when calling <codeph>joinChannel</codeph> to join the channel. Otherwise, the join will fail and return error code -2.</note>
                     </pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="AUDIO_TRACK_MIXABLE"/></pt>
+                <pd>0: Mixable audio tracks. This type of audio track supports mixing with other audio streams (such as audio streams captured by microphone) and playing locally or publishing to channels after mixing. The latency of mixable audio tracks is higher than that of direct audio tracks.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="AUDIO_TRACK_DIRECT"/></pt>
+                <pd>
+                <p>1: Direct audio tracks. This type of audio track will replace the audio streams captured by the microphone and does not support mixing with other audio streams. The latency of direct audio tracks is lower than that of mixable audio tracks.</p>
+                <note type="attention">If <apiname keyref="AUDIO_TRACK_DIRECT"/> is specified for this parameter, you must set <codeph>publishMicrophoneTrack</codeph> to <codeph><ph keyref="false"/></codeph> in <xref keyref="ChannelMediaOptions"/> when calling <xref keyref="joinChannel2"/> to join the channel; otherwise, joining the channel fails and returns the error code -2.</note></pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

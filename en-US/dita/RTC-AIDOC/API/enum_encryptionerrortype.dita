@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_encryptionerrortype">
     <title><ph keyref="ENCRYPTION_ERROR_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Encryption error types.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Encryption error types.</ph><ph id="shortdesc" props="ios mac">Encryption error type.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -27,7 +27,27 @@
                     <pt>ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE</pt>
                     <pd>(4): Failed to encrypt data stream.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="ENCRYPTION_ERROR_INTERNAL_FAILURE"/></pt>
+                <pd>0: Internal reason.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="ENCRYPTION_ERROR_DECRYPTION_FAILURE"/></pt>
+                <pd>1: Media stream decryption error. Ensure that the receiver and the sender use the same encryption mode and key.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="ENCRYPTION_ERROR_ENCRYPTION_FAILURE"/></pt>
+                <pd>2: Media stream encryption error.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/></pt>
+                <pd>3: Data stream decryption error. Ensure that the receiver and the sender use the same encryption mode and key.</pd>
+            </plentry>
+             <plentry props="ios mac">
+                <pt><ph keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/></pt>
+                <pd>4: Data stream encryption error.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

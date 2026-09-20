@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_playerconfig">
     <title><ph keyref="PlayerConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set player configurations.</ph><ph id="shortdesc" props="android">Used to configure media player options.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set player configurations.</ph><ph id="shortdesc" props="android">Used to configure media player options.</ph><ph id="shortdesc" props="ios mac">This class provides methods relevant to player settings.</ph></shortdesc>
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
             <dl outputclass="since">
@@ -14,7 +14,20 @@
                     <dt>Since</dt>
                     <dd>Available since v4.4.0.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
             </dl>
+        <p props="ios mac"/>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"><codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraRtePlayerConfig : NSObject
+- (void)setAutoPlay:(BOOL)autoPlay error:(AgoraRteError * _Nullable)error;
+- (BOOL)autoPlay:(AgoraRteError * _Nullable)error;
+- (void)setAbrSubscriptionLayer:(AgoraRteAbrSubscriptionLayer)layer error:(AgoraRteError * _Nullable)error;
+- (AgoraRteAbrSubscriptionLayer)abrSubscriptionLayer:(AgoraRteError * _Nullable)error;
+- (void)setAbrFallbackLayer:(AgoraRteAbrFallbackLayer)layer error:(AgoraRteError * _Nullable)error;
+- (AgoraRteAbrFallbackLayer)abrFallbackLayer:(AgoraRteError * _Nullable)error;
+@end</codeblock>
+           </p></section></refbody>
 </reference>

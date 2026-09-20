@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onaudioquality">
     <title><ph keyref="onAudioQuality"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reports statistics of audio streams sent by each remote user.</ph><ph id="shortdesc" props="android">Callback that reports statistics of the audio stream sent by each remote user.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reports statistics of audio streams sent by each remote user.</ph><ph id="shortdesc" props="android">Callback that reports statistics of the audio stream sent by each remote user.</ph><ph id="shortdesc" props="ios mac">Reports the statistics of the audio stream sent by each remote user.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,9 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioQuality(uid_t uid, int quality, unsigned short delay, unsigned short lost) __deprecated</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onAudioQuality(int uid, int quality, short delay, short lost)</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)audioQualityBlock:(void (^_Nullable)(NSUInteger uid, AgoraNetworkQuality quality, NSUInteger delay, NSUInteger lost))audioQualityBlock</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (void)audioQualityBlock:(void(^ _Nullable)(NSUInteger uid, AgoraNetworkQuality quality, NSUInteger delay, NSUInteger lost))audioQualityBlock NS_SWIFT_NAME(audioQualityBlock(_:)) __deprecated_msg("use delegate instead.");</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
@@ -30,8 +32,17 @@
             </dl>
             <p props="cpp">The SDK triggers this callback every two seconds to report the audio quality of each remote user sending audio streams. If multiple users send audio streams in the channel, the SDK triggers this callback multiple times.</p>
             <p props="android">This callback is triggered every two seconds to report the audio quality of each remote user sending audio streams.</p>
+        <p props="ios mac">
+            <dl outputclass="deprecated">
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>Use <xref keyref="onRemoteAudioStats"/> instead.</dd>
+            </dlentry>
+            </dl>
+            </p>
+            <p props="ios mac">The SDK triggers this callback once every two seconds to report the audio quality of each remote user who is sending an audio stream. If a channel has multiple users sending audio streams, the SDK triggers this callback as many times.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -77,6 +88,33 @@
                     <pt>lost</pt>
                     <pd>Packet loss rate (%) of audio data sent from the remote user to the receiver.</pd>
                 </plentry>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>connection</pt>
+                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="native unreal bp">uid</pt>
+                <pt props="unity flutter electron rn cs"><ph>remoteUid</ph></pt>
+                <pd>The user ID of the remote user sending the audio stream.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>quality</pt>
+                <pd>Audio quality of the user. <ph props="ios mac cpp unreal unity flutter electron rn cs">See <xref keyref="QUALITY_TYPE"/>.</ph><ul conkeyref="RemoteAudioStats/qualitytype" props="android bp">
+                    <li/>
+                    </ul> </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>delay</pt>
+                <pd>The network delay (ms) from the sender to the receiver, including the delay caused by audio sampling pre-processing, network transmission, and network jitter buffering.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>lost</pt>
+                <pd>The packet loss rate (%) of the audio packet sent from the remote user to the receiver.</pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

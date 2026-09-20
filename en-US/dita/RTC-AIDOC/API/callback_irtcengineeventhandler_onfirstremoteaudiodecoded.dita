@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstremoteaudiodecoded">
     <title><ph keyref="onFirstRemoteAudioDecoded"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback when the first remote audio frame is decoded.</ph><ph id="shortdesc" props="android">Callback when the first remote audio frame is decoded.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback when the first remote audio frame is decoded.</ph><ph id="shortdesc" props="android">Callback when the first remote audio frame is decoded.</ph><ph id="shortdesc" props="ios mac">Occurs when the SDK decodes the first remote audio frame for playback.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,10 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onFirstRemoteAudioDecoded(uid_t uid, int elapsed) __deprecated</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onFirstRemoteAudioDecoded(int uid, int elapsed)</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine firstRemoteAudioFrameDecodedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed;
+</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine firstRemoteAudioFrameDecodedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:firstRemoteAudioFrameDecodedOfUid:elapsed:)) __deprecated_msg("use rtcEngine:remoteAudioStateChangedOfUid:state:reason:elapsed: instead.");</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
@@ -27,7 +30,20 @@
                     <dt>Deprecated</dt>
                     <dd>This method is deprecated. Use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                <dt>Deprecated:</dt>
+                <dd>Use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
+            </dlentry>
             </dl>
+        <p props="ios mac">The SDK triggers this callback under one of the following circumstances:<ul>
+            <li>The remote user joins the channel and sends the audio stream for the first time.</li>
+            <li>The remote user's audio is offline and then goes online to re-send audio. It means the local user cannot receive audio in 15 seconds. Reasons for such an interruption include:<ul>
+                <li>The remote user leaves channel.</li>
+                <li>The remote user drops offline.</li>
+                <li>The remote user calls <xref keyref="muteLocalAudioStream"/> to stop sending the audio stream.</li>
+                <li>The remote user calls <xref keyref="disableAudio"/> to disable audio.</li>
+                </ul> </li>
+            </ul> </p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Trigger Timing</title>
@@ -39,7 +55,7 @@
                 </ul>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -58,6 +74,22 @@
                     <pt>elapsed</pt>
                     <pd>Time (ms) from the local user calling <codeph>joinChannel</codeph> to the SDK triggering this callback.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>engine</pt>
+                <pd><xref keyref="IRtcEngine"/>object.</pd>
+            </plentry>
+            <plentry props="ios mac" conkeyref="joinChannelEx/connection">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>uid</pt>
+                <pd>The user ID of the remote user.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>elapsed</pt>
+                <pd id="elapsed">The time elapsed (ms) from the local user calling <apiname keyref="joinChannel2"/> until the SDK triggers this callback.</pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediainfo">
     <title><ph keyref="ChannelMediaInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Media information of the channel.</ph><ph id="shortdesc" props="android">Used to set media information for joining a channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Media information of the channel.</ph><ph id="shortdesc" props="android">Used to set media information for joining a channel.</ph><ph id="shortdesc" props="ios mac">Channel media information.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -16,9 +16,21 @@
   public String token = null;
   public int uid = 0;
 }</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayInfo: NSObject
+
+@property (copy, nonatomic) NSString * _Nullable token;
+@property (copy, nonatomic) NSString * _Nullable channelName;
+@property (assign, nonatomic) NSUInteger uid;
+- (instancetype _Nonnull)initWithToken:(NSString *_Nullable)token;
+@end</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayInfo: NSObject
+@property (copy, nonatomic) NSString * _Nullable token;
+@property (copy, nonatomic) NSString * _Nullable channelName;
+@property (assign, nonatomic) NSUInteger uid;
+@end</codeblock>
+                </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -45,7 +57,19 @@
                     <pt>uid</pt>
                     <pd>User ID.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>channelName</pt>
+                <pd>The channel name.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>token</pt>
+                <pd>The token that enables the user to join the channel.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>uid</pt>
+                <pd>The user ID.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="detailed_desc"/></refbody>
 </reference>

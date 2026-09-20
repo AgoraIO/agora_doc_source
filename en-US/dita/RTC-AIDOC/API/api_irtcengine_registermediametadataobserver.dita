@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registermediametadataobserver">
     <title><ph keyref="registerMediaMetadataObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Registers a metadata observer.</ph><ph id="shortdesc" props="android">Registers a metadata observer.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Registers a metadata observer.</ph><ph id="shortdesc" props="android">Registers a metadata observer.</ph><ph id="shortdesc" props="ios mac">Registers the metadata observer.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,15 +15,20 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int registerMediaMetadataObserver(IMetadataObserver observer, int type);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setMediaMetadataDelegate:(id&lt;AgoraMediaMetadataDelegate&gt; _Nullable)metadataDelegate withType:(AgoraMetadataType)type;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (BOOL)setMediaMetadataDelegate:(id&lt;AgoraMediaMetadataDelegate&gt; _Nullable)metadataDelegate withType:(AgoraMetadataType)type NS_SWIFT_NAME(setMediaMetadataDelegate(_:with:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">You need to implement the <xref keyref="IMetadataObserver"/> class and specify the metadata type in this method. This method supports adding synchronized metadata to video streams for richer interactive live streaming scenarios, such as sending shopping links, digital coupons, and online quizzes. After a successful call, the SDK triggers the <xref keyref="getMaxMetadataSize"/> callback.</p>
             <p props="android">You need to implement the <xref keyref="IMetadataObserver"/> class and specify the metadata type in this method. This method allows you to add synchronized metadata to the video stream, enabling richer interactive live streaming scenarios such as sending shopping links, digital coupons, and online quizzes. After successfully calling this method, the SDK triggers the <xref keyref="getMaxMetadataSize"/> callback.</p>
             <note props="cpp">Call this method before <codeph>joinChannel</codeph>.</note>
             <note props="android">Call this method before calling <codeph>joinChannel</codeph>.</note>
-        </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <p props="ios mac">You need to implement the <xref keyref="IMetadataObserver"/> class and specify the metadata type in this method. This method enables you to add synchronized metadata in the video stream for more diversified
+ live interactive streaming, such as sending shopping links, digital coupons, and online quizzes.</p>
+            <p props="ios mac">A successful call of this method triggers the <xref keyref="getMaxMetadataSize"/> callback.</p>
+            <note type="attention" props="ios mac">Call this method before <apiname keyref="joinChannel2"/>.</note> </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -46,9 +51,20 @@
                         </ul>
                     </pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt props="android hmos cpp cs unreal unity electron rn flutter bp">observer</pt>
+                <pt props="apple">metadataDataSource</pt>
+                <pd>The metadata observer. See <xref keyref="IMetadataObserver"/>.</pd>
+            </plentry>
+            <plentry id="metadatatype" props="ios mac">
+                <pt>type</pt>
+                <pd>
+                    <p>The metadata type. The SDK currently only supports <apiname keyref="VIDEO_METADATA"/>. <ph props="ios mac cpp unreal bp unity rn electron cs">See <xref keyref="METADATA_TYPE"/>.</ph></p>
+                </pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -62,6 +78,10 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
+        <ul props="ios mac">
+                <li props="native unreal bp rn unity electron cs">0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul>
         </section>
     </refbody>
 </reference>

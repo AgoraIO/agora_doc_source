@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_screenscenariotype">
     <title><ph keyref="SCREEN_SCENARIO_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Screen sharing scenario type.</ph><ph id="shortdesc" props="android">Screen sharing scenario types.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Screen sharing scenario type.</ph><ph id="shortdesc" props="android">Screen sharing scenario types.</ph><ph id="shortdesc" props="ios mac">The screen sharing scenario.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -35,7 +35,27 @@
                     <pt>SCREEN_SCENARIO_VIDEO</pt>
                     <pd>(3): Video scenario. Prioritizes screen sharing smoothness. Suitable for sharing movies or live video.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="SCREEN_SCENARIO_DOCUMENT"/></pt>
+                <pd>1: (Default) Document. This scenario prioritizes the video quality of screen sharing and reduces the latency of the shared video for the receiver. If you share documents, slides, and tables, you can set this scenario.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="SCREEN_SCENARIO_GAMING"/></pt>
+                <pd>2: Game. This scenario prioritizes the smoothness of screen sharing. If you share games, you can set this scenario.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="SCREEN_SCENARIO_VIDEO"/></pt>
+                <pd>3: Video. This scenario prioritizes the smoothness of screen sharing. If you share movies or live videos, you can set this scenario.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="SCREEN_SCENARIO_RDC"/></pt>
+                <pd>4: Remote control. This scenario prioritizes the video quality of screen sharing and reduces the latency of the shared video for the receiver. If you share the device desktop being remotely controlled, you can set this scenario.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"><dl outputclass="since"><dlentry props="ios mac">
+                    <dt>Since</dt>
+                    <dd>Available since v4.0.0.</dd>
+                </dlentry>
+                </dl></section></refbody>
 </reference>

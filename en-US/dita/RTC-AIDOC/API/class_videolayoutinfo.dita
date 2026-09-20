@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videolayoutinfo">
     <title><ph keyref="VideoLayoutInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="android">Used to retrieve detailed layout information of the mixed video.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Used to retrieve detailed layout information of the mixed video.</ph><ph id="shortdesc" props="ios mac">Detailed layout information of a mixed video stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -12,12 +12,22 @@
     public int layoutCount;
     public VideoLayout[] layoutList;
   }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoLayoutInfo: NSObject
+@property (assign, nonatomic) NSUInteger width NS_SWIFT_NAME(width);
+@property (assign, nonatomic) NSUInteger height NS_SWIFT_NAME(height);
+@property (assign, nonatomic) NSUInteger layoutCount NS_SWIFT_NAME(layoutCount);
+@property(copy, nonatomic) NSArray&lt;AgoraVideoLayout *&gt; *_Nullable layoutList NS_SWIFT_NAME(layoutList);
+@end</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
             <p props="android">Describes the layout information of the mixed video.</p>
-        </section>
-        <section id="parameters" deliveryTarget="details" props="android">
+        <dl outputclass="since"><dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.3.0</dd>
+            </dlentry>
+            </dl></section>
+        <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="android">
@@ -35,6 +45,22 @@
                 <plentry props="android">
                     <pt>layoutList</pt>
                     <pd>The detailed layout information of each video stream in the mixed video. See <xref keyref="VideoLayout"/>.</pd>
+                </plentry>
+            <plentry props="ios mac">
+                    <pt>width</pt>
+                    <pd>The width of the mixed video stream (px).</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>height</pt>
+                    <pd>The height of the mixed video stream (px).</pd>
+                </plentry>
+            <plentry props="ios mac">
+                    <pt>layoutCount</pt>
+                    <pd>The number of layout information in the mixed video stream.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>layoutList</pt>
+                    <pd>The detailed layout information of a mixed video stream. See <xref keyref="VideoLayout"/>.</pd>
                 </plentry>
             </parml>
         </section>

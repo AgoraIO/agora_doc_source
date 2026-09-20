@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_rteerrorcode">
     <title><ph keyref="RteErrorCode"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">RTE-related status and error codes.</ph><ph id="shortdesc" props="android">Status codes and error codes related to RTE.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">RTE-related status and error codes.</ph><ph id="shortdesc" props="android">Status codes and error codes related to RTE.</ph><ph id="shortdesc" props="ios mac">RTE-related status and error codes.</ph></shortdesc>
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
             <dl outputclass="since">
@@ -10,9 +10,13 @@
                     <dt>Since</dt>
                     <dd>Available since v4.4.0.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
             </dl>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -71,7 +75,77 @@
                     <pt>STREAM_NOT_FOUND</pt>
                     <pd>(6): Media stream not found, for example, no media stream received from the host within 10 seconds after joining the channel.</pd>
                 </plentry>
-            </parml>
+            <plentry props="ios mac">
+                    <pt>kRteOk</pt>
+                    <pd>(0): Operation succeeded.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>kRteErrorDefault</pt>
+                    <pd>(1): General error, no specific reason provided.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>kRteErrorInvalidArgument</pt>
+                    <pd>(2): Invalid method parameter, such as containing illegal characters or passing a null object. Please reset the parameter.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>kRteErrorInvalidOperation</pt>
+                    <pd>(3): Operation not supported in the current state, such as the object being destroyed or invalid.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>kRteErrorNetworkError</pt>
+                    <pd>(4): Network error. Please check the network connection.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>kRteErrorAuthenticationFailed</pt>
+                    <pd>(5): Token authentication failed. Possible reasons include an invalid or expired token. Please check the token.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>kRteErrorStreamNotFound</pt>
+                    <pd>(6): Media stream not found, such as not receiving the host's media stream within 10 seconds after joining the channel.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRteOk</pt>
+                    <pd>(0): Operation successful.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRteErrorDefault</pt>
+                    <pd>(1): General error. The error reason is not explicitly classified.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRteErrorInvalidArgument</pt>
+                    <pd>(2): Invalid parameters are set in the method, for example, the parameters contain invalid characters or the passed object is null.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRteErrorInvalidOperation</pt>
+                    <pd>(3): The current state does not support this operation, for example, the object has been destroyed or is invalid.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRteErrorNetworkError</pt>
+                    <pd>(4): Network error. Check the network connection.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRteErrorAuthenticationFailed</pt>
+                    <pd>(5): Token authentication failed. Possible reasons include an invalid or expired token.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRteErrorStreamNotFound</pt>
+                    <pd>(6): Media stream not found, for example, no media stream is received from the host within 10 seconds after joining the channel.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>OK</pt>
+                    <pd>(0): Operation successful.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>DEFAULT</pt>
+                    <pd>(1): General error, cause not specifically categorized.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>INVALID_ARGUMENT</pt>
+                    <pd>(2): Invalid parameter set in the method, such as illegal characters or null object. Please reset the parameter.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>INVALID_OPERATION</pt>
+                    <pd>(3): Operation not supported in the current state, such as object destroyed or invalid.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>NETWORK_ERROR</pt>
+                    <pd>(4): Network error. Please check the network connection.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>AUTHENTICATION_FAILED</pt>
+                    <pd>(5): Token authentication failed. Possible reasons include invalid or expired Token. Please check the Token.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>STREAM_NOT_FOUND</pt>
+                    <pd>(6): Media stream not found, for example, no media stream received from the host within 10 seconds after joining the channel.</pd></plentry>
+                </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section></refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcconnection">
     <title><ph keyref="RtcConnection"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Struct that contains connection information.</ph><ph id="shortdesc" props="android">Connection information.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Struct that contains connection information.</ph><ph id="shortdesc" props="android">Connection information.</ph><ph id="shortdesc" props="ios mac">Contains connection information.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -14,9 +14,14 @@
   public int localUid;
   public String channelId;
 }</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcConnection: NSObject &lt;NSCopying&gt;
+@property (nonatomic, copy) NSString *_Nonnull channelId;
+@property (nonatomic, assign) NSUInteger localUid;
+
+@end</codeblock>
+      </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -35,7 +40,15 @@
                     <pt>channelId</pt>
                     <pd>Channel name.</pd>
                 </plentry>
-            </parml>
+            <plentry props="ios mac">
+        <pt>channelId</pt>
+        <pd>The channel name.</pd>
+      </plentry>
+      <plentry props="ios mac">
+        <pt>localUid</pt>
+        <pd>The ID of the local user.</pd>
+      </plentry>
+      </parml>
         </section>
-    </refbody>
+    <section id="detailed_desc"/></refbody>
 </reference>

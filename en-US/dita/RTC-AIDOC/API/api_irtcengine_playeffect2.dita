@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_playeffect2">
     <title><ph keyref="playEffect2"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="android">Plays the specified local or online audio effect file.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Plays the specified local or online audio effect file.</ph><ph id="shortdesc" props="ios mac">Plays the specified local or online audio effect file.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,11 +14,27 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int playEffect(int soundId, String filePath, int loopCount, double pitch, double pan, double gain, boolean publish);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)playEffect:(int)soundId
+         filePath:(NSString* _Nonnull)filePath
+        loopCount:(NSInteger)loopCount
+            pitch:(double)pitch
+              pan:(double)pan
+             gain:(NSInteger)gain
+          publish:(BOOL)publish;
+</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)playEffect:(int)soundId
+          filePath:(NSString* _Nonnull)filePath
+         loopCount:(NSInteger)loopCount
+             pitch:(double)pitch
+               pan:(double)pan
+              gain:(NSInteger)gain
+           publish:(BOOL)publish NS_SWIFT_NAME(playEffect(_:filePath:loopCount:pitch:pan:gain:publish:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">This method supports playing URI files that start with <codeph>content://</codeph>. For supported audio file formats, see [What audio file formats does the Agora RTC SDK support](https://doc.shengwang.cn/faq/general-product-inquiry/audio-format). If the local music file does not exist, the SDK does not support the file format, or the music file URL cannot be accessed, the SDK reports <codeph>AUDIO_MIXING_REASON_CAN_NOT_OPEN</codeph>.</p>
             <note props="android">If you need to play an online audio effect file, it is recommended to cache it to the local device first, preload the file into memory using <codeph>preloadEffect</codeph>, and then call this method to play the effect. Otherwise, playback may fail or be silent due to timeout or loading failure.</note>
+        <p id="playEffect-desc" props="ios mac">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. To achieve the optimal user experience, Agora recommends that you do not playing more than three audio files at the same time.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android">
             <title>Timing</title>
@@ -28,7 +44,7 @@
             <title>Related Callbacks</title>
             <p props="android">After the audio effect file finishes playing, the SDK triggers the <xref keyref="onAudioEffectFinished"/> callback.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android">
+        <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="android">
@@ -81,9 +97,53 @@
                         </ul>
                     </pd>
                 </plentry>
+            <plentry id="soundid" props="ios mac">
+                <pt>soundId</pt>
+                <pd>The audio effect ID. The ID of each audio effect file is unique.<note type="attention">If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect"/>, ensure that the value of this parameter is the same as that of <parmname>soundId</parmname> in <apiname keyref="preloadEffect"/>.</note></pd>
+            </plentry>
+            <plentry id="filepath" conkeyref="playEffect3/filepath" props="ios mac">
+            <pt/>
+            <pd/>
+            </plentry>
+            <plentry id="loopcount" props="ios mac">
+                <pt>loopCount</pt>
+                <pd>
+                    <p>The number of times the audio effect loops.<ul>
+                    <li>≥ 0: The number of playback times. For example, 1 means looping one time, which means playing the audio effect two times in total.</li>
+                    <li>-1: Play the audio file in an infinite loop.</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry id="pitch" props="ios mac">
+                <pt>pitch</pt>
+                <pd>The pitch of the audio effect. The value range is 0.5 to 2.0. The default value is 1.0, which means the original pitch. The lower the value, the lower the pitch.</pd>
+            </plentry>
+            <plentry id="pan" props="ios mac">
+                <pt>pan</pt>
+                <pd>
+                    <p>The spatial position of the audio effect. The value ranges between -1.0 and 1.0:<ul>
+                    <li>-1.0: The audio effect is heard on the left of the user.</li>
+                    <li>0.0: The audio effect is heard in front of the user.</li>
+                    <li>1.0: The audio effect is heard on the right of the user.</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry id="gain" props="ios mac">
+                <pt>gain</pt>
+                <pd>The volume of the audio effect. The value range is 0.0 to 100.0. The default value is 100.0, which means the original volume. The smaller the value, the lower the volume.</pd>
+            </plentry>
+            <plentry id="publish" props="ios mac">
+                <pt>publish</pt>
+                <pd>
+                    <p>Whether to publish the audio effect to the remote users.<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Publish the audio effect to the remote users. Both the local user and remote users can hear the audio effect.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not publish the audio effect to the remote users. Only the local user can hear the audio effect.</li>
+                    </ul></p>
+                </pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android">
+        <section id="return_values" props="android ios mac">
             <title>Return Values</title>
             <p props="android">
                 <ul>
@@ -91,6 +151,9 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

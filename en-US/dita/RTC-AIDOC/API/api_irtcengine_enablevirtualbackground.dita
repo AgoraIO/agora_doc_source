@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablevirtualbackground">
     <title><ph keyref="enableVirtualBackground"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables the virtual background feature.</ph><ph id="shortdesc" props="android">Enables or disables the virtual background feature.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables the virtual background feature.</ph><ph id="shortdesc" props="android">Enables or disables the virtual background feature.</ph><ph id="shortdesc" props="ios mac">Enables/Disables the virtual background.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,11 +15,16 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int enableVirtualBackground(boolean enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData segData:(AgoraSegmentationProperty* _Nullable)segData NS_SWIFT_NAME(enableVirtualBackground(_:backData:segData:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
                 <dlentry props="cpp">
+                    <dt>Since</dt>
+                    <dd>Available since v3.7.200.</dd>
+                </dlentry>
+            <dlentry props="ios mac">
                     <dt>Since</dt>
                     <dd>Available since v3.7.200.</dd>
                 </dlentry>
@@ -80,8 +85,33 @@
                     <li>This method depends on the virtual background dynamic library <xref keyref="segmentation"/>. If the library is deleted, the feature cannot be enabled.</li>
                 </ul>
             </note>
-        </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <p props="ios mac">The virtual background feature enables the local user to replace their original background with a static image, dynamic video, blurred background, or portrait-background segmentation to achieve picture-in-picture effect. Once the virtual background feature is enabled, all users in the channel can see the custom background.</p>
+            <p props="ios mac">Call this method after calling <xref keyref="enableVideo"/> or <xref keyref="startPreview2"/>.</p>
+            <note type="attention" id="hardware_req" props="ios mac">
+            <ul>
+            <li>Using a video as a your virtual background will lead to continuous increase in memory usage, which may cause issues such as app crashes. Therefore,it is recommended to reduce the resolution and frame rate of the video when using it.</li>
+            <li>This feature has high requirements on device performance. When calling this method, the SDK automatically checks the capabilities of the current device. Agora recommends you use virtual background on devices with the following processors:<ul>
+                <li props="android unity cpp unreal bp rn flutter cs">Snapdragon 700 series 750G and later</li>
+                <li props="android unity cpp unreal bp rn flutter cs">Snapdragon 800 series 835 and later</li>
+                <li props="android unity cpp unreal bp rn flutter cs">Dimensity 700 series 720 and later</li>
+                <li props="android unity cpp unreal bp rn flutter cs">Kirin 800 series 810 and later</li>
+                <li props="android unity cpp unreal bp rn flutter cs">Kirin 900 series 980 and later</li>
+                <li props="mac cpp unreal bp unity electron cs">Devices with an i5 CPU and better</li>
+                <li props="ios cpp unreal bp unity rn flutter cs">Devices with an A9 chip and better, as follows:<ul>
+                    <li>iPhone 6S and later</li>
+                    <li>iPad Air 3rd generation and later</li>
+                    <li>iPad 5th generation and later</li>
+                    <li>iPad Pro 1st generation and later</li>
+                    <li>iPad mini 5th generation and later</li>
+                    </ul></li>
+                </ul></li>
+            <li>Agora recommends that you use this feature in scenarios that meet the following conditions:<ul>
+                <li>A high-definition camera device is used, and the environment is uniformly lit.</li>
+                <li>There are few objects in the captured video. Portraits are half-length and unobstructed. Ensure that the background is a solid color that is different from the color of the user's clothing.</li>
+                </ul></li>
+            <li>This method relies on the virtual background dynamic library <codeph><ph keyref="segmentation"/></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
+            </ul></note> </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -127,9 +157,31 @@
                     <pt>segproperty</pt>
                     <pd>The processing properties of the background image. See <xref keyref="SegmentationProperty"/>.</pd>
                 </plentry>
+            <plentry id="enable" props="ios mac">
+                <pt props="cpp unreal bp android unity flutter rn electron cs">enabled</pt>
+                <pt props="ios mac">enable</pt>
+                <pd>Whether to enable virtual background:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable virtual background.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Disable virtual background.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry id="source" props="ios mac">
+                <pt props="cpp unreal bp android unity flutter rn electron cs">backgroundSource</pt>
+                <pt props="mac ios">backData</pt>
+                <pd>The custom background. See <xref keyref="VirtualBackgroundSource"/>. To adapt the resolution of the custom background image to that of the video captured by the SDK, the SDK scales and crops the custom background image while ensuring that the content of the custom background image is not distorted.</pd>
+            </plentry>
+            <plentry id="seg" props="ios mac">
+                <pt props="android cpp unreal bp unity electron rn flutter cs">segproperty</pt>
+                <pt props="ios mac">segData</pt>
+                <pd>Processing properties for background images. See <xref keyref="SegmentationProperty"/>.</pd>
+            </plentry>
+            <plentry conkeyref="setLowlightEnhanceOptions/type" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -151,6 +203,11 @@
                     </li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
+                <li>-4: The device capabilities do not meet the requirements for the virtual background feature. Agora recommends you try it on devices with higher performance.</li>
+                </ul></li>
+            </ul> </section>
     </refbody>
 </reference>

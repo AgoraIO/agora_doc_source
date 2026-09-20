@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_playerupdatedinfo">
     <title><ph keyref="PlayerUpdatedInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Contains information related to the media player.</ph><ph id="shortdesc" props="android">Encapsulates media player-related information.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Contains information related to the media player.</ph><ph id="shortdesc" props="android">Encapsulates media player-related information.</ph><ph id="shortdesc" props="ios mac">Information related to the media player.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -24,9 +24,26 @@
   public long audioChannels;
   public long audioBitsPerSample;
 }</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaPlayerUpdatedInfo : NSObject
+@property(copy, nonatomic) NSString *_Nullable deviceId;
+@property(assign, nonatomic) NSInteger videoHeight;
+@property(assign, nonatomic) NSInteger videoWidth;
+@property(assign, nonatomic) NSInteger audioSampleRate;
+@property(assign, nonatomic) NSInteger audioChannels;
+@property(assign, nonatomic) NSInteger audioBitsPerSample;
+@end</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaPlayerUpdatedInfo : NSObject
+@property(copy, nonatomic) NSString *_Nullable internalPlayerUuid;
+@property(copy, nonatomic) NSString *_Nullable deviceId;
+@property(assign, nonatomic) NSInteger videoHeight;
+@property(assign, nonatomic) NSInteger videoWidth;
+@property(assign, nonatomic) NSInteger audioSampleRate;
+@property(assign, nonatomic) NSInteger audioChannels;
+@property(assign, nonatomic) NSInteger audioBitsPerSample;
+@end</codeblock>
+                </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -77,7 +94,31 @@
                     <pt>audioBitsPerSample</pt>
                     <pd>Bits per audio sample.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>deviceId</pt>
+                <pd>The ID of a deivce.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>videoHeight</pt>
+                <pd>Height (pixel) of the video.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>videoWidth</pt>
+                <pd>Width (pixel) of the video.</pd>
+            </plentry>
+             <plentry props="ios mac">
+                 <pt>audioSampleRate</pt>
+                 <pd>Audio sample rate (Hz).</pd>
+             </plentry>
+              <plentry props="ios mac">
+                  <pt>audioChannels</pt>
+                  <pd>The number of audio channels.</pd>
+              </plentry>
+               <plentry props="ios mac">
+                   <pt>audioBitsPerSample</pt>
+                   <pd>The number of bits per audio sample point.</pd>
+               </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="detailed_desc"/></refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_stoplocalaudiomixer">
     <title><ph keyref="stopLocalAudioMixer"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Stops local audio mixing.</ph><ph id="shortdesc" props="android">Stops local audio mixing.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Stops local audio mixing.</ph><ph id="shortdesc" props="android">Stops local audio mixing.</ph><ph id="shortdesc" props="ios mac">Stops the local audio mixing.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,18 +15,24 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int stopLocalAudioMixer() = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int stopLocalAudioMixer();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)stopLocalAudioMixer NS_SWIFT_NAME(stopLocalAudioMixer());</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">After calling <xref keyref="startLocalAudioMixer"/>, you can call this method to stop local audio mixing.</p>
             <p props="android">After calling <xref keyref="startLocalAudioMixer"/>, you can call this method to stop audio mixing.</p>
+        <dl outputclass="since"><dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
+            </dl><p props="ios mac">After calling <xref keyref="startLocalAudioMixer"/>, call this method if you want to stop the local audio mixing.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
             <p props="cpp">Call this method after calling <xref keyref="startLocalAudioMixer"/>.</p>
             <p props="android">Call this method after calling <xref keyref="startLocalAudioMixer"/>.</p>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -48,6 +54,11 @@
                     </li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
+                    <li>-7: The <apiname keyref="IRtcEngine"/> object has not been initialized. You need to initialize the <apiname keyref="IRtcEngine"/> object before calling this method.</li>
+                    </ul></li>
+            </ul> </section>
     </refbody>
 </reference>

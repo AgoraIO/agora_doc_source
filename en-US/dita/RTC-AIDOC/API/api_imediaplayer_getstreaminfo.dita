@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_getstreaminfo">
     <title><ph keyref="getStreamInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets detailed information about a media stream.</ph><ph id="shortdesc" props="android">Gets detailed information about a media stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets detailed information about a media stream.</ph><ph id="shortdesc" props="android">Gets detailed information about a media stream.</ph><ph id="shortdesc" props="ios mac">Gets the detailed information of the media stream.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,9 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int getStreamInfo(int64_t index, media::base::PlayerStreamInfo* info) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">MediaStreamInfo getStreamInfo(int index);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraMediaStreamInfo *_Nullable)getStreamByIndex:(int)index;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (AgoraRtcMediaStreamInfo *_Nullable)getStreamByIndex:(int)index NS_SWIFT_NAME(getStreamBy(_:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">After calling <xref keyref="getStreamCount"/>, call this method to get detailed information about the media stream at the specified index.</p>
@@ -25,7 +27,7 @@
             <p props="cpp">Call this method after calling the <xref keyref="getStreamCount"/> method.</p>
             <p props="android">Call after invoking the <xref keyref="getStreamCount"/> method.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -40,9 +42,18 @@
                     <pt>index</pt>
                     <pd>The index of the media stream. This parameter must be less than the return value of <xref keyref="getStreamCount"/>.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>index</pt>
+                <pd props="cpp unreal bp unity cs">The index of the media stream. This parameter needs to be less than the <parmname>count</parmname> parameter of <xref keyref="getStreamCount"/>.</pd>
+                <pd props="android hmos ios mac rn electron flutter">The index of the media stream. This parameter must be less than the return value of <xref keyref="getStreamCount"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>info</pt>
+                <pd>An output parameter. The detailed information of the media stream. See <xref keyref="PlayerStreamInfo"/>.</pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -56,6 +67,10 @@
                     <li>If the method call fails, returns <codeph>null</codeph>.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>If the call succeeds, returns the detailed information of the media stream. See <xref keyref="PlayerStreamInfo"/>.</li>
+            <li> <codeph><ph keyref="NULL"/></codeph> is returned, if the method call fails.</li>
+            </ul>
+            </section>
     </refbody>
 </reference>

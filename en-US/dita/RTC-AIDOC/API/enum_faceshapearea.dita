@@ -2,17 +2,21 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_faceshapearea">
     <title><ph keyref="FACE_SHAPE_AREA"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Select specific facial areas to adjust.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Select specific facial areas to adjust.</ph><ph id="shortdesc" props="ios mac">Chooses the specific facial areas that need to be adjusted.</ph></shortdesc>
     <refbody>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp ios mac">
             <dl outputclass="since">
                 <dlentry props="cpp">
                     <dt>Since</dt>
                     <dd>Added since v4.4.0.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                    <dt>Since:</dt>
+                    <dd>v.4.5.0.</dd>
+                </dlentry>
             </dl>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -56,6 +60,10 @@
                     <pd>(108): Chin area, used to adjust chin length. Range: [-100, 100], default: 0. Larger absolute values mean more noticeable adjustment. Negative values indicate opposite direction.</pd>
                 </plentry>
                 <plentry props="cpp">
+                    <pt>FACE_SHAPE_AREA_FACESMALL</pt>
+                    <pd>(109): Face size area, used to reduce the overall face size for a slimmer look. Range: [0, 100], default: 0. Higher values mean more noticeable face size reduction.</pd>
+                </plentry>
+                <plentry props="cpp">
                     <pt>FACE_SHAPE_AREA_EYESCALE</pt>
                     <pd>(200): Eye area, used to achieve bigger eyes effect. Range: [0, 100], default: 50. Higher values mean more noticeable adjustment.</pd>
                 </plentry>
@@ -82,6 +90,10 @@
                 <plentry props="cpp">
                     <pt>FACE_SHAPE_AREA_EYEOUTERCORNER</pt>
                     <pd>(206): Outer eye corner area, used to adjust outer eye corner shape. Range: [-100, 100], default: 0. Larger absolute values mean more noticeable adjustment. Negative values indicate opposite direction.</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>FACE_SHAPE_AREA_EYEANGLE</pt>
+                    <pd>(207): Eye angle area, used to adjust the eye tilt for a cat-eye effect. Range: [-100, 100], default: 0. Higher values lift the outer eye corners more noticeably.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>FACE_SHAPE_AREA_NOSELENGTH</pt>
@@ -137,7 +149,135 @@
                     <pt>FACE_SHAPE_AREA_EYEBROWTHICKNESS</pt>
                     <pd>(501): Eyebrow thickness area, used to adjust eyebrow thickness. Range: [-100, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
                 </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaNone</pt>
+                    <pd>(-1): Default value. Invalid area; facial enhancement effects do not take effect.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaHeadScale</pt>
+                    <pd>(100): Head area, used to achieve a smaller head effect. Range: [0, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaForehead</pt>
+                    <pd>(101): Forehead area, used to adjust the hairline height. Range: [0, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaFaceContour</pt>
+                    <pd>(102): Face contour area, used to achieve a slimmer face effect. Range: [0, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaFaceLength</pt>
+                    <pd>(103): Face length area, used to elongate the face. Range: [-100, 100], default: 0. Larger absolute values mean more noticeable adjustment. Negative values indicate the opposite direction.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaFaceWidth</pt>
+                    <pd>(104): Face width area, used to achieve a narrower face effect. Range: [0, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaCheekbone</pt>
+                    <pd>(105): Cheekbone area, used to adjust cheekbone width. Range: [0, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaCheek</pt>
+                    <pd>(106): Cheek area, used to adjust cheek width. Range: [0, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaMandible</pt>
+                    <pd>(107): Mandible area, used to adjust jawbone width. Range: [0, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaChin</pt>
+                    <pd>(108): Chin area, used to adjust chin length. Range: [-100, 100], default: 0. Larger absolute values mean more noticeable adjustment. Negative values indicate the opposite direction.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaFaceSmall</pt>
+                    <pd>(109): Face size area, used to reduce the overall face size for a slimmer look. Range: [0, 100], default: 0. Higher values mean more noticeable face size reduction.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaEyeScale</pt>
+                    <pd>(200): Eye area, used to achieve a larger eye effect. Range: [0, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaEyeDistance</pt>
+                    <pd>(201): Eye distance area, used to adjust the distance between the eyes. Range: [-100, 100], default: 0. Larger absolute values mean more noticeable adjustment. Negative values indicate the opposite direction.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaEyePosition</pt>
+                    <pd>(202): Eye position area, used to adjust the vertical eye position. Range: [-100, 100], default: 0. Larger absolute values mean more noticeable adjustment. Negative values indicate the opposite direction.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaLowerEyelid</pt>
+                    <pd>(203): Lower eyelid area, used to adjust the lower eyelid shape. Range: [0, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaEyePupils</pt>
+                    <pd>(204): Pupil area, used to adjust pupil size. Range: [0, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaEyeInnerCorner</pt>
+                    <pd>(205): Inner eye corner area, used to adjust the inner eye corner shape. Range: [-100, 100], default: 0. Larger absolute values mean more noticeable adjustment. Negative values indicate the opposite direction.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaEyeOuterCorner</pt>
+                    <pd>(206): Outer eye corner area, used to adjust the outer eye corner shape. Range: [-100, 100], default: 0. Larger absolute values mean more noticeable adjustment. Negative values indicate the opposite direction.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaEyeAngle</pt>
+                    <pd>(207): Eye angle area, used to adjust the eye tilt for a cat-eye effect. Range: [-100, 100], default: 0. Higher values lift the outer eye corners more noticeably.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaNoseLength</pt>
+                    <pd>(300): Nose length area, used to elongate the nose. Range: [-100, 100], default: 0. Larger absolute values mean more noticeable adjustment. Negative values indicate the opposite direction.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaNoseWidth</pt>
+                    <pd>(301): Nose width area, used to achieve a slimmer nose effect. Range: [0, 100], default: 0. Higher values mean a more noticeable nose slimming effect.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaNoseWing</pt>
+                    <pd>(302): Nose wing adjustment. Range: [0, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaNoseRoot</pt>
+                    <pd>(303): Nose root area, used to adjust nose root height. Range: [0, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaNoseBridge</pt>
+                    <pd>(304): Nose bridge adjustment. Range: [0, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaNoseTip</pt>
+                    <pd>(305): Nose tip adjustment. Range: [0, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaNoseGeneral</pt>
+                    <pd>(306): Overall nose adjustment. Range: [-100, 100], default: 0. Larger absolute values mean more noticeable adjustment. Negative values indicate the opposite direction.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaMouthScale</pt>
+                    <pd>(400): Mouth area, used to achieve a larger mouth effect. Range: [-100, 100], default: 0. Larger absolute values mean more noticeable adjustment. Negative values indicate the opposite direction.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaMouthPosition</pt>
+                    <pd>(401): Mouth position area, used to adjust the vertical mouth position. Range: [0, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaMouthSmile</pt>
+                    <pd>(402): Mouth smile area, used to adjust the degree of mouth corner lift. Range: [0, 1], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaMouthLip</pt>
+                    <pd>(403): Lip shape area, used to adjust lip shape. Range: [0, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaEyebrowPosition</pt>
+                    <pd>(500): Eyebrow position area, used to adjust the vertical eyebrow position. Range: [-100, 100], default: 0. Larger absolute values mean more noticeable adjustment. Negative values indicate the opposite direction.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraFaceShapeAreaEyebrowThickness</pt>
+                    <pd>(501): Eyebrow thickness area, used to adjust eyebrow thickness. Range: [-100, 100], default: 0. Higher values mean more noticeable adjustment.</pd>
+                </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section></refbody>
 </reference>

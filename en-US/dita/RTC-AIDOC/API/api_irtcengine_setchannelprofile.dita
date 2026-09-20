@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setchannelprofile">
     <title><ph keyref="setChannelProfile"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the channel profile.</ph><ph id="shortdesc" props="android">Sets the channel profile.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the channel profile.</ph><ph id="shortdesc" props="android">Sets the channel profile.</ph><ph id="shortdesc" props="ios mac">Sets the channel profile.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,20 +15,26 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setChannelProfile(CHANNEL_PROFILE_TYPE profile) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int setChannelProfile(int profile);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setChannelProfile:(AgoraChannelProfile)profile;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)setChannelProfile:(AgoraChannelProfile)profile NS_SWIFT_NAME(setChannelProfile(_:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">The SDK adopts different optimization strategies based on the channel profile. For example, in the live broadcasting profile, the SDK prioritizes video quality. After initializing the SDK, the default channel profile is live broadcasting.</p>
             <p props="android">The SDK applies different optimization strategies based on the channel profile. For example, in the live streaming profile, it prioritizes video quality. After initializing the SDK, the default channel profile is live streaming.</p>
             <note props="cpp">To ensure communication quality, Agora recommends that all users in the channel use the same channel profile. The SDK also uses different default audio routes in different channel profiles. See <xref keyref="setDefaultAudioRouteToSpeakerphone"/>.</note>
             <note props="android">To ensure communication quality, Agora recommends that all users in the same channel use the same channel profile. The SDK also uses different default audio routes for different channel profiles. See <codeph>setDefaultAudioRouteToSpeakerphone</codeph>.</note>
+        <p props="ios mac">You can call this method to set the channel profile. The SDK adopts different optimization strategies for different channel profiles. For example, in a live streaming scenario, the SDK prioritizes video quality. After initializing the SDK, the default channel profile is the live streaming profile.</p>
+            <note type="attention" props="ios mac">
+            <p>In different channel scenarios, the default audio routing of the SDK is different. See <xref keyref="setDefaultAudioRouteToSpeakerphone"/>.</p>
+           </note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
             <p props="cpp">Call this method before joining a channel.</p>
             <p props="android">Call this method before joining a channel.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -46,9 +52,31 @@
                         </ul>
                     </pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>profile</pt>
+                <pd id="channelprofiletype">
+                    <p props="ios mac cpp unreal bp electron unity flutter rn cs">The channel profile. See <xref keyref="CHANNEL_PROFILE_TYPE"/>.</p>
+                    <p props="android hmos">The channel profile.<ul>
+                    <li><ph keyref="CHANNEL_PROFILE_COMMUNICATION"/>(0): Communication. Agora recommends using the live streaming profile for a better audio and video experience.</li>
+                    <li><ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>(1): (Default) Live streaming.</li>
+                    <li><ph keyref="CHANNEL_PROFILE_GAME"/>(2): Gaming.<dl outputclass="deprecated">
+                    <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>Use <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/> instead.</dd>
+                    </dlentry></dl>
+                    </li>
+                    <li><ph keyref="CHANNEL_PROFILE_CLOUD_GAMING"/>(3): Interaction. The scenario is optimized for latency. Use this profile if the use case requires frequent interactions between users.<dl outputclass="deprecated">
+                    <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>Use <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/> instead.</dd>
+                    </dlentry></dl>
+                    </li>
+                    </ul> </p>
+                </pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -72,6 +100,12 @@
                     </li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
+                <li>-2: The parameter is invalid.</li>
+                <li>-7: The SDK is not initialized.</li>
+                </ul></li>
+            </ul> </section>
     </refbody>
 </reference>

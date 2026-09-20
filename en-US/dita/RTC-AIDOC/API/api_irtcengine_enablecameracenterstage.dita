@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablecameracenterstage">
     <title><ph keyref="enableCameraCenterStage"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables Center Stage.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables Center Stage.</ph><ph id="shortdesc" props="ios mac">Enables or disables portrait center stage.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int enableCameraCenterStage(bool enabled) = 0;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableCameraCenterStage:(BOOL)enabled NS_SWIFT_NAME(enableCameraCenterStage(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -32,7 +33,12 @@ Due to the high performance requirements of this feature, it is recommended to u
                     </li>
                     <li>2020 M1 chip 13-inch MacBook Pro + iPhone 11 (using iPhone as an external camera for MacBook)</li>
                 </ul><ph>Agora recommends calling <xref keyref="isCameraCenterStageSupported"/> before enabling this feature to check whether the current device supports Center Stage.</ph></note>
-        </section>
+        <dl outputclass="since"><dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.3.1</dd>
+            </dlentry>
+            </dl><p props="ios mac">The portrait center stage feature is off by default. You need to call this method to turn it on. If you need to disable this feature, you need to call this method again and set <parmname>enabled</parmname> to <codeph><ph keyref="false"/></codeph>.</p>
+            </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
             <p>Center Stage is applicable to scenarios such as online meetings, performances, and online education. The host can use this feature to ensure they always remain centered in the frame, regardless of movement, for better presentation.</p>
@@ -41,7 +47,7 @@ Due to the high performance requirements of this feature, it is recommended to u
             <title>Timing</title>
             <p props="cpp">You must call this method after the camera is successfully enabled, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -53,9 +59,16 @@ Due to the high performance requirements of this feature, it is recommended to u
                         </ul>
                     </pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>enabled</pt>
+                <pd>Whether to enable the portrait center stage:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable portrait center stage.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Disable portrait center stage.</li>
+                    </ul></pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="cpp">
+        <section id="return_values" props="cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -63,6 +76,9 @@ Due to the high performance requirements of this feature, it is recommended to u
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul> </section>
     </refbody>
 </reference>

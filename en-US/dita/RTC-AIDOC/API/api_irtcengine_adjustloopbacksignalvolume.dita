@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_adjustloopbacksignalvolume">
     <title><ph keyref="adjustLoopbackSignalVolume"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Adjusts the volume of the loopback recording signal.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Adjusts the volume of the loopback recording signal.</ph><ph id="shortdesc" props="ios mac">Adjusts the volume of the signal captured by the sound card.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,21 +14,28 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int adjustLoopbackSignalVolume(int volume) = 0;</codeblock>
+            <codeblock props="mac" outputclass="language-objectivec">- (int)adjustLoopbackSignalVolume:(NSInteger)volume;</codeblock>
+            <codeblock props="mac" outputclass="language-objectivec">- (int)adjustLoopbackSignalVolume:(NSInteger)volume NS_SWIFT_NAME(adjustLoopbackSignalVolume(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">After calling <xref keyref="enableLoopbackRecording"/> to enable loopback audio capture, you can call this method to adjust the volume of the loopback signal.</p>
+        <p props="ios mac">After calling <xref keyref="enableLoopbackRecording"/> to enable loopback audio capturing, you can call this method to adjust the volume of the signal captured by the sound card.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
                     <pt>volume</pt>
                     <pd>The mixing volume. The range is [0, 100]. (The default is 100, which means original volume.)</pd>
                 </plentry>
+            <plentry conkeyref="adjustAudioMixingVolume/volume" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="cpp">
+        <section id="return_values" props="cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -36,6 +43,9 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul id="ul_n4m_tyw_jqb" props="ios mac">
+            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

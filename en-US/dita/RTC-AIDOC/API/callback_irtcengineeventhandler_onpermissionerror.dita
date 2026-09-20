@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onpermissionerror">
     <title><ph keyref="onPermissionError"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reports when the SDK fails to obtain device permissions.</ph><ph id="shortdesc" props="android">Callback triggered when device permission acquisition fails.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reports when the SDK fails to obtain device permissions.</ph><ph id="shortdesc" props="android">Callback triggered when device permission acquisition fails.</ph><ph id="shortdesc" props="ios mac">Occurs when the SDK cannot get the device permission.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,17 +15,20 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onPermissionError(PERMISSION_TYPE permissionType)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onPermissionError(int permission)</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine permissionError:(AgoraPermissionType)type;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine permissionError:(AgoraPermissionType)type NS_SWIFT_NAME(rtcEngine(_:permissionError:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">This callback is triggered when the SDK fails to obtain device permissions, and it reports the type of permission that could not be obtained.</p>
             <p props="android">This callback is triggered when the SDK fails to obtain device permissions and is used to report the type of permission that could not be obtained.</p>
-        </section>
+        <p props="ios mac">When the SDK fails to get the device permission, the SDK triggers this callback to report which device permission cannot be got.</p>
+            </section>
         <section id="timing" deliveryTarget="details" props="android">
             <title>Trigger Timing</title>
             <p props="android">This callback is triggered when the SDK fails to obtain device permissions.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -42,6 +45,21 @@
                         </ul>
                     </pd>
                 </plentry>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="android hmos">permission</pt>
+                <pt props="ios mac">type</pt>
+                <pt props="cpp unreal bp unity electron rn flutter cs">permissionType</pt>
+                <pd props="hmos ios mac cpp unreal bp unity electron rn flutter cs">The type of the device permission. See <xref keyref="PERMISSION_TYPE"/>.</pd>
+                <pd props="android">The type of the device permission.<ul>
+                   <li><ph keyref="RECORD_AUDIO"/>(0): Permission for the audio capture device.</li>
+                   <li><ph keyref="CAMERA"/>(1): Permission for the camera.</li>
+                   <li><ph keyref="SCREEN_CAPTURE"/>(2): Permission for screen sharing.</li>
+                </ul></pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

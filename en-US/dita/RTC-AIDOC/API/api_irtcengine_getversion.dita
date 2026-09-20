@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getversion">
     <title><ph keyref="getVersion"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the SDK version number.</ph><ph id="shortdesc" props="android">Gets the SDK version.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the SDK version number.</ph><ph id="shortdesc" props="android">Gets the SDK version.</ph><ph id="shortdesc" props="ios mac">Gets the SDK version.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,19 +15,25 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual const char* getVersion(int* build) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public static String getSdkVersion()</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">+ (NSString * _Nonnull)getSdkVersion;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">+ (NSString * _Nonnull)getSdkVersion NS_SWIFT_NAME(getSdkVersion());</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
                     <pt>build</pt>
                     <pd>Output parameter that represents the build index of the SDK.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>build</pt>
+                <pd>The SDK build index.</pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -37,6 +43,7 @@
             </p>
             <p props="android">If the method call succeeds, returns the SDK version string.
 If the method call fails, returns an empty string.</p>
-        </section>
+        <p props="ios mac">The SDK version number. The format is a string.</p>
+            </section>
     </refbody>
 </reference>

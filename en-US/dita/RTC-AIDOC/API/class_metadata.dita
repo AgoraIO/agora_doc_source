@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_metadata">
     <title><ph keyref="Metadata"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to represent media metadata.</ph><ph id="shortdesc" props="android">Media metadata.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to represent media metadata.</ph><ph id="shortdesc" props="android">Media metadata.</ph><ph id="shortdesc" props="ios mac">Media metadata.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -19,9 +19,15 @@
   public byte[] data;
   public long timeStampMs;
 }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraMetadata) __attribute__((visibility("default"))) @interface AgoraMetadata : NSObject
+@property (copy, nonatomic) NSString* _Nonnull channelId NS_SWIFT_NAME(channelId);
+@property (assign, nonatomic) NSInteger uid NS_SWIFT_NAME(uid);
+@property (strong, nonatomic) NSData* _Nonnull data NS_SWIFT_NAME(data);
+@property (assign, nonatomic) NSTimeInterval timestamp NS_SWIFT_NAME(timestamp);
+@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -70,7 +76,38 @@
                     <pt>timeStampMs</pt>
                     <pd>Timestamp (in milliseconds) when the <xref keyref="Metadata"/> was sent.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>channelId</pt>
+                <pd>The channel name.</pd>
+            </plentry>
+                <plentry props="ios mac">
+                <pt>uid</pt>
+                <pd>
+                    <p>The user ID.<ul id="ul_c1t_3wg_s4b">
+                    <li>For the recipient: The ID of the remote user who sent the <apiname keyref="Metadata"/>.</li>
+                    <li>For the sender: Ignore it.</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>size</pt>
+                <pd>The buffer size of the sent or received <apiname keyref="Metadata"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="cpp framework">buffer</pt>
+                <pt props="android">data</pt>
+                <pd>The buffer address of the received <apiname keyref="Metadata"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>data</pt>
+                <pd>The received metadata.</pd>
+            </plentry>
+                <plentry props="ios mac">
+                <pt props="cpp framework android">timeStampMs</pt>
+                <pt props="apple">timestamp</pt>
+                <pd>The timestamp (ms) of when the <apiname keyref="Metadata"/> is sent.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="detailed_desc"/></refbody>
 </reference>

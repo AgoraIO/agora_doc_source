@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setaudiosessionoperationrestriction">
     <title><ph keyref="setAudioSessionOperationRestriction"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the SDK's permission to operate the audio session.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the SDK's permission to operate the audio session.</ph><ph id="shortdesc" props="ios mac">Sets the operational permission of the SDK on the audio session.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioSessionOperationRestriction(AUDIO_SESSION_OPERATION_RESTRICTION restriction) = 0;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)setAudioSessionOperationRestriction:(AgoraAudioSessionOperationRestriction)restriction NS_SWIFT_NAME(setAudioSessionOperationRestriction(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -24,17 +25,27 @@
                     <li>This method does not restrict the app's permission to operate the audio session.</li>
                 </ul>
             </note>
-        </section>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <p props="ios mac">The SDK and the app can both configure the audio session by default. If you need to only use the app to configure the audio session, this method restricts the operational permission of the SDK on the audio session.</p>
+            <p props="ios mac">You can call this method either before or after joining a channel. Once you call this method to restrict the operational permission of the SDK on the audio session, the restriction takes effect when the SDK needs to change the audio session.</p>
+            <note type="attention" props="ios mac">
+            <ul>
+            <li props="cpp unreal bp unity flutter rn cs">This method is only available for iOS.</li>
+            <li>This method does not restrict the operational permission of the app on the audio session.</li>
+            </ul></note> </section>
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
                     <pt>restriction</pt>
                     <pd>The SDK's permission to operate the audio session. This parameter is a bitmask, with each bit representing a permission. See <xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION"/>.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>restriction</pt>
+                <pd>The operational permission of the SDK on the audio session. See <xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION"/>. This parameter is in bit mask format, and each bit corresponds to a permission.</pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="cpp">
+        <section id="return_values" props="cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -42,6 +53,9 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

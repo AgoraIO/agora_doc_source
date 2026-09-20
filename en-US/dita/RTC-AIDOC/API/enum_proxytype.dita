@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_proxytype">
     <title><ph keyref="PROXY_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Cloud proxy type.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Cloud proxy type.</ph><ph id="shortdesc" props="ios mac">The cloud proxy type.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -35,7 +35,27 @@
                     <pt>HTTPS_PROXY_TYPE</pt>
                     <pd>(6): HTTPS proxy.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="NONE_PROXY_TYPE"/></pt>
+                <pd>0: Reserved for future use.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="UDP_PROXY_TYPE"/></pt>
+                <pd>1: The cloud proxy for the UDP protocol, that is, the Force UDP cloud proxy mode. In this mode, the SDK always transmits data over UDP.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="TCP_PROXY_TYPE"/></pt>
+                <pd>2: The cloud proxy for the TCP (encryption) protocol, that is, the Force TCP cloud proxy mode. In this mode, the SDK always transmits data over TCP/TLS 443.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="LOCAL_PROXY_TYPE"/></pt>
+                <pd>3: Reserved for future use.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="TCP_PROXY_AUTO_FALLBACK_TYPE"/></pt>
+                <pd>4: Automatic mode. In this mode, the SDK attempts a direct connection to SD-RTN™ and automatically switches to TCP/TLS 443 if the attempt fails.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

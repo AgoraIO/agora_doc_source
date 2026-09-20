@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_enableencryptionex">
     <title><ph keyref="enableEncryptionEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables built-in encryption.</ph><ph id="shortdesc" props="android">Enables or disables built-in encryption.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables built-in encryption.</ph><ph id="shortdesc" props="android">Enables or disables built-in encryption.</ph><ph id="shortdesc" props="ios mac">Enables or disables the built-in encryption.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int enableEncryptionEx(const RtcConnection&amp; connection, bool enabled, const EncryptionConfig&amp; config) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int enableEncryptionEx(boolean enabled, EncryptionConfig config, RtcConnection connection);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableEncryptionEx:(BOOL)enabled encryptionConfig:(AgoraEncryptionConfig *_Nonnull)config connection:(AgoraRtcConnection* _Nonnull)connection NS_SWIFT_NAME(enableEncryptionEx(_:encryptionConfig:connection:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -32,6 +33,11 @@
                     <li>When built-in encryption is enabled, the CDN streaming feature is not available.</li>
                 </ul>
             </note>
+        <dl outputclass="since"><dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.3.1</dd>
+            </dlentry>
+            </dl><p props="ios mac">After the user leaves the channel, the SDK automatically disables the built-in encryption. To enable the built-in encryption, call this method before the user joins the channel again.</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
@@ -42,7 +48,7 @@
             <p props="cpp">Call this method before joining a channel.</p>
             <p props="android">Call this method before joining a channel.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -79,9 +85,21 @@
                     <pt>connection</pt>
                     <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
                 </plentry>
+            <plentry conkeyref="enableEncryption/enable" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+             <plentry conkeyref="enableEncryption/config" props="ios mac">
+                 <pt/>
+                 <pd/>
+             </plentry>
+             <plentry conkeyref="joinChannelEx/connection" props="ios mac">
+                 <pt/>
+                 <pd/>
+             </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -95,6 +113,9 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul> </section>
     </refbody>
 </reference>

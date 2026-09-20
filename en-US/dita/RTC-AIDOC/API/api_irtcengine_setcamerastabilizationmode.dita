@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcamerastabilizationmode">
     <title><ph keyref="setCameraStabilizationMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the camera stabilization mode.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the camera stabilization mode.</ph><ph id="shortdesc" props="ios mac">Sets the camera stabilization mode.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,6 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setCameraStabilizationMode(CAMERA_STABILIZATION_MODE mode) = 0;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"> - (int) setCameraStabilizationMode:(AgoraCameraStabilizationMode)mode NS_SWIFT_NAME(setCameraStabilizationMode(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -25,6 +26,11 @@
                     <li>This method applies to iOS only.</li>
                 </ul>
             </note>
+        <dl outputclass="since"><dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.3.1</dd>
+            </dlentry>
+            </dl><p props="ios mac">The camera stabilization mode is off by default. You need to call this method to turn it on and set the appropriate stabilization mode.</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
@@ -34,16 +40,20 @@
             <title>Timing</title>
             <p props="cpp">You must call this method after the camera is successfully started, that is, when the SDK triggers the <xref keyref="onLocalVideoStateChanged"/> callback and returns the local video state as <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph> (1).</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
                     <pt>mode</pt>
                     <pd>The camera stabilization mode. See <xref keyref="CAMERA_STABILIZATION_MODE"/>.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>mode</pt>
+                <pd>Camera stabilization mode. See <xref keyref="CAMERA_STABILIZATION_MODE"/>.</pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="cpp">
+        <section id="return_values" props="cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -51,6 +61,9 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                </ul> </section>
     </refbody>
 </reference>

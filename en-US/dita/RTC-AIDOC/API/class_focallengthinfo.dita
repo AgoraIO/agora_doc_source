@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_focallengthinfo">
     <title><ph keyref="FocalLengthInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Represents focal length information supported by the camera.</ph><ph id="shortdesc" props="android">Focal length information including camera direction and focal length type.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Represents focal length information supported by the camera.</ph><ph id="shortdesc" props="android">Focal length information including camera direction and focal length type.</ph><ph id="shortdesc" props="ios mac">Focal length information supported by the camera, including the camera direction and focal length type.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -14,12 +14,21 @@
   public int cameraDirection;
   public int focalLengthType;
 }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraFocalLengthInfo : NSObject
+@property(assign, nonatomic) int cameraDirection;
+@property(assign, nonatomic) AgoraFocalLength focalLengthType;
+@end</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
             <note props="cpp">This struct is only applicable to Android and iOS platforms.</note>
+        <dl outputclass="since"><dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.3.1</dd>
+            </dlentry>
+            </dl><p props="ios mac"/>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -38,6 +47,14 @@
                     <pt>focalLengthType</pt>
                     <pd>The type of focal length. See <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>cameraDirection</pt>
+                <pd>The camera direction. See <xref keyref="CAMERA_DIRECTION"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>focalLengthType</pt>
+                <pd>The focal length type. See <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>.</pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

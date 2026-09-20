@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onuserenablevideo">
     <title><ph keyref="onUserEnableVideo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when a remote user enables or disables the video module.</ph><ph id="shortdesc" props="android">Callback when a remote user enables or disables the video module.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when a remote user enables or disables the video module.</ph><ph id="shortdesc" props="android">Callback when a remote user enables or disables the video module.</ph><ph id="shortdesc" props="ios mac">Occurs when a remote user enables or disables the video module.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,18 +15,31 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onUserEnableVideo(uid_t uid, bool enabled)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onUserEnableVideo(int uid, boolean enabled)</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+    didVideoEnabled:(BOOL)enabled
+    byUid:(NSUInteger)uid</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didVideoEnabled:(BOOL)enabled byUid:(NSUInteger)uid NS_SWIFT_NAME(rtcEngine(_:didVideoEnabled:byUid:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">Once the video module is disabled, the user can only make voice calls and cannot send or receive any video.</p>
             <p props="android">This callback is triggered when a remote user calls <xref keyref="enableVideo"/> or <xref keyref="disableVideo"/>. After disabling the video module, the user can only make voice calls and cannot send or receive any video.</p>
+        <dl outputclass="since"><dlentry props="ios mac">
+                <dt>Deprecated:</dt>
+                <dd>Use the following parameters in the <xref keyref="onRemoteVideoStateChanged"/> callback instead:<ul>
+                    <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/>(0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/>(5).</li>
+                    <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING"/>(2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/>(6).</li>
+                    </ul> </dd>
+            </dlentry>
+            </dl><p id="desc1" props="ios mac">Once the video module is disabled, the user can only use a voice call. The user cannot send or receive any video.</p>
+            <p props="ios mac">The SDK triggers this callback when a remote user enables or disables the video module by calling the <xref keyref="enableVideo"/> or <xref keyref="disableVideo"/> method.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Trigger Timing</title>
             <p props="cpp">This callback is triggered when the remote user calls <xref keyref="enableVideo"/> or <xref keyref="disableVideo"/>.</p>
             <p props="android">This callback is triggered when a remote user enables or disables the video module.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -55,6 +68,27 @@
                         </ul>
                     </pd>
                 </plentry>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>connection</pt>
+                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="native unreal bp">uid</pt>
+                <pt props="unity flutter rn electron cs">remoteUid</pt>
+                <pd>The user ID of the remote user.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>enabled</pt>
+                <pd>
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>: The video module is enabled.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: The video module is disabled.</li>
+                    </ul> </pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

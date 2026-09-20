@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_player_setconfigs_player">
     <title><ph keyref="SetConfigs_Player"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Configures the player.</ph><ph id="shortdesc" props="android">Sets player configuration.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Configures the player.</ph><ph id="shortdesc" props="android">Sets player configuration.</ph><ph id="shortdesc" props="ios mac">Sets the player configurations.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">bool SetConfigs(PlayerConfig* config, Error *err = nullptr)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void setConfigs(PlayerConfig config) throws RteException</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setConfigs:(AgoraRtePlayerConfig * _Nonnull)config error:(AgoraRteError * _Nullable)error;</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -27,16 +28,21 @@
                     <dt>Since</dt>
                     <dd>Available since v4.4.0.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
             </dl>
             <p props="cpp">You can call this method to configure the player, such as enabling autoplay, subscribing to video streams with different resolutions and bitrates, etc.</p>
             <p props="android">You can call this method to configure the player, such as enabling autoplay, subscribing to video streams with different resolutions and bitrates.</p>
+        <p props="ios mac">You can call this method to configuer the player, such as enabling autoplay and subscribing to video streams of a different resolution and bitrate.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
             <p props="cpp">This method must be called after calling <xref keyref="Player_Player"/>.</p>
             <p props="android">You must call this method after calling <xref keyref="Player_Player"/>.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -51,13 +57,21 @@
                     <pt>config</pt>
                     <pd>Player configuration object. See <xref keyref="PlayerConfig"/>.</pd>
                 </plentry>
+            <plentry id="config" props="ios mac">
+                <pt>config</pt>
+                <pd>The player configuration object: <xref keyref="PlayerConfig"/>.</pd>
+            </plentry>
+            <plentry props="ios mac" conkeyref="SetConfigs_Rte/err">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml>
         </section>
         <section id="exception" props="android">
             <title>Exceptions</title>
             <p props="android">When the method call fails, the SDK throws an <xref keyref="RteException"/> containing the corresponding error information. You need to catch and handle the exception.</p>
         </section>
-        <section id="return_values" props="cpp">
+        <section id="return_values" props="cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">Whether the configuration succeeds:
                 <ul>
@@ -65,6 +79,10 @@
                     <li><xref keyref="false"/>: Configuration fails.</li>
                 </ul>
             </p>
-        </section>
+        <p props="ios mac">Whether the player is configured successfully:<ul>
+                <li><codeph><ph keyref="true"/></codeph>: Yes.</li>
+                <li><codeph><ph keyref="false"/></codeph>: No.</li>
+                </ul>
+            </p> </section>
     </refbody>
 </reference>

@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_audioprofiletype">
     <title><ph keyref="AUDIO_PROFILE_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Audio profile type.</ph><ph id="shortdesc" props="android">Audio profile type.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Audio profile type.</ph><ph id="shortdesc" props="android">Audio profile type.</ph><ph id="shortdesc" props="ios mac">The audio profile.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -73,7 +73,51 @@
                     <pt>MUSIC_HIGH_QUALITY_STEREO</pt>
                     <pd>(5): Sample rate 48 kHz, music encoding, stereo, bitrate up to 128 Kbps. To achieve stereo effect, you also need to call <xref keyref="setAdvancedAudioOptions"/> and set <codeph>audioProcessingChannels</codeph> to <codeph>AGORA_AUDIO_STEREO_PROCESSING</codeph> in <xref keyref="AdvancedAudioOptions"/>.</pd>
                 </plentry>
+            <plentry id="0" props="ios mac">
+                <pt><ph keyref="AUDIO_PROFILE_DEFAULT"/></pt>
+                <pd>
+                    <p>0: The default audio profile.<ul id="default-profile">
+                    <li>For the interactive streaming profile: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 64 Kbps.</li>
+                    <li>For the communication profile: <ph props="android ios mac rn">A sample rate of 32 kHz, audio encoding, mono, and a bitrate of up to 18 Kbps.</ph><ul props="cpp unreal bp unity electron flutter cs">
+                        <li>Windows: A sample rate of 16 kHz, audio encoding, mono, and a bitrate of up to 16 Kbps.</li>
+                        <li><ph props="cpp unreal bp unity flutter">Android/macOS/iOS:</ph><ph props="electron">macOS:</ph> A sample rate of 32 kHz, audio encoding, mono, and a bitrate of up to 18 Kbps.</li>
+                        </ul> </li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry id="1" props="ios mac">
+                <pt><ph keyref="AUDIO_PROFILE_SPEECH_STANDARD"/></pt>
+                <pd>1: A sample rate of 32 kHz, audio encoding, mono, and a bitrate of up to 18 Kbps.</pd>
+            </plentry>
+            <plentry id="2" props="ios mac">
+                <pt><ph keyref="AUDIO_PROFILE_MUSIC_STANDARD"/></pt>
+                <pd>2: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 64 Kbps.</pd>
+            </plentry>
+            <plentry id="3" props="ios mac">
+                <pt><ph keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/></pt>
+                <pd><ph>3: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 80 Kbps.</ph><p props="cpp unreal bp android ios unity rn electron flutter">To implement stereo audio, you also need to call <xref keyref="setAdvancedAudioOptions"/> and set <parmname>audioProcessingChannels</parmname> to <apiname keyref="AUDIO_PROCESSING_STEREO"/> in <apiname keyref="AdvancedAudioOptions"/>.</p>
+                </pd>
+            </plentry>
+            <plentry id="4" props="ios mac">
+                <pt><ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/></pt>
+                <pd>4: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 96 Kbps.</pd>
+            </plentry>
+            <plentry id="5" props="ios mac">
+                <pt><ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/></pt>
+                <pd><ph>5: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 128 Kbps.</ph><p props="cpp unreal bp android ios unity flutter rn electron">To implement stereo audio, you also need to call <xref keyref="setAdvancedAudioOptions"/> and set <parmname>audioProcessingChannels</parmname> to <apiname keyref="AUDIO_PROCESSING_STEREO"/> in <apiname keyref="AdvancedAudioOptions"/>.</p>
+                </pd>
+            </plentry>
+            <plentry id="6" props="ios mac">
+                <pt><ph keyref="AUDIO_PROFILE_IOT"/></pt>
+                <pd>
+                    <p>6: A sample rate of 16 kHz, audio encoding, mono, and Acoustic Echo Cancellation (AEC) enabled.</p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="cpp unreal bp unity electron rn flutter cs"><ph keyref="AUDIO_PROFILE_NUM"/></pt>
+                <pd>Enumerator boundary.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

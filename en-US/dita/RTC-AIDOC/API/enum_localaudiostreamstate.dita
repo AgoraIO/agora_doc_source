@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_localaudiostreamstate">
     <title><ph keyref="LOCAL_AUDIO_STREAM_STATE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Local audio state.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Local audio state.</ph><ph id="shortdesc" props="ios mac">The state of the local audio.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -23,7 +23,23 @@
                     <pt>LOCAL_AUDIO_STREAM_STATE_FAILED</pt>
                     <pd>(3): Failed to start local audio.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED"/></pt>
+                <pd>0: The local audio is in the initial state.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING"/></pt>
+                <pd>1: The local audio capturing device starts successfully.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="LOCAL_AUDIO_STREAM_STATE_ENCODING"/></pt>
+                <pd>2: The first audio frame encodes successfully.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="LOCAL_AUDIO_STREAM_STATE_FAILED"/></pt>
+                <pd>3: The local audio fails to start.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

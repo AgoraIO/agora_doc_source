@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_disableaudio">
     <title><ph keyref="disableAudio"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Disables the audio module.</ph><ph id="shortdesc" props="android">Disables the audio module.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Disables the audio module.</ph><ph id="shortdesc" props="android">Disables the audio module.</ph><ph id="shortdesc" props="ios mac">Disables the audio module.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,9 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int disableAudio() = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int disableAudio();</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)disableAudio;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)disableAudio NS_SWIFT_NAME(disableAudio());</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">The audio module is enabled by default. You can call this method to disable it.</p>
@@ -36,13 +38,14 @@
                     <li><xref keyref="muteAllRemoteAudioStreams"/>: Whether to subscribe to and play all remote audio streams.</li>
                 </ul>
             </note>
+        <p props="ios mac">The audio module is enabled by default, and you can call this method to disable the audio module.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
             <p props="cpp">You can call this method before or after joining a channel. It remains effective after leaving the channel.</p>
             <p props="android">You can call this method before or after joining a channel. It remains effective after leaving the channel.</p>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -56,6 +59,9 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

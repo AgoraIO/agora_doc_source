@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_backgroundblurdegree">
     <title><ph keyref="BACKGROUND_BLUR_DEGREE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Blur intensity of custom background images.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Blur intensity of custom background images.</ph><ph id="shortdesc" props="ios mac">The degree of blurring applied to the custom background image.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -19,7 +19,19 @@
                     <pt>BLUR_DEGREE_HIGH</pt>
                     <pd>(3): (Default) Applies a high level of blur to the custom background image, making it nearly impossible for users to distinguish background features.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="BLUR_DEGREE_LOW"/></pt>
+                <pd>1: The degree of blurring applied to the custom background image is low. The user can almost see the background clearly.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="BLUR_DEGREE_MEDIUM"/></pt>
+                <pd>2: The degree of blurring applied to the custom background image is medium. It is difficult for the user to recognize details in the background.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="BLUR_DEGREE_HIGH"/></pt>
+                <pd>3: (Default) The degree of blurring applied to the custom background image is high. The user can barely see any distinguishing features in the background.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

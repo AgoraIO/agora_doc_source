@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayercachemanager_removecachebyuri">
     <title><ph keyref="removeCacheByUri"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Deletes cached media files.</ph><ph id="shortdesc" props="android">Deletes a cached media file.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Deletes cached media files.</ph><ph id="shortdesc" props="android">Deletes a cached media file.</ph><ph id="shortdesc" props="ios mac">Deletes a cached media file.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,13 +15,17 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int removeCacheByUri(const char *uri) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">int removeCacheByUri(String uri);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)removeCacheByUri:(NSString *)uri;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)removeCacheByUri:(NSString *)uri NS_SWIFT_NAME(removeCache(byUri:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <note props="cpp"><xref keyref="removeCacheByUri"/> currently does not delete cached media files that are being played.</note>
             <note props="android">The currently playing cached media file will not be deleted.</note>
-        </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <note conkeyref="removeAllCaches/removenote" props="ios mac">
+            <p/>
+            </note> </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -32,9 +36,13 @@
                     <pt>uri</pt>
                     <pd>The URI (Uniform Resource Identifier) of the media file to be deleted.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>uri</pt>
+                <pd>The URI (Uniform Resource Identifier) of the media file to be deleted.</pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -48,6 +56,12 @@
                     <li>&lt; 0: Failure. See <xref keyref="MEDIA_PLAYER_REASON"/>.</li>
                 </ul>
             </p>
-        </section>
+        <p props="ios mac">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See <xref keyref="MEDIA_PLAYER_REASON"/>.</li>
+                </ul>
+            </p>
+            </section>
     </refbody>
 </reference>

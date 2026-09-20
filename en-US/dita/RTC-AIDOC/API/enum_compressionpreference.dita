@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_compressionpreference">
     <title><ph keyref="COMPRESSION_PREFERENCE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Compression preference for video encoding.</ph><ph id="shortdesc" props="android">Compression preference for video encoding.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Compression preference for video encoding.</ph><ph id="shortdesc" props="android">Compression preference for video encoding.</ph><ph id="shortdesc" props="ios mac">Compression preference for video encoding.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -31,7 +31,23 @@
                     <pt>PREFER_QUALITY</pt>
                     <pd>(1): High quality priority. The SDK compresses video frames while maintaining video quality. Suitable for scenarios requiring high video quality.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                    <pt><ph keyref="PREFER_COMPRESSION_AUTO"/></pt>
+                    <pd>-1: (Default) Automatic mode. The SDK will automatically select <ph keyref="PREFER_LOW_LATENCY"/> or <ph keyref="PREFER_QUALITY"/> based on the video scenario you set to achieve the best user experience.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                <pt><ph keyref="PREFER_LOW_LATENCY"/></pt>
+                <pd>0: Low latency preference. The SDK compresses video frames to reduce latency. This preference is suitable for scenarios where smoothness is prioritized and reduced video quality is acceptable.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="PREFER_QUALITY"/></pt>
+                <pd>1: High quality preference. The SDK compresses video frames while maintaining video quality. This preference is suitable for scenarios where video quality is prioritized.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"><dl outputclass="since"><dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl></section></refbody>
 </reference>

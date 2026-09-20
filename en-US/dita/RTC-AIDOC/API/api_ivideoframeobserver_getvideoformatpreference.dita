@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideoframeobserver_getvideoformatpreference">
     <title><ph keyref="getVideoFormatPreference"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the format of raw video data output by the SDK.</ph><ph id="shortdesc" props="android">Sets the format of the raw video data output by the SDK.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the format of raw video data output by the SDK.</ph><ph id="shortdesc" props="android">Sets the format of the raw video data output by the SDK.</ph><ph id="shortdesc" props="ios mac">Sets the format of the raw video data output by the SDK.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,10 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual VIDEO_PIXEL_FORMAT getVideoFormatPreference() { return VIDEO_PIXEL_DEFAULT; }</codeblock>
                 <codeblock props="android" outputclass="language-java">@CalledByNative int getVideoFormatPreference();</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraVideoFormat)getVideoFormatPreference;
+</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (AgoraVideoFormat)getVideoFormatPreference NS_SWIFT_NAME(getVideoFormatPreference());</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">After calling <xref keyref="registerVideoFrameObserver_IMediaEngine"/> to register the callback, the SDK triggers this callback each time a video frame is received. You need to set the preferred video data format in the return value of this callback.</p>
@@ -41,8 +44,18 @@
                     <li>When beauty effect extension is integrated and video denoising or low light enhancement is enabled.</li>
                 </ul>
             </note>
+        <p props="ios mac">You need to register the callback when calling the <xref keyref="registerVideoFrameObserver"/> method. After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set your preferred video data in the return value of this callback.</p>
+                    <note props="ios mac">The default types of pixel format (<ph keyref="VIDEO_PIXEL_DEFAULT"/>) for the raw video are as follows:<ul>
+                <li props="android cpp bp unreal">On the Android platform, the default video frame type may be I420Buffer or TextureBuffer. The texture format of TextureBuffer type may be OES or RGB. If the returned video frame type is <ph keyref="VIDEO_PIXEL_DEFAULT"/> when you call <apiname keyref="getVideoFormatPreference"/>, you need to adapt to I420Buffer or TextureBuffer when processing video data. The cases where the video frame type is fixed as I420Buffer include but are not limited to:<ul>
+                    <li>Specific devices, such as: LG G5 SE (H848), Google Pixel 4a, Samsung Galaxy A7, or Xiaomi Mi Max.</li>
+                    <li>Image enhancement extension has been integrated and video noise reduction or low-light enhancement function has been enabled.</li>
+                    </ul></li>
+                <li props="cpp unreal bp">On iOS and macOS platforms, the default video frame type may be I420 or CVPixelBufferRef.</li>
+                <li props="apple">The default video frame type may be I420 or CVPixelBufferRef.</li>
+                <li props="cpp unreal bp">On Windows platforms, the default video frame type is YUV420.</li></ul>
+            </note>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">Sets the format of raw video data. See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</p>
             <p props="android">If the method call succeeds, returns the raw data format output by the SDK:
@@ -53,6 +66,7 @@
                     <li><codeph>VIDEO_PIXEL_I422</codeph> (16): I422 format.</li>
                 </ul>
             </p>
-        </section>
+        <p props="ios mac"><ph>Sets the raw data format of the SDK output. </ph><ph props="cpp bp unreal apple">See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</ph></p>
+            </section>
     </refbody>
 </reference>

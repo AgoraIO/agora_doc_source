@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_pullaudioframe">
     <title><ph keyref="pullAudioFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="android">Pulls mixed remote audio data for playback.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Pulls mixed remote audio data for playback.</ph><ph id="shortdesc" props="ios mac">Pulls the remote audio data.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,7 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int pullPlaybackAudioFrame(byte[] data, int lengthInByte);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)pullPlaybackAudioFrameRawData:(void * _Nonnull)data
+                              lengthInByte:(NSUInteger)lengthInByte;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (BOOL)pullPlaybackAudioFrameRawData:(void * _Nonnull)data
+                              lengthInByte:(NSUInteger)lengthInByte NS_SWIFT_NAME(pullPlaybackAudioFrameRawData(_:lengthInByte:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">Before calling this method, call <xref keyref="setExternalAudioSink"/> and set <codeph>enabled</codeph> to <xref keyref="true"/> to enable external audio rendering.</p>
@@ -23,12 +27,13 @@
                     <li><codeph>pullPlaybackAudioFrame</codeph>: The app pulls audio data from the SDK. The SDK adjusts the frame buffer to help handle latency and avoid audio jitter.</li>
                     <li><xref keyref="onPlaybackAudioFrame"/>: The SDK pushes audio data to the app via callback. If there is delay in processing, it may cause jitter.</li>
                 </ul><ph>This method is only for pulling mixed remote audio data. To get data from other stages like capture or playback, use <xref keyref="registerAudioFrameObserver"/> to register related callbacks.</ph></note>
+        <p props="ios mac">After a successful call of this method, the app pulls the decoded and mixed audio data for playback.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android">
             <title>Timing</title>
             <p props="android">You need to call this method after joining a channel.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android">
+        <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="android">
@@ -39,9 +44,21 @@
                     <pt>lengthInByte</pt>
                     <pd>Data length in bytes. This depends on audio duration, and the <codeph>sampleRate</codeph> and <codeph>channels</codeph> set in <xref keyref="setExternalAudioSink"/>. Formula: <codeph>lengthInByte</codeph> = <codeph>sampleRate</codeph> / 1000 × 2 × <codeph>channels</codeph> × duration (ms).</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>frame</pt>
+                <pd>Pointers to <xref keyref="AudioFrame"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>data</pt>
+                <pd>The remote audio data to be pulled. The data type is <codeph>byte[]</codeph>.</pd>
+            </plentry>
+            <plentry props="ios mac" id="length">
+                <pt>lengthInByte</pt>
+                <pd>The data length (byte). The value of this parameter is related to the audio duration, and the values of the <codeph>sampleRate</codeph> and <codeph>channels</codeph> parameters that you set in <apiname keyref="setExternalAudioSink"/>. <codeph>lengthInByte</codeph> = <codeph>sampleRate</codeph>/1000 × 2 × <codeph>channels</codeph> × audio duration (ms).</pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android">
+        <section id="return_values" props="android ios mac">
             <title>Return Values</title>
             <p props="android">
                 <ul>
@@ -49,6 +66,10 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li><codeph><ph keyref="true"/></codeph>: Success.</li>
+            <li><codeph><ph keyref="false"/></codeph>: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul>
+            </section>
     </refbody>
 </reference>

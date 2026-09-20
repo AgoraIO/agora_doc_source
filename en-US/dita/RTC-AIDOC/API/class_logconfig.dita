@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_logconfig">
     <title><ph keyref="LogConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the log file of the Agora SDK.</ph><ph id="shortdesc" props="android">Used to configure the Agora SDK log files.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the log file of the Agora SDK.</ph><ph id="shortdesc" props="android">Used to configure the Agora SDK log files.</ph><ph id="shortdesc" props="ios mac">Configuration of Agora SDK log files.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -16,9 +16,14 @@
     public int fileSizeInKB;
     public int level = Constants.LogLevel.getValue(Constants.LogLevel.LOG_LEVEL_INFO);
   }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLogConfig: NSObject
+@property (copy, nonatomic) NSString * _Nullable filePath;
+@property (assign, nonatomic) NSInteger fileSizeInKB;
+@property (assign, nonatomic) AgoraLogLevel level;
+@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -66,7 +71,44 @@
                         </ul>
                     </pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>filePath</pt>
+                <pd>
+                    <p>The complete path of the log files. Agora recommends using the default log directory. If you need to modify the default directory, ensure that the directory you specify exists and is writable.</p>
+                    <p props="cpp unreal bp unity electron rn cs">The default log directory is:<ul>
+                    <li props="cpp unreal bp unity rn flutter">Android: <filepath id="android-path">/storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log</filepath>.</li>
+                    <li props="cpp unreal bp unity rn flutter">iOS: <filepath id="ios-path">App Sandbox/Library/caches/agorasdk.log</filepath>.</li>
+                    <li props="cpp unreal bp unity electron flutter">macOS:<ul id="mac-path">
+                        <li>If Sandbox is enabled:<filepath> App Sandbox/Library/Logs/agorasdk.log</filepath>. For example, <filepath>/Users/&lt;username&gt;/Library/Containers/&lt;AppBundleIdentifier&gt;/Data/Library/Logs/agorasdk.log</filepath>.</li>
+                        <li>If Sandbox is disabled: <filepath>~/Library/Logs/agorasdk.log</filepath></li>
+                        </ul></li>
+                    <li props="cpp unreal bp unity electron flutter cs">Windows: <filepath>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\agorasdk.log</filepath>.</li>
+                    </ul></p>
+                    <p props="android ">The default path is <filepath>/storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log</filepath>.</p>
+                    <p props="ios">The default path is <filepath>AppSandbox/Library/caches/agorasdk.log</filepath>.</p>
+                    <p props="mac">The default log directory is:<ul>
+                    <li>If Sandbox is enabled: <filepath>AppSandbox/Library/Logs/agorasdk.log</filepath>. For example, <filepath>/Users/&lt;username&gt;/Library/Containers/&lt;AppBundleIdentifier&gt;/Data/Library/Logs/agorasdk.log</filepath>.</li>
+                    <li>If Sandbox is disabled: <filepath>~/Library/Logs/agorasdk.log</filepath></li>
+                    </ul>
+                 </p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>fileSizeInKB</pt>
+                <pd>The size (KB) of an <codeph>agorasdk.log</codeph> file. The value range is [128,20480]. The default value is 2,048 KB. If you set <codeph>fileSizeInKByte</codeph> smaller than 128 KB, the SDK automatically adjusts it to 128 KB; if you set <codeph>fileSizeInKByte</codeph> greater than 20,480 KB, the SDK automatically adjusts it to 20,480 KB.</pd>
+                <pd>
+                    <note id="note_vwq_yfm_kqb" type="attention">
+                    <p>This method applies to the <codeph>agorasdk.log</codeph> file only and does not take effect for the <codeph>agoraapi.log</codeph> file.</p>
+                    </note> </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>level</pt>
+                <pd>
+                    <p>The output level of the SDK log file. See <xref keyref="LOG_LEVEL"/>.</p>
+                    <p>For example, if you set the log level to WARN, the SDK outputs the logs within levels FATAL, ERROR, and WARN.</p>
+                </pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="detailed_desc"/></refbody>
 </reference>

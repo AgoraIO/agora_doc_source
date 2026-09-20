@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayercachemanager_enableautoremovecache">
     <title><ph keyref="enableAutoRemoveCache"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets whether to automatically delete cached media files.</ph><ph id="shortdesc" props="android">Sets whether to automatically delete cached media files.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets whether to automatically delete cached media files.</ph><ph id="shortdesc" props="android">Sets whether to automatically delete cached media files.</ph><ph id="shortdesc" props="ios mac">Sets whether to delete cached media files automatically.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,13 +15,16 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int enableAutoRemoveCache(bool enable) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">int enableAutoRemoveCache(boolean enable);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableAutoRemoveCache:(BOOL)enable;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)enableAutoRemoveCache:(BOOL)enable NS_SWIFT_NAME(enableAutoRemoveCache(_:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">When this feature is enabled, if the number or size of cached media files exceeds the set limit, the SDK automatically deletes the least recently used cached files.</p>
             <p props="android">When the number or size of cached media files exceeds the set limit, enabling this feature allows the SDK to automatically delete the least recently used cached files.</p>
+        <p props="ios mac">If you enable this function to remove cached media files automatically, when the cached media files exceed either the number or size limit you set, the SDK automatically deletes the least recently used cache file.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -42,9 +45,16 @@
                         </ul>
                     </pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>enable</pt>
+                <pd>Whether to enable the SDK to delete cached media files automatically:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Delete cached media files automatically.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not delete cached media files automatically.</li>
+                    </ul></pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -58,6 +68,12 @@
                     <li>&lt; 0: Failure. See <xref keyref="MEDIA_PLAYER_REASON"/>.</li>
                 </ul>
             </p>
-        </section>
+        <p props="ios mac">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See <xref keyref="MEDIA_PLAYER_REASON"/>.</li>
+                </ul>
+            </p>
+            </section>
     </refbody>
 </reference>

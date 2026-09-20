@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_enableloopbackrecordingex">
     <title><ph keyref="enableLoopbackRecordingEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables loopback recording, mixing the sound card output into the audio stream sent.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables loopback recording, mixing the sound card output into the audio stream sent.</ph><ph id="shortdesc" props="ios mac">Enables loopback audio capturing.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,6 +14,9 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int enableLoopbackRecordingEx(const RtcConnection&amp; connection, bool enabled, const char* deviceName = NULL) = 0;</codeblock>
+            <codeblock props="mac" outputclass="language-objectivec">- (int)enableLoopbackRecordingEx:(BOOL)enabled
+                      deviceName:(NSString* _Nullable)deviceName
+                      connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(enableLoopbackRecordingEx(_:deviceName:connection:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -25,12 +28,18 @@
                     <li>This method supports only one sound card for audio capture.</li>
                 </ul>
             </note>
-        </section>
+        <p props="ios mac">If you enable loopback audio capturing, the output of the sound card is mixed into the audio stream sent to the other end.</p>
+            <note id="note_v4j_tbx_jqb" type="attention" props="ios mac">
+            <ul>
+            <li props="cpp unreal bp unity flutter">This method applies to the macOS and Windows only.</li>
+            <li props="cpp unreal bp unity electron flutter">macOS does not support loopback audio capture of the default sound card. If you need to use this function, use a virtual sound card and pass its name to the <parmname>deviceName</parmname> parameter. Agora recommends using AgoraALD as the virtual sound card for audio capturing.</li>
+            <li>This method only supports using one sound card for audio capturing.</li>
+        </ul></note></section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
             <p>This method applies to multi-channel scenarios.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -55,9 +64,24 @@
                         </ul>
                     </pd>
                 </plentry>
+            <plentry conkeyref="joinChannelEx/connection" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>enabled</pt>
+                <pd>Sets whether to enable loopback audio capture:<ul id="ul_kgm_wbx_jqb">
+                    <li><codeph><ph keyref="true"/></codeph>: Enable loopback audio capturing.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable loopback audio capturing.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry conkeyref="enableLoopbackRecording/device_name" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="cpp">
+        <section id="return_values" props="cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -65,6 +89,9 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

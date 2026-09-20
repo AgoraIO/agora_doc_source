@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_audiodualmonomode">
     <title><ph keyref="AUDIO_DUAL_MONO_MODE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Channel mode.</ph><ph id="shortdesc" props="android">Channel modes.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Channel mode.</ph><ph id="shortdesc" props="android">Channel modes.</ph><ph id="shortdesc" props="ios mac">The channel mode.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -39,7 +39,23 @@
                     <pt>AUDIO_DUAL_MONO_MIX</pt>
                     <pd>(3): Mixed channel mode, mixes left and right channel audio. Users hear both channels simultaneously.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="AUDIO_DUAL_MONO_STEREO"/></pt>
+                <pd>0: Original mode.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="AUDIO_DUAL_MONO_L"/></pt>
+                <pd>1: Left channel mode. This mode replaces the audio of the right channel with the audio of the left channel, which means the user can only hear the audio of the left channel.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="AUDIO_DUAL_MONO_R"/></pt>
+                <pd>2: Right channel mode. This mode replaces the audio of the left channel with the audio of the right channel, which means the user can only hear the audio of the right channel.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="AUDIO_DUAL_MONO_MIX"/></pt>
+                <pd>3: Mixed channel mode. This mode mixes the audio of the left channel and the right channel, which means the user can hear the audio of the left channel and the right channel at the same time.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

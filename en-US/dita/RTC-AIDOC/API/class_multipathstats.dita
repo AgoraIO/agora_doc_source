@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_multipathstats">
     <title><ph keyref="MultipathStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Aggregates statistics of each network path in multipath transmission.</ph><ph id="shortdesc" props="android">Used to aggregate statistics of each network path in multipath transmission.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Aggregates statistics of each network path in multipath transmission.</ph><ph id="shortdesc" props="android">Used to aggregate statistics of each network path in multipath transmission.</ph><ph id="shortdesc" props="ios mac">Aggregates statistics of each network path in multipath transmission.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -26,6 +26,16 @@
   public int activePathNum;
   public PathStats[] pathStats;
 }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMultipathStats : NSObject
+@property (assign, nonatomic) NSUInteger lanRxBytes;
+@property (assign, nonatomic) NSUInteger lanTxBytes;
+@property (assign, nonatomic) NSUInteger wifiRxBytes;
+@property (assign, nonatomic) NSUInteger wifiTxBytes;
+@property (assign, nonatomic) NSUInteger mobileRxBytes;
+@property (assign, nonatomic) NSUInteger mobileTxBytes;
+@property (assign, nonatomic) NSUInteger activePathNum;
+@property (copy, nonatomic) NSArray&lt;AgoraPathStats *&gt; *_Nullable pathStats NS_SWIFT_NAME(pathStats);
+@end</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
@@ -38,9 +48,14 @@
                     <dt>Since</dt>
                     <dd>Available since v4.6.0.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                <dt>Since:</dt>
+                <dd>Available since v4.6.0.</dd>
+                </dlentry>
             </dl>
-        </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <p props="ios mac"/>
+            </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -107,6 +122,46 @@
                     <pt>pathStats</pt>
                     <pd>An array of statistics for each active transmission path. See <xref keyref="PathStats"/>.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt props="native">lanTxBytes</pt>
+                <pd props="android">The total number of bytes sent over LAN.</pd>
+                <pd props="apple cpp">The total number of bytes sent over the LAN path.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="native">lanRxBytes</pt>
+                <pd props="android">The total number of bytes received over LAN.</pd>
+                <pd props="apple cpp">The total number of bytes received over the LAN path.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="native">wifiTxBytes</pt>
+                <pd props="android">The total number of bytes sent over Wi-Fi.</pd>
+                <pd props="apple cpp">The total number of bytes sent over the Wi-Fi path.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="native">wifiRxBytes</pt>
+                <pd props="android">The total number of bytes received over Wi-Fi.</pd>
+                <pd props="apple cpp">The total number of bytes received over the Wi-Fi path.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="native">mobileTxBytes</pt>
+                <pd props="android">The total number of bytes sent over the mobile network.</pd>
+                <pd props="apple cpp">The total number of bytes sent over the mobile network path.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="native">mobileRxBytes</pt>
+                <pd props="android">The total number of bytes received over the mobile network.</pd>
+                <pd props="apple cpp">The total number of bytes received over the mobile network path.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="native">activePathNum</pt>
+                <pd props="android apple">The number of currently active transmission paths.</pd>
+                <pd props="cpp">The number of active transmission paths.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="native">pathStats</pt>
+                <pd props="android cpp">An array of statistics for each active transmission path. See <xref keyref="PathStats"/>.</pd>
+                <pd props="apple">Statistics for each active transmission path. See <xref keyref="PathStats"/>.</pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

@@ -2,11 +2,20 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_irtcengineeventhandler">
     <title><ph keyref="IRtcEngineEventHandler"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to receive SDK callback event notifications.</ph><ph id="shortdesc" props="android">Encapsulates methods for sending event callbacks from the SDK to the application layer.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to receive SDK callback event notifications.</ph><ph id="shortdesc" props="android">Encapsulates methods for sending event callbacks from the SDK to the application layer.</ph><ph id="shortdesc" props="ios mac">The SDK uses the  interface to send event notifications to your app. Your app can get those notifications through methods that inherit this interface.</ph></shortdesc>
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
             <p props="cpp">The SDK sends callback event notifications to the app through this class. You can inherit methods in this class to get the required event notifications. All methods in this class provide default (empty) implementations, and you can selectively inherit methods as needed. Avoid performing time-consuming operations or calling blocking APIs in the callback methods, as this may affect the normal operation of the SDK.</p>
             <p props="android"><xref keyref="IRtcEngineEventHandler"/> is an interface class used by the SDK to send event callbacks to the application layer. You can inherit this class to receive the desired event notifications. All methods in this interface are empty by default, and you can override them selectively as needed. To ensure proper SDK operation, avoid performing time-consuming operations or calling blocking APIs such as <codeph>SendMessage</codeph> in the callback methods.</p>
-        </section>
-    </refbody>
+        <p props="ios mac">All methods in this interface have default (empty) implementation. You can choose to inherit events related to your app scenario.</p>
+            <note type="attention" props="ios mac">
+            <ul>
+            <li>In the callbacks, avoid implementing time-consuming tasks or calling APIs that may cause thread blocking (such as <codeph>sendMessage</codeph>). Otherwise, the SDK may not work properly.</li>
+            <li>The SDK no longer catches exceptions in the code logic that developers implement themselves in <apiname keyref="IRtcEngineEventHandler"/> class. You need to handle this exception yourself, otherwise the app may crash when the exception occurs.</li>
+            </ul></note> <dl outputclass="since"><dlentry props="ios mac">
+                    <dt>Since</dt>
+                    <dd>Added in v1.1.</dd>
+                </dlentry>
+                </dl></section>
+    <section id="prototype"><p outputclass="codeblock"/></section></refbody>
 </reference>

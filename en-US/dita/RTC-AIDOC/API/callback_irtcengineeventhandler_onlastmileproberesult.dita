@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onlastmileproberesult">
     <title><ph keyref="onLastmileProbeResult"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for uplink and downlink last-mile network probe results.</ph><ph id="shortdesc" props="android">Callback for uplink and downlink Last-mile network probe test results.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for uplink and downlink last-mile network probe results.</ph><ph id="shortdesc" props="android">Callback for uplink and downlink Last-mile network probe test results.</ph><ph id="shortdesc" props="ios mac">Reports the last mile network probe result.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,17 +15,21 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onLastmileProbeResult(const LastmileProbeResult&amp; result)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onLastmileProbeResult(LastmileProbeResult result) {}</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+    lastmileProbeTestResult:(AgoraLastmileProbeResult * _Nonnull)result;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine lastmileProbeTestResult:(AgoraLastmileProbeResult * _Nonnull)result NS_SWIFT_NAME(rtcEngine(_:lastmileProbeTest:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">After calling <xref keyref="startLastmileProbeTest"/>, the SDK triggers this callback within 30 seconds.</p>
             <p props="android">This callback is triggered after calling <xref keyref="startLastmileProbeTest"/>.</p>
+        <p props="ios mac">The SDK triggers this callback within 30 seconds after the app calls <xref keyref="startLastmileProbeTest"/>.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android">
             <title>Trigger Timing</title>
             <p props="android">This callback is triggered within 30 seconds after calling <xref keyref="startLastmileProbeTest"/>.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -36,6 +40,14 @@
                     <pt>result</pt>
                     <pd>Uplink and downlink Last-mile network probe test results. See <xref keyref="LastmileProbeResult"/>.</pd>
                 </plentry>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>result</pt>
+                <pd>The uplink and downlink last-mile network probe test result. See <xref keyref="LastmileProbeResult"/>.</pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

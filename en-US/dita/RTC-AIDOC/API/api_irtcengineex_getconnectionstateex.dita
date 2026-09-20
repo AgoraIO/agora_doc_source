@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_getconnectionstateex">
     <title><ph keyref="getConnectionStateEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the current connection state of the SDK.</ph><ph id="shortdesc" props="android">Gets the current connection state of the SDK.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Gets the current connection state of the SDK.</ph><ph id="shortdesc" props="android">Gets the current connection state of the SDK.</ph><ph id="shortdesc" props="ios mac">Gets the current connection state of the SDK.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,9 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual CONNECTION_STATE_TYPE getConnectionStateEx(const RtcConnection&amp; connection) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int getConnectionStateEx(RtcConnection connection);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraConnectionState)getConnectionStateEx:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (AgoraConnectionState)getConnectionStateEx:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(getConnectionStateEx(_:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
         <section id="scenario" deliveryTarget="details">
@@ -27,7 +29,7 @@
             <p props="cpp">You can call this method before or after joining a channel.</p>
             <p props="android">This method can be called before or after joining a channel.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -38,9 +40,13 @@
                     <pt>connection</pt>
                     <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
                 </plentry>
+            <plentry conkeyref="joinChannelEx/connection" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">Current connection state. See <xref keyref="CONNECTION_STATE_TYPE"/>.</p>
             <p props="android">
@@ -49,6 +55,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <p conkeyref="onConnectionStateChanged/connectionstate" props="ios mac"/></section>
     </refbody>
 </reference>

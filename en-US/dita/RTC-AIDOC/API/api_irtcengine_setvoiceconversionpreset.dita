@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setvoiceconversionpreset">
     <title><ph keyref="setVoiceConversionPreset"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the preset voice conversion effects.</ph><ph id="shortdesc" props="android">Sets the SDK's preset voice conversion effects.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the preset voice conversion effects.</ph><ph id="shortdesc" props="android">Sets the SDK's preset voice conversion effects.</ph><ph id="shortdesc" props="ios mac">Sets a preset voice beautifier effect.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,11 +15,17 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setVoiceConversionPreset(VOICE_CONVERSION_PRESET preset) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int setVoiceConversionPreset(int preset);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVoiceConversionPreset:(AgoraVoiceConversionPreset)preset;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)setVoiceConversionPreset:(AgoraVoiceConversionPreset)preset NS_SWIFT_NAME(setVoiceConversionPreset(_:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
                 <dlentry props="android">
+                    <dt>Since</dt>
+                    <dd>Available since v3.3.1.</dd>
+                </dlentry>
+            <dlentry props="ios mac">
                     <dt>Since</dt>
                     <dd>Available since v3.3.1.</dd>
                 </dlentry>
@@ -76,13 +82,14 @@ To achieve better audio effects, it is recommended to call the following APIs be
                     <li>This method depends on the audio beautifier dynamic library <xref keyref="audiobeauty"/>. If the library is deleted, this feature cannot be enabled.</li>
                 </ul>
             </note>
-        </section>
+        <p props="ios mac">Call this method to set a preset voice changing effect for the local user who publishes an audio stream in a channel. After setting the voice changing effect, all users in the channel can hear the effect. You can set different voice changing effects for the user depending on different scenarios.</p>
+            </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
             <p props="cpp">You can call this method before or after joining a channel.</p>
             <p props="android">You can call this method before or after joining a channel.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -101,9 +108,22 @@ To achieve better audio effects, it is recommended to call the following APIs be
                         </ul>
                     </pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>preset</pt>
+                <pd>
+                    <p props="ios mac cpp unreal bp unity flutter rn electron cs">The options for the preset voice beautifier effects: <xref keyref="VOICE_CONVERSION_PRESET"/>.</p>
+                    <p props="android hmos">The options for SDK preset voice conversion effects.<ul>
+                    <li><ph keyref="VOICE_CONVERSION_OFF"/>: Turn off voice conversion effects and use the original voice.</li>
+                    <li><ph keyref="VOICE_CHANGER_NEUTRAL"/>: A gender-neutral voice. To avoid audio distortion, ensure that you use this enumerator to process a female-sounding voice.</li>
+                    <li><ph keyref="VOICE_CHANGER_SWEET"/>: A sweet voice. To avoid audio distortion, ensure that you use this enumerator to process a female-sounding voice.</li>
+                    <li><ph keyref="VOICE_CHANGER_SOLID"/>: A steady voice. To avoid audio distortion, ensure that you use this enumerator to process a male-sounding voice.</li>
+                    <li><ph keyref="VOICE_CHANGER_BASS"/>: A deep voice. To avoid audio distortion, ensure that you use this enumerator to process a male-sounding voice.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -117,6 +137,9 @@ To achieve better audio effects, it is recommended to call the following APIs be
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

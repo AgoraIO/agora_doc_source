@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_startorupdatechannelmediarelayex">
     <title><ph keyref="startOrUpdateChannelMediaRelayEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts or updates the media stream relay across channels.</ph><ph id="shortdesc" props="android">Starts or updates media stream relay across channels.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts or updates the media stream relay across channels.</ph><ph id="shortdesc" props="android">Starts or updates media stream relay across channels.</ph><ph id="shortdesc" props="ios mac">Starts relaying media streams across channels or updates channels for media relay.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int startOrUpdateChannelMediaRelayEx(const ChannelMediaRelayConfiguration&amp; configuration, const RtcConnection&amp; connection) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int startOrUpdateChannelMediaRelayEx(ChannelMediaRelayConfiguration channelMediaRelayConfiguration, RtcConnection connection);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startOrUpdateChannelMediaRelayEx:(AgoraChannelMediaRelayConfiguration * _Nonnull)config connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(startOrUpdateChannelMediaRelayEx(_:connection:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -27,7 +28,10 @@
                     <dt>Since</dt>
                     <dd>Added since v4.2.0.</dd>
                 </dlentry>
-            </dl>
+            <dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.2.0</dd>
+            </dlentry></dl>
             <p props="cpp">The first successful call to this method starts relaying media streams from the source channel to the destination channel. To relay to additional channels or stop relaying to a specific channel, call this method again to update the destination channels. This feature supports relaying to up to six destination channels. After a successful call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback to report the relay status:
                 <ul>
                     <li>When the callback returns <codeph>RELAY_STATE_RUNNING</codeph> (2) and <codeph>RELAY_OK</codeph> (0), it indicates that the media stream has started relaying from the source channel to the destination channel.</li>
@@ -51,7 +55,18 @@
                     <li>This API does not support string user accounts.</li>
                 </ul>
             </note>
-        </section>
+        <p props="ios mac">The first successful call to this method starts relaying media streams from the source channel to the destination channels. To relay the media stream to other channels, or exit one of the current media relays, you can call this method again to update the destination channels. This feature supports relaying media streams to a maximum of six destination channels.</p>
+            <p props="ios mac">After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback, and this callback returns the state of the media stream relay. Common states are as follows:<ul>
+            <li>If the <apiname keyref="onChannelMediaRelayStateChanged"/> callback returns <apiname keyref="RELAY_STATE_RUNNING"/> (2) and <apiname keyref="RELAY_OK"/> (0), it means that the SDK starts relaying media streams from the source channel to the destination channel.</li>
+            <li>If the <apiname keyref="onChannelMediaRelayStateChanged"/> callback returns <apiname keyref="RELAY_STATE_FAILURE"/> (3), an exception occurs during the media stream relay.</li>
+            </ul> </p>
+            <note type="attention" props="ios mac">
+            <ul>
+            <li>Call this method after joining the channel.</li>
+            <li>This method takes effect only when you are a host in a live streaming channel.</li>
+            <li>The relaying media streams across channels function needs to be enabled by contacting <xref keyref="ticket-link"/>.</li>
+            <li>Agora does not support string user accounts in this API.</li>
+            </ul> </note> </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
             <p>This method applies to multi-channel scenarios.</p>
@@ -65,7 +80,7 @@
                 </ul>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -84,9 +99,19 @@
                     <pt>connection</pt>
                     <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt props="android hmos">channelMediaRelayConfiguration</pt>
+                <pt props="ios mac">config</pt>
+                <pt props="cpp framework">configuration</pt>
+                <pd>The configuration of the media stream relay. See <xref keyref="ChannelMediaRelayConfiguration"/>.</pd>
+            </plentry>
+            <plentry conkeyref="joinChannelEx/connection" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -112,6 +137,13 @@
                     </li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li props="native unreal bp electron unity cs rn">0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
+                <li>-1: A general error occurs (no specified reason).</li>
+                <li>-2: The parameter is invalid.</li>
+                <li>-8: Internal state error. Probably because the user is not a broadcaster.</li>
+                </ul></li>
+            </ul> </section>
     </refbody>
 </reference>

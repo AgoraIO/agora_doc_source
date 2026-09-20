@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_stoprtmpstreamex">
     <title><ph keyref="stopRtmpStreamEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Stops pushing media streams to the specified CDN address.</ph><ph id="shortdesc" props="android">Stops pushing media streams to the specified CDN address.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Stops pushing media streams to the specified CDN address.</ph><ph id="shortdesc" props="android">Stops pushing media streams to the specified CDN address.</ph><ph id="shortdesc" props="ios mac">Stops pushing media streams to a CDN.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,6 +15,8 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int stopRtmpStreamEx(const char* url, const RtcConnection&amp; connection) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int stopRtmpStreamEx(String url, RtcConnection connection);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)stopRtmpStreamEx:(NSString* _Nonnull)url
+             connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(stopRtmpStreamEx(_:connection:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -22,6 +24,9 @@
 You can call this method to stop pushing media streams to the specified CDN address. This method can only stop streaming to one address at a time. To stop streaming to multiple addresses, call this method multiple times.</p>
             <p props="android">Agora recommends using the more comprehensive server-side streaming service. See [Implement Server-side CDN Streaming](https://doc.shengwang.cn/doc/media-push/restful/landing-page).
 You can call this method to stop pushing live streams to a specified CDN address. This method only stops streaming to one address at a time. To stop multiple streams, call this method multiple times.</p>
+        <p props="ios mac">Agora recommends that you use the server-side Media Push function. For details, see <xref keyref="cdn-streaming-restful">Use RESTful API</xref>.</p>
+            <p props="ios mac">You can call this method to stop the live stream on the specified CDN address. This method can stop pushing media streams to only one CDN address at a time, so if you need to stop pushing streams to multiple addresses, call this method multiple times.</p>
+            <p props="ios mac">After you call this method, the SDK triggers the <xref keyref="onRtmpStreamingStateChanged"/> callback on the local client to report the state of the streaming.</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
@@ -32,7 +37,7 @@ You can call this method to stop pushing live streams to a specified CDN address
             <p props="cpp">After successfully calling this method, the SDK triggers the <xref keyref="onRtmpStreamingStateChanged"/> callback to report the streaming status.</p>
             <p props="android">After this method is successfully called, the SDK triggers the <xref keyref="onRtmpStreamingStateChanged"/> callback to report the streaming state.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -51,9 +56,17 @@ You can call this method to stop pushing live streams to a specified CDN address
                     <pt>connection</pt>
                     <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
                 </plentry>
+            <plentry conkeyref="startRtmpStreamWithTranscoding/url" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="joinChannelEx/connection" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -67,6 +80,9 @@ You can call this method to stop pushing live streams to a specified CDN address
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

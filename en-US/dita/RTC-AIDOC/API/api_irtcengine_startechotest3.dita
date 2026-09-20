@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startechotest3">
     <title><ph keyref="startEchoTest3"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts the audio and video call loop test.</ph><ph id="shortdesc" props="android">Starts audio and video device loop test.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts the audio and video call loop test.</ph><ph id="shortdesc" props="android">Starts audio and video device loop test.</ph><ph id="shortdesc" props="ios mac">Starts an audio device loopback test.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,9 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int startEchoTest(const EchoTestConfiguration&amp; config) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int startEchoTest(EchoTestConfiguration config);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startEchoTestWithConfig:(AgoraEchoTestConfiguration* _Nonnull)config;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)startEchoTestWithConfig:(AgoraEchoTestConfiguration* _Nonnull)config NS_SWIFT_NAME(startEchoTest(withConfig:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">You can call this method to perform an audio and video call loop test to check whether the local audio and video devices and the uplink and downlink network are working properly. After the test starts, speak or face the camera, and the audio or video will be played back after about two seconds.
@@ -39,13 +41,15 @@
                     <li>In live broadcast scenarios, this method is only applicable to hosts.</li>
                 </ul>
             </note>
+        <p props="ios mac">To test whether the user's local sending and receiving streams are normal, you can call this method to perform an audio and video call loop test, which tests whether the audio and video devices and the user's upstream and downstream networks are working properly.</p>
+            <p props="ios mac">After starting the test, the user needs to make a sound or face the camera. The audio or video is output after about two seconds. If the audio playback is normal, the audio device and the user's upstream and downstream networks are working properly; if the video playback is normal, the video device and the user's upstream and downstream networks are working properly.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
             <p props="cpp">You can call this method before or after joining a channel.</p>
             <p props="android">You can call this method before or after joining a channel.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -56,9 +60,13 @@
                     <pt>config</pt>
                     <pd>Configuration for the audio and video call loop test. See <xref keyref="EchoTestConfiguration"/>.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>config</pt>
+                <pd>The configuration of the audio and video call loop test. See <xref keyref="EchoTestConfiguration"/>.</pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -72,6 +80,9 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul id="ul_pqc_k4n_5sb" props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

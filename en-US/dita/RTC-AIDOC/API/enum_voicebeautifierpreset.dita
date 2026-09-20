@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_voicebeautifierpreset">
     <title><ph keyref="VOICE_BEAUTIFIER_PRESET"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">SDK preset voice beautifier options for voice chat.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">SDK preset voice beautifier options for voice chat.</ph><ph id="shortdesc" props="ios mac">The options for SDK preset voice beautifier effects.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -73,7 +73,79 @@
                         <note>To achieve better audio quality, Agora recommends setting the <codeph>profile</codeph> in <codeph>setAudioProfile(AUDIO_PROFILE_TYPE profile)</codeph> to <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY</codeph> (4) or <codeph>AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO</codeph> (5), and setting <codeph>scenario</codeph> to <codeph>AUDIO_SCENARIO_GAME_STREAMING</codeph> (3) before calling <xref keyref="setVoiceBeautifierPreset"/>. If your audio capture device already supports high-fidelity audio, it is recommended not to enable ultra high-quality voice. Otherwise, the SDK may over-enhance audio details, resulting in unexpected sound effects.</note>
                     </pd>
                 </plentry>
-            </parml>
+            <plentry props="ios mac">
+  <pt><ph keyref="VOICE_BEAUTIFIER_OFF"/></pt>
+  <pd>Turn off voice beautifier effects and use the original voice.</pd>
+       </plentry>
+       <plentry props="ios mac">
+  <pt><ph keyref="CHAT_BEAUTIFIER_MAGNETIC"/></pt>
+  <pd><p>A more magnetic voice.</p>
+      <note type="attention">Agora recommends using this enumerator to process a male-sounding voice; otherwise, you may experience vocal distortion.</note></pd>
+       </plentry>
+       <plentry props="ios mac">
+  <pt><ph keyref="CHAT_BEAUTIFIER_FRESH"/></pt>
+  <pd>
+      <p>A fresher voice.</p>
+      <note type="attention">Agora recommends using this enumerator to process a female-sounding voice; otherwise, you may experience vocal distortion.</note>
+  </pd>
+       </plentry>
+       <plentry props="ios mac">
+  <pt><ph keyref="CHAT_BEAUTIFIER_VITALITY"/></pt>
+  <pd>
+      <p>A more vital voice.</p>
+      <note type="attention">Agora recommends using this enumerator to process a female-sounding voice; otherwise, you may experience vocal distortion.</note>
+  </pd>
+       </plentry>
+       <plentry props="ios mac">
+  <pt><ph keyref="SINGING_BEAUTIFIER"/></pt>
+  <pd>
+      <p>Singing beautifier effect.</p>
+      <ul id="ul_z2c_4zl_p4b">
+ <li>If you call <xref keyref="setVoiceBeautifierPreset"/>(<ph keyref="SINGING_BEAUTIFIER"/>), you can beautify a male-sounding voice and add a reverberation effect that sounds like singing in a small room. Agora recommends using this enumerator to process a male-sounding voice; otherwise, you might experience vocal distortion.</li>
+ <li>If you call <xref keyref="setVoiceBeautifierParameters"/>(<ph keyref="SINGING_BEAUTIFIER"/>, param1, param2), you can beautify a male or female-sounding voice and add a reverberation effect.</li>
+      </ul>
+  </pd>
+       </plentry>
+       <plentry props="ios mac">
+  <pt><ph keyref="TIMBRE_TRANSFORMATION_VIGOROUS"/></pt>
+  <pd>A more vigorous voice.</pd>
+       </plentry>
+       <plentry props="ios mac">
+  <pt><ph keyref="TIMBRE_TRANSFORMATION_DEEP"/></pt>
+  <pd>A deep voice.</pd>
+       </plentry>
+       <plentry props="ios mac">
+  <pt><ph keyref="TIMBRE_TRANSFORMATION_MELLOW"/></pt>
+  <pd>A mellower voice.</pd>
+       </plentry>
+       <plentry props="ios mac">
+  <pt><ph keyref="TIMBRE_TRANSFORMATION_FALSETTO"/></pt>
+  <pd>Falsetto.</pd>
+       </plentry>
+       <plentry props="ios mac">
+  <pt><ph keyref="TIMBRE_TRANSFORMATION_FULL"/></pt>
+  <pd>A fuller voice.</pd>
+       </plentry>
+       <plentry props="ios mac">
+  <pt><ph keyref="TIMBRE_TRANSFORMATION_CLEAR"/></pt>
+  <pd>A clearer voice.</pd>
+       </plentry>
+       <plentry props="ios mac">
+  <pt><ph keyref="TIMBRE_TRANSFORMATION_RESOUNDING"/></pt>
+  <pd>A more resounding voice.</pd>
+       </plentry>
+       <plentry props="ios mac">
+  <pt><ph keyref="TIMBRE_TRANSFORMATION_RINGING"/></pt>
+  <pd>A more ringing voice.</pd>
+       </plentry>
+       <plentry props="ios mac">
+           <pt><ph keyref="ULTRA_HIGH_QUALITY_VOICE"/></pt>
+           <pd>A ultra-high quality voice, which makes the audio clearer and restores more details.<ul>
+               <li>To achieve better audio effect quality, Agora recommends that you set the <parmname>profile</parmname> of <xref keyref="setAudioProfile2"/> to <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/>(4) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) and <parmname>scenario</parmname> to <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING"/>(3) before calling <xref keyref="setVoiceBeautifierPreset"/>.</li>
+               <li>If you have an audio capturing device that can already restore audio details to a high degree, Agora recommends that you do not enable ultra-high quality; otherwise, the SDK may over-restore audio details, and you may not hear the anticipated voice effect.</li>
+           </ul></pd>
+       </plentry>
+   </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

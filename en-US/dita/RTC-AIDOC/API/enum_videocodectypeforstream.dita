@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_videocodectypeforstream">
     <title><ph keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Codec type of the output video.</ph><ph id="shortdesc" props="android">Codec type used for output video.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Codec type of the output video.</ph><ph id="shortdesc" props="android">Codec type used for output video.</ph><ph id="shortdesc" props="ios mac">The codec type of the output video.</ph></shortdesc>
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
             <dl outputclass="since">
@@ -10,9 +10,13 @@
                     <dt>Since</dt>
                     <dd>Added since v3.2.0.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                    <dt>Since</dt>
+                    <dd>Added since v3.2.0.</dd>
+                </dlentry>
             </dl>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -31,7 +35,15 @@
                     <pt>H265</pt>
                     <pd>(2): Uses H.265 codec.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="VIDEO_CODEC_H264_FOR_STREAM"/></pt>
+                <pd>1: (Default) H.264.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="VIDEO_CODEC_H265_FOR_STREAM"/></pt>
+                <pd>2: H.265.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section></refbody>
 </reference>

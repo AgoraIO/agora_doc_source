@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setlocalrendermode1">
     <title><ph keyref="setLocalRenderMode1"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Updates the display mode of the local video view.</ph><ph id="shortdesc" props="android">Sets the display mode of the local video.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Updates the display mode of the local video view.</ph><ph id="shortdesc" props="android">Sets the display mode of the local video.</ph><ph id="shortdesc" props="ios mac">Sets the local video display mode.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,11 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalRenderMode(media::base::RENDER_MODE_TYPE renderMode) __deprecated = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int setLocalRenderMode(int renderMode)</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalRenderMode:(NSUInteger)uid
+                     mode:(AgoraVideoRenderMode) mode;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)setLocalRenderMode:(NSUInteger)uid
+                     mode:(AgoraVideoRenderMode)mode NS_SWIFT_NAME(setLocalRenderMode(_:mode:)) __deprecated;</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
@@ -27,6 +31,10 @@
                     <dt>Deprecated</dt>
                     <dd>This method is deprecated and not recommended.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                <dt>Deprecated:</dt>
+                <dd>This method is deprecated. Use <xref keyref="setLocalRenderMode2"/> instead.</dd>
+            </dlentry>
             </dl>
             <p props="cpp">You can call this method after initializing the local video view to update its render mode and mirror mode. This method only affects the video view seen by the local user and does not affect the published video stream.</p>
             <p props="android">You can call this method to set the display mode of the local video. It can be called multiple times during a call to dynamically adjust the display mode.</p>
@@ -36,8 +44,9 @@
                     <li>You can call this method multiple times during a call to update the local video view.</li>
                 </ul>
             </note>
+        <p props="ios mac">Call this method to set the local video display mode. This method can be called multiple times during a call to change the display mode.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -54,9 +63,23 @@
                         </ul>
                     </pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt props="cpp unreal bp android unity flutter cs">renderMode</pt>
+                <pt props="ios mac">mode</pt>
+                <pd>
+                    <p props="ios mac cpp unreal bp unity flutter cs">The local video display mode. See <xref keyref="RENDER_MODE_TYPE"/>.</p>
+                    <p props="android hmos">The local video display mode.<ul conkeyref="setLocalRenderMode2/rendermodetype">
+                    <li/>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>uid</pt>
+                <pd>The user ID.</pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -70,6 +93,9 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

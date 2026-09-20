@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startlocalvideotranscoder">
     <title><ph keyref="startLocalVideoTranscoder"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts local video compositing.</ph><ph id="shortdesc" props="android">Starts local video composition.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Starts local video compositing.</ph><ph id="shortdesc" props="android">Starts local video composition.</ph><ph id="shortdesc" props="ios mac">Starts the local video mixing.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int startLocalVideoTranscoder(const LocalTranscoderConfiguration&amp; config) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int startLocalVideoTranscoder(LocalTranscoderConfiguration config);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startLocalVideoTranscoder:(AgoraLocalTranscoderConfiguration* _Nonnull)config NS_SWIFT_NAME(startLocalVideoTranscoder(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -59,6 +60,7 @@ Here is a typical use case for implementing portrait picture-in-picture:
                     <li>The maximum resolution of the mixed video stream is 4096 × 2160.</li>
                 </ul>
             </note>
+        <p props="ios mac">After calling this method, you can merge multiple video streams into one video stream locally. For example, you can merge the video streams captured by the camera, screen sharing, media player, remote video, video files, images, etc. into one video stream, and then publish the mixed video stream to the channel.</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
@@ -84,7 +86,7 @@ Here is a typical use case for implementing portrait picture-in-picture:
             <p props="cpp">If this method fails, the SDK triggers the <xref keyref="onLocalVideoTranscoderError"/> callback to report the failure reason.</p>
             <p props="android">If this method call fails, the SDK triggers the <xref keyref="onLocalVideoTranscoderError"/> callback to report the failure reason.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -102,9 +104,15 @@ Here is a typical use case for implementing portrait picture-in-picture:
                     <pt>config</pt>
                     <pd>Configuration for local video composition. See <xref keyref="LocalTranscoderConfiguration"/>.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>config</pt>
+                <pd>Configuration of the local video mixing, see <xref keyref="LocalTranscoderConfiguration"/>.<note type="attention"><ul>
+                <li>The maximum resolution of each video stream participating in the local video mixing is 4096 × 2160. If this limit is exceeded, video mixing does not take effect.</li>
+                <li>The maximum resolution of the mixed video stream is 4096 × 2160.</li></ul></note></pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -118,6 +126,9 @@ Here is a typical use case for implementing portrait picture-in-picture:
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

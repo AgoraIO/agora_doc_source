@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_joinchannelex">
     <title><ph keyref="joinChannelEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Joins a channel.</ph><ph id="shortdesc" props="android">Joins a channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Joins a channel.</ph><ph id="shortdesc" props="android">Joins a channel.</ph><ph id="shortdesc" props="ios mac">Joins a channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,17 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelEx(const char* token, const RtcConnection&amp; connection, const ChannelMediaOptions&amp; options, IRtcEngineEventHandler* eventHandler) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int joinChannelEx(String token, RtcConnection connection, ChannelMediaOptions options, IRtcEngineEventHandler eventHandler);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelExByToken:(NSString* _Nullable)token
+                 connection:(AgoraRtcConnection * _Nonnull)connection
+                   delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate
+               mediaOptions:(AgoraRtcChannelMediaOptions* _Nonnull)mediaOptions
+                joinSuccess:(void(^ _Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)joinChannelExByToken:(NSString* _Nullable)token
+                 connection:(AgoraRtcConnection * _Nonnull)connection
+                   delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate
+               mediaOptions:(AgoraRtcChannelMediaOptions* _Nonnull)mediaOptions
+                joinSuccess:(void(^ _Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock NS_SWIFT_NAME(joinChannelEx(byToken:connection:delegate:mediaOptions:joinSuccess:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">You can call this method multiple times to join multiple channels.
@@ -27,6 +37,7 @@ In multi-camera capture scenarios, after calling this method, you need to call <
 Before joining a channel, make sure the App ID used to generate the token is the same as the App ID passed in the <xref keyref="initialize"/> method, otherwise joining the channel with the token may fail.</note>
             <note props="android">If you are already in a channel, you cannot rejoin the same channel using the same user ID.
 Before joining a channel, ensure that the App ID used to generate the Token is the same as the one passed to <xref keyref="initialize"/>, otherwise joining the channel may fail.</note>
+        <p props="ios mac">You can call this method multiple times to join more than one channel. If you want to join the same channel from different devices, ensure that the user IDs are different for all devices.</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
@@ -50,7 +61,7 @@ Before joining a channel, ensure that the App ID used to generate the Token is t
                     <li>Remote client: If a user joins in a <codeph>COMMUNICATION</codeph> channel or a host joins in a <codeph>LIVE_BROADCASTING</codeph> channel, <xref keyref="onUserJoined"/> is triggered.</li>
                 </ul><ph>If the connection between the local client and the Agora server is interrupted due to poor network conditions, the SDK will attempt to reconnect. When the local client successfully rejoins the channel, the SDK triggers the <xref keyref="onRejoinChannelSuccess"/> callback.</ph></p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -101,9 +112,30 @@ Before joining a channel, ensure that the App ID used to generate the Token is t
                     <pt>eventHandler</pt>
                     <pd>Callback class. See <xref keyref="IRtcEngineEventHandler"/>. You can use the <codeph>eventHandler</codeph> object passed in this parameter to receive callback events for multiple channels.</pd>
                 </plentry>
+            <plentry conkeyref="joinChannel2/token" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry id="connection" props="ios mac">
+                <pt>connection</pt>
+                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+            </plentry>
+            <plentry conkeyref="joinChannel2/options" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry id="event" props="ios mac">
+                <pt props="android hmos cpp unreal bp">eventHandler</pt>
+                <pt props="ios mac">delegate</pt>
+                <pd>The callback class of <xref keyref="IRtcEngineEx"/>. See <xref keyref="IRtcEngineEventHandler"/>. You can get the callback events of multiple channels through the <parmname props="android hmos cpp unreal bp">eventHandler</parmname><parmname props="ios mac">delegate</parmname> object passed in this parameter.</pd>
+            </plentry>
+            <plentry props="ios mac" conkeyref="joinChannel2/joinsuccessblock">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -137,6 +169,22 @@ Before joining a channel, ensure that the App ID used to generate the Token is t
                     </li>
                 </ul>
             </p>
-        </section>
+        <p props="ios mac">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure.
+                        <ul>
+                            <li>-2: Invalid parameter. For example, the token is invalid, the <codeph>uid</codeph> parameter is not set to an integer, or a member value in <xref keyref="ChannelMediaOptions"/> is invalid. You need to pass in valid parameters and rejoin the channel.</li>
+                            <li>-3: <xref keyref="IRtcEngine"/> object initialization failed. You need to reinitialize the <xref keyref="IRtcEngine"/> object.</li>
+                            <li>-7: <xref keyref="IRtcEngine"/> object is not initialized. You need to initialize the <xref keyref="IRtcEngine"/> object before calling this method.</li>
+                            <li>-8: Internal state error of the <xref keyref="IRtcEngine"/> object. A typical cause is calling this method to join a channel after calling <xref keyref="startEchoTest3"/> without calling <xref keyref="stopEchoTest"/> to stop the test. You need to call <xref keyref="stopEchoTest"/> before calling this method.</li>
+                            <li>-17: Join channel request is rejected. A typical reason is that the user is already in the channel. Agora recommends checking the user's channel status via the <xref keyref="onConnectionStateChanged"/> callback. Only call this method to join the channel when receiving the <codeph>CONNECTION_STATE_DISCONNECTED</codeph> (1) state.</li>
+                            <li>-102: Invalid channel name. You need to pass a valid channel name in <codeph>channelId</codeph> to rejoin the channel.</li>
+                            <li>-121: Invalid user ID. You need to pass a valid user ID in <codeph>uid</codeph> to rejoin the channel.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            </section>
     </refbody>
 </reference>

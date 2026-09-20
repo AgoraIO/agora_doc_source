@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ibasespatialaudioengine_mutelocalaudiostream_ibasespatialaudioengine">
     <title><ph keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="android">Stops or resumes publishing the local audio stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Stops or resumes publishing the local audio stream.</ph><ph id="shortdesc" props="ios mac">Stops or resumes publishing the local audio stream.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,19 +14,27 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int muteLocalAudioStream(boolean mute);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)muteLocalAudioStream:(BOOL)mute;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)muteLocalAudioStream:(BOOL)mute NS_SWIFT_NAME(muteLocalAudioStream(_:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <note props="android">The <xref keyref="muteLocalAudioStream_IBaseSpatialAudioEngine"/> method does not affect any ongoing audio recording because it does not disable the audio capturing device.
 Call this method after calling <codeph>joinChannel</codeph>.
 When using spatial audio, if you need to set whether to stop publishing the local audio stream, Agora recommends calling this method instead of the method with the same name under <xref keyref="IRtcEngine"/>.
 After this method is successfully called, the <xref keyref="onUserMuteAudio"/> and <xref keyref="onRemoteAudioStateChanged"/> callbacks are triggered on the remote client.</note>
-        </section>
+        <note type="note" props="ios mac">
+            <ul>
+            <li>This method does not affect any ongoing audio recording, because it does not disable the audio capture device.</li>
+            <li>Call this method after the <xref keyref="joinChannel1"/> or <xref keyref="joinChannel2"/> method.</li>
+            <li>When using the spatial audio effect, if you need to set whether to stop subscribing to the audio stream of a specified user, Agora recommends calling this method instead of the <xref keyref="muteLocalAudioStream"/> method in <xref keyref="IRtcEngine"/>.</li>
+            <li>A successful call of this method triggers the <xref keyref="onUserMuteAudio"/> and <xref keyref="onRemoteAudioStateChanged"/> callbacks on the remote client.</li>
+            </ul></note> </section>
         <section id="related" deliveryTarget="details" props="android">
             <title>Related Callbacks</title>
             <p props="android">After this method is successfully called, the <xref keyref="onUserMuteAudio"/> and <xref keyref="onRemoteAudioStateChanged"/> callbacks are triggered on the remote client.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android">
+        <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="android">
@@ -38,9 +46,18 @@ After this method is successfully called, the <xref keyref="onUserMuteAudio"/> a
                         </ul>
                     </pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>mute</pt>
+                <pd>
+                    <p>Whether to stop publishing the local audio stream:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Stop publishing the local audio stream.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Publish the local audio stream.</li>
+                    </ul></p>
+                </pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android">
+        <section id="return_values" props="android ios mac">
             <title>Return Values</title>
             <p props="android">
                 <ul>
@@ -48,6 +65,9 @@ After this method is successfully called, the <xref keyref="onUserMuteAudio"/> a
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_logfiltertype">
     <title><ph keyref="LOG_FILTER_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the SDK log output filter level.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the SDK log output filter level.</ph><ph id="shortdesc" props="ios mac">The output log level of the SDK.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -35,7 +35,31 @@
                     <pt>LOG_FILTER_MASK</pt>
                     <pd>(0x80f): Log filter mask.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="LOG_FILTER_OFF"/></pt>
+                <pd>0: Do not output any log information.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="LOG_FILTER_DEBUG"/></pt>
+                <pd>0x080f: Output all log information. Set your log filter to this level if you want to get the most complete log file.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="LOG_FILTER_INFO"/></pt>
+                <pd>0x000f: Output <apiname keyref="LOG_FILTER_CRITICAL"/>, <apiname keyref="LOG_FILTER_ERROR"/>, <apiname keyref="LOG_FILTER_WARN"/>, and <apiname keyref="LOG_FILTER_INFO"/> level log information. We recommend setting your log filter to this level.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="LOG_FILTER_WARN"/></pt>
+                <pd>0x000e: Output <apiname keyref="LOG_FILTER_CRITICAL"/>, <apiname keyref="LOG_FILTER_ERROR"/>, and <apiname keyref="LOG_FILTER_WARN"/> level log information.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="LOG_FILTER_ERROR"/></pt>
+                <pd>0x000c: Output <apiname keyref="LOG_FILTER_CRITICAL"/> and <apiname keyref="LOG_FILTER_ERROR"/> level log information.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="LOG_FILTER_CRITICAL"/></pt>
+                <pd>0x0008: Output <apiname keyref="LOG_FILTER_CRITICAL"/> level log information.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

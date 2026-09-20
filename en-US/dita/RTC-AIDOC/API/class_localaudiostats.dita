@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localaudiostats">
     <title><ph keyref="LocalAudioStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Struct for local audio statistics.</ph><ph id="shortdesc" props="android"><xref keyref="LocalAudioStats"/> provides statistics of the local audio.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Struct for local audio statistics.</ph><ph id="shortdesc" props="android"><xref keyref="LocalAudioStats"/> provides statistics of the local audio.</ph><ph id="shortdesc" props="ios mac">Local audio statistics.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -28,9 +28,31 @@
   public int earMonitorDelay;
   public int aecEstimatedDelay;
 }</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalAudioStats : NSObject
+@property(assign, nonatomic) NSUInteger numChannels;
+@property(assign, nonatomic) NSUInteger sentSampleRate;
+@property(assign, nonatomic) NSUInteger sentBitrate;
+@property(assign, nonatomic) NSUInteger internalCodec;
+@property(assign, nonatomic) NSUInteger txPacketLossRate;
+@property(assign, nonatomic) NSUInteger audioDeviceDelay;
+@property(assign, nonatomic) NSUInteger earMonitorDelay;
+@property(assign, nonatomic) NSUInteger aecEstimatedDelay;
+
+@end</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalAudioStats : NSObject
+@property(assign, nonatomic) NSUInteger numChannels;
+@property(assign, nonatomic) NSUInteger sentSampleRate;
+@property(assign, nonatomic) NSUInteger sentBitrate;
+@property(assign, nonatomic) NSUInteger internalCodec;
+@property(assign, nonatomic) NSUInteger txPacketLossRate;
+@property(assign, nonatomic) NSUInteger audioDeviceDelay;
+@property(assign, nonatomic) NSUInteger audioPlayoutDelay;
+@property(assign, nonatomic) NSUInteger earMonitorDelay;
+@property(assign, nonatomic) NSUInteger aecEstimatedDelay;
+@end</codeblock>
+                </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -105,7 +127,39 @@
                     <pt>aecEstimatedDelay</pt>
                     <pd>Estimated delay (ms) by the Acoustic Echo Cancellation (AEC) module, referring to the signal delay from local audio playback to local audio capture.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>numChannels</pt>
+                <pd>The number of audio channels.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>sentSampleRate</pt>
+                <pd>The sampling rate (Hz) of sending the local user's audio stream.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>sentBitrate</pt>
+                <pd>The average bitrate (Kbps) of sending the local user's audio stream.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>txPacketLossRate</pt>
+                <pd>The packet loss rate (%) from the local client to the Agora server before applying the anti-packet loss strategies.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>internalCodec</pt>
+                <pd>The internal payload codec.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>audioDeviceDelay</pt>
+                <pd>The audio device module delay (ms) when playing or recording audio.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>earMonitorDelay</pt>
+                <pd>The ear monitor delay (ms), which is the delay from microphone input to headphone output.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>aecEstimatedDelay</pt>
+                <pd>Acoustic echo cancellation (AEC) module estimated delay (ms), which is the signal delay between when audio is played locally before being locally captured.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="detailed_desc"/></refbody>
 </reference>

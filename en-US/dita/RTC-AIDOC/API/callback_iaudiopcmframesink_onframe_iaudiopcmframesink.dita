@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudiopcmframesink_onframe_iaudiopcmframesink">
     <title><ph keyref="onFrame_IAudioPcmFrameSink"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onFrame_IAudioPcmFrameSink"/> callback. Triggered each time the player receives an audio frame.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="onFrame_IAudioPcmFrameSink"/> callback. Triggered each time the player receives an audio frame.</ph><ph id="shortdesc" props="ios mac">Occurs each time the player receives an audio frame.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,22 +14,34 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onFrame(agora::media::base::AudioPcmFrame* frame) = 0;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull)playerKit
+       didReceiveAudioFrame:(AgoraAudioFrame* _Nonnull)audioFrame NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:didReceiveAudioFrame:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">After registering the audio frame observer, this callback is triggered each time the player receives an audio frame and reports detailed information about the audio frame.</p>
+        <p props="ios mac">After registering the audio frame observer, the callback occurs every time the player receives an audio frame, reporting the detailed information of the audio frame.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="cpp">
             <title>Trigger Timing</title>
             <p props="cpp">Triggered each time the player receives an audio frame.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
                     <pt>frame</pt>
                     <pd>Audio frame information. See <xref keyref="AudioPcmFrame"/>.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt props="android cpp unreal bp electron unity cs rn flutter">frame</pt>
+                <pt props="apple">audioFrame</pt>
+                <pd>The audio frame information. <ph props="android apple">See <ph keyref="AudioFrame"/>. </ph><ph props="cpp unreal bp unity cs electron rn flutter">See <ph keyref="AudioPcmFrame"/>.</ph></pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>playerKit</pt>
+                <pd>See <xref keyref="IMediaPlayer"/>.</pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

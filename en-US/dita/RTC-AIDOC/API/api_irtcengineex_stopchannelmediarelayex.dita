@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_stopchannelmediarelayex">
     <title><ph keyref="stopChannelMediaRelayEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Stops media stream relay across channels.</ph><ph id="shortdesc" props="android">Stops media stream relay across channels.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Stops media stream relay across channels.</ph><ph id="shortdesc" props="android">Stops media stream relay across channels.</ph><ph id="shortdesc" props="ios mac">Stops the media stream relay. Once the relay stops, the host quits all the target channels.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int stopChannelMediaRelayEx(const RtcConnection&amp; connection) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int stopChannelMediaRelayEx(RtcConnection connection);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)stopChannelMediaRelayEx:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(stopChannelMediaRelayEx(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -22,6 +23,11 @@
             <p props="android">Call this method to stop media stream relay across channels. Once stopped, the broadcaster exits all destination channels.</p>
             <note props="cpp">If the method call fails, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback and returns the status code <codeph>RELAY_ERROR_SERVER_NO_RESPONSE</codeph> (2) or <codeph>RELAY_ERROR_SERVER_CONNECTION_LOST</codeph> (8). You can also call the <codeph>leaveChannel</codeph> method to leave the channel, and the media stream relay across channels stops automatically.</note>
             <note props="android">If the method call fails, the SDK reports <codeph>RELAY_ERROR_SERVER_NO_RESPONSE</codeph> (2) or <codeph>RELAY_ERROR_SERVER_CONNECTION_LOST</codeph> (8) via the <xref keyref="onChannelMediaRelayStateChanged"/> callback. You can call <codeph>leaveChannel</codeph> to leave the channel, and the media stream relay will stop automatically.</note>
+        <dl outputclass="since"><dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl><p props="ios mac"/>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
@@ -31,7 +37,7 @@
             <title>Related Callbacks</title>
             <p props="cpp">After this method is successfully called, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback. If the callback returns <codeph>RELAY_STATE_IDLE</codeph> (0) and <codeph>RELAY_OK</codeph> (0), it indicates that the host has successfully stopped the relay.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -42,9 +48,13 @@
                     <pt>connection</pt>
                     <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
                 </plentry>
+            <plentry conkeyref="joinChannelEx/connection" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -66,6 +76,10 @@
                     </li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul><li>-5: The method call was rejected. There is no ongoing channel media relay.</li></ul>
+            </li>
+            </ul> </section>
     </refbody>
 </reference>

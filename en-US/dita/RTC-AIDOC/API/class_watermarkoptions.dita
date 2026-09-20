@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_watermarkoptions">
     <title><ph keyref="WatermarkOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the watermark image.</ph><ph id="shortdesc" props="android">Configures parameters related to the watermark image.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the watermark image.</ph><ph id="shortdesc" props="android">Configures parameters related to the watermark image.</ph><ph id="shortdesc" props="ios mac">Watermark image configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -20,6 +20,12 @@
   public Rectangle positionInPortraitMode = new Rectangle();
   public int zOrder = 0;
 }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface WatermarkOptions : NSObject
+@property(assign, nonatomic) BOOL visibleInPreview;
+@property(assign, nonatomic) CGRect positionInLandscapeMode;
+@property(assign, nonatomic) CGRect positionInPortraitMode;
+@property(assign, nonatomic) int zOrder;
+@end</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
@@ -28,10 +34,15 @@
                     <dt>Since</dt>
                     <dd>Available since v4.6.0.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                    <dt>Since</dt>
+                    <dd>Available since v4.6.0.</dd>
+                </dlentry>
             </dl>
             <p props="android">Used to configure the added watermark image.</p>
-        </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <p props="ios mac">Configuration options for setting the watermark image to be added.</p>
+            </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -84,6 +95,49 @@
                     <pt>zOrder</pt>
                     <pd>Z-order of the watermark image. Default is 0.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>visibleInPreview</pt>
+                <pd>Whether the watermark is visible in the local preview view:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: (Default) The watermark is visible in the local preview view.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: The watermark is not visible in the local preview view.</li>
+                    </ul>
+                </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>positionInLandscapeMode</pt>
+                <pd props="android hmos">The area to display the watermark image in landscape mode. See <xref keyref="Rectangle"/>.</pd>
+                <pd props="bp cpp cs electron flutter rn unity unreal">When the adaptation mode of the watermark is <ph keyref="FIT_MODE_COVER_POSITION"/>, it is used to set the area of the watermark image in landscape mode. See <xref keyref="Rectangle"/>.</pd>
+                <pd props="apple">The area to display the watermark image in landscape mode. This parameter contains the following members:<ul>
+                    <li>x: The horizontal position of the watermark relative to the upper left corner.</li>
+                    <li>y: The vertical position of the watermark relative to the upper left corner.</li>
+                    <li>width: The width of the watermark area (px).</li>
+                    <li>height: The height of the watermark area (px).</li>
+                    </ul> </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>positionInPortraitMode</pt>
+                <pd props="android hmos">The area to display the watermark image in portrait mode. See <xref keyref="Rectangle"/>.</pd>
+                <pd props="bp cpp cs electron flutter rn unity unreal">When the adaptation mode of the watermark is <ph keyref="FIT_MODE_COVER_POSITION"/>, it is used to set the area of the watermark image in portrait mode. See <xref keyref="Rectangle"/>.</pd>
+                <pd props="apple">The area to display the watermark image in portrait mode. This parameter contains the following members:<ul>
+                    <li>x: The horizontal position of the watermark relative to the upper left corner.</li>
+                    <li>y: The vertical position of the watermark relative to the upper left corner.</li>
+                    <li>width: The width of the watermark area (px).</li>
+                    <li>height: The height of the watermark area (px).</li>
+                    </ul> </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>watermarkRatio</pt>
+                <pd>When the watermark adaptation mode is <ph keyref="FIT_MODE_USE_IMAGE_RATIO"/>, this parameter is used to set the watermark coordinates. See <xref keyref="WatermarkRatio"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>mode</pt>
+                <pd>The adaptation mode of the watermark. See <xref keyref="WATERMARK_FIT_MODE"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="native">zOrder</pt>
+                <pd props="cpp">Layer order of the watermark image. The default value is 0.</pd>
+                <pd props="android apple">Layer order of the watermark image. The default value is 0.</pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

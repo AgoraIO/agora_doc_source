@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_clientrolechangefailedreason">
     <title><ph keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reasons for client role change failure.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reasons for client role change failure.</ph><ph id="shortdesc" props="ios mac">The reason for a user role switch failure.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -25,7 +25,34 @@
                     <pt>CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED</pt>
                     <pd>(4): The client instance is disconnected from the Agora edge server. You can troubleshoot the failure reason via the <codeph>reason</codeph> in the <xref keyref="onConnectionStateChanged"/> callback.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                    <pt><ph keyref="CLIENT_ROLE_CHANGE_FAILED_TOO_MANY_BROADCASTERS"/></pt>
+                    <pd><p>1: The number of hosts in the channel exceeds the limit.</p>
+                    <note type="note">This enumerator is reported only when the support for 128 users is enabled. The maximum number of hosts is based on the actual number of hosts configured when you enable the 128-user feature.</note></pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt><ph keyref="CLIENT_ROLE_CHANGE_FAILED_NOT_AUTHORIZED"/></pt>
+                    <pd><p>2: The request is rejected by the Agora server. Agora recommends you prompt the user to try to switch their user role again.</p></pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt><ph keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/></pt>
+                    <pd><p>3: The request is timed out. Agora recommends you prompt the user to check the network connection and try to switch their user role again.</p>
+                        <dl outputclass="deprecated">
+                            <dlentry>
+                            <dt>Deprecated:</dt>
+                            <dd>This enumerator is deprecated since v4.4.0 and is not recommended for use.</dd>
+                            </dlentry></dl></pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt><ph keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/></pt>
+                    <pd><p>4: The SDK is disconnected from the Agora edge server. You can troubleshoot the failure through the <parmname>reason</parmname> reported by <xref keyref="onConnectionStateChanged"/>.</p>
+                        <dl outputclass="deprecated">
+                            <dlentry>
+                            <dt>Deprecated:</dt>
+                            <dd>This enumerator is deprecated since v4.4.0 and is not recommended for use.</dd>
+                            </dlentry></dl></pd>
+                </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

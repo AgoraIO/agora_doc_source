@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_faceshapebeautyoptions">
     <title><ph keyref="FaceShapeBeautyOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set beauty style effect parameters.</ph><ph id="shortdesc" props="android">Used to set beauty styles.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set beauty style effect parameters.</ph><ph id="shortdesc" props="android">Used to set beauty styles.</ph><ph id="shortdesc" props="ios mac">The facial enhancement style options.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -17,6 +17,10 @@
   public int shapeStyle;
   public int styleIntensity;
 }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraFaceShapeBeautyOptions: NSObject
+@property(nonatomic, assign) AgoraFaceShapeStyle shapeStyle;
+@property(nonatomic, assign) int styleIntensity;
+@end</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
@@ -29,9 +33,13 @@
                     <dt>Since</dt>
                     <dd>Available since v4.4.0.</dd>
                 </dlentry>
-            </dl>
+            <dlentry props="ios mac">
+                    <dt>Since</dt>
+                    <dd>Added since v4.4.0.</dd>
+                </dlentry>
+                </dl>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -73,6 +81,22 @@
                         </ul>
                     </pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>shapeStyle</pt>
+                <pd>
+                    <p props="cpp ios mac unreal bp unity flutter electron rn cs">Facial enhancement style options: <xref keyref="FACE_SHAPE_BEAUTY_STYLE"/>.</p>
+                    <p props="android hmos">Facial enhancement style options:<ul>
+                            <li><ph keyref="FACE_SHAPE_BEAUTY_STYLE_FEMALE"/>0: (Default) Female.</li>
+                            <li><ph keyref="FACE_SHAPE_BEAUTY_STYLE_MALE"/>1: Male.</li>
+                            <li><ph keyref="FACE_SHAPE_BEAUTY_STYLE_NATURAL"/>(2): The natural style beauty effect only makes minimal adjustments to facial features.</li>
+                        </ul>
+                    </p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>styleIntensity</pt>
+                <pd>The intensity of the facial enhancement style, with a value range oof [0.0,1.0]. The default value is 0.0, which means no face enhancement effect. The higher the value, the more obvious the facial enhancement effect.</pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

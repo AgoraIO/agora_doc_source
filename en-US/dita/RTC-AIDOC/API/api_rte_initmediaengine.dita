@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_rte_initmediaengine">
     <title><ph keyref="InitMediaEngine"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Initializes the <codeph>RTE</codeph> engine.</ph><ph id="shortdesc" props="android">Initializes the <codeph>RTE</codeph> engine.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Initializes the <codeph>RTE</codeph> engine.</ph><ph id="shortdesc" props="android">Initializes the <codeph>RTE</codeph> engine.</ph><ph id="shortdesc" props="ios mac">Initializes the RTE engine.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">bool InitMediaEngine(std::function&lt;void(rte::Error *err)&gt; cb, Error *err = nullptr)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void initMediaEngine(AsyncCallback callBack) throws RteException</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)initMediaEngine:(void (^ _Nullable)(AgoraRteError* _Nullable err) )cb error:(AgoraRteError * _Nullable)error;</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -23,15 +24,20 @@
                     <dt>Since</dt>
                     <dd>Added since version v4.4.0.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
             </dl>
             <p props="android">This is an asynchronous method that returns the initialization result via a callback function. You need to call this method after creating the <codeph>RTE</codeph> object and setting the App ID.</p>
             <note props="cpp">The return value of <xref keyref="InitMediaEngine"/> only indicates whether the initialization operation was successfully enqueued to the asynchronous task queue, not whether the initialization itself succeeded.</note>
+        <p props="ios mac">This method is asynchronous, which means that the result of initialization is returned through a callback.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="cpp">
             <title>Timing</title>
             <p props="cpp">This method must be called after creating the <codeph>RTE</codeph> object and setting the App ID.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -46,19 +52,36 @@
                     <pt>callBack</pt>
                     <pd>Callback for asynchronously returning the engine initialization result. See <xref keyref="AsyncCallback"/>.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>cb</pt>
+                <pd>An asynchronous callback, which is used to return the initialization result. You can get the initialization result or the error code using the <parmname>err</parmname> parameter of this callback. For details, see <xref keyref="Error"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>callback</pt>
+                <pd>An asynchronous callback, which is used to return the initialization result. See <xref keyref="AsyncCallback"/>.</pd>
+            </plentry>
+                <plentry props="ios mac">
+                <pt props="cpp">err</pt>
+                <pt props="apple">error</pt>
+                <pd>The error information during initialization: <xref keyref="Error"/>. When initializing the RTE engine using <apiname keyref="InitMediaEngine"/>, if errors that can be instantly detected occur, such as an invalid parameter or insufficient resource, the SDK synchronizes the error information in this parameter.</pd>
+            </plentry>
             </parml>
         </section>
         <section id="exception" props="android">
             <title>Exceptions</title>
             <p props="android">If initialization fails, the SDK throws an exception and returns the corresponding error information. You need to catch and handle the exception.</p>
         </section>
-        <section id="return_values" props="cpp">
+        <section id="return_values" props="cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
                     <li><xref keyref="true"/>: Successfully enqueued the initialization operation to the asynchronous task queue.</li>
                     <li><xref keyref="false"/>: Failed to enqueue the initialization operation to the asynchronous task queue.</li>
                 </ul><ph>This return value only indicates whether the initialization operation was successfully enqueued, not whether the initialization itself succeeded.</ph></p>
-        </section>
+        <p props="ios mac">Whether the asynchronous operation is added to the queue:<ul>
+                <li><codeph><ph keyref="true"/></codeph>: Yes.</li>
+                <li><codeph><ph keyref="false"/></codeph>: No.</li>
+                </ul>
+            <note type="attention">The return value indicates whether initialization is added in the asynchronous queue; it does not indicate whether the initialization is successful or not.</note></p> </section>
     </refbody>
 </reference>

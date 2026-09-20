@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_channelprofiletype">
     <title><ph keyref="CHANNEL_PROFILE_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Channel profile type.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Channel profile type.</ph><ph id="shortdesc" props="ios mac">The channel profile.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -27,7 +27,23 @@
                     <pt>CHANNEL_PROFILE_COMMUNICATION_1v1</pt>
                     <pd>(4): Communication 1v1 scenario. Deprecated since v4.5.0.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="CHANNEL_PROFILE_COMMUNICATION"/></pt>
+                <pd>0: Communication. Use this profile when there are only two users in the channel.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/></pt>
+                <pd>1: Live streaming. Use this profile when there are more than two users in the channel.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="CHANNEL_PROFILE_GAME"/></pt>
+                <pd>2: Gaming.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="CHANNEL_PROFILE_CLOUD_GAMING"/></pt>
+                <pd>Cloud gaming. The scenario is optimized for latency. Use this profile if the use case requires frequent interactions between users.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

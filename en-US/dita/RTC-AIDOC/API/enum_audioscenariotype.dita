@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_audioscenariotype">
     <title><ph keyref="AUDIO_SCENARIO_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Audio scenario type.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Audio scenario type.</ph><ph id="shortdesc" props="ios mac">The audio scenarios.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -35,7 +35,36 @@
                     <pt>AUDIO_SCENARIO_NUM</pt>
                     <pd>(11): Total number of enum values.</pd>
                 </plentry>
-            </parml>
+            <plentry props="ios mac">
+  <pt><ph keyref="AUDIO_SCENARIO_DEFAULT"/></pt>
+           <pd>0: (Default) Automatic scenario match, where the SDK chooses the appropriate audio quality according to the user role and audio route.</pd>
+       </plentry>
+       <plentry props="ios mac">
+           <pt><ph keyref="AUDIO_SCENARIO_GAME_STREAMING"/></pt>
+           <pd>3: High-quality audio scenario, where users mainly play music. For example, instrument tutoring.</pd>
+       </plentry>
+       <plentry props="ios mac">
+           <pt><ph keyref="AUDIO_SCENARIO_CHATROOM"/></pt>
+           <pd>5: Chatroom scenario, where users need to frequently switch the user role or mute and unmute the microphone. For example, education scenarios.</pd>
+       </plentry>
+       <plentry props="ios mac">
+           <pt><ph keyref="AUDIO_SCENARIO_CHORUS"/></pt>
+           <pd>7: Real-time chorus scenario, where users have good network conditions and require ultra-low latency.<note type="attention" props="android" id="chorus">Before using this enumeration, you need to call <xref keyref="getAudioDeviceInfo"/> to see whether the audio device supports ultra-low-latency capture and playback. To experience ultra-low latency, you need to ensure that your audio device supports ultra-low latency (<parmname>isLowLatencyAudioSupported</parmname> is <codeph><ph keyref="true"/></codeph>).</note>
+           </pd>
+       </plentry>
+       <plentry props="ios mac">
+           <pt><ph keyref="AUDIO_SCENARIO_MEETING"/></pt>
+           <pd>8: Meeting scenario that mainly contains the human voice.</pd>
+       </plentry>
+       <plentry props="ios mac">
+           <pt><ph keyref="AUDIO_SCENARIO_AI_CLIENT"/></pt>
+           <pd>10: AI conversation scenario, which is only applicable to scenarios where the user interacts with the conversational AI agent created by <xref keyref="convoai"/>.</pd>
+       </plentry>
+       <plentry props="ios mac">
+                    <pt><ph keyref="AUDIO_SCENARIO_NUM"/></pt>
+                    <pd>The number of enumerations.</pd>
+                </plentry>
+   </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

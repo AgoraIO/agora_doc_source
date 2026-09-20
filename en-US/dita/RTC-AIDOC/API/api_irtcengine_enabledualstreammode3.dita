@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enabledualstreammode3">
     <title><ph keyref="enableDualStreamMode3"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the dual-stream mode and low-quality stream on the sender side.</ph><ph id="shortdesc" props="android">Sets the dual-stream mode and low-quality stream at the sender.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the dual-stream mode and low-quality stream on the sender side.</ph><ph id="shortdesc" props="android">Sets the dual-stream mode and low-quality stream at the sender.</ph><ph id="shortdesc" props="ios mac">Sets the dual-stream mode on the sender side and the low-quality video stream.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,11 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int enableDualStreamMode(bool enabled, const SimulcastStreamConfig&amp; streamConfig) __deprecated = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int enableDualStreamMode(boolean enabled, SimulcastStreamConfig streamConfig)</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableDualStreamMode:(BOOL)enabled
+                        streamConfig:(AgoraSimulcastStreamConfig* _Nonnull)streamConfig;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)enableDualStreamMode:(BOOL)enabled
+               streamConfig:(AgoraSimulcastStreamConfig* _Nonnull)streamConfig NS_SWIFT_NAME(enableDualStreamMode(_:streamConfig:)) __deprecated_msg("use setDualStreamMode: instead.");</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
@@ -27,7 +31,11 @@
                     <dt>Deprecated</dt>
                     <dd>Deprecated since v4.2.0. Use <codeph>setDualStreamMode</codeph> instead.</dd>
                 </dlentry>
-            </dl>
+            <dlentry props="ios mac">
+                    <dt>Deprecated</dt>
+                    <dd>Deprecated since v4.2.0. Use <codeph>setDualStreamMode</codeph> instead.</dd>
+                </dlentry>
+                </dl>
             <p props="cpp">You can call this method to enable or disable dual-stream mode on the sender side. Dual-stream mode means sending both high-quality and low-quality video streams:
                 <ul>
                     <li>High-quality stream: high bitrate and resolution.</li>
@@ -53,7 +61,7 @@
                 </ul>
             </note>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -86,9 +94,24 @@
                         <note>When <codeph>mode</codeph> is set to <codeph>DISABLE_SIMULCAST_STREAM</codeph>, <codeph>streamConfig</codeph> has no effect.</note>
                     </pd>
                 </plentry>
+            <plentry id="enabled" props="ios mac">
+                <pt>enabled</pt>
+                <pd>
+                    <p>Whether to enable dual-stream mode:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable dual-stream mode.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable dual-stream mode.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
+            <plentry id="streamconfig" props="ios mac">
+                <pt>streamConfig</pt>
+                <pd>
+                    <p>The configuration of the low-quality video stream. See <xref keyref="SimulcastStreamConfig"/>.<note>When setting <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM"/>, setting <parmname>streamConfig</parmname> will not take effect.</note></p>
+                </pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -102,6 +125,9 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

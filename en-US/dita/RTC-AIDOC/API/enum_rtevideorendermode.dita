@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_rtevideorendermode">
     <title><ph keyref="RteVideoRenderMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Video render modes.</ph><ph id="shortdesc" props="android">Video rendering mode.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Video render modes.</ph><ph id="shortdesc" props="android">Video rendering mode.</ph><ph id="shortdesc" props="ios mac">Video rendering mode.</ph></shortdesc>
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
             <dl outputclass="since">
@@ -10,9 +10,13 @@
                     <dt>Since</dt>
                     <dd>Available since v4.4.0.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                    <dt>Since</dt>
+                    <dd>v4.5.0</dd>
+                </dlentry>
             </dl>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -31,7 +35,15 @@
                     <pt>FIT</pt>
                     <pd>(1): Scales the video proportionally to display the entire video content. If the video size does not match the viewport, black bars are shown in the unfilled area.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                    <pt><ph keyref="kRteVideoRenderModeHidden"/></pt>
+                    <pd>0: Video size is scaled proportionally. The priority is to fill the window. Any excess video that does not match the window size will be cropped.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt><ph keyref="kRteVideoRenderModeFit"/></pt>
+                    <pd>1: Video size is scaled proportionally. The priority is to ensure that all video content is displayed. Any areas of the window that are not filled due to the mismatch between video size and window size will be filled with black.</pd>
+                </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section></refbody>
 </reference>

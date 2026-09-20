@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rteplayerstats">
     <title><ph keyref="RtePlayerStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Statistics of the currently playing media resource.</ph><ph id="shortdesc" props="android">Used to collect statistics on the currently playing media resource.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Statistics of the currently playing media resource.</ph><ph id="shortdesc" props="android">Used to collect statistics on the currently playing media resource.</ph><ph id="shortdesc" props="ios mac">The statistics of the media resource.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -16,7 +16,18 @@
   private long mNativeHandle = 0;
   private boolean mIsNativeOwner = true;
 }</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtePlayerStats : NSObject
+
+- (instancetype _Nonnull)init;
+- (int)videoDecodeFrameRate;
+- (int)videoRenderFrameRate;
+- (int)videoBitrate;
+- (int)audioBitrate;
+
+@end</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">@interface AgoraRtePlayerStats : NSObject
+@end</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
             <dl outputclass="since">
@@ -28,9 +39,14 @@
                     <dt>Since</dt>
                     <dd>Available since v4.4.0.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
             </dl>
+        <p props="ios mac"/>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -49,6 +65,26 @@
                     <pt>audio_bitrate</pt>
                     <pd>Audio bitrate, in Kbps.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt props="android apple">videoDecodeFrameRate</pt>
+                <pt props="cpp">video_decode_frame_rate</pt>
+                <pd>The video decoding frame rate (fps).</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="android apple">videoRenderFrameRate</pt>
+                <pt props="cpp">video_render_frame_rate</pt>
+                <pd>The video rendering frame rate (fps).</pd>
+            </plentry>
+             <plentry props="ios mac">
+                <pt props="android apple">videoBitrate</pt>
+                <pt props="cpp">video_bitrate</pt>
+                <pd>The bitrate (Kbps) of the video.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="android apple">audioBitrate</pt>
+                <pt props="cpp">audio_bitrate</pt>
+                <pd>The bitrate of the audio (Kbps).</pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_createdatastreamex2">
     <title><ph keyref="createDataStreamEx2"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Creates a data stream.</ph><ph id="shortdesc" props="android">Creates a data stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Creates a data stream.</ph><ph id="shortdesc" props="android">Creates a data stream.</ph><ph id="shortdesc" props="ios mac">Creates a data stream.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,6 +15,9 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int createDataStreamEx(int* streamId, const DataStreamConfig&amp; config, const RtcConnection&amp; connection) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int createDataStreamEx(DataStreamConfig config, RtcConnection connection);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)createDataStreamEx:(NSInteger * _Nonnull)streamId
+                   config:(AgoraDataStreamConfig * _Nonnull)config
+               connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(createDataStreamEx(_:config:connection:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -22,6 +25,8 @@
             <p props="android">Compared with <xref keyref="createDataStreamEx1"/>, this method does not guarantee data transmission reliability. If the data packet is not received within five seconds after being sent, the SDK discards it.</p>
             <note props="cpp">Each user can create up to five data streams during the lifecycle of <xref keyref="IRtcEngine"/>. The data streams are destroyed when leaving the channel. To use them again, you need to recreate them. If you require a more comprehensive solution for low-latency, high-concurrency, and scalable real-time messaging and state synchronization, consider using real-time messaging.</note>
             <note props="android">Each user can create up to five data streams during the lifecycle of the <xref keyref="IRtcEngine"/>. The data streams are destroyed when leaving the channel. To continue using them, you need to recreate them. If you need a more comprehensive real-time messaging and state synchronization solution with low latency, high concurrency, and scalability, we recommend using real-time messaging.</note>
+        <p props="ios mac">Compared to <xref keyref="createDataStreamEx1"/>, this method does not guarantee the reliability of data transmission. If a data packet is not received five seconds after it was sent, the SDK directly discards the data.</p>
+            <note conkeyref="createDataStream2/note" props="ios mac"/>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
@@ -32,7 +37,7 @@
             <p props="cpp">Call after <xref keyref="joinChannelEx"/>.</p>
             <p props="android">Call this method after <xref keyref="joinChannelEx"/>.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -55,9 +60,21 @@
                     <pt>connection</pt>
                     <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
                 </plentry>
+            <plentry props="ios mac" conkeyref="createDataStream2/streamId">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry id="config" conkeyref="createDataStream2/config" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="joinChannelEx/connection" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -71,6 +88,12 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <p props="ios mac">
+                <ul>
+                    <li>0: The method call succeeds.</li>
+                    <li>&lt; 0: The method call fails.</li>
+                </ul>
+            </p>
+            </section>
     </refbody>
 </reference>

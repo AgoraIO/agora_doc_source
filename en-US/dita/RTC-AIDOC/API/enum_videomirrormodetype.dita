@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_videomirrormodetype">
     <title><ph keyref="VIDEO_MIRROR_MODE_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Video mirror mode.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Video mirror mode.</ph><ph id="shortdesc" props="ios mac">Video mirror mode.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -24,7 +24,23 @@
                     <pt>VIDEO_MIRROR_MODE_DISABLED</pt>
                     <pd>(2): Disables mirror mode.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="VIDEO_MIRROR_MODE_AUTO"/></pt>
+                <pd>0: The SDK determines the mirror mode.<ul>
+                    <li>For the mirror mode of the local video view: If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</li>
+                    <li>For the remote user: The mirror mode is disabled by default.</li></ul></pd>
+            </plentry>
+
+            <plentry props="ios mac">
+                <pt><ph keyref="VIDEO_MIRROR_MODE_ENABLED"/></pt>
+                <pd>1: Enable mirror mode.</pd>
+            </plentry>
+
+            <plentry props="ios mac">
+                <pt><ph keyref="VIDEO_MIRROR_MODE_DISABLED"/></pt>
+                <pd>2: Disable mirror mode.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

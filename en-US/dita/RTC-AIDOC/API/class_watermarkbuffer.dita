@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_watermarkbuffer">
     <title><ph keyref="WatermarkBuffer"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Configures the format, size, and pixel buffer of the watermark image.</ph><ph id="shortdesc" props="android">Configures the format, size, and pixel buffer of the watermark image.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Configures the format, size, and pixel buffer of the watermark image.</ph><ph id="shortdesc" props="android">Configures the format, size, and pixel buffer of the watermark image.</ph><ph id="shortdesc" props="ios mac">Configures the format, size, and pixel buffer of the watermark image.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -23,6 +23,13 @@
   public int height;
   public int format;
 }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface WatermarkBuffer : NSObject
+@property(assign, nonatomic) int width;
+@property(assign, nonatomic) int height;
+@property(assign, nonatomic) int length;
+@property(strong, nonatomic) NSData* _Nullable buffer;
+@property(assign, nonatomic) WatermarkBufferFormat format;
+@end</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
@@ -35,10 +42,15 @@
                     <dt>Since</dt>
                     <dd>Added since v4.6.0.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                <dt>Since:</dt>
+                <dd>Available since v4.6.0.</dd>
+                </dlentry>
             </dl>
             <p props="android">Defines the buffer data structure for the watermark image.</p>
-        </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <p props="ios mac">Defines the buffer data structure of the watermark image, including image width, height, format, length, and image data buffer.</p>
+            </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -100,6 +112,42 @@
                         </ul>
                     </pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt props="native">width</pt>
+                <pd props="android">Width of the watermark buffer, in pixels.</pd>
+                <pd props="apple">Width of the watermark image, in pixels.</pd>
+                <pd props="cpp">Width of the watermark buffer, in pixels.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="native">height</pt>
+                <pd props="android">Height of the watermark buffer, in pixels.</pd>
+                <pd props="apple">Height of the watermark image, in pixels.</pd>
+                <pd props="cpp">Height of the watermark buffer, in pixels.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="apple cpp">length</pt>
+                <pd props="apple">Length of the buffer, in bytes.</pd>
+                <pd props="cpp">Length of the watermark buffer, in bytes.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="native">format</pt>
+                <pd props="android">Format of the watermark image:
+                    <ul>
+                        <li><codeph>WATERMARK_BUFFER_FORMAT_I420</codeph>: I420 format.</li>
+                        <li><codeph>WATERMARK_BUFFER_FORMAT_BGRA</codeph>: BGRA format.</li>
+                        <li><codeph>WATERMARK_BUFFER_FORMAT_NV21</codeph>: NV21 format.</li>
+                        <li><codeph>WATERMARK_BUFFER_FORMAT_RGBA</codeph>: RGBA format.</li>
+                        </ul>
+                    </pd>
+                <pd props="apple">Format of the watermark buffer. See <xref keyref="WatermarkBufferFormat"/>.</pd>
+                <pd props="cpp">Format of the watermark buffer. See <xref keyref="VIDEO_PIXEL_FORMAT"/>. Default is <ph keyref="VIDEO_PIXEL_I420"/>. Currently supported formats include: <ph keyref="VIDEO_PIXEL_I420"/>, <ph keyref="VIDEO_PIXEL_RGBA"/>, <ph keyref="VIDEO_PIXEL_BGRA"/>, and <ph keyref="VIDEO_PIXEL_NV21"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt props="native">buffer</pt>
+                <pd props="android">Stores the watermark image data.</pd>
+                <pd props="apple">Raw image data buffer.</pd>
+                <pd props="cpp">Buffer data of the watermark.</pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

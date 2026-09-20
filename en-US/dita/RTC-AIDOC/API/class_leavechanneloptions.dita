@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_leavechanneloptions">
     <title><ph keyref="LeaveChannelOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set behavior options when leaving a channel.</ph><ph id="shortdesc" props="android">Used to set options when leaving a channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set behavior options when leaving a channel.</ph><ph id="shortdesc" props="android">Used to set options when leaving a channel.</ph><ph id="shortdesc" props="ios mac">The options for leaving a channel.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -16,9 +16,15 @@
   public boolean stopAllEffect;
   public boolean stopMicrophoneRecording;
 }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLeaveChannelOptions : NSObject
+@property(nonatomic, assign) BOOL stopAudioMixing;
+@property(nonatomic, assign) BOOL stopAllEffect;
+@property(nonatomic, assign) BOOL stopMicrophoneRecording;
+
+@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -75,7 +81,28 @@
                         </ul>
                     </pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>stopAudioMixing</pt>
+                <pd>Whether to stop playing and mixing the music file when a user leaves the channel.<ul id="ul_ttv_f2n_3qb">
+                    <li><codeph><ph keyref="true"/></codeph>: (Default) Stop playing and mixing the music file.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not stop playing and mixing the music file.</li>
+                    </ul> </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>stopAllEffect</pt>
+                <pd>Whether to stop playing all audio effects when a user leaves the channel.<ul id="ul_tgl_m2n_3qb">
+                    <li><codeph><ph keyref="true"/></codeph>: (Default) Stop playing all audio effects.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not stop playing any audio effect.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>stopMicrophoneRecording</pt>
+                <pd>Whether to stop microphone recording when a user leaves the channel.<ul id="ul_dy1_s2n_3qb">
+                    <li><codeph><ph keyref="true"/></codeph>: (Default) Stop microphone recording.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not stop microphone recording.</li>
+                    </ul></pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="detailed_desc"/></refbody>
 </reference>

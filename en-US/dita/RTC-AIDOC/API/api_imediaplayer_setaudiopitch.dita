@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_setaudiopitch">
     <title><ph keyref="setAudioPitch"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the pitch of the current media resource.</ph><ph id="shortdesc" props="android">Sets the pitch of the current media resource.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the pitch of the current media resource.</ph><ph id="shortdesc" props="android">Sets the pitch of the current media resource.</ph><ph id="shortdesc" props="ios mac">Sets the pitch of the current media resource.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,13 +15,15 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioPitch(int pitch) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">int setAudioPitch(int pitch);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioPitch:(NSInteger)pitch;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)setAudioPitch:(NSInteger)pitch NS_SWIFT_NAME(setAudioPitch(_:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <note props="cpp">Call this method after calling the <xref keyref="open"/> method.</note>
             <note props="android">Call this method after calling <codeph>open</codeph>.</note>
-        </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <note type="note" props="ios mac">Call this method after calling <xref keyref="open"/>.</note> </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -32,9 +34,17 @@
                     <pt>pitch</pt>
                     <pd>Sets the pitch of the local music file in semitones. The default value is 0, which means the original pitch is retained. The valid range is -12 to 12. The pitch difference between two adjacent values is one semitone. The greater the absolute value of this parameter, the higher or lower the pitch of the local music file.</pd>
                 </plentry>
+            <plentry conkeyref="setAudioMixingPitch/pitch" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry id="pitch" props="ios mac">
+                <pt>pitch</pt>
+                <pd>Sets the pitch of the local music file by the chromatic scale. The default value is 0, which means keeping the original pitch. The value ranges from -12 to 12, and the pitch value between consecutive values is a chromatic value. The greater the absolute value of this parameter, the higher or lower the pitch of the local music file.</pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -48,6 +58,9 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

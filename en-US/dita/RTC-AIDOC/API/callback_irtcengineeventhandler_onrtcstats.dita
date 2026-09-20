@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onrtcstats">
     <title><ph keyref="onRtcStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reports statistics of the current call.</ph><ph id="shortdesc" props="android">Callback that reports statistics of the current call.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Reports statistics of the current call.</ph><ph id="shortdesc" props="android">Callback that reports statistics of the current call.</ph><ph id="shortdesc" props="ios mac">Reports the statistics about the current call.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,15 +15,19 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onRtcStats(const RtcStats&amp; stats)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onRtcStats(RtcStats stats) {}</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+    reportRtcStats:(AgoraChannelStats * _Nonnull)stats;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine reportRtcStats:(AgoraChannelStats * _Nonnull)stats NS_SWIFT_NAME(rtcEngine(_:reportRtcStats:));</codeblock>
+                </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"><p props="ios mac"/>
+        </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Trigger Timing</title>
             <p props="cpp">After the user joins the channel, the SDK triggers this callback every two seconds.</p>
             <p props="android">This callback is triggered every two seconds after the user joins the channel.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -34,6 +38,20 @@
                     <pt>stats</pt>
                     <pd>RTC engine statistics. See <xref keyref="RtcStats"/>.</pd>
                 </plentry>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>connection</pt>
+                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+            </plentry>
+            <plentry id="param" props="ios mac">
+                <pt>stats</pt>
+                <pd>
+                    <p>Statistics of the RTC engine. See <xref keyref="RtcStats"/>.</p>
+                </pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

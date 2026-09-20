@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_snapshotconfig">
     <title><ph keyref="SnapshotConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Struct used to configure video screenshots.</ph><ph id="shortdesc" props="android">Used to configure snapshot functionality.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Struct used to configure video screenshots.</ph><ph id="shortdesc" props="android">Used to configure snapshot functionality.</ph><ph id="shortdesc" props="ios mac">The snapshot configuration.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -14,9 +14,13 @@
   public String filePath = null;
   public Constants.VideoModulePosition position = Constants.VideoModulePosition.VIDEO_MODULE_POSITION_PRE_ENCODER;
 }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSnapshotConfig: NSObject
+@property (copy, nonatomic) NSString * _Nullable filePath;
+@property(assign, nonatomic) AgoraVideoModulePosition position;
+@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -55,7 +59,15 @@
                         </ul>
                     </pd>
                 </plentry>
+            <plentry conkeyref="takeSnapshot/filepath" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>position</pt>
+                <pd>The position of the snapshot video frame in the video pipeline. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="detailed_desc"/></refbody>
 </reference>

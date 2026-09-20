@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_audioprocessingchannels">
     <title><ph keyref="AUDIO_PROCESSING_CHANNELS"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="android">Sets the number of channels for audio preprocessing.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Sets the number of channels for audio preprocessing.</ph><ph id="shortdesc" props="ios mac">The number of channels for audio preprocessing.</ph></shortdesc>
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
             <p props="android">In scenarios requiring enhanced realism, such as concerts, local users may need to capture stereo audio and send it to remote users. For example, a singer, guitarist, and drummer are positioned at different locations on stage. The audio capture device collects their stereo audio and sends it to remote users. Remote users can hear the vocals, guitar, and drums from different directions, as if they were in the audience. You can achieve stereo by enabling stereo processing. Agora recommends the following settings:
@@ -12,8 +12,30 @@
                 </ol>
             </p>
             <note props="android">Stereo settings only take effect when the SDK uses media volume.</note>
-        </section>
-        <section id="parameters" deliveryTarget="details" props="android">
+        <p props="ios mac">In scenarios that require enhanced realism, such as concerts, local users might need to capture stereo audio and send stereo signals to remote users. For example, the singer, guitarist, and drummer are standing in different positions on the stage. The audio capture device captures their stereo audio and sends stereo signals to remote users. Remote users can hear the song, guitar, and drum from different directions as if they were at the auditorium.</p>
+            <p props="ios mac">You can set the dual-channel processing to implement stereo audio in this class. Agora recommends the following settings:<ol>
+            <li>Preprocessing: call <xref keyref="setAdvancedAudioOptions"/> and set <parmname>audioProcessingChannels</parmname> to <apiname keyref="AUDIO_PROCESSING_STEREO"/> (2) in <xref keyref="AdvancedAudioOptions"/>.</li>
+            <li>Post-processing: call <xref keyref="setAudioProfile2" props="native unreal bp flutter unity"/> <xref keyref="setAudioProfile" props="rn electron"/> and set <parmname>profile</parmname> to <apiname keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> (3) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5).</li>
+            </ol></p>
+            <note type="attention" props="ios mac">
+            <ul>
+            <li>
+                <p>The stereo setting only takes effect when the SDK uses the media volume.</p>
+                <p props="cn">To learn more about the difference between media volume and call volume, <ph props="android ios cpp unreal bp flutter unity rn">see <xref keyref="volume-type"/>.</ph></p>
+            </li>
+            <li props="cpp unreal bp ios rn unity flutter">On iOS, the minimum version of system for stereo sound is 14.0. The minimum device requirements are as follows:<ul>
+                <li>iPhone XS</li>
+                <li>iPhone XS Max</li>
+                <li>iPhone XR</li>
+                <li>iPhone 11</li>
+                <li>iPhone 11 Pro</li>
+                <li>iPhone 11 Pro Max</li>
+                <li>iPhone SE (2020)</li>
+                <li>iPad Pro 11" and 12.9" (3rd generation)</li>
+                <li>iPad Pro 11" and 12.9" (4th generation)</li>
+                </ul></li>
+            </ul> </note> </section>
+        <section id="parameters" deliveryTarget="details" props="android ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="android">
@@ -24,7 +46,15 @@
                     <pt>AGORA_AUDIO_STEREO_PROCESSING</pt>
                     <pd>(2): Stereo.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="AUDIO_PROCESSING_MONO"/></pt>
+                <pd>1: (Default) Mono.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="AUDIO_PROCESSING_STEREO"/></pt>
+                <pd>2: Stereo.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section></refbody>
 </reference>

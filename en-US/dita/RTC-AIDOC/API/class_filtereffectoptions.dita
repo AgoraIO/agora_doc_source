@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_filtereffectoptions">
     <title><ph keyref="FilterEffectOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure filter effect parameters.</ph><ph id="shortdesc" props="android">Used to configure filter effects.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure filter effect parameters.</ph><ph id="shortdesc" props="android">Used to configure filter effects.</ph><ph id="shortdesc" props="ios mac">Filter effect options.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -14,6 +14,11 @@
   public String path = null;
   public float strength;
 }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraFilterEffectOptions: NSObject
+@property(nonatomic, copy) NSString* _Nullable path NS_SWIFT_NAME(path);
+@property(nonatomic, assign) float strength;
+@end
+</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
@@ -22,9 +27,13 @@
                     <dt>Since</dt>
                     <dd>Added since v4.4.1.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                    <dt>Since</dt>
+                    <dd>Added since v4.4.1.</dd>
+                </dlentry>
             </dl>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -57,6 +66,29 @@
                     <pt>strength</pt>
                     <pd>Strength of the filter effect. Range is [0.0, 1.0]. 0.0 means no filter effect. Default is 0.5. The larger the value, the stronger the effect.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>path</pt>
+                <pd>
+                    <p>The absolute path to the local cube map texture file, which can be used to customize the filter effect. The specified .cude file should strictly follow the Cube LUT Format Specification; otherwise, the filter options do not take effect. The following is a sample of the .cude file:<codeblock outputclass="text">
+LUT_3D_SIZE 32
+0.0039215689 0 0.0039215682
+0.0086021447 0.0037950677 0
+...
+0.0728652592 0.0039215689 0
+                        </codeblock>
+                        <note type="note">
+                            <ul>
+                                <li>The identifier <codeph>LUT_3D_SIZE</codeph> on the first line of the cube map file represents the size of the three-dimensional lookup table. The LUT size for filter effect can only be set to 32.</li>
+                                <li>The SDK provides a built-in <codeph>built_in_whiten_filter.cube</codeph> file. You can pass the absolute path of this file to get the whitening filter effect.</li>
+                            </ul>
+                        </note>
+                    </p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>strength</pt>
+                <pd>The intensity of the filter effect, with a range value of [0.0,1.0], in which 0.0 represents no filter effect. The default value is 0.5. The higher the value, the stronger the filter effect.</pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

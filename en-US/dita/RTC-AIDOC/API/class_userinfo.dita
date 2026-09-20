@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_userinfo">
     <title><ph keyref="UserInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Contains user information.</ph><ph id="shortdesc" props="android">Basic user information.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Contains user information.</ph><ph id="shortdesc" props="android">Basic user information.</ph><ph id="shortdesc" props="ios mac">The information of the user.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -14,9 +14,13 @@
   public int uid;
   public String userAccount;
 }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraUserInfo: NSObject
+ @property(assign, nonatomic) NSUInteger uid;
+ @property (copy, nonatomic) NSString * _Nullable userAccount;
+ @end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -35,7 +39,15 @@
                     <pt>userAccount</pt>
                     <pd>User account.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>uid</pt>
+                <pd>The user ID.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>userAccount</pt>
+                <pd>User account. <ph props="cpp unreal rn unity electron flutter cs">The maximum data length is <xref keyref="MAX_USER_ACCOUNT_LENGTH_TYPE"/>.</ph></pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="detailed_desc"/></refbody>
 </reference>

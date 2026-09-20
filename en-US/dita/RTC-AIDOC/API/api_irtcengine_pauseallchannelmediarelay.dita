@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_pauseallchannelmediarelay">
     <title><ph keyref="pauseAllChannelMediaRelay"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Pauses the media stream relay to all destination channels.</ph><ph id="shortdesc" props="android">Pauses media stream relay to all destination channels.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Pauses the media stream relay to all destination channels.</ph><ph id="shortdesc" props="android">Pauses media stream relay to all destination channels.</ph><ph id="shortdesc" props="ios mac">Pauses the media stream relay to all target channels.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,15 +15,18 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int pauseAllChannelMediaRelay() = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int pauseAllChannelMediaRelay();</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)pauseAllChannelMediaRelay;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)pauseAllChannelMediaRelay NS_SWIFT_NAME(pauseAllChannelMediaRelay());</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">You can call this method after starting the media stream relay across channels to pause the relay to all destination channels. To resume the relay, call the <xref keyref="resumeAllChannelMediaRelay"/> method.</p>
             <p props="android">You can call this method to pause media stream relay to all destination channels. To resume relaying, call the <xref keyref="resumeAllChannelMediaRelay"/> method.</p>
             <note props="cpp">Call this method after calling the <xref keyref="startOrUpdateChannelMediaRelay"/> method.</note>
             <note props="android">Call this method after calling <xref keyref="startOrUpdateChannelMediaRelay"/>.</note>
-        </section>
-        <section id="return_values" props="android cpp">
+        <p props="ios mac">After the cross-channel media stream relay starts, you can call this method to pause relaying media streams to all target channels; after the pause, if you want to resume the relay, call <xref keyref="resumeAllChannelMediaRelay"/>.</p>
+            <note type="attention" props="ios mac">Call this method after <xref keyref="startOrUpdateChannelMediaRelay"/>.</note> </section>
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -45,6 +48,10 @@
                     </li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul><li>-5: The method call was rejected. There is no ongoing channel media relay.</li></ul>
+            </li>
+            </ul> </section>
     </refbody>
 </reference>

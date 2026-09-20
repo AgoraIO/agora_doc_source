@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lastmileprobeonewayresult">
     <title><ph keyref="LastmileProbeOneWayResult"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Obtain the result of uplink or downlink Last-mile network quality testing.</ph><ph id="shortdesc" props="android">Result of uplink or downlink last-mile network test.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Obtain the result of uplink or downlink Last-mile network quality testing.</ph><ph id="shortdesc" props="android">Result of uplink or downlink last-mile network test.</ph><ph id="shortdesc" props="ios mac">Results of the uplink or downlink last-mile network test.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -16,9 +16,14 @@
   public int jitter;
   public int availableBandwidth;
 }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeOneWayResult : NSObject
+@property (assign, nonatomic) NSUInteger packetLossRate;
+@property (assign, nonatomic) NSUInteger jitter;
+@property (assign, nonatomic) NSUInteger availableBandwidth;
+@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -45,7 +50,19 @@
                     <pt>availableBandwidth</pt>
                     <pd>Estimated available bandwidth (bps).</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>packetLossRate</pt>
+                <pd>The packet loss rate (%).</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>jitter</pt>
+                <pd>The network jitter (ms).</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>availableBandwidth</pt>
+                <pd>The estimated available bandwidth (bps).</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="detailed_desc"/></refbody>
 </reference>

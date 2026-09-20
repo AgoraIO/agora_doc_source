@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_transcodingvideostream">
     <title><ph keyref="TranscodingVideoStream"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set the video stream for local composite layout.</ph><ph id="shortdesc" props="android">Used to configure video streams in local composition.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set the video stream for local composite layout.</ph><ph id="shortdesc" props="android">Used to configure video streams in local composition.</ph><ph id="shortdesc" props="ios mac">The video streams for local video mixing.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -32,12 +32,32 @@
     public double alpha;
     public boolean mirror;
   }</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraTranscodingVideoStream: NSObject
+@property (assign, nonatomic) AgoraVideoSourceType sourceType;
+@property (assign, nonatomic) NSUInteger remoteUserUid;
+@property (copy, nonatomic) NSString * _Nullable imageUrl;
+@property(assign, nonatomic) NSUInteger mediaPlayerId;
+@property (assign, nonatomic) CGRect rect;
+@property (assign, nonatomic) NSInteger zOrder;
+@property(assign, nonatomic) double alpha;
+@property(assign, nonatomic) BOOL mirror;
+@end</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraTranscodingVideoStream: NSObject
+@property (assign, nonatomic) NSUInteger remoteUserUid;
+@property (assign, nonatomic) AgoraVideoSourceType sourceType;
+@property (copy, nonatomic) NSString * _Nullable imageUrl;
+@property(assign, nonatomic) NSUInteger mediaPlayerId;
+@property (assign, nonatomic) CGRect rect;
+@property (assign, nonatomic) NSInteger zOrder;
+@property(assign, nonatomic) double alpha;
+@property(assign, nonatomic) BOOL mirror;
+@end</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
             <p props="android">Used to configure the position, size, layer, and other information of each video stream in local composition.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -172,6 +192,72 @@
                         </ul>
                     </pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>sourceType</pt>
+                <pd>The video source type for local video mixing. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>remoteUserUid</pt>
+                <pd>
+                    <p>The user ID of the remote user.</p>
+                    <note type="attention">Use this parameter only when the source type is <apiname keyref="VIDEO_SOURCE_REMOTE"/> for local video mixing.</note></pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>imageUrl</pt>
+                <pd>
+                    <p>The file path of local images.</p>
+                    <note type="attention">Use this parameter only when the source type is the image for local video mixing.</note>
+                    <p props="android ios mac cpp framework">Examples:<ul>
+                        <li props="android unity flutter rn cs">Android: <codeph>/storage/emulated/0/Pictures/image.png</codeph></li>
+                        <li props="ios unity flutter rn cs">iOS: <codeph>/var/mobile/Containers/Data/Application/&lt;APP-UUID&gt;/Documents/image.png</codeph></li>
+                        <li props="mac unity flutter electron cs">macOS: <codeph>~/Pictures/image.png</codeph></li>
+                        <li props="cpp unreal bp unity flutter electron cs">Windows: <codeph>C:\\Users\\{username}\\Pictures\\image.png</codeph></li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>mediaPlayerId</pt>
+                <pd>(Optional) Media player ID. Use the parameter only when you set <parmname>sourceType</parmname> to <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>x</pt>
+                <pd>The relative lateral displacement of the top left corner of the video for local video mixing to the origin (the top left corner of the canvas).</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>y</pt>
+                <pd>The relative longitudinal displacement of the top left corner of the captured video to the origin (the top left corner of the canvas).</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>width</pt>
+                <pd>The width (px) of the video for local video mixing on the canvas.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>height</pt>
+                <pd>The height (px) of the video for local video mixing on the canvas.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>rect</pt>
+                <pd>The relative position and size of the video for local video mixing to the origin (the top left corner of the canvas). The data type is CGRect.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>zOrder</pt>
+                <pd>The number of the layer to which the video for the local video mixing belongs. The value range is [0, 100].<ul>
+                    <li>0: (Default) The layer is at the bottom.</li>
+                    <li>100: The layer is at the top.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>alpha</pt>
+                <pd>The transparency of the video for local video mixing. The value range is [0.0, 1.0]. 0.0 indicates that the video is completely transparent, and 1.0 indicates that it is opaque.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>mirror</pt>
+                <pd>Whether to mirror the video for the local video mixing.<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Mirror the video for the local video mixing.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not mirror the video for the local video mixing.</li>
+                    </ul>
+                    <note type="attention">This parameter only takes effect on video source types that are cameras.</note></pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

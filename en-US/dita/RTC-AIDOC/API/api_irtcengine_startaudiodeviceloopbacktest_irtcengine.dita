@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startaudiodeviceloopbacktest_irtcengine">
+    <title><ph keyref="startAudioDeviceLoopbackTest_IRtcEngine"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="ios mac">Starts an audio device loopback test.</ph><ph id="shortdesc" props="ios mac">Starts an audio device loopback test.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startAudioDeviceLoopbackTest_IRtcEngine"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="mac" outputclass="language-objectivec">- (int)startAudioDeviceLoopbackTest:(int)indicationInterval NS_SWIFT_NAME(startAudioDeviceLoopbackTest(_:));</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios mac">This method tests whether the local audio capture and playback devices work properly. After you call this method, the audio capture device captures local audio and the audio playback device plays the captured audio.</p><note props="mac">
+                <ul>
+                    <li>You can call this method either before or after joining a channel.</li>
+                    <li>This method only takes effect when called by the host.</li>
+                    <li>This method tests only local audio devices and does not report network conditions.</li>
+                    <li>After the test is complete, call <xref keyref="stopAudioDeviceLoopbackTest_IRtcEngine"/> to stop the audio device loopback test.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="mac ios">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="mac">
+                    <pt>indicationInterval</pt>
+                    <pd>The interval, in milliseconds, at which the SDK triggers the audio volume indication callback. Agora recommends setting this value to greater than 200 ms.</pd></plentry>
+            <plentry props="ios mac">
+                    <pt>indicationInterval</pt>
+                    <pd>The interval, in milliseconds, at which the SDK triggers the audio volume indication callback. Agora recommends setting this value to greater than 200 ms.</pd></plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="mac">
+            <title>Return Values</title>
+            <p props="ios mac">0: Success. &lt; 0: Failure.</p></section>
+    </refbody>
+</reference>

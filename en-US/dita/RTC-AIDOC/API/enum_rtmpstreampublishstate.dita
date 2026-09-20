@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_rtmpstreampublishstate">
     <title><ph keyref="RTMP_STREAM_PUBLISH_STATE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">State of RTMP streaming.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">State of RTMP streaming.</ph><ph id="shortdesc" props="ios mac">States of the Media Push.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -36,7 +36,36 @@
                     <pt>RTMP_STREAM_PUBLISH_STATE_DISCONNECTING</pt>
                     <pd>(5): SDK is disconnecting from the Agora streaming and CDN servers. When calling <xref keyref="stopRtmpStream"/> to stop streaming normally, the SDK reports the states <codeph>RTMP_STREAM_PUBLISH_STATE_DISCONNECTING</codeph> and <codeph>RTMP_STREAM_PUBLISH_STATE_IDLE</codeph> in sequence.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/></pt>
+                <pd>0: The Media Push has not started or has ended.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_CONNECTING"/></pt>
+                <pd>1: The streaming server and CDN server are being connected.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/></pt>
+                <pd>2: The RTMP or RTMPS streaming publishes. The SDK successfully publishes the RTMP or RTMPS streaming and returns this state.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_RECOVERING"/></pt>
+                <pd>
+                    <p>3: The RTMP or RTMPS streaming is recovering. When exceptions occur to the CDN, or the streaming is interrupted, the SDK tries to resume RTMP or RTMPS streaming and returns this state.</p>
+                    <ul>
+                    <li>If the SDK successfully resumes the streaming, <ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/>(2) returns.</li>
+                    <li>If the streaming does not resume within 60 seconds or server errors occur, <ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/>(4) returns. If you feel that 60 seconds is too long, you can also actively try to reconnect.</li>
+                    </ul> </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/></pt>
+                <pd>4: The RTMP or RTMPS streaming fails. After a failure, you can troubleshoot the cause of the error through the returned error code.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING"/></pt>
+                <pd>5: The SDK is disconnecting from the Agora streaming server and CDN. When you call <xref keyref="stopRtmpStream"/> to stop the Media Push normally, the SDK reports the Media Push state as <apiname keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING"/> and <apiname keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/> in sequence.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

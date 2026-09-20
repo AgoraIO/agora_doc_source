@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_videodenoisermode">
     <title><ph keyref="VIDEO_DENOISER_MODE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Video denoising mode.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Video denoising mode.</ph><ph id="shortdesc" props="ios mac">Video noise reduction mode.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -15,7 +15,19 @@
                     <pt>VIDEO_DENOISER_MANUAL</pt>
                     <pd>(1): Manual mode. You need to manually enable or disable video denoising.</pd>
                 </plentry>
-            </parml>
+            <plentry props="ios mac">
+                    <pt><ph keyref="VIDEO_DENOISER_AUTO"/></pt>
+                    <pd>0: (Default) Automatic mode. The SDK automatically enables or disables the video noise reduction feature according to the ambient light.</pd>
+               </plentry>
+               <plentry props="ios mac">
+                    <pt><ph keyref="VIDEO_DENOISER_MANUAL"/></pt>
+                    <pd>1: Manual mode. Users need to enable or disable the video noise reduction feature manually.</pd>
+               </plentry>
+               </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"><dl outputclass="since"><dlentry props="ios mac">
+                    <dt>Since</dt>
+                    <dd>Available since v4.0.0.</dd>
+                </dlentry>
+                </dl></section></refbody>
 </reference>

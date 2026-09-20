@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_preloadsrc">
     <title><ph keyref="preloadSrc"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Preloads media resources.</ph><ph id="shortdesc" props="android">Preloads a media resource.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Preloads media resources.</ph><ph id="shortdesc" props="android">Preloads a media resource.</ph><ph id="shortdesc" props="ios mac">Preloads a media resource.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,10 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int preloadSrc(const char* src, int64_t startPos) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">int preloadSrc(String src, long startPos);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadSrc:(NSString *)src startPos:(int)startPos;
+</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)preloadSrc:(NSString *)src startPos:(int)startPos NS_SWIFT_NAME(preloadSrc(_:startPos:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">You can call this method to preload media resources into the playlist. If you need to preload multiple media resources, call this method multiple times. After calling this method, if the <xref keyref="onPreloadEvent"/> callback reports the <codeph>PLAYER_PRELOAD_EVENT_COMPLETE</codeph> event, the preload is successful; if it reports the <codeph>PLAYER_PRELOAD_EVENT_ERROR</codeph> event, the preload failed. After a successful preload, if you want to play the media resource, call <xref keyref="playPreloadedSrc"/>; if you want to clear the playlist, call <xref keyref="stop"/>.</p>
@@ -32,8 +35,14 @@
                     <li>Agora does not support preloading the same media resource multiple times into the playlist. However, you can preload a currently playing media resource again into the playlist.</li>
                 </ul>
             </note>
-        </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <p props="ios mac">You can call this method to preload a media resource into the playlist. If you need to preload multiple media resources, you can call this method multiple times.</p>
+            <p props="ios mac">After calling this method, if you receive the <apiname keyref="PLAYER_PRELOAD_EVENT_COMPLETE"/> event in the <xref keyref="onPreloadEvent"/> callback, the preload is successful; If you receive the <apiname keyref="PLAYER_PRELOAD_EVENT_ERROR"/> event in the <xref keyref="onPreloadEvent"/> callback, the preload fails.</p>
+            <p props="ios mac">If the preload is successful and you want to play the media resource, call <xref keyref="playPreloadedSrc"/>; if you want to clear the playlist, call <xref keyref="stop"/>.</p>
+            <note type="attention" props="ios mac">
+            <ul><li>Before calling this method, ensure that you have called <xref keyref="open"/> or <xref keyref="openWithMediaSource"/> to open the media resource successfully.</li>
+                <li>Agora does not support preloading duplicate media resources to the playlist. However, you can preload the media resources that are being played to the playlist again.</li></ul>
+            </note> </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -54,9 +63,17 @@
                     <pt>startPos</pt>
                     <pd>The playback start position (in milliseconds) after the media resource is preloaded into the playlist. Set this parameter to 0 when preloading live streams.</pd>
                 </plentry>
+            <plentry conkeyref="switchSrc/src" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>startPos</pt>
+                <pd>The starting position (ms) for playing after the media resource is preloaded to the playlist. When preloading a live stream, set this parameter to 0.</pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -70,6 +87,9 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

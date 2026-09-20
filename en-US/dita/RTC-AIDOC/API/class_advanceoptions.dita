@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_advanceoptions">
     <title><ph keyref="AdvanceOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure advanced options for video encoding.</ph><ph id="shortdesc" props="android">Used to configure advanced options for video encoding.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure advanced options for video encoding.</ph><ph id="shortdesc" props="android">Used to configure advanced options for video encoding.</ph><ph id="shortdesc" props="ios mac">Advanced options for video encoding.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -11,7 +11,7 @@
   COMPRESSION_PREFERENCE compressionPreference;
   bool encodeAlpha;
   bool operator==(const AdvanceOptions&amp; rhs) const {
-    return encodingPreference == rhs.encodingPreference &amp;&amp; 
+    return encodingPreference == rhs.encodingPreference &amp;&amp;
            compressionPreference == rhs.compressionPreference &amp;&amp;
            encodeAlpha == rhs.encodeAlpha;
   }
@@ -21,9 +21,14 @@
     public COMPRESSION_PREFERENCE compressionPreference;
     public boolean encodeAlpha;
   }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">  __attribute__((visibility("default"))) @interface AgoraAdvancedVideoOptions : NSObject
+@property(assign, nonatomic) AgoraEncodingPreference encodingPreference;
+@property(assign, nonatomic) AgoraCompressionPreference compressionPreference;
+@property(assign, nonatomic) BOOL encodeAlpha;
+@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -60,7 +65,27 @@
                         </ul>
                     </pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>encodingPreference</pt>
+                <pd>Video encoder preference. See <xref keyref="ENCODING_PREFERENCE"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>compressionPreference</pt>
+                <pd>Compression preference for video encoding. See <xref keyref="COMPRESSION_PREFERENCE"/>.</pd>
+            </plentry>
+                <plentry props="ios mac">
+                    <pt>encodeAlpha</pt>
+                    <pd>Whether to encode and send the Alpha data present in the video frame to the remote end:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Encode and send Alpha data.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: (Default) Do not encode and send Alpha data.</li>
+                        </ul></pd>
+                </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="detailed_desc"><dl outputclass="since"><dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl><p props="ios mac"/>
+        </section></refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_config_getappid">
     <title><ph keyref="GetAppId"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Retrieves the configured Agora App ID.</ph><ph id="shortdesc" props="android">Retrieves the set App ID.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Retrieves the configured Agora App ID.</ph><ph id="shortdesc" props="android">Retrieves the set App ID.</ph><ph id="shortdesc" props="ios mac">Gets the App ID you set.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,9 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">std::string GetAppId(Error *err = nullptr)</codeblock>
                 <codeblock props="android" outputclass="language-java">public String getAppId() throws RteException</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSString* _Nullable)appId:( AgoraRteError * _Nullable)error;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (NSString* _Nullable)appId:(AgoraRteError * _Nullable)error;</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
@@ -27,18 +29,27 @@
                     <dt>Since</dt>
                     <dd>Available since v4.4.0.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
             </dl>
+        <p props="ios mac"/>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
                     <pt>err</pt>
                     <pd>An output parameter. Status or error information. See <xref keyref="Error"/>.</pd>
                 </plentry>
+            <plentry conkeyref="SetConfigs_Rte/err" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -48,6 +59,9 @@
             </p>
             <p props="android">When the method call succeeds, returns the set App ID.
 When the method call fails, returns an empty string.</p>
-        </section>
+        <ul props="ios mac">
+                <li>The App ID you set, if the method call succeeds.</li>
+                <li>An empty string, if the method call fails.</li>
+                </ul></section>
     </refbody>
 </reference>

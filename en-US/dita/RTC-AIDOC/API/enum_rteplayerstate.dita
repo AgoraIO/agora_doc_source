@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_rteplayerstate">
     <title><ph keyref="RtePlayerState"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Player state.</ph><ph id="shortdesc" props="android">State of the media player.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Player state.</ph><ph id="shortdesc" props="android">State of the media player.</ph><ph id="shortdesc" props="ios mac">Player state.</ph></shortdesc>
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
             <dl outputclass="since">
@@ -14,9 +14,13 @@
                     <dt>Since</dt>
                     <dd>Available since v4.4.0.</dd>
                 </dlentry>
-            </dl>
+            <dlentry props="ios mac">
+                    <dt>Since</dt>
+                    <dd>Available since v4.4.0.</dd>
+                </dlentry>
+                </dl>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -83,7 +87,87 @@
                     <pt>FAILED</pt>
                     <pd>(7): Playback failed. This state is returned when an internal error occurs. After receiving this state, you need to call <xref keyref="Stop_Player"/> and then <xref keyref="OpenWithUrl"/> to reopen the resource.</pd>
                 </plentry>
-            </parml>
+            <plentry props="ios mac">
+                    <pt>kRtePlayerStateIdle</pt>
+                    <pd>(0): Idle state.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>kRtePlayerStateOpening</pt>
+                    <pd>(1): Opening URL resource. This state is entered after calling .</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>kRtePlayerStateOpenCompleted</pt>
+                    <pd>(2): URL resource opened successfully. This state is entered after  successfully opens the resource.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>kRtePlayerStatePlaying</pt>
+                    <pd>(3): Playing.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>kRtePlayerStatePaused</pt>
+                    <pd>(4): Playback paused. This state is entered after successfully calling .</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>kRtePlayerStatePlaybackCompleted</pt>
+                    <pd>(5): Playback completed.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>kRtePlayerStateStopped</pt>
+                    <pd>(6): Playback stopped. This state is entered after successfully calling .</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>kRtePlayerStateFailed</pt>
+                    <pd>(7): Failed state. Entered when an internal error occurs. After receiving this state, please call  first, then call  to reopen the resource.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerStateIdle</pt>
+                    <pd>(0): Idle state.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerStateOpening</pt>
+                    <pd>(1): Opening the URL resource. This state is triggered after <xref keyref="OpenWithUrl"/> is called.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerStateOpenCompleted</pt>
+                    <pd>(2): The URL resource is opened successfully. This state is triggered after <xref keyref="OpenWithUrl"/> succeeds.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerStatePlaying</pt>
+                    <pd>(3): Playing state.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerStatePaused</pt>
+                    <pd>(4): Playback is paused. This state is triggered after <xref keyref="Pause_Player"/> succeeds.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerStatePlaybackCompleted</pt>
+                    <pd>(5): Playback is complete.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerStateStopped</pt>
+                    <pd>(6): Playback is stopped. This state is triggered after <xref keyref="Pause_Player"/> succeeds.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>AgoraRtePlayerStateFailed</pt>
+                    <pd>(7): Playback fails. This state is triggered when an internal error occurs. After receiving this state, call <xref keyref="Pause_Player"/> first, and then call <xref keyref="OpenWithUrl"/> to reopen the resource.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt>IDLE</pt>
+                    <pd>(0): Idle state.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>OPENING</pt>
+                    <pd>(1): Opening the URL resource. This state is returned after calling .</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>OPEN_COMPLETED</pt>
+                    <pd>(2): URL resource successfully opened. This state is returned after  successfully opens the resource.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>PLAYING</pt>
+                    <pd>(3): Playing.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>PAUSED</pt>
+                    <pd>(4): Playback paused. This state is returned after successfully calling .</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>PLAYBACK_COMPLETED</pt>
+                    <pd>(5): Playback completed.</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>STOPPED</pt>
+                    <pd>(6): Playback stopped. This state is returned after successfully calling .</pd></plentry>
+                <plentry props="ios mac">
+                    <pt>FAILED</pt>
+                    <pd>(7): Playback failed. This state is returned when an internal error occurs. After receiving this state, you need to call  and then  to reopen the resource.</pd></plentry>
+                </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section></refbody>
 </reference>

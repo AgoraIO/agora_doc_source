@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_querycodeccapability">
     <title><ph keyref="queryCodecCapability"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Queries the video codec capabilities supported by the SDK.</ph><ph id="shortdesc" props="android">Queries the SDK's video codec capabilities.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Queries the video codec capabilities supported by the SDK.</ph><ph id="shortdesc" props="android">Queries the SDK's video codec capabilities.</ph><ph id="shortdesc" props="ios mac">Queries the video codec capabilities of the SDK.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,10 +15,16 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int queryCodecCapability(CodecCapInfo* codecInfo, int&amp; size) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract CodecCapInfo[] queryCodecCapability();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSArray &lt;AgoraVideoCodecCapInfo *&gt; *_Nullable)queryCodecCapability;</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"><dl outputclass="since"><dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.2.0</dd>
+            </dlentry>
+            </dl><p props="ios mac">Call this method before enabling H.265 to check whether the device supports the required codec capabilities. To check H.265 hardware encoding or H.265 hardware decoding support, inspect the returned <xref keyref="CodecCapInfo"/> whose <codeph>codecType</codeph> is <codeph>AgoraVideoCodecTypeH265</codeph>. The <codeph>codecCapMask</codeph> field indicates whether hardware encoding or hardware decoding is supported, and <codeph>codecCapLevels</codeph> indicates the supported hardware decoding capability level.</p>
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -29,9 +35,27 @@
                     <pt>size</pt>
                     <pd>Input and output parameter representing the size of the <codeph>codecInfo</codeph> array. You pass in the size of <codeph>codecInfo</codeph> when calling this method. After execution, this value is updated to the actual size of the returned <codeph>codecInfo</codeph> array.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>codecInfo</pt>
+                <pd>
+                        <p>Input and output parameter. An array representing the video codec capabilities of the SDK. See <xref keyref="CodecCapInfo"/>.</p>
+                        <ul>
+                            <li>Input value: One <apiname keyref="CodecCapInfo"/>defined by the user when executing this method, representing the video codec capability to be queried.</li>
+                            <li>Output value: The <apiname keyref="CodecCapInfo"/> after the method is executed, representing the actual video codec capabilities of the SDK.</li>
+                        </ul>
+                    </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>size</pt>
+                <pd props="cpp unreal bp unity cs">Input and output parameter, represent the size of the <apiname keyref="CodecCapInfo"/> array.<ul>
+                        <li>Input value: Size of the <apiname keyref="CodecCapInfo"/> defined by the user when executing the method.</li>
+                        <li>Output value: Size of the output <apiname keyref="CodecCapInfo"/> after this method is executed.</li>
+                        </ul> </pd>
+                <pd props="flutter">The size of <apiname keyref="CodecCapInfo"/>.</pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -40,6 +64,9 @@
                 </ul>
             </p>
             <p props="android">If the method call succeeds, it returns an array of <xref keyref="CodecCapInfo"/>, indicating the device's video encoding capabilities. If the method call times out, please modify your logic to avoid calling this method on the main thread.</p>
-        </section>
+        <ul props="ios mac">
+            <li>One <xref keyref="CodecCapInfo"/> array indicating the video encoding capability of the device, if the method call succeeds.</li>
+            <li>If the call timeouts, please modify the call logic and do not invoke the method in the main thread.</li>
+            </ul> </section>
     </refbody>
 </reference>

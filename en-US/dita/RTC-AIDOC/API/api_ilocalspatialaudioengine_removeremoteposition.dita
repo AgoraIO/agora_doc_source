@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ilocalspatialaudioengine_removeremoteposition">
     <title><ph keyref="removeRemotePosition"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Removes the spatial position information of the specified remote user.</ph><ph id="shortdesc" props="android">Removes the spatial position information of a specified remote user.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Removes the spatial position information of the specified remote user.</ph><ph id="shortdesc" props="android">Removes the spatial position information of a specified remote user.</ph><ph id="shortdesc" props="ios mac">Removes the spatial position of the specified remote user.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,13 +15,17 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int removeRemotePosition(uid_t uid) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int removeRemotePosition(int uid);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int) removeRemotePosition:(NSUInteger)uid;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)removeRemotePosition:(NSUInteger)uid NS_SWIFT_NAME(removeRemotePosition(_:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">After calling this method, the local user will no longer hear the specified remote user. After leaving the channel, to avoid wasting computing resources, it is recommended to call this method to remove the spatial position information of the remote user; otherwise, the information will be retained. When the number of remote users exceeds the maximum number of audio streams that can be received as set by <xref keyref="setMaxAudioRecvCount_ILocalSpatialAudioEngine"/>, the system will automatically unsubscribe from the audio stream of the farthest user based on relative distance.</p>
             <p props="android">After successfully calling this method, you will no longer hear the specified remote user's voice. After leaving the channel, to avoid wasting computing resources, it is recommended to call this method to remove the spatial position information of the specified remote user. Otherwise, the user's spatial position information will be retained. When the number of remote users exceeds the number of audio streams that can be received as set by <xref keyref="setMaxAudioRecvCount"/>, the system will automatically unsubscribe from the audio stream of the farthest user based on relative distance.</p>
+        <p props="ios mac">After successfully calling this method, the local user no longer hears the specified remote user.</p>
+            <p props="ios mac">After leaving the channel, to avoid wasting computing resources, call this method to delete the spatial position information of the specified remote user. Otherwise, the user's spatial position information will be saved continuously. When the number of remote users exceeds the number of audio streams that can be received as set in <xref keyref="setMaxAudioRecvCount"/>, the system automatically unsubscribes from the audio stream of the user who is furthest away based on relative distance.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -32,9 +36,13 @@
                     <pt>uid</pt>
                     <pd><codeph>uid</codeph>. This parameter must be the same as the user ID passed in when the user joined the channel.</pd>
                 </plentry>
+            <plentry id="uid" props="ios mac">
+                <pt>uid</pt>
+                <pd>The user ID. This parameter must be the same as the user ID passed in when the user joined the channel.</pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -48,6 +56,9 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

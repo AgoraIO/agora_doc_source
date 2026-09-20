@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_rtmpstreamingevent">
     <title><ph keyref="RTMP_STREAMING_EVENT"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Events during RTMP streaming.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Events during RTMP streaming.</ph><ph id="shortdesc" props="ios mac">Events during the Media Push.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -23,7 +23,23 @@
                     <pt>RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN</pt>
                     <pd>(4): Reserved field.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="RTMP_STREAMING_EVENT_FAILED_LOAD_IMAGE"/></pt>
+                <pd>1: An error occurs when you add a background image or a watermark image in the Media Push.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE"/></pt>
+                <pd>2: The streaming URL is already being used for Media Push. If you want to start new streaming, use a new streaming URL.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT"/></pt>
+                <pd>3: The feature is not supported.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN"/></pt>
+                <pd>4: Reserved.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

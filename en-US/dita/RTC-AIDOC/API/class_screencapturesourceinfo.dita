@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencapturesourceinfo">
     <title><ph keyref="ScreenCaptureSourceInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes information about shareable windows or screens.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes information about shareable windows or screens.</ph><ph id="shortdesc" props="ios mac">The information about the specified shareable window or screen. The information is returned in .</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -23,12 +23,25 @@
 #else
 #endif
 };</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureSourceInfo : NSObject
+@property(assign, nonatomic) AgoraScreenCaptureSourceType type;
+@property(assign, nonatomic) CGWindowID sourceId;
+@property(copy, nonatomic) NSString* _Nonnull sourceName;
+@property(strong, nonatomic) NSImage* _Nonnull thumbImage;
+@property(strong, nonatomic) NSImage* _Nullable iconImage;
+@property(copy, nonatomic) NSString* _Nonnull processPath;
+@property(copy, nonatomic) NSString* _Nonnull sourceTitle;
+@property(assign, nonatomic) CGRect position;
+@property(assign, nonatomic) BOOL primaryMonitor;
+
+@end
+</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
             <p props="cpp">This information is returned by <xref keyref="IScreenCaptureSourceList"/>.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -97,6 +110,56 @@
                         <note>(Windows only)</note>
                     </pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>type</pt>
+                <pd>The type of the shared target. See <xref keyref="ScreenCaptureSourceType"/>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>sourceId</pt>
+                <pd>The window ID for a window or the display ID for a screen.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>sourceName</pt>
+                <pd>The name of the window or screen. UTF-8 encoding.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>thumbImage</pt>
+                <pd><ph>The image content of the thumbnail. </ph><ph>See <xref keyref="ThumbImageBuffer" props="cpp unreal bp electron unity rn flutter"/><xref keyref="nsimage-link" props="mac"/></ph>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>iconImage</pt>
+                <pd><ph>The image content of the icon. </ph><ph>See <xref keyref="ThumbImageBuffer" props="cpp unreal bp electron unity rn flutter"/><xref keyref="nsimage-link" props="mac"/></ph>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>processPath</pt>
+                <pd>The process to which the window belongs. UTF-8 encoding.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>sourceTitle</pt>
+                <pd>The title of the window. UTF-8 encoding.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>primaryMonitor</pt>
+                <pd>Determines whether the screen is the primary display:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: The screen is the primary display.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: The screen is not the primary display.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>position</pt>
+                <pd><ph>The position of a window relative to the entire screen space (including all shareable screens). </ph><ph props="cpp unreal bp unity electron flutter">See <xref keyref="Rectangle"/>. </ph><ph props="mac">See <xref keyref="rect-link"/>.</ph></pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>minimizeWindow</pt>
+                <pd>(For Windows only) Whether the window is minimized:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: The window is minimized.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: The window is not minimized.</li>
+                    </ul></pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>sourceDisplayId</pt>
+                <pd>(For Windows only) Screen ID where the window is located. If the window is displayed across multiple screens, this parameter indicates the ID of the screen with which the window has the largest intersection area. If the window is located outside of the visible screens, the value of this member is -2.</pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

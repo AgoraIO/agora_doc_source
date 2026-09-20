@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudioframeobserver_getplaybackaudioparams">
     <title><ph keyref="getPlaybackAudioParams"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="android">Sets the data format for the <xref keyref="onPlaybackAudioFrame"/> callback.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Sets the data format for the <xref keyref="onPlaybackAudioFrame"/> callback.</ph><ph id="shortdesc" props="ios mac">Sets the audio format for the  callback.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,15 +14,21 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract AudioParams getPlaybackAudioParams()</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraAudioParams* _Nonnull)getPlaybackAudioParams NS_SWIFT_NAME(getPlaybackAudioParams());</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">You need to register the callback when calling the <xref keyref="registerAudioFrameObserver"/> method. After successfully registering the audio observer, the SDK triggers this callback. You can set the audio format in the return value of this callback.</p>
             <note props="android">The SDK calculates the sampling interval based on the <xref keyref="AudioParams"/> you set in the return value and triggers the <xref keyref="onPlaybackAudioFrame"/> callback accordingly. The formula for calculating the sampling interval is: Sampling interval (seconds) = <codeph>samplePerCall</codeph> / (<codeph>sampleRate</codeph> × <codeph>channel</codeph>). Make sure the sampling interval is ≥ 0.01 seconds.</note>
-        </section>
-        <section id="return_values" props="android">
+        <p props="ios mac">You need to register the callback when calling the <xref keyref="registerAudioFrameObserver"/> method. After you successfully register the audio observer, the SDK triggers this callback, and you can set the audio format in the return value of this callback.</p>
+            <note type="attention" props="ios mac">
+            <p>The SDK triggers the <apiname keyref="onPlaybackAudioFrame"/> callback with the <xref keyref="AudioParams"/> calculated sampling interval you set in the return value. The calculation formula is <equation-inline>Sample interval (sec) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>.</p>
+            <p>Ensure that the sample interval ≥ 0.01 (s).</p>
+            </note> </section>
+        <section id="return_values" props="android ios mac">
             <title>Return Values</title>
             <p props="android">Returns an <xref keyref="AudioParams"/> object upon successful method call. See <xref keyref="AudioParams"/>.</p>
+        <p props="ios mac">The audio data for playback, see <xref keyref="AudioParams"/>.</p>
         </section>
     </refbody>
 </reference>

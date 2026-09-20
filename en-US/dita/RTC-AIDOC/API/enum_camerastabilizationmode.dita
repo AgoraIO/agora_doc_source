@@ -2,12 +2,17 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_camerastabilizationmode">
     <title><ph keyref="CAMERA_STABILIZATION_MODE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Camera stabilization mode.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Camera stabilization mode.</ph><ph id="shortdesc" props="ios mac">Camera stabilization modes.</ph></shortdesc>
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
             <p props="cpp">Stabilization strength increases in order: 1 &lt; 2 &lt; 3, and so does latency.</p>
+        <dl outputclass="since"><dlentry props="ios mac">
+                    <dt>Since</dt>
+                    <dd>v4.3.1</dd>
+                </dlentry>
+            </dl><p props="ios mac">The camera stabilization effect increases in the order of 1 &lt; 2 &lt; 3, and the latency will also increase accordingly.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -34,7 +39,27 @@
                     <pt>CAMERA_STABILIZATION_MODE_MAX_LEVEL</pt>
                     <pd>Maximum level of camera stabilization mode.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                    <pt><ph keyref="CAMERA_STABILIZATION_MODE_OFF"/></pt>
+                    <pd>-1: (Default) Camera stabilization mode off.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt><ph keyref="CAMERA_STABILIZATION_MODE_AUTO"/></pt>
+                    <pd>0: Automatic camera stabilization. The system automatically selects a stabilization mode based on the status of the camera. However, the latency is relatively high in this mode, so it is recommended not to use this enumeration.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt><ph keyref="CAMERA_STABILIZATION_MODE_LEVEL_1"/></pt>
+                    <pd>1: (Recommended) Level 1 camera stabilization.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt><ph keyref="CAMERA_STABILIZATION_MODE_LEVEL_2"/></pt>
+                    <pd>2: Level 2 camera stabilization.</pd>
+                </plentry>
+                <plentry props="ios mac">
+                    <pt><ph keyref="CAMERA_STABILIZATION_MODE_LEVEL_3"/></pt>
+                    <pd>3: Level 3 camera stabilization.</pd>
+                </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section></refbody>
 </reference>

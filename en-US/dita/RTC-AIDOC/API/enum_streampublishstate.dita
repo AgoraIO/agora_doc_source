@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_streampublishstate">
     <title><ph keyref="STREAM_PUBLISH_STATE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Publish state.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Publish state.</ph><ph id="shortdesc" props="ios mac">The publishing state.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -30,7 +30,30 @@
                     <pt>PUB_STATE_PUBLISHED</pt>
                     <pd>(3): Local stream published successfully.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="PUB_STATE_IDLE"/></pt>
+                <pd>0: The initial publishing state after joining the channel.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="PUB_STATE_NO_PUBLISHED"/></pt>
+                <pd>
+                    <p>1: Fails to publish the local stream.  Possible reasons:<ul id="ul_yvl_nwk_p4b">
+                    <li>The local user calls <xref keyref="muteLocalAudioStream"/>(<codeph><ph keyref="true"/></codeph>) or <xref keyref="muteLocalVideoStream"/>(<codeph><ph keyref="true"/></codeph>) to stop sending local media streams.</li>
+                    <li>The local user calls <xref keyref="disableAudio"/> or <xref keyref="disableVideo"/> to disable the local audio or video module.</li>
+                    <li>The local user calls <xref keyref="enableLocalAudio"/>(<codeph><ph keyref="false"/></codeph>) or <xref keyref="enableLocalVideo"/>(<codeph><ph keyref="false"/></codeph>) to disable the local audio or video capture.</li>
+                    <li>The role of the local user is audience.</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="PUB_STATE_PUBLISHING"/></pt>
+                <pd>2: Publishing.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="PUB_STATE_PUBLISHED"/></pt>
+                <pd>3: Publishes successfully.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

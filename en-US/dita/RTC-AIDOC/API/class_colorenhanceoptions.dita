@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_colorenhanceoptions">
     <title><ph keyref="ColorEnhanceOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Color enhancement configuration options.</ph><ph id="shortdesc" props="android">Used to configure color enhancement effects.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Color enhancement configuration options.</ph><ph id="shortdesc" props="android">Used to configure color enhancement effects.</ph><ph id="shortdesc" props="ios mac">The color enhancement options.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -14,6 +14,11 @@
   public float strengthLevel;
   public float skinProtectLevel;
 }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraColorEnhanceOptions : NSObject
+@property(nonatomic, assign) float strengthLevel;
+@property(nonatomic, assign) float skinProtectLevel;
+@end
+</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
@@ -26,9 +31,13 @@
                     <dt>Since</dt>
                     <dd>Added since v3.6.2.</dd>
                 </dlentry>
-            </dl>
+            <dlentry props="ios mac">
+                    <dt>Since</dt>
+                    <dd>Added since v4.0.0.</dd>
+                </dlentry>
+                </dl>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -71,6 +80,15 @@
                             <li>Higher skin protection levels may slightly reduce the color enhancement effect.</li>
                         </ul><ph>To achieve the best result, you are advised to adjust <codeph>strengthLevel</codeph> and <codeph>skinProtectLevel</codeph> based on actual needs.</ph></pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>strengthLevel</pt>
+                <pd>The level of color enhancement. The value range is [0.0, 1.0]. <codeph>0.0</codeph> is the default value, which means no color enhancement is applied to the video. The higher the value, the higher the level of color enhancement. The default value is <codeph>0.5</codeph>.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>skinProtectLevel</pt>
+                <pd><p>The level of skin tone protection. The value range is [0.0, 1.0]. <codeph>0.0</codeph> means no skin tone protection. The higher the value, the higher the level of skin tone protection. The default value is <codeph>1.0</codeph>.</p>
+                    <p><ul><li>When the level of color enhancement is higher, the portrait skin tone can be significantly distorted, so you need to set the level of skin tone protection.</li><li>When the level of skin tone protection is higher, the color enhancement effect can be slightly reduced.</li></ul>Therefore, to get the best color enhancement effect, Agora recommends that you adjust <parmname>strengthLevel</parmname> and <parmname>skinProtectLevel</parmname> to get the most appropriate values.</p> </pd>
+            </plentry>
             </parml>
         </section>
     </refbody>

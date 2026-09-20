@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setremotedefaultvideostreamtype">
     <title><ph keyref="setRemoteDefaultVideoStreamType"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the default video stream type to subscribe to.</ph><ph id="shortdesc" props="android">Sets the default video stream type to subscribe to.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the default video stream type to subscribe to.</ph><ph id="shortdesc" props="android">Sets the default video stream type to subscribe to.</ph><ph id="shortdesc" props="ios mac">Sets the default video stream type to subscribe to.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,9 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteDefaultVideoStreamType(VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int setRemoteDefaultVideoStreamType(Constants.VideoStreamType streamType);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteDefaultVideoStreamType:(AgoraVideoStreamType)streamType;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)setRemoteDefaultVideoStreamType:(AgoraVideoStreamType)streamType NS_SWIFT_NAME(setRemoteDefaultVideoStreamType(_:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">Depending on the sender's default behavior and the settings when calling <codeph>setDualStreamMode</codeph>, the receiving client can call this method in the following scenarios:
@@ -32,13 +34,19 @@
                 </ul><ph>The SDK dynamically adjusts the resolution of the corresponding video stream based on the size of the video window to save bandwidth and computing resources. The default aspect ratio of the low-quality stream is the same as that of the high-quality stream. The system automatically allocates the resolution, frame rate, and bitrate of the low-quality stream based on the current aspect ratio of the high-quality stream.</ph></p>
             <note props="cpp">If you call both this method and <xref keyref="setRemoteVideoStreamType"/>, the setting in <xref keyref="setRemoteVideoStreamType"/> takes precedence.</note>
             <note props="android">If you call both this method and <codeph>setRemoteVideoStreamType</codeph>, the settings in <codeph>setRemoteVideoStreamType</codeph> take precedence.</note>
+        <dl outputclass="since"><dlentry props="ios mac">
+                <dt>Deprecated:</dt>
+                <dd>This method is deprecated as of v4.4.0. Use <xref keyref="setRemoteDefaultVideoStreamType2"/> instead.</dd>
+            </dlentry>
+            </dl><p conkeyref="setRemoteVideoStreamType/desc1" props="ios mac"/>
+            <p conkeyref="setRemoteVideoStreamType/desc2" props="ios mac"/>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
             <p props="cpp">Call this method before joining a channel.</p>
             <p props="android">Call this method before joining a channel. The SDK does not support changing the default subscribed video stream type after joining a channel.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -49,9 +57,19 @@
                     <pt>streamType</pt>
                     <pd>Video stream type. See <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>streamType</pt>
+                <pd id="defaultstreamtype">
+                    <p props="hmos apple cpp framework">The default video-stream type. See <xref keyref="VIDEO_STREAM_TYPE"/>.</p>
+                    <p props="android">The default video-stream type:<ul>
+                    <li><ph keyref="VIDEO_STREAM_HIGH"/>(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
+                    <li><ph keyref="VIDEO_STREAM_LOW"/>(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>
+                    </ul> </p>
+                </pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -65,6 +83,9 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        </section>
+        <ul props="ios mac">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            </ul> </section>
     </refbody>
 </reference>

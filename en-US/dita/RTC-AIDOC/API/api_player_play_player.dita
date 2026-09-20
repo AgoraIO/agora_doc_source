@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_player_play_player">
     <title><ph keyref="Play_Player"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Plays a URL resource.</ph><ph id="shortdesc" props="android">Plays a URL resource.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Plays a URL resource.</ph><ph id="shortdesc" props="android">Plays a URL resource.</ph><ph id="shortdesc" props="ios mac">Plays a URL.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,6 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">bool Play(Error *err = nullptr)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void play() throws RteException</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)play:(AgoraRteError * _Nullable)error;</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -27,10 +28,15 @@
                     <dt>Since</dt>
                     <dd>Available since v4.4.0.</dd>
                 </dlentry>
+            <dlentry props="ios mac">
+                <dt>Since</dt>
+                <dd>v4.5.0</dd>
+            </dlentry>
             </dl>
             <p props="android">If you have disabled autoplay, you can call this method to start playback after successfully opening an online media stream using <xref keyref="OpenWithUrl"/>.</p>
             <note props="cpp">This method currently only supports URLs that start with <codeph>rte://</codeph>.</note>
             <note props="android">This method currently supports only URLs prefixed with <codeph>rte://</codeph>.</note>
+        <p props="ios mac">If you have disabled autoplay, when you successfully open a live stream through a URL by calling <xref keyref="OpenWithUrl"/>, you can call this method to play the stream.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
@@ -41,20 +47,24 @@
             <title>Related Callbacks</title>
             <p props="android">After successfully calling this method, the <xref keyref="onStateChanged"/> callback is triggered to report the player status.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
                     <pt>err</pt>
                     <pd>Output parameter, status or error information. See <xref keyref="Error"/>.</pd>
                 </plentry>
+            <plentry conkeyref="SetConfigs_Rte/err" props="ios mac">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml>
         </section>
         <section id="exception" props="android">
             <title>Exceptions</title>
             <p props="android">When the method call fails, the SDK throws an <xref keyref="RteException"/> containing the corresponding error information. You need to catch and handle the exception.</p>
         </section>
-        <section id="return_values" props="cpp">
+        <section id="return_values" props="cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">Indicates whether playback is successful:
                 <ul>
@@ -62,6 +72,10 @@
                     <li><xref keyref="false"/>: Playback failed.</li>
                 </ul>
             </p>
-        </section>
+        <p props="ios mac">Whether the playing is successful:<ul>
+                <li><codeph><ph keyref="true"/></codeph>: The playing succeeds.</li>
+                <li><codeph><ph keyref="false"/></codeph>: The playing fails.</li>
+                </ul>
+            </p> </section>
     </refbody>
 </reference>

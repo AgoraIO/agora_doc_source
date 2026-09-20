@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_mediasourcetype">
     <title><ph keyref="MEDIA_SOURCE_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Type of media source.</ph><ph id="shortdesc" props="android">Media source type.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Type of media source.</ph><ph id="shortdesc" props="android">Media source type.</ph><ph id="shortdesc" props="ios mac">Media source type.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -127,7 +127,35 @@
                     <pt>UNKNOWN_MEDIA_SOURCE</pt>
                     <pd>(100): Unknown media source.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="AUDIO_PLAYOUT_SOURCE"/></pt>
+                <pd>0: Audio playback device.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="AUDIO_RECORDING_SOURCE"/></pt>
+                <pd>1: Audio capturing device.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                    <pt><ph keyref="PRIMARY_CAMERA_SOURCE"/></pt>
+                    <pd>2: The primary camera.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                    <pt><ph keyref="SECONDARY_CAMERA_SOURCE"/></pt>
+                    <pd>3: A secondary camera.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                    <pt><ph keyref="CUSTOM_VIDEO_SOURCE"/></pt>
+                    <pd>6: Custom video source.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                    <pt><ph keyref="SPEECH_DRIVEN_VIDEO_SOURCE"/></pt>
+                    <pd>13: Video processed by the speech driven extension.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                    <pt><ph keyref="UNKNOWN_MEDIA_SOURCE"/></pt>
+                    <pd>100: Unknown media source.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

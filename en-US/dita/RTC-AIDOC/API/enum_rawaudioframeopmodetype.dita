@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_rawaudioframeopmodetype">
     <title><ph keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Usage mode of audio data.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Usage mode of audio data.</ph><ph id="shortdesc" props="ios mac">The use mode of the audio data.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -15,7 +15,19 @@
                     <pt>RAW_AUDIO_FRAME_OP_MODE_READ_WRITE</pt>
                     <pd>(2): Read-write mode. You read data from <xref keyref="AudioFrame"/>, modify it, and then play it. For example, you use your own audio effect processing module for voice preprocessing, such as voice changing.</pd>
                 </plentry>
-            </parml>
+            <plentry props="ios mac">
+  <pt><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_ONLY"/></pt>
+  <pd>0: Read-only mode, <ph props="cpp">the user only read the original data from <xref keyref="AudioFrame"/> without any modification. </ph><ph props="electron">Users only read the data returned by the SDK without modifying anything. </ph>For example, when users acquire the data with the Agora SDK, then start the media push.</pd>
+       </plentry>
+       <plentry props="ios mac">
+  <pt><ph keyref="RAW_AUDIO_FRAME_OP_MODE_WRITE_ONLY"/></pt>
+  <pd>1: Write-only mode, Users<ph props="cpp">replace the data from <xref keyref="AudioFrame"/> with their own data and pass the data to the SDK for encoding. </ph><ph props="electron">Users replace the returned data with their own data and pass the data to the SDK for encoding. </ph>For example, when users acquire the data.</pd>
+       </plentry>
+       <plentry props="ios mac">
+  <pt><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_WRITE"/></pt>
+  <pd>2: Read and write mode, <ph props="cpp">Users read the data from <xref keyref="AudioFrame"/>, modify it, and then play it. </ph><ph props="electron">Users read the data returned by the SDK, modify it, and then play it. </ph>For example, when users have their own audio-effect processing module and perform some voice preprocessing, such as a voice change.</pd>
+       </plentry>
+   </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

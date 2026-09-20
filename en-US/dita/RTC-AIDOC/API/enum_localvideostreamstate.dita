@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_localvideostreamstate">
     <title><ph keyref="LOCAL_VIDEO_STREAM_STATE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">The state of the local video stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">The state of the local video stream.</ph><ph id="shortdesc" props="ios mac">Local video state types.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp">
+        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -23,7 +23,23 @@
                     <pt>LOCAL_VIDEO_STREAM_STATE_FAILED</pt>
                     <pd>(3): Failed to start local video.</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="LOCAL_VIDEO_STREAM_STATE_STOPPED"/></pt>
+                <pd>0: The local video is in the initial state.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/></pt>
+                <pd>1: The local video capturing device starts successfully. <ph props="android cpp unreal bp unity cs">The SDK also reports this state when you call <xref keyref="startScreenCaptureByWindowId"/> to share a maximized window.</ph></pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="LOCAL_VIDEO_STREAM_STATE_ENCODING"/></pt>
+                <pd>2: The first video frame is successfully encoded.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt><ph keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/></pt>
+                <pd>3: Fails to start the local video.</pd>
+            </plentry>
             </parml>
         </section>
-    </refbody>
+    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
 </reference>

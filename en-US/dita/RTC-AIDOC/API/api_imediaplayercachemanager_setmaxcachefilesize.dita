@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayercachemanager_setmaxcachefilesize">
     <title><ph keyref="setMaxCacheFileSize"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the maximum total storage size for cached media files.</ph><ph id="shortdesc" props="android">Sets the maximum total storage size for cached media files.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the maximum total storage size for cached media files.</ph><ph id="shortdesc" props="android">Sets the maximum total storage size for cached media files.</ph><ph id="shortdesc" props="ios mac">Sets the maximum size of the aggregate storage space for cached media files.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,10 +15,12 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setMaxCacheFileSize(int64_t cacheSize) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">int setMaxCacheFileSize(long cacheSize);</codeblock>
-            </p>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setMaxCacheFileSize:(NSInteger)cacheSize;</codeblock>
+            <codeblock props="ios" outputclass="language-objectivec">- (int)setMaxCacheFileSize:(NSInteger)cacheSize NS_SWIFT_NAME(setMaxCacheFileSize(_:));</codeblock>
+                </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
-        <section id="parameters" deliveryTarget="details" props="android cpp">
+        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -29,9 +31,13 @@
                     <pt>cacheSize</pt>
                     <pd>The maximum total storage size for cached media files, in bytes. (Default is 1 GB.)</pd>
                 </plentry>
+            <plentry props="ios mac">
+                <pt>cacheSize</pt>
+                <pd>The maximum size (bytes) of the aggregate storage space for cached media files. The default value is 1 GB.</pd>
+            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp">
+        <section id="return_values" props="android cpp ios mac">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -45,6 +51,12 @@
                     <li>&lt; 0: Failure. See <xref keyref="MEDIA_PLAYER_REASON"/>.</li>
                 </ul>
             </p>
-        </section>
+        <p props="ios mac">
+                <ul>
+                    <li>0: Success.</li>
+                    <li>&lt; 0: Failure. See <xref keyref="MEDIA_PLAYER_REASON"/>.</li>
+                </ul>
+            </p>
+            </section>
     </refbody>
 </reference>
