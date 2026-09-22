@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getfaceshapeareaoptions2">
     <title><ph keyref="getFaceShapeAreaOptions2"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="android">Retrieves the current settings options for the beauty effect area.</ph><ph id="shortdesc" props="ios mac">Gets the facial beauty area options.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Retrieves the current settings options for the beauty effect area.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,7 +14,6 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract FaceShapeAreaOptions getFaceShapeAreaOptions(int shapeArea);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraFaceShapeAreaOptions * _Nullable)getFaceShapeAreaOptions:(AgoraFaceShapeArea) area NS_SWIFT_NAME(getFaceShapeAreaOptions(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -24,13 +23,11 @@
             <title>Scenario</title>
             <p>When users open the beauty area and reshaping intensity menus in the app, you can call this method to get the current beauty effect options, then refresh the menu in the UI and update the interface accordingly.</p>
         </section>
-        <section id="timing" deliveryTarget="details" props="android ios mac">
+        <section id="timing" deliveryTarget="details" props="android">
             <title>Timing</title>
-            <p props="ios">Call this method after calling <xref keyref="enableVideo"/>.</p>
             <p props="android">Call this method after calling <xref keyref="enableVideo"/>.</p>
-            <p props="mac">Call this method after calling <xref keyref="enableVideo"/>.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android ios mac">
+        <section id="parameters" deliveryTarget="details" props="android">
             <title>Parameters</title>
             <parml>
                 <plentry props="android">
@@ -69,13 +66,9 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry conkeyref="getFaceShapeAreaOptions/area" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android ios mac">
+        <section id="return_values" props="android">
             <title>Return Values</title>
             <p props="android">
                 <ul>
@@ -83,9 +76,6 @@
                     <li>If the method call fails, returns <codeph>null</codeph>.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>A pointer to the <apiname keyref="FaceShapeAreaOptions"/> instance, if the method call succeeds.</li>
-            <li> <ph keyref="NULL"/> is returned, if the method call fails.</li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideoeffectobject_addorupdatevideoeffect">
     <title><ph keyref="addOrUpdateVideoEffect"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Adds or updates the effect of the specified video effect node and template.</ph><ph id="shortdesc" props="android">Adds or updates a video effect for the specified video effect node ID and template.</ph><ph id="shortdesc" props="ios mac">Adds or updates the video effect for the specified node ID and template.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Adds or updates the effect of the specified video effect node and template.</ph><ph id="shortdesc" props="android">Adds or updates a video effect for the specified video effect node ID and template.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,12 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int addOrUpdateVideoEffect(uint32_t nodeId, const char* templateName) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">int addOrUpdateVideoEffect(int nodeId, String templateName);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)addOrUpdateVideoEffectWithNodeId:(NSUInteger)nodeId
-                          templateName:(NSString *)templateName</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)addOrUpdateVideoEffectWithNodeId:(NSUInteger)nodeId
-                          templateName:(NSString *)templateName
-NS_SWIFT_NAME(addOrUpdateVideoEffect(nodeId:templateName:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
@@ -31,10 +26,6 @@ NS_SWIFT_NAME(addOrUpdateVideoEffect(nodeId:templateName:));</codeblock>
                 <dlentry props="android">
                     <dt>Since</dt>
                     <dd>Available since v4.6.0.</dd>
-                </dlentry>
-            <dlentry props="ios mac">
-                <dt>Since:</dt>
-                <dd props="native">Available since v4.6.0.</dd>
                 </dlentry>
             </dl>
             <note props="cpp">Priority rules:
@@ -53,17 +44,8 @@ addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codebloc
                 <codeblock outputclass="language-java">removeVideoEffect(`STYLE_MAKEUP`);
 addOrUpdateVideoEffect(`FILTER`, "template name");</codeblock>
             </note>
-        <p props="ios mac"/>
-            <note type="attention" props="ios mac">Priority rules:
-                    <ul>
-                        <li>The <ph keyref="STYLE_MAKEUP"/> node takes precedence over the <ph keyref="FILTER"/> parameter.</li>
-                        <li>To apply the <ph keyref="FILTER"/> parameter, you must first remove the <ph keyref="STYLE_MAKEUP"/> node:
-<codeblock outputclass="language-cpp">removeVideoEffect(VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP);
-addOrUpdateVideoEffect(VIDEO_EFFECT_NODE_ID::FILTER, "template name");</codeblock></li>
-                        </ul>
-                    </note>
-            </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -88,34 +70,9 @@ Example:
                     <pt>templateName</pt>
                     <pd>Name of the effect template. If set to <codeph>null</codeph> or an empty string, the SDK loads the default parameter configuration from the resource package.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt props="android cpp">nodeId</pt>
-                <pt props="apple">nodeId</pt>
-                <pd props="android">The unique identifier or combination of identifiers for the video effect node. See <xref keyref="VIDEO_EFFECT_NODE_ID"/>.</pd>
-                <pd props="apple">The unique identifier or combination of identifiers for the video effect node. Examples:
-                    <ul>
-                        <li>Single effect: <codeph>VIDEO_EFFECT_NODE_ID::BEAUTY</codeph></li>
-                        <li>Combined effects: <codeph>VIDEO_EFFECT_NODE_ID::BEAUTY | VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph>.</li>
-                        </ul>
-                    </pd>
-                <pd props="cpp">The unique identifier or combination of identifiers for the video effect node. See <xref keyref="VIDEO_EFFECT_NODE_ID"/>.
-Examples:
-                    <ul>
-                        <li>Single effect: <codeph>VIDEO_EFFECT_NODE_ID::BEAUTY</codeph></li>
-                        <li>Combined effects: <codeph>VIDEO_EFFECT_NODE_ID::BEAUTY | VIDEO_EFFECT_NODE_ID::STYLE_MAKEUP</codeph></li>
-                        </ul>
-                    </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="android cpp">templateName</pt>
-                <pt props="apple">templateName</pt>
-                <pd props="android">The name of the effect template. If set to null or an empty string, the SDK loads the default parameter configuration from the resource package.</pd>
-                <pd props="apple">The name of the effect template. If set to null or an empty string, the SDK automatically loads the default parameter configuration from the resource package.</pd>
-                <pd props="cpp">The name of the effect template. If set to null or an empty string, the SDK loads the default configuration from the resource package.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -129,11 +86,6 @@ Examples:
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <p props="ios mac"><ul>
-                        <li>0: Success.</li>
-                        <li>&lt; 0: Failure.</li>
-                        </ul>
-                    </p>
         </section>
     </refbody>
 </reference>
