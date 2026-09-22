@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setaudioeffectpreset">
     <title><ph keyref="setAudioEffectPreset"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the SDK's preset audio effects.</ph><ph id="shortdesc" props="android">Sets the SDK's preset audio effects.</ph><ph id="shortdesc" props="ios mac">Sets an SDK preset audio effect.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the SDK's preset audio effects.</ph><ph id="shortdesc" props="android">Sets the SDK's preset audio effects.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,17 +15,11 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioEffectPreset(AUDIO_EFFECT_PRESET preset) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int setAudioEffectPreset(int preset);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioEffectPreset:(AgoraAudioEffectPreset)preset;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)setAudioEffectPreset:(AgoraAudioEffectPreset)preset NS_SWIFT_NAME(setAudioEffectPreset(_:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
                 <dlentry props="android">
-                    <dt>Since</dt>
-                    <dd>Available since v3.2.0.</dd>
-                </dlentry>
-            <dlentry props="ios mac">
                     <dt>Since</dt>
                     <dd>Available since v3.2.0.</dd>
                 </dlentry>
@@ -78,14 +72,13 @@ To achieve better voice effects, it is recommended to call the following methods
                     <li>This method depends on the voice beautifier dynamic library <xref keyref="audiobeauty"/>. If this library is deleted, the feature cannot be enabled properly.</li>
                 </ul>
             </note>
-        <p props="ios mac">Call this method to set an SDK preset audio effect for the local user who sends an audio stream. This audio effect does not change the gender characteristics of the original voice. After setting an audio effect, all users in the channel can hear the effect.</p>
-            </section>
+        </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
             <p props="cpp">You can call this method before or after joining a channel.</p>
             <p props="android">You can call this method before or after joining a channel.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -120,39 +113,9 @@ To achieve better voice effects, it is recommended to call the following methods
                         </ul>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>preset</pt>
-                <pd props="ios mac cpp unreal bp unity flutter rn electron cs">The options for SDK preset audio effects. See <xref keyref="AUDIO_EFFECT_PRESET"/>.</pd>
-                <pd props="android hmos">Preset audio effects.<ul>
-                    <li><ph keyref="AUDIO_EFFECT_OFF"/>: Turn off audio effects and use the original voice.</li>
-                    <li><ph keyref="ROOM_ACOUSTICS_KTV"/>: The reverberation style typical of a KTV venue.</li>
-                    <li><ph keyref="ROOM_ACOUSTICS_VOCAL_CONCERT"/>: The reverberation style typical of a concert hall.</li>
-                    <li><ph keyref="ROOM_ACOUSTICS_STUDIO"/>: The reverberation style typical of a recording studio.</li>
-                    <li><ph keyref="ROOM_ACOUSTICS_PHONOGRAPH"/>: The reverberation style typical of the vintage phonograph.</li>
-                    <li><ph keyref="ROOM_ACOUSTICS_VIRTUAL_STEREO"/>: A virtual stereo effect that renders monophonic audio as stereo audio. Before using this preset, set the <parmname>profile</parmname> parameter of <xref keyref="setAudioProfile2"/> to <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/>(4) or <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) ; otherwise, the preset setting is invalid.</li>
-                    <li><ph keyref="ROOM_ACOUSTICS_SPACIAL"/>: A more spatial audio effect.</li>
-                    <li><ph keyref="ROOM_ACOUSTICS_ETHEREAL"/>: A more ethereal audio effect.</li>
-                    <li><ph keyref="ROOM_ACOUSTICS_VIRTUAL_SURROUND_SOUND"/>: <ph>Virtual surround sound, that is, the SDK generates a simulated surround sound field on the basis of stereo channels, thereby creating a surround sound effect.</ph><note type="attention">If the virtual surround sound is enabled, users need to use stereo audio playback devices to hear the anticipated audio effect.</note></li>
-                    <li><ph keyref="ROOM_ACOUSTICS_CHORUS"/>: A chorus audio effect. Agora recommends using this effect in chorus scenarios to enhance the sense of depth and dimension in the vocals.</li>
-                    <li><ph keyref="ROOM_ACOUSTICS_3D_VOICE"/>: A 3D voice effect that makes the voice appear to be moving around the user. The default cycle period is 10 seconds. After setting this effect, you can call <xref keyref="setAudioEffectParameters"/> to modify the movement period.<ul>
-                        <li>Before using this preset, set the <parmname>profile</parmname> parameter of <xref keyref="setAudioProfile2"/> to <ph keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/>(3) or <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5); otherwise, the preset setting is invalid.</li>
-                        <li>If the 3D voice effect is enabled, users need to use stereo audio playback devices to hear the anticipated voice effect.</li>
-                        </ul></li>
-                    <li><ph keyref="VOICE_CHANGER_EFFECT_UNCLE"/>: The reverberation style typical of an uncle's voice. Agora recommends using this preset to process a male-sounding voice; otherwise, you may not hear the anticipated voice effect.</li>
-                    <li><ph keyref="VOICE_CHANGER_EFFECT_OLDMAN"/>: The voice of an old man. Agora recommends using this preset to process a male-sounding voice; otherwise, you may not hear the anticipated voice effect.</li>
-                    <li><ph keyref="VOICE_CHANGER_EFFECT_BOY"/>: The voice of a boy. Agora recommends using this preset to process a male-sounding voice; otherwise, you may not hear the anticipated voice effect.</li>
-                    <li><ph keyref="VOICE_CHANGER_EFFECT_SISTER"/>: The voice of a young woman. Agora recommends using this preset to process a female-sounding voice; otherwise, you may not hear the anticipated voice effect.</li>
-                    <li><ph keyref="VOICE_CHANGER_EFFECT_GIRL"/>: The voice of a girl. Agora recommends using this preset to process a female-sounding voice; otherwise, you may not hear the anticipated voice effect.</li>
-                    <li><ph keyref="VOICE_CHANGER_EFFECT_PIGKING"/>: The voice of Pig King, a character in Journey to the West who has a voice like a growling bear.</li>
-                    <li><ph keyref="VOICE_CHANGER_EFFECT_HULK"/>: The voice of the Hulk.</li>
-                    <li><ph keyref="STYLE_TRANSFORMATION_RNB"/>: The reverberation style typical of R&amp;B music. Before using this preset, set the <parmname>profile</parmname> parameter of <xref keyref="setAudioProfile2"/> to <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/>(4) or <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) ; otherwise, the preset setting is invalid.</li>
-                    <li><ph keyref="STYLE_TRANSFORMATION_POPULAR"/>: The reverberation style typical of popular music. Before using this preset, set the <parmname>profile</parmname> parameter of <xref keyref="setAudioProfile2"/> to <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/>(4) or <ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) ; otherwise, the preset setting is invalid.</li>
-                    <li><ph keyref="PITCH_CORRECTION"/>: A pitch correction effect that corrects the user's pitch based on the pitch of the natural C major scale. After setting this voice effect, you can call <xref keyref="setAudioEffectParameters"/> to adjust the basic mode of tuning and the pitch of the main tone.</li>
-                    </ul> </pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -166,9 +129,6 @@ To achieve better voice effects, it is recommended to call the following methods
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

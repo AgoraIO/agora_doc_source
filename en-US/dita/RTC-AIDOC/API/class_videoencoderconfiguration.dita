@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoencoderconfiguration">
     <title><ph keyref="VideoEncoderConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure video encoding parameters.</ph><ph id="shortdesc" props="android">Used to set parameters for the video encoder.</ph><ph id="shortdesc" props="ios mac">Video encoder configurations.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure video encoding parameters.</ph><ph id="shortdesc" props="android">Used to set parameters for the video encoder.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -54,52 +54,17 @@
   public AdvanceOptions advanceOptions;
   public VIDEO_CODEC_TYPE codecType;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
-@property(assign, nonatomic) CGSize dimensions;
-@property(assign, nonatomic) AgoraVideoCodecType codecType;
-@property(assign, nonatomic) AgoraVideoFrameRate frameRate;
-@property(assign, nonatomic) NSInteger bitrate;
-@property(assign, nonatomic) NSInteger minBitrate;
-@property(assign, nonatomic) AgoraVideoOutputOrientationMode orientationMode;
-@property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
-@property (assign, nonatomic) AgoraDegradationPreference degradationPreference;
-@property (strong, nonatomic) AgoraAdvancedVideoOptions *_Nullable advancedVideoOptions;
-
-- (instancetype _Nonnull)initWithSize:(CGSize)size
-                            frameRate:(AgoraVideoFrameRate)frameRate
-                              bitrate:(NSInteger)bitrate
-                      orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
-                           mirrorMode:(AgoraVideoMirrorMode)mirrorMode;
-
-- (instancetype _Nonnull)initWithWidth:(NSInteger)width
-                                height:(NSInteger)height
-                             frameRate:(AgoraVideoFrameRate)frameRate
-                               bitrate:(NSInteger)bitrate
-                       orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
-                            mirrorMode:(AgoraVideoMirrorMode)mirrorMode;
-@end</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
-@property(assign, nonatomic) CGSize dimensions;
-@property(assign, nonatomic) AgoraVideoCodecType codecType;
-@property(assign, nonatomic) NSInteger frameRate;
-@property(assign, nonatomic) NSInteger bitrate;
-@property(assign, nonatomic) NSInteger minBitrate;
-@property(assign, nonatomic) AgoraVideoOutputOrientationMode orientationMode;
-@property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
-@property (assign, nonatomic) AgoraDegradationPreference degradationPreference;
-@property (strong, nonatomic) AgoraAdvancedVideoOptions *_Nullable advancedVideoOptions;
-@end</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android">
             <p props="android">You can customize the resolution or choose from preset resolutions. Supports setting different encoding bitrates and frame rates to adapt to different channel scenarios. You can also specify video encoding orientation, mirror mode, and encoder priority strategy.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
                     <pt>codecType</pt>
-                <pd>Codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>. To enable H.265 encoding, set this parameter to <codeph>AgoraVideoCodecTypeH265</codeph>. Before enabling H.265, call <xref keyref="queryCodecCapability"/> to check whether the device supports the required H.265 hardware encoding or decoding capabilities.</pd>
+                    <pd>Codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>dimensions</pt>
@@ -223,99 +188,6 @@
                     <pt>codecType</pt>
                     <pd>Codec type for the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>dimensions</pt>
-                <pd>
-                    <p props="cpp hmos unreal bp unity electron rn flutter cs">The dimensions of the encoded video (px). See <xref keyref="VideoDimensions"/>. This parameter measures the video encoding quality in the format of length × width. The default value is 960 × 540. You can set a custom value.</p>
-                    <p props="android ios mac">Users can set the resolution by themselves, or directly select the desired resolution from the following list:<ul>
-                    <li><ph keyref="VD_120x120"/>: The video resolution is 120 × 120.</li>
-                    <li><ph keyref="VD_160x120"/>: The video resolution is 160 × 120.</li>
-                    <li><ph keyref="VD_180x180"/>: The video resolution is 180 × 180.</li>
-                    <li><ph keyref="VD_240x180"/>: The video resolution is 240 × 180.</li>
-                    <li><ph keyref="VD_320x180"/>: The video resolution is 320 × 180.</li>
-                    <li><ph keyref="VD_240x240"/>: The video resolution is 240 × 240.</li>
-                    <li><ph keyref="VD_320x240"/>: The video resolution is 320 × 240.</li>
-                    <li><ph keyref="VD_424x240"/>: The video resolution is 424 × 240.</li>
-                    <li><ph keyref="VD_360x360"/>: The video resolution is 360 × 360.</li>
-                    <li><ph keyref="VD_480x360"/>: The video resolution is 480 × 360.</li>
-                    <li><ph keyref="VD_640x360"/>: The video resolution is 640 × 360.</li>
-                    <li><ph keyref="VD_480x480"/>: The video resolution is 480 × 480.</li>
-                    <li><ph keyref="VD_640x480"/>: The video resolution is 640 × 480.</li>
-                    <li><ph keyref="VD_840x480"/>: The video resolution is 840 × 480.</li>
-                    <li><ph keyref="VD_960x540"/>: The video resolution is 960 × 540.</li>
-                    <li><ph keyref="VD_960x720"/>: The video resolution is 960 × 720.</li>
-                    <li><ph keyref="VD_1280x720"/>: The video resolution is 1280 × 720.</li>
-                    <li><ph keyref="VD_1920x1080"/>: The video resolution is 1920 × 1080.</li>
-                    <li><ph keyref="VD_2540x1440"/>: The video resolution is 2540 × 1440.</li>
-                    <li><ph keyref="VD_3840x2160"/>: The video resolution is 3840 × 2160.</li>
-                    </ul>
-                    <note type="attention">
-                    <ul>
-                    <li>Whether the 720p resolution or above can be supported depends on the device. If the device cannot support 720p, the frame rate will be lower than the set value.</li>
-                    <li props="android apple">The default value is 960 × 540.</li>
-                    </ul> </note> </p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>codecType</pt>
-                <pd>The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>. To enable H.265 encoding, set this parameter to <codeph>AgoraVideoCodecTypeH265</codeph>. Before enabling H.265, call <xref keyref="queryCodecCapability"/> to check whether the device supports the required H.265 hardware encoding or decoding capabilities.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>frameRate</pt>
-                <pd props="native unreal flutter unity cs electron rn">The frame rate (fps) of the encoding video frame. The default value is 15. See <xref keyref="FRAME_RATE"/>.</pd>
-                <pd props="bp">The frame rate (fps) of the encoding video frame. The default value is 15.<ul>
-                  <li><ph keyref="FRAME_RATE_FPS_1"/>(1): 1 fps.</li>
-                  <li><ph keyref="FRAME_RATE_FPS_7"/>(7): 7 fps.</li>
-                  <li><ph keyref="FRAME_RATE_FPS_10"/>(10): 10 fps.</li>
-                  <li><ph keyref="FRAME_RATE_FPS_15"/>(15): 15 fps.</li>
-                  <li><ph keyref="FRAME_RATE_FPS_24"/>(24): 24 fps.</li>
-                  <li><ph keyref="FRAME_RATE_FPS_30"/>(30): 30 fps.</li>
-                  <li><ph keyref="FRAME_RATE_FPS_60"/>(60): 60 fps.
-                  For Windows and macOS only.</li>
-                </ul></pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>bitrate</pt>
-                <pd>
-                    <p><ph>The encoding bitrate (Kbps) of the video. </ph><ph props="unity cs">See <xref keyref="BITRATE"/>. </ph><ph>This parameter does not need to be set; keeping the default value <apiname keyref="STANDARD_BITRATE"/> is sufficient. The SDK automatically matches the most suitable bitrate based on the video resolution and frame rate you have set. For the correspondence between video resolution and frame rate, see <xref keyref="video-profile-table"/>.</ph></p>
-                    <ul props="native unreal bp flutter rn electron">
-                    <li><ph keyref="STANDARD_BITRATE"/>(0): (Recommended) Standard bitrate mode.</li>
-                    <li><ph keyref="COMPATIBLE_BITRATE"/>(-1): Adaptive bitrate mode. In general, Agora suggests that you do not use this value.</li>
-                    </ul> </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>minBitrate</pt>
-                <pd>
-                    <p>The minimum encoding bitrate (Kbps) of the video.</p>
-                    <p>The SDK automatically adjusts the encoding bitrate to adapt to the network conditions. Using a value greater than the default value forces the video encoder to output high-quality images but may cause more packet loss and sacrifice the smoothness of the video transmission. Unless you have special requirements for image quality, Agora does not recommend changing this value.</p>
-                    <note type="attention">This parameter only applies to the interactive streaming profile.</note> </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>orientationMode</pt>
-                <pd>The orientation mode of the encoded video. See <xref keyref="ORIENTATION_MODE"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="cpp apple unity rn electron flutter cs bp unreal">degradationPreference</pt>
-                <pt props="android hmos">degradationPrefer</pt>
-                <pd>Video degradation preference under limited bandwidth. See <xref keyref="DEGRADATION_PREFERENCE"/>.<note type="attention">When this parameter is set to <ph keyref="MAINTAIN_FRAMERATE"/> (1) or <ph keyref="MAINTAIN_BALANCED"/> (2), <parmname>orientationMode</parmname> needs to be set to <ph keyref="ORIENTATION_MODE_ADAPTIVE"/> (0) at the same time, otherwise the setting will not take effect.</note></pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>mirrorMode</pt>
-                <pd>
-                    <p props="ios mac cpp framework">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
-                    <note conkeyref="setLocalRenderMode2/mirror" props="unreal bp"/>
-                    <p props="android hmos">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees.<ul>
-                      <li><ph keyref="VIDEO_MIRROR_MODE_AUTO"/>(0): The SDK determines whether to enable the mirror mode. The SDK disables mirror mode by default.</li>
-                      <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED"/>(1): Enables the mirror mode for remote users.</li>
-                      <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED"/>(2): Disables the mirror mode for remote users.</li>
-                      </ul> </p>
-                    <note type="attention">By default, the video is not mirrored.</note> </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="android hmos cpp cs unity electron flutter rn bp unreal">advanceOptions</pt>
-                <pt props="ios mac">advancedVideoOptions</pt>
-                <pd>Advanced options for video encoding. See <xref keyref="AdvanceOptions"/>.</pd>
-            </plentry>
             </parml>
         </section>
     </refbody>

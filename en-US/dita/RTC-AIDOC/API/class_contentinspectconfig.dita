@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectconfig">
     <title><ph keyref="ContentInspectConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Configures video screenshot and upload functionality.</ph><ph id="shortdesc" props="android">Used to configure screenshot and upload functions.</ph><ph id="shortdesc" props="ios mac">Screenshot and upload configuration.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Configures video screenshot and upload functionality.</ph><ph id="shortdesc" props="android">Used to configure screenshot and upload functions.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -23,11 +23,6 @@
   public ContentInspectModule[] modules;
   public int moduleCount;
 }</codeblock>
-            <codeblock props="ios mac">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
-@property (nonatomic, copy) NSString* _Nullable extraInfo;
-@property (nonatomic, copy) NSString* _Nullable serverConfig;
-@property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*&gt;* _Nullable modules;
-@end</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
@@ -36,16 +31,12 @@
                     <dt>Since</dt>
                     <dd>Available since v3.4.2.</dd>
                 </dlentry>
-            <dlentry props="ios mac">
-                    <dt>Since</dt>
-                    <dd>Available since v3.4.2.</dd>
-                </dlentry>
             </dl>
             <p props="cpp">The SDK uploads video screenshots and additional information to the Agora server. After the upload is complete, the Agora server sends callback notifications and additional information to your server.</p>
             <p props="android">Used to set parameters related to screenshot and upload.</p>
             <note props="cpp">Only one instance can be configured per functional module. Currently, only local screenshot upload is supported.</note>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -104,46 +95,6 @@
                     <pt>moduleCount</pt>
                     <pd>Number of function modules, i.e., the number of <xref keyref="ContentInspectModule"/> instances configured. Must match the number of instances configured in <codeph>modules</codeph>. Maximum value is 32.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
-                <pd>0: (Default) No actual function. Do not set <parmname>type</parmname> to this value.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>CONTENT_INSPECT_TYPE_MODERATION</pt>
-                <pd>1: Video content moderation. The SDK takes screenshots and inspect videos sent by local users, and uploads the screenshots and moderation results.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>CONTENT_INSPECT_TYPE_SUPERVISE</pt>
-                <pd>2: Video screenshot and upload via Agora self-developed extension. The SDK takes screenshots of videos sent by local users and upload them.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>CONTENT_INSPECT_TYPE_IMAGE_MODERATION</pt>
-                <pd>3: Video screenshot and upload via extensions from Agora Extensions Marketplace. SDK uses video moderation extensions from Agora Extensions Marketplace to take screenshots of the video stream in the channel and uploads them.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>extraInfo</pt>
-                <pd>
-                    <p>Additional information on the video content (maximum length: 1024 Bytes).</p>
-                    <p>The SDK sends the screenshots and additional information on the video content to the Agora server. Once the video screenshot and upload process is completed, the Agora server sends the additional information and the callback notification to your server.</p>
-                    <p props="hide">The SDK sends the screenshots and additional information on the video content to the Agora content moderation server. Once the content moderation process is completed, the Agora content moderation server sends the additional information and the content moderation results to your server.</p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>serverConfig</pt>
-                <pd>(Optional) Server configuration related to uploading video screenshots via extensions from Agora Extensions Marketplace. This parameter only takes effect when <codeph>type</codeph> in <xref keyref="ContentInspectModule"/> is set to <apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/>. If you want to use it, contact <xref keyref="ticket-link"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>modules</pt>
-                <pd>
-                    <p>Functional module. See <xref keyref="ContentInspectModule"/>.</p>
-                    <p>A maximum of 32 <apiname keyref="ContentInspectModule"/> instances can be configured, and the value range of <parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> is an integer in [1,32].</p>
-                    <note type="attention">A function module can only be configured with one instance at most. Currently only the video screenshot and upload function is supported.</note>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="android hmos cpp unreal cs unity electron rn flutter bp">moduleCount</pt>
-                <pd>The number of functional modules, that is,the number of configured <apiname keyref="ContentInspectModule"/> instances, must be the same as the number of instances configured in <parmname>modules</parmname>. The maximum number is 32.</pd>
-            </plentry>
             </parml>
         </section>
     </refbody>

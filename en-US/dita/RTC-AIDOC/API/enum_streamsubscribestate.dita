@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_streamsubscribestate">
     <title><ph keyref="STREAM_SUBSCRIBE_STATE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Subscription state.</ph><ph id="shortdesc" props="ios mac">The subscribing state.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Subscription state.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="cpp">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -40,36 +40,7 @@
                     <pt>SUB_STATE_SUBSCRIBED</pt>
                     <pd>(3): Successfully received remote stream.</pd>
                 </plentry>
-            <plentry props="ios mac">
-  <pt><ph keyref="SUB_STATE_IDLE"/></pt>
-  <pd>0: The initial publishing state after joining the channel.</pd>
-       </plentry>
-       <plentry props="ios mac">
-  <pt><ph keyref="SUB_STATE_NO_SUBSCRIBED"/></pt>
-  <pd>
-      <p>1: Fails to subscribe to the remote stream. Possible reasons:<ul id="ul_xhd_lxk_p4b">
-     <li>The remote user:<ul id="ul_dcs_mxk_p4b">
-<li>Calls <xref keyref="muteLocalAudioStream"/>(<codeph><ph keyref="true"/></codeph>) or <xref keyref="muteLocalVideoStream"/>(<codeph><ph keyref="true"/></codeph>) to stop sending local media stream.</li>
-<li>Calls <xref keyref="disableAudio"/> or <xref keyref="disableVideo"/> to disable the local audio or video module.</li>
-    <li>Calls <xref keyref="enableLocalAudio"/>(<ph keyref="false"/>) or <xref keyref="enableLocalVideo"/>(<ph keyref="false"/>) to disable local audio or video capture.</li>
-    <li>The role of the remote user is audience.</li>
-</ul></li>
-     <li>The local user calls the following methods to stop receiving remote streams:<ul id="ul_mjk_gyk_p4b">
-    <li>Call <xref keyref="muteRemoteAudioStream"/>(<ph keyref="true"/>) or <xref keyref="muteAllRemoteAudioStreams"/>(<ph keyref="true"/>) to stop receiving the remote audio stream.</li>
-    <li>Call <xref keyref="muteRemoteVideoStream"/>(<ph keyref="true"/>) or <xref keyref="muteAllRemoteVideoStreams"/>(<ph keyref="true"/>) to stop receiving the remote video stream.</li>
-</ul></li>
- </ul></p>
-  </pd>
-       </plentry>
-       <plentry props="ios mac">
-  <pt><ph keyref="SUB_STATE_SUBSCRIBING"/></pt>
-  <pd>2: Subscribing.</pd>
-       </plentry>
-       <plentry props="ios mac">
-  <pt><ph keyref="SUB_STATE_SUBSCRIBED"/></pt>
-  <pd>3: The remote stream is received, and the subscription is successful.</pd>
-       </plentry>
-   </parml>
+            </parml>
         </section>
-    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

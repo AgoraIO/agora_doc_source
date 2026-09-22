@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_preloadchannelwithuseraccount">
     <title><ph keyref="preloadChannelWithUserAccount"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Preloads the specified channel.</ph><ph id="shortdesc" props="android">Preloads the specified channel to reduce the time it takes for a viewer to join the channel.</ph><ph id="shortdesc" props="ios mac">Preloads a channel with token, channelIdchannelName, and userAccount.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Preloads the specified channel.</ph><ph id="shortdesc" props="android">Preloads the specified channel to reduce the time it takes for a viewer to join the channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,9 +15,6 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int preloadChannelWithUserAccount(const char* token, const char* channelId, const char* userAccount) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int preloadChannelWithUserAccount(String token, String channelName, String userAccount);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadChannelByTokenWithUserAccount:(NSString * _Nullable)token
-                   channelId:(NSString * _Nonnull)channelId
-                 userAccount:(NSString * _Nonnull)userAccount NS_SWIFT_NAME(preloadChannelWithUserAccount(byToken:channelId:userAccount:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -45,7 +42,7 @@
             <p props="cpp">To improve the user experience of channel preloading, Agora recommends calling this method as early as possible after confirming the channel name and user information.</p>
             <p props="android">To enhance the user experience of preloading channels, Agora recommends calling this method as early as possible after confirming the channel name and user information.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -122,21 +119,9 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry conkeyref="preloadChannel/token" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="preloadChannel/channel" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="joinChannelWithUserAccount2/userAccount" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -162,13 +147,6 @@
                     </li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li props="native unreal bp unity rn electron cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
-                <li>-2: The parameter is invalid. For example, the User Account is empty. You need to pass in a valid parameter and join the channel again.</li>
-                <li>-7: The <apiname keyref="IRtcEngine"/> object has not been initialized. You need to initialize the <apiname keyref="IRtcEngine"/> object before calling this method.</li>
-                <li>-102: The channel name is invalid. You need to pass in a valid channel name and join the channel again.</li>
-                </ul></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

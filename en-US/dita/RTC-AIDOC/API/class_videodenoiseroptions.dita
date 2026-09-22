@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videodenoiseroptions">
     <title><ph keyref="VideoDenoiserOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure video denoising options.</ph><ph id="shortdesc" props="android">Used to set video denoising options.</ph><ph id="shortdesc" props="ios mac">Video noise reduction options.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure video denoising options.</ph><ph id="shortdesc" props="android">Used to set video denoising options.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -18,11 +18,6 @@
   public int denoiserMode;
   public int denoiserLevel;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoDenoiserOptions : NSObject
-@property(nonatomic, assign) AgoraVideoDenoiserMode mode;
-@property(nonatomic, assign) AgoraVideoDenoiserLevel level;
-@end
-</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
@@ -35,13 +30,9 @@
                     <dt>Since</dt>
                     <dd>Added since v3.6.2.</dd>
                 </dlentry>
-            <dlentry props="ios mac">
-                    <dt>Since</dt>
-                    <dd>Added since v4.0.0.</dd>
-                </dlentry>
-                </dl>
+            </dl>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -86,24 +77,6 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt props="cpp apple unity rn electron flutter cs bp unreal">level</pt>
-                <pt props="android hmos">denoiserLevel</pt>
-                <pd><ph>Video noise reduction level. </ph><ph props="apple cpp unreal bp">See <xref keyref="VIDEO_DENOISER_LEVEL"/>.</ph><ul props="android hmos">
-                    <li><ph keyref="VIDEO_DENOISER_LEVEL_HIGH_QUALITY"/>(0): (Default) Promotes video quality during low-light enhancement. It processes the brightness, details, and noise of the video image. The performance consumption is moderate, the processing speed is moderate, and the overall video quality is optimal.</li>
-                    <li><ph keyref="VIDEO_DENOISER_LEVEL_FAST"/>(1): Promotes reducing performance consumption during video noise reduction. It prioritizes reducing performance consumption over video noise reduction quality. The performance consumption is lower, and the video noise reduction speed is faster. To avoid a noticeable shadowing effect (shadows trailing behind moving objects) in the processed video, Agora recommends that you use this setting when the camera is fixed.</li>
-                  </ul>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="cpp apple unity rn electron flutter cs bp unreal">mode</pt>
-                <pt props="android hmos">denoiserMode</pt>
-                <pd><ph>Video noise reduction mode. </ph><ph props="apple cpp unreal bp">See <xref keyref="VIDEO_DENOISER_MODE"/>.</ph><ul props="android hmos">
-                    <li><ph keyref="VIDEO_DENOISER_AUTO"/>(0): (Default) Automatic mode. The SDK automatically enables or disables the video noise reduction feature according to the ambient light.</li>
-                    <li><ph keyref="VIDEO_DENOISER_MANUAL"/>(1): Manual mode. Users need to enable or disable the video noise reduction feature manually.</li>
-                  </ul>
-                </pd>
-            </plentry>
             </parml>
         </section>
     </refbody>

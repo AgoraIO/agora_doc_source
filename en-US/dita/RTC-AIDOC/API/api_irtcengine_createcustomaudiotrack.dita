@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_createcustomaudiotrack">
     <title><ph keyref="createCustomAudioTrack"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="android">Creates a custom audio track.</ph><ph id="shortdesc" props="ios mac">Creates a customized audio track.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Creates a custom audio track.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,6 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int createCustomAudioTrack(Constants.AudioTrackType trackType, AudioTrackConfig config)</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)createCustomAudioTrack:(AgoraAudioTrackType)trackType
-                       config:(AgoraAudioTrackConfig* _Nonnull)config;</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -27,17 +25,8 @@
                 </ol>
             </p>
             <note props="android">You must call this method before joining a channel.</note>
-        <dl outputclass="since"><dlentry props="ios mac">
-                <dt>Since</dt>
-                <dd>v4.2.0</dd>
-            </dlentry>
-            </dl><p props="ios mac">When you need to publish multiple custom captured videos in the channel, you can refer to the following steps:<ol>
-            <li>Call this method to create a video track and get the video track ID.</li>
-            <li>In <xref keyref="ChannelMediaOptions"/> of each channel, set <parmname>customVideoTrackId</parmname> to the video track ID that you want to publish, and set <parmname>publishCustomVideoTrack</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
-            <li>If you call <xref keyref="pushAudioFrame" props="cpp framework"/><xref keyref="pushAudioFrame2" props="android apple"/>, and specify <parmname>trackId</parmname> as the video track ID set in step 2, you can publish the corresponding custom video source in multiple channels.</li>
-            </ol></p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android ios mac">
+        <section id="parameters" deliveryTarget="details" props="android">
             <title>Parameters</title>
             <parml>
                 <plentry props="android">
@@ -50,17 +39,9 @@
                     <pt>config</pt>
                     <pd>Configuration of the custom audio track. See <xref keyref="AudioTrackConfig"/>.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>trackType</pt>
-                <pd>The type of the custom audio track. See <xref keyref="AUDIO_TRACK_TYPE"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>config</pt>
-                <pd>The configuration of the custom audio track. See <xref keyref="AudioTrackConfig"/>.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android ios mac">
+        <section id="return_values" props="android">
             <title>Return Values</title>
             <p props="android">
                 <ul>
@@ -68,9 +49,6 @@
                     <li>If the method call fails, returns <codeph>0xffffffff</codeph>.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>If the method call is successful, the video track ID is returned as the unique identifier of the video track.</li>
-            <li>If the method call fails, a negative value is returned.</li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

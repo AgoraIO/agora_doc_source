@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencaptureconfiguration">
     <title><ph keyref="ScreenCaptureConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure parameters for screen capture.</ph><ph id="shortdesc" props="ios mac">The configuration of the captured screen.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure parameters for screen capture.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -14,32 +14,9 @@
   ScreenCaptureParameters params;
   Rectangle regionRect;
 };</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">#if (!(TARGET_OS_IPHONE) &amp;&amp; (TARGET_OS_MAC))
-
-__attribute__((visibility("default"))) @interface AgoraScreenCaptureConfiguration: NSObject
-
-@property(assign, nonatomic) BOOL isCaptureWindow;
-
-@property(assign, nonatomic) UInt32 displayId;
-
-@property(assign, nonatomic) UInt32 windowId;
-
-@property(strong, nonatomic) AgoraScreenCaptureParameters* _Nonnull params;
-
-@property(assign, nonatomic) CGRect regionRect;
-
-@end
-#endif</codeblock>
-            <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureConfiguration: NSObject
-@property(assign, nonatomic) BOOL isCaptureWindow;
-@property(assign, nonatomic) UInt32 displayId;
-@property(assign, nonatomic) UInt32 windowId;
-@property(strong, nonatomic) AgoraScreenCaptureParameters* _Nonnull params;
-@property(assign, nonatomic) CGRect regionRect;
-@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -77,37 +54,7 @@ __attribute__((visibility("default"))) @interface AgoraScreenCaptureConfiguratio
                     <pt>regionRect</pt>
                     <pd>Position of the shared region relative to the entire screen. See <xref keyref="Rectangle"/>. If this parameter is not set, the SDK shares the entire screen. If the specified region exceeds the screen boundaries, only the portion within the screen is shared. If the width or height in <xref keyref="Rectangle"/> is set to 0, the entire screen is shared.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>isCaptureWindow</pt>
-                <pd>Whether to capture the window on the screen:<ul id="ul_ln3_hwd_mqb">
-                    <li><codeph><ph keyref="true"/></codeph>: Capture the window.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Capture the screen, not the window.</li>
-                    </ul></pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>displayId</pt>
-                <pd props="cpp unreal bp mac electron unity flutter"><ph props="cpp unreal bp electron unity flutter cs">(macOS only)</ph><ph> The display ID of the screen.</ph><note type="attention">This parameter takes effect only when you want to capture the screen on macOS.</note></pd>
-                <pd props="cs">The display ID of the screen. You do not need to set this parameter.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>screenRect</pt>
-                <pd><ph props="cpp unreal bp electron unity flutter">(Windows only) </ph><ph>The relative position of the shared screen to the virtual screen.</ph><note type="attention" id="note_ifh_swd_mqb">This parameter takes effect only when you want to capture the screen on Windows.</note></pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>windowId</pt>
-                <pd><ph props="cpp unreal bp unity flutter">(For Windows and macOS only)</ph> <ph>Window ID.</ph><note type="attention">This parameter takes effect only when you want to capture the window.</note></pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="mac cpp unreal bp electron rn flutter">params</pt>
-                <pt props="unity cs">parameters</pt>
-                <pd><ph props="cpp unreal bp unity flutter">(For Windows and macOS only) </ph><ph>The screen capture configuration. See <xref keyref="ScreenCaptureParameters"/></ph>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>regionRect</pt>
-                <pd props="cpp unreal bp unity flutter electron cs"><ph props="cpp unreal bp unity flutter">(For Windows and macOS only) </ph>The relative position of the shared region to the whole screen. See <xref keyref="Rectangle"/>. If you do not set this parameter, the SDK shares the whole screen. If the region you set exceeds the boundary of the screen, only the region within in the screen is shared. If you set width or height in <apiname keyref="Rectangle"/> as 0, the whole screen is shared.</pd>
-                <pd props="mac">The relative position of the shared region to the whole screen. The data type is CGRect.</pd>
-            </plentry>
             </parml>
         </section>
-    <section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_preloadeffect">
     <title><ph keyref="preloadEffect"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Preloads the specified sound effect file into memory.</ph><ph id="shortdesc" props="ios mac">Preloads a specified audio effect file into the memory.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Preloads the specified sound effect file into memory.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,13 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath, int startPos = 0) = 0;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadEffect:(int)soundId
-            filePath:(NSString* _Nonnull)filePath;
-</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)preloadEffect:(int)soundId
-             filePath:(NSString* _Nonnull)filePath
-             startPos:(int)startPos NS_SWIFT_NAME(preloadEffect(_:filePath:startPos:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">Make sure the total size of all preloaded files does not exceed the limit.</p>
@@ -30,14 +24,12 @@
                     <li>If you do not call <xref keyref="preloadEffect"/> before <xref keyref="playEffect3"/>, the resource will be destroyed after <xref keyref="playEffect3"/> is executed. The next call to <xref keyref="playEffect3"/> will attempt to reopen the file and play from the beginning.</li>
                 </ul>
             </note>
-        <p props="ios mac">Ensure the size of all preloaded files does not exceed the limit.</p>
-            <p id="audioFormats" props="ios mac">For the audio file formats supported by this method, see <xref keyref="audio-format">What formats of audio files does the Agora RTC SDK support</xref>.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="cpp">
             <title>Timing</title>
             <p props="cpp">It is recommended to call this method before joining a channel.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -58,27 +50,9 @@
                     <pt>startPos</pt>
                     <pd>Start position of the sound effect file in milliseconds.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>soundId</pt>
-                <pd id="soundId">The audio effect ID. The ID of each audio effect file is unique.</pd>
-            </plentry>
-            <plentry id="filePath" props="ios mac">
-                <pt>filePath</pt>
-                <pd>File path:<ul>
-                    <li props="android flutter unity cpp unreal bp rn">Android: The file path, which needs to be accurate to the file name and suffix. Agora supports URL addresses, absolute paths, or file paths that start with <codeph>/assets/</codeph>. You might encounter permission issues if you use an absolute path to access a local file, so Agora recommends using a URI address instead. For example: <codeph>content://com.android.providers.media.documents/document/audio%3A14441</codeph></li>
-                    <li props="cpp unreal bp flutter unity electron cs">Windows: The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: <codeph>C:\music\audio.mp4</codeph>.</li>
-                    <li props="cpp unreal ios mac flutter unity">iOS or macOS: The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
-                    <li props="rn">iOS: The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
-                    <li props="electron">macOS: The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>.</li>
-                    </ul></pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>startPos</pt>
-                <pd>The playback position (ms) of the audio effect file.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="cpp ios mac">
+        <section id="return_values" props="cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -86,9 +60,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

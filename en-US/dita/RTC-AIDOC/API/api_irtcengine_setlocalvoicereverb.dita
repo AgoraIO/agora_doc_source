@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setlocalvoicereverb">
     <title><ph keyref="setLocalVoiceReverb"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the reverb effect of the local voice.</ph><ph id="shortdesc" props="android">Sets the reverb effect of the local voice.</ph><ph id="shortdesc" props="ios mac">Sets the local voice reverberation.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the reverb effect of the local voice.</ph><ph id="shortdesc" props="android">Sets the reverb effect of the local voice.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,21 +15,18 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalVoiceReverb(AUDIO_REVERB_TYPE reverbKey, int value) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int setLocalVoiceReverb(Constants.AUDIO_REVERB_TYPE reverbKey, int value);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalVoiceReverbOfType:(AgoraAudioReverbType)reverbType withValue:(NSInteger)value;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)setLocalVoiceReverbOfType:(AgoraAudioReverbType)reverbType withValue:(NSInteger)value NS_SWIFT_NAME(setLocalVoiceReverbOf(_:withValue:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">You can also use the more user-friendly method <xref keyref="setAudioEffectPreset"/> to directly apply preset reverb effects such as Pop, R&amp;B, and KTV.</p>
             <p props="android">You can use the easier method <xref keyref="setAudioEffectPreset"/> to achieve preset reverb effects such as Pop, R&amp;B, and KTV.</p>
             <note props="android">You can call this method before or after joining a channel.</note>
-        <p props="ios mac">The SDK provides an easier-to-use method, <xref keyref="setAudioEffectPreset"/>, to directly implement preset reverb effects for such as pop, R&amp;B, and KTV.</p>
-            <note type="note" props="ios mac">You can call this method either before or after joining a channel.</note> </section>
+        </section>
         <section id="timing" deliveryTarget="details" props="cpp">
             <title>Timing</title>
             <p props="cpp">You can call this method before or after joining a channel.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -48,18 +45,9 @@
                     <pt>value</pt>
                     <pd>Value of the reverb key.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt props="android cpp unreal bp unity flutter rn electron cs">reverbKey</pt>
-                <pt props="ios mac">reverbType</pt>
-                <pd>The reverberation key. Agora provides five reverberation keys, see <xref keyref="AUDIO_REVERB_TYPE"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>value</pt>
-                <pd>The value of the reverberation key.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -73,9 +61,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

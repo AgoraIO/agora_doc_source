@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localaccesspointconfiguration">
     <title><ph keyref="LocalAccessPointConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the local access point.</ph><ph id="shortdesc" props="android">Used to configure local access points.</ph><ph id="shortdesc" props="ios mac">The configurations of the Local Access Point.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the local access point.</ph><ph id="shortdesc" props="android">Used to configure local access points.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -24,24 +24,9 @@
   public boolean disableAut = true;
   public AdvancedConfigInfo advancedConfig = null;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraLocalAccessPointConfiguration) __attribute__((visibility("default"))) @interface AgoraLocalAccessPointConfiguration : NSObject
-@property(copy, nonatomic) NSArray* _Nullable ipList NS_SWIFT_NAME(ipList);
-@property(copy, nonatomic) NSArray* _Nullable domainList NS_SWIFT_NAME(domainList);
-@property(copy, nonatomic) NSString* _Nullable verifyDomainName NS_SWIFT_NAME(verifyDomainName);
-@property(assign, nonatomic) AgoraLocalProxyMode mode NS_SWIFT_NAME(mode);
-@property(strong, nonatomic) AdvancedConfigInfo* _Nullable advancedConfig NS_SWIFT_NAME(advancedConfig);
-@end</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraLocalAccessPointConfiguration) __attribute__((visibility("default"))) @interface AgoraLocalAccessPointConfiguration : NSObject
-@property(copy, nonatomic) NSArray* _Nullable ipList NS_SWIFT_NAME(ipList);
-@property(copy, nonatomic) NSArray* _Nullable domainList NS_SWIFT_NAME(domainList);
-@property(copy, nonatomic) NSString* _Nullable verifyDomainName NS_SWIFT_NAME(verifyDomainName);
-@property(assign, nonatomic) AgoraLocalProxyMode mode NS_SWIFT_NAME(mode);
-@property(strong, nonatomic) AdvancedConfigInfo* _Nullable advancedConfig NS_SWIFT_NAME(advancedConfig);
-@property(assign, nonatomic) BOOL disableAut;
-@end</codeblock>
-                </p>
+            </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -115,41 +100,7 @@
                     <pt>advancedConfig</pt>
                     <pd>Advanced configuration for the local access point. See <xref keyref="AdvancedConfigInfo"/>.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>ipList</pt>
-                <pd>The list of IP addresses for the Local Access Point. ipList and domainList must be filled in at least one.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>ipListSize</pt>
-                <pd>The number of IP addresses of the Local Access Point. This value must be the same as the number of IP addresses that you specify for the ipList parameter.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>domainList</pt>
-                <pd>The list of domain names for the Local Access Point. The SDK will parse the IP addresses according to the provided domain names. The parse times out after 10 seconds. ipList and domainList must be filled in at least one. If you specify an IP address and a domain name at the same time, the SDK will combine the IP address parsed from the domain name and the IP address you specify, remove duplicates, and then connect to a random IP to achieve load balancing.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>domainListSize</pt>
-                <pd>The number of domain names for Local Access Point. This value must be the same as the number of domain names that you specifyfor the domainList parameter.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>verifyDomainName</pt>
-                <pd>The domain name used for Intranet certificate verification. If you pass an empty value, the SDK uses the default domain name <codeph>secure-edge.local</codeph> for certificate verification.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>mode</pt>
-                <pd>
-                    <p props="ios mac cpp unreal bp electron unity rn flutter cs">The connection mode. See <xref keyref="LOCAL_PROXY_MODE"/>.</p>
-                    <p props="android hmos">Select one of the following connection modes:<ul>
-                    <li><ph keyref="ConnectivityFirst"/>(0): The SDK firstly tries to connect to the specified Agora private media server; if the connection attempt fails, it will connect to the Agora SD-RTN™ instead.</li>
-                    <li><ph keyref="LocalOnly"/>(1) The SDK only tries to connect to the specified Agora private media server.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>advancedConfig</pt>
-                <pd>The advanced options for the Local Access Point. See <xref keyref="AdvancedConfigInfo"/>.</pd>
-            </plentry>
             </parml>
         </section>
-    <section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

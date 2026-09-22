@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_playerplaybackstats">
     <title><ph keyref="PlayerPlaybackStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to obtain playback information of the currently playing media file.</ph><ph id="shortdesc" props="android">Describes relevant information about the currently playing media file.</ph><ph id="shortdesc" props="ios mac">The information of the media file being played.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to obtain playback information of the currently playing media file.</ph><ph id="shortdesc" props="android">Describes relevant information about the currently playing media file.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -18,15 +18,9 @@
   private long audioBitrateInKbps;
   private long totalBitrateInKbps;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaPlayerPlaybackStats : NSObject
-@property(assign, nonatomic) NSInteger videoFps;
-@property(assign, nonatomic) NSInteger videoBitrateInKbps;
-@property(assign, nonatomic) NSInteger audioBitrateInKbps;
-@property(assign, nonatomic) NSInteger totalBitrateInKbps;
-@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -61,27 +55,7 @@
                     <pt>totalBitrateInKbps</pt>
                     <pd>Total bitrate of the media stream (kbps).</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>videoFps</pt>
-                <pd>The frame rate (fps) of the video.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>videoBitrateInKbps</pt>
-                <pd>The bitrate (kbps) of the video.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>audioBitrateInKbps</pt>
-                <pd>The bitrate (kbps) of the audio.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>totalBitrateInKbps</pt>
-                <pd>The total bitrate (kbps) of the media stream.</pd>
-            </plentry>
             </parml>
         </section>
-    <section id="detailed_desc"><dl outputclass="since"><dlentry props="ios mac">
-                <dt>Since</dt>
-                <dd>v4.3.0</dd>
-            </dlentry>
-            </dl></section></refbody>
+    </refbody>
 </reference>

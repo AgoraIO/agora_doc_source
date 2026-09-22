@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onclientrolechangefailed">
     <title><ph keyref="onClientRoleChangeFailed"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when switching user roles fails.</ph><ph id="shortdesc" props="android">Callback triggered when switching user roles fails.</ph><ph id="shortdesc" props="ios mac">Occurs when switching a user role fails.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when switching user roles fails.</ph><ph id="shortdesc" props="android">Callback triggered when switching user roles fails.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,21 +15,18 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onClientRoleChangeFailed(CLIENT_ROLE_CHANGE_FAILED_REASON reason, CLIENT_ROLE_TYPE currentRole)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onClientRoleChangeFailed(int reason, int currentRole)</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChangeFailed:(AgoraClientRoleChangeFailedReason)reason currentRole:(AgoraClientRole)currentRole;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChangeFailed:(AgoraClientRoleChangeFailedReason)reason currentRole:(AgoraClientRole)currentRole NS_SWIFT_NAME(rtcEngine(_:didClientRoleChangeFailed:currentRole:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">This callback reports the reason for the failure to switch user roles and the current role.</p>
             <p props="android">This callback notifies the reason for the failure to switch user roles and the current user role.</p>
-        <p props="ios mac">This callback informs you about the reason for failing to switching and your current user role.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Trigger Timing</title>
             <p props="cpp">When the local user fails to switch roles after joining the channel by calling <codeph>setClientRole</codeph>, the SDK triggers this callback.</p>
             <p props="android">This callback is triggered when the local user joins a channel and calls <xref keyref="setClientRole1"/> or <xref keyref="setClientRole2"/> (with <xref keyref="ClientRoleOptions"/> parameter) to switch roles and the operation fails.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -61,36 +58,6 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>reason</pt>
-                <pd props="ios mac cpp unreal bp unity electron rn flutter cs">The reason for a user role switch failure. See <xref keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>.</pd>
-                <pd props="android hmos">The reason for a user role switch failure.<ul>
-                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_TOO_MANY_BROADCASTERS"/>(1): The number of hosts in the channel is already at the upper limit.<note type="note">This enumerator is reported only when the support for 128 users is enabled. The maximum number of hosts is based on the actual number of hosts configured when you enable the 128-user feature.</note></li>
-                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_NOT_AUTHORIZED"/>(2): The request is rejected by the Agora server. Agora recommends you prompt the user to try to switch their user role again.</li>
-                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_REQUEST_TIME_OUT"/>(3): The request is timed out. Agora recommends you prompt the user to check the network connection and try to switch their user role again.<dl outputclass="deprecated">
-                                <dlentry>
-                                <dt>Deprecated:</dt>
-                                <dd>This enumerator is deprecated since v4.4.0 and is not recommended for use.</dd>
-                                </dlentry></dl></li>
-                        <li><ph keyref="CLIENT_ROLE_CHANGE_FAILED_CONNECTION_FAILED"/>(4): The SDK connection fails. You can troubleshoot the failure through the <parmname>reason</parmname> reported by <xref keyref="onConnectionStateChanged"/>.<dl outputclass="deprecated">
-                                <dlentry>
-                                <dt>Deprecated:</dt>
-                                <dd>This enumerator is deprecated since v4.4.0 and is not recommended for use.</dd>
-                                </dlentry></dl></li>
-                    </ul></pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>currentRole</pt>
-                <pd props="hmos ios mac cpp unreal bp electron unity rn flutter cs">Current user role. See <xref keyref="CLIENT_ROLE_TYPE"/>.</pd>
-                <pd props="android">Current user role.<ul>
-                        <li><ph keyref="CLIENT_ROLE_BROADCASTER"/>(1): Host. A host can both send and receive streams.</li>
-                        <li><ph keyref="CLIENT_ROLE_AUDIENCE"/>(2): Audience. An audience member can only receive streams.</li>
-                    </ul></pd>
-            </plentry>
-            <plentry conkeyref="joinChannelEx/connection" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
             </parml>
         </section>
     </refbody>

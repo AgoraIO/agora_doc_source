@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_geterrordescription">
     <title><ph keyref="getErrorDescription"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="getErrorDescription"/>: gets the warning or error description.</ph><ph id="shortdesc" props="android">Gets the description of a warning or error code.</ph><ph id="shortdesc" props="ios mac">Gets the warning or error description.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp"><xref keyref="getErrorDescription"/>: gets the warning or error description.</ph><ph id="shortdesc" props="android">Gets the description of a warning or error code.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,12 +15,10 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual const char* getErrorDescription(int code) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public static String getErrorDescription(int error)</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">+ (NSString* _Nonnull)getErrorDescription: (NSInteger)error;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">+ (NSString* _Nonnull)getErrorDescription:(NSInteger)error NS_SWIFT_NAME(getErrorDescription(_:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -31,14 +29,9 @@
                     <pt>error</pt>
                     <pd>The error code reported by the SDK.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt props="cpp unreal bp unity flutter electron rn cs">code</pt>
-                <pt props="android hmos ios mac">error</pt>
-                <pd>The error code reported by the SDK.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -48,7 +41,6 @@
             </p>
             <p props="android">If the method call succeeds, returns the description of the error code.
 If the method call fails, returns an empty string.</p>
-        <p props="ios mac">The specific error description.</p>
         </section>
     </refbody>
 </reference>

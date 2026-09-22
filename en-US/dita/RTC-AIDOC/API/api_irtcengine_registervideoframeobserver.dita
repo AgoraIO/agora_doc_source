@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registervideoframeobserver">
     <title><ph keyref="registerVideoFrameObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="android">Registers the raw video frame observer object.</ph><ph id="shortdesc" props="ios mac">Registers a raw video frame observer object.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Registers the raw video frame observer object.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,9 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int registerVideoFrameObserver(IVideoFrameObserver observer);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setVideoFrameDelegate:(id&lt;AgoraVideoFrameDelegate&gt; _Nullable)delegate;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (BOOL)setVideoFrameDelegate:(id&lt;AgoraVideoFrameDelegate&gt; _Nullable)delegate NS_SWIFT_NAME(setVideoFrameDelegate(_:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">It is recommended to register an <xref keyref="IVideoFrameObserver"/> instance using this method and implement the callbacks as needed. After successful registration, the SDK triggers the corresponding callbacks whenever a video frame is received. You can use this raw video data in video preprocessing scenarios such as virtual background and beauty effects.</p>
@@ -26,14 +24,12 @@
                     <li>When the user adjusts the video configuration, the resolution in the callback will also change accordingly.</li>
                 </ul>
             </note>
-        <p props="ios mac">If you want to observe raw video frames (such as YUV or RGBA format), Agora recommends that you implement one <xref keyref="IVideoFrameObserver"/> class with this method.</p>
-            <p props="ios mac">When calling this method to register a video observer, you can register callbacks in the <apiname keyref="IVideoFrameObserver"/> class as needed. After you successfully register the video frame observer, the SDK triggers the registered callbacks each time a video frame is received.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android">
             <title>Timing</title>
             <p props="android">Call this method before joining a channel.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android ios mac">
+        <section id="parameters" deliveryTarget="details" props="android">
             <title>Parameters</title>
             <parml>
                 <plentry props="android">
@@ -42,27 +38,9 @@
                         <note>To release this instance, set this parameter to <codeph>null</codeph>.</note>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt props="android cpp unreal bp electron rn flutter">observer</pt>
-                <pt props="ios mac">delegate</pt>
-                <pt props="unity cs">videoFrameObserver</pt>
-                <pd><ph>The observer instance. See <xref keyref="IVideoFrameObserver"/></ph>. <ph props="android cpp unreal bp ios mac unity cs">To release the instance, set the value as <ph keyref="NULL"/>.</ph></pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>mode</pt>
-                <pd>The video data callback mode. See <xref keyref="OBSERVER_MODE"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>formatPreference</pt>
-                <pd>The video frame type. See <xref keyref="VIDEO_OBSERVER_FRAME_TYPE"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>position</pt>
-                <pd>A bit mask that controls the frame position of the video observer. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android ios mac">
+        <section id="return_values" props="android">
             <title>Return Values</title>
             <p props="android">
                 <ul>
@@ -70,13 +48,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li props="android cpp unreal bp electron rn unity cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul>
-            <ul props="ios mac">
-            <li><codeph><ph keyref="true"/></codeph>: Success.</li>
-            <li><codeph><ph keyref="false"/></codeph>: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

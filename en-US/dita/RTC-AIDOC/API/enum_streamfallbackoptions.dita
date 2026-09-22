@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_streamfallbackoptions">
     <title><ph keyref="STREAM_FALLBACK_OPTIONS"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Options for audio/video stream fallback when the network is poor.</ph><ph id="shortdesc" props="android">Audio and video stream fallback options under poor network conditions.</ph><ph id="shortdesc" props="ios mac">Options for handling audio and video stream fallback when network conditions are weak.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Options for audio/video stream fallback when the network is poor.</ph><ph id="shortdesc" props="android">Audio and video stream fallback options under poor network conditions.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -79,19 +79,7 @@
                     <pt>STREAM_FALLBACK_OPTION_VIDEO_STREAM_LAYER_6</pt>
                     <pd>(8): When the network is poor and multi-quality video streams are available, receive video stream from <codeph>VIDEO_STREAM_LAYER_6</codeph>.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt><ph keyref="STREAM_FALLBACK_OPTION_DISABLED"/></pt>
-                <pd>0: No fallback processing is performed on audio and video streams, the quality of the audio and video streams cannot be guaranteed.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt><ph keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW"/></pt>
-                <pd>1: Only receive low-quality (low resolution, low bitrate) video stream.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt><ph keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/></pt>
-                <pd>2: When the network conditions are weak, try to receive the low-quality video stream first. If the video cannot be displayed due to extremely weak network environment, then fall back to receiving audio-only stream.</pd>
-            </plentry>
             </parml>
         </section>
-    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

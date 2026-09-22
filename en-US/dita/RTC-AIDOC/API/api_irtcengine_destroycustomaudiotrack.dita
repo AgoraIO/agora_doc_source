@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_destroycustomaudiotrack">
     <title><ph keyref="destroyCustomAudioTrack"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="android">Destroys the specified audio track.</ph><ph id="shortdesc" props="ios mac">Destroys the specified video track.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Destroys the specified audio track.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,28 +14,19 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int destroyCustomAudioTrack(int trackId);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)destroyCustomAudioTrack:(NSInteger)trackId;</codeblock>
             </p>
         </section>
-        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"><dl outputclass="since"><dlentry props="ios mac">
-                <dt>Since</dt>
-                <dd>v4.2.0</dd>
-            </dlentry>
-            </dl></section>
-        <section id="parameters" deliveryTarget="details" props="android ios mac">
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
+        <section id="parameters" deliveryTarget="details" props="android">
             <title>Parameters</title>
             <parml>
                 <plentry props="android">
                     <pt>trackId</pt>
                     <pd>The custom audio track ID returned by <xref keyref="createCustomAudioTrack"/>.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>trackId</pt>
-                <pd>The custom audio track ID returned in <xref keyref="createCustomAudioTrack"/>.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android ios mac">
+        <section id="return_values" props="android">
             <title>Return Values</title>
             <p props="android">
                 <ul>
@@ -43,9 +34,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li props="native electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setsubscribeaudioallowlist">
     <title><ph keyref="setSubscribeAudioAllowlist"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the allowlist for audio stream subscription.</ph><ph id="shortdesc" props="android">Sets the audio stream subscription allowlist.</ph><ph id="shortdesc" props="ios mac">Sets the allowlist of subscriptions for audio streams.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the allowlist for audio stream subscription.</ph><ph id="shortdesc" props="android">Sets the audio stream subscription allowlist.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,9 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setSubscribeAudioAllowlist(uid_t* uidList, int uidNumber) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int setSubscribeAudioAllowlist(int[] uidList);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setSubscribeAudioAllowlist:(NSArray &lt;NSNumber *&gt; *_Nonnull)allowlist;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)setSubscribeAudioAllowlist:(NSArray &lt;NSNumber *&gt; *_Nonnull)allowlist NS_SWIFT_NAME(setSubscribeAudioAllowlist(_:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <note props="cpp">
@@ -36,15 +34,8 @@
                     <li>If a user is added to both the allowlist and blocklist, only the blocklist takes effect.</li>
                 </ul>
             </note>
-        <p props="ios mac">You can call this method to specify the audio streams of a user that you want to subscribe to.</p>
-            <note props="ios mac">
-            <ul>
-            <li conkeyref="setSubscribeAudioBlocklist/order"/>
-            <li>The allowlist is not affected by the setting in <xref keyref="muteRemoteAudioStream"/>, <xref keyref="muteAllRemoteAudioStreams"/> and <parmname>autoSubscribeAudio</parmname> in <xref keyref="ChannelMediaOptions"/>.</li>
-            <li id="effect">Once the allowlist of subscriptions is set, it is effective even if you leave the current channel and rejoin the channel.</li>
-            <li conkeyref="setSubscribeAudioBlocklist/priority"/>
-            </ul> </note> </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -59,21 +50,9 @@
                     <pt>uidList</pt>
                     <pd>List of user IDs whose audio streams you want to subscribe to. When you call this method, only audio streams from users in this list are subscribed to. If you want to remove a user from the allowlist, call <xref keyref="setSubscribeAudioAllowlist"/> again with a new list that only includes the user IDs you still want to subscribe to.</pd>
                 </plentry>
-            <plentry id="list" props="ios mac">
-                <pt props="android cpp unreal bp electron rn flutter unity cs">uidList</pt>
-                <pt props="apple">allowlist</pt>
-                <pd>
-                    <p>The user ID list of users that you want to subscribe to.</p>
-                    <p>If you want to specify the audio streams of a user for subscription, add the user ID in this list. If you want to remove a user from the allowlist, you need to call the <xref keyref="setSubscribeAudioAllowlist"/> method to update the user ID list; this means you only add the <parmname>uid</parmname> of users that you want to subscribe to in the new user ID list.</p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac" id="uidnumber">
-                <pt>uidNumber</pt>
-                <pd>The number of users in the user ID list.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -87,10 +66,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul>
         </section>
     </refbody>
 </reference>

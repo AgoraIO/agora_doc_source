@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiotrackconfig">
     <title><ph keyref="AudioTrackConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure custom audio track parameters.</ph><ph id="shortdesc" props="android">Used to configure custom audio tracks.</ph><ph id="shortdesc" props="ios mac">The configuration of custom audio tracks.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure custom audio track parameters.</ph><ph id="shortdesc" props="android">Used to configure custom audio tracks.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -14,13 +14,9 @@
   public boolean enableLocalPlayback;
   public boolean enableAudioProcessing;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraAudioTrackConfig) __attribute__((visibility("default"))) @interface AgoraAudioTrackConfig : NSObject
-@property (assign, nonatomic) BOOL enableLocalPlayback NS_SWIFT_NAME(enableLocalPlayback);
-@property (assign, nonatomic) BOOL enableAudioProcessing NS_SWIFT_NAME(enableAudioProcessing);
-@end</codeblock>
-      </p>
+            </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -61,24 +57,7 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-        <pt>enableLocalPlayback</pt>
-        <pd>Whether to enable the local audio-playback device:<ul>
-                <li><codeph><ph keyref="true"/></codeph>: (Default) Enable the local audio-playback device.</li>
-                <li><codeph><ph keyref="false"/></codeph>: Do not enable the local audio-playback device.</li>
-            </ul>
-        </pd>
-      </plentry>
-      <plentry props="ios mac">
-        <pt>enableAudioProcessing</pt>
-        <pd>Whether to enable audio processing module:<ul>
-                <li><codeph><ph keyref="true"/></codeph>: Enable the audio processing module to apply the Automatic Echo Cancellation (AEC), Automatic Noise Suppression (ANS), and Automatic Gain Control (AGC) effects.</li>
-                <li><codeph><ph keyref="false"/></codeph>: (Default) Do not enable the audio processing module.</li>
-            </ul>
-            <note type="attention">This parameter only takes effect on <ph keyref="AUDIO_TRACK_DIRECT"/> in custom audio capturing.</note>
-        </pd>
-      </plentry>
-      </parml>
+            </parml>
         </section>
-    <section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

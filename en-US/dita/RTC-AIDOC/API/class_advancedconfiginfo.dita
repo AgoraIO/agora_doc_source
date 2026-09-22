@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_advancedconfiginfo">
     <title><ph keyref="AdvancedConfigInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure advanced options for the local access point.</ph><ph id="shortdesc" props="android">Advanced configuration options for the local access point.</ph><ph id="shortdesc" props="ios mac">The advanced options for the Local Access Point.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure advanced options for the local access point.</ph><ph id="shortdesc" props="android">Advanced configuration options for the local access point.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -12,12 +12,9 @@
                 <codeblock props="android" outputclass="language-java">public static class AdvancedConfigInfo {
     public LogUploadServerInfo logUploadServer = null;
   }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AdvancedConfigInfo) __attribute__((visibility("default"))) @interface AdvancedConfigInfo : NSObject
-@property(strong, nonatomic) LogUploadServerInfo* _Nullable logUploadServer;
-@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -28,16 +25,7 @@
                     <pt>logUploadServer</pt>
                     <pd>Custom log upload server. By default, the SDK uploads logs to the Agora log server. You can use this parameter to change the log upload server. See <xref keyref="LogUploadServerInfo"/>.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>logUploadServer</pt>
-                <pd>Custom log upload server. By default, the SDK uploads logs to Agora log server. You can modify the server where logs are uploaded through this parameter. See <xref keyref="LogUploadServerInfo"/>.</pd>
-            </plentry>
             </parml>
         </section>
-    <section id="detailed_desc"><dl outputclass="since"><dlentry props="ios mac">
-                <dt>Since</dt>
-                <dd>v4.1.0</dd>
-            </dlentry>
-            </dl><p props="ios mac"/>
-        </section></refbody>
+    </refbody>
 </reference>

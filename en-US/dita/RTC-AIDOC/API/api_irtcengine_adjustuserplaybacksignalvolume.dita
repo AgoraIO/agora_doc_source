@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_adjustuserplaybacksignalvolume">
     <title><ph keyref="adjustUserPlaybackSignalVolume"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Adjusts the playback signal volume of a specified remote user.</ph><ph id="shortdesc" props="android">Adjusts the playback volume of a specified remote user.</ph><ph id="shortdesc" props="ios mac">Adjusts the playback signal volume of a specified remote user.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Adjusts the playback signal volume of a specified remote user.</ph><ph id="shortdesc" props="android">Adjusts the playback volume of a specified remote user.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,21 +15,18 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int adjustUserPlaybackSignalVolume(uid_t uid, int volume) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int adjustUserPlaybackSignalVolume(int uid, int volume);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)adjustUserPlaybackSignalVolume:(NSUInteger)uid volume:(int)volume;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)adjustUserPlaybackSignalVolume:(NSUInteger)uid volume:(int)volume NS_SWIFT_NAME(adjustUserPlaybackSignalVolume(_:volume:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">You can call this method to adjust the playback volume of a specified remote user. To adjust the playback volume of multiple remote users, call this method multiple times, once for each user.</p>
             <p props="android">You can call this method to adjust the playback volume of a specified remote user. To adjust the volume for multiple remote users, call this method multiple times, once for each user.</p>
-        <p id="desc" props="ios mac">You can call this method to adjust the playback volume of a specified remote user. To adjust the playback volume of different remote users, call the method as many times, once for each remote user.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
             <p props="cpp">Call this method after joining the channel.</p>
             <p props="android">Call this method after joining a channel.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -60,17 +57,9 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry id="uid" props="ios mac">
-                <pt>uid</pt>
-                <pd>The user ID of the remote user.</pd>
-            </plentry>
-            <plentry conkeyref="adjustRecordingSignalVolume/volume" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -84,9 +73,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

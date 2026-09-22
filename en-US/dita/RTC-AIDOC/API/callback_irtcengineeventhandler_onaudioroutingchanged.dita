@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onaudioroutingchanged">
     <title><ph keyref="onAudioRoutingChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the local audio routing changes.</ph><ph id="shortdesc" props="android">Callback when the local audio route changes.</ph><ph id="shortdesc" props="ios mac">Occurs when the local audio route changes.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the local audio routing changes.</ph><ph id="shortdesc" props="android">Callback when the local audio route changes.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,9 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioRoutingChanged(int routing) { (void)routing; }</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onAudioRouteChanged(int routing) {}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioRouteChanged:(AgoraAudioOutputRouting)routing;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didAudioRouteChanged:(AgoraAudioOutputRouting)routing NS_SWIFT_NAME(rtcEngine(_:didAudioRouteChanged:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <note props="cpp">This callback applies to Android, iOS, and macOS only.</note>
@@ -26,7 +24,7 @@
             <title>Trigger Timing</title>
             <p props="android">This callback is triggered when the local audio route changes.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -48,35 +46,6 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>routing</pt>
-                <pd>
-                    <p props="ios mac unity flutter cpp unreal cs">The current audio routing. See <xref keyref="AudioRoute"/>.</p>
-                    <p props="android bp">The current audio routing.<ul>
-                    <li><ph keyref="ROUTE_DEFAULT"/>(-1): The default audio route.</li>
-                    <li><ph keyref="ROUTE_HEADSET"/>(0): The audio route is a headset with a microphone.</li>
-                    <li><ph keyref="ROUTE_EARPIECE"/>(1): The audio route is an earpiece.</li>
-                    <li><ph keyref="ROUTE_HEADSETNOMIC"/>(2): The audio route is a headset without a microphone.</li>
-                    <li><ph keyref="ROUTE_SPEAKERPHONE"/>(3): The audio route is the speaker that comes with the device.</li>
-                    <li><ph keyref="ROUTE_LOUDSPEAKER"/>(4): (For future use) The audio route is an external speaker.</li>
-                    <li><ph keyref="ROUTE_BLUETOOTH_DEVICE_HFP"/>(5): The audio route is a Bluetooth device using the HFP protocol.</li>
-                    <li><ph keyref="ROUTE_BLUETOOTH_DEVICE_A2DP"/>(10): The audio route is a Bluetooth device using the A2DP protocol.</li>
-                    </ul> </p>
-                    <p props="electron rn">The current audio routing.<ul>
-                    <li>-1: The default audio route.</li>
-                    <li>0: The audio route is a headset with a microphone.</li>
-                    <li>1: The audio route is an earpiece.</li>
-                    <li>2: The audio route is a headset without a microphone.</li>
-                    <li>3: The audio route is the speaker that comes with the device.</li>
-                    <li>4: The audio route is an external speaker. (For iOS and macOS only)</li>
-                    <li>(5): The audio route is a Bluetooth headset.</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
             </parml>
         </section>
     </refbody>

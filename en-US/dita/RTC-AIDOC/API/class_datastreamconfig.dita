@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_datastreamconfig">
     <title><ph keyref="DataStreamConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Struct used to configure data stream behavior.</ph><ph id="shortdesc" props="android">Used to configure synchronization and ordering behavior of data streams.</ph><ph id="shortdesc" props="ios mac">The configurations for the data stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Struct used to configure data stream behavior.</ph><ph id="shortdesc" props="android">Used to configure synchronization and ordering behavior of data streams.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -14,15 +14,7 @@
   public boolean syncWithAudio = false;
   public boolean ordered = false;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraDataStreamConfig: NSObject
-@property (assign, nonatomic) BOOL ordered;
-@property (assign, nonatomic) BOOL syncWithAudio;
-@end</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">@interface AgoraDataStreamConfig: NSObject
-@property (assign, nonatomic) BOOL ordered;
-@property (assign, nonatomic) BOOL syncWithAudio;
-@end</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
             <p props="cpp">The following table shows the SDK behavior under different parameter combinations:
@@ -83,9 +75,8 @@
                     </strow>
                 </simpletable>
             </p>
-        <p props="ios mac">The following table shows the SDK behaviors under different parameter settings:</p>
-            </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -122,24 +113,6 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>syncWithAudio</pt>
-                <pd>
-                    <p>Whether to synchronize the data packet with the published audio packet.<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Synchronize the data packet with the audio packet. This setting is suitable for special scenarios such as lyrics synchronization.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not synchronize the data packet with the audio packet. This setting is suitable for scenarios where data packets need to arrive at the receiving end immediately.</li>
-                    </ul>When you set the data packet to synchronize with the audio, then if the data packet delay is within the audio delay, the SDK triggers the <xref keyref="onStreamMessage"/> callback when the synchronized audio packet is played out.</p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>ordered</pt>
-                <pd>
-                    <p>Whether the SDK guarantees that the receiver receives the data in the sent order.<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Guarantee that the receiver receives the data in the sent order.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not guarantee that the receiver receives the data in the sent order.</li>
-                    </ul>Do not set this parameter as <codeph><ph keyref="true"/></codeph> if you need the receiver to receive the data packet immediately.</p>
-                </pd>
-            </plentry>
             </parml>
         </section>
     </refbody>

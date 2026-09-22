@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_music">
     <title><ph keyref="Music"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes detailed information about a music resource.</ph><ph id="shortdesc" props="android">Represents detailed information about a music resource.</ph><ph id="shortdesc" props="ios mac">The details of musci assets in the collection.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes detailed information about a music resource.</ph><ph id="shortdesc" props="android">Represents detailed information about a music resource.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -35,34 +35,9 @@
   public MvProperty[] mvProperties;
   public ClimaxSegment[] climaxSegments;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusic : NSObject
-@property(nonatomic, assign) NSInteger songCode;
-@property(nonatomic, assign) NSInteger type;
-@property(nonatomic, assign) NSInteger pitchType;
-@property(nonatomic, copy) NSString* name;
-@property(nonatomic, copy) NSString* singer;
-@property(nonatomic, copy) NSString* poster;
-@property(nonatomic, copy) NSString* releaseTime;
-@property(nonatomic, assign) NSInteger durationS;
-@property(nonatomic, strong) NSArray&lt;NSNumber *&gt;* lyricList;
-@property(nonatomic, strong) NSArray&lt;AgoraClimaxSegment *&gt;* climaxSegmentList;
-@end</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusic : NSObject
-@property(nonatomic, assign) NSInteger songCode;
-@property(nonatomic, assign) NSInteger type;
-@property(nonatomic, assign) NSInteger pitchType;
-@property(nonatomic, copy) NSString* name;
-@property(nonatomic, copy) NSString* singer;
-@property(nonatomic, copy) NSString* poster;
-@property(nonatomic, copy) NSString* releaseTime;
-@property(nonatomic, assign) NSInteger durationS;
-@property(nonatomic, strong) NSArray&lt;NSNumber *&gt;* lyricList;
-@property(nonatomic, strong) NSArray&lt;AgoraMvProperty *&gt;* mvPropertyList;
-@property(nonatomic, strong) NSArray&lt;AgoraClimaxSegment *&gt;* climaxSegmentList;
-@end</codeblock>
-                </p>
+            </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -199,61 +174,7 @@
                     <pt>climaxSegments</pt>
                     <pd>List of music climax segments. See <xref keyref="ClimaxSegment"/>.</pd>
                 </plentry>
-            <plentry id="code" props="ios mac">
-                <pt>songCode</pt>
-                <pd>The code of the music, which is an unique identifier of the music.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>name</pt>
-                <pd>The name of the music resource.</pd></plentry>
-            <plentry props="ios mac">
-                <pt>singer</pt>
-                <pd>The name of the singer.</pd></plentry>
-            <plentry props="ios mac">
-                <pt>poster</pt>
-                <pd>Download link for the music poster.</pd></plentry>
-            <plentry props="ios mac">
-                <pt>releaseTime</pt>
-                <pd>The release time of the music resource.</pd></plentry>
-            <plentry props="ios mac">
-                <pt>type</pt>
-                <pd>Type of the music resource:
-
-                            1: Single track, left channel is accompaniment, right channel is original vocals.
-                            2: Single track, accompaniment only.
-                            3: Single track, original vocals only.
-                            4: Multi-track audio.</pd></plentry>
-            <plentry props="ios mac">
-                <pt>pitchType</pt>
-                <pd>Whether the song supports pitch scoring:
-
-                            1: Supports pitch scoring.
-                            2: Does not support pitch scoring.</pd></plentry>
-            <plentry props="ios mac">
-                <pt>durationS</pt>
-                <pd>Total duration of the music resource (in seconds).</pd></plentry>
-            <plentry props="ios mac">
-                <pt props="android">lyricTypes</pt>
-                <pt props="apple cpp electron unity rn flutter">lyricList</pt>
-                <pd>Supported lyric types:
-
-                            0: XML format.
-                            1: LRC format.</pd></plentry>
-            <plentry props="ios mac">
-                <pt props="android">climaxSegments</pt>
-                <pt props="apple cpp electron unity rn flutter">climaxSegmentList</pt>
-                <pd>List of music climax segments. See .</pd></plentry>
-            <plentry props="ios mac">
-                <pt>lyricCount</pt>
-                <pd>The number of available lyrics for the song.</pd></plentry>
-            <plentry props="ios mac">
-                <pt>climaxSegmentCount</pt>
-                <pd>The number of climax segments.</pd></plentry>
             </parml>
         </section>
-    <section id="detailed_desc"><dl outputclass="since"><dlentry props="ios mac">
-                <dt>Since</dt>
-                <dd>v4.1.0</dd>
-            </dlentry>
-            </dl></section></refbody>
+    </refbody>
 </reference>

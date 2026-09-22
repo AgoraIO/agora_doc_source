@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_useraudiospectruminfo">
     <title><ph keyref="UserAudioSpectrumInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Obtains the audio spectrum information of a remote user.</ph><ph id="shortdesc" props="android">Audio spectrum information of remote users.</ph><ph id="shortdesc" props="ios mac">Audio spectrum information of the remote user.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Obtains the audio spectrum information of a remote user.</ph><ph id="shortdesc" props="android">Audio spectrum information of remote users.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -13,15 +13,9 @@
   private int uid;
   private AudioSpectrumInfo audioSpectrumInfo;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioSpectrumInfo : NSObject
-
-@property(nonatomic, assign) NSInteger uid;
-@property(nonatomic, strong) NSArray&lt;NSNumber *&gt; * _Nullable audioSpectrumData;
-
-@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -36,19 +30,7 @@
                     <pt>audioSpectrumInfo</pt>
                     <pd>Audio spectrum information of the remote user. See <xref keyref="AudioSpectrumData"/>.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>uid</pt>
-                <pd>The user ID of the remote user.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="android hmos">audioSpectrumInfo</pt>
-                <pt props="ios mac">audioSpectrumData</pt>
-                <pt props="cpp unreal bp unity electron flutter cs">spectrumData</pt>
-                <pd>
-                    <p>Audio spectrum information of the remote user. <ph props="android hmos cpp unreal bp unity electron flutter cs">See <xref keyref="AudioSpectrumData"/>.</ph></p>
-                </pd>
-            </plentry>
             </parml>
         </section>
-    <section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

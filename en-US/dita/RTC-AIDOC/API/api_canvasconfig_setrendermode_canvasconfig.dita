@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_canvasconfig_setrendermode_canvasconfig">
     <title><ph keyref="SetRenderMode_CanvasConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the video rendering mode.</ph><ph id="shortdesc" props="android">Sets the video render mode.</ph><ph id="shortdesc" props="ios mac">Sets the vide render mode.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the video rendering mode.</ph><ph id="shortdesc" props="android">Sets the video render mode.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,9 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">void SetRenderMode(VideoRenderMode mode, Error *err = nullptr)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void setVideoRenderMode(Constants.VideoRenderMode mode) throws RteException</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)setVideoMirrorMode:(AgoraRteVideoMirrorMode)mode error:(AgoraRteError* _Nullable)error;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (void)setVideoRenderMode:(AgoraRteVideoRenderMode)mode error:(AgoraRteError * _Nullable)error;</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
@@ -29,18 +27,13 @@
                     <dt>Since</dt>
                     <dd>Available since v4.4.0.</dd>
                 </dlentry>
-            <dlentry props="ios mac">
-                <dt>Since</dt>
-                <dd>v4.5.0</dd>
-            </dlentry>
             </dl>
-        <p props="ios mac"/>
         </section>
         <section id="timing" deliveryTarget="details" props="cpp">
             <title>Timing</title>
             <p props="cpp">Call this method before <codeph>SetConfigs</codeph>.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -57,14 +50,6 @@
                         <note>The default value is <codeph>VideoRenderMode.HIDDEN</codeph>.</note>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>mode</pt>
-                <pd>The video rendering mode. See <xref keyref="RteVideoRenderMode"/>. The default rendering mode is <apiname keyref="kRteVideoRenderModeHidden"/>, which means that the video size is scaled proportionally to fill the view.</pd>
-            </plentry>
-            <plentry props="ios mac" conkeyref="SetConfigs_Rte/err">
-                <pt/>
-                <pd/>
-            </plentry>
             </parml>
         </section>
         <section id="exception" props="android">

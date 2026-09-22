@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoframe">
     <title><ph keyref="VideoFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure video frames.</ph><ph id="shortdesc" props="ios mac">Configurations of the video frame.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure video frames.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -31,54 +31,12 @@
   IVideoFrameMetaInfo* metaInfo;
   ColorSpace colorSpace;
 };</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraOutputVideoFrame : NSObject
-
-@property (nonatomic, assign) NSInteger type;
-@property (nonatomic, assign) int width;
-@property (nonatomic, assign) int height;
-@property (nonatomic, assign) int yStride;
-@property (nonatomic, assign) int uStride;
-@property (nonatomic, assign) int vStride;
-@property (nonatomic, assign) uint8_t* _Nullable yBuffer;
-@property (nonatomic, assign) uint8_t* _Nullable uBuffer;
-@property (nonatomic, assign) uint8_t* _Nullable vBuffer;
-@property (nonatomic, assign) int rotation;
-@property (nonatomic, assign) int64_t renderTimeMs;
-@property (nonatomic, assign) int avSyncType;
-
-@property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
-@property (nonatomic, assign) uint8_t* _Nullable alphaBuffer;
-@property (nonatomic, assign) AgoraAlphaStitchMode alphaStitchMode;
-
-@property(nonatomic, strong) NSDictionary *_Nonnull metaInfo;
-@property(nonatomic, strong) AgoraColorSpace* _Nullable colorSpace;
-@end</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">@interface AgoraOutputVideoFrame : NSObject
-@property (nonatomic, assign) NSInteger type;
-@property (nonatomic, assign) int width;
-@property (nonatomic, assign) int height;
-@property (nonatomic, assign) int yStride;
-@property (nonatomic, assign) int uStride;
-@property (nonatomic, assign) int vStride;
-@property (nonatomic, assign) uint8_t* _Nullable yBuffer;
-@property (nonatomic, assign) uint8_t* _Nullable uBuffer;
-@property (nonatomic, assign) uint8_t* _Nullable vBuffer;
-@property (nonatomic, assign) int rotation;
-@property (nonatomic, assign) int64_t renderTimeMs;
-@property (nonatomic, assign) int avSyncType;
-@property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
-@property (nonatomic, assign) uint8_t* _Nullable alphaBuffer;
-@property (nonatomic, assign) AgoraAlphaStitchMode alphaStitchMode;
-@property(nonatomic, strong) NSDictionary *_Nonnull metaInfo;
-@property(nonatomic, strong) AgoraColorSpace* _Nullable colorSpace;
-@end</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp">
             <p props="cpp">Note: The buffer is a pointer to a pointer. This interface cannot modify the buffer pointer, but can modify the buffer content.</p>
-        <p props="ios mac">Note that the buffer provides a pointer to a pointer. This interface cannot modify the pointer of the buffer, but it can modify the content of the buffer.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -181,162 +139,7 @@
                     <pt>colorSpace</pt>
                     <pd>Color space attributes of the video frame. Defaults to Full Range and BT.709 standard configuration. See [<codeph>VideoColorSpace</codeph>](https://developer.mozilla.org/en-US/docs/Web/API/VideoColorSpace).</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>type</pt>
-                <pd>The video type. See <xref keyref="VIDEO_BUFFER_TYPE"/>.</pd>
-              </plentry>
-        <plentry props="ios mac">
-          <pt props="hmos">format</pt>
-          <pt props="android cpp apple framework">type</pt>
-          <pd props="hmos cpp unreal bp unity electron rn flutter cs">The pixel format. See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
-          <pd props="ios mac" conkeyref="ExternalVideoFrame/oc-format"/>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>width</pt>
-          <pd>The width of the video, in pixels.</pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>height</pt>
-          <pd>The height of the video, in pixels.</pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>yStride</pt>
-          <pd>For YUV data, the line span of the Y buffer; for RGBA data, the total data length.<note type="attention">When dealing with video data, it is necessary to process the offset between each line of pixel data based on this parameter, otherwise it may result in image distortion.</note>
-          </pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>uStride</pt>
-          <pd>For YUV data, the line span of the U buffer; for RGBA data, the value is 0.<note type="attention">When dealing with video data, it is necessary to process the offset between each line of pixel data based on this parameter, otherwise it may result in image distortion.</note>
-          </pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>vStride</pt>
-          <pd>For YUV data, the line span of the V buffer; for RGBA data, the value is 0.<note type="attention">When dealing with video data, it is necessary to process the offset between each line of pixel data based on this parameter, otherwise it may result in image distortion.</note>
-          </pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>yBuffer</pt>
-          <pd>For YUV data, the pointer to the Y buffer; for RGBA data, the data buffer.</pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>uBuffer</pt>
-          <pd>For YUV data, the pointer to the U buffer; for RGBA data, the value is 0.</pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>vBuffer</pt>
-          <pd>For YUV data, the pointer to the V buffer; for RGBA data, the value is 0.</pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>I420Buffer</pt>
-          <pd>The buffer for I420 video frames, including YUV data.</pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>I422Buffer</pt>
-          <pd>The buffer for I420 video frames, including YUV data.</pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>TextureBuffer</pt>
-          <pd>The buffer for Texture video frames, which can be OES or RGB format.</pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>buffer</pt>
-          <pd>
-            <note type="attention">This parameter cannot be empty; otherwise, an error  can occur.</note>Buffer data. The methods associated with this parameter are as follows:</pd>
-          <pd>
-            <ul>
-              <li><codeph>getRotatedWidth</codeph>: Gets the width of the rotated video frame.</li>
-              <li><codeph>getRotatedHeight</codeph>: Gets the height of the rotated video frame.</li>
-              <li><codeph>replaceBuffer</codeph>: Replaces the data in the <codeph>buffer </codeph>with the new video frames.</li>
-              <li><codeph>retain</codeph>: Increments the reference count of the buffer by 1.</li>
-              <li><codeph>release</codeph>: Decrements the reference count of the buffer by 1. When the count reaches 0, the buffer's resources are released.</li>
-            </ul>
-          </pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>rotation</pt>
-          <pd>The clockwise rotation of the video frame before rendering. Supported values include 0, 90, 180, and 270 degrees.</pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>renderTimeMs</pt>
-          <pd>The Unix timestamp (ms) when the video frame is rendered. This timestamp can be used to guide the rendering of the video frame. This parameter is required.</pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>timestampNs</pt>
-          <pd>The timestamp (ns) of a video frame.</pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt props="cpp unreal bp unity rn electron cs">avsync_type</pt>
-          <pt props="apple">avSyncType</pt>
-          <pt props="flutter">avsyncType</pt>
-          <pd>Reserved for future use.</pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>sharedContext</pt>
-          <pd>This parameter only applies to video data in Texture format. EGL Context.</pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>textureId</pt>
-          <pd>This parameter only applies to video data in Texture format. Texture ID.</pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>d3d11Texture2d</pt>
-          <pd>This parameter only applies to video data in Windows Texture format. It represents a pointer to an object of type<codeph> ID3D11Texture2D</codeph>, which is used by a video frame.</pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>matrix</pt>
-          <pd>This parameter only applies to video data in Texture format. Incoming 4 × 4 transformational matrix. The typical value is a unit matrix.</pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>pixelBuffer</pt>
-          <pd>Fills the data to CVPixelBuffer.</pd>
-        </plentry>
-        <plentry id="colorspace" props="ios mac">
-            <pt>colorSpace</pt>
-            <pd props="ios mac cpp cs unity flutter electron rn unreal bp">By default, the color space properties of video frames will apply the Full Range and BT.709 standard configurations. <ph props="cn">You can configure the settings according your needs for custom video capturing and rendering. See <xref keyref="videocolorspace-link"/>.</ph></pd>
-          <pd props="android hmos">By default, the color space properties of video frames will apply the Full Range and BT.709 standard configurations. <ph props="cn">You can configure the settings according your needs for custom video capturing and rendering. See <xref keyref="videocolorspace-link"/>.</ph>The methods associated with this parameter are as follows:<ul>
-            <li><codeph>getColorSpace</codeph>: Get the color space attribute of the video frame.</li>
-            <li><codeph>setColorSpace</codeph>:Set the color space attribute of the video frame.</li>
-          </ul></pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>sourceType</pt>
-          <pd>When using the SDK to capture video, this indicates the type of the video source.<ul>
-            <li><parmname>kFrontCamera</parmname>: The front camera.</li>
-            <li><parmname>kBackCamera</parmname>: The rear camera.</li>
-            <li><parmname>kUnspecified</parmname>: (Default) The video source type is unknown.</li>
-            </ul></pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>sampleAspectRatio</pt>
-          <pd>The aspect ratio of a single pixel, which is the ratio of the width to the height of each pixel.</pd>
-        </plentry>
-        <plentry id="alphabuffer" props="ios mac">
-          <pt props="cpp android framework">alphaBuffer</pt>
-          <pt props="apple">alphaBuf</pt>
-          <pd>
-            <p>The alpha channel data output by using portrait segmentation algorithm. This data matches the size of the video frame, with each pixel value ranging from [0,255], where 0 represents the background and 255 represents the foreground (portrait).</p>
-            <p>By setting this parameter, you can render the video background into various effects, such as transparent, solid color, image, video, etc.</p>
-            <note type="attention"><ul><li props="android framework">In custom video rendering scenarios, ensure that both the video frame and <parmname>alphaBuffer</parmname> are of the Full Range type; other types may cause abnormal alpha data rendering.</li>
-            <li>Make sure that <parmname props="cpp android framework">alphaBuffer</parmname><parmname props="apple">alphaBuf</parmname> is exactly the same size as the video frame (width × height), otherwise it may cause the app to crash.</li></ul></note>
-          </pd>
-        </plentry>
-      <plentry id="alphastitchmode" props="ios mac">
-        <pt>alphaStitchMode</pt>
-        <pd>When the video frame contains alpha channel data, it represents the relative position of <parmname>alphaBuffer</parmname> and the video frame. <ph props="cpp apple framework">See <xref keyref="ALPHA_STITCH_MODE"/>.</ph><ul props="android">
-            <li><ph keyref="NO_ALPHA_STITCH"/>0: (Default) Only video frame, that is, <parmname>alphaBuffer</parmname> is not stitched with the video frame.</li>
-            <li><ph keyref="ALPHA_STITCH_UP"/>(1): <parmname>alphaBuffer</parmname> is above the video frame.</li>
-            <li><ph keyref="ALPHA_STITCH_BELOW"/>(2): <parmname>alphaBuffer</parmname> is below the video frame.</li>
-            <li><ph keyref="ALPHA_STITCH_LEFT"/>(3): <parmname>alphaBuffer</parmname> is to the left of the video frame.</li>
-            <li><ph keyref="ALPHA_STITCH_RIGHT"/>(4): <parmname>alphaBuffer</parmname> is to the right of the video frame.</li>
-            </ul></pd>
-      </plentry>
-      <plentry props="ios mac">
-          <pt>metaInfo</pt>
-          <pd>
-            <p>The meta information in the video frame. To use this parameter, contact <xref keyref="ticket-link"/>.</p>
-          </pd>
-        </plentry>
-      </parml>
+            </parml>
         </section>
     </refbody>
 </reference>

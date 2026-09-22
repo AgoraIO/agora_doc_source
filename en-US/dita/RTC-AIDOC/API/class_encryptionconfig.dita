@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encryptionconfig">
     <title><ph keyref="EncryptionConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure built-in encryption parameters.</ph><ph id="shortdesc" props="android">Used to configure built-in encryption.</ph><ph id="shortdesc" props="ios mac">Built-in encryption configurations.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure built-in encryption parameters.</ph><ph id="shortdesc" props="android">Used to configure built-in encryption.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -19,16 +19,9 @@
   public final byte[] encryptionKdfSalt = new byte[32];
   public boolean datastreamEncryptionEnabled;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncryptionConfig: NSObject
-
- @property (assign, nonatomic) AgoraEncryptionMode encryptionMode;
- @property (copy, nonatomic) NSString * _Nullable encryptionKey;
- @property (strong, nonatomic) NSData * _Nullable encryptionKdfSalt;
- @property (assign, nonatomic) BOOL  datastreamEncryptionEnabled;
- @end</codeblock>
-      </p>
+            </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -81,35 +74,7 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-        <pt>encryptionMode</pt>
-        <pd>
-          <p>The built-in encryption mode. See <xref keyref="ENCRYPTION_MODE"/>. Agora recommends using <codeph><ph keyref="AES_128_GCM2"/></codeph> or <codeph><ph keyref="AES_256_GCM2"/></codeph> encrypted mode. These two modes support the use of salt for higher security.</p>
-        </pd>
-      </plentry>
-      <plentry props="ios mac">
-        <pt>encryptionKey</pt>
-        <pd>
-          <p>Encryption key in string type with unlimited length. Agora recommends using a 32-byte key.</p>
-          <note type="attention">If you do not set an encryption key or set it as <codeph><ph keyref="NULL"/></codeph>, you cannot use the built-in encryption, and the SDK returns <codeph>-2</codeph>.</note> </pd>
-      </plentry>
-      <plentry props="ios mac">
-        <pt>encryptionKdfSalt</pt>
-        <pd>
-          <p>Salt, 32 bytes in length. Agora recommends that you use OpenSSL to generate salt on the server side. See Media Stream Encryption for details.</p>
-          <p props="native"><ph props="cn">To add Agora built-in media stream encryption in your app, see <xref keyref="channel-encryption"/>.</ph></p>
-          <note type="attention">This parameter takes effect only in <codeph><ph keyref="AES_128_GCM2"/></codeph> or <codeph><ph keyref="AES_256_GCM2"/></codeph> encrypted mode. In this case, ensure that this parameter is not <codeph>0</codeph>.</note>
-        </pd>
-      </plentry>
-      <plentry props="ios mac">
-        <pt>datastreamEncryptionEnabled</pt>
-        <pd><ph>Whether to enable data stream encryption:</ph><ul>
-            <li><codeph><ph keyref="true"/></codeph>: Enable data stream encryption.</li>
-            <li><codeph><ph keyref="false"/></codeph>: (Default) Disable data stream encryption.</li>
-          </ul>
-        </pd>
-      </plentry>
-      </parml>
+            </parml>
         </section>
-    <section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onremoteaudiotransportstats">
     <title><ph keyref="onRemoteAudioTransportStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback to report transport layer statistics for each remote audio stream.</ph><ph id="shortdesc" props="android">Reports transport-layer statistics of each remote audio stream.</ph><ph id="shortdesc" props="ios mac">Reports the transport-layer statistics of each remote audio stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback to report transport layer statistics for each remote audio stream.</ph><ph id="shortdesc" props="android">Reports transport-layer statistics of each remote audio stream.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,13 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteAudioTransportStats(uid_t uid, unsigned short delay, unsigned short lost, unsigned short rxKBitRate) __deprecated</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onRemoteAudioTransportStats(int uid, int delay, int lost, int rxKBitRate)</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-                  audioTransportStatsOfUid:(NSUInteger)uid
-                  delay:(NSUInteger)delay
-                  lost:(NSUInteger)lost
-                  rxKBitRate:(NSUInteger)rxKBitRate;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine audioTransportStatsOfUid:(NSUInteger)uid delay:(NSUInteger)delay lost:(NSUInteger)lost rxKBitRate:(NSUInteger)rxKBitRate NS_SWIFT_NAME(rtcEngine(_:audioTransportStatsOfUid:delay:lost:rxKBitRate:)) __deprecated_msg("use rtcEngine:remoteAudioStats: instead");</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="deprecated">
@@ -36,22 +30,13 @@
             </dl>
             <p props="cpp">This callback reports transport layer statistics, such as packet loss rate and network delay after the local user receives audio packets from a remote user. It is triggered every 2 seconds during a call.</p>
             <p props="android">This callback reports transport-layer statistics of remote audio streams, such as packet loss rate and network delay after the local user receives audio packets from a remote user.</p>
-        <p props="ios mac">
-            <dl outputclass="deprecated">
-            <dlentry>
-                <dt>Deprecated:</dt>
-                <dd>Use <xref keyref="onRemoteAudioStats"/> instead.</dd>
-            </dlentry>
-            </dl>
-            </p>
-            <p id="desc" props="ios mac">This callback reports the transport-layer statistics, such as the packet loss rate and network time delay after the local user receives an audio packet from a remote user. During a call, when the user receives the audio packet sent by the remote user, the callback is triggered every 2 seconds.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Trigger Timing</title>
             <p props="cpp">During a call, triggered every 2 seconds when the local user receives audio packets from a remote user.</p>
             <p props="android">This callback is triggered every 2 seconds during the call when the local user receives audio packets from a remote user.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -86,31 +71,6 @@
                     <pt>rxKBitRate</pt>
                     <pd>Received audio bitrate in Kbps.</pd>
                 </plentry>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>connection</pt>
-                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="native unreal bp">uid</pt>
-                <pt props="unity flutter electron rn cs">remoteUid</pt>
-                <pd>The ID of the remote user sending the audio streams.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>delay</pt>
-                <pd>The network delay (ms) from the remote user to the receiver.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>lost</pt>
-                <pd>The packet loss rate (%) of the audio packet sent from the remote user to the receiver.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>rxKBitrate</pt>
-                <pd>The bitrate of the received audio (Kbps).</pd>
-            </plentry>
             </parml>
         </section>
     </refbody>

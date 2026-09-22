@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onencryptionerror">
     <title><ph keyref="onEncryptionError"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for reporting built-in encryption errors.</ph><ph id="shortdesc" props="android">Callback for built-in encryption errors.</ph><ph id="shortdesc" props="ios mac">Reports the built-in encryption errors.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for reporting built-in encryption errors.</ph><ph id="shortdesc" props="android">Callback for built-in encryption errors.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,21 +15,17 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onEncryptionError(ENCRYPTION_ERROR_TYPE errorType)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onEncryptionError(int errorType)</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-                    didOccurEncryptionError:(AgoraEncryptionErrorType)errorType;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOccurEncryptionError:(AgoraEncryptionErrorType)errorType NS_SWIFT_NAME(rtcEngine(_:didOccur:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">After calling <xref keyref="enableEncryption"/> to enable encryption, if an error occurs during encryption or decryption on the sender or receiver side, the SDK triggers this callback.</p>
             <p props="android">If an error occurs during encryption or decryption after calling <xref keyref="enableEncryption"/> to enable encryption, the SDK triggers this callback on the sender or receiver side.</p>
-        <p props="ios mac">When encryption is enabled by calling <xref keyref="enableEncryption"/>, the SDK triggers this callback if an error occurs in encryption or decryption on the sender or the receiver side.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android">
             <title>Trigger Timing</title>
             <p props="android">This callback is triggered when an error occurs during encryption or decryption.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -48,28 +44,6 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>connection</pt>
-                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>errorType</pt>
-                <pd>Details about the error type. See <xref keyref="ENCRYPTION_ERROR_TYPE"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>errorType</pt>
-                <pd>Error types.<ul>
-                    <li><ph keyref="ENCRYPTION_ERROR_INTERNAL_FAILURE"/>(0): Internal reasons.</li>
-                    <li><ph keyref="ENCRYPTION_ERROR_DECRYPTION_FAILURE"/>(1): Media stream decryption error. Ensure that the receiver and the sender use the same encryption mode and key.</li>
-                    <li><ph keyref="ENCRYPTION_ERROR_ENCRYPTION_FAILURE"/>(2): Media stream encryption error.</li>
-                    <li><ph keyref="ENCRYPTION_ERROR_DATASTREAM_DECRYPTION_FAILURE"/>(3): Data stream decryption error. Ensure that the receiver and the sender use the same encryption mode and key.</li>
-                    <li><ph keyref="ENCRYPTION_ERROR_DATASTREAM_ENCRYPTION_FAILURE"/>(4): Data stream encryption error.</li>
-                </ul></pd>
-            </plentry>
             </parml>
         </section>
     </refbody>

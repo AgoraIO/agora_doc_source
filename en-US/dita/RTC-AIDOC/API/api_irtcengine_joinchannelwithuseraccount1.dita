@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_joinchannelwithuseraccount1">
     <title><ph keyref="joinChannelWithUserAccount1"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Joins a channel using a user account and token.</ph><ph id="shortdesc" props="android">Joins a channel using a user account and token.</ph><ph id="shortdesc" props="ios mac">Joins a channel with a User Account and Token.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Joins a channel using a user account and token.</ph><ph id="shortdesc" props="android">Joins a channel using a user account and token.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,15 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token, const char* channelId, const char* userAccount) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int joinChannelWithUserAccount(String token, String channelName, String userAccount);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString * _Nullable)token
-                channelId:(NSString * _Nonnull)channelId
-              userAccount:(NSString * _Nonnull)userAccount
-              joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString * _Nullable)token
-                channelId:(NSString * _Nonnull)channelId
-              userAccount:(NSString * _Nonnull)userAccount
-              joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock NS_SWIFT_NAME(joinChannel(byToken:channelId:userAccount:joinSuccess:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">Before calling this method, if you have not yet called <xref keyref="registerLocalUserAccount"/> to register a user account, the SDK automatically creates one for you when you call this method to join a channel. It is recommended to call <xref keyref="registerLocalUserAccount"/> first and then use this method to join a channel to reduce the time required to join.
@@ -47,10 +39,7 @@ Once a user joins a channel, by default they subscribe to all other users’ aud
                     <li>To ensure smooth communication, use the same parameter type to identify users. For example, if one user joins using <codeph>uid</codeph>, other users should also use <codeph>uid</codeph>; if using a user account, others should also use a user account. If a user joins using the Agora Web SDK, ensure the user ID uses the same parameter type.</li>
                 </ul>
             </note>
-        <p conkeyref="joinChannelWithUserAccount2/account" props="ios mac"/>
-            <p props="ios mac">Once a user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billings. To stop subscribing to a specified stream or all remote streams, call the corresponding <apiname>mute</apiname> methods.</p>
-            <note type="attention" conkeyref="joinChannelWithUserAccount2/note" props="ios mac">
-            </note> </section>
+        </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
             <p props="cpp">Call this method after calling <xref keyref="initialize"/>.</p>
@@ -67,7 +56,7 @@ Once a user joins a channel, by default they subscribe to all other users’ aud
             <p props="android">Local client: <xref keyref="onLocalUserRegistered"/>, <xref keyref="onJoinChannelSuccess"/>, and <xref keyref="onConnectionStateChanged"/> callbacks.
 Remote client: If a user joins a channel in the <codeph>COMMUNICATION</codeph> profile or a host joins a channel in the <codeph>LIVE_BROADCASTING</codeph> profile, the <xref keyref="onUserJoined"/> and <xref keyref="onUserInfoUpdated"/> callbacks are triggered.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -140,28 +129,9 @@ Remote client: If a user joins a channel in the <codeph>COMMUNICATION</codeph> p
                         </ul>
                     </pd>
                 </plentry>
-            <plentry conkeyref="joinChannel2/token" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="android hmos">channelName</pt>
-                <pt props="cpp unreal bp ios mac unity rn electron flutter cs">channelId</pt>
-                <pd>
-                    <p conkeyref="joinChannel2/channelID_desc"/>
-                </pd>
-            </plentry>
-            <plentry conkeyref="joinChannelWithUserAccount2/userAccount" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="joinChannel2/joinsuccessblock" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -195,22 +165,6 @@ Remote client: If a user joins a channel in the <codeph>COMMUNICATION</codeph> p
                     </li>
                 </ul>
             </p>
-        <p props="ios mac">
-                <ul>
-                    <li>0: Success.</li>
-                    <li>&lt; 0: Failure.
-                        <ul>
-                            <li>-2: Invalid parameter. For example, the token is invalid, the <codeph>uid</codeph> parameter is not set to an integer, or a member of <xref keyref="ChannelMediaOptions"/> has an invalid value. Pass in valid parameters and rejoin the channel.</li>
-                            <li>-3: <xref keyref="IRtcEngine"/> object initialization failed. Reinitialize the <xref keyref="IRtcEngine"/> object.</li>
-                            <li>-7: <xref keyref="IRtcEngine"/> object not initialized. Initialize the <xref keyref="IRtcEngine"/> object before calling this method.</li>
-                            <li>-8: Internal state error of the <xref keyref="IRtcEngine"/> object. A common cause is calling this method to join a channel after calling <xref keyref="startEchoTest3"/> to start an echo test without calling <xref keyref="stopEchoTest"/> to stop it. Call <xref keyref="stopEchoTest"/> before calling this method.</li>
-                            <li>-17: Join channel request rejected. A common cause is the user is already in the channel. Agora recommends checking the user's connection status using the <xref keyref="onConnectionStateChanged"/> callback and only calling this method when receiving the <codeph>CONNECTION_STATE_DISCONNECTED</codeph> (1) state.</li>
-                            <li>-102: Invalid channel name. Pass a valid channel name in <codeph>channelId</codeph> and rejoin the channel.</li>
-                            <li>-121: Invalid user ID. Pass a valid user ID in <codeph>uid</codeph> and rejoin the channel.</li>
-                        </ul>
-                    </li>
-                </ul>
-            </p>
-            </section>
+        </section>
     </refbody>
 </reference>

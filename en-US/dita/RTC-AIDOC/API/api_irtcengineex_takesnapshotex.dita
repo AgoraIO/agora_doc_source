@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_takesnapshotex">
     <title><ph keyref="takeSnapshotEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Takes a snapshot of the specified user's video stream using the connection ID.</ph><ph id="shortdesc" props="android">Takes a snapshot of the video stream using the connection ID.</ph><ph id="shortdesc" props="ios mac">Takes a snapshot of a video stream using connection ID.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Takes a snapshot of the specified user's video stream using the connection ID.</ph><ph id="shortdesc" props="android">Takes a snapshot of the video stream using the connection ID.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,9 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int takeSnapshotEx(const RtcConnection&amp; connection, uid_t uid, const char* filePath) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int takeSnapshotEx(RtcConnection connection, int uid, String filePath);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)takeSnapshotEx:(AgoraRtcConnection * _Nonnull)connection uid:(NSInteger)uid filePath:(NSString* _Nonnull)filePath;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (NSInteger)takeSnapshotEx:(AgoraRtcConnection * _Nonnull)connection uid:(NSInteger)uid filePath:(NSString* _Nonnull)filePath NS_SWIFT_NAME(takeSnapshotEx(_:uid:filePath:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">This method is asynchronous. When you call it, the SDK has not completed the snapshot operation. When used for local video snapshots, it captures the video stream specified in <xref keyref="ChannelMediaOptions"/>. If the user's video has been pre-processed (e.g., watermarks or beautification), the snapshot result includes these effects.</p>
@@ -37,7 +35,7 @@
             <p props="cpp">After this method is successfully called, the SDK triggers the <xref keyref="onSnapshotTaken"/> callback to report whether the snapshot is successful and provide detailed information.</p>
             <p props="android">After a successful call, the SDK triggers the <xref keyref="onSnapshotTaken"/> callback to report the result and details of the snapshot.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -77,21 +75,9 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry conkeyref="joinChannelEx/connection" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="takeSnapshot/uid" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="takeSnapshot/filepath" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -105,9 +91,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

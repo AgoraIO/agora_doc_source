@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_extensioncontext">
     <title><ph keyref="ExtensionContext"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Extended context information.</ph><ph id="shortdesc" props="android">Context information of an extension.</ph><ph id="shortdesc" props="ios mac">The context information of the extension.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Extended context information.</ph><ph id="shortdesc" props="android">Context information of an extension.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -18,15 +18,9 @@
   public String providerName;
   public String extensionName;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">@interface AgoraExtensionContext : NSObject
-@property (assign, nonatomic) BOOL isValid;
-@property (assign, nonatomic) NSUInteger uid;
-@property (copy, nonatomic) NSString * _Nullable providerName;
-@property (copy, nonatomic) NSString * _Nullable extensionName;
-@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -71,32 +65,7 @@
                     <pt>extensionName</pt>
                     <pd>The name of the extension.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>isValid</pt>
-                <pd>Whether the <parmname>uid</parmname> in <apiname keyref="ExtensionContext"/> is valid: <ul>
-                        <li><codeph><ph keyref="true"/></codeph>: The <parmname>uid</parmname> is valid.</li>
-                        <li><codeph><ph keyref="false"/></codeph>: The <parmname>uid</parmname> is invalid.</li>
-                   </ul>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>uid</pt>
-                <pd>The user ID. 0 represents a local user, while greater than 0 represents a remote user.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>providerName</pt>
-                <pd>The name of the extension provider.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>extensionName</pt>
-                <pd>The name of the extension.</pd>
-            </plentry>
             </parml>
         </section>
-    <section id="detailed_desc"><dl outputclass="since"><dlentry props="ios mac">
-                <dt>Since</dt>
-                <dd>v4.4.0</dd>
-            </dlentry>
-            </dl><p props="ios mac"/>
-        </section></refbody>
+    </refbody>
 </reference>

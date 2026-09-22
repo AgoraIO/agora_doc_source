@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_ontranscodingupdated">
     <title><ph keyref="onTranscodingUpdated"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the publisher's cloud transcoding settings are updated.</ph><ph id="shortdesc" props="android">Callback for updates to publisher's cloud transcoding configuration.</ph><ph id="shortdesc" props="ios mac">Occurs when the publisher's transcoding is updated.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the publisher's cloud transcoding settings are updated.</ph><ph id="shortdesc" props="android">Callback for updates to publisher's cloud transcoding configuration.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,17 +15,14 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onTranscodingUpdated() {}</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onTranscodingUpdated() {}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineTranscodingUpdated:(AgoraRtcEngineKit * _Nonnull)engine;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngineTranscodingUpdated:(AgoraRtcEngineKit * _Nonnull)engine NS_SWIFT_NAME(rtcEngineTranscodingUpdated(_:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">When you call <xref keyref="startRtmpStreamWithTranscoding"/> and update the <xref keyref="LiveTranscoding"/> configuration, the SDK triggers this callback to report the update.</p>
             <p props="android">When calling <xref keyref="startRtmpStreamWithTranscoding"/> to update the <xref keyref="LiveTranscoding"/> configuration, the SDK triggers this callback to report the update.</p>
             <note props="cpp">This callback is not triggered when you call <xref keyref="startRtmpStreamWithTranscoding"/> for the first time to set <xref keyref="LiveTranscoding"/>.</note>
             <note props="android">This callback is not triggered when <xref keyref="startRtmpStreamWithTranscoding"/> is called for the first time to set the <xref keyref="LiveTranscoding"/> configuration.</note>
-        <p props="ios mac">When the <xref keyref="LiveTranscoding"/> class in the <xref keyref="startRtmpStreamWithTranscoding"/> method updates, the SDK triggers the <apiname keyref="onTranscodingUpdated"/> callback to report the update information.</p>
-            <note type="attention" id="note" props="ios mac">If you call the <apiname keyref="startRtmpStreamWithTranscoding"/> method to set the <apiname keyref="LiveTranscoding"/> class for the first time, the SDK does not trigger this callback.</note> </section>
+        </section>
         <section id="timing" deliveryTarget="details" props="android">
             <title>Trigger Timing</title>
             <p props="android">This callback is triggered when the publisher's cloud transcoding configuration is updated.</p>

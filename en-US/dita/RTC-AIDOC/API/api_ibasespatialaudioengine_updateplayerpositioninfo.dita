@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ibasespatialaudioengine_updateplayerpositioninfo">
     <title><ph keyref="updatePlayerPositionInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="android">Updates the spatial position of the media player.</ph><ph id="shortdesc" props="ios mac">Updates the spatial position of the media player.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Updates the spatial position of the media player.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,19 +14,16 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int updatePlayerPositionInfo(int playerId, RemoteVoicePositionInfo positionInfo);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)updatePlayerPositionInfo:(NSInteger)playerId positionInfo:(AgoraRemoteVoicePositionInfo* _Nonnull)positionInfo;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)updatePlayerPositionInfo:(NSInteger)playerId positionInfo:(AgoraRemoteVoicePositionInfo* _Nonnull)positionInfo NS_SWIFT_NAME(updatePlayerPositionInfo(_:positionInfo:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">After calling this method, the local user can hear the spatial position changes of the media player.</p>
-        <p props="ios mac">After a successful update, the local user can hear the change in the spatial position of the media player.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android">
             <title>Timing</title>
             <p props="android">This method can be called before or after joining a channel.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android ios mac">
+        <section id="parameters" deliveryTarget="details" props="android">
             <title>Parameters</title>
             <parml>
                 <plentry props="android">
@@ -37,17 +34,9 @@
                     <pt>positionInfo</pt>
                     <pd>The spatial position of the media player. See <xref keyref="RemoteVoicePositionInfo"/>.</pd>
                 </plentry>
-            <plentry id="mpkid" props="ios mac">
-                <pt>playerId</pt>
-                <pd><ph>The ID of the media player. </ph><ph props="native unreal bp">You can get the Device ID by calling <xref keyref="getMediaPlayerId"/>.</ph></pd>
-            </plentry>
-            <plentry props="ios mac">
-                    <pt>positionInfo</pt>
-                    <pd>The spatial position of the media player. See <xref keyref="RemoteVoicePositionInfo"/>.</pd>
-                </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android ios mac">
+        <section id="return_values" props="android">
             <title>Return Values</title>
             <p props="android">
                 <ul>
@@ -55,9 +44,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

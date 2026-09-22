@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_takesnapshot2">
     <title><ph keyref="takeSnapshot2"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Takes a snapshot of the specified view.</ph><ph id="shortdesc" props="android">Captures a video snapshot at the specified observation point.</ph><ph id="shortdesc" props="ios mac">Takes a screenshot of the video at the specified observation point.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Takes a snapshot of the specified view.</ph><ph id="shortdesc" props="android">Captures a video snapshot at the specified observation point.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,6 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int takeSnapshot(uid_t uid, const media::SnapshotConfig&amp; config) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int takeSnapshot(int uid, SnapshotConfig config);</codeblock>
-            <codeblock props="ios mac">- (NSInteger)takeSnapshotWithConfig:(NSInteger)uid config:(AgoraSnapshotConfig* _Nonnull)config NS_SWIFT_NAME(takeSnapshotWithConfig(_:config:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -31,8 +30,7 @@
                     <li>When used for a local video snapshot, this method captures the video stream specified in <xref keyref="ChannelMediaOptions"/>.</li>
                 </ul>
             </note>
-        <p props="ios mac">This method takes a snapshot of a video stream from the specified user, generates a JPG image, and saves it to the specified path.</p>
-         </section>
+        </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
             <p props="cpp">Call this method after joining a channel.</p>
@@ -43,7 +41,7 @@
             <p props="cpp">After this method is successfully called, the SDK triggers the <xref keyref="onSnapshotTaken"/> callback to report whether the snapshot was successful and provide detailed information.</p>
             <p props="android">After calling this method successfully, the SDK triggers the <xref keyref="onSnapshotTaken"/> callback to report the snapshot result and details.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -62,17 +60,9 @@
                     <pt>config</pt>
                     <pd>The snapshot configuration. See <xref keyref="SnapshotConfig"/>.</pd>
                 </plentry>
-            <plentry conkeyref="takeSnapshot/uid" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry id="config" props="ios mac">
-                <pt>config</pt>
-                <pd>The configuration of the snaptshot. See <xref keyref="SnapshotConfig"/>.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -86,9 +76,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

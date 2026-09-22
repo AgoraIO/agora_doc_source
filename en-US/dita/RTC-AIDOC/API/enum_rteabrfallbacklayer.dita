@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_rteabrfallbacklayer">
     <title><ph keyref="RteAbrFallbackLayer"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Fallback quality layers for video streams.</ph><ph id="shortdesc" props="android">Fallback quality layers for video streams.</ph><ph id="shortdesc" props="ios mac">Fallback quality layers for video streams.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Fallback quality layers for video streams.</ph><ph id="shortdesc" props="android">Fallback quality layers for video streams.</ph></shortdesc>
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
             <dl outputclass="since">
@@ -14,11 +14,7 @@
                     <dt>Since</dt>
                     <dd>Available since v4.4.0.</dd>
                 </dlentry>
-            <dlentry props="ios mac">
-                    <dt>Since</dt>
-                    <dd>Available since v4.4.0.</dd>
-                </dlentry>
-                </dl>
+            </dl>
             <note props="cpp">
                 <ul>
                     <li>To use <codeph>kRteAbrFallbackLayer1</codeph> to <codeph>kRteAbrFallbackLayer6</codeph>, you must contact technical support to enable the ABR feature. Once enabled, you can customize the resolution of each layer and select any layer as the minimum fallback resolution. When network conditions are poor, the SDK dynamically adjusts the resolution within this range, using the selected layer as the lower limit.</li>
@@ -32,7 +28,7 @@
                 </ul>
             </note>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -107,97 +103,7 @@
                     <pt>LAYER6</pt>
                     <pd>(8): Fallback to video quality layer 6, resolution slightly lower than layer 5.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                    <pt>kRteAbrFallbackDisabled</pt>
-                    <pd>(0): No fallback for audio/video streams, but quality is not guaranteed.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>kRteAbrFallbackLow</pt>
-                    <pd>(1): (Default) Fallback to the lowest quality video stream. This layer has the lowest resolution.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>kRteAbrFallbackAudioOnly</pt>
-                    <pd>(2): Prefer receiving the lowest quality video stream; if the network is too poor to display video, fallback to receiving only the subscribed audio stream.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>kRteAbrFallbackLayer1</pt>
-                    <pd>(3): Fallback to video quality layer 1, which has slightly lower resolution and bitrate than the highest subscribed video quality.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>kRteAbrFallbackLayer2</pt>
-                    <pd>(4): Fallback to video quality layer 2, which has slightly lower resolution than layer 1.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>kRteAbrFallbackLayer3</pt>
-                    <pd>(5): Fallback to video quality layer 3, which has slightly lower resolution than layer 2.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>kRteAbrFallbackLayer4</pt>
-                    <pd>(6): Fallback to video quality layer 4, which has slightly lower resolution than layer 3.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>kRteAbrFallbackLayer5</pt>
-                    <pd>(7): Fallback to video quality layer 5, which has slightly lower resolution than layer 4.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>kRteAbrFallbackLayer6</pt>
-                    <pd>(8): Fallback to video quality layer 6, which has slightly lower resolution than layer 5.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>AgoraRteAbrFallbackDisabled</pt>
-                    <pd>(0): No fallback processing for audio/video streams, but stream quality is not guaranteed.</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>AgoraRteAbrFallbackLow</pt>
-                    <pd>(1): (Default) Fallback to the low-quality video stream, which has the lowest resolution.</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>AgoraRteAbrFallbackAudioOnly</pt>
-                    <pd>(2): Prefer receiving the low-quality video stream. If video cannot be displayed due to poor network conditions, fall back to receiving only the subscribed remote audio stream.</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>AgoraRteAbrFallbackLayer1</pt>
-                    <pd>(3): Fallback to video quality layer 1. The resolution and bitrate of this layer are lower only than those of the subscribed highest-quality multi-layer video stream.</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>AgoraRteAbrFallbackLayer2</pt>
-                    <pd>(4): Fallback to video quality layer 2. The resolution of this layer is lower only than that of layer 1.</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>AgoraRteAbrFallbackLayer3</pt>
-                    <pd>(5): Fallback to video quality layer 3. The resolution of this layer is lower only than that of layer 2.</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>AgoraRteAbrFallbackLayer4</pt>
-                    <pd>(6): Fallback to video quality layer 4. The resolution of this layer is lower only than that of layer 3.</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>AgoraRteAbrFallbackLayer5</pt>
-                    <pd>(7): Fallback to video quality layer 5. The resolution of this layer is lower only than that of layer 4.</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>AgoraRteAbrFallbackLayer6</pt>
-                    <pd>(8): Fallback to video quality layer 6. The resolution of this layer is lower only than that of layer 5.</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>DISABLED</pt>
-                    <pd>(0): No fallback processing for audio/video streams, but stream quality is not guaranteed.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>LOW</pt>
-                    <pd>(1): (Default) Fallback to low-quality video stream with lowest resolution.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>AUDIO_ONLY</pt>
-                    <pd>(2): Prefer receiving low-quality video stream; if video cannot be displayed due to poor network, fallback to receiving only subscribed remote audio stream.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>LAYER1</pt>
-                    <pd>(3): Fallback to video quality layer 1, resolution and bitrate just below the highest subscribed stream.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>LAYER2</pt>
-                    <pd>(4): Fallback to video quality layer 2, resolution just below layer 1.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>LAYER3</pt>
-                    <pd>(5): Fallback to video quality layer 3, resolution slightly lower than layer 2.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>LAYER4</pt>
-                    <pd>(6): Fallback to video quality layer 4, resolution just below layer 3.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>LAYER5</pt>
-                    <pd>(7): Fallback to video quality layer 5, resolution slightly lower than layer 4.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>LAYER6</pt>
-                    <pd>(8): Fallback to video quality layer 6, resolution slightly lower than layer 5.</pd></plentry>
-                </parml>
+            </parml>
         </section>
-    <section id="prototype"><p outputclass="codeblock"/></section></refbody>
+    </refbody>
 </reference>

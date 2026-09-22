@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_player_switchwithurl">
     <title><ph keyref="SwitchWithUrl"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Switches to a new URL during playback.</ph><ph id="shortdesc" props="android">Switches to a new URL during playback.</ph><ph id="shortdesc" props="ios mac">Switches to a new URL during playback.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Switches to a new URL during playback.</ph><ph id="shortdesc" props="android">Switches to a new URL during playback.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,8 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">void SwitchWithUrl(const char* url, bool sync_pts, std::function&lt;void(rte::Error* err)&gt; cb)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void switchWithUrl(String url, boolean syncPts, AsyncCallback callback)</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (void)switchWithUrl:(NSString * _Nonnull)url syncPts:(BOOL)syncPts cb:(void (^_Nullable)(AgoraRteError* _Nullable err))cb;</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
@@ -28,16 +27,12 @@
                     <dt>Since</dt>
                     <dd>Available since v4.5.1.</dd>
                 </dlentry>
-            <dlentry props="ios mac">
-                    <dt>Since</dt>
-                    <dd>Available since v4.5.1.</dd>
-                </dlentry>
-                </dl>
+            </dl>
             <p props="android">This method must be called when the SDK returns the player state as <codeph>OPEN_COMPLETED</codeph>.</p>
             <note props="cpp">This method is only effective when the player has opened a non-<codeph>RTE</codeph> URL. Call this method when the SDK reports the player state as <codeph>kRtePlayerStateOpenCompleted</codeph>.</note>
             <note props="android">This method is only valid when the player opens a non-RTE URL.</note>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -87,35 +82,7 @@ Possible values of <codeph>err</codeph> include:
                     <pt>callback</pt>
                     <pd>Callback for asynchronously notifying the result of the switch operation. You can get the result or error code via the <codeph>err</codeph> parameter of this callback. See <xref keyref="AsyncCallback"/>.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                    <pt>url</pt>
-                    <pd>The new URL to switch to.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>sync_pts</pt>
-                    <pd>Whether to synchronize the playback position:
-
-                            : Synchronize playback position.
-                            : (Default) Do not synchronize playback position.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>cb</pt>
-                    <pd>Callback that asynchronously notifies the result of the switch operation. You can get the operation result or error code from the err parameter in the callback. See .
-Possible values of err include:
-
-                            kRteOk: Switch succeeded.
-                            kRteErrorDefault: Switch failed.
-                            kRteErrorInvalidArgument: Provided URL is empty or invalid format.
-                            kRteErrorInvalidOperation:
-
-                                    The corresponding internal  object has been destroyed or is invalid.
-                                    The currently opened URL is an RTE URL, which does not support switching.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>syncPts</pt>
-                    <pd>: Synchronize playback position.
-                            : (Default) Do not synchronize playback position.</pd></plentry>
-                <plentry props="ios mac">
-                    <pt>callback</pt>
-                    <pd>Callback for asynchronously notifying the result of the switch operation. You can get the result or error code via the err parameter of this callback. See .</pd></plentry>
-                </parml>
+            </parml>
         </section>
     </refbody>
 </reference>

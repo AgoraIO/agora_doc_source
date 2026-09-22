@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_echotestconfiguration">
     <title><ph keyref="EchoTestConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure audio and video call loopback testing.</ph><ph id="shortdesc" props="android">Used to configure audio and video call loopback tests.</ph><ph id="shortdesc" props="ios mac">The configuration of the audio and video call loop test.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure audio and video call loopback testing.</ph><ph id="shortdesc" props="android">Used to configure audio and video call loopback tests.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -22,26 +22,9 @@
   public String channelId = null;
   public int intervalInSeconds = 2;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration)
-__attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : NSObject
-@property(strong, nonatomic) VIEW_CLASS* _Nullable view NS_SWIFT_NAME(view);
-@property(assign, nonatomic) BOOL enableAudio NS_SWIFT_NAME(enableAudio);
-@property(assign, nonatomic) BOOL enableVideo NS_SWIFT_NAME(enableVideo);
-@property(copy, nonatomic) NSString* _Nullable token NS_SWIFT_NAME(token);
-@property(copy, nonatomic) NSString* _Nonnull channelId NS_SWIFT_NAME(channelId);
-@property(assign, nonatomic) NSInteger intervalInSeconds NS_SWIFT_NAME(intervalInSeconds);
-@end</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : NSObject
-@property(strong, nonatomic) VIEW_CLASS* _Nullable view NS_SWIFT_NAME(view);
-@property(assign, nonatomic) BOOL enableAudio NS_SWIFT_NAME(enableAudio);
-@property(assign, nonatomic) BOOL enableVideo NS_SWIFT_NAME(enableVideo);
-@property(copy, nonatomic) NSString* _Nullable token NS_SWIFT_NAME(token);
-@property(copy, nonatomic) NSString* _Nonnull channelId NS_SWIFT_NAME(channelId);
-@property(assign, nonatomic) NSInteger intervalInSeconds NS_SWIFT_NAME(intervalInSeconds);
-@end</codeblock>
-                </p>
+            </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -122,43 +105,7 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
                         </ul>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>view</pt>
-                <pd>The view used to render the local user's video. This parameter is only applicable to scenarios testing video devices, that is, when <parmname>enableVideo</parmname> is <ph keyref="true"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>enableAudio</pt>
-                <pd>Whether to enable the audio device for the loop test:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Enable the audio device. To test the audio device, set this parameter as <ph keyref="true"/>.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Disable the audio device.</li>
-                    </ul></pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>enableVideo</pt>
-                <pd props="native">Whether to enable the video device for the loop test:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Enable the video device. To test the video device, set this parameter as <ph keyref="true"/>.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Disable the video device.</li>
-                    </ul>
-                </pd>
-                <pd props="framework">Whether to enable the video device for the loop test. Currently, video device loop test is not supported. Please set this parameter to <codeph><ph keyref="false"/></codeph>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>token</pt>
-                <pd>The token used to secure the audio and video call loop test. If you do not enable App Certificate in Agora Console, you do not need to pass a value in this parameter; if you have enabled App Certificate in Agora Console, you must pass a token in this parameter; the <codeph>uid</codeph> used when you generate the token must be 0xFFFFFFFF, and the channel name used must be the channel name that identifies each audio and video call loop tested. For server-side token generation, see <xref keyref="guide-token"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>channelId</pt>
-                <pd>The channel name that identifies each audio and video call loop. To ensure proper loop test functionality, the channel name passed in to identify each loop test cannot be the same when users of the same project (App ID) perform audio and video call loop tests on different devices.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>intervalInSeconds</pt>
-                <pd>Set the time interval or delay for returning the results of the audio and video loop test. The value range is [2,10], in seconds, with the default value being 2 seconds.<ul>
-                    <li>For audio loop tests, the test results will be returned according to the time interval you set.</li>
-                    <li>For video loop tests, the video will be displayed in a short time, after which the delay will gradually increase until it reaches the delay you set.</li>
-                    </ul>
-                </pd>
-            </plentry>
             </parml>
         </section>
-    <section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

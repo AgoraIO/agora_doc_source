@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setenablespeakerphone">
     <title><ph keyref="setEnableSpeakerphone"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets whether to switch the audio route to the speaker.</ph><ph id="shortdesc" props="android">Sets whether to switch the audio route to the speaker.</ph><ph id="shortdesc" props="ios mac">Enables/Disables the audio route to the speakerphone.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets whether to switch the audio route to the speaker.</ph><ph id="shortdesc" props="android">Sets whether to switch the audio route to the speaker.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,9 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setEnableSpeakerphone(bool speakerOn) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int setEnableSpeakerphone(boolean enabled);</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)setEnableSpeakerphone:(BOOL)enableSpeaker;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)setEnableSpeakerphone:(BOOL)enableSpeaker NS_SWIFT_NAME(setEnableSpeakerphone(_:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <note props="cpp"><xref keyref="setEnableSpeakerphone"/> only sets the audio route in the current channel and does not affect the default audio route. If the user leaves the current channel and joins another, the default audio route is used.
@@ -40,7 +38,7 @@ If the user uses external audio playback devices such as Bluetooth or wired head
             <p props="cpp">After this method is successfully called, the SDK triggers the <xref keyref="onAudioRoutingChanged"/> callback to report the current audio route.</p>
             <p props="android">After successfully calling this method, the SDK triggers the <xref keyref="onAudioRoutingChanged"/> callback to report the current audio route.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -61,20 +59,9 @@ If the user uses external audio playback devices such as Bluetooth or wired head
                         </ul>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt props="android hmos">enabled</pt>
-                <pt props="ios mac">enableSpeaker</pt>
-                <pt props="cpp unreal bp unity flutter rn electron cs">speakerOn</pt>
-                <pd>
-                    <p>Sets whether to enable the speakerphone or earpiece:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Enable device state monitoring. The audio route is the speakerphone.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Disable device state monitoring. The audio route is the earpiece.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -88,9 +75,6 @@ If the user uses external audio playback devices such as Bluetooth or wired head
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

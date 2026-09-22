@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_rte_destroy_rte">
     <title><ph keyref="Destroy_Rte"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Destroys the <codeph>RTE</codeph> object.</ph><ph id="shortdesc" props="android">Destroys the <codeph>RTE</codeph> object and releases related resources.</ph><ph id="shortdesc" props="ios mac">Destroys an RTE object.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Destroys the <codeph>RTE</codeph> object.</ph><ph id="shortdesc" props="android">Destroys the <codeph>RTE</codeph> object and releases related resources.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,6 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">bool Destroy(Error *err = nullptr)</codeblock>
                 <codeblock props="android" outputclass="language-java">public synchronized void destroy() throws RteException</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)destroy:(AgoraRteError * _Nullable)error;</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -28,31 +27,22 @@
                     <dt>Since</dt>
                     <dd>Added since version v4.4.0.</dd>
                 </dlentry>
-            <dlentry props="ios mac">
-                <dt>Since</dt>
-                <dd>v4.5.0</dd>
-            </dlentry>
             </dl>
-        <p props="ios mac">This method releases all resources used by the RTE object.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
                     <pt>err</pt>
                     <pd>Output parameter for status or error information. See <xref keyref="Error"/>.</pd>
                 </plentry>
-            <plentry conkeyref="SetConfigs_Rte/err" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
             </parml>
         </section>
         <section id="exception" props="android">
             <title>Exceptions</title>
             <p props="android">If destruction fails, the SDK throws an exception and returns the corresponding error information. You need to catch and handle the exception.</p>
         </section>
-        <section id="return_values" props="cpp ios mac">
+        <section id="return_values" props="cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -60,10 +50,6 @@
                     <li><xref keyref="false"/>: Destruction failed.</li>
                 </ul>
             </p>
-        <p props="ios mac">Whether the RTE object is successfully destroyed:<ul>
-                <li><codeph><ph keyref="true"/></codeph>: The RTE object is destroyed.</li>
-                <li><codeph><ph keyref="false"/></codeph>: The RTE object is not destroyed.</li>
-                </ul>
-            </p> </section>
+        </section>
     </refbody>
 </reference>

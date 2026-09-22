@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_destroymediaplayer">
     <title><ph keyref="destroyMediaPlayer"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Destroys an <xref keyref="IMediaPlayer"/> instance.</ph><ph id="shortdesc" props="ios mac">Destroys the media player instance.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Destroys an <xref keyref="IMediaPlayer"/> instance.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,29 +14,19 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int destroyMediaPlayer(agora_refptr&lt;IMediaPlayer&gt; media_player) = 0;</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)destroyMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt;_Nullable)mediaPlayer;
-                </codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)destroyMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt;_Nullable)mediaPlayer NS_SWIFT_NAME(destroyMediaPlayer(_:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
-        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
                     <pt>media_player</pt>
                     <pd><xref keyref="IMediaPlayer"/> object. See <xref keyref="IMediaPlayer"/>.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt props="ios mac unity flutter rn electron cs">mediaPlayer</pt>
-                <pt props="cpp unreal">media_player</pt>
-                <pd>
-                    <p><xref keyref="IMediaPlayer"/>object.</p>
-                </pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="cpp ios mac">
+        <section id="return_values" props="cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -44,9 +34,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul id="ul_iyv_sty_hqb" props="ios mac">
-            <li props="native unreal electron rn unity cs">≥ 0: Success. Returns the ID of media player instance.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul></section>
+        </section>
     </refbody>
 </reference>

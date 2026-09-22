@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_videomoduleposition">
     <title><ph keyref="VIDEO_MODULE_POSITION"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Position of video frames in the video observer.</ph><ph id="shortdesc" props="android">Position of the video frame in the video observer.</ph><ph id="shortdesc" props="ios mac">The frame position of the video observer.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Position of video frames in the video observer.</ph><ph id="shortdesc" props="android">Position of the video frame in the video observer.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -49,25 +49,7 @@
                     <pt>VIDEO_MODULE_POSITION_POST_CAPTURER_ORIGIN</pt>
                     <pd>(8): The position after local video capture and before preprocessing. The video at this position has not applied preprocessing effects, which can be verified by enabling beauty effects, virtual background, or watermark.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt><ph keyref="POSITION_POST_CAPTURER"/></pt>
-                <pd>1: The location of the locally collected video data after preprocessing<ph props="android apple cpp unreal flutter unity cs electron rn"> corresponds to the <xref keyref="onCaptureVideoFrame"/> callback</ph>. The observed video here has the effect of video pre-processing, which can be verified by enabling image enhancement, virtual background, or watermark.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt><ph keyref="POSITION_PRE_RENDERER"/></pt>
-                <pd>2: The pre-renderer position<ph props="android apple cpp unreal flutter unity cs electron rn">, which corresponds to the video data in the <xref keyref="onRenderVideoFrame"/> callback</ph>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt><ph keyref="POSITION_PRE_ENCODER"/></pt>
-                <pd>4: The pre-encoder position<ph props="android apple cpp unreal flutter unity cs electron rn">, which corresponds to the video data in the <xref keyref="onPreEncodeVideoFrame"/> callback</ph>. The observed video here has the effects of video pre-processing and encoding pre-processing.<ul>
-                    <li>To verify the pre-processing effects of the video, you can enable image enhancement, virtual background, or watermark.</li>
-                    <li>To verify the pre-encoding processing effect, you can set a lower frame rate (for example, 5 fps).</li></ul></pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt><ph keyref="POSITION_POST_CAPTURER_ORIGIN"/></pt>
-                <pd>8: The position after local video capture and before pre-processing. The observed video here does not have pre-processing effects, which can be verified by enabling image enhancement, virtual background, or watermarks.</pd>
-            </plentry>
             </parml>
         </section>
-    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablevirtualbackground2">
     <title><ph keyref="enableVirtualBackground2"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="android">Enables virtual background and specifies the media source, or disables the virtual background.</ph><ph id="shortdesc" props="ios mac">Enables virtual background and specify the media source, or disables virtual background.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Enables virtual background and specifies the media source, or disables the virtual background.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,7 +14,6 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int enableVirtualBackground(boolean enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, Constants.MediaSourceType sourceType);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData segData:(AgoraSegmentationProperty* _Nullable)segData sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(enableVirtualBackground(_:backData:segData:sourceType:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -43,16 +42,8 @@ This method provides the same functionality as <xref keyref="enableVirtualBackgr
                     <li>This method depends on the virtual background dynamic library <xref keyref="segmentation"/>. If the library is deleted, the feature cannot be enabled properly.</li>
                 </ul>
             </note>
-        <p props="ios mac">The virtual background feature enables the local user to replace their original background with a static image, dynamic video, blurred background, or portrait-background segmentation to achieve picture-in-picture effect. Once the virtual background feature is enabled, all users in the channel can see the custom background.</p>
-            <p props="ios mac">Both this method and <xref keyref="enableVirtualBackground"/> enable/disable virtual background, but this method allows you to specify the media source to which the virtual background is applied. </p>
-            <p props="ios mac">Call this method after calling <xref keyref="enableVideo"/> or <xref keyref="startPreview2"/>.</p>
-            <note type="attention" conkeyref="enableVirtualBackground/hardware_req" props="ios mac"/>
-        <dl outputclass="since"><dlentry props="ios mac">
-                    <dt>Since</dt>
-                    <dd>Available since v3.7.200.</dd>
-                </dlentry>
-                </dl></section>
-        <section id="parameters" deliveryTarget="details" props="android ios mac">
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
             <title>Parameters</title>
             <parml>
                 <plentry props="android">
@@ -83,32 +74,9 @@ This method provides the same functionality as <xref keyref="enableVirtualBackgr
                         </note>
                     </pd>
                 </plentry>
-            <plentry conkeyref="enableVirtualBackground/enable" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="enableVirtualBackground/source" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="enableVirtualBackground/seg" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="enableVirtualBackground/type" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry id="sourcetype" props="ios mac">
-                <pt props="android apple">sourceType</pt>
-                <pd>The type of the media source to which the filter effect is applied. See <xref keyref="MEDIA_SOURCE_TYPE"/>.<note type="attention">In this method, this parameter supports only the following two settings:<ul>
-                    <li>The default value is <apiname keyref="PRIMARY_CAMERA_SOURCE"/>.</li>
-                    <li>Set this parameter to <apiname keyref="CUSTOM_VIDEO_SOURCE"/> if you use custom video source.</li>
-                    </ul></note></pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android ios mac">
+        <section id="return_values" props="android">
             <title>Return Values</title>
             <p props="android">
                 <ul>
@@ -120,11 +88,6 @@ This method provides the same functionality as <xref keyref="enableVirtualBackgr
                     </li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
-                <li>-4: The device capabilities do not meet the requirements for the virtual background feature. Agora recommends you try it on devices with higher performance.</li>
-                </ul></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onvideopublishstatechanged">
     <title><ph keyref="onVideoPublishStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for video publishing state changes.</ph><ph id="shortdesc" props="android">Callback for video publish state change.</ph><ph id="shortdesc" props="ios mac">Occurs when the video publishing state changes.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for video publishing state changes.</ph><ph id="shortdesc" props="android">Callback for video publish state change.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,21 +15,10 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onVideoPublishStateChanged(VIDEO_SOURCE_TYPE source, const char* channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onVideoPublishStateChanged(Constants.VideoSourceType source, String channel, int oldState, int newState, int elapseSinceLastState)</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit *_Nonnull)engine didVideoPublishStateChange:(NSString * _Nonnull)channelId
-         sourceType:(AgoraVideoSourceType)sourceType
-           oldState:(AgoraStreamPublishState)oldState
-           newState:(AgoraStreamPublishState)newState
-elapseSinceLastState:(int)elapseSinceLastState;
-</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit *_Nonnull)engine didVideoPublishStateChange:(NSString * _Nonnull)channelId
-         sourceType:(AgoraVideoSourceType)sourceType
-           oldState:(AgoraStreamPublishState)oldState
-           newState:(AgoraStreamPublishState)newState
-elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didVideoPublishStateChange:sourceType:oldState:newState:elapseSinceLastState:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title"/>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -86,32 +75,6 @@ elapseSinceLastState:(int)elapseSinceLastState NS_SWIFT_NAME(rtcEngine(_:didVide
                     <pt>elapseSinceLastState</pt>
                     <pd>Time elapsed (ms) from the previous state to the current state.</pd>
                 </plentry>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="android cpp unreal bp unity flutter electron rn cs">channel</pt>
-                <pt props="ios mac">channelId</pt>
-                <pd>The channel name.</pd>
-            </plentry>
-            <plentry id="source" props="ios mac">
-                    <pt props="apple">sourceType</pt>
-                    <pt props="android cpp unreal bp unity electron rn flutter cs">source</pt>
-                    <pd>The type of the video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
-                </plentry>
-                <plentry props="ios mac">
-                <pt>oldState</pt>
-                <pd>The previous publishing state. See <xref keyref="STREAM_PUBLISH_STATE"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>newState</pt>
-                <pd>The current publishing stat. See <apiname keyref="STREAM_PUBLISH_STATE"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>elapseSinceLastState</pt>
-                <pd>The time elapsed (ms) from the previous state to the current state.</pd>
-            </plentry>
             </parml>
         </section>
     </refbody>

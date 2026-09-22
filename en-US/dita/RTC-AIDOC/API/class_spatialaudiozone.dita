@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_spatialaudiozone">
     <title><ph keyref="SpatialAudioZone"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure soundproof zones.</ph><ph id="shortdesc" props="android">Used to set the sound insulation zone.</ph><ph id="shortdesc" props="ios mac">Sound insulation area settings.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure soundproof zones.</ph><ph id="shortdesc" props="android">Used to set the sound insulation zone.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -28,20 +28,9 @@
   public float upLength;
   public float audioAttenuation;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSpatialAudioZone : NSObject
-@property(assign, nonatomic) NSInteger zoneSetId;
-@property(nonatomic) simd_float3 position;
-@property(nonatomic) simd_float3 forward;
-@property(nonatomic) simd_float3 right;
-@property(nonatomic) simd_float3 up;
-@property(assign, nonatomic) float forwardLength;
-@property(assign, nonatomic) float rightLength;
-@property(assign, nonatomic) float upLength;
-@property(assign, nonatomic) float audioAttenuation;
-@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -130,53 +119,7 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>zoneSetId</pt>
-                <pd>The ID of the sound insulation area.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>position</pt>
-                <pd>The spatial center point of the sound insulation area. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>forward</pt>
-                <pd>Starting at <parmname>position</parmname>, the forward unit vector. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>right</pt>
-                <pd>Starting at <parmname>position</parmname>, the right unit vector. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>up</pt>
-                <pd>Starting at <parmname>position</parmname>, the up unit vector. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>forwardLength</pt>
-                <pd>The entire sound insulation area is regarded as a cube; this represents the length of the forward side in the unit length of the game engine.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>rightLength</pt>
-                <pd>The entire sound insulation area is regarded as a cube; this represents the length of the right side in the unit length of the game engine.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>upLength</pt>
-                <pd>The entire sound insulation area is regarded as a cube; this represents the length of the up side in the unit length of the game engine.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>audioAttenuation</pt>
-                <pd>The sound attenuation coefficient when users within the sound insulation area communicate with external users. The value range is [0,1]. The values are as follows:<ul>
-                    <li>0: Broadcast mode, where the volume and timbre are not attenuated with distance, and the volume and timbre heard by local users do not change regardless of distance.</li>
-                    <li>(0,0.5): Weak attenuation mode, that is, the volume and timbre are only weakly attenuated during the propagation process, and the sound can travel farther than the real environment.</li>
-                    <li>0.5: (Default) simulates the attenuation of the volume in the real environment; the effect is equivalent to not setting the <parmname>audioAttenuation</parmname> parameter.</li>
-                    <li>(0.5,1]: Strong attenuation mode (default value is 1), that is, the volume and timbre attenuate rapidly during propagation.</li>
-                    </ul></pd>
-            </plentry>
             </parml>
         </section>
-    <section id="detailed_desc"><dl outputclass="since"><dlentry props="ios mac">
-                <dt>Since</dt>
-                <dd>v4.0.1</dd>
-            </dlentry>
-            </dl><p props="ios mac"/>
-        </section></refbody>
+    </refbody>
 </reference>

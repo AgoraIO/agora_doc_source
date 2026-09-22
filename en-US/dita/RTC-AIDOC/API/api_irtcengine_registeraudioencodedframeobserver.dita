@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registeraudioencodedframeobserver">
     <title><ph keyref="registerAudioEncodedFrameObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Registers an observer for encoded audio data.</ph><ph id="shortdesc" props="android">Registers an observer for encoded audio data.</ph><ph id="shortdesc" props="ios mac">Registers an encoded audio observer.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Registers an observer for encoded audio data.</ph><ph id="shortdesc" props="android">Registers an observer for encoded audio data.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,22 +15,13 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int registerAudioEncodedFrameObserver(const AudioEncodedFrameObserverConfig&amp; config,  IAudioEncodedFrameObserver *observer) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int registerAudioEncodedFrameObserver(AudioEncodedFrameObserverConfig config, IAudioEncodedFrameObserver observer);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioEncodedFrameDelegate:(id&lt;AgoraAudioEncodedFrameDelegate&gt; _Nonnull)delegate
-                    config:(AgoraAudioEncodedFrameDelegateConfig * _Nonnull) config;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)setAudioEncodedFrameDelegate:(id&lt;AgoraAudioEncodedFrameDelegate&gt; _Nullable)delegate config:(AgoraAudioEncodedFrameDelegateConfig * _Nonnull)config NS_SWIFT_NAME(setAudioEncodedFrameDelegate(_:config:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <note props="cpp">You need to call this method after joining a channel. You can call this method or <codeph>startAudioRecording</codeph> to set the recording type and quality of the audio file, but Agora does not recommend using both methods at the same time. Only the method called later takes effect.</note>
             <note props="android">Call this method after joining a channel. You can use this method or <codeph>startAudioRecording</codeph> to configure the recording type and quality of the audio file, but using both is not recommended. Only the method called last takes effect.</note>
-        <p props="ios mac">
-            <note id="note_igp_ygf_3qb" type="attention">
-            <ul id="ul_mvp_zgf_3qb">
-            <li>Call this method after joining a channel.</li>
-            <li>You can call this method or <xref keyref="startAudioRecording3"/> to set the recording type and quality of audio files, but Agora does not recommend using this method and <apiname keyref="startAudioRecording3"/> at the same time. Only the method called later will take effect.</li>
-            </ul> </note> </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -49,18 +40,9 @@
                     <pt>observer</pt>
                     <pd>The observer for encoded audio data. See <xref keyref="IAudioEncodedFrameObserver"/>.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>config</pt>
-                <pd>Observer settings for the encoded audio. See <xref keyref="AudioEncodedFrameObserverConfig"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="android cpp unreal bp unity flutter cs">observer</pt>
-                <pt props="ios mac">delegate</pt>
-                <pd>The encoded audio observer. See <xref keyref="IAudioEncodedFrameObserver"/>.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -74,10 +56,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul id="ul_ahk_23f_3qb" props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul>
         </section>
     </refbody>
 </reference>

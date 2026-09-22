@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_remotevideostate">
     <title><ph keyref="REMOTE_VIDEO_STATE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Remote video stream states.</ph><ph id="shortdesc" props="ios mac">The state of the remote video stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Remote video stream states.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="cpp">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -27,29 +27,7 @@
                     <pt>REMOTE_VIDEO_STATE_FAILED</pt>
                     <pd>(4): Failed to start the remote video. The SDK reports this state when <codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL</codeph> occurs.</pd>
                 </plentry>
-            <plentry id="0" props="ios mac">
-                <pt><ph keyref="REMOTE_VIDEO_STATE_STOPPED"/></pt>
-                <pd>0: The remote video is in the initial state. The SDK reports this state in the case of <apiname keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED"/>, <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/>, or <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE"/>.</pd>
-            </plentry>
-            <plentry id="1" props="ios mac">
-                <pt><ph keyref="REMOTE_VIDEO_STATE_STARTING"/></pt>
-                <pd>1: The first remote video packet is received.</pd>
-            </plentry>
-            <plentry id="2" props="ios mac">
-                <pt><ph keyref="REMOTE_VIDEO_STATE_DECODING"/></pt>
-                <pd props="native unreal bp flutter unity cs">2: The remote video stream is decoded and plays normally. The SDK reports this state in the case of <apiname keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY"/>, <apiname keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED"/>, <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/>, or <apiname keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY"/>.</pd>
-                <pd props="rn electron">2: The remote video stream is decoded and plays normally. The SDK reports this state in the case of <apiname keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY"/>, <apiname keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED"/>, or <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/>.</pd>
-            </plentry>
-            <plentry id="3" props="ios mac">
-                <pt><ph keyref="REMOTE_VIDEO_STATE_FROZEN"/></pt>
-                <pd props="native unreal bp flutter unity cs">3: The remote video is frozen. The SDK reports this state in the case of <apiname keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION"/> or <apiname keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK"/>.</pd>
-                <pd props="rn electron">3: The remote video is frozen. The SDK reports this state in the case of <apiname keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION"/>.</pd>
-            </plentry>
-            <plentry id="4" props="ios mac">
-                <pt><ph keyref="REMOTE_VIDEO_STATE_FAILED"/></pt>
-                <pd>4: The remote video fails to start. The SDK reports this state in the case of <apiname keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL"/>.</pd>
-            </plentry>
             </parml>
         </section>
-    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

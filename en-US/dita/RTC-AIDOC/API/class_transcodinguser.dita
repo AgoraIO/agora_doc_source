@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_transcodinguser">
     <title><ph keyref="TranscodingUser"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the transcoding parameters for each host.</ph><ph id="shortdesc" props="android">Used to set transcoding parameters for each host.</ph><ph id="shortdesc" props="ios mac">Transcoding configurations of each host.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the transcoding parameters for each host.</ph><ph id="shortdesc" props="android">Used to set transcoding parameters for each host.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -27,17 +27,9 @@
     public float alpha;
     public int audioChannel;
   }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscodingUser : NSObject
-
-@property(assign, nonatomic) NSUInteger uid;
-@property(assign, nonatomic) CGRect rect;
-@property(assign, nonatomic) NSInteger zOrder;
-@property(assign, nonatomic) double alpha;
-@property(assign, nonatomic) NSInteger audioChannel;
-@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -158,74 +150,7 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>uid</pt>
-                <pd>
-                    <p>The user ID of the host.</p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>x</pt>
-                <pd>
-                    <p>The x coordinate (pixel) of the host's video on the output video frame (taking the upper left corner of the video frame as the origin). The value range is [0, width], where width is the <codeph>width</codeph> set in <xref keyref="LiveTranscoding"/>.</p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>y</pt>
-                <pd>The y coordinate (pixel) of the host's video on the output video frame (taking the upper left corner of the video frame as the origin). The value range is [0, height], where height is the <codeph>height</codeph> set in <xref keyref="LiveTranscoding"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>width</pt>
-                <pd>The width (pixel) of the host's video.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>height</pt>
-                <pd>
-                    <p>The height (pixel) of the host's video.</p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>rect</pt>
-                <pd>The position and size of the host's video in the output image. The data size is CGRect.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>zOrder</pt>
-                <pd>
-                    <p>The layer index number of the host's video. The value range is [0, 100].<ul>
-                    <li>0: (Default) The host's video is the bottom layer.</li>
-                    <li>100: The host's video is the top layer.</li>
-                    </ul> </p>
-                    <note type="attention">
-                    <ul>
-                    <li>If the value is less than 0 or greater than 100, <apiname keyref="ERR_INVALID_ARGUMENT"/> error is returned.</li>
-                    <li>Setting zOrder to 0 is supported.</li>
-                    </ul> </note> </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>alpha</pt>
-                <pd>
-                    <p>The transparency of the host's video. The value range is [0.0,1.0].<ul>
-                    <li>0.0: Completely transparent.</li>
-                    <li>1.0: (Default) Opaque.</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>audioChannel</pt>
-                <pd>
-                    <p>The audio channel used by the host's audio in the output audio. The default value is 0, and the value range is [0, 5].<ul id="ul_ugm_rrh_v4b">
-                    <li><codeph>0</codeph>: (Recommended) The defaut setting, which supports dual channels at most and depends on the upstream of the host.</li>
-                    <li><codeph>1</codeph>: The host's audio uses the FL audio channel. If the host's upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
-                    <li><codeph>2</codeph>: The host's audio uses the FC audio channel. If the host's upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
-                    <li><codeph>3</codeph>: The host's audio uses the FR audio channel. If the host's upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
-                    <li><codeph>4</codeph>: The host's audio uses the BL audio channel. If the host's upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
-                    <li><codeph>5</codeph>: The host's audio uses the BR audio channel. If the host's upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
-                    <li><codeph>0xFF</codeph> or a value greater than <codeph>5</codeph>: The host's audio is muted, and the Agora server removes the host's audio.</li>
-                    </ul>
-                    <note type="attention">If the value is not <codeph>0</codeph>, a special player is required.</note></p>
-                </pd>
-            </plentry>
             </parml>
         </section>
-    <section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

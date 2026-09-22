@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_playeffect3">
     <title><ph keyref="playEffect3"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Plays the specified local or online sound effect file.</ph><ph id="shortdesc" props="android">Plays a specified local or online sound effect file.</ph><ph id="shortdesc" props="ios mac">Plays the specified local or online audio effect file.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Plays the specified local or online sound effect file.</ph><ph id="shortdesc" props="android">Plays a specified local or online sound effect file.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,24 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int playEffect(int soundId, const char* filePath, int loopCount, double pitch, double pan, int gain, bool publish = false, int startPos = 0) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int playEffect(int soundId, String filePath, int loopCount, double pitch, double pan, double gain, boolean publish, int startPos);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)playEffect:(int)soundId
-         filePath:(NSString* _Nonnull)filePath
-        loopCount:(NSInteger)loopCount
-            pitch:(double)pitch
-              pan:(double)pan
-             gain:(NSInteger)gain
-          publish:(BOOL)publish
-         startPos:(int)startPos;
-</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)playEffect:(int)soundId
-         filePath:(NSString* _Nonnull)filePath
-        loopCount:(NSInteger)loopCount
-            pitch:(double)pitch
-              pan:(double)pan
-             gain:(NSInteger)gain
-          publish:(BOOL)publish
-         startPos:(int)startPos NS_SWIFT_NAME(playEffect(_:filePath:loopCount:pitch:pan:gain:publish:startPos:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">To play multiple sound effect files simultaneously, call this method multiple times with different <codeph>soundId</codeph> and <codeph>filePath</codeph>. For the best user experience, Agora recommends not playing more than three sound effect files at the same time.</p>
@@ -47,7 +30,6 @@ If <xref keyref="preloadEffect"/> is not called before <xref keyref="playEffect3
                     <li>If you call <codeph>playEffectEx</codeph> without first calling <codeph>preloadEffectEx</codeph>, the resource will be destroyed after playback. The next time you call <codeph>playEffectEx</codeph>, it will attempt to reopen the file and play from the beginning.</li>
                 </ul>
             </note>
-        <p id="playEffect-desc" props="ios mac">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. To achieve the optimal user experience, Agora recommends that you do not playing more than three audio files at the same time.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
@@ -59,7 +41,7 @@ If <xref keyref="preloadEffect"/> is not called before <xref keyref="playEffect3
             <p props="cpp">After this method is successfully called, the SDK triggers the <xref keyref="onAudioEffectFinished"/> callback to report the completion of sound effect playback.</p>
             <p props="android">After the sound effect file is played, the SDK triggers the <xref keyref="onAudioEffectFinished"/> callback.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -162,64 +144,9 @@ If <xref keyref="preloadEffect"/> is not called before <xref keyref="playEffect3
                     <pt>startPos</pt>
                     <pd>Starting position of the sound effect file playback, in milliseconds.</pd>
                 </plentry>
-            <plentry id="soundid" props="ios mac">
-                <pt>soundId</pt>
-                <pd>The audio effect ID. The ID of each audio effect file is unique.<note type="attention" props="android cpp apple framework">If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect"/>, ensure that the value of this parameter is the same as that of <parmname>soundId</parmname> in <apiname keyref="preloadEffect"/>.</note> </pd>
-            </plentry>
-            <plentry id="filepath" props="ios mac">
-                <pt>filePath</pt>
-                    <pd>
-                        <p props="cpp framework">The file path. The SDK supports URLs and absolute path of local files. The absolute path needs to be accurate to the file name and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. <ph props="cpp">See <xref keyref="filePath-link">Supported Audio Formats</xref>.</ph></p>
-                        <p props="android">The file path. The SDK supports URI addresses starting with <codeph>content://</codeph>, paths starting with <codeph>/assets/</codeph>, URLs and absolute paths of local files. The absolute path needs to be accurate to the file name and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link">Supported Audio Formats</xref>.</p>
-                        <p props="apple">The file path. The SDK  supports file paths starting with <codeph>ipod-library//</codeph>, URLs and absolute file paths of local files. The absolute path needs to be accurate to the file name and extension. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link">Supported Audio Formats</xref>.</p>
-                        <p props="hmos">The file path.</p>
-                        <note type="attention" props="android cpp apple framework">If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect"/>, ensure that the value of this parameter is the same as that of <parmname>filePath</parmname> in <apiname keyref="preloadEffect"/>.</note> </pd>
-            </plentry>
-            <plentry id="loopcount" props="ios mac">
-                <pt>loopCount</pt>
-                <pd>
-                    <p>The number of times the audio effect loops.<ul>
-                    <li>≥ 0: The number of playback times. For example, 1 means looping one time, which means playing the audio effect two times in total.</li>
-                    <li>-1: Play the audio file in an infinite loop.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry id="pitch" props="ios mac">
-                <pt>pitch</pt>
-                <pd>The pitch of the audio effect. The value range is 0.5 to 2.0. The default value is 1.0, which means the original pitch. The lower the value, the lower the pitch.</pd>
-            </plentry>
-            <plentry id="pan" props="ios mac">
-                <pt>pan</pt>
-                <pd>
-                    <p>The spatial position of the audio effect. The value ranges between -1.0 and 1.0:<ul>
-                    <li>-1.0: The audio effect is heard on the left of the user.</li>
-                    <li>0.0: The audio effect is heard in front of the user.</li>
-                    <li>1.0: The audio effect is heard on the right of the user.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry id="gain" props="ios mac">
-                <pt>gain</pt>
-                <pd>The volume of the audio effect. The value range is 0.0 to 100.0. The default value is 100.0, which means the original volume. The smaller the value, the lower the volume.</pd>
-            </plentry>
-            <plentry id="publish" props="ios mac">
-                <pt>publish</pt>
-                <pd>
-                    <p>Whether to publish the audio effect to the remote users:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the audio effect to the remote users. Both the local user and remote users can hear the audio effect.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not publish the audio effect to the remote users. Only the local user can hear the audio effect.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>startPos</pt>
-                <pd>
-                    <p>The playback position (ms) of the audio effect file.</p>
-                </pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -233,9 +160,6 @@ If <xref keyref="preloadEffect"/> is not called before <xref keyref="playEffect3
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

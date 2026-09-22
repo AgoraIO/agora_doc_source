@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_codeccapinfo">
     <title><ph keyref="CodecCapInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes the SDK's codec capabilities.</ph><ph id="shortdesc" props="android">Represents the codec capabilities of the SDK.</ph><ph id="shortdesc" props="ios mac">The codec capability of the SDK.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes the SDK's codec capabilities.</ph><ph id="shortdesc" props="android">Represents the codec capabilities of the SDK.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -16,14 +16,9 @@
   public int codecCapMask;
   public CodecCapLevels codecLevels;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoCodecCapInfo : NSObject
-@property(assign, nonatomic) AgoraVideoCodecType codecType;
-@property(assign, nonatomic) NSUInteger codecCapMask;
-@property(strong, nonatomic) AgoraVideoCodecCapLevels *_Nonnull codecCapLevels;
-@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -64,40 +59,7 @@
                     <pt>codecLevels</pt>
                     <pd>Codec capabilities. See <xref keyref="CodecCapLevels"/>.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>codecType</pt>
-                <pd props="apple cpp unreal bp unity electron rn flutter cs">The video codec type. See <xref keyref="VIDEO_CODEC_TYPE"/>. When this field is <codeph>AgoraVideoCodecTypeH265</codeph>, this object describes the device's H.265 codec capabilities.</pd>
-                <pd props="android hmos">
-                    <p>The video codec types:<ul>
-                    <li>1: VP8</li>
-                    <li>2: H.264.</li>
-                    <li>3: (Default) H.265.</li></ul> </p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>codecCapMask</pt>
-                <pd props="apple cpp unreal unity electron rn flutter cs">Bitmask of the codec capabilities in the SDK. See <xref keyref="CODEC_CAP_MASK"/>. For H.265, use this field to check whether the device supports H.265 hardware encoding or hardware decoding.</pd>
-                <pd props="android bp">
-                    <p>The bit mask of the codec type:<ul>
-                    <li>(0): The device does not support encoding or decoding.</li>
-                    <li>(1 &lt;&lt; 0): The device supports hardware decoding. When <codeph>codecType</codeph> is <codeph>AgoraVideoCodecTypeH265</codeph>, this value indicates support for H.265 hardware decoding.</li>
-                    <li>(1 &lt;&lt; 1): The device supports hardware encoding. When <codeph>codecType</codeph> is <codeph>AgoraVideoCodecTypeH265</codeph>, this value indicates support for H.265 hardware encoding.</li>
-                    <li>(1 &lt;&lt; 2): The device supports software decoding.</li>
-                    <li>(1 &lt;&lt; 3): The device supports software ecoding.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="android hmos cpp unreal cs unity electron rn flutter bp">codecLevels</pt>
-                <pt props="apple">codecCapLevels</pt>
-                <pd>Codec capability of the SDK. See <xref keyref="CodecCapLevels"/>. For H.265, this field indicates the supported decoding capability levels.</pd>
-            </plentry>
             </parml>
         </section>
-    <section id="detailed_desc"><dl outputclass="since"><dlentry props="ios mac">
-                <dt>Since</dt>
-                <dd>v4.2.0</dd>
-            </dlentry>
-            </dl><p props="ios mac"/>
-        </section></refbody>
+    </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcstats">
     <title><ph keyref="RtcStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to collect statistics related to a call session.</ph><ph id="shortdesc" props="android">Statistics of the call session.</ph><ph id="shortdesc" props="ios mac">Statistics of a call session.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to collect statistics related to a call session.</ph><ph id="shortdesc" props="android">Statistics of the call session.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -69,67 +69,9 @@
     public int memoryAppUsageInKbytes;
     public int lanAccelerateState;
   }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelStats : NSObject
-@property(assign, nonatomic) NSUInteger duration;
-@property(assign, nonatomic) NSUInteger txBytes;
-@property(assign, nonatomic) NSUInteger rxBytes;
-@property(assign, nonatomic) NSUInteger txAudioKBitrate;
-@property(assign, nonatomic) NSUInteger rxAudioKBitrate;
-@property(assign, nonatomic) NSUInteger txVideoKBitrate;
-@property(assign, nonatomic) NSUInteger rxVideoKBitrate;
-@property(assign, nonatomic) NSUInteger txAudioBytes;
-@property(assign, nonatomic) NSUInteger txVideoBytes;
-@property(assign, nonatomic) NSUInteger rxAudioBytes;
-@property(assign, nonatomic) NSUInteger rxVideoBytes;
-@property(assign, nonatomic) NSUInteger lastmileDelay;
-@property(assign, nonatomic) NSUInteger userCount;
-@property(assign, nonatomic) double cpuAppUsage;
-@property(assign, nonatomic) double cpuTotalUsage;
-@property(assign, nonatomic) NSInteger gatewayRtt;
-@property(assign, nonatomic) double memoryAppUsageRatio;
-@property(assign, nonatomic) double memoryTotalUsageRatio;
-@property(assign, nonatomic) NSInteger memoryAppUsageInKbytes;
-@property(assign, nonatomic) NSInteger connectTimeMs;
-@property(assign, nonatomic) NSUInteger txKBitRate;
-@property(assign, nonatomic) NSUInteger rxKBitRate;
-@property(assign, nonatomic) NSInteger txPacketLossRate;
-@property(assign, nonatomic) NSInteger rxPacketLossRate;
-@end
-</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelStats : NSObject
-@property(assign, nonatomic) NSUInteger duration;
-@property(assign, nonatomic) NSUInteger txBytes;
-@property(assign, nonatomic) NSUInteger rxBytes;
-@property(assign, nonatomic) NSUInteger txAudioKBitrate;
-@property(assign, nonatomic) NSUInteger rxAudioKBitrate;
-@property(assign, nonatomic) NSUInteger txVideoKBitrate;
-@property(assign, nonatomic) NSUInteger rxVideoKBitrate;
-@property(assign, nonatomic) NSUInteger txAudioBytes;
-@property(assign, nonatomic) NSUInteger txVideoBytes;
-@property(assign, nonatomic) NSUInteger rxAudioBytes;
-@property(assign, nonatomic) NSUInteger rxVideoBytes;
-@property(assign, nonatomic) NSUInteger lastmileDelay;
-@property(assign, nonatomic) NSUInteger userCount;
-@property(assign, nonatomic) double cpuAppUsage;
-@property(assign, nonatomic) double cpuTotalUsage;
-@property(assign, nonatomic) NSInteger gatewayRtt;
-@property(assign, nonatomic) double memoryAppUsageRatio;
-@property(assign, nonatomic) double memoryTotalUsageRatio;
-@property(assign, nonatomic) NSInteger memoryAppUsageInKbytes;
-@property(assign, nonatomic) NSInteger connectTimeMs;
-@property(assign, nonatomic) NSUInteger txKBitrate;
-@property(assign, nonatomic) NSUInteger rxKBitrate;
-@property(assign, nonatomic) NSInteger firstAudioPacketDuration;
-@property(assign, nonatomic) NSInteger firstVideoPacketDuration;
-@property(assign, nonatomic) NSInteger firstVideoKeyFramePacketDuration;
-@property(assign, nonatomic) NSInteger packetsBeforeFirstKeyFramePacket;
-@property(assign, nonatomic) NSInteger txPacketLossRate;
-@property(assign, nonatomic) NSInteger rxPacketLossRate;
-@property(assign, nonatomic) NSInteger lanAccelerateState;
-@end</codeblock>
-                </p>
+            </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -404,132 +346,7 @@
                         <note>This value is for reference only and may not be available due to system restrictions.</note>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt props="ios mac cpp unreal bp unity electron flutter rn cs">duration</pt>
-                <pt props="android hmos">totalDuration</pt>
-                <pd>Call duration of the local user in seconds, represented by an aggregate value.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>txBytes</pt>
-                <pd>The number of bytes sent.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>rxBytes</pt>
-                <pd>The number of bytes received.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>txAudioBytes</pt>
-                <pd>The total number of audio bytes sent, represented by an aggregate value.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>txVideoBytes</pt>
-                <pd>The total number of video bytes sent, represented by an aggregate value.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>rxAudioBytes</pt>
-                <pd>The total number of audio bytes received, represented by an aggregate value.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>rxVideoBytes</pt>
-                <pd>The total number of video bytes received, represented by an aggregate value.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="android hmos cpp unreal cs unity electron rn flutter bp">txKBitRate</pt>
-                <pt props="apple">txKBitrate</pt>
-                <pd>The actual bitrate (Kbps) while sending the local video stream.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="android hmos cpp unreal cs unity electron rn flutter bp">rxKBitRate</pt>
-                <pt props="apple">rxKBitrate</pt>
-                <pd>The receiving bitrate (Kbps).</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="android hmos cpp unreal cs unity electron rn flutter bp">rxAudioKBitRate</pt>
-                <pt props="apple">rxAudioKBitrate</pt>
-                <pd>The bitrate (Kbps) of receiving the audio.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="android hmos cpp unreal cs unity electron rn flutter bp">txAudioKBitRate</pt>
-                <pt props="apple">txAudioKBitrate</pt>
-                <pd>The bitrate (Kbps) of sending the audio packet.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="android hmos cpp unreal cs unity electron rn flutter bp">rxVideoKBitRate</pt>
-                <pt props="apple">rxVideoKBitrate</pt>
-                <pd>The bitrate (Kbps) of receiving the video.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="android hmos cpp unreal cs unity electron rn flutter bp">txVideoKBitRate</pt>
-                <pt props="apple">txVideoKBitrate</pt>
-                <pd>The bitrate (Kbps) of sending the video.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>lastmileDelay</pt>
-                <pd>The client-to-server delay (milliseconds).</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>txPacketLossRate</pt>
-                <pd>The packet loss rate (%) from the client to the Agora server before applying the anti-packet-loss algorithm.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>rxPacketLossRate</pt>
-                <pd>The packet loss rate (%) from the Agora server to the client before using the anti-packet-loss method.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="ios mac cpp unreal bp electron rn unity flutter cs">userCount</pt>
-                <pt props="android hmos">users</pt>
-                <pd>The number of users in the channel.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>cpuAppUsage</pt>
-                <pd>Application CPU usage (%).<note type="attention">
-                    <ul>
-                    <li>The value of <parmname>cpuAppUsage</parmname> is always reported as 0 in the <xref keyref="onLeaveChannel"/> callback.</li>
-                    <li props="android cpp unreal bp unity flutter">As of Android 8.1, you cannot get the CPU usage from this attribute due to system limitations.</li>
-                    </ul></note></pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>cpuTotalUsage</pt>
-                <pd>
-                    <p>The system CPU usage (%).</p>
-                    <p props="cpp unreal bp unity electron flutter cs">For Windows, in the multi-kernel environment, this member represents the average CPU usage. The value = (100 - System Idle Progress in Task Manager)/100.</p>
-                    <note type="attention">
-                    <ul>
-                    <li>The value of <parmname>cpuTotalUsage</parmname> is always reported as 0 in the <xref keyref="onLeaveChannel"/> callback.</li>
-                    <li props="cpp unreal bp unity android rn">As of Android 8.1, you cannot get the CPU usage from this attribute due to system limitations.</li>
-                    </ul></note> </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>connectTimeMs</pt>
-                <pd>The duration (ms) between the SDK starts connecting and the connection is established. If the value reported is 0, it means invalid.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>gatewayRtt</pt>
-                <pd>The round-trip time delay (ms) from the client to the local router.<note props="cpp unreal bp ios unity rn flutter">
-                        <p>This property is disabled on devices running iOS 14 or later, and enabled on devices running versions earlier than iOS 14 by default. </p>
-                        <p>To enable this property on devices running iOS 14 or later, <xref keyref="ticket-link"/>.</p>
-                        </note>
-                        <note props="android cpp unreal bp unity flutter rn">On Android, to get <parmname>gatewayRtt</parmname>, ensure that you add the <codeph>android.permission.ACCESS_WIFI_STATE</codeph> permission after <codeph>&lt;/application&gt;</codeph> in the <codeph>AndroidManifest.xml</codeph> file in your project.</note></pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>memoryAppUsageRatio</pt>
-                <pd>
-                    <p>The memory ratio occupied by the app (%).</p>
-                    <note type="attention">This value is for reference only. Due to system limitations, you may not get this value.</note> </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>memoryTotalUsageRatio</pt>
-                <pd>
-                    <p>The memory occupied by the system (%).</p>
-                    <note type="attention">This value is for reference only. Due to system limitations, you may not get this value.</note> </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>memoryAppUsageInKbytes</pt>
-                <pd>
-                    <p>The memory size occupied by the app (KB).</p>
-                    <note type="attention">This value is for reference only. Due to system limitations, you may not get this value.</note> </pd>
-            </plentry>
             </parml>
         </section>
-    <section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

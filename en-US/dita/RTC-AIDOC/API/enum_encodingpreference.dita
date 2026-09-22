@@ -2,9 +2,9 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_encodingpreference">
     <title><ph keyref="ENCODING_PREFERENCE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Video encoder preference settings.</ph><ph id="shortdesc" props="android">Video encoder preference.</ph><ph id="shortdesc" props="ios mac">Video encoder preference.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Video encoder preference settings.</ph><ph id="shortdesc" props="android">Video encoder preference.</ph></shortdesc>
     <refbody>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Enumerations</title>
             <parml>
                 <plentry props="cpp">
@@ -31,25 +31,7 @@
                     <pt>PREFER_HARDWARE</pt>
                     <pd>(1): Hardware encoding preference. The SDK prefers using the hardware encoder for video encoding. If the device does not support hardware encoding, the SDK automatically switches to software encoding and reports the encoder type in <xref keyref="onLocalVideoStats"/> via <codeph>hwEncoderAccelerating</codeph>.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt><ph keyref="PREFER_AUTO"/></pt>
-                <pd>-1: Adaptive preference. The SDK automatically selects the optimal encoding type for encoding based on factors such as platform and device type.</pd>
-            </plentry>
-
-            <plentry props="ios mac">
-                <pt><ph keyref="PREFER_SOFTWARE"/></pt>
-                <pd>0: Software coding preference. The SDK prefers software encoders for video encoding.</pd>
-            </plentry>
-
-            <plentry props="ios mac">
-                <pt><ph keyref="PREFER_HARDWARE"/></pt>
-                <pd>1: Hardware encoding preference. The SDK prefers a hardware encoder for video encoding. When the device does not support hardware encoding, the SDK automatically uses software encoding and reports the currently used video encoder type through <parmname>hwEncoderAccelerating</parmname> in the <xref keyref="onLocalVideoStats"/> callback.</pd>
-            </plentry>
             </parml>
         </section>
-    <section id="prototype"><p outputclass="codeblock"/></section><section id="detailed_desc"><dl outputclass="since"><dlentry props="ios mac">
-                <dt>Since</dt>
-                <dd>v4.1.0</dd>
-            </dlentry>
-            </dl></section></refbody>
+    </refbody>
 </reference>

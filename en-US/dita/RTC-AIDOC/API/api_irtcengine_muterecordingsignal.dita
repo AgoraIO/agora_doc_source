@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_muterecordingsignal">
     <title><ph keyref="muteRecordingSignal"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Mutes or unmutes the recording signal.</ph><ph id="shortdesc" props="android">Sets whether to mute the recording signal.</ph><ph id="shortdesc" props="ios mac">Whether to mute the recording signal.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Mutes or unmutes the recording signal.</ph><ph id="shortdesc" props="android">Sets whether to mute the recording signal.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,9 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int muteRecordingSignal(bool mute) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int muteRecordingSignal(boolean muted);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)muteRecordingSignal:(BOOL)muted;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)muteRecordingSignal:(BOOL)muted NS_SWIFT_NAME(muteRecordingSignal(_:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">If you have already called <xref keyref="adjustRecordingSignalVolume"/> to adjust the recording signal volume, when you call this method and set the parameter to <xref keyref="true"/>, the SDK will:
@@ -30,16 +28,13 @@
                     <li>Records the adjusted volume.</li>
                     <li>Mutes the recording signal.</li>
                 </ul><ph>When you call this method again and set the parameter to <xref keyref="false"/>, the recording signal volume is restored to the volume recorded before muting.</ph></p>
-        <p props="ios mac">If you have already called <xref keyref="adjustRecordingSignalVolume"/> to adjust the recording signal volume, when you call this method and set it to <codeph><ph keyref="true"/></codeph>, the SDK behaves as follows:<ol>
-            <li>Records the adjusted volume.</li>
-            <li>Mutes the recording signal.</li></ol>When you call this method again and set it to <codeph><ph keyref="false"/></codeph>, the recording signal volume will be restored to the volume recorded by the SDK before muting.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Timing</title>
             <p props="cpp">This method can be called before or after joining a channel.</p>
             <p props="android">This method can be called before or after joining a channel.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -60,19 +55,9 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt props="android apple">muted</pt>
-                <pt props="cpp framework">mute</pt>
-                <pd>
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Mute the recording signal.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not mute the recording signal.</li>
-                    </ul>
-                </pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -86,9 +71,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

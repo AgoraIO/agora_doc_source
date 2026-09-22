@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_takesnapshotex2">
     <title><ph keyref="takeSnapshotEx2"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Captures a snapshot of the specified user's video using the connection ID.</ph><ph id="shortdesc" props="android">Takes a snapshot of a specified user's video using the connection ID.</ph><ph id="shortdesc" props="ios mac">Gets a video screenshot of the specified observation point using the connection ID.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Captures a snapshot of the specified user's video using the connection ID.</ph><ph id="shortdesc" props="android">Takes a snapshot of a specified user's video using the connection ID.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,6 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int takeSnapshotEx(const RtcConnection&amp; connection, uid_t uid, const media::SnapshotConfig&amp; config) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int takeSnapshotEx(RtcConnection connection, int uid, SnapshotConfig config);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)takeSnapshotExWithConfig:(AgoraRtcConnection * _Nonnull)connection uid:(NSInteger)uid config:(AgoraSnapshotConfig* _Nonnull)config NS_SWIFT_NAME(takeSnapshotExWithConfig(_:uid:config:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -48,7 +47,7 @@
             <p props="cpp">After this method is successfully called, the SDK triggers the <xref keyref="onSnapshotTaken"/> callback to report whether the snapshot is successful and provide detailed information.</p>
             <p props="android">After a successful call, the SDK triggers the <xref keyref="onSnapshotTaken"/> callback to report the result and details of the snapshot.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -77,21 +76,9 @@
                     <pt>config</pt>
                     <pd>Snapshot configuration. See <xref keyref="SnapshotConfig"/>.</pd>
                 </plentry>
-            <plentry conkeyref="joinChannelEx/connection" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="takeSnapshot/uid" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="takeSnapshot2/config" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -105,9 +92,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onstreammessageerror">
     <title><ph keyref="onStreamMessageError"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the local user fails to receive a data stream message sent by a remote user.</ph><ph id="shortdesc" props="android"><xref keyref="onStreamMessageError"/> callback: triggered when the local user fails to receive a data stream sent by a remote user.</ph><ph id="shortdesc" props="ios mac">Occurs when the local user does not receive the data stream from the remote user.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when the local user fails to receive a data stream message sent by a remote user.</ph><ph id="shortdesc" props="android"><xref keyref="onStreamMessageError"/> callback: triggered when the local user fails to receive a data stream sent by a remote user.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,28 +15,19 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onStreamMessageError(uid_t uid, int streamId, int code, int missed, int cached)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onStreamMessageError(int uid, int streamId, int error, int missed, int cached)</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
-            didOccurStreamMessageErrorFromUid:(NSUInteger)uid
-            streamId:(NSInteger)streamId
-            error:(NSInteger)error
-            missed:(NSInteger)missed
-            cached:(NSInteger)cached;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOccurStreamMessageErrorFromUid:(NSUInteger)uid streamId:(NSInteger)streamId error:(NSInteger)error missed:(NSInteger)missed cached:(NSInteger)cached NS_SWIFT_NAME(rtcEngine(_:didOccurStreamMessageErrorFromUid:streamId:error:missed:cached:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">This callback is triggered when the local user fails to receive a stream message sent by a remote user using <xref keyref="sendStreamMessage"/>.</p>
             <p props="android">This callback is triggered when the local user fails to receive a stream message sent by a remote user via <xref keyref="sendStreamMessage"/>.</p>
             <note props="cpp">If you need a more comprehensive solution for low latency, high concurrency, and scalable real-time messaging and state synchronization, consider using Real-time Messaging.</note>
             <note props="android">If you need a more comprehensive real-time messaging and state synchronization solution with low latency, high concurrency, and scalability, we recommend using Real-time Messaging.</note>
-        <note conkeyref="createDataStream2/note" props="ios mac"/>
-            <p props="ios mac">The SDK triggers this callback when the local user fails to receive the stream message that the remote user sends by calling the <xref keyref="sendStreamMessage"/> method.</p>
         </section>
         <section id="timing" deliveryTarget="details" props="android">
             <title>Trigger Timing</title>
             <p props="android">This callback is triggered when the local user fails to receive a stream message sent by a remote user via <xref keyref="sendStreamMessage"/>.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -79,37 +70,6 @@
                     <pt>cached</pt>
                     <pd>Number of incoming messages cached during stream interruption.</pd>
                 </plentry>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>connection</pt>
-                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
-            </plentry>
-            <plentry id="uid" props="ios mac">
-                <pt props="ios mac android hmos electron cpp unreal">uid</pt>
-                <pt props="bp">userId</pt>
-                <pt props="unity flutter rn electron cs">remoteUid</pt>
-                <pd>The ID of the remote user sending the message.</pd>
-            </plentry>
-            <plentry id="streamId" props="ios mac">
-                <pt>streamId</pt>
-                <pd>The stream ID of the received message.</pd>
-            </plentry>
-            <plentry id="code" props="ios mac">
-                <pt props="cpp framework">code</pt>
-                <pt props="android hmos ios mac">error</pt>
-                <pd>Error code. <ph props="cn">See <xref keyref="ERROR_CODE_TYPE" props="flutter electron rn"/><xref keyref="error-code-link" props="native unreal bp unity"/>.</ph></pd>
-            </plentry>
-            <plentry id="missed" props="ios mac">
-                <pt>missed</pt>
-                <pd>The number of lost messages.</pd>
-            </plentry>
-            <plentry id="cached" props="ios mac">
-                <pt>cached</pt>
-                <pd>Number of incoming cached messages when the data stream is interrupted.</pd>
-            </plentry>
             </parml>
         </section>
     </refbody>

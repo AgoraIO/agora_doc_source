@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_joinchannelwithuseraccountex">
     <title><ph keyref="joinChannelWithUserAccountEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="android">Joins a channel using a user account and token, and sets media options.</ph><ph id="shortdesc" props="ios mac">Joins the channel with a user account, and configures whether to automatically subscribe to audio or video streams after joining the channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Joins a channel using a user account and token, and sets media options.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,19 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int joinChannelWithUserAccountEx(String token, String channelId, String userAccount, ChannelMediaOptions options, IRtcEngineEventHandler eventHandler);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelExByToken:(NSString* _Nullable)token
-                  channelId:(NSString* _Nonnull)channelId
-                userAccount:(NSString* _Nonnull)userAccount
-                   delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate
-               mediaOptions:(AgoraRtcChannelMediaOptions* _Nonnull)mediaOptions
-                joinSuccess:(void(^ _Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)joinChannelExByToken:(NSString* _Nullable)token
-                  channelId:(NSString* _Nonnull)channelId
-                userAccount:(NSString* _Nonnull)userAccount
-                   delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate
-               mediaOptions:(AgoraRtcChannelMediaOptions* _Nonnull)mediaOptions
-                joinSuccess:(void(^ _Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock NS_SWIFT_NAME(joinChannelEx(byToken:channelId:userAccount:delegate:mediaOptions:joinSuccess:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">Before calling this method, if you have not called <xref keyref="registerLocalUserAccount"/> to register a user account, the SDK will automatically create one when you join the channel. Calling <xref keyref="registerLocalUserAccount"/> in advance can shorten the time required to join the channel.
@@ -40,10 +28,7 @@ Once a user joins a channel, by default, they subscribe to all other users' audi
                     <li>To ensure smooth communication, use the same parameter type to identify users. For example, if one user joins with <codeph>uid</codeph>, others should also use <codeph>uid</codeph>; if using a user account, others should also use a user account. When using Agora Web SDK, ensure user ID parameter types are consistent.</li>
                 </ul>
             </note>
-        <p props="ios mac" conkeyref="joinChannelWithUserAccount2/desc1"/>
-            <p props="ios mac" conkeyref="joinChannelWithUserAccount2/desc2"/>
-            <note conkeyref="joinChannelWithUserAccount1/note" props="ios mac"/>
-            </section>
+        </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
             <p>This method is applicable to multi-channel scenarios.</p>
@@ -57,7 +42,7 @@ Once a user joins a channel, by default, they subscribe to all other users' audi
             <p props="android">Local client: <xref keyref="onLocalUserRegistered"/>, <xref keyref="onJoinChannelSuccess"/>, and <xref keyref="onConnectionStateChanged"/> callbacks.
 Remote client: If the user joins the channel in <codeph>COMMUNICATION</codeph> mode or as a broadcaster in <codeph>LIVE_BROADCASTING</codeph> mode, <xref keyref="onUserJoined"/> and <xref keyref="onUserInfoUpdated"/> callbacks are triggered.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android ios mac">
+        <section id="parameters" deliveryTarget="details" props="android">
             <title>Parameters</title>
             <parml>
                 <plentry props="android">
@@ -103,48 +88,9 @@ Remote client: If the user joins the channel in <codeph>COMMUNICATION</codeph> m
                     <pt>eventHandler</pt>
                     <pd>Callback class for <xref keyref="IRtcEngineEx"/>. See <xref keyref="IRtcEngineEventHandler"/>. You can use the <codeph>eventHandler</codeph> object passed through this parameter to receive callback events from multiple channels.</pd>
                 </plentry>
-            <plentry conkeyref="joinChannel2/token" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>channelId</pt>
-                <pd>
-                    <p conkeyref="joinChannel2/channelID_desc"/>
-                </pd>
-            </plentry>
-            <plentry props="ios mac" conkeyref="joinChannelWithUserAccount2/userAccount">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry props="ios mac" id="userAccount">
-                <pt>userAccount</pt>
-                <pd>
-                    <p>The user account. This parameter is used to identify the user in the channel for real-time audio and video engagement. You need to set and manage user accounts yourself and ensure that each user account in the same channel is unique.  The maximum length of this parameter is 255 bytes. Ensure that you set this parameter and do not set it as <ph keyref="NULL"/>. Supported characters are (89 in total):<ul>
-                    <li>The 26 lowercase English letters: a to z.</li>
-                    <li>The 26 uppercase English letters: A to Z.</li>
-                    <li>All numeric characters: 0 to 9.</li>
-                    <li>Space</li>
-                    <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "= ", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="cpp android unity rn electron flutter">options</pt>
-                <pt props="ios mac">mediaOptions</pt>
-                <pd conkeyref="joinChannel2/options_desc"/>
-            </plentry>
-            <plentry props="ios mac" conkeyref="joinChannelEx/event">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="joinChannel2/joinsuccessblock" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android ios mac">
+        <section id="return_values" props="android">
             <title>Return Values</title>
             <p props="android">
                 <ul>
@@ -162,9 +108,6 @@ Remote client: If the user joins the channel in <codeph>COMMUNICATION</codeph> m
                     </li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

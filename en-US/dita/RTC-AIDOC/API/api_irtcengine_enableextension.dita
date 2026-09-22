@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enableextension">
     <title><ph keyref="enableExtension"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables an extension.</ph><ph id="shortdesc" props="android">Enables or disables an extension feature.</ph><ph id="shortdesc" props="ios mac">Enables or disables extensions.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables an extension.</ph><ph id="shortdesc" props="android">Enables or disables an extension feature.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,10 +15,6 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int enableExtension(const char* provider, const char* extension, const ExtensionInfo&amp; extensionInfo, bool enable = true) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int enableExtension(String provider, String extension, boolean enable);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableExtensionWithVendor:(NSString * _Nonnull)provider
-                       extension:(NSString * _Nonnull)extension
-                         enabled:(BOOL)enabled
-                      sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(enableExtension(withVendor:extension:enabled:sourceType:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
@@ -26,9 +22,8 @@
             <p props="android">You can dynamically enable or disable an extension feature by calling this method without changing the processing flow.</p>
             <note props="cpp">For compatibility, if you have not called <xref keyref="registerExtension"/>, <xref keyref="enableExtension"/> will automatically register the specified extension. It is recommended to call <xref keyref="registerExtension"/> explicitly.</note>
             <note props="android"><xref keyref="enableExtension"/> automatically registers the specified extension if <xref keyref="registerExtension"/> is not called, to ensure compatibility. It is recommended to explicitly call <xref keyref="registerExtension"/>.</note>
-        <p props="ios mac"/>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -69,32 +64,9 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry conkeyref="setExtensionProperty/vendor" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="setExtensionProperty/extension" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry id="enable" props="ios mac">
-                <pt props="android cpp unreal bp unity rn electron flutter cs">enable</pt>
-                <pt props="ios mac">enabled</pt>
-                <pd>
-                    <p>Whether to enable the extension:<ul id="ul_c3b_d22_3qb">
-                    <li><codeph><ph keyref="true"/></codeph>: Enable the extension.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Disable the extension.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry id="source" props="ios mac">
-                <pt props="cpp unreal bp unity rn electron flutter cs">type</pt>
-                <pt props="android hmos apple">sourceType</pt>
-                <pd>Source type of the extension. See <xref keyref="MEDIA_SOURCE_TYPE"/>.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -108,12 +80,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
-                <li>-3: The extension library is not loaded. Agora recommends that you check the storage location or the name of the dynamic library.</li>
-                </ul>
-            </li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

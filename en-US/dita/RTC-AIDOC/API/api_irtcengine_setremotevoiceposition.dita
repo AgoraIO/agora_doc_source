@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setremotevoiceposition">
     <title><ph keyref="setRemoteVoicePosition"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the position and volume of a remote user's voice on the horizontal plane.</ph><ph id="shortdesc" props="android">Sets the spatial position and volume of a remote user's voice.</ph><ph id="shortdesc" props="ios mac">Sets the 2D position (the position on the horizontal plane) of the remote user's voice.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets the position and volume of a remote user's voice on the horizontal plane.</ph><ph id="shortdesc" props="android">Sets the spatial position and volume of a remote user's voice.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,9 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteVoicePosition(uid_t uid, double pan, double gain) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int setRemoteVoicePosition(int uid, double pan, double gain);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteVoicePosition:(NSUInteger)uid pan:(double)pan gain:(double)gain;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)setRemoteVoicePosition:(NSUInteger)uid pan:(double)pan gain:(double)gain NS_SWIFT_NAME(setRemoteVoicePosition(_:pan:gain:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">This method sets the 2D position and volume of a remote user to help you hear and identify the user's location more clearly. By differentiating between left and right audio channels, you can perceive the direction of the remote user in real time, creating a sense of spatial presence. This method is suitable for large-scale multiplayer online games, such as battle royale games.</p>
@@ -36,15 +34,8 @@
                     <li>Call this method after joining a channel.</li>
                 </ul>
             </note>
-        <p props="ios mac">This method sets the 2D position and volume of a remote user, so that the local user can easily hear and identify the remote user's position.</p>
-            <p props="ios mac">When the local user calls this method to set the voice position of a remote user, the voice difference between the left and right channels allows the local user to track the real-time position of the remote user, creating a sense of space. This method applies to massive multiplayer online games, such as Battle Royale games.</p>
-            <note type="attention" props="ios mac">
-            <ul>
-            <li>For this method to work, enable stereo panning for remote users by calling the <xref keyref="enableSoundPositionIndication"/> method before joining a channel.</li>
-            <li>For the best voice positioning, Agora recommends using a wired headset.</li>
-            <li>Call this method after joining a channel.</li>
-            </ul> </note> </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -83,25 +74,9 @@
                     <pt>gain</pt>
                     <pd>The volume of the remote user. The range is from 0.0 to 100.0. The default value is 100.0 (original volume of the remote user). The smaller the value, the lower the volume.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>uid</pt>
-                <pd>The user ID of the remote user.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>pan</pt>
-                <pd>The voice position of the remote user. The value ranges from -1.0 to 1.0:<ul>
-                    <li>0.0: (Default) The remote voice comes from the front.</li>
-                    <li>-1.0: The remote voice comes from the left.</li>
-                    <li>1.0: The remote voice comes from the right.</li>
-                    </ul> </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>gain</pt>
-                <pd>The volume of the remote user. The value ranges from 0.0 to 100.0. The default value is 100.0 (the original volume of the remote user). The smaller the value, the lower the volume.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -115,9 +90,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

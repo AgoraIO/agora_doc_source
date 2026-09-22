@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_cameracapturerconfiguration">
     <title><ph keyref="CameraCapturerConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Configures camera capture preferences.</ph><ph id="shortdesc" props="android">Used to set camera capture preferences.</ph><ph id="shortdesc" props="ios mac">The camera capturer preference.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Configures camera capture preferences.</ph><ph id="shortdesc" props="android">Used to set camera capture preferences.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -26,24 +26,9 @@
   public CaptureFormat captureFormat;
   public Boolean followEncodeDimensionRatio = null;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCameraCapturerConfiguration: NSObject
-#if TARGET_OS_IOS
-@property (assign, nonatomic) AgoraCameraDirection cameraDirection;
-@property(assign, nonatomic) AgoraFocalLength cameraFocalLengthType;
-#elif TARGET_OS_MAC
-@property (copy, nonatomic) NSString * _Nullable deviceId;
-#endif
-
-@property(assign, nonatomic) CGSize dimensions;
-
-@property(assign, nonatomic) int frameRate;
-
-@property(assign, nonatomic) BOOL followEncodeDimensionRatio;
-
-@end</codeblock>
-      </p>
+            </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -132,56 +117,7 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-        <pt>cameraDirection</pt>
-        <pd>(Optional) The camera direction. See <xref keyref="CAMERA_DIRECTION"/>.<note type="attention" props="cpp unreal bp unity flutter">This parameter is for Android and iOS only.</note></pd>
-      </plentry>
-      <plentry props="ios mac">
-        <pt>cameraId</pt>
-        <pd>(Optional) The camera ID. The default value is the camera ID of the front camera. You can get the camera ID through the Android native system API, see <xref keyref="camera1-link"/> and <xref keyref="camera2-link"/> for details.<note type="attention"><ul>
-        <li props="cpp unreal bp flutter unity rn">This parameter is for Android only.</li>
-        <li>This parameter and <parmname>cameraDirection</parmname> are mutually exclusive in specifying the camera; you can choose one based on your needs. The differences are as follows:<ul>
-          <li>Specifying the camera via <parmname>cameraDirection</parmname> is more straightforward. You only need to indicate the camera direction (front or rear), without specifying a specific camera ID; the SDK will retrieve and confirm the actual camera ID through Android native system APIs.</li>
-          <li>Specifying via <parmname>cameraId</parmname> allows for more precise identification of a particular camera. For devices with multiple cameras, where <parmname>cameraDirection</parmname> cannot recognize or access all available cameras, it is recommended to use <parmname>cameraId</parmname> to specify the desired camera ID directly.</li>
-        </ul></li></ul></note>
-        </pd>
-      </plentry>
-      <plentry props="ios mac">
-        <pt>cameraFocalLengthType</pt>
-        <pd>(Optional) The camera focal length type. See <xref keyref="CAMERA_FOCAL_LENGTH_TYPE"/>.<note type="attention"><ul>
-          <li props="cpp unreal bp flutter unity">This parameter is for Android and iOS only.</li>
-          <li props="android cpp unreal bp flutter unity rn">To set the focal length type of the camera, it is only supported to specify the camera through <parmname>cameraDirection</parmname>, and not supported to specify it through <parmname>cameraId</parmname>.</li>
-          <li props="ios cpp unreal bp flutter unity rn">For iOS devices equipped with multi-lens rear cameras, such as those featuring dual-camera (wide-angle and ultra-wide-angle) or triple-camera (wide-angle, ultra-wide-angle, and telephoto), you can use one of the following methods to capture video with an ultra-wide-angle perspective:<ul>
-              <li>Method one: Set this parameter to <apiname keyref="CAMERA_FOCAL_LENGTH_ULTRA_WIDE"/> (2) (ultra-wide lens).</li>
-              <li>Method two: Set this parameter to <apiname keyref="CAMERA_FOCAL_LENGTH_DEFAULT"/> (0) (standard lens), then call <xref keyref="setCameraZoomFactor"/> to set the camera's zoom factor to a value less than 1.0, with the minimum setting being 0.5.</li></ul>The difference is that the size of the ultra-wide angle in method one is not adjustable, whereas method two supports adjusting the camera's zoom factor freely.</li>
-        </ul></note>
-        </pd>
-      </plentry>
-      <plentry props="ios mac">
-        <pt props="cpp framework">format</pt>
-        <pt props="android hmos">captureFormat</pt>
-        <pd>(Optional) The format of the video frame. See <xref keyref="VideoFormat"/>.</pd>
-      </plentry>
-      <plentry props="ios mac">
-        <pt>dimension</pt>
-        <pd>(Optional) The dimension (px) of the video frame. The default value is 960 × 540.</pd>
-      </plentry>
-      <plentry props="ios mac">
-        <pt>frameRate</pt>
-        <pd>(Optional) The frame rate (fps) of the video frame. The default value is 15.</pd>
-      </plentry>
-      <plentry props="ios mac">
-        <pt>deviceId</pt>
-        <pd>The camera ID. <ph props="cpp unreal electron flutter">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</ph><note type="attention" props="cpp unreal bp unity flutter">This parameter is for Windows and macOS only.</note></pd>
-      </plentry>
-      <plentry props="ios mac">
-        <pt>followEncodeDimensionRatio</pt>
-        <pd>(Optional) Whether to follow the video aspect ratio set in <xref keyref="setVideoEncoderConfiguration"/>:<ul>
-          <li><codeph><ph keyref="true"/></codeph>: (Default) Follow the set video aspect ratio. The SDK crops the captured video according to the set video aspect ratio<ph props="android cpp apple unreal flutter unity cs electron rn"> and synchronously changes the local preview screen and the video frame in <xref keyref="onCaptureVideoFrame"/> and <xref keyref="onPreEncodeVideoFrame"/></ph>.</li>
-          <li><codeph><ph keyref="false"/></codeph>: Do not follow the system default audio playback device. The SDK does not change the aspect ratio of the captured video frame.</li>
-          </ul></pd>
-      </plentry>
-      </parml>
+            </parml>
         </section>
-    <section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_muteallremotevideostreamsex">
     <title><ph keyref="muteAllRemoteVideoStreamsEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Stops or resumes subscribing to all remote users' video streams.</ph><ph id="shortdesc" props="android">Stops or resumes subscribing to all remote users' video streams.</ph><ph id="shortdesc" props="ios mac">Stops or resumes subscribing to the video streams of all remote users.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Stops or resumes subscribing to all remote users' video streams.</ph><ph id="shortdesc" props="android">Stops or resumes subscribing to all remote users' video streams.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,24 +15,17 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int muteAllRemoteVideoStreamsEx(bool mute, const RtcConnection&amp; connection) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int muteAllRemoteVideoStreamsEx(boolean muted, RtcConnection connection);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)muteAllRemoteVideoStreamsEx:(BOOL)mute
-                        connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(muteAllRemoteVideoStreamsEx(_:connection:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">After you call this method, the local user stops or resumes subscribing to all remote users' video streams, including those who join the channel afterward.</p>
             <p props="android">After calling this method, you stop or resume subscribing to all remote users' video streams, including users who join the channel later.</p>
-        <dl outputclass="since"><dlentry props="ios mac">
-                <dt>Since</dt>
-                <dd>v4.1.0</dd>
-            </dlentry>
-            </dl><p conkeyref="muteAllRemoteVideoStreams/desc" props="ios mac"/>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
             <p>This method applies to multi-channel scenarios.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -61,17 +54,9 @@
                     <pt>connection</pt>
                     <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
                 </plentry>
-            <plentry conkeyref="muteAllRemoteVideoStreams/mute" props="ios mac">
-                    <pt/>
-                    <pd/>
-                </plentry>
-                <plentry conkeyref="joinChannelEx/connection" props="ios mac">
-                    <pt/>
-                    <pd/>
-                </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -85,10 +70,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul>
         </section>
     </refbody>
 </reference>

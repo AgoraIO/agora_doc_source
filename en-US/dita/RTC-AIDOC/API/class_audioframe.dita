@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audioframe">
     <title><ph keyref="AudioFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes raw audio frame data.</ph><ph id="shortdesc" props="android">Raw audio data.</ph><ph id="shortdesc" props="ios mac">Raw audio data.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Describes raw audio frame data.</ph><ph id="shortdesc" props="android">Raw audio data.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -27,37 +27,9 @@ uint32_t rtpTimestamp;
   public int samplesPerChannel;
   public long timestamp;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">
-__attribute__((visibility("default"))) @interface AgoraAudioFrame : NSObject
-
-@property(assign, nonatomic) NSInteger samplesPerChannel;
-
-@property(assign, nonatomic) NSInteger bytesPerSample;
-
-@property(assign, nonatomic) NSInteger channels;
-
-@property(assign, nonatomic) NSInteger samplesPerSec;
-
-@property(assign, nonatomic) void* _Nullable buffer;
-
-@property(assign, nonatomic) int64_t renderTimeMs;
-
-@property(assign, nonatomic) NSInteger avSyncType;
-@end</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioFrame : NSObject
-@property(assign, nonatomic) NSInteger samplesPerChannel;
-@property(assign, nonatomic) NSInteger bytesPerSample;
-@property(assign, nonatomic) NSInteger channels;
-@property(assign, nonatomic) NSInteger samplesPerSec;
-@property(assign, nonatomic) void* _Nullable buffer;
-@property(assign, nonatomic) int64_t renderTimeMs;
-@property(assign, nonatomic) int64_t presentationMs;
-@property(assign, nonatomic) NSInteger avSyncType;
-@property(assign, nonatomic) uint32_t rtpTimestamp;
-@end</codeblock>
-                </p>
+            </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -138,58 +110,7 @@ __attribute__((visibility("default"))) @interface AgoraAudioFrame : NSObject
                     <pt>timestamp</pt>
                     <pd>The timestamp of the audio frame (in milliseconds).</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>type</pt>
-                <pd>
-                    <p>The type of the audio frame. See <xref keyref="AUDIO_FRAME_TYPE"/>.</p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>samplesPerChannel</pt>
-                <pd>The number of samples per channel in the audio frame.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>bytesPerSample</pt>
-                <pd>The number of bytes per sample. For PCM, this parameter is generally set to 16 bits (2 bytes).</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt><ph props="cpp unreal bp ios mac unity electron rn flutter cs">channels</ph><ph props="android hmos">channelNums</ph></pt>
-                <pd>
-                    <p>The number of audio channels (the data are interleaved if it is stereo).<ul id="ul_zxz_2wt_r4b">
-                    <li>1: Mono.</li>
-                    <li>2: Stereo.</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="cpp unreal bp ios mac unity electron rn flutter cs">samplesPerSec</pt>
-                <pt props="android hmos">sampleRataHz</pt>
-                <pd>The number of samples per channel in the audio frame.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="android cpp unreal bp ios mac electron rn flutter">buffer</pt>
-                <pt props="unity cs">RawBuffer</pt>
-                <pd>
-                    <p>The data buffer of the audio frame. When the audio frame uses a stereo channel, the data buffer is interleaved.</p>
-                    <p>The size of the data buffer is as follows: <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>.</p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>renderTimeMs</pt>
-                <pd>
-                    <p>The timestamp (ms) of the external audio frame.</p>
-                    <p>You can use this timestamp to restore the order of the captured audio frame, and synchronize audio and video frames in video scenarios, including scenarios where external video sources are used.</p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt><ph props="flutter">avsyncType</ph><ph props="ios mac">avSyncType</ph><ph props="cpp unreal bp unity electron rn cs">avsync_type</ph></pt>
-                <pd>Reserved for future use.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>timestamp</pt>
-                <pd>The timestamp (ms) of the audio frame.</pd>
-            </plentry>
             </parml>
         </section>
-    <section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startplaybackdevicetest">
     <title><ph keyref="startPlaybackDeviceTest"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="android">Starts local audio playback device test.</ph><ph id="shortdesc" props="ios mac">Starts the audio playback device test.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Starts local audio playback device test.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,38 +14,22 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int startPlaybackDeviceTest(String audioFileName);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startPlaybackDeviceTest:(NSString * _Nonnull)audioFileName;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)startPlaybackDeviceTest:(NSString * _Nonnull)audioFileName NS_SWIFT_NAME(startPlaybackDeviceTest(_:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">After calling this method, the SDK plays the specified audio file. If you can hear the audio, it indicates that the playback device is working properly. After the call, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback every 100 ms to report the volume information of the playback device with <codeph>uid</codeph> 1. The difference between this method and <xref keyref="startEchoTest3"/> is that <xref keyref="startPlaybackDeviceTest"/> only tests the local audio playback device, while <xref keyref="startEchoTest3"/> tests both audio/video devices and network conditions.</p>
             <note props="android">Call this method before joining a channel. After the test is complete, call <xref keyref="stopPlaybackDeviceTest"/> before joining the channel to stop the test.</note>
-        <p props="ios mac">This method tests whether the audio device for local playback works properly. Once a user starts the test, the SDK plays an audio file specified by the user. If the user can hear the audio, the playback device works properly.</p>
-            <p props="ios mac">After calling this method, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback every 100 ms, reporting <parmname>uid</parmname> = 1 and the volume information of the playback device.</p>
-            <p props="ios mac">The difference between this method and the <xref keyref="startEchoTest3"/> method is that the former checks if the local audio playback device is working properly, while the latter can check the audio and video devices and network conditions.</p>
-            <note type="attention" props="ios mac">Call this method before joining a channel. After the test is completed, call <xref keyref="stopPlaybackDeviceTest"/> to stop the test before joining a channel.</note>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android ios mac">
+        <section id="parameters" deliveryTarget="details" props="android">
             <title>Parameters</title>
             <parml>
                 <plentry props="android">
                     <pt>audioFileName</pt>
                     <pd>Path to the audio file, a UTF-8 encoded string. Supported formats: wav, mp3, m4a, and aac. Supported sample rates: 8000, 16000, 32000, 44100, and 48000 Hz.</pd>
                 </plentry>
-            <plentry id="testAudioFilePath" props="ios mac">
-                <pt props="cpp unreal bp electron rn flutter unity cs">testAudioFilePath</pt>
-                <pt props="apple android">audioFileName</pt>
-                <pd>
-                    <p>The path of the audio file. The data format is string in UTF-8.<ul>
-                    <li>Supported file formats: wav, mp3, m4a, and aac.</li>
-                    <li>Supported file sample rates: 8000, 16000, 32000, 44100, and 48000 Hz.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android ios mac">
+        <section id="return_values" props="android">
             <title>Return Values</title>
             <p props="android">
                 <ul>
@@ -53,9 +37,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

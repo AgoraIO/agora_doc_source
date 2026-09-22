@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_loguploadserverinfo">
     <title><ph keyref="LogUploadServerInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the log server information.</ph><ph id="shortdesc" props="android">Log server configuration information.</ph><ph id="shortdesc" props="ios mac">Configuration information of the log server.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to configure the log server information.</ph><ph id="shortdesc" props="android">Log server configuration information.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -18,24 +18,9 @@
     public int serverPort = 0;
     public boolean serverHttps = true;
   };</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface LogUploadServerInfo : NSObject
-@property(copy, nonatomic) NSString* _Nullable serverDomain;
-
-@property(copy, nonatomic) NSString* _Nullable serverPath;
-
-@property(assign, nonatomic) NSInteger serverPort;
-
-@property(assign, nonatomic) BOOL serverHttps;
-@end</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">NS_SWIFT_NAME(LogUploadServerInfo) __attribute__((visibility("default"))) @interface LogUploadServerInfo : NSObject
-@property(copy, nonatomic) NSString* _Nullable serverDomain;
-@property(copy, nonatomic) NSString* _Nullable serverPath;
-@property(assign, nonatomic) NSInteger serverPort;
-@property(assign, nonatomic) BOOL serverHttps;
-@end</codeblock>
-                </p>
+            </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -80,31 +65,7 @@
                         </ul>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>serverDomain</pt>
-                <pd>The domain name of the log server.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>serverPath</pt>
-                <pd>The log storage path on the server.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>serverPort</pt>
-                <pd>The port of the log server.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>serverHttps</pt>
-                <pd>Whether the log server uses the HTTPS protocol:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Use HTTPS protocol.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not use HTTPS protocol. Uses the HTTP protocol.</li>
-                    </ul> </pd>
-            </plentry>
             </parml>
         </section>
-    <section id="detailed_desc"><dl outputclass="since"><dlentry props="ios mac">
-                <dt>Since</dt>
-                <dd>v4.1.0</dd>
-            </dlentry>
-            </dl><p props="ios mac"/>
-        </section></refbody>
+    </refbody>
 </reference>

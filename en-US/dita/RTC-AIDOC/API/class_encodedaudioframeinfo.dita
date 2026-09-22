@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encodedaudioframeinfo">
     <title><ph keyref="EncodedAudioFrameInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Information about the encoded audio frame.</ph><ph id="shortdesc" props="ios mac">Audio information after encoding.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Information about the encoded audio frame.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -14,15 +14,9 @@
   EncodedAudioFrameAdvancedSettings advancedSettings;
   int64_t captureTimeMs;
 };</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncodedAudioFrameInfo: NSObject
- @property (assign, nonatomic) NSInteger samplesPerChannel;
- @property (assign, nonatomic) NSInteger channels;
- @property (assign, nonatomic) NSInteger samplesPerSec;
- @property (assign, nonatomic) AgoraAudioCodecType codecType;
-@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -49,34 +43,7 @@
                     <pt>captureTimeMs</pt>
                     <pd>Timestamp of the captured audio frame in milliseconds.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt props="cpp unreal bp unity electron rn flutter cs">codec</pt>
-                <pt props="ios mac">codecType</pt>
-                <pd>Audio Codec type: <xref keyref="AUDIO_CODEC_TYPE"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="cpp unreal bp unity electron rn flutter cs">sampleRateHz</pt>
-                <pt props="ios mac">samplesPerSec</pt>
-                <pd>Audio sample rate (Hz).</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>samplesPerChannel</pt>
-                <pd>The number of audio samples per channel.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="cpp unreal bp unity electron rn flutter cs">numberOfChannels</pt>
-                <pt props="ios mac">channels</pt>
-                <pd>The number of audio channels.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>advancedSettings</pt>
-                <pd>This function is currently not supported.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                    <pt>captureTimeMs</pt>
-                    <pd>The Unix timestamp (ms) for capturing the external encoded video frames.</pd>
-            </plentry>
             </parml>
         </section>
-    <section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

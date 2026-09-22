@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablelocalaudio">
     <title><ph keyref="enableLocalAudio"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables local audio capture.</ph><ph id="shortdesc" props="android">Enables or disables the local audio capture function.</ph><ph id="shortdesc" props="ios mac">Enables or disables the local audio capture.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Enables or disables local audio capture.</ph><ph id="shortdesc" props="android">Enables or disables the local audio capture function.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,9 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int enableLocalAudio(bool enabled) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int enableLocalAudio(boolean enabled);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableLocalAudio:(BOOL)enabled;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)enableLocalAudio:(BOOL)enabled NS_SWIFT_NAME(enableLocalAudio(_:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">This method disables or re-enables the local audio function, thereby stopping or restarting local audio capture.
@@ -33,11 +31,6 @@ The difference between this method and <xref keyref="muteLocalAudioStream"/> is:
                     <li><xref keyref="muteLocalAudioStream"/>: Only controls whether to send the local audio stream, without affecting the audio capture state.</li>
                 </ul>
             </p>
-        <p props="ios mac">The audio function is enabled by default when users joining a channel. This method disables or re-enables the local audio function to stop or restart local audio capturing.</p>
-            <p props="ios mac">The difference between this method and <xref keyref="muteLocalAudioStream"/> are as follows:<ul>
-                <li><apiname keyref="enableLocalAudio"/>: Disables or re-enables the local audio capturing and processing. If you disable or re-enable local audio capturing using the <apiname keyref="enableLocalAudio"/> method, the local user might hear a pause in the remote audio playback.</li>
-                <li><apiname keyref="muteLocalAudioStream"/>: Sends or stops sending the local audio streams without affecting the audio capture status.</li>
-                </ul></p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
@@ -53,7 +46,7 @@ The difference between this method and <xref keyref="muteLocalAudioStream"/> is:
             <p props="cpp">After successfully calling this method, the SDK triggers the <xref keyref="onLocalAudioStateChanged"/> callback, reporting <codeph>LOCAL_AUDIO_STREAM_STATE_STOPPED</codeph> (0) or <codeph>LOCAL_AUDIO_STREAM_STATE_RECORDING</codeph> (1).</p>
             <p props="android">Once the local audio function is disabled or re-enabled, the SDK triggers the <xref keyref="onLocalAudioStateChanged"/> callback to report <codeph>LOCAL_AUDIO_STREAM_STATE_STOPPED</codeph> (0) or <codeph>LOCAL_AUDIO_STREAM_STATE_RECORDING</codeph> (1).</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -74,18 +67,9 @@ The difference between this method and <xref keyref="muteLocalAudioStream"/> is:
                         </ul>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>enabled</pt>
-                <pd>
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Re-enable the local audio function, that is, to start the local audio capturing device (for example, the microphone).</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Disable the local audio function, that is, to stop local audio capturing.</li>
-                    </ul>
-                </pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -99,9 +83,6 @@ The difference between this method and <xref keyref="muteLocalAudioStream"/> is:
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

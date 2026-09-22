@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_getuserinfobyuseraccountex">
     <title><ph keyref="getUserInfoByUserAccountEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Retrieves user information by User Account.</ph><ph id="shortdesc" props="android">Gets user information by user account.</ph><ph id="shortdesc" props="ios mac">Gets the user information by passing in the user account.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Retrieves user information by User Account.</ph><ph id="shortdesc" props="android">Gets user information by user account.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,21 +15,17 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int getUserInfoByUserAccountEx(const char* userAccount, rtc::UserInfo* userInfo, const RtcConnection&amp; connection) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int getUserInfoByUserAccountEx(String userAccount, UserInfo userInfo, RtcConnection connection);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraUserInfo* _Nullable)getUserInfoByUserAccountEx:(NSString* _Nonnull)userAccount
-                                            connection:(AgoraRtcConnection * _Nonnull)connection
-                                             withError:(AgoraErrorCode* _Nullable)error NS_SWIFT_NAME(getUserInfo(byUserAccountEx:connection:withError:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">This method retrieves user information by passing in the User Account. It functions the same as <xref keyref="getUserInfoByUserAccount"/>.</p>
             <p props="android">After a remote user joins the channel, the SDK retrieves the user ID and user account of the remote user and caches them in a mapping table, while triggering the <xref keyref="onUserInfoUpdated"/> callback on the local client. After receiving this callback, you can call <xref keyref="getUserInfoByUserAccountEx"/> and pass the user account to obtain the user's information from the <xref keyref="UserInfo"/> object.</p>
-        <p conkeyref="getUserInfoByUid/getUserInfo_desc" props="ios mac"/>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
             <p>This method is applicable in multi-channel scenarios.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -56,25 +52,9 @@
                     <pt>connection</pt>
                     <pd>Connection information. See <xref keyref="RtcConnection"/>.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>userAccount</pt>
-                <pd>The user account.</pd>
-            </plentry>
-            <plentry props="ios mac" conkeyref="getUserInfoByUidEx/userInfo">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry props="ios mac" conkeyref="joinChannelEx/connection">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry props="ios mac" conkeyref="getUserInfoByUid/error">
-                <pt/>
-                <pd/>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -88,12 +68,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <p props="ios mac">
-                <ul>
-                    <li>0: Success.</li>
-                    <li>&lt; 0: Failure.</li>
-                </ul>
-            </p>
-            </section>
+        </section>
     </refbody>
 </reference>

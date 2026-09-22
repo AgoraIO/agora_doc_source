@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_mixedaudiostream">
     <title><ph keyref="MixedAudioStream"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set the source of the audio stream for local audio mixing.</ph><ph id="shortdesc" props="android">Used to set the source of local mixed audio stream.</ph><ph id="shortdesc" props="ios mac">The source of the audio streams that are mixed locally.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to set the source of the audio stream for local audio mixing.</ph><ph id="shortdesc" props="android">Used to set the source of local mixed audio stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -18,15 +18,9 @@
   public Constants.AudioSourceType sourceType;
   public int trackId;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMixedAudioStream: NSObject
-@property (assign, nonatomic) AgoraAudioSourceType sourceType;
-@property (assign, nonatomic) NSUInteger remoteUserUid;
-@property (copy, nonatomic) NSString * _Nullable channelId;
-@property (assign, nonatomic) NSUInteger trackId;
-@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -79,35 +73,7 @@
                         <note>This parameter is required only when the source type of the local mixed audio stream is <codeph>AUDIO_SOURCE_CUSTOM</codeph>. Set it to the custom audio track ID returned by <xref keyref="createCustomAudioTrack"/>.</note>
                     </pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>sourceType</pt>
-                <pd>The type of the audio source. See <xref keyref="AUDIO_SOURCE_TYPE"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-              <pt>remoteUserUid</pt>
-              <pd>
-                  <p>The user ID of the remote user.</p>
-                  <note type="attention">Set this parameter if the source type of the locally mixed audio steams is <ph keyref="AUDIO_SOURCE_REMOTE_USER"/>.</note></pd>
-          </plentry>
-        <plentry props="ios mac">
-            <pt>channelId</pt>
-            <pd>
-              <p conkeyref="joinChannel2/channelID_desc"/>
-              <note type="attention">Set this parameter if the source type of the locally mixed audio streams is <ph keyref="AUDIO_SOURCE_REMOTE_CHANNEL"/> or <ph keyref="AUDIO_SOURCE_REMOTE_USER"/>.</note></pd>
-        </plentry>
-        <plentry props="ios mac">
-          <pt>trackId</pt>
-          <pd>
-            <p>The audio track ID. Set this parameter to the custom audio track ID returned in <apiname keyref="createCustomAudioTrack"/>.</p>
-            <note type="attention">Set this parameter if the source type of the locally mixed audio steams is <ph keyref="AUDIO_SOURCE_CUSTOM"/>.</note>
-          </pd>
-      </plentry>
-      </parml>
+            </parml>
         </section>
-    <section id="detailed_desc"><dl outputclass="since"><dlentry props="ios mac">
-                <dt>Since</dt>
-                <dd>v4.5.0</dd>
-            </dlentry>
-            </dl><p props="ios mac"/>
-        </section></refbody>
+    </refbody>
 </reference>

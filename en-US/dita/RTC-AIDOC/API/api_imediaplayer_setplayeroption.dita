@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_setplayeroption">
     <title><ph keyref="setPlayerOption"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets media player options.</ph><ph id="shortdesc" props="android">Sets media player options.</ph><ph id="shortdesc" props="ios mac">Sets media player options.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Sets media player options.</ph><ph id="shortdesc" props="android">Sets media player options.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,15 +15,12 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int setPlayerOption(const char* key, int value) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">int setPlayerOption(String key, int value);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setPlayerOption:(NSString *)key value:(NSInteger)value NS_SWIFT_NAME(setPlayerOption(_:value:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">This method sets media player options using <codeph>key</codeph> and <codeph>value</codeph>. Unlike <codeph>setPlayerOption(const char* key, const char* value)</codeph>, the <codeph>value</codeph> parameter of this method is of type <codeph>int</codeph>, while the latter is <codeph>const char*</codeph>. These two methods cannot be used simultaneously. In general, you do not need to call this method and can use the default options provided by the media player.</p>
             <p props="android">This method sets media player options via <codeph>key</codeph> and <codeph>value</codeph>. Unlike <xref keyref="setPlayerOption2"/>, the <codeph>value</codeph> parameter in this method is of type <codeph>int</codeph>, whereas in <xref keyref="setPlayerOption2"/> it is of type <codeph>String</codeph>. These two methods cannot be used simultaneously. In general, you do not need to call this method and can use the default options provided by the media player.</p>
-        <p id="desc1" props="ios mac">The media player supports setting options through <parmname>key</parmname> and <parmname>value</parmname>.</p>
-            <p props="ios mac">The difference between this method and <xref keyref="setPlayerOption2"/> is that the <parmname>value</parmname> parameter of this method is of type Int, while the <parmname>value</parmname> of <apiname keyref="setPlayerOption2"/> is of type String. These two methods cannot be used together.</p>
-            </section>
+        </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
             <p>Applicable to scenarios requiring technical preview or custom features.</p>
@@ -33,7 +30,7 @@
             <p props="cpp">Call this method before calling <xref keyref="open"/> or <xref keyref="openWithMediaSource"/>.</p>
             <p props="android">Call this method before calling the <codeph>open</codeph> or <xref keyref="openWithMediaSource"/> method.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -52,17 +49,9 @@
                     <pt>value</pt>
                     <pd>The value of the option.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>key</pt>
-                <pd>The key of the option.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>value</pt>
-                <pd>The value of the key.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -76,9 +65,6 @@
                     <li>&lt; 0: The method call fails.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

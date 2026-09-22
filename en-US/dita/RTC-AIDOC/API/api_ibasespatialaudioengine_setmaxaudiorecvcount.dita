@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ibasespatialaudioengine_setmaxaudiorecvcount">
     <title><ph keyref="setMaxAudioRecvCount"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="android">Sets the maximum number of audio streams you can receive within the specified audio reception range.</ph><ph id="shortdesc" props="ios mac">Sets the maximum number of streams that a user can receive in a specified audio reception range.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Sets the maximum number of audio streams you can receive within the specified audio reception range.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,28 +14,21 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int setMaxAudioRecvCount(int maxCount);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setMaxAudioRecvCount:(NSUInteger)maxCount;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (int)setMaxAudioRecvCount:(NSUInteger)maxCount NS_SWIFT_NAME(setMaxAudioRecvCount(_:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="android">If the number of receivable audio streams exceeds this value, the local user will receive the <codeph>maxCount</codeph> audio streams closest to them.</p>
-        <p props="ios mac">If the number of receivable streams exceeds the set value, the local user receives the <parmname>maxCount</parmname> streams that are closest to the local user.</p>
-            </section>
-        <section id="parameters" deliveryTarget="details" props="android ios mac">
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android">
             <title>Parameters</title>
             <parml>
                 <plentry props="android">
                     <pt>maxCount</pt>
                     <pd>The maximum number of audio streams you can receive within the specified audio reception range. The value must be less than or equal to 16. (Default is 10)</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>maxCount</pt>
-                <pd>The maximum number of streams that a user can receive within a specified audio reception range. The value of this parameter should be ≤ 16, and the default value is 10.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android ios mac">
+        <section id="return_values" props="android">
             <title>Return Values</title>
             <p props="android">
                 <ul>
@@ -43,9 +36,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_updatepreloadchanneltoken">
     <title><ph keyref="updatePreloadChannelToken"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Updates the wildcard token used for preloaded channels.</ph><ph id="shortdesc" props="android">Updates the wildcard token used for preloading a channel.</ph><ph id="shortdesc" props="ios mac">Updates the wildcard token for preloading channels.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Updates the wildcard token used for preloaded channels.</ph><ph id="shortdesc" props="android">Updates the wildcard token used for preloading a channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,23 +15,17 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int updatePreloadChannelToken(const char* token) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract int updatePreloadChannelToken(String token);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)updatePreloadChannelToken:(NSString * _Nonnull)token NS_SWIFT_NAME(updatePreloadChannelToken(_:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">You need to manage the lifecycle of the wildcard token yourself. When the token expires, generate a new wildcard token and call this method with the new token.</p>
             <p props="android">You need to manage the lifecycle of the wildcard token yourself. When the token expires, generate a new wildcard token and call this method with the new token.</p>
-        <dl outputclass="since"><dlentry props="ios mac">
-                <dt>Since</dt>
-                <dd>v4.2.2</dd>
-            </dlentry>
-            </dl><p props="ios mac">You need to maintain the life cycle of the wildcard token by yourself. When the token expires, you need to generate a new wildcard token and then call this method to pass in the new token.</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
             <p>Applicable to scenarios involving multiple channels. For example, when switching between different channels, using a wildcard token allows you to avoid requesting a new token each time a user joins a new channel, thereby saving channel switching time and reducing the load on your token server.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -42,13 +36,9 @@
                     <pt>token</pt>
                     <pd>The new token.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>token</pt>
-                <pd>The new token.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -72,12 +62,6 @@
                     </li>
                 </ul>
             </p>
-        <ul props="ios mac">
-                <li>0: Success.</li>
-               <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
-                       <li>-2: The parameter is invalid. For example, the token is invalid. You need to pass in a valid parameter and join the channel again.</li>
-                       <li>-7: The <apiname keyref="IRtcEngine"/> object has not been initialized. You need to initialize the <apiname keyref="IRtcEngine"/> object before calling this method.</li>
-                   </ul></li>
-            </ul></section>
+        </section>
     </refbody>
 </reference>

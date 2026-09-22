@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_pathstats">
     <title><ph keyref="PathStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Retrieves statistics of a specific network path.</ph><ph id="shortdesc" props="android">Used to collect statistics for a specific network path.</ph><ph id="shortdesc" props="ios mac">Statistical information about a specific network path.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Retrieves statistics of a specific network path.</ph><ph id="shortdesc" props="android">Used to collect statistics for a specific network path.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -16,11 +16,6 @@
   public int txKBitRate;
   public int rxKBitRate;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraPathStats : NSObject
-@property (assign, nonatomic) AgoraMultipathType pathType;
-@property (assign, nonatomic) NSUInteger txKBitRate;
-@property (assign, nonatomic) NSUInteger rxKBitRate;
-@end</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="android cpp">
@@ -33,14 +28,9 @@
                     <dt>Since</dt>
                     <dd>Available since v4.6.0.</dd>
                 </dlentry>
-            <dlentry props="ios mac">
-                <dt>Since:</dt>
-                <dd props="native">v.4.6.0.</dd>
-                </dlentry>
             </dl>
-        <p props="ios mac"/>
-            </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        </section>
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -73,29 +63,6 @@
                     <pt>rxKBitRate</pt>
                     <pd>The receiving bitrate for this path, in Kbps.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt props="android">pathType</pt>
-                <pt props="apple">pathType</pt>
-                <pt props="cpp">type</pt>
-                <pd props="android">Types of network path:<ul>
-                        <li>LAN: Local Area Network.</li>
-                        <li>WiFi: Wireless Local Area Network.</li>
-                        <li>Mobile: Mobile network.</li>
-                        </ul>
-                    </pd>
-                <pd props="apple">Types of network path. See <xref keyref="MultipathType"/>.</pd>
-                <pd props="cpp">Types of network path. See <xref keyref="MultipathType"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="native">txKBitRate</pt>
-                <pd props="android">The transmission bitrate of the path in Kbps.</pd>
-                <pd props="apple cpp">The transmission bitrate of the path in Kbps.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt props="native">rxKBitRate</pt>
-                <pd props="android">The receiving bitrate of the path in Kbps.</pd>
-                <pd props="apple cpp">The receiving bitrate of the path in Kbps.</pd>
-            </plentry>
             </parml>
         </section>
     </refbody>

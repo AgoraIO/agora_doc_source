@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_oncameraexposureareachanged">
     <title><ph keyref="onCameraExposureAreaChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for changes in camera exposure area.</ph><ph id="shortdesc" props="android">Callback for when the camera exposure area changes.</ph><ph id="shortdesc" props="ios mac">Occurs when the camera exposure area changes.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback for changes in camera exposure area.</ph><ph id="shortdesc" props="android">Callback for when the camera exposure area changes.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,21 +15,18 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual void onCameraExposureAreaChanged(int x, int y, int width, int height)</codeblock>
                 <codeblock props="android" outputclass="language-java">public void onCameraExposureAreaChanged(Rect rect)</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine cameraExposureDidChangedToRect:(CGRect)rect;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine cameraExposureDidChangedToRect:(CGRect)rect NS_SWIFT_NAME(rtcEngine(_:cameraExposureDidChangedTo:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">This callback is triggered when the local user calls <xref keyref="setCameraExposurePosition"/> to change the camera exposure position.</p>
             <p props="android">This callback is triggered when the local user calls <xref keyref="setCameraExposurePosition"/> to change the camera exposure position.</p>
             <note props="cpp">This callback is only applicable to Android and iOS platforms.</note>
-        <p props="ios mac">The SDK triggers this callback when the local user changes the camera exposure position by calling <xref keyref="setCameraExposurePosition"/>.</p>
-            </section>
+        </section>
         <section id="timing" deliveryTarget="details" props="android">
             <title>Trigger Timing</title>
             <p props="android">This callback is triggered when <xref keyref="setCameraExposurePosition"/> is called to change the camera exposure position.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -52,30 +49,7 @@
                     <pt>rect</pt>
                     <pd>The exposure rectangle area in the local preview. See [<codeph>Rect</codeph>](https://developer.android.google.cn/reference/android/graphics/Rect).</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>x</pt>
-                <pd>The x coordinate of the changed camera exposure area.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>y</pt>
-                <pd>The y coordinate of the changed camera exposure area.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>width</pt>
-                <pd>The width of the changed camera exposure area.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>height</pt>
-                <pd>The height of the changed exposure area.</pd>
-            </plentry>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-            <pt/>
-            <pd/>
-            </plentry> <plentry props="ios mac">
-            <pt>rect</pt>
-            <pd>The focus rectangle in the local preview. <ph props="android ios">See <xref keyref="rect-link"/>.</ph></pd>
-            </plentry>
-        </parml>
+            </parml>
         </section>
     </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setlowlightenhanceoptions2">
     <title><ph keyref="setLowlightEnhanceOptions2"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="android">Sets low-light enhancement options and specifies the media source.</ph><ph id="shortdesc" props="ios mac">Sets low light enhance options and specifies the media source.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="android">Sets low-light enhancement options and specifies the media source.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,16 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int setLowlightEnhanceOptions(boolean enabled, LowLightEnhanceOptions options, Constants.MediaSourceType sourceType);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLowlightEnhanceOptions:(BOOL)enable options:(AgoraLowlightEnhanceOptions* _Nullable)options sourceType:(AgoraMediaSourceType)sourceType NS_SWIFT_NAME(setLowlightEnhanceOptions(_:options:sourceType:));</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <dl outputclass="since">
                 <dlentry props="android">
-                    <dt>Since</dt>
-                    <dd>Available since v3.6.2.</dd>
-                </dlentry>
-            <dlentry props="ios mac">
                     <dt>Since</dt>
                     <dd>Available since v3.6.2.</dd>
                 </dlentry>
@@ -35,7 +30,6 @@
                     <li>Video denoising requires certain device performance. If the device overheats after enabling video denoising, Agora recommends setting the video denoising option to a lower performance level or disabling it completely.</li>
                 </ul>
             </note>
-        <p props="ios mac">This method and <xref keyref="setLowlightEnhanceOptions"/> both set low light enhance options, but this method allows you to specify the media source to which the low light enhance options are applied.</p>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>Scenario</title>
@@ -45,7 +39,7 @@
             <title>Timing</title>
             <p props="android">Call this method after calling <xref keyref="enableVideo"/>.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android ios mac">
+        <section id="parameters" deliveryTarget="details" props="android">
             <title>Parameters</title>
             <parml>
                 <plentry props="android">
@@ -72,21 +66,9 @@
                         </note>
                     </pd>
                 </plentry>
-            <plentry conkeyref="setLowlightEnhanceOptions/enable" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="setLowlightEnhanceOptions/options" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry conkeyref="enableVirtualBackground2/sourcetype" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android ios mac">
+        <section id="return_values" props="android">
             <title>Return Values</title>
             <p props="android">
                 <ul>
@@ -94,9 +76,6 @@
                     <li>&lt; 0: Failure.</li>
                 </ul>
             </p>
-        <ul props="ios mac">
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
-            </ul> </section>
+        </section>
     </refbody>
 </reference>

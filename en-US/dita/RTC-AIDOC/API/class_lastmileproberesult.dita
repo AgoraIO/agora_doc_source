@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lastmileproberesult">
     <title><ph keyref="LastmileProbeResult"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Represents the result of uplink and downlink Last-mile network probing.</ph><ph id="shortdesc" props="android">Represents the result of uplink and downlink last-mile network probing.</ph><ph id="shortdesc" props="ios mac">Results of the uplink and downlink last-mile network tests.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Represents the result of uplink and downlink Last-mile network probing.</ph><ph id="shortdesc" props="android">Represents the result of uplink and downlink last-mile network probing.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -23,16 +23,9 @@
   public LastmileProbeOneWayResult uplinkReport = new LastmileProbeOneWayResult();
   public LastmileProbeOneWayResult downlinkReport = new LastmileProbeOneWayResult();
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeResult : NSObject
-
-@property (assign, nonatomic) AgoraLastmileProbeResultState state;
-@property (assign, nonatomic) NSUInteger rtt;
-@property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull uplinkReport;
-@property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull downlinkReport;
-@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -73,30 +66,7 @@
                     <pt>downlinkReport</pt>
                     <pd>Downlink last-mile network probe result. See <xref keyref="LastmileProbeOneWayResult"/>.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>state</pt>
-                <pd>
-                    <p props="ios mac cpp unreal bp unity electron rn flutter cs">The status of the last-mile network tests. See <xref keyref="LASTMILE_PROBE_RESULT_STATE"/>.</p>
-                    <p props="android hmos">The status of the last-mile network test, which includes:<ul>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE"/>(1): The last-mile network probe test is complete.</li>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE"/>(2): The last-mile network probe test is incomplete because bandwidth prediction is not conducted. One possible reason is that testing resources were temporarily limited.</li>
-                    <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE"/>(3): The last-mile network probe test is not conducted. Probably due to poor network conditions.</li>
-                    </ul> </p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>uplinkReport</pt>
-                <pd>Results of the uplink last-mile network test. See <xref keyref="LastmileProbeOneWayResult"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>downlinkReport</pt>
-                <pd>Results of the downlink last-mile network test. See <xref keyref="LastmileProbeOneWayResult"/>.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>rtt</pt>
-                <pd>The round-trip time (ms).</pd>
-            </plentry>
             </parml>
         </section>
-    <section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

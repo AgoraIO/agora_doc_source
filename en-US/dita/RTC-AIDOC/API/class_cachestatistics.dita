@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_cachestatistics">
     <title><ph keyref="CacheStatistics"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to collect statistics of cached media files.</ph><ph id="shortdesc" props="android">Used to collect statistics of cached media files.</ph><ph id="shortdesc" props="ios mac">Statistics about the media files being cached.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Used to collect statistics of cached media files.</ph><ph id="shortdesc" props="android">Used to collect statistics of cached media files.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -16,14 +16,9 @@
   private long cacheSize;
   private long downloadSize;
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaPlayerCacheStatistics : NSObject
-@property(assign, nonatomic) NSInteger fileSize;
-@property(assign, nonatomic) NSInteger cacheSize;
-@property(assign, nonatomic) NSInteger downloadSize;
-@end</codeblock>
             </p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Properties</title>
             <parml>
                 <plentry props="cpp">
@@ -50,19 +45,7 @@
                     <pt>downloadSize</pt>
                     <pd>Size of the media file already downloaded, in bytes.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>fileSize</pt>
-                <pd>The size (bytes) of the media file being played.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>cacheSize</pt>
-                <pd>The size (bytes) of the media file that you want to cache.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>downloadSize</pt>
-                <pd>The size (bytes) of the media file that has been downloaded.</pd>
-            </plentry>
             </parml>
         </section>
-    <section id="detailed_desc"/></refbody>
+    </refbody>
 </reference>

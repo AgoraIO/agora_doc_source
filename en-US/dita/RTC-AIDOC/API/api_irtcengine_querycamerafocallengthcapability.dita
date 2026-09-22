@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_querycamerafocallengthcapability">
     <title><ph keyref="queryCameraFocalLengthCapability"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Queries the focal length capabilities supported by the camera.</ph><ph id="shortdesc" props="android">Queries the focal length capabilities supported by the camera.</ph><ph id="shortdesc" props="ios mac">Queries the focal length capability supported by the camera.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Queries the focal length capabilities supported by the camera.</ph><ph id="shortdesc" props="android">Queries the focal length capabilities supported by the camera.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,20 +15,14 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual int queryCameraFocalLengthCapability(agora::rtc::FocalLengthInfo* focalLengthInfos, int&amp; size) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">public abstract AgoraFocalLengthInfo[] queryCameraFocalLengthCapability();</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (NSArray&lt;AgoraFocalLengthInfo *&gt;* _Nullable)queryCameraFocalLengthCapability NS_SWIFT_NAME(queryCameraFocalLengthCapability());</codeblock>
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">If you want to enable wide-angle or ultra-wide-angle mode during video capture, it is recommended to call this method first to check whether the device supports the required focal length capability. Then, based on the query result, call the <xref keyref="setCameraCapturerConfiguration"/> method to adjust the camera's focal length configuration for optimal video capture performance.</p>
             <p props="android">It is recommended to call this method before enabling wide-angle or ultra-wide-angle mode for video capture to check whether the device supports the required focal length capabilities. Based on the query result, call <xref keyref="setCameraCapturerConfiguration"/> to adjust the camera's focal length configuration to ensure optimal video capture performance.</p>
             <note props="cpp">This method is only available on Android and iOS platforms.</note>
-        <dl outputclass="since"><dlentry props="ios mac">
-                <dt>Since</dt>
-                <dd>v4.3.1</dd>
-            </dlentry>
-            </dl><p props="ios mac">If you want to enable the wide-angle or ultra-wide-angle mode for camera capture, it is recommended to start by calling this method to check whether the device supports the required focal length capability. Then, adjust the camera's focal length configuration based on the query result by calling <xref keyref="setCameraCapturerConfiguration"/>, ensuring the best camera capture performance.</p>
-            </section>
-        <section id="parameters" deliveryTarget="details" props="cpp ios mac">
+        </section>
+        <section id="parameters" deliveryTarget="details" props="cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -39,25 +33,9 @@
                     <pt>size</pt>
                     <pd>Input and output parameter. Indicates the number of focal length info items. On input, specify the maximum number of focal length info items that <codeph>focalLengthInfos</codeph> can hold. This value should be no less than 8. On output, returns the actual number of focal length info items retrieved.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt>focalLengthInfos</pt>
-                <pd props="cpp unreal bp">Input and output parameter. The pointer to an array of <xref keyref="FocalLengthInfo"/> objects:<ul>
-                    <li>Input value: The pointer to an array of <xref keyref="FocalLengthInfo"/> objects, used to store focal length information.</li>
-                    <li>Output value: After the method is executed, output the queried focal length information.</li></ul>
-                </pd>
-                <pd props="unity">An output parameter. After the method is executed, output an array of <xref keyref="FocalLengthInfo"/> objects containing camera focal length information.</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>size</pt>
-                <pd props="cpp unreal">Input and output parameter. The number of focal length information items:<ul>
-                    <li>Input value: Specifies the maximum number of focal length information items that <parmname>focalLengthInfos</parmname> can hold. Ensure this value is not less than 8, meaning <parmname>focalLengthInfos</parmname> has space for at least 8 focal length information items.</li>
-                    <li>Output value: After the method is executed, output the number of focal length information items retrieved.</li></ul>
-                </pd>
-                <pd props="unity">An output parameter. After the method is executed, output the number of focal length information items retrieved.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -71,7 +49,6 @@
                     <li>If the method call fails, returns an empty array.</li>
                 </ul>
             </p>
-        <p props="ios mac">Returns an array of <xref keyref="FocalLengthInfo"/> objects, which contain the camera's orientation and focal length type.</p>
-            </section>
+        </section>
     </refbody>
 </reference>

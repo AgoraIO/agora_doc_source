@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoframeobserver_onrendervideoframe">
     <title><ph keyref="onRenderVideoFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when receiving a video frame sent by a remote user.</ph><ph id="shortdesc" props="android">Callback triggered when a remote user sends a video frame.</ph><ph id="shortdesc" props="ios mac">Occurs each time the SDK receives a video frame sent by the remote user.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">Callback triggered when receiving a video frame sent by a remote user.</ph><ph id="shortdesc" props="android">Callback triggered when a remote user sends a video frame.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,11 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="cpp" outputclass="language-cpp">virtual bool onRenderVideoFrame(const char* channelId, rtc::uid_t remoteUid, VideoFrame&amp; videoFrame) = 0;</codeblock>
                 <codeblock props="android" outputclass="language-java">boolean onRenderVideoFrame(String channelId, int uid, VideoFrame videoFrame)</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onRenderVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame
-    uid:(NSUInteger)uid
-    channelId:(NSString * _Nonnull)channelId;</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">- (BOOL)onRenderVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame uid:(NSUInteger)uid channelId:(NSString * _Nonnull)channelId NS_SWIFT_NAME(onRenderVideoFrame(_:uid:channelId:));</codeblock>
-                </p>
+            </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">After successfully registering the video frame observer, the SDK triggers this callback each time it receives a video frame from a remote user. You can use this callback to access the remote video data before rendering and process it according to your scenario. The default returned video format is <codeph>YUV420</codeph>. If you need a different format, set your preferred format in <xref keyref="getVideoFormatPreference"/>.</p>
@@ -38,23 +34,13 @@
                     <li>It is recommended to ensure that the modified parameters in <codeph>videoFrame</codeph> match the actual video frame in the buffer. Otherwise, issues such as abnormal rotation or image stretching may occur in local preview and remote video display.</li>
                 </ul>
             </note>
-        <p props="ios mac">After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. In this callback, you can get the video data sent from the remote end before rendering, and then process it according to the particular scenarios.</p>
-            <p props="ios mac">The default video format that you get from this callback is I420 or CVPixelBufferRef. If you need other formats, you can set the expected data format in the <xref keyref="getVideoFormatPreference"/> callback.</p>
-            <note type="attention" props="ios mac">
-            <ul>
-            <li props="native unreal bp">If you need to send the preprocessed data to the SDK, you need to call <xref keyref="getVideoFrameProcessMode"/> first to set the video processing mode to read and write mode (<ph keyref="PROCESS_MODE_READ_WRITE"/>).</li>
-            <li>If the video data type you get is RGBA, the SDK does not support processing the data of the alpha channel.</li>
-            <li props="rn electron">It's recommended that you implement this callback through the C++ API.</li>
-            <li props="flutter rn electron">Due to framework limitations, this callback does not support sending processed video data back to the SDK.</li>
-            <li conkeyref="onCaptureVideoFrame/restric1"/>
-        </ul></note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Trigger Timing</title>
             <p props="cpp">This callback is triggered each time the SDK receives a video frame sent by a remote user.</p>
             <p props="android">This callback is triggered when the SDK receives a video frame sent by a remote user.</p>
         </section>
-        <section id="parameters" deliveryTarget="details" props="android cpp ios mac">
+        <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
             <parml>
                 <plentry props="cpp">
@@ -90,22 +76,9 @@
                     <pt>videoFrame</pt>
                     <pd>Video frame.</pd>
                 </plentry>
-            <plentry props="ios mac">
-                <pt props="android ios mac">uid</pt>
-                <pt props="cpp unreal bp rn electron flutter unity cs">remoteUid</pt>
-                <pd>The user ID of the remote user who sends the current video frame.</pd>
-            </plentry>
-            <plentry conkeyref="onCaptureVideoFrame/videoframe" props="ios mac">
-                <pt/>
-                <pd/>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>channelId</pt>
-                <pd>The channel ID.</pd>
-            </plentry>
             </parml>
         </section>
-        <section id="return_values" props="android cpp ios mac">
+        <section id="return_values" props="android cpp">
             <title>Return Values</title>
             <p props="cpp">
                 <ul>
@@ -139,7 +112,6 @@
                     </li>
                 </ul>
             </p>
-        <p conkeyref="onCaptureVideoFrame/return" props="ios mac"/>
         </section>
     </refbody>
 </reference>
