@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_faceshapearea">
     <title><ph keyref="FACE_SHAPE_AREA"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">选择需要调整的具体美型区域。</ph><ph id="shortdesc" props="ios">选择需要调整的美型区域。</ph><ph id="shortdesc" props="mac">选择需要调整的美型区域。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">选择需要调整的具体美型区域。</ph><ph id="shortdesc" props="ios">选择需要调整的特定面部区域。</ph><ph id="shortdesc" props="mac">选择需要调整的特定面部区域。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title" props="cpp ios mac">
             <dl outputclass="since">
@@ -29,7 +29,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>FACE_SHAPE_AREA_HEADSCALE</pt>
-                    <pd>（100）：头部区域，用于实现小头效果。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                    <pd>（100）：头部，用于实现更小的头部效果。值的范围是 0 到 100，默认值是 0。值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>FACE_SHAPE_AREA_FOREHEAD</pt>
@@ -64,8 +64,12 @@
                     <pd>（108）：下巴区域，用于调整下巴长度。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
                 </plentry>
                 <plentry props="cpp">
+                    <pt>FACE_SHAPE_AREA_FACESMALL</pt>
+                    <pd>（109）：面部缩小，减少整体面部尺寸以获得更纤细的外观。值的范围是 0 到 100。默认值是 0。值越大，整体面部尺寸缩小效果越明显。</pd>
+                </plentry>
+                <plentry props="cpp">
                     <pt>FACE_SHAPE_AREA_EYESCALE</pt>
-                    <pd>（200）：眼睛区域，用于实现大眼效果。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                    <pd>（200）：眼睛，用于实现更大的眼睛效果。值的范围是 0 到 100，默认值是 0。值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>FACE_SHAPE_AREA_EYEDISTANCE</pt>
@@ -92,6 +96,10 @@
                     <pd>（206）：外眼角区域，用于调整外眼角形态。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
                 </plentry>
                 <plentry props="cpp">
+                    <pt>FACE_SHAPE_AREA_EYEANGLE</pt>
+                    <pd>（207）：眼角度，调整眼睛的倾斜角度（猫眼效果）。值的范围是 -100 到 100。默认值是 0。值越大，眼睛的外角提升越明显。</pd>
+                </plentry>
+                <plentry props="cpp">
                     <pt>FACE_SHAPE_AREA_NOSELENGTH</pt>
                     <pd>（300）：鼻子长度区域，用于拉长鼻子。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显，负值表示相反方向。</pd>
                 </plentry>
@@ -101,7 +109,7 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>FACE_SHAPE_AREA_NOSEWING</pt>
-                    <pd>（302）：鼻翼区域，用于调整鼻翼宽度。取值范围为 [0, 100]，默认值为 10。数值越大，调整越明显。</pd>
+                    <pd>（302）：鼻翼调整。值的范围是 0 到 100，默认值是 0。值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>FACE_SHAPE_AREA_NOSEROOT</pt>
@@ -109,19 +117,19 @@
                 </plentry>
                 <plentry props="cpp">
                     <pt>FACE_SHAPE_AREA_NOSEBRIDGE</pt>
-                    <pd>（304）：鼻梁区域，用于调整鼻梁高度。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                    <pd>（304）：鼻梁调整。值的范围是 0 到 100，默认值是 0。值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>FACE_SHAPE_AREA_NOSETIP</pt>
-                    <pd>（305）：鼻尖区域，用于调整鼻尖形态。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                    <pd>（305）：鼻尖调整。值的范围是 0 到 100，默认值是 0。值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>FACE_SHAPE_AREA_NOSEGENERAL</pt>
-                    <pd>（306）：整体鼻子区域，用于统一调整鼻部形态。取值范围为 [-100, 100]，默认值为 50。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                    <pd>（306）：整体鼻子调整。范围是 -100 到 100，默认值是 0。绝对值越大，调整越明显。负值表示相反方向。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>FACE_SHAPE_AREA_MOUTHSCALE</pt>
-                    <pd>（400）：嘴巴区域，用于实现大嘴效果。取值范围为 [-100, 100]，默认值为 20。绝对值越大，调整越明显，负值表示相反方向。</pd>
+                    <pd>（400）：嘴巴，用于实现更大的嘴巴效果。范围是 -100 到 100，默认值是 0。绝对值越大，调整越明显。负值表示相反方向。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>FACE_SHAPE_AREA_MOUTHPOSITION</pt>
@@ -149,7 +157,7 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraFaceShapeAreaHeadScale</pt>
-                    <pd>（100）：头部区域，用于实现小头效果。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                    <pd>（100）：头部，用于实现更小的头部效果。取值范围是 0 到 100，默认值是 0。值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraFaceShapeAreaForehead</pt>
@@ -184,8 +192,12 @@
                     <pd>（108）：下巴区域，用于调整下巴长度。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显。负值表示相反方向。</pd>
                 </plentry>
                 <plentry props="ios">
+                    <pt>AgoraFaceShapeAreaFaceSmall</pt>
+                    <pd>（109）：面部缩小，减少整体面部尺寸以获得更纤细的外观。取值范围是 0 到 100。默认值是 0。值越大，整体面部尺寸缩小效果越明显。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>AgoraFaceShapeAreaEyeScale</pt>
-                    <pd>（200）：眼睛区域，用于实现大眼效果。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                    <pd>（200）：眼睛，用于实现更大的眼睛效果。取值范围是 0 到 100，默认值是 0。值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraFaceShapeAreaEyeDistance</pt>
@@ -212,6 +224,10 @@
                     <pd>（206）：外眼角区域，用于调整外眼角形态。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显。负值表示相反方向。</pd>
                 </plentry>
                 <plentry props="ios">
+                    <pt>AgoraFaceShapeAreaEyeAngle</pt>
+                    <pd>（207）：眼角度，调整眼睛的倾斜角度（猫眼效果）。取值范围是 -100 到 100。默认值是 0。值越大，眼睛的外角上扬越明显。</pd>
+                </plentry>
+                <plentry props="ios">
                     <pt>AgoraFaceShapeAreaNoseLength</pt>
                     <pd>（300）：鼻子长度区域，用于拉长鼻子。取值范围为 [-100, 100]，默认值为 0。</pd>
                 </plentry>
@@ -221,7 +237,7 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraFaceShapeAreaNoseWing</pt>
-                    <pd>（302）：鼻翼区域，用于调整鼻翼宽度。取值范围为 [0, 100]，默认值为 10。数值越大，调整越明显。</pd>
+                    <pd>（302）：鼻翼调整。取值范围是 0 到 100，默认值是 0。值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraFaceShapeAreaNoseRoot</pt>
@@ -229,19 +245,19 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraFaceShapeAreaNoseBridge</pt>
-                    <pd>（304）：鼻梁区域，用于调整鼻梁高度。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                    <pd>（304）：鼻梁调整。取值范围是 0 到 100，默认值是 0。值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraFaceShapeAreaNoseTip</pt>
-                    <pd>（305）：鼻尖区域，用于调整鼻尖形态。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                    <pd>（305）：鼻尖调整。取值范围是 0 到 100，默认值是 0。值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraFaceShapeAreaNoseGeneral</pt>
-                    <pd>（306）：整体鼻子区域，用于统一调整鼻部形态。取值范围为 [-100, 100]，默认值为 50。绝对值越大，调整越明显。负值表示相反方向。</pd>
+                    <pd>（306）：整体鼻子调整。取值范围是 -100 到 100，默认值是 0。绝对值越大，调整越明显。负值表示相反方向。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraFaceShapeAreaMouthScale</pt>
-                    <pd>（400）：嘴巴区域，用于实现大嘴效果。取值范围为 [-100, 100]，默认值为 20。绝对值越大，调整越明显。负值表示相反方向。</pd>
+                    <pd>（400）：嘴巴，用于实现更大的嘴巴效果。取值范围是 -100 到 100，默认值是 0。绝对值越大，调整越明显。负值表示相反方向。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraFaceShapeAreaMouthPosition</pt>
@@ -269,7 +285,7 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraFaceShapeAreaHeadScale</pt>
-                    <pd>（100）：头部区域，用于实现小头效果。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                    <pd>（100）：头部，用于实现更小的头部效果。取值范围是 0 到 100，默认值是 0。值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraFaceShapeAreaForehead</pt>
@@ -304,8 +320,12 @@
                     <pd>（108）：下巴区域，用于调整下巴长度。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显。负值表示相反方向。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>AgoraFaceShapeAreaFaceSmall</pt>
+                    <pd>（109）：面部缩小，减少整体面部尺寸以获得更纤细的外观。取值范围是 0 到 100。默认值是 0。值越大，整体面部尺寸缩小效果越明显。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>AgoraFaceShapeAreaEyeScale</pt>
-                    <pd>（200）：眼睛区域，用于实现大眼效果。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                    <pd>（200）：眼睛，用于实现更大的眼睛效果。取值范围是 0 到 100，默认值是 0。值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraFaceShapeAreaEyeDistance</pt>
@@ -332,6 +352,10 @@
                     <pd>（206）：外眼角区域，用于调整外眼角形态。取值范围为 [-100, 100]，默认值为 0。绝对值越大，调整越明显。负值表示相反方向。</pd>
                 </plentry>
                 <plentry props="mac">
+                    <pt>AgoraFaceShapeAreaEyeAngle</pt>
+                    <pd>（207）：眼角度，调整眼睛的倾斜角度（猫眼效果）。取值范围是 -100 到 100。默认值是 0。值越大，眼睛的外角上扬越明显。</pd>
+                </plentry>
+                <plentry props="mac">
                     <pt>AgoraFaceShapeAreaNoseLength</pt>
                     <pd>（300）：鼻子长度区域，用于拉长鼻子。取值范围为 [-100, 100]，默认值为 0。</pd>
                 </plentry>
@@ -341,7 +365,7 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraFaceShapeAreaNoseWing</pt>
-                    <pd>（302）：鼻翼区域，用于调整鼻翼宽度。取值范围为 [0, 100]，默认值为 10。数值越大，调整越明显。</pd>
+                    <pd>（302）：鼻翼调整。取值范围是 0 到 100，默认值是 0。值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraFaceShapeAreaNoseRoot</pt>
@@ -349,19 +373,19 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraFaceShapeAreaNoseBridge</pt>
-                    <pd>（304）：鼻梁区域，用于调整鼻梁高度。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                    <pd>（304）：鼻梁调整。取值范围是 0 到 100，默认值是 0。值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraFaceShapeAreaNoseTip</pt>
-                    <pd>（305）：鼻尖区域，用于调整鼻尖形态。取值范围为 [0, 100]，默认值为 50。数值越大，调整越明显。</pd>
+                    <pd>（305）：鼻尖调整。取值范围是 0 到 100，默认值是 0。值越大，调整越明显。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraFaceShapeAreaNoseGeneral</pt>
-                    <pd>（306）：整体鼻子区域，用于统一调整鼻部形态。取值范围为 [-100, 100]，默认值为 50。绝对值越大，调整越明显。负值表示相反方向。</pd>
+                    <pd>（306）：整体鼻子调整。取值范围是 -100 到 100，默认值是 0。绝对值越大，调整越明显。负值表示相反方向。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraFaceShapeAreaMouthScale</pt>
-                    <pd>（400）：嘴巴区域，用于实现大嘴效果。取值范围为 [-100, 100]，默认值为 20。绝对值越大，调整越明显。负值表示相反方向。</pd>
+                    <pd>（400）：嘴巴，用于实现更大的嘴巴效果。取值范围是 -100 到 100，默认值是 0。绝对值越大，调整越明显。负值表示相反方向。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraFaceShapeAreaMouthPosition</pt>
