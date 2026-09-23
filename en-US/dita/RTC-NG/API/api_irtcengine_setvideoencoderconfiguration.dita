@@ -31,6 +31,12 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p id="desc">Sets the encoder configuration for the local video. Each configuration profile corresponds to a set of video parameters, including the resolution, frame rate, and bitrate.</p>
+            <note props="ios mac macos">
+                <p>Agora's SDK supports H.265/HEVC encoding and decoding on both mobile and desktop platforms, subject to hardware availability.</p>
+                <p>Encoder: Use <xref keyref="setVideoEncoderConfiguration"/> to select H.265 as the video encoder. H.265 encoding is enabled only when the device has a supported hardware encoder. If hardware encoding is unavailable, the SDK automatically falls back to AV1 where the device supports it, or H.264 otherwise.</p>
+                <p>Decoder: H.265 decoding is enabled by default; no API configuration is required. When the device has a supported hardware decoder, the SDK automatically uses H.265 decoding. If hardware decoding is unavailable, the SDK falls back to AV1 where the device supports it, or H.264 otherwise, ensuring uninterrupted playback.</p>
+                <p>Software H.265/HEVC: If you require software-based H.265 encoding or decoding, contact Agora Support. Software H.265 is available subject to a separate agreement, under which the customer is responsible for compliance with all applicable H.265/HEVC patent licensing and royalty requirements.</p>
+            </note>
         </section>
         <section id="timing" deliveryTarget="details">
             <title>Call timing</title>

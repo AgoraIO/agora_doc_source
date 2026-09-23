@@ -73,7 +73,8 @@ jobs:
                   elif [[ "${{matrix.platform}}" == "ios" || "${{matrix.platform}}" == "macos" ]]; then
                     # Native platforms
                     if [[ "${{matrix.language}}" == "en" ]]; then
-                      echo "working_dir=en-US/dita/RTC-AIDOC" >> $GITHUB_OUTPUT
+                      # Keep the complete Apple comment source until RTC-AIDOC reaches parity.
+                      echo "working_dir=en-US/dita/RTC-NG" >> $GITHUB_OUTPUT
                     else
                       echo "working_dir=dita/RTC-AIDOC" >> $GITHUB_OUTPUT
                     fi
