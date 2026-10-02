@@ -316,12 +316,37 @@ def remove_json_files():
             if file[-5:] == '.json':
                 os.remove(os.path.join(root, file))
 
+# Tokens in @props that stand for a set of platforms rather than one platform.
+PLATFORM_GROUPS = {
+    "native": {"android", "ios", "macos", "cpp", "hmos"},
+    "framework": {"flutter", "rn", "unity", "electron", "cs", "unreal", "bp"},
+    "apple": {"ios", "macos"},
+}
+# @props values that are not platform filters at all.
+PLATFORM_AGNOSTIC = {"rtc", "rtc-ng"}
+
+
 def should_remove(current_platform: str, props: str, remove_sdk_type: str, language: str) -> bool:
-    if not props or current_platform in props: return False
-    return current_platform not in props and "native" not in props and "framework" not in props \
-        and props != "rtc" and props != "rtc-ng" or remove_sdk_type in props or current_platform not in props \
-        and "native" in props and current_platform != "cpp" and current_platform != "macos" and current_platform != "android" \
-        and current_platform != "ios" and props != "rtc" and props != "rtc-ng"
+    """Decide whether an element is excluded from the build for current_platform.
+
+    Matching is on whitespace-separated tokens, and the group tokens above are
+    expanded to the platforms they stand for. The previous implementation did
+    substring tests and treated "native"/"framework" as wildcards, so props that
+    merely contained either token survived on every platform, while "apple" --
+    which it did not recognise at all -- was dropped from the Apple builds it
+    was written for.
+    """
+    if not props:
+        return False
+    tokens = set(props.split())
+    if remove_sdk_type and remove_sdk_type in tokens:
+        return True
+    if tokens & PLATFORM_AGNOSTIC:
+        return False
+    allowed = set()
+    for token in tokens:
+        allowed |= PLATFORM_GROUPS.get(token, {token})
+    return current_platform not in allowed
 
 def switchLog(lang):
     if lang == 'debug':
@@ -368,6 +393,71 @@ def combine_text_sections(base_text: str, sections: Generator[str, None, None]) 
                 base_text += " "
             base_text += t_strip
     return base_text
+
+# How each platform's doc comments are consumed downstream. Markdown survives
+# DocC (ios/macos), dartdoc (flutter) and TypeDoc (rn/electron); C# XML doc
+# comments (unity) do not parse it, so those platforms keep the flat output.
+# Only the platforms listed here change; every other template is unaffected.
+MARKDOWN_PLATFORMS = {"ios", "macos"}
+
+# Sections folded into the detailed description, in the order they are emitted.
+DISCUSSION_SECTIONS = ("detailed_desc", "timing", "restriction", "scenario", "related")
+
+
+def dita_section_to_markdown(section) -> str:
+    """Serialise a DITA section as Markdown, preserving its block structure.
+
+    itertext() yields text nodes only, so paragraphs, notes and lists collapse
+    into one run of prose. Emitting Markdown keeps them, and every consumer in
+    MARKDOWN_PLATFORMS renders it.
+    """
+    blocks = []
+    for child in section:
+        tag = child.tag
+        if tag == "title":
+            continue
+        if tag == "note":
+            kind = (child.get("type") or "note").capitalize()
+            paragraphs = [combine_text_sections("", p.itertext()) for p in child.findall("./p")]
+            paragraphs = paragraphs or [combine_text_sections("", child.itertext())]
+            blocks.append("\n>\n".join(
+                (f"> {kind}: {text}" if i == 0 else f"> {text}")
+                for i, text in enumerate(paragraphs)))
+        elif tag in ("ul", "ol"):
+            ordered = tag == "ol"
+            blocks.append("\n".join(
+                f"{str(i) + '.' if ordered else '-'} {combine_text_sections('', li.itertext())}"
+                for i, li in enumerate(child.findall("./li"), 1)))
+        elif tag == "codeblock":
+            blocks.append("```\n" + (child.text or "") + "\n```")
+        else:
+            blocks.append(combine_text_sections("", child.itertext()))
+    return "\n\n".join(b for b in blocks if b.strip())
+
+
+def build_detailed_desc(root, platform_tag: str) -> str:
+    """Detailed description, with the sibling detail sections folded in.
+
+    timing/restriction/scenario/related carry titles authored in the DITA
+    ("Call timing", "Restrictions"); they are emitted as sub-headings. Level 3
+    is deliberate: DocC already emits "Discussion" at level 2.
+    """
+    parts = []
+    for section_id in DISCUSSION_SECTIONS:
+        for section in root.findall('./refbody/section'):
+            if section.get("id") != section_id:
+                continue
+            body = dita_section_to_markdown(section)
+            if not body.strip():
+                continue
+            title = section.find("./title")
+            heading = "".join(title.itertext()).strip() if title is not None else ""
+            if section_id != "detailed_desc" and heading:
+                parts.append(f"### {heading}\n\n{body}")
+            else:
+                parts.append(body)
+    return "\n\n".join(parts)
+
 
 def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_type, remove_sdk_type, language, json_hide_id_list):
 
@@ -769,13 +859,15 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
     # Get detailed description
     # Tables exist in pd and detailed desc. Need to process tables.
     detailed_desc = ""
-    for section in root.findall('./refbody/section'):
-        # localLogger.debug(section)
-        if section.get("id") == "detailed_desc":
-            title = section.find("./title")
-            if title is not None:
-                title.clear()
-            detailed_desc = combine_text_sections(detailed_desc, section.itertext())
+    if platform_tag in MARKDOWN_PLATFORMS:
+        detailed_desc = build_detailed_desc(root, platform_tag)
+    else:
+        for section in root.findall('./refbody/section'):
+            if section.get("id") == "detailed_desc":
+                title = section.find("./title")
+                if title is not None:
+                    title.clear()
+                detailed_desc = combine_text_sections(detailed_desc, section.itertext())
 
     # detailed_desc_text = ""
 
@@ -838,10 +930,13 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
     return_values = ""
     for section in root.findall('./refbody/section'):
         if section.get("id") == "return_values":
-            title = section.find("./title")
-            if title is not None:
-                title.clear()
-            return_values = combine_text_sections(return_values, section.itertext())
+            if platform_tag in MARKDOWN_PLATFORMS:
+                return_values = dita_section_to_markdown(section)
+            else:
+                title = section.find("./title")
+                if title is not None:
+                    title.clear()
+                return_values = combine_text_sections(return_values, section.itertext())
 
     logLines(localLogger.debug, "Return values", return_values)
 
