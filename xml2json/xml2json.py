@@ -300,7 +300,7 @@ def main():
     # Merge the individual JSON files to a single JSON file
     merge_JsonFiles(files, json_file)
 
-    replace_newline(json_file)
+    replace_newline(json_file, platform_tag)
 
     logLines(localLogger.info, "output file", json_file)
 
@@ -433,6 +433,20 @@ def dita_section_to_markdown(section) -> str:
         else:
             blocks.append(combine_text_sections("", child.itertext()))
     return "\n\n".join(b for b in blocks if b.strip())
+
+
+def indent_for_inline_field(markdown: str) -> str:
+    """Indent multi-line Markdown so it nests under an inline field prefix.
+
+    iris_doc writes the return value after "- Returns: " on the same line, so
+    a list or a second paragraph starting in column 0 falls out of the field:
+    DocC absorbs the first list item into the Returns line and leaves the rest
+    in the discussion. Starting on the next line, indented, keeps it together.
+    """
+    if "\n" not in markdown.strip():
+        return markdown
+    return "\n" + "\n".join(
+        ("  " + line) if line.strip() else line for line in markdown.split("\n"))
 
 
 def build_detailed_desc(root, platform_tag: str) -> str:
@@ -931,7 +945,8 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
     for section in root.findall('./refbody/section'):
         if section.get("id") == "return_values":
             if platform_tag in MARKDOWN_PLATFORMS:
-                return_values = dita_section_to_markdown(section)
+                return_values = indent_for_inline_field(
+                    dita_section_to_markdown(section))
             else:
                 title = section.find("./title")
                 if title is not None:
@@ -1011,13 +1026,20 @@ def merge_JsonFiles(files, output_json):
 
 
 
-def replace_newline(json_file):
+def replace_newline(json_file, platform_tag: str = None):
 
     input_file = open(json_file, 'r', encoding="utf-8")
     # 2022.1.17 Clean up \n and spaces
     file_text = input_file.read()
 
-    replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', file_text)
+    # On the Markdown platforms a value may deliberately begin with a newline
+    # and a two-space indent, so that a list nests under an inline field prefix
+    # such as "- Returns: ". Leave those alone; every other platform keeps the
+    # original behaviour.
+    keep_indent = platform_tag in MARKDOWN_PLATFORMS
+    lead = r':[\s]{0,100}"[\s]{0,100}\\n(?!  )[\s]{0,100}' if keep_indent \
+        else r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}'
+    replaced_file_text = re.sub(lead, ': "', file_text)
 
     # Replaces multiple newline and whitespaces as seen with LOCAL_VIDEO_STREAM_STATE_FAILED (java)
     replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}\\n', ' ', replaced_file_text)
@@ -1026,7 +1048,8 @@ def replace_newline(json_file):
     # replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', ' ', replaced_file_text)
     # replace 2+ whitespace characters with just one space
     # Catches ditafile double spaces
-    replaced_file_text = re.sub(r'(?<=\S) {2,}', ' ', replaced_file_text)
+    collapse = r'(?<=\S)(?<!\\n) {2,}' if keep_indent else r'(?<=\S) {2,}'
+    replaced_file_text = re.sub(collapse, ' ', replaced_file_text)
 
     # Catches "See."
     replaced_file_text = re.sub(r' See[\s\\n]{0,50}\.', '', replaced_file_text)
@@ -1035,7 +1058,9 @@ def replace_newline(json_file):
 
     # catches "For details, see." and "For details, see Use RESTful API."
     replaced_file_text = re.sub(r' For details[A-Za-z\s\\n,]{0,50}\.', '', replaced_file_text)
-    replaced_file_text = re.sub(r':[\s]{0,10}"\\n[\s\\n]{0,50}', ':"', replaced_file_text)
+    lead2 = r':[\s]{0,10}"\\n(?!  )[\s\\n]{0,50}' if keep_indent \
+        else r':[\s]{0,10}"\\n[\s\\n]{0,50}'
+    replaced_file_text = re.sub(lead2, ':"', replaced_file_text)
 
     # ------------------ Special processing for Flutter classes ------------------------------------------
     replaced_file_text = re.sub('class_rtc_render_view_rtcsurfaceview', 'class_rtcsurfaceview', replaced_file_text)
