@@ -807,7 +807,7 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
                         title_text = ""
                 else:
                     title_text = ""
-                xref.text = title_text.strip()
+                xref.text = symbol_link(title_text.strip(), platform_tag)
 
 
         elif xref.get("href") is not None and xref.get("href").startswith("http"):
