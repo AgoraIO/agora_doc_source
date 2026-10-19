@@ -435,6 +435,24 @@ def dita_section_to_markdown(section) -> str:
     return "\n\n".join(b for b in blocks if b.strip())
 
 
+def symbol_link(text: str, platform_tag: str) -> str:
+    """Render a resolved cross-reference as a DocC symbol link.
+
+    DocC turns ``Symbol`` in a doc comment into a link to that symbol, which is
+    how the Apple references get the cross-links the Oxygen-built platforms get
+    from <xref> directly. iris_doc declares link1/link2 in its format configs
+    but never reads them, so there is nothing downstream to mark links for us.
+
+    Only the Markdown platforms are affected; everywhere else the plain text is
+    returned unchanged. A target containing a space is not a symbol name (for
+    example "technical support"), so it is left alone rather than rendered as a
+    code span.
+    """
+    if not text or platform_tag not in MARKDOWN_PLATFORMS or " " in text:
+        return text
+    return f"``{text}``"
+
+
 def indent_for_inline_field(markdown: str) -> str:
     """Indent multi-line Markdown so it nests under an inline field prefix.
 
@@ -730,7 +748,7 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
             keyref = xref.get("keyref")
             href_text = keydef_dict.get(keyref, {}).get('text', '')
             if href_text:
-                xref.text = href_text
+                xref.text = symbol_link(href_text, platform_tag)
 
         # xref with href
         # Example:
@@ -762,7 +780,7 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
                             href_text += keydef_dict[ph_tag_key]['text']
                         break
 
-                xref.text = href_text
+                xref.text = symbol_link(href_text, platform_tag)
                 # xref.text = href_text
                 # localLogger.debug(xref.text)
 
@@ -789,7 +807,7 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
                         title_text = ""
                 else:
                     title_text = ""
-                xref.text = title_text.strip()
+                xref.text = symbol_link(title_text.strip(), platform_tag)
 
 
         elif xref.get("href") is not None and xref.get("href").startswith("http"):
