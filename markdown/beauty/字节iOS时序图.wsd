@@ -1,0 +1,44 @@
+@startuml
+autonumber
+title 美颜场景化 API (Beauty API) 时序图
+participant "App" as app
+participant "声网 RTC SDK" as rtc
+participant "Beauty API" as api
+participant "字节火山美颜 SDK" as beauty
+app -> app: 进入预览和直播间
+== 初始化 AgoraRtcEngineKit ==
+app -> rtc: sharedEngineWithConfig \n创建并初始化 AgoraRtcEngineKit 对象
+== 初始化美颜 SDK ==
+app -> beauty: 创建并初始化 BytesBeautyRender
+== 初始化 Beauty API ==
+app -> api: 创建 Beauty API 对象
+alt #WhiteSmoke 使用声网模块采集视频
+app -> api: initialize(captureMode.**Agora**) \n初始化 Beauty API 对象
+end
+alt #AntiqueWhite 自定义视频采集
+app -> api: initialize(captureMode.**Custom**) \n初始化 Beauty API 对象
+end
+app -> rtc: enableVideo \n开启视频模块
+== 开启美颜 ==
+app -> api: enable
+== 开启视频采集 ==
+alt #WhiteSmoke 使用声网模块采集视频
+app -> rtc: setupLocalVideo \n设置本地视图
+end
+alt #AntiqueWhite 开发者自定义视频采集
+app -> rtc: setVideoFrameDelegate \n注册原始视频数据观测器
+api -->> rtc: onFrame \n传递原始视频数据
+rtc -->> app: onCaptureVideoFrame \n传递原始视频数据
+end
+== 加入频道 ==
+app -> rtc: joinChannelByToken
+== 设置美颜效果 ==
+app -> api: setBeautyPreset \n设置是否使用默认且推荐的美颜参数
+app -> beauty: 如需更多美颜效果，例如贴纸、美妆风格，可直接调用美颜 SDK 的 API
+== 离开频道 ==
+app -> rtc: leaveChannel
+== 销毁资源 ==
+app -> api: destroy \n销毁 Beauty API 对象
+app -> rtc: destroy \n销毁 AgoraRtcEngineKit 对象
+app -> app: 退出预览和直播间
+@enduml
