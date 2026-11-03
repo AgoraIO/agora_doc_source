@@ -28,9 +28,9 @@ updatedAt: 2020-11-12 11:05:04
 
 Agora 为电商直播提供如下平台的 Demo，扫描下方二维码下载应用。
 
-| Android | iOS | 
+| Android | iOS |
 | ---------------- | ---------------- |
-|[前往下载](./downloads?platform=Android)     | [前往下载](./downloads?platform=iOS)     | 
+|[前往下载](./downloads?platform=Android)     | [前往下载](./downloads?platform=iOS)     |
 
 
 由于电商直播场景涉及多个用户，我们建议你准备**两台**设备进行体验。完成下载和安装后，参考如下步骤试用 Agora 的电商直播。
