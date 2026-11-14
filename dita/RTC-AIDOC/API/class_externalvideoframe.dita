@@ -23,14 +23,11 @@
   int textureId;
   long long fenceObject;
   float matrix[16];
-  uint8_t* metadataBuffer;
-  int metadataSize;
   uint8_t* alphaBuffer;
   bool fillAlphaBuffer;
   ALPHA_STITCH_MODE alphaStitchMode;
   void *d3d11Texture2d;
   int textureSliceIndex;
-  Hdr10MetadataInfo hdr10MetadataInfo;
   ColorSpace colorSpace;
 };</codeblock>
                 <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoFrame : NSObject
@@ -208,14 +205,6 @@
                     <pd>仅适用于 Texture 格式的视频数据。输入的 4×4 变换矩阵。典型值为单位矩阵。</pd>
                 </plentry>
                 <plentry props="cpp">
-                    <pt>metadataBuffer</pt>
-                    <pd>仅适用于 Texture 格式的视频数据。MetaData 缓冲区。默认值为 <xref keyref="NULL"/>。</pd>
-                </plentry>
-                <plentry props="cpp">
-                    <pt>metadataSize</pt>
-                    <pd>仅适用于 Texture 格式的视频数据。MetaData 大小。默认值为 0。</pd>
-                </plentry>
-                <plentry props="cpp">
                     <pt>alphaBuffer</pt>
                     <pd>输出参数，通过人像分割算法输出的 Alpha 通道数据。该数据与视频帧大小一致，每个像素值范围为 [0, 255]，其中 0 表示背景，255 表示前景（人像）。通过设置该参数，可以将视频背景渲染为透明、纯色、图像、视频等多种效果。</pd>
                 </plentry>
@@ -245,10 +234,6 @@
                 <plentry props="cpp">
                     <pt>textureSliceIndex</pt>
                     <pd>仅适用于 Windows Texture 格式的视频数据。表示视频帧在 <codeph>ID3D11Texture2D</codeph> 数组中使用的纹理对象的索引。</pd>
-                </plentry>
-                <plentry props="cpp">
-                    <pt>hdr10MetadataInfo</pt>
-                    <pd>HDR 视频数据的元数据信息。</pd>
                 </plentry>
                 <plentry props="cpp">
                     <pt>colorSpace</pt>

@@ -178,8 +178,10 @@
             </p>
             <p props="mac">你需要指定要采集的窗口的 ID，可以采集整个窗口或窗口的部分区域。</p>
             <note props="cpp"><xref keyref="startScreenCaptureByWindowId"/> 依赖于 WGC（Windows 图形采集）或 GDI（图形设备接口）进行窗口共享。在 Windows 10 2004 之前的系统中，WGC 无法禁用鼠标采集。因此，在系统版本低于 Windows 10 2004 的设备上调用 <codeph>captureMouseCursor(false)</codeph> 可能无效。详见 <xref keyref="ScreenCaptureParameters"/>。
-该方法仅适用于 macOS 和 Windows 平台。</note>
-            <note props="mac">该方法仅适用于 macOS 和 Windows 平台。</note>
+该方法仅适用于 macOS 和 Windows 平台。
+该方法仅创建主屏幕视频轨道。如需通过 <codeph>sourceType</codeph> 指定其他屏幕视频源，请改用 <xref keyref="startScreenCapture2"/>。</note>
+            <note props="mac">该方法仅适用于 macOS 和 Windows 平台。
+该方法仅创建主屏幕视频轨道。</note>
         </section>
         <section id="scenario" deliveryTarget="details">
             <title>适用场景</title>
@@ -189,14 +191,14 @@
             <title>调用时机</title>
             <p props="cpp">你可以在加入频道前或加入频道后调用该方法，具体如下：
                 <ul>
-                    <li>在加入频道前调用该方法，然后调用 <codeph>joinChannel</codeph> 加入频道，并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <xref keyref="true"/> 以开始屏幕共享。</li>
-                    <li>在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <xref keyref="true"/> 以开始屏幕共享。</li>
+                    <li>在加入频道前调用该方法，然后调用 <codeph>joinChannel</codeph> 加入频道，并将 <codeph>publishScreenTrack</codeph> 设置为 <xref keyref="true"/> 以开始屏幕共享。</li>
+                    <li>在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 并将 <codeph>publishScreenTrack</codeph> 设置为 <xref keyref="true"/> 以开始屏幕共享。</li>
                 </ul>
             </p>
             <p props="mac">你可以在加入频道前或加入频道后调用该方法，具体如下：
                 <ul>
-                    <li>在加入频道前调用该方法，然后调用 <codeph>joinChannelByToken</codeph> 加入频道，并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
-                    <li>在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 并将 <codeph>publishScreenTrack</codeph> 或 <codeph>publishSecondaryScreenTrack</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
+                    <li>在加入频道前调用该方法，然后调用 <codeph>joinChannelByToken</codeph> 加入频道，并将 <codeph>publishScreenTrack</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
+                    <li>在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions"/> 并将 <codeph>publishScreenTrack</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
                 </ul>
             </p>
         </section>

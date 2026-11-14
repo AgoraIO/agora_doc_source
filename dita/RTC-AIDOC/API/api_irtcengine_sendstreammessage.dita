@@ -22,7 +22,12 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
-            <p props="cpp">调用 <codeph>createDataStream</codeph> 后，可以调用该方法向频道内的所有用户发送数据流消息。</p>
+            <p props="cpp">调用 <codeph>createDataStream</codeph> 后，可以调用该方法向频道内的所有用户发送数据流消息。SDK 对该方法有限制：
+                <ul>
+                    <li>每个客户端在频道中最多可同时拥有 5 个数据通道，所有数据通道共享的总包比特率上限为 30 KB/s；</li>
+                    <li>每个数据通道每秒最多可发送 60 个数据包，每个数据包最大为 1 KB。</li>
+                </ul>
+            </p>
             <p props="ios">调用 <xref keyref="createDataStream2"/> 后，你可以使用此方法向频道内的所有用户发送数据流消息。SDK 对此方法有以下限制：
                 <ul>
                     <li>每个客户端在频道中最多可同时拥有 5 个数据通道，所有数据通道共享的总包比特率上限为 30 KB/s。</li>

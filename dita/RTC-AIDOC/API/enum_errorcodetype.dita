@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_errorcodetype">
     <title><ph keyref="ERROR_CODE_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc" props="cpp">错误码。</ph><ph id="shortdesc" props="ios">错误码。</ph><ph id="shortdesc" props="mac">错误码。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc" props="cpp">错误码。</ph><ph id="shortdesc" props="ios">表示错误代码。</ph><ph id="shortdesc" props="mac">表示错误代码。</ph></shortdesc>
     <refbody>
         <section id="parameters" deliveryTarget="details" props="cpp ios mac">
             <title>枚举值</title>
@@ -210,79 +210,74 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeNoError</pt>
-                    <pd>（0）：无错误。</pd>
+                    <pd>0: 没有错误。（默认）</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeFailed</pt>
-                    <pd>（1）：通用错误，原因未分类。请重试调用该方法。</pd>
+                    <pd>1: 一般性的错误（没有明确归类的错误原因）。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeInvalidArgument</pt>
-                    <pd>（2）：参数无效。例如，频道名包含非法字符。请重新设置参数。</pd>
+                    <pd>2: API 调用了无效的参数。例如，指定的频道名含有非法字符。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeNotReady</pt>
-                    <pd>（3）：SDK 尚未就绪。可能的原因包括：<xref keyref="IRtcEngine"/> 初始化失败；调用方法时无用户加入频道；调用 <xref keyref="rate"/> 或 <xref keyref="complain"/> 方法时用户尚未离开频道；音频模块被禁用；程序不完整。</pd>
+                    <pd>3: RTC 初始化失败。处理方法：
+ * 检查音频设备状态
+ * 检查程序集完整性
+ * 尝试重新初始化 AgoraRtcEngineKit</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeNotSupported</pt>
-                    <pd>（4）：<xref keyref="IRtcEngine"/> 不支持该请求。可能的原因包括：内置加密模式设置错误，或 SDK 加载外部加密库失败。请检查加密模式设置或重新加载外部加密库。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>AgoraErrorCodeRefused</pt>
-                    <pd>（5）：请求被拒绝。可能的原因包括：<xref keyref="IRtcEngine"/> 初始化失败；加入频道时频道名为空字符串 <codeph>""</codeph>；调用 <xref keyref="joinChannelEx"/> 方法加入多个频道时，指定的频道名已被使用。</pd>
+                    <pd>4: RTC 当前状态禁止此操作，因此不能进行此操作。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeBufferTooSmall</pt>
-                    <pd>（6）：缓冲区大小不足，无法存储返回数据。</pd>
+                    <pd>6: 传入的缓冲区大小不足以存放返回的数据。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeNotInitialized</pt>
-                    <pd>（7）：在 <xref keyref="IRtcEngine"/> 初始化前调用了方法。请确保在调用该方法前已初始化 <xref keyref="IRtcEngine"/> 对象。</pd>
+                    <pd>7: SDK 尚未初始化，就调用其 API。请确认在调用 API 之前已创建 AgoraRtcEngineKit 对象并完成初始化。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeInvalidState</pt>
                     <pd>（8）：状态无效。</pd>
                 </plentry>
                 <plentry props="ios">
-                    <pt>AgoraErrorCodeNoPermission</pt>
-                    <pd>（9）：无访问权限。请检查应用是否已获得音视频设备的访问权限。</pd>
-                </plentry>
-                <plentry props="ios">
                     <pt>AgoraErrorCodeTimedOut</pt>
-                    <pd>（10）：超时错误。部分 API 调用需要 SDK 返回执行结果，若超过 10 秒未返回，则触发该错误。</pd>
+                    <pd>10: API 调用超时。有些 API 调用需要 SDK 返回结果，如果 SDK 处理事件过程，会出现此错误。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeJoinChannelRejected</pt>
-                    <pd>（17）：加入频道请求被拒绝。可能的原因包括：用户已在频道中。建议通过 connectionChangedToState:reason: 回调判断用户是否在频道中，除非收到 AgoraConnectionStateDisconnected（1）状态，否则不要调用此方法加入频道；调用 startEchoTestWithConfig: 进行通话测试后，未调用 stopEchoTest 结束测试就尝试加入频道。要加入频道，必须先调用 stopEchoTest 结束测试。</pd>
+                    <pd>17: 加入频道被拒绝。一般有以下原因：
+ * 用户已进入频道，再次调用加入频道的 API，例如 <codeph>joinChannelByToken</codeph>，会返回此错误。停止调用该 API 即可。
+ * 用户在做 Echo 测试时尝试加入频道。等待 Echo test 结束后再加入频道即可。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeLeaveChannelRejected</pt>
-                    <pd>（18）：离开频道失败。可能的原因包括：在调用 leaveChannel:leaveChannelBlock: 方法前用户已离开频道，建议停止调用此方法以清除错误；在加入频道前调用了 leaveChannel:leaveChannelBlock: 方法，此情况下无需额外操作。</pd>
+                    <pd>18: 离开频道失败。一般有以下原因：
+ * 用户已离开频道，再次调用退出频道的 API，例如 <codeph>leaveChannel</codeph>，会返回此错误。停止调用该 API 即可。
+ * 用户尚未加入频道，就调用退出频道的 API。这种情况下无需额外操作。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeAlreadyInUse</pt>
-                    <pd>（19）：资源已被占用。</pd>
-                </plentry>
-                <plentry props="ios">
-                    <pt>AgoraErrorCodeAbort</pt>
-                    <pd>（20）：请求被 SDK 放弃，可能是因为请求发送过于频繁。</pd>
+                    <pd>19: 资源已被占用，不能重复使用。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeInitNetEngine</pt>
-                    <pd>（21）：由于特定的 Windows 防火墙设置，AgoraRtcEngineKit 初始化失败并崩溃。</pd>
+                    <pd>21: Windows 下特定的防火墙设置导致 SDK 初始化失败然后崩溃。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeResourceLimited</pt>
-                    <pd>（22）：由于应用程序使用了过多系统资源或系统资源不足，SDK 分配资源失败。</pd>
+                    <pd>22: 资源有限。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeInvalidAppId</pt>
-                    <pd>（101）：指定的 App ID 无效。请使用有效的 App ID 重新加入频道。</pd>
+                    <pd>101: 不是有效的 App ID。请更换有效的 App ID 重新加入频道。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeInvalidChannelId</pt>
-                    <pd>（102）：指定的频道名无效。可能的原因是参数类型不正确。请使用有效的频道名重新加入频道。</pd>
+                    <pd>102: 不是有效的频道名。请更换有效的频道名重新加入频道。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeNoServerResources</pt>
@@ -290,40 +285,43 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeTokenExpired</pt>
-                    <pd>（109）：当前 Token 已过期。请在服务器上申请新的 Token，并调用 renewToken: 方法。</pd>
+                    <pd>109: 当前使用的 Token 过期，不再有效。一般有以下原因：
+ * Token 授权时间戳无效：Token 授权时间戳为 Token 生成时的时间戳，自 1970 年 1 月 1 日开始到当前时间的描述。授权该 Token 在生成后的 24 小时内可以访问 Agora 服务。如果 24 小时内没有访问，则该 Token 无法再使用。需要重新在服务端申请生成 Token。
+ * Token 服务到期时间戳已过期：用户设置的服务到期时间戳小于当前时间戳，无法继续使用 Agora 服务（比如正在进行的通话会被强制终止）；设置服务到期时间并不意味着 Token 失效，而仅仅用于限制用户使用当前服务的时间。需要重新在服务端申请生成 Token。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeInvalidToken</pt>
-                    <pd>（110）：Token 无效。常见原因包括：
-                        <ul>
-                            <li>在声网控制台启用了 App 证书，但代码仍使用 App ID 进行鉴权。启用 App 证书后，必须使用 Token 进行鉴权。</li>
-                            <li>用于生成 Token 的 uid 与加入频道时使用的 uid 不一致。</li>
-                        </ul>
-                    </pd>
+                    <pd>110: 生成的 Token 无效，一般有以下原因：
+ * 用户在 Dashboard 上启用了 App Certificate，但仍旧在代码里仅使用了 App ID。当启用了 App Certificate，必须使用 Token。
+ * 字段 uid 为生成 Token 的必须字段，用户在调用 <codeph>joinChannelByToken</codeph> 加入频道时必须设置相同的 uid。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeConnectionInterrupted</pt>
-                    <pd>（111）：网络连接中断。建立连接后，如果 SDK 与服务器失去连接超过 4 秒，会触发此回调。</pd>
+                    <pd>111: 网络连接中断。仅适用于 Agora Web SDK。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeConnectionLost</pt>
-                    <pd>（112）：网络连接丢失。连接中断后，如果 SDK 在 10 秒内无法重新连接到声网边缘服务器，会触发此回调。</pd>
+                    <pd>112: 网络连接丢失。仅适用于 Agora Web SDK。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeNotInChannel</pt>
-                    <pd>（113）：调用 sendStreamMessage:data: 方法时，用户不在频道中。</pd>
+                    <pd>113: 用户不在频道内。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeSizeTooLarge</pt>
-                    <pd>（114）：调用 sendStreamMessage:data: 方法时，数据大小超过 1 KB。</pd>
+                    <pd>114: 数据太大。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeBitrateLimit</pt>
-                    <pd>（115）：调用 sendStreamMessage:data: 方法时，数据传输码率超过 6 KB/s。</pd>
+                    <pd>115: 码率受限。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeTooManyDataStreams</pt>
-                    <pd>（116）：调用 createDataStream:config: 方法时创建了超过五个数据流。</pd>
+                    <pd>116: 数据流/通道过多。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeDecryptionFailed</pt>
+                    <pd>120: 解密失败，可能是用户加入频道用了不同的密码。请检查加入频道时的设置，或尝试重新加入频道。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeEncryptedStreamNotAllowedPublish</pt>
@@ -332,6 +330,30 @@
                 <plentry props="ios">
                     <pt>AgoraErrorCodeInvalidUserAccount</pt>
                     <pd>（134）：用户账号无效，可能是因为包含无效参数。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeWatermarkParam</pt>
+                    <pd>124: 水印文件参数错误。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeWatermarkPath</pt>
+                    <pd>125: 水印文件路径错误。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeWatermarkPng</pt>
+                    <pd>126: 水印文件格式错误。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeWatermarkInfo</pt>
+                    <pd>127: 水印文件信息错误。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeWatermarkAGRB</pt>
+                    <pd>128: 水印文件数据格式错误。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeWatermarkRead</pt>
+                    <pd>129: 水印文件读取错误。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodePcmSendFormat</pt>
@@ -343,135 +365,210 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeLoadMediaEngine</pt>
-                    <pd>（1001）：加载媒体引擎失败。</pd>
+                    <pd>1001: 加载媒体引擎失败。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeStartCall</pt>
-                    <pd>（1002）：启用媒体引擎后启动通话失败。</pd>
+                    <pd>1002: 启动媒体引擎开始通话失败。请尝试重新进入频道。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeStartCamera</pt>
-                    <pd>（1003）：启动摄像头失败。</pd>
+                    <pd>1003: 启动摄像头失败，请检查摄像头是否被其他应用占用，或者尝试重新进入频道。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeStartVideoRender</pt>
-                    <pd>（1004）：启动视频渲染模块失败。</pd>
+                    <pd>1004: 启动视频渲染模块失败。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeAdmGeneralError</pt>
-                    <pd>（1005）：发生通用错误（无明确原因）。请检查音频设备是否被其他应用占用，或尝试重新加入频道。</pd>
+                    <pd>1005: 音频设备模块：音频初始化失败。请检查音频设备是否被其他应用占用，或者尝试重新进入频道。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeAdmJavaResource</pt>
-                    <pd>（1006）：音频设备模块：使用 Java 资源时发生错误。</pd>
+                    <pd>1006: 音频设备模块：使用 Java 资源出现错误。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeAdmSampleRate</pt>
-                    <pd>（1007）：音频设备模块：设置采样率时发生错误。</pd>
+                    <pd>1007: 音频设备模块：设置的采样频率出现错误。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeAdmInitPlayout</pt>
-                    <pd>（1008）：初始化播放设备时发生错误。请检查播放设备是否被其他应用占用，或尝试重新加入频道。</pd>
+                    <pd>1008: 音频设备模块：初始化播放设备出现错误。请检查播放设备是否被其他应用占用，或者尝试重新进入频道。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeAdmStartPlayout</pt>
-                    <pd>（1009）：启动播放设备时发生错误。请检查播放设备。</pd>
+                    <pd>1009: 音频设备模块：启动播放设备出现错误。请检查播放设备是否正常，或者尝试重新进入频道。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeAdmStopPlayout</pt>
-                    <pd>（1010）：停止播放设备时发生错误。</pd>
+                    <pd>1010: 音频设备模块：停止播放设备出现错误。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeAdmInitRecording</pt>
-                    <pd>（1011）：初始化录音设备时发生错误。请检查录音设备，或尝试重新加入频道。</pd>
+                    <pd>1011: 音频设备模块：初始化录音设备时出现错误。请检查录音设备是否正常，或者尝试重新进入频道。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeAdmStartRecording</pt>
-                    <pd>（1012）：启动录音设备时发生错误。请检查录音设备。</pd>
+                    <pd>1012: 音频设备模块：启动录音设备出现错误。请检查录音设备是否正常，或者尝试重新进入频道。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeAdmStopRecording</pt>
-                    <pd>（1013）：停止录音设备时发生错误。</pd>
+                    <pd>1013: 音频设备模块：停止录音设备出现错误。</pd>
                 </plentry>
                 <plentry props="ios">
                     <pt>AgoraErrorCodeAdmRuntimePlayoutError</pt>
-                    <pd>（1015）：音频设备模块：播放过程中发生错误。请检查播放设备，或尝试重新加入频道。</pd>
+                    <pd>1015: 音频设备模块：运行时播放出现错误。请检查录音设备是否正常，或者尝试重新进入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmRuntimeRecordingError</pt>
+                    <pd>1017: 音频设备模块：运行时录音错误。请检查录音设备是否正常，或者尝试重新进入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmRecordAudioFailed</pt>
+                    <pd>1018: 音频设备模块：录音失败。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmPlayAbnormalFrequency</pt>
+                    <pd>1020: 回放频率异常。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmRecordAbnormalFrequency</pt>
+                    <pd>1021: 录制频率异常。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmInitLoopback</pt>
+                    <pd>1022: 音频设备模块：初始化 Loopback 设备错误。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmStartLoopback</pt>
+                    <pd>1023: 音频设备模块：启动 Loopback 设备错误。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmNoRecordingDevice</pt>
+                    <pd>1359: 音频设备模块：无录制设备。请检查是否有可用的录放音设备或者录放音设备是否已经被其他应用占用。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeAdmNoPlayoutDevice</pt>
+                    <pd>1360: 音频设备模块：无播放设备。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeVdmCameraNotAuthorized</pt>
+                    <pd>1501: 视频设备模块：没有摄像头使用权限。请检查是否已经打开摄像头权限。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeVcmUnknownError</pt>
+                    <pd>1600: 视频设备模块：未知错误。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeVcmEncoderInitError</pt>
+                    <pd>1601: 视频设备模块：视频 Codec 初始化错误。该错误为严重错误，请尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeVcmEncoderEncodeError</pt>
+                    <pd>1602: 视频设备模块：视频 Codec 错误。该错误为严重错误，请尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeVcmEncoderSetError</pt>
+                    <pd>1603: 视频设备模块：视频 Codec 设置错误。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeVideoEffectAssetInvalid</pt>
+                    <pd>1700: 美颜资产无效。可能是资源包损坏、配置文件解析失败或缺少必填字段。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeVideoEffectSaveFailed</pt>
+                    <pd>1701: 保存美颜配置失败。可能由于磁盘空间不足或文件写入权限不足导致。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeVideoEffectEngineInvalid</pt>
+                    <pd>1702: 美颜引擎状态无效。可能是引擎未初始化或渲染引擎实例不存在。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeVideoEffectNodeNotActive</pt>
+                    <pd>1704: 目标美颜节点未激活。请先调用 <codeph>addOrUpdateVideoEffect</codeph> 激活节点。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeVideoEffectInvalidParam</pt>
+                    <pd>1705: 美颜参数无效。例如，nodeId、actionId、option 或 key 非法或为空。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeVideoEffectNotSupported</pt>
+                    <pd>1706: 当前设备不支持美颜效果。</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>AgoraErrorCodeVideoEffectInvalidBundlePath</pt>
+                    <pd>1707: 美颜资源包路径无效。路径为空或文件系统中不存在。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeNoError</pt>
-                    <pd>（0）：无错误。</pd>
+                    <pd>0: 没有错误。（默认）</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeFailed</pt>
-                    <pd>（1）：通用错误，原因未分类。请重试调用该方法。</pd>
+                    <pd>1: 一般性的错误（没有明确归类的错误原因）。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeInvalidArgument</pt>
-                    <pd>（2）：参数无效。例如，频道名包含非法字符。请重新设置参数。</pd>
+                    <pd>2: API 调用了无效的参数。例如，指定的频道名含有非法字符。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeNotReady</pt>
-                    <pd>（3）：SDK 尚未就绪。可能的原因包括：<xref keyref="IRtcEngine"/> 初始化失败；调用方法时无用户加入频道；调用 <xref keyref="rate"/> 或 <xref keyref="complain"/> 方法时用户尚未离开频道；音频模块被禁用；程序不完整。</pd>
+                    <pd>3: RTC 初始化失败。处理方法：
+ * 检查音频设备状态
+ * 检查程序集完整性
+ * 尝试重新初始化 AgoraRtcEngineKit</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeNotSupported</pt>
-                    <pd>（4）：<xref keyref="IRtcEngine"/> 不支持该请求。可能的原因包括：内置加密模式设置错误，或 SDK 加载外部加密库失败。请检查加密模式设置或重新加载外部加密库。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>AgoraErrorCodeRefused</pt>
-                    <pd>（5）：请求被拒绝。可能的原因包括：<xref keyref="IRtcEngine"/> 初始化失败；加入频道时频道名为空字符串 <codeph>""</codeph>；调用 <xref keyref="joinChannelEx"/> 方法加入多个频道时，指定的频道名已被使用。</pd>
+                    <pd>4: RTC 当前状态禁止此操作，因此不能进行此操作。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeBufferTooSmall</pt>
-                    <pd>（6）：缓冲区大小不足，无法存储返回数据。</pd>
+                    <pd>6: 传入的缓冲区大小不足以存放返回的数据。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeNotInitialized</pt>
-                    <pd>（7）：在 <xref keyref="IRtcEngine"/> 初始化前调用了方法。请确保在调用该方法前已初始化 <xref keyref="IRtcEngine"/> 对象。</pd>
+                    <pd>7: SDK 尚未初始化，就调用其 API。请确认在调用 API 之前已创建 AgoraRtcEngineKit 对象并完成初始化。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeInvalidState</pt>
                     <pd>（8）：状态无效。</pd>
                 </plentry>
                 <plentry props="mac">
-                    <pt>AgoraErrorCodeNoPermission</pt>
-                    <pd>（9）：无访问权限。请检查应用是否已获得音视频设备的访问权限。</pd>
-                </plentry>
-                <plentry props="mac">
                     <pt>AgoraErrorCodeTimedOut</pt>
-                    <pd>（10）：超时错误。部分 API 调用需要 SDK 返回执行结果，若超过 10 秒未返回，则触发该错误。</pd>
+                    <pd>10: API 调用超时。有些 API 调用需要 SDK 返回结果，如果 SDK 处理事件过程，会出现此错误。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeJoinChannelRejected</pt>
-                    <pd>（17）：加入频道请求被拒绝。可能的原因包括：用户已在频道中。建议通过 connectionChangedToState:reason: 回调判断用户是否在频道中，除非收到 AgoraConnectionStateDisconnected（1）状态，否则不要调用此方法加入频道；调用 startEchoTestWithConfig: 进行通话测试后，未调用 stopEchoTest 结束测试就尝试加入频道。要加入频道，必须先调用 stopEchoTest 结束测试。</pd>
+                    <pd>17: 加入频道被拒绝。一般有以下原因：
+ * 用户已进入频道，再次调用加入频道的 API，例如 <codeph>joinChannelByToken</codeph>，会返回此错误。停止调用该 API 即可。
+ * 用户在做 Echo 测试时尝试加入频道。等待 Echo test 结束后再加入频道即可。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeLeaveChannelRejected</pt>
-                    <pd>（18）：离开频道失败。可能的原因包括：在调用 leaveChannel:leaveChannelBlock: 方法前用户已离开频道，建议停止调用此方法以清除错误；在加入频道前调用了 leaveChannel:leaveChannelBlock: 方法，此情况下无需额外操作。</pd>
+                    <pd>18: 离开频道失败。一般有以下原因：
+ * 用户已离开频道，再次调用退出频道的 API，例如 <codeph>leaveChannel</codeph>，会返回此错误。停止调用该 API 即可。
+ * 用户尚未加入频道，就调用退出频道的 API。这种情况下无需额外操作。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeAlreadyInUse</pt>
-                    <pd>（19）：资源已被占用。</pd>
-                </plentry>
-                <plentry props="mac">
-                    <pt>AgoraErrorCodeAbort</pt>
-                    <pd>（20）：请求被 SDK 放弃，可能是因为请求发送过于频繁。</pd>
+                    <pd>19: 资源已被占用，不能重复使用。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeInitNetEngine</pt>
-                    <pd>（21）：由于特定的 Windows 防火墙设置，AgoraRtcEngineKit 初始化失败并崩溃。</pd>
+                    <pd>21: Windows 下特定的防火墙设置导致 SDK 初始化失败然后崩溃。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeResourceLimited</pt>
-                    <pd>（22）：由于应用程序使用了过多系统资源或系统资源不足，SDK 分配资源失败。</pd>
+                    <pd>22: 资源有限。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeInvalidAppId</pt>
-                    <pd>（101）：指定的 App ID 无效。请使用有效的 App ID 重新加入频道。</pd>
+                    <pd>101: 不是有效的 App ID。请更换有效的 App ID 重新加入频道。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeInvalidChannelId</pt>
-                    <pd>（102）：指定的频道名无效。可能的原因是参数类型不正确。请使用有效的频道名重新加入频道。</pd>
+                    <pd>102: 不是有效的频道名。请更换有效的频道名重新加入频道。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeNoServerResources</pt>
@@ -479,40 +576,43 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeTokenExpired</pt>
-                    <pd>（109）：当前 Token 已过期。请在服务器上申请新的 Token，并调用 renewToken: 方法。</pd>
+                    <pd>109: 当前使用的 Token 过期，不再有效。一般有以下原因：
+ * Token 授权时间戳无效：Token 授权时间戳为 Token 生成时的时间戳，自 1970 年 1 月 1 日开始到当前时间的描述。授权该 Token 在生成后的 24 小时内可以访问 Agora 服务。如果 24 小时内没有访问，则该 Token 无法再使用。需要重新在服务端申请生成 Token。
+ * Token 服务到期时间戳已过期：用户设置的服务到期时间戳小于当前时间戳，无法继续使用 Agora 服务（比如正在进行的通话会被强制终止）；设置服务到期时间并不意味着 Token 失效，而仅仅用于限制用户使用当前服务的时间。需要重新在服务端申请生成 Token。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeInvalidToken</pt>
-                    <pd>（110）：Token 无效。常见原因包括：
-                        <ul>
-                            <li>在声网控制台启用了 App 证书，但代码仍使用 App ID 进行鉴权。启用 App 证书后，必须使用 Token 进行鉴权。</li>
-                            <li>用于生成 Token 的 uid 与加入频道时使用的 uid 不一致。</li>
-                        </ul>
-                    </pd>
+                    <pd>110: 生成的 Token 无效，一般有以下原因：
+ * 用户在 Dashboard 上启用了 App Certificate，但仍旧在代码里仅使用了 App ID。当启用了 App Certificate，必须使用 Token。
+ * 字段 uid 为生成 Token 的必须字段，用户在调用 <codeph>joinChannelByToken</codeph> 加入频道时必须设置相同的 uid。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeConnectionInterrupted</pt>
-                    <pd>（111）：网络连接中断。建立连接后，如果 SDK 与服务器失去连接超过 4 秒，会触发此回调。</pd>
+                    <pd>111: 网络连接中断。仅适用于 Agora Web SDK。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeConnectionLost</pt>
-                    <pd>（112）：网络连接丢失。连接中断后，如果 SDK 在 10 秒内无法重新连接到声网边缘服务器，会触发此回调。</pd>
+                    <pd>112: 网络连接丢失。仅适用于 Agora Web SDK。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeNotInChannel</pt>
-                    <pd>（113）：调用 sendStreamMessage:data: 方法时，用户不在频道中。</pd>
+                    <pd>113: 用户不在频道内。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeSizeTooLarge</pt>
-                    <pd>（114）：调用 sendStreamMessage:data: 方法时，数据大小超过 1 KB。</pd>
+                    <pd>114: 数据太大。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeBitrateLimit</pt>
-                    <pd>（115）：调用 sendStreamMessage:data: 方法时，数据传输码率超过 6 KB/s。</pd>
+                    <pd>115: 码率受限。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeTooManyDataStreams</pt>
-                    <pd>（116）：调用 createDataStream:config: 方法时创建了超过五个数据流。</pd>
+                    <pd>116: 数据流/通道过多。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeDecryptionFailed</pt>
+                    <pd>120: 解密失败，可能是用户加入频道用了不同的密码。请检查加入频道时的设置，或尝试重新加入频道。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeEncryptedStreamNotAllowedPublish</pt>
@@ -521,6 +621,30 @@
                 <plentry props="mac">
                     <pt>AgoraErrorCodeInvalidUserAccount</pt>
                     <pd>（134）：用户账号无效，可能是因为包含无效参数。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeWatermarkParam</pt>
+                    <pd>124: 水印文件参数错误。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeWatermarkPath</pt>
+                    <pd>125: 水印文件路径错误。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeWatermarkPng</pt>
+                    <pd>126: 水印文件格式错误。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeWatermarkInfo</pt>
+                    <pd>127: 水印文件信息错误。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeWatermarkAGRB</pt>
+                    <pd>128: 水印文件数据格式错误。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeWatermarkRead</pt>
+                    <pd>129: 水印文件读取错误。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodePcmSendFormat</pt>
@@ -532,59 +656,139 @@
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeLoadMediaEngine</pt>
-                    <pd>（1001）：加载媒体引擎失败。</pd>
+                    <pd>1001: 加载媒体引擎失败。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeStartCall</pt>
-                    <pd>（1002）：启用媒体引擎后启动通话失败。</pd>
+                    <pd>1002: 启动媒体引擎开始通话失败。请尝试重新进入频道。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeStartCamera</pt>
-                    <pd>（1003）：启动摄像头失败。</pd>
+                    <pd>1003: 启动摄像头失败，请检查摄像头是否被其他应用占用，或者尝试重新进入频道。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeStartVideoRender</pt>
-                    <pd>（1004）：启动视频渲染模块失败。</pd>
+                    <pd>1004: 启动视频渲染模块失败。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeAdmGeneralError</pt>
-                    <pd>（1005）：发生通用错误（无明确原因）。请检查音频设备是否被其他应用占用，或尝试重新加入频道。</pd>
+                    <pd>1005: 音频设备模块：音频初始化失败。请检查音频设备是否被其他应用占用，或者尝试重新进入频道。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeAdmJavaResource</pt>
-                    <pd>（1006）：音频设备模块：使用 Java 资源时发生错误。</pd>
+                    <pd>1006: 音频设备模块：使用 Java 资源出现错误。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeAdmSampleRate</pt>
-                    <pd>（1007）：音频设备模块：设置采样率时发生错误。</pd>
+                    <pd>1007: 音频设备模块：设置的采样频率出现错误。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeAdmInitPlayout</pt>
-                    <pd>（1008）：初始化播放设备时发生错误。请检查播放设备是否被其他应用占用，或尝试重新加入频道。</pd>
+                    <pd>1008: 音频设备模块：初始化播放设备出现错误。请检查播放设备是否被其他应用占用，或者尝试重新进入频道。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeAdmStartPlayout</pt>
-                    <pd>（1009）：启动播放设备时发生错误。请检查播放设备。</pd>
+                    <pd>1009: 音频设备模块：启动播放设备出现错误。请检查播放设备是否正常，或者尝试重新进入频道。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeAdmStopPlayout</pt>
-                    <pd>（1010）：停止播放设备时发生错误。</pd>
+                    <pd>1010: 音频设备模块：停止播放设备出现错误。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeAdmInitRecording</pt>
-                    <pd>（1011）：初始化录音设备时发生错误。请检查录音设备，或尝试重新加入频道。</pd>
+                    <pd>1011: 音频设备模块：初始化录音设备时出现错误。请检查录音设备是否正常，或者尝试重新进入频道。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeAdmStartRecording</pt>
-                    <pd>（1012）：启动录音设备时发生错误。请检查录音设备。</pd>
+                    <pd>1012: 音频设备模块：启动录音设备出现错误。请检查录音设备是否正常，或者尝试重新进入频道。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeAdmStopRecording</pt>
-                    <pd>（1013）：停止录音设备时发生错误。</pd>
+                    <pd>1013: 音频设备模块：停止录音设备出现错误。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>AgoraErrorCodeAdmRuntimePlayoutError</pt>
-                    <pd>（1015）：音频设备模块：播放过程中发生错误。请检查播放设备，或尝试重新加入频道。</pd>
+                    <pd>1015: 音频设备模块：运行时播放出现错误。请检查录音设备是否正常，或者尝试重新进入频道。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmRuntimeRecordingError</pt>
+                    <pd>1017: 音频设备模块：运行时录音错误。请检查录音设备是否正常，或者尝试重新进入频道。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmRecordAudioFailed</pt>
+                    <pd>1018: 音频设备模块：录音失败。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmPlayAbnormalFrequency</pt>
+                    <pd>1020: 回放频率异常。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmRecordAbnormalFrequency</pt>
+                    <pd>1021: 录制频率异常。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmInitLoopback</pt>
+                    <pd>1022: 音频设备模块：初始化 Loopback 设备错误。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmStartLoopback</pt>
+                    <pd>1023: 音频设备模块：启动 Loopback 设备错误。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmNoRecordingDevice</pt>
+                    <pd>1359: 音频设备模块：无录制设备。请检查是否有可用的录放音设备或者录放音设备是否已经被其他应用占用。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeAdmNoPlayoutDevice</pt>
+                    <pd>1360: 音频设备模块：无播放设备。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeVdmCameraNotAuthorized</pt>
+                    <pd>1501: 视频设备模块：没有摄像头使用权限。请检查是否已经打开摄像头权限。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeVcmUnknownError</pt>
+                    <pd>1600: 视频设备模块：未知错误。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeVcmEncoderInitError</pt>
+                    <pd>1601: 视频设备模块：视频 Codec 初始化错误。该错误为严重错误，请尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeVcmEncoderEncodeError</pt>
+                    <pd>1602: 视频设备模块：视频 Codec 错误。该错误为严重错误，请尝试重新加入频道。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeVcmEncoderSetError</pt>
+                    <pd>1603: 视频设备模块：视频 Codec 设置错误。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeVideoEffectAssetInvalid</pt>
+                    <pd>1700: 美颜资产无效。可能是资源包损坏、配置文件解析失败或缺少必填字段。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeVideoEffectSaveFailed</pt>
+                    <pd>1701: 保存美颜配置失败。可能由于磁盘空间不足或文件写入权限不足导致。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeVideoEffectEngineInvalid</pt>
+                    <pd>1702: 美颜引擎状态无效。可能是引擎未初始化或渲染引擎实例不存在。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeVideoEffectNodeNotActive</pt>
+                    <pd>1704: 目标美颜节点未激活。请先调用 <codeph>addOrUpdateVideoEffect</codeph> 激活节点。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeVideoEffectInvalidParam</pt>
+                    <pd>1705: 美颜参数无效。例如，nodeId、actionId、option 或 key 非法或为空。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeVideoEffectNotSupported</pt>
+                    <pd>1706: 当前设备不支持美颜效果。</pd>
+                </plentry>
+                <plentry props="mac">
+                    <pt>AgoraErrorCodeVideoEffectInvalidBundlePath</pt>
+                    <pd>1707: 美颜资源包路径无效。路径为空或文件系统中不存在。</pd>
                 </plentry>
             </parml>
         </section>

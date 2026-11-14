@@ -39,10 +39,12 @@
         </section>
         <section id="timing" deliveryTarget="details" props="cpp">
             <title>调用时机</title>
-            <p props="cpp">你可以在加入频道前或后调用该方法，具体如下：
+            <p props="cpp">你可以在加入频道前或加入频道后调用该方法。调用 <codeph>joinChannel</codeph> 或 <xref keyref="updateChannelMediaOptions"/> 时，需要根据 <codeph>sourceType</codeph> 将对应的发布选项设置为 <xref keyref="true"/>：
                 <ul>
-                    <li>先调用该方法，再调用 <codeph>joinChannel</codeph> 加入频道，并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
-                    <li>加入频道后调用该方法，再调用 <xref keyref="updateChannelMediaOptions"/> 并将 <codeph>publishScreenCaptureVideo</codeph> 设置为 <xref keyref="true"/>，以开始屏幕共享。</li>
+                    <li><codeph>VIDEO_SOURCE_SCREEN</codeph> 或 <codeph>VIDEO_SOURCE_SCREEN_PRIMARY</codeph>：<codeph>publishScreenTrack</codeph></li>
+                    <li><codeph>VIDEO_SOURCE_SCREEN_SECONDARY</codeph>：<codeph>publishSecondaryScreenTrack</codeph></li>
+                    <li><codeph>VIDEO_SOURCE_SCREEN_THIRD</codeph>：<codeph>publishThirdScreenTrack</codeph></li>
+                    <li><codeph>VIDEO_SOURCE_SCREEN_FOURTH</codeph>：<codeph>publishFourthScreenTrack</codeph></li>
                 </ul>
             </p>
         </section>
