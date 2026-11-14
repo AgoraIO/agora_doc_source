@@ -300,7 +300,7 @@ def main():
     # Merge the individual JSON files to a single JSON file
     merge_JsonFiles(files, json_file)
 
-    replace_newline(json_file)
+    replace_newline(json_file, platform_tag)
 
     logLines(localLogger.info, "output file", json_file)
 
@@ -316,12 +316,37 @@ def remove_json_files():
             if file[-5:] == '.json':
                 os.remove(os.path.join(root, file))
 
+# Tokens in @props that stand for a set of platforms rather than one platform.
+PLATFORM_GROUPS = {
+    "native": {"android", "ios", "macos", "cpp", "hmos"},
+    "framework": {"flutter", "rn", "unity", "electron", "cs", "unreal", "bp"},
+    "apple": {"ios", "macos"},
+}
+# @props values that are not platform filters at all.
+PLATFORM_AGNOSTIC = {"rtc", "rtc-ng"}
+
+
 def should_remove(current_platform: str, props: str, remove_sdk_type: str, language: str) -> bool:
-    if not props or current_platform in props: return False
-    return current_platform not in props and "native" not in props and "framework" not in props \
-        and props != "rtc" and props != "rtc-ng" or remove_sdk_type in props or current_platform not in props \
-        and "native" in props and current_platform != "cpp" and current_platform != "macos" and current_platform != "android" \
-        and current_platform != "ios" and props != "rtc" and props != "rtc-ng"
+    """Decide whether an element is excluded from the build for current_platform.
+
+    Matching is on whitespace-separated tokens, and the group tokens above are
+    expanded to the platforms they stand for. The previous implementation did
+    substring tests and treated "native"/"framework" as wildcards, so props that
+    merely contained either token survived on every platform, while "apple" --
+    which it did not recognise at all -- was dropped from the Apple builds it
+    was written for.
+    """
+    if not props:
+        return False
+    tokens = set(props.split())
+    if remove_sdk_type and remove_sdk_type in tokens:
+        return True
+    if tokens & PLATFORM_AGNOSTIC:
+        return False
+    allowed = set()
+    for token in tokens:
+        allowed |= PLATFORM_GROUPS.get(token, {token})
+    return current_platform not in allowed
 
 def switchLog(lang):
     if lang == 'debug':
@@ -368,6 +393,103 @@ def combine_text_sections(base_text: str, sections: Generator[str, None, None]) 
                 base_text += " "
             base_text += t_strip
     return base_text
+
+# How each platform's doc comments are consumed downstream. Markdown survives
+# DocC (ios/macos), dartdoc (flutter) and TypeDoc (rn/electron); C# XML doc
+# comments (unity) do not parse it, so those platforms keep the flat output.
+# Only the platforms listed here change; every other template is unaffected.
+MARKDOWN_PLATFORMS = {"ios", "macos"}
+
+# Sections folded into the detailed description, in the order they are emitted.
+DISCUSSION_SECTIONS = ("detailed_desc", "timing", "restriction", "scenario", "related")
+
+
+def dita_section_to_markdown(section) -> str:
+    """Serialise a DITA section as Markdown, preserving its block structure.
+
+    itertext() yields text nodes only, so paragraphs, notes and lists collapse
+    into one run of prose. Emitting Markdown keeps them, and every consumer in
+    MARKDOWN_PLATFORMS renders it.
+    """
+    blocks = []
+    for child in section:
+        tag = child.tag
+        if tag == "title":
+            continue
+        if tag == "note":
+            kind = (child.get("type") or "note").capitalize()
+            paragraphs = [combine_text_sections("", p.itertext()) for p in child.findall("./p")]
+            paragraphs = paragraphs or [combine_text_sections("", child.itertext())]
+            blocks.append("\n>\n".join(
+                (f"> {kind}: {text}" if i == 0 else f"> {text}")
+                for i, text in enumerate(paragraphs)))
+        elif tag in ("ul", "ol"):
+            ordered = tag == "ol"
+            blocks.append("\n".join(
+                f"{str(i) + '.' if ordered else '-'} {combine_text_sections('', li.itertext())}"
+                for i, li in enumerate(child.findall("./li"), 1)))
+        elif tag == "codeblock":
+            blocks.append("```\n" + (child.text or "") + "\n```")
+        else:
+            blocks.append(combine_text_sections("", child.itertext()))
+    return "\n\n".join(b for b in blocks if b.strip())
+
+
+def symbol_link(text: str, platform_tag: str) -> str:
+    """Render a resolved cross-reference as a DocC symbol link.
+
+    DocC turns ``Symbol`` in a doc comment into a link to that symbol, which is
+    how the Apple references get the cross-links the Oxygen-built platforms get
+    from <xref> directly. iris_doc declares link1/link2 in its format configs
+    but never reads them, so there is nothing downstream to mark links for us.
+
+    Only the Markdown platforms are affected; everywhere else the plain text is
+    returned unchanged. A target containing a space is not a symbol name (for
+    example "technical support"), so it is left alone rather than rendered as a
+    code span.
+    """
+    if not text or platform_tag not in MARKDOWN_PLATFORMS or " " in text:
+        return text
+    return f"``{text}``"
+
+
+def indent_for_inline_field(markdown: str) -> str:
+    """Indent multi-line Markdown so it nests under an inline field prefix.
+
+    iris_doc writes the return value after "- Returns: " on the same line, so
+    a list or a second paragraph starting in column 0 falls out of the field:
+    DocC absorbs the first list item into the Returns line and leaves the rest
+    in the discussion. Starting on the next line, indented, keeps it together.
+    """
+    if "\n" not in markdown.strip():
+        return markdown
+    return "\n" + "\n".join(
+        ("  " + line) if line.strip() else line for line in markdown.split("\n"))
+
+
+def build_detailed_desc(root, platform_tag: str) -> str:
+    """Detailed description, with the sibling detail sections folded in.
+
+    timing/restriction/scenario/related carry titles authored in the DITA
+    ("Call timing", "Restrictions"); they are emitted as sub-headings. Level 3
+    is deliberate: DocC already emits "Discussion" at level 2.
+    """
+    parts = []
+    for section_id in DISCUSSION_SECTIONS:
+        for section in root.findall('./refbody/section'):
+            if section.get("id") != section_id:
+                continue
+            body = dita_section_to_markdown(section)
+            if not body.strip():
+                continue
+            title = section.find("./title")
+            heading = "".join(title.itertext()).strip() if title is not None else ""
+            if section_id != "detailed_desc" and heading:
+                parts.append(f"### {heading}\n\n{body}")
+            else:
+                parts.append(body)
+    return "\n\n".join(parts)
+
 
 def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_type, remove_sdk_type, language, json_hide_id_list):
 
@@ -626,7 +748,7 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
             keyref = xref.get("keyref")
             href_text = keydef_dict.get(keyref, {}).get('text', '')
             if href_text:
-                xref.text = href_text
+                xref.text = symbol_link(href_text, platform_tag)
 
         # xref with href
         # Example:
@@ -658,7 +780,7 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
                             href_text += keydef_dict[ph_tag_key]['text']
                         break
 
-                xref.text = href_text
+                xref.text = symbol_link(href_text, platform_tag)
                 # xref.text = href_text
                 # localLogger.debug(xref.text)
 
@@ -685,7 +807,7 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
                         title_text = ""
                 else:
                     title_text = ""
-                xref.text = title_text.strip()
+                xref.text = symbol_link(title_text.strip(), platform_tag)
 
 
         elif xref.get("href") is not None and xref.get("href").startswith("http"):
@@ -769,13 +891,15 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
     # Get detailed description
     # Tables exist in pd and detailed desc. Need to process tables.
     detailed_desc = ""
-    for section in root.findall('./refbody/section'):
-        # localLogger.debug(section)
-        if section.get("id") == "detailed_desc":
-            title = section.find("./title")
-            if title is not None:
-                title.clear()
-            detailed_desc = combine_text_sections(detailed_desc, section.itertext())
+    if platform_tag in MARKDOWN_PLATFORMS:
+        detailed_desc = build_detailed_desc(root, platform_tag)
+    else:
+        for section in root.findall('./refbody/section'):
+            if section.get("id") == "detailed_desc":
+                title = section.find("./title")
+                if title is not None:
+                    title.clear()
+                detailed_desc = combine_text_sections(detailed_desc, section.itertext())
 
     # detailed_desc_text = ""
 
@@ -838,10 +962,14 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
     return_values = ""
     for section in root.findall('./refbody/section'):
         if section.get("id") == "return_values":
-            title = section.find("./title")
-            if title is not None:
-                title.clear()
-            return_values = combine_text_sections(return_values, section.itertext())
+            if platform_tag in MARKDOWN_PLATFORMS:
+                return_values = indent_for_inline_field(
+                    dita_section_to_markdown(section))
+            else:
+                title = section.find("./title")
+                if title is not None:
+                    title.clear()
+                return_values = combine_text_sections(return_values, section.itertext())
 
     logLines(localLogger.debug, "Return values", return_values)
 
@@ -916,13 +1044,20 @@ def merge_JsonFiles(files, output_json):
 
 
 
-def replace_newline(json_file):
+def replace_newline(json_file, platform_tag: str = None):
 
     input_file = open(json_file, 'r', encoding="utf-8")
     # 2022.1.17 Clean up \n and spaces
     file_text = input_file.read()
 
-    replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', file_text)
+    # On the Markdown platforms a value may deliberately begin with a newline
+    # and a two-space indent, so that a list nests under an inline field prefix
+    # such as "- Returns: ". Leave those alone; every other platform keeps the
+    # original behaviour.
+    keep_indent = platform_tag in MARKDOWN_PLATFORMS
+    lead = r':[\s]{0,100}"[\s]{0,100}\\n(?!  )[\s]{0,100}' if keep_indent \
+        else r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}'
+    replaced_file_text = re.sub(lead, ': "', file_text)
 
     # Replaces multiple newline and whitespaces as seen with LOCAL_VIDEO_STREAM_STATE_FAILED (java)
     replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}\\n', ' ', replaced_file_text)
@@ -931,7 +1066,8 @@ def replace_newline(json_file):
     # replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', ' ', replaced_file_text)
     # replace 2+ whitespace characters with just one space
     # Catches ditafile double spaces
-    replaced_file_text = re.sub(r'(?<=\S) {2,}', ' ', replaced_file_text)
+    collapse = r'(?<=\S)(?<!\\n) {2,}' if keep_indent else r'(?<=\S) {2,}'
+    replaced_file_text = re.sub(collapse, ' ', replaced_file_text)
 
     # Catches "See."
     replaced_file_text = re.sub(r' See[\s\\n]{0,50}\.', '', replaced_file_text)
@@ -940,7 +1076,9 @@ def replace_newline(json_file):
 
     # catches "For details, see." and "For details, see Use RESTful API."
     replaced_file_text = re.sub(r' For details[A-Za-z\s\\n,]{0,50}\.', '', replaced_file_text)
-    replaced_file_text = re.sub(r':[\s]{0,10}"\\n[\s\\n]{0,50}', ':"', replaced_file_text)
+    lead2 = r':[\s]{0,10}"\\n(?!  )[\s\\n]{0,50}' if keep_indent \
+        else r':[\s]{0,10}"\\n[\s\\n]{0,50}'
+    replaced_file_text = re.sub(lead2, ':"', replaced_file_text)
 
     # ------------------ Special processing for Flutter classes ------------------------------------------
     replaced_file_text = re.sub('class_rtc_render_view_rtcsurfaceview', 'class_rtcsurfaceview', replaced_file_text)
