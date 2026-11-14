@@ -321,6 +321,10 @@ PLATFORM_GROUPS = {
     "native": {"android", "ios", "macos", "cpp", "hmos"},
     "framework": {"flutter", "rn", "unity", "electron", "cs", "unreal", "bp"},
     "apple": {"ios", "macos"},
+    # The corpus writes "mac" for macOS -- 1,962 uses against a single "macos"
+    # -- while the build is invoked with --platform_tag macos, so without this
+    # every mac-tagged element was dropped from the very build it belongs to.
+    "mac": {"macos"},
 }
 # @props values that are not platform filters at all.
 PLATFORM_AGNOSTIC = {"rtc", "rtc-ng"}

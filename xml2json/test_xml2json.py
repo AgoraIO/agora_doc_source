@@ -12,7 +12,7 @@ from pathlib import Path
 sys.argv = ["xml2json.py", "--working_dir", ".", "--platform_tag", "ios"]
 sys.path.insert(0, str(Path(__file__).parent))
 
-from xml2json import MARKDOWN_PLATFORMS, symbol_link  # noqa: E402
+from xml2json import MARKDOWN_PLATFORMS, PLATFORM_GROUPS, should_remove, symbol_link  # noqa: E402
 
 SOURCE = (Path(__file__).parent / "xml2json.py").read_text(encoding="utf-8")
 
@@ -47,6 +47,31 @@ class SymbolLinkTest(unittest.TestCase):
             symbol_link("joinChannelByToken:channelId:uid:", "ios"),
             "``joinChannelByToken:channelId:uid:``",
         )
+
+
+class PlatformPropsTest(unittest.TestCase):
+    """The corpus spells macOS "mac"; the build asks for "macos"."""
+
+    def test_mac_is_kept_on_the_macos_build(self) -> None:
+        # props on the macOS-only cases of enum_localaudiostreamreason
+        self.assertFalse(
+            should_remove("macos", "cpp mac unreal bp unity flutter electron cs", "rtc", "en")
+        )
+
+    def test_mac_does_not_widen_other_platforms(self) -> None:
+        for platform in ("ios", "android", "unity", "flutter", "rn", "electron", "cpp"):
+            with self.subTest(platform=platform):
+                self.assertTrue(should_remove(platform, "mac", "rtc", "en"))
+
+    def test_apple_and_native_still_include_macos(self) -> None:
+        self.assertFalse(should_remove("macos", "apple", "rtc", "en"))
+        self.assertFalse(should_remove("macos", "native", "rtc", "en"))
+
+    def test_group_tokens_are_not_platforms_themselves(self) -> None:
+        # a group token must expand, never match a --platform_tag directly
+        for token in PLATFORM_GROUPS:
+            with self.subTest(token=token):
+                self.assertNotIn(token, PLATFORM_GROUPS[token])
 
 
 class XrefResolutionTest(unittest.TestCase):
