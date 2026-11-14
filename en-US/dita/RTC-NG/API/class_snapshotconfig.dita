@@ -72,9 +72,18 @@ public:
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry>
+            <plentry props="ios mac unreal bp electron flutter rn unity cs hmos">
                 <pt>position</pt>
                 <pd>The position of the snapshot video frame in the video pipeline. See <xref keyref="VIDEO_MODULE_POSITION"/>.</pd>
+            </plentry>
+            <plentry props="android cpp">
+                <pt>position</pt>
+                <pd>The position of the video observation. See <xref keyref="VIDEO_MODULE_POSITION"/>. Allowed values vary depending on the <codeph>uid</codeph> parameter passed in <codeph>takeSnapshot</codeph> or <codeph>takeSnapshotEx</codeph>:
+                    <ul>
+                        <li><codeph>uid</codeph> = 0: Position 2, 4 and 8 are allowed.</li>
+                        <li><codeph>uid</codeph> != 0: Only position 2 is allowed.</li>
+                    </ul>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>
