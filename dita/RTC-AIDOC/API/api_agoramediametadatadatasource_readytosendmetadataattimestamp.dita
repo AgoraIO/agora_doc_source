@@ -19,8 +19,10 @@
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="ios">该回调在 SDK 准备好发送元数据时触发。</p>
+            <p props="ios">自 v4.7.1 起，该回调支持为本地合图后的视频流提供 Metadata。当 <codeph>sourceType</codeph> 为 <codeph>AgoraVideoSourceTypeTransCoded</codeph> 时，返回需要随合图视频流发送的元数据。</p>
+            <p props="ios">Metadata 由合图后的输出流携带。参与合图的摄像头、屏幕共享等输入源的 Metadata 不会自动合并到输出流中。</p>
             <p props="mac">该回调在 SDK 准备好发送元数据时触发。</p>
-            <note props="ios">请确保元数据的大小不超过 <xref keyref="metadataMaxSize"/> 回调中设置的值。</note>
+            <note props="ios">请确保元数据的大小不超过 <xref keyref="metadataMaxSize"/> 回调中设置的值，最大为 1024 字节。如果超过该值，SDK 会截除超出部分。</note>
             <note props="mac">请确保元数据的大小不超过 <xref keyref="metadataMaxSize"/> 回调中设置的值。</note>
         </section>
         <section id="timing" deliveryTarget="details" props="ios mac">
@@ -37,7 +39,7 @@
                 </plentry>
                 <plentry props="ios">
                     <pt>sourceType</pt>
-                    <pd>视频数据类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                    <pd>视频数据类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。自 v4.7.1 起，本地合图输出流对应的值为 <codeph>AgoraVideoSourceTypeTransCoded</codeph>。</pd>
                 </plentry>
                 <plentry props="mac">
                     <pt>timestamp</pt>
@@ -51,14 +53,7 @@
         </section>
         <section id="return_values" props="ios mac">
             <title>返回值</title>
-            <p props="ios">你希望发送的元数据，格式为 <codeph>NSData</codeph>，包含以下参数：
-                <ul>
-                    <li><codeph>uid</codeph>：发送元数据的远端用户 ID。</li>
-                    <li><codeph>size</codeph>：元数据的大小。</li>
-                    <li><codeph>buffer</codeph>：元数据内容。</li>
-                    <li><codeph>timeStampMs</codeph>：发送元数据时的 NTP 时间戳（毫秒）。</li>
-                </ul>
-            </p>
+            <p props="ios">你希望发送的元数据，格式为 <codeph>NSData</codeph>。没有待发送的数据时返回 <codeph>nil</codeph>。</p>
             <p props="mac">你希望发送的元数据，格式为 <codeph>NSData</codeph>，包含以下参数：
                 <ul>
                     <li><codeph>uid</codeph>：发送元数据的远端用户 ID。</li>

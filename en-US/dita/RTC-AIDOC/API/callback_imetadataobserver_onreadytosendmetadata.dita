@@ -18,8 +18,10 @@
             </p>
         </section>
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="android">As of v4.7.1, this callback can provide metadata for locally transcoded video. When <codeph>sourceType</codeph> is <codeph>VIDEO_SOURCE_TRANSCODED</codeph>, return the metadata to send with the transcoded video stream.</p>
+            <p props="android">The metadata is carried by the mixed output stream. Metadata from input camera or screen-sharing streams is not automatically merged into the output stream.</p>
             <note props="cpp">Ensure that the size of the metadata does not exceed the value set in the <xref keyref="getMaxMetadataSize"/> callback. If the metadata size exceeds this value, the SDK truncates the excess data.</note>
-            <note props="android">Make sure the size of the metadata does not exceed the value set in the <xref keyref="getMaxMetadataSize"/> callback.</note>
+            <note props="android">Make sure the size of the metadata does not exceed the value set in the <xref keyref="getMaxMetadataSize"/> callback. If the metadata size exceeds this value, the SDK truncates the excess data.</note>
         </section>
         <section id="timing" deliveryTarget="details" props="android cpp">
             <title>Trigger Timing</title>
@@ -43,7 +45,7 @@
                 </plentry>
                 <plentry props="android">
                     <pt>sourceType</pt>
-                    <pd>Video data type. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                    <pd>Video data type. See <xref keyref="VIDEO_SOURCE_TYPE"/>. As of v4.7.1, <codeph>VIDEO_SOURCE_TRANSCODED</codeph> identifies the locally transcoded output stream.</pd>
                 </plentry>
             </parml>
         </section>
@@ -55,7 +57,7 @@
                     <li><xref keyref="false"/>: Do not send this video frame.</li>
                 </ul>
             </p>
-            <p props="android">If the method call succeeds, returns the metadata to be sent, in byte array format.</p>
+            <p props="android">The metadata to send, as a byte array. Return <codeph>null</codeph> when there is no metadata to send.</p>
         </section>
     </refbody>
 </reference>
