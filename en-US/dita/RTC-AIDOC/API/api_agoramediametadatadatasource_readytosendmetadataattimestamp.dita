@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_agoramediametadatadatasource_readytosendmetadataattimestamp">
+    <title><ph keyref="readyToSendMetadataAtTimestamp"/></title>
+    <shortdesc id="short"><ph id="shortdesc" props="ios">Occurs when the SDK is ready to send metadata.</ph></shortdesc>
+    <refbody>
+        <section id="prototype"><codeblock props="ios" outputclass="language-objectivec">- (NSData * _Nullable)readyToSendMetadataAtTimestamp:(NSTimeInterval)timestamp sourceType:(AgoraVideoSourceType)sourceType NS_SWIFT_NAME(readyToSendMetadata(atTimestamp:sourceType:));</codeblock></section>
+        <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
+            <p props="ios">As of v4.7.1, this callback can provide metadata for locally transcoded video. When <codeph>sourceType</codeph> is <codeph>AgoraVideoSourceTypeTransCoded</codeph>, return the metadata to send with the transcoded video stream.</p>
+            <p props="ios">The metadata is carried by the mixed output stream. Metadata from input camera or screen-sharing streams is not automatically merged into the output stream.</p>
+            <note props="ios">Make sure the size of the metadata does not exceed the value returned by <codeph>metadataMaxSize</codeph>, up to 1024 bytes. If the metadata size exceeds this value, the SDK truncates the excess data.</note>
+        </section>
+        <section id="timing" deliveryTarget="details"><title>Trigger Timing</title><p props="ios">Triggered when the SDK is ready to send metadata.</p></section>
+        <section id="parameters" deliveryTarget="details">
+            <title>Parameters</title>
+            <parml>
+                <plentry props="ios"><pt>timestamp</pt><pd>The timestamp.</pd></plentry>
+                <plentry props="ios"><pt>sourceType</pt><pd>The video source type. As of v4.7.1, <codeph>AgoraVideoSourceTypeTransCoded</codeph> identifies the locally transcoded output stream.</pd></plentry>
+            </parml>
+        </section>
+        <section id="return_values"><title>Return Values</title><p props="ios">The metadata to send, as <codeph>NSData</codeph>. Return <codeph>nil</codeph> when there is no metadata to send.</p></section>
+    </refbody>
+</reference>

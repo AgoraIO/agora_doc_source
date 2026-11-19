@@ -30,9 +30,14 @@
         </section>
         <section id="detailed_desc">
             <p>This callback is triggered when the SDK is ready to send metadata.</p>
+            <p props="android">As of v4.7.1, when <codeph>sourceType</codeph> is <codeph>VIDEO_SOURCE_TRANSCODED</codeph>, return the metadata to send with the locally transcoded video stream.</p>
+            <p props="ios">As of v4.7.1, when <codeph>sourceType</codeph> is <codeph>AgoraVideoSourceTypeTransCoded</codeph>, return the metadata to send with the locally transcoded video stream.</p>
+            <p props="android ios">The metadata is carried by the mixed output stream. Metadata from input camera or screen-sharing streams is not automatically merged into the output stream.</p>
             <p props="hide">After receiving this callback, you can call <xref keyref="sendMetaData"/> to send the media metadata.</p>
-            <note props="android ios mac unreal bp" type="attention">Ensure that the size of the metadata does not exceed the value set in the <xref keyref="getMaxMetadataSize"/> callback.</note>
-            <note props="cpp" type="attention">Ensure that the size of the metadata does not exceed the value set in the <xref keyref="getMaxMetadataSize"/> callback. If the metadata size exceeds this value, the SDK truncates the excess data.</note> </section>
+            <note props="mac unreal bp" type="attention">Ensure that the size of the metadata does not exceed the value set in the <xref keyref="getMaxMetadataSize"/> callback.</note>
+            <note props="cpp" type="attention">Ensure that the size of the metadata does not exceed the value set in the <xref keyref="getMaxMetadataSize"/> callback. If the metadata size exceeds this value, the SDK truncates the excess data.</note>
+            <note props="android ios" type="attention">Ensure that the metadata size does not exceed the value set in the <xref keyref="getMaxMetadataSize"/> callback, up to 1024 bytes. If the metadata size exceeds this value, the SDK truncates the excess data.</note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -57,13 +62,15 @@
             <li><codeph><ph keyref="true"/></codeph>: Send the video frame.</li>
             <li><codeph><ph keyref="false"/></codeph>: Do not send the video frame.</li>
             </ul>
-            <p props="ios mac">The metadata that you want to send in the format of NSData, which includes the following parameters:<ul>
+            <p props="ios">The metadata to send, as <codeph>NSData</codeph>. Return <codeph>nil</codeph> when there is no metadata to send.</p>
+            <p props="mac">The metadata that you want to send in the format of NSData, which includes the following parameters:<ul>
             <li><codeph>uid</codeph>: The ID of the remote user who sends the metadata.</li>
             <li><codeph>size</codeph>: The size of the metadata.</li>
             <li><codeph>buffer</codeph>: The metadata data.</li>
             <li><codeph>timeStampMs</codeph>: The NTP timestamp (ms) when the metadata is sent.</li>
             </ul> </p>
-            <p props="android hmos">The metadata that you want to send in the format of byte. Ensure that you set the return value.</p>
+            <p props="android">The metadata to send, as a byte array. Return <codeph>null</codeph> when there is no metadata to send.</p>
+            <p props="hmos">The metadata that you want to send in the format of byte. Ensure that you set the return value.</p>
         </section>
     </refbody>
 </reference>
