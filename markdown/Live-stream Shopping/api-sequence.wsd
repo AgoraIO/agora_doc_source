@@ -1,0 +1,63 @@
+@startuml
+autonumber
+title 电商直播 API 调用时序图
+participant "声网 RTC SDK" as sdk
+participant "电商直播 App" as app #White
+participant "声网云服务\n(SyncManager)" as cloud
+app -> cloud: 获取房间列表
+activate cloud
+cloud -->> app: 显示房间列表
+deactivate cloud
+== 创建直播间以本地预览直播 ==
+app -> sdk: create
+app -> sdk: setupLocalVideo
+app -> sdk: startPreview
+app -> cloud: 创建房间
+activate cloud
+cloud -->> app: 创建房间成功
+deactivate cloud
+app -> sdk: stopPreview
+app -> sdk: destory
+== 加入直播间 ==
+app -> cloud: 加入房间
+activate cloud
+cloud -->> app: 加入房间成功
+deactivate cloud
+app -> cloud: 订阅收到礼物事件
+app -> cloud: 订阅聊天消息事件
+app -> cloud: 订阅用户加入和退出直播间事件
+app -> cloud: 订阅 PK 连麦邀请事件
+app -> sdk: create
+app -> sdk: enableVideo
+app -> sdk: setupLocalVideo（主播调用）
+app -> sdk: setupRemoteVideo（观众调用）
+app -> sdk: joinChannel
+sdk --> app: onJoinChannelSuccess
+== 上架/下架商品 ==
+app -> cloud: 上架商品
+app -> cloud: 下架商品
+cloud --> app: 商品上架通知
+cloud --> app: 商品下架通知
+== 主播 PK 连麦 ==
+app -> cloud: 主播 A 发起 PK
+cloud --> app: 主播 B 收到 PK 邀请
+app -> cloud: 主播 B 接受 PK 邀请
+cloud --> app: 主播 A 和主播 B 开始 PK
+app -> sdk: joinChannelEx（主播和观众加入对方主播房间）
+sdk --> app: onUserJoined
+app -> sdk: setupRemoteVideoEx（主播和观众渲染对方主播的视频）
+app -> cloud: 主播 A 和主播 B 结束 PK
+cloud --> app: 主播 A 和主播 B 结束 PK
+app -> sdk: leaveChannelEx（主播和观众退出对方频道）
+== 退出直播间 ==
+app -> cloud: 主播退出房间
+activate cloud
+cloud --> app: 通知所有观众房间已关闭
+deactivate cloud
+app -> cloud: 观众退出房间
+activate cloud
+cloud --> app: 通知所有观众和主播房间内减少 1 名用户
+deactivate cloud
+app -> sdk: leaveChannel
+app -> sdk: destroy
+@enduml
