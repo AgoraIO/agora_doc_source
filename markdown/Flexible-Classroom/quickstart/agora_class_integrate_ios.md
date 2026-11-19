@@ -58,14 +58,14 @@ pod --version
    pod 'Whiteboard',                  '2.16.51'
    
    # open-source libs
-   pod 'AgoraClassroomSDK_iOS', '2.8.20'
-   pod 'AgoraEduUI',            '2.8.20'
+   pod 'AgoraClassroomSDK_iOS', '2.8.30'
+   pod 'AgoraEduUI',            '2.8.30'
       
-   pod 'AgoraWidgets',          '2.8.20'
+   pod 'AgoraWidgets',          '2.8.30'
    
    # close-source libs
    pod 'AgoraUIBaseViews',      '2.8.0'
-   pod 'AgoraEduCore', 	       '2.8.20'
+   pod 'AgoraEduCore', 	         '2.8.30'
    pod 'AgoraWidget',           '2.8.0'
    ```
 
@@ -204,12 +204,12 @@ pod --version
    pod 'AgoraRtm_iOS',                '1.4.8'
       
    # open-source libs
-   pod 'AgoraProctorSDK',       '1.0.0'
+   pod 'AgoraProctorSDK',       '1.0.1'
    pod 'AgoraProctorUI',        '1.0.0'
    
    # close-source libs
    pod 'AgoraUIBaseViews',      '2.8.0'
-   pod 'AgoraEduCore', 	       '2.8.20'
+   pod 'AgoraEduCore', 	         '2.8.30'
    pod 'AgoraWidget',           '2.8.0'
    ```
    
@@ -356,8 +356,8 @@ pod --version
    pod 'AgoraWidgets', 			  :path => '../apaas-extapp-ios/AgoraWidgets.podspec'
     
    # close-source libs
-   pod 'AgoraUIBaseViews',      '2.8.0'
-   pod 'AgoraEduCore', 			'2.8.20'
+   pod 'AgoraUIBaseViews',    '2.8.0'
+   pod 'AgoraEduCore', 			'2.8.30'
    pod 'AgoraWidget', 			'2.8.0'
    ```
 
@@ -399,8 +399,8 @@ pod --version
    pod 'AgoraProctorUI',    :path => '../proctor-ios/AgoraProctorUI.podspec'
     
    # close-source libs
-   pod 'AgoraUIBaseViews',      '2.8.0'
-   pod 'AgoraEduCore', 			'2.8.20'
+   pod 'AgoraUIBaseViews',    '2.8.0'
+   pod 'AgoraEduCore', 			'2.8.30'
    pod 'AgoraWidget', 			'2.8.0'
    ```
 4. 在终端中进入到工程目录，执行 `pod install` 命令。

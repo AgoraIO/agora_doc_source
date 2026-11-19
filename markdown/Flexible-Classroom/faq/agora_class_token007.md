@@ -1,3 +1,7 @@
+// TODO 部署服务器，客户端鉴权的步骤参考 rtm 文档，提供一个 go 语言的 sample。单个用户的 token。
+
+
+
 # 如何在 灵动课堂 RESTful API中进行 HTTP Token 认证?
 
 ## 功能描述
@@ -54,7 +58,7 @@ Agora 在 GitHub 上提供一个开源的 [AgoraDynamicKey](https://github.com/A
 
 
 ### AccessToken2 生成器代码
-
+//TODO 三种作用域对应的是什么场景？006 的就是 app 全局吗？等于用户可以同时生成3个 token 供不同情况使用？为什么要用个人和指定房间制定用户的？
 目前，灵动课堂的Token007提供3种级别作用域：App全局，个人用户，指定房间指定用户（客户端使用）。
 <br/>
 
@@ -90,7 +94,7 @@ Agora 在 GitHub 上提供一个开源的 [AgoraDynamicKey](https://github.com/A
 
 #### 指定房间指定用户（客户端使用）
 作用域为具体房间具体用户，该token打包了ServiceEducation和ServiceRtm两个服务，在客户端SDK启动时传入，可以帮助用户打通灵动课堂及RTM用户登录的token。
-
+//TODO 前2个token 是只能服务端适用吗
 | 语言 | 算法 | 核心方法                                                                                                                                                            | 示例代码 |
 | -------- | ----------- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------| ---------------- |
 | C++ | HMAC-SHA256 | [BuildRoomUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/EducationTokenBuilder2.h)                                  |  |
@@ -105,7 +109,7 @@ Agora 在 GitHub 上提供一个开源的 [AgoraDynamicKey](https://github.com/A
 <br/>
 
 ### AccessToken 生成器代码
-
+//TODO 006 的就是 app 全局吗？
 
 | 语言 | 算法 | 核心方法 | 示例代码 |
 | -------- | ----------- | ---------- | ---------------- |
