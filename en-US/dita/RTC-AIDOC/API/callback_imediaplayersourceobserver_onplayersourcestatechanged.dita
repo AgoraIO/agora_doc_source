@@ -20,6 +20,20 @@
         <section id="detailed_desc" deliveryTarget="details" otherprops="no-title">
             <p props="cpp">This callback is triggered by the SDK to report the current playback state when the media player state changes.</p>
             <p props="android">This callback is triggered by the SDK when the media player's state changes.</p>
+            <p props="android">For on-demand playback, <codeph>PLAYER_STATE_PLAYBACK_COMPLETED</codeph> (5) indicates that the current playback has completed and the player will continue repeating. <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph> (6) indicates that the final playback has completed.</p>
+            <p props="android">Handle <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph> (6) when the entire playback session completes normally. This state is also reported after a single playback when looping is not configured. Each playback iteration reports only one completion state; the final iteration reports <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph> (6) without first reporting <codeph>PLAYER_STATE_PLAYBACK_COMPLETED</codeph> (5).</p>
+        </section>
+        <section id="playback_scenarios" props="android" deliveryTarget="details">
+            <title>On-demand playback scenarios</title>
+            <p>Only playback-completion and stop states are listed. Intermediate states such as opening and playing are omitted.</p>
+            <simpletable relcolwidth="1* 1* 3*">
+                <sthead><stentry>Method call</stentry><stentry>Playback behavior</stentry><stentry>State callback sequence</stentry></sthead>
+                <strow><stentry>No call to <codeph>setLoopCount</codeph></stentry><stentry>Plays once</stentry><stentry>Reports <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph> (6) when playback completes.</stentry></strow>
+                <strow><stentry><codeph>setLoopCount(0)</codeph></stentry><stentry>Plays once</stentry><stentry>Reports <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph> (6) when playback completes.</stentry></strow>
+                <strow><stentry><codeph>setLoopCount(1)</codeph></stentry><stentry>Plays twice</stentry><stentry>Reports <codeph>PLAYER_STATE_PLAYBACK_COMPLETED</codeph> (5) after the first playback, then <codeph>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</codeph> (6) after the second playback.</stentry></strow>
+                <strow><stentry><codeph>setLoopCount(-1)</codeph></stentry><stentry>Repeats indefinitely</stentry><stentry>Reports <codeph>PLAYER_STATE_PLAYBACK_COMPLETED</codeph> (5) after each playback, then repeats.</stentry></strow>
+                <strow><stentry>Successful <codeph>stop()</codeph> during playback</stentry><stentry>Stops playback</stentry><stentry>Reports <codeph>PLAYER_STATE_STOPPED</codeph> (7).</stentry></strow>
+            </simpletable>
         </section>
         <section id="parameters" deliveryTarget="details" props="android cpp">
             <title>Parameters</title>
