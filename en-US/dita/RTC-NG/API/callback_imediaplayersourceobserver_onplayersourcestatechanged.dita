@@ -38,6 +38,16 @@
         </section>
         <section id="detailed_desc">
             <p>When the state of the media player changes, the SDK triggers this callback to report the current playback state.</p>
+            <p props="android">For on-demand playback, <ph keyref="PLAYER_STATE_PLAYBACK_COMPLETED" /> (5) indicates that the current playback has completed and the player will continue repeating. <ph keyref="PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED" /> (6) indicates that the final playback has completed.</p>
+            <p props="android">Handle <ph keyref="PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED" /> (6) when the entire playback session completes normally. This state is also reported after a single playback when looping is not configured. Each playback iteration reports only one completion state; the final iteration reports <ph keyref="PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED" /> (6) without first reporting <ph keyref="PLAYER_STATE_PLAYBACK_COMPLETED" /> (5).</p>
+        </section>
+        <section id="playback_scenarios" props="android">
+            <title>On-demand playback scenarios</title>
+            <p>Only playback-completion and stop states are listed. Intermediate states such as opening and playing are omitted.</p>
+            <simpletable conref="api_imediaplayer_setloopcount.dita#api_imediaplayer_setloopcount/playback_scenarios_table">
+                <sthead><stentry/></sthead>
+                <strow><stentry/></strow>
+            </simpletable>
         </section>
         <section id="parameters">
             <title>Parameters</title>
